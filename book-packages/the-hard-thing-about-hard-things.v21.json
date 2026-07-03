@@ -41,13 +41,6 @@
             "capacity",
             "crisis"
           ],
-          "planSpec": {
-            "domain": "regional hospital bed-capacity command center during a flu surge",
-            "audience": "a chief medical officer choosing between patient transfer, elective surgery delays, and staff overload",
-            "stakes": "one decision will anger surgeons, another will crowd the emergency department, and delay will strand patients",
-            "format": "decision_point",
-            "requiredBeat": "the CMO circles three bad options on the capacity board, names who gets hurt by each, and assigns one nurse manager to execute the least damaging path before the next ambulance call"
-          },
           "scenario": "The red bed-capacity board blinks beside Claire's stack of transfer forms as the chief medical officer reads the ambulance ETA: twelve minutes. She circles three bad options on the board. Transfer stable patients and families wait. Delay elective surgeries and surgeons lose rooms. Overload staff and the ward may break by dawn. Claire must decide before the next ambulance call and assigns one nurse manager to execute the least damaging path.",
           "whatToDo": "Name the injury each option creates, choose the path that protects the most fragile part of the system, and give one accountable person the authority to move before events decide for her.",
           "whyItMatters": "The capacity problem has no harmless answer. Saying who gets hurt prevents vague hope from masquerading as compassion and turns partial information into a controlled action."
@@ -60,13 +53,6 @@
             "safety",
             "runway"
           ],
-          "planSpec": {
-            "domain": "freight railroad dispatch desk after a bridge sensor fault",
-            "audience": "an operations director who must choose between stopping cargo, rerouting perishables, or risking network delays",
-            "stakes": "every route choice costs money, time, or trust with shippers",
-            "format": "predict_reveal",
-            "requiredBeat": "the director asks dispatchers to predict the cost of each route on the live map, then chooses the reroute that preserves safety while owning the late-delivery call herself"
-          },
           "scenario": "\"Ingrid, the berries miss the warehouse window if we stop the eastbound,\" the dispatcher says as a rail map shows one bridge segment flashing amber. Ingrid, the operations director, points to the sensor fault and asks each desk to predict the cost of stop, reroute, or proceed. The reveal is uglier than the map looked. She must choose before the perishable freight leaves the yard, then take the shipper call herself.",
           "whatToDo": "Force the team to price every route on the live map, reject the option that hides safety risk, choose the reroute, and personally own the late-delivery explanation.",
           "whyItMatters": "The tempting move is to let the network absorb the ambiguity. Safety risk is irreversible, while a shipper trust hit can be named, repaired, and managed by the leader who chose it."
@@ -79,13 +65,6 @@
             "budget",
             "candor"
           ],
-          "planSpec": {
-            "domain": "public radio station deciding whether to cut a local investigative series",
-            "audience": "a station manager facing a donor shortfall and an angry newsroom",
-            "stakes": "saving payroll means canceling work that defines the station's identity",
-            "format": "dialogue",
-            "requiredBeat": "the manager reads the shortfall number aloud, refuses to call any choice harmless, and assigns a decision deadline instead of asking the newsroom to wait for better news"
-          },
           "scenario": "It took Daniel until the third budget meeting to admit the printed pledge report clipped to the sound booth door was not a timing problem. \"The shortfall is $186,000,\" he says, holding up the series calendar. \"Cutting the investigation hurts our identity. Keeping it risks payroll.\" The newsroom asks for another week. Daniel has to decide whether to wait for better news or set a deadline by Friday.",
           "whatToDo": "Read the number plainly, refuse to describe either path as harmless, and set a decision deadline that gives the newsroom truth instead of another week of rumor.",
           "whyItMatters": "The station cannot spend identity as if it were cash. A deadline keeps responsibility with management and stops hope from quietly becoming the operating plan."
@@ -98,13 +77,6 @@
             "weather",
             "ownership"
           ],
-          "planSpec": {
-            "domain": "municipal snow-removal depot after two plows fail before a storm",
-            "audience": "a public works lead balancing school routes, hospital access, and residential complaints",
-            "stakes": "the city cannot clear every road before morning and blame will land somewhere",
-            "format": "scene",
-            "requiredBeat": "the lead moves route magnets by hand, states which neighborhoods wait, and calls the mayor before drivers leave the yard"
-          },
           "scenario": "You are standing beside Camille, the public works lead, in the depot while blue route magnets lie scattered under a storm warning printout. Two plows have failed, the hospital access road is drifting over, and school routes still need salt. Camille moves the magnets by hand and says which neighborhoods will wait. Before drivers leave the yard, she must tell the mayor exactly what will not be clear by morning.",
           "whatToDo": "Mark the routes that will wait, protect the hospital access road first, and make the political call before the trucks leave so the cost is owned early.",
           "whyItMatters": "The storm will allocate pain if Camille does not. Naming the skipped roads turns an impossible coverage problem into a chosen priority with accountable communication."
@@ -117,13 +89,6 @@
             "safety",
             "cash"
           ],
-          "planSpec": {
-            "domain": "independent theater deciding whether to open with a damaged lighting rig",
-            "audience": "a producing director with actors, ticket holders, and safety inspectors pressing for different answers",
-            "stakes": "canceling burns cash and trust, but opening unsafely risks people",
-            "format": "postmortem",
-            "requiredBeat": "the director marks the no-show, partial-open, and cancel choices on the call sheet, then phones ticket holders with the decision before cast rumors spread"
-          },
           "scenario": "Which costs more, Luca wonders, an empty house or a full one under a cracked lighting clamp? The producing director studies the evening call sheet after the safety inspector leaves. In the postmortem he can see the decision clearly: he marked no-show, partial-open, and cancel on the sheet, then used the ticket-holder phone list before cast rumors spread through the lobby.",
           "whatToDo": "Write the three choices on the call sheet, reject the unsafe opening, and call ticket holders before the rumor network becomes the theater's announcement system.",
           "whyItMatters": "The no-show and cancel options both damage trust, but only opening with the rig turns a business problem into a safety problem. The call must carry that distinction."
@@ -136,13 +101,6 @@
             "safety",
             "patient"
           ],
-          "planSpec": {
-            "domain": "specialty pharmacy choosing whether to ship a temperature-exposed biologic",
-            "audience": "a pharmacy director caught between patient urgency, insurer pressure, and safety rules",
-            "stakes": "a rushed shipment may harm a patient, while a delay leaves treatment interrupted",
-            "format": "reflection",
-            "requiredBeat": "the director writes the three harms on the cold-chain log, blocks the shipment, and personally calls the patient with the specific replacement time"
-          },
           "scenario": "The cold-chain logger feels warm in Aanya's palm as the screen shows a spike above the acceptable band. The insurer authorization expires tonight, the patient has already missed one dose, and the courier is waiting at the counter. Aanya writes the three harms on the cold-chain log: ship unsafe medication, delay treatment, or fight authorization again. She blocks the shipment and calls with a replacement time.",
           "whatToDo": "Put the harms in writing, stop the exposed shipment, and call the patient with the exact replacement time instead of hiding behind a generic safety rule.",
           "whyItMatters": "Compliance alone would sound cold, and urgency alone would be reckless. The right move owns both costs: protect the patient from bad medication and reduce the delay."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The correct move accepts partial information and owns a costly path. Waiting for a perfect model hides the decision, while false calm trades short-term morale for worse trust later.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch01-q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The move is to expose the tradeoff and keep responsibility visible. A policy phrase can help organize facts, but using it to dodge blame abandons the operating role.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch01-q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Performative toughness speaks in mood while the actual costs stay unnamed. The finance and client conversations are uncomfortable, but they create the map people need.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch01-q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The strongest response refuses a clean story when none exists. Consensus may be useful, but waiting to spread responsibility spends time and keeps the harm hidden.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch01-q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The issue is not that frameworks are useless. The trap is treating one as if it can absorb responsibility for a no painless option call.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch01-q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The response names that safety has competing meanings in the moment. Hiding the tradeoff from officials may feel protective, but it weakens shared control.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch01-q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The useful question brings consequences into view and includes truth as a constraint. Precedent and motivation can distract from the promise being made now.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch01-q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The principal chooses under constraint and names the deferred harms. Patience and broad values sound humane, but neither allocates the scarce counselor in time.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch01-q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Operator judgment acts inside partial information when delay creates more harm. A polished script may protect appearance, but customers need control before certainty arrives.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -327,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "No spreadsheet signs the decision.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the limit of analysis concrete without dismissing analysis."
+          "text": "No spreadsheet signs the decision."
         },
         {
-          "text": "Weight is harder to carry than fog, but it lets people move in the same direction.",
-          "location": "breakdown.fullRead",
-          "why": "It separates useful candor from vague reassurance."
+          "text": "Weight is harder to carry than fog, but it lets people move in the same direction."
         },
         {
-          "text": "The struggle is where leadership stops being a posture and becomes a receipt.",
-          "location": "breakdown.fullRead",
-          "why": "It ties responsibility to consequence in one plain image."
+          "text": "The struggle is where leadership stops being a posture and becomes a receipt."
         }
       ]
     },
@@ -366,13 +309,6 @@
             "safety",
             "formation"
           ],
-          "planSpec": {
-            "domain": "commercial aviation incident review board",
-            "audience": "a safety chair evaluating a captain whose military habits shaped cockpit decisions",
-            "stakes": "the board must learn from the habit without treating service history as either excuse or proof",
-            "format": "postmortem",
-            "requiredBeat": "the chair separates the captain's formation column from the evidence column on the incident board, then tests which inherited reflex matched the present flight conditions"
-          },
           "scenario": "The cockpit voice transcript smells faintly of copier heat beside a faded squadron photo. Patrick, the safety director, stands at the incident board after the postmortem interview. He draws a formation column for the captain's military habits and a separate evidence column for the actual flight conditions. The decision now is what lesson to carry: which reflex matched the storm approach, and which reflex overruled the crew.",
           "whatToDo": "Separate service history from flight evidence, then test each inherited cockpit reflex against the actual weather, crew signals, and timing of the incident.",
           "whyItMatters": "The captain's past is neither excuse nor proof. It becomes useful only when the board can see where formation improved judgment and where it bent the facts."
@@ -385,13 +321,6 @@
             "craft",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "museum conservation lab choosing a restoration method",
-            "audience": "a head conservator weighing a technician's old apprenticeship against current pigment data",
-            "stakes": "using the familiar method may permanently alter a painting",
-            "format": "before_after",
-            "requiredBeat": "the conservator labels the technician's apprenticeship as context, then makes the team test a pigment sample before approving the repair"
-          },
           "scenario": "The conservation lab is quiet except for the magnifier lamp humming over a tray of blue pigment flakes. Sofia, the lab director, reads the technician's apprenticeship note and watches him reach for the solvent his old master used. Before approving the repair, she labels the apprenticeship as context, not proof. After the test swatch dries, the familiar method shows a faint stain.",
           "whatToDo": "Treat the apprenticeship as a clue about the technician's reflex, then require a pigment sample and test swatch before any method touches the painting.",
           "whyItMatters": "Craft memory can protect a work or permanently alter it. The current pigment data gets the final vote because the painting cannot absorb a nostalgic mistake."
@@ -404,13 +333,6 @@
             "trust",
             "secrecy"
           ],
-          "planSpec": {
-            "domain": "cybersecurity firm reviewing a breach-response lead",
-            "audience": "a COO deciding whether an ex-intelligence analyst's secrecy reflex fits a commercial client crisis",
-            "stakes": "withholding too much information could preserve control while destroying client trust",
-            "format": "dialogue",
-            "requiredBeat": "the COO asks which part of the secrecy instinct came from prior training and which part is justified by the current client facts, then changes the update cadence"
-          },
           "scenario": "\"Why is the client update still redacted?\" Kiran asks as the breach timeline glows beside a blacked-out incident memo. The response lead says, \"Control the leak first.\" Kiran points to the client update cadence and has to decide before the 4 p.m. call. \"Which part of that secrecy instinct came from prior training, and which part is justified by these client facts?\"",
           "whatToDo": "Ask the lead to separate inherited secrecy from current risk, then change the cadence so clients receive useful known facts without exposing live investigation details.",
           "whyItMatters": "A secrecy reflex can preserve control in one world and destroy trust in another. The present client facts decide how much silence is still useful."
@@ -423,13 +345,6 @@
             "promotion",
             "supervision"
           ],
-          "planSpec": {
-            "domain": "shipyard apprenticeship program promoting a master welder",
-            "audience": "a yard manager deciding whether craft excellence predicts supervision quality",
-            "stakes": "the wrong promotion could slow a submarine repair contract",
-            "format": "decision_point",
-            "requiredBeat": "the manager marks where the welder's formation helps quality control and where it may miss scheduling, then assigns a trial shift with explicit feedback rules"
-          },
           "scenario": "It took James one delayed submarine repair contract to stop treating the best weld as proof of the best supervisor. Now a weld coupon stamped with inspection numbers sits beside the repair schedule. The master welder wants the lead role. James marks where her formation helps quality control and where it may miss scheduling, then must decide whether to assign a trial shift with explicit feedback rules.",
           "whatToDo": "Promote the test, not the story: give the welder a trial shift, define schedule and feedback rules, and watch whether craft standards translate into supervision.",
           "whyItMatters": "Precision with metal predicts one part of the job. Supervising a repair contract also requires pacing, escalation, and correction through other people."
@@ -442,13 +357,6 @@
             "hiring",
             "mission"
           ],
-          "planSpec": {
-            "domain": "legal aid clinic hiring a director from a protest organization",
-            "audience": "a clinic board assessing mission fire against case-management discipline",
-            "stakes": "clients need both moral urgency and reliable filings",
-            "format": "vignette",
-            "requiredBeat": "the board maps the candidate's organizing instincts to client intake needs, then asks for a filing backlog plan instead of applauding the origin story"
-          },
           "scenario": "You can feel the clinic board room leaning toward applause when Lea, the board director, opens the intake folder with a court deadline stamped in red. The candidate's organizing background is real, and so is the filing backlog. Lea maps those instincts to client intake needs on the whiteboard, then has to choose the next question: praise the origin story or ask for the backlog plan clients will live under.",
           "whatToDo": "Honor the organizing background, then require a concrete backlog plan that shows how urgency becomes filings, staffing, and reliable client follow-through.",
           "whyItMatters": "Mission fire can bring courage to the clinic, but clients experience discipline as filed papers and kept dates. Formation must meet the case system."
@@ -461,13 +369,6 @@
             "promotion",
             "escalation"
           ],
-          "planSpec": {
-            "domain": "semiconductor fab line lead moving into plant management",
-            "audience": "a VP assessing whether precision-tool experience scales to cross-shift leadership",
-            "stakes": "a yield drop could cost millions if the wrong reflex governs escalation",
-            "format": "reflection",
-            "requiredBeat": "the VP asks the lead to name which clean-room instincts improve escalation and which one might hide people issues, then writes both into the promotion plan"
-          },
           "scenario": "Which clean-room habit belongs in plant management, and which one will hide a people problem until yield drops? Marta, the VP, studies the wafer defect chart glowing above a sealed clean-room window. The line lead's precision-tool experience is excellent. In the promotion plan, Marta asks him to name the instinct that improves escalation and the one that may make messy shift conflict look like contamination.",
           "whatToDo": "Put both sides of the clean-room instinct into the promotion plan: where precision improves escalation, and where it may avoid the human issue.",
           "whyItMatters": "Plant management is not just cleaner execution at larger scale. It requires translating precision into cross-shift leadership without pretending people problems are tool problems."
@@ -486,8 +387,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The right question treats biography as evidence to test. Inspiration and recruiting appeal may be real, but neither proves fit for the present role.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch02-q02",
@@ -499,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The issue is fit, not rejection of the past. The control reflex may help in some moments, but the current shortage may need faster local information.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch02-q03",
@@ -512,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The move separates the useful energy from the harmful reflex. More pressure or less process treats formation as proof instead of testing it against case facts.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch02-q04",
@@ -525,8 +423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Both answers misuse biography as destiny. A defensible evaluation asks what habits the past formed, then checks those habits against current constraints.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch02-q05",
@@ -538,8 +435,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The COO preserves the useful rigor while limiting its distortion. Deference and exile both avoid the harder translation from old strength to new role.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch02-q06",
@@ -551,8 +447,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The response makes the reflex specific and testable. Accepting or rejecting the whole style skips the present question: what does this mistake actually mean?",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch02-q07",
@@ -564,8 +459,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The diligence step turns a compelling story into testable claims. A strong narrative can reveal judgment, but it can also cover an untested bias.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch02-q08",
@@ -577,8 +471,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The action tests the inherited reflex against current conditions. Full secrecy and full openness are both untested rules if they ignore what the present workflow needs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch02-q09",
@@ -590,8 +483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The correct move names the formation-driven blind spot. A checklist may help later, but using only process avoids the people signal in front of him.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -652,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "Formation should make the reflex visible, not sacred.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the whole formation test into four plain words."
+          "text": "Formation should make the reflex visible, not sacred."
         },
         {
-          "text": "The present facts still deserve a vote.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps biography from overruling current evidence."
+          "text": "The present facts still deserve a vote."
         },
         {
-          "text": "Origin stories are maps with old roads still printed on them.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the usefulness and limits of biography easy to remember."
+          "text": "Origin stories are maps with old roads still printed on them."
         }
       ]
     },
@@ -691,13 +577,6 @@
             "cash",
             "runway"
           ],
-          "planSpec": {
-            "domain": "regional food distributor after a restaurant shutdown wave",
-            "audience": "a second-generation operator with freezer inventory and collapsing receivables",
-            "stakes": "payroll, spoilage, lender patience, and customer trust all compete for the same cash",
-            "format": "decision_point",
-            "requiredBeat": "the operator erases the growth forecast, writes days of cash on the freezer inventory sheet, and chooses the ugly receivables deal that buys three more delivery cycles"
-          },
           "scenario": "Which number matters when restaurants stop paying: annual growth or days of cash? Meredith, the distributor's second-generation operator, stands in the loading bay with a freezer inventory sheet smudged by thaw-water marks. Receivables are collapsing, payroll is due Friday, and the lender wants an answer by noon. She erases the growth forecast, writes days of cash beside the inventory count, and must decide whether to accept the ugly receivables deal that buys three more delivery cycles.",
           "whatToDo": "Replace the growth forecast with days of cash, price spoilage and payroll honestly, and take the receivables deal if it buys enough delivery cycles to reassess.",
           "whyItMatters": "The old forecast no longer controls reality. Three more delivery cycles create time to serve paying accounts, renegotiate, and make the next call with options alive."
@@ -710,13 +589,6 @@
             "capacity",
             "cash"
           ],
-          "planSpec": {
-            "domain": "independent dialysis clinic after a reimbursement freeze",
-            "audience": "a clinic administrator deciding how to preserve treatment continuity",
-            "stakes": "patients cannot wait, but staffing and supply contracts no longer fit cash reality",
-            "format": "scene",
-            "requiredBeat": "the administrator crosses out expansion hiring, calls the supply vendor with a staged payment plan, and briefs nurses on the next two-week operating frame"
-          },
           "scenario": "The unpaid supply invoice rasps under Anders's thumb as the clinic administrator tapes the treatment chair schedule back to the clinic wall. The reimbursement freeze makes the expansion hiring plan impossible, but patients still arrive Monday. Anders crosses out the hiring line, calls the vendor with a staged payment plan, and has to decide what to brief nurses before the afternoon shift on the next two-week frame.",
           "whatToDo": "Drop the expansion plan, protect treatment continuity, negotiate the payment plan, and give nurses a two-week operating frame they can actually staff.",
           "whyItMatters": "Patients cannot be managed with optimism. A short frame ties cash reality to staffing and supplies without pretending the clinic has solved the larger reimbursement problem."
@@ -729,13 +601,6 @@
             "communication",
             "cash"
           ],
-          "planSpec": {
-            "domain": "touring orchestra stranded after a sponsor bankruptcy",
-            "audience": "an executive director balancing musician pay, venue deposits, and audience refunds",
-            "stakes": "canceling too much kills trust, but continuing blindly deepens the loss",
-            "format": "dialogue",
-            "requiredBeat": "the director tells section leaders the exact cash gap, names three tour dates that cannot be saved, and assigns one person to renegotiate travel before rumor spreads"
-          },
           "scenario": "The rehearsal hall at 7:18 p.m. is too quiet for forty musicians waiting around a sponsor cancellation letter tucked into a violin case. \"How bad is it?\" the concertmaster asks. Emily, the executive director, answers with the exact cash gap, names three tour dates that cannot be saved, and must decide who will renegotiate travel before rumor spreads through the hotel lobby.",
           "whatToDo": "Tell section leaders the cash gap, name the dates that cannot be saved, and assign one travel negotiator before musicians build their own version of the plan.",
           "whyItMatters": "The orchestra preserves more trust by cutting the impossible dates clearly than by letting uncertainty turn every venue and hotel conversation into rumor."
@@ -748,13 +613,6 @@
             "margin",
             "execution"
           ],
-          "planSpec": {
-            "domain": "solar installation company after a tax-credit rule change",
-            "audience": "a founder whose signed backlog no longer covers material costs",
-            "stakes": "each completed job may lose money unless terms are renegotiated fast",
-            "format": "predict_reveal",
-            "requiredBeat": "the founder has project managers predict cash after each backlog batch, then reveals the material-cost gap and reorders jobs by survivable margin"
-          },
           "scenario": "\"Tell me what cash looks like after the next ten installs,\" Ryan says beside a pallet of inverters with a revised tariff notice taped to the top. The project managers predict the signed backlog will carry the month. Ryan, the founder, reveals the material-cost gap and asks them to recalc by batch. Before crews load trucks, he must decide which jobs move first by survivable margin.",
           "whatToDo": "Make managers predict cash by backlog batch, show the material-cost gap, and reorder work around margin that keeps the company alive long enough to renegotiate.",
           "whyItMatters": "A signed backlog can become a loss engine after a rule change. Reordering by survivable margin turns busy work into disciplined continuation."
@@ -767,13 +625,6 @@
             "care",
             "interval"
           ],
-          "planSpec": {
-            "domain": "county animal shelter after a grant is suspended",
-            "audience": "a shelter director deciding how to keep essential care open",
-            "stakes": "intake, medication, foster capacity, and public trust all compress into a cash clock",
-            "format": "before_after",
-            "requiredBeat": "the director converts the annual plan into a fourteen-day care plan, posts the facts for staff, and cuts a popular adoption event to preserve medication supply"
-          },
           "scenario": "It took Joanna, the shelter director, one medicine cabinet count sheet to stop pretending the annual plan still existed. The postponed event flyer was already printed, volunteers had shifts, and the grant suspension email sat in her inbox. Before the next intake wave, she converted the plan into fourteen days of care, posted a staff fact sheet, and cut the popular adoption event to preserve medication supply.",
           "whatToDo": "Trade the annual plan for a fourteen-day care plan, show staff the facts, and preserve medication even if a visible public event has to go.",
           "whyItMatters": "The shelter's survival interval is care capacity, not public enthusiasm. Protecting medication keeps essential operations open while the grant facts are reassessed."
@@ -786,13 +637,6 @@
             "customers",
             "runway"
           ],
-          "planSpec": {
-            "domain": "industrial parts importer after a port closure",
-            "audience": "a logistics owner whose customers need parts while containers sit offshore",
-            "stakes": "expedited air freight preserves a few accounts but burns runway",
-            "format": "postmortem",
-            "requiredBeat": "the owner ranks customers by survival impact, approves air freight for only two, and sends the same factual delay note to the rest"
-          },
           "scenario": "You are looking over Tomasz's shoulder at a container-tracking screen stuck on vessel waiting outside harbor. The logistics manager's postmortem is blunt: he almost burned all runway trying to keep every customer equally pleased. He rebuilt the call by ranking customers by survival impact, approving air freight for only two accounts, and sending the same factual delay note to the rest.",
           "whatToDo": "Rank customers by survival impact, reserve air freight for the two accounts that preserve the business, and send everyone else the same factual delay note.",
           "whyItMatters": "Trying to save every account equally can destroy the importer's ability to serve any account later. Survival requires selective service backed by clean communication."
@@ -811,8 +655,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The old annual target is no longer the operating scoreboard. Runway, renewal cash, and a review date turn survival pressure into an executable interval.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03-q02",
@@ -824,8 +667,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The test is runway gained against control and execution cost. Appearance and comfort matter less than whether the move preserves another real choice.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch03-q03",
@@ -837,8 +679,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Growth optics are misleading when each unit burns runway. The survival signal is cash consumed versus options preserved for the next constrained call.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch03-q04",
@@ -850,8 +691,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Informal rumor control is too weak for a survival stretch. A written partial update with knowns, unknowns, protected operations, and timing gives crews a shared map before scattered signals take over.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03-q05",
@@ -863,8 +703,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The response uses a short survival interval without making a permanent identity out of it. Confidence and blanket cancellation both dodge the current cash test.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03-q06",
@@ -876,8 +715,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Continuation has to produce adaptation. Stretching runway without learning or changing only delays the same constrained call.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch03-q07",
@@ -889,8 +727,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Silence lets the port closure become each customer's private theory. Selective execution still has to come with factual delay notes, so accounts outside the priority set know what is real.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03-q08",
@@ -902,8 +739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Belief does not convert an unprofitable backlog into runway. Cash by batch and a reassessment date make the market change actionable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch03-q09",
@@ -915,8 +751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Active adaptation changes the operating frame and communicates it. Private exploration and unchanged plans preserve appearances while the cash clock runs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -977,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "Runway is not a metaphor when payroll is close.",
-          "location": "breakdown.deepRead",
-          "why": "It grounds survival pressure in a concrete business consequence."
+          "text": "Runway is not a metaphor when payroll is close."
         },
         {
-          "text": "Truthful communication is not charity in this phase.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the communication risk memorable and operational."
+          "text": "Truthful communication is not charity in this phase."
         },
         {
-          "text": "The goal is not to look unbreakable.",
-          "location": "breakdown.fullRead",
-          "why": "It rejects perseverance theater in one clear sentence."
+          "text": "The goal is not to look unbreakable."
         }
       ]
     },
@@ -1016,13 +845,6 @@
             "review",
             "fatigue"
           ],
-          "planSpec": {
-            "domain": "wildfire incident command after a second wind shift",
-            "audience": "an incident commander whose crew just contained one line and must choose a new evacuation zone",
-            "stakes": "fatigue makes underreaction tempting while homes sit in the changed path",
-            "format": "scene",
-            "requiredBeat": "the commander writes tradeoff, owner, consequence, and review time on the incident log before moving the evacuation boundary"
-          },
           "scenario": "It took Michael, the incident director, one contained line to trust the wind map too quickly. Now the map curls at the edges on the hood of the command truck, and a second wind shift pushes toward homes outside the current evacuation boundary. Before he moves it, Michael has to decide whether the crew's fatigue is making underreaction feel reasonable. He writes tradeoff, owner, consequence, and review time on the incident log.",
           "whatToDo": "Write the four hygiene fields before moving the boundary, then name the owner and the review time so the new wind path gets fresh attention.",
           "whyItMatters": "The prior save helps Michael read the fire, but it can also make danger feel familiar. The incident log keeps memory from muting the present wind shift."
@@ -1035,13 +857,6 @@
             "systems",
             "ownership"
           ],
-          "planSpec": {
-            "domain": "airport baggage system recovery after two failures in one holiday week",
-            "audience": "an airport operations chief deciding whether to keep manual sorting overnight",
-            "stakes": "manual sorting protects departures but exhausts crews and hides the system fault",
-            "format": "decision_point",
-            "requiredBeat": "the chief refuses to call the first fix proof, assigns one owner for overnight manual sorting, and sets a dawn trigger for shutting lanes again"
-          },
           "scenario": "Which is worse: another belt shutdown or a manual sort that hides the fault until crews are wrecked? Nora, the airport operations manager, stands under a row of unclaimed red-tagged bags as the conveyor stops for the second time in one holiday week. The first fix looked good for six hours. She refuses to call it proof, assigns one owner for overnight manual sorting, and must decide the dawn trigger for shutting lanes again.",
           "whatToDo": "Treat the first fix as evidence, not proof. Assign one overnight owner, run manual sorting only under a written trigger, and shut lanes if the dawn count crosses it.",
           "whyItMatters": "Manual sorting can protect departures while concealing the system fault. The trigger keeps fatigue from turning an emergency workaround into silent policy."
@@ -1054,13 +869,6 @@
             "staffing",
             "numbness"
           ],
-          "planSpec": {
-            "domain": "neonatal ICU staffing after a flu outbreak and a resignation",
-            "audience": "a nurse director managing repeat shortage calls",
-            "stakes": "overusing the same nurses may preserve the schedule while increasing patient risk",
-            "format": "reflection",
-            "requiredBeat": "the director marks which memory from last week's save is helping and which is pushing her toward numb acceptance of unsafe ratios"
-          },
           "scenario": "The black pen squeaks as Isabel circles the same two names on the neonatal ICU staffing grid. Last week's prior save worked because two senior nurses took extra shifts, but one has a fever and the staffing ratio is already near the unsafe trigger. Isabel marks which memory is helping her find coverage and which memory is pushing her toward numb acceptance of patient risk.",
           "whatToDo": "Separate the useful lesson from last week's save from the dangerous urge to reuse the same nurses, then mark the unsafe trigger before filling the schedule.",
           "whyItMatters": "Experience can identify reliable people, but fatigue can make unsafe ratios feel ordinary. The trigger protects patients from a repeated workaround."
@@ -1073,13 +881,6 @@
             "delivery",
             "quality"
           ],
-          "planSpec": {
-            "domain": "film post-production house after a second corrupted render",
-            "audience": "a post supervisor with a festival deadline and a tired editing team",
-            "stakes": "rushing another export may miss the real fault and ruin delivery",
-            "format": "predict_reveal",
-            "requiredBeat": "the supervisor asks the team to predict the failure source, then requires a fresh owner and check step before another overnight render begins"
-          },
           "scenario": "The edit suite monitor is dark except for a failed render log frozen at 97 percent. Marco, the post-production manager, asks each editor to predict the failure source before anyone starts another export. The reveal is uncomfortable: three people assumed the same plug-in, and no one owned the checksum. Before the overnight render begins, Marco must choose a fresh owner and a check step.",
           "whatToDo": "Slow the export long enough to collect predictions, name a fresh owner, and add a check step before the tired team spends another night repeating the fault.",
           "whyItMatters": "A second corrupted render is not just bad luck. The prediction and check step reveal whether the team is solving the fault or replaying the first response."
@@ -1092,13 +893,6 @@
             "public health",
             "threshold"
           ],
-          "planSpec": {
-            "domain": "city water lab after a second contamination alert",
-            "audience": "a lab manager balancing public warning, retest protocol, and staff exhaustion",
-            "stakes": "a false calm risks public health; a panic alert damages trust",
-            "format": "dialogue",
-            "requiredBeat": "the manager has the lead tech state the tradeoff aloud, assigns the retest owner, and sets the public update threshold before samples leave the bench"
-          },
           "scenario": "\"Are we really going to warn the public again?\" the lead tech asks beside sample vials and a laminated boil-water threshold card. Amina, the lab manager, hears exhaustion under the question. Before samples leave the bench, she has to decide whether calm is judgment or numbness. She asks him to state the tradeoff aloud, assigns the retest owner, and sets the public update threshold.",
           "whatToDo": "Have the tech name the public-health and trust costs, assign the retest owner, and define the update threshold before fatigue softens the alert decision.",
           "whyItMatters": "The lab cannot let embarrassment from the first alert govern the second. A threshold ties communication to evidence instead of mood."
@@ -1111,13 +905,6 @@
             "service",
             "grid"
           ],
-          "planSpec": {
-            "domain": "boutique hotel after a second weekend reservation-system outage",
-            "audience": "a general manager deciding whether to comp rooms, close bookings, or keep improvising",
-            "stakes": "front-desk staff are making inconsistent promises to guests",
-            "format": "before_after",
-            "requiredBeat": "the manager replaces ad hoc apologies with a written decision grid and a noon review signal for reopening bookings"
-          },
           "scenario": "You see the lobby printer spit duplicate reservation slips onto the floor while Grace, the hotel manager, watches front-desk promises drift in three directions. The first outage ended with charm and comps. The second needs a decision grid. Before checkout lines form, Grace closes new bookings, writes when to comp rooms and when to relocate guests, and sets a noon review signal for reopening.",
           "whatToDo": "Replace improvisation with a written decision grid, stop inconsistent promises, and use the noon review to decide when bookings can safely reopen.",
           "whyItMatters": "Polite apologies worked once because the outage was brief. Repeating them now lets fatigue and guest pressure create a different policy at every desk."
@@ -1136,8 +923,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The prior save is evidence, not permission to coast. The hygiene note tests the current tradeoff and adds a review signal before fatigue makes the workaround permanent.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch04-q02",
@@ -1149,8 +935,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The risk is not emotion itself. The repeated pattern can make an unsafe staffing ratio feel normal because it solved a nearby problem once.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch04-q03",
@@ -1162,8 +947,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The second failure needs a fresh inspection step. Speed alone may repeat the fault, while cancellation avoids the tradeoff instead of managing it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch04-q04",
@@ -1175,8 +959,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A threshold ties the decision to evidence and ownership. Avoiding the warning because the last one was exhausting lets fatigue govern public risk.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch04-q05",
@@ -1188,8 +971,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The dawn trigger forces a new look before the workaround becomes hidden policy. Complaints and local discretion are too vague under crew exhaustion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch04-q06",
@@ -1201,8 +983,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The question gives experience a role without letting it dominate. A prior playbook helps only after the current call's differences are checked.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch04-q07",
@@ -1214,8 +995,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The grid turns repeated pressure into consistent decisions. Warmer language may help tone, but it does not solve inconsistent promises under fatigue.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch04-q08",
@@ -1227,8 +1007,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Familiarity can be useful and misleading. The current consequence and trigger prevent last week's success from muting today's higher-risk context.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch04-q09",
@@ -1240,8 +1019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The incident log keeps the second call tied to present conditions. Appearance and crew stamina matter, but neither should decide the evacuation boundary alone.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1302,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "Calm is useful only when it is still reading.",
-          "location": "breakdown.deepRead",
-          "why": "It separates steady judgment from numb underreaction."
+          "text": "Calm is useful only when it is still reading."
         },
         {
-          "text": "Give it that seat. Do not hand it the chair.",
-          "location": "breakdown.fullRead",
-          "why": "It captures how to use past experience without surrendering to it."
+          "text": "Give it that seat. Do not hand it the chair."
         },
         {
-          "text": "Decision hygiene keeps the room awake.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the practical purpose of the four-part structure."
+          "text": "Decision hygiene keeps the room awake."
         }
       ]
     },
@@ -1341,13 +1113,6 @@
             "candor",
             "stations"
           ],
-          "planSpec": {
-            "domain": "regional ambulance service after a contract loss",
-            "audience": "an operations chief deciding whether to close two stations or quietly hope for replacement funding",
-            "stakes": "crews, response times, town councils, and patient coverage all face real harm",
-            "format": "decision_point",
-            "requiredBeat": "the chief posts the lost-contract number, names the two stations affected, and schedules individual crew meetings before the dispatch rumor channel fills the gap"
-          },
           "scenario": "The dispatch map shows two station pins covered by orange tape before Julia, the operations manager, has told the crews why. The lost-contract number is already in finance, but the dispatch rumor channel is moving faster than the memo. She has to decide whether to wait for replacement funding whispers or post the number, name the two affected stations, and schedule individual crew meetings before the next shift change.",
           "whatToDo": "Post the lost-contract number, name the affected stations, and give crews individual meeting times before the rumor channel becomes their only source of reality.",
           "whyItMatters": "The closure hurts either way. Candor lets crews, town councils, and coverage planners act on the same facts instead of reacting to fragments."
@@ -1360,13 +1125,6 @@
             "recall",
             "ownership"
           ],
-          "planSpec": {
-            "domain": "medical device startup recalling a faulty sensor batch",
-            "audience": "a CEO whose head of quality keeps minimizing the defect",
-            "stakes": "patients, regulators, and the company's survival depend on fast factual action",
-            "format": "dialogue",
-            "requiredBeat": "the CEO asks the quality head to state the defect rate in front of legal and operations, then removes ambiguity about recall ownership before the next shipment leaves"
-          },
           "scenario": "\"Mathieu, it is not a pattern yet,\" the quality head says while a tray of returned sensors sits under red quarantine labels. Mathieu, the company director, looks at legal, then operations. \"State the defect rate out loud.\" The number changes the room. Before the next shipment leaves, Mathieu must decide who owns the recall and whether the quality head can keep softening the fact in every meeting.",
           "whatToDo": "Make the defect rate public inside the decision room, assign recall ownership clearly, and stop shipments until the owner has authority to act.",
           "whyItMatters": "Minimizing the defect protects comfort while increasing patient and regulatory risk. A named owner turns the fact into execution."
@@ -1379,13 +1137,6 @@
             "layoffs",
             "coverage"
           ],
-          "planSpec": {
-            "domain": "regional newspaper after advertising revenue collapses",
-            "audience": "a publisher deciding between serial cuts and one clear restructuring",
-            "stakes": "serial uncertainty could bleed reporters and reduce local coverage further",
-            "format": "postmortem",
-            "requiredBeat": "the publisher compares the three-round cut plan with one decisive plan, then chooses the cleaner reduction and writes the exact coverage promise that remains"
-          },
           "scenario": "It took Rachel, the newsroom manager, two departures to see what the three-round cut plan was doing to the assignment board, where blank spaces had replaced the ads that funded beats. In the postmortem, she compared serial uncertainty with one clear restructuring, chose the cleaner reduction, prepared individual notices, and wrote the exact coverage promise that would remain for city hall and schools.",
           "whatToDo": "Compare serial cuts with one decisive plan, choose the reduction that reduces uncertainty, and write the coverage promise that the remaining newsroom can keep.",
           "whyItMatters": "Serial cuts can look gentle while draining trust and talent. One clean plan gives affected people direct notice and gives readers a truthful promise."
@@ -1398,13 +1149,6 @@
             "safety",
             "role fit"
           ],
-          "planSpec": {
-            "domain": "specialty chemicals plant after an executive safety misfit",
-            "audience": "a plant president whose operations VP keeps bypassing shutdown procedures",
-            "stakes": "normalizing the misfit risks injury and teaches supervisors the wrong standard",
-            "format": "scene",
-            "requiredBeat": "the president holds up the bypass log, states the role expectation, and removes the VP from shutdown authority before the next production run"
-          },
           "scenario": "You can see David's thumb on the bypass log, right beside three supervisor initials in the margin. The operations VP is not a villain; he ships fast and hates idle equipment. He also keeps bypassing shutdown procedures. Before the next production run, David has to decide whether to treat it as style conflict or state the role expectation and remove the VP from shutdown authority.",
           "whatToDo": "Hold up the bypass log, say the shutdown standard plainly, and remove the VP's authority over that decision before supervisors learn the wrong rule.",
           "whyItMatters": "Executive misfit becomes organizational instruction when it is tolerated. Correcting authority protects safety and teaches supervisors which standard is real."
@@ -1417,13 +1161,6 @@
             "insurance",
             "parents"
           ],
-          "planSpec": {
-            "domain": "independent childcare network after an insurer cancellation",
-            "audience": "an executive director tempted to keep accepting enrollments while seeking a last-minute quote",
-            "stakes": "parents need truth, staff need jobs, and operating uninsured is not an option",
-            "format": "before_after",
-            "requiredBeat": "the director stops enrollment, names the insurance gap to site leads, and assigns parent calls instead of building a plan around a quote that has not arrived"
-          },
           "scenario": "What does Samira call a plan that depends on an insurance quote no one has received? The executive director has the cancellation notice folded under a stack of enrollment forms, and three site leads are asking whether to keep accepting families. Before the afternoon tours, she stops enrollment, names the insurance gap, and assigns parent calls instead of building the week around a last-minute quote.",
           "whatToDo": "Stop enrollment, tell site leads the coverage gap, and assign parent calls based on the facts in hand, not the quote everyone hopes will arrive.",
           "whyItMatters": "Parents and staff need truth before convenience. Operating uninsured is not a tolerable bridge, and a speculative quote cannot carry the plan."
@@ -1436,13 +1173,6 @@
             "churn",
             "vendors"
           ],
-          "planSpec": {
-            "domain": "data-center operator after a major customer churns",
-            "audience": "a general manager choosing between hiding the churn and renegotiating vendor commitments",
-            "stakes": "if staff hear it sideways, they will slow work and vendors will learn first",
-            "format": "reflection",
-            "requiredBeat": "the manager converts the churn email into a factual internal note, makes the vendor-call list, and refuses to call a speculative replacement deal the plan"
-          },
           "scenario": "The customer termination email glows beside a rack-power invoice while Peter, the general manager, feels the familiar urge to wait for good news. A speculative replacement account is in talks, but it is not signed. Before vendors hear the churn elsewhere, Peter converts the email into a factual internal note, makes the vendor-call list, and refuses to describe the replacement as the operating plan.",
           "whatToDo": "Write the factual internal note, make the vendor-call list, and separate possible replacement revenue from the commitments that have to be renegotiated now.",
           "whyItMatters": "A speculative deal can calm the manager while leaving staff and vendors exposed. The churn is real, so execution has to start from that fact."
@@ -1461,8 +1191,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Shared reality starts with the real fact and the current boundary. Waiting for a possible replacement lets rumor write the operating map.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q02",
@@ -1474,8 +1203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The cleaner reduction is about dignity and operational clarity, not toughness. It cannot guarantee trust, but serial cuts often bleed it faster.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch05-q03",
@@ -1487,8 +1215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Executive misfit teaches by example. Delay turns one person's role problem into a standard that supervisors may copy under pressure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch05-q04",
@@ -1500,8 +1227,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The CEO needs factual action before the shipment creates more exposure. Quiet investigation may be useful, but not as a substitute for ownership.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q05",
@@ -1513,8 +1239,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The missing quote is not operational coverage. Continuing as if it exists transfers hidden risk to parents, staff, and site leads.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch05-q06",
@@ -1526,8 +1251,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The action separates a possible rescue from real commitments. It gives staff and vendors facts without pretending uncertainty has disappeared.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q07",
@@ -1539,8 +1263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sequence moves from fact to affected people to execution. Informal answers and broad promises let rumor outrun leadership.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q08",
@@ -1552,8 +1275,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Dignity requires sequence and care, but it does not require pretending visible facts are invisible. Delay can make people learn through worse channels.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch05-q09",
@@ -1565,8 +1287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Candor is not cruelty or speed for its own sake. Clean execution pairs plain facts with a sequence that preserves dignity for affected people.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1627,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "Rumor is management done by absence.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the cost of silence hard to ignore."
+          "text": "Rumor is management done by absence."
         },
         {
-          "text": "A rescue fantasy is one of the most expensive forms of delay.",
-          "location": "breakdown.fullRead",
-          "why": "It names a common crisis trap in operational terms."
+          "text": "A rescue fantasy is one of the most expensive forms of delay."
         },
         {
-          "text": "When things fall apart, the private burden is not the product.",
-          "location": "breakdown.fullRead",
-          "why": "It turns private pressure into a demand for shared facts and action."
+          "text": "When things fall apart, the private burden is not the product."
         }
       ]
     },
@@ -1666,13 +1381,6 @@
             "training",
             "profit"
           ],
-          "planSpec": {
-            "domain": "specialty bakery expanding wholesale pastry production",
-            "audience": "an owner whose croissant returns look like a flour or oven problem",
-            "stakes": "profit on wholesale accounts is disappearing because shift leads use different proofing standards",
-            "format": "before_after",
-            "requiredBeat": "the owner stops blaming the oven, watches two shift leads proof dough differently, and writes one training standard before repricing accounts"
-          },
           "scenario": "The collapsed croissants smell faintly sour beside two conflicting proofing notes. Olivia first blamed the oven, then the flour, then wholesale customers who waited too long to display them. Before repricing accounts, she watched both shift leads proof dough. One used time, the other used touch. Olivia wrote one proofing standard and trained both leads before calling the returns a pricing problem.",
           "whatToDo": "Stop the finance-first diagnosis, observe the shift leads, write one proofing standard, and train the people who create the product before changing prices.",
           "whyItMatters": "Wholesale returns look like margin trouble at the end. The cause is a people-system gap upstream: two leaders teaching different product standards."
@@ -1685,13 +1393,6 @@
             "calibration",
             "warranty"
           ],
-          "planSpec": {
-            "domain": "marine electronics repair shop with repeat sonar warranty claims",
-            "audience": "a shop manager tempted to pressure technicians for faster throughput",
-            "stakes": "rushing repairs increases warranty loss and damages dealer trust",
-            "format": "scene",
-            "requiredBeat": "the manager traces three failed units to the same untrained calibration step and pulls the throughput bonus until every tech passes the bench test"
-          },
           "scenario": "Three returned sonar heads sit next to a calibration gauge on Stefan's repair bench during Monday dealer intake. The shop manager hears the dealer asking for faster turnaround, and the throughput bonus has technicians clearing tickets by noon. Stefan traces all three failures to the same untrained calibration step and has to decide whether to push harder or pull the bonus until every tech passes the bench test.",
           "whatToDo": "Trace the warranty claims to the calibration step, pause the throughput bonus, and require a bench test before speed is rewarded again.",
           "whyItMatters": "Pressure for speed is not profit discipline when training is weak. It converts a people gap into warranty loss and dealer distrust."
@@ -1704,13 +1405,6 @@
             "handoff",
             "supervisors"
           ],
-          "planSpec": {
-            "domain": "veterinary lab processing biopsy samples across two shifts",
-            "audience": "a lab director seeing late reports and blaming software",
-            "stakes": "delayed diagnoses and lost clinic contracts trace to inconsistent handoff standards",
-            "format": "postmortem",
-            "requiredBeat": "the director follows one sample's path, finds the missing handoff rule between shifts, and retrains supervisors before buying new software"
-          },
           "scenario": "\"The software lost it again,\" a supervisor says as Natalie sees a biopsy cassette sitting beside a timestamped handoff tray at the 11 p.m. shift change. Natalie, the lab director, follows one sample from intake to report in the postmortem and finds the missing handoff rule between shifts. Before buying new software, she retrains supervisors on late reports, tray ownership, and the exact transfer point.",
           "whatToDo": "Follow one sample through the lab, find the missing handoff rule, and retrain supervisors before spending money on a technology fix.",
           "whyItMatters": "The software may be imperfect, but the late-report pattern comes from unclear supervision. Product reliability improves when the handoff standard is taught."
@@ -1723,13 +1417,6 @@
             "margin",
             "standards"
           ],
-          "planSpec": {
-            "domain": "custom furniture manufacturer with margin erosion",
-            "audience": "a founder who thinks profits fell because lumber costs rose",
-            "stakes": "untrained project leads are approving change orders inconsistently",
-            "format": "decision_point",
-            "requiredBeat": "the founder audits five change orders, finds three different approval rules, and pauses new bids until project leads use one margin gate"
-          },
           "scenario": "It took George five walnut change orders and one calculator tape on a remodel invoice review morning to stop blaming lumber alone. The project leads are approving client changes through three different rules, and the margin report hides the variation until the job closes. George must decide before sending new bids: keep pricing around the mess, or pause bids until every lead uses one margin gate.",
           "whatToDo": "Audit the change orders, identify the conflicting approval rules, and pause new bids until project leads use one margin gate consistently.",
           "whyItMatters": "Rising lumber may be real, but inconsistent approval is management debt. Profit cannot stabilize while each lead protects margin differently."
@@ -1742,13 +1429,6 @@
             "coaching",
             "renewals"
           ],
-          "planSpec": {
-            "domain": "regional laboratory instrument sales team missing renewal targets",
-            "audience": "a VP considering commission cuts before checking manager coaching",
-            "stakes": "customers leave because reps cannot explain service intervals clearly",
-            "format": "dialogue",
-            "requiredBeat": "the VP asks two managers to role-play the renewal explanation, hears the gap, and builds manager certification before changing commissions"
-          },
           "scenario": "You are beside Catarina in the regional sales office as she opens the renewal spreadsheet next to a service-interval card. The missed targets make commission cuts tempting. \"Show me how you coach the renewal explanation,\" she tells two managers. Their role-play stumbles before the second interval. Catarina has to decide whether to change pay or build manager certification first.",
           "whatToDo": "Have managers role-play the service-interval explanation, certify their coaching, and change commissions only after the management gap is addressed.",
           "whyItMatters": "Reps cannot sell a renewal story their managers cannot teach. Commission pressure would punish the symptom while leaving the coaching system broken."
@@ -1761,13 +1441,6 @@
             "training",
             "standards"
           ],
-          "planSpec": {
-            "domain": "municipal recycling facility with contamination penalties",
-            "audience": "a plant superintendent blaming residents before checking floor training",
-            "stakes": "penalties rise because sort-line leads apply different rejection calls",
-            "format": "reflection",
-            "requiredBeat": "the superintendent stands at two sort lines, records conflicting rejection calls, and creates a lead-training checklist before asking the city for new bins"
-          },
           "scenario": "Which is easier to blame: residents or two sort-line leads using different reason codes? Martin stands beside a rejected bundle of mixed paper tagged twice, once for food residue and once for plastic film, at the municipal recovery facility before the noon truck. Before asking the city for new bins, he watches both lines, records the conflicting calls, and creates a lead-training checklist tied to the contamination penalty.",
           "whatToDo": "Observe both sort lines, record the reason-code conflict, and train leads on one rejection checklist before asking for a public bin campaign.",
           "whyItMatters": "Resident behavior may matter, but the facility is adding its own variation. The penalty starts falling only when floor standards become consistent."
@@ -1786,8 +1459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The strongest move checks the people system creating the defect. Bonus cuts and dealer messages may not touch the calibration or training failure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q02",
@@ -1799,8 +1471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Material costs may contribute, but inconsistent approval rules are a people-system defect. The margin report is showing a management standard problem.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch06-q03",
@@ -1812,8 +1483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The miss traces to manager coaching, not only rep effort. Certification repairs the upstream teaching gap before compensation is used as pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q04",
@@ -1825,8 +1495,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sample path exposes a missing standard. Software may help later, but buying it first mislabels supervision debt as a tool problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q05",
@@ -1838,8 +1507,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The inconsistent reason codes show product quality is being shaped by training and standards. Blaming residents alone skips the controllable floor system.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch06-q06",
@@ -1851,8 +1519,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The principle is not comfort-first management. It treats people systems as the source of product reliability, which means clear correction is part of care.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch06-q07",
@@ -1864,8 +1531,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The return problem starts with inconsistent training. Repricing before fixing proofing may charge customers for a defect the bakery is producing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q08",
@@ -1877,8 +1543,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The chain runs through the people system into product outcomes and then profit. Assigning it only to finance or product misses the upstream management levers.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch06-q09",
@@ -1890,8 +1555,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Accountability without a taught standard is blame. The first legitimate move is to make the expected behavior clear and repeatable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1952,19 +1616,13 @@
       },
       "memorableLines": [
         {
-          "text": "Management debt compounds quietly.",
-          "location": "breakdown.deepRead",
-          "why": "It turns weak training and standards into a financial image."
+          "text": "Management debt compounds quietly."
         },
         {
-          "text": "The product is not separate from management.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the causal chain impossible to miss."
+          "text": "The product is not separate from management."
         },
         {
-          "text": "Customers do not see the training gap, but they receive it.",
-          "location": "breakdown.fullRead",
-          "why": "It connects internal management quality to external product experience."
+          "text": "Customers do not see the training gap, but they receive it."
         }
       ]
     },
@@ -1991,13 +1649,6 @@
             "ownership",
             "cadence"
           ],
-          "planSpec": {
-            "domain": "chain of urgent-care clinics expanding from three sites to twelve",
-            "audience": "a founder whose site leads keep escalating staffing decisions directly to her",
-            "stakes": "patient wait times and nurse turnover rise because ownership is unclear",
-            "format": "decision_point",
-            "requiredBeat": "the founder moves staffing authority from hallway escalation to a weekly site-capacity cadence with named owners and an exception threshold"
-          },
           "scenario": "Which staffing decision should still need Beth when twelve clinic schedules are spread across a conference table with sticky flags? Site leads keep texting her directly, patient wait times are rising, and nurses are quitting after surprise swaps. Beth must decide whether to keep being the hallway court of appeal or move staffing authority to a weekly site-capacity cadence with named owners and an exception threshold.",
           "whatToDo": "Move routine staffing into a site-capacity cadence, name owners by site, and define the exception threshold that still reaches the founder.",
           "whyItMatters": "Founder access once sped decisions. At twelve sites it creates a queue, uneven exceptions, and unclear accountability for wait times and turnover."
@@ -2010,13 +1661,6 @@
             "executive fit",
             "escalation"
           ],
-          "planSpec": {
-            "domain": "robotics warehouse integrator adding enterprise customers",
-            "audience": "a COO whose best early engineer is failing as a multi-team executive",
-            "stakes": "installation teams wait for heroic fixes instead of predictable escalation",
-            "format": "postmortem",
-            "requiredBeat": "the COO compares the engineer's early-stage strengths with current enterprise bottlenecks, then redesigns the role instead of honoring reputation"
-          },
           "scenario": "The stalled robot arm clicks every six seconds beside an enterprise acceptance checklist. In the postmortem, Henrik can see why the early engineer became legendary: she fixed impossible pilots. He can also see installation teams waiting for heroic fixes because no escalation path exists. Henrik compares her early-stage strengths with current bottlenecks and chooses a stage-fit role redesign instead of honoring reputation alone.",
           "whatToDo": "Name what the engineer still does uniquely well, separate it from the current executive bottleneck, and redesign the role around enterprise escalation and acceptance ownership.",
           "whyItMatters": "Reputation from the pilot stage can hide a scale problem. Enterprise customers need predictable escalation, not a company waiting for one hero."
@@ -2029,13 +1673,6 @@
             "coordination",
             "cadence"
           ],
-          "planSpec": {
-            "domain": "regional seafood processor coordinating boats, plant, and distributors",
-            "audience": "a general manager whose informal dock conversations no longer align the plant",
-            "stakes": "fresh product spoils when catch timing and distributor pickups conflict",
-            "format": "scene",
-            "requiredBeat": "the manager replaces dockside favors with a daily catch-to-dispatch meeting and marks one person accountable for changing pickup promises"
-          },
           "scenario": "A crate of unsold scallops sweats beside a pickup manifest while Laura watches the plant manager and dock lead trade blame. Her old dockside favors no longer align boats, plant capacity, and distributor pickups. Before the afternoon catch lands, she has to decide whether to keep negotiating one promise at a time or start a daily catch-to-dispatch cadence with one accountable owner for pickup changes.",
           "whatToDo": "Create the daily cadence, put catch timing and pickup promises in the same room, and name one owner who can change distributor commitments.",
           "whyItMatters": "Fresh product spoils in the gap between informal conversations. A cadence turns scattered favors into visible coordination around the mission: sell product while it is good."
@@ -2048,13 +1685,6 @@
             "culture loops",
             "grants"
           ],
-          "planSpec": {
-            "domain": "national youth soccer nonprofit adding regional directors",
-            "audience": "an executive director seeing local chapters interpret values differently",
-            "stakes": "scholarship access varies by region while the mission statement stays unchanged",
-            "format": "before_after",
-            "requiredBeat": "the director chooses two behaviors to review monthly, ties grants to those behaviors, and stops treating the mission poster as culture enforcement"
-          },
           "scenario": "\"We all believe in access,\" a regional director says while Antoine sets a scholarship approval folder beside a rolled-up mission banner. Before, he answered values questions with the banner. After three regions applied different rules, he chose two behaviors to review monthly, tied grants to those behaviors, and stopped pretending the poster could enforce culture across regional directors.",
           "whatToDo": "Translate access into two reviewable behaviors, tie grants to those behaviors, and make regional directors show the loop monthly.",
           "whyItMatters": "Culture travels through repeated behavior, not slogans. Scholarship access varies until the mission is connected to funding and review."
@@ -2067,13 +1697,6 @@
             "support",
             "escalation"
           ],
-          "planSpec": {
-            "domain": "precision agriculture drone company moving from pilots to support contracts",
-            "audience": "a CEO whose customer-success team lacks escalation rules for crop-season outages",
-            "stakes": "farmers lose survey windows when support improvises priorities",
-            "format": "dialogue",
-            "requiredBeat": "the CEO asks which outage gets escalated first, hears three answers, and creates a severity ladder tied to crop windows"
-          },
           "scenario": "It took Sophie, the support director, one missed soybean survey window to learn that support contracts were different from pilots. A drone case lies open beside a crop-stage calendar when she asks the customer-success team, \"Which outage escalates first?\" She hears three answers. Before the next storm front, Sophie must decide whether to keep improvising or create a severity ladder tied to crop windows.",
           "whatToDo": "Ask the team to rank outages, expose the conflicting rules, and build a severity ladder that escalates by crop window and customer impact.",
           "whyItMatters": "Support at scale cannot depend on who sounds urgent. Farmers lose narrow survey windows when escalation rules are private or improvised."
@@ -2086,13 +1709,6 @@
             "contract lab",
             "review"
           ],
-          "planSpec": {
-            "domain": "university research center turning into a contract lab",
-            "audience": "a lab director whose academic norms clash with delivery commitments",
-            "stakes": "sponsor deadlines require different review loops than grant-driven research",
-            "format": "reflection",
-            "requiredBeat": "the director identifies one inherited academic habit that now creates decision latency and converts it into a sponsor-review gate"
-          },
           "scenario": "You can see the sponsor milestone chart pinned over an old grant-review calendar in Yusuf's office. The lab director's inherited habit is generous review: everyone gets another week to refine the memo. In a contract lab, that creates decision latency and missed sponsor deadlines. Yusuf has to decide which academic norm to preserve and which one to convert into a sponsor-review gate.",
           "whatToDo": "Name the inherited habit, keep the scientific review that protects quality, and convert open-ended consensus into a sponsor-review gate with a deadline.",
           "whyItMatters": "The lab's mission has changed from grant exploration alone to delivery commitments. Review loops must change before old norms become sponsor drift."
@@ -2111,8 +1727,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The issue is coordination debt, not only staffing volume. A cadence, owners, and exception rule move routine decisions out of founder access.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q02",
@@ -2124,8 +1739,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Executive fit changes by stage. The COO should respect the history while testing whether the current role needs different architecture.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q03",
@@ -2137,8 +1751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Culture changes through loops that connect behavior to resources and review. A memo or discussion can name values without changing decisions.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q04",
@@ -2150,8 +1763,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The test is whether the process moves the recurring decision to the right owner and cadence. Appearance and personal approval keep the old dependency alive.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch07-q05",
@@ -2163,8 +1775,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Conflicting answers show the escalation path is not designed. A severity ladder tied to crop windows lets support act without private lobbying.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch07-q06",
@@ -2176,8 +1787,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The move preserves the principle of quality while changing the loop that no longer fits. Removing review or freezing old norms both miss the stage change.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q07",
@@ -2189,8 +1799,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A meeting that does not move authority only adds vocabulary. The real workflow is still the founder's hallway exception path.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q08",
@@ -2202,8 +1811,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The response designs around a failing decision. Org charts and blanket informality both skip the actual coordination problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q09",
@@ -2215,8 +1823,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Unwritten exceptions create politics. Explicit ownership and review preserve judgment while preventing personal access from overriding the culture loop.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2277,19 +1884,13 @@
       },
       "memorableLines": [
         {
-          "text": "Coordination debt grows when old access patterns survive new scale.",
-          "location": "breakdown.deepRead",
-          "why": "It names why founder-dependent informality stops scaling."
+          "text": "Coordination debt grows when old access patterns survive new scale."
         },
         {
-          "text": "Where does a decision go when the person who used to know everything is in another meeting?",
-          "location": "breakdown.fullRead",
-          "why": "It turns scaling into a concrete ownership test."
+          "text": "Where does a decision go when the person who used to know everything is in another meeting?"
         },
         {
-          "text": "A company becomes a going concern when its mission can survive distance from its founders.",
-          "location": "breakdown.fullRead",
-          "why": "It connects the chapter's title to the operating architecture."
+          "text": "A company becomes a going concern when its mission can survive distance from its founders."
         }
       ]
     },
@@ -2316,13 +1917,6 @@
             "uncertainty",
             "owner"
           ],
-          "planSpec": {
-            "domain": "regional blood bank during an unexplained test-equipment outage",
-            "audience": "a director whose staff need immediate collection guidance before root cause is known",
-            "stakes": "blood supply drops if collections stop, but unsafe testing cannot continue",
-            "format": "scene",
-            "requiredBeat": "the director states the confirmed outage, the unresolved root cause, and the next two-hour owner for manual verification before donor vans depart"
-          },
           "scenario": "It took Megan, the blood bank director, ten minutes of staff guesses to see the problem was not only the analyzer. The testing machine flashes a fault code beside labeled blood coolers, and donor vans are scheduled to depart. Before they leave, she must decide whether to stop collections or continue with safeguards. Megan states the confirmed outage, the unresolved root cause, and the next two-hour owner for manual verification.",
           "whatToDo": "State the confirmed outage, name root cause as unresolved, and assign one two-hour owner for manual verification before collection vans move.",
           "whyItMatters": "The blood bank cannot fake certainty about testing, but it also cannot leave staff guessing. Bounded ownership keeps collections safe enough to continue."
@@ -2335,13 +1929,6 @@
             "safety",
             "boundary"
           ],
-          "planSpec": {
-            "domain": "regional ferry operator after a hull-sensor anomaly",
-            "audience": "a port manager deciding whether to hold departures while engineers investigate",
-            "stakes": "commuters need movement, but crews read every signal of leader anxiety",
-            "format": "dialogue",
-            "requiredBeat": "the manager tells captains what the sensor proves, what inspection has not proved, and who will make the next departure call at 10:40"
-          },
           "scenario": "Which would calm the captains more: a promise or a boundary? The ferry departure board blinks delayed when Lukas, the port manager, gathers them by the gate with two deck officers and a radio operator waiting. \"The sensor anomaly is real,\" he says. \"Inspection has not found hull damage, and it has not cleared the route. I will make the next departure call at 10:40.\" He has to decide whether to hold that boundary when commuters start filming.",
           "whatToDo": "Tell captains what the sensor proves, what the inspection has not proved, and who owns the 10:40 departure call.",
           "whyItMatters": "Crews read behavioral signals under uncertainty. A clear inspection boundary gives them direction without turning incomplete evidence into false clearance."
@@ -2354,13 +1941,6 @@
             "support",
             "knowns"
           ],
-          "planSpec": {
-            "domain": "online tax filing service during a possible calculation bug",
-            "audience": "a support VP whose agents are inventing answers in live chats",
-            "stakes": "false certainty could create legal exposure and customer panic",
-            "format": "decision_point",
-            "requiredBeat": "the VP freezes improvised scripts, publishes a known-unknown-next-update note, and assigns one engineer to confirm the affected form set"
-          },
           "scenario": "The live-chat dashboard buzzes with the same tax-form question until Fiona can feel agents inventing certainty in real time. One answer says the calculation is safe; another says it may be wrong. Before the next wave of chats, she must decide whether to let improvisation continue. Fiona freezes the agent script, posts a known-unknown-next-update note, and assigns one engineer to confirm the affected form set.",
           "whatToDo": "Freeze improvised scripts, publish the bounded note, and assign one engineer to identify the affected form set before agents answer beyond the facts.",
           "whyItMatters": "False certainty creates legal and trust exposure. The note gives agents language that is accurate enough to use while engineering narrows the issue."
@@ -2373,13 +1953,6 @@
             "testing",
             "buyers"
           ],
-          "planSpec": {
-            "domain": "produce co-op after a suspected pesticide drift report",
-            "audience": "a co-op president balancing member farmers, buyers, and lab uncertainty",
-            "stakes": "shipment decisions require action before lab confirmation returns",
-            "format": "predict_reveal",
-            "requiredBeat": "the president asks members to predict buyer reaction to vague silence, then sends a bounded update with test timing and a hold decision for one lot"
-          },
           "scenario": "Sealed berry flats sit beside a sample cooler while Diego, the co-op manager, asks the member farmers to predict buyer reaction to vague silence before the 5 p.m. loading window. They expect patience. The reveal is harsher: buyers will assume the whole co-op is hiding the drift report. Before trucks load, Diego must decide whether to hold one lot and send a bounded update with test timing.",
           "whatToDo": "Ask what silence will signal, hold the specific lot under question, and send buyers a bounded update with lab timing and what remains unconfirmed.",
           "whyItMatters": "Vague silence makes uncertainty larger than the evidence. A lot hold and test timeline keep the risk bounded while protecting buyer trust."
@@ -2392,13 +1965,6 @@
             "zoning",
             "owners"
           ],
-          "planSpec": {
-            "domain": "architecture firm after a zoning reinterpretation threatens a hospital project",
-            "audience": "a project principal whose designers need direction before the city issues final guidance",
-            "stakes": "design work may need to change, but stopping everything wastes critical weeks",
-            "format": "before_after",
-            "requiredBeat": "the principal identifies the known zoning constraint, the uncertain ruling, and two design tracks with owners until the city meeting"
-          },
           "scenario": "\"Do we stop the hospital package?\" a designer asks while Eleanor, the project principal, spreads a marked-up zoning letter across floor plans in the conference room. Before, the team waited for perfect city guidance. After the reinterpretation threatened the project, Eleanor named the known constraint, the ruling still uncertain, and two design tracks with owners until the city meeting.",
           "whatToDo": "Define the known zoning constraint, name the unresolved city ruling, and assign two design-track owners so work continues inside the uncertainty.",
           "whyItMatters": "Stopping all design wastes weeks, while pretending the ruling is settled risks rework. Two tracks keep progress honest until the city meeting."
@@ -2411,13 +1977,6 @@
             "fraud",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "regional bank fraud desk during a new ATM skimming pattern",
-            "audience": "a fraud director whose analysts want a full pattern before warning branches",
-            "stakes": "waiting for certainty could cost customers, but overclaiming could trigger false alarms",
-            "format": "reflection",
-            "requiredBeat": "the director writes a branch alert with verified transaction features, explicitly excludes unverified theories, and assigns a noon evidence review"
-          },
           "scenario": "You are staring with Lin, the fraud lead, at a heat map with three ATM pins lit in yellow across two downtown branches. Analysts want the full skimming pattern before warning branches, but customers are already exposed. Lin writes an alert with verified transaction features, explicitly excludes unverified theories about the device type, and assigns a noon evidence review before branches add their own guesses.",
           "whatToDo": "Warn branches using verified features only, exclude theories not yet proved, and set a noon review so the alert evolves with evidence.",
           "whyItMatters": "Waiting for a complete pattern costs customers, but overclaiming spreads false alarms. The alert gives branches usable boundaries."
@@ -2436,8 +1995,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The VP needs bounded clarity, not local invention. The script gives agents accurate language while one owner narrows the technical question.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q02",
@@ -2449,8 +2007,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The message separates evidence from uncertainty and names the next owner and time. The other choices create fake certainty or silence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q03",
@@ -2462,8 +2019,7 @@
             ],
             "correctIndex": 1,
             "explanation": "People interpret behavior when words are absent. Bounded updates reduce invention without pretending the full answer exists.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch08-q04",
@@ -2475,8 +2031,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The lot hold bounds the risk while the update bounds the uncertainty. Total silence and total shipment both ignore part of the known evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q05",
@@ -2488,8 +2043,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Two tracks let work continue without fake certainty. Stopping everything wastes time, while pretending one ruling is final creates avoidable rework.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q06",
@@ -2501,8 +2055,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Teams believe repeated behavior. Private speculation and side updates undermine the owner and turn bounded clarity back into ambiguity.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch08-q07",
@@ -2514,8 +2067,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The alert gives branches actionable evidence without overclaiming. Waiting exposes customers, while an all-ATM warning exceeds the facts.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch08-q08",
@@ -2527,8 +2079,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Honest confidence has edges: known fact, unknown cause, owner, time boundary. Reassurance and silence both leave the team to invent the missing map.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch08-q09",
@@ -2540,8 +2091,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Bounded clarity requires movement. Caveats can be honest, but without an owner and next time they do not help the team act.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2602,19 +2152,13 @@
       },
       "memorableLines": [
         {
-          "text": "A boundary can be more calming than a promise.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the value of precise uncertainty."
+          "text": "A boundary can be more calming than a promise."
         },
         {
-          "text": "The decision is how to move inside an incomplete picture without pretending it is complete.",
-          "location": "breakdown.fullRead",
-          "why": "It strips away performative certainty and points back to usable action."
+          "text": "The decision is how to move inside an incomplete picture without pretending it is complete."
         },
         {
-          "text": "Lead with the part of the map you actually have, then assign the next step on purpose.",
-          "location": "breakdown.fullRead",
-          "why": "It turns ambiguity into an actionable leadership move."
+          "text": "Lead with the part of the map you actually have, then assign the next step on purpose."
         }
       ]
     },
@@ -2641,13 +2185,6 @@
             "exception",
             "safety"
           ],
-          "planSpec": {
-            "domain": "pharmaceutical cold-chain courier negotiating a hospital exception",
-            "audience": "a dispatch director deciding whether to violate the standard route rule",
-            "stakes": "the usual route protects efficiency, but a transplant shipment needs a different risk calculation",
-            "format": "decision_point",
-            "requiredBeat": "the director writes the principle behind the route rule, compares it with the transplant deadline, and approves a one-time escort with extra temperature checks"
-          },
           "scenario": "A sealed transplant medication case sits beside Rebecca's printed route matrix while the dispatch director watches the standard route miss the hospital deadline by forty minutes. The route rule protects efficiency and temperature control. The transplant deadline changes the risk. Rebecca must decide whether to enforce the matrix or approve a one-time escort with extra temperature checks and a documented return to the usual route.",
           "whatToDo": "Write the principle behind the route rule, compare it with the transplant deadline, and approve only a bounded one-time exception with extra checks.",
           "whyItMatters": "The exception protects the rule's purpose instead of rejecting it. Without the boundary, urgency would teach drivers that route rules vanish under pressure."
@@ -2660,13 +2197,6 @@
             "milestone",
             "accountability"
           ],
-          "planSpec": {
-            "domain": "independent game studio deciding whether to delay a creative milestone",
-            "audience": "a studio head balancing creative space against publisher accountability",
-            "stakes": "strict milestone enforcement may kill the mechanic that could save the game",
-            "format": "dialogue",
-            "requiredBeat": "the studio head separates the accountability principle from the calendar rule and trades a two-week delay for a playable mechanic proof"
-          },
           "scenario": "\"The publisher milestone is Friday,\" the producer says as the build screen freezes on an unfinished combat mechanic. Tom, the studio head, does not want artist-versus-manager theater. He says the calendar rule protects accountability, not the date itself. Before the publisher call, he must decide whether to enforce Friday or trade a two-week delay for a playable proof of the mechanic.",
           "whatToDo": "Separate accountability from the calendar date, then offer a two-week delay only if the team delivers a playable proof with agreed review criteria.",
           "whyItMatters": "The milestone rule exists to prevent drift. A playable proof can preserve that principle while giving the mechanic enough room to become real."
@@ -2679,13 +2209,6 @@
             "policy",
             "risk"
           ],
-          "planSpec": {
-            "domain": "community bank deciding whether to keep a loan policy during flood recovery",
-            "audience": "a lending officer whose standard collateral rule blocks otherwise viable local businesses",
-            "stakes": "rigid policy could harm the town, but loose lending could damage the bank",
-            "format": "before_after",
-            "requiredBeat": "the officer names the risk principle, designs a temporary flood-recovery covenant, and schedules review dates instead of simply waiving policy"
-          },
           "scenario": "It took Alina, the lending manager, three mud-stained loan files drying on a plastic folding table to see that the collateral rule was protecting the wrong shape of risk. Before, she treated policy as the answer. After the flood, she named the risk principle, designed a temporary flood-recovery covenant, and scheduled review dates instead of simply waiving policy for every damaged business.",
           "whatToDo": "Preserve the risk principle, create a temporary covenant for flood recovery, and schedule review dates so flexibility does not become hidden credit damage.",
           "whyItMatters": "Rigid policy can harm viable borrowers, but a blank waiver can harm the bank. The covenant changes application without abandoning discipline."
@@ -2698,13 +2221,6 @@
             "maintenance",
             "trigger"
           ],
-          "planSpec": {
-            "domain": "airline maintenance hangar after a rare parts shortage",
-            "audience": "a maintenance chief deciding whether the no-cannibalization rule still fits",
-            "stakes": "grounded aircraft and safety standards collide under a shortage",
-            "format": "postmortem",
-            "requiredBeat": "the chief records why the rule exists, authorizes one documented parts transfer, and adds a return-to-standard trigger"
-          },
           "scenario": "You are standing with Robert, the maintenance manager, under a grounded aircraft whose missing access panel is tagged in orange. In the postmortem, the no-cannibalization rule did not disappear. Robert recorded its purpose: traceability and maintenance discipline. Then he authorized one documented parts transfer during the shortage and added a return-to-standard trigger when the supplier delivery cleared.",
           "whatToDo": "Record the rule purpose, authorize only the documented parts transfer needed for the shortage, and set the supplier-delivery trigger for returning to normal.",
           "whyItMatters": "The transfer is not cutting corners if traceability and return timing are explicit. The boundary keeps a rare shortage from rewriting maintenance discipline."
@@ -2717,13 +2233,6 @@
             "leverage",
             "constraint"
           ],
-          "planSpec": {
-            "domain": "publishing house handling a surprise rights auction",
-            "audience": "an editor deciding whether to break the imprint's normal bid ceiling",
-            "stakes": "the rule protects margin, but the author could reshape the list if timing and trust are read correctly",
-            "format": "predict_reveal",
-            "requiredBeat": "the editor predicts what the ceiling rule protects, tests the current leverage with the agent, and raises the bid only after naming the new constraint"
-          },
           "scenario": "What does Nina's bid ceiling protect when a rights auction email lands beside her marked-up acquisition P&L? Nina, the acquisitions manager, predicts the answer: margin, list discipline, and panic prevention. Then she tests agent leverage and learns the novelist wants speed plus a committed editor. Before the auction deadline, Nina must decide whether to raise the bid only after naming the new constraint that keeps the exception from swallowing the list.",
           "whatToDo": "State what the ceiling protects, test leverage with the agent, and raise the bid only under a new constraint the imprint can afford.",
           "whyItMatters": "The ceiling is not sacred, but margin discipline is. Naming the new constraint lets Nina act on timing without turning one auction into a blank check."
@@ -2736,13 +2245,6 @@
             "approval",
             "prototype"
           ],
-          "planSpec": {
-            "domain": "industrial design firm choosing whether to bypass its client signoff sequence",
-            "audience": "a project lead whose medical device prototype must hit a regulatory demo",
-            "stakes": "standard signoff prevents rework, but the demo window will close before the usual sequence ends",
-            "format": "reflection",
-            "requiredBeat": "the lead states the principle behind signoff, creates a narrower prototype-only approval path, and logs what cannot ship under that exception"
-          },
           "scenario": "The foam medical-device prototype leaves chalky dust on Lucia's fingers beside an unsigned approval packet. Lucia, the project lead, knows the signoff principle is still valid: prevent rework and unsafe client assumptions. The regulatory demo window will close before the usual sequence ends. Lucia creates a prototype-only approval path and logs the cannot-ship list so the exception stays narrower than the product.",
           "whatToDo": "State the signoff principle, create a prototype-only approval path, and log exactly what cannot ship under that exception.",
           "whyItMatters": "The demo needs speed, but the product still needs control. A narrow path protects the principle while changing only the part the context requires."
@@ -2761,8 +2263,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The exception preserves the principle while changing application. Ignoring or blindly enforcing the rule avoids the current transplant tradeoff.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch09-q02",
@@ -2774,8 +2275,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The principle is accountability; the date is one rule for enforcing it. A playable proof can preserve accountability while changing the calendar.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch09-q03",
@@ -2787,8 +2287,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The covenant adapts the rule without abandoning risk discipline. Blanket rigidity and blanket waiver both ignore part of the current context.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch09-q04",
@@ -2800,8 +2299,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A bounded exception keeps the principle visible. Hidden transfers or broad suspension would teach the wrong lesson about maintenance discipline.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch09-q05",
@@ -2813,8 +2311,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The decision needs current leverage and a new constraint, not excitement. Past consistency alone does not prove the ceiling still fits.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch09-q06",
@@ -2826,8 +2323,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Without a cannot-ship list, the team cannot tell prototype permission from product permission. The exception teaches more than intended.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch09-q07",
@@ -2839,8 +2335,7 @@
             ],
             "correctIndex": 1,
             "explanation": "No rules requires more judgment, not less discipline. Gut approval without boundaries turns context into personal preference.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch09-q08",
@@ -2852,8 +2347,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Policy shelter hides behind consistency. The principle-and-risk question reveals whether the policy fits the actual tradeoff.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch09-q09",
@@ -2865,8 +2359,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Exceptions teach. If the principle, context, and boundary are invisible, people infer privilege or a new rule.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2927,19 +2420,13 @@
       },
       "memorableLines": [
         {
-          "text": "No set of universal rules can save you from thinking.",
-          "location": "breakdown.fastRead",
-          "why": "It blocks the weakest reading of the title."
+          "text": "No set of universal rules can save you from thinking."
         },
         {
-          "text": "An exception without a boundary is just a new bad rule.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the danger of unbounded flexibility memorable."
+          "text": "An exception without a boundary is just a new bad rule."
         },
         {
-          "text": "No rules is not freedom from discipline.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the distinction between improvisation and judgment."
+          "text": "No rules is not freedom from discipline."
         }
       ]
     },
@@ -2966,13 +2453,6 @@
             "integration",
             "trust"
           ],
-          "planSpec": {
-            "domain": "family-owned medical imaging center sold to a regional health system",
-            "audience": "a former owner deciding which crisis habits to carry into an integration role",
-            "stakes": "the sale solved capital pressure but left staff distrust from the survival period",
-            "format": "reflection",
-            "requiredBeat": "the owner separates the outcome line from the cost line on the integration plan, then marks which emergency habits must stop before meeting staff"
-          },
           "scenario": "The signed purchase agreement feels smooth under Karen's hand beside a staff retention list marked with nervous initials for the 9 a.m. integration briefing. Karen, the integration manager, knows the sale solved capital pressure, but months of emergency scheduling left staff distrust. Before meeting the team, she separates the outcome line from the cost line on the plan and marks which emergency habits must stop.",
           "whatToDo": "Write the sale outcome separately from the staff cost, then name the crisis habits that should not enter the integration role.",
           "whyItMatters": "The sale did not settle how people experienced survival. Staff trust is repaired only if Karen stops treating emergency habits as permanent leadership."
@@ -2985,13 +2465,6 @@
             "governance",
             "transition"
           ],
-          "planSpec": {
-            "domain": "software tools company after a successful open-source foundation transfer",
-            "audience": "a project founder no longer controlling every release decision",
-            "stakes": "continuing crisis control could weaken the community the transfer was meant to protect",
-            "format": "before_after",
-            "requiredBeat": "the founder writes which release controls were necessary during survival and removes two controls now that foundation governance exists"
-          },
           "scenario": "The governance charter lies open beside Alec's old emergency release checklist. Alec, the project founder, personally approved every patch before the transfer because the project nearly died twice. After foundation governance exists, he writes the survival rationale beside each control and removes two of them. He has to choose whether to trust the new process or keep saving a project that no longer needs that kind of saving.",
           "whatToDo": "List which controls were necessary during survival, remove the ones foundation governance now covers, and let the new owners make real release decisions.",
           "whyItMatters": "The transfer was meant to protect the community from founder dependency. Keeping crisis controls would turn a successful transition into a weaker version of the old system."
@@ -3004,13 +2477,6 @@
             "bankruptcy",
             "planning"
           ],
-          "planSpec": {
-            "domain": "regional apparel manufacturer emerging from bankruptcy protection",
-            "audience": "a plant owner whose creditors approved the plan but whose supervisors still act like every week is existential",
-            "stakes": "old urgency preserves discipline but may keep breaking normal planning",
-            "format": "postmortem",
-            "requiredBeat": "the owner lists which bankruptcy tactics saved cash, which now distort planning, and which operating principle deserves to remain"
-          },
           "scenario": "\"So we keep the freeze?\" a supervisor asks as Marianne, the plant manager, sets the bankruptcy exit order beside a new production calendar in the mill office. In the postmortem, she lists which bankruptcy tactics saved cash, which now distort planning, and which principle to keep: spend with proof. Before the next schedule locks, she must decide which emergency habits will stop.",
           "whatToDo": "List cash-saving tactics, mark the ones now damaging planning, and keep the operating principle without keeping bankruptcy panic.",
           "whyItMatters": "The exit order is not proof that every freeze was wise forever. Normal production needs discipline plus planning capacity."
@@ -3023,13 +2489,6 @@
             "communication",
             "exhaustion"
           ],
-          "planSpec": {
-            "domain": "public library system after passing a rescue levy",
-            "audience": "a library director whose advocacy campaign won but left staff exhausted",
-            "stakes": "relief could hide the damage done by months of emergency campaigning",
-            "format": "dialogue",
-            "requiredBeat": "the director tells branch managers the levy result, names the exhaustion cost, and asks which emergency communication cadence should end immediately"
-          },
           "scenario": "It took Chloe one quiet Monday after the certified election result was taped beside the branch staffing chart in the county office to hear how tired the managers sounded. \"The levy passed,\" she says. \"The exhaustion cost is real too.\" Before planning celebrations, Chloe must decide which emergency communication cadence ends immediately and asks branch managers which messages can return to normal.",
           "whatToDo": "Tell managers the result and the cost in the same meeting, then retire the emergency communication cadence that no longer fits the new funding reality.",
           "whyItMatters": "Relief can hide staff damage. Ending the campaign rhythm shows that the organization is moving into a new stage, not demanding permanent emergency energy."
@@ -3042,13 +2501,6 @@
             "standards",
             "contract"
           ],
-          "planSpec": {
-            "domain": "biotech contract research lab after landing a stabilizing master-service agreement",
-            "audience": "a CEO whose team wants to treat the contract as proof every prior shortcut was wise",
-            "stakes": "the lab may keep unsafe shortcuts because success made them look validated",
-            "format": "decision_point",
-            "requiredBeat": "the CEO draws a line between shortcuts that bought survival and standards that must return before the next audit"
-          },
           "scenario": "You are standing with Ethan, the lab director, over a master-service agreement clipped on top of a deviation log. The team wants to call the contract proof that every shortcut was smart. Ethan has to decide before the audit date whether to celebrate the outcome as validation or draw a line between shortcuts that bought survival and standards that must return before the next study.",
           "whatToDo": "Separate survival shortcuts from enduring standards, set the audit date as the return boundary, and make clear which deviations cannot continue.",
           "whyItMatters": "The contract stabilizes the lab, but it does not validate unsafe habits. Success can make shortcuts look wiser than they were."
@@ -3061,13 +2513,6 @@
             "capacity",
             "ramp"
           ],
-          "planSpec": {
-            "domain": "regional bus manufacturer after winning a large municipal order",
-            "audience": "an operations chief who survived layoffs and now must rebuild normal capacity",
-            "stakes": "the new order looks like proof, but the company still carries skill gaps from the cutbacks",
-            "format": "scene",
-            "requiredBeat": "the chief walks past empty training bays, refuses to call the order the lesson, and writes the three capabilities that must be rebuilt before production ramps"
-          },
           "scenario": "What does a new order prove if the training bays are still empty? Petra, the operations manager, walks past them with a signed municipal purchase order in her folder. The company survived layoffs, but the production ramp will expose skill gaps left by the cuts. Before the kickoff meeting, she must decide whether to call the order the lesson or write three capabilities to rebuild before hiring promises turn into missed buses.",
           "whatToDo": "Treat the order as an outcome, not proof, then name the three capabilities that must be rebuilt before the production ramp accelerates.",
           "whyItMatters": "The purchase order changes demand, not capacity. If Petra ignores the skill gaps left by survival, the win becomes the next failure."
@@ -3086,8 +2531,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sale is an outcome, not a full interpretation. The audit preserves useful principles while naming costs and retiring tactics that no longer fit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch10-q02",
@@ -3099,8 +2543,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A tactic that protected survival can damage the new stage. Foundation governance needs real authority, not founder control with new labels.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch10-q03",
@@ -3112,8 +2555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The principle can travel without preserving every bankruptcy tactic. The new production calendar needs discipline and planning capacity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch10-q04",
@@ -3125,8 +2567,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The levy result does not erase the cost. Naming both lets the director retire emergency behavior instead of turning it into normal work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch10-q05",
@@ -3138,8 +2579,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The contract is a good outcome, not blanket validation. Standards need to return where shortcuts created risk.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch10-q06",
@@ -3151,8 +2591,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The outcome does not erase skill gaps. The ramp will fail unless capacity and training are rebuilt before demand hits.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch10-q07",
@@ -3164,8 +2603,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The question separates result, cost, and future practice. Inspiration and blame both keep the outcome from being audited.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch10-q08",
@@ -3177,8 +2615,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Speed may be a principle or a tactic depending on context. Splitting the summary prevents the hard period from becoming a myth.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch10-q09",
@@ -3190,8 +2627,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The next stage needs different leadership. The old crisis identity may have been useful, but it can block rebuilding if it remains central.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3252,19 +2688,13 @@
       },
       "memorableLines": [
         {
-          "text": "The point is to stop temporary tactics from becoming identity.",
-          "location": "breakdown.deepRead",
-          "why": "It prevents survival habits from becoming permanent identity."
+          "text": "The point is to stop temporary tactics from becoming identity."
         },
         {
-          "text": "You can honor the hard period without obeying it.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the transition from survival tactic to judgment."
+          "text": "You can honor the hard period without obeying it."
         },
         {
-          "text": "The end of a hard period is not the end of leadership.",
-          "location": "breakdown.fullRead",
-          "why": "It reframes closure as the start of a new responsibility."
+          "text": "The end of a hard period is not the end of leadership."
         }
       ]
     }

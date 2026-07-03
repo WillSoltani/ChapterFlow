@@ -45,13 +45,6 @@
             "Witold Pilecki",
             "historian"
           ],
-          "planSpec": {
-            "domain": "Warsaw archive room",
-            "audience": "historian",
-            "stakes": "whether to present Pilecki as inspiration or as a warning about hope under terror",
-            "format": "decision_point",
-            "requiredBeat": "Connects Pilecki to hope as costly action, not comfort."
-          },
           "scenario": "In a Warsaw archive room before a museum talk, Marta reads Witold Pilecki's smuggled Auschwitz reports. The draft on her laptop calls him proof that hope conquers darkness. The pages in front of her feel harsher: voluntary capture, resistance cells, escape, and later execution by Poland's communist regime.",
           "whatToDo": "Tell the audience that Pilecki shows hope as a costly structure for action, not a comforting glow.",
           "whyItMatters": "Pilecki keeps hope severe: action can matter even when safety and success are absent."
@@ -64,13 +57,6 @@
             "Witold Pilecki",
             "public health analyst"
           ],
-          "planSpec": {
-            "domain": "progress dashboard",
-            "audience": "public health analyst",
-            "stakes": "why better numbers do not calm a frightened town meeting",
-            "format": "reflection",
-            "requiredBeat": "Separates material progress from the meaning question."
-          },
           "scenario": "At a county forum beside a progress dashboard, Devon presents Steven Pinker and Hans Rosling style charts. Infant mortality is down, literacy is up, and extreme poverty has fallen. A parent in the back still says the future feels cursed. Devon answers carefully, and the room only partly softens; the fear was never just about the chart.",
           "whatToDo": "Separate material progress from felt meaning, then ask what value the town lacks confidence in protecting.",
           "whyItMatters": "The partial result matters. Better numbers can be true and still fail to settle the meaning problem."
@@ -83,13 +69,6 @@
             "Witold Pilecki",
             "student mentor"
           ],
-          "planSpec": {
-            "domain": "college career fair",
-            "audience": "student mentor",
-            "stakes": "a student using achievement to avoid mortality and insignificance",
-            "format": "audit",
-            "requiredBeat": "Tests achievement hope against the scale problem."
-          },
           "scenario": "At a noisy career fair, Imani hears a first-year student say that a famous internship will finally make life count. The booth signs promise impact, prestige, and belonging. Imani recognizes the uncomfortable truth hiding underneath: the student is asking a job to defeat smallness.",
           "whatToDo": "Help the student name the value behind the ambition before choosing the internship chase.",
           "whyItMatters": "Career hope can organize effort, but it can also turn the present into a defect that only status can repair."
@@ -102,13 +81,6 @@
             "Witold Pilecki",
             "friend"
           ],
-          "planSpec": {
-            "domain": "late-night group chat",
-            "audience": "friend",
-            "stakes": "whether outrage is giving the group meaning or just a target",
-            "format": "dialogue",
-            "requiredBeat": "Tests outrage as borrowed purpose."
-          },
           "scenario": "At 12:17 a.m. in his apartment kitchen, Raul watches a group chat turn a news story into a ritual of contempt. Everyone posts links, insults, and predictions of collapse. The talk feels alive because it gives people a shared enemy. It also leaves them more helpless after every refresh.",
           "whatToDo": "Ask what action the outrage points toward, and drop the thread if it only sells shared doom.",
           "whyItMatters": "Hope often needs a story about what is broken. Without a real value or act, the story becomes another way to feel important."
@@ -121,13 +93,6 @@
             "Witold Pilecki",
             "daughter"
           ],
-          "planSpec": {
-            "domain": "hospital waiting area",
-            "audience": "daughter",
-            "stakes": "how to act when no promised ending can fix grief",
-            "format": "reset_moment",
-            "requiredBeat": "Connects Pilecki to hope as costly action, not comfort."
-          },
           "scenario": "In a hospital waiting area, Leah sits beside her father's hospital bed while a muted television celebrates medical breakthroughs. She is grateful for the science and still knows the scans are bad. Her family keeps saying to stay positive, but Leah needs a hope that does not deny death.",
           "whatToDo": "Choose one act of love that matters even if the outcome stays painful: presence, honesty, or a final conversation.",
           "whyItMatters": "The uncomfortable truth asks for hope that can face death directly instead of pretending progress abolishes loss."
@@ -140,13 +105,6 @@
             "Witold Pilecki",
             "founder"
           ],
-          "planSpec": {
-            "domain": "startup board packet",
-            "audience": "founder",
-            "stakes": "whether a rescue narrative is hiding a weak product",
-            "format": "business_case",
-            "requiredBeat": "Separates material progress from the meaning question."
-          },
           "scenario": "On Monday at 7 a.m. in a glass conference room, Nikhil prepares a board packet that says the next funding round will change everything. The sales notes say otherwise. Customers like the idea, not the product. He feels the pull of a grand future because it lets him avoid the broken present.",
           "whatToDo": "Replace the rescue pitch with the present deficiency: what customers value, what fails, and what must change now.",
           "whyItMatters": "Hope can motivate a company, but it becomes dangerous when the promised future excuses weak contact with reality."
@@ -165,8 +123,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Pilecki does not make hope sentimental. His choice shows hope as a structure for action inside terror, not as a promise that events will turn out well.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "everything-is-fcked-ch01-q02",
@@ -178,8 +135,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The progress data is real, but it does not settle the ache about purpose, death, loneliness, or why life matters.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch01-q03",
@@ -191,8 +147,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The internship can be useful, but Manson warns against turning a future credential into salvation from smallness or mortality.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch01-q04",
@@ -204,8 +159,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Outrage can feel meaningful because it supplies an enemy. The useful test is whether it leads to a real value and act or merely sells shared doom.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch01-q05",
@@ -217,8 +171,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Manson asks for hope that can face death directly. Presence and honest love matter even when no promised ending repairs the pain.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch01-q06",
@@ -230,8 +183,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The funding fantasy lets the founder postpone contact with reality. This is hope as avoidance, not hope as courageous present action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch01-q07",
@@ -243,8 +195,7 @@
             ],
             "correctIndex": 0,
             "explanation": "the idea does not forbid effort. It asks readers to notice when ambition is being used to avoid the fact that life is finite and largely forgotten.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "everything-is-fcked-ch01-q08",
@@ -256,8 +207,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge is double-sided: hope can be necessary for movement and dangerous because it often makes peace depend on a future correction.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch01-q09",
@@ -269,8 +219,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A mature hope clarifies action now. If it only rents a prettier future, it is probably avoidance dressed up as purpose.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -301,7 +250,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Audit Hope's Price",
         "coreSkill": "Treat hope as a structure with supports and costs. For any hoped-for future, name the value, the people who validate it, and the present fact it may be helping you avoid.",
         "ifThenPlans": [
           {
@@ -326,19 +274,13 @@
       },
       "memorableLines": [
         {
-          "text": "Hope gives pain a direction.",
-          "location": "breakdown.fastRead",
-          "why": "The sentence is short enough to carry and central to Pilecki."
+          "text": "Hope gives pain a direction."
         },
         {
-          "text": "Good news does not answer every despair.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps Pinker and Rosling useful without pretending charts solve meaning."
+          "text": "Good news does not answer every despair."
         },
         {
-          "text": "Keep hopes that clarify the next honest act.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the chapter into a concrete test."
+          "text": "Keep hopes that clarify the next honest act."
         }
       ]
     },
@@ -365,13 +307,6 @@
             "Elliot",
             "occupational therapist"
           ],
-          "planSpec": {
-            "domain": "clinic intake",
-            "audience": "occupational therapist",
-            "stakes": "helping a patient who can list priorities but cannot start",
-            "format": "decision_point",
-            "requiredBeat": "Uses Elliot to separate intelligence from felt valuation."
-          },
           "scenario": "At 8:30 a.m. in a clinic intake room, Sana reviews Elliot and Antonio Damasio before meeting a patient who can rank tasks perfectly on paper. At home, bills sit unpaid and meals never get planned. The patient calls himself lazy. Sana hears a different problem: the Thinking Brain has order, but the Feeling Brain feels no urgency.",
           "whatToDo": "Treat the failure as a valuation problem. Add emotional stakes, visible cues, and one decision rule instead of another lecture.",
           "whyItMatters": "Elliot shows that reason without emotional weight does not reliably choose. The plan needs feeling to make action matter."
@@ -384,13 +319,6 @@
             "Elliot",
             "manager"
           ],
-          "planSpec": {
-            "domain": "Consciousness Car commute",
-            "audience": "manager",
-            "stakes": "why a productivity plan keeps collapsing",
-            "format": "reflection",
-            "requiredBeat": "Uses Damasio to show why a map does not move the driver."
-          },
           "scenario": "On the train, Zarela sketches a new schedule for her team and writes Consciousness Car at the top. Last month's plan failed because the calendar was logical but felt like a trap. The analysts complied for three days, then drifted back to late messages and hidden resentment.",
           "whatToDo": "Ask what the schedule makes the Feeling Brain fear, then redesign the first mile so the route feels fair.",
           "whyItMatters": "The driver image blocks map worship. Plans have to recruit motive, not just display order."
@@ -403,13 +331,6 @@
             "Elliot",
             "parent"
           ],
-          "planSpec": {
-            "domain": "family dinner",
-            "audience": "parent",
-            "stakes": "whether more facts will change a teenager's phone use",
-            "format": "audit",
-            "requiredBeat": "Applies the Consciousness Car to a household limit."
-          },
           "scenario": "At 6:30 p.m. at the kitchen table, Callum brings screen-time studies to dinner, ready to win. His daughter hears judgment before data. The phone is where friends, status, and relief live after school. Callum realizes the Thinking Brain speech is aiming at a Feeling Brain that feels attacked.",
           "whatToDo": "Start with the feeling the phone serves, then build a limit around sleep, trust, and autonomy.",
           "whyItMatters": "Behavior changes when the meaning changes. Facts matter more once the emotional system does not hear exile."
@@ -422,13 +343,6 @@
             "Elliot",
             "freelancer"
           ],
-          "planSpec": {
-            "domain": "budget app",
-            "audience": "freelancer",
-            "stakes": "why a clear financial plan still feels impossible",
-            "format": "dialogue",
-            "requiredBeat": "Finds the emotional job behind a rational money plan."
-          },
           "scenario": "At 11 p.m. at her desk, Nora's budget app shows every category in green and red. She understands the numbers. At 11 p.m., she still buys clothes after a hard client call because the purchase feels like dignity. The Thinking Brain knows the math; the Feeling Brain wants repair.",
           "whatToDo": "Name the emotional job of the purchase, then choose a cheaper repair that still gives dignity.",
           "whyItMatters": "The Feeling Brain is driving toward relief. Money advice lands only when it speaks to that need."
@@ -441,13 +355,6 @@
             "Elliot",
             "friend"
           ],
-          "planSpec": {
-            "domain": "apology draft",
-            "audience": "friend",
-            "stakes": "moving from explanation to felt ownership",
-            "format": "reset_moment",
-            "requiredBeat": "Finds the feeling driving the stated reason."
-          },
           "scenario": "At his apartment desk after work, Tomas drafts an apology that explains his intentions with lawyerly care. The message is rational and dead. His friend will hear defense, not care. He remembers that the Feeling Brain at the wheel wants to avoid shame, so the apology keeps swerving away from responsibility.",
           "whatToDo": "Rewrite the note around the feeling he is avoiding: shame, fear, and the wish to be seen as good.",
           "whyItMatters": "The Thinking Brain can narrate causes forever. Change begins when the emotional motive stops hiding behind reasons."
@@ -460,13 +367,6 @@
             "Elliot",
             "runner"
           ],
-          "planSpec": {
-            "domain": "training plan",
-            "audience": "runner",
-            "stakes": "when discipline needs a better story",
-            "format": "business_case",
-            "requiredBeat": "Uses Elliot to separate intelligence from felt valuation."
-          },
           "scenario": "Before dawn, Sorin stares at running shoes and hates every motivational phrase on his wall. The plan says five miles. His body hears punishment. He thinks of the Consciousness Car and asks what destination his Feeling Brain might accept.",
           "whatToDo": "Make the run about ten minutes of steadiness and self-trust, not proving toughness.",
           "whyItMatters": "The same action can feel like exile or care. Reframing turns a map into a route the driver may take."
@@ -485,8 +385,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Elliot could reason but could not reliably decide. The case shows that emotion is part of valuation, not a decorative layer around thought.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "everything-is-fcked-ch02-q02",
@@ -498,8 +397,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Thinking Brain can map and explain, but the Feeling Brain drives behavior. Change must speak to the driver, not merely improve the map.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch02-q03",
@@ -511,8 +409,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Facts land better when the Feeling Brain does not hear exile or attack. The phone is serving belonging, status, and relief, so the limit must address those meanings.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch02-q04",
@@ -524,8 +421,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The spending feels like dignity after stress. The better move is to name that emotional job and find a cheaper repair that still respects the need.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch02-q05",
@@ -537,8 +433,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The draft is rational but defensive. His Feeling Brain is swerving away from shame, so the apology must stop hiding behind explanation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch02-q06",
@@ -550,8 +445,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The action can remain similar while its meaning changes. A route framed as care and self-trust is easier for the driver to accept than exile or punishment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch02-q07",
@@ -563,8 +457,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Manson rejects the fantasy of reason handcuffing emotion. The Thinking Brain gains influence by helping feelings learn better meanings.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "everything-is-fcked-ch02-q08",
@@ -576,8 +469,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard claim is neither emotional surrender nor rational contempt. Feelings steer action, but they can be trained through meanings the body can test.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch02-q09",
@@ -589,8 +481,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The map may already be in the car. The collapse often means the driver experiences the destination as unsafe, humiliating, boring, or unfair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -621,7 +512,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Recruit the Driver",
         "coreSkill": "Before forcing a plan, locate the feeling at the wheel. Translate the better route into a meaning the Feeling Brain can test without humiliation.",
         "ifThenPlans": [
           {
@@ -646,19 +536,13 @@
       },
       "memorableLines": [
         {
-          "text": "Reason draws maps; feeling turns the wheel.",
-          "location": "breakdown.fastRead",
-          "why": "The car image becomes portable without repeating the whole model."
+          "text": "Reason draws maps; feeling turns the wheel."
         },
         {
-          "text": "Facts fail when the driver wants relief.",
-          "location": "breakdown.deepRead",
-          "why": "It explains cravings without scolding the reader."
+          "text": "Facts fail when the driver wants relief."
         },
         {
-          "text": "Self-control starts as translation.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practice in a compact claim."
+          "text": "Self-control starts as translation."
         }
       ]
     },
@@ -685,13 +569,6 @@
             "Isaac Newton",
             "coach"
           ],
-          "planSpec": {
-            "domain": "locker room",
-            "audience": "coach",
-            "stakes": "a player turns one insult into a whole self-story",
-            "format": "decision_point",
-            "requiredBeat": "Turns hurt into action, reaction, and repair."
-          },
           "scenario": "In the locker room after practice, Coach Ade watches a guard miss practice after a teammate mocks his shot. The insult was brief, but the player now says he has always been a fraud. Ade writes moral gap on the whiteboard and sees the real injury: public shame demanding balance.",
           "whatToDo": "Separate the missed shot from the fairness wound, then choose a repair that builds skill instead of revenge.",
           "whyItMatters": "The punch model shows how a small strike can become a large identity claim."
@@ -704,13 +581,6 @@
             "Isaac Newton",
             "store owner"
           ],
-          "planSpec": {
-            "domain": "customer dispute",
-            "audience": "store owner",
-            "stakes": "a refund request becomes a status battle",
-            "format": "reflection",
-            "requiredBeat": "Uses the punch model to name the fairness gap."
-          },
           "scenario": "At the register, Lina hears a customer demand money back for a broken lamp. The policy is clear, but the customer's voice says something else: he feels cheated and small. Lina can win the rule argument or close the moral gap.",
           "whatToDo": "Acknowledge the unfairness he feels, then offer a repair that protects policy and dignity.",
           "whyItMatters": "Emotion often seeks equalization before accuracy. Naming the gap lowers the need for a dramatic reaction."
@@ -723,13 +593,6 @@
             "Isaac Newton",
             "client"
           ],
-          "planSpec": {
-            "domain": "therapy notebook",
-            "audience": "client",
-            "stakes": "old neglect masquerading as independence",
-            "format": "audit",
-            "requiredBeat": "Shows how an old account keeps shaping identity."
-          },
           "scenario": "In a therapy office, Zinnia tells her therapist she is simply independent. The notebook tells another story: she never asks for help because asking once felt humiliating at home. The old gap closed with a rule that need equals weakness.",
           "whatToDo": "Test the identity by making one small, specific request to a trustworthy person.",
           "whyItMatters": "Newton's emotional inertia explains why an early repair can keep moving through adult relationships."
@@ -742,13 +605,6 @@
             "Isaac Newton",
             "team lead"
           ],
-          "planSpec": {
-            "domain": "office Slack",
-            "audience": "team lead",
-            "stakes": "a correction triggers a disproportionate reply",
-            "format": "dialogue",
-            "requiredBeat": "Turns hurt into action, reaction, and repair."
-          },
           "scenario": "On Monday morning in office Slack, Bastien posts a tiny edit in Slack, and his analyst answers with a sharp paragraph. The edit touched more than grammar. The analyst heard a familiar claim that her work is never good enough. A small present cue reopened an old account.",
           "whatToDo": "Move the conversation out of Slack and ask what standard felt threatened before debating the edit.",
           "whyItMatters": "Moral gaps filter later facts. Repair starts by seeing the old balance sheet underneath the new reaction."
@@ -761,13 +617,6 @@
             "Isaac Newton",
             "older brother"
           ],
-          "planSpec": {
-            "domain": "sibling visit",
-            "audience": "older brother",
-            "stakes": "resentment framed as justice",
-            "format": "reset_moment",
-            "requiredBeat": "Uses the punch model to name the fairness gap."
-          },
           "scenario": "During a visit, Karim lists every favor he has done for his sister since childhood. He calls it fairness. She hears a debt ledger that never closes. The old family gap has become his proof that he deserves obedience.",
           "whatToDo": "Trade the debt ledger for one present request: what relationship does he want without collecting interest?",
           "whyItMatters": "Unresolved pain can become a value system. The person may defend the system as justice while it keeps the wound alive."
@@ -780,13 +629,6 @@
             "Isaac Newton",
             "organizer"
           ],
-          "planSpec": {
-            "domain": "city council",
-            "audience": "organizer",
-            "stakes": "public anger after a broken promise",
-            "format": "business_case",
-            "requiredBeat": "Shows how an old account keeps shaping identity."
-          },
           "scenario": "At city council, Renata hears residents chant after a promised bus route disappears. The budget memo is real, but so is the moral gap: the neighborhood was told it mattered, then treated as optional. The anger will seek balance somewhere.",
           "whatToDo": "Push for a public repair date, a named accountable office, and a way for residents to verify progress.",
           "whyItMatters": "A fair repair can close a gap better than contempt. Without it, humiliation becomes political identity."
@@ -805,8 +647,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The punch hurts, but the louder shock is moral: this should not have happened. The emotional system then looks for repair, revenge, or another way to balance the account.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "everything-is-fcked-ch03-q02",
@@ -818,8 +659,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Newton conceit turns vague hurt into a pattern of emotional motion. Old gaps can create inertia, while new credible experiences can apply a different force.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch03-q03",
@@ -831,8 +671,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The coffee table cannot be guilty in a serious way, yet the mind still reaches for an account. The example makes moral accounting visible in miniature.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch03-q04",
@@ -844,8 +683,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A breakup can harden into identity when later events are filtered through the same unpaid account: I am unlovable, people leave, or I must strike first.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch03-q05",
@@ -857,8 +695,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Revenge can feel like balance because something was taken. The idea warns that this settlement often keeps the person bound to the old gap.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch03-q06",
@@ -870,8 +707,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Direct repair addresses the imbalance in reality. Self-blame, superiority, or permanent danger stories settle the gap internally but can deform identity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch03-q07",
@@ -883,8 +719,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Identity is sticky because it is emotionally reinforced, but it is not fate. New relationships, brave choices, and truthful repairs can carry enough weight to alter the account.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "everything-is-fcked-ch03-q08",
@@ -896,8 +731,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The practice begins by naming what felt violated. Only then can the person choose a settlement that does not require revenge or self-blame.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch03-q09",
@@ -909,8 +743,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A moral gap is not just a memory. It becomes a balance sheet that can organize status, blame, shame, and the self-story that follows.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -941,7 +774,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Close the Moral Gap",
         "coreSkill": "Translate emotional intensity into an account of fairness. Ask what balance the hurt is seeking, then choose a repair that does not require revenge or self-erasure.",
         "ifThenPlans": [
           {
@@ -966,19 +798,13 @@
       },
       "memorableLines": [
         {
-          "text": "A moral gap is pain plus unfairness.",
-          "location": "breakdown.fastRead",
-          "why": "It defines the key term in one line."
+          "text": "A moral gap is pain plus unfairness."
         },
         {
-          "text": "Revenge can balance one debt by opening another.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the counterintuition sharp."
+          "text": "Revenge can balance one debt by opening another."
         },
         {
-          "text": "Repair should leave fewer debts behind.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a clean decision rule."
+          "text": "Repair should leave fewer debts behind."
         }
       ]
     },
@@ -1004,13 +830,6 @@
             "God Value",
             "teacher"
           ],
-          "planSpec": {
-            "domain": "finance classroom",
-            "audience": "teacher",
-            "stakes": "showing money as shared belief without making it sound imaginary",
-            "format": "decision_point",
-            "requiredBeat": "Shows the top value ranking other values."
-          },
           "scenario": "In a finance classroom, Marzena holds up a twenty-dollar bill in class and asks what it can do by itself. The students laugh because the answer is almost nothing. Then she asks why their parents trade hours for it. Money becomes the cleanest secular example of shared faith.",
           "whatToDo": "Teach the bill as a symbol powered by collective trust, then ask what values the symbol now outranks.",
           "whyItMatters": "Money gives beginners a visible God Value: shared trust turns a weak object into power."
@@ -1022,13 +841,6 @@
             "God Value",
             "volunteer"
           ],
-          "planSpec": {
-            "domain": "campaign office",
-            "audience": "volunteer",
-            "stakes": "noticing a justice cause become hostile to truth",
-            "format": "reflection",
-            "requiredBeat": "Uses money as shared faith in action."
-          },
           "scenario": "In a campaign office, Dovran watches a volunteer delete a poll that complicates the movement's message. The cause began with compassion. Now the team treats any inconvenient fact as betrayal. The God Value of justice is being guarded by dishonesty.",
           "whatToDo": "Name the top value and ask whether hiding the poll serves that value or merely protects the group's status.",
           "whyItMatters": "A sacred value can make a community brave. It can also make the community defend itself against reality."
@@ -1040,13 +852,6 @@
             "God Value",
             "moderator"
           ],
-          "planSpec": {
-            "domain": "interfaith panel",
-            "audience": "moderator",
-            "stakes": "using major religions as structure rather than insult",
-            "format": "audit",
-            "requiredBeat": "Compares faith structures without mocking believers."
-          },
           "scenario": "At an interfaith panel in a community hall, Samira moderates a panel with speakers from Christianity, Islam, Judaism, and Hinduism. The useful comparison is not whose doctrine wins. It is how each tradition gives people stories, rules, rituals, and a promise that pain belongs to a larger order.",
           "whatToDo": "Ask each speaker what value sits above all others, then compare how that value shapes daily choices.",
           "whyItMatters": "The claim is architectural. Formal faith makes visible a pattern that secular lives also use."
@@ -1058,13 +863,6 @@
             "God Value",
             "CEO"
           ],
-          "planSpec": {
-            "domain": "founder retreat",
-            "audience": "CEO",
-            "stakes": "growth turning into a sacred demand",
-            "format": "dialogue",
-            "requiredBeat": "Tests a secular top value inside company tradeoffs."
-          },
           "scenario": "At a founder retreat, Orestes hears the word growth used like a prayer. Customer trust, employee health, and product quality all become secondary. No one says growth is God, but every hard decision bends toward it. One director objects, and the room goes quiet instead of converted.",
           "whatToDo": "Write the company's actual God Value on the wall and list what it has quietly sacrificed.",
           "whyItMatters": "A top value reveals itself in tradeoffs, especially when naming it does not instantly fix the room."
@@ -1076,13 +874,6 @@
             "God Value",
             "listener"
           ],
-          "planSpec": {
-            "domain": "dating advice podcast",
-            "audience": "listener",
-            "stakes": "romance as salvation narrative",
-            "format": "reset_moment",
-            "requiredBeat": "Tests romance as a hidden salvation system."
-          },
           "scenario": "On a bus ride home, a listener named Becca hears a podcast promise that the right partner will make her whole. The advice sounds tender, but it turns romance into redemption. Every date now has to rescue her from ordinary loneliness.",
           "whatToDo": "Treat love as a value, not a savior. Ask what dignity and friendship require before demanding rescue.",
           "whyItMatters": "Romance can become religious when it promises salvation and makes the present self feel defective."
@@ -1094,13 +885,6 @@
             "God Value",
             "designer"
           ],
-          "planSpec": {
-            "domain": "brand launch",
-            "audience": "designer",
-            "stakes": "identity marketing crossing into worship",
-            "format": "business_case",
-            "requiredBeat": "Tests consumer identity as a hidden faith system."
-          },
           "scenario": "In a brand-launch meeting, Cyrion designs a launch for a fitness brand that sells discipline, purity, and moral superiority with every hoodie. The product is fine. The pitch is bigger than fabric. Customers are being offered a community with sinners, saints, and ritual purchases.",
           "whatToDo": "Strip the campaign back to the real benefit and remove claims that turn buying into moral worth.",
           "whyItMatters": "Consumer identity can copy religious structure. The God Value may be hidden inside slogans, badges, and status."
@@ -1119,8 +903,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Money organizes labor, status, debt, and promise because people enact shared faith in it. The symbol is weak alone and powerful inside the belief system.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "everything-is-fcked-ch04-q02",
@@ -1132,8 +915,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The comparison is architectural, not a contest over doctrine. Formal religions make visible a pattern that secular systems often copy.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch04-q03",
@@ -1145,8 +927,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A God Value can be religious, political, romantic, financial, national, artistic, or personal. It sits at the top and ranks everything beneath it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch04-q04",
@@ -1158,8 +939,7 @@
             ],
             "correctIndex": 0,
             "explanation": "People defend the sacred thing behind the claim. A fact can sound like betrayal when it threatens freedom, love, justice, nation, or another top value.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch04-q05",
@@ -1171,8 +951,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cause began with compassion, but hiding reality protects the institution from doubt. The God Value is becoming self-protective.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch04-q06",
@@ -1184,8 +963,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A top value is revealed by tradeoffs. If every hard decision bends toward growth, growth is functioning as the organization's God Value.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch04-q07",
@@ -1197,8 +975,7 @@
             ],
             "correctIndex": 1,
             "explanation": "the idea is structural rather than sneering. It says shared values are necessary and also vulnerable to becoming tribal and hostile to reality.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "everything-is-fcked-ch04-q08",
@@ -1210,8 +987,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The task is not to live without top values. It is to know what sits at the top and notice when loyalty to the system replaces loyalty to the value.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch04-q09",
@@ -1223,8 +999,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Romance becomes a salvation story when a partner is asked to redeem ordinary loneliness or prove the self is finally whole.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1255,7 +1030,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Top Value",
         "coreSkill": "Find the value that silently outranks the rest. Once the God Value is visible, test whether the group is serving it honestly or defending its machinery.",
         "ifThenPlans": [
           {
@@ -1280,19 +1054,13 @@
       },
       "memorableLines": [
         {
-          "text": "Money is shared faith with receipts.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the secular faith example memorable."
+          "text": "Money is shared faith with receipts."
         },
         {
-          "text": "A God Value ranks every lesser value.",
-          "location": "breakdown.deepRead",
-          "why": "It defines the term without ceremony."
+          "text": "A God Value ranks every lesser value."
         },
         {
-          "text": "Sacred values still owe reality an answer.",
-          "location": "breakdown.fullRead",
-          "why": "It states the mature test without repeating the old pattern."
+          "text": "Sacred values still owe reality an answer."
         }
       ]
     },
@@ -1319,13 +1087,6 @@
             "Friedrich Nietzsche",
             "graduate student"
           ],
-          "planSpec": {
-            "domain": "philosophy seminar",
-            "audience": "graduate student",
-            "stakes": "rescuing God is dead from cheap atheism",
-            "format": "decision_point",
-            "requiredBeat": "Rescues Nietzsche from slogan reading."
-          },
           "scenario": "In a seminar, Veyra hears a classmate use Friedrich Nietzsche's God is dead line as a joke about foolish believers. She has Meta von Salis in her notes and Nietzsche's frail late life in mind. The line sounds less like swagger and more like a warning.",
           "whatToDo": "Reframe the quote as a crisis of shared value, then ask what modern substitute the room treats as sacred.",
           "whyItMatters": "Nietzsche matters because removing old certainty does not remove the human need for meaning."
@@ -1338,13 +1099,6 @@
             "Friedrich Nietzsche",
             "teacher"
           ],
-          "planSpec": {
-            "domain": "political history lecture",
-            "audience": "teacher",
-            "stakes": "showing secular salvation without flattening it",
-            "format": "reflection",
-            "requiredBeat": "Connects secular salvation to political history."
-          },
           "scenario": "In a political history lecture, Darius lectures on communism and fascism after a student says only religion produces fanaticism. The twentieth-century slides say otherwise. Enemies, martyrs, promised futures, and moral purification can thrive under secular banners.",
           "whatToDo": "Track the salvation structure in each ideology without claiming all political hope is the same.",
           "whyItMatters": "The danger is not God alone. Any totalizing hope can turn a future cure into permission for cruelty."
@@ -1357,13 +1111,6 @@
             "Friedrich Nietzsche",
             "patient"
           ],
-          "planSpec": {
-            "domain": "cancer appointment",
-            "audience": "patient",
-            "stakes": "acceptance without pretending illness is good",
-            "format": "audit",
-            "requiredBeat": "Distinguishes acceptance from forced optimism."
-          },
           "scenario": "In a hospital parking lot after an oncology appointment, Renee leaves an oncology appointment furious at every phrase about staying hopeful. She does not want despair, but she also does not want to hate her actual days. Amor fati gives her a strange option: stop bargaining with the diagnosis before choosing how to live.",
           "whatToDo": "Name the facts without decoration, then choose one action that honors life inside those facts.",
           "whyItMatters": "Amor fati is acceptance without decoration. It lets action begin inside the facts."
@@ -1376,13 +1123,6 @@
             "Friedrich Nietzsche",
             "founder"
           ],
-          "planSpec": {
-            "domain": "startup postmortem",
-            "audience": "founder",
-            "stakes": "letting failure be material rather than humiliation",
-            "format": "dialogue",
-            "requiredBeat": "Tests comeback language against truthful failure."
-          },
           "scenario": "At a cafe after the company closes, Avi drafts a post that promises a triumphant comeback. The sentence feels false. He is using the future to disinfect the present. Nietzsche's warning about hope makes him ask what would be true without rescue.",
           "whatToDo": "Write the post around lessons, debts, gratitude, and pain, not the fantasy that failure must become glory.",
           "whyItMatters": "Hope can turn the present into an enemy. Acceptance lets action continue without a redemption performance."
@@ -1395,13 +1135,6 @@
             "Friedrich Nietzsche",
             "sister"
           ],
-          "planSpec": {
-            "domain": "memorial service",
-            "audience": "sister",
-            "stakes": "not forcing grief into a lesson",
-            "format": "reset_moment",
-            "requiredBeat": "Uses grief to separate love from forced meaning."
-          },
           "scenario": "At 2 p.m. in a funeral home chapel, Jo hears relatives insist everything happens for a reason during her brother's memorial. She wants to scream. Amor fati does not require her to call death good. It asks whether love can remain real without a cosmic explanation that makes the loss neat.",
           "whatToDo": "Let grief stay grief, then speak one concrete love that remains true without a promised lesson.",
           "whyItMatters": "The example keeps acceptance honest: affirming life does not require forcing suffering to justify itself."
@@ -1414,13 +1147,6 @@
             "Friedrich Nietzsche",
             "coach"
           ],
-          "planSpec": {
-            "domain": "fitness obsession",
-            "audience": "coach",
-            "stakes": "future-self worship draining present life",
-            "format": "business_case",
-            "requiredBeat": "Practices improvement without hating the present."
-          },
           "scenario": "At 6 a.m. in a gym, Coach Mei sees a client treat every meal as a down payment on a perfect future body. The plan is disciplined and joyless. The client is not training from strength; he is trying to escape a hated present self.",
           "whatToDo": "Shift the goal toward respect for the body he has while training the body he can build.",
           "whyItMatters": "Amor fati turns action away from resentment. Improvement no longer requires despising the current life."
@@ -1439,8 +1165,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The line is not smug atheism in this reading. It names a crisis: old guarantees weaken, but human beings still need values and meaning.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "everything-is-fcked-ch05-q02",
@@ -1452,8 +1177,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The twentieth-century examples give the warning teeth. A future cure can become permission for enemies, martyrs, purification, and violence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch05-q03",
@@ -1465,8 +1189,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Amor fati is not cheerleading and not surrender. It asks her to stop bargaining with reality before choosing an action that honors life as it is.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch05-q04",
@@ -1478,8 +1201,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The comeback fantasy makes failure acceptable only if later glory redeems it. The better response pushes him to write from lessons, debts, gratitude, and pain now.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch05-q05",
@@ -1491,8 +1213,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Amor fati does not require calling death good or forcing grief into a lesson. It affirms life without demanding a neat cosmic explanation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch05-q06",
@@ -1504,8 +1225,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Improvement can continue, but it should not depend on despising the present. Amor fati turns action away from resentment toward the body that exists now.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch05-q07",
@@ -1517,8 +1237,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Manson rejects both rescue fantasies and nihilism. The demanding answer is action rooted in acceptance, not indifference.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "everything-is-fcked-ch05-q08",
@@ -1530,8 +1249,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The late-life material prevents amor fati from becoming a marble slogan. The philosophy is spoken through a suffering body, not from above life.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch05-q09",
@@ -1543,8 +1261,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Hope becomes dangerous when peace depends on a future fix. The present turns into an enemy instead of the material of meaningful action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1575,7 +1292,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Practice Amor Fati",
         "coreSkill": "Stop asking the future to disinfect the present. Affirm the unwanted fact as part of the material, then choose the value available inside it.",
         "ifThenPlans": [
           {
@@ -1600,19 +1316,13 @@
       },
       "memorableLines": [
         {
-          "text": "God is dead names a value vacuum.",
-          "location": "breakdown.fastRead",
-          "why": "It rescues Nietzsche from cheap slogan reading."
+          "text": "God is dead names a value vacuum."
         },
         {
-          "text": "Hope turns cruel when rescue needs enemies.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the political warning."
+          "text": "Hope turns cruel when rescue needs enemies."
         },
         {
-          "text": "Amor fati acts without demanding rescue.",
-          "location": "breakdown.fullRead",
-          "why": "It defines the alternative in plain words."
+          "text": "Amor fati acts without demanding rescue."
         }
       ]
     },
@@ -1639,13 +1349,6 @@
             "Immanuel Kant",
             "administrator"
           ],
-          "planSpec": {
-            "domain": "hospital staffing",
-            "audience": "administrator",
-            "stakes": "pressure to treat nurses as scheduling units",
-            "format": "decision_point",
-            "requiredBeat": "Applies Kant to people hidden by a schedule."
-          },
           "scenario": "In a hospital staffing office during a flu surge, Amara builds the week's coverage grid. The spreadsheet wants bodies in slots. Immanuel Kant is on a sticky note from a leadership class: ends, not merely means. The nurses have families, fatigue, skills, and limits that the grid hides.",
           "whatToDo": "Keep the staffing goal, but add voice, rest rules, and transparent tradeoffs before assigning shifts.",
           "whyItMatters": "Kant does not forbid hard coordination. He forbids making people vanish inside the grid."
@@ -1658,13 +1361,6 @@
             "Immanuel Kant",
             "account executive"
           ],
-          "planSpec": {
-            "domain": "sales call",
-            "audience": "account executive",
-            "stakes": "a client becoming a commission object",
-            "format": "reflection",
-            "requiredBeat": "Tests whether a buyer remains an end."
-          },
           "scenario": "On a sales call from a small conference room, Jules can close a software deal by letting a confused client overbuy. The quota pressure is real. So is the client's agency. A purely adolescent bargain says take the win; Kant asks whether the buyer remains an end.",
           "whatToDo": "Explain the smaller package that fits the client's purpose, then let the deal reflect mutual respect.",
           "whyItMatters": "Dignity before utility means the other person's goals remain visible even when a payoff is tempting."
@@ -1677,13 +1373,6 @@
             "Immanuel Kant",
             "student"
           ],
-          "planSpec": {
-            "domain": "college resume",
-            "audience": "student",
-            "stakes": "using the self as an approval machine",
-            "format": "audit",
-            "requiredBeat": "Applies dignity inward and outward."
-          },
           "scenario": "At a college activities fair, Nina signs up for a volunteer project because it will look good, not because she cares. The people served are props, and so is her own exhausted self. The Categorical Imperative suddenly sounds less abstract than her calendar.",
           "whatToDo": "Drop one performative activity and choose one commitment where the people involved are real to her.",
           "whyItMatters": "The rule applies inward and outward. A person can treat herself merely as a means to approval."
@@ -1696,13 +1385,6 @@
             "Immanuel Kant",
             "father"
           ],
-          "planSpec": {
-            "domain": "parenting moment",
-            "audience": "father",
-            "stakes": "moving from obedience payoff to dignity",
-            "format": "dialogue",
-            "requiredBeat": "Moves a parenting limit from payoff to dignity."
-          },
           "scenario": "In the hallway before guests arrive, Leo asks his son to stop arguing. The fastest threat would work. It would also turn the child into a quiet display object. The developmental stages remind Leo that adulthood is principle under pressure.",
           "whatToDo": "Set the boundary, but explain the reason and leave the child's dignity intact.",
           "whyItMatters": "Moral maturity is not getting the desired behavior at any price. The means carry value."
@@ -1715,13 +1397,6 @@
             "Immanuel Kant",
             "activist"
           ],
-          "planSpec": {
-            "domain": "online debate",
-            "audience": "activist",
-            "stakes": "an opponent as obstacle instead of person",
-            "format": "reset_moment",
-            "requiredBeat": "Applies Kant to people hidden by a schedule."
-          },
           "scenario": "At her laptop after a city meeting, Samira drafts a post that will humiliate an opponent and thrill her followers. The cause matters, but the person has become a prop for group energy. Kant's rule interrupts the pleasure.",
           "whatToDo": "Criticize the claim clearly while refusing the move that makes the opponent less than human.",
           "whyItMatters": "Public conflict can defend values while still honoring consciousness. Contempt is often adolescent moral economics."
@@ -1734,13 +1409,6 @@
             "Immanuel Kant",
             "designer"
           ],
-          "planSpec": {
-            "domain": "freelance contract",
-            "audience": "designer",
-            "stakes": "refusing self-erasure for a dream client",
-            "format": "business_case",
-            "requiredBeat": "Tests whether a buyer remains an end."
-          },
           "scenario": "At his kitchen table, Ansel receives a dream-client contract with endless unpaid revisions. He tells himself exposure will be worth it. Then he notices the self-use: he is treating his own time as disposable fuel for imagined status.",
           "whatToDo": "Ask for revision limits and fair pay, or decline while naming the dignity at stake.",
           "whyItMatters": "The Formula of Humanity protects the self too. Your labor is not merely a tool for someone else's story."
@@ -1759,8 +1427,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The rule is about dignity before utility. People may cooperate and serve purposes, but they must not be reduced to raw material for someone else's payoff.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "everything-is-fcked-ch06-q02",
@@ -1772,8 +1439,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Hiring, trading, asking, and cooperating are normal. The violation begins when the other person's agency and dignity disappear from the reasoning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch06-q03",
@@ -1785,8 +1451,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The problem is not work itself. It is using the person merely as an instrument while ignoring their agency, limits, and dignity.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch06-q04",
@@ -1798,8 +1463,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Children chase pleasure and adolescents bargain for payoff. Moral adulthood begins when dignity, honesty, or respect remains binding without a reward.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch06-q05",
@@ -1811,8 +1475,7 @@
             ],
             "correctIndex": 1,
             "explanation": "the idea is not consequence-blind. It says outcomes matter, but no outcome justifies treating people as disposable instruments.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch06-q06",
@@ -1824,8 +1487,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Kant's rule includes the self. Reducing oneself to a trophy, productivity machine, or body for approval is also a dignity failure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch06-q07",
@@ -1837,8 +1499,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The practice preserves mutuality. If the other person appears only as a lever for your outcome, the ask needs repair.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "everything-is-fcked-ch06-q08",
@@ -1850,8 +1511,7 @@
             ],
             "correctIndex": 2,
             "explanation": "This rule does not preach purity detached from reality. Its hard point is dignity before utility, with consequences still part of moral reasoning.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch06-q09",
@@ -1863,8 +1523,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Selling can be legitimate mutual use. It becomes corrupt when the buyer's ends disappear and only the seller's quota remains.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1895,7 +1554,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Preserve Human Ends",
         "coreSkill": "Before using a person, restore their own purpose to the reasoning. Cooperation is welcome; reducing someone to a payoff machine is not.",
         "ifThenPlans": [
           {
@@ -1920,19 +1578,13 @@
       },
       "memorableLines": [
         {
-          "text": "People are not equipment for outcomes.",
-          "location": "breakdown.fastRead",
-          "why": "It makes Kant blunt and beginner-friendly."
+          "text": "People are not equipment for outcomes."
         },
         {
-          "text": "Merely is where exploitation begins.",
-          "location": "breakdown.deepRead",
-          "why": "It explains the word that carries the rule."
+          "text": "Merely is where exploitation begins."
         },
         {
-          "text": "Dignity must be visible before the win.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the test practical and timely."
+          "text": "Dignity must be visible before the win."
         }
       ]
     },
@@ -1959,13 +1611,6 @@
             "Blue Dot Effect",
             "psychology student"
           ],
-          "planSpec": {
-            "domain": "research lab",
-            "audience": "psychology student",
-            "stakes": "connecting the dot study to campus complaints",
-            "format": "decision_point",
-            "requiredBeat": "Uses category drift without denying harm."
-          },
           "scenario": "In a research lab office, Iris reads the Blue Dot Effect before reviewing campus survey comments. Serious problems have fallen, yet reports of harm have widened to include milder friction. She worries that saying this will sound dismissive of real pain.",
           "whatToDo": "State that real problems remain, then ask whether the category has stretched as conditions changed.",
           "whyItMatters": "The dot study explains threshold movement while still leaving room for real harm."
@@ -1978,13 +1623,6 @@
             "Blue Dot Effect",
             "sociologist"
           ],
-          "planSpec": {
-            "domain": "neighborhood meeting",
-            "audience": "sociologist",
-            "stakes": "Durkheim's perfect society showing up in small disputes",
-            "format": "reflection",
-            "requiredBeat": "Right-sizes a tiny violation after progress."
-          },
           "scenario": "At a spotless neighborhood meeting, Mirek hears twenty minutes of anger about a recycling bin left sideways. He thinks of Durkheim's perfect society: when major violations fade, tiny ones can carry the charge of disorder.",
           "whatToDo": "Ask what standard the complaint is protecting, then right-size the response to the actual harm.",
           "whyItMatters": "Durkheim helps explain why progress does not end judgment. It often changes the scale of scandal."
@@ -1997,13 +1635,6 @@
             "Blue Dot Effect",
             "new practitioner"
           ],
-          "planSpec": {
-            "domain": "meditation hall",
-            "audience": "new practitioner",
-            "stakes": "learning contact rather than escape",
-            "format": "audit",
-            "requiredBeat": "Turns discomfort into measured contact."
-          },
           "scenario": "In a meditation hall on a Saturday morning, Mina feels an itch bloom on her cheek. Her first urge is to scratch and reset the mood. The teacher has mentioned antifragility, so she watches the itch become heat, story, irritation, and then a passing sensation.",
           "whatToDo": "Stay with one discomfort long enough to see the story separate from the sensation.",
           "whyItMatters": "Meditation trains contact with pain. The aim is not numbness but less panic around ordinary discomfort."
@@ -2016,13 +1647,6 @@
             "Blue Dot Effect",
             "manager"
           ],
-          "planSpec": {
-            "domain": "customer success inbox",
-            "audience": "manager",
-            "stakes": "support team fragile after too much shielding",
-            "format": "dialogue",
-            "requiredBeat": "Tests chosen stress against mere damage."
-          },
           "scenario": "At a customer-success standup, Kellan's support team has been protected from every angry customer by scripts and escalations. Now a mild complaint ruins half a day. The team is not lazy; it has had no practice metabolizing discomfort.",
           "whatToDo": "Introduce small, supported exposure to difficult calls, followed by review and recovery.",
           "whyItMatters": "Antifragility grows through chosen stress at the right scale. Total shelter can lower capacity."
@@ -2035,13 +1659,6 @@
             "Blue Dot Effect",
             "couple"
           ],
-          "planSpec": {
-            "domain": "personal finance",
-            "audience": "couple",
-            "stakes": "avoiding money pain until it multiplies",
-            "format": "reset_moment",
-            "requiredBeat": "Uses category drift without denying harm."
-          },
           "scenario": "At the kitchen table after dinner, Sofia and Ben avoid opening bank statements because the first glance feels awful. The avoidance creates late fees, suspicion, and bigger fights. The original pain is numbers; the secondary pain is shame about numbers.",
           "whatToDo": "Schedule a ten-minute statement review with no blame, then choose one repair before stopping.",
           "whyItMatters": "Treating pain as illegitimate creates extra pain. Small contact can reduce the drama around the facts."
@@ -2054,13 +1671,6 @@
             "Blue Dot Effect",
             "physical therapist"
           ],
-          "planSpec": {
-            "domain": "athletic training",
-            "audience": "physical therapist",
-            "stakes": "distinguishing growth stress from damage",
-            "format": "business_case",
-            "requiredBeat": "Right-sizes a tiny violation after progress."
-          },
           "scenario": "At a track clinic, a runner asks Dr. Hayes whether pain means quit or push. Nassim Taleb is useful but incomplete. Some stress strengthens; some stress tears tissue. The skill is reading scale, recovery, and signal.",
           "whatToDo": "Sort the pain: training load, warning sign, or injury. Grow through the first and respect the last.",
           "whyItMatters": "This idea does not worship suffering. It asks for chosen difficulty that builds capacity without denial."
@@ -2079,8 +1689,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Blue Dot Effect shows prevalence-induced concept change. As threats become rarer, the mind can widen the category and keep finding distress.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "everything-is-fcked-ch07-q02",
@@ -2092,8 +1701,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Durkheim helps the idea argue that pain is not abolished by better conditions. Human beings keep generating norms and violations around them.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch07-q03",
@@ -2105,8 +1713,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Antifragility is not pain worship. It names the possibility of growing stronger through the right kind of stress rather than being insulated from all stress.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch07-q04",
@@ -2118,8 +1725,7 @@
             ],
             "correctIndex": 2,
             "explanation": "the idea does not say pain is good. It says pain is unavoidable, so choosing the right pain becomes central to maturity.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch07-q05",
@@ -2131,8 +1737,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge is not that all suffering is noble. Some pain damages. The task is to choose pains that build capacity and refuse needless harm.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch07-q06",
@@ -2144,8 +1749,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Avoiding all discomfort trains fragility. When pain cannot be escaped, the unpracticed person has less strength and less meaning to meet it with.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch07-q07",
@@ -2157,8 +1761,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Chosen contact with difficulty can build capacity. The point is not humiliation, but letting useful stress strengthen skill and honesty.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "everything-is-fcked-ch07-q08",
@@ -2170,8 +1773,7 @@
             ],
             "correctIndex": 2,
             "explanation": "the idea distinguishes maturing pain from needless damage. A blanket promise to remove discomfort can make the Feeling Brain less resilient.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch07-q09",
@@ -2183,8 +1785,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The practical move is chosen contact with meaningful difficulty. That trains strength without pretending pain itself is sacred.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2215,7 +1816,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Choose Useful Discomfort",
         "coreSkill": "Treat pain as a constant signal to work with, not proof that life is broken. Select small stresses that grow capacity and reject stress that only injures.",
         "ifThenPlans": [
           {
@@ -2240,19 +1840,13 @@
       },
       "memorableLines": [
         {
-          "text": "When threats shrink, categories can stretch.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the Blue Dot Effect into a recall hook."
+          "text": "When threats shrink, categories can stretch."
         },
         {
-          "text": "Secondary pain is pain about pain.",
-          "location": "breakdown.deepRead",
-          "why": "It defines a useful term cleanly."
+          "text": "Secondary pain is pain about pain."
         },
         {
-          "text": "Chosen stress can train; random cruelty can break.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the limit on antifragility."
+          "text": "Chosen stress can train; random cruelty can break."
         }
       ]
     },
@@ -2279,13 +1873,6 @@
             "Edward Bernays",
             "brand strategist"
           ],
-          "planSpec": {
-            "domain": "advertising archive",
-            "audience": "brand strategist",
-            "stakes": "seeing cigarettes sold as freedom",
-            "format": "decision_point",
-            "requiredBeat": "Finds the identity costume around a product."
-          },
           "scenario": "In an advertising archive, Kevara studies Edward Bernays and American Tobacco before a sneaker pitch. The old campaign sold cigarettes as independence, not smoke. Her own deck now sells shoes as moral courage. The product is fine; the emotional costume is doing too much work.",
           "whatToDo": "Remove the salvation language and sell the real benefit without hijacking identity.",
           "whyItMatters": "Bernays makes emotional packaging concrete: the object rides inside a borrowed identity."
@@ -2298,13 +1885,6 @@
             "Edward Bernays",
             "data scientist"
           ],
-          "planSpec": {
-            "domain": "social platform metrics",
-            "audience": "data scientist",
-            "stakes": "engagement winning over truth",
-            "format": "reflection",
-            "requiredBeat": "Shows engagement winning against accuracy."
-          },
           "scenario": "At a social platform metrics review, Luis watches a dashboard spike when a misleading clip triggers outrage. The correction thread is accurate and cold. The angry clip is profitable heat. He flags the risk; the team accepts a slower share prompt but refuses to lower the clip as much as he wants.",
           "whatToDo": "Flag emotional optimization as a product risk and propose ranking weight for correction, source quality, and user friction.",
           "whyItMatters": "The partial fix keeps the example honest. The Feelings Economy often yields slowly because the hot metric pays."
@@ -2317,13 +1897,6 @@
             "Edward Bernays",
             "civic volunteer"
           ],
-          "planSpec": {
-            "domain": "library board",
-            "audience": "civic volunteer",
-            "stakes": "Putnam's Bowling Alone in a real town",
-            "format": "audit",
-            "requiredBeat": "Connects private options to civic thinning."
-          },
           "scenario": "At a library board meeting, Alana counts empty seats for the third month. Everyone says they are busy, entertained, and connected online. Robert Putnam's Bowling Alone stops sounding like a title and starts sounding like the room.",
           "whatToDo": "Design one low-friction civic ritual that asks for presence, not just online approval.",
           "whyItMatters": "Private options can expand while shared responsibility thins. Freedom needs civic habits."
@@ -2336,13 +1909,6 @@
             "Edward Bernays",
             "listener"
           ],
-          "planSpec": {
-            "domain": "political podcast",
-            "audience": "listener",
-            "stakes": "Plato's appetite warning",
-            "format": "dialogue",
-            "requiredBeat": "Tests freedom language against responsibility."
-          },
           "scenario": "On the bus after work, Drew hears a podcast host promise that every public limit is oppression. The line feels good after a hard week. Plato's warning about democracy sliding toward tyranny makes him pause. Maybe appetite is being flattered, not liberated.",
           "whatToDo": "Ask what responsibility the message wants him to reject before accepting its freedom language.",
           "whyItMatters": "Political freedom depends on character. A culture trained by appetite becomes easy to steer."
@@ -2355,13 +1921,6 @@
             "Edward Bernays",
             "couple"
           ],
-          "planSpec": {
-            "domain": "streaming night",
-            "audience": "couple",
-            "stakes": "diversion replacing a hard talk",
-            "format": "reset_moment",
-            "requiredBeat": "Tests appetite-flattery against political responsibility."
-          },
           "scenario": "On streaming night in their apartment, Meena and Rob spend two hours choosing shows to avoid a money conversation. Each option feels like freedom. By midnight, the bills remain and both feel smaller. The diversion bought relief and sold them delay.",
           "whatToDo": "Turn off the screen for fifteen minutes and make one decision about the bill before watching anything.",
           "whyItMatters": "Diversions numb discomfort without maturing the person. Real freedom can include a chosen limit."
@@ -2374,13 +1933,6 @@
             "Edward Bernays",
             "startup founder"
           ],
-          "planSpec": {
-            "domain": "product roadmap",
-            "audience": "startup founder",
-            "stakes": "innovation versus diversion",
-            "format": "business_case",
-            "requiredBeat": "Separates useful tools from emotional capture."
-          },
           "scenario": "In a product roadmap meeting, a founder named Kei reviews two roadmap ideas: a tool that saves nurses charting time and a feed feature that keeps users comparing bodies. Both could grow revenue. Only one replaces a worse pain with a better one.",
           "whatToDo": "Classify each feature as innovation or diversion, then choose the one that reduces a real burden.",
           "whyItMatters": "The Feelings Economy critique is not anti-tool. It asks what kind of pain the tool changes."
@@ -2399,8 +1951,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Bernays shows persuasion aimed at the Feeling Brain. Cigarettes become more than tobacco when they are linked to freedom, status, and self-image.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "everything-is-fcked-ch08-q02",
@@ -2412,8 +1963,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Feelings Economy profits less from truth than from engagement. It keeps emotional systems reactive because reactivity is valuable.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch08-q03",
@@ -2425,8 +1975,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Putnam is used to show weakening social bonds. When community thins, markets that sell belonging, outrage, and relief gain more room to operate.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch08-q04",
@@ -2438,8 +1987,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Plato thread warns that a population trained by appetite and impulse can become vulnerable to control. The issue is immature reactivity, not pleasure alone.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch08-q05",
@@ -2451,8 +1999,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Manson is not simply anti-tech. It asks whether a tool reduces real suffering or keeps the Feeling Brain reactive for profit.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch08-q06",
@@ -2464,8 +2011,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The feed is not a moral teacher. It learns what keeps attention, and attention often follows fear, anger, status hunger, and insecurity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch08-q07",
@@ -2477,8 +2023,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Bernays example shows emotional packaging. The cigarette is sold as meaning, belonging, or liberation rather than merely as a product.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "everything-is-fcked-ch08-q08",
@@ -2490,8 +2035,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard claim distinguishes pleasure from manipulation. The problem is a system designed to keep the Feeling Brain reactive and dependent.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch08-q09",
@@ -2503,8 +2047,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The question separates useful tools from emotional rentals. A product can solve a real problem or simply sell temporary relief while preserving the underlying hunger.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2535,7 +2078,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Refuse Emotional Capture",
         "coreSkill": "Identify the feeling a product, feed, or message is selling. Then decide whether the offered stimulation serves a chosen value or merely rents relief.",
         "ifThenPlans": [
           {
@@ -2560,19 +2102,13 @@
       },
       "memorableLines": [
         {
-          "text": "The product is often a rented feeling.",
-          "location": "breakdown.fastRead",
-          "why": "It captures Bernays and the market critique."
+          "text": "The product is often a rented feeling."
         },
         {
-          "text": "Options are not freedom without refusal.",
-          "location": "breakdown.deepRead",
-          "why": "It reverses the default consumer assumption."
+          "text": "Options are not freedom without refusal."
         },
         {
-          "text": "Attention needs friction to stay free.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the practice into a portable rule."
+          "text": "Attention needs friction to stay free."
         }
       ]
     },
@@ -2599,13 +2135,6 @@
             "Deep Blue",
             "coach"
           ],
-          "planSpec": {
-            "domain": "chess club",
-            "audience": "coach",
-            "stakes": "Deep Blue as humility rather than despair",
-            "format": "decision_point",
-            "requiredBeat": "Separates calculation from human purposes."
-          },
           "scenario": "At a chess club, Varek shows students the Deep Blue and Garry Kasparov match. One student says humans are pointless now. Varek sets up a second board and asks what chess was for before victory became the only measure.",
           "whatToDo": "Use Deep Blue to separate machine superiority in calculation from human responsibility for values.",
           "whyItMatters": "The chess example humbles status, but it does not answer what intelligence should serve."
@@ -2618,13 +2147,6 @@
             "Deep Blue",
             "research lead"
           ],
-          "planSpec": {
-            "domain": "AI lab demo",
-            "audience": "research lead",
-            "stakes": "Alpha Zero speed unsettling the team",
-            "format": "reflection",
-            "requiredBeat": "Names the objective before praising acceleration."
-          },
           "scenario": "At an AI lab demo, Nerissa watches an Alpha Zero demo and feels the room tilt. Self-play, fast improvement, and alien-looking moves make ordinary training plans feel slow. The team is thrilled, but the first attempt to name the system objective exposes a mess of competing goals.",
           "whatToDo": "Pause the demo to write the objective, the excluded values, and the human review points.",
           "whyItMatters": "Acceleration is impressive and incomplete. Learning speed can expose moral confusion faster than it solves it."
@@ -2637,13 +2159,6 @@
             "Deep Blue",
             "editor"
           ],
-          "planSpec": {
-            "domain": "news feed",
-            "audience": "editor",
-            "stakes": "algorithmic ranking as hidden authority",
-            "format": "audit",
-            "requiredBeat": "Treats ranking as hidden authority."
-          },
           "scenario": "In a newsroom after election week, Leontes audits the recommendation feed. The algorithm did not endorse a party. It still lifted fear, humiliation, and conflict because those signals kept users watching. The system governed attention without claiming to govern values.",
           "whatToDo": "Treat ranking as a moral choice and test whether visibility is serving truth or reactivity.",
           "whyItMatters": "Algorithmic feeds already act like invisible authorities. The final religion begins before a superintelligence arrives."
@@ -2656,13 +2171,6 @@
             "Deep Blue",
             "doctor"
           ],
-          "planSpec": {
-            "domain": "hospital triage",
-            "audience": "doctor",
-            "stakes": "using AI without surrendering dignity",
-            "format": "dialogue",
-            "requiredBeat": "Keeps dignity visible in an automated decision."
-          },
           "scenario": "In a hospital triage room, Dr. Patel receives an AI triage score that says a patient can wait. The patient in front of her is scared, coherent, and describing a symptom the form underweighted. The system may be useful; it is not a conscience.",
           "whatToDo": "Use the score as evidence, then make the decision with the patient's humanity still visible.",
           "whyItMatters": "The Formula of Humanity applies to technology. Optimization cannot make a person merely a data point."
@@ -2675,13 +2183,6 @@
             "Deep Blue",
             "teacher"
           ],
-          "planSpec": {
-            "domain": "school essay",
-            "audience": "teacher",
-            "stakes": "students outsourcing judgment",
-            "format": "reset_moment",
-            "requiredBeat": "Checks tool use against outsourced judgment."
-          },
           "scenario": "In an English classroom after lunch, Ms. Chen reads essays that sound polished and empty after students lean on AI tools. The issue is not grammar. The students are letting the system choose what counts as thought. The machine has become a quiet authority.",
           "whatToDo": "Ask students to defend one value choice in the essay that no tool selected for them.",
           "whyItMatters": "The danger is surrendering judgment, not using tools. Mature values must remain in charge."
@@ -2694,13 +2195,6 @@
             "Deep Blue",
             "policy lead"
           ],
-          "planSpec": {
-            "domain": "platform ethics review",
-            "audience": "policy lead",
-            "stakes": "the Feelings Economy scaled by AI",
-            "format": "business_case",
-            "requiredBeat": "Separates calculation from human purposes."
-          },
           "scenario": "At a platform ethics review, Sayeed sees an AI model that predicts which posts will make users stay angry longest. The metric looks technical. The value is adolescent: keep the Feeling Brain hooked.",
           "whatToDo": "Reject the metric as the north star and replace it with retention bounded by truth, dignity, and user agency.",
           "whyItMatters": "AI can amplify the Feelings Economy unless humans choose better aims before optimization begins."
@@ -2719,8 +2213,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Deep Blue shows machine power in a defined domain. The real worry begins when people treat optimized output as value judgment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "everything-is-fcked-ch09-q02",
@@ -2732,8 +2225,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Alpha Zero makes optimization feel almost alien and impressive. That power is precisely why value alignment matters before people surrender judgment to it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch09-q03",
@@ -2745,8 +2237,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The ordinary danger is not robot consciousness. It is systems that shape attention and feeling while users treat the output as guidance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch09-q04",
@@ -2758,8 +2249,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The final-religion danger appears when optimization becomes authority. The machine is no longer just a tool; it becomes an object of trust and surrender.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch09-q05",
@@ -2771,8 +2261,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Manson is less worried about theatrical robot conquest than about efficient systems amplifying immature values and calling the result progress.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "everything-is-fcked-ch09-q06",
@@ -2784,8 +2273,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A sound use lets the tool embarrass the favored story. A corrupt use turns AI into protection for convenience and self-deception.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "everything-is-fcked-ch09-q07",
@@ -2797,8 +2285,7 @@
             ],
             "correctIndex": 0,
             "explanation": "the idea's concern is value surrender. Humans must keep responsibility for the ends, not merely admire the efficiency of the means.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "everything-is-fcked-ch09-q08",
@@ -2810,8 +2297,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Optimization follows the target it is given. If the target is immature, efficiency scales the immaturity rather than correcting it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "everything-is-fcked-ch09-q09",
@@ -2823,8 +2309,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The mature answer is not panic or worship. It is explicit value judgment, continuing accountability, and refusal to let opacity become sacred authority.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2861,7 +2346,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Interrogate the Optimizer",
         "coreSkill": "Treat every intelligent system as serving an objective. Before obeying a recommendation, ask what it optimizes, what it ignores, and which human end must stay in charge.",
         "ifThenPlans": [
           {
@@ -2886,19 +2370,13 @@
       },
       "memorableLines": [
         {
-          "text": "Optimization always serves a target.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the technical word plain."
+          "text": "Optimization always serves a target."
         },
         {
-          "text": "Fast intelligence can still serve childish values.",
-          "location": "breakdown.deepRead",
-          "why": "It preserves the chapter's warning."
+          "text": "Fast intelligence can still serve childish values."
         },
         {
-          "text": "Use AI as a tool, not a priest.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the final religion warning stick."
+          "text": "Use AI as a tool, not a priest."
         }
       ]
     }

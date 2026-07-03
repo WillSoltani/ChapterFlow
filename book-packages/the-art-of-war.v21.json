@@ -41,13 +41,6 @@
             "staffing",
             "triage"
           ],
-          "planSpec": {
-            "domain": "hospital winter staffing triage after three nurses call in sick",
-            "audience": "operations lead in a regional hospital",
-            "stakes": "whether the emergency department opens four beds safely during a flu spike",
-            "format": "decision_point",
-            "requiredBeat": "Sarah writes five headings on the glass board, puts staffing, weather, patient flow, charge nurse authority, and supply routes under them, then cancels the bed-opening plan when Earth and Method fail."
-          },
           "scenario": "At 6:18 a.m., Sarah stands beside a glove dispenser marked OUT and a bed map with four empty rooms circled in red. Three nurses have called in sick, the snow forecast has frozen the agency cap, and the charge nurse is already covering triage. Before the director arrives, Sarah must decide whether to open the flu beds or write five headings on the glass board and test whether ground and method can hold.",
           "whatToDo": "Write the five headings first. Staff, timing, patient flow, authority, and supplies have to pass before the rooms open. If one fatal column fails, cancel the opening and move patients another way.",
           "whyItMatters": "The empty rooms are only one favorable factor. The failed nurse cap and supply route mean the plan cannot execute safely, so courage would only hide a preventable failure."
@@ -60,13 +53,6 @@
             "capacity",
             "delivery"
           ],
-          "planSpec": {
-            "domain": "commercial bakery deciding whether to accept a supermarket rush order",
-            "audience": "owner of a thirty-person bakery",
-            "stakes": "a contract could double revenue but break delivery reliability",
-            "format": "postmortem",
-            "requiredBeat": "It took Thomas one rejected pallet to see that he had counted ovens and ignored loading-bay distance."
-          },
           "scenario": "It took Thomas one rejected pallet to see the mistake. Six cracked baguette trays sit beside the loading door on Thursday afternoon, with two delivery vans blocked behind cooling racks and a contract penalty clause on his desk. He had counted oven capacity and staff hours before accepting the supermarket rush order. He had not counted the loading-bay distance that made the bread arrive late and broken.",
           "whatToDo": "Rebuild the order test from the missed factor. Count loading distance, van turns, cooling time, and penalty exposure before accepting another rush contract.",
           "whyItMatters": "The ovens made the order look possible, but the route out of the building defeated it. Planning by the strongest factor lets the weakest factor choose the result."
@@ -79,13 +65,6 @@
             "flood",
             "drill"
           ],
-          "planSpec": {
-            "domain": "municipal flood-response drill before spring melt",
-            "audience": "deputy emergency planner",
-            "stakes": "a riverside district may need evacuation within six hours",
-            "format": "scene",
-            "requiredBeat": "The river gauge blinks amber while Camille compares road access, night temperature, radio coverage, public trust, and command authority before approving the drill route."
-          },
           "scenario": "The river gauge behind city hall blinks amber above wet concrete steps. Camille has a sandbag depot list, a radio repeater map, and the senior center roster spread across the hood of her car. Before the mayor announces the spring-melt drill route, she must decide whether the north road is usable after dark, whether the radio dead pocket can be covered, and whether last year's false alarm has damaged public trust.",
           "whatToDo": "Compare the route against timing, ground, communications, trust, and authority. Approve only the drill path that can still work after dark and under pressure.",
           "whyItMatters": "A drill that looks organized at noon can fail at night if the radio pocket and road closure are ignored. The comparison exposes the failure while it is still cheap."
@@ -98,13 +77,6 @@
             "reroute",
             "cold chain"
           ],
-          "planSpec": {
-            "domain": "shipping-line reroute around a port strike",
-            "audience": "logistics director for refrigerated freight",
-            "stakes": "salmon containers will spoil if the alternate route lacks cold-chain discipline",
-            "format": "decision_memo",
-            "requiredBeat": "Cold vapor rolls from a cracked reefer door as Henrik separates favorable opportunity from missing method and discipline."
-          },
           "scenario": "Cold vapor rolls from a cracked reefer door while Henrik reads the temperature logger on the dock. The port strike notice makes the northern route look clean, the customs cutoff is close, and sales wants an answer before lunch. He has to decide whether the alternate port is real capacity or only a line on a map, because the transfer crew after midnight is not confirmed.",
           "whatToDo": "Separate opportunity from execution. Check the temperature handoff, customs timing, dock booking, and night crew before telling sales the reroute can carry refrigerated freight.",
           "whyItMatters": "The strike creates a tempting opening, but missing cold-chain discipline can ruin the cargo. A plan is only favorable if the method can protect what matters."
@@ -117,13 +89,6 @@
             "collections",
             "risk"
           ],
-          "planSpec": {
-            "domain": "museum deciding whether to move a fragile exhibit before a donor gala",
-            "audience": "collections manager",
-            "stakes": "a rushed move could damage a seventeenth-century cabinet",
-            "format": "dialogue",
-            "requiredBeat": "Show me the route, not the guest list, Sofia says, then walks the corridor measuring door widths before approving any promise to the director."
-          },
           "scenario": "In the museum's marble hallway, Sofia stretches a tape measure across the doorway after saying, \"Show me the route instead of the guest list.\" The humidity crate is ready, the freight elevator key is missing, and the donor schedule is printed. Before the director promises the cabinet for Friday, Sofia must decide whether the corridor, elevator, and stairwell turn can carry the move without damage.",
           "whatToDo": "Walk the route before approving the promise. Measure the doorway, confirm the elevator key, test the stairwell turn, and let the route decide the exhibit plan.",
           "whyItMatters": "Prestige is not a condition of movement. The cabinet survives only if Earth and Method support the promise that leadership wants to make."
@@ -136,13 +101,6 @@
             "disclosure",
             "clients"
           ],
-          "planSpec": {
-            "domain": "cybersecurity team weighing public disclosure after a vendor breach",
-            "audience": "security lead at a Toronto software firm",
-            "stakes": "early disclosure could protect clients or trigger avoidable panic",
-            "format": "predict_reveal",
-            "requiredBeat": "What changes if the adversary already knows the gap and the clients do not?"
-          },
           "scenario": "What changes if the adversary already knows the gap and the clients do not? Aanya has a redacted vendor incident email open on her laptop, a client notice draft in review, and a patch window that closes at midnight. Legal wants one more day. Before the standup ends, she has to decide whether silence is caution or whether it leaves clients exposed while attackers already have the map.",
           "whatToDo": "Test disclosure against the real conditions. Compare attacker knowledge, client exposure, patch timing, and legal risk, then disclose enough for clients to protect themselves if the gap is already exposed.",
           "whyItMatters": "Disclosure is not automatically brave or reckless. The deciding factor is the board as it stands: who knows, who can act, and what delay gives away."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The waitlist is only one favorable sign. The comparison tests whether the conditions can carry the clinic. Overtime may show urgency while hiding pharmacy or parking failure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The early start helps only if the rest of the field supports it. Weather and inspection are not details. They are conditions that can defeat the job after it begins.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Donor enthusiasm speaks to alignment, not storage or execution. The weak lease and training system are separate factors, and either one can break the pantry.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The working door is not the whole plan. Supervision and bus flow are ground and method problems. Praise from parents cannot make the entrance safe.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Engineering readiness is one factor. Support and billing are method and discipline. A tentative announcement still creates a promise the system may not be able to keep.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Clear weather helps timing, but a dead communication zone can still defeat the route. The point is to compare factors, not crown the first favorable one.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Concealment has value only when the underlying position is sound. If readiness is missing, the appearance is theater, not strategy.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The gala creates pressure, but the route is part of the field. Changing the exhibit protects the object and respects the condition that actually governs movement.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful comparison is about the current board: attacker knowledge, client exposure, patch timing, and legal risk. Image and blame are secondary to conditions.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -327,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "A plan is not a wish with a deadline.",
-          "location": "breakdown.fastRead",
-          "why": "It separates planning from optimism in a sentence short enough to remember under pressure."
+          "text": "A plan is not a wish with a deadline."
         },
         {
-          "text": "Calculation is not delay.",
-          "location": "breakdown.deepRead",
-          "why": "It reframes slow-looking preparation as active protection against thin action."
+          "text": "Calculation is not delay."
         },
         {
-          "text": "Count before you commit.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the whole chapter a compact operational command."
+          "text": "Count before you commit."
         }
       ]
     },
@@ -366,13 +309,6 @@
             "payroll",
             "deadline"
           ],
-          "planSpec": {
-            "domain": "regional theater extending rehearsals for a troubled opening night",
-            "audience": "artistic director with a fixed payroll",
-            "stakes": "extra rehearsal weeks could save the show or bankrupt the season",
-            "format": "before_after",
-            "requiredBeat": "The empty ticket window at noon forces James to price each extra rehearsal day against the cash needed to keep the cast paid through closing weekend."
-          },
           "scenario": "The empty ticket window under a faded poster faces James at noon, with the payroll sheet on his left and a costume rental invoice on his right. Last week he granted three extra rehearsals because the second act dragged. Now the opening-night clock in the lobby shows nine days, and the cast still needs pay through closing weekend. He has to decide whether another rehearsal week saves the show or spends the season.",
           "whatToDo": "Price the week before approving it. Put payroll, rental fees, ticket sales, and closing-week cash beside the artistic gain, then define the exact fix that would justify more time.",
           "whyItMatters": "More rehearsal can be care or avoidance. The cost sheet shows when time improves the result and when it starts consuming the production it is meant to save."
@@ -385,13 +321,6 @@
             "medical",
             "cost"
           ],
-          "planSpec": {
-            "domain": "medical-device recall held open while committees debate wording",
-            "audience": "quality lead at a manufacturer",
-            "stakes": "every delayed day leaves clinics using questionable equipment",
-            "format": "decision_point",
-            "requiredBeat": "At 6:40 a.m., Claire totals courier fees, call-center shifts, and replacement stock before forcing a recall decision that stops the daily bleed."
-          },
           "scenario": "At 6:40 a.m., Claire stands beside a pallet of sealed replacement devices while the recall script waits on her laptop. The courier manifest is half filled, the clinic hotline roster has gaps, and the wording committee wants one more review. Before the day shift starts, she must decide whether another polished paragraph is worth another day of clinics using equipment her team already distrusts.",
           "whatToDo": "Total the daily cost in exposure, courier delay, call-center coverage, and replacement stock. If the safe replacements are ready enough, force the recall decision and stop polishing.",
           "whyItMatters": "The sentence can always be improved. The device in use is the real cost of delay, and every extra day shifts risk onto clinics that cannot see the debate."
@@ -404,13 +333,6 @@
             "equipment",
             "harvest"
           ],
-          "planSpec": {
-            "domain": "farm co-op choosing whether to repair a broken grain dryer or rent one now",
-            "audience": "co-op treasurer in Quebec",
-            "stakes": "wet grain loses value every day while members argue about capital expense",
-            "format": "predict_reveal",
-            "requiredBeat": "How expensive is the cheap delay if every truckload loses grade by Friday?"
-          },
           "scenario": "How expensive is the cheap delay if every truckload loses grade by Friday? Mathieu holds a damp sample bag over the moisture meter in the co-op office. The rental quote for a dryer looks ugly, the harvest calendar is tighter than usual, and members want to wait for a cheaper repair part. He has to decide whether the rental is expensive or whether waiting is the expense wearing a smaller label.",
           "whatToDo": "Compare the rental quote with the grade loss per truckload through Friday. Rent if the delay costs more than the equipment, and set the repair debate aside until the crop is safe.",
           "whyItMatters": "The capital expense is visible, while wet grain loses value quietly. Pricing the delay makes the hidden levy larger than the rental sticker."
@@ -423,13 +345,6 @@
             "grant",
             "procurement"
           ],
-          "planSpec": {
-            "domain": "university lab stuck in a months-long equipment procurement dispute",
-            "audience": "principal investigator running grant-funded experiments",
-            "stakes": "the grant clock is burning while the team waits for perfect terms",
-            "format": "audit",
-            "requiredBeat": "The freezer alarm chirps while Ingrid marks each lost week against expiring samples and chooses a shorter lease that preserves the experiment."
-          },
           "scenario": "The freezer alarm chirps beside Ingrid while the cell culture log lies open on the lab bench. Procurement has argued for months over the microscope lease agreement, and the grant deadline has not moved. She has to decide whether to keep chasing perfect terms or accept a shorter lease this week, before the samples expire and the experiment becomes a clean contract attached to dead work.",
           "whatToDo": "Mark each lost week against the grant date and sample life. Choose the lease that preserves the experiment, even if the terms are less elegant than the committee wanted.",
           "whyItMatters": "The grant and samples are the campaign cost. Perfect terms are worthless if the work they were meant to protect expires before the instrument arrives."
@@ -442,13 +357,6 @@
             "cash",
             "service"
           ],
-          "planSpec": {
-            "domain": "independent restaurant keeping a failing lunch service alive",
-            "audience": "chef-owner with thin cash reserves",
-            "stakes": "staff hours and food waste are draining the profitable dinner business",
-            "format": "postmortem",
-            "requiredBeat": "It took Marco twelve trays of unsold focaccia to see that pride in the lunch menu was consuming the dinner engine."
-          },
           "scenario": "It took Marco twelve trays of unsold focaccia to see the lunch service clearly. The prep schedule had stolen two cooks from dinner, the supplier minimum kept filling the walk-in, and the server rota was built around tables that stayed empty. On Sunday night he counts the waste beside the till and decides what rule he should have used before pride made lunch a campaign without an end.",
           "whatToDo": "Name the drain in wages, waste, and dinner damage. Close or shrink lunch to the smallest profitable form, then protect the service that pays the bills.",
           "whyItMatters": "The lunch service is not failing in theory. It is consuming labor and stock from the working engine, so ending it preserves the restaurant rather than admitting defeat."
@@ -461,13 +369,6 @@
             "migration",
             "operations"
           ],
-          "planSpec": {
-            "domain": "software migration where parallel systems run too long",
-            "audience": "program manager at a pension administrator",
-            "stakes": "dual operations double error checks and exhaust the support team",
-            "format": "decision_memo",
-            "requiredBeat": "Name the shutdown date before we approve another bridge, Layla tells the steering group, then lists every duplicate control running because nobody will end the campaign."
-          },
           "scenario": "\"Name the shutdown date before we approve another bridge,\" Layla tells the steering group, with two identical reconciliation dashboards glowing on the screen. The legacy server invoice is due, the support queue doubles every Friday, and the cutover checklist has only three open risks. She has to decide whether to fund another month of parallel systems or force the final controls closed.",
           "whatToDo": "List every duplicate control, invoice, and support shift created by parallel running. Set a shutdown date tied to the last real risk, not to the comfort of delay.",
           "whyItMatters": "Parallel systems begin as protection, then become a second campaign. Without an end date, the bridge turns into the thing everyone keeps paying to cross."
@@ -486,8 +387,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The issue is not impatience. The lead needs to price another week against a clear finish line. Support and appearances do not answer whether delay buys victory.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -499,8 +399,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The daily ambiguity is the carrying cost. A safe enough policy with a review date ends the drain, while perfection keeps spending staff patience.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -512,8 +411,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The repair price is visible, but delay is also spending money. Scrap and overtime reveal whether waiting is more expensive than the fee.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -525,8 +423,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Past effort and pride are traps. The real cost is current capacity drained from a stronger service. More enthusiasm does not change that arithmetic.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -538,8 +435,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A limited milestone can end the current drain without pretending the whole project is done. Visible movement and extra crews may increase cost without buying progress.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -551,8 +447,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Parallel running starts as risk control, but without a finish line it becomes the drain. The doubled checks show the protection has turned into cost.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -564,8 +459,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The question is what protects the whole operation. A possible future lunch crowd does not justify a present drain that weakens the profitable service.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -577,8 +471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The experiment is the purpose. If waiting kills the samples, the clean contract protects nothing. The shorter lease captures useful capacity near the need.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -590,8 +483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The question prices delay against safety. Better wording has value only if it reduces more harm than the extra days of device exposure create.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -652,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "Count the chariots before you admire the campaign; delay always sends a bill.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the carrying cost of inaction concrete and memorable."
+          "text": "Count the chariots before you admire the campaign; delay always sends a bill."
         },
         {
-          "text": "The daily cost has become the argument.",
-          "location": "breakdown.deepRead",
-          "why": "It turns cost accounting into the central decision signal."
+          "text": "The daily cost has become the argument."
         },
         {
-          "text": "End the drain before the drain becomes the strategy.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter as a command against prolonged campaigns."
+          "text": "End the drain before the drain becomes the strategy."
         }
       ]
     },
@@ -691,13 +577,6 @@
             "rent",
             "proposal"
           ],
-          "planSpec": {
-            "domain": "bookstore negotiating with a landlord over rent increase",
-            "audience": "owner of an independent bookstore",
-            "stakes": "a direct legal fight could drain the store before renewal season",
-            "format": "scene",
-            "requiredBeat": "Dust lifts from the local-history shelf as Emily prepares a joint foot-traffic proposal that gives the landlord a better plan than forcing a rent fight."
-          },
           "scenario": "Dust lifts from the local-history shelf as Emily pulls the footfall counter report from a drawer behind the register. The lease calendar gives her eleven days before renewal, and neighbor petitions are stacked beside the till. She must decide whether to threaten a legal fight over the rent increase or prepare a joint traffic proposal that gives the landlord a stronger plan for the whole block.",
           "whatToDo": "Build the plan that makes the rent fight less useful. Show traffic, neighbor support, and shared events as a better route to value than forcing the store into legal defense.",
           "whyItMatters": "The landlord needs higher value, not necessarily a fight. If Emily changes that plan, she protects cash and keeps the bookstore intact."
@@ -710,13 +589,6 @@
             "coaches",
             "timing"
           ],
-          "planSpec": {
-            "domain": "sports club stopping a rival academy from poaching coaches",
-            "audience": "director of a youth football club",
-            "stakes": "losing two coaches would fracture four teams mid-season",
-            "format": "decision_point",
-            "requiredBeat": "At 9:05 p.m., David calls the rival director with a shared tournament plan before the poaching offer can become a war for staff."
-          },
           "scenario": "At 9:05 p.m., David stands on a half-lit artificial turf pitch with coach contracts in his bag and a parent email draft open on his phone. A rival academy is about to offer two coaches better visibility. Before he sends the angry email, David must decide whether to call the rival director with a shared tournament bracket that gives them exposure without taking his staff.",
           "whatToDo": "Call before the offer hardens. Give the rival academy a tournament win that satisfies its visibility need while keeping the coaches tied to their current teams.",
           "whyItMatters": "The poaching plan depends on visibility, not only on the coaches. Meeting that need upstream can protect four teams without turning staff into spoils."
@@ -729,13 +601,6 @@
             "budget",
             "council"
           ],
-          "planSpec": {
-            "domain": "public library facing a budget cut campaign",
-            "audience": "library branch manager",
-            "stakes": "a public fight over cuts may harden council opposition",
-            "format": "vignette",
-            "requiredBeat": "Rain dots the return bin while Chloe brings the after-school tutoring waitlist to the council aide who wrote the cut memo, changing the aide's plan before the hearing."
-          },
           "scenario": "Rain dots the return bin outside the branch before Chloe locks the side door and walks to city hall. The tutoring waitlist is clipped to a branch usage map, and the council agenda shows the cut hearing next Tuesday. Before the public fight begins, she must choose whether to bring the aide proof that his memo would strand forty-two children after school.",
           "whatToDo": "Move the aide before the hearing. Put the waitlist and usage map in front of him while his plan is still a draft, and let the budget story change early.",
           "whyItMatters": "A public fight can make the aide defend the cut. Showing the hole in his plan beforehand gives him room to change without losing face."
@@ -748,13 +613,6 @@
             "patent",
             "trade show"
           ],
-          "planSpec": {
-            "domain": "industrial design firm preventing a patent dispute",
-            "audience": "design director before a trade show",
-            "stakes": "a copied mechanism could trigger injunctions and missed orders",
-            "format": "postmortem",
-            "requiredBeat": "It took one cease-and-desist draft for Anders to learn that a licensing conversation two weeks earlier would have captured the design intact."
-          },
           "scenario": "It took one cease-and-desist draft for Anders to see the missed move. A prototype hinge sits under a desk lamp, the trade show crate is sealed, and the patent drawing supports a fight. Two weeks earlier, a licensing term sheet could have captured the copied mechanism intact. Now he must decide what rule to carry into the next design conflict.",
           "whatToDo": "Look for the intact capture before legal pressure builds. Offer license, credit, timing, or a joint release while the other side can still accept without public defeat.",
           "whyItMatters": "An injunction may protect rights but wreck timing. The earlier licensing move could preserve the design, the show, and the relationship at lower cost."
@@ -767,13 +625,6 @@
             "pricing",
             "route"
           ],
-          "planSpec": {
-            "domain": "regional airline handling a competitor fare war",
-            "audience": "revenue manager for short-haul routes",
-            "stakes": "matching every fare would destroy margin across the network",
-            "format": "predict_reveal",
-            "requiredBeat": "What if the competitor needs you to match the fare more than customers need the discount?"
-          },
           "scenario": "What if the competitor needs you to match the fare more than customers need the discount? Giulia has a route map with one red pin, a fare bucket report, crew overnight costs, and loyalty data on her screen. She has to decide before the noon pricing call whether to match the cut or hold fare while adding flexible changes for the business travelers who actually fill the route.",
           "whatToDo": "Do not match the bait. Test the competitor's plan, then answer with a benefit your customers value and their low-price move does not solve.",
           "whyItMatters": "If their plan needs your margin to burn too, matching helps them. Holding price while changing the value breaks the plan behind the fare war."
@@ -786,13 +637,6 @@
             "rumor",
             "trust"
           ],
-          "planSpec": {
-            "domain": "community health nonprofit facing an anti-vaccine rumor",
-            "audience": "program lead in a city clinic network",
-            "stakes": "a public rebuttal could spread the rumor further",
-            "format": "dialogue",
-            "requiredBeat": "Do not fight the post; change the room it feeds on, Chidi says, then recruits church nurses before the rumor page owns the conversation."
-          },
           "scenario": "\"Do not fight the post; change the room it feeds on,\" Chidi says in a church basement where folding chairs face a blank wall. A nurse roster, flyer proof, and clinic appointment list sit on the table. Before the rumor page owns the week, he must decide whether to publish a rebuttal or recruit trusted church nurses to answer questions in the room that already has the audience.",
           "whatToDo": "Move the conversation into trusted hands. Recruit the nurses, adjust the flyer, and fill clinic appointments through people the rumor audience already believes.",
           "whyItMatters": "A public rebuttal can spread the rumor by giving it a larger stage. Changing the room cuts off the rumor plan without attacking scared people."
@@ -811,8 +655,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The supplier can break the nonpayment plan by giving finance what it needs to release money. A lawsuit may be necessary later, but it starts a siege before testing the plan behind the resistance.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -824,8 +667,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The cut plan rests on a false picture of value. Correcting that picture before the vote can preserve the program intact, while a public fight may harden positions.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -837,8 +679,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Matching attacks their strength and feeds their plan. Changing the basis of choice lets the startup compete where the discount is weaker.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -850,8 +691,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The sale is the dependency in the landlord’s plan. Pressure there may force repair without a drawn-out siege. Ignoring repairs protects nobody.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -863,8 +703,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The agency plan is shaped by driver scarcity. A lower-hour alternative breaks resistance more cleanly than treating the agency as the enemy.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -876,8 +715,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The resistance depends on staffing loss. Solving that dependency changes the plan behind the objection. It is not about looking generous or avoiding future disagreement.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -889,8 +727,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The intact outcome matters: housing or investment may still be useful if the harm is removed. Humiliation and headlines spend value without improving the design.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -902,8 +739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The compliance concern is the plan’s support beam. Removing it beats building a siege around a policy that may no longer need to exist.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -915,8 +751,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Weaker force should not be moralized into a doomed collision. Moving to a narrower leverage point attacks the plan instead of feeding the opponent’s preferred contest.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -977,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "The strongest move is often not collision.",
-          "location": "breakdown.fastRead",
-          "why": "It states the chapter’s reversal in simple terms without making conflict avoidance the goal."
+          "text": "The strongest move is often not collision."
         },
         {
-          "text": "Breaking resistance without fighting is not niceness.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the idea sharp and strategic rather than sentimental."
+          "text": "Breaking resistance without fighting is not niceness."
         },
         {
-          "text": "Win before the wall.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the siege warning into a short command."
+          "text": "Win before the wall."
         }
       ]
     },
@@ -1016,13 +845,6 @@
             "approval",
             "audit"
           ],
-          "planSpec": {
-            "domain": "architectural firm preparing a public design review",
-            "audience": "project architect defending a controversial housing design",
-            "stakes": "one missing code answer could sink the whole approval",
-            "format": "audit",
-            "requiredBeat": "The scale model sits under fluorescent light while Hannah removes every avoidable defect from the submission before planning her strongest argument."
-          },
           "scenario": "The scale model sits under fluorescent light in the conference room while Hannah lines up the fire-code memo, shadow study, and zoning binder. The public design review is tomorrow, and her best housing argument is already strong. Before she rehearses it again, her choice is to hunt for every avoidable defect that could let opponents sink the approval with one unanswered code question.",
           "whatToDo": "Fix the defects before polishing the case. Label the shadow study, answer the exit-width question, and make the submission hard to knock down.",
           "whyItMatters": "A strong argument cannot survive a simple missing answer. Removing the easy loss lets the real merits reach the room."
@@ -1035,13 +857,6 @@
             "software",
             "safety"
           ],
-          "planSpec": {
-            "domain": "pharmacy chain preventing dispensing errors during a software change",
-            "audience": "regional pharmacy operations lead",
-            "stakes": "a preventable medication error would outweigh any launch speed",
-            "format": "scene",
-            "requiredBeat": "At 7:22 a.m., Michael locks the old and new label flows side by side and refuses to launch until the error path is blocked."
-          },
           "scenario": "At 7:22 a.m., Michael locks the old and new prescription label flows side by side in the test pharmacy. The barcode scanner passes, the launch checklist is nearly green, and the override log shows one route where an allergy warning can disappear. Before stores open, he has to decide whether to launch on schedule or block the error path first.",
           "whatToDo": "Stop the launch until the override route is closed. Keep both label flows visible, rerun scanner tests, and release only when the worst preventable error is blocked.",
           "whyItMatters": "Speed does not compensate for a known safety hole. The launch becomes stronger when the easy path to defeat is removed."
@@ -1054,13 +869,6 @@
             "interview",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "documentary producer entering a hostile interview",
-            "audience": "producer preparing a corruption interview",
-            "stakes": "a factual slip would let the subject dismiss the whole film",
-            "format": "decision_point",
-            "requiredBeat": "He only needs one crack, Juliette tells the team, then cuts the clever questions until every remaining one is backed by a document."
-          },
           "scenario": "\"He only needs one crack,\" Juliette tells the team, with stamped invoices spread beside a release form and source transcript. The hostile interview begins in forty minutes, and the timeline board has three questions that sound brilliant but rest on memory. She must choose whether to keep the sharpest lines or cut everything not backed by a document.",
           "whatToDo": "Cut the unsupported questions. Keep only claims tied to invoices, releases, transcripts, or dates the subject cannot wave away.",
           "whyItMatters": "The subject does not need to beat the whole film. One factual crack gives him an exit, so the first job is making that exit hard to reach."
@@ -1073,13 +881,6 @@
             "avalanche",
             "safety"
           ],
-          "planSpec": {
-            "domain": "ski patrol deciding whether to open an avalanche-prone bowl",
-            "audience": "patrol lead after overnight snow",
-            "stakes": "opening too early could put guests below an unstable slope",
-            "format": "predict_reveal",
-            "requiredBeat": "Wind-packed snow squeaks under Lukas's skis as he tests the slope until not opening becomes the victory condition."
-          },
           "scenario": "Wind-packed snow squeaks under Lukas's skis as he pushes the probe below the rope line. The avalanche report is borderline, the radio call says guests are waiting, and the top layer shears during the second test. In the next ten minutes he must decide whether opening the bowl is the win or whether keeping everyone out is the only victory available.",
           "whatToDo": "Treat the shearing layer as the deciding fact. Keep the rope line closed, document the test, and let patrol know the win is no guests below the unstable slope.",
           "whyItMatters": "The mountain offers no credit for bravery. If opening creates the preventable loss, refusing to open is the position that cannot be beaten."
@@ -1092,13 +893,6 @@
             "manufacturing",
             "quality"
           ],
-          "planSpec": {
-            "domain": "manufacturer qualifying a new supplier before peak season",
-            "audience": "procurement manager under pressure to cut cost",
-            "stakes": "a cheap part could shut down assembly after contracts are signed",
-            "format": "postmortem",
-            "requiredBeat": "It took one brittle gasket from a test batch for Diego to see that the supplier had to lose before the purchase order won."
-          },
           "scenario": "At the supplier test bench in Toledo, Diego is the procurement manager holding one brittle gasket from the caliper batch and seeing the purchase order clearly. The test batch had arrived cheap, the supplier audit was unfinished, and the peak-season forecast made delay look costly. After the gasket cracked, he had to decide what rule would guide the next discount: the supplier must lose the test before the order can win.",
           "whatToDo": "Reject the batch and finish the supplier audit before signing. Let the failed gasket decide more than the discount does.",
           "whyItMatters": "A cheap part can become the route to shutdown. Testing out the supplier first makes later production easier, not slower."
@@ -1111,13 +905,6 @@
             "rehearsal",
             "safety"
           ],
-          "planSpec": {
-            "domain": "dance company preparing an opening-night lift sequence",
-            "audience": "rehearsal director responsible for dancer safety",
-            "stakes": "a missed grip could injure the lead and cancel the run",
-            "format": "before_after",
-            "requiredBeat": "You watch Lin lower the music volume, slow the lift, and make the fall path impossible before she lets the dancers chase speed."
-          },
           "scenario": "You watch Lin stand in rosin dust beside the mat edge as the lift misses the lighting cue for the third time. The understudy chart is open on a chair, and opening night is close enough to make speed tempting. Before the dancers run it full tempo, Lin must decide to lower the music, slow the lift, and make the fall path impossible first.",
           "whatToDo": "Slow the sequence and move the mat edge before chasing tempo. Confirm the cue and understudy plan, then let speed return only after the bad fall path is gone.",
           "whyItMatters": "The impressive lift is only useful if it can be repeated safely. Removing the preventable fall lets the final version look fearless without depending on luck."
@@ -1136,8 +923,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The strong pitch does not matter if one known flaw can defeat the program. Securing against that loss comes before asking for a larger win.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1149,8 +935,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The weak number gives the other side an easy opening. Removing it makes the case harder to defeat before any strong claim has to carry weight.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1162,8 +947,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The browser bug is an avoidable hole in the position. The answer is not endless delay, but removing the known failure before inviting traffic.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1175,8 +959,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The press is attack, but the turnover shape is protection against defeat. Without it, aggression supplies the opponent’s opportunity.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1188,8 +971,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The wrong referral path is a preventable defeat. Fixing it is not perfectionism; it is removing the mistake that would spoil the launch.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1201,8 +983,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The subject’s opportunity comes from the team’s weak date. Documenting or cutting it removes that opening and lets the rest of the interview carry force.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1214,8 +995,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The danger is in the conditions, not in whether harm has already appeared. Closing the bowl makes defeat hard before anyone is exposed.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1227,8 +1007,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cracked batch is the measurable warning. Signing would invite a known failure into production, while qualification makes later scale safer.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1240,8 +1019,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The demo may persuade, but the untested manual step is a route to defeat. The founder needs operational security before public victory can be sought.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1302,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "Good defense is not passivity.",
-          "location": "breakdown.fastRead",
-          "why": "It corrects the central misread in a short sentence."
+          "text": "Good defense is not passivity."
         },
         {
-          "text": "Victory starts as measurement long before it looks like force.",
-          "location": "breakdown.deepRead",
-          "why": "It lands the source chain as practical modern guidance."
+          "text": "Victory starts as measurement long before it looks like force."
         },
         {
-          "text": "Make the loss hard to find.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a compact rule for securing position."
+          "text": "Make the loss hard to find."
         }
       ]
     },
@@ -1341,13 +1113,6 @@
             "signal",
             "timing"
           ],
-          "planSpec": {
-            "domain": "orchestra rehearsal preparing a difficult entrance after silence",
-            "audience": "principal conductor with ninety players",
-            "stakes": "one mistimed entrance will break the premiere",
-            "format": "scene",
-            "requiredBeat": "The hall goes still as Megan pairs a visible bow cue with a hidden percussion count so the whole orchestra enters as one body."
-          },
           "scenario": "In the orchestra hall on Thursday evening, a raised bow hangs over the silent stage while Megan listens for the balcony echo. Ninety players are waiting after a rest, the marked score shows the entrance in red, and the percussion click is barely audible under the pause. Before the next run, she must decide whether the bow cue alone can hold the room or whether the hidden count has to carry the entrance.",
           "whatToDo": "Pair the visible bow with the hidden percussion count. Let the score, click, and cue work together so the entrance arrives as one body.",
           "whyItMatters": "Ninety people cannot enter on intensity alone. The visible cue releases force only because an indirect count has already gathered it."
@@ -1360,13 +1125,6 @@
             "flow",
             "signals"
           ],
-          "planSpec": {
-            "domain": "warehouse pick path redesign before holiday volume",
-            "audience": "fulfillment supervisor",
-            "stakes": "workers are blamed for slowness caused by layout friction",
-            "format": "before_after",
-            "requiredBeat": "A yellow tote stalls at the same corner until Daniel changes zones and signals so the flow rolls instead of depending on heroic pickers."
-          },
           "scenario": "At the west conveyor in the fulfillment center, Daniel is the warehouse manager watching a yellow tote jam under the new zone labels while scanner tones pile up behind it. The same stall repeats before the holiday forecast doubles the volume. Before he asks pickers to move faster, he has to decide whether the problem is effort or a path that needs new zones and signals so the flow can roll.",
           "whatToDo": "Change the path before blaming the workers. Move the zone boundary, alter scanner tones, and make the tote turn easy enough that normal pace carries peak volume.",
           "whyItMatters": "If the layout creates friction, more effort only hides the problem. Combined energy appears when the path makes ordinary motion accumulate."
@@ -1379,13 +1137,6 @@
             "cue",
             "safety"
           ],
-          "planSpec": {
-            "domain": "theater lighting crew handling a blackout cue",
-            "audience": "stage manager for a touring production",
-            "stakes": "a missed cue leaves actors moving in darkness",
-            "format": "dialogue",
-            "requiredBeat": "The blackout is direct; the glow tape is indirect, Manon says, then checks that the hidden guide carries the visible effect."
-          },
           "scenario": "\"The blackout is direct; the glow tape is indirect,\" Manon says into the headset channel beside the stage stair. The cue sheet calls for total dark, and the backup lantern is taped under the rail. Before the house opens, she must decide whether to trust the visible lighting cue or check that the hidden guide on the floor will carry the actors through it.",
           "whatToDo": "Check the hidden guide before calling the visible effect. Confirm glow tape, cue sheet, channel, and backup lantern so darkness becomes controlled movement.",
           "whyItMatters": "The blackout works only if the indirect support is already in place. Without the guide, the direct cue creates danger instead of force."
@@ -1398,13 +1149,6 @@
             "forest",
             "coordination"
           ],
-          "planSpec": {
-            "domain": "volunteer search team covering a forest grid",
-            "audience": "search coordinator after a missing hiker report",
-            "stakes": "too much individual initiative leaves gaps in the map",
-            "format": "decision_point",
-            "requiredBeat": "At 5:18 a.m., Mikkel divides the team by ravine, assigns radio signals, and holds the fastest walkers back for the one place momentum will matter."
-          },
           "scenario": "At 5:18 a.m., Mikkel stands where mist catches in a spruce ravine, with the grid map folded over his clipboard. Radio call signs hang from lanyards, and the thermal drone battery has one strong flight left. Before volunteers scatter, he has to decide whether to send the fastest walkers first or hold them for the ravine the drone cannot clear.",
           "whatToDo": "Divide the grid, assign radio signals, and hold the fast pair until their speed has a specific release point. Let the map decide where momentum matters.",
           "whyItMatters": "Uncoordinated initiative leaves gaps. The team becomes stronger when pace, signal, and terrain combine instead of competing."
@@ -1417,13 +1161,6 @@
             "production",
             "sequence"
           ],
-          "planSpec": {
-            "domain": "fashion studio launching a capsule collection with scarce fabric",
-            "audience": "production lead in a Milan atelier",
-            "stakes": "one bottleneck cutter could delay every finished piece",
-            "format": "predict_reveal",
-            "requiredBeat": "What happens if the rare fabric waits for the slowest hand instead of the cleanest sequence?"
-          },
           "scenario": "What happens if the rare fabric waits for the slowest hand instead of the cleanest sequence? Chiara has a bolt of midnight wool on the cutting table, pattern weights in a row, and a sample rack already half full. Before the cutter schedule locks, she must decide whether to feed every station equally or release the wool only when the next stations can take it without a bottleneck.",
           "whatToDo": "Sequence the scarce fabric through ready stations only. Put the cutter where the downstream work can absorb the wool, then release the next piece when the path is clear.",
           "whyItMatters": "The fabric is the stored force. If it waits in the wrong place, every worker hurries separately. If it moves through the clean sequence, the collection gathers speed."
@@ -1436,13 +1173,6 @@
             "ramp",
             "sequence"
           ],
-          "planSpec": {
-            "domain": "airport ground crew turning around a delayed aircraft",
-            "audience": "ramp coordinator at a winter airport",
-            "stakes": "a late departure cascades into missed connections",
-            "format": "vignette",
-            "requiredBeat": "You see Yusuf hold the fuel truck, move baggage first, and use one clear hand signal so separate crews become one release of force."
-          },
           "scenario": "On the rain-slick ramp at Gate 18, you see Yusuf as the ramp lead with orange wands flashing while a fuel truck idles beside the wing. The baggage belt is late, the deicing slot is narrow, and passengers are already missing connections. Before the crews crowd the aircraft, he has to decide to hold fuel, move baggage first, and use one hand signal that releases the separate teams in order.",
           "whatToDo": "Sequence the crews instead of urging everyone at once. Hold fuel, clear baggage, protect the deicing slot, and use one signal for the release.",
           "whyItMatters": "The turnaround fails when each crew optimizes alone. One timed release lets fuel, baggage, and deicing become combined force."
@@ -1461,8 +1191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The failure is not weak effort. A visible cue plus an indirect sequence lets separate people move as one system, while more urgency adds noise.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1474,8 +1203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The bay is the friction point. Rearranging sequence and signals makes ordinary motion accumulate. Bonuses still leave the bottleneck in place.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1487,8 +1215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The announcement is the direct move. Support triage is the indirect structure that lets demand land. Without it, attention becomes chaos.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1500,8 +1227,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Speed was real but uncombined. The missing piece was subdivision and signal, so each volunteer’s effort failed to form a whole.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1513,8 +1239,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The noise is visible, but the plate order supplies hidden discipline. That is controlled appearance, not luck or absence of signals.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1526,8 +1251,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Suspense is the bend, not the shot. Without a clear release point, stored attention becomes strain rather than force.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1539,8 +1263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The shared board is a signal system. It combines separate roles without demanding heroics, which is the structural source of the gain.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1552,8 +1275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fabric must move through a clean sequence. Cutting everything early creates piles, while timing the release lets the whole studio carry force.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1565,8 +1287,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The crews need arrangement, not more noise. A sequence turns separate actions into one release of force, while pressure can increase interference.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1627,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "Energy is not more effort.",
-          "location": "breakdown.fastRead",
-          "why": "It corrects the chapter’s central misread in four words."
+          "text": "Energy is not more effort."
         },
         {
-          "text": "Build the bend before you touch the trigger.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the source image into a usable timing rule."
+          "text": "Build the bend before you touch the trigger."
         },
         {
-          "text": "Set the slope before you roll the stone.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the chapter with a concrete image of arranged momentum."
+          "text": "Set the slope before you roll the stone."
         }
       ]
     },
@@ -1666,13 +1381,6 @@
             "pricing",
             "freshness"
           ],
-          "planSpec": {
-            "domain": "specialty grocer competing against a national chain",
-            "audience": "buyer for a local grocer",
-            "stakes": "matching discounts would destroy margin",
-            "format": "decision_point",
-            "requiredBeat": "A crate of bruised peaches sits by the cooler while Grace shifts the fight from price to same-morning farm delivery the chain cannot match."
-          },
           "scenario": "A crate of bruised peaches sits by the cooler door while Grace reads the national chain’s discount flyer. The farm text thread says fresh freestone peaches can arrive by 10:30, the chalkboard special is blank, and the margin sheet makes price matching impossible. Before opening, she has to decide whether to fight the chain on discount or move the contest to same-morning delivery.",
           "whatToDo": "Shift the front. Use the farm delivery, write the chalkboard special, and sell freshness by noon instead of matching a discount that destroys margin.",
           "whyItMatters": "The chain is strongest at price. Grace is stronger where freshness and local speed matter, so the contest has to move there."
@@ -1685,13 +1393,6 @@
             "housing",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "legal aid clinic facing a well-funded landlord firm",
-            "audience": "clinic attorney with limited hours",
-            "stakes": "a direct document war would bury the tenant case",
-            "format": "scene",
-            "requiredBeat": "Do not answer their stack with a stack, Andrew says, then files on the one inspection gap the landlord cannot explain."
-          },
           "scenario": "\"Do not answer their stack with a stack,\" Andrew says at the clinic table, with a cracked stairwell inspection photo beside the tenant affidavit. The hearing date is Friday, and the landlord firm has sent a thick packet meant to consume his week. He must choose whether to fight every page or file on the inspection log gap the landlord cannot explain.",
           "whatToDo": "Refuse the document war. Anchor the filing on the inspection gap, attach the photo and affidavit, and make the hearing turn on the point their packet cannot defend.",
           "whyItMatters": "The firm has more paper. Andrew has the stronger fact. Moving the fight to that fact prevents their volume from deciding the case."
@@ -1704,13 +1405,6 @@
             "race",
             "timing"
           ],
-          "planSpec": {
-            "domain": "cycling race team planning a mountain stage",
-            "audience": "team director in a support car",
-            "stakes": "attacking on the wrong climb wastes the only strong domestique",
-            "format": "predict_reveal",
-            "requiredBeat": "Where does the favorite have to drink, unzip, and look away from the road?"
-          },
           "scenario": "Where does the favorite have to drink, unzip, and look away from the road? Antoine asks from the support car as rain beads on the race radio. The feed-zone map sits beside the wind forecast and final climb profile. Before the team reaches the valley, he must decide whether to attack on the famous climb or save the strong domestique for the exposed stretch after the bottles.",
           "whatToDo": "Hold the attack until the favorite is occupied and exposed. Use the feed zone, crosswind, and timing to meet a weak moment instead of a strong climb.",
           "whyItMatters": "The final climb favors the rival. The feed-zone transition divides attention, so Antoine’s limited strength can arrive where the favorite cannot fully answer."
@@ -1723,13 +1417,6 @@
             "plant",
             "downtime"
           ],
-          "planSpec": {
-            "domain": "B2B sales team trying to unseat an incumbent vendor",
-            "audience": "sales lead in a manufacturing account",
-            "stakes": "the incumbent owns procurement but not plant-floor trust",
-            "format": "postmortem",
-            "requiredBeat": "It took Astrid one ignored procurement deck to move the conversation to the maintenance crew living with downtime."
-          },
           "scenario": "After a Wednesday plant tour in Brampton, it took Astrid one ignored procurement deck to see the field. The incumbent vendor owned the buyer's calendar, but a grease-stained maintenance log showed downtime the deck never mentioned. With a plant visit badge and a replacement-part bin in hand, she had to decide what to change next: keep chasing procurement's prepared front or move to the crew living with the failures.",
           "whatToDo": "Move the conversation to the plant floor. Let maintenance show downtime, parts delays, and repair pain before procurement frames the decision as vendor familiarity.",
           "whyItMatters": "The incumbent is strong in procurement and weak where its failures are visible. Astrid wins ground by changing who defines the problem."
@@ -1742,13 +1429,6 @@
             "launch",
             "focus"
           ],
-          "planSpec": {
-            "domain": "indie game studio launching against a giant franchise",
-            "audience": "studio founder near release",
-            "stakes": "feature parity is impossible with six developers",
-            "format": "decision_memo",
-            "requiredBeat": "Controller clicks echo in the test room as Luca cuts broad multiplayer and doubles down on the one puzzle mechanic reviewers cannot get elsewhere."
-          },
           "scenario": "In the studio test room on Friday afternoon, controller clicks echo while Luca watches the demo build fail in broad multiplayer again. The review embargo is close, the bug board is full, and the giant franchise owns scale. He has to decide whether to keep chasing feature parity or cut the wide mode and double down on the puzzle mechanic reviewers cannot find anywhere else.",
           "whatToDo": "Cut the parity fight. Stabilize the unique puzzle mechanic, shape the demo around it, and make reviewers compare the game on the one axis the giant cannot copy quickly.",
           "whyItMatters": "The giant is strong at scope. Luca’s studio is strong at a distinctive mechanic, so the launch has to force attention there."
@@ -1761,13 +1441,6 @@
             "maintenance",
             "outages"
           ],
-          "planSpec": {
-            "domain": "city transit maintenance team reducing escalator outages",
-            "audience": "maintenance planner in a rail station network",
-            "stakes": "commuters blame field crews for failures caused by one recurring part",
-            "format": "audit",
-            "requiredBeat": "At 4:55 a.m., Hadiya maps every outage to a handrail sensor and shifts crews to the hidden weak point instead of the loudest station complaints."
-          },
           "scenario": "At 4:55 a.m., Hadiya opens an escalator panel before dawn with the sensor batch number printed on a loose tag. The station heat map is loudest downtown, but the repair window is shorter there and the same part appears in every outage report. She must decide whether to chase complaints by station or shift crews to the handrail sensor that quietly explains the network failure.",
           "whatToDo": "Map outages by component, not noise. Move crews to the sensor batch during the repair window and fix the weak point that creates failures across stations.",
           "whyItMatters": "The loudest front is not the vulnerable point. The recurring sensor is where one repair pattern can change the whole network."
@@ -1786,8 +1459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The chain is strong at price. Same-day repair is the exposed place where the local shop’s strength can meet a weaker defense.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1799,8 +1471,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The opponent wants a paper contest. The missing inspection shifts pressure to a point their volume cannot defend.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1812,8 +1483,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Chef loyalty is the weakly defended channel. Pushing there lets the challenger concentrate strength instead of spreading into the incumbent’s front.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1825,8 +1495,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Water keeps its aim while changing route. Clinic meetings shift the contest from a prepared debate front to a ground where the candidate has strength.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1838,8 +1507,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The larger sales force is their strength. Onboarding speed is the exposed weakness, so the offer should force comparison there.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1851,8 +1519,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The helper’s strength was real but badly placed. The rival’s exposed moment would have made that limited force matter more.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1864,8 +1531,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Preparing against everything divides force. The rival can concentrate where the company has thinned itself.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1877,8 +1543,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The loudest front is not the weak point. The sensor batch is the exposed cause, so repairing it changes more than complaint chasing.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1890,8 +1555,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Celebrity donors are the rival’s strong front. Volunteer retention is the weaker place, and the nonprofit’s strength belongs there.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1952,19 +1616,13 @@
       },
       "memorableLines": [
         {
-          "text": "Weak points are not personal flaws.",
-          "location": "breakdown.fastRead",
-          "why": "It prevents the most dangerous misread of the lesson."
+          "text": "Weak points are not personal flaws."
         },
         {
-          "text": "The art is choosing where the meeting happens.",
-          "location": "breakdown.deepRead",
-          "why": "It turns weak and strong into an actionable placement rule."
+          "text": "The art is choosing where the meeting happens."
         },
         {
-          "text": "Find the low ground.",
-          "location": "breakdown.fullRead",
-          "why": "It closes with the water metaphor in a compact command."
+          "text": "Find the low ground."
         }
       ]
     },
@@ -1991,13 +1649,6 @@
             "route",
             "equipment"
           ],
-          "planSpec": {
-            "domain": "film crew moving between remote shooting locations",
-            "audience": "line producer on a weather-limited shoot",
-            "stakes": "chasing golden-hour light could strand half the equipment",
-            "format": "decision_point",
-            "requiredBeat": "At 3:12 p.m., Rachel rejects the faster cliff road when the grip truck cannot make it with the camera crane."
-          },
           "scenario": "At 3:12 p.m., Rachel checks the camera crane strapped to the grip truck while the weather window narrows. The cliff road saves twenty minutes, but the road grade is too steep and the permit cutoff is fixed. Before the convoy moves, she has to decide whether to chase golden-hour light by the faster road or take the longer route that gets the crane there too.",
           "whatToDo": "Reject the shortcut that splits the crew from its equipment. Choose the route that delivers camera, crane, crew, and permit timing together.",
           "whyItMatters": "The faster road creates a weaker arrival. Light without the crane is not an advantage, so the maneuver has to preserve the force."
@@ -2010,13 +1661,6 @@
             "kitchen",
             "route"
           ],
-          "planSpec": {
-            "domain": "disaster relief kitchen relocating after a bridge closure",
-            "audience": "field coordinator feeding evacuees",
-            "stakes": "moving fast without propane and water would create an empty kitchen",
-            "format": "scene",
-            "requiredBeat": "The bridge barricade flashes red while Matthew sends scouts for water access before moving the kitchen trucks."
-          },
           "scenario": "At the flooded bridge barricade outside Truro, red lights flash in rain while Matthew stands beside loaded kitchen trucks. Propane tanks are tied down, the meal count has jumped again, and the water tap map shows three uncertain sites beyond the detour. Before drivers start engines, he must decide whether to move fast now or send scouts for water access so the kitchen arrives able to cook.",
           "whatToDo": "Send scouts before the trucks move. Confirm water, propane access, and the feeding site, then relocate the kitchen only when the essentials can arrive together.",
           "whyItMatters": "A convoy can move quickly and still arrive useless. Food service depends on water and fuel as much as wheels."
@@ -2029,13 +1673,6 @@
             "software",
             "coordination"
           ],
-          "planSpec": {
-            "domain": "software incident response across three time zones",
-            "audience": "incident commander during a payment outage",
-            "stakes": "uncoordinated fixes could corrupt transaction records",
-            "format": "dialogue",
-            "requiredBeat": "No one touches production until the signal changes, Margaux says, then replaces chat noise with one status color every engineer obeys."
-          },
           "scenario": "\"No one touches production until the signal changes,\" Margaux says as a single red status tile fills the wall screen. The rollback key is with Toronto, the audit log is copying in London, and the handoff schedule has a gap. Before another engineer patches alone, she must decide whether to keep answering chat or make one color signal every team obeys.",
           "whatToDo": "Replace chat noise with one command signal. Hold changes on red, prepare on amber, and execute only on green after rollback and audit are ready.",
           "whyItMatters": "Across time zones, speech fragments the response. One shared signal keeps fixes from corrupting the records they are meant to save."
@@ -2048,13 +1685,6 @@
             "timing",
             "restraint"
           ],
-          "planSpec": {
-            "domain": "competitive sailing team deciding whether to chase a wind shift",
-            "audience": "tactician in a coastal regatta",
-            "stakes": "a tempting shift could leave the boat without room at the mark",
-            "format": "predict_reveal",
-            "requiredBeat": "What good is the faster line if it delivers you pinned under three boats?"
-          },
           "scenario": "What good is the faster line if it delivers you pinned under three boats? Lars grips a salt-sprayed course chart while the tide table slides under his elbow. The wind shift is real, the mark-rounding rule is unforgiving, and crew weight favors patience. He has to decide whether to chase the first gust or hold position for room at the mark.",
           "whatToDo": "Give up the first gust if it ruins the rounding. Protect room at the mark, then use the next shift when the boat can accelerate freely.",
           "whyItMatters": "Speed into a trap is not maneuver. The line only matters if it preserves the space needed to use the boat’s strength."
@@ -2067,13 +1697,6 @@
             "routing",
             "medical"
           ],
-          "planSpec": {
-            "domain": "regional blood bank routing donations during a highway pileup",
-            "audience": "logistics nurse coordinating mobile units",
-            "stakes": "blood units expire and hospitals need different types",
-            "format": "audit",
-            "requiredBeat": "Ice packs crackle as Isabel reroutes units by hospital need rather than the shortest road on the map."
-          },
           "scenario": "Inside the regional blood bank garage, ice packs crackle in Isabel's transport cooler as she checks the blood-type manifest. A highway pileup has closed the direct route, the traffic closure keeps changing, and three hospitals need different units before noon. Before dispatch calls the nearest driver, Isabel must decide whether the shortest road or the hospital call list should govern the route.",
           "whatToDo": "Route by need and expiry, not by distance alone. Match blood types to hospitals first, then choose roads that deliver the right units in useful order.",
           "whyItMatters": "The shortest road can still produce the wrong arrival. Medical value depends on which units reach which hospital before they expire."
@@ -2086,13 +1709,6 @@
             "crowd",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "music festival crowd control after a stage delay",
-            "audience": "site operations lead",
-            "stakes": "a frustrated crowd could surge toward closed gates",
-            "format": "vignette",
-            "requiredBeat": "You watch Akira open a side lawn, change the banner lights, and release the crowd's pressure without letting the blocked gate become the battle."
-          },
           "scenario": "You watch Akira under green banner lights above a side lawn while the stage delay notice repeats on the screens. The gate clicker count rises, and security radio calls are tightening near the closed entrance. Before the crowd presses harder, he has to decide to open the lawn, change the light cue, and release pressure away from the gate.",
           "whatToDo": "Open the outlet before the gate becomes the fight. Change the banner lights, move security radios to the lawn, and let the crowd flow where it can wait safely.",
           "whyItMatters": "Crowd pressure is easier to guide than to block. A small outlet preserves control without forcing a confrontation at the closed gate."
@@ -2111,8 +1727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Arrival strength matters more than arrival speed. A presenter without the prototype cannot use the advantage the trip is meant to secure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2124,8 +1739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The move has to arrive able to function. Scouts delay motion briefly so the kitchen does not arrive empty of the thing it needs most.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2137,8 +1751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Scale needs a signal. One shared status prevents scattered fixes from corrupting records, while speed alone may split the response.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2150,8 +1763,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The team outran its baggage: authority and knowledge. Maneuver fails when the people who arrive cannot use the opening.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2163,8 +1775,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The faster line destroys arrival strength. Restraint protects the position where speed can be used instead of trapped.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2176,8 +1787,7 @@
             ],
             "correctIndex": 0,
             "explanation": "An outlet releases pressure before the gate becomes a confrontation. Blocking harder can turn frustration into surge.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2189,8 +1799,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Speed detached from supplies produces weak arrival. The force has to move with what lets it keep working.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2202,8 +1811,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The value is not motion; it is useful arrival. Matching type and expiry before route keeps speed tied to need.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2215,8 +1823,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Pursuit can be bait. Before chasing, she should ask what strength she sacrifices and whether the rival wants exactly that motion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2277,19 +1884,13 @@
       },
       "memorableLines": [
         {
-          "text": "Maneuver is not speed alone.",
-          "location": "breakdown.fastRead",
-          "why": "It states the main correction plainly."
+          "text": "Maneuver is not speed alone."
         },
         {
-          "text": "An advantage that arrives with one-tenth of your strength is not an advantage.",
-          "location": "breakdown.deepRead",
-          "why": "It carries the source warning into a memorable modern rule."
+          "text": "An advantage that arrives with one-tenth of your strength is not an advantage."
         },
         {
-          "text": "Arrive with the force intact.",
-          "location": "breakdown.fullRead",
-          "why": "It condenses the chapter into one operational sentence."
+          "text": "Arrive with the force intact."
         }
       ]
     },
@@ -2316,13 +1917,6 @@
             "safety",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "newsroom deciding whether to publish during an unfolding hostage situation",
-            "audience": "managing editor with a confirmed detail and police request",
-            "stakes": "publishing first could endanger the people inside",
-            "format": "decision_point",
-            "requiredBeat": "At 11:03 p.m., Laura overrides the newsroom rule to publish confirmed facts when the fact itself would reveal police position."
-          },
           "scenario": "At 11:03 p.m., Laura sits with a police scanner beside an unpublished headline and a confirmation note in the editor. The fact is verified, the publish queue is ready, and the police call says the detail would reveal an officer position outside the hostage scene. Before the night desk moves, she must decide whether the newsroom rule serves the public here or endangers the people inside.",
           "whatToDo": "Hold the confirmed detail and publish only what does not expose the position. Let the purpose of the rule govern the rule’s use.",
           "whyItMatters": "Verification usually supports publication, but the condition has changed. Obeying the rule mechanically would betray the safety it should also serve."
@@ -2335,13 +1929,6 @@
             "route",
             "safety"
           ],
-          "planSpec": {
-            "domain": "mountain rescue team ordered onto an unsafe ridge",
-            "audience": "team leader receiving pressure from command",
-            "stakes": "following the route could create more casualties",
-            "format": "scene",
-            "requiredBeat": "Ice rattles against Ben's visor as he refuses the shortest ridge and chooses the longer treeline route that keeps rescuers alive."
-          },
           "scenario": "On the ridge above the north bowl, Ben is the rescue lead with ice rattling against his visor while the beacon pulses beyond the cornice. Command is pressing for the shortest route, but his slope angle card and wind reading say the traverse is loaded. Before the team clips in, Ben has to decide whether obedience means taking the ridge or whether the longer treeline route is the only way to reach the victim without making more victims.",
           "whatToDo": "Refuse the unsafe ridge and state the reason clearly. Take the treeline route, update command, and keep the team alive enough to finish the rescue.",
           "whyItMatters": "The order’s purpose is rescue, not display. If the route creates more casualties, disobeying the route preserves the mission."
@@ -2354,13 +1941,6 @@
             "liquidity",
             "risk"
           ],
-          "planSpec": {
-            "domain": "investment committee rejecting an attractive distressed asset",
-            "audience": "portfolio manager during a market selloff",
-            "stakes": "a cheap price hides liquidity terms that could trap the fund",
-            "format": "predict_reveal",
-            "requiredBeat": "What if the discount is the bait and the lockup is the battlefield?"
-          },
           "scenario": "In the investment committee room before the noon vote, Olivier is the analyst with a term sheet open to a red lockup clause and the liquidity schedule beside it. The market selloff makes the price look rare. Before the committee votes, he has to decide whether the stressed price is a road to follow or a trap that would freeze client cash.",
           "whatToDo": "Blend the upside with the liquidity cost. Reject or resize the asset if the lockup would trap the fund when clients need cash.",
           "whyItMatters": "Cheap is only one side of the condition. The lockup changes the tactic from opportunity to danger if it prevents the fund from serving clients."
@@ -2373,13 +1953,6 @@
             "judgment",
             "risk"
           ],
-          "planSpec": {
-            "domain": "hospital surgeon deciding whether to continue a planned procedure",
-            "audience": "lead surgeon after unexpected anatomy appears",
-            "stakes": "pushing through preserves schedule but raises patient risk",
-            "format": "dialogue",
-            "requiredBeat": "The plan was correct until the anatomy changed, Hanna says, then pauses the procedure for imaging instead of protecting her pride."
-          },
           "scenario": "\"The plan was correct until the anatomy changed,\" Hanna says as the laparoscopic image freezes on the monitor. The imaging order will slow the procedure clock, and the sterile phone cover is ready. Before the team continues, she must decide whether to protect the schedule or pause for the scan that the unexpected anatomy now requires.",
           "whatToDo": "Pause and order imaging. Say plainly that the old plan expired when the anatomy changed, then resume only with the new information.",
           "whyItMatters": "Continuing would defend pride and schedule, not the patient. Variation keeps the objective stable by changing the tactic."
@@ -2392,13 +1965,6 @@
             "signals",
             "dispatch"
           ],
-          "planSpec": {
-            "domain": "railway dispatcher rerouting trains during signal failure",
-            "audience": "dispatcher during evening peak",
-            "stakes": "keeping the timetable could send trains into a blind section",
-            "format": "audit",
-            "requiredBeat": "The signal board goes dark in one block while Tomas cancels the proud express slot to preserve the network."
-          },
           "scenario": "During evening peak in the rail control room, the signal board goes dark in one block while Tomas watches the platform crowd count climb. The radio channel is crowded, the manual authority form is open, and the express slot is the one everyone wants protected. Before he clears the next movement, he has to decide whether to keep the timetable or cancel the express path through the blind section.",
           "whatToDo": "Cancel the express slot and move under manual authority. Preserve the network before preserving the timetable.",
           "whyItMatters": "The timetable is useful only while the signal system can support it. In a blind block, pride in punctuality becomes danger."
@@ -2411,13 +1977,6 @@
             "retail",
             "trend"
           ],
-          "planSpec": {
-            "domain": "consumer-products team refusing a viral packaging trend",
-            "audience": "brand lead under executive pressure",
-            "stakes": "a flashy package could break shelf stability and damage returns",
-            "format": "postmortem",
-            "requiredBeat": "It took Adaeze one toppled test display to treat shame about looking slow as a dangerous fault, not a reason to copy the trend."
-          },
           "scenario": "It took Adaeze one toppled test display to name the fault. The launch photo looked sharp, the retailer planogram was tight, and the drop-test report had warned that the viral package leaned forward. After the display fell in the test aisle, she had to decide what to carry back to executives: shame about looking slow was not evidence that the trend was safe.",
           "whatToDo": "Bring the failed display, drop-test report, and planogram to the decision. Refuse the trend until the package can stand on the shelf it must survive.",
           "whyItMatters": "The pressure was social, not structural. Treating shame as evidence would put a fragile package into stores and turn attention into returns."
@@ -2436,8 +1995,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The rule serves public information, but this condition adds direct danger. Disciplined variation adapts the rule to preserve its purpose.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2449,8 +2007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The mission is rescue. Disobeying the route preserves the mission when the route itself becomes destructive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2462,8 +2019,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Variation requires holding advantage and disadvantage together. The discount is not real value if the lockup prevents the fund from meeting client needs.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2475,8 +2031,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The objective is patient safety, not loyalty to the original plan. New anatomy changes the conditions and therefore the correct action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2488,8 +2043,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The timetable is a tool for safe movement. Once the signal block goes blind, preserving the slot can betray the network.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2501,8 +2055,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The plan is being driven by fear of looking weak, not by conditions. Shame has grabbed the steering wheel.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2514,8 +2067,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Variation is disciplined adaptation, not restlessness. The objective stays stable while the tactic changes because conditions demand it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2527,8 +2079,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Attention is an advantage, but shelf failure is the paired disadvantage. The display test should govern the tactic.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2540,8 +2091,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Avoiding all hard moves is not adaptation. It may be fear using flexible language to escape necessary action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2602,19 +2152,13 @@
       },
       "memorableLines": [
         {
-          "text": "Discipline includes principled refusal.",
-          "location": "breakdown.fastRead",
-          "why": "It offers a sharp alternative to blind obedience."
+          "text": "Discipline includes principled refusal."
         },
         {
-          "text": "Rules need judgment to stay useful.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the central idea into a plain sentence."
+          "text": "Rules need judgment to stay useful."
         },
         {
-          "text": "When the condition changes, update the command.",
-          "location": "breakdown.fullRead",
-          "why": "It closes with a clear operational command."
+          "text": "When the condition changes, update the command."
         }
       ]
     },
@@ -2641,13 +2185,6 @@
             "weather",
             "operations"
           ],
-          "planSpec": {
-            "domain": "ski resort deciding whether to open a wind-scoured chairlift",
-            "audience": "mountain operations manager before first chair",
-            "stakes": "opening on surface optimism could strand guests in dangerous wind",
-            "format": "scene",
-            "requiredBeat": "Spindrift lifts sideways across the loading ramp while Anna reads wind, lift sway, patrol radio tone, and guest line behavior before calling hold."
-          },
           "scenario": "Spindrift lifts sideways across the loading ramp before first chair while Anna checks the anemometer. The chair-swing log shows longer arcs, the patrol radio sounds clipped, and the guest line is calm enough to tempt an opening. Before the lift crew drops the rope, she must decide whether the line or the mountain signs should govern the call.",
           "whatToDo": "Call a hold and name the signs: wind, sway, patrol tone, and ramp scouring. Reopen only when the physical conditions support the guest line.",
           "whyItMatters": "The calm line is not the condition that carries the lift. Wind and swing are earlier warnings than a stranded chair."
@@ -2660,13 +2197,6 @@
             "service",
             "signals"
           ],
-          "planSpec": {
-            "domain": "restaurant group spotting failure signs before a dinner rush",
-            "audience": "area manager visiting a flagship kitchen",
-            "stakes": "a chaotic service could damage a major review night",
-            "format": "audit",
-            "requiredBeat": "The prep fridge smells faintly of warm basil as Chris reads small signs: silent line cooks, missing garnish, late fish, and a printer already backed up."
-          },
           "scenario": "In the flagship kitchen at 4:40 in the afternoon, the prep fridge smells faintly of warm basil when Chris steps inside. The ticket printer is already backed up, the fish delivery text says ten minutes away, the garnish tray is empty, and the line cooks have gone quiet. Before the reviewer's table sits down, Chris has to decide whether this is normal pressure or the opening shape of a failed dinner rush.",
           "whatToDo": "Treat the signs as a pattern. Reassign prep, call the fish supplier, reset the printer flow, and bring the line together before tickets bury them.",
           "whyItMatters": "A chaotic service announces itself early in smells, silence, missing trays, and late deliveries. Acting then is cheaper than rescuing dinner later."
@@ -2679,13 +2209,6 @@
             "slowdown",
             "flow"
           ],
-          "planSpec": {
-            "domain": "port authority monitoring a labor slowdown",
-            "audience": "operations analyst at a container port",
-            "stakes": "misreading the signs could leave ships idle for days",
-            "format": "predict_reveal",
-            "requiredBeat": "What does it mean when cranes move but no empty chassis return?"
-          },
           "scenario": "From the port authority office at dusk, Etienne is the operations analyst watching cranes move above still chassis rows and asking what it means when no empty chassis return. The gate camera shows trucks leaving slowly, the berth plan has two arrivals before midnight, and the chassis count is dropping. He must decide whether the terminal is moving normally or whether the missing returns signal a slowdown before the ships go idle.",
           "whatToDo": "Read flow, not motion. Compare chassis count, gate footage, and berth timing, then alert operations before crane movement hides the slowdown.",
           "whyItMatters": "Cranes can look active while the system starves. The missing chassis tell the truth before the ship delay appears."
@@ -2698,13 +2221,6 @@
             "visit",
             "risk"
           ],
-          "planSpec": {
-            "domain": "child protection team preparing a home visit",
-            "audience": "case supervisor reviewing morning signals",
-            "stakes": "missing small cues could put a child or worker at risk",
-            "format": "decision_point",
-            "requiredBeat": "At 8:10 a.m., Frida delays the visit after reading disconnected phones, a moved car, and neighbor notes as terrain rather than inconvenience."
-          },
           "scenario": "At 8:10 a.m., Frida finds a case file clipped under a windshield wiper outside the office. The phone log shows disconnected numbers, a neighbor note mentions a moved car, and paired-worker policy says the visit should not go solo. Before the worker leaves, Frida has to decide whether these are small inconveniences or terrain that requires a delayed, paired visit.",
           "whatToDo": "Delay the solo visit and pair the worker. Treat the phone log, neighbor note, and moved car as conditions to plan around, not clutter.",
           "whyItMatters": "Small cues can be the only early protection for the child and the worker. Reading them preserves safety before the visit creates pressure."
@@ -2717,13 +2233,6 @@
             "cooling",
             "maintenance"
           ],
-          "planSpec": {
-            "domain": "data center technician diagnosing a cooling problem before alarms trip",
-            "audience": "facilities technician on night shift",
-            "stakes": "waiting for the main alarm could force emergency shutdown",
-            "format": "vignette",
-            "requiredBeat": "You see Pablo notice condensation on one pipe, a new fan pitch, and two blinking amber lights before the dashboard admits the pattern."
-          },
           "scenario": "You see Pablo touch condensation on an insulated pipe while a new fan pitch rises above the racks. The rack thermometer is still within range, two amber lights blink on the far row, and the maintenance ticket sits low in the queue. Before the main alarm sounds, he has to decide whether to wait for the dashboard or move airflow from the pattern already in front of him.",
           "whatToDo": "Act on the cluster of signs. Adjust airflow, escalate the maintenance ticket, and check the warm row before the main alarm forces an emergency shutdown.",
           "whyItMatters": "The dashboard is late by design. Condensation, fan pitch, amber lights, and temperature drift give Pablo a chance to act while the system is still recoverable."
@@ -2736,13 +2245,6 @@
             "fraud",
             "branch"
           ],
-          "planSpec": {
-            "domain": "retail bank branch sensing a fraud ring at opening",
-            "audience": "branch manager before Saturday service",
-            "stakes": "one rushed transaction could expose vulnerable customers",
-            "format": "dialogue",
-            "requiredBeat": "Hold the wire desk for ten minutes, Kiran says, after spotting repeated envelopes, nervous glances, and a phone script in the lobby."
-          },
           "scenario": "\"Hold the wire desk for ten minutes,\" Kiran says before Saturday service, with sealed envelopes lined on a lobby table. The wire desk roster is thin, the CCTV still shows the same phone script, and two customers on the callback list sounded coached. Before the first rushed transfer, he must decide whether to keep the queue moving or pause long enough to verify the pattern.",
           "whatToDo": "Pause the wire desk and call back the customers. Use the roster, CCTV still, envelopes, and script pattern to check for coordinated pressure before money moves.",
           "whyItMatters": "Fraud often arrives as small repeated signs before it becomes a loss. Ten minutes of verification can protect customers who may not be free to speak plainly."
@@ -2761,8 +2263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The line is not the operating condition. Wind and swing are concrete signs that can change the decision before guests are exposed.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2774,8 +2275,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The small signs point to a developing failure. Acting before the rush keeps the manager from waiting until the signs become orders.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2787,8 +2287,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Visible activity can mask a broken return loop. Chassis and gates reveal condition earlier than ship delays.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2800,8 +2299,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cues cluster around safety. Treating them as terrain lets the supervisor adapt before people are exposed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2813,8 +2311,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The dashboard may lag. The physical signs create an earlier chance to prevent emergency action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2826,8 +2323,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Small repeated signs can reveal a coordinated fraud pattern. Pausing early protects customers before the rushed transaction closes.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2839,8 +2335,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The lesson pairs humane treatment with enforced command. Either punishment without trust or kindness without standards weakens the group.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2852,8 +2347,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Terrain and water conditions govern the route. Short distance can be the wrong criterion when the river itself is changing.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2865,8 +2359,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Behavior can be an early sign of disorder or weak authority. Investigating early is firmer and fairer than waiting or punishing blindly.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2927,19 +2420,13 @@
       },
       "memorableLines": [
         {
-          "text": "Good observation turns small signals into early choices.",
-          "location": "breakdown.fastRead",
-          "why": "It states why noticing matters in decision terms."
+          "text": "Good observation turns small signals into early choices."
         },
         {
-          "text": "The dust tells you what the report has not reached you in time to say.",
-          "location": "breakdown.deepRead",
-          "why": "It preserves the source anchor in vivid prose."
+          "text": "The dust tells you what the report has not reached you in time to say."
         },
         {
-          "text": "The early sign is the generous warning.",
-          "location": "breakdown.fullRead",
-          "why": "It makes early observation feel practical and humane."
+          "text": "The early sign is the generous warning."
         }
       ]
     },
@@ -2966,13 +2453,6 @@
             "access",
             "terrain"
           ],
-          "planSpec": {
-            "domain": "regional hospital moving a specialty clinic to a smaller building",
-            "audience": "service director balancing access and staffing",
-            "stakes": "a cheap lease could trap patients and staff in a bad flow",
-            "format": "audit",
-            "requiredBeat": "The new clinic corridor narrows at the elevator while Olivia maps patient volume, wheelchair turns, staff authority, and return paths before signing."
-          },
           "scenario": "The new clinic corridor narrows beside the elevator while Olivia holds the lease draft. The rent is tempting, but the wheelchair radius eats the hallway and appointment volume peaks at the same hour. Before she signs, she has to choose whether the address or the patient flow should govern the move.",
           "whatToDo": "Map patient volume, wheelchair turns, staff authority, and return paths before accepting the lease. Treat the corridor as terrain, not a small inconvenience.",
           "whyItMatters": "A cheaper site can become entangling ground when people cannot move through it. The visible savings hide the operating trap."
@@ -2985,13 +2465,6 @@
             "weather",
             "readiness"
           ],
-          "planSpec": {
-            "domain": "construction foreman deciding whether to pour concrete before rain",
-            "audience": "site foreman managing a bridge repair",
-            "stakes": "a rushed pour on bad ground wastes materials and delays traffic reopening",
-            "format": "decision_point",
-            "requiredBeat": "Wet aggregate clings to Jack's boot as he rejects the pour because access, weather, crew readiness, and cure time do not align."
-          },
           "scenario": "On the bridge repair site before the morning closure, Jack is the site manager with wet aggregate clinging to his boot beside the forms. The rain radar is darkening, the rebar inspection tag is unsigned, and the lane closure permit expires before the cure window ends. He is about to decide whether a capable crew can overcome ground that no longer supports the pour.",
           "whatToDo": "Reject the pour and reset the closure. The crew, inspection, weather, and cure time must align before concrete turns the mistake permanent.",
           "whyItMatters": "Readiness is not only people. When access and timing are wrong, effort hardens into rework."
@@ -3004,13 +2477,6 @@
             "launch",
             "timing"
           ],
-          "planSpec": {
-            "domain": "publisher choosing a launch date against a dominant bestseller",
-            "audience": "marketing director for a nonfiction release",
-            "stakes": "launching into occupied attention could bury the title",
-            "format": "predict_reveal",
-            "requiredBeat": "Is this open ground, or are you trying to climb a height already held by someone else?"
-          },
           "scenario": "In the publisher's sales room before catalog lock, Nicolas studies a front table already reserved for a dominant release and asks whether this is open ground. The catalog slot, review embargo, and tour calendar all pressure him forward, so he must decide whether movement is possible or advantage is available.",
           "whatToDo": "Separate readiness from position. Shift the launch emphasis or delay the main push if display space and review attention are already held.",
           "whyItMatters": "A team can be ready and still choose bad ground. Occupied attention makes the launch fight steeper than the calendar admits."
@@ -3023,13 +2489,6 @@
             "roles",
             "command"
           ],
-          "planSpec": {
-            "domain": "regional police unit assigning roles during a major public protest",
-            "audience": "operations commander with mixed-experience teams",
-            "stakes": "unclear duties could turn crowd control into disorganization",
-            "format": "scene",
-            "requiredBeat": "At 5:45 a.m., Anke redraws sector duties when she sees senior officers bunched together and new constables exposed at the narrow exit."
-          },
           "scenario": "At 5:45 in the morning, Anke pins a laminated sector map under a streetlamp. The radio channel card shows two teams on one channel, the exit barrier crowds the medic post, and new constables are exposed at the narrow exit. Before deployment, she must decide whether to keep the roster or redraw authority on the ground.",
           "whatToDo": "Move senior officers to the narrow exit, separate channels, and assign fixed duties at the medic post and barrier. Remove disorganization before the crowd arrives.",
           "whyItMatters": "Narrow ground punishes vague command. Clear roles are part of terrain, because people must know where to stand and whom to answer."
@@ -3042,13 +2501,6 @@
             "salvage",
             "access"
           ],
-          "planSpec": {
-            "domain": "marine salvage crew deciding whether to board a listing cargo ship",
-            "audience": "salvage captain after a storm",
-            "stakes": "the ship can be saved only if the boarding path is not a trap",
-            "format": "vignette",
-            "requiredBeat": "You watch Catarina circle once more instead of boarding from pride, because the ladder angle and swell turn access into entangling ground."
-          },
           "scenario": "On the salvage boat after the storm, you watch Catarina track the ladder slapping against the listing hull. The swell period has lengthened, the towline is not set, and the engine-room flood report is still incomplete. Before the crew boards, she has to choose between a proud first attempt and one more circle to judge whether access has become entangling ground.",
           "whatToDo": "Circle again, set the towline, and wait for a safer boarding angle. Do not let visible access hide the fact that return may be impossible.",
           "whyItMatters": "Entangling ground looks passable from the outside. The real question is whether the team can recover if the first move fails."
@@ -3061,13 +2513,6 @@
             "quality",
             "layout"
           ],
-          "planSpec": {
-            "domain": "food manufacturer handling a contamination test at a satellite plant",
-            "audience": "quality director across three facilities",
-            "stakes": "partial knowledge could trigger a wrong shutdown or miss a real threat",
-            "format": "postmortem",
-            "requiredBeat": "It took Aman one unnecessary shutdown to learn that knowing the product risk but not the plant layout was only halfway to victory."
-          },
           "scenario": "It took Aman one unnecessary shutdown to respect the plant map. Sealed sample bags arrived in a foam shipper with a real batch code and a valid hold notice, but the risky line had already been isolated. After the shutdown, he had to decide how future calls would include layout before product risk triggered company-wide action.",
           "whatToDo": "Require batch code, hold notice, and plant map before escalating beyond the affected line. Match product risk to site terrain.",
           "whyItMatters": "Knowing the hazard but not the layout is halfway knowledge. The wrong shutdown wastes trust and can still miss the real route of risk."
@@ -3086,8 +2531,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The corridor changes whether the move can work. Calling it terrain forces the team to test flow and return paths before the lease traps them.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3099,8 +2543,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Crew readiness is only one part. Bad timing and missing inspection make the ground unsuitable, so a fast pour would harden the mistake.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3112,8 +2555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The team may be ready, but position matters. Occupied display and attention mean the launch is climbing into another side's advantage.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3125,8 +2567,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The danger is not only the crowd. Poor placement and unclear duties create disorganization before pressure arrives.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -3138,8 +2579,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Entangling ground allows entry but punishes a failed first move. The ladder, swell, and missing towline make recovery the key question.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3151,8 +2591,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The risk may be real, but the site layout determines the right scope. Without ground knowledge, action can be wasteful and still miss the route of danger.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3164,8 +2603,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Hard conditions matter, but unclear authority and duties are command faults. Naming them prevents bad ground from becoming an excuse.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3177,8 +2615,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Self and opponent knowledge are not enough. Distance, permits, and access decide whether the move can actually carry.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3190,8 +2627,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Entangling ground can be abandoned before entry but becomes hard to reoccupy or escape after a failed move. That classification changes the risk threshold.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3252,19 +2688,13 @@
       },
       "memorableLines": [
         {
-          "text": "Ground gets a vote.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the core warning that conditions are active, not background."
+          "text": "Ground gets a vote."
         },
         {
-          "text": "The same courage becomes foolishness on the wrong ground.",
-          "location": "breakdown.deepRead",
-          "why": "It separates bravery from fit."
+          "text": "The same courage becomes foolishness on the wrong ground."
         },
         {
-          "text": "A hard place becomes defeat when command refuses to read it.",
-          "location": "breakdown.fullRead",
-          "why": "It links terrain to responsibility."
+          "text": "A hard place becomes defeat when command refuses to read it."
         }
       ]
     },
@@ -3291,13 +2721,6 @@
             "merger",
             "unity"
           ],
-          "planSpec": {
-            "domain": "hospital merger team integrating two rival wards",
-            "audience": "nursing director after a merger announcement",
-            "stakes": "old loyalties could fracture patient handoffs",
-            "format": "scene",
-            "requiredBeat": "They do not need another speech; they need the same storm, Sophie says, then pairs rival charge nurses on the one handoff neither ward can manage alone."
-          },
           "scenario": "\"They do not need another speech; they need the same storm,\" Sophie says while two ward boards show different color codes. The merger notice is still fresh, the handoff checklist conflicts, and the patient transfer log shows one fragile transfer. Before rounds, she must decide whether to lecture about unity or give rival charge nurses one handoff neither ward can manage alone.",
           "whatToDo": "Pair the rival charge nurses on the high-risk transfer and make the shared checklist visible. Let the patient need create one boat.",
           "whyItMatters": "Old loyalty will not dissolve because management asks nicely. Shared danger, used honestly, can make cooperation practical before it becomes sentimental."
@@ -3310,13 +2733,6 @@
             "deadline",
             "focus"
           ],
-          "planSpec": {
-            "domain": "startup running out of runway before a regulatory deadline",
-            "audience": "founder with six weeks of cash",
-            "stakes": "panic could scatter engineers into pet fixes",
-            "format": "decision_point",
-            "requiredBeat": "At 1:30 a.m., Sam removes side projects from the board and makes the deadline visible enough that the team stops bargaining with dispersive ground."
-          },
           "scenario": "At 1:30 in the morning, Sam tapes the runway chart over a whiteboard crowded with side projects. The cash balance says six weeks, the regulatory checklist is incomplete, and feature freeze starts by noon. He has to choose whether to let engineers bargain for favorite fixes or make the ground visible enough that the team stops scattering.",
           "whatToDo": "Remove side projects, post the cash balance and checklist, and turn the next six weeks into one visible sequence. Keep panic out by making focus concrete.",
           "whyItMatters": "Dispersive ground lets private preference pull people apart. A real deadline, stated plainly, can concentrate work without faking crisis."
@@ -3329,13 +2745,6 @@
             "risk",
             "desperate-ground"
           ],
-          "planSpec": {
-            "domain": "fire crew entering a warehouse with one exit route",
-            "audience": "incident commander at a chemical storage fire",
-            "stakes": "wrong pressure could trap firefighters inside",
-            "format": "predict_reveal",
-            "requiredBeat": "When does closing the escape path create focus, and when does it create a body count?"
-          },
           "scenario": "When does closing the escape path create focus, and when does it create a body count? Vincent studies chemical placards beside a roll-up door. The entry tag board is ready, the thermal camera is charged, and the exit rope runs straight. Before the team enters, he must decide whether this is desperate ground that demands action or a trap that pride is trying to rename.",
           "whatToDo": "Limit the entry team, set the exit rope, name the stop condition, and refuse any entry that depends on bravery replacing a second exit.",
           "whyItMatters": "Desperate ground can focus people only when leadership is honest about risk. False pressure turns courage into casualties."
@@ -3348,13 +2757,6 @@
             "checkpoint",
             "allies"
           ],
-          "planSpec": {
-            "domain": "peacekeeping logistics team negotiating a mountain checkpoint",
-            "audience": "convoy lead moving medical supplies",
-            "stakes": "a blocked road could isolate clinics for days",
-            "format": "vignette",
-            "requiredBeat": "Loose gravel slides under the lead truck as Marit treats the checkpoint as intersecting ground and calls allies before anyone argues at the barrier."
-          },
           "scenario": "Loose gravel slides under the lead truck as Marit sees the mountain checkpoint ahead. The clinic manifest lists insulin and trauma kits, the checkpoint radio cuts out, and her ally contact list sits on the dashboard. Before anyone argues at the barrier, she has to decide whether this ground is a contest or an intersection that requires partners.",
           "whatToDo": "Call the local allies before the convoy reaches the barrier. Use relationships to keep supplies moving instead of making the checkpoint a pride contest.",
           "whyItMatters": "Intersecting ground belongs to the side that joins hands early. The right ally can change the road before the argument fixes it shut."
@@ -3367,13 +2769,6 @@
             "rivals",
             "response"
           ],
-          "planSpec": {
-            "domain": "professional kitchen after a freezer failure before service",
-            "audience": "executive chef with two rival sous-chefs",
-            "stakes": "the team can save service only if rivalry collapses into one response",
-            "format": "before_after",
-            "requiredBeat": "Warm air rolls from the walk-in as Javier gives each rival half the salvage plan so head and tail answer together."
-          },
           "scenario": "In the restaurant walk-in before Saturday service, warm air rolls from the freezer while Javier checks the fish inventory. The ice delivery is late, the service clock keeps moving, and two rival sous-chefs are waiting to defend their stations. Before prep splits into blame, Javier must choose whether to manage personalities or make each rival hold half the salvage plan.",
           "whatToDo": "Give one sous-chef the salvage inventory and the other the menu cuts, then require five-minute cross-calls until service stabilizes.",
           "whyItMatters": "Pressure can make rivals useful if their tasks interlock. Head and tail respond together when neither side can finish alone."
@@ -3386,13 +2781,6 @@
             "storm",
             "coordination"
           ],
-          "planSpec": {
-            "domain": "research vessel caught between storm and equipment failure",
-            "audience": "chief scientist leading a mixed crew",
-            "stakes": "scientists and deck crew must cooperate or lose the whole expedition",
-            "format": "postmortem",
-            "requiredBeat": "It took Hiroshi one snapped sampling cable to stop managing departments and start managing the single boat they were all inside."
-          },
           "scenario": "On the research vessel after a midnight squall, Hiroshi is the research lead who needed one snapped sampling cable to stop managing departments. The storm track shifted, the sample freezer was near capacity, and the winch manual lay open on a wet deck. After the failure, he had to decide how future storms would turn scientists and deck crew into one sequence instead of two offended groups.",
           "whatToDo": "Build a single storm sequence: secure deck, preserve samples, reset the winch, and decide together whether the run continues.",
           "whyItMatters": "Shared danger does not automatically create unity. It needs one visible order of action that makes every group part of the same boat."
@@ -3411,8 +2799,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The shared handoff creates honest common pressure. A speech stays abstract, while separate checklists leave old loyalty untouched.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3424,8 +2811,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The team is scattering on dispersive ground. Visible constraints and a feature freeze focus effort without inventing panic.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3437,8 +2823,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Desperate ground can concentrate action only when risk is honestly bounded. Blocking retreat for pride would create a body count, not unity.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -3450,8 +2835,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Intersecting ground rewards joining hands early. Allies can change the road before the argument hardens.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3463,8 +2847,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Interlocking tasks make each rival part of one response. The pressure becomes useful because neither side can succeed alone.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3476,8 +2859,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Shared danger needs a shared order of action. A single sequence turns departments into one boat while the storm is still active.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3489,8 +2871,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Dispersive ground pulls people back toward home or private interest. It calls for restraint and reasons to stay, not maximum pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -3502,8 +2883,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Pressure must be truthful. Invented crisis may force motion, but it damages trust and makes later real danger harder to lead.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3515,8 +2895,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Desperate ground needs action, not slogans. A visible sequence focuses courage and keeps pressure from scattering into panic.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3577,19 +2956,13 @@
       },
       "memorableLines": [
         {
-          "text": "Pressure must be named before it can be used.",
-          "location": "breakdown.deepRead",
-          "why": "It makes urgency a diagnostic act rather than a mood."
+          "text": "Pressure must be named before it can be used."
         },
         {
-          "text": "Shared danger can turn old rivals into two hands on the same oar.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the Wu and Yueh anchor as a modern leadership rule."
+          "text": "Shared danger can turn old rivals into two hands on the same oar."
         },
         {
-          "text": "Shared danger can unify people, but honest leadership decides whether it steadies them or spends them.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the ethical limit on using pressure."
+          "text": "Shared danger can unify people, but honest leadership decides whether it steadies them or spends them."
         }
       ]
     },
@@ -3616,13 +2989,6 @@
             "recall",
             "readiness"
           ],
-          "planSpec": {
-            "domain": "food-safety director deciding whether to trigger a public recall",
-            "audience": "director at a national snack brand",
-            "stakes": "a recall protects customers but cannot be quietly reversed",
-            "format": "decision_point",
-            "requiredBeat": "At 5:06 a.m., Maja checks test confirmation, distribution maps, call-center scripts, and retailer readiness before lighting the recall."
-          },
           "scenario": "At 5:06 in the morning, Maja sets sealed lab results beside a recall draft. The lot map shows two uncertain warehouses, the retailer portal is not loaded, and the call script still misses allergy questions. Before she releases the notice, she must decide whether the evidence and signal system are ready for a spark that cannot be quietly reversed.",
           "whatToDo": "Confirm the test, finish the lot map, load the retailer portal, and rehearse the call script before publishing the recall.",
           "whyItMatters": "A recall can protect customers only if the message reaches the right shelves and callers. The spark needs materials ready before it lights."
@@ -3635,13 +3001,6 @@
             "strike",
             "timing"
           ],
-          "planSpec": {
-            "domain": "labor negotiator considering a strike deadline",
-            "audience": "union negotiator after failed talks",
-            "stakes": "a strike can win terms or drain members if timing is wrong",
-            "format": "scene",
-            "requiredBeat": "Do we have wind, or only anger? Ryan asks, then tests strike fund, public support, picket coverage, and employer inventory before setting the date."
-          },
           "scenario": "\"Do we have wind, or only anger?\" Ryan asks with the strike fund ledger open on a folding table. The member vote passed, the inventory report favors the employer, and the picket rota has holes. Before setting the strike date, he has to choose whether the deadline rests on advantage or only on the room's heat.",
           "whatToDo": "Delay the date until strike fund, public support, picket coverage, and employer inventory make pressure sustainable.",
           "whyItMatters": "A strike is volatile force. It can win terms or burn members faster than management, depending on timing and support."
@@ -3654,13 +3013,6 @@
             "credentials",
             "signals"
           ],
-          "planSpec": {
-            "domain": "security team preparing to revoke compromised credentials company-wide",
-            "audience": "security operations manager",
-            "stakes": "mass revocation could stop an attacker or freeze hospital scheduling software",
-            "format": "audit",
-            "requiredBeat": "The access graph glows red while Julien waits for backup accounts and help-desk coverage before cutting every token at once."
-          },
           "scenario": "In the security operations room after midnight, the access graph glows red on Julien's dark monitor while a vendor bridge fills with alerts. The backup account list is half approved, help-desk staffing is thin, and scheduling software uses the same token pool. Before cutting every token, he must decide whether the shutdown will stop the attacker or freeze care coordination.",
           "whatToDo": "Stage backup accounts, expand help-desk coverage, warn the vendor bridge, and then revoke tokens in a sequence the hospital can absorb.",
           "whyItMatters": "Mass revocation is a firebreak only when people can still operate afterward. The signal system matters as much as the cut."
@@ -3673,13 +3025,6 @@
             "fire",
             "restoration"
           ],
-          "planSpec": {
-            "domain": "city parks department planning a controlled prairie burn",
-            "audience": "ecological restoration lead",
-            "stakes": "the burn restores habitat only if wind, crew, and firebreaks hold",
-            "format": "predict_reveal",
-            "requiredBeat": "What turns the same flame from restoration into liability?"
-          },
           "scenario": "What turns the same flame from restoration into liability? Petra sets a drip torch beside a mowed firebreak while the wind meter flickers. The permit window is short, the water tender is full, and a road sits downwind. She has to decide whether the season is right or whether the wind makes the crew leeward of its own plan.",
           "whatToDo": "Wait for wind that moves away from the road, confirm the water tender, and keep the burn inside the firebreak and permit window.",
           "whyItMatters": "The flame is the same. Timing, wind, crew, and boundary decide whether it restores habitat or escapes control."
@@ -3692,13 +3037,6 @@
             "lawsuit",
             "publicity"
           ],
-          "planSpec": {
-            "domain": "publisher deciding whether to sue a plagiarizing influencer",
-            "audience": "rights director for a mid-size publisher",
-            "stakes": "a lawsuit may stop copying but make the dispute public forever",
-            "format": "postmortem",
-            "requiredBeat": "It took Matteo one viral countersuit thread to learn that legal fire needs timing, evidence, and public wind."
-          },
           "scenario": "It took Matteo one viral countersuit thread to respect public wind. A highlighted comparison packet sat on the conference table, the copyright registration was clean, and the demand letter felt strong. After the press inquiry arrived first, he had to decide how future legal action would stage evidence before making the dispute permanent.",
           "whatToDo": "Prepare the evidence page, press response, and demand sequence before filing. Let legal fire start only when the public path is ready.",
           "whyItMatters": "A lawsuit can stop copying but also spreads attention. Evidence, timing, and public wind decide whether the fire serves the claim."
@@ -3711,13 +3049,6 @@
             "weather",
             "closure"
           ],
-          "planSpec": {
-            "domain": "university president weighing campus closure during severe ice",
-            "audience": "president responsible for residential and commuter students",
-            "stakes": "closing too late endangers commuters; closing too early strands labs and clinical placements",
-            "format": "vignette",
-            "requiredBeat": "You see Min hold the closure notice until transit, residence dining, lab animals, and hospital placements can all absorb the spark."
-          },
           "scenario": "You see Min scrape ice from a campus handrail while a transit alert flashes on her phone. The dining roster is short, clinical placement lists are split across three hospitals, and lab animals still need care. Before sending the closure notice, she must decide whether the message can move through every system it will ignite.",
           "whatToDo": "Hold the notice until transit, residence dining, labs, and clinical placements have clear instructions and responsible contacts.",
           "whyItMatters": "Closing campus is protective only when the signals reach the people affected. Otherwise one spark solves one danger and creates four more."
@@ -3736,8 +3067,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The recall may be necessary, but irreversible action needs materials ready. Without lot maps and retailer instructions, the spark spreads confusion.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3749,8 +3079,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The lesson separates emotional heat from advantage. A strike without fund strength, public support, and inventory timing may burn members first.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3762,8 +3091,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Mass revocation can stop an attacker, but it is volatile. Backup accounts and help-desk coverage keep the firebreak from becoming a care outage.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3775,8 +3103,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The same flame changes meaning with wind. Being leeward of your own volatile action turns restoration into liability.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3788,8 +3115,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Legal action may be justified, but public wind matters. Evidence and response timing decide whether attention helps or harms the claim.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3801,8 +3127,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Closure is a protective spark only if signals reach the systems it changes. Otherwise one safety move creates new risks.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3814,8 +3139,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source pressure forbids action from pique. Emotional heat passes; irreversible damage remains.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3827,8 +3151,7 @@
             ],
             "correctIndex": 0,
             "explanation": "One development after fire starts is that the opponent remains quiet. The disciplined response is patience, not automatic follow-up.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3840,8 +3163,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Signals matter as much as the spark. Without coordination after action begins, prepared force can still spread confusion.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3902,19 +3224,13 @@
       },
       "memorableLines": [
         {
-          "text": "The spark is the last step, not the first.",
-          "location": "breakdown.deepRead",
-          "why": "It reverses the impulse to act before conditions are ready."
+          "text": "The spark is the last step, not the first."
         },
         {
-          "text": "What will you do five minutes after the irreversible action begins?",
-          "location": "breakdown.fullRead",
-          "why": "It forces attention beyond dramatic initiation."
+          "text": "What will you do five minutes after the irreversible action begins?"
         },
         {
-          "text": "A spark without signals is only heat looking for something to damage.",
-          "location": "breakdown.fullRead",
-          "why": "It links source-specific signaling to modern escalation."
+          "text": "A spark without signals is only heat looking for something to damage."
         }
       ]
     },
@@ -3941,13 +3257,6 @@
             "delivery",
             "local-knowledge"
           ],
-          "planSpec": {
-            "domain": "retailer entering a new city without knowing local delivery constraints",
-            "audience": "expansion lead for a grocery delivery service",
-            "stakes": "a launch could fail because headquarters misunderstands apartment access and winter routes",
-            "format": "scene",
-            "requiredBeat": "Snow piles against a back-lane gate while Kasia pays two local couriers to map the real entrances before signing launch volume."
-          },
           "scenario": "Behind a Montreal apartment block, snow piles against a back-lane gate while Kasia studies the launch forecast. The building access notes are blank, courier interviews have not happened, and headquarters assumes every apartment entrance matches the map. Before signing volume targets, she must decide whether to trust the forecast or pay two local couriers to map the real winter routes.",
           "whatToDo": "Pay local couriers for route notes, entrance photos, and building access warnings before locking the launch volume.",
           "whyItMatters": "Local spies are not exotic. They are people who know the district well enough to prevent headquarters from buying ignorance at scale."
@@ -3960,13 +3269,6 @@
             "procurement",
             "inside-knowledge"
           ],
-          "planSpec": {
-            "domain": "hospital board considering an expensive scheduling system",
-            "audience": "board member evaluating vendor claims",
-            "stakes": "buying blind could lock nurses into unusable workflows",
-            "format": "decision_point",
-            "requiredBeat": "Who has used it on a bad Tuesday? Luke asks, then delays the vote until charge nurses from another hospital speak privately."
-          },
           "scenario": "\"Who has used it on a bad Tuesday?\" Luke asks while a demo tablet sits on a boardroom chair. The vendor deck is polished, the nurse call list is unused, and the contract lock-in runs five years. Before the vote, he has to choose whether to believe the demo or hear charge nurses from another hospital privately.",
           "whatToDo": "Delay the vote and speak with nurses who used the system under shortage, call-ins, and late discharges. Protect the conversation from vendor pressure.",
           "whyItMatters": "Inward knowledge reveals workflow pain before a contract makes it permanent. A demo shows best weather; users know the storm."
@@ -3979,13 +3281,6 @@
             "distribution",
             "contracts"
           ],
-          "planSpec": {
-            "domain": "independent brewery negotiating with a distributor",
-            "audience": "brewery founder entering a new market",
-            "stakes": "bad distributor terms could bury the brand for three years",
-            "format": "predict_reveal",
-            "requiredBeat": "What does the glossy sales forecast miss that a former route driver can tell you in ten minutes?"
-          },
           "scenario": "Beside keg collars stacked near the brewery loading dock, Hugo is the founder asking what the glossy sales forecast misses that a former route driver can tell him in ten minutes. The route map looks broad, the territory clause lasts three years, and the sales forecast is bright. He must decide whether to sign now or ask the driver which brands never leave the warehouse.",
           "whatToDo": "Interview the former route driver before signing. Compare the route map, delivery habits, account priority, and territory clause against the forecast.",
           "whyItMatters": "A driver may know the distributor’s real behavior better than the sales forecast. Converted knowledge can reveal how the other side actually works."
@@ -3998,13 +3293,6 @@
             "inspection",
             "human-traces"
           ],
-          "planSpec": {
-            "domain": "city inspector investigating illegal short-term rentals",
-            "audience": "housing enforcement supervisor",
-            "stakes": "public listings reveal less than cleaners and doormen know",
-            "format": "audit",
-            "requiredBeat": "At 7:15 a.m., Janek compares permit data with doorman shift notes and cleaner invoices before sending inspectors."
-          },
           "scenario": "At 7:15 in the morning, Janek clips cleaner invoices to a permit database printout. Public listings are sparse, doorman notes mention suitcases on weekdays, and the inspection schedule is already known in one building. Before sending inspectors, he has to decide which human traces deserve cross-checking against official permits.",
           "whatToDo": "Compare cleaner invoices, doorman notes, permits, and inspection timing before dispatching inspectors. Use human traces to find where records are being gamed.",
           "whyItMatters": "Public data is easiest to stage. People near the pattern often see the truth before the official record admits it."
@@ -4017,13 +3305,6 @@
             "site-selection",
             "audit"
           ],
-          "planSpec": {
-            "domain": "pharmaceutical trial team selecting overseas sites",
-            "audience": "clinical operations director",
-            "stakes": "a site that looks strong on paper could hide recruitment shortcuts",
-            "format": "postmortem",
-            "requiredBeat": "It took Paula one unusable data set to learn that the retired coordinator knew more than the feasibility questionnaire."
-          },
           "scenario": "In the trial archive after an audit call, it took Paula one unusable data set to distrust the clean questionnaire. A rejected trial binder sat under sticky tabs, the audit finding named recruitment shortcuts, and the recruitment log looked normal until a retired coordinator explained it. Afterward, she had to decide how much weight future site selection would give to people who had seen the work up close.",
           "whatToDo": "Call former coordinators before approving sites. Cross-check recruitment logs, audit findings, and informal site habits before the trial begins.",
           "whyItMatters": "The person who lived the workflow can reveal shortcuts the form hides. Paying for that knowledge is cheaper than rescuing unusable data."
@@ -4036,13 +3317,6 @@
             "permits",
             "community"
           ],
-          "planSpec": {
-            "domain": "renewable-energy developer assessing community opposition",
-            "audience": "project lead before filing permits",
-            "stakes": "formal hearings may reveal resistance too late to redesign the project",
-            "format": "vignette",
-            "requiredBeat": "You watch Devon meet the snowplow contractor, diner owner, and retired township clerk before trusting the official map of support."
-          },
           "scenario": "You watch Devon trace a township map under diner glass while the permit calendar waits in his folder. The landowner list shows support, but the diner owner knows who will speak at hearings, the snowplow contractor knows which road will fail, and the retired clerk has notes on old drainage fights. Before filing, he must decide whether official support is enough.",
           "whatToDo": "Meet the local people who know roads, hearings, and old grievances before filing permits. Redesign what can be fixed before formal opposition hardens.",
           "whyItMatters": "Community resistance often appears late only to outsiders. Local foreknowledge can turn a public fight into an earlier design correction."
@@ -4061,8 +3335,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Local foreknowledge prevents a large failed launch. The couriers know the ground that the forecast cannot see.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4074,8 +3347,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The nurses have inward knowledge of the workflow under stress. Vendor summaries cannot replace protected access to people who lived it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4087,8 +3359,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The driver’s knowledge comes from inside the distribution system. It can expose gaps the forecast has reason to hide.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -4100,8 +3371,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Human traces can reveal staged public data. Cross-checking protects the inspection from acting on either gossip or records alone.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4113,8 +3383,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Useful foreknowledge often sits with people near the workflow. The coordinator can explain how clean logs became unusable data.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -4126,8 +3395,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The local people know where opposition will form. Early foreknowledge can turn a public fight into design correction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -4139,8 +3407,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source pressure treats grudging the small intelligence cost as inhumane because many people pay for the resulting ignorance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -4152,8 +3419,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Dashboards show what has been captured. People near the ground can explain what has not yet become reportable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -4165,8 +3431,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Human intelligence needs protection and verification. Access matters, but truth still requires cross-checks before resources move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -4227,19 +3492,13 @@
       },
       "memorableLines": [
         {
-          "text": "A dashboard can count what has been reported.",
-          "location": "breakdown.deepRead",
-          "why": "It sharply separates data from human foreknowledge."
+          "text": "A dashboard can count what has been reported."
         },
         {
-          "text": "Foreknowledge is mercy before it is advantage.",
-          "location": "breakdown.fullRead",
-          "why": "It carries the ethical force of paying for intelligence."
+          "text": "Foreknowledge is mercy before it is advantage."
         },
         {
-          "text": "Ignorance is a decision when the person who knows was never invited in.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the chapter with responsibility rather than intrigue."
+          "text": "Ignorance is a decision when the person who knows was never invited in."
         }
       ]
     }

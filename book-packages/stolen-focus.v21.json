@@ -24,7 +24,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stolen-focus-ch01",
       "number": 1,
       "title": "Cause One: The Increase in Speed, Switching and Filtering",
@@ -125,8 +124,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Graceland case shows mediation inside a meaningful place. The dull-room reading fails because the Jungle Room already mattered.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -138,8 +136,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The promise matters because it was real and still failed. The point is habit pressure, not the absence of a rule.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -151,8 +148,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Provincetown lasted three months and still did not settle reentry. A weekend can teach something, but it cannot prove the environment is fixed.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -164,8 +160,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Miller's mechanism is limited conscious capacity. It treats multitasking as switching, so speed does not prove parallel attention.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -177,8 +172,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The switch cost includes reloading the old goal. Counting only the text-reading seconds hides the larger loss.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -190,8 +184,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The measured result was worse performance under intermittent messages. Mood may shift too, but the cited evidence is about the test outcome.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -203,8 +196,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The 65-second figure makes fragmentation observable. It does not prove a character flaw, and it is not merely nostalgia.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -216,8 +208,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The office figure widens the pattern beyond students. It weakens the claim that the problem is only teenage media use.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -229,8 +220,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The retreat helped under calmer conditions, but the gains were fragile after connected life resumed. Willpower alone is too small.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -273,7 +263,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Reentry Line",
         "coreSkill": "Practice leaving a task with a written handoff before you switch. Name where you stopped and what deserves your first look when you return. This turns switch-cost pressure into a visible cost instead of a vague feeling.",
         "ifThenPlans": [
           {
@@ -298,24 +287,17 @@
       },
       "memorableLines": [
         {
-          "text": "Busy can be broken, not deep.",
-          "location": "breakdown.fastRead",
-          "why": "It turns a familiar badge of busyness into a warning the reader can remember."
+          "text": "Busy can be broken, not deep."
         },
         {
-          "text": "A quick check still sends a bill.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the switch cost feel concrete without adding jargon."
+          "text": "A quick check still sends a bill."
         },
         {
-          "text": "Retreat can reveal capacity; it cannot redesign the street.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the chapter from becoming a simple digital-detox message."
+          "text": "Retreat can reveal capacity; it cannot redesign the street."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stolen-focus-ch02",
       "number": 2,
       "title": "Cause Two: The Crippling of Our Flow States",
@@ -416,8 +398,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Flow is not ordinary rest. It absorbs mental energy into a valued task, while passive calm may help the body without giving attention a direction.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "stolen-focus-ch02-q02",
@@ -429,8 +410,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source grounds flow in Csikszentmihalyi's long research program. That history makes it more than a slogan about working harder.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "stolen-focus-ch02-q03",
@@ -442,8 +422,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Flow needs one chosen goal. Several live goals split mental energy, even when the setting is quiet and each task seems useful.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "stolen-focus-ch02-q04",
@@ -455,8 +434,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Difficulty alone is not enough. Meaning helps the person care enough to keep effort moving toward one goal instead of drifting.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "stolen-focus-ch02-q05",
@@ -468,8 +446,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The climbing example points to skill-challenge balance. Too easy becomes dull, while too hard can flood attention with anxiety.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "stolen-focus-ch02-q06",
@@ -481,8 +458,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Provincetown shows removal paired with replacement. The quiet helps because a chosen, demanding writing task fills the space.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "stolen-focus-ch02-q07",
@@ -494,8 +470,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Flow can make sustained attention feel natural once conditions align. It is demanding, but not defined by grim pressure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "stolen-focus-ch02-q08",
@@ -507,8 +482,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A vacuum can expose craving and boredom. Removing triggers helps, but attention still needs a worthy place to land.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "stolen-focus-ch02-q09",
@@ -520,8 +494,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Flow is vulnerable when the same attention ecosystem returns. A good session needs support from the setting around it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -564,7 +537,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build the Flow Doorway",
         "coreSkill": "Practice setting the three flow conditions before you start. Name one goal, say why it matters, and set the challenge near the edge of your ability. Build the Flow Doorway so quiet has somewhere to lead.",
         "ifThenPlans": [
           {
@@ -589,24 +561,17 @@
       },
       "memorableLines": [
         {
-          "text": "Silence is a clearing, not a home.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the chapter's hard edge easy to remember."
+          "text": "Silence is a clearing, not a home."
         },
         {
-          "text": "Flow needs a target worthy of the mind.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the positive side of attention repair."
+          "text": "Flow needs a target worthy of the mind."
         },
         {
-          "text": "Stretch beats strain because fear scatters attention.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the climbing lesson into a portable rule."
+          "text": "Stretch beats strain because fear scatters attention."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stolen-focus-ch03",
       "number": 3,
       "title": "Cause Three: The Rise of Physical and Mental Exhaustion",
@@ -707,8 +672,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Provincetown links attention gains with sleeping well. The screen rule helped, but the wrong read treats focus as purely mental and misses bodily recovery.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -720,8 +684,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The harm can start with vigilance. A worker may stay braced for employer contact after hours, so the issue is not limited to long replies.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -733,8 +696,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The attention-depletion frame shifts the lens toward common exposures. The other choices keep the one-person blame story that shared conditions challenge.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -746,8 +708,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Exhaustion can be physical and mental at once. The wrong reads isolate sleep or blame slow pages instead of seeing the combined drain.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -759,8 +720,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A depleted brain has less control for resisting quick rewards. The tempting mistake is to turn a fatigue pattern into a moral verdict.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -772,8 +732,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The right to disconnect treats contact rules as attention infrastructure. Calling it only a perk misses how vigilance drains recovery.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -785,8 +744,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Private routines may help, but structural pressure can keep undoing them. The critique is not anti-routine; it is against making routine carry the whole load.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -798,8 +756,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Rest is a prerequisite for focus, not a trophy after it. The data points to recovery as part of the system that makes attention possible.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -811,8 +768,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The causal frame includes fatigue, stress, and shared norms. Calling the failure laziness repeats the blame story the evidence complicates.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -855,7 +811,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Move the Recovery Cue",
         "coreSkill": "Practice making recovery visible before the tired brain reaches for stimulation. Move one object so the room supports rest, then name the kind of depletion at work: sleep loss, overload, availability, or stress arousal.",
         "ifThenPlans": [
           {
@@ -880,19 +835,13 @@
       },
       "memorableLines": [
         {
-          "text": "Rest is attention's first tool.",
-          "location": "breakdown.fastRead",
-          "why": "It turns rest from a reward into part of the mechanism."
+          "text": "Rest is attention's first tool."
         },
         {
-          "text": "Depleted minds chase easy sparks.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the pull of digital rewards feel concrete and memorable."
+          "text": "Depleted minds chase easy sparks."
         },
         {
-          "text": "A tired brain is not a failed character.",
-          "location": "breakdown.fullRead",
-          "why": "It reverses the blame story in one short line."
+          "text": "A tired brain is not a failed character."
         }
       ]
     },
@@ -997,8 +946,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Deep reading requires continuity. The group can pronounce the words and still fail if earlier material is not carried into later meaning.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -1010,8 +958,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Wolf anchors the concern in reading scholarship. The worry is not just taste for books; it is about habits that shape the brain.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -1023,8 +970,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge is mode, not moral rank. Search and sampling can help, but they train a different habit from staying with a long argument.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1036,8 +982,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source points to routine as well as print. A once-a-day newspaper and fewer interruptions made sustained reading easier to recover.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1049,8 +994,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Adam's case is not one app. Several fast streams reinforce the same rhythm, so a narrow block can miss the environment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1062,8 +1006,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The empathy risk comes from losing practice inhabiting other minds over time. Plot recall alone is a thinner form of reading.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1075,8 +1018,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Provincetown recovery argues against permanent-loss fatalism. Quieter conditions can let sustained reading return with practice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1088,8 +1030,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The critique is about routines that reward scanning or staying. Paper can be skimmed, and screens can host serious reading.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1101,8 +1042,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Long-form reading is also practice. It trains the habit of staying with one object while meaning builds across time.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -1145,7 +1085,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the Reading Jump",
         "coreSkill": "Practice catching the exact moment a page loses you. Mark the Reading Jump by naming what you left, what pulled you away, and whether you were scanning or staying. The mark turns a vague failure into a count you can learn from.",
         "ifThenPlans": [
           {
@@ -1170,24 +1109,17 @@
       },
       "memorableLines": [
         {
-          "text": "Deep reading is attention with a memory.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the core mechanism into a short test."
+          "text": "Deep reading is attention with a memory."
         },
         {
-          "text": "The page pays you for staying.",
-          "location": "breakdown.deepRead",
-          "why": "It contrasts feed reward with sustained reading in one line."
+          "text": "The page pays you for staying."
         },
         {
-          "text": "A slower page costs a faster thrill.",
-          "location": "breakdown.fullRead",
-          "why": "It names the tradeoff the reader must accept."
+          "text": "A slower page costs a faster thrill."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stolen-focus-ch05",
       "number": 5,
       "title": "Cause Five: The Disruption of Mind-Wandering",
@@ -1288,8 +1220,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source frames some wandering as part of attention. Memories and plans can be integrated when thought is guided from inside.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1301,8 +1232,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Smallwood anchors the claim in cognitive research. The beach and queue scenes help, but the named researcher grounds the science.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -1314,8 +1244,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The key loss is ordinary gaps. Repeated tiny checks bring outside input into moments where inner links might have appeared.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1327,8 +1256,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Focused work gathers material, but wandering can recombine it. More input or more force may block the associative phase.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1340,8 +1268,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Unfilled time can bring feelings up for processing. The danger is rumination, so Ella needs movement rather than another input.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1353,8 +1280,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Early agitation does not disprove the value of quiet. It can show how used the mind is to constant stimulation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1366,8 +1292,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The beach scene links external quiet with internal clarity. The lesson is to slow input, not add more information.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1379,8 +1304,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A feed supplies the path externally. Productive mind-wandering depends on self-generated associations, not a designed sequence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1392,8 +1316,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Boredom can mark useful empty space. Staying with it gives internally directed thought a chance to begin.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1436,7 +1359,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Guard the Reply Gap",
         "coreSkill": "Guard the Reply Gap by leaving one small pause unfilled before you answer, search, or scroll. Mark a visible surface with one word, then let the first inner thought arrive before you choose the next move. The aim is not endless quiet; it is a short space where the mind can make its own link.",
         "ifThenPlans": [
           {
@@ -1461,19 +1383,13 @@
       },
       "memorableLines": [
         {
-          "text": "A gap is not a leak.",
-          "location": "breakdown.fastRead",
-          "why": "It makes empty time feel like a resource instead of waste."
+          "text": "A gap is not a leak."
         },
         {
-          "text": "The feed gives motion, not wandering.",
-          "location": "breakdown.fastRead",
-          "why": "It draws the chapter's key distinction in a line."
+          "text": "The feed gives motion, not wandering."
         },
         {
-          "text": "Quiet is wrong when care needs a voice.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the practice a humane boundary."
+          "text": "Quiet is wrong when care needs a voice."
         }
       ]
     },
@@ -1578,8 +1494,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Harris matters because he came from inside Google and still criticized attention-extractive design. That makes capture look engineered, not merely imagined by outsiders.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1591,8 +1506,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Persuasive design works by using predictable pulls such as novelty and social approval. Treating the changes as decoration misses how cues and rewards steer action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1604,8 +1518,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Infinite scroll matters because automatic loading removes the pause where leaving was easy to notice. It is not just fewer clicks; it changes stopping behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1617,8 +1530,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Raskin's later warnings complicate the story. Infinite scroll was a design choice whose costs became clearer, not proof that creators set out to harm users.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1630,8 +1542,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Notifications are push-based. Sound, vibration, and badges ask for attention before the user seeks information, so the timing moves from user-led to app-led.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1643,8 +1554,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Social validation is its own hook. Unpredictable likes and replies can make people return to see how they are being received, apart from information needs.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1656,8 +1566,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Engagement metrics can conflict with intention. A platform may benefit from longer use even when the user wanted a short task done cleanly.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1669,8 +1578,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The issue is repeated scale. Tiny cues such as badges and scroll prompts can reshape routines when they appear billions of times across daily life.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -1682,8 +1590,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Humane technology puts responsibility on builders too. If attention can be designed for or against, standards and incentives should align the product with human intention.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1726,7 +1633,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Summons",
         "coreSkill": "Practice naming what began the next check before you unlock or tap. The move is simple: write the reason in plain words, then mark it user-led or app-led. That small friction gives choice a place to stand.",
         "ifThenPlans": [
           {
@@ -1751,19 +1657,13 @@
       },
       "memorableLines": [
         {
-          "text": "A tool should wait for your purpose.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the whole design ethic plain in one test."
+          "text": "A tool should wait for your purpose."
         },
         {
-          "text": "Convenience becomes capture when the pause disappears.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the infinite-scroll mechanism into a line a reader can keep."
+          "text": "Convenience becomes capture when the pause disappears."
         },
         {
-          "text": "Tiny prompts become large when they repeat all day.",
-          "location": "breakdown.fullRead",
-          "why": "It turns small interface details into a scale problem without overstatement."
+          "text": "Tiny prompts become large when they repeat all day."
         }
       ]
     },
@@ -1868,8 +1768,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The loop depends on behavior becoming prediction. Pauses and clicks are signals. Treating the list as random or search-only misses the tracking step.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1881,8 +1780,7 @@
             ],
             "correctIndex": 2,
             "explanation": "YouTube matters here because recommendations actively choose what follows. The search-only view misses how provocative material can be pushed onward.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1894,8 +1792,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Sandy Hook example is a hard case of sticky unreality. It shows that harmful conspiracy content can hold attention, not only harmless clips.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1907,8 +1804,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Brazil case moves the harm from one distracted person to a public field of belief. Misinformation can damage collective attention.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1920,8 +1816,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stated preference is not the same as measured engagement. If outrage drives reaction and time, the system can learn to favor it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1933,8 +1828,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Zuboff's frame points to economic value. Behavioral data matters because it helps prediction and targeting, not only product repair.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1946,8 +1840,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Passive behavior still leaves signals. Watching and pausing can be measured, monetized, and used to tune what Cameron sees next.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1959,8 +1852,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The objection is narrower than anti-technology. A tool can serve a goal; the danger is a revenue model that rewards capture.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1972,8 +1864,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Falsehood can travel faster when intensity is rewarded. The error is assuming available truth will win no matter how distribution works.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2016,7 +1907,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Trace the Next Lure",
         "coreSkill": "Practice tracing one feed item backward before you react. Name what was tracked, what the platform may be predicting, and what recommendation it placed in front of you. Trace the Next Lure so the business model becomes visible before the next click.",
         "ifThenPlans": [
           {
@@ -2041,19 +1931,13 @@
       },
       "memorableLines": [
         {
-          "text": "Tracking turns watching into instructions.",
-          "location": "breakdown.fastRead",
-          "why": "It names the mechanism in six words."
+          "text": "Tracking turns watching into instructions."
         },
         {
-          "text": "Outrage pays when calm truth does not.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the incentive problem hard to forget."
+          "text": "Outrage pays when calm truth does not."
         },
         {
-          "text": "A public can lose focus together.",
-          "location": "breakdown.deepRead",
-          "why": "It carries the argument from private distraction to civic harm."
+          "text": "A public can lose focus together."
         }
       ]
     },
@@ -2158,8 +2042,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cruel optimism targets the mismatch, not hope. The morning routine may help, but it becomes cruel if it hides the alert system and returns blame to workers.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2171,8 +2054,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Williams allows short-term shielding but denies that shielding is enough. The wrong readings either throw away the mask or make pollution a private test.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2184,8 +2066,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The public-health comparison points to shared environmental change. The sheet should not start with mass weakness when the setting changed for everyone.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2197,8 +2078,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source keeps helpful and enough apart. Meditation may reduce symptoms, but it cannot carry the whole repair burden while the chat keeps intruding.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2210,8 +2090,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The image shifts attention to the source of distress. Coaching restraint alone misses the ongoing irritant that keeps producing the urge.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2223,8 +2102,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Small tactics are not the enemy. They become cruel when sold as total solutions while workplace rewards keep the same demand alive.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2236,8 +2114,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Cruel optimism exposes a scale mismatch. Once the cause is shared, repair can move toward norms, incentives, and rules instead of only private discipline.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2249,8 +2126,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Motivation and causal repair are different tests. A message can feel empowering while leaving the exposure that steals attention in place.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2262,8 +2138,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The frame reduces shame without removing action. Personal practices remain useful supports, but the hostile environment must stay in view.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2306,7 +2181,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Scale Check",
         "coreSkill": "Practice testing advice by the size of the cause it claims to fix. Run the Scale Check by naming the large cause, the small private fix, the burden it returns, and the source it leaves intact. The move lets you use personal relief without mistaking it for full repair.",
         "ifThenPlans": [
           {
@@ -2331,24 +2205,17 @@
       },
       "memorableLines": [
         {
-          "text": "A mask is not clean air.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the Williams analogy into a hard test for private fixes."
+          "text": "A mask is not clean air."
         },
         {
-          "text": "A coping tool is not a cure.",
-          "location": "breakdown.deepRead",
-          "why": "It preserves personal practice while blocking overclaim."
+          "text": "A coping tool is not a cure."
         },
         {
-          "text": "Hope has to meet the size of the harm.",
-          "location": "breakdown.fullRead",
-          "why": "It states the scale rule in a line readers can carry."
+          "text": "Hope has to meet the size of the harm."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stolen-focus-ch09",
       "number": 9,
       "title": "The First Glimpses of the Deeper Solution",
@@ -2449,8 +2316,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The French case changes the workplace expectation. The private-boundary answer misses that the rule protects attention across the group.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2462,8 +2328,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Vigilance can come from waiting for contact, not only receiving it. Defined hours help attention leave work more fully.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2475,8 +2340,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Shared rules lower the social cost. Courage helps, but one person should not have to carry the whole boundary alone.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2488,8 +2352,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Environmental repair targets causes before exposure. Coping tricks can help, but they arrive after the pressure is already active.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -2501,8 +2364,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The movement frame treats attention as a shared resource. The purely private answer ignores the social conditions in the examples.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -2514,8 +2376,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Collective pressure needs a shared diagnosis. A policy with no change in public understanding has little ground to stand on.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2527,8 +2388,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Proof-of-concept reforms fight fatalism. Existing repairs show harmful defaults are not laws of nature.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -2540,8 +2400,7 @@
             ],
             "correctIndex": 0,
             "explanation": "France's right to disconnect shows availability is a policy choice. Informal silence leaves the old expectation in place.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2553,8 +2412,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Coping can matter, but it is not the deepest repair. Environmental repair asks what conditions create the pressure first.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2597,7 +2455,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Move the Boundary Upstream",
         "coreSkill": "Move the Boundary Upstream by asking what rule, default, or incentive creates the attention pressure before you blame the person under it. Use the move when a focus problem keeps repeating across people. The aim is not to skip personal choice; it is to make the better choice less costly.",
         "ifThenPlans": [
           {
@@ -2622,24 +2479,17 @@
       },
       "memorableLines": [
         {
-          "text": "A boundary gets easier when it belongs to everyone.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the French right-to-disconnect lesson into a portable rule."
+          "text": "A boundary gets easier when it belongs to everyone."
         },
         {
-          "text": "Better defaults return willpower to the person.",
-          "location": "breakdown.deepRead",
-          "why": "It gives environmental repair a plain mechanism."
+          "text": "Better defaults return willpower to the person."
         },
         {
-          "text": "Hope needs a working example.",
-          "location": "breakdown.deepRead",
-          "why": "It captures why existing reforms matter before a larger movement grows."
+          "text": "Hope needs a working example."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stolen-focus-ch10",
       "number": 10,
       "title": "Cause Eight: The Surge in Stress and How It Is Triggering Vigilance",
@@ -2740,8 +2590,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stress can assign attention to threat monitoring after the trigger fades. Treating it as only tiredness or poor training misses the vigilance mechanism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -2753,8 +2602,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The figure is about anticipatory vigilance. Actual messages matter, but the key stress is staying ready because a boss might write.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2766,8 +2614,7 @@
             ],
             "correctIndex": 0,
             "explanation": "After-hours contact can extend the work state through possibility. Grace's attention is less free even without a new assignment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2779,8 +2626,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The policy lowers vigilance by changing the status of silence. If every worker must defend each boundary alone, the watch remains active.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -2792,8 +2638,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Vigilance can disrupt rest, and poor rest can make stress harder to bear. Treating the two as unrelated misses how the drain compounds.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2805,8 +2650,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Flow needs absorption in one goal. Waiting for urgent demand keeps the mind scanning outward, so higher stakes may block depth.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2818,8 +2662,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source widens attention loss beyond technology. Survival concerns can keep demanding mental simulation, even with apps shut.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2831,8 +2674,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The causal link is attention, not only mood. Calmer conditions give depth more room by reducing threat scanning.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -2844,8 +2686,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Vigilance can be protective work. More self-criticism may add threat, while removing every demand dodges the need to distinguish real danger from watch mode.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2888,7 +2729,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Watch Cue",
         "coreSkill": "Practice spotting the moment attention turns into watch duty. Name the threat cue in one plain line, then ask what would make nonresponse legitimate. The skill is not pretending danger is gone; it is telling a live threat from a trained wait.",
         "ifThenPlans": [
           {
@@ -2913,19 +2753,13 @@
       },
       "memorableLines": [
         {
-          "text": "Vigilance is attention doing guard duty.",
-          "location": "breakdown.fastRead",
-          "why": "It turns an abstract stress claim into a clear image of attention at work."
+          "text": "Vigilance is attention doing guard duty."
         },
         {
-          "text": "A silent phone can still keep the mind on duty.",
-          "location": "breakdown.fastRead",
-          "why": "It captures anticipatory stress in one portable sentence."
+          "text": "A silent phone can still keep the mind on duty."
         },
         {
-          "text": "Focus grows where nonresponse is allowed.",
-          "location": "breakdown.deepRead",
-          "why": "It links the practical boundary to the chapter's focus repair."
+          "text": "Focus grows where nonresponse is allowed."
         }
       ]
     },
@@ -3030,8 +2864,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Perpetual Guardian makes the idea concrete. The case is a named New Zealand workplace trial, not only a utopian hope or a private retreat.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3043,8 +2876,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source ties Andrew Barnes to promoting the Perpetual Guardian experiment. His role gives the case named institutional agency.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -3056,8 +2888,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The trial challenges the simple hours-equal-value equation. It does not say output is irrelevant; it says hours are not the whole measure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3069,8 +2900,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Four Day Week Global matters because trials and advocacy make reform more repeatable. It broadens the idea beyond a single case.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -3082,8 +2912,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Work-time redesign treats fatigue as a system outcome. If hours and reply norms create depletion, private time management is too small.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3095,8 +2924,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Right-to-disconnect rules and shorter weeks both create protected margins. They limit work's spread into the time attention uses to recover.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3108,8 +2936,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The institutional examples matter because they alter ordinary responsibilities. The repair happens inside work, not only in a retreat.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3121,8 +2948,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source's hard edge is adaptation. Shorter weeks are design variables, so different roles need local tests rather than a universal schedule.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3134,8 +2960,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Reducing speed helps focus by reducing depletion before the task starts. The issue is not only willpower at the desk.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3178,7 +3003,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Say the Margin Line",
         "coreSkill": "Practice treating recovery as part of the work system. Use the Margin Line before work leaks into off-hours: name the boundary aloud, then choose the first low-friction step that protects it. The skill is not avoiding work; it is making the next reply serve the work instead of the hurry.",
         "ifThenPlans": [
           {
@@ -3203,24 +3027,17 @@
       },
       "memorableLines": [
         {
-          "text": "Exhaustion is often built.",
-          "location": "breakdown.fastRead",
-          "why": "It turns fatigue from a private flaw into a design problem."
+          "text": "Exhaustion is often built."
         },
         {
-          "text": "Protected time is attention infrastructure.",
-          "location": "breakdown.deepRead",
-          "why": "It makes recovery feel like a working condition, not a perk."
+          "text": "Protected time is attention infrastructure."
         },
         {
-          "text": "Attention needs margins before it needs heroics.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the chapter's repair into one usable line."
+          "text": "Attention needs margins before it needs heroics."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stolen-focus-ch12",
       "number": 12,
       "title": "Causes Nine and Ten: Our Deteriorating Diets and Rising Pollution",
@@ -3321,8 +3138,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Demeneix anchors the claim in chemical pollution and brain development. The near miss treats pollution as vague language instead of a brain-relevant exposure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3334,8 +3150,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The claim starts before willpower. Developing brains can be affected by exposure, so the homework moment may inherit a burden already in place.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3347,8 +3162,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source treats ultra-processed food as an environment. A blame-only response misses how price, supply, and marketing steer the basket.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3360,8 +3174,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Diet can affect steadiness through energy and mood. The wrong reads jump to motivation or task design before checking the body's fuel.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3373,8 +3186,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The frame includes brain effects, not only breathing. The planner's near miss separates lungs from cognition in a way the brain-health claim rejects.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -3386,8 +3198,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Developmental vulnerability is the key. The issue is not visibility to parents, but early exposure acting while the brain is still being built.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -3399,8 +3210,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Diet and pollution belong together because they act below conscious strategy. The random-addition read misses the shared biological load.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3412,8 +3222,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The claim is cumulative rather than total. The wrong extremes either replace every other cause or shrink diet and pollution to rare exceptions.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3425,8 +3234,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Attention policy can reach food and environment. The phone-only plan misses public-health routes that may support the same brain capacity.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -3469,7 +3277,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Move One Load Cue",
         "coreSkill": "Practice noticing one body or room load before you blame focus. Move One Load Cue means you change a visible object first, then name whether the larger load is food, air, chemical exposure, or development. The move is small, but it trains a fairer diagnosis.",
         "ifThenPlans": [
           {
@@ -3494,24 +3301,17 @@
       },
       "memorableLines": [
         {
-          "text": "Focus starts in the body.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the biological claim short enough to carry."
+          "text": "Focus starts in the body."
         },
         {
-          "text": "Cheap food can spend attention.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the food-system warning into a sharp image."
+          "text": "Cheap food can spend attention."
         },
         {
-          "text": "Clean air is a focus tool.",
-          "location": "breakdown.fastRead",
-          "why": "It links public health to attention in six plain words."
+          "text": "Clean air is a focus tool."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stolen-focus-ch13",
       "number": 13,
       "title": "Cause Eleven: The Rise of ADHD and How We Are Responding to It",
@@ -3612,8 +3412,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Nigg matters as a named expert on children's attention and ADHD. The opinion-only reading misses that specialist anchor.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3625,8 +3424,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The attentional pathogenic culture idea asks how conditions shape children's attention. The sealed-off reading ignores the environmental part.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3638,8 +3436,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The critique is aimed at exclusive reliance, not at medication itself. Stimulants can help some people, so rejection overreaches.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -3651,8 +3448,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A medication-only response can miss conditions that affect attention. The gap is not referral itself; it is treating referral as the whole repair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3664,8 +3460,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Disagreement signals complexity, not uselessness. Families can still combine careful support with environmental repair while evidence is contested.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3677,8 +3472,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The debate includes counseling and broader support. A pills-only frame misses emotional, behavioral, and family parts of the problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3690,8 +3484,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The environmental frame rejects blame-first thinking. Conditions adults created may intensify symptoms, so responsibility is wider than the child.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3703,8 +3496,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The stance is both-and. It can criticize narrow medication systems while still treating ADHD as real and often impairing.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -3716,8 +3508,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The complex response combines individual support with environmental repair. Choosing only clinic care or only reform repeats the false split.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -3760,7 +3551,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Count the Surrounding Load",
         "coreSkill": "Practice naming one condition around the attention problem before you judge the person inside it. Count the load, then ask what support still belongs with the person. The move is not anti-treatment; it is anti-blame.",
         "ifThenPlans": [
           {
@@ -3785,24 +3575,17 @@
       },
       "memorableLines": [
         {
-          "text": "A pill can help a child, and still not fix the room.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps medication and environment in one memorable contrast."
+          "text": "A pill can help a child, and still not fix the room."
         },
         {
-          "text": "Blame is a bad treatment plan.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's ethical stance into a compact warning."
+          "text": "Blame is a bad treatment plan."
         },
         {
-          "text": "Complex care holds the child and the world in view.",
-          "location": "breakdown.deepRead",
-          "why": "It names the both-and move without jargon."
+          "text": "Complex care holds the child and the world in view."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stolen-focus-ch14",
       "number": 14,
       "title": "Cause Twelve: The Confinement of Our Children, Both Physically and Psychologically",
@@ -3903,8 +3686,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Peter Gray gives the claim a research base. The near miss treats free play as nostalgia, which misses the named psychologist and his developmental focus.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3916,8 +3698,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Free play trains self-direction because children choose goals and rules. The adult-led near misses keep focus inside instruction instead.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3929,8 +3710,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Unstructured play includes rule-making and conflict repair. Treating the quarrel as empty disorder misses the social attention being practiced.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3942,8 +3722,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Let Grow is the named cultural reform example. The private-family answer may help one child, but it does not change the shared norm.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3955,8 +3734,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Skenazy is the named advocate linked with childhood independence. The other choices either shift the role to Gray or erase the public figure.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q06",
@@ -3968,8 +3746,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Physical confinement includes lost outdoor and independent movement. The screen-only reading drops the body and real-world practice from the claim.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -3981,8 +3758,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Psychological confinement is adult overstructure. A full schedule can hide the lack of self-directed decision practice.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3994,8 +3770,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Screens can occupy the space left by lost free play. The wrong extremes either separate the trends completely or make screens the only cause.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -4007,8 +3782,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reasonable freedom is not neglect. The free-play repair asks for manageable risk with support, not total protection or adult withdrawal.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4051,7 +3825,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Leave Room for Play",
         "coreSkill": "Practice spotting the moment you are about to fill a child's space for them. Leave Room for Play means you mark the cue, hold back one adult script, and let a safe patch of self-direction begin. The skill is not absence; it is watchful support with room inside it.",
         "ifThenPlans": [
           {
@@ -4076,19 +3849,13 @@
       },
       "memorableLines": [
         {
-          "text": "Play is attention practice.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's main reversal into five words."
+          "text": "Play is attention practice."
         },
         {
-          "text": "A busy child is not always a free child.",
-          "location": "breakdown.deepRead",
-          "why": "It separates healthy activity from adult overstructure."
+          "text": "A busy child is not always a free child."
         },
         {
-          "text": "Reasonable freedom is care with room inside it.",
-          "location": "breakdown.fullRead",
-          "why": "It protects the chapter from both neglect and overcontrol."
+          "text": "Reasonable freedom is care with room inside it."
         }
       ]
     }

@@ -21,1230 +21,8 @@
       "occupation-and-ownership-fit"
     ]
   },
-  "productionManifest": {
-    "schemaVersion": "chapterflow-production-manifest-v2",
-    "contentId": "sha256:22308a7bbe7da512d35d56037d02a00954e5a2caa03af51576bfadb0cb651a80",
-    "payloadHash": "sha256:22308a7bbe7da512d35d56037d02a00954e5a2caa03af51576bfadb0cb651a80",
-    "payload": {
-      "schemaVersion": "chapterflow-production-manifest-payload-v2",
-      "bookId": "the-millionaire-next-door",
-      "packageSchemaVersion": "chapterflow-v21-authored",
-      "book": {
-        "title": "The Millionaire Next Door",
-        "author": "Thomas J. Stanley and William D. Danko",
-        "categories": [
-          "Investing"
-        ],
-        "tags": [
-          "balance-sheet-wealth",
-          "defensive-consumption",
-          "resource-allocation-discipline",
-          "vehicle-status-trap",
-          "adult-child-subsidy-dependence",
-          "selective-family-subsidies",
-          "affluent-market-service-niches",
-          "occupation-and-ownership-fit"
-        ],
-        "contentOwner": "chapterflow"
-      },
-      "canonicalIndex": {
-        "path": "state/indexes/the-millionaire-next-door.json",
-        "semanticHash": "sha256:46c322cf4eb2d9a9af101f3e61a7eb531ae9433576e6e62c244fbe2aa0bc8672",
-        "chapters": [
-          {
-            "chapterId": "the-millionaire-next-door-ch01",
-            "chapterNumber": 1,
-            "chapterTitle": "Meet the Millionaire Next Door"
-          },
-          {
-            "chapterId": "the-millionaire-next-door-ch02",
-            "chapterNumber": 2,
-            "chapterTitle": "Frugal Frugal Frugal"
-          },
-          {
-            "chapterId": "the-millionaire-next-door-ch03",
-            "chapterNumber": 3,
-            "chapterTitle": "Time, Energy, and Money"
-          },
-          {
-            "chapterId": "the-millionaire-next-door-ch04",
-            "chapterNumber": 4,
-            "chapterTitle": "You Aren't What You Drive"
-          },
-          {
-            "chapterId": "the-millionaire-next-door-ch05",
-            "chapterNumber": 5,
-            "chapterTitle": "Economic Outpatient Care"
-          },
-          {
-            "chapterId": "the-millionaire-next-door-ch06",
-            "chapterNumber": 6,
-            "chapterTitle": "Affirmative Action, Family Style"
-          },
-          {
-            "chapterId": "the-millionaire-next-door-ch07",
-            "chapterNumber": 7,
-            "chapterTitle": "Find Your Niche"
-          },
-          {
-            "chapterId": "the-millionaire-next-door-ch08",
-            "chapterNumber": 8,
-            "chapterTitle": "Jobs: Millionaires versus Heirs"
-          }
-        ]
-      },
-      "chapters": [
-        {
-          "chapterId": "the-millionaire-next-door-ch01",
-          "chapterNumber": 1,
-          "title": "Meet the Millionaire Next Door",
-          "readerContentHash": "sha256:ae92c7e2725b971860a8332793776d0b7abeb8f0feb8b7c29131f55e36ed67da",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-millionaire-next-door/20260627T001315646Z-6d64d7c4-7dec-4045-a7c5-5b9e5a11f0eb/sidecars/source/ch01.source.json",
-            "semanticHash": "sha256:d22138af9d5bcce3eec9e58aede084c265a6dbabcc84e1114b6a53cf5a04bf8b",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-millionaire-next-door-ch01.v21-native.chapter.json",
-            "semanticHash": "sha256:0888abd536921220d2170ea74d728661f7d53befbc3f3835540d2a6ce0c59230",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "885025563b1a36b9244f0ef9e73393e973fd17942b5f01f2f5bf5288a27928de"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-millionaire-next-door-ch01.qc.json",
-            "semanticHash": "sha256:33ca13cb03be20b909e624dcbd0401ae02aef496d7e6ba7648d2115886826ec1",
-            "roundId": "r20260627012249-b1cda1",
-            "contentHash": "c959c77c3368690a",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260627012249-b1cda1",
-            "reviewedAt": "2026-06-27T01:27:35.413Z"
-          }
-        },
-        {
-          "chapterId": "the-millionaire-next-door-ch02",
-          "chapterNumber": 2,
-          "title": "Frugal Frugal Frugal",
-          "readerContentHash": "sha256:9db044ddd2f55e3fba23d3bae1043bde5be6976ecadc250ef9a7f866d90a9ff7",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-millionaire-next-door/20260627T001315646Z-6d64d7c4-7dec-4045-a7c5-5b9e5a11f0eb/sidecars/source/ch02.source.json",
-            "semanticHash": "sha256:d317c44f5cc9fabe102f8d60dc696ef949f40a4461055ff180e6ca032f69b031",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-millionaire-next-door-ch02.v21-native.chapter.json",
-            "semanticHash": "sha256:4f378f718eee48ae0cee20ee4b11f36a8c2a74de6c5b6130382cd19ad4a9853b",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": null
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-millionaire-next-door-ch02.qc.json",
-            "semanticHash": "sha256:5312b2c6c89496acaac69a7f0f66419e82d77f9cc8372628d8c6c2b11488b930",
-            "roundId": "r20260627010044-dd1d24",
-            "contentHash": "b234911a4b7c6607",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260627010044-dd1d24",
-            "reviewedAt": "2026-06-27T01:06:49.768Z"
-          }
-        },
-        {
-          "chapterId": "the-millionaire-next-door-ch03",
-          "chapterNumber": 3,
-          "title": "Time, Energy, and Money",
-          "readerContentHash": "sha256:9474a1c4333cc422240aac95529119ac426589147d7388524f88a2c2f38b2c96",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-millionaire-next-door/20260627T001315646Z-6d64d7c4-7dec-4045-a7c5-5b9e5a11f0eb/sidecars/source/ch03.source.json",
-            "semanticHash": "sha256:c070d5bac2704c16b054b7fdb51a7655d572aef14d9609dcec5e7401cddab858",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-millionaire-next-door-ch03.v21-native.chapter.json",
-            "semanticHash": "sha256:f9219a0d385fa589d7f9cc1aa039582a0acfc0f5bdbd3241918e616e855b0d5b",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:dc4aa3040bbf758bad8094cee9b3c085618ec74b4dfb616127549193f474a265"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-millionaire-next-door-ch03.qc.json",
-            "semanticHash": "sha256:76b227de14e9654636f8db28d0a99760cb7f1ee2253c7ea3b2786d3421d982dc",
-            "roundId": "r20260627010044-dd1d24",
-            "contentHash": "296d5e4925eb9860",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260627010044-dd1d24",
-            "reviewedAt": "2026-06-27T01:06:49.769Z"
-          }
-        },
-        {
-          "chapterId": "the-millionaire-next-door-ch04",
-          "chapterNumber": 4,
-          "title": "You Aren't What You Drive",
-          "readerContentHash": "sha256:036006a2fcacd9b4bae7b7428acc81d5627ab3c7e331324287fae1e6efae6a84",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-millionaire-next-door/20260627T001315646Z-6d64d7c4-7dec-4045-a7c5-5b9e5a11f0eb/sidecars/source/ch04.source.json",
-            "semanticHash": "sha256:c62ac118bc06cb1d6167e4543690da497a907716afcda8e85e325efd06193fff",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-millionaire-next-door-ch04.v21-native.chapter.json",
-            "semanticHash": "sha256:ec21eda1091886f5dc25c5ce9851c9afff6caf74bfd26a4c223769231a7c96b4",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": null
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-millionaire-next-door-ch04.qc.json",
-            "semanticHash": "sha256:8d050c9480ff2f746163f67e116676918fda9124b64e56b3a5d97c49aefa4e12",
-            "roundId": "r20260627010044-dd1d24",
-            "contentHash": "b77df352f9e7bbc6",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260627010044-dd1d24",
-            "reviewedAt": "2026-06-27T01:06:49.769Z"
-          }
-        },
-        {
-          "chapterId": "the-millionaire-next-door-ch05",
-          "chapterNumber": 5,
-          "title": "Economic Outpatient Care",
-          "readerContentHash": "sha256:82ec071d0b0fb46e05a1c9ec70e2e9c251ad15c47f41755461f637538277e600",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-millionaire-next-door/20260627T001315646Z-6d64d7c4-7dec-4045-a7c5-5b9e5a11f0eb/sidecars/source/ch05.source.json",
-            "semanticHash": "sha256:a8acd2c136c05aa4a9f2d7dde8c3346f67a3b892e4e00028cf4ebf47fc57f6fa",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-millionaire-next-door-ch05.v21-native.chapter.json",
-            "semanticHash": "sha256:89d0a45232e1607fe9fdf834b7809dd3f2061c6e27a2185ae2e6ceb238bee27c",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "d16adb68401c3d6e0a3a76f8d642edeb36cb0e83ec9ab23d25ebc23f70d75f9a"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-millionaire-next-door-ch05.qc.json",
-            "semanticHash": "sha256:7cfbaa070f8086d69af4f0e72cb3d96bf6e83e54777f9c14f251c0fcb2e3f793",
-            "roundId": "r20260627014117-c4f381",
-            "contentHash": "0cc34f903b76a75f",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260627014117-c4f381",
-            "reviewedAt": "2026-06-27T01:46:02.286Z"
-          }
-        },
-        {
-          "chapterId": "the-millionaire-next-door-ch06",
-          "chapterNumber": 6,
-          "title": "Affirmative Action, Family Style",
-          "readerContentHash": "sha256:aa2286b8c14d9c400dae1b7581b7dad915b1a51d92e284b5f6a3f28b01994c11",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-millionaire-next-door/20260627T001315646Z-6d64d7c4-7dec-4045-a7c5-5b9e5a11f0eb/sidecars/source/ch06.source.json",
-            "semanticHash": "sha256:197d657727df63e5ebfe78afe0b47111d2c59c688bd64643b625f32f4bdb89cd",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-millionaire-next-door-ch06.v21-native.chapter.json",
-            "semanticHash": "sha256:fc73c83830a9321dc89204c9467cf504b6fcb394b50a4f6dd31824eff15dab59",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": null
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-millionaire-next-door-ch06.qc.json",
-            "semanticHash": "sha256:8f34f71b856e5541e0d24c8e319ec908aa80c47e0fe51b8c12d97d2038ea7f04",
-            "roundId": "r20260627014710-4ebb46",
-            "contentHash": "90d85bc3783b9ef4",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260627014710-4ebb46",
-            "reviewedAt": "2026-06-27T01:51:57.489Z"
-          }
-        },
-        {
-          "chapterId": "the-millionaire-next-door-ch07",
-          "chapterNumber": 7,
-          "title": "Find Your Niche",
-          "readerContentHash": "sha256:b0eed701d23194cc9d30e5c2695f2a584b006308a0d448cd0958dac4856cd8e6",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-millionaire-next-door/20260627T001315646Z-6d64d7c4-7dec-4045-a7c5-5b9e5a11f0eb/sidecars/source/ch07.source.json",
-            "semanticHash": "sha256:79667ad9c791f50a4c2d573adb70c98e7603088dd4766c012d049101af8ccb95",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-millionaire-next-door-ch07.v21-native.chapter.json",
-            "semanticHash": "sha256:22fdf087d8d9f2a8626357fa11c9d327d9ddb5168340aa9ee6418be310744598",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "manual-ch07-source-v2"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-millionaire-next-door-ch07.qc.json",
-            "semanticHash": "sha256:a9261144291bb8c381d69378dfc34f04926c5587cffa6d547f5a89dcf31e2ade",
-            "roundId": "r20260627010044-dd1d24",
-            "contentHash": "5ca94b082d2d90c3",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260627010044-dd1d24",
-            "reviewedAt": "2026-06-27T01:06:49.770Z"
-          }
-        },
-        {
-          "chapterId": "the-millionaire-next-door-ch08",
-          "chapterNumber": 8,
-          "title": "Jobs: Millionaires versus Heirs",
-          "readerContentHash": "sha256:d61edd80d5b3134434d3df85bc0e6bb29d2ca548a3085807d6bbf6e66563cd90",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-millionaire-next-door/20260627T001315646Z-6d64d7c4-7dec-4045-a7c5-5b9e5a11f0eb/sidecars/source/ch08.source.json",
-            "semanticHash": "sha256:75b4878011a7e0d36747c6af36ccd21d082c9ddf4008cd9580218b913df9f95e",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-millionaire-next-door-ch08.v21-native.chapter.json",
-            "semanticHash": "sha256:4cd366133fba33f7796d84958ff38f67c46a0f1ba0233ccd1b8b7bcc525a2a25",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": null
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-millionaire-next-door-ch08.qc.json",
-            "semanticHash": "sha256:35d8d9c00fbdd272862c7efad729339ffb44c92b2ac9ccd340142f4b1b0cf166",
-            "roundId": "r20260627010044-dd1d24",
-            "contentHash": "e519a2f9c8451131",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260627010044-dd1d24",
-            "reviewedAt": "2026-06-27T01:06:49.770Z"
-          }
-        }
-      ],
-      "sourceRealityEvidence": {
-        "bookId": "the-millionaire-next-door",
-        "policyResult": "required-and-verified",
-        "classification": "new-source-v2",
-        "record": {
-          "path": ".chapterflow/source-verify-the-millionaire-next-door.md",
-          "schemaVersion": "source-verify-record-v1",
-          "semanticHash": "sha256:a50d650017ada4574ac9825e7eabb1f869a5623cfdb84a35bc7f4fdbaeb8dd79",
-          "bookId": "the-millionaire-next-door",
-          "verifier": null,
-          "verifiedAt": null
-        },
-        "exemption": null
-      },
-      "evidencePolicy": {
-        "sourceEvidence": "required",
-        "authoringEvidence": "required-for-source-v2",
-        "sourceReality": "required-for-source-v2",
-        "qcAttestation": "required"
-      },
-      "versions": {
-        "canonicalJson": "canonical-json-sha256-v1",
-        "readerContentHash": "reader-content-canonical-sha256-v1",
-        "readerContentStripRules": "reader-content-strip-v2",
-        "promptBundle": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:1f74ce32d49a95810d5c69c618155227d6e8a9333a084c81a5960826cc5c080c",
-          "fileCount": 36,
-          "files": [
-            {
-              "path": "agent-prompts/BOOK-AUTOPILOT-CODEX-SESSION.md",
-              "sha256": "sha256:0eecbc8465dd645f87759253609b1ba1520051870c52ba7ed27cf2e325d2fe0e"
-            },
-            {
-              "path": "agent-prompts/FIELD-PURPOSE-CONTRACTS.md",
-              "sha256": "sha256:855bc491550ea9da1ab8ff27f02250b6c1db816ff7e7fe6d2adeac5a56a5b022"
-            },
-            {
-              "path": "agent-prompts/GENERATE-A-BOOK-CODEX-SESSION.md",
-              "sha256": "sha256:402bd7a9e06b57eb159795c29b2361f90730d20594896de8f8f3a5242e2ef3cd"
-            },
-            {
-              "path": "agent-prompts/PLAYBOOK-GENERATE-A-BOOK.md",
-              "sha256": "sha256:bb9c1ae165f28398e3e9839847f47b3e56ec6328b1ff3782cc646eee919fa231"
-            },
-            {
-              "path": "agent-prompts/PUBLISH-AFTER-QC-CODEX-SESSION.md",
-              "sha256": "sha256:9935baa797e094d4e2007b3dfe4d330e317b82460d21c07c99dc9d3f2f0c7d1f"
-            },
-            {
-              "path": "agent-prompts/QC-AUTO-CODEX-SESSION.md",
-              "sha256": "sha256:76316778015be0fb4113c5784aa16061ad82f79d7487e1ff4046e67541391b2e"
-            },
-            {
-              "path": "agent-prompts/QC-CODEX-SESSION.md",
-              "sha256": "sha256:da1ebae297f359eb43f4bed9086bde53744679d6735e8abc0f7a1f5c0d8af1e3"
-            },
-            {
-              "path": "agent-prompts/QC-ORCHESTRATE-CODEX-SESSION.md",
-              "sha256": "sha256:fc8ff25b7521265cad2f26c2bb154549b4821f0440ce33bfab39bd821e90c07e"
-            },
-            {
-              "path": "agent-prompts/QC-PLAYBOOK.md",
-              "sha256": "sha256:2dfeb6d744015a9eec906f848c6ab53fa015c82f8f1733979c8ef4148168b90d"
-            },
-            {
-              "path": "agent-prompts/QC-SESSION-PROMPT.md",
-              "sha256": "sha256:f7736d3916ed66f0eb558c8cd076d39a7b1be06ba5c1992015d1b8ea5cf4371f"
-            },
-            {
-              "path": "agent-prompts/REPAIR-CODEX-SESSION.md",
-              "sha256": "sha256:b0e93e248432dae3412c2486b2f094cdd57a90cd0931410541dbd4b3ffb46b47"
-            },
-            {
-              "path": "agent-prompts/RESEARCH-CODEX-SESSION.md",
-              "sha256": "sha256:600f58db777edaf51eee63e145b45dc1c8c4a6cfcde542c5f488fa14ed7554eb"
-            },
-            {
-              "path": "agent-prompts/RUN-A-BOOK.md",
-              "sha256": "sha256:e3e18b68e4f230bda8f64b42db6c78a703f9b3033516a7f5fd4fa5882cd42d42"
-            },
-            {
-              "path": "agent-prompts/STEP-1-RESEARCH.md",
-              "sha256": "sha256:d897e2595c849397b685f0cfb1eda5cfbc3ddbf4ece76124fdad312c62ea6459"
-            },
-            {
-              "path": "agent-prompts/STEP-2-WRITE-CHAPTERS.md",
-              "sha256": "sha256:2379df7ab564e52d5fc7fd96b9ae33d97bc8ced6105ce9fcb2541f2a7cf7ceb7"
-            },
-            {
-              "path": "agent-prompts/STEP-3-FINALIZE.md",
-              "sha256": "sha256:e0fff66309b550eaf3974fbbda9308278bd1f6bdd38fc0ff805a3568c5a01ac9"
-            },
-            {
-              "path": "agent-prompts/WRITE-ORCHESTRATE-CODEX-SESSION.md",
-              "sha256": "sha256:f98cf09062f4467bf00dadbecfe8ff35eddc8761a4e72126a98a48fcde3b959e"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-CHAPTER.md",
-              "sha256": "sha256:a18da21713fc6200b57e93edf352173e2eba3c0895bb97157517b3cb111175eb"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-FINALIZE.md",
-              "sha256": "sha256:57a5df9387c9050ee7c7d71e3a51d5ec1aaafabcba2befcd36133ed0aa2e1043"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-RESEARCH.md",
-              "sha256": "sha256:3d6f425fe52a0c50cef493a7f1443d51485e870605117b49c6d8dd0f52f58f76"
-            },
-            {
-              "path": "prompts/categorizer.system.md",
-              "sha256": "sha256:41933513807e03e65d74c280b5df092e36c1367b51385daeb3eba5e19a3af6e6"
-            },
-            {
-              "path": "prompts/curriculum-planner.system.md",
-              "sha256": "sha256:c325d544a978ed0d41d07b5d48cfea41cda31b32a369817dbd14eb08c8254359"
-            },
-            {
-              "path": "prompts/editor-in-chief.system.md",
-              "sha256": "sha256:5ea77e3745a0e41fd653dd1168865476abe3d2362623c670d318099cd48d11ba"
-            },
-            {
-              "path": "prompts/example-curator.system.md",
-              "sha256": "sha256:0d6ad29a3a1cdf494c489bc25a0a6b2e1ec3a043e4b093faede02cb0f2c70479"
-            },
-            {
-              "path": "prompts/line-editor.system.md",
-              "sha256": "sha256:ff761ae79702a1d2874743b1f5ee9782f427949ccb129dbf130577d98a9e6398"
-            },
-            {
-              "path": "prompts/memorable-lines.system.md",
-              "sha256": "sha256:b3d198c05bbe4e445ff1ecf5ea3704d62e79756086114a162cbd4cc5a6bf80c9"
-            },
-            {
-              "path": "prompts/researcher-bibliography.system.md",
-              "sha256": "sha256:328eefbdacc9fd850c5b719bdf988bac9b4a83fee495278e0cc5f78a7158234a"
-            },
-            {
-              "path": "prompts/researcher-chapter.system.md",
-              "sha256": "sha256:3ac00906eaa3263e8fdbd20ccc7e7a84b07fe1e992dec7dd24b245899dfaa550"
-            },
-            {
-              "path": "prompts/try-this-now.system.md",
-              "sha256": "sha256:944542af9172d409cf7094a52896c86af396ee51ab09e9ccf134c9706f3a23c7"
-            },
-            {
-              "path": "prompts/voice-pass.system.md",
-              "sha256": "sha256:8f8b3eebfde6f1f36b6a9c9cb3c9258ff95ed028ba93eb7422f25ef453507086"
-            },
-            {
-              "path": "prompts/writer-breakdown.system.md",
-              "sha256": "sha256:1ff4d158c9d964fdfc6b029c1a86efa4c61bd615c3c5c614be60f3ac9a887b60"
-            },
-            {
-              "path": "prompts/writer-cards.system.md",
-              "sha256": "sha256:ad966d203cf2f692b60b32fba51e4927214a32edfd2bee17ca068c72db3a9ace"
-            },
-            {
-              "path": "prompts/writer-example.system.md",
-              "sha256": "sha256:401bb33585ac2ac14b0580ebacaaafe2ab7a983be99d57609057958d4ebd494c"
-            },
-            {
-              "path": "prompts/writer-hook.system.md",
-              "sha256": "sha256:a25803598031232a7b9980bc3b7e02f8f4c924956c01050559eff6713f94f0fc"
-            },
-            {
-              "path": "prompts/writer-implementation-plan.system.md",
-              "sha256": "sha256:86fb5ef91f3c5f31d67dd3239056dc9ef2b27d548fc4c441adf89d570c5546a3"
-            },
-            {
-              "path": "prompts/writer-quiz.system.md",
-              "sha256": "sha256:1a1e448f989fb919766610a5c415d08d02e5626683fe34677a2193bc68f88cad"
-            }
-          ]
-        },
-        "configBundle": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:0e01499682288944fb6909288b96acef6914afa21641c0044183519334041397",
-          "fileCount": 16,
-          "files": [
-            {
-              "path": "config/author-voice-profiles.json",
-              "sha256": "sha256:ad50ef88d74c6045746a587477307704d8611fa7b80ebe48c0371237764a1c1b"
-            },
-            {
-              "path": "config/banned-connectives.json",
-              "sha256": "sha256:1e83ec50dd880d8915fa14792b057f1e2eea6e847672d496b2e6737b3f4b5949"
-            },
-            {
-              "path": "config/banned-phrases.json",
-              "sha256": "sha256:3de6d00688cf467a98d9645768585238ac63d7bde8c3b711a23d192f7352932d"
-            },
-            {
-              "path": "config/categories.json",
-              "sha256": "sha256:1df0501dea9183377984bcc9e204f7388f3fa684f7466626fc0e3126b1756c3f"
-            },
-            {
-              "path": "config/common-given-names.json",
-              "sha256": "sha256:61728f8bc4b137cd996096149ae18900911ca556df7c1a3f94a51e2fd31e378d"
-            },
-            {
-              "path": "config/critic-rubric.json",
-              "sha256": "sha256:e08085eb19f450338aa678a6db89e73a23f3a553b75542d9f5bd38a9c956627a"
-            },
-            {
-              "path": "config/meta-patterns.json",
-              "sha256": "sha256:83adbb89df9dab39c9861866e1c17e4e2b1d5a56d41ea9d211e8cd20a9639c2f"
-            },
-            {
-              "path": "config/name-bank.json",
-              "sha256": "sha256:23d8ea9ff61c3e44ec3fb6543aab24110eea5cf50b2e1de93ff06a42b0d7ff5a"
-            },
-            {
-              "path": "config/name-policy.json",
-              "sha256": "sha256:7107daf8d1084b04255351f136e0b7d750d72f4d7a4ab76257e3488b06f5ef86"
-            },
-            {
-              "path": "config/named-frameworks.json",
-              "sha256": "sha256:cc0da18fb0f04774f0be93067c67d69baefcc60a49dac4817d0d3e33c3758aae"
-            },
-            {
-              "path": "config/pedagogy-palettes.json",
-              "sha256": "sha256:f7ceccf85d7f1dd49fe35c13c7c0a4ee721c17a0b09e4c641319797100f65d58"
-            },
-            {
-              "path": "config/scenario-openers.json",
-              "sha256": "sha256:ed7fe8f62aa0c32242baa8bf82416a9f26d5b33d4a67c17be45e48144da9eb82"
-            },
-            {
-              "path": "config/scene-mechanisms.json",
-              "sha256": "sha256:6ffbcf6098d1ab96b67317fd617903f08f609e00b0ceea6c494a588a2205f878"
-            },
-            {
-              "path": "config/scene-shapes.json",
-              "sha256": "sha256:07efd36415fd4b64761fcee5c06ef637d1041d2a5eda7b7d80ed28c982d8ada6"
-            },
-            {
-              "path": "config/stakes-palette.json",
-              "sha256": "sha256:92d60229937b530c73773c90daea8ec2ad12fdbd9bfd25631a6df220e22f088b"
-            },
-            {
-              "path": "config/venue-palette.json",
-              "sha256": "sha256:8ba041c9d34f93f821519a0cbdab73aedc308866d49241f16c02556f527415f8"
-            }
-          ]
-        },
-        "codeFingerprint": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:46113c7b7d980e4c01d4f02e539a7bab85289dc247943648e119b60858181bf4",
-          "fileCount": 166,
-          "files": [
-            {
-              "path": "package-lock.json",
-              "sha256": "sha256:2aeb73471797ac4fd9286327997806c894657716271000d34d9acc6f45a15e84"
-            },
-            {
-              "path": "package.json",
-              "sha256": "sha256:f1683aac5b4b7e865e138dfbb4532d458d0c7dd90f8944c0637b028d83ad5298"
-            },
-            {
-              "path": "src/agents/autoCategorize.ts",
-              "sha256": "sha256:8497cd1a40734f6bfe9fe59e4d1dd74f9f0fa1a90ad91becce2b7e5e7165fbb7"
-            },
-            {
-              "path": "src/agents/categorizer.ts",
-              "sha256": "sha256:c6686634332a0efcd6721801c77c351e78930c935f5f0dff65ff6146b1d3d765"
-            },
-            {
-              "path": "src/agents/curriculum-planner.ts",
-              "sha256": "sha256:b0838ebbf2d162b16ede327f09adc02074203daf4ccd16cc56e98af32d1b4984"
-            },
-            {
-              "path": "src/agents/editor-in-chief.ts",
-              "sha256": "sha256:90f9fc0958255c81ff2672458624c809f1455e3432c4c293e98e44f4e75afcbe"
-            },
-            {
-              "path": "src/agents/line-editor.ts",
-              "sha256": "sha256:c0f804e0bd940552b4a351b2528380f2e1c284173c96b44691e4570fd1646987"
-            },
-            {
-              "path": "src/agents/memorable-lines.ts",
-              "sha256": "sha256:5eca291142f6b015c1ac2e99c233c55dbf828dd6d664e1707e80fe1d09986573"
-            },
-            {
-              "path": "src/agents/researcher-bibliography.ts",
-              "sha256": "sha256:efd8474cd56bc643badeedd5bf427df4314a574d44eb84c52831fbd3970811fd"
-            },
-            {
-              "path": "src/agents/researcher-chapter.ts",
-              "sha256": "sha256:fabc0fd3a046aedd992c89b5f11267b5023db331396347bfc9fa942a25848e32"
-            },
-            {
-              "path": "src/agents/try-this-now.ts",
-              "sha256": "sha256:e14bb4063c4d66233331bacc9e993c44c8cace50abf83d17c0e06443ba631fbd"
-            },
-            {
-              "path": "src/agents/voice-pass.ts",
-              "sha256": "sha256:f46637ba9ea89f5080b0d7ed03954ec4562fb934ba2677c77ef5d74a8059e79e"
-            },
-            {
-              "path": "src/agents/writer-breakdown.ts",
-              "sha256": "sha256:157f87dc4ab5b501e9c348ce4b9cb4ef613e0e2610a6cb51e4412329330f135e"
-            },
-            {
-              "path": "src/agents/writer-cards.ts",
-              "sha256": "sha256:28f3e93b5e762fafa8f60c1cc9b6bc55e843367c69d63133cb6fcc824827fd2a"
-            },
-            {
-              "path": "src/agents/writer-example.ts",
-              "sha256": "sha256:22e27e23047110602252d5109306cf180a665e58843ba4c2707b4d09fd09f08b"
-            },
-            {
-              "path": "src/agents/writer-hook.ts",
-              "sha256": "sha256:88d1a25238ef9d84f6fd57c5f5185524fe11129763d1a4692843c4678035fc5b"
-            },
-            {
-              "path": "src/agents/writer-implementation-plan.ts",
-              "sha256": "sha256:2276512d7838e3eedf7906a5326c3c9915c275a4282cdf3c5cb5c92b5afacfac"
-            },
-            {
-              "path": "src/agents/writer-quiz.ts",
-              "sha256": "sha256:dc30ba5e073f133e485b64f6aed7319b7b6168186ac8da5f3f28fc4874194f39"
-            },
-            {
-              "path": "src/assembler.ts",
-              "sha256": "sha256:92e405e1d1b29433cd6e602799711a292dfe2575118b67209f4840b9d491ea42"
-            },
-            {
-              "path": "src/cache/stageCache.ts",
-              "sha256": "sha256:fc655ae2df40e5aec46b867f068f677195547f7f254cace247bcfb4d4b6bfe65"
-            },
-            {
-              "path": "src/claudeClient.ts",
-              "sha256": "sha256:e5a29140ab757083a13e05833804ba2a93db5e572ed0cdc8381c370e19996338"
-            },
-            {
-              "path": "src/cli.ts",
-              "sha256": "sha256:d303cffeffaf1f4c93a6a03b40ac503df95dabc0b9b203f4aa6a3075fe194c7c"
-            },
-            {
-              "path": "src/cost-tracker.ts",
-              "sha256": "sha256:9f6413f09ce238af382706b2e65ba71d4a3fed79e59bc636858c0615885405d6"
-            },
-            {
-              "path": "src/critics/antiSalting.ts",
-              "sha256": "sha256:c80540cbf5d5115f27443559298af0a8d8af743ee9331d17bbd3ed1bcbb0b0b1"
-            },
-            {
-              "path": "src/critics/authoringContract.ts",
-              "sha256": "sha256:6dd1d597c3f4824cb711f1e8aefb62bf9f4c7bfde175832ed7311adc1f46d659"
-            },
-            {
-              "path": "src/critics/bookGate.ts",
-              "sha256": "sha256:5c3ef00375679b2b59e3a0deb011494fec435cf6a81a8197a095d5975568aad3"
-            },
-            {
-              "path": "src/critics/bookPatternAudit.ts",
-              "sha256": "sha256:dc5aeaf6abb63eda1eec60c92ae409fe1434a6ca2cb97bb0103f07b4dc4f5a5c"
-            },
-            {
-              "path": "src/critics/bookRepetition.ts",
-              "sha256": "sha256:e0a01800de712962d60ea05d6cf5a06466e38839635a8f5443efd5c482cff838"
-            },
-            {
-              "path": "src/critics/catalogAudit.ts",
-              "sha256": "sha256:553bd8e397cab5faf9e0381bb807d3f95212a85a56fdd7774539b14f4c572a42"
-            },
-            {
-              "path": "src/critics/crossBookSignatureAudit.ts",
-              "sha256": "sha256:0c7f8ea7d9d9888d49ba7e0db0e8eb6ae0e25670257dd4a223f0ca0f574a3edb"
-            },
-            {
-              "path": "src/critics/evidenceIntegrity.ts",
-              "sha256": "sha256:768dbd54c11466714e2de56d873c37d269df1d65eeff1ab5ac92b97b0070ab6a"
-            },
-            {
-              "path": "src/critics/evidenceWitness.ts",
-              "sha256": "sha256:7528811aae991587ed2e9fe7ecf3f1682bafb832bdc0d9a8e1dc2e55be4e5264"
-            },
-            {
-              "path": "src/critics/experiencePlan.ts",
-              "sha256": "sha256:7fea5a2fceb2721b9b619fcec4d98992ab09b78cfe9529e2c73b66a87c17e4e5"
-            },
-            {
-              "path": "src/critics/finalGate.ts",
-              "sha256": "sha256:31a8fda6b158aa3d7f9a2f7ba81c737de9a31f6b7b7f733a95c407caf98164b2"
-            },
-            {
-              "path": "src/critics/groundedNumbers.ts",
-              "sha256": "sha256:27a6e3f190061fc41c3f2a684cd33b803dd3f5de5acabb5cac88f0bad34a22d3"
-            },
-            {
-              "path": "src/critics/integrity.ts",
-              "sha256": "sha256:b2aff233555a5ec5afdeec00cb31bd537facfcd3a1189ac0ac33c17201e989a1"
-            },
-            {
-              "path": "src/critics/intraBook.ts",
-              "sha256": "sha256:d01ee51b61bdcb3a91ab837ec2074a43d5c957c6f6f1b71aa86625dec3ba3d8d"
-            },
-            {
-              "path": "src/critics/intraBookFieldSimilarity.ts",
-              "sha256": "sha256:bc45858ccc90bf6e3168d8e97cafd3bf81f802b79a2ca093dca176f70d2fc12a"
-            },
-            {
-              "path": "src/critics/intraBookQuizSimilarity.ts",
-              "sha256": "sha256:69d5ecbd0539a723291ff79d41ab47cf43520a4981deb85148c70866262e40b8"
-            },
-            {
-              "path": "src/critics/mechanicalSeam.ts",
-              "sha256": "sha256:4250e762e74b53cefa554e965d3a4757cd305d54657c8718ee77bad00a57fbc3"
-            },
-            {
-              "path": "src/critics/misattribution.ts",
-              "sha256": "sha256:c57e9e161cff57b90ca98b4db6c895a544ecdbca17f2492854133c6e0ff55538"
-            },
-            {
-              "path": "src/critics/namedEnumeration.ts",
-              "sha256": "sha256:0a79617f048ee485589ca0e8c86940e861a551b9692b4ff24aa6de8f1eb1b116"
-            },
-            {
-              "path": "src/critics/narrative.ts",
-              "sha256": "sha256:dd37c62f7e9966f0e158515a622367c4a43d798f297f310d74212a1dbec2ffea"
-            },
-            {
-              "path": "src/critics/outcomeVariety.ts",
-              "sha256": "sha256:111b9238663624a470d75d4ed357f6086494bba0b92eafe5eaaa05fdd0fd4014"
-            },
-            {
-              "path": "src/critics/pedagogy.ts",
-              "sha256": "sha256:060e0f223385126089e6bc2c6469596f572527acb675446dd5e544fff2f971bf"
-            },
-            {
-              "path": "src/critics/plainLanguage.ts",
-              "sha256": "sha256:6164ed5dd743a0e46cf1576087829daac2bd33a3498e1b52dacd8249110855cf"
-            },
-            {
-              "path": "src/critics/prose.ts",
-              "sha256": "sha256:1e824372385ba368d3697252d8f80ce6230a8c29a16cf8b0c86cb8a3d2adaec5"
-            },
-            {
-              "path": "src/critics/qcAttestation.ts",
-              "sha256": "sha256:d27fca01c676f0d96d96cd7c567e54b1bdc9cbca377228e6d4bc358fb628bd1e"
-            },
-            {
-              "path": "src/critics/quizCorrectness.ts",
-              "sha256": "sha256:8f789f09ad25ca27edef9e27c9df2891f95ec92c78a2a53c23217fdd3b2874f9"
-            },
-            {
-              "path": "src/critics/quizKeyGate.ts",
-              "sha256": "sha256:7c3545d5600f649574fecb1c8d390e72984ca98adbc2ef99e859951c802cc99f"
-            },
-            {
-              "path": "src/critics/quizQuality.ts",
-              "sha256": "sha256:6f6a4ab2e05fb62935c88dc9bb7cbf9fc50d730c6dbcd6930e4f33f8ca5aec4f"
-            },
-            {
-              "path": "src/critics/readingLevel.ts",
-              "sha256": "sha256:a3c1b5fa9aaa1c56c1d5e950ce50e37818ea0d1c832a1c11e4721f18f44dcc40"
-            },
-            {
-              "path": "src/critics/register.ts",
-              "sha256": "sha256:95079ac31bb92ebe2477eb36595ca68ec7293f76a9fae5bfd31567e83ff6e0d6"
-            },
-            {
-              "path": "src/critics/runAllCritics.ts",
-              "sha256": "sha256:fd473ae74bbc6041199ed42d9a766a53dedd1fa02ffc45b92831abbfd1a8212b"
-            },
-            {
-              "path": "src/critics/scaffoldLeak.ts",
-              "sha256": "sha256:93bf473a2636d7a8ec066ec116d149e1ab7db93de5ef1532f9a3cf8f269f3d42"
-            },
-            {
-              "path": "src/critics/sceneConcreteness.ts",
-              "sha256": "sha256:1554a233d6d128b424b3cf8f96d763ca85e60c321c96a7c186e9aba5c1d58a20"
-            },
-            {
-              "path": "src/critics/schema.ts",
-              "sha256": "sha256:27e0908090aa280845cb2b3610e295eac388721def1b5840040c48d2a7bed00c"
-            },
-            {
-              "path": "src/critics/semantic/publishableBar.ts",
-              "sha256": "sha256:dffa25d816df2c912e4f1621b953d4b426a689b36785b87b0a9f030ff3e7e851"
-            },
-            {
-              "path": "src/critics/semantic/quizKeyJudge.ts",
-              "sha256": "sha256:a6088b283c8e1065c71b936da16564548094a1f2bfc89fb10db5b24db9234cd6"
-            },
-            {
-              "path": "src/critics/shared.ts",
-              "sha256": "sha256:dffbede8ba6fbcada941343e1f4c6d1a4caaaf9efa448d0508df61dfec36fbb9"
-            },
-            {
-              "path": "src/critics/sourceCoherence.ts",
-              "sha256": "sha256:bd7bb198769be3be204c9694b8c4df7259480c27c0230db7982592176ec5a95f"
-            },
-            {
-              "path": "src/critics/sourceGrounding.ts",
-              "sha256": "sha256:55a7625d5f5021a8b8c42e475552560c38a7b4b7131e450d350a2f83fdfc94ae"
-            },
-            {
-              "path": "src/critics/sourceRealness.ts",
-              "sha256": "sha256:e945e5d2b30e5649cf6469e1b6c8ee70c1affe12a50a263030f17e78c660d380"
-            },
-            {
-              "path": "src/critics/sourceVerify.ts",
-              "sha256": "sha256:0f00e8ce881f514c7ab114eba6dbfd6138a944eef9f3cecfec759188de501cb8"
-            },
-            {
-              "path": "src/critics/supportSectionAudit.ts",
-              "sha256": "sha256:b55b1f501f632d5c4f60a611e99369f77d60eabec079cab8909cc572e05b4730"
-            },
-            {
-              "path": "src/critics/textUtils.ts",
-              "sha256": "sha256:b39890a8535051f286301b9fa72e2940cb6a0f6bdd225002882351cd0e99d180"
-            },
-            {
-              "path": "src/curator/exampleSelector.ts",
-              "sha256": "sha256:b87c8ea06c8f332af6b91a9e83a266b5e7397640aff600e513cd80cac291a08b"
-            },
-            {
-              "path": "src/diagnose.ts",
-              "sha256": "sha256:20506a4da04b28d05317924af66e86971b0fca0522af30aa51e54baa67e30f80"
-            },
-            {
-              "path": "src/generateBook.ts",
-              "sha256": "sha256:b328e7fa5a3e36cd633a2911337ad83dc1bfaae457bfcf01cac1f601ef7f9cf9"
-            },
-            {
-              "path": "src/generateChapter.ts",
-              "sha256": "sha256:e5e3cddd9d58792ece72840572e06c7c5eaeb68050595818856540169024311c"
-            },
-            {
-              "path": "src/generationDegradation.ts",
-              "sha256": "sha256:737f8dc7d7f415709b1111beccf30552bb2530372e930d28a873d17a8b5af7a6"
-            },
-            {
-              "path": "src/lib/atomicWrite.ts",
-              "sha256": "sha256:cd4a80010b539604e8aff522d47ad6aed3cafba7a48193e5b92b0159aab79c3a"
-            },
-            {
-              "path": "src/lib/brief-sanitizer.ts",
-              "sha256": "sha256:9a57da614a3129c0d787f7528380b85a304d86943a2f757383fb4411eae343dc"
-            },
-            {
-              "path": "src/lib/canonicalJson.ts",
-              "sha256": "sha256:9ad6c9a4fc8ff24318f757ef157b91413071cc0bd84ef557b896464c1138512b"
-            },
-            {
-              "path": "src/lib/chapterPaths.ts",
-              "sha256": "sha256:ccc20df4f559e86d3926d69e3ee69d81dc16b96d4fbd4a6522e56da5508aa783"
-            },
-            {
-              "path": "src/lib/chapterSet.ts",
-              "sha256": "sha256:5d8bc25303a34830cc7d76bb90a4a4c1a71444fef55679493f3c2dbd3c65ba4f"
-            },
-            {
-              "path": "src/lib/coprime.ts",
-              "sha256": "sha256:1a9654e7c3284b4ecfeef9988b785263bd2270d8af7c2dc4ec5c7353d470600d"
-            },
-            {
-              "path": "src/lib/fnv1a.ts",
-              "sha256": "sha256:61016dec458c076d322e720e22e92dc4aa37028f789dda46e6d7515f044d2ab7"
-            },
-            {
-              "path": "src/lib/pipelineFingerprint.ts",
-              "sha256": "sha256:0554bcba0938fc754c25c18ad0c05a3f73800bafe1642481cfaa7c80b2cec54f"
-            },
-            {
-              "path": "src/lib/readerContent.ts",
-              "sha256": "sha256:e2b15b8bfd4d5a267e2bb1b3ff960d68a2fc2eceefa27e2b2bc75eaa53fa5de7"
-            },
-            {
-              "path": "src/lib/researchRunManifest.ts",
-              "sha256": "sha256:334eebac804ba1e7a1460a27861109d44589a2bd37cae9b880a06231ccfb4e8e"
-            },
-            {
-              "path": "src/lib/runDirs.ts",
-              "sha256": "sha256:75314e23045e1d701d7b185a60b948f3205159b62e80c97793b02ba3f69ac413"
-            },
-            {
-              "path": "src/lib/strictEnv.ts",
-              "sha256": "sha256:514d00911774ac075c92cba4580431186b4b34abdda3f43229210ae8436e76f5"
-            },
-            {
-              "path": "src/lib/tocContract.ts",
-              "sha256": "sha256:53c68b2c5e376f52e2c0f4507113c628037b41ceffae25d59fe3203d17948be8"
-            },
-            {
-              "path": "src/lib/voiceBible.ts",
-              "sha256": "sha256:2339dc3c959290788f091d3bf6efc817a73ac33b1df8cec06208a561fd12b109"
-            },
-            {
-              "path": "src/librarian/actionMechanismPlan.ts",
-              "sha256": "sha256:efe3a3c449b927e8f6c0d714b5703c143d45dac9fc1005bbf080a0fd81a86cef"
-            },
-            {
-              "path": "src/librarian/answerKeyPlan.ts",
-              "sha256": "sha256:00270cf59e9e4e5ff9fc1d66870f3725bf4ccad9b165530d3cb1b6b83d9f09a0"
-            },
-            {
-              "path": "src/librarian/authoringGuardrails.ts",
-              "sha256": "sha256:07312d442ea536fae75cebf3834a3f02c69657f7978645ac5f9811e36f153bdf"
-            },
-            {
-              "path": "src/librarian/callbackPlan.ts",
-              "sha256": "sha256:35fb7a7f106ab2b354725246074440faeae1fcaebb34b34ef78b55a691e09127"
-            },
-            {
-              "path": "src/librarian/chapterArchetypePlan.ts",
-              "sha256": "sha256:40343341c3a53981d043386615a680dd664a6de1f048747d699ed09df854c246"
-            },
-            {
-              "path": "src/librarian/exemplarPlan.ts",
-              "sha256": "sha256:4a290fff74cdb3b1d0ec9bbad58520a2f098e85005ecf42cc5d3bd67f45f2828"
-            },
-            {
-              "path": "src/librarian/fullReadSkeletonPlan.ts",
-              "sha256": "sha256:40c5d9e0543f8e235048e457c38782b511156d7927786c6a60f9a8b081e12ae8"
-            },
-            {
-              "path": "src/librarian/identityMigration.ts",
-              "sha256": "sha256:a1e7d5b4b8043c062fc998026dab29e43838456d0f4cdc48be7b34126e3d7528"
-            },
-            {
-              "path": "src/librarian/libraryState.ts",
-              "sha256": "sha256:b6dc3455f79f9cefe7961d832276ecc951ed9596e6ae7533d2f0a29506546f9d"
-            },
-            {
-              "path": "src/librarian/namePlan.ts",
-              "sha256": "sha256:bb9799027cbbd96211ab1949515b848373e9c2df493139202283494de6636b0a"
-            },
-            {
-              "path": "src/librarian/namePolicy.ts",
-              "sha256": "sha256:093bfc0933d10eadaeb1ef7d0bdfc4657ca004ee19a4114c441f41d46afdf1b6"
-            },
-            {
-              "path": "src/librarian/openerPlan.ts",
-              "sha256": "sha256:95345b5ddd4574f58d5d8ec215382529543694e0b250bad83f160d82ef5fa56a"
-            },
-            {
-              "path": "src/librarian/pedagogyPlan.ts",
-              "sha256": "sha256:958d6a675678ca723cba38c41cc8766d386d4c90a5f92f952a81c9b7ae0285c8"
-            },
-            {
-              "path": "src/librarian/rhetoricPlan.ts",
-              "sha256": "sha256:8d187af79f123d697e282aeb9820106aaebbf85c5fe4b7ee6835f803c41bfdea"
-            },
-            {
-              "path": "src/librarian/saturationGuard.ts",
-              "sha256": "sha256:1c566953d135c227e329a73bd5a6dcfd9a8b311704182bb57a80287ea2090107"
-            },
-            {
-              "path": "src/librarian/sceneMechanismPlan.ts",
-              "sha256": "sha256:18b2ced6ab7dc7b724548b567aea483dbbcdf077c2bbc07d14189f3faa623dd6"
-            },
-            {
-              "path": "src/librarian/sceneModePlan.ts",
-              "sha256": "sha256:acccfc0fe8ed936e6410d7e6d5d16eec70a3ca8a8dd86690078298279c683cd4"
-            },
-            {
-              "path": "src/librarian/shapePlan.ts",
-              "sha256": "sha256:2a2e39775eee5b77354160550e9a6e7c42b711bf7ac306d9c75af4b7733d86a4"
-            },
-            {
-              "path": "src/librarian/sourceSidecars.ts",
-              "sha256": "sha256:0d7af1950a5476d7472d7f584024b74cb4c4f8c2d02a087127815076743de0b1"
-            },
-            {
-              "path": "src/librarian/stakesPlan.ts",
-              "sha256": "sha256:9e7c3325dd0dbe2e09e95867b56ca6d11a6a7a1010d183d415a5823fadb39f46"
-            },
-            {
-              "path": "src/librarian/timingPlan.ts",
-              "sha256": "sha256:1a65c956cf1d261fc3b8286a61b865a943ad0cae2aa92fa307f8b7bd7a46c0f8"
-            },
-            {
-              "path": "src/librarian/venuePlan.ts",
-              "sha256": "sha256:ce859090d5e69410cc7a345969d710cc99f52f26ddd7961ff21ade0e97e84c3d"
-            },
-            {
-              "path": "src/librarian/weeklyPracticePlan.ts",
-              "sha256": "sha256:e95803dd4d01ba07e27f29781d0246c121ab14b8ac29ee712dddce8ec0b85be5"
-            },
-            {
-              "path": "src/lifecycle/bookStatus.ts",
-              "sha256": "sha256:ae301e7a500fa1cb865bcf1e28a6ade3eb48d08b7b16e66981c48fc41707d011"
-            },
-            {
-              "path": "src/lifecycle/doctor.ts",
-              "sha256": "sha256:e5c5b7bb44873eee0bbad478f34cab49ae36cf5744327bc97f99f92be54ce9c5"
-            },
-            {
-              "path": "src/next-task.ts",
-              "sha256": "sha256:1592b596e4d99b2bc0db2ae096f65445b71384a97ea582edb3d05bd3e3f26f8a"
-            },
-            {
-              "path": "src/orchestrator/autopilot.ts",
-              "sha256": "sha256:dc553b46cd12fd3066b01beb5e8b3518e4d24eb9f36bb325bd8e2a3be1b4bd3d"
-            },
-            {
-              "path": "src/orchestrator/codexAgent.ts",
-              "sha256": "sha256:61d65771db3574dd0b22238527f1764569339579efe95b12664f3830a4df34e4"
-            },
-            {
-              "path": "src/orchestrator/liveRun.ts",
-              "sha256": "sha256:c6acf88ff4a37c093d5e643b39e514a2bf34a20d18af52419bdaf8da234067ad"
-            },
-            {
-              "path": "src/productionManifest.ts",
-              "sha256": "sha256:e33fdd7c1d4b0b7955d891b09d130c65b5a5787f4a08f77da4c3914b29defcaa"
-            },
-            {
-              "path": "src/promoteBook.ts",
-              "sha256": "sha256:a88f709d8e19ae2235bb8abcdbdbb432677f762fb86856fac30b59fada969cb7"
-            },
-            {
-              "path": "src/providers/anthropic-api.ts",
-              "sha256": "sha256:3cec61a5121f33ade6ad718af52f8b53a24751ef17a9501a6f79b65e8a346c84"
-            },
-            {
-              "path": "src/providers/cli.ts",
-              "sha256": "sha256:484d020fb9704086ea61c51833bac5cd4dda29843f78a18b283c9bb9e67a5b6c"
-            },
-            {
-              "path": "src/providers/openai-api.ts",
-              "sha256": "sha256:771063a3e9668792a801acc955563ab1a35db5b6891d91b9702686ce31c2a6a3"
-            },
-            {
-              "path": "src/providers/router.ts",
-              "sha256": "sha256:577da2d691ea0b951e1d9fe4e1784e33c2fd65fb84664a474f8d43dd8ba1bbc2"
-            },
-            {
-              "path": "src/providers/types.ts",
-              "sha256": "sha256:62b4f6c653701cabd78e0992e29c17dfba978b36132da0ceb2bf54f94398585e"
-            },
-            {
-              "path": "src/qc/auto/driver.ts",
-              "sha256": "sha256:e40f72d308d6b00f8a1f08cea7f13746b1f2b78cb15a853bcdbebd6377e9944a"
-            },
-            {
-              "path": "src/qc/auto/generateWorkflow.ts",
-              "sha256": "sha256:03129563c77f56e1d3948d97af118dbbcfba345a04fd31e9997382888da3f9df"
-            },
-            {
-              "path": "src/qc/auto/resolveBook.ts",
-              "sha256": "sha256:dbd2edeb4dc80fccec35acadc31a0d483a6a1e9fa11cfbc4ff3a494786479c8b"
-            },
-            {
-              "path": "src/qc/barReview.ts",
-              "sha256": "sha256:a1fd21bab474f8fdc334acb95e9f651080618bff60294bd196e3895c22058c7e"
-            },
-            {
-              "path": "src/qc/majorDisposition.ts",
-              "sha256": "sha256:c611a7b12b3605dff443296e78080d7308b3f8ae50577191e215ea564e9bc62f"
-            },
-            {
-              "path": "src/qc/manualKeyJudge.ts",
-              "sha256": "sha256:f504121cd0a6a8d65ce8081bce10f12354b5a0021124bceeb119d90cf7a3c978"
-            },
-            {
-              "path": "src/qc/metrics.ts",
-              "sha256": "sha256:de46f137669ab02836e2c30adcb8cd8b9e0e7c859f4dd266aee0fb25674176bd"
-            },
-            {
-              "path": "src/qc/noApiMode.ts",
-              "sha256": "sha256:7611d7a8b3a871e3b817398019101b9572e479a2e315927eb3088d14a2abab33"
-            },
-            {
-              "path": "src/qc/normalizeProvenance.ts",
-              "sha256": "sha256:80ef80dc911181d9a7598967b57c46ef6c62ad8029c72fac680957de02ec2ea7"
-            },
-            {
-              "path": "src/qc/orchestrator/artifacts.ts",
-              "sha256": "sha256:8b7e0e1c10a9a7f5ab7d6bc2f5485a923b3a3fd26deb93fe57e50f9055851ee3"
-            },
-            {
-              "path": "src/qc/orchestrator/deterministicGate.ts",
-              "sha256": "sha256:eab5f1e32c3e99c31ddd799fe40328f385cf9633daa1bcc10612a34f8bb8c82c"
-            },
-            {
-              "path": "src/qc/orchestrator/diagnose.ts",
-              "sha256": "sha256:bf44afcf7b0cc9dd801b79073ad1eb00cbf47fbdcca9f6f33ef24dc59f709f90"
-            },
-            {
-              "path": "src/qc/orchestrator/evidenceSource.ts",
-              "sha256": "sha256:25d18eb067698ca2ca105ef00aeff709fe25e2bff397e67b5041ee163c950cbd"
-            },
-            {
-              "path": "src/qc/orchestrator/finalize.ts",
-              "sha256": "sha256:991ba361dea4cc0029ad3329052ad4eceb6ba64c90aa1d4fe4b2d3fed013e351"
-            },
-            {
-              "path": "src/qc/orchestrator/finalizerFindings.ts",
-              "sha256": "sha256:58192b3a433be92c5c6b8f1113155e557f53c465a3f1eb71bb246458e3e78d9b"
-            },
-            {
-              "path": "src/qc/orchestrator/findingGrouping.ts",
-              "sha256": "sha256:0c620ea901027fbe85c4804545f1d7ba4f2f814ed161999531f65b9ee6f6daca"
-            },
-            {
-              "path": "src/qc/orchestrator/findingValidity.ts",
-              "sha256": "sha256:fc940f4f36a298eb1d5124f131cb480f6c3897bbf7814ad423cb8aaf8d728dce"
-            },
-            {
-              "path": "src/qc/orchestrator/index.ts",
-              "sha256": "sha256:50bae6eee06c4302320a764f0969bb0738ee501dfe76ca74cf0877cb8293e0c9"
-            },
-            {
-              "path": "src/qc/orchestrator/ledger.ts",
-              "sha256": "sha256:2fd780c49316742ac5ae470458ae2553c378c6b20004139801de5963c1681646"
-            },
-            {
-              "path": "src/qc/orchestrator/repairBrief.ts",
-              "sha256": "sha256:0a3aea7d0f0d96a45a85b733d54126a41389b7753e23cdfdf7f28d2bcc7c629a"
-            },
-            {
-              "path": "src/qc/orchestrator/reviewPacket.ts",
-              "sha256": "sha256:731862ccc59ea6b50fc32dadc0298e6ae26751b2b1669f5eacb0c362a2e06275"
-            },
-            {
-              "path": "src/qc/orchestrator/schemas.ts",
-              "sha256": "sha256:1f0ab31ab21b24bb346771d8fdb2fc9e3baae094d7b46aa5e66583aff6b282f1"
-            },
-            {
-              "path": "src/qc/orchestrator/submissionSchemas.ts",
-              "sha256": "sha256:4eec9c0805948b68c8e972027b663850046055e4944a7d4f0a52670491a517e3"
-            },
-            {
-              "path": "src/qc/orchestrator/transaction.ts",
-              "sha256": "sha256:7c85843ec65993ef8424aa1622e6c4424c830a903751c104187a704d5e490e7c"
-            },
-            {
-              "path": "src/qc/planEnforcement.ts",
-              "sha256": "sha256:5b0f5453b25c5b8f2ef992ec5fa958528049b3109af71d2c0987a79d3d2c0adf"
-            },
-            {
-              "path": "src/qc/pruneBookState.ts",
-              "sha256": "sha256:7e1d0c19b3d260f2ab635a2260267bb0ea20379c675b5bdf3aeb6d7f08f3ce19"
-            },
-            {
-              "path": "src/qc/publishAfterQc.ts",
-              "sha256": "sha256:c53ad455a8b18ab43fc7a1fa15f502dc1ac5edcb16a66789de0d187dedf4bcc7"
-            },
-            {
-              "path": "src/qc/qcRound.ts",
-              "sha256": "sha256:b766a2039eeed5b9b6f307196077f478176324728049fa21298509231e3aa6f7"
-            },
-            {
-              "path": "src/qc/reviewerId.ts",
-              "sha256": "sha256:66a2a171274c60c1026f7ca0a833cfb90abd8337ae524310f376554158274be6"
-            },
-            {
-              "path": "src/qc/sessionProvenance.ts",
-              "sha256": "sha256:bf3bd293a85c1c0a6dfb5938769fe4e64b9bfbee6703a76128dc005a177052c0"
-            },
-            {
-              "path": "src/qc/sourceRealityPolicy.ts",
-              "sha256": "sha256:af0a3c65893b83a8e0e9fb0ca05b4579e01a8f263e8ce1c80389726fdeee8fef"
-            },
-            {
-              "path": "src/qc/sourceV2Gate.ts",
-              "sha256": "sha256:f7c052fd8bbbe83cbd2b80eb75e06bc9f853ecf48b3ab93c8708fcb9a73da231"
-            },
-            {
-              "path": "src/qc/sweep.ts",
-              "sha256": "sha256:862bbfa4513e6a95cb2626108b27152afdcc9e908798c87d825fcca81b82e599"
-            },
-            {
-              "path": "src/researcher.ts",
-              "sha256": "sha256:5721c9a1b276fe4214c619ee54a2d098deafaa029a05a8f9cee77f3513b9909b"
-            },
-            {
-              "path": "src/roles.ts",
-              "sha256": "sha256:84f43032fdedd04a164b4ffd52d780d508f6616a51023e0b7f7478ff3f7be703"
-            },
-            {
-              "path": "src/runbook.ts",
-              "sha256": "sha256:79b1bda5e43d511e031fea90969f2b046662fce252b849c101c744ffdf69ca24"
-            },
-            {
-              "path": "src/runtimeSchemas.ts",
-              "sha256": "sha256:53413931dc3525de0690a28ffaebf451b82288d5ad1ae191e722ba330be1014d"
-            },
-            {
-              "path": "src/source-loader.ts",
-              "sha256": "sha256:021d771a36dfc8edbeacb0e0f6e4fbaf68d1addae3433a6bc831f0e042fb87b4"
-            },
-            {
-              "path": "src/source/sidecarSchema.ts",
-              "sha256": "sha256:a9dc986303168705d894e879c09a64a3e04def99b3294a552cb3ec1f948b95df"
-            },
-            {
-              "path": "src/source/sourceEvidence.ts",
-              "sha256": "sha256:93a27fc9ded4e367da5b40cd806c157d5b5c93a3731bf667aca9c13ba01ac979"
-            },
-            {
-              "path": "src/source/sourceIntegrity.ts",
-              "sha256": "sha256:24082375a4d034724364654adfe785c0c7ea3b2dc4604295b24db5ba90d871c7"
-            },
-            {
-              "path": "src/sourceFit.ts",
-              "sha256": "sha256:78b4bd09ec28927180d124a71076c65daaca983d6d46ef07e80323ea842f32d9"
-            },
-            {
-              "path": "src/sourceVerifyWorkbench.ts",
-              "sha256": "sha256:e360b13af33943ef8b33583b3ae2a4651c750d16d16f49886610af075407c078"
-            },
-            {
-              "path": "src/types.ts",
-              "sha256": "sha256:1aa79a880141ca3f39a522c733149ed4007851dedda3fb2ded6bf0d7a7bdf62e"
-            },
-            {
-              "path": "src/verifyProductionPackage.ts",
-              "sha256": "sha256:91eef894c0b8165c3da951fc58c67fb72a9a3f51442d9ea73f723a34955c55be"
-            }
-          ]
-        },
-        "labels": {
-          "promptSet": "chapterflow-v21-authored-prompts-v1",
-          "config": "chapterflow-v21-authored-config-v1",
-          "code": "chapterflow-v21-authored-production-package-v1"
-        }
-      }
-    },
-    "metadata": {
-      "createdAt": "2026-06-27T01:56:01.626Z",
-      "generator": "promoteBook",
-      "runId": "auto-publish-finalize-mqvpkemm-31",
-      "packagePath": "book-packages/the-millionaire-next-door.v21.json"
-    }
-  },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-millionaire-next-door-ch01",
       "number": 1,
       "title": "Meet the Millionaire Next Door",
@@ -1339,8 +117,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Expensive goods show spending, not endurance. Net worth, assets minus debts, is the test that can confirm or challenge the visible cue.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1352,8 +129,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The rule adjusts the target for age and income. A fixed goal or a status cue skips the earning opportunity each household has had.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1365,8 +141,7 @@
             ],
             "correctIndex": 1,
             "explanation": "PAW compares actual wealth with expected wealth. High pay can help, but it does not prove the income became assets.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1378,8 +153,7 @@
             ],
             "correctIndex": 0,
             "explanation": "UAW is relative. A high earner can still fall below expected wealth when consumption absorbs income before it becomes assets.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1391,8 +165,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The focus group reverses the costume read. Many affluent households looked ordinary, so luxury display is a weak detector.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1404,8 +177,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sample points toward self-made accumulation. Inheritance is the common error this fact corrects, not the main pattern.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -1417,8 +189,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ownership can turn income into business equity. The sample showed self-employed people were far more common among millionaires than among workers.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1430,8 +201,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The median gives a clearer prototype when a few very large fortunes can pull an average upward. It is a better typical picture.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -1443,8 +213,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Similar income does not force similar wealth. Spending and investing choices can widen the gap within the same age-income group.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1487,7 +256,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Balance Sheet Test",
         "coreSkill": "Practice moving from visible status to retained wealth. Run the Balance Sheet Test by asking what is owned, what is owed, and whether income is becoming assets. Use it before you copy a lifestyle or envy a paycheck.",
         "ifThenPlans": [
           {
@@ -1512,24 +280,17 @@
       },
       "memorableLines": [
         {
-          "text": "A rich look can be a poor clue.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the opening reversal into one portable warning."
+          "text": "A rich look can be a poor clue."
         },
         {
-          "text": "Salary is not wealth.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps income and accumulation separate in five plain words."
+          "text": "Salary is not wealth."
         },
         {
-          "text": "A large income with a larger lifestyle is a fast river with no reservoir.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the chapter's mechanism a visual image the reader can keep."
+          "text": "A large income with a larger lifestyle is a fast river with no reservoir."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-millionaire-next-door-ch02",
       "number": 2,
       "title": "Frugal Frugal Frugal",
@@ -1630,8 +391,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Net worth grows from retained surplus. A higher salary can vanish if spending expands to meet it, so the raise must leave capital behind.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1643,8 +403,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source presents wealth above what income alone predicts. The useful mechanism is lower consumption leaving more money to become assets.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1656,8 +415,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Designed scarcity is not the same as being poor. It creates tradeoffs before cash leaves, so assets are funded before lifestyle expands.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1669,8 +427,7 @@
             ],
             "correctIndex": 1,
             "explanation": "High-net-worth households also plan. The budget protects surplus before spending competes for it, rather than waiting for a crisis.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1682,8 +439,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The go-to-hell fund buys autonomy. It is not just reduced pleasure; it gives the household room to refuse bad dependence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1695,8 +451,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The profile depends on repeated retention, not scraps. Saving first turns income into capital before daily wants crowd it out.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1708,8 +463,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Comparison changes what feels necessary. The danger is not the neighbor's spending itself, but letting display rewrite the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1721,8 +475,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Appearance and residence can misclassify wealth. Millionaires may be outnumbered nearby while still holding far more net worth.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -1734,8 +487,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The profile allows chosen spending, such as education. The line is not price alone; it is whether the expense serves values or display.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1778,7 +530,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Keep-First Check",
         "coreSkill": "Practice deciding what income must keep before anyone spends to display. Run the Keep-First Check by naming the asset or priority funded first, then naming the pressure trying to spend the same money. The skill is not saying no to everything; it is making status wait behind the plan.",
         "ifThenPlans": [
           {
@@ -1803,24 +554,17 @@
       },
       "memorableLines": [
         {
-          "text": "A budget is a gate, not a cage.",
-          "location": "breakdown.fastRead",
-          "why": "It makes restraint feel like protection rather than punishment."
+          "text": "A budget is a gate, not a cage."
         },
         {
-          "text": "Status eats first when no one guards the door.",
-          "location": "breakdown.deepRead",
-          "why": "It turns social pressure into a concrete household risk."
+          "text": "Status eats first when no one guards the door."
         },
         {
-          "text": "Kept money is the seed of choice.",
-          "location": "breakdown.fullRead",
-          "why": "It links saving to freedom in a short, portable line."
+          "text": "Kept money is the seed of choice."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-millionaire-next-door-ch03",
       "number": 3,
       "title": "Time, Energy, and Money",
@@ -1921,8 +665,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The UAW pattern shows that a high income does not remove the need for portfolio attention. Thin review lets spending and poor allocation decide by default.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-millionaire-next-door-ch03-q02",
@@ -1934,8 +677,7 @@
             ],
             "correctIndex": 2,
             "explanation": "PAWs are reported to spend far more time on portfolio evaluation. The useful correction is that planning becomes a practiced capability, not an absent chore.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-millionaire-next-door-ch03-q03",
@@ -1947,8 +689,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The 10 percent promise delays behavior. If the present system is unchanged, lifestyle can claim the added income before investment begins.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-millionaire-next-door-ch03-q04",
@@ -1960,8 +701,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Extra income often fails when consumption rises first. A precommitted allocation gives the raise a path to the balance sheet before upgrades absorb it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-millionaire-next-door-ch03-q05",
@@ -1973,8 +713,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Tax-advantaged retirement saving and car consumption have different long-run effects. Affordability alone hides taxes, depreciation, and ownership.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-millionaire-next-door-ch03-q06",
@@ -1986,8 +725,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Cash can protect a household, but it can also support lifestyle creep. A named job balances safety, return, and temptation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-millionaire-next-door-ch03-q07",
@@ -1999,8 +737,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Mr. Willis's Walmart case separates company knowledge from participation. The wealth step is actual ownership, not merely working near growth.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-millionaire-next-door-ch03-q08",
@@ -2012,8 +749,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Cold callers can exploit high-income professionals who lack investment attention. Medical or legal skill does not replace review of fees and risk.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-millionaire-next-door-ch03-q09",
@@ -2025,8 +761,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The contrast makes time allocation measurable. Dollars matter, but neglected decisions can cost money even when income looks strong.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2069,7 +804,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Make Money Work Visible",
         "coreSkill": "Practice making money work visible before money gets absorbed. Put each review task where it starts, name the job for new cash, and keep one path from income to assets. The skill is not more willpower; it is giving planning a place to happen.",
         "ifThenPlans": [
           {
@@ -2094,24 +828,17 @@
       },
       "memorableLines": [
         {
-          "text": "Money follows the path your attention clears for it.",
-          "location": "breakdown.fastRead",
-          "why": "It makes attention feel like a physical channel for money."
+          "text": "Money follows the path your attention clears for it."
         },
         {
-          "text": "A raise without a slot becomes a bigger leak.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the chapter's warning about raises into one household image."
+          "text": "A raise without a slot becomes a bigger leak."
         },
         {
-          "text": "Knowledge does not compound until ownership enters the account.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the Mr. Willis case into a portable ownership rule."
+          "text": "Knowledge does not compound until ownership enters the account."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-millionaire-next-door-ch04",
       "number": 4,
       "title": "You Aren't What You Drive",
@@ -2212,8 +939,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 says only a minority of millionaire households drive current-model-year vehicles. Vehicle age can mislead because many wealthy households keep cars longer.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2225,8 +951,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 warns that only a minority of millionaire households lease vehicles. A lease may preserve the look while keeping payments permanent.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2238,8 +963,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 says foreign luxury vehicles are less common among millionaires than stereotypes suggest. They may show high consumption, not high net worth.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2251,8 +975,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 separates the discount from the baseline decision. A near-dealer-cost deal can still consume too much capital.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -2264,8 +987,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 says shopping time has an opportunity cost. Hours spent on the car are part of the purchase, not separate from it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2277,8 +999,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 says the premium can often be rejected without losing much transportation utility. The premium buys pride more than movement.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2290,8 +1011,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 says older vehicles can be consistent with high net worth. Capital may be working in the business rather than sitting in the car.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -2303,8 +1023,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 says visible goods can create social consistency pressure. A luxury car may invite matching spending in other categories.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2316,8 +1035,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 says the car lesson is about identity, not mechanical preference. The risk rises when a car becomes proof of success.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2360,7 +1078,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Walk the Status Cost",
         "coreSkill": "Practice separating the transportation job from the proof job before you answer a purchase. Use Walk the Status Cost to ask what the vehicle must do, what it is being asked to say, and what future spending it may invite. The skill is not hating cars. It is refusing to let a car manage your identity.",
         "ifThenPlans": [
           {
@@ -2385,24 +1102,17 @@
       },
       "memorableLines": [
         {
-          "text": "A car can carry you or recruit you.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the chapter's core split portable."
+          "text": "A car can carry you or recruit you."
         },
         {
-          "text": "A discount cannot rescue the wrong baseline.",
-          "location": "breakdown.deepRead",
-          "why": "It warns readers not to confuse negotiation with wisdom."
+          "text": "A discount cannot rescue the wrong baseline."
         },
         {
-          "text": "Status always asks for company.",
-          "location": "breakdown.fullRead",
-          "why": "It captures why one visible purchase can pull others along."
+          "text": "Status always asks for company."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-millionaire-next-door-ch05",
       "number": 5,
       "title": "Economic Outpatient Care",
@@ -2503,8 +1213,7 @@
             ],
             "correctIndex": 1,
             "explanation": "EOC is a metaphor for family cash support to adult children. The issue is that outside money can change spending without raising pay.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2516,8 +1225,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Recipients are summarized at 98 percent of nonrecipient income. That makes similar earnings part of the evidence, not the easy excuse.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2529,8 +1237,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The 57 percent net-worth figure shows gifts can pass through consumption. A transfer can help cash flow without becoming an asset.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q04",
@@ -2542,8 +1249,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Regular support changes planning when it is anticipated. The trouble starts when future transfers are treated as spendable income now.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2555,8 +1261,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source case is not only about the down payment. A home beyond independent income can pull the whole household into higher costs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2568,8 +1273,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A status house can create pressure for a status household. Housing is not isolated from cars, furniture, and neighborhood norms.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2581,8 +1285,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Expected family support can make risk feel smaller than it is. Security has to be checked against the balance sheet, not only the feeling.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2594,8 +1297,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Friend pattern is about a lifestyle script crossing generations. Visible goods can teach normal before the next generation can afford normal.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -2607,8 +1309,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The safer path breaks the income habit. The danger is not help itself; it is cash that keeps the same monthly life looking affordable.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2651,7 +1352,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Gift-Income Check",
         "coreSkill": "Practice separating help from income before a gift enters your plan. The gift-income check asks whether the transfer is already paying ordinary bills. Use it before gratitude or guilt makes the decision blurry.",
         "ifThenPlans": [
           {
@@ -2676,19 +1376,13 @@
       },
       "memorableLines": [
         {
-          "text": "A regular gift can become a phantom paycheck.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the central risk a plain image the reader can reuse."
+          "text": "A regular gift can become a phantom paycheck."
         },
         {
-          "text": "Help that buys a lifestyle also buys a bill.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the subsidy problem into one hard household test."
+          "text": "Help that buys a lifestyle also buys a bill."
         },
         {
-          "text": "A gift that joins ordinary income soon stops feeling like a gift.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the regular-dose danger easy to spot in a monthly budget."
+          "text": "A gift that joins ordinary income soon stops feeling like a gift."
         }
       ]
     },
@@ -2793,8 +1487,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 says perceived disadvantage can shape transfers to daughters. Equal amounts are not the source rule, and gender is part of the stated rationale.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch06-q02",
@@ -2806,8 +1499,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 says sons may receive fewer subsidies when parents expect men to be more self-supporting. The other choices move away from that gender rationale.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch06-q03",
@@ -2819,8 +1511,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 gives the 17 percent figure for parents or spouses, so private schooling was not the majority background. The other choices contradict or ignore that number.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch06-q04",
@@ -2832,8 +1523,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 says education is a favored transfer category for descendants. The tuition and business facts teach different limits on assumed support.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch06-q05",
@@ -2845,8 +1535,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 directly challenges tuition as a required path. The other facts are real chapter ideas but do not answer the college-funding claim.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch06-q06",
@@ -2858,8 +1547,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 directly addresses gifted family business ownership. The other numbers matter, but they concern college tuition and private school.",
-            "bloomsLevel": "remember",
-            "depthLevel": "standard"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "ch06-q07",
@@ -2871,8 +1559,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 says repeated rescue can let overspending continue. The other choices repeat common errors about all transfers improving habits or settling fairness.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q08",
@@ -2884,8 +1571,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 8 separates education support from consumption support by capability. The other choices flatten the difference or turn frugality into refusal.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch06-q09",
@@ -2897,8 +1583,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 says fairness in family giving can conflict with self-support. The other choices deny or sidestep that tension.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2947,7 +1632,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Rank The Gift",
         "coreSkill": "Practice judging help by the adult it trains. Use the Rank the Gift move: list the possible transfer, rank it by recipient effort, risk of repeat subsidy, and clarity of terms. Then fund the request with the clearest work attached.",
         "ifThenPlans": [
           {
@@ -2972,24 +1656,17 @@
       },
       "memorableLines": [
         {
-          "text": "A rescue check can train the fall.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's warning into one concrete family image."
+          "text": "A rescue check can train the fall."
         },
         {
-          "text": "A school bill needs a boundary, not a halo.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps education support from becoming automatic approval."
+          "text": "A school bill needs a boundary, not a halo."
         },
         {
-          "text": "Help should leave a stronger adult behind.",
-          "location": "breakdown.fullRead",
-          "why": "It states the chapter's practical test in a portable sentence."
+          "text": "Help should leave a stronger adult behind."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-millionaire-next-door-ch07",
       "number": 7,
       "title": "Find Your Niche",
@@ -3090,8 +1767,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Accounting becomes a valuable niche because complex taxes and assets require trusted interpretation. Luxury feel and broad sameness miss that mechanism.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-millionaire-next-door-ch07-q02",
@@ -3103,8 +1779,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Attorneys matter because estates, businesses, and transfers create recurring legal problems. Lawsuits alone are the common error.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-millionaire-next-door-ch07-q03",
@@ -3116,8 +1791,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The profile lists many normal or dull businesses among millionaire examples. Glamour is not required; ordinary services can create durable cash flow.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-millionaire-next-door-ch07-q04",
@@ -3129,8 +1803,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fact names Welding Contractors and Pest Controllers as millionaire occupation examples. The mechanism is ownership income from necessary services.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-millionaire-next-door-ch07-q05",
@@ -3142,8 +1815,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Niche choice should follow customer problems, not status image. Willingness to pay comes from solving expensive problems.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-millionaire-next-door-ch07-q06",
@@ -3155,8 +1827,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The advice follows observed demand. Accounting and Law are recommended because wealthy households trust those services, not because of possessions.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-millionaire-next-door-ch07-q07",
@@ -3168,8 +1839,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact separates serving affluent markets from imitating affluent lifestyles. Competence creates trust; spending like clients can erase the service provider's margin.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-millionaire-next-door-ch07-q08",
@@ -3181,8 +1851,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source fact says narrowing the problem can reduce competition. Specific expertise is easier to trust and refer than a broad claim.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-millionaire-next-door-ch07-q09",
@@ -3194,8 +1863,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fact says tax advisors and estate-planning specialists face strong demand because affluent households must manage taxes and transfers.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3238,7 +1906,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Paid Worry",
         "coreSkill": "Practice naming the paid worry behind a customer group. Write the customer, the expensive recurring problem, and the proof that would make trust easier. This turns a niche from a status label into a service someone can refer.",
         "ifThenPlans": [
           {
@@ -3263,24 +1930,17 @@
       },
       "memorableLines": [
         {
-          "text": "Demand hides where assets create chores.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the niche rule easy to carry."
+          "text": "Demand hides where assets create chores."
         },
         {
-          "text": "Glamour is a weak map of opportunity.",
-          "location": "breakdown.deepRead",
-          "why": "It separates status from real demand."
+          "text": "Glamour is a weak map of opportunity."
         },
         {
-          "text": "Trust is the niche money cannot fake.",
-          "location": "breakdown.fullRead",
-          "why": "It names the exception without endorsing status imitation."
+          "text": "Trust is the niche money cannot fake."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-millionaire-next-door-ch08",
       "number": 8,
       "title": "Jobs: Millionaires versus Heirs",
@@ -3375,8 +2035,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sample gives self-employment an outsized place among millionaires. A prestigious salary may help, but the profile does not make it the main pattern.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-millionaire-next-door-ch08-q02",
@@ -3388,8 +2047,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The key distinction is owner-entrepreneurship, not merely being outside payroll. Business equity can add wealth that wages alone may not leave.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-millionaire-next-door-ch08-q03",
@@ -3401,8 +2059,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The professional cluster warns that prestige can still pair with UAW behavior. Income can be offset by training delay and role-based spending.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-millionaire-next-door-ch08-q04",
@@ -3414,8 +2071,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Advanced education can delay accumulation before the high salary arrives. Later income starts from behind when loans and years out of full earning matter.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-millionaire-next-door-ch08-q05",
@@ -3427,8 +2083,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Some roles carry social scripts about where to live, drive, and belong. Those scripts can push spending up even when the income is strong.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-millionaire-next-door-ch08-q06",
@@ -3440,8 +2095,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Richards-Ford contrast rejects prestige as the wealth shortcut. Ownership and lower overhead can beat a grander title at similar income.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-millionaire-next-door-ch08-q07",
@@ -3453,8 +2107,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Occupational fit includes consumption expectations. Gross pay is incomplete when the job's social world tells the household how to spend.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-millionaire-next-door-ch08-q08",
@@ -3466,8 +2119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The profile emphasizes first-generation affluent households. That makes work structure, saving, and retention more central than heir status.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "the-millionaire-next-door-ch08-q09",
@@ -3479,8 +2131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Strong earnings can still leave fragile wealth when status costs consume the surplus. Income and net worth do not rise together by default.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3523,7 +2174,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run Cost-First Job Check",
         "coreSkill": "Practice judging work by retained surplus before prestige. Run Cost-First Job Check by listing what a role asks you to spend, then what it may leave you owning. The skill is plain: put costs before applause.",
         "ifThenPlans": [
           {
@@ -3548,19 +2198,13 @@
       },
       "memorableLines": [
         {
-          "text": "A title can pay well and still eat first.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the income-versus-wealth gap easy to remember."
+          "text": "A title can pay well and still eat first."
         },
         {
-          "text": "The rich job is the one that leaves assets behind.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the chapter's career test into a portable sentence."
+          "text": "The rich job is the one that leaves assets behind."
         },
         {
-          "text": "Prestige curdles when it makes every choice perform for strangers.",
-          "location": "breakdown.fullRead",
-          "why": "It warns against status pressure without attacking skilled work."
+          "text": "Prestige curdles when it makes every choice perform for strangers."
         }
       ]
     }

@@ -46,13 +46,6 @@
             "parenting",
             "public blame"
           ],
-          "planSpec": {
-            "domain": "parent forum",
-            "audience": "school volunteers",
-            "stakes": "blame replacing understanding",
-            "format": "dialogue",
-            "requiredBeat": "Turn a narcissism complaint into a vulnerability question"
-          },
           "scenario": "Aisha sits at 7:15 p.m. in a Houston school auditorium with a note card that says, \"Why are kids so self-absorbed?\" The PTA president wants a clean answer before the open mic starts. Aisha must tell the room whether the problem is entitled children, or a scarcity culture that makes young people fight to seem special.",
           "whatToDo": "Aisha names the observed behavior, then asks what fear might sit under it. She moves the room from condemnation toward worthiness, limits, and connection.",
           "whyItMatters": "The Houston frame keeps the diagnosis relational. Grandiosity can still be challenged, but shame is no longer treated as the cure for shame."
@@ -65,13 +58,6 @@
             "attention",
             "sufficiency"
           ],
-          "planSpec": {
-            "domain": "personal routine",
-            "audience": "working parents",
-            "stakes": "deficit thinking leading the day",
-            "format": "before_after",
-            "requiredBeat": "Use Lynne Twist's frame to catch the first deficit inventory"
-          },
           "scenario": "Rowan wakes at 6:04 a.m. in Halifax and sees Lynne Twist underlined in a paperback beside the bed. Before his feet touch the floor, the list begins: not enough sleep, not enough money, not enough time with his daughter. By 6:12, the calendar has become a verdict on his worth.",
           "whatToDo": "Rowan writes the first deficit thought and labels it as scarcity culture. He does not argue with the stress; he refuses to let it become the day's command.",
           "whyItMatters": "The never-enough reflex is strongest when it feels like simple realism. Naming the lens gives choice a small opening before shame takes over."
@@ -84,13 +70,6 @@
             "workplace fear",
             "comparison"
           ],
-          "planSpec": {
-            "domain": "software company",
-            "audience": "team leads",
-            "stakes": "status competition after layoffs",
-            "format": "decision_point",
-            "requiredBeat": "Link public economic fear to private armor"
-          },
           "scenario": "Mei stands at 9:30 a.m. in a Boston product review, one week after recession cuts removed twelve jobs. A dashboard ranks every engineer by closed tickets. The director asks for applause for the top names, and Mei has to answer before the meeting turns into a contest for safety.",
           "whatToDo": "Mei pauses the ranking ritual and names the fear in the room. She shifts the review toward shared constraints, repair work, and the next honest commitment.",
           "whyItMatters": "Scarcity culture feeds on comparison after public stress. The team needs standards, but status ranking cannot be allowed to pose as courage."
@@ -103,13 +82,6 @@
             "school",
             "certainty"
           ],
-          "planSpec": {
-            "domain": "middle school classroom",
-            "audience": "teachers",
-            "stakes": "fear hardening into blame",
-            "format": "dilemma",
-            "requiredBeat": "Show how ambient fear makes vulnerability look reckless"
-          },
           "scenario": "Sofia reviews essays at 2:40 p.m. in Queens while a student writes that after 9/11 his family trusts no one outside their block. The bell rings in six minutes. Sofia must decide whether to correct the claim as overbroad, or first make room for fear before teaching a wider way to belong.",
           "whatToDo": "Sofia names the fear as real, then separates safety from blanket blame. Her response invites the student to stay engaged while revising the claim.",
           "whyItMatters": "Public trauma can make certainty feel like protection. Vulnerability becomes possible when fear is acknowledged without letting blame run the lesson."
@@ -122,13 +94,6 @@
             "shame",
             "enoughness"
           ],
-          "planSpec": {
-            "domain": "health clinic",
-            "audience": "care coordinators",
-            "stakes": "body shame blocking care",
-            "format": "reset_moment",
-            "requiredBeat": "Treat comparison as a scarcity marker, not motivation"
-          },
           "scenario": "Nikhil checks in at 11:20 a.m. at a Dallas clinic and hears two patients comparing bodies under a wall poster about courage. One woman folds her intake form and whispers that she should not have come. Before the nurse calls her name, Nikhil has to interrupt shame without turning the lobby into a lecture.",
           "whatToDo": "Nikhil lowers his voice and redirects the patient to the care she came for. He treats comparison as a scarcity cue, not proof that she lacks discipline.",
           "whyItMatters": "Shame narrows the door to help. Enoughness does not deny health goals; it protects the person's right to seek care before feeling acceptable."
@@ -141,13 +106,6 @@
             "mass violence",
             "media"
           ],
-          "planSpec": {
-            "domain": "local journalism",
-            "audience": "editors",
-            "stakes": "numbing after repeated public violence",
-            "format": "planning_choice",
-            "requiredBeat": "Spot withdrawal as scarcity's third marker"
-          },
           "scenario": "Imani sits at 8:05 p.m. in a Cleveland newsroom after another mass violence update crosses the wire. The editor wants a headline in ten minutes, and half the staff has gone flat. Imani must choose between another distant summary and a story meeting that asks what care still looks like.",
           "whatToDo": "Imani proposes one local question the team can report with care. She does not force optimism; she interrupts numbness with a concrete act of engagement.",
           "whyItMatters": "Disengagement can feel like survival when fear stacks up. Scarcity loses force when people stay connected to one doable repair."
@@ -166,8 +124,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The scarcity lens does not deny the behavior. It asks what fear and cultural reward system make specialness feel required before belonging can feel secure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -179,8 +136,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Lynne Twist's frame helps Rowan see scarcity as an attention pattern. The point is not denial; it is refusing to let the first deficit become the whole story.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -192,8 +148,7 @@
             ],
             "correctIndex": 2,
             "explanation": "After layoffs, comparison can masquerade as discipline. Scarcity culture makes people chase rank for safety, which weakens trust and narrows honest engagement.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -205,8 +160,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ambient fear makes certainty and blame feel soothing. Sofia protects learning by honoring the fear while keeping the student's world from shrinking around suspicion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -218,8 +172,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Enoughness protects access to care from the demand to be acceptable first. Nikhil can support change without treating shame as motivation.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -231,8 +184,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Disengagement is one marker of scarcity. A concrete act of care keeps the newsroom connected without asking anyone to pretend the violence is easy to absorb.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -244,8 +196,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge is cultural and relational. Gratitude can help, but it fails when the room still rewards proof, ranking, and withdrawal.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -257,8 +208,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Workload can be real without becoming scarcity culture. The signal appears when pressure turns into shame, distrust, or a demand to prove worth.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q09",
@@ -270,8 +220,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Enoughness is not pretend abundance. It lets people face real constraints without handing shame, comparison, or withdrawal the power to define belonging.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -314,7 +263,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Scarcity Cue",
         "coreSkill": "Practice catching the first scarcity cue before it becomes a verdict. Name whether the cue is shame, comparison, or disengagement, then choose one action that treats worthiness as already present.",
         "ifThenPlans": [
           {
@@ -339,19 +287,13 @@
       },
       "memorableLines": [
         {
-          "text": "Courage begins when worthiness no longer waits for proof.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's move from proof-seeking into practiced worthiness."
+          "text": "Courage begins when worthiness no longer waits for proof."
         },
         {
-          "text": "Shame cannot be shamed into courage.",
-          "location": "breakdown.fullRead",
-          "why": "It warns against using the same force that created the armor."
+          "text": "Shame cannot be shamed into courage."
         },
         {
-          "text": "Scarcity says prove, perform, and protect.",
-          "location": "breakdown.fullRead",
-          "why": "The three verbs make the culture's command easy to recognize."
+          "text": "Scarcity says prove, perform, and protect."
         }
       ]
     },
@@ -378,13 +320,6 @@
             "medical risk",
             "asking for support"
           ],
-          "planSpec": {
-            "domain": "medical uncertainty",
-            "audience": "patients and friends",
-            "stakes": "facing test results alone",
-            "format": "decision_point",
-            "requiredBeat": "Treat asking for support as courage, not weakness"
-          },
           "scenario": "Leandro waits at 3:18 p.m. outside a Providence imaging clinic with the Survey responses on vulnerability in mind: biopsy results were on the list. His sister's name glows on the phone. Before the doctor calls, he must decide whether asking her to stay nearby makes him weak or wisely witnessed.",
           "whatToDo": "Leandro texts one clear request: stay available until the call ends. He does not make his sister fix the fear; he lets her witness the exposed hour.",
           "whyItMatters": "Medical uncertainty shows vulnerability without drama. Asking for support is not collapse; it is courage choosing connection while control is limited."
@@ -397,13 +332,6 @@
             "boundaries",
             "timing"
           ],
-          "planSpec": {
-            "domain": "work friendship",
-            "audience": "new managers",
-            "stakes": "private pain shared too fast",
-            "format": "dilemma",
-            "requiredBeat": "Use earned trust before disclosure"
-          },
           "scenario": "Kavya stands at 6:45 p.m. by the office coffee machine after a hard performance review. A new colleague asks why she looks upset. The phrase Marble-jar trust flashes from her notes. Before the elevator arrives, Kavya has to choose between a full family story and a bounded truth the relationship can hold.",
           "whatToDo": "Kavya shares a small honest sentence and saves the deeper story for a friend with earned trust. She respects both her need and the listener's capacity.",
           "whyItMatters": "Boundaries keep vulnerability from becoming a spill. Trust is built by repeated care, not by the speed or size of a disclosure."
@@ -416,13 +344,6 @@
             "intimacy",
             "risk"
           ],
-          "planSpec": {
-            "domain": "dating relationship",
-            "audience": "partners",
-            "stakes": "trying to control an uncertain answer",
-            "format": "inner_monologue",
-            "requiredBeat": "Accept exposure without turning love into a control project"
-          },
           "scenario": "Evelyn sits at 10:10 p.m. on the steps outside a Montreal restaurant after dinner with Sam. Love as uncertainty practice is no longer abstract. Her message draft says, \"I care about you.\" Before she hits send, she has to choose between honest exposure and another week of jokes that protect her pride.",
           "whatToDo": "Evelyn sends the honest sentence without attaching a demand for the same reply. She risks being seen while leaving Sam free to answer truthfully.",
           "whyItMatters": "Love cannot be made safe by control. The courage is naming care while accepting that reciprocation, timing, and permanence cannot be forced."
@@ -435,13 +356,6 @@
             "emotional exposure",
             "weakness myth"
           ],
-          "planSpec": {
-            "domain": "design school",
-            "audience": "creative students",
-            "stakes": "hiding unfinished work",
-            "format": "predict_reveal",
-            "requiredBeat": "Expose creative work without calling the fear weakness"
-          },
           "scenario": "Hiro opens a laptop at 8:50 a.m. in a Kyoto design studio. The Survey responses on vulnerability included making art, and his poster file sits unfinished on the projector. Ten minutes before critique, he must decide whether the shaking in his hands means the work is too weak to show.",
           "whatToDo": "Hiro presents the poster and names the question he wants feedback on. He does not wait for the fear to vanish before entering the critique.",
           "whyItMatters": "Creative work exposes taste, effort, and hope. Calling that exposure weakness keeps learning locked behind private perfection."
@@ -454,13 +368,6 @@
             "professional courage",
             "opting out myth"
           ],
-          "planSpec": {
-            "domain": "nonprofit operations",
-            "audience": "project coordinators",
-            "stakes": "resentment hidden as toughness",
-            "format": "decision_memo",
-            "requiredBeat": "Show that refusing vulnerability only moves it underground"
-          },
           "scenario": "Zahra drafts a 1:05 p.m. memo in a Nairobi nonprofit office after a donor asks for a weekend report. Saying no appeared in the Survey responses on vulnerability, and her jaw is tight. Before she replies, Zahra must decide whether toughness means silent resentment or a clear limit.",
           "whatToDo": "Zahra sends a bounded no with one workable alternative. She exposes the limit early instead of letting resentment steer the weekend.",
           "whyItMatters": "No one opts out of exposure. If Zahra hides the limit, the risk returns as tone, delay, and blame."
@@ -473,13 +380,6 @@
             "going alone",
             "connection"
           ],
-          "planSpec": {
-            "domain": "friendship",
-            "audience": "support networks",
-            "stakes": "avoiding an awkward grief call",
-            "format": "text_thread",
-            "requiredBeat": "Reject solo heroism and reach toward grief"
-          },
           "scenario": "Bastien stares at his phone at 7:32 p.m. in Lyon after Amara's father dies. Calling someone in grief was named in the Survey responses on vulnerability, and every draft sounds clumsy. Before the evening slips away, he has to choose between silence that feels safer and presence that may be imperfect.",
           "whatToDo": "Bastien sends a plain note and offers a specific call time. He does not pretend to have the right words; he chooses contact over polished distance.",
           "whyItMatters": "The go-it-alone myth isolates both people. Grief needs witness more than perfect language, and support begins with a reachable offer."
@@ -498,8 +398,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Vulnerability is exposure under uncertainty, and boundaries keep the request clear. Leandro can ask for witness without forcing his sister to carry every fear.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -511,8 +410,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Trust is earned through repeated care, reliability, and respect. A bounded truth may be courageous when the deeper story belongs elsewhere.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -524,8 +422,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Love involves real exposure because reciprocation cannot be guaranteed. Courage names care while refusing to control the other person's response.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -537,8 +434,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The weakness myth treats emotional exposure as evidence of inadequacy. Creative courage often includes fear because taste and effort are on display.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q05",
@@ -550,8 +446,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The opt-out myth says rational or tough people can avoid vulnerability. Zahra's limit will show up either as a clear no or as hidden resentment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -563,8 +458,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Going alone flatters self-sufficiency and leaves grief isolated. A simple, specific offer gives witness without making the moment about Bastien's performance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -576,8 +470,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Oversharing uses disclosure to discharge anxiety or force closeness. Healthy openness considers trust, role, timing, consent, and what the relationship can hold.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -589,8 +482,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Innovation cannot be separated from uncertainty and exposure. Denying vulnerability only pushes it into armor, blame, or silence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -602,8 +494,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Bounded vulnerability asks whether disclosure serves connection, help, integrity, or repair in a relationship that can hold it. Openness is not measured by volume.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -646,7 +537,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Risk With Earned Trust",
         "coreSkill": "Choose exposure based on purpose and relationship strength. Before revealing, asking, apologizing, or creating, check whether the risk serves connection, integrity, help, or repair and whether the listener has earned the weight.",
         "ifThenPlans": [
           {
@@ -671,19 +561,13 @@
       },
       "memorableLines": [
         {
-          "text": "Vulnerability with boundaries is courage in contact.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the chapter's core correction in one compact sentence."
+          "text": "Vulnerability with boundaries is courage in contact."
         },
         {
-          "text": "Boundaries are not a footnote to vulnerability; they are part of what makes it trustworthy.",
-          "location": "breakdown.fullRead",
-          "why": "It prevents the common slide from courage into unfiltered disclosure."
+          "text": "Boundaries are not a footnote to vulnerability; they are part of what makes it trustworthy."
         },
         {
-          "text": "The point is not to be open everywhere.",
-          "location": "breakdown.fullRead",
-          "why": "It makes healthy limits part of the practice rather than an exception."
+          "text": "The point is not to be open everywhere."
         }
       ]
     },
@@ -710,13 +594,6 @@
             "guilt",
             "repair"
           ],
-          "planSpec": {
-            "domain": "professional communication",
-            "audience": "team leads",
-            "stakes": "mistake becoming identity collapse",
-            "format": "mistake_recovery",
-            "requiredBeat": "Separate shame from accountability after the angry email mistake"
-          },
           "scenario": "Juliana freezes at 4:22 p.m. in a Toronto agency when her angry email reply goes to the client instead of her partner. The Angry email reply mistake from her notes is now on the screen. Before she writes anything else, she must decide whether to hide behind shame or call a trusted colleague and prepare a clean apology.",
           "whatToDo": "Juliana calls a colleague who can steady her without excusing the email. Then she writes a direct apology that owns the behavior rather than attacking herself.",
           "whyItMatters": "Empathy makes accountability possible. Shame says Juliana is the mistake; guilt helps her repair the message and the relationship."
@@ -729,13 +606,6 @@
             "naming shame",
             "relief"
           ],
-          "planSpec": {
-            "domain": "public workshop",
-            "audience": "adult learners",
-            "stakes": "avoiding a feared subject",
-            "format": "dialogue",
-            "requiredBeat": "Make shame learnable rather than humiliating"
-          },
           "scenario": "Farah stands at 8:05 p.m. near the exit after a community workshop when a man jokes that the shame session felt like meeting Severus Snape. People laugh, but his face softens. Farah has to answer before the line moves: treat the joke as distance, or use it to name relief.",
           "whatToDo": "Farah says the Snape comparison fits because feared lessons can protect people. She invites him to name one shame signal he can spot earlier next time.",
           "whyItMatters": "A feared subject loses power when it becomes teachable. Humor can open the door, but the next step is precise language."
@@ -748,13 +618,6 @@
             "double bind",
             "culture"
           ],
-          "planSpec": {
-            "domain": "research debrief",
-            "audience": "social researchers",
-            "stakes": "mistaking cultural pressure for private weakness",
-            "format": "audit",
-            "requiredBeat": "Use gendered shame interviews to reality-check expectations"
-          },
           "scenario": "Ingrid reviews Gendered shame interviews at 1:30 p.m. in a university lab. One page says women must be accomplished but not threatening; another says men must be open but never weak. Before the coding meeting starts, she has to choose whether to tag these as personal insecurity or cultural double binds.",
           "whatToDo": "Ingrid codes the excerpts as conditional-belonging scripts. She keeps the personal pain visible while naming the social demand that helped create it.",
           "whyItMatters": "Shame lands inside a person, but it is often built outside them. Reality-checking the demand keeps the sufferer from carrying the whole blame."
@@ -767,13 +630,6 @@
             "self-worth",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "startup pitch",
-            "audience": "founders",
-            "stakes": "criticism becoming a verdict on lovability",
-            "format": "decision_point",
-            "requiredBeat": "Keep feedback attached to behavior, not identity"
-          },
           "scenario": "Tomas waits at 11:40 a.m. in a Lisbon accelerator lobby after investors reject his pitch deck. Shame resilience is scribbled beside the word \"verdict\" in his notebook. Before the next mentor arrives, he must decide whether the rejection means he is a fraud or the deck needs clearer proof.",
           "whatToDo": "Tomas writes the feedback as behavior-level data: weak evidence, unclear customer pain, missing numbers. He refuses to let the deck grade his worth.",
           "whyItMatters": "Creative and entrepreneurial work expose hope. Shame resilience keeps evaluation useful by stopping feedback from becoming identity."
@@ -786,13 +642,6 @@
             "weakness rule",
             "belonging"
           ],
-          "planSpec": {
-            "domain": "athletic coaching",
-            "audience": "coaches",
-            "stakes": "injury hidden as toughness",
-            "format": "dilemma",
-            "requiredBeat": "Name male shame around weakness without mocking it"
-          },
           "scenario": "Selin checks the injury clipboard at 6:10 a.m. in a Manchester rowing club. A captain hides wrist pain because the men's side repeats the Gendered shame interviews rule: do not be weak. Before practice launches, Selin must decide whether to praise toughness or make honesty part of belonging.",
           "whatToDo": "Selin asks for the injury report in private and treats disclosure as team protection. She changes the rule from silent pain to responsible repair.",
           "whyItMatters": "Male shame often forbids fear and dependence. A coach can protect standards while refusing to make hidden injury the price of acceptance."
@@ -805,13 +654,6 @@
             "empathy",
             "identity"
           ],
-          "planSpec": {
-            "domain": "family life",
-            "audience": "parents",
-            "stakes": "parenting regret becoming identity",
-            "format": "reflection",
-            "requiredBeat": "Move shame into empathic relationship before repair"
-          },
           "scenario": "Graham sits at 9:55 p.m. at a Portland kitchen table after yelling over spilled soup. The phrase shame resilience sits on a parenting handout by the sink. He replays his child's face and feels the old sentence rising: bad father. His next move will decide whether he hides or repairs.",
           "whatToDo": "Graham texts a trusted friend first, then apologizes to his child with no self-attack. He names the behavior and the repair he will practice tomorrow.",
           "whyItMatters": "Shame turns parenting regret into identity. Empathy steadies Graham enough to return to his child with responsibility instead of collapse."
@@ -830,8 +672,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Shame resilience uses empathy to keep identity from taking over. That steadiness lets guilt guide direct repair for the email.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -843,8 +684,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Snape joke opens relief, but the value comes from treating shame as something people can recognize and work with.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -856,8 +696,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The patterns differ, but the mechanism is shared. Cultural rules make people feel that love or belonging depends on meeting impossible conditions.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -869,8 +708,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Feedback becomes useful when it stays attached to behavior and craft. Shame makes the pitch a verdict on Tomas's worth.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -882,8 +720,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The coach preserves accountability while changing the belonging rule. Honest disclosure becomes part of team care, not a sign of failed toughness.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -895,8 +732,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Empathy helps Graham metabolize shame so guilt can point toward repair. Self-condemnation may sound remorseful, but it pulls attention away from the child.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -908,8 +744,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Guilt names a behavior that can be repaired. Shame makes the self defective and usually drives hiding or attack.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q08",
@@ -921,8 +756,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Shame resilience protects the self from becoming the project. Clear limits let feedback address craft without deciding worth.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -934,8 +768,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The practice is relational and ethical. It lowers shame's grip while keeping guilt available for repair when behavior has caused harm.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -978,7 +811,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Separate Self From Signal",
         "coreSkill": "When shame hits, slow the move from event to identity. Name the body signal, write the expectation that got triggered, and contact someone who can offer empathy without removing responsibility.",
         "ifThenPlans": [
           {
@@ -1003,19 +835,13 @@
       },
       "memorableLines": [
         {
-          "text": "Shame resilience is not immunity.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the promise realistic and focused on recovery rather than invulnerability."
+          "text": "Shame resilience is not immunity."
         },
         {
-          "text": "Accountability becomes harder, not easier, when shame takes over.",
-          "location": "breakdown.fullRead",
-          "why": "It links empathy and responsibility without making either optional."
+          "text": "Accountability becomes harder, not easier, when shame takes over."
         },
         {
-          "text": "Shame alone becomes a closed room with bad acoustics.",
-          "location": "breakdown.fullRead",
-          "why": "The image captures why secrecy amplifies identity attack."
+          "text": "Shame alone becomes a closed room with bad acoustics."
         }
       ]
     },
@@ -1042,13 +868,6 @@
             "coolness",
             "belonging"
           ],
-          "planSpec": {
-            "domain": "school counseling",
-            "audience": "adolescents",
-            "stakes": "status defense hardening into identity",
-            "format": "scene",
-            "requiredBeat": "Show armor forming around belonging threats"
-          },
           "scenario": "Dalia stands at 12:18 p.m. in a middle-school cafeteria memory exercise, watching eighth graders sort themselves by table. One student laughs at a cruel joke before anyone can target him. Dalia has to decide before group debrief whether to call him mean or name the mask he is using to survive lunch.",
           "whatToDo": "Dalia names the status pressure and asks what the laugh protected. She separates the harm from the child's need for belonging.",
           "whyItMatters": "Vulnerability armor often begins as social survival. Seeing the original job makes it easier to replace the mask without humiliating the wearer."
@@ -1061,13 +880,6 @@
             "gratitude",
             "family"
           ],
-          "planSpec": {
-            "domain": "family life",
-            "audience": "parents",
-            "stakes": "joy stolen by disaster rehearsal",
-            "format": "reset_moment",
-            "requiredBeat": "Use gratitude as the antidote to foreboding joy"
-          },
           "scenario": "Kenji watches his daughter sleep at 9:06 p.m. in Seattle after her first clear scan. Foreboding joy rushes in with a hospital image he did not invite. Before he opens another medical forum, Kenji must decide whether rehearsal will protect him or steal the good that is actually in the room.",
           "whatToDo": "Kenji places a hand on the doorframe and says one concrete gratitude sentence. He lets joy register without trying to guarantee tomorrow.",
           "whyItMatters": "Foreboding joy mistakes rehearsal for safety. Gratitude lets Kenji receive the present moment while knowing he cannot control every loss."
@@ -1080,13 +892,6 @@
             "self-compassion",
             "approval"
           ],
-          "planSpec": {
-            "domain": "product launch",
-            "audience": "marketing leads",
-            "stakes": "approval strategy blocking timely work",
-            "format": "decision_point",
-            "requiredBeat": "Distinguish excellence from perfectionism"
-          },
           "scenario": "Maren edits a launch deck at 1:14 a.m. in Copenhagen while the phrase perfectionism is not excellence sits on a sticky note. The deck is strong enough for review, but one chart color bothers her. Before the file deadline, she must choose craft improvement or approval armor.",
           "whatToDo": "Maren sends the deck with one note naming the open question. She keeps excellence tied to learning, not to a flawless shield against judgment.",
           "whyItMatters": "Perfectionism can look responsible while it serves shame. Self-compassion lets Maren care about quality without making approval the whole measure."
@@ -1099,13 +904,6 @@
             "busyness",
             "presence"
           ],
-          "planSpec": {
-            "domain": "executive scheduling",
-            "audience": "senior leaders",
-            "stakes": "overwork praised as avoidance",
-            "format": "audit",
-            "requiredBeat": "Treat over-busyness as possible numbing"
-          },
           "scenario": "Rafael reviews his color-coded calendar at 6:35 a.m. in Mexico City and sees no blank space for the third week. Shadow comforts and over-busyness is circled in his notes. Before his assistant adds another breakfast, Rafael must decide whether the full schedule restores him or keeps grief unreachable.",
           "whatToDo": "Rafael cancels one low-value commitment and leaves the space unfilled. He lets the blank hour reveal what the busyness has been muting.",
           "whyItMatters": "Numbing does not require obvious excess. A praised calendar can dull pain and also cut Rafael off from rest, grief, and connection."
@@ -1118,13 +916,6 @@
             "repair",
             "leadership"
           ],
-          "planSpec": {
-            "domain": "sales leadership",
-            "audience": "regional managers",
-            "stakes": "predator-prey thinking after loss",
-            "format": "postmortem",
-            "requiredBeat": "Challenge winner-or-victim armor"
-          },
           "scenario": "Beatrice sits at 4:00 p.m. in a Milan sales debrief after losing a key account. Her director says the market is predators and prey. The phrase winner-or-victim worldview is underlined on her tablet. Before the team copies the posture, Beatrice has to choose between toughness theater and mutual repair.",
           "whatToDo": "Beatrice asks what the lost account can teach and where the team needs help. She refuses a frame that treats learning as prey behavior.",
           "whyItMatters": "Winner-or-victim thinking protects pride by shrinking the world. Repair requires enough safety to admit need without surrendering standards."
@@ -1137,13 +928,6 @@
             "boundaries",
             "trust"
           ],
-          "planSpec": {
-            "domain": "support group",
-            "audience": "facilitators",
-            "stakes": "intensity mistaken for courage",
-            "format": "coach_talk",
-            "requiredBeat": "Separate forced intimacy from trustworthy vulnerability"
-          },
           "scenario": "Samir facilitates a 7:45 p.m. support group in Minneapolis when a new member begins a graphic story before names are finished. Oversharing as armor is on Samir's cue card. Seconds before the room stiffens, he must protect the speaker and the group without shaming either.",
           "whatToDo": "Samir thanks the member, slows the pace, and offers a bounded prompt. He protects trust by matching disclosure to the room's capacity.",
           "whyItMatters": "Intensity can mimic bravery while trying to force closeness. Boundaries let vulnerability grow at a pace the group can hold."
@@ -1162,8 +946,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Armor can begin as protection while still causing harm. Dalia can name both the survival strategy and the need for repair.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -1175,8 +958,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Foreboding joy tries to make happiness safer by rehearsing pain. Gratitude receives the good without demanding certainty.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1188,8 +970,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Excellence can learn and ship. Perfectionism tries to prevent shame by performing flawlessness, which keeps Maren trapped in approval management.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1201,8 +982,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The activity alone does not decide the issue. The test is whether busyness restores life or functions as socially rewarded numbing.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1214,8 +994,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Winner-or-victim thinking protects pride by dividing people into predators and prey. Learning and repair become harder to admit.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1227,8 +1006,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Oversharing can be armor when it forces intimacy or discharges discomfort. Boundaries protect both the speaker and the group.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1240,8 +1018,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Each counter-practice addresses the shield's function. Gratitude receives joy, self-compassion loosens approval, and presence interrupts dulling.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q08",
@@ -1253,8 +1030,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Reckless exposure is not the goal. The skill is cost awareness and healthier practices where trust can hold the truth.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1266,8 +1042,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Cynicism and coolness keep people above risk instead of inside connection. The team avoids exposure by making care look naive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1310,7 +1085,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Price the Shield",
         "coreSkill": "Treat armor as information before treating it as failure. Identify the protective move, name the exposure it is trying to reduce, and choose a counter-practice that protects the tender need without shrinking your life.",
         "ifThenPlans": [
           {
@@ -1335,19 +1109,13 @@
       },
       "memorableLines": [
         {
-          "text": "The problem is that a temporary defense can become a permanent way to live.",
-          "location": "breakdown.fullRead",
-          "why": "It names the hidden price of protection in reader-friendly terms."
+          "text": "The problem is that a temporary defense can become a permanent way to live."
         },
         {
-          "text": "Shadow comforts differ from true comfort by their aftertaste.",
-          "location": "breakdown.fullRead",
-          "why": "The sentence gives readers a quick diagnostic for numbing."
+          "text": "Shadow comforts differ from true comfort by their aftertaste."
         },
         {
-          "text": "Armor loses power when it is treated as a signal instead of a personality.",
-          "location": "breakdown.fullRead",
-          "why": "It turns defenses into workable information without shaming the reader."
+          "text": "Armor loses power when it is treated as a signal instead of a personality."
         }
       ]
     },
@@ -1374,13 +1142,6 @@
             "values gap",
             "culture"
           ],
-          "planSpec": {
-            "domain": "transport operations",
-            "audience": "safety trainers",
-            "stakes": "ordinary gap ignored before action",
-            "format": "contrast",
-            "requiredBeat": "Use Mind the Gap as a behavioral warning"
-          },
           "scenario": "Helena stands at 7:42 a.m. on a London Underground platform while Mind the Gap repeats over the speakers. Later that morning, she opens a nonprofit retreat with the same phrase on a slide. Before the directors set goals, she must decide whether to praise their values or make them inspect the space between words and routines.",
           "whatToDo": "Helena asks for one visible receipt for each stated value: a budget line, meeting rule, reward, apology, or protected hour.",
           "whyItMatters": "The London warning does not shame the rider; it asks for attention. Values work begins when the risky distance is made visible."
@@ -1393,13 +1154,6 @@
             "disengagement",
             "contempt"
           ],
-          "planSpec": {
-            "domain": "civic campaign",
-            "audience": "organizers",
-            "stakes": "service language contradicted by fear tactics",
-            "format": "decision_point",
-            "requiredBeat": "Show disengagement as response to hypocrisy"
-          },
           "scenario": "Quinn sits at 8:20 p.m. in a state campaign office where posters say service and every staff message mocks opponents as enemies. Politics and organized religion disengagement is highlighted in his binder. Before volunteer training starts, Quinn must choose between louder slogans and naming the practiced contempt.",
           "whatToDo": "Quinn rewrites the volunteer script around the service behavior the campaign claims. He removes the contempt line and explains why trust depends on the practiced value.",
           "whyItMatters": "People withdraw when public ideals keep losing to fear. Disengagement can be a protest against hypocrisy, not proof that service no longer matters."
@@ -1412,13 +1166,6 @@
             "modeling",
             "honesty"
           ],
-          "planSpec": {
-            "domain": "family life",
-            "audience": "parents",
-            "stakes": "spoken courage contradicted by avoidance",
-            "format": "scene",
-            "requiredBeat": "Show modeled behavior teaching more than instruction"
-          },
           "scenario": "Suresh clears plates at 6:55 p.m. in Calgary after telling his children that honesty matters. Ten minutes later, he asks them not to mention the overdue bill to their grandmother. The Family do-as-I-say pattern is now alive at the sink, and Suresh has to choose which curriculum his children will learn.",
           "whatToDo": "Suresh corrects himself in front of the children and explains the bill honestly at an age-fitting level. He lets the value cost him comfort.",
           "whyItMatters": "Children learn practiced values from modeled pressure moments. A spoken lesson weakens when secrecy is the adult behavior they can see."
@@ -1431,13 +1178,6 @@
             "innovation",
             "budget"
           ],
-          "planSpec": {
-            "domain": "manufacturing strategy",
-            "audience": "executive teams",
-            "stakes": "innovation claimed but unfunded",
-            "format": "audit",
-            "requiredBeat": "Make practiced values measurable through money and time"
-          },
           "scenario": "Marta opens a 2:00 p.m. strategy review in Warsaw with innovation listed as the first value. The budget shows no experiment fund, and failed prototypes hurt promotion scores. The values gap is on the screen. Before the vote, Marta must decide whether the word innovation has any practiced support.",
           "whatToDo": "Marta ties the value to a funded pilot pool and a learning review rule. Innovation becomes visible in money and promotion criteria.",
           "whyItMatters": "Culture wins when strategy and rewards conflict. Funding and promotion rules reveal whether innovation is a value or a speech."
@@ -1450,13 +1190,6 @@
             "control",
             "mercy"
           ],
-          "planSpec": {
-            "domain": "faith community",
-            "audience": "lay leaders",
-            "stakes": "mercy preached while control is practiced",
-            "format": "dilemma",
-            "requiredBeat": "Public ideals lose credibility when leaders practice fear"
-          },
           "scenario": "Noor joins a 5:30 p.m. committee meeting in a Detroit congregation where compassion is printed on every bulletin. A divorced member asks to lead a food drive, and two elders move to block her quietly. Politics and organized religion disengagement sits in Noor's notes. Before the vote, Noor must speak to the gap.",
           "whatToDo": "Noor asks the committee to define the compassion practice in this exact case. She moves the value from bulletin language to a decision about participation.",
           "whyItMatters": "Institutions lose trust when moral language hides fear or control. Compassion becomes credible only when it governs the hard case."
@@ -1469,13 +1202,6 @@
             "meetings",
             "observable behavior"
           ],
-          "planSpec": {
-            "domain": "design agency",
-            "audience": "creative directors",
-            "stakes": "respect claimed while interruption is rewarded",
-            "format": "planning_choice",
-            "requiredBeat": "Translate a value into a pressure-tested behavior"
-          },
           "scenario": "Declan reviews a 10:15 a.m. design critique in Dublin where respect is painted across the lobby wall. Senior staff interrupt junior designers and get praised for speed. The values gap is measurable in the meeting transcript. Before the next critique, Declan has to choose a rule that makes respect visible.",
           "whatToDo": "Declan changes the critique format so junior designers finish their rationale before comments begin. He treats uninterrupted explanation as the practiced value.",
           "whyItMatters": "Values become credible through observable behavior. A meeting rule teaches more than lobby paint because it changes what power is allowed to do."
@@ -1494,8 +1220,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Mind the Gap points attention to the distance between words and action. Values become credible through observable receipts.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1507,8 +1232,7 @@
             ],
             "correctIndex": 0,
             "explanation": "People often withdraw when behavior repeatedly betrays the stated value. The issue is practiced contempt, not weak branding.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1520,8 +1244,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Family culture is modeled in pressure moments. Children learn what adults practice when honesty costs comfort.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1533,8 +1256,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Innovation has to appear in money, time, and advancement. Otherwise culture teaches risk avoidance while strategy asks for new ideas.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1546,8 +1268,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A value becomes practiced in the hard case. Noor moves compassion from printed language to a concrete decision about belonging.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1559,8 +1280,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Respect becomes visible when power changes its behavior. The meeting rule makes the value observable under pressure.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -1572,8 +1292,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Practiced values show up in consequences, not only in belief or language. Rewards teach culture with unusual force.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q08",
@@ -1585,8 +1304,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fear can produce performance, but it does not build courageous culture. The gap closes through owned contradiction and visible practice.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1598,8 +1316,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Student voice has to affect the place where decisions form. Otherwise the stated value stays separate from the practiced routine.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1642,7 +1359,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Find the Value Receipt",
         "coreSkill": "Choose one stated value and trace its visible evidence. Look for where time, money, praise, silence, discipline, and conflict either support the value or teach a competing one.",
         "ifThenPlans": [
           {
@@ -1667,19 +1383,13 @@
       },
       "memorableLines": [
         {
-          "text": "Disengagement is not always laziness.",
-          "location": "breakdown.fastRead",
-          "why": "It reframes withdrawal as information about trust and contradiction."
+          "text": "Disengagement is not always laziness."
         },
         {
-          "text": "Practiced values leave receipts.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a concrete test for cultural alignment."
+          "text": "Practiced values leave receipts."
         },
         {
-          "text": "Aspirational values become credible when people can point to their practice.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the move from language to observable behavior."
+          "text": "Aspirational values become credible when people can point to their practice."
         }
       ]
     },
@@ -1706,13 +1416,6 @@
             "innovation",
             "ridicule"
           ],
-          "planSpec": {
-            "domain": "clean-tech leadership",
-            "audience": "executive teams",
-            "stakes": "innovation blocked by social fear",
-            "format": "business_case",
-            "requiredBeat": "Use Kevin Surace to connect creativity with ridicule risk"
-          },
           "scenario": "Tori starts a 9:00 a.m. innovation offsite in San Jose with Kevin Surace of Serious Materials on the agenda. Engineers have stopped submitting early concepts after two demos drew laughs. Before the next brainstorm, Tori must decide whether the barrier is technical skill or fear of being belittled.",
           "whatToDo": "Tori names ridicule as an innovation risk and changes the demo rule: early concepts receive questions before criticism. She protects raw ideas long enough to learn.",
           "whyItMatters": "Innovation stalls when social exposure feels more dangerous than the technical problem. Respectful early feedback keeps ideas in motion."
@@ -1725,13 +1428,6 @@
             "students",
             "risk"
           ],
-          "planSpec": {
-            "domain": "art classroom",
-            "audience": "teachers",
-            "stakes": "one humiliating moment shaping future avoidance",
-            "format": "mistake_recovery",
-            "requiredBeat": "Repair a creative scar before it hardens"
-          },
           "scenario": "Luis watches at 1:25 p.m. in a Phoenix art room as classmates laugh at a seventh grader's first charcoal sketch. Creative scars among students and workers is on his training card. Seconds before the student closes the pad, Luis has to decide whether to scold the room or repair the conditions for showing work.",
           "whatToDo": "Luis stops the laughter, names the risk of showing early work, and asks for observations tied to the sketch. He repairs dignity before returning to craft.",
           "whyItMatters": "A single ridiculed attempt can teach long avoidance. Shame resistance keeps correction usable by protecting the learner's willingness to try again."
@@ -1744,13 +1440,6 @@
             "positioning",
             "accountability"
           ],
-          "planSpec": {
-            "domain": "manager coaching",
-            "audience": "first-time managers",
-            "stakes": "feedback triggering armor",
-            "format": "before_after",
-            "requiredBeat": "Use physical setup to reduce threat"
-          },
           "scenario": "Jin sits at 3:10 p.m. behind a walnut desk in Singapore with a performance memo between himself and a nervous analyst. Feedback across a desk is underlined in his notes. Before the analyst arrives, Jin must choose whether to keep the authority wall or move the spreadsheet where both can examine it.",
           "whatToDo": "Jin sits beside the analyst and places the spreadsheet on the table between them. He names the shared goal, one strength, and the specific pattern to change.",
           "whyItMatters": "Feedback design tells people whether to defend or learn. Shared attention on the work lowers armor while keeping expectations clear."
@@ -1763,13 +1452,6 @@
             "questions",
             "discomfort"
           ],
-          "planSpec": {
-            "domain": "engineering bootcamp",
-            "audience": "instructors",
-            "stakes": "students hiding confusion",
-            "format": "planning_choice",
-            "requiredBeat": "Normalize discomfort without normalizing shame"
-          },
           "scenario": "Carla opens a 10:45 a.m. coding bootcamp in Recife and sees three students erase questions from the shared doc after one answer got mocked. Disruptive engagement is written on the whiteboard. Before the next lab, Carla must decide whether silence means confidence or fear.",
           "whatToDo": "Carla creates a naive-question round and models one of her own. She makes not knowing visible without letting ridicule enter the lab.",
           "whyItMatters": "Learning starts with exposure. Normal discomfort helps students grow; humiliation teaches them to hide the confusion the teacher needs to see."
@@ -1782,13 +1464,6 @@
             "truth-telling",
             "workplace"
           ],
-          "planSpec": {
-            "domain": "hospital operations",
-            "audience": "quality teams",
-            "stakes": "mistakes concealed by blame culture",
-            "format": "postmortem",
-            "requiredBeat": "Make truth-telling safer than concealment"
-          },
           "scenario": "Rina reviews a 7:30 a.m. medication delay in a Chicago hospital conference room. The old postmortem starts with who failed. Shame culture signals, blame and public belittling, appear on her checklist. Before nurses arrive, Rina must choose whether the meeting will find a person to punish or a process to fix.",
           "whatToDo": "Rina starts with the timeline and asks where the system made the delay likely. Individual responsibility stays, but public blame is removed from the search.",
           "whyItMatters": "People hide mistakes where humiliation is likely. A dignity-preserving postmortem protects the information patient safety depends on."
@@ -1801,13 +1476,6 @@
             "high standards",
             "dignity"
           ],
-          "planSpec": {
-            "domain": "publishing team",
-            "audience": "editors",
-            "stakes": "cruelty mistaken for rigor",
-            "format": "dilemma",
-            "requiredBeat": "Reject shame while keeping standards"
-          },
           "scenario": "Wallace leads an 11:00 a.m. manuscript meeting in Edinburgh where an editor calls a junior's outline embarrassing. The hardEdge note says rigorous feedback needs dignity. Before the junior leaves the room, Wallace must decide whether brutal candor is a standard or a shame habit.",
           "whatToDo": "Wallace interrupts the insult and asks for specific craft notes. He keeps the standard high by making the feedback useful instead of humiliating.",
           "whyItMatters": "Kindness is not low standards. Dignity lets the junior hear the real editorial work instead of spending energy on self-protection."
@@ -1826,8 +1494,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Kevin Surace's point links creativity to fear of being belittled. When ridicule is likely, people hide early ideas.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1839,8 +1506,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The repair must protect dignity and keep learning possible. Shame around early work can train years of avoidance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1852,8 +1518,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Positioning communicates whether growth or self-protection is expected. Shared attention on the work lowers the threat without removing accountability.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1865,8 +1530,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Learning is vulnerable because it begins with not knowing. The rule normalizes discomfort while refusing shame.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q05",
@@ -1878,8 +1542,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Shame-based postmortems trade information for self-protection. Safety improves when accountability can happen without public belittling.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1891,8 +1554,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Specific craft feedback can be demanding without humiliation. Shame makes the receiver defend the self instead of improving the work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1904,8 +1566,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Public nicknames turn correction into humiliation. Hard work and revision are not shame when dignity and clarity stay intact.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q08",
@@ -1917,8 +1578,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Dignity is not the opposite of rigor. Specific, respectful feedback often makes standards clearer because it removes global attack.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1930,8 +1590,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Risk information is vulnerable. Teams disclose it earlier when leaders repair humiliation and make truth-telling safer than hiding.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1974,7 +1633,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Design Dignified Feedback",
         "coreSkill": "Prepare feedback so the work is clear and the person remains whole. Place the problem where both people can examine it, name strengths and misses specifically, and ask for the next accountable step.",
         "ifThenPlans": [
           {
@@ -1999,19 +1657,13 @@
       },
       "memorableLines": [
         {
-          "text": "Learning begins with not knowing.",
-          "location": "breakdown.fastRead",
-          "why": "It frames uncertainty as the starting point of education rather than a defect."
+          "text": "Learning begins with not knowing."
         },
         {
-          "text": "Comfort and dignity are not the same thing.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves discomfort as part of learning while rejecting humiliation."
+          "text": "Comfort and dignity are not the same thing."
         },
         {
-          "text": "Rigor survives when dignity is stable.",
-          "location": "breakdown.fullRead",
-          "why": "It gives leaders and teachers the chapter's most practical standard."
+          "text": "Rigor survives when dignity is stable."
         }
       ]
     },
@@ -2038,13 +1690,6 @@
             "repair",
             "worthiness"
           ],
-          "planSpec": {
-            "domain": "family dinner",
-            "audience": "caregivers",
-            "stakes": "adult shame after public mess",
-            "format": "mistake_recovery",
-            "requiredBeat": "Model repair rather than perfect authority"
-          },
           "scenario": "Petra stands at 6:37 p.m. in a crowded diner after her son knocks soup into her lap and strangers turn to stare. Parenting as the boldest arena is suddenly literal. Before she speaks, Petra must decide whether the mess will become proof of bad parenting or a chance to model repair and steadiness.",
           "whatToDo": "Petra takes one breath, sets a cleanup task, and tells her son they will handle it together. Later she repairs the sharp tone she did use.",
           "whyItMatters": "Children learn worthiness in exposed moments. Petra can set a limit and clean the mess without making belonging depend on public composure."
@@ -2057,13 +1702,6 @@
             "scorecard",
             "presence"
           ],
-          "planSpec": {
-            "domain": "home routines",
-            "audience": "parents of young children",
-            "stakes": "technique replacing relationship",
-            "format": "decision_point",
-            "requiredBeat": "Refuse to let a how-to tool measure adult worth"
-          },
           "scenario": "Lyle sits at 8:05 p.m. in Omaha with three parenting books open and a failed sticker chart on the fridge. The How-to parenting measuring stick has become a nightly verdict. Before bedtime starts, Lyle must choose whether to add another system or show the calm repair he wants his daughter to learn.",
           "whatToDo": "Lyle keeps one simple routine and drops the scorecard tone. He apologizes for the nightly pressure and practices the bedtime behavior beside his daughter.",
           "whyItMatters": "Technique can help, but it cannot replace embodied example. The child learns more from Lyle's steadiness than from a flawless chart."
@@ -2076,13 +1714,6 @@
             "belonging",
             "limits"
           ],
-          "planSpec": {
-            "domain": "adolescent conflict",
-            "audience": "parents of teens",
-            "stakes": "discipline threatening lovability",
-            "format": "dialogue",
-            "requiredBeat": "Hold unconditional belonging with real consequences"
-          },
           "scenario": "Simran reads the Wholehearted Parenting Manifesto on the fridge at 9:48 p.m. after finding her teen lied about the car. The keys are on the counter, and the teen is braced for rejection. Before setting a consequence, Simran must decide whether belonging is still clear.",
           "whatToDo": "Simran states that the lie broke trust and the car is off limits for a week. She also says love is not up for review.",
           "whyItMatters": "Belonging and limits are not opposites. A child can face consequences without fearing that one bad choice has canceled lovability."
@@ -2095,13 +1726,6 @@
             "agency",
             "help-seeking"
           ],
-          "planSpec": {
-            "domain": "homework",
-            "audience": "caregivers",
-            "stakes": "rescue preventing hope practice",
-            "format": "planning_choice",
-            "requiredBeat": "Let supported difficulty build hope"
-          },
           "scenario": "Adele watches her son push away algebra at 7:12 p.m. in Queens and feels the urge to finish the sheet for him. Hope through struggle is written on a school handout nearby. Before the frustration turns to tears, Adele must choose between rescue and supported effort.",
           "whatToDo": "Adele sits beside him, solves one sample together, and has him try the next problem while she stays available. She lets effort belong to him.",
           "whyItMatters": "Hope grows through difficulty with support. Rescue can soothe the adult's fear while stealing the child's practice in persistence and help-seeking."
@@ -2114,13 +1738,6 @@
             "community",
             "scarcity"
           ],
-          "planSpec": {
-            "domain": "parent association",
-            "audience": "caregiver groups",
-            "stakes": "judgment becoming practiced value",
-            "format": "dilemma",
-            "requiredBeat": "Stop shaming other parents as a safety strategy"
-          },
           "scenario": "Byron sits at 4:30 p.m. in a Vancouver parent association meeting while two adults mock a mother whose child was suspended. Wholehearted parenting is on the agenda, but judgment is in the air. Before the group votes on support funds, Byron must decide whether shaming her will become the practiced value.",
           "whatToDo": "Byron redirects the meeting to what support and accountability require. He refuses to let another parent's pain become a ranking exercise.",
           "whyItMatters": "Shaming parents reproduces scarcity in the caregiving community. Children benefit when adults practice the belonging they claim to value."
@@ -2133,13 +1750,6 @@
             "apology",
             "being"
           ],
-          "planSpec": {
-            "domain": "co-parenting",
-            "audience": "families",
-            "stakes": "adult authority avoiding repair",
-            "format": "reflection",
-            "requiredBeat": "Be the adult the child is invited to become"
-          },
           "scenario": "Huda pauses at 7:58 a.m. in an Abu Dhabi hallway after snapping at her daughter about missing shoes. The phrase be the adults we want our children to be is taped inside the closet. School starts in twelve minutes, and Huda has to decide whether authority means moving on or repairing fast.",
           "whatToDo": "Huda gives a brief apology, names the rushed feeling, and keeps the shoe search moving. She models repair without making the child manage her guilt.",
           "whyItMatters": "Children need adults who can admit uncertainty and repair. Perfect authority teaches less courage than accountable presence."
@@ -2158,8 +1768,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The child needs belonging and limits in the same moment. Petra can address behavior without turning public embarrassment into identity threat.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2171,8 +1780,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Technique can help, but it cannot carry adult worth. Children learn the caregiver's practiced way of being.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2184,8 +1792,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Belonging is nonnegotiable, but behavior can still meet limits. Discipline works best when worth is stable.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2197,8 +1804,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Hope grows from supported difficulty, not rescue or abandonment. The child practices effort while knowing help is available.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2210,8 +1816,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Shaming other parents reproduces scarcity. The group can hold accountability without turning a family into a ranking exercise.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2223,8 +1828,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The apology should model accountability while staying adult-sized. Huda repairs the rupture and keeps responsibility for the morning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2236,8 +1840,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Wholehearted parenting keeps lovability stable while still addressing behavior. Belonging is not a reward for compliance.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q08",
@@ -2249,8 +1852,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Guidance matters, but children watch how adults handle fear, limits, apology, and repair. Embodied example carries the lasting lesson.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2262,8 +1864,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Hope comes from struggle with support. The child learns disappointment can be survived and followed by agency.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2306,7 +1907,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Model the Value First",
         "coreSkill": "Translate one parenting value into adult behavior the child can witness. Keep belonging stable, set limits clearly, and repair adult misses quickly enough for the child to see how courage works.",
         "ifThenPlans": [
           {
@@ -2331,19 +1931,13 @@
       },
       "memorableLines": [
         {
-          "text": "Children learn family culture by watching adults under pressure.",
-          "location": "breakdown.deepRead",
-          "why": "It turns parenting from advice delivery into embodied practice."
+          "text": "Children learn family culture by watching adults under pressure."
         },
         {
-          "text": "Children are not projects built to prove adult competence.",
-          "location": "breakdown.fullRead",
-          "why": "It cuts through technique anxiety and adult shame."
+          "text": "Children are not projects built to prove adult competence."
         },
         {
-          "text": "The parent becomes the living curriculum.",
-          "location": "breakdown.fullRead",
-          "why": "It condenses the final chapter's call to model what children need to learn."
+          "text": "The parent becomes the living curriculum."
         }
       ]
     }

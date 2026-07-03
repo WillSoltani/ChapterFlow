@@ -23,1628 +23,8 @@
       "milestone-multiplication"
     ]
   },
-  "productionManifest": {
-    "schemaVersion": "chapterflow-production-manifest-v2",
-    "contentId": "sha256:fac876aebd02b5b0a5ded2da134b250f8ace0c9375a95d889c71474b2473a0d7",
-    "payloadHash": "sha256:fac876aebd02b5b0a5ded2da134b250f8ace0c9375a95d889c71474b2473a0d7",
-    "payload": {
-      "schemaVersion": "chapterflow-production-manifest-payload-v2",
-      "bookId": "the-power-of-moments",
-      "packageSchemaVersion": "chapterflow-v21-authored",
-      "book": {
-        "title": "The Power of Moments",
-        "author": "Chip Heath and Dan Heath",
-        "categories": [
-          "Learning",
-          "Self-Help",
-          "Psychology"
-        ],
-        "tags": [
-          "defining-moments",
-          "moment-spotting",
-          "peaks",
-          "script-breaking",
-          "truth-encounter",
-          "stretch-insight",
-          "recognition-moments",
-          "milestone-multiplication"
-        ],
-        "contentOwner": "chapterflow"
-      },
-      "canonicalIndex": {
-        "path": "state/indexes/the-power-of-moments.json",
-        "semanticHash": "sha256:b58769ce6f5a52d92b087f0d0ee928d654d4209f3ba992e50746b55ee7b5340c",
-        "chapters": [
-          {
-            "chapterId": "the-power-of-moments-ch01",
-            "chapterNumber": 1,
-            "chapterTitle": "Defining Moments"
-          },
-          {
-            "chapterId": "the-power-of-moments-ch02",
-            "chapterNumber": 2,
-            "chapterTitle": "Thinking in Moments"
-          },
-          {
-            "chapterId": "the-power-of-moments-ch03",
-            "chapterNumber": 3,
-            "chapterTitle": "Build Peaks"
-          },
-          {
-            "chapterId": "the-power-of-moments-ch04",
-            "chapterNumber": 4,
-            "chapterTitle": "Break the Script"
-          },
-          {
-            "chapterId": "the-power-of-moments-ch05",
-            "chapterNumber": 5,
-            "chapterTitle": "Trip Over the Truth"
-          },
-          {
-            "chapterId": "the-power-of-moments-ch06",
-            "chapterNumber": 6,
-            "chapterTitle": "Stretch for Insight"
-          },
-          {
-            "chapterId": "the-power-of-moments-ch07",
-            "chapterNumber": 7,
-            "chapterTitle": "Recognize Others"
-          },
-          {
-            "chapterId": "the-power-of-moments-ch08",
-            "chapterNumber": 8,
-            "chapterTitle": "Multiply Milestones"
-          },
-          {
-            "chapterId": "the-power-of-moments-ch09",
-            "chapterNumber": 9,
-            "chapterTitle": "Practice Courage"
-          },
-          {
-            "chapterId": "the-power-of-moments-ch10",
-            "chapterNumber": 10,
-            "chapterTitle": "Create Shared Meaning"
-          },
-          {
-            "chapterId": "the-power-of-moments-ch11",
-            "chapterNumber": 11,
-            "chapterTitle": "Deepen Ties"
-          },
-          {
-            "chapterId": "the-power-of-moments-ch12",
-            "chapterNumber": 12,
-            "chapterTitle": "Making Moments Matter"
-          }
-        ]
-      },
-      "chapters": [
-        {
-          "chapterId": "the-power-of-moments-ch01",
-          "chapterNumber": 1,
-          "title": "Defining Moments",
-          "readerContentHash": "sha256:2d16150083f4382ea87bbeac36e484aa8db7dce74e81cadae96ad985fa914b3b",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-power-of-moments/20260630T141644918Z-06ed5bf5-d0a5-41a3-8ead-c9d89fe5f4e5/sidecars/source/ch01.source.json",
-            "semanticHash": "sha256:9d2467047bc92564843e4f946c3af89964963cac12e2f5e431ea62b2bf8cdab8",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-power-of-moments-ch01.v21-native.chapter.json",
-            "semanticHash": "sha256:872c350eca50780a96207652ab95ef627798e81ceb7e458946ff737517d889cf",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:9d2467047bc92564843e4f946c3af89964963cac12e2f5e431ea62b2bf8cdab8"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-power-of-moments-ch01.qc.json",
-            "semanticHash": "sha256:9ca96b6944d02c064c236cb88b6a2c8ccdb3c4794ddba4d1d55a6a4899f8df28",
-            "roundId": "r20260703010922-85dfc7",
-            "contentHash": "6afcbd9f0ee05d95",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:author-review:r20260703010922-85dfc7",
-            "reviewedAt": "2026-07-03T01:14:53.354Z"
-          }
-        },
-        {
-          "chapterId": "the-power-of-moments-ch02",
-          "chapterNumber": 2,
-          "title": "Thinking in Moments",
-          "readerContentHash": "sha256:51e279cfdb5042eea43a932a22db7192e2cb4457c171b9ed6976ea938414f55c",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-power-of-moments/20260630T141644918Z-06ed5bf5-d0a5-41a3-8ead-c9d89fe5f4e5/sidecars/source/ch02.source.json",
-            "semanticHash": "sha256:5d124d1e5fb74103f078996cd824947620385fdfcc394e44189fb1d5d2acf491",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-power-of-moments-ch02.v21-native.chapter.json",
-            "semanticHash": "sha256:c1d69a28d2a11fbd656d2b41a18e3d241c42736f3c44435764ae20d19ad70217",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:5d124d1e5fb74103f078996cd824947620385fdfcc394e44189fb1d5d2acf491"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-power-of-moments-ch02.qc.json",
-            "semanticHash": "sha256:e0631046c6ee4d47c54dd64a485e46035b76571f8a3084475863e27d81bb5d36",
-            "roundId": "r20260703010922-85dfc7",
-            "contentHash": "9b016ff6377e4d6f",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:author-review:r20260703010922-85dfc7",
-            "reviewedAt": "2026-07-03T01:14:53.354Z"
-          }
-        },
-        {
-          "chapterId": "the-power-of-moments-ch03",
-          "chapterNumber": 3,
-          "title": "Build Peaks",
-          "readerContentHash": "sha256:6e778b2d80dd21cd415e12fbe903a4f4b5114a7d43797735d9e9448df30f8ff3",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-power-of-moments/20260630T141644918Z-06ed5bf5-d0a5-41a3-8ead-c9d89fe5f4e5/sidecars/source/ch03.source.json",
-            "semanticHash": "sha256:cb1423a47172bb1acb986b9fc28f0fcddb121f234436b42789f0bc097e131b47",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-power-of-moments-ch03.v21-native.chapter.json",
-            "semanticHash": "sha256:7637bdad21fc4c3f0119757ea60fb6c0bb7107f5cedc3f982be39bb23a5ea807",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:cb1423a47172bb1acb986b9fc28f0fcddb121f234436b42789f0bc097e131b47"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-power-of-moments-ch03.qc.json",
-            "semanticHash": "sha256:8739bb30aebd36236f1eeeb3a9e1d0da786504a97c8168e9b18e2d4e6a124be1",
-            "roundId": "r20260703010922-85dfc7",
-            "contentHash": "071cfc714e8b4c44",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:author-review:r20260703010922-85dfc7",
-            "reviewedAt": "2026-07-03T01:14:53.354Z"
-          }
-        },
-        {
-          "chapterId": "the-power-of-moments-ch04",
-          "chapterNumber": 4,
-          "title": "Break the Script",
-          "readerContentHash": "sha256:cf40bee5f371bedc54efa8d37d6cac7569032b459a397d11c5c8c9453bd1f4a9",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-power-of-moments/20260630T141644918Z-06ed5bf5-d0a5-41a3-8ead-c9d89fe5f4e5/sidecars/source/ch04.source.json",
-            "semanticHash": "sha256:5c7554d7a9d0a4ff60e95d6daef683f0424d05dc7b9e812c7e1b4261020a4ea9",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-power-of-moments-ch04.v21-native.chapter.json",
-            "semanticHash": "sha256:74ee5ef7404997d7a516727e6452bec22298ad36203804da6904270320c06910",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:5c7554d7a9d0a4ff60e95d6daef683f0424d05dc7b9e812c7e1b4261020a4ea9"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-power-of-moments-ch04.qc.json",
-            "semanticHash": "sha256:ee2bed35eeb61a5a55b2ddb08aa3adb6af544c155ab5d60dfb469cf6210b6cd6",
-            "roundId": "r20260703010922-85dfc7",
-            "contentHash": "385f2671f978fc80",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:author-review:r20260703010922-85dfc7",
-            "reviewedAt": "2026-07-03T01:14:53.354Z"
-          }
-        },
-        {
-          "chapterId": "the-power-of-moments-ch05",
-          "chapterNumber": 5,
-          "title": "Trip Over the Truth",
-          "readerContentHash": "sha256:a67f6f5dbc9aa7f3743a008003ec6243e3a62627b7496d1ad0b3cfc7faa985e9",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-power-of-moments/20260630T141644918Z-06ed5bf5-d0a5-41a3-8ead-c9d89fe5f4e5/sidecars/source/ch05.source.json",
-            "semanticHash": "sha256:172a655e4460b77802cdbf3bcf2c4993dcf31b7cd223dc909051a26f19312ab6",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-power-of-moments-ch05.v21-native.chapter.json",
-            "semanticHash": "sha256:ee5016e5aac45d1a7bbc74618bd0830f23bdbd3f534e0a396743dd8598d5bcde",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:172a655e4460b77802cdbf3bcf2c4993dcf31b7cd223dc909051a26f19312ab6"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-power-of-moments-ch05.qc.json",
-            "semanticHash": "sha256:3247b6a37dc1ec5c4f110ada81e7e386c223f3eb9674fec3080048d9974ac5ea",
-            "roundId": "r20260703010922-85dfc7",
-            "contentHash": "16d971dad582c101",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:author-review:r20260703010922-85dfc7",
-            "reviewedAt": "2026-07-03T01:14:53.354Z"
-          }
-        },
-        {
-          "chapterId": "the-power-of-moments-ch06",
-          "chapterNumber": 6,
-          "title": "Stretch for Insight",
-          "readerContentHash": "sha256:76953adb8c805d456d6d91716c83578e3072cb45024d6ed93bcebb071c807158",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-power-of-moments/20260630T141644918Z-06ed5bf5-d0a5-41a3-8ead-c9d89fe5f4e5/sidecars/source/ch06.source.json",
-            "semanticHash": "sha256:c7a4a8d084b991777071be3e2c8cce6821ac55fa3bdbbf1e14ddd9e7324af271",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-power-of-moments-ch06.v21-native.chapter.json",
-            "semanticHash": "sha256:7e6869c319111ed699f83b0b10cd7f173fc83fc172d8271c2a6a790062d993cb",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:c7a4a8d084b991777071be3e2c8cce6821ac55fa3bdbbf1e14ddd9e7324af271"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-power-of-moments-ch06.qc.json",
-            "semanticHash": "sha256:2593aff006e9bb87d7e1189e956a921cf9de13433ca46769416fb5e0a41031ce",
-            "roundId": "r20260703010922-85dfc7",
-            "contentHash": "6da3f0b34570926d",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:author-review:r20260703010922-85dfc7",
-            "reviewedAt": "2026-07-03T01:14:53.354Z"
-          }
-        },
-        {
-          "chapterId": "the-power-of-moments-ch07",
-          "chapterNumber": 7,
-          "title": "Recognize Others",
-          "readerContentHash": "sha256:1a71d9871db1bc45c5b9bdbdcfa1cebce84f31befc560d8927bf9d5231f8fad9",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-power-of-moments/20260630T141644918Z-06ed5bf5-d0a5-41a3-8ead-c9d89fe5f4e5/sidecars/source/ch07.source.json",
-            "semanticHash": "sha256:b2ae650ec8891bec3999bec30a06e791ffa6f9315a01643d73948b71282b6c93",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-power-of-moments-ch07.v21-native.chapter.json",
-            "semanticHash": "sha256:a2770e3c4475f41c5546bfa57944ce9eaf0ac0acdc5f2393333c22fd671d1494",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:b2ae650ec8891bec3999bec30a06e791ffa6f9315a01643d73948b71282b6c93"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-power-of-moments-ch07.qc.json",
-            "semanticHash": "sha256:c5a822aec165caced846a8dd442f34e806e6dc32aa5145ba5d56ac1a9f67f5f9",
-            "roundId": "r20260703010922-85dfc7",
-            "contentHash": "dbbf798b9c26eae9",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:author-review:r20260703010922-85dfc7",
-            "reviewedAt": "2026-07-03T01:14:53.354Z"
-          }
-        },
-        {
-          "chapterId": "the-power-of-moments-ch08",
-          "chapterNumber": 8,
-          "title": "Multiply Milestones",
-          "readerContentHash": "sha256:2c7e2c733e961a162d58fcc227dc47019fe53361e55c4a0e6781eb35d2d17086",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-power-of-moments/20260630T141644918Z-06ed5bf5-d0a5-41a3-8ead-c9d89fe5f4e5/sidecars/source/ch08.source.json",
-            "semanticHash": "sha256:9db4269addae94986ad85ca9695f20996d05206b6e075741f9693245e77a74f5",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-power-of-moments-ch08.v21-native.chapter.json",
-            "semanticHash": "sha256:77b5255ff2a7f89cae714a6fab1ec7118450d84e020ff0007b3f7598152225c8",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:9db4269addae94986ad85ca9695f20996d05206b6e075741f9693245e77a74f5"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-power-of-moments-ch08.qc.json",
-            "semanticHash": "sha256:a2610c11f3b1d561d1c94d00b284262f4599058c203459bc6f88756ccb8912e6",
-            "roundId": "r20260703010922-85dfc7",
-            "contentHash": "779c17119e526cdf",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:author-review:r20260703010922-85dfc7",
-            "reviewedAt": "2026-07-03T01:14:53.354Z"
-          }
-        },
-        {
-          "chapterId": "the-power-of-moments-ch09",
-          "chapterNumber": 9,
-          "title": "Practice Courage",
-          "readerContentHash": "sha256:5af56d38a0fad829036095e279849d98adaf24f6dff1457ba6fff7480d664664",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-power-of-moments/20260630T141644918Z-06ed5bf5-d0a5-41a3-8ead-c9d89fe5f4e5/sidecars/source/ch09.source.json",
-            "semanticHash": "sha256:b4956c2fb67cd6548c912e5ac0ba8a6c29456cd69749304c5413c469b3f79fad",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-power-of-moments-ch09.v21-native.chapter.json",
-            "semanticHash": "sha256:33c206d0fe578b2c3cfe67e9194fa8e6784499c967b73d29413bfe64759c6d14",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:b4956c2fb67cd6548c912e5ac0ba8a6c29456cd69749304c5413c469b3f79fad"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-power-of-moments-ch09.qc.json",
-            "semanticHash": "sha256:056f1057f2102dec5a8d93a414198e48315256141b3eb5f509212c8ff5aa7901",
-            "roundId": "r20260703010922-85dfc7",
-            "contentHash": "32f4ecb712f30ca8",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:author-review:r20260703010922-85dfc7",
-            "reviewedAt": "2026-07-03T01:14:53.354Z"
-          }
-        },
-        {
-          "chapterId": "the-power-of-moments-ch10",
-          "chapterNumber": 10,
-          "title": "Create Shared Meaning",
-          "readerContentHash": "sha256:157378e44a6e327a93f5a9e955db7c2227803fa5894ad737ce02b6a61c5acb62",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-power-of-moments/20260630T141644918Z-06ed5bf5-d0a5-41a3-8ead-c9d89fe5f4e5/sidecars/source/ch10.source.json",
-            "semanticHash": "sha256:ea439dae060666aa26c55fec55535e842f1b1bcd18570932be6a65bf06bdd2bc",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-power-of-moments-ch10.v21-native.chapter.json",
-            "semanticHash": "sha256:e772499529b07f6670921b3d0f3898adb49b354ef110835ba3311fd47b1c8087",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:3c279e4154c0993eec45c872cf64007e76a6ae22ff5afe6f741fd4970ee4b920"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-power-of-moments-ch10.qc.json",
-            "semanticHash": "sha256:8817ef2911f1d71d2582d501790a7a8900f35c28b82861352fb1b7121670417f",
-            "roundId": "r20260703010922-85dfc7",
-            "contentHash": "db48f36f03c498d6",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:author-review:r20260703010922-85dfc7",
-            "reviewedAt": "2026-07-03T01:14:53.354Z"
-          }
-        },
-        {
-          "chapterId": "the-power-of-moments-ch11",
-          "chapterNumber": 11,
-          "title": "Deepen Ties",
-          "readerContentHash": "sha256:45f9c12ff68982d22bf036fd8eedac195ce4a46de7a4f8b548ab457c4d9ab691",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-power-of-moments/20260630T141644918Z-06ed5bf5-d0a5-41a3-8ead-c9d89fe5f4e5/sidecars/source/ch11.source.json",
-            "semanticHash": "sha256:71805a08c79dadb3e5facdeb553e9836d2bfa7e4644906890eb74f0236c196c6",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-power-of-moments-ch11.v21-native.chapter.json",
-            "semanticHash": "sha256:8a1072ea85da31c977420683095fb50bf8259ad84876c991b46dba8c458f6c32",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:838f9619cab0a5f1670bf36a302bfb471b469ef790d1cc068385923ded8553a4"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-power-of-moments-ch11.qc.json",
-            "semanticHash": "sha256:c35cca570c577e4ddbcc3b123c19b142d536ec76e956d47f46d9e01aa462c56b",
-            "roundId": "r20260703010922-85dfc7",
-            "contentHash": "e9d8f54d28c1dde1",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:author-review:r20260703010922-85dfc7",
-            "reviewedAt": "2026-07-03T01:14:53.354Z"
-          }
-        },
-        {
-          "chapterId": "the-power-of-moments-ch12",
-          "chapterNumber": 12,
-          "title": "Making Moments Matter",
-          "readerContentHash": "sha256:491a2fec105da85db730edd77be628e387aecc316aa11a3e2a50917bfcfc9526",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-power-of-moments/20260630T141644918Z-06ed5bf5-d0a5-41a3-8ead-c9d89fe5f4e5/sidecars/source/ch12.source.json",
-            "semanticHash": "sha256:9f2a7013b237b5ff6c0ee7c66abbf0375a9a4d458072c38e960ba341c36481bb",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-power-of-moments-ch12.v21-native.chapter.json",
-            "semanticHash": "sha256:929ebf4418307a40c5f596b9b6f5594d37e347df216ff69f41136b11e49b7560",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:f1103adb3a1c928bcd1b73b9aabf154d243497c06997fdcabc6f7da60844629a"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-power-of-moments-ch12.qc.json",
-            "semanticHash": "sha256:2e0a611b564831e6a1c1b10fc0fe2437677d74aecf8d81c3361a496356184f37",
-            "roundId": "r20260703010922-85dfc7",
-            "contentHash": "59aec5f3e7203a35",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:author-review:r20260703010922-85dfc7",
-            "reviewedAt": "2026-07-03T01:14:53.354Z"
-          }
-        }
-      ],
-      "sourceRealityEvidence": {
-        "bookId": "the-power-of-moments",
-        "policyResult": "required-and-verified",
-        "classification": "new-source-v2",
-        "record": {
-          "path": ".chapterflow/source-verify-the-power-of-moments.md",
-          "schemaVersion": "source-verify-record-v1",
-          "semanticHash": "sha256:f64c4dbc299f2f84e9eb2f685f6d8730a7a5c8cdbae0ad3b924b99cd5d4f7221",
-          "bookId": "the-power-of-moments",
-          "verifier": null,
-          "verifiedAt": null
-        },
-        "exemption": null
-      },
-      "evidencePolicy": {
-        "sourceEvidence": "required",
-        "authoringEvidence": "required-for-source-v2",
-        "sourceReality": "required-for-source-v2",
-        "qcAttestation": "required"
-      },
-      "versions": {
-        "canonicalJson": "canonical-json-sha256-v1",
-        "readerContentHash": "reader-content-canonical-sha256-v1",
-        "readerContentStripRules": "reader-content-strip-v2",
-        "promptBundle": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:b6af063cb68191c303f053bfb421ed4b81cb3d4df9a9e3c44071f5733e11cb60",
-          "fileCount": 49,
-          "files": [
-            {
-              "path": "agent-prompts/BOOK-AUTOPILOT-CODEX-SESSION.md",
-              "sha256": "sha256:0eecbc8465dd645f87759253609b1ba1520051870c52ba7ed27cf2e325d2fe0e"
-            },
-            {
-              "path": "agent-prompts/CRAFT-READ-RUBRIC.md",
-              "sha256": "sha256:291fa7eac4be229981c9c8e0a79e13cdb7a26014779a1ac4a826acb6fafa5b49"
-            },
-            {
-              "path": "agent-prompts/FIELD-PURPOSE-CONTRACTS.md",
-              "sha256": "sha256:855bc491550ea9da1ab8ff27f02250b6c1db816ff7e7fe6d2adeac5a56a5b022"
-            },
-            {
-              "path": "agent-prompts/GENERATE-A-BOOK-CODEX-SESSION.md",
-              "sha256": "sha256:402bd7a9e06b57eb159795c29b2361f90730d20594896de8f8f3a5242e2ef3cd"
-            },
-            {
-              "path": "agent-prompts/PLAYBOOK-GENERATE-A-BOOK.md",
-              "sha256": "sha256:bb9c1ae165f28398e3e9839847f47b3e56ec6328b1ff3782cc646eee919fa231"
-            },
-            {
-              "path": "agent-prompts/PUBLISH-AFTER-QC-CODEX-SESSION.md",
-              "sha256": "sha256:9935baa797e094d4e2007b3dfe4d330e317b82460d21c07c99dc9d3f2f0c7d1f"
-            },
-            {
-              "path": "agent-prompts/QC-AUTO-CODEX-SESSION.md",
-              "sha256": "sha256:76316778015be0fb4113c5784aa16061ad82f79d7487e1ff4046e67541391b2e"
-            },
-            {
-              "path": "agent-prompts/QC-CODEX-SESSION.md",
-              "sha256": "sha256:e1f42f0097cb1795dfd8420b9a9c63ef6c38a783426222ac5d5c4d692fa47c23"
-            },
-            {
-              "path": "agent-prompts/QC-ORCHESTRATE-CODEX-SESSION.md",
-              "sha256": "sha256:16044985f4535f91c1ad983f322f53be784afb3e25676e1692e1afdbfe443d84"
-            },
-            {
-              "path": "agent-prompts/QC-PLAYBOOK.md",
-              "sha256": "sha256:2dfeb6d744015a9eec906f848c6ab53fa015c82f8f1733979c8ef4148168b90d"
-            },
-            {
-              "path": "agent-prompts/QC-SESSION-PROMPT.md",
-              "sha256": "sha256:f7736d3916ed66f0eb558c8cd076d39a7b1be06ba5c1992015d1b8ea5cf4371f"
-            },
-            {
-              "path": "agent-prompts/REPAIR-CODEX-SESSION.md",
-              "sha256": "sha256:b0e93e248432dae3412c2486b2f094cdd57a90cd0931410541dbd4b3ffb46b47"
-            },
-            {
-              "path": "agent-prompts/RESEARCH-CODEX-SESSION.md",
-              "sha256": "sha256:23248f8e6cd416eee6f93128dd47562b045869360ae2f6d94a75c5c841fb8445"
-            },
-            {
-              "path": "agent-prompts/RUN-A-BOOK.md",
-              "sha256": "sha256:e3e18b68e4f230bda8f64b42db6c78a703f9b3033516a7f5fd4fa5882cd42d42"
-            },
-            {
-              "path": "agent-prompts/STEP-1-RESEARCH.md",
-              "sha256": "sha256:56e6b5f74f197f7dd6208cdfe8455d32d57a01097bc635d84b99e02c9789a59f"
-            },
-            {
-              "path": "agent-prompts/STEP-2-WRITE-CHAPTERS.md",
-              "sha256": "sha256:9d8e9964ead108dfa10688040a296f085cec00c630e1a23039fb62afaef24d82"
-            },
-            {
-              "path": "agent-prompts/STEP-3-FINALIZE.md",
-              "sha256": "sha256:e0fff66309b550eaf3974fbbda9308278bd1f6bdd38fc0ff805a3568c5a01ac9"
-            },
-            {
-              "path": "agent-prompts/V22-QC-REVIEWER-CARD.md",
-              "sha256": "sha256:dbd12ebd269030f9925e508073d4aff7e14bb53edd51248545985519fbe4bf6f"
-            },
-            {
-              "path": "agent-prompts/V22-REPAIR-CARD.md",
-              "sha256": "sha256:10ebc06ada71356a8cafee27dfa025de4d4d021b031c7071b8f2d95632a27853"
-            },
-            {
-              "path": "agent-prompts/V22-SUBAGENT-CONTRACT.md",
-              "sha256": "sha256:ae92473e8560851ff736b71388b22309b0c9cf980101d55e7aa534fe17223c83"
-            },
-            {
-              "path": "agent-prompts/V22-WRITER-CARD.md",
-              "sha256": "sha256:9c5a8e74f2d4429606155dce438f0455b1caefd192097a762d6919f3358bc387"
-            },
-            {
-              "path": "agent-prompts/WRITE-ORCHESTRATE-CODEX-SESSION.md",
-              "sha256": "sha256:f98cf09062f4467bf00dadbecfe8ff35eddc8761a4e72126a98a48fcde3b959e"
-            },
-            {
-              "path": "agent-prompts/v23/ACTION-WRITER.md",
-              "sha256": "sha256:e523807953c3680cdc40a100cfaf9079ca13d1623097667167fcdd929c02efd7"
-            },
-            {
-              "path": "agent-prompts/v23/EXAMPLE-WRITER.md",
-              "sha256": "sha256:cb803f89978173772bc7c939c72981cf6108c980b0c194c5aec988772eb39c7e"
-            },
-            {
-              "path": "agent-prompts/v23/LEARNING-WRITER.md",
-              "sha256": "sha256:37b22b948d67fc69948562458564dbe8ad8ef332f8d7f7277dfc3f7ef2ef0665"
-            },
-            {
-              "path": "agent-prompts/v23/PATCH-REPAIR.md",
-              "sha256": "sha256:5dd523ca7c1bdd73f73491cccd68ba50bad75b49e1e728d9463fdd9c968af5f0"
-            },
-            {
-              "path": "agent-prompts/v23/QC-SHADOW-RISK.md",
-              "sha256": "sha256:9cc546453eca1beaf18abd3f7a90b4284def9cddca68ca25ed722755451756d2"
-            },
-            {
-              "path": "agent-prompts/v23/SOURCE-PACKET-REPAIR.md",
-              "sha256": "sha256:86ee945e046f2438d7f552e434b478e0bebdb40e62e5f3381e1e648e9873c808"
-            },
-            {
-              "path": "agent-prompts/v23/SUMMARY-WRITER.md",
-              "sha256": "sha256:3f5d0bc3fb6e589ec9200e4d448a09f419e4d4273b0057717940eff8cec9cfe9"
-            },
-            {
-              "path": "agent-prompts/v23/VOICE-PATCHER.md",
-              "sha256": "sha256:022b0dbdfa209d1478284683447b5967923b0f52c2c16e607cd2222cddc5f126"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-CHAPTER.md",
-              "sha256": "sha256:a18da21713fc6200b57e93edf352173e2eba3c0895bb97157517b3cb111175eb"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-FINALIZE.md",
-              "sha256": "sha256:57a5df9387c9050ee7c7d71e3a51d5ec1aaafabcba2befcd36133ed0aa2e1043"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-RESEARCH.md",
-              "sha256": "sha256:3d6f425fe52a0c50cef493a7f1443d51485e870605117b49c6d8dd0f52f58f76"
-            },
-            {
-              "path": "prompts/categorizer.system.md",
-              "sha256": "sha256:41933513807e03e65d74c280b5df092e36c1367b51385daeb3eba5e19a3af6e6"
-            },
-            {
-              "path": "prompts/curriculum-planner.system.md",
-              "sha256": "sha256:05261ccf482ec37ace0baae12e888c9b5b11f8e8972e42d765bc591f815f4024"
-            },
-            {
-              "path": "prompts/editor-in-chief.system.md",
-              "sha256": "sha256:67ba63b421be474de54a89c495852cd9cff42d999e5504e18f217848012ecbae"
-            },
-            {
-              "path": "prompts/example-curator.system.md",
-              "sha256": "sha256:2d16a31786f06053f1741df895e77ed1d50d1c708f9c52180582e2d3e67a757c"
-            },
-            {
-              "path": "prompts/line-editor.system.md",
-              "sha256": "sha256:d1439dc2bc580eac8b0241ea690d98282f36427403cc96e2676a30b85e1d8201"
-            },
-            {
-              "path": "prompts/memorable-lines.system.md",
-              "sha256": "sha256:48595056576c72ce88119c8bb9a265e44a10b03d631d30aa10c53cdf7c4ea21f"
-            },
-            {
-              "path": "prompts/researcher-bibliography.system.md",
-              "sha256": "sha256:328eefbdacc9fd850c5b719bdf988bac9b4a83fee495278e0cc5f78a7158234a"
-            },
-            {
-              "path": "prompts/researcher-chapter.system.md",
-              "sha256": "sha256:3ac00906eaa3263e8fdbd20ccc7e7a84b07fe1e992dec7dd24b245899dfaa550"
-            },
-            {
-              "path": "prompts/try-this-now.system.md",
-              "sha256": "sha256:4b7d13d9fab2d0654f9322be84a3f4ace991175ad1bd78fa7882413626451297"
-            },
-            {
-              "path": "prompts/voice-pass.system.md",
-              "sha256": "sha256:56c13f66af94f8e19ce8e015faf1bdb584f636530b7d4f70caced5aa4f5c598e"
-            },
-            {
-              "path": "prompts/writer-breakdown.system.md",
-              "sha256": "sha256:e86ccaf11a18f00bd6fa575438aaedb6ecddb2ca41bf4b686605a455c3758ea4"
-            },
-            {
-              "path": "prompts/writer-cards.system.md",
-              "sha256": "sha256:c48ae94c864d33c778ef56d2fa5adb26d1297f7c160c7ac4b68fd7abc1c38bc3"
-            },
-            {
-              "path": "prompts/writer-example.system.md",
-              "sha256": "sha256:5aacc8cfa8c8ef4ca498b41fc1ff12b57b19c25a49657fe40e3060db90f007bb"
-            },
-            {
-              "path": "prompts/writer-hook.system.md",
-              "sha256": "sha256:619df582466e54f06e911bc747cd82eb6eb2fc13d73d3236352b74997b717026"
-            },
-            {
-              "path": "prompts/writer-implementation-plan.system.md",
-              "sha256": "sha256:c13ae2eb8364fff7b26feb6c78a2a48881d1cdb769044f366fb7c313d271b74f"
-            },
-            {
-              "path": "prompts/writer-quiz.system.md",
-              "sha256": "sha256:8c79405b27d78bc212c06961f3e7da36e37558a3d445442d400b87c1284f9515"
-            }
-          ]
-        },
-        "configBundle": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:91e9acc317597be5f729b0d442c6b0a98f06f573642a2124040ceaf1adf6884e",
-          "fileCount": 21,
-          "files": [
-            {
-              "path": "config/author-voice-profiles.json",
-              "sha256": "sha256:ad50ef88d74c6045746a587477307704d8611fa7b80ebe48c0371237764a1c1b"
-            },
-            {
-              "path": "config/banned-connectives.json",
-              "sha256": "sha256:1e83ec50dd880d8915fa14792b057f1e2eea6e847672d496b2e6737b3f4b5949"
-            },
-            {
-              "path": "config/banned-phrases.json",
-              "sha256": "sha256:cd6daf96ed6489bcb29165a656469e6bf092e57c1dd7ce77ab002994a410d48e"
-            },
-            {
-              "path": "config/book-scars/the-intelligent-investor.json",
-              "sha256": "sha256:549a10bf359543bb22118e9b83163815517c5b538d99536f49b581c570ca2a2e"
-            },
-            {
-              "path": "config/book-scars/the-power-of-moments.json",
-              "sha256": "sha256:5fe00a5a4ca4ad5e0296935bbb50ba32cadddacf2ee42d8e6db6d95d7b424a9c"
-            },
-            {
-              "path": "config/categories.json",
-              "sha256": "sha256:1df0501dea9183377984bcc9e204f7388f3fa684f7466626fc0e3126b1756c3f"
-            },
-            {
-              "path": "config/common-given-names.json",
-              "sha256": "sha256:61728f8bc4b137cd996096149ae18900911ca556df7c1a3f94a51e2fd31e378d"
-            },
-            {
-              "path": "config/critic-rubric.json",
-              "sha256": "sha256:e08085eb19f450338aa678a6db89e73a23f3a553b75542d9f5bd38a9c956627a"
-            },
-            {
-              "path": "config/finding-routing.json",
-              "sha256": "sha256:c3e9485d9e594a369ddd9c99ff934fa31b02cf1f27d649672ca92762e3b98223"
-            },
-            {
-              "path": "config/genre-pools.json",
-              "sha256": "sha256:57778fba26f8147e37be6a0d5c6b56ef8e41bef601fdcadaaba951d7902dda61"
-            },
-            {
-              "path": "config/meta-patterns.json",
-              "sha256": "sha256:83adbb89df9dab39c9861866e1c17e4e2b1d5a56d41ea9d211e8cd20a9639c2f"
-            },
-            {
-              "path": "config/name-bank.json",
-              "sha256": "sha256:23d8ea9ff61c3e44ec3fb6543aab24110eea5cf50b2e1de93ff06a42b0d7ff5a"
-            },
-            {
-              "path": "config/name-policy.json",
-              "sha256": "sha256:7107daf8d1084b04255351f136e0b7d750d72f4d7a4ab76257e3488b06f5ef86"
-            },
-            {
-              "path": "config/named-frameworks.json",
-              "sha256": "sha256:cc0da18fb0f04774f0be93067c67d69baefcc60a49dac4817d0d3e33c3758aae"
-            },
-            {
-              "path": "config/pedagogy-palettes.json",
-              "sha256": "sha256:f7ceccf85d7f1dd49fe35c13c7c0a4ee721c17a0b09e4c641319797100f65d58"
-            },
-            {
-              "path": "config/rubric-thresholds.json",
-              "sha256": "sha256:726d8cd82699111f17597e9762df58371bcb366da426b218821f540df705e7ac"
-            },
-            {
-              "path": "config/scenario-openers.json",
-              "sha256": "sha256:ed7fe8f62aa0c32242baa8bf82416a9f26d5b33d4a67c17be45e48144da9eb82"
-            },
-            {
-              "path": "config/scene-mechanisms.json",
-              "sha256": "sha256:6ffbcf6098d1ab96b67317fd617903f08f609e00b0ceea6c494a588a2205f878"
-            },
-            {
-              "path": "config/scene-shapes.json",
-              "sha256": "sha256:07efd36415fd4b64761fcee5c06ef637d1041d2a5eda7b7d80ed28c982d8ada6"
-            },
-            {
-              "path": "config/stakes-palette.json",
-              "sha256": "sha256:92d60229937b530c73773c90daea8ec2ad12fdbd9bfd25631a6df220e22f088b"
-            },
-            {
-              "path": "config/venue-palette.json",
-              "sha256": "sha256:8ba041c9d34f93f821519a0cbdab73aedc308866d49241f16c02556f527415f8"
-            }
-          ]
-        },
-        "codeFingerprint": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:d0fa65854114a60b5dd162836cdb58993687dc0af46394f38c1c4c73a8b3fe44",
-          "fileCount": 215,
-          "files": [
-            {
-              "path": "package-lock.json",
-              "sha256": "sha256:56a778161eed692e576b03180665d1460f4ff6cb71889f04c0e6a97afcfe4935"
-            },
-            {
-              "path": "package.json",
-              "sha256": "sha256:3e5597f0734ea3aa9aadf6dd215327e9326f74a78e11046e49708d9fef34e67e"
-            },
-            {
-              "path": "src/agents/autoCategorize.ts",
-              "sha256": "sha256:e26617adef8064d4ef9e652e2cd0983447f9be498f7cb8613c65a8fd56121d06"
-            },
-            {
-              "path": "src/agents/categorizer.ts",
-              "sha256": "sha256:660968c56b867eee7e591ee676a8c5fc95584287684e857ddc00145b85d686bd"
-            },
-            {
-              "path": "src/agents/curriculum-planner.ts",
-              "sha256": "sha256:c40746f17938359760e53d4e63cf7533ef9d479987643dcff90ca78b1f9b5a11"
-            },
-            {
-              "path": "src/agents/editor-in-chief.ts",
-              "sha256": "sha256:8bc16f4f26108671b66a4ea15a68f98d1b0c9f56b3854a261028c29723706c6e"
-            },
-            {
-              "path": "src/agents/line-editor.ts",
-              "sha256": "sha256:40a5e9a555629781c838482d586be37b761761fa297b5231cbce15e5f39e179e"
-            },
-            {
-              "path": "src/agents/memorable-lines.ts",
-              "sha256": "sha256:afa3dba1167c4dc0c3ddbeb5b755a03b5db4a31f966dfa757bf70c515b6fe2c0"
-            },
-            {
-              "path": "src/agents/researcher-bibliography.ts",
-              "sha256": "sha256:89d8978efe57b8aaea78ca06a031b02536e33af73337061123f2f86515a006d2"
-            },
-            {
-              "path": "src/agents/researcher-chapter.ts",
-              "sha256": "sha256:b48d70e45b321cf89a4a4000a4fe6d9958bfeb381e2b442c610897504912d980"
-            },
-            {
-              "path": "src/agents/try-this-now.ts",
-              "sha256": "sha256:20eb07fc41f29be563d0dc71d9bb641e13a416d9a25be07353db90e2a77b67a4"
-            },
-            {
-              "path": "src/agents/voice-pass.ts",
-              "sha256": "sha256:25df81aab0f7629e56fa3df8cf518d055d231013cae37420bca0821ecbe53eec"
-            },
-            {
-              "path": "src/agents/writer-breakdown.ts",
-              "sha256": "sha256:3e5a3a583f1a68c45ce3761c1d6cc6035f19fd64d338441d7eeaf121274d1103"
-            },
-            {
-              "path": "src/agents/writer-cards.ts",
-              "sha256": "sha256:dd346934c6e9904d5df326f382541d4da83e3fe6e7d3d5a22cc2f13d6ddbfaa2"
-            },
-            {
-              "path": "src/agents/writer-example.ts",
-              "sha256": "sha256:71c3bf277c2e39b89d80cc6301d29edc06f1dfbbbac05717913af660e981b5d6"
-            },
-            {
-              "path": "src/agents/writer-hook.ts",
-              "sha256": "sha256:de44858619108d4d1cc40a2b7313e4818a6728c7c37f4eb9c09aa484dc70b584"
-            },
-            {
-              "path": "src/agents/writer-implementation-plan.ts",
-              "sha256": "sha256:7be5d5a99ac4880455d3bc9cc8dce9675679e88f650c173086ca57bcd4ca65a8"
-            },
-            {
-              "path": "src/agents/writer-quiz.ts",
-              "sha256": "sha256:ada84acae93e98de404aff6f8faba150d7f2e05b0c2cf11534e782eb338421be"
-            },
-            {
-              "path": "src/artifacts/artifactStore.ts",
-              "sha256": "sha256:f33256de5c90cea762430596d1bbb72536bbe37bde4bac5b6187df6084902a93"
-            },
-            {
-              "path": "src/artifacts/artifactTypes.ts",
-              "sha256": "sha256:6c49d118a6bb14ce945576a1d9db12249a0437ae7a4ab39a5cc4f9ccfefb23b7"
-            },
-            {
-              "path": "src/assembler.ts",
-              "sha256": "sha256:3efb8aa46dc61c68143b1207b2ada644586ae029b375aeb2442798b696fde51b"
-            },
-            {
-              "path": "src/cache/stageCache.ts",
-              "sha256": "sha256:fc655ae2df40e5aec46b867f068f677195547f7f254cace247bcfb4d4b6bfe65"
-            },
-            {
-              "path": "src/claudeClient.ts",
-              "sha256": "sha256:df5a2664c49221e97000f8c19093f621f7a4005adf3ba02365d4f6d09bca4e07"
-            },
-            {
-              "path": "src/cli.ts",
-              "sha256": "sha256:b506b9e9860dba337bacd6499da3fcf46df3621f785859c39d825b9932610bdc"
-            },
-            {
-              "path": "src/compiler/blueprintGate.ts",
-              "sha256": "sha256:fd43748c5adc31ab69b7fff1e97bc409ee6ac9dd5781fc8c9c10abfa435c357c"
-            },
-            {
-              "path": "src/compiler/bookDesign.ts",
-              "sha256": "sha256:8a5b168dd17421403e9e321726805195a5fec47b731b810ca933bdd946d7d9e8"
-            },
-            {
-              "path": "src/compiler/chapterBlueprint.ts",
-              "sha256": "sha256:30b5f2fa6a62041e29916d00c0bae29135f44528061ca02a7e1095c1f683332b"
-            },
-            {
-              "path": "src/compiler/chapterBrief.ts",
-              "sha256": "sha256:9d03fa20fba4a172da5824b7b9f963afbc4052f312ba6698e8a825d77afcd62d"
-            },
-            {
-              "path": "src/compiler/sourceNames.ts",
-              "sha256": "sha256:e3879560fe27d595fe4b6638348d043e3ee6203f6d013c5fbbd833dde4d487dd"
-            },
-            {
-              "path": "src/compiler/sourcePacket.ts",
-              "sha256": "sha256:bfbe5ceaecc379d0fff6c61f13974772ee5f16473559bcda8551c0314f3cf633"
-            },
-            {
-              "path": "src/compiler/sourcePacketFacts.ts",
-              "sha256": "sha256:58de3b4c7b954b41a9cb030b22550bc366fc868d9808769ddabb8ce7e1ef142b"
-            },
-            {
-              "path": "src/compiler/sourcePacketGate.ts",
-              "sha256": "sha256:65971b5a002ed17468eb20206b39a8add2f05d8c4b6ba074380637617c4a0569"
-            },
-            {
-              "path": "src/compiler/sourcePacketProjection.ts",
-              "sha256": "sha256:409243627fd279d907f24e0869ce997c12ba0dc45ebbe0358e2921c193f74697"
-            },
-            {
-              "path": "src/cost-tracker.ts",
-              "sha256": "sha256:3fa1c2b4f743ab3f59ce32523689d938e935eb3533fd5ba1bba2abfdab05b4f3"
-            },
-            {
-              "path": "src/critics/antiSalting.ts",
-              "sha256": "sha256:c80540cbf5d5115f27443559298af0a8d8af743ee9331d17bbd3ed1bcbb0b0b1"
-            },
-            {
-              "path": "src/critics/authoringContract.ts",
-              "sha256": "sha256:5d32a94f53adca1058f8c596593e93e6573e7ec78e9c58684cacb5b021ca5fe5"
-            },
-            {
-              "path": "src/critics/bookGate.ts",
-              "sha256": "sha256:5c3ef00375679b2b59e3a0deb011494fec435cf6a81a8197a095d5975568aad3"
-            },
-            {
-              "path": "src/critics/bookPatternAudit.ts",
-              "sha256": "sha256:dc5aeaf6abb63eda1eec60c92ae409fe1434a6ca2cb97bb0103f07b4dc4f5a5c"
-            },
-            {
-              "path": "src/critics/bookRepetition.ts",
-              "sha256": "sha256:e0a01800de712962d60ea05d6cf5a06466e38839635a8f5443efd5c482cff838"
-            },
-            {
-              "path": "src/critics/catalogAudit.ts",
-              "sha256": "sha256:553bd8e397cab5faf9e0381bb807d3f95212a85a56fdd7774539b14f4c572a42"
-            },
-            {
-              "path": "src/critics/crossBookSignatureAudit.ts",
-              "sha256": "sha256:0c7f8ea7d9d9888d49ba7e0db0e8eb6ae0e25670257dd4a223f0ca0f574a3edb"
-            },
-            {
-              "path": "src/critics/evidenceIntegrity.ts",
-              "sha256": "sha256:768dbd54c11466714e2de56d873c37d269df1d65eeff1ab5ac92b97b0070ab6a"
-            },
-            {
-              "path": "src/critics/evidenceWitness.ts",
-              "sha256": "sha256:7528811aae991587ed2e9fe7ecf3f1682bafb832bdc0d9a8e1dc2e55be4e5264"
-            },
-            {
-              "path": "src/critics/experiencePlan.ts",
-              "sha256": "sha256:7fea5a2fceb2721b9b619fcec4d98992ab09b78cfe9529e2c73b66a87c17e4e5"
-            },
-            {
-              "path": "src/critics/finalGate.ts",
-              "sha256": "sha256:3e064c914528f1ec96669cc3cbc54f55bd87af1768120761b4f0663295239bb7"
-            },
-            {
-              "path": "src/critics/groundedNumbers.ts",
-              "sha256": "sha256:27a6e3f190061fc41c3f2a684cd33b803dd3f5de5acabb5cac88f0bad34a22d3"
-            },
-            {
-              "path": "src/critics/integrity.ts",
-              "sha256": "sha256:b2aff233555a5ec5afdeec00cb31bd537facfcd3a1189ac0ac33c17201e989a1"
-            },
-            {
-              "path": "src/critics/intraBook.ts",
-              "sha256": "sha256:d01ee51b61bdcb3a91ab837ec2074a43d5c957c6f6f1b71aa86625dec3ba3d8d"
-            },
-            {
-              "path": "src/critics/intraBookFieldSimilarity.ts",
-              "sha256": "sha256:bc45858ccc90bf6e3168d8e97cafd3bf81f802b79a2ca093dca176f70d2fc12a"
-            },
-            {
-              "path": "src/critics/intraBookQuizSimilarity.ts",
-              "sha256": "sha256:69d5ecbd0539a723291ff79d41ab47cf43520a4981deb85148c70866262e40b8"
-            },
-            {
-              "path": "src/critics/majorPolicy.ts",
-              "sha256": "sha256:dc5ece7b08ab595e442384ee4c3398f6582ba5561469cf3bf7a7d51e400d7017"
-            },
-            {
-              "path": "src/critics/mechanicalSeam.ts",
-              "sha256": "sha256:4250e762e74b53cefa554e965d3a4757cd305d54657c8718ee77bad00a57fbc3"
-            },
-            {
-              "path": "src/critics/misattribution.ts",
-              "sha256": "sha256:c57e9e161cff57b90ca98b4db6c895a544ecdbca17f2492854133c6e0ff55538"
-            },
-            {
-              "path": "src/critics/namedEnumeration.ts",
-              "sha256": "sha256:0a79617f048ee485589ca0e8c86940e861a551b9692b4ff24aa6de8f1eb1b116"
-            },
-            {
-              "path": "src/critics/narrative.ts",
-              "sha256": "sha256:dd37c62f7e9966f0e158515a622367c4a43d798f297f310d74212a1dbec2ffea"
-            },
-            {
-              "path": "src/critics/outcomeVariety.ts",
-              "sha256": "sha256:41599d101bd1bf8b3bddca2ed633f7df549be2cd61a47560f4a93c79a2f24288"
-            },
-            {
-              "path": "src/critics/pedagogy.ts",
-              "sha256": "sha256:060e0f223385126089e6bc2c6469596f572527acb675446dd5e544fff2f971bf"
-            },
-            {
-              "path": "src/critics/plainLanguage.ts",
-              "sha256": "sha256:6164ed5dd743a0e46cf1576087829daac2bd33a3498e1b52dacd8249110855cf"
-            },
-            {
-              "path": "src/critics/prose.ts",
-              "sha256": "sha256:07ebd59680f91ab156191fc053f9357d304cb56ec50b9a158b2c20af4152759f"
-            },
-            {
-              "path": "src/critics/qcAttestation.ts",
-              "sha256": "sha256:d27fca01c676f0d96d96cd7c567e54b1bdc9cbca377228e6d4bc358fb628bd1e"
-            },
-            {
-              "path": "src/critics/quizCorrectness.ts",
-              "sha256": "sha256:8f789f09ad25ca27edef9e27c9df2891f95ec92c78a2a53c23217fdd3b2874f9"
-            },
-            {
-              "path": "src/critics/quizKeyGate.ts",
-              "sha256": "sha256:7c3545d5600f649574fecb1c8d390e72984ca98adbc2ef99e859951c802cc99f"
-            },
-            {
-              "path": "src/critics/quizQuality.ts",
-              "sha256": "sha256:0dfbc5065a78447164339b0875dd8888e79e09d55725eccceb3fce868d792647"
-            },
-            {
-              "path": "src/critics/readerBudgets.ts",
-              "sha256": "sha256:1e1a87bf5b4ca0c893977103f6a9dd83d455aefd16cd9d8ad92e115ce503758c"
-            },
-            {
-              "path": "src/critics/readingLevel.ts",
-              "sha256": "sha256:68d68ae575cc5d8ffae51dcc29cbd08f73c3c49b9e7be4dcadc9643a64cc35dc"
-            },
-            {
-              "path": "src/critics/register.ts",
-              "sha256": "sha256:95079ac31bb92ebe2477eb36595ca68ec7293f76a9fae5bfd31567e83ff6e0d6"
-            },
-            {
-              "path": "src/critics/runAllCritics.ts",
-              "sha256": "sha256:fd473ae74bbc6041199ed42d9a766a53dedd1fa02ffc45b92831abbfd1a8212b"
-            },
-            {
-              "path": "src/critics/scaffoldLeak.ts",
-              "sha256": "sha256:27a8c9a6bcc8f848b5554ad74ac4121b9ec255c59b2d81d5fe5c77a0b69a1dea"
-            },
-            {
-              "path": "src/critics/sceneConcreteness.ts",
-              "sha256": "sha256:1554a233d6d128b424b3cf8f96d763ca85e60c321c96a7c186e9aba5c1d58a20"
-            },
-            {
-              "path": "src/critics/schema.ts",
-              "sha256": "sha256:27e0908090aa280845cb2b3610e295eac388721def1b5840040c48d2a7bed00c"
-            },
-            {
-              "path": "src/critics/semantic/craftBar.ts",
-              "sha256": "sha256:92385b753c013f7ff5610c40ad041d83e792eb5711b58df50c20f0295330c8b5"
-            },
-            {
-              "path": "src/critics/semantic/publishableBar.ts",
-              "sha256": "sha256:dffa25d816df2c912e4f1621b953d4b426a689b36785b87b0a9f030ff3e7e851"
-            },
-            {
-              "path": "src/critics/semantic/quizKeyJudge.ts",
-              "sha256": "sha256:a6088b283c8e1065c71b936da16564548094a1f2bfc89fb10db5b24db9234cd6"
-            },
-            {
-              "path": "src/critics/shared.ts",
-              "sha256": "sha256:dffbede8ba6fbcada941343e1f4c6d1a4caaaf9efa448d0508df61dfec36fbb9"
-            },
-            {
-              "path": "src/critics/sourceCoherence.ts",
-              "sha256": "sha256:bd7bb198769be3be204c9694b8c4df7259480c27c0230db7982592176ec5a95f"
-            },
-            {
-              "path": "src/critics/sourceGrounding.ts",
-              "sha256": "sha256:c4bcea3f46d8c1f6ec1e6765558fa0be0705fc3fef498a580d739461aef270f2"
-            },
-            {
-              "path": "src/critics/sourceRealness.ts",
-              "sha256": "sha256:e945e5d2b30e5649cf6469e1b6c8ee70c1affe12a50a263030f17e78c660d380"
-            },
-            {
-              "path": "src/critics/sourceVerify.ts",
-              "sha256": "sha256:0f00e8ce881f514c7ab114eba6dbfd6138a944eef9f3cecfec759188de501cb8"
-            },
-            {
-              "path": "src/critics/supportSectionAudit.ts",
-              "sha256": "sha256:b55b1f501f632d5c4f60a611e99369f77d60eabec079cab8909cc572e05b4730"
-            },
-            {
-              "path": "src/critics/textUtils.ts",
-              "sha256": "sha256:b39890a8535051f286301b9fa72e2940cb6a0f6bdd225002882351cd0e99d180"
-            },
-            {
-              "path": "src/curator/exampleSelector.ts",
-              "sha256": "sha256:c474bfecf379f7398a17260c7d88038629fa2ab7ef57fa1841f1e4d4ac770a1b"
-            },
-            {
-              "path": "src/diagnose.ts",
-              "sha256": "sha256:20506a4da04b28d05317924af66e86971b0fca0522af30aa51e54baa67e30f80"
-            },
-            {
-              "path": "src/evidence/evidenceGate.ts",
-              "sha256": "sha256:00fa620a509a9ce05edeeec2a69aea5f21e809ac30b143fe14672a519c7ac4f7"
-            },
-            {
-              "path": "src/evidence/evidenceMap.ts",
-              "sha256": "sha256:5e64ec24fd8721969048f580628d5fdcef6fc23a5bd59f1e4faf077f24c48b0c"
-            },
-            {
-              "path": "src/generateBook.ts",
-              "sha256": "sha256:3dcece86c246f4621e5ccae33997e953cc68c2061ee1560d99c02e355bd90375"
-            },
-            {
-              "path": "src/generateChapter.ts",
-              "sha256": "sha256:5d6af60e06f6730ded5f8fe3c00dc7537492679f7e3f6f627cfd964bb8f137aa"
-            },
-            {
-              "path": "src/generationDegradation.ts",
-              "sha256": "sha256:737f8dc7d7f415709b1111beccf30552bb2530372e930d28a873d17a8b5af7a6"
-            },
-            {
-              "path": "src/lib/atomicWrite.ts",
-              "sha256": "sha256:cd4a80010b539604e8aff522d47ad6aed3cafba7a48193e5b92b0159aab79c3a"
-            },
-            {
-              "path": "src/lib/bookScars.ts",
-              "sha256": "sha256:e2f553b28d9dec1a0155fcf583a5407ddda2a428632f4e538e4a2149679741b0"
-            },
-            {
-              "path": "src/lib/brief-sanitizer.ts",
-              "sha256": "sha256:9a57da614a3129c0d787f7528380b85a304d86943a2f757383fb4411eae343dc"
-            },
-            {
-              "path": "src/lib/canonicalJson.ts",
-              "sha256": "sha256:9ad6c9a4fc8ff24318f757ef157b91413071cc0bd84ef557b896464c1138512b"
-            },
-            {
-              "path": "src/lib/chapterPaths.ts",
-              "sha256": "sha256:afef14eb272917794f4057db3f469ed4061f493e6ddbecd54cb47c65de08a893"
-            },
-            {
-              "path": "src/lib/chapterSet.ts",
-              "sha256": "sha256:5d8bc25303a34830cc7d76bb90a4a4c1a71444fef55679493f3c2dbd3c65ba4f"
-            },
-            {
-              "path": "src/lib/coprime.ts",
-              "sha256": "sha256:1a9654e7c3284b4ecfeef9988b785263bd2270d8af7c2dc4ec5c7353d470600d"
-            },
-            {
-              "path": "src/lib/fnv1a.ts",
-              "sha256": "sha256:61016dec458c076d322e720e22e92dc4aa37028f789dda46e6d7515f044d2ab7"
-            },
-            {
-              "path": "src/lib/pipelineFingerprint.ts",
-              "sha256": "sha256:0554bcba0938fc754c25c18ad0c05a3f73800bafe1642481cfaa7c80b2cec54f"
-            },
-            {
-              "path": "src/lib/readerContent.ts",
-              "sha256": "sha256:e2b15b8bfd4d5a267e2bb1b3ff960d68a2fc2eceefa27e2b2bc75eaa53fa5de7"
-            },
-            {
-              "path": "src/lib/researchRunManifest.ts",
-              "sha256": "sha256:334eebac804ba1e7a1460a27861109d44589a2bd37cae9b880a06231ccfb4e8e"
-            },
-            {
-              "path": "src/lib/runDirs.ts",
-              "sha256": "sha256:75314e23045e1d701d7b185a60b948f3205159b62e80c97793b02ba3f69ac413"
-            },
-            {
-              "path": "src/lib/strictEnv.ts",
-              "sha256": "sha256:514d00911774ac075c92cba4580431186b4b34abdda3f43229210ae8436e76f5"
-            },
-            {
-              "path": "src/lib/tocContract.ts",
-              "sha256": "sha256:53c68b2c5e376f52e2c0f4507113c628037b41ceffae25d59fe3203d17948be8"
-            },
-            {
-              "path": "src/lib/voiceBible.ts",
-              "sha256": "sha256:2339dc3c959290788f091d3bf6efc817a73ac33b1df8cec06208a561fd12b109"
-            },
-            {
-              "path": "src/lib/voiceCard.ts",
-              "sha256": "sha256:e3238bf854d40c9e1d1bb6a383e58927508f3070885326c165366103e22884df"
-            },
-            {
-              "path": "src/librarian/actionMechanismPlan.ts",
-              "sha256": "sha256:efe3a3c449b927e8f6c0d714b5703c143d45dac9fc1005bbf080a0fd81a86cef"
-            },
-            {
-              "path": "src/librarian/answerKeyPlan.ts",
-              "sha256": "sha256:00270cf59e9e4e5ff9fc1d66870f3725bf4ccad9b165530d3cb1b6b83d9f09a0"
-            },
-            {
-              "path": "src/librarian/authoringGuardrails.ts",
-              "sha256": "sha256:70cdfdeaba022ac7240902854d02b55d729c0bb74a1c2ecb70e9032f29e16c17"
-            },
-            {
-              "path": "src/librarian/callbackPlan.ts",
-              "sha256": "sha256:35fb7a7f106ab2b354725246074440faeae1fcaebb34b34ef78b55a691e09127"
-            },
-            {
-              "path": "src/librarian/chapterArchetypePlan.ts",
-              "sha256": "sha256:40343341c3a53981d043386615a680dd664a6de1f048747d699ed09df854c246"
-            },
-            {
-              "path": "src/librarian/exemplarPlan.ts",
-              "sha256": "sha256:4a290fff74cdb3b1d0ec9bbad58520a2f098e85005ecf42cc5d3bd67f45f2828"
-            },
-            {
-              "path": "src/librarian/fullReadSkeletonPlan.ts",
-              "sha256": "sha256:40c5d9e0543f8e235048e457c38782b511156d7927786c6a60f9a8b081e12ae8"
-            },
-            {
-              "path": "src/librarian/identityMigration.ts",
-              "sha256": "sha256:cff83c7238de233d4db7f4365ef8ab1c930a55b79f387c7a495965ca2bf72499"
-            },
-            {
-              "path": "src/librarian/libraryState.ts",
-              "sha256": "sha256:2f3970ffe0c85385ee86cc8a287bb26941f32547b28608451f72391346408c0a"
-            },
-            {
-              "path": "src/librarian/namePlan.ts",
-              "sha256": "sha256:bb9799027cbbd96211ab1949515b848373e9c2df493139202283494de6636b0a"
-            },
-            {
-              "path": "src/librarian/namePolicy.ts",
-              "sha256": "sha256:093bfc0933d10eadaeb1ef7d0bdfc4657ca004ee19a4114c441f41d46afdf1b6"
-            },
-            {
-              "path": "src/librarian/openerPlan.ts",
-              "sha256": "sha256:95345b5ddd4574f58d5d8ec215382529543694e0b250bad83f160d82ef5fa56a"
-            },
-            {
-              "path": "src/librarian/pedagogyPlan.ts",
-              "sha256": "sha256:958d6a675678ca723cba38c41cc8766d386d4c90a5f92f952a81c9b7ae0285c8"
-            },
-            {
-              "path": "src/librarian/rhetoricPlan.ts",
-              "sha256": "sha256:8d187af79f123d697e282aeb9820106aaebbf85c5fe4b7ee6835f803c41bfdea"
-            },
-            {
-              "path": "src/librarian/saturationGuard.ts",
-              "sha256": "sha256:1c566953d135c227e329a73bd5a6dcfd9a8b311704182bb57a80287ea2090107"
-            },
-            {
-              "path": "src/librarian/sceneMechanismPlan.ts",
-              "sha256": "sha256:18b2ced6ab7dc7b724548b567aea483dbbcdf077c2bbc07d14189f3faa623dd6"
-            },
-            {
-              "path": "src/librarian/sceneModePlan.ts",
-              "sha256": "sha256:acccfc0fe8ed936e6410d7e6d5d16eec70a3ca8a8dd86690078298279c683cd4"
-            },
-            {
-              "path": "src/librarian/shapePlan.ts",
-              "sha256": "sha256:2a2e39775eee5b77354160550e9a6e7c42b711bf7ac306d9c75af4b7733d86a4"
-            },
-            {
-              "path": "src/librarian/sourceSidecars.ts",
-              "sha256": "sha256:1dae1957a4001d709aa73a95c132645b5bcc0ef945c618aa96cd17121545116d"
-            },
-            {
-              "path": "src/librarian/stakesPlan.ts",
-              "sha256": "sha256:9e7c3325dd0dbe2e09e95867b56ca6d11a6a7a1010d183d415a5823fadb39f46"
-            },
-            {
-              "path": "src/librarian/timingPlan.ts",
-              "sha256": "sha256:1a65c956cf1d261fc3b8286a61b865a943ad0cae2aa92fa307f8b7bd7a46c0f8"
-            },
-            {
-              "path": "src/librarian/venuePlan.ts",
-              "sha256": "sha256:e2110517296d742aa27c04a60d9a6b73573cf9b8fb5c58c9f0bf25e146d46525"
-            },
-            {
-              "path": "src/librarian/weeklyPracticePlan.ts",
-              "sha256": "sha256:e95803dd4d01ba07e27f29781d0246c121ab14b8ac29ee712dddce8ec0b85be5"
-            },
-            {
-              "path": "src/lifecycle/bookStatus.ts",
-              "sha256": "sha256:0d997c88ae0d39da11c4eec25f0d7d23a8fd688418cc7087dd665a07d63a3de8"
-            },
-            {
-              "path": "src/lifecycle/doctor.ts",
-              "sha256": "sha256:74400685405537019d8f1c4e1d2f2178933bb12f887af28f076a82ca996d50a2"
-            },
-            {
-              "path": "src/metrics/bookRubricMetrics.ts",
-              "sha256": "sha256:f21975a49471e93bb1db0fd12e742929504b43b72851cdaf8db6423728126814"
-            },
-            {
-              "path": "src/metrics/chapterText.ts",
-              "sha256": "sha256:951cc383c346e3205caf2cf8d776061798fb8ea666a24f4a9db75797c9a238a4"
-            },
-            {
-              "path": "src/metrics/rubricMetrics.ts",
-              "sha256": "sha256:f9044742c5d1c8d43d928ddf88bd3a993bd14319307798ce8f7f13a6bfcdb669"
-            },
-            {
-              "path": "src/metrics/rubricThresholds.ts",
-              "sha256": "sha256:45b1c26142b9942ae872a0e08417cd1d7863a9dbfa0f405356c4db34ad9a66cc"
-            },
-            {
-              "path": "src/next-task.ts",
-              "sha256": "sha256:2a75ed46296323963d5ffb075c5bdc21788a56045ce91cf916222795f6f81ed6"
-            },
-            {
-              "path": "src/optimizers/exampleScorer.ts",
-              "sha256": "sha256:d313e3d658c639c9d99374289e3880a192b99fd8504f5f260c7804a7bcbd3127"
-            },
-            {
-              "path": "src/optimizers/memorableLines.ts",
-              "sha256": "sha256:063d40763aa96ee0bbf05f9f8f4dcaa73962f35570358ab1c5f053fab9ec64ff"
-            },
-            {
-              "path": "src/optimizers/proseRisk.ts",
-              "sha256": "sha256:29b749e42afa54803304eb46ceb61e4c1b117ed422b975ca3803f49a3e9b0bca"
-            },
-            {
-              "path": "src/orchestrator/authorEvidence.ts",
-              "sha256": "sha256:4a4dccc9c0327780d3f4a2fbe0a9d02bb6dbfae615eabb07f8c180616f442ca3"
-            },
-            {
-              "path": "src/orchestrator/authorReview.ts",
-              "sha256": "sha256:ce6038a2d6af4f54534f01b77dc2eb2c65399f3b3c82d5e77581de707a83ab8d"
-            },
-            {
-              "path": "src/orchestrator/authorRun.ts",
-              "sha256": "sha256:ba92bf5215730752cd215103d2c299ae00e727706a6d1a8a812baedb9f660b05"
-            },
-            {
-              "path": "src/orchestrator/autopilot.ts",
-              "sha256": "sha256:7728f670d02582a0a3f469fcda38293699a1107461680950426cb9d34c156c8e"
-            },
-            {
-              "path": "src/orchestrator/codexAgent.ts",
-              "sha256": "sha256:61d65771db3574dd0b22238527f1764569339579efe95b12664f3830a4df34e4"
-            },
-            {
-              "path": "src/orchestrator/compilerRun.ts",
-              "sha256": "sha256:a8af4c9e4a91a36a5ed45e26dbd89feb208b78d60aa25fba2a64645b779a4b4f"
-            },
-            {
-              "path": "src/orchestrator/compilerTasks.ts",
-              "sha256": "sha256:97913460a1bd80fb6dbad52335b984ad3d7d394876ff152a4579bf7fdcfc781c"
-            },
-            {
-              "path": "src/orchestrator/liveRun.ts",
-              "sha256": "sha256:d2fa244a7283c877c55b191164b24da80b12f58c64fd377e9431f0e22ff59ebe"
-            },
-            {
-              "path": "src/orchestrator/optimizedPipeline.ts",
-              "sha256": "sha256:b815696150879ae6f55e4cdb5a640e4b8c78b738b8873368b1436785127fbe7e"
-            },
-            {
-              "path": "src/orchestrator/polishPass.ts",
-              "sha256": "sha256:3beab5b25815eaa9ecab8789f1b5bf10e4e6d5f32e2422debf556a081b9a576a"
-            },
-            {
-              "path": "src/orchestrator/repairRouting.ts",
-              "sha256": "sha256:4f0d0c71caf1b4b6e93ac5ac4337e0f41e66c572e23b55d80b4060f5d59a35a5"
-            },
-            {
-              "path": "src/orchestrator/researchFreshness.ts",
-              "sha256": "sha256:bf39aa99e55379236986ac9d7084afde14380c595418b3e86bc35b68001e563d"
-            },
-            {
-              "path": "src/orchestrator/sectionSessionRecord.ts",
-              "sha256": "sha256:b8983f118c8a2a311a5b350828836cbd6ccb4eb48e2fb13aebc8044ea24fc514"
-            },
-            {
-              "path": "src/policy/runPolicy.ts",
-              "sha256": "sha256:602373600332820b732fddbc9184674df50d75b11a1244d2f6be18fc485449bb"
-            },
-            {
-              "path": "src/productionManifest.ts",
-              "sha256": "sha256:e33fdd7c1d4b0b7955d891b09d130c65b5a5787f4a08f77da4c3914b29defcaa"
-            },
-            {
-              "path": "src/promoteBook.ts",
-              "sha256": "sha256:35b81f0e126914dd12d6cd22939cdfba057c2a1b1bf10642e298c3746abd8d18"
-            },
-            {
-              "path": "src/providers/anthropic-api.ts",
-              "sha256": "sha256:3cec61a5121f33ade6ad718af52f8b53a24751ef17a9501a6f79b65e8a346c84"
-            },
-            {
-              "path": "src/providers/cli.ts",
-              "sha256": "sha256:effebe17bc488d0140b85613c536a09d2064884984ca8e599cd3e311656c66cf"
-            },
-            {
-              "path": "src/providers/openai-api.ts",
-              "sha256": "sha256:771063a3e9668792a801acc955563ab1a35db5b6891d91b9702686ce31c2a6a3"
-            },
-            {
-              "path": "src/providers/router.ts",
-              "sha256": "sha256:577da2d691ea0b951e1d9fe4e1784e33c2fd65fb84664a474f8d43dd8ba1bbc2"
-            },
-            {
-              "path": "src/providers/types.ts",
-              "sha256": "sha256:020a22ec2d5a88aed395ee4d16b589cde55bcf239dbaa11a4977cfc1a48af1d4"
-            },
-            {
-              "path": "src/publish/publishToLive.ts",
-              "sha256": "sha256:2ea890292531deaf2c5d2d3fda9e8794d3ec459946b8b72dcfd857bcb77c6137"
-            },
-            {
-              "path": "src/qc/auto/driver.ts",
-              "sha256": "sha256:86d7cce9a5a0964992d112ef70851f300a29dd5177234825e7c164a23a59a2a9"
-            },
-            {
-              "path": "src/qc/auto/generateWorkflow.ts",
-              "sha256": "sha256:03129563c77f56e1d3948d97af118dbbcfba345a04fd31e9997382888da3f9df"
-            },
-            {
-              "path": "src/qc/auto/resolveBook.ts",
-              "sha256": "sha256:dbd2edeb4dc80fccec35acadc31a0d483a6a1e9fa11cfbc4ff3a494786479c8b"
-            },
-            {
-              "path": "src/qc/barReview.ts",
-              "sha256": "sha256:2c881e2a0a9b50353bc18041bc413a85d93edeaa1db0da5548f66beea2bcfafc"
-            },
-            {
-              "path": "src/qc/findingRouting.ts",
-              "sha256": "sha256:f244587cae83143995ed3d90fc2d851e91f306473be62c0823e0295157b2f03a"
-            },
-            {
-              "path": "src/qc/majorDisposition.ts",
-              "sha256": "sha256:7c4436a097a9c486473d7d4e54cefbc6bfd27e86a952b54bcf677ad31a0187d7"
-            },
-            {
-              "path": "src/qc/manualKeyJudge.ts",
-              "sha256": "sha256:332ad29d4a797e405516342e5bb3f5210181286bf3c2a4d5876afaebbe53140e"
-            },
-            {
-              "path": "src/qc/metrics.ts",
-              "sha256": "sha256:ae21065ac440a64ae65b8002cb35b20ef16e18e5f530a246cf9f7f7c51d6de67"
-            },
-            {
-              "path": "src/qc/noApiMode.ts",
-              "sha256": "sha256:7642cd25ee383eecf6dad45b235eb0d742e4b0aaf50d22f931fede9f55d3b6fd"
-            },
-            {
-              "path": "src/qc/normalizeProvenance.ts",
-              "sha256": "sha256:80ef80dc911181d9a7598967b57c46ef6c62ad8029c72fac680957de02ec2ea7"
-            },
-            {
-              "path": "src/qc/orchestrator/artifacts.ts",
-              "sha256": "sha256:85a0b71b00211c4d6e6c5b7992db466331e5485a720d82b290aeed9afa989b4d"
-            },
-            {
-              "path": "src/qc/orchestrator/deterministicGate.ts",
-              "sha256": "sha256:eab5f1e32c3e99c31ddd799fe40328f385cf9633daa1bcc10612a34f8bb8c82c"
-            },
-            {
-              "path": "src/qc/orchestrator/diagnose.ts",
-              "sha256": "sha256:bf44afcf7b0cc9dd801b79073ad1eb00cbf47fbdcca9f6f33ef24dc59f709f90"
-            },
-            {
-              "path": "src/qc/orchestrator/evidenceSource.ts",
-              "sha256": "sha256:25d18eb067698ca2ca105ef00aeff709fe25e2bff397e67b5041ee163c950cbd"
-            },
-            {
-              "path": "src/qc/orchestrator/finalize.ts",
-              "sha256": "sha256:6d80e2af81027ed015266bc4a40ee4305269a8c8e2b7616607b6358d936e1279"
-            },
-            {
-              "path": "src/qc/orchestrator/finalizerFindings.ts",
-              "sha256": "sha256:ce7f396c01bd225421e7d3cfc4e4b40666e8aec8496fbc73ebb6f075cb9e9224"
-            },
-            {
-              "path": "src/qc/orchestrator/findingGrouping.ts",
-              "sha256": "sha256:0c620ea901027fbe85c4804545f1d7ba4f2f814ed161999531f65b9ee6f6daca"
-            },
-            {
-              "path": "src/qc/orchestrator/findingValidity.ts",
-              "sha256": "sha256:fc940f4f36a298eb1d5124f131cb480f6c3897bbf7814ad423cb8aaf8d728dce"
-            },
-            {
-              "path": "src/qc/orchestrator/index.ts",
-              "sha256": "sha256:2059dcfbd56be1291d27353a18314c5f7e827bbdea87b0ebc3626d47f12b2021"
-            },
-            {
-              "path": "src/qc/orchestrator/ledger.ts",
-              "sha256": "sha256:2fd780c49316742ac5ae470458ae2553c378c6b20004139801de5963c1681646"
-            },
-            {
-              "path": "src/qc/orchestrator/repairBrief.ts",
-              "sha256": "sha256:50f3935e985541909afb3124688dc0cfce9c4322aa60197a5ddee8442e859881"
-            },
-            {
-              "path": "src/qc/orchestrator/reviewPacket.ts",
-              "sha256": "sha256:57a64d0563afc97c2bf8f0bcb748bf262b7650aea804cfd8bb5e204acd5756ff"
-            },
-            {
-              "path": "src/qc/orchestrator/schemas.ts",
-              "sha256": "sha256:11b00159f4c99b7d590f76eb0956465466c71aa18cf8188fa4097f186e03afbf"
-            },
-            {
-              "path": "src/qc/orchestrator/submissionSchemas.ts",
-              "sha256": "sha256:fecd989570f517bcfafb37dd2884d15e7d391168e7c8905f06f197364e3cfd78"
-            },
-            {
-              "path": "src/qc/orchestrator/transaction.ts",
-              "sha256": "sha256:7c85843ec65993ef8424aa1622e6c4424c830a903751c104187a704d5e490e7c"
-            },
-            {
-              "path": "src/qc/planEnforcement.ts",
-              "sha256": "sha256:15e7753244854d3ce1dcb226459f9ecc00107bca90295bb5b6f5556f00c345db"
-            },
-            {
-              "path": "src/qc/pruneBookState.ts",
-              "sha256": "sha256:7e1d0c19b3d260f2ab635a2260267bb0ea20379c675b5bdf3aeb6d7f08f3ce19"
-            },
-            {
-              "path": "src/qc/publishAfterQc.ts",
-              "sha256": "sha256:36e678b955068f664f8366bdc3e6080afdfbb375615c49703886778b2019330b"
-            },
-            {
-              "path": "src/qc/qcRound.ts",
-              "sha256": "sha256:5ef4a287dbc025aa0a7425da8cce70bcf637e0c5a75d2b74b9151aff5c0ab012"
-            },
-            {
-              "path": "src/qc/reviewerId.ts",
-              "sha256": "sha256:66a2a171274c60c1026f7ca0a833cfb90abd8337ae524310f376554158274be6"
-            },
-            {
-              "path": "src/qc/sessionProvenance.ts",
-              "sha256": "sha256:cef606939303caac05da7ef1d0e74fabb722595d5b7ec8e85187c798ba2e99fe"
-            },
-            {
-              "path": "src/qc/sourceRealityPolicy.ts",
-              "sha256": "sha256:af0a3c65893b83a8e0e9fb0ca05b4579e01a8f263e8ce1c80389726fdeee8fef"
-            },
-            {
-              "path": "src/qc/sourceV2Gate.ts",
-              "sha256": "sha256:a9ed815cce8188a9d42fa995e4f21b6937021597dddbe38d66fe09b6771f6642"
-            },
-            {
-              "path": "src/qc/sweep.ts",
-              "sha256": "sha256:64e2f775a1d018710687c776e741abd32e1369d5e64bdedfd8d0e8eb3f25b3b2"
-            },
-            {
-              "path": "src/qc/sweepSpec.ts",
-              "sha256": "sha256:170e2788b38fb831233c358a9f77b983e64c684c21600e1753bb1d7335df8320"
-            },
-            {
-              "path": "src/repair/selfHealingRepair.ts",
-              "sha256": "sha256:ea8f70c354c9892f2549593addfe8f0de3c5ccaeb2b03c63818f583e9549ebd3"
-            },
-            {
-              "path": "src/researcher.ts",
-              "sha256": "sha256:8c863137b94f4b41a8428e30596d80587f3fad65872734783d4508636ea2e2d5"
-            },
-            {
-              "path": "src/review/evalBookProxy.ts",
-              "sha256": "sha256:55407637b224ae930ce0177e0bb02b4555b42b9122d19e794047e49ce2bff8f1"
-            },
-            {
-              "path": "src/review/evalReaderProxy.ts",
-              "sha256": "sha256:636efaf6637ebd1473d18d7c0c0c95e7977cc999a26172aed0dc58b5aebfc6ac"
-            },
-            {
-              "path": "src/review/readerReview.ts",
-              "sha256": "sha256:16b5f1fb63e7b9a1586d852faacf05e4980db1c331b95f304be6987ea233931f"
-            },
-            {
-              "path": "src/review/renderReaderDoc.ts",
-              "sha256": "sha256:bca06aa7f521db3d43f006fcb33837a8d9959395867762f660c8866b7d45cdad"
-            },
-            {
-              "path": "src/risk/chapterRisk.ts",
-              "sha256": "sha256:f19e7f10845e952511a5be67a7d1213d2c7523863df7ea3dd10fd6e1c386c376"
-            },
-            {
-              "path": "src/roles.ts",
-              "sha256": "sha256:84f43032fdedd04a164b4ffd52d780d508f6616a51023e0b7f7478ff3f7be703"
-            },
-            {
-              "path": "src/runbook.ts",
-              "sha256": "sha256:79b1bda5e43d511e031fea90969f2b046662fce252b849c101c744ffdf69ca24"
-            },
-            {
-              "path": "src/runtimeSchemas.ts",
-              "sha256": "sha256:53413931dc3525de0690a28ffaebf451b82288d5ad1ae191e722ba330be1014d"
-            },
-            {
-              "path": "src/sections/assembleSections.ts",
-              "sha256": "sha256:9179db9cf0514e28eecfd99af14092b2cbb099c847472f022597e09132b96bce"
-            },
-            {
-              "path": "src/sections/pedagogyThresholds.ts",
-              "sha256": "sha256:afb8121bb11084299e86e14c2667f8bbc98d996a749da4d0525bccb6ea7d1809"
-            },
-            {
-              "path": "src/sections/sectionGate.ts",
-              "sha256": "sha256:fc6ad2cb68ad1941c1e6141896acf2524a38d79440ef6886fe7d9a6778f1f86b"
-            },
-            {
-              "path": "src/sections/sectionTasks.ts",
-              "sha256": "sha256:e08cb6ffd1d23ee6c53d5a79fe9cffd8f4e06a1270f80b915f26dbe2fefa5adb"
-            },
-            {
-              "path": "src/source-loader.ts",
-              "sha256": "sha256:6426a423be31ec46b62d4f093fff966700ab1cf192eeee722087c608f4f221d2"
-            },
-            {
-              "path": "src/source/sidecarSchema.ts",
-              "sha256": "sha256:a9dc986303168705d894e879c09a64a3e04def99b3294a552cb3ec1f948b95df"
-            },
-            {
-              "path": "src/source/sourceEvidence.ts",
-              "sha256": "sha256:93a27fc9ded4e367da5b40cd806c157d5b5c93a3731bf667aca9c13ba01ac979"
-            },
-            {
-              "path": "src/source/sourceIntegrity.ts",
-              "sha256": "sha256:f674059d5c7d78bb538b3dde056eceb96803ad298d9c1b446ad194172d7f67b4"
-            },
-            {
-              "path": "src/sourceFit.ts",
-              "sha256": "sha256:78b4bd09ec28927180d124a71076c65daaca983d6d46ef07e80323ea842f32d9"
-            },
-            {
-              "path": "src/sourceVerifyWorkbench.ts",
-              "sha256": "sha256:e360b13af33943ef8b33583b3ae2a4651c750d16d16f49886610af075407c078"
-            },
-            {
-              "path": "src/types.ts",
-              "sha256": "sha256:d4bce48e33710f62381de57d7d813eed43113b2915f02405b8d669a8f795352c"
-            },
-            {
-              "path": "src/verifyProductionPackage.ts",
-              "sha256": "sha256:91eef894c0b8165c3da951fc58c67fb72a9a3f51442d9ea73f723a34955c55be"
-            }
-          ]
-        },
-        "labels": {
-          "promptSet": "chapterflow-v21-authored-prompts-v1",
-          "config": "chapterflow-v21-authored-config-v1",
-          "code": "chapterflow-v21-authored-production-package-v1"
-        }
-      }
-    },
-    "metadata": {
-      "createdAt": "2026-06-30T22:34:42.037Z",
-      "generator": "promoteBook",
-      "runId": "manual-promote",
-      "packagePath": "book-packages/the-power-of-moments.v21.json"
-    }
-  },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-power-of-moments-ch01",
       "number": 1,
       "title": "Defining Moments",
@@ -1745,8 +125,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cold-water finding separates duration from recall: a milder ending can change the remembered episode. A shorter clock is not the only path to a better memory.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1758,8 +137,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Popsicle Hotline works through a vivid, tellable surprise, not luxury or price alone. The cart should make arrival feel like an event, not a quiet perk.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1771,8 +149,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Public recognition changes how an achievement feels. Filing the certificate treats meaning as automatic; waiting misses the threshold before the next stage begins.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1784,8 +161,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The four ingredients are elevation, insight, pride, and connection. One repeated beat or a smoother form table misses the distinct routes a short event can use.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1797,8 +173,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The red phone shows that one concrete object can change the script. The lesson is not to wait for a full redesign or let the whole visit stay evenly ordinary.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1810,8 +185,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The popsicles become memorable through the phone, request, and tray. The gift needs a tellable format; cost and quiet availability are weaker explanations.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1823,8 +197,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The threshold matters before the new stage becomes private logistics. Waiting until later treats the transition as meaningful only after it has already scattered.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1836,8 +209,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The false assumption is equal averaging. The cold-water comparison shows recall can overweight the end, while a clearer close still does not erase earlier stress.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1849,8 +221,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Free alone is not the lesson. The Popsicle Hotline works because the phone and tray make the gift narratable; the mint needs a format, not a higher price or better fixtures.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1887,7 +258,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Design the Last Note",
         "coreSkill": "Practice finding the moment people will carry away. Look for a peak, a threshold, or an ending that is now blank. Then add one concrete cue: a visible object, public recognition, or a kinder final minute.",
         "ifThenPlans": [
           {
@@ -1908,24 +278,17 @@
       },
       "memorableLines": [
         {
-          "text": "A small peak can become the story of the whole stay.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the Magic Castle lesson into one portable design rule."
+          "text": "A small peak can become the story of the whole stay."
         },
         {
-          "text": "The ending can rewrite the remembered weight.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the cold-water finding without needing the study details."
+          "text": "The ending can rewrite the remembered weight."
         },
         {
-          "text": "A concrete object can tell people the script has changed.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the red-phone case useful beyond hotels and pools."
+          "text": "A concrete object can tell people the script has changed."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-power-of-moments-ch02",
       "number": 2,
       "title": "Thinking in Moments",
@@ -2026,8 +389,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The method starts with transitions, milestones, and pits because those points already carry weight. Equal care for every club step misses the charged spots.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2039,8 +401,7 @@
             ],
             "correctIndex": 2,
             "explanation": "John Deere treats the first day as a transition. Factory and customer-purpose framing should set meaning before routine tasks take over.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2052,8 +413,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pink Cadillac works as a visible marker. A private tally or unnamed progress lacks the public symbol that helps achievement stick.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2065,8 +425,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Joshie story treats the loss as an emotional pit. Staff photos and playful care change the meaning, while return alone solves only the object problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2078,8 +437,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The John Deere ritual beats a generic packet when it ties the role to real users. More information alone is the mistake.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2091,8 +449,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mary Kay's recognition culture shows that progress needs a nameable marker. A dashboard may track the level without making it memorable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2104,8 +461,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Joshie recovery works through a concrete story of care. A polite apology is weaker when the family needs evidence that the emotional stake was understood.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2117,8 +473,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Thinking in Moments asks where memory will form. The busiest step may matter less than the point guests later use to summarize the relationship.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2130,8 +485,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Joshie's disappearance shows that a pit can define the trip if the emotional problem remains. Designed recovery changes the ending.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2174,7 +528,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Scan the Charged Point",
         "coreSkill": "Practice finding the part of a process that already has feeling in it. Scan for a transition, a milestone, or a pit before you change the busy middle. Then pick one fit: frame purpose, make progress visible, or repair the low point with concrete care.",
         "ifThenPlans": [
           {
@@ -2195,24 +548,17 @@
       },
       "memorableLines": [
         {
-          "text": "The busy middle is not the whole story.",
-          "location": "breakdown.fastRead",
-          "why": "It names the hard edge in plain language: charged points deserve first attention."
+          "text": "The busy middle is not the whole story."
         },
         {
-          "text": "A hidden milestone makes a thin memory.",
-          "location": "breakdown.deepRead",
-          "why": "It condenses the Mary Kay lesson into a short test for recognition."
+          "text": "A hidden milestone makes a thin memory."
         },
         {
-          "text": "More forms do not make a better first day.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the John Deere transition lesson easy to use outside the workplace case."
+          "text": "More forms do not make a better first day."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-power-of-moments-ch03",
       "number": 3,
       "title": "Build Peaks",
@@ -2229,14 +575,6 @@
       "examples": [
         {
           "exampleId": "ex01",
-          "sourceFactIds": [
-            "ch03.fact.1",
-            "ch03.fact.4",
-            "ch03.fact.8"
-          ],
-          "namedCaseIds": [
-            "ch03.example.1"
-          ],
           "title": "Reid Notices the Tray",
           "tags": [
             "hotel",
@@ -2249,13 +587,6 @@
         },
         {
           "exampleId": "ex02",
-          "sourceFactIds": [
-            "ch03.fact.2",
-            "ch03.fact.5"
-          ],
-          "namedCaseIds": [
-            "ch03.example.2"
-          ],
           "title": "Ines Starts With Customers",
           "tags": [
             "work",
@@ -2268,13 +599,6 @@
         },
         {
           "exampleId": "ex03",
-          "sourceFactIds": [
-            "ch03.fact.3",
-            "ch03.fact.6"
-          ],
-          "namedCaseIds": [
-            "ch03.example.3"
-          ],
           "title": "Vernon Waits for the Close",
           "tags": [
             "park",
@@ -2287,13 +611,6 @@
         },
         {
           "exampleId": "ex04",
-          "sourceFactIds": [
-            "ch03.fact.8",
-            "ch03.fact.9"
-          ],
-          "namedCaseIds": [
-            "ch03.example.1"
-          ],
           "title": "Hannah Fixes the Envelope First",
           "tags": [
             "family",
@@ -2306,14 +623,6 @@
         },
         {
           "exampleId": "ex05",
-          "sourceFactIds": [
-            "ch03.fact.2",
-            "ch03.fact.5",
-            "ch03.fact.9"
-          ],
-          "namedCaseIds": [
-            "ch03.example.2"
-          ],
           "title": "Purpose Enters the Email",
           "tags": [
             "work",
@@ -2326,14 +635,6 @@
         },
         {
           "exampleId": "ex06",
-          "sourceFactIds": [
-            "ch03.fact.3",
-            "ch03.fact.6",
-            "ch03.fact.9"
-          ],
-          "namedCaseIds": [
-            "ch03.example.3"
-          ],
           "title": "The Finale Beats Private Perks",
           "tags": [
             "event",
@@ -2358,8 +659,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Magic Castle lesson is contrast, not luxury. The red phone, tray, and popsicles interrupt the normal pool setting, so a cue and staged delivery fit the mechanism.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2371,8 +671,7 @@
             ],
             "correctIndex": 1,
             "explanation": "John Deere raises the stakes by linking the factory role to farm customers. A fun activity or supervisor briefing may help, but neither ties the first day to purpose.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2384,8 +683,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Disney evening spectaculars create a shared sensory peak near the end. The late placement helps a final high point color how the day is remembered.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2397,8 +695,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The treat is not the whole lesson. The service becomes memorable when a special request object and unusual delivery turn a small act into a performance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2410,8 +707,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The John Deere orientation peak gains force when the employee sees who benefits from the factory output. Internal expectations alone do not create that purpose link.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2423,8 +719,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Disney's nighttime peak works partly because many guests experience it together. Shared attention can make the sensory finale feel larger than a private perk.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2436,8 +731,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Build Peaks treats elevation as designable. The cases arrange sensory appeal, raised stakes, or surprise so one moment rises above the surrounding routine.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2449,8 +743,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Magic Castle peak travels because guests can describe concrete parts: red phone, pool, tray, and popsicles. A pleasant mood without detail is harder to retell.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2462,8 +755,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A peak fails when it is disconnected from the setting's purpose. Novelty or ease does not help if the surprise feels decorative instead of meaningful.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2512,7 +804,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Stage One Fitted Peak",
         "coreSkill": "Choose one routine point that already belongs to the experience. Lift it with sensory contrast, raised stakes, or a fitting surprise. Then check whether the detail can be retold and whether it serves the setting's purpose.",
         "ifThenPlans": [
           {
@@ -2533,29 +824,20 @@
       },
       "memorableLines": [
         {
-          "text": "The tray is small; the contrast is the memory.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the Magic Castle lesson focused on sensory contrast rather than cost."
+          "text": "The tray is small; the contrast is the memory."
         },
         {
-          "text": "Fit keeps surprise from feeling fake.",
-          "location": "breakdown.deepRead",
-          "why": "It states the chapter's guardrail against unrelated spectacle."
+          "text": "Fit keeps surprise from feeling fake."
         },
         {
-          "text": "The ending gets louder when people share it.",
-          "location": "breakdown.fullRead",
-          "why": "It captures why the Disney finale uses shared attention."
+          "text": "The ending gets louder when people share it."
         },
         {
-          "text": "A peak should lift the promise, not hide a weak one.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the limits explicit: a peak should fit and serve the setting."
+          "text": "A peak should lift the promise, not hide a weak one."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-power-of-moments-ch04",
       "number": 4,
       "title": "Break the Script",
@@ -2656,8 +938,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Southwest changes the presentation while keeping the safety content. The other choices either weaken the required message or leave the routine mostly intact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2669,8 +950,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Pret's coffee break depends on discretion and an uncertain reward. A posted discount or fixed rule makes the moment predictable.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2682,8 +962,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Google Doodles alter the familiar logo for holidays and anniversaries while preserving the basic search function. The other choices miss that bounded change.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2695,8 +974,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Southwest safety joke works only when the regulated announcement still tells passengers what they need. Novelty cannot obscure the message.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -2708,8 +986,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Pret's gesture works because discretion signals human attention. A visible rule or expected value turns the moment into a normal promotion.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2721,8 +998,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Google Doodles stay effective by varying occasion and design. Repeating the same change every day turns the break into the new script.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2734,8 +1010,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A script break is not random weirdness. People remember the change better when they can understand why it fits the moment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2747,8 +1022,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The service cases matter because the surprise makes the organization feel more personal. Attention alone is not enough without a human signal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2760,8 +1034,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Doodle changes one visible element and preserves the larger routine. The familiar page returns after the holiday or anniversary is marked.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2810,7 +1083,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build a Safe Break",
         "coreSkill": "Pick a routine people can predict. Protect the routine's job first: the message, the transaction, or the basic function. Then change one beat so it reveals care, personality, or a clear occasion. Stop when the surprise becomes confusing, fully predictable, or bigger than the promise it serves.",
         "ifThenPlans": [
           {
@@ -2831,24 +1103,17 @@
       },
       "memorableLines": [
         {
-          "text": "Break the script, but keep the promise.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the main constraint in a short line."
+          "text": "Break the script, but keep the promise."
         },
         {
-          "text": "A gift that everyone can predict becomes a rule.",
-          "location": "breakdown.fullRead",
-          "why": "It explains why Pret's discretionary gift differs from a promotion."
+          "text": "A gift that everyone can predict becomes a rule."
         },
         {
-          "text": "The familiar page returns, and the return matters.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the Google Doodle boundary easy to remember."
+          "text": "The familiar page returns, and the return matters."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-power-of-moments-ch05",
       "number": 5,
       "title": "Trip Over the Truth",
@@ -2865,14 +1130,6 @@
       "examples": [
         {
           "exampleId": "ex01",
-          "sourceFactIds": [
-            "ch05.fact.1",
-            "ch05.fact.4",
-            "ch05.fact.8"
-          ],
-          "namedCaseIds": [
-            "ch05.example.1"
-          ],
           "title": "The Village Map",
           "tags": [
             "sanitation",
@@ -2885,14 +1142,6 @@
         },
         {
           "exampleId": "ex02",
-          "sourceFactIds": [
-            "ch05.fact.1",
-            "ch05.fact.4",
-            "ch05.fact.8"
-          ],
-          "namedCaseIds": [
-            "ch05.example.1"
-          ],
           "title": "Audrey Drops the Warning",
           "tags": [
             "visibility",
@@ -2905,14 +1154,6 @@
         },
         {
           "exampleId": "ex03",
-          "sourceFactIds": [
-            "ch05.fact.2",
-            "ch05.fact.5",
-            "ch05.fact.9"
-          ],
-          "namedCaseIds": [
-            "ch05.example.2"
-          ],
           "title": "Jack Names the Risk",
           "tags": [
             "hospital",
@@ -2925,14 +1166,6 @@
         },
         {
           "exampleId": "ex04",
-          "sourceFactIds": [
-            "ch05.fact.2",
-            "ch05.fact.5",
-            "ch05.fact.9"
-          ],
-          "namedCaseIds": [
-            "ch05.example.2"
-          ],
           "title": "Dwight Rewrites the Note",
           "tags": [
             "specificity",
@@ -2945,13 +1178,6 @@
         },
         {
           "exampleId": "ex05",
-          "sourceFactIds": [
-            "ch05.fact.3",
-            "ch05.fact.6"
-          ],
-          "namedCaseIds": [
-            "ch05.example.3"
-          ],
           "title": "The Candy Check",
           "tags": [
             "checklist",
@@ -2964,13 +1190,6 @@
         },
         {
           "exampleId": "ex06",
-          "sourceFactIds": [
-            "ch05.fact.3",
-            "ch05.fact.6"
-          ],
-          "namedCaseIds": [
-            "ch05.example.3"
-          ],
           "title": "Hubert Opens the List",
           "tags": [
             "voicemail",
@@ -2995,8 +1214,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The supported move is local mapping before advice. The lecture and distant comparison keep the problem at arm's length, which is the error the sanitation case rejects.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3008,8 +1226,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact points to compliance joined to risk. Caring language and broad safety praise may sound good, but neither exposes the concrete behavior that needs repair.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3021,8 +1238,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The brown M&M clause was a signal about whether the rider had been read. It was not a vanity demand, and it did not replace the larger safety check.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3034,8 +1250,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The sanitation case works through a specific local confrontation. General awareness and outside blame leave the distance that the truth encounter is meant to close.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -3047,8 +1262,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful evidence links an omission to risk while leaving people with agency. Shame and character attacks push people toward defense instead of repair.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3060,8 +1274,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The brown M&M test uses a small visible miss as evidence of possible broader inattention. It is not a reason to wait or to stop checking.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3073,8 +1286,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Insight comes before instruction here. Better directions first are the common error when people have not yet seen why the change is needed.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3086,8 +1298,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Kamal Kar's mapping makes a hidden sanitation pattern public enough to discuss. Keeping the pattern private defeats the method.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -3099,8 +1310,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The strongest line names compliance behavior tied to patient infection risk. A general safety slogan is too vague to carry the evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3149,7 +1359,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Make the Gap Local",
         "coreSkill": "Before you correct a routine, make the gap visible where people already work or live. Use the smallest fair proof you can show: a map of the pattern, a routine miss tied to risk, or a visible checklist error. Then name one repair so discomfort has somewhere useful to go.",
         "ifThenPlans": [
           {
@@ -3170,24 +1379,17 @@
       },
       "memorableLines": [
         {
-          "text": "A warning can float; a map has an address.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the local-evidence mechanism easy to remember."
+          "text": "A warning can float; a map has an address."
         },
         {
-          "text": "The evidence should hurt in the place where repair is possible.",
-          "location": "breakdown.deepRead",
-          "why": "It separates useful discomfort from shame."
+          "text": "The evidence should hurt in the place where repair is possible."
         },
         {
-          "text": "A small miss is not a final verdict; it is an invitation to inspect.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the brown M&M clause as a practical safety signal."
+          "text": "A small miss is not a final verdict; it is an invitation to inspect."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-power-of-moments-ch06",
       "number": 6,
       "title": "Stretch for Insight",
@@ -3204,14 +1406,6 @@
       "examples": [
         {
           "exampleId": "ex01",
-          "sourceFactIds": [
-            "ch06.fact.1",
-            "ch06.fact.4",
-            "ch06.fact.8"
-          ],
-          "namedCaseIds": [
-            "ch06.example.1"
-          ],
           "title": "The Dinner Failure Question",
           "tags": [
             "family",
@@ -3224,14 +1418,6 @@
         },
         {
           "exampleId": "ex02",
-          "sourceFactIds": [
-            "ch06.fact.2",
-            "ch06.fact.5",
-            "ch06.fact.9"
-          ],
-          "namedCaseIds": [
-            "ch06.example.2"
-          ],
           "title": "The Bounded Expedition",
           "tags": [
             "expedition",
@@ -3244,14 +1430,6 @@
         },
         {
           "exampleId": "ex03",
-          "sourceFactIds": [
-            "ch06.fact.3",
-            "ch06.fact.6",
-            "ch06.fact.9"
-          ],
-          "namedCaseIds": [
-            "ch06.example.3"
-          ],
           "title": "The Feedback Weak Spot",
           "tags": [
             "practice",
@@ -3264,14 +1442,6 @@
         },
         {
           "exampleId": "ex04",
-          "sourceFactIds": [
-            "ch06.fact.1",
-            "ch06.fact.4",
-            "ch06.fact.8"
-          ],
-          "namedCaseIds": [
-            "ch06.example.1"
-          ],
           "title": "Ryder Changes the First Ask",
           "tags": [
             "family",
@@ -3284,14 +1454,6 @@
         },
         {
           "exampleId": "ex05",
-          "sourceFactIds": [
-            "ch06.fact.2",
-            "ch06.fact.5",
-            "ch06.fact.7"
-          ],
-          "namedCaseIds": [
-            "ch06.example.2"
-          ],
           "title": "Mabel Draws the Edge",
           "tags": [
             "training",
@@ -3304,13 +1466,6 @@
         },
         {
           "exampleId": "ex06",
-          "sourceFactIds": [
-            "ch06.fact.3",
-            "ch06.fact.6"
-          ],
-          "namedCaseIds": [
-            "ch06.example.3"
-          ],
           "title": "Bernard Stops the Full Run",
           "tags": [
             "practice",
@@ -3335,8 +1490,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Self-knowledge can come from a hard attempt before full readiness. Waiting for confidence keeps the supervisor in reflection, while the bounded call supplies evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3348,8 +1502,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Deliberate practice calls for focused effort on a weakness with feedback. A full repeat may add effort, but it can also repeat the same error.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3361,8 +1514,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The dinner ritual values failure as evidence of trying something difficult. It does not praise failure for its own sake or dodge the learning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3374,8 +1526,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Outward Bound uses demanding expeditions to reveal capacity through action. The trainee needs evidence from a challenge, not mainly a private forecast.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3387,8 +1538,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Blakely question asks about attempts, not just wins. That reframe can cut avoidance before the student treats the miss as an identity threat.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -3400,8 +1550,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Outward Bound points to bounded challenge, not open-ended punishment. The task should test capacity while staying contained enough to teach.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -3413,8 +1562,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Ericsson's feedback rule makes general ambition too loose. A concrete weakness lets feedback tell the teammate what to adjust.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3426,8 +1574,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first question signals what behavior is safe. Asking what people tried measures courageous effort before flawless outcomes take over.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3439,8 +1586,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Outward Bound and Ericsson use different formats. One uses expedition tasks; the other uses feedback drills, but both rely on visible performance evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3483,7 +1629,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Proof Stretch",
         "coreSkill": "Run the Proof Stretch by choosing one task routine life will not test. Keep the task bounded so it teaches rather than crushes. Name the weakness and the feedback source before you begin, then use the result to shape the next try.",
         "ifThenPlans": [
           {
@@ -3504,24 +1649,17 @@
       },
       "memorableLines": [
         {
-          "text": "Hard is not the same as useful.",
-          "location": "breakdown.fastRead",
-          "why": "It blocks the common error that hardship itself creates insight."
+          "text": "Hard is not the same as useful."
         },
         {
-          "text": "Feedback is the hinge.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the deliberate-practice requirement into a short handle."
+          "text": "Feedback is the hinge."
         },
         {
-          "text": "The attempt gives evidence.",
-          "location": "breakdown.fullRead",
-          "why": "It states why action can teach what reflection alone cannot."
+          "text": "The attempt gives evidence."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-power-of-moments-ch07",
       "number": 7,
       "title": "Recognize Others",
@@ -3538,13 +1676,6 @@
       "examples": [
         {
           "exampleId": "ex01",
-          "sourceFactIds": [
-            "ch07.fact.1",
-            "ch07.fact.6"
-          ],
-          "namedCaseIds": [
-            "ch07.example.1"
-          ],
           "title": "Conant's Handwritten Signal",
           "tags": [
             "leadership",
@@ -3557,13 +1688,6 @@
         },
         {
           "exampleId": "ex02",
-          "sourceFactIds": [
-            "ch07.fact.2",
-            "ch07.fact.9"
-          ],
-          "namedCaseIds": [
-            "ch07.example.1"
-          ],
           "title": "Laura Rewrites Good Job",
           "tags": [
             "workplace",
@@ -3576,12 +1700,6 @@
         },
         {
           "exampleId": "ex03",
-          "sourceFactIds": [
-            "ch07.fact.3"
-          ],
-          "namedCaseIds": [
-            "ch07.example.2"
-          ],
           "title": "Mary Kay Makes Pride Visible",
           "tags": [
             "sales",
@@ -3594,12 +1712,6 @@
         },
         {
           "exampleId": "ex04",
-          "sourceFactIds": [
-            "ch07.fact.7"
-          ],
-          "namedCaseIds": [
-            "ch07.example.2"
-          ],
           "title": "Roman Checks the Prize",
           "tags": [
             "sales",
@@ -3612,12 +1724,6 @@
         },
         {
           "exampleId": "ex05",
-          "sourceFactIds": [
-            "ch07.fact.4"
-          ],
-          "namedCaseIds": [
-            "ch07.example.3"
-          ],
           "title": "Agathe Names the Impact",
           "tags": [
             "gratitude",
@@ -3630,12 +1736,6 @@
         },
         {
           "exampleId": "ex06",
-          "sourceFactIds": [
-            "ch07.fact.8"
-          ],
-          "namedCaseIds": [
-            "ch07.example.3"
-          ],
           "title": "Constance Sends the Thanks",
           "tags": [
             "gratitude",
@@ -3660,8 +1760,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Conant's more than 30,000 notes show that praise can be frequent and still personal. The force comes from naming real work, not from making praise scarce.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3673,8 +1772,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A strong Campbell Soup note names the contribution. Vague praise can feel kind, but it gives the person no proof of what was seen.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3686,8 +1784,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mary Kay's pink Cadillac makes sales achievement visible. The public symbol lets others see the win without needing a private report.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3699,8 +1796,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A gratitude letter works through recipient-specific detail. Broad warmth is weaker because it does not identify who did what or why it mattered.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3712,8 +1808,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Managers often underuse praise even though concrete thanks can be remembered for years. Recognition gives people proof they may not already have.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -3725,8 +1820,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Conant's notes paired repetition with detail. The habit stays human when each note points to real work instead of stock wording.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3738,8 +1832,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Mary Kay's symbols strengthen pride when they honor real performance. A visible reward without valued achievement can cheapen the praise.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3751,8 +1844,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Unspoken appreciation has less force because it never reaches the recipient. The moment becomes recognition when the thanks is delivered.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -3764,8 +1856,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Timely praise keeps effort and impact close enough to connect. Waiting for annual praise can blur the action the note should reinforce.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -3814,7 +1905,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Real Work Note",
         "coreSkill": "Use recognition as proof, not mood. The real work note names the person, the act, and the effect while the work is still easy to recall. It can be private, public, or written as gratitude, but it has to reach the person.",
         "ifThenPlans": [
           {
@@ -3835,24 +1925,17 @@
       },
       "memorableLines": [
         {
-          "text": "Praise gives proof when it names the work.",
-          "location": "breakdown.deepRead",
-          "why": "It states the core test for useful praise in a short line."
+          "text": "Praise gives proof when it names the work."
         },
         {
-          "text": "A public symbol needs a real win behind it.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the limit on public recognition and status rewards."
+          "text": "A public symbol needs a real win behind it."
         },
         {
-          "text": "Thanks has to arrive.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the difference between private feeling and delivered recognition plain."
+          "text": "Thanks has to arrive."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-power-of-moments-ch08",
       "number": 8,
       "title": "Multiply Milestones",
@@ -3874,14 +1957,6 @@
             "fitness",
             "progress"
           ],
-          "sourceFactIds": [
-            "ch08.fact.1",
-            "ch08.fact.4",
-            "ch08.fact.8"
-          ],
-          "namedCaseIds": [
-            "ch08.example.1"
-          ],
           "scenario": "Victoria stops by the curb after work with a missed-call screen still lit in her palm. The 5K finish target feels like a verdict she cannot pass yet. Couch to 5K gives the first choice a different size: a nine-week training structure, incremental run-walk intervals, and a finish still waiting. She chooses the nearby interval instead of testing herself against the whole race.",
           "whatToDo": "The beginner writes the next run-walk interval on the plan and treats it as today's proof. The 5K stays on the page, but it is not today's test.",
           "whyItMatters": "The near mark lowers the starting barrier without erasing the finish. Weekly evidence can make effort feel real before identity catches up."
@@ -3892,13 +1967,6 @@
           "tags": [
             "scouting",
             "pride"
-          ],
-          "sourceFactIds": [
-            "ch08.fact.2",
-            "ch08.fact.5"
-          ],
-          "namedCaseIds": [
-            "ch08.example.2"
           ],
           "scenario": "After the meeting, Gage kneels at the edge of a Scouting mat while a sash rests across his lap. The merit badge is small, but the question from a younger scout is large: what did it take to earn it? He answers with the skill-specific requirements, not the color of the patch. The visible sash display now points to a capability he can name.",
           "whatToDo": "The leader asks for the requirement before the badge is celebrated. If the wearer cannot say what skill it marks, the sash waits.",
@@ -3911,13 +1979,6 @@
             "learning",
             "feedback"
           ],
-          "sourceFactIds": [
-            "ch08.fact.3",
-            "ch08.fact.6"
-          ],
-          "namedCaseIds": [
-            "ch08.example.3"
-          ],
           "scenario": "Margot shuts a notebook beside her laptop and almost calls the night wasted. The course is not finished. On Khan Academy, the online learning platform shows skill mastery indicators and course progress feedback. The final target still matters, but the middle no longer looks blank.",
           "whatToDo": "The learner checks the mastery display before judging the session. She writes what moved and what remains, then starts from the next open skill.",
           "whyItMatters": "Khan Academy makes partial competence visible before full mastery. Feedback keeps unfinished work from feeling like no progress."
@@ -3928,13 +1989,6 @@
           "tags": [
             "design",
             "guardrail"
-          ],
-          "sourceFactIds": [
-            "ch08.fact.2",
-            "ch08.fact.7"
-          ],
-          "namedCaseIds": [
-            "ch08.example.2"
           ],
           "scenario": "Monique slides a draft reward list across the table, and the page looks busy. A mark appears for every tiny action. She compares it with Boy Scouts merit badges, where skill-specific requirements sit behind the visible sash. Several marks would prove nothing, so she crosses them out before the list gets public.",
           "whatToDo": "The designer keeps only marks that can answer one question: what growth does this prove? A token that cannot answer is removed.",
@@ -3947,13 +2001,6 @@
             "learning",
             "format"
           ],
-          "sourceFactIds": [
-            "ch08.fact.3",
-            "ch08.fact.9"
-          ],
-          "namedCaseIds": [
-            "ch08.example.3"
-          ],
           "scenario": "At a course-planning desk, Monique sketches a cloth-style badge for an online lesson and then stops. Khan Academy works on an online learning platform. Its useful sign is course progress feedback with skill mastery indicators, not a sash copied from Scouting. The marker has to live where the learner works.",
           "whatToDo": "The planner chooses the display after naming the setting. If progress happens on a screen, the sign belongs in the learning flow, not on borrowed cloth.",
           "whyItMatters": "Boy Scouts and Khan Academy both show progress, but they need different forms. A useful marker fits the place where competence is being built."
@@ -3964,13 +2011,6 @@
           "tags": [
             "scouting",
             "competence"
-          ],
-          "sourceFactIds": [
-            "ch08.fact.5",
-            "ch08.fact.7"
-          ],
-          "namedCaseIds": [
-            "ch08.example.2"
           ],
           "scenario": "At the troop table after a weekend cleanup, Gage holds the attendance sheet beside the merit badge requirements. Boy Scouts merit badges belong on the visible sash display because skill-specific requirements have been completed. The cleanup gets recorded, but the patch waits until the scout can show the required capability.",
           "whatToDo": "The troop keeps two records: who showed up and which skill-specific requirements were passed. Only the requirement record can move a badge onto the sash.",
@@ -3990,8 +2030,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Couch to 5K does not rely on the distant race alone. It gives beginners run-walk proof before the 5K, so movement is visible on the way.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -4003,8 +2042,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Scouting example depends on requirements behind the symbol. A visible badge motivates when it marks a distinct capability, not when it is merely handed out.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4016,8 +2054,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Khan Academy makes partial learning visible before the course is complete. Final-only feedback leaves the middle stretch unmarked.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4029,8 +2066,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The nine-week structure values graduated progress. Starting with the whole 5K asks for proof too soon, while weekly advances let improvement show.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -4042,8 +2078,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A merit badge creates pride when the wearer can point to what it represents. The cloth alone is not the achievement.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -4055,8 +2090,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Progress feedback makes partial competence visible before the final target. It keeps unfinished mastery from being mistaken for zero progress.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -4068,8 +2102,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The warning is that meaningless awards cheapen pride. A marker should correspond to real growth; piling on more tokens repeats the flaw.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -4081,8 +2114,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Couch to 5K lowers the starting barrier while preserving the finish target. The first milestone should feel reachable, not dramatic.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -4094,8 +2126,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Boy Scouts and Khan Academy both make progress visible, but the form differs. One uses a physical sash; the other uses online indicators.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4138,7 +2169,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Next Earned Mark",
         "coreSkill": "Design milestones as proof, not decoration. Keep the finish visible, then choose a nearer mark that shows real growth. The marker can be physical, digital, or built into the next interval, but it has to match the work.",
         "ifThenPlans": [
           {
@@ -4159,24 +2189,17 @@
       },
       "memorableLines": [
         {
-          "text": "Pride needs a receipt before the finish.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a short test for why near proof matters."
+          "text": "Pride needs a receipt before the finish."
         },
         {
-          "text": "A badge is a sign, not the substance.",
-          "location": "breakdown.deepRead",
-          "why": "It protects the badge example from becoming empty reward advice."
+          "text": "A badge is a sign, not the substance."
         },
         {
-          "text": "The display should fit the work.",
-          "location": "breakdown.deepRead",
-          "why": "It captures why Scouting and Khan Academy use different milestone forms."
+          "text": "The display should fit the work."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-power-of-moments-ch09",
       "number": 9,
       "title": "Practice Courage",
@@ -4193,13 +2216,6 @@
       "examples": [
         {
           "exampleId": "ex01",
-          "sourceFactIds": [
-            "ch09.fact.1",
-            "ch09.fact.4"
-          ],
-          "namedCaseIds": [
-            "ch09.example.1"
-          ],
           "title": "The Workshop Before the Threat",
           "tags": [
             "nashville",
@@ -4212,13 +2228,6 @@
         },
         {
           "exampleId": "ex02",
-          "sourceFactIds": [
-            "ch09.fact.3",
-            "ch09.fact.6"
-          ],
-          "namedCaseIds": [
-            "ch09.example.3"
-          ],
           "title": "Fabienne Restarts the Drill",
           "tags": [
             "green-dot",
@@ -4231,13 +2240,6 @@
         },
         {
           "exampleId": "ex03",
-          "sourceFactIds": [
-            "ch09.fact.2",
-            "ch09.fact.5"
-          ],
-          "namedCaseIds": [
-            "ch09.example.2"
-          ],
           "title": "Serge Shrinks the Ask",
           "tags": [
             "workplace",
@@ -4250,12 +2252,6 @@
         },
         {
           "exampleId": "ex04",
-          "sourceFactIds": [
-            "ch09.fact.8"
-          ],
-          "namedCaseIds": [
-            "ch09.example.1"
-          ],
           "title": "A Shared Line Holds",
           "tags": [
             "nashville",
@@ -4268,13 +2264,6 @@
         },
         {
           "exampleId": "ex05",
-          "sourceFactIds": [
-            "ch09.fact.6",
-            "ch09.fact.9"
-          ],
-          "namedCaseIds": [
-            "ch09.example.3"
-          ],
           "title": "Megan Keeps More Than One Door",
           "tags": [
             "green-dot",
@@ -4287,13 +2276,6 @@
         },
         {
           "exampleId": "ex06",
-          "sourceFactIds": [
-            "ch09.fact.5",
-            "ch09.fact.7"
-          ],
-          "namedCaseIds": [
-            "ch09.example.2"
-          ],
           "title": "Callum Checks the Value",
           "tags": [
             "workplace",
@@ -4318,8 +2300,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Nashville workshops used role-played harassment before public pressure. The right prep practices restraint first; trust in moral nerve leaves the response untrained.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -4331,8 +2312,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Green Dot gives more than one safe form. One bold script can fail the moment; direct, distracting, and help-seeking options let the response fit the risk.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -4344,8 +2324,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Workplace courage training treats brave action as a skill. Small-risk practice builds confidence; waiting to feel heroic repeats the error.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4357,8 +2336,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Green Dot teaches scripts before a violence-risk moment. Naming risks and pledging concern do not give bystanders words when stress rises.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4370,8 +2348,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Nashville activists practiced insults and intimidation before the sit-ins. Repeating the value is not the same as training the response.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -4383,8 +2360,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Small-risk practice shrinks the first behavior, not the value. A huge first act is not required for the principle to stay serious.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -4396,8 +2372,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Practice Courage ties risk to a value worth protecting. A risk chosen for thrill, or a value named after the fact, misses the value test.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -4409,8 +2384,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Nashville workshops built a shared nonviolent norm. That support made each person's response feel less alone, not more solo.",
-            "bloomsLevel": "understand",
-            "depthLevel": "deep"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -4422,8 +2396,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A courage script is useful only if it is practiced before stress. Reading once is not readiness because fear makes unrehearsed words harder to retrieve.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4472,7 +2445,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Rehearse the Courage Line",
         "coreSkill": "Practice courage as a response, not a mood you wait for. Name the value you want to protect, then rehearse a small line or action before pressure rises. When one route may not fit, choose a direct, distracting, or help-seeking option and practice that instead.",
         "ifThenPlans": [
           {
@@ -4493,24 +2465,17 @@
       },
       "memorableLines": [
         {
-          "text": "Moral conviction names the reason; rehearsal trains the act.",
-          "location": "breakdown.deepRead",
-          "why": "It separates belief from the practiced behavior the reader is asked to build."
+          "text": "Moral conviction names the reason; rehearsal trains the act."
         },
         {
-          "text": "The script is a handle, not a charm.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps bystander scripts practical and useful without making them sound like a cure-all."
+          "text": "The script is a handle, not a charm."
         },
         {
-          "text": "Small practice can serve a serious principle.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the small-risk practice mechanism in a line the reader can remember."
+          "text": "Small practice can serve a serious principle."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-power-of-moments-ch10",
       "number": 10,
       "title": "Create Shared Meaning",
@@ -4527,13 +2492,6 @@
       "examples": [
         {
           "exampleId": "ex01",
-          "sourceFactIds": [
-            "ch10.fact.1",
-            "ch10.fact.4"
-          ],
-          "namedCaseIds": [
-            "ch10.example.1"
-          ],
           "title": "Gilles Cuts the First Line",
           "tags": [
             "Sharp",
@@ -4546,13 +2504,6 @@
         },
         {
           "exampleId": "ex02",
-          "sourceFactIds": [
-            "ch10.fact.2",
-            "ch10.fact.5"
-          ],
-          "namedCaseIds": [
-            "ch10.example.2"
-          ],
           "title": "Samantha Learns the Unit",
           "tags": [
             "training",
@@ -4565,14 +2516,6 @@
         },
         {
           "exampleId": "ex03",
-          "sourceFactIds": [
-            "ch10.fact.3",
-            "ch10.fact.6",
-            "ch10.fact.9"
-          ],
-          "namedCaseIds": [
-            "ch10.example.3"
-          ],
           "title": "Cassidy Points to the Boards",
           "tags": [
             "Habitat",
@@ -4585,13 +2528,6 @@
         },
         {
           "exampleId": "ex04",
-          "sourceFactIds": [
-            "ch10.fact.4",
-            "ch10.fact.8"
-          ],
-          "namedCaseIds": [
-            "ch10.example.1"
-          ],
           "title": "Sylvie Keeps the Useful Ritual",
           "tags": [
             "Sharp",
@@ -4604,13 +2540,6 @@
         },
         {
           "exampleId": "ex05",
-          "sourceFactIds": [
-            "ch10.fact.2",
-            "ch10.fact.5"
-          ],
-          "namedCaseIds": [
-            "ch10.example.2"
-          ],
           "title": "The Drill Has to Serve the Unit",
           "tags": [
             "training",
@@ -4623,13 +2552,6 @@
         },
         {
           "exampleId": "ex06",
-          "sourceFactIds": [
-            "ch10.fact.6",
-            "ch10.fact.9"
-          ],
-          "namedCaseIds": [
-            "ch10.example.3"
-          ],
           "title": "The House Holds the Purpose",
           "tags": [
             "Habitat",
@@ -4654,8 +2576,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Sharp connects service work to patient-experience purpose when staff see the patient stakes together. Warmer wording or a read-aloud still leaves purpose as words first.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -4667,8 +2588,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Basic training builds unit identity through shared physical challenges. A clearer welcome or private note may help, but neither gives the group effort endured together.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -4680,8 +2600,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Habitat case turns on concrete joint effort. The build day gives volunteers a tangible purpose through nonprofit housing work tied to a future homeowner's stake.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -4693,8 +2612,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Sharp treats shared meaning as something leaders make vivid. A patient story or service moment translates care values into observable work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -4706,8 +2624,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The military lesson is not hardship alone. Shared struggle bonds recruits when each person sees others making effort for the same unit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -4719,8 +2636,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Habitat makes purpose concrete through the house being built, tools, and future homeowner participation. The purpose belongs in the work, not above it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -4732,8 +2648,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Common attention lets people interpret the moment together. Separate reflection and delayed recaps keep meaning private or staggered.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -4745,8 +2660,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A Sharp-style ritual has to fit patient-care values staff see as important. Familiar steps and a warm mood cannot replace fit with the work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -4758,8 +2672,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Habitat build days show that strangers can share meaning quickly when a visible beneficiary gives the group a reason to coordinate and care.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4808,7 +2721,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Show the Shared Stake",
         "coreSkill": "Show the Shared Stake means choosing one real thing the group will face together before you ask for shared purpose. The stake might be a patient story, a unit aim, a house being built, or a visible beneficiary. If the moment cannot show what the words serve, revise the moment before you repeat the words.",
         "ifThenPlans": [
           {
@@ -4829,24 +2741,17 @@
       },
       "memorableLines": [
         {
-          "text": "Purpose needs a scene before it needs a slogan.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a short test for whether purpose has become visible."
+          "text": "Purpose needs a scene before it needs a slogan."
         },
         {
-          "text": "Hardship without a shared aim is only strain.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the basic-training lesson from turning into praise of difficulty."
+          "text": "Hardship without a shared aim is only strain."
         },
         {
-          "text": "A ritual earns trust only when it fits the work.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a plain way to test ceremonies, huddles, and kickoffs."
+          "text": "A ritual earns trust only when it fits the work."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-power-of-moments-ch11",
       "number": 11,
       "title": "Deepen Ties",
@@ -4863,14 +2768,6 @@
       "examples": [
         {
           "exampleId": "ex01",
-          "sourceFactIds": [
-            "ch11.fact.1",
-            "ch11.fact.4",
-            "ch11.fact.8"
-          ],
-          "namedCaseIds": [
-            "ch11.example.1"
-          ],
           "title": "Aron's Gradual Path",
           "tags": [
             "aron",
@@ -4883,14 +2780,6 @@
         },
         {
           "exampleId": "ex02",
-          "sourceFactIds": [
-            "ch11.fact.1",
-            "ch11.fact.4",
-            "ch11.fact.8"
-          ],
-          "namedCaseIds": [
-            "ch11.example.1"
-          ],
           "title": "Brenda's Shared Toast",
           "tags": [
             "family",
@@ -4903,14 +2792,6 @@
         },
         {
           "exampleId": "ex03",
-          "sourceFactIds": [
-            "ch11.fact.2",
-            "ch11.fact.5",
-            "ch11.fact.9"
-          ],
-          "namedCaseIds": [
-            "ch11.example.2"
-          ],
           "title": "Reis's Reply Test",
           "tags": [
             "responsiveness",
@@ -4923,14 +2804,6 @@
         },
         {
           "exampleId": "ex04",
-          "sourceFactIds": [
-            "ch11.fact.2",
-            "ch11.fact.5",
-            "ch11.fact.9"
-          ],
-          "namedCaseIds": [
-            "ch11.example.2"
-          ],
           "title": "Lloyd Stops Nodding",
           "tags": [
             "active-listening",
@@ -4943,13 +2816,6 @@
         },
         {
           "exampleId": "ex05",
-          "sourceFactIds": [
-            "ch11.fact.3",
-            "ch11.fact.6"
-          ],
-          "namedCaseIds": [
-            "ch11.example.3"
-          ],
           "title": "Lucie Shows Up Again",
           "tags": [
             "mentoring",
@@ -4962,14 +2828,6 @@
         },
         {
           "exampleId": "ex06",
-          "sourceFactIds": [
-            "ch11.fact.4",
-            "ch11.fact.7",
-            "ch11.fact.8"
-          ],
-          "namedCaseIds": [
-            "ch11.example.1"
-          ],
           "title": "Sharon Leaves a Pass",
           "tags": [
             "safety",
@@ -4994,8 +2852,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Aron's study used 36 rising questions with paired strangers. The lesson is not to wait years or let one person be exposed; the structure lets both share.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -5007,8 +2864,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reis's model says closeness depends on feeling understood, validated, and cared for. More facts or a bigger story can miss the response.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -5020,8 +2876,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Big Brothers Big Sisters relies on one-to-one youth mentoring matches with repeated adult presence. One grand talk is not the whole tie.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -5033,8 +2888,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The 36 questions worked by rising step by step. Starting with the hardest prompt copies the look of depth while skipping the safety.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -5046,8 +2900,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Listening is active connection work. Quiet alone may not prove care; the speaker needs evidence of understanding, validation, and care.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -5059,8 +2912,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The mentoring case treats reliability as a way care is felt. Impressive advice is not the main mechanism; steady presence is.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -5072,8 +2924,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Forced vulnerability can backfire when people lack safety or choice. The safer move lowers risk and lets people choose how much to share.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -5085,8 +2936,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Aron exercise paired disclosure with reciprocity. Asking deep questions is not enough if one side stays outside the exchange.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -5098,8 +2948,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Reis's test separates care from curiosity. The response must show understanding, validation, and care, not just gather more personal facts.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -5148,7 +2997,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask, Answer, Then Land",
         "coreSkill": "Choose a question that fits the trust already in the room. Answer it too, then make the other person's answer land with understanding, validation, and care. The goal is not to pull out a secret. The goal is to make sharing safe, mutual, and heard.",
         "ifThenPlans": [
           {
@@ -5169,24 +3017,17 @@
       },
       "memorableLines": [
         {
-          "text": "Do not force a confession; build a path.",
-          "location": "breakdown.fastRead",
-          "why": "It names the chapter's limit in plain action terms."
+          "text": "Do not force a confession; build a path."
         },
         {
-          "text": "Care is heard in the reply.",
-          "location": "breakdown.fullRead",
-          "why": "It makes Reis's responsiveness test easy to carry into a real talk."
+          "text": "Care is heard in the reply."
         },
         {
-          "text": "Coming back is part of the care.",
-          "location": "breakdown.fullRead",
-          "why": "It ties the mentoring case to the habit of steady return."
+          "text": "Coming back is part of the care."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-power-of-moments-ch12",
       "number": 12,
       "title": "Making Moments Matter",
@@ -5203,13 +3044,6 @@
       "examples": [
         {
           "exampleId": "ex01",
-          "sourceFactIds": [
-            "ch12.fact.1",
-            "ch12.fact.5"
-          ],
-          "namedCaseIds": [
-            "ch12.example.1"
-          ],
           "title": "Alexis Steps Into View",
           "tags": [
             "school",
@@ -5222,13 +3056,6 @@
         },
         {
           "exampleId": "ex02",
-          "sourceFactIds": [
-            "ch12.fact.1",
-            "ch12.fact.4"
-          ],
-          "namedCaseIds": [
-            "ch12.example.1"
-          ],
           "title": "YES Prep Checks the Stage",
           "tags": [
             "school",
@@ -5241,13 +3068,6 @@
         },
         {
           "exampleId": "ex03",
-          "sourceFactIds": [
-            "ch12.fact.2",
-            "ch12.fact.6"
-          ],
-          "namedCaseIds": [
-            "ch12.example.2"
-          ],
           "title": "Wilder Lifts the Red Phone",
           "tags": [
             "hotel",
@@ -5260,14 +3080,6 @@
         },
         {
           "exampleId": "ex04",
-          "sourceFactIds": [
-            "ch12.fact.2",
-            "ch12.fact.4",
-            "ch12.fact.6"
-          ],
-          "namedCaseIds": [
-            "ch12.example.2"
-          ],
           "title": "Magic Castle Skips Grandeur",
           "tags": [
             "hotel",
@@ -5280,13 +3092,6 @@
         },
         {
           "exampleId": "ex05",
-          "sourceFactIds": [
-            "ch12.fact.3",
-            "ch12.fact.7"
-          ],
-          "namedCaseIds": [
-            "ch12.example.3"
-          ],
           "title": "Miles Gets Joshie Back",
           "tags": [
             "service",
@@ -5299,14 +3104,6 @@
         },
         {
           "exampleId": "ex06",
-          "sourceFactIds": [
-            "ch12.fact.3",
-            "ch12.fact.7",
-            "ch12.fact.9"
-          ],
-          "namedCaseIds": [
-            "ch12.example.3"
-          ],
           "title": "Ritz-Carlton Tests the Ending",
           "tags": [
             "service",
@@ -5331,8 +3128,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The YES Prep ritual works because it attaches ceremony to college acceptance and the move out of high school. Spirit or motivation alone detaches the event from the stake.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -5344,8 +3140,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The red phone and silver-tray delivery make service personal and retellable. A costly upgrade or quiet sameness may be competent, but it does not create the story.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -5357,8 +3152,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Joshie was not only an object problem. Staff photos and special treatment answered the emotional stake behind the missing toy, where notes or credits stop short.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -5370,8 +3164,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Moment design starts with the real stake. A ceremony, phone, or photo story works only when the act answers what people already care about.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -5383,8 +3176,7 @@
             ],
             "correctIndex": 2,
             "explanation": "In Senior Signing Day, public announcement can turn enrollment from private paperwork into witnessed pride. Private records miss that social meaning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -5396,8 +3188,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The red phone works because it makes routine service feel personal and playful. Formal polish and smooth sameness can miss the guest's felt notice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -5409,8 +3200,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Joshie lesson is that a pit can become a better memory when recovery changes the ending. Orderly apology or policy repair may not replace the loss story.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -5422,8 +3212,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Small interventions have power where people already assign meaning. Thresholds, achievements, and trouble spots carry feeling before the designer arrives.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -5435,8 +3224,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Cleverness and visibility are not the final measure. The durable test is whether the student, guest, or family received a better story to carry away.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -5485,7 +3273,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Stake First",
         "coreSkill": "Before you plan a moment, name the point that already matters. Is it a threshold, an earned step, or a low point? Then choose one small act that gives witness, playful notice, or a better ending.",
         "ifThenPlans": [
           {
@@ -5506,19 +3293,13 @@
       },
       "memorableLines": [
         {
-          "text": "Start with the stake, not the stunt.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the chapter's guardrail in a line the reader can use before acting."
+          "text": "Start with the stake, not the stunt."
         },
         {
-          "text": "A stage cannot rescue a milestone nobody feels.",
-          "location": "breakdown.fullRead",
-          "why": "It warns against copying ceremony without a real stake."
+          "text": "A stage cannot rescue a milestone nobody feels."
         },
         {
-          "text": "The moment matters when the story gets better.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a plain test for every designed moment."
+          "text": "The moment matters when the story gets better."
         }
       ]
     }

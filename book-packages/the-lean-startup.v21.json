@@ -41,13 +41,6 @@
             "grocery",
             "pilot"
           ],
-          "planSpec": {
-            "domain": "regional grocery ordering pilot",
-            "audience": "ops leaders",
-            "stakes": "a seasonal rollout could burn shelf space on an untested demand signal",
-            "format": "scene",
-            "requiredBeat": "Sarah places one preorder page beside yesterday's pickup log and asks which assumption the next build should test"
-          },
           "scenario": "At 7:20 a.m. Monday, Beth stands under the stockroom lights with a folded produce preorder sheet in one hand and yesterday's pickup log in the other. The pilot has a three-store cap, and the ops group wants to add two more seasonal boxes before launch. She places the preorder page beside the log and has to decide whether to approve the next build or ask which demand assumption the team is testing first. The pickup log must answer repeat demand before the team adds another seasonal box.",
           "whatToDo": "Pause the rollout and make the next build answer one demand question. Use the pickup log to choose what evidence would prove customers want the seasonal box.",
           "whyItMatters": "The team can fill shelves and still learn nothing. Pairing the preorder sheet with actual pickup behavior forces the work to reduce uncertainty before it expands."
@@ -60,13 +53,6 @@
             "public service",
             "prototype"
           ],
-          "planSpec": {
-            "domain": "municipal permit portal prototype",
-            "audience": "public-service product team",
-            "stakes": "residents may still call the desk after a costly portal launch",
-            "format": "dialogue",
-            "requiredBeat": "James points to one permit type and asks the team to build only enough to see if applicants can finish without calling"
-          },
           "scenario": "\"Which permit creates the most calls?\" James asks in the city hall conference room, tapping the stack of paper forms beside an empty tablet kiosk. The vendor wants a full portal scope by Friday. The call log says fence permits jam the desk every morning. James points to that form and must decide whether to fund the full build or test one path where residents finish without calling. The call log makes the uncertainty concrete because one permit path can show whether residents finish alone.",
           "whatToDo": "Build the fence-permit path only far enough to test completion without phone help. Let the call log define whether the prototype taught the team anything.",
           "whyItMatters": "The portal is not progress if residents still need the same desk call. A narrow path gives the uncertainty a clean answer before the city buys the larger system."
@@ -79,13 +65,6 @@
             "software",
             "retention"
           ],
-          "planSpec": {
-            "domain": "freelance bookkeeping app",
-            "audience": "solo founder",
-            "stakes": "three months of polish may hide that freelancers will not return weekly",
-            "format": "vignette",
-            "requiredBeat": "Camille deletes four roadmap cards and keeps only the retention question for Friday's test"
-          },
           "scenario": "The laptop fan hums while Camille studies a crowded roadmap board for her freelance bookkeeping app. Trial accounts exist, the weekly reminder email is drafted, and every new card promises a nicer product. Her cursor hovers over four polish tasks. She must decide whether to keep improving the interface or delete the cards and run Friday's retention test. The retention note is the business question hiding under the cleaner invoice screen.",
           "whatToDo": "Delete the polish cards and keep the weekly return test. Send the reminder email to trial accounts and judge progress by who comes back to reconcile receipts.",
           "whyItMatters": "More polish can protect the project from the question that matters. Retention behavior tells Camille whether she is building a sustainable habit or a prettier silence."
@@ -98,13 +77,6 @@
             "healthcare",
             "learning"
           ],
-          "planSpec": {
-            "domain": "hospital discharge instruction redesign",
-            "audience": "quality-improvement nurses",
-            "stakes": "readmission work may produce prettier pamphlets without patient understanding",
-            "format": "decision_point",
-            "requiredBeat": "Daniel turns the sprint review from pages completed to which patient confusion was reduced"
-          },
           "scenario": "You are beside Daniel at the nurse station, where a discharge folder with colored tabs sits beside the patient callback list. The quality-improvement team is proud of three finished drafts and a one question checklist. Before the review starts, Daniel has to decide whether to praise pages completed or ask which patient confusion actually went down. The callback list keeps the review tied to patient confusion rather than draft count.",
           "whatToDo": "Move the review from completed pages to callback evidence. Ask which instruction reduced one repeated patient question, then build the next draft around that answer.",
           "whyItMatters": "A better folder is only output until patient confusion changes. The callback list keeps the redesign tied to learning instead of decorative completion."
@@ -117,13 +89,6 @@
             "campus",
             "marketplace"
           ],
-          "planSpec": {
-            "domain": "university meal-plan marketplace",
-            "audience": "student venture team",
-            "stakes": "demo-day enthusiasm may not prove repeat use",
-            "format": "postmortem",
-            "requiredBeat": "Sophie watches signups pile up and asks what will show whether students come back next week"
-          },
           "scenario": "It took Sophie until the Friday postmortem to see what the cafeteria table had hidden. On demo day, signup stickers filled the laptop lid, the meal credit code was scanned eighty times, and the team cheered. The return-date card beside the tray showed only six students came back. Sophie writes the rule for the next test: attention is not learning unless return behavior answers. The return-date card gives Sophie the behavior signal that demo-day attention could not provide.",
           "whatToDo": "Separate first-day enthusiasm from repeat use. Keep the meal credit code, but make the next build depend on who comes back on the return date.",
           "whyItMatters": "A busy demo table can flatter the team while leaving the business question untouched. Return behavior shows whether the marketplace is becoming useful after curiosity fades."
@@ -136,13 +101,6 @@
             "local service",
             "sustainability"
           ],
-          "planSpec": {
-            "domain": "independent hardware repair service",
-            "audience": "local owner",
-            "stakes": "adding services may increase activity without proving a sustainable business",
-            "format": "before_after",
-            "requiredBeat": "Guillaume circles the repair type that can reveal whether customers return before buying new tools"
-          },
           "scenario": "The wall pegboard at Guillaume's hardware shop is half-filled with repair tags by Thursday afternoon. Before, he added every service customers mentioned and watched the cash drawer tally rise unevenly. After checking the repeat-customer list, he circles mower blade sharpening because it can reveal whether people return before buying new tools. The next week gets one test, not five new services. The repeat-customer list turns the repair menu into one learning cycle instead of a bundle of guesses.",
           "whatToDo": "Choose the repair type that can prove repeat demand, then cap the next week around that test. Track whether customers return instead of counting service variety.",
           "whyItMatters": "More services can make the shop busier without making the business clearer. One repeatable repair shows whether the work is building a sustainable pattern."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful test is whether the sprint changed what the team knows about retention. Speed alone is the tempting wrong signal, while stopping all building avoids the learning loop.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A small phone update test exposes the key uncertainty through behavior. A full tool hides the question under cost, and manager interviews may inform the test without replacing it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The core issue is whether visits turned into commitment, which tests the original belief. More traffic and surface polish may help later, but both can preserve output theater.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The return test measures a business uncertainty before the roadmap grows. The issue is not that fewer features are always better or that tax reminders are impossible.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Completion without a desk call measures whether the build answered the service uncertainty. Finished screens and staff training are outputs unless they change resident behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The team promoted encouragement into proof without a behavior signal. Small samples can still teach, and qualitative feedback can help, but neither excuses the missing return evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The problem is not only brand focus or staffing. By changing too much at once, the owner lost the clean signal that would teach which service might support the business.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Patient confusion is the uncertainty the work needed to reduce. Nurse praise may matter for delivery, but it does not replace the behavior signal from callbacks.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The rough test wins because it makes the key payment assumption answerable now. A complete beta may bury that signal, and a roadmap adds confidence without evidence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -327,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "That is the first correction: progress is not the amount of work finished.",
-          "location": "breakdown.fastRead",
-          "why": "It replaces the usual output scorecard with the chapter's central standard in one blunt sentence."
+          "text": "That is the first correction: progress is not the amount of work finished."
         },
         {
-          "text": "The second choice looks smaller. It is actually more serious.",
-          "location": "breakdown.deepRead",
-          "why": "The contrast makes a narrow test feel more disciplined than a large build."
+          "text": "The second choice looks smaller. It is actually more serious."
         },
         {
-          "text": "Speed is useful only when it brings the truth closer.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the chapter from being misread as generic startup speed advice."
+          "text": "Speed is useful only when it brings the truth closer."
         }
       ]
     },
@@ -366,13 +309,6 @@
             "insurance",
             "uncertainty"
           ],
-          "planSpec": {
-            "domain": "insurance claims chatbot inside a large carrier",
-            "audience": "corporate innovation managers",
-            "stakes": "routine delivery metrics could punish discovery work",
-            "format": "scene",
-            "requiredBeat": "Anna relabels the project from rollout to uncertainty map before the steering review"
-          },
           "scenario": "At 8:10 a.m. Tuesday, Anna sits in a glass conference room with the claims script on the screen and the risk register open beside it. The steering review calls the chatbot a rollout, but the team still does not know whether customers will trust it after a denial. Before the executives arrive, Anna must decide whether to report delivery progress or relabel the work as an uncertainty map with a tight pilot boundary. The risk register makes the trust question visible before the chatbot is treated like routine delivery.",
           "whatToDo": "Rename the work before the review. Separate known delivery tasks from unknown trust questions, then ask for a pilot boundary that lets the team learn without pretending the facts are settled.",
           "whyItMatters": "A large carrier can still face startup uncertainty. If Anna lets routine delivery metrics define the project, the team may be punished for discovery work it actually needs."
@@ -385,13 +321,6 @@
             "library",
             "public sector"
           ],
-          "planSpec": {
-            "domain": "county library digital lending pilot",
-            "audience": "public-sector program team",
-            "stakes": "a stable institution may hide unsettled user behavior",
-            "format": "dialogue",
-            "requiredBeat": "Ben asks whether patrons have a known problem or whether the team is still discovering it"
-          },
           "scenario": "\"Are we fixing a known problem, or still discovering one?\" Ben asks beside the returns cart and the tablet checkout stand. Library cards are stacked for Saturday's pilot, and the patron notes disagree about what people need. The director wants a smooth launch plan. Ben must choose between treating the pilot as routine service work and naming the user behavior still unknown. The patron notes force Ben to separate a known desk process from an unknown borrowing behavior.",
           "whatToDo": "Ask the room to classify the work before planning the launch. If patron behavior is still unknown, make the pilot measure that uncertainty instead of only checking service smoothness.",
           "whyItMatters": "The library looks stable, but the digital lending behavior is unsettled. The right management fit depends on that condition, not on the age of the institution."
@@ -404,13 +333,6 @@
             "nonprofit",
             "routing"
           ],
-          "planSpec": {
-            "domain": "food-bank routing tool",
-            "audience": "nonprofit operations director",
-            "stakes": "donor pressure could force fixed plans before demand patterns are understood",
-            "format": "vignette",
-            "requiredBeat": "Celine separates known logistics from unknown volunteer adoption on the wall"
-          },
           "scenario": "The warehouse map curls at the corners above crates of canned tomatoes while Celine holds the volunteer signup sheet. Donors want a fixed routing plan, and the two depot limit is already known. The open question is adoption on distribution days. She must decide whether to send a confident plan or split the wall into known logistics and unknown volunteer behavior. The wall split protects the routing team from confusing truck facts with volunteer adoption.",
           "whatToDo": "Draw the known and unknown columns before committing to the donor plan. Treat route capacity as execution and volunteer adoption as startup uncertainty that needs a test.",
           "whyItMatters": "Pressure for a fixed plan can make uncertain work look settled. Celine protects the food bank from managing discovery as if it were ordinary logistics."
@@ -423,13 +345,6 @@
             "medical device",
             "compliance"
           ],
-          "planSpec": {
-            "domain": "medical device compliance group",
-            "audience": "regulated-company team",
-            "stakes": "process discipline might mask that clinicians do not yet value the workflow",
-            "format": "decision_point",
-            "requiredBeat": "Andrew marks which parts are compliance execution and which parts are startup uncertainty"
-          },
           "scenario": "You are in a regulated-company meeting with Andrew, a procedure binder open beside a blank ward map. The clinician interview notes are thin, but the compliance checklist is already detailed. Before the team locks the project plan, Andrew's pen hovers over two labels: execution for the known compliance work, uncertainty for the parts clinicians have not yet valued. The ward map keeps the unknown clinician behavior from hiding behind the thick compliance binder.",
           "whatToDo": "Mark the compliance tasks separately from the clinician-adoption questions. Keep the regulated work disciplined while giving the uncertain workflow a learning metric.",
           "whyItMatters": "Process strength can hide the part nobody knows yet. Andrew keeps compliance from becoming a costume that covers the real adoption risk."
@@ -442,13 +357,6 @@
             "education",
             "procurement"
           ],
-          "planSpec": {
-            "domain": "school district attendance app",
-            "audience": "education administrators",
-            "stakes": "the project may be managed like procurement when family behavior is unknown",
-            "format": "postmortem",
-            "requiredBeat": "Hanna stops the agenda until the room names what no one knows about parent use"
-          },
           "scenario": "It took Hanna one failed pilot to notice the projector had told the wrong story. The procurement timeline looked clean, the attendance letters were approved, and the parent SMS draft had a vendor date. The pilot school list still gave no answer on family use. In the postmortem, Hanna stops the agenda until the room names what no one knows about parents. The pilot school list shows that procurement polish did not answer the family-use question.",
           "whatToDo": "Restart the review around unknown parent behavior. Keep procurement milestones, but do not let them stand in for evidence that families will actually use the app.",
           "whyItMatters": "A school district can manage the purchase perfectly and still fail the discovery problem. Hanna changes the scorecard before the next pilot repeats the error."
@@ -461,13 +369,6 @@
             "museum",
             "membership"
           ],
-          "planSpec": {
-            "domain": "museum membership experiment",
-            "audience": "cultural institution staff",
-            "stakes": "a respected brand may still be guessing about why visitors return",
-            "format": "before_after",
-            "requiredBeat": "Luca replaces the launch checklist with an uncertainty checklist for repeat visits"
-          },
           "scenario": "At 4:40 p.m. Sunday, Luca stands behind the museum membership desk as unused lanyards, visitor stamp pads, and new member cards line the counter. As the visitor-services lead, he has watched the return-offer sign draw polite nods and few second visits. Before Monday reporting, he replaces the launch checklist with an uncertainty checklist about why visitors come back. The second-visit count turns a respected museum launch into a startup-condition test.",
           "whatToDo": "Keep the operational checklist, but add an uncertainty checklist for repeat visits. Measure why a stamped visitor returns before expanding the membership campaign.",
           "whyItMatters": "The museum's reputation does not answer the new behavior question. Luca defines the experiment by what is unknown, not by the institution's confidence."
@@ -486,8 +387,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The bank's age does not settle the customer uncertainty. The work belongs in startup-condition management until trust and value are learned through evidence.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -499,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The split between known logistics and unknown adoption tells the team what management style to use. Existing metrics and branding can hide the unsettled behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -512,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The project still needs dates, but milestones alone grade it like stable work. Validated learning adds evidence about demand without abandoning accountability.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -525,8 +423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Second-visit behavior tests the unsettled value of the membership offer. Cards and desk consistency are execution details inside a more uncertain project.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -538,8 +435,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The same project contains known and unknown work. Compliance still needs discipline, while clinician adoption needs a learning metric rather than a finished checklist.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -551,8 +447,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The deciding factor is uncertainty around the new thing being created. Planning and legal structure can coexist with startup work; looseness is not the definition.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -564,8 +459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Processing speed may be good execution, but it does not answer the usefulness question. The failure is using a stable-work scorecard for uncertain work.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -577,8 +471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The label is useful only if it diagnoses uncertainty and changes the scorecard. Language preferences and moving the project do not answer the management-fit question.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -590,8 +483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Early uncertain work should be judged by evidence that reduces the main unknown. Mature revenue standards can crush discovery before the team learns what might scale.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -652,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "That is startup work when the key facts are still unsettled.",
-          "location": "breakdown.fastRead",
-          "why": "The short sentence punctures the assumption that startup work has to look small or informal."
+          "text": "That is startup work when the key facts are still unsettled."
         },
         {
-          "text": "The label matters because it changes what good management means.",
-          "location": "breakdown.deepRead",
-          "why": "It connects definition to managerial consequences instead of treating the definition as vocabulary."
+          "text": "The label matters because it changes what good management means."
         },
         {
-          "text": "The badge on the door is not the test.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a compact way to remember uncertainty over organizational image."
+          "text": "The badge on the door is not the test."
         }
       ]
     },
@@ -691,13 +577,6 @@
             "coffee",
             "retention"
           ],
-          "planSpec": {
-            "domain": "subscription coffee roaster retention test",
-            "audience": "founder and roasting team",
-            "stakes": "friendly comments could be mistaken for proof of repeat demand",
-            "format": "scene",
-            "requiredBeat": "Beatrice compares compliments with reorder behavior before approving a bigger roast"
-          },
           "scenario": "At 6:35 a.m. Friday, Beatrice stands beside a cooling tray of beans and five thank-you emails taped near the roast calendar. The team wants to approve a bigger subscription roast before lunch. The sample bags drew praise, but the reorder sheet has only two names. Beatrice must choose between scaling the roast and treating the compliments as clues until repeat demand appears. The reorder sheet has to decide the roast schedule before praise turns into extra inventory.",
           "whatToDo": "Compare the praise with reorder behavior before approving more beans. Make the next roast size depend on actual repeat orders, not on how good the first reactions felt.",
           "whyItMatters": "Friendly comments can lift morale without proving demand. The reorder sheet connects the claimed lesson to customer behavior that can change the roasting decision."
@@ -710,13 +589,6 @@
             "clinic",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "mental-health intake form redesign",
-            "audience": "clinic operations team",
-            "stakes": "lower staff frustration may not prove patient completion improved",
-            "format": "dialogue",
-            "requiredBeat": "Patrick asks whether the changed form reduced abandoned intakes or merely felt cleaner"
-          },
           "scenario": "\"Did fewer patients finish, or did we just feel better?\" Patrick asks at the front desk, holding a clipboard with skipped fields in blue ink. The intake forms look cleaner, and the front-desk notes are calmer. The abandonment tally is still open on the screen. Before the clinic keeps the redesign, Patrick must decide whether to accept staff comfort as learning or require evidence that more patients complete intake. The skipped-field tally gives Patrick a patient behavior signal that staff comfort cannot replace.",
           "whatToDo": "Put the abandonment tally beside the staff notes. Keep the form only if patient completion improved, or run a sharper test on the fields patients still skip.",
           "whyItMatters": "Staff relief is real, but it proves a different claim. The clinic needs evidence that the redesign changed patient behavior, not only the staff's experience."
@@ -729,13 +601,6 @@
             "open source",
             "usage"
           ],
-          "planSpec": {
-            "domain": "open-source developer tool beta",
-            "audience": "maintainer group",
-            "stakes": "GitHub stars may flatter the team without proving usage",
-            "format": "vignette",
-            "requiredBeat": "Eva checks whether starred users returned to run the tool twice"
-          },
           "scenario": "The terminal window glows beside a star-count dashboard while Eva scrolls past a warm issue thread and the latest release tag. The maintainer group is ready to call the beta validated. Her cursor pauses over the usage logs. She has a decision to make: celebrate the stars or check whether starred users came back to run the tool twice. The usage logs decide whether the release tag created actual repeat use or only public attention.",
           "whatToDo": "Open the usage logs before writing the success note. Treat stars and comments as attention, then test usefulness by repeat runs from the same developers.",
           "whyItMatters": "Stars can flatter a maintainer group while leaving value unproved. Repeat use is closer to the claim that developers found the tool worth adopting."
@@ -748,13 +613,6 @@
             "bakery",
             "orders"
           ],
-          "planSpec": {
-            "domain": "bakery wholesale portal",
-            "audience": "small manufacturer",
-            "stakes": "one successful order may become a story the team wants too much",
-            "format": "decision_point",
-            "requiredBeat": "David separates a pleasant buyer email from validated demand for weekly ordering"
-          },
           "scenario": "You are at the packing table with David, where a flour-dusted invoice sits under a warm buyer email. The weekly order form is still blank, and the delivery route note has room for a standing account. Before the oven schedule is expanded, David needs to decide whether one pleasant order proves demand or whether weekly ordering has to earn that claim. The weekly order form is the behavior that earns a bigger oven schedule.",
           "whatToDo": "Ask for the weekly order form before changing the batch schedule. Keep the buyer email as encouragement, but do not let it stand in for validated demand.",
           "whyItMatters": "A successful first order can become a story the team wants to believe. Weekly commitment is the evidence that can safely change production."
@@ -767,13 +625,6 @@
             "transportation",
             "paid demand"
           ],
-          "planSpec": {
-            "domain": "city-bike repair pop-up",
-            "audience": "transportation nonprofit",
-            "stakes": "busy foot traffic might hide whether riders value paid repair",
-            "format": "postmortem",
-            "requiredBeat": "Manon counts actual paid tuneups instead of conversations at the tent"
-          },
           "scenario": "At 5:15 p.m. Saturday, Manon folds the rain tarp behind the city-bike pop-up on Queen Street. Repair tags flutter from the curbside rack, and dozens of riders have chatted about safer cycling. As the program coordinator, she checks the payment reader before the debrief and counts nine paid tuneups instead of treating all those conversations as proof of demand. The payment reader keeps Manon focused on repair demand instead of awareness.",
           "whatToDo": "Use the payment reader as the proof for paid repair demand. Record conversations as leads, but base the next pop-up on actual tuneups purchased.",
           "whyItMatters": "Foot traffic can make a nonprofit feel useful while the business question stays open. Paid tuneups show whether riders value the service enough to act."
@@ -786,13 +637,6 @@
             "university lab",
             "root cause"
           ],
-          "planSpec": {
-            "domain": "university lab equipment booking system",
-            "audience": "research administrators",
-            "stakes": "solving a visible booking conflict may miss the repeated root cause",
-            "format": "before_after",
-            "requiredBeat": "Lars runs Five Whys until the team sees the ownership gap behind late returns"
-          },
           "scenario": "At 7:50 a.m. Wednesday, Lars stands in the university lab office with three red microscope-booking conflicts on the calendar and the equipment cabinet key missing again. As lab manager, he has already sent two reminder emails. Before sending a third, he runs Five Whys with the administrators and finds that nobody owns the key handoff between evening users and morning staff. The missing handoff owner gives Lars a system cause to change before another reminder email goes out.",
           "whatToDo": "Keep asking why until the repeated conflict points to a system cause. Change the key handoff owner instead of sending another reminder about late returns.",
           "whyItMatters": "Fixing the visible conflict can feel like learning while the cause keeps producing the same failure. Five Whys turns the postmortem into correction."
@@ -811,8 +655,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The claim is about customer value, so behavior must support it. More comments and longer interpretation can still leave the decision resting on hope.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -824,8 +667,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The decision should follow evidence about patient completion, the claim being tested. Staff relief matters, but it proves a different outcome.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -837,8 +679,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Repeat use is evidence for usefulness. Star velocity and team morale may be encouraging, but neither proves developers adopted the tool.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -850,8 +691,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Recurring ordering tests the demand claim that would justify production changes. Publicity and small expansion still lean on a single pleasant story.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -863,8 +703,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Conversation and payment answer different questions. The safe lesson separates awareness from willingness to pay instead of overclaiming either signal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -876,8 +715,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Five Whys pushes beyond the visible incident toward the system producing repeats. It is not a blame ritual or an excuse to postpone action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -889,8 +727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Validated learning should affect the next move. If the plan stays intact after contradictory evidence, the review may be interpretation theater.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -902,8 +739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Evidence has to match the claim. One paid order may prove willingness in a narrow case, but it does not automatically validate the whole model.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -915,8 +751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The narrower test gives reality a chance to change the decision. Demo reactions may help morale, but they are weak if they cannot redirect the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -977,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "The room has a pleasant story and a weak lesson.",
-          "location": "breakdown.fastRead",
-          "why": "It separates morale from evidence in a concrete way."
+          "text": "The room has a pleasant story and a weak lesson."
         },
         {
-          "text": "A lesson that changes nothing is still waiting to become evidence.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the chapter's demand that learning alter decisions."
+          "text": "A lesson that changes nothing is still waiting to become evidence."
         },
         {
-          "text": "The number is smaller than the applause.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the difference between attention and validated behavior instantly visible."
+          "text": "The number is smaller than the applause."
         }
       ]
     },
@@ -1016,13 +845,6 @@
             "farm share",
             "behavior"
           ],
-          "planSpec": {
-            "domain": "farm-share pickup redesign",
-            "audience": "local food cooperative",
-            "stakes": "survey praise may not prove members will change pickup behavior",
-            "format": "scene",
-            "requiredBeat": "Grace turns a preference survey into a Friday pickup behavior test"
-          },
           "scenario": "At 4:05 p.m. Friday, Grace sets a chalkboard menu against produce crates and clips the survey printout beside a bowl of pickup tokens. Members praised the redesign, but the sample cooler will show whether they actually choose the faster route. Before the line forms, Grace must choose between trusting stated preference and running the pickup behavior test. The pickup tokens make the test visible because each member chooses a real route under Friday pressure.",
           "whatToDo": "Run the Friday pickup test with tokens and the sample cooler. Use actual route choices to decide whether the redesign matters beyond survey praise.",
           "whyItMatters": "The survey shows what members liked imagining. Pickup behavior shows whether the redesign changes a real handoff when people are tired and carrying groceries."
@@ -1035,13 +857,6 @@
             "mobile app",
             "growth"
           ],
-          "planSpec": {
-            "domain": "language-learning app referral idea",
-            "audience": "mobile product team",
-            "stakes": "users may like the concept but never invite a friend",
-            "format": "dialogue",
-            "requiredBeat": "Nicolas sets a test where learners must send one real invite to unlock a lesson"
-          },
           "scenario": "\"Do they say they would invite someone, or do they send the invite?\" Nicolas asks at 2:20 p.m. in the language-app team room, holding a phone screen with an unsent invite and an invite code. The lesson lock is ready for a small user group, and the referral tally is blank. Before the sprint starts, the team has to choose between more concept feedback and a test where one real invite unlocks one lesson. The invite code must turn praise into a measurable act before the team calls the growth claim real.",
           "whatToDo": "Put the lesson lock in front of a small user group and require a real invite. Judge the growth idea by the referral tally, not by verbal approval.",
           "whyItMatters": "A growth hypothesis needs behavior that creates another user. Liking the concept does not show whether learners will spend social capital on an invite."
@@ -1054,13 +869,6 @@
             "clinic",
             "booking"
           ],
-          "planSpec": {
-            "domain": "veterinary reminder service",
-            "audience": "clinic owner",
-            "stakes": "pet owners may say reminders help without booking sooner",
-            "format": "vignette",
-            "requiredBeat": "Rachel tests one reminder script against actual appointment bookings"
-          },
           "scenario": "The vaccination postcards sit in a rubber-banded stack by the reception phone while Rachel studies the booking log. Pet owners said reminders would help, and the SMS script sounds friendly. Her thumb hovers over the send button. She needs to decide whether to keep asking for opinions or test whether one script moves actual appointments sooner. The booking log gives Rachel a before-and-after signal tied to appointment dates, not reminder opinions.",
           "whatToDo": "Send the SMS script to a small group and compare booking dates with the usual postcard group. Let appointment movement judge the reminder service.",
           "whyItMatters": "Pet owners can endorse reminders without changing behavior. The booking log shows whether the reminder creates action while the vaccine date still matters."
@@ -1073,13 +881,6 @@
             "salvage",
             "commitment"
           ],
-          "planSpec": {
-            "domain": "architectural salvage marketplace",
-            "audience": "circular-economy startup",
-            "stakes": "builders may admire reuse but not reserve materials",
-            "format": "decision_point",
-            "requiredBeat": "Marco asks for a hold deposit instead of another interview"
-          },
           "scenario": "You are beside Marco at a salvage-market sample table in Rotterdam, where a reclaimed brass handle rests next to material photos and a deposit form. Builders keep praising reuse, but the reservation deadline is tomorrow. Before packing the samples, Marco must decide whether to book another interview or ask for a small hold deposit that proves someone will reserve the materials. The deposit form makes commitment visible before the scarce material is promised to anyone else.",
           "whatToDo": "Ask for the hold deposit before scheduling more interviews. Use reservations, not admiration, to test whether the marketplace has value to builders.",
           "whyItMatters": "Admiration costs builders nothing. A deposit exposes whether reuse matters enough to claim scarce materials before the deadline passes."
@@ -1092,13 +893,6 @@
             "theatre",
             "ticketing"
           ],
-          "planSpec": {
-            "domain": "community theatre ticket bundle",
-            "audience": "arts manager",
-            "stakes": "audiences may like bundles but still buy single nights",
-            "format": "postmortem",
-            "requiredBeat": "Astrid runs a two-show bundle at the box office for one weekend"
-          },
           "scenario": "It took Astrid one weekend window to separate charm from buying. The box-office drawer held color-coded tickets, and the sales sheet tracked singles beside the new ticket bundle. Patrons smiled at the ticket-window offer on Friday. By Sunday, the sheet showed whether they actually bought two-show plans or returned to single nights. The sales sheet forces the theatre to separate friendly box-office talk from paired-ticket purchases.",
           "whatToDo": "Run the bundle for one weekend and read the sales sheet before expanding it. Treat smiles as interest and paired purchases as the behavior that matters.",
           "whyItMatters": "Audience approval can be polite and cheap. The box office shows whether the bundle changes a purchase when real money and calendar time are involved."
@@ -1111,13 +905,6 @@
             "health",
             "photo upload"
           ],
-          "planSpec": {
-            "domain": "diabetes meal-planning service",
-            "audience": "health startup team",
-            "stakes": "clinicians may approve the plan while patients ignore it",
-            "format": "before_after",
-            "requiredBeat": "Sam watches whether patients upload one real dinner photo after the consult"
-          },
           "scenario": "The phone gallery is open to a dinner plate beside the clinician handout. Before, Connor's team treated clinical approval as proof the meal plan was strong. After adding a photo prompt after each consult, the upload metric tells a sharper story: patients either send one real dinner photo that night or the service has not entered their routine. The dinner photo is the first behavior that shows whether the plan survives outside the clinic.",
           "whatToDo": "Keep the clinician handout, but test the patient behavior with a dinner photo prompt. Use uploads after the consult as the first value signal.",
           "whyItMatters": "Professional approval does not prove patient use. A real dinner photo shows whether the plan survives the evening when choices are made."
@@ -1136,8 +923,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The value claim needs behavior, not only stated preference. More survey detail may shape the test, but it cannot replace a live result.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1149,8 +935,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The real invite tests whether one user can lead to another. Interviews and copy reviews may help, but they do not show referral behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1162,8 +947,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Earlier booking is the behavior tied to the claim. Usefulness ratings and design quality can inform the message, but the booking log carries the test.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1175,8 +959,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The deposit turns admiration into commitment. Interviews and photos may increase interest, but the value hypothesis needs a reservation behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1188,8 +971,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A dinner upload tests patient use in the setting that matters. Clinician ratings and polish do not prove the plan enters the patient's routine.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1201,8 +983,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The weekend test asks patrons to spend money and calendar time, which matches the claim. Urgency and ignorance of motives are not the mechanism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1214,8 +995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Research can help frame the hypothesis, but a behavior test is needed for actionable feedback. The issue is not banning interviews or dismissing customers.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1227,8 +1007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The mixed test blurs the link between behavior and hypothesis. Small experiments can teach, and behavior is still stronger than opinion when designed cleanly.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1240,8 +1019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The reservation better tests whether the offer matters enough to act. Interviews may be rich, but they do not carry the same consequence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1302,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "Friday is where the claim must go.",
-          "location": "breakdown.fastRead",
-          "why": "It moves the reader from opinion to live behavior in one concrete phrase."
+          "text": "Friday is where the claim must go."
         },
         {
-          "text": "Actionable feedback comes from the friction.",
-          "location": "breakdown.deepRead",
-          "why": "It explains why behavior teaches more than polite answers."
+          "text": "Actionable feedback comes from the friction."
         },
         {
-          "text": "An experiment is a question with consequences.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the chapter's method a memorable test for seriousness."
+          "text": "An experiment is a question with consequences."
         }
       ]
     },
@@ -1341,13 +1113,6 @@
             "retail",
             "rental"
           ],
-          "planSpec": {
-            "domain": "winter boot rental kiosk",
-            "audience": "retail experiment team",
-            "stakes": "inventory plans collapse if tourists will not rent instead of buy",
-            "format": "scene",
-            "requiredBeat": "Laura marks rental willingness as the business-breaking assumption and tests it first"
-          },
           "scenario": "At 9:25 a.m. Saturday, Laura straightens a boot rack beside the ski-town hotel door and pins a rental tag under the first pair. The hotel desk card explains the offer, and the deposit amount is still circled on her clipboard. Before ordering more sizes, she must choose whether to test rental willingness first or keep polishing the kiosk setup. The first rental request is the only signal that can justify polishing the tags.",
           "whatToDo": "Make rental willingness the first test. Put a small set of boots at the desk, use the deposit amount, and measure whether tourists rent before buying inventory.",
           "whyItMatters": "If tourists will not rent boots, the rest of the kiosk plan collapses. Testing that leap first protects the team from perfecting a display for a false belief."
@@ -1360,13 +1125,6 @@
             "fintech",
             "trust"
           ],
-          "planSpec": {
-            "domain": "freelancer tax reminder service",
-            "audience": "fintech product lead",
-            "stakes": "the model fails if users will not trust automated tax nudges",
-            "format": "dialogue",
-            "requiredBeat": "Etienne puts trust in the riskiest-assumption slot before building integrations"
-          },
           "scenario": "\"The bank link can wait,\" Etienne says as a calendar alert hovers over a tax folder on the laptop. The trust survey is thin, the manual reminder is ready, and the bank-link mockup is getting all the attention. Before the sprint locks, he has to choose between building integrations and testing whether freelancers trust automated tax nudges at all. The manual reminder lets Etienne test trust before the bank-link build becomes the center of the plan.",
           "whatToDo": "Run the manual reminder test before the bank-link build. Measure trust through responses and opt-ins, then decide whether integrations deserve engineering time.",
           "whyItMatters": "The model fails if freelancers distrust the nudge. Integration polish cannot rescue a service whose riskiest assumption is that users will accept the advice."
@@ -1379,13 +1137,6 @@
             "home care",
             "payer"
           ],
-          "planSpec": {
-            "domain": "senior home meal delivery",
-            "audience": "operations founder",
-            "stakes": "nutrition preferences matter less if adult children will not pay monthly",
-            "format": "vignette",
-            "requiredBeat": "Emily tests payer commitment before menu variety"
-          },
           "scenario": "At 11:30 a.m. Thursday, Emily sits at a senior-meal office table with a sample menu clipped to a fridge magnet and the payer call list open beside her. The monthly price is printed in bold, and every recipe conversation feels easier than asking adult children to commit. As program lead, she has to choose whether to approve another recipe cycle or call five payers about monthly payment first. The payer call list makes monthly commitment visible before another menu cycle absorbs the week.",
           "whatToDo": "Call the payers before changing the menu. Ask for monthly commitment at the real price, then use the answer to decide whether recipe work is worth expanding.",
           "whyItMatters": "Nutrition preferences matter only after the payer leap survives. If adult children will not pay monthly, menu variety is a secondary problem."
@@ -1398,13 +1149,6 @@
             "manufacturing",
             "training"
           ],
-          "planSpec": {
-            "domain": "industrial safety micro-training",
-            "audience": "manufacturing HR team",
-            "stakes": "course polish is wasted if supervisors will not release workers for five minutes",
-            "format": "decision_point",
-            "requiredBeat": "Pavel tests supervisor release before filming modules"
-          },
           "scenario": "You are with Pavel beside the punch clock, where a training tablet sits under the shift roster and a release slip waits for supervisor initials. The HR team wants to film the first safety module this week. Before the camera is booked, Pavel has to decide whether to test supervisor release for five minutes or polish the course script. The release slip is the real gate because training cannot work without five supervisor-approved minutes.",
           "whatToDo": "Ask supervisors to release workers for one five-minute test before filming. Treat signed release slips as the first proof the micro-training can reach the floor.",
           "whyItMatters": "Course quality is wasted if workers never get access. The release slip tests the assumption that controls whether the rest of the training can matter."
@@ -1417,13 +1161,6 @@
             "childcare",
             "trust"
           ],
-          "planSpec": {
-            "domain": "neighborhood childcare swap platform",
-            "audience": "parent organizer",
-            "stakes": "matching features fail if parents do not trust reciprocal care",
-            "format": "postmortem",
-            "requiredBeat": "Maja names trust as the leap and asks families for one trial evening"
-          },
           "scenario": "It took Maja one kitchen-table postmortem to admit the matching features were not the hard part. Printed emergency contacts, a contact sheet, and a two-family cap sat beside the trial evening form. The first parents liked the idea, but trust would decide everything. Maja names trust as the leap and asks two families to try one evening. The trial evening tests trust directly while the matching software remains only a later option.",
           "whatToDo": "Test reciprocal trust with one capped trial evening before building matching features. Use emergency contacts and a clear form to make the trust question visible.",
           "whyItMatters": "Matching software cannot create trust after the fact. If parents will not try one evening, feature work only decorates a broken assumption."
@@ -1436,13 +1173,6 @@
             "legal",
             "review"
           ],
-          "planSpec": {
-            "domain": "legal-document automation tool",
-            "audience": "small-firm lawyer",
-            "stakes": "automation value fails if clients still demand human review",
-            "format": "before_after",
-            "requiredBeat": "Jack tests paid review preference before automating every clause"
-          },
           "scenario": "A marked-up contract lies beside a payment link and a review option on Jack's desk. Before, he planned to automate every clause because clients wanted speed. After three prospects ask who checks the draft, he tests paid review preference first. The next build depends on whether clients choose automation alone or pay for a lawyer's eyes. The payment link tells Jack whether human review is the load-bearing value before clause automation expands.",
           "whatToDo": "Offer the review option before automating more clauses. Measure whether clients pay for human review, then shape the tool around the value they choose.",
           "whyItMatters": "If clients still demand human review, automation must support that trust need. Testing the preference first prevents Jack from building around the wrong value."
@@ -1461,8 +1191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first test belongs to the assumption with the highest damage if false. Ease and discussion value can distract from the load-bearing risk.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1474,8 +1203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Rental willingness is the leap that can break the kiosk. Tag design and inventory matter later if tourists actually rent.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1487,8 +1215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Manual reminders test the risky trust assumption before engineering spend. Completion and friendliness cannot fix a service users will not trust.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1500,8 +1227,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Payer commitment is the dangerous leap for the model. Preferences and photos are useful only after the payment assumption has evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1513,8 +1239,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Access controls whether training can happen at all. Video polish and format preference matter only after supervisors release workers.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1526,8 +1251,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The list is useful only if it changes test order. Avoiding the frightening assumption leaves the plan exposed where failure would cost most.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1539,8 +1263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Trust determines whether matching features matter. A small trial can test it directly without assuming software will solve the hardest risk.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1552,8 +1275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Paid review preference exposes the value assumption. The tool may still work, but its design must follow the trust need clients reveal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1565,8 +1287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The payment assumption carries higher damage if false. Feature polish is tempting because it is controllable, but it does not steer the business risk.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1627,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "One belief carries the whole plan: tourists will rent winter boots instead of buying them.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the abstract leap visible in the boot-rental scene."
+          "text": "One belief carries the whole plan: tourists will rent winter boots instead of buying them."
         },
         {
-          "text": "Polish should not arrive before the floor is tested.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the chapter's warning against improving around the dangerous assumption."
+          "text": "Polish should not arrive before the floor is tested."
         },
         {
-          "text": "A leap is not a flaw in the plan.",
-          "location": "breakdown.fullRead",
-          "why": "It reframes uncertainty as the honest place to begin testing."
+          "text": "A leap is not a flaw in the plan."
         }
       ]
     },
@@ -1666,13 +1381,6 @@
             "restaurant",
             "concierge"
           ],
-          "planSpec": {
-            "domain": "restaurant waitlist concierge MVP",
-            "audience": "hospitality founder",
-            "stakes": "a full app may be waste if diners only need human text updates",
-            "format": "scene",
-            "requiredBeat": "Olivia runs the whole waitlist from one phone for two nights to test return visits"
-          },
           "scenario": "At 6:40 p.m. Thursday, Olivia watches the host stand phone buzz beside the reservation book. The two-night test starts with one phone, not an app. Diners get manual text updates when tables open. Before hiring a developer, Olivia must decide whether return visits from this concierge waitlist prove the core behavior. The reservation book makes the test fair because diners still receive the core benefit of a faster table update.",
           "whatToDo": "Run the waitlist manually for two nights and track whether diners return after text updates. Build software only if the single-phone service teaches that the behavior is real.",
           "whyItMatters": "A full app may automate the wrong thing. One phone can expose whether diners value updates enough to come back."
@@ -1685,13 +1393,6 @@
             "climate",
             "video"
           ],
-          "planSpec": {
-            "domain": "home energy audit video MVP",
-            "audience": "climate startup",
-            "stakes": "hardware buildout could outrun proof that homeowners act on advice",
-            "format": "dialogue",
-            "requiredBeat": "Jonas sends one rough walkthrough video before buying sensors"
-          },
           "scenario": "\"Send the video before we buy anything,\" Jonas says, pointing at the draft walkthrough paused on a basement fuse box. The energy bill is on the table, and the manual checklist fits one page. The team is about to price sensors. Jonas has to choose between a hardware buildout and one rough video that tests whether homeowners act on advice. The energy bill gives the team a concrete before-and-after measure before hardware turns the bet expensive.",
           "whatToDo": "Send the rough walkthrough with the manual checklist to a small group. Measure whether homeowners complete one recommended action before buying sensors.",
           "whyItMatters": "Hardware can make the test look serious while hiding the behavior question. The video tests whether advice changes action before the team builds the system."
@@ -1704,13 +1405,6 @@
             "museum",
             "manual test"
           ],
-          "planSpec": {
-            "domain": "museum audio guide concierge test",
-            "audience": "visitor-experience team",
-            "stakes": "building an app may hide whether visitors want route help",
-            "format": "vignette",
-            "requiredBeat": "Chloe walks six visitors manually with rented headsets to test the guide logic"
-          },
           "scenario": "At 1:10 p.m. in the museum admissions hall, Chloe folds six route cards beside a tray of rented headsets and a visitor stopwatch. As visitor-experience lead, she has an audio-guide app brief that is still only a sketch. Before the afternoon tour, she has a decision to make: commission the app build or walk the route manually and test where visitors need help. The stopwatch lets Chloe see where route help matters without hiding the answer inside app design.",
           "whatToDo": "Run the route by hand with rented headsets and a stopwatch. Listen for confusion, drop-offs, and requests before turning the guide into an app.",
           "whyItMatters": "Manual route help can test the guide logic sooner than software. If visitors do not value the help, a polished app only hides the weak assumption."
@@ -1723,13 +1417,6 @@
             "health",
             "manual service"
           ],
-          "planSpec": {
-            "domain": "remote physiotherapy manual service",
-            "audience": "health product team",
-            "stakes": "software investment may precede proof that patients submit movement videos",
-            "format": "decision_point",
-            "requiredBeat": "Michael asks three patients to text videos to a therapist before any portal exists"
-          },
           "scenario": "You are beside Michael in a physiotherapy clinic exam room as a phone leans against a yoga block and therapist notes cover a one-week plan. The team wants a patient portal, but nobody knows whether people will submit movement videos. Before the software estimate is approved, Michael must decide whether to ask three patients to text videos for a week. The texted videos still deliver therapist feedback, so refusal would teach about behavior rather than software polish.",
           "whatToDo": "Ask three patients to text movement videos for one week. Use therapist notes and submission rates to decide whether a portal solves a proven behavior.",
           "whyItMatters": "The portal is waste if patients will not send videos. A manual service tests the core behavior before engineering turns the assumption into infrastructure."
@@ -1742,13 +1429,6 @@
             "community",
             "manual match"
           ],
-          "planSpec": {
-            "domain": "book-club matching landing page",
-            "audience": "community founder",
-            "stakes": "the matching algorithm is premature if readers will not join",
-            "format": "postmortem",
-            "requiredBeat": "Frida uses a spreadsheet to make six matches by hand after a landing-page signup"
-          },
           "scenario": "It took Frida one signup weekend to stop designing the algorithm. The landing page worked well enough, and the spreadsheet sat open beside a stack of paperbacks. Before writing matching rules, she made six manual matches by hand. The postmortem showed whether readers wanted the match, not whether the algorithm was elegant. The spreadsheet keeps the matching promise small enough to test before algorithm work begins.",
           "whatToDo": "Make the first six matches manually after landing-page signup. Check whether readers accept and attend before building matching logic.",
           "whyItMatters": "The algorithm is premature if people will not join a matched club. The spreadsheet teaches demand before automation hides the question."
@@ -1761,13 +1441,6 @@
             "warehouse",
             "voice assist"
           ],
-          "planSpec": {
-            "domain": "warehouse picking voice-assist prototype",
-            "audience": "logistics innovation team",
-            "stakes": "device procurement may be waste before workers accept voice prompts",
-            "format": "before_after",
-            "requiredBeat": "Tomás shadows pickers and reads prompts aloud through a headset for one aisle"
-          },
           "scenario": "A headset cable is coiled on the packing bench beside a borrowed headset. Before, Tomas's logistics team priced devices for the whole warehouse. After one supervisor asks whether pickers will tolerate voice prompts, he shadows workers in one aisle and reads manual prompts aloud before any procurement order is signed. The borrowed headset tests aisle behavior while the procurement form stays unopened.",
           "whatToDo": "Borrow one headset, shadow pickers, and read prompts manually in a single aisle. Decide on device procurement only after workers react to the voice flow.",
           "whyItMatters": "Buying devices before testing acceptance makes waste expensive. One aisle with manual prompts exposes whether the workflow helps or irritates workers."
@@ -1786,8 +1459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The point is learning with minimum waste, not cheapness for its own sake. A confusing test can fail to teach even if it is small.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1799,8 +1471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The phone test completes a learning cycle before app work. It tests whether diners value updates without the waste of a full build.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1812,8 +1483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The video tests action before hardware spend. Sensors may matter later, but they are premature if homeowners ignore advice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1825,8 +1495,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The manual route tests whether visitors want route help in the museum. The full app is costly, and a survey does not expose actual route behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1838,8 +1507,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Texted videos test the submission behavior directly. Interface opinions and storage decisions may matter after the behavior exists.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1851,8 +1519,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Manual matching tests the customer decision sooner. The point is not that spreadsheets are superior, but that automation should wait for proven demand.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1864,8 +1531,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The borrowed headset tests worker acceptance in the aisle. Vendor timing and technology appeal miss the assumption that controls value.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1877,8 +1543,7 @@
             ],
             "correctIndex": 1,
             "explanation": "An MVP must be small and honest enough to test value. If the core value is absent, the result may reflect a broken test rather than the assumption.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1890,8 +1555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Manual delivery is stronger when it tests the value assumption now. Polish and automation can wait until the team knows the result matters.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1952,19 +1616,13 @@
       },
       "memorableLines": [
         {
-          "text": "The minimum viable product is not small because small is noble.",
-          "location": "breakdown.fastRead",
-          "why": "It blocks the common cheapness misread of MVP."
+          "text": "The minimum viable product is not small because small is noble."
         },
         {
-          "text": "The size of the build should match the size of the question.",
-          "location": "breakdown.deepRead",
-          "why": "It gives a practical standard for scoping tests."
+          "text": "The size of the build should match the size of the question."
         },
         {
-          "text": "The test does not look like the product.",
-          "location": "breakdown.fullRead",
-          "why": "It makes room for manual, concierge, and low-fidelity MVPs."
+          "text": "The test does not look like the product."
         }
       ]
     },
@@ -1991,13 +1649,6 @@
             "fintech",
             "cohorts"
           ],
-          "planSpec": {
-            "domain": "mobile banking onboarding cohorts",
-            "audience": "fintech analytics team",
-            "stakes": "total signups could hide whether new users activate better",
-            "format": "scene",
-            "requiredBeat": "Megan splits users by signup week before accepting the launch metric"
-          },
           "scenario": "At 10:15 a.m. Monday, Megan studies a dashboard with one steep total line and a baseline week circled in pencil. The launch metric says signups are up. The cohort table is still hidden, and the activation event may not have moved. Before the analytics review, she must choose between accepting the total and splitting users by signup week. The baseline week gives Megan a starting point before the team claims the dashboard improved.",
           "whatToDo": "Split the signup total into cohorts and compare activation against the baseline week. Let activation behavior decide whether onboarding improved.",
           "whyItMatters": "Total signups can rise while new users fail to activate. Cohorts make the number decision-ready by showing whether the engine changed."
@@ -2010,13 +1661,6 @@
             "education",
             "completion"
           ],
-          "planSpec": {
-            "domain": "online course completion dashboard",
-            "audience": "education platform",
-            "stakes": "enrollment growth may conceal falling completion",
-            "format": "dialogue",
-            "requiredBeat": "Henrik replaces the vanity chart with cohort completion curves"
-          },
           "scenario": "\"That bar tells us who arrived, not who learned,\" Henrik says as the projector shows a full enrollment bar. Refund notes are stacked beside the laptop, and the first lesson event is tagged in the data. The platform team has to choose between celebrating enrollment growth and replacing the vanity chart with cohort completion curves. The first-lesson cohort shows Henrik whether enrollment turned into learning rather than refunds.",
           "whatToDo": "Chart completion cohorts from the first lesson event and compare them with refund notes. Use completion, not enrollment, to decide what needs tuning.",
           "whyItMatters": "Enrollment can conceal a weakening course experience. Completion cohorts reveal whether newer students are actually moving through the product."
@@ -2029,13 +1673,6 @@
             "hospital",
             "audit trail"
           ],
-          "planSpec": {
-            "domain": "clinic portal adoption report",
-            "audience": "hospital IT group",
-            "stakes": "login totals may not show whether patients complete the intended task",
-            "format": "vignette",
-            "requiredBeat": "Anke traces one patient cohort from signup to lab-result viewing"
-          },
           "scenario": "The lab-result icon glows on the patient portal screen while Anke compares login logs with an audit trail. The hospital IT group wants to report higher usage. She has a decision to make before the slide is sent: show login totals, or trace one patient cohort from signup to the lab-result event they actually needed. The lab-result event ties the patient portal to the task patients actually came to complete.",
           "whatToDo": "Trace the cohort from signup to lab-result viewing and keep the audit trail visible. Report task completion instead of login totals alone.",
           "whyItMatters": "A login is a doorway, not the intended task. Lab-result viewing shows whether patients completed the behavior the portal exists to support."
@@ -2048,13 +1685,6 @@
             "marketplace",
             "retention"
           ],
-          "planSpec": {
-            "domain": "marketplace seller retention",
-            "audience": "recommerce startup",
-            "stakes": "listing counts may rise while first-time sellers never return",
-            "format": "decision_point",
-            "requiredBeat": "Ryan builds an auditable baseline for second listings"
-          },
           "scenario": "You are beside Ryan in a recommerce warehouse, where a garment rack carries handwritten seller tags and the listing count looks healthy. The seller cohort export is ready, but the second-listing metric is not in the review. Before the funding update, Ryan needs to decide whether to report total listings or build an auditable baseline for sellers who list again. The seller cohort keeps Ryan from mistaking first listings for a marketplace with returning supply.",
           "whatToDo": "Export the seller cohort and define the second-listing baseline. Use repeat listings to decide whether seller supply is improving.",
           "whyItMatters": "Listing counts can rise while first-time sellers disappear. A second-listing metric makes retention visible and traceable."
@@ -2067,13 +1697,6 @@
             "library",
             "campaign"
           ],
-          "planSpec": {
-            "domain": "library e-card campaign",
-            "audience": "public library team",
-            "stakes": "card creation totals may not prove borrowing behavior",
-            "format": "postmortem",
-            "requiredBeat": "Catarina measures borrowing by signup cohort before expanding ads"
-          },
           "scenario": "At 6:05 p.m. in the public library workroom, Catarina sorts a stack of temporary e-card printouts after one ad cycle. As digital-access lead, she sees that accounts are up and the ad spend limit is nearly raised. In the postmortem, she groups new cards by signup week and checks borrowing behavior before approving another campaign. The borrowing event decides whether the ad campaign created readers or only accounts.",
           "whatToDo": "Measure borrowing by signup cohort before expanding ads. Keep the spend limit until card creation turns into borrowing behavior.",
           "whyItMatters": "Card totals prove account creation, not reading activity. Borrowing by cohort shows whether the campaign creates library use."
@@ -2086,13 +1709,6 @@
             "transport",
             "workflow"
           ],
-          "planSpec": {
-            "domain": "fleet maintenance app",
-            "audience": "transport company",
-            "stakes": "download counts may impress while mechanics ignore the workflow",
-            "format": "before_after",
-            "requiredBeat": "Luke asks mechanics to verify the metric trail from install to completed inspection"
-          },
           "scenario": "A tablet is mounted beside the service bay with the install log open. Before, Luke's transport company celebrated download counts for the maintenance app. After mechanics initial the inspection event and trace the workflow from install to completed inspection, he sees which downloads became real work and which never left the screen. The mechanic initials make the install metric auditable at the service bay, not just on a dashboard.",
           "whatToDo": "Ask mechanics to verify the trail from install to inspection completion. Count completed inspections with initials, not app downloads alone.",
           "whyItMatters": "Downloads can impress while the workflow is ignored. A verified inspection trail makes adoption auditable by the people doing the work."
@@ -2111,8 +1727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The team needs a metric that can steer activation decisions. Larger or simpler totals may be accessible, but they still hide behavior by cohort.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2124,8 +1739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Completion cohorts show whether the course experience is improving. Enrollments and comments are weaker if the decision concerns learning completion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2137,8 +1751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Lab-result viewing measures the intended task. Login counts are real but too far from the patient behavior the portal is meant to improve.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2150,8 +1763,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Second-listing rate shows whether seller behavior repeats. Photos and page opens can rise without proving sellers return.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2163,8 +1775,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Borrowing by cohort shows whether account creation turns into library use. Page appeal and staff sharing are not the behavior the spend should buy.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2176,8 +1787,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The decision concerns workflow adoption, so completed inspections matter. A number can be understandable and auditable while still measuring the wrong thing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2189,8 +1799,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The cohort table can change decisions, be understood, and be traced. The health score lacks accessibility, and the slide total lacks auditability.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2202,8 +1811,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pivot decisions need evidence tied to the engine being tuned. Aggregate revenue may matter, but it can hide improving retention behavior.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2215,8 +1823,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cohort table is less flattering but more decision-ready. Confidence and number avoidance both dodge the measurement job.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2277,19 +1884,13 @@
       },
       "memorableLines": [
         {
-          "text": "The chart becomes less flattering and more useful.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the tradeoff between vanity and decision-ready measurement."
+          "text": "The chart becomes less flattering and more useful."
         },
         {
-          "text": "A number earns trust when it can make a team uncomfortable.",
-          "location": "breakdown.deepRead",
-          "why": "It makes good metrics feel consequential rather than decorative."
+          "text": "A number earns trust when it can make a team uncomfortable."
         },
         {
-          "text": "The best number is rarely the biggest number.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a compact warning against impressive totals."
+          "text": "The best number is rarely the biggest number."
         }
       ]
     },
@@ -2316,13 +1917,6 @@
             "food",
             "segment"
           ],
-          "planSpec": {
-            "domain": "meal-kit subscription pivot review",
-            "audience": "food startup",
-            "stakes": "attachment to the original family plan may outlast evidence from single-person users",
-            "format": "scene",
-            "requiredBeat": "Kasia moves the pivot meeting from opinions to the retention evidence by segment"
-          },
           "scenario": "At 2:30 p.m. Wednesday, Kasia stands by a fridge magnet holding two retention charts and a runway note. The pivot agenda still says family plan review, but the segment chart shows single-person users returning more often. Before the meeting drifts into opinions, Kasia must choose whether to defend the original family idea or move the room to retention evidence. The retention chart is the only object allowed to decide the next cycle.",
           "whatToDo": "Put the segment chart at the center of the meeting. Decide whether to persevere with families or test a single-person hypothesis based on retention evidence.",
           "whyItMatters": "Attachment to the original customer can outlast the data. Segment retention turns the pivot decision into evidence, not a loyalty test."
@@ -2335,13 +1929,6 @@
             "campus",
             "runway"
           ],
-          "planSpec": {
-            "domain": "campus tutoring platform model",
-            "audience": "student founders",
-            "stakes": "cash may last but only two hypothesis changes remain",
-            "format": "dialogue",
-            "requiredBeat": "Julien counts remaining meaningful pivots before another semester build"
-          },
           "scenario": "\"The cash balance says yes, but the semester calendar says no,\" Julien says beside a whiteboard with crossed-out business models. The hypothesis list has only two credible changes left. Another build is about to start. The student founders must choose between spending the semester on the current model and counting how many meaningful pivots remain. The whiteboard forces the founders to count learning chances, not just bank weeks.",
           "whatToDo": "Count the remaining hypothesis changes before approving another build. Treat runway as learning capacity, not only the cash balance in the account.",
           "whyItMatters": "The team can have money and still run out of useful ways to learn. Counting meaningful pivots keeps another semester from becoming repetition."
@@ -2354,13 +1941,6 @@
             "healthtech",
             "segment pivot"
           ],
-          "planSpec": {
-            "domain": "clinic scheduling tool course correction",
-            "audience": "healthtech team",
-            "stakes": "staff praise may mask weak patient adoption",
-            "format": "vignette",
-            "requiredBeat": "Paula proposes a customer-segment pivot tied to appointment data"
-          },
           "scenario": "The nurse station monitor shows missed portal bookings while Paula reads appointment data under the night shift lights. Staff praise is strong, but patient adoption is weak. She has a decision to make before the next sprint: keep improving the same patient flow or write a new hypothesis that tests caregivers as the first customer segment. The note on the monitor must become a customer-segment test, not another staff-request ticket.",
           "whatToDo": "Frame the customer-segment pivot as a testable hypothesis. Use appointment data to design a caregiver booking experiment instead of treating staff praise as enough.",
           "whyItMatters": "Staff value and patient adoption are different signals. Paula's pivot preserves learning by changing the segment rather than changing everything at once."
@@ -2373,13 +1953,6 @@
             "marketplace",
             "pricing"
           ],
-          "planSpec": {
-            "domain": "artisan marketplace pricing pivot",
-            "audience": "craft platform founder",
-            "stakes": "seller loyalty may keep the founder from seeing buyer resistance",
-            "format": "decision_point",
-            "requiredBeat": "Matthew compares buyer conversion to seller enthusiasm before persevering"
-          },
           "scenario": "You are beside Matthew at a winter fair, where handmade mugs cover the table and the seller survey glows with praise. The price test tells a colder story: buyer conversion is low. Before he books another seller push, Matthew needs to decide whether seller enthusiasm is enough to persevere or whether buyer resistance demands a pricing pivot. The cash box on the table makes the choice concrete because buyer behavior, not seller warmth, decides the next market bet.",
           "whatToDo": "Compare buyer conversion with seller enthusiasm before committing. Persevere only if buyer evidence improves, or define the pricing hypothesis to test next.",
           "whyItMatters": "A marketplace needs both sides. Seller loyalty can hide buyer resistance, and buyer behavior decides whether the current pricing idea deserves another cycle."
@@ -2392,13 +1965,6 @@
             "B2B",
             "channel"
           ],
-          "planSpec": {
-            "domain": "enterprise compliance app channel pivot",
-            "audience": "B2B software team",
-            "stakes": "direct sales effort may fail while partners could carry trust",
-            "format": "postmortem",
-            "requiredBeat": "Lea frames channel pivot as a new hypothesis rather than desperation"
-          },
           "scenario": "It took Lea a failed outreach list to stop calling every channel change desperation. A partner brochure sits beside the direct sales report, and partner call notes show consultants already carry trust with buyers. In the postmortem, she frames the channel pivot as a new hypothesis: partner-led demos may open doors direct emails cannot. The new channel test gets a date and a success threshold before anyone calls the pivot strategic.",
           "whatToDo": "Write the partner channel as a hypothesis and run a limited new channel test. Do not call it a pivot unless the next experiment can prove or weaken it.",
           "whyItMatters": "A pivot is not flailing when it follows learning. Lea keeps the team disciplined by turning channel change into a testable course correction."
@@ -2411,13 +1977,6 @@
             "local service",
             "segment"
           ],
-          "planSpec": {
-            "domain": "urban compost pickup service",
-            "audience": "local operations team",
-            "stakes": "route expansion may be persistence when apartment density evidence points elsewhere",
-            "format": "before_after",
-            "requiredBeat": "Hugo chooses whether to pivot customer segment before the next truck lease"
-          },
           "scenario": "A route map is taped to Hugo's compost bin lid, and the lease deadline for a second truck is circled. Before, Hugo expanded blocks because neighbors sounded supportive. After building a route density map and calling building managers, he sees apartment clusters may carry the service. The next choice is segment pivot or truck lease. The density map has to answer the lease question before another truck turns a guess into fixed cost.",
           "whatToDo": "Test the apartment-density segment before signing the truck lease. Use building manager calls and route density to decide whether expansion should change direction.",
           "whyItMatters": "Persistence can look brave while the route evidence points elsewhere. Segment evidence protects Hugo from buying capacity for the wrong customer pattern."
@@ -2436,8 +1995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A pivot is structured around a new hypothesis. Cosmetic change without a testable learning claim is just movement.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2449,8 +2007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The segment evidence points to a specific possible pivot. Keeping the original plan ignores learning, while changing everything destroys the thread.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2462,8 +2019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Money matters because it buys learning cycles. If few meaningful pivots remain, runway is shorter than the account suggests.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2475,8 +2031,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A caregiver segment test changes one core hypothesis while preserving the learning. Renaming is shallow, and scrapping everything may discard useful evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2488,8 +2043,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Buyer behavior tests the pricing hypothesis. Seller enthusiasm and booth appeal may matter, but they cannot replace conversion evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2501,8 +2055,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The channel change becomes disciplined when it names and tests a new hypothesis. Speed and avoidance are emotional reactions, not pivot logic.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2514,8 +2067,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Supportive comments can protect the existing route idea. Density evidence may justify a segment pivot before capacity is purchased.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2527,8 +2079,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pivoting too early can become restlessness. Evidence needs thresholds so the team knows when staying or changing is justified.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2540,8 +2091,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The alternative segment is specific and evidence-backed, so a focused pivot is stronger. Blind perseverance and changing everything both weaken learning.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2602,19 +2152,13 @@
       },
       "memorableLines": [
         {
-          "text": "Persevering is also a decision.",
-          "location": "breakdown.fastRead",
-          "why": "It prevents persistence from being treated as the default."
+          "text": "Persevering is also a decision."
         },
         {
-          "text": "Runway is not just money when the last useful test is gone.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the chapter's wider view of learning capacity."
+          "text": "Runway is not just money when the last useful test is gone."
         },
         {
-          "text": "To pivot well is to keep faith with the evidence, not with the original plan.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the pivot decision a principled standard."
+          "text": "To pivot well is to keep faith with the evidence, not with the original plan."
         }
       ]
     },
@@ -2641,13 +2185,6 @@
             "lab",
             "labels"
           ],
-          "planSpec": {
-            "domain": "medical lab sample labeling",
-            "audience": "lab operations supervisor",
-            "stakes": "large end-of-day batches hide labeling errors until retesting is costly",
-            "format": "scene",
-            "requiredBeat": "Aanya splits the labeling run into ten-sample checks before the courier arrives"
-          },
           "scenario": "At 3:10 p.m. Monday, Aanya slides a tray of capped vials under the barcode light while the courier cutoff sits on the wall clock. The barcode scanner has been clean all morning, but end-of-day labeling errors have forced retests before. Before the final hour rush, she must choose between one large run and ten-sample trays checked as they go. The barcode light lets Aanya catch one label error while the courier window is still open.",
           "whatToDo": "Split the labeling work into ten-sample trays and scan each tray before continuing. Catch drift while retesting is still local and the courier has not arrived.",
           "whyItMatters": "Large end-of-day batches make errors expensive. Ten-sample checks keep the mistake near the work that created it."
@@ -2660,13 +2197,6 @@
             "software",
             "release"
           ],
-          "planSpec": {
-            "domain": "software feature flag release",
-            "audience": "SaaS engineering team",
-            "stakes": "a monthly release buries which change broke onboarding",
-            "format": "dialogue",
-            "requiredBeat": "Chris ships one flagged change to one cohort and watches the support queue"
-          },
           "scenario": "\"How many doses before the first reading?\" Aanya asks at 9:30 a.m. in the pharmacy pilot room. The dosing cups sit beside a blood-pressure cuff and a seven-day report sheet. The team wants to print a full patient packet, but Aanya must decide whether one small-batch instruction card can reveal dosing confusion before the whole packet is produced. The seven-day report sheet keeps the first patient packet small enough to correct before every patient sees it.",
           "whatToDo": "Release one flagged change to one cohort and watch the support queue before shipping the rest. Keep each change close to its feedback.",
           "whyItMatters": "A monthly release can bury the cause of failure. One cohort with one flag turns support tickets into useful feedback instead of detective work."
@@ -2679,13 +2209,6 @@
             "print shop",
             "quality"
           ],
-          "planSpec": {
-            "domain": "wedding invitation print shop",
-            "audience": "print operator",
-            "stakes": "batching all envelopes delays discovery of color drift",
-            "format": "vignette",
-            "requiredBeat": "Chiara prints twenty envelopes first and checks ink against the proof"
-          },
           "scenario": "The stack of cream envelopes smells faintly of paper dust beside the color proof. Chiara reads yesterday's ink note and hears the press warming behind her. She has to decide before the full order starts: print every envelope in one run, or pull twenty first and check the ink against the proof while correction is still cheap. The press note helps Chiara find the ink problem before the full envelope run becomes scrap.",
           "whatToDo": "Print twenty envelopes and compare them with the proof before running the full order. Let the small batch reveal color drift early.",
           "whyItMatters": "A full run delays discovery until the waste is stacked. Twenty envelopes make the problem small enough to correct without losing the day."
@@ -2698,13 +2221,6 @@
             "school food",
             "rollout"
           ],
-          "planSpec": {
-            "domain": "school cafeteria menu test",
-            "audience": "nutrition director",
-            "stakes": "district-wide rollout would hide which lunch item failed",
-            "format": "decision_point",
-            "requiredBeat": "Mathieu tests one lunch line at one school before ordering pallets"
-          },
           "scenario": "You are with Niklas at 6:25 a.m. on the factory calibration floor, where one sensor panel blinks beside a calibration wrench and a short control-batch log. The old plan would touch every machine before checking output. Before the shift begins, Niklas must decide whether to calibrate one machine first and inspect the batch while any error is still local. The control-batch log gives Niklas proof from one machine before the setting spreads across the floor.",
           "whatToDo": "Run one lunch line at one school and watch the waste bin tally before ordering pallets. Use the small test to see which item fails.",
           "whyItMatters": "District-wide rollout can hide the weak item and make waste expensive. One school gives the nutrition team feedback while the menu can still change."
@@ -2717,13 +2233,6 @@
             "factory",
             "calibration"
           ],
-          "planSpec": {
-            "domain": "factory sensor calibration",
-            "audience": "process engineer",
-            "stakes": "calibrating all sensors before feedback creates inventory-like rework",
-            "format": "postmortem",
-            "requiredBeat": "Niklas calibrates one machine and runs a short control batch before touching the rest"
-          },
           "scenario": "It took Isabel one quiet Thursday in the newsroom analytics corner to distrust the full newsletter calendar. Thirty empty email slots filled the planning sheet, and two subject lines waited beside a small-list test. In the postmortem, she sends the small batch first and leaves the month unwritten until the open-rate window teaches which line works. The open-rate window lets Isabel learn from two subject lines before thirty slots become sunk work.",
           "whatToDo": "Calibrate one machine and run a short control batch before touching the remaining sensors. Let the calibration log prove the setting locally.",
           "whyItMatters": "Calibrating everything before feedback creates inventory-like rework. One machine turns a possible line-wide mistake into a contained correction."
@@ -2736,13 +2245,6 @@
             "media",
             "email"
           ],
-          "planSpec": {
-            "domain": "newsletter subject-line system",
-            "audience": "media growth team",
-            "stakes": "writing a month of emails before testing open behavior delays learning",
-            "format": "before_after",
-            "requiredBeat": "Isabel sends two subject lines to small lists before filling the calendar"
-          },
           "scenario": "At 3:15 p.m. in the transit design lab, Marc stands over three paper signs, a taped platform path, and a rider-count sheet. Before, the agency printed a full station set and found confusion everywhere at once. After the paper test, he must decide which sign earns a second batch and which wording dies before the print order. The rider-count sheet shows Marc which wording works before the agency pays for a station-wide print run.",
           "whatToDo": "Send two subject lines to small lists before writing the month. Use the open-rate window to decide which pattern deserves more calendar space.",
           "whyItMatters": "A full calendar delays learning. Small-list tests let the growth team find weak subject lines before they become a month of avoidable misses."
@@ -2761,8 +2263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The core risk is delayed problem detection. Setup efficiency can be real, but it may hide errors until they become expensive.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2774,8 +2275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ten-sample checks shorten feedback distance. More pickup time or reminders may help, but they do not make errors visible near their source.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2787,8 +2287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "One flagged change links feedback to a specific cause. Bundles create detective work, while perfection delays contact with users.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2800,8 +2299,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The twenty-envelope run reveals drift before waste stacks up. Speed and customer tolerance both miss the immediate quality feedback.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2813,8 +2311,7 @@
             ],
             "correctIndex": 1,
             "explanation": "One lunch line makes failure visible before pallets are ordered. District rollout multiplies the risk, and names do not test eating behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2826,8 +2323,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The untested setting traveled through the whole line. Consistency is not useful when the consistent action is wrong.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2839,8 +2335,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The issue is feedback timing. Small-list tests reveal weak patterns before a whole month is committed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2852,8 +2347,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Small batches are for learning, not ritual. The right size is small enough for fast feedback and large enough to produce a usable signal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2865,8 +2359,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The slice shortens the distance between action and feedback. Under uncertainty, delayed correction is often more costly than early inspection.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2927,19 +2420,13 @@
       },
       "memorableLines": [
         {
-          "text": "She splits the run into ten-sample trays.",
-          "location": "breakdown.fastRead",
-          "why": "It makes batch size concrete through a visible operational move."
+          "text": "She splits the run into ten-sample trays."
         },
         {
-          "text": "Fast feedback is worth the interruption.",
-          "location": "breakdown.deepRead",
-          "why": "It answers the efficiency objection in plain language."
+          "text": "Fast feedback is worth the interruption."
         },
         {
-          "text": "A big batch makes failure late and general.",
-          "location": "breakdown.fullRead",
-          "why": "It captures why delayed feedback is dangerous."
+          "text": "A big batch makes failure late and general."
         }
       ]
     },
@@ -2966,13 +2453,6 @@
             "subscription",
             "retention"
           ],
-          "planSpec": {
-            "domain": "language app retention engine",
-            "audience": "consumer subscription team",
-            "stakes": "acquisition spend is waste if learners churn after day three",
-            "format": "scene",
-            "requiredBeat": "Hannah identifies sticky growth and tunes the day-three return loop"
-          },
           "scenario": "At 9:50 a.m. Thursday, Thomas watches a streak counter stuck at day two while the retention cohort sits open beside a draft streak reminder. The team wants to raise acquisition spend after a strong download week. Before the budget call, she must choose between buying more learners and tuning the day-three return loop with a lesson unlock. The streak chart tells Thomas whether the sticky engine is leaking before any new download budget is approved.",
           "whatToDo": "Name sticky growth as the engine and tune the day-three return loop. Test whether a streak reminder and lesson unlock improve retention before buying more users.",
           "whyItMatters": "Acquisition spend is waste if learners churn before day three. Sticky growth depends on return behavior, not download volume."
@@ -2985,13 +2465,6 @@
             "fitness",
             "referral"
           ],
-          "planSpec": {
-            "domain": "community fitness referral loop",
-            "audience": "studio owner",
-            "stakes": "referral dreams fail if members lack a reason to bring friends",
-            "format": "dialogue",
-            "requiredBeat": "Diego tests a viral engine with one guest-pass moment after class"
-          },
           "scenario": "At 7:15 p.m. after class, Mathieu stands near the fitness studio towel cart with a basket of guest-pass cards and the referral tally open on the front desk tablet. As studio manager, he hears members say they love the class, but no guest names have appeared. Before printing more cards, he has to choose between celebrating satisfaction and testing whether one guest pass after class creates another member. The guest-pass basket is useful only if the tally shows members creating other members in a repeatable moment.",
           "whatToDo": "Hand guest passes at class checkout and track the referral tally. Test the viral engine at the moment members are most likely to invite someone.",
           "whyItMatters": "Happy members do not automatically create referrals. The guest-pass moment tests whether the studio has a mechanism for one member to bring another."
@@ -3004,13 +2477,6 @@
             "media",
             "paid growth"
           ],
-          "planSpec": {
-            "domain": "paid newsletter acquisition math",
-            "audience": "solo media founder",
-            "stakes": "paid ads can scale only if subscriber value exceeds acquisition cost",
-            "format": "vignette",
-            "requiredBeat": "Marit calculates the paid engine before buying another campaign"
-          },
           "scenario": "Marit studies the ad dashboard beside a subscriber revenue sheet while the payback window glows in the spreadsheet. The last campaign brought attention, and another ad spend line is ready. Her cursor pauses over buy. She has to decide whether to purchase the campaign now or calculate whether subscriber value can support the cost. The revenue sheet has to prove paid growth can repay itself before attention becomes an expensive habit.",
           "whatToDo": "Calculate acquisition cost, subscriber value, and payback window before buying the campaign. Spend only if the paid engine can recover the cost.",
           "whyItMatters": "Paid ads scale only when customer value supports the spend. Otherwise growth is just a larger bill attached to a weak engine."
@@ -3023,13 +2489,6 @@
             "B2B",
             "sales"
           ],
-          "planSpec": {
-            "domain": "B2B inventory software expansion",
-            "audience": "sales leadership team",
-            "stakes": "growth talk is useless until the sales cycle variable is named",
-            "format": "decision_point",
-            "requiredBeat": "Olivier chooses whether demos booked or implementation success is the engine bottleneck"
-          },
           "scenario": "You are with Olivier beside a sales pipeline board covered in sticky notes. The demo metric looks strong, but the implementation metric has three red flags. Leadership wants a bigger sales push. Before the expansion plan is approved, Olivier needs to decide whether demos booked or implementation success is the bottleneck in the growth engine. The implementation flags show Olivier that more demos may feed a broken handoff instead of fixing growth.",
           "whatToDo": "Name the bottleneck before expanding sales. Compare demos booked with implementation success, then tune the variable that actually limits growth.",
           "whyItMatters": "Growth talk is useless until the engine variable is named. More demos will not help if failed implementation is what stops expansion."
@@ -3042,13 +2501,6 @@
             "mobility",
             "retention"
           ],
-          "planSpec": {
-            "domain": "neighborhood car-share service",
-            "audience": "mobility cooperative",
-            "stakes": "membership growth may depend on retention, not flyers",
-            "format": "postmortem",
-            "requiredBeat": "Adaeze studies repeat bookings before printing more posters"
-          },
           "scenario": "It took Adaeze one quiet key locker to question the poster budget. Unused fobs hung in rows, the booking cohort report was late, and the key locker log showed members trying the service once. In the postmortem, she studies repeat bookings before printing more posters for the car-share campaign. The repeat-booking cohort decides whether posters are solving awareness or hiding a retention leak.",
           "whatToDo": "Check repeat bookings by cohort before spending the poster budget. Treat retention as the engine until members prove they return.",
           "whyItMatters": "Membership growth may depend on habit, not awareness. More flyers can fill the top while unused fobs reveal the sticky engine is weak."
@@ -3061,13 +2513,6 @@
             "dental",
             "subscription"
           ],
-          "planSpec": {
-            "domain": "children's dental subscription",
-            "audience": "clinic group",
-            "stakes": "parents may join through paid offers but leave without appointment habit",
-            "format": "before_after",
-            "requiredBeat": "Vincent separates paid acquisition from sticky visit behavior"
-          },
           "scenario": "Martin sets a toothbrush sample bag beside a membership form and a bright offer code. Before, Martin's clinic group celebrated paid signups from the promotion. After the visit cohort shows families missing second appointments, he separates paid acquisition from sticky visit behavior and changes the next test toward appointment habit. The second-visit cohort tells Martin whether acquisition is filling a front door while the back door stays open.",
           "whatToDo": "Track the visit cohort separately from offer-code signups. Tune the reminder and scheduling loop before treating paid acquisition as sustainable growth.",
           "whyItMatters": "Parents can join through an offer and still leave after one visit. The engine is not sustainable unless the visit habit forms."
@@ -3086,8 +2531,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Growth becomes manageable only after the engine is named. More marketing or better charts can distract from the missing mechanism.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3099,8 +2543,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The leak is retention, so the sticky engine is the first diagnosis. Paid acquisition and sharing do not solve a habit that fails by day three.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3112,8 +2555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A guest-pass moment tests whether one member creates another. Ads are paid acquisition, and staff language is too indirect.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3125,8 +2567,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Paid growth works only when customer value can carry acquisition cost. Polish and social preview reactions do not prove the paid engine.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3138,8 +2579,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The engine is blocked after demos, so adding demos may only create more failed handoffs. Implementation success is the limiting variable.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3151,8 +2591,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The repeat-booking data points to a sticky engine issue. Posters can bring awareness, but they do not fix members leaving after one use.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3164,8 +2603,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Offer-code signups and repeat visits are different variables. The team must separate paid acquisition from the sticky habit that sustains the subscription.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3177,8 +2615,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The team needs engine diagnosis before optimization. Referral improvements may be real but irrelevant if retention or paid economics are the binding constraint.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3190,8 +2627,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The data shows a retention leak, so sticky growth is the engine to tune. Ads and sharing add more users to a system that fails to keep them.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3252,19 +2688,13 @@
       },
       "memorableLines": [
         {
-          "text": "This is a sticky engine problem, not an ad problem.",
-          "location": "breakdown.fastRead",
-          "why": "It shows how engine diagnosis changes the next move."
+          "text": "This is a sticky engine problem, not an ad problem."
         },
         {
-          "text": "More users can make a weak engine look alive for a while.",
-          "location": "breakdown.deepRead",
-          "why": "It warns against acquisition masking retention weakness."
+          "text": "More users can make a weak engine look alive for a while."
         },
         {
-          "text": "Growth is a machine before it is a number.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the source's mechanism-first view of growth."
+          "text": "Growth is a machine before it is a number."
         }
       ]
     },
@@ -3291,13 +2721,6 @@
             "engineering",
             "Five Whys"
           ],
-          "planSpec": {
-            "domain": "payment outage postmortem",
-            "audience": "platform engineering team",
-            "stakes": "quick fixes keep repeating because escalation ownership is unclear",
-            "format": "scene",
-            "requiredBeat": "Lin uses Five Whys until the outage points to handoff design, not one engineer"
-          },
           "scenario": "At 11:40 a.m. Monday, Lin sits in the postmortem with the status page frozen beside the pager log. The first story blames one engineer for missing escalation. The handoff chart tells a wider story. Before the fix is assigned, Lin must choose between naming the person nearest the outage and using Five Whys until ownership design is visible. The handoff chart shows Lin where the outage is produced before another person is blamed.",
           "whatToDo": "Run Five Whys past the first human error and map the handoff. Change escalation ownership where the outage became likely.",
           "whyItMatters": "Quick fixes repeat when the system stays intact. The pager log names the incident, but the handoff chart shows why the next one is already waiting."
@@ -3310,13 +2733,6 @@
             "hotel",
             "operations"
           ],
-          "planSpec": {
-            "domain": "hotel housekeeping checklist",
-            "audience": "operations manager",
-            "stakes": "room defects recur because the checklist hides ownership gaps",
-            "format": "dialogue",
-            "requiredBeat": "Margaux traces repeated towel shortages to a restock timing system"
-          },
           "scenario": "\"The towels are missing before anyone owns them,\" Margaux says beside a linen cart stopped outside room 412. The checklist says restock after inspection, but restock time lands during checkout rush. Another complaint is open. The operations manager must choose between another reminder and tracing the shortage to the timing system. The linen route lets Margaux fix the ownership gap instead of scolding the last housekeeper.",
           "whatToDo": "Move the towel restock owner and time before the checkout rush. Fix the checklist where the shortage is created, not where guests report it.",
           "whyItMatters": "Repeated room defects are not always carelessness. The checklist can hide the ownership gap that keeps producing the same shortage."
@@ -3329,13 +2745,6 @@
             "clinic",
             "systems"
           ],
-          "planSpec": {
-            "domain": "pharmacy refill queue",
-            "audience": "clinic administrator",
-            "stakes": "same-day stress returns because requests enter through three channels",
-            "format": "vignette",
-            "requiredBeat": "Anders maps the human system behind recurring refill errors"
-          },
           "scenario": "The fax tray overflows beside the online queue while Anders counts duplicate refill requests. Same-day stress has returned for the third Thursday in a row. The ownership map is blank at noon. He has a decision to make: clear today's queue again, or map the human system where three channels become one unmanaged pile. The fax tray and online queue show Anders that channel merge ownership is the real clinic failure.",
           "whatToDo": "Map who owns each refill channel and the noon merge. Change the ownership point before adding another reminder to work faster.",
           "whyItMatters": "The queue will keep failing if requests enter through three doors with no owner. Mapping the human system finds the cause before the next rush."
@@ -3348,13 +2757,6 @@
             "youth sports",
             "forms"
           ],
-          "planSpec": {
-            "domain": "youth soccer registration errors",
-            "audience": "club volunteer board",
-            "stakes": "blaming parents masks a confusing form sequence",
-            "format": "decision_point",
-            "requiredBeat": "Sofia asks why five times until the board sees its own form design"
-          },
           "scenario": "You are beside Sofia at a folding table covered in registration envelopes and half-finished forms. The board is ready to blame parents again. Sofia starts a question chain on the back of one envelope. Before the next registration night, she needs to decide whether to send another scolding email or ask why until the form sequence is exposed. The envelope piles help Sofia trace incomplete forms to sequence and volunteer guidance.",
           "whatToDo": "Ask why five times, then rewrite the form sequence where parents get lost. Fix the design before blaming families for predictable errors.",
           "whyItMatters": "Incomplete envelopes look like parent carelessness. The question chain can reveal that the board built confusion into the registration flow."
@@ -3367,13 +2769,6 @@
             "security",
             "training"
           ],
-          "planSpec": {
-            "domain": "data-center access badge failures",
-            "audience": "facilities security lead",
-            "stakes": "technical badge resets miss the training gap causing repeated lockouts",
-            "format": "postmortem",
-            "requiredBeat": "Devon changes the onboarding system rather than the badge reader alone"
-          },
           "scenario": "Giulia pulls a tray of dark rolls from under the oven timer at 4:25 a.m. in the bakery prep room while yesterday's calibration mark sits only in someone's memory. As shift lead, she sees the handoff note has no place for oven changes. In the postmortem, she must decide whether to add another approval or rewrite the handoff loop beside the timer. The timer note gives Giulia a local feedback loop instead of another slow approval layer.",
           "whatToDo": "Add the access sequence to onboarding and verify it before night shifts. Keep badge resets, but treat them as symptoms until training changes.",
           "whyItMatters": "A technical reset can solve today and miss tomorrow. The repeated lockout comes from a human-system gap, not the reader alone."
@@ -3386,13 +2781,6 @@
             "bakery",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "bakery production handoff",
-            "audience": "morning shift lead",
-            "stakes": "burned batches continue because shift notes omit oven calibration changes",
-            "format": "before_after",
-            "requiredBeat": "Giulia rewrites the handoff loop without adding a heavy approval process"
-          },
           "scenario": "At 4:25 a.m. in the bakery prep room, Devon stands beside a tray of dark rolls cooling under the oven timer while the calibration mark sits only in someone's memory. As shift lead, he sees why the morning crew added a second approval after burned batches. After tracing the cause, he rewrites the handoff loop so calibration changes are marked beside the timer. The badge log shows Devon where onboarding fails before the next night shift begins.",
           "whatToDo": "Move the calibration mark into the handoff note beside the timer. Fix the feedback loop at the shift change instead of adding heavy review.",
           "whyItMatters": "Burned batches keep returning when the next shift cannot see what changed. A targeted handoff fix preserves speed while reducing repeat errors."
@@ -3411,8 +2799,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Adaptation traces repeat failures into the system that produces them. Blame and blanket approvals may feel decisive while leaving the cause untouched or slowing learning.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3424,8 +2811,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The recurring cause is timing and ownership, not likely memory. A targeted change beats another reminder or heavy approval layer.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3437,8 +2823,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The ownership map changes the system producing duplicates. Banning one channel or working faster may not fix the recurring merge failure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3450,8 +2835,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Five Whys can reveal the design problem before the board punishes families. Fees and signatures add friction without fixing the confusing sequence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3463,8 +2847,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The repeated pattern points to training, not only hardware. Onboarding practice changes the system that creates the lockout.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3476,8 +2859,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The approval layer slows work while the missing calibration handoff remains. Adaptation should target the cause and preserve learning speed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3489,8 +2871,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Stopping at the first person leaves the system intact. The method should reveal why forgetting was likely or unprotected.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3502,8 +2883,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Adaptive systems improve quality without freezing learning. Some process may help, but blanket approvals can overshoot the cause.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3515,8 +2895,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A local ownership fix targets the recurring cause without slowing every decision. Executive approval is too broad, and care reminders preserve the defect.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3577,19 +2956,13 @@
       },
       "memorableLines": [
         {
-          "text": "Five Whys prevents the team from stopping at the first person who touched the problem.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the source anchor and the anti-blame purpose in one sentence."
+          "text": "Five Whys prevents the team from stopping at the first person who touched the problem."
         },
         {
-          "text": "The missing towel is the symptom.",
-          "location": "breakdown.deepRead",
-          "why": "It teaches readers to look behind visible defects."
+          "text": "The missing towel is the symptom."
         },
         {
-          "text": "But a culprit gives relief for a day.",
-          "location": "breakdown.fullRead",
-          "why": "It contrasts blame with system repair in memorable form."
+          "text": "But a culprit gives relief for a day."
         }
       ]
     },
@@ -3616,13 +2989,6 @@
             "bank",
             "sandbox"
           ],
-          "planSpec": {
-            "domain": "bank internal savings tool",
-            "audience": "corporate venture lead",
-            "stakes": "mature revenue KPIs could kill a learning-stage service",
-            "format": "scene",
-            "requiredBeat": "Kiran negotiates a sandbox with protected test accounts and clear evidence gates"
-          },
           "scenario": "At 8:45 a.m. Tuesday, Kiran places a tiny pilot scorecard on a mahogany boardroom table beside the request for protected accounts. Finance wants mature revenue KPIs by quarter end. Before the review begins, Kiran must choose whether to accept that standard or negotiate a sandbox with evidence gates for the savings habit. The scorecard must name the habit evidence before finance can fairly judge revenue.",
           "whatToDo": "Negotiate protected test accounts and evidence gates for the pilot. Keep leadership accountable to learning-stage measures before mature revenue standards apply.",
           "whyItMatters": "A learning-stage service can be killed by adult metrics too soon. The sandbox gives the idea room to prove value without escaping accountability."
@@ -3635,13 +3001,6 @@
             "university",
             "commercialization"
           ],
-          "planSpec": {
-            "domain": "university research commercialization lab",
-            "audience": "technology-transfer office",
-            "stakes": "committee approvals may smother experiments before customers respond",
-            "format": "dialogue",
-            "requiredBeat": "Petra defines autonomy inside a narrow commercialization sandbox"
-          },
           "scenario": "\"Give us a fence, not a leash,\" Petra says beside a lab bench with patent forms in a blue folder. The technology-transfer office wants committee approval for every customer call. The sandbox charter has a spending cap and review date. The office must choose between blanket approvals and narrow autonomy for the first commercialization tests. The charter turns permission into a testable boundary instead of a plea for special treatment.",
           "whatToDo": "Define the sandbox boundary: spending cap, customer-call rights, and review date. Let the team learn inside that fence without asking permission for every move.",
           "whyItMatters": "Committee approvals can smother experiments before customers answer. Narrow autonomy protects learning while keeping the office responsible for scope."
@@ -3654,13 +3013,6 @@
             "retail",
             "layout"
           ],
-          "planSpec": {
-            "domain": "retail chain store-format experiment",
-            "audience": "innovation director",
-            "stakes": "core-store efficiency metrics may punish exploratory layout tests",
-            "format": "vignette",
-            "requiredBeat": "Samuel protects three stores from standard comparison for one learning cycle"
-          },
           "scenario": "The floor-plan printout is spread over shelf tags while Samuel circles three stores for a layout test. The standard KPI waiver is short, and the regional manager is uneasy. He has a decision to make before the test starts: let core-store efficiency metrics punish the disruption, or protect three stores for one learning cycle. The waiver gives the layout enough room to teach without granting permanent exemption.",
           "whatToDo": "Protect the three stores from standard comparison for one cycle and define the layout evidence that will end the waiver.",
           "whyItMatters": "Exploratory layouts can look inefficient before they teach. A bounded waiver keeps mature KPIs from crushing the test too early."
@@ -3673,13 +3025,6 @@
             "transit",
             "autonomy"
           ],
-          "planSpec": {
-            "domain": "public transit mobile ticket pilot",
-            "audience": "agency product team",
-            "stakes": "procurement controls may block fast fare experiments",
-            "format": "decision_point",
-            "requiredBeat": "Layla secures bounded autonomy for one route and one fare product"
-          },
           "scenario": "You are with Layla at 10:05 a.m. in the transit agency pilot room beside a fare validator taped with a route-12 sticker. The product team wants fare data from one route, but procurement controls could delay the test for months. Before the board packet is final, Layla needs to decide whether to seek system-wide approval or secure bounded autonomy for one route and one fare product. The route-12 sticker makes the boundary visible: one route, one fare product, one evidence gate.",
           "whatToDo": "Ask for autonomy on one route and one fare product with a clear fare-data review. Keep the pilot narrow enough to move and accountable enough to trust.",
           "whyItMatters": "Fast fare learning needs room inside the agency. Bounded autonomy prevents procurement drag without turning the pilot into an unmanaged exception."
@@ -3692,13 +3037,6 @@
             "AI",
             "incentives"
           ],
-          "planSpec": {
-            "domain": "enterprise AI assistant incubator",
-            "audience": "IT strategy group",
-            "stakes": "incentives may reward demos while legal reviews block real learning",
-            "format": "postmortem",
-            "requiredBeat": "Mikkel ties incentives to tested workflow adoption inside a guarded sandbox"
-          },
           "scenario": "It took Mikkel three polished demos to see the incubator was rewarding performance. A demo laptop sat beside an access-permission spreadsheet, while the permission sheet blocked real workflow use. In the postmortem, he changes incentives: teams earn support when adoption metrics move inside a guarded sandbox, not when the demo looks clever. The incentive change tells teams that real workflow use matters more than a polished room performance.",
           "whatToDo": "Tie incentives to tested workflow adoption and define permission rules inside the sandbox. Reward evidence from real use, not demo polish.",
           "whyItMatters": "Demos can win applause while legal limits block learning. Incentives have to point teams toward adoption evidence inside safe boundaries."
@@ -3711,13 +3049,6 @@
             "health system",
             "resources"
           ],
-          "planSpec": {
-            "domain": "hospital home-monitoring venture",
-            "audience": "health-system innovation team",
-            "stakes": "clinical operations may crush a fragile model before patient evidence develops",
-            "format": "before_after",
-            "requiredBeat": "Claire protects nurse time while making readmission evidence mandatory"
-          },
           "scenario": "Claire checks a remote blood-pressure cuff sitting in a plastic bin beside the nurse schedule. Before, Claire's home-monitoring venture lost nurse time whenever clinical operations got tight. After redesigning the sandbox, she protects a small patient cohort and makes the readmission measure mandatory before the venture asks for scale. The protected nurse time is the condition that lets the readmission measure become fair evidence.",
           "whatToDo": "Protect nurse time for the patient cohort and require readmission evidence at the review gate. Give the venture room and a hard proof standard.",
           "whyItMatters": "Clinical operations can crush a fragile model before evidence develops. Protected resources matter only when paired with accountability for patient outcomes."
@@ -3736,8 +3067,7 @@
             ],
             "correctIndex": 0,
             "explanation": "New ideas need learning-stage evidence gates before mature standards. Revenue may matter later, but premature grading can crush discovery.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3749,8 +3079,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sandbox gives room to learn and defines proof. Unlimited budget loses accountability, while branch KPIs judge the idea too early.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3762,8 +3091,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Narrow autonomy lets the team learn inside boundaries. Bans and demos delay the customer evidence commercialization needs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3775,8 +3103,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A bounded waiver protects learning without abandoning evidence. Permanent exemption and cancellation both miss the balance of protection and accountability.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3788,8 +3115,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Bounded autonomy creates room for fast learning while keeping scope and evidence clear. Both no review and larger procurement fail the balance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3801,8 +3127,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Adoption evidence inside safe boundaries aligns incentives with learning. Demo polish and removing all limits both avoid the real structure problem.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3814,8 +3139,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A team cannot be accountable for evidence if the organization removes the resources needed to create it. Protection and proof must be paired.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3827,8 +3151,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Protection without accountability can drift. A good sandbox includes review points and evidence gates, not only resources and freedom.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3840,8 +3163,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The bounded sandbox balances autonomy and accountability. Normal KPIs can crush discovery, while total freedom can lose evidence discipline.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3902,19 +3224,13 @@
       },
       "memorableLines": [
         {
-          "text": "A sandbox is not a toy room; it is a work boundary.",
-          "location": "breakdown.fastRead",
-          "why": "It blocks the easy misunderstanding that sandboxes are unserious play spaces."
+          "text": "A sandbox is not a toy room; it is a work boundary."
         },
         {
-          "text": "Protected resources buy time for learning, not immunity from proof.",
-          "location": "breakdown.deepRead",
-          "why": "It balances protection with accountability in one sentence."
+          "text": "Protected resources buy time for learning, not immunity from proof."
         },
         {
-          "text": "That is the difference between shelter and escape.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the balance between protecting a venture and letting it drift."
+          "text": "That is the difference between shelter and escape."
         }
       ]
     },
@@ -3941,13 +3257,6 @@
             "roadmap",
             "waste"
           ],
-          "planSpec": {
-            "domain": "software roadmap cleanup",
-            "audience": "product leadership team",
-            "stakes": "months of effort could be spent before the riskiest truth arrives",
-            "format": "scene",
-            "requiredBeat": "Marta marks every roadmap item by whether it buys truth early or late"
-          },
           "scenario": "At 9:05 a.m. Monday, Marta faces a wall roadmap covered with colored tape, risk labels, and one evidence date per item. The leadership team is proud of the quarter plan. The riskiest truth arrives in week ten. Before planning locks, Marta must choose between accepting the sequence and marking every item by whether it buys truth early or late. The evidence date tells Marta whether the quarter plan is buying truth early or delaying it.",
           "whatToDo": "Label each roadmap item by the date it produces evidence, then move the riskiest tests earlier. Cut work that buys truth only after large commitment.",
           "whyItMatters": "Months of effort can be wasted when the key lesson arrives late. Evidence dates show where confidence is being bought too expensively."
@@ -3960,13 +3269,6 @@
             "civic",
             "grant"
           ],
-          "planSpec": {
-            "domain": "city grant program redesign",
-            "audience": "civic innovation office",
-            "stakes": "public money may fund polished plans before resident behavior is tested",
-            "format": "dialogue",
-            "requiredBeat": "Peter moves one resident test before the grant application rewrite"
-          },
           "scenario": "\"The binder can wait,\" Peter says, tapping the grant binder beside a neighborhood survey box. The budget line for the rewrite is ready, but no resident test has happened. The civic office has to choose between polishing the application and moving one resident behavior test before public money funds the plan. The survey box must produce a resident behavior signal before the grant language hardens around a guess.",
           "whatToDo": "Run one resident test before rewriting the grant application. Use the result to shape the budget line instead of funding polished assumptions.",
           "whyItMatters": "Public money can buy certainty-shaped plans before residents act. One early test protects effort and improves the application."
@@ -3979,13 +3281,6 @@
             "film",
             "pledges"
           ],
-          "planSpec": {
-            "domain": "independent film crowdfunding plan",
-            "audience": "producer team",
-            "stakes": "campaign polish may waste the chance to learn audience demand cheaply",
-            "format": "vignette",
-            "requiredBeat": "Nina tests a trailer pledge page before booking locations"
-          },
           "scenario": "The clapboard leans against a laptop showing pledge totals while Nina reviews a location hold at a rented production office. The trailer page is rough, but the pledge button works. The producer team is ready to polish campaign assets. Before the deposit deadline, Nina must decide whether to test audience demand now or book locations before the cheap truth arrives. The pledge button gives Nina a cheap demand signal before the location hold becomes a bill.",
           "whatToDo": "Launch the trailer pledge page before booking locations. Use pledge behavior to decide whether campaign polish deserves the next spend.",
           "whyItMatters": "Campaign assets can waste the chance to learn demand cheaply. Pledges reveal audience interest before location costs harden."
@@ -3998,13 +3293,6 @@
             "warehouse",
             "simulation"
           ],
-          "planSpec": {
-            "domain": "warehouse automation proposal",
-            "audience": "operations executive",
-            "stakes": "capital spending may bury a cheap workflow lesson",
-            "format": "decision_point",
-            "requiredBeat": "Lukas asks for one manual simulation before the machinery quote"
-          },
           "scenario": "You are beside Lukas in a forklift lane taped with temporary arrows while the machinery quote sits open. A cycle timer is clipped to his vest. The automation proposal looks serious. Before capital approval, Lukas needs to decide whether to sign off on the quote or ask for one manual simulation that tests the workflow first. The cycle timer lets Lukas test flow before the machinery quote turns into capital spending.",
           "whatToDo": "Run the manual simulation with the cycle timer before approving machinery. Let the cheap workflow lesson arrive before capital spending locks in.",
           "whyItMatters": "Automation can bury a lesson that tape and a timer could reveal. Early simulation protects money from a workflow assumption."
@@ -4017,13 +3305,6 @@
             "workforce",
             "apprenticeship"
           ],
-          "planSpec": {
-            "domain": "regional nursing apprenticeship",
-            "audience": "workforce nonprofit",
-            "stakes": "curriculum buildout may discard early insight from candidates",
-            "format": "postmortem",
-            "requiredBeat": "Hadiya interviews and tests one shadow shift before writing the full program"
-          },
           "scenario": "It took Hadiya one folded scrub top to remember the candidate's comment. The application form was simple, and the curriculum outline was already growing. In the postmortem, she sees the risk: the nonprofit could write the full program before testing what candidates need to feel ready. She interviews applicants and tests one shadow shift first. The shadow shift turns one candidate insight into program structure before the curriculum expands.",
           "whatToDo": "Interview candidates and run one shadow shift before writing the full curriculum. Let early applicant insight shape the program structure.",
           "whyItMatters": "Curriculum buildout can discard the insight that would make the program work. A shadow shift buys truth before the nonprofit commits."
@@ -4036,13 +3317,6 @@
             "hotel",
             "loyalty"
           ],
-          "planSpec": {
-            "domain": "boutique hotel loyalty redesign",
-            "audience": "hospitality marketing team",
-            "stakes": "beautiful loyalty tiers may waste learning about why guests return",
-            "format": "before_after",
-            "requiredBeat": "Antoine tests one checkout offer before redesigning the whole program"
-          },
           "scenario": "At 11:20 a.m. behind the boutique hotel front desk, Antoine places a room key sleeve with a handwritten checkout offer beside the return booking code. Before, his team sketched beautiful loyalty tiers for the hotel. After one weekend of checkout offers, they learn which guests actually book again and redesign the program around that reason instead of decorative tiers. The return code shows Antoine why guests come back before loyalty tiers become decoration.",
           "whatToDo": "Test one checkout offer with a return booking code before designing loyalty tiers. Use return behavior to decide what the program should reward.",
           "whyItMatters": "Beautiful tiers can waste learning about why guests come back. A handwritten offer makes the return reason visible before the whole program is built."
@@ -4061,8 +3335,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The waste is timing: effort was spent before evidence arrived. Testing earlier would have protected work from the wrong commitment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4074,8 +3347,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The lead should pull truth earlier. Momentum that outruns evidence can turn disciplined work into expensive confidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4087,8 +3359,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A resident test can shape the budget before public money funds assumptions. Better narrative and total delay both miss the early learning move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4100,8 +3371,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pledge page pulls audience evidence before a costly hold. Commitment may build confidence, but it can also make a late lesson expensive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4113,8 +3383,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A manual simulation can expose the key workflow lesson before capital spending. Machinery may only make the wrong workflow expensive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -4126,8 +3395,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The curriculum can harden before applicant insight arrives. A shadow shift preserves learning while the program is still changeable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -4139,8 +3407,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Return behavior should shape the program. Beautiful tiers can be built around assumptions if the team skips the cheap checkout test.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -4152,8 +3419,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Learning is wasted when it cannot influence the plan. The problem is not early evidence; it is commitment refusing to absorb it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -4165,8 +3431,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The earlier experiment lowers the cost of being wrong. Polished confidence and delay both preserve uncertainty until it becomes more expensive.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4227,19 +3492,13 @@
       },
       "memorableLines": [
         {
-          "text": "Waste Not means protecting effort from old certainty habits when the work still needs proof.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the synthesis a precise anti-waste definition."
+          "text": "Waste Not means protecting effort from old certainty habits when the work still needs proof."
         },
         {
-          "text": "The question is where truth enters the schedule.",
-          "location": "breakdown.deepRead",
-          "why": "It turns waste into a timing problem readers can audit."
+          "text": "The question is where truth enters the schedule."
         },
         {
-          "text": "The cleanest way to waste less is to make learning arrive before commitment hardens around the wrong answer.",
-          "location": "breakdown.fullRead",
-          "why": "It states the chapter's practical synthesis in one memorable line."
+          "text": "The cleanest way to waste less is to make learning arrive before commitment hardens around the wrong answer."
         }
       ]
     },
@@ -4266,13 +3525,6 @@
             "SaaS",
             "planning"
           ],
-          "planSpec": {
-            "domain": "product team quarterly ritual",
-            "audience": "SaaS leadership team",
-            "stakes": "the method may remain admired but absent from calendar decisions",
-            "format": "scene",
-            "requiredBeat": "Monica adds one evidence review to the quarterly planning rhythm"
-          },
           "scenario": "At 8:55 a.m. Tuesday, Monica opens the quarterly planning agenda and sees one blank evidence column beside the owner list. The SaaS leadership team talks about experiments but still approves roadmap themes without test dates. Before the meeting starts, she must choose between leaving admiration off-calendar and adding one evidence review to the quarterly rhythm. The agenda change gives every leader a place to ask for proof before the roadmap hardens.",
           "whatToDo": "Add the evidence column and assign an owner for each assumption review. Make the planning rhythm ask for proof before roadmap confidence hardens.",
           "whyItMatters": "The method stays decorative if the calendar does not change. One evidence review turns agreement into a routine the team can repeat."
@@ -4285,13 +3537,6 @@
             "classroom",
             "rubric"
           ],
-          "planSpec": {
-            "domain": "regional entrepreneurship class",
-            "audience": "business-school instructor",
-            "stakes": "students may repeat vocabulary while still grading polished plans",
-            "format": "dialogue",
-            "requiredBeat": "Amelie changes the rubric so tested learning outranks slide elegance"
-          },
           "scenario": "\"A beautiful pitch deck is not the assignment anymore,\" Amelie says as the classroom projector shows the old rubric. The test log column is empty, and students know how to polish slides. Before the next cohort starts, she has to choose between grading elegance again and changing the rubric so tested learning outranks deck performance. The projector now shows students that evidence can beat polish in the grade that matters.",
           "whatToDo": "Rewrite the rubric so test logs and learning decisions carry more weight than slide elegance. Make students prove what changed because of evidence.",
           "whyItMatters": "Students can repeat the language while practicing the old behavior. The rubric decides what the class truly values."
@@ -4304,13 +3549,6 @@
             "municipal",
             "template"
           ],
-          "planSpec": {
-            "domain": "municipal innovation network",
-            "audience": "city managers",
-            "stakes": "pilot wins may stay isolated instead of spreading practice",
-            "format": "vignette",
-            "requiredBeat": "Graham turns one successful experiment into a shared decision template"
-          },
           "scenario": "Graham stands at 2:45 p.m. in the county council chamber beside pilot notes from a waste-route experiment. He circles the decision that mattered and opens a blank decision template. The two-city trial is waiting. He has a decision to make: let the pilot win stay local, or turn assumption, test, evidence, and next decision into a shared template. The template is the object that lets another city copy the discipline without copying the original pilot.",
           "whatToDo": "Turn the pilot notes into a decision template and use it in the two-city trial. Spread the practice, not just the success story.",
           "whyItMatters": "A pilot win can stay isolated if no routine travels with it. A template gives other city managers a way to make uncertain decisions differently."
@@ -4323,13 +3561,6 @@
             "nonprofit",
             "funding"
           ],
-          "planSpec": {
-            "domain": "health nonprofit program portfolio",
-            "audience": "executive director",
-            "stakes": "agreement with lean language may not change funding reviews",
-            "format": "decision_point",
-            "requiredBeat": "Aman asks every new program memo to name its riskiest assumption and first test"
-          },
           "scenario": "You are beside Aman at 9:10 a.m. in a health nonprofit boardroom as a stack of grant memos with yellow tabs waits for portfolio review. Everyone agrees that learning matters, but the memo template has no assumption line and no first-test field. Before funding decisions begin, Aman needs to decide whether to praise the language or require every new program memo to name the riskiest assumption. The yellow tabs now point to a test field that funding reviewers can use before expanding a program.",
           "whatToDo": "Add an assumption line and first-test field to the memo template. Require each program to name what must be learned before funding grows.",
           "whyItMatters": "Agreement does not change funding reviews. The memo field makes evidence part of how the portfolio chooses programs."
@@ -4342,13 +3573,6 @@
             "mentors",
             "cadence"
           ],
-          "planSpec": {
-            "domain": "founder peer group operating cadence",
-            "audience": "startup mentors",
-            "stakes": "discussion may become inspiration without adopted routines",
-            "format": "postmortem",
-            "requiredBeat": "Klara ends the session by scheduling one build-measure-learn review for each member"
-          },
           "scenario": "It took Klara one cafe-table postmortem to notice the empty espresso cups had outlasted the commitments. The member list was full, the discussion was sharp, and no review date existed. At the next session, she ends by scheduling one build-measure-learn review for each member with a test commitment attached. The review date turns a good conversation into a calendar habit the members can be held to.",
           "whatToDo": "Put review dates and test commitments on the member list before the session ends. Turn the peer-group energy into an operating cadence.",
           "whyItMatters": "Discussion can feel like adoption while leaving routines untouched. Scheduled reviews make the learning loop survive after the cafe clears."
@@ -4361,13 +3585,6 @@
             "policy",
             "learning buys"
           ],
-          "planSpec": {
-            "domain": "corporate procurement innovation policy",
-            "audience": "large-company sponsor",
-            "stakes": "internal teams may admire experimentation while purchasing rules block it",
-            "format": "before_after",
-            "requiredBeat": "Pascal rewrites one procurement rule to allow bounded learning buys"
-          },
           "scenario": "Pascal highlights one clause at 3:35 p.m. in a corporate procurement office. He has watched internal teams admire experimentation and then abandon tests because the approval path treated every buy the same. After adding a learning buy cap and a clear approval path, small experiments can purchase what they need without pretending to be full rollouts. The clause gives teams permission to learn in small purchases before a full rollout is requested.",
           "whatToDo": "Rewrite the policy clause to allow bounded learning buys with a cap and evidence requirement. Keep control while making small tests possible.",
           "whyItMatters": "Purchasing rules can block the practice everyone praises. One clause turns admiration for experimentation into permission to run it."
@@ -4386,8 +3603,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Belief has not become practice until a routine changes. Agenda fields, review dates, or evidence gates matter more than inspiration or vocabulary.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4399,8 +3615,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The evidence column changes the planning ritual. Quotes and confidence may sound aligned while leaving decisions unchanged.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4412,8 +3627,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The grading rubric defines practice. If tested learning is valued, it has to outweigh deck polish in the evaluation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4425,8 +3639,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The template carries the decision practice to other teams. Celebration can raise interest, but it may not change how new pilots are run.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4438,8 +3651,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The memo fields change the funding review. A longer summary preserves language without forcing evidence into the decision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -4451,8 +3663,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Energy fades unless a routine carries it forward. Review dates and test commitments turn discussion into practice.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -4464,8 +3675,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The purchasing rule blocks the behavior, even if enthusiasm exists. Rewriting the clause can make small tests possible.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -4477,8 +3687,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Adoption is visible in decisions, not vocabulary alone. If approval meetings still reward old behavior, the practice has not traveled.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -4490,8 +3699,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The memo line changes a real decision routine. Posters and inspiration may create awareness without altering how uncertain work is approved.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4552,19 +3760,13 @@
       },
       "memorableLines": [
         {
-          "text": "Joining the movement starts when one real meeting asks for evidence sooner than it did last week.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the closing invitation operational rather than inspirational."
+          "text": "Joining the movement starts when one real meeting asks for evidence sooner than it did last week."
         },
         {
-          "text": "If the routine stays the same, the belief has not traveled.",
-          "location": "breakdown.deepRead",
-          "why": "It distinguishes admiration from adoption in a sharp test."
+          "text": "If the routine stays the same, the belief has not traveled."
         },
         {
-          "text": "Continuation is practice made portable.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the book's arc with a compact standard for spreading the method."
+          "text": "Continuation is practice made portable."
         }
       ]
     }

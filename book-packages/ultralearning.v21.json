@@ -41,13 +41,6 @@
             "museum",
             "benchmark"
           ],
-          "planSpec": {
-            "domain": "Erin, a museum educator rebuilding a digital-archiving curriculum",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the next month produces visible evidence or another private feeling of effort",
-            "format": "scene",
-            "requiredBeat": "Erin pins the museum archive course outline beside a twelve-week deadline and deletes every resource that does not prepare a public metadata sample."
-          },
           "scenario": "Cotton archive gloves rest on the printer tray while Erin tapes the museum's digital-preservation course outline to the workroom wall. It is 7:35 p.m., and the old plan still says \"learn archives\" in blue marker. She draws a twelve-week deadline box beside the outline, opens her saved-resource folder, and must decide whether to keep every interesting article or delete anything that will not help her produce one public metadata sample.",
           "whatToDo": "Use the printed course outline as the standard, the twelve-week box as the clock, and the metadata sample as the proof. Delete resources that do not serve those three.",
           "whyItMatters": "The project becomes inspectable only when scope, time, and evidence are set before the work starts. Otherwise every useful-looking article can pretend to be progress."
@@ -60,13 +53,6 @@
             "hospital",
             "proof"
           ],
-          "planSpec": {
-            "domain": "Daniel, a hospital analyst proving a SQL skill outside a degree program",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether a deadline exposes the weakness early enough to adjust",
-            "format": "decision_point",
-            "requiredBeat": "Daniel turns a hospital SQL goal into three proof queries that his supervisor can run against a copied intake dataset."
-          },
           "scenario": "You are beside Daniel at 6:10 p.m. in the hospital analytics office, looking at a laminated ward census sheet and a blank query window. His supervisor needs a safer intake report by next month. Daniel can enroll in another general SQL course, or he can define three queries against a copied dataset that his supervisor can run on Friday. His cursor hovers over the course checkout page while he has to choose.",
           "whatToDo": "Name the three queries, attach them to Friday's copied dataset, and let the supervisor's run become the proof standard. Use lessons only when they unblock those queries.",
           "whyItMatters": "A course can keep Daniel busy without exposing readiness. Three runnable queries let the actual work judge whether the learning is starting to transfer."
@@ -79,13 +65,6 @@
             "music",
             "standard"
           ],
-          "planSpec": {
-            "domain": "Sophie, a conservatory pianist using a jury repertoire as the proof standard",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
-            "format": "vignette",
-            "requiredBeat": "Sophie records the jury repertoire list, exam date, and first taped performance before choosing any practice exercises."
-          },
           "scenario": "The practice room after closing smells faintly of resin and floor polish. Sophie places a metronome beside three audition scores marked in pencil, then writes the jury repertoire list and exam date on the first page of her notebook. Before choosing scales or warm-ups, she presses record on her phone for a rough first performance and must decide whether that tape will be the baseline she keeps avoiding.",
           "whatToDo": "Use the jury list and exam date set the scope, then keep the first taped performance as evidence. Choose practice exercises only after the standard is visible.",
           "whyItMatters": "The tape turns a feeling of practice into a comparison point. Sophie's project now has a before, an after, and a standard outside her mood."
@@ -98,13 +77,6 @@
             "mechanic",
             "certification"
           ],
-          "planSpec": {
-            "domain": "Luca, a cycling mechanic preparing for a certification bench test",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the project survives contact with a real schedule and real standards",
-            "format": "dialogue",
-            "requiredBeat": "Luca chooses a certification bench test, lays out the required tools, and writes the exact repair that will count as passing."
-          },
           "scenario": "\"Which repair are they going to test?\" Mara asks, leaning on the service counter. Luca looks at the cassette lockring tool beside a grease-stained assessment form. \"Probably drivetrain removal,\" he says. \"Then write that,\" she says. The shop closes in twelve minutes, and Luca must decide whether to keep browsing mechanics videos or lay out the required tools and name the exact repair that will count as passing.",
           "whatToDo": "Choose the certification bench task, set the tools on the bench, and write the repair standard in one sentence. Make every practice run answer to that repair.",
           "whyItMatters": "Luca's project survives contact with the real test only if the proof is named. General mechanical knowledge is useful, but it cannot substitute for the bench task."
@@ -117,13 +89,6 @@
             "gis",
             "deliverable"
           ],
-          "planSpec": {
-            "domain": "Aanya, a municipal climate intern learning GIS against a public map deliverable",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether comfort keeps protecting the exact skill gap that matters",
-            "format": "predict_reveal",
-            "requiredBeat": "Aanya replaces a vague GIS interest with one public flood-risk map due to the planning office by Friday noon."
-          },
           "scenario": "At 9:05 a.m., Aanya studies a municipal parcel map glowing with one unfinished flood layer. She predicts she can learn enough GIS this week if she watches two more tutorials. Then the planning director asks what will be ready by Friday noon. Aanya has to choose between protecting the vague interest or promising one public flood-risk map with parcel boundaries, flood zones, and a readable legend.",
           "whatToDo": "Promise the Friday map, list the three visible layers it must contain, and use tutorials only to solve problems that block that deliverable.",
           "whyItMatters": "The public map exposes the skill gap faster than more watching. Aanya's learning now has a shape the planning office can judge."
@@ -136,13 +101,6 @@
             "translation",
             "exam"
           ],
-          "planSpec": {
-            "domain": "Henrik, a freelance translator building a portfolio around one official exam",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the next attempt changes the skill instead of decorating the plan",
-            "format": "postmortem",
-            "requiredBeat": "Henrik selects one official translation exam passage and one reviewer, then closes the folder of random language blogs."
-          },
           "scenario": "It took Henrik four weeks to notice the brass desk lamp was lighting the same bilingual legal notice every night while his browser filled with advice. He had read about exam strategy, portfolio niches, and style guides, but nobody had reviewed a finished page. In the postmortem, he selects one official exam passage, emails one reviewer, and closes the folder of random language blogs.",
           "whatToDo": "Carry one rule forward: no more portfolio work without an official passage and a reviewer attached. Make the next attempt produce a page someone can mark.",
           "whyItMatters": "Henrik's old plan improved the story around the project. The official passage and reviewer improve the evidence inside it."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The syllabus, deadline, and dashboard give Marta an outside path and visible proof. More newsletters preserve drift, and waiting for urgency leaves the standard undefined.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The outline and deployed app create the standard before comfort can steer the work. The playlist and loose feature path can both feel productive while avoiding proof.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reviewed mock notes make the skill inspectable against the work standard. More reading and firmer promises may help later, but neither proves the target skill.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A deadline that moves whenever discomfort appears cannot discipline the project. The issue is not that private learning is impossible or that a syllabus is too formal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A dated performance set tests the actual target: playable songs. Streaks and dashboards track activity, but they can hide the missing performance standard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The rigorous move is to separate the learning work from the credential wrapper while staying honest about both. The wrong answers either erase credentials or surrender learning to them.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The proof artifact decides what belongs. Popular lessons may still be avoidance, and removing the deadline weakens the pressure that exposes drift.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The official dialogue and reviewer give the project a resistant standard. Comfort-first watching and delayed review both protect the learner from the evidence she needs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Plan A has the machinery that makes self-education honest: path, clock, and proof. Plan B may feel richer, but without output it can hide inside consumption.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -327,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "Private effort flatters easily. Proof does not.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the chapter's tension between private motion and external evidence in two plain sentences."
+          "text": "Private effort flatters easily. Proof does not."
         },
         {
-          "text": "A benchmark is not decoration.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence is short enough to remember and sharp enough to correct a common planning mistake."
+          "text": "A benchmark is not decoration."
         },
         {
-          "text": "Make the work inspectable.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the chapter's whole lesson into a direct command the reader can carry into the next project."
+          "text": "Make the work inspectable."
         }
       ]
     },
@@ -366,13 +309,6 @@
             "payroll",
             "adaptation"
           ],
-          "planSpec": {
-            "domain": "Emily, a payroll coordinator reskilling before automation changes her role",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the next month produces visible evidence or another private feeling of effort",
-            "format": "scene",
-            "requiredBeat": "Emily marks payroll automation as a project, not an interest, by blocking two protected evenings and naming the reconciliation report she must produce."
-          },
           "scenario": "A payroll exception report with two red cells glows under the fluorescent light in Emily's office at 5:42 p.m. The new automation rollout starts next month, and her saved articles have not taught her how to rebuild the reconciliation report. Her pen hovers over Thursday evening on the calendar as she chooses between more casual reading and two protected sessions tied to the exact report she must produce.",
           "whatToDo": "Treat automation as a project now. Block the two evenings, define the reconciliation report, and use each session to build the pieces that report requires.",
           "whyItMatters": "The role is changing faster than casual reading can answer. A protected report target turns adaptation from background interest into visible progress."
@@ -385,13 +321,6 @@
             "paramedic",
             "ultrasound"
           ],
-          "planSpec": {
-            "domain": "Thomas, a paramedic learning ultrasound for rural transfers",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether a deadline exposes the weakness early enough to adjust",
-            "format": "decision_point",
-            "requiredBeat": "Thomas decides rural ultrasound deserves intensity because the next transfer shift will ask for the skill before he feels ready."
-          },
           "scenario": "You are in the ambulance bay with Thomas after midnight, staring at a training probe coiled beside a clipboard. His next rural transfer shift is three weeks away, and the new protocol expects him to capture usable images before the physician call. The choice is already on the roster: spare-minute demonstrations, or two protected practice blocks with a senior medic watching. The coming transfer shift makes ultrasound a project, not a subject to sample when the bay is quiet. The coming transfer shift makes ultrasound a project, not a subject to sample when the bay is quiet. The coming transfer shift makes ultrasound a project, not a subject to sample when the bay is quiet.",
           "whatToDo": "Protect the practice blocks and make the senior medic mark the misses. The coming transfer shift makes ultrasound a project, not a subject to sample when the bay is quiet.",
           "whyItMatters": "The skill will be tested by a patient handoff, not by Thomas's sense of readiness. Real stakes justify concentrated time and correction."
@@ -404,13 +333,6 @@
             "library",
             "dabbling"
           ],
-          "planSpec": {
-            "domain": "Camille, a public library worker deciding whether coding should become a serious project",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
-            "format": "vignette",
-            "requiredBeat": "Camille keeps coding as exploration after one makerspace session reveals curiosity but no real stakes yet."
-          },
           "scenario": "The public library makerspace hums behind a sign-up binder while Camille watches a teenager adjust the 3D printer. She enjoyed the coding workshop, but no work task, deadline, or personal promise is waiting for the skill yet. Before she buys a twelve-week boot camp, she must decide whether the spark is ready for protection or should stay as Saturday exploration.",
           "whatToDo": "Keep coding in the dabble column for now. Attend one more open session, make a tiny thing, and wait for clearer stakes before giving it protected project time.",
           "whyItMatters": "Dabbling is not failure when the cost of staying casual is low. Exploration helps Camille learn whether the interest deserves a serious container later."
@@ -423,13 +345,6 @@
             "cooking",
             "restraint"
           ],
-          "planSpec": {
-            "domain": "Javier, a chef keeping sourdough as a pleasurable hobby instead of a campaign",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the project survives contact with a real schedule and real standards",
-            "format": "dialogue",
-            "requiredBeat": "Javier leaves sourdough as a pleasure by refusing to turn Saturday loaves into a production schedule."
-          },
           "scenario": "\"You could sell these,\" Rosa says, tapping flour from the banneton on Javier's prep table. Saturday's loaves are cooling by the window, and a spreadsheet template is open on her phone. Javier smiles, then looks at the one quiet ritual his restaurant shifts have not claimed. He must decide whether to create a production schedule or keep sourdough as pleasure.",
           "whatToDo": "Leave the loaves unscaled. If sourdough is restoring energy and no real stake demands output, protect it from becoming another project.",
           "whyItMatters": "Intensity is useful only when it serves a chosen stake. Turning every good interest into a campaign makes serious projects harder to sustain."
@@ -442,13 +357,6 @@
             "architecture",
             "bid"
           ],
-          "planSpec": {
-            "domain": "Layla, a junior architect facing new energy-modeling demands",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether comfort keeps protecting the exact skill gap that matters",
-            "format": "predict_reveal",
-            "requiredBeat": "Layla chooses energy modeling as the one serious architecture skill because the next project bid depends on it."
-          },
           "scenario": "At 8:18 a.m., Layla studies a wall-section drawing with the insulation values still blank. She predicts a broad webinar will make energy modeling feel less intimidating. Then the bid checklist arrives with the calculation due next Friday. Layla's marker pauses over the project calendar before she chooses between sampling architecture topics and protecting energy modeling until the bid is filed.",
           "whatToDo": "Choose energy modeling as the project, block the first calculation session, and let the bid requirement decide what counts as progress this week.",
           "whyItMatters": "The bid turns an interesting topic into a live constraint. Protected intensity belongs where the outside demand is already waiting."
@@ -461,13 +369,6 @@
             "policy",
             "focus"
           ],
-          "planSpec": {
-            "domain": "Mikkel, a policy aide choosing one data skill instead of three scattered interests",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the next attempt changes the skill instead of decorating the plan",
-            "format": "postmortem",
-            "requiredBeat": "Mikkel closes two notebooks and protects one data block so his policy work stops spreading across three shallow ambitions."
-          },
           "scenario": "It took Mikkel one failed briefing to see what the three color-coded policy notebooks had hidden. Statistics, visualization, and public finance all sounded useful, especially beside his parliament pass. In the postmortem, he closes two notebooks, crosses out the extra reading lists, and protects one Wednesday morning block for cleaning the datasets his briefs actually depend on.",
           "whatToDo": "Carry one skill into the next sprint: data cleaning first. Protect the Wednesday block and treat the other notebooks as later options, not parallel projects.",
           "whyItMatters": "Scattered seriousness is still shallow. One protected block gives the most urgent skill enough pressure to change the next briefing."
@@ -486,8 +387,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The skill has no clear stake yet, so dabbling lets her explore without false pressure. The other answers turn every possible career benefit into an immediate project.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -499,8 +399,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The upcoming crew assignment creates real stakes, so protected, task-like practice beats casual exposure. More apps may feel active while avoiding the shift language.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -512,8 +411,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The deadline and portfolio weakness make accessibility the skill with real claim on time. Equal sampling protects breadth but misses the urgent weak point.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -525,8 +423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Playful exploration is appropriate when the cost of casual learning is low. The wrong answers either overbuild the hobby or punish curiosity for lacking stakes.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -538,8 +435,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The missing workflow reveals the gap between exposure and readiness. Course bundles and interest level are secondary to whether the required output exists.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -551,8 +447,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Protected time only helps if it touches the weak spot. Repeating strengths can look disciplined while leaving the transfer failure unchanged.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -564,8 +459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The failed briefs identify a bottleneck and call for one protected direction. Keeping three campaigns spreads intensity too thin to change the work.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -577,8 +471,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The certification has an outside stake, while sourdough still serves as exploration and pleasure. The answer protects both seriousness and restraint.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -590,8 +483,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The first learner's time is attached to a stake and a weak point. The wrong answers either overstate one domain or pretend motivation alone makes any schedule effective.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -652,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "Ultralearning begins when the cost of staying casual becomes visible.",
-          "location": "breakdown.fastRead",
-          "why": "It names the exact threshold between dabbling and serious project work."
+          "text": "Ultralearning begins when the cost of staying casual becomes visible."
         },
         {
-          "text": "Then the stakes change.",
-          "location": "breakdown.deepRead",
-          "why": "The one-sentence paragraph creates a clean pivot from exploration to protected intensity."
+          "text": "Then the stakes change."
         },
         {
-          "text": "Adaptation is not a mood. It is a calendar with a target.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the chapter's argument into a concrete image and an action standard."
+          "text": "Adaptation is not a mood. It is a calendar with a target."
         }
       ]
     },
@@ -691,13 +577,6 @@
             "nursing",
             "pilot"
           ],
-          "planSpec": {
-            "domain": "Julia, a nurse choosing one wound-care credential instead of four ambitions",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the next month produces visible evidence or another private feeling of effort",
-            "format": "scene",
-            "requiredBeat": "Julia cuts four nursing credentials down to one wound-care target and writes a pilot week around two real dressing-change observations."
-          },
           "scenario": "A sterile dressing kit sits unopened beside Julia's shift roster while four credential brochures fan across the breakroom table. It is 3:15 p.m., and every option sounds useful. Her next free evening is already crowded by sleep and laundry. The pen stops above the roster: four ambitions can stay decorative, or one wound-care target can get a pilot week around two real dressing-change observations.",
           "whatToDo": "Choose the wound-care credential, mark the two observations, and make the first review block small enough to happen after a real shift.",
           "whyItMatters": "One target lets the pilot test the plan. Four ambitions only test Julia's ability to keep brochures on a table."
@@ -710,13 +589,6 @@
             "theatre",
             "schedule"
           ],
-          "planSpec": {
-            "domain": "James, a theatre student picking a fixed-schedule dialect project",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether a deadline exposes the weakness early enough to adjust",
-            "format": "decision_point",
-            "requiredBeat": "James chooses fixed-schedule dialect practice after seeing that full immersion would collide with rehearsals and rent work."
-          },
           "scenario": "You can see James's rehearsal call sheet taped above the phonetics chart: five evening rehearsals, a Saturday cafe shift, and one audition in three weeks. He wants to announce a full-time dialect sprint because it sounds serious. The blank spaces say otherwise. Before he texts his coach, the calendar forces the choice: fantasy format, or three fixed practice blocks his week can actually hold.",
           "whatToDo": "Pick the fixed-schedule format. Put three dialect blocks on the call sheet and make each one rehearse the audition passage, not a general accent tour.",
           "whyItMatters": "The right format is the one that survives contact with the calendar. A grand container that breaks immediately teaches nothing."
@@ -729,13 +601,6 @@
             "warehouse",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "Chloe, a warehouse supervisor piloting Spanish practice before a new team starts",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
-            "format": "vignette",
-            "requiredBeat": "Chloe runs one week of Spanish handoff practice with warehouse labels before promising a full supervisor-language project."
-          },
           "scenario": "The pallet tag on Chloe's clipboard has handwritten Spanish verbs in the margin, and the new crew starts in nine days. She wants to promise a full supervisor-language project, but the first handoff script is still rough. Before the shift briefing, she can make a big announcement or run one pilot week using warehouse labels, pickup times, and a bilingual lead's corrections. Chloe must choose the one-week label-and-handoff pilot before promising the full supervisor-language project.",
           "whatToDo": "Run the label-and-handoff pilot first. Use the actual pickup phrases for one week and let the bilingual lead mark what fails.",
           "whyItMatters": "The pilot tells Chloe whether the target, materials, and schedule are real. A full promise made before that would only protect her from early correction."
@@ -748,13 +613,6 @@
             "design",
             "accessibility"
           ],
-          "planSpec": {
-            "domain": "Mathieu, a product designer testing whether a six-week accessibility plan is survivable",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the project survives contact with a real schedule and real standards",
-            "format": "dialogue",
-            "requiredBeat": "Mathieu tests a six-week accessibility plan by doing the first audit on a live checkout flow before buying another course."
-          },
           "scenario": "Nora slides a screen-reader transcript beside Mathieu's checkout wireframe and says, \"Audit this before buying another course.\" The design critique starts in forty minutes. Mathieu has a six-week accessibility plan in his notes, but no first attempt. The transcript makes the choice immediate: more research, or a live checkout audit right now. The first transcript reveals what materials and practice the six-week plan actually needs.",
           "whatToDo": "Audit the checkout flow before buying anything else. The first transcript reveals what materials and practice the six-week plan actually needs.",
           "whyItMatters": "A live audit turns preparation into evidence. If the plan cannot survive one checkout flow, more course research will only delay the redesign."
@@ -767,13 +625,6 @@
             "legal",
             "materials"
           ],
-          "planSpec": {
-            "domain": "Anya, a legal assistant gathering materials for a paralegal exam sprint",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether comfort keeps protecting the exact skill gap that matters",
-            "format": "predict_reveal",
-            "requiredBeat": "Anya gathers only the paralegal materials needed for the first scored practice section, then schedules the pilot before more research."
-          },
           "scenario": "At 7:50 a.m., Anya sets a tabbed binder of civil-procedure notes beside a kitchen timer. She predicts she needs two more weeks of research before a practice section would be fair. Then she opens the exam guide and sees one scored section she could attempt Thursday. Her hand pauses over the bookstore tab: more materials now, or the pilot on the calendar.",
           "whatToDo": "Gather only the pages needed for Thursday's section, close the bookstore tab, and let the score decide what research comes next.",
           "whyItMatters": "The first scored section breaks the research refuge. It shows whether the attack plan works before Anya spends more time making preparation comfortable."
@@ -786,13 +637,6 @@
             "robotics",
             "scope"
           ],
-          "planSpec": {
-            "domain": "Hiroshi, a robotics-club mentor cutting a broad AI goal into one sensor project",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the next attempt changes the skill instead of decorating the plan",
-            "format": "postmortem",
-            "requiredBeat": "Hiroshi narrows the robotics goal to one sensor that must trigger cleanly by club night, not a whole artificial-intelligence curriculum."
-          },
           "scenario": "It took Hiroshi until the second failed club night to admit the phrase \"teach AI\" had been hiding the first working part. An ultrasonic sensor sat wired to a breadboard under a desk lamp, still triggering at the wrong distance. In the postmortem, he crosses out the broad curriculum and writes one target: the sensor must trigger cleanly by next Thursday's meeting.",
           "whatToDo": "Make the sensor the project. Define the trigger distance, prepare only the materials for that test, and let club night judge the first version.",
           "whyItMatters": "The narrower target is not easier in a lazy way. It is the first unit small enough to pilot, observe, and fix."
@@ -811,8 +655,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A first project needs one target so feedback can land. Equal time and ease-first selection both keep the work broad enough to avoid a real test.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -824,8 +667,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fixed schedule respects the real calendar while preserving contact with the skill. Full-time immersion would collapse, and no project throws away a workable route.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -837,8 +679,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The scored section tests the plan instead of extending preparation. More materials may be useful later, but they currently protect her from evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -850,8 +691,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A pilot works when the target is narrow enough to test. Four credentials create noise, so the learner cannot tell which part of the plan failed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -863,8 +703,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The live audit is a cheap pilot that exposes the plan's gaps. Waiting for readiness and broadening the course both delay contact with the target skill.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -876,8 +715,7 @@
             ],
             "correctIndex": 1,
             "explanation": "One sensor trigger gives the project a testable first unit. The full curriculum stays too broad, and canceling avoids the useful redesign the pilot exposed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -889,8 +727,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A broken pilot is useful evidence. It points to a format redesign, while the other answers turn a schedule test into either defeat or moral judgment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -902,8 +739,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The point is not smallness for its own sake. The project is strong because it can start, produce evidence, and survive real constraints.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -915,8 +751,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pilot protects the larger commitment by finding bad assumptions early. Skipping it may hide schedule and method flaws until they are expensive.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -977,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "A first project fails when it tries to look impressive before it proves it can start.",
-          "location": "breakdown.fastRead",
-          "why": "It warns against the oversized first plan in a compact, memorable way."
+          "text": "A first project fails when it tries to look impressive before it proves it can start."
         },
         {
-          "text": "The pilot is where fantasy pays rent.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence gives the pilot week a vivid job: forcing imagined plans to meet reality."
+          "text": "The pilot is where fantasy pays rent."
         },
         {
-          "text": "Start narrow. Test early. Have the first week correct the plan.",
-          "location": "breakdown.fullRead",
-          "why": "It lands as a practical three-part rule the reader can use immediately."
+          "text": "Start narrow. Test early. Have the first week correct the plan."
         }
       ]
     },
@@ -1016,13 +845,6 @@
             "biotech",
             "metalearning"
           ],
-          "planSpec": {
-            "domain": "Grace, a biotech technician mapping why she needs statistics for assay design",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the next month produces visible evidence or another private feeling of effort",
-            "format": "scene",
-            "requiredBeat": "Grace writes why the assay statistics matter, what analyses actually belong, and how she will test each one against lab data."
-          },
           "scenario": "A microplate reader printout lies under Grace's three-column map at 6:25 p.m., the wells fading from violet to almost clear. She has written \"learn statistics\" at the top, but the assay failures are more specific than that. Before another textbook opens, her marker moves to the map: why the statistics matter, what analyses belong, and how each one will be tested against lab data.",
           "whatToDo": "Fill the three columns from the assay backward: fewer failed runs, the analyses that affect the assay, and the lab datasets that will test each method.",
           "whyItMatters": "The map turns statistics from a field into terrain Grace can cross. Purpose, parts, and method now point at the same assay problem."
@@ -1035,13 +857,6 @@
             "cybersecurity",
             "scope"
           ],
-          "planSpec": {
-            "domain": "Andrew, a community-college student splitting cybersecurity into subskills",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether a deadline exposes the weakness early enough to adjust",
-            "format": "decision_point",
-            "requiredBeat": "Andrew splits cybersecurity into network basics, threat modeling, and lab practice before choosing the first module."
-          },
           "scenario": "You are at the community-college lab table with Andrew, an ethernet patch cable looped around the course catalog. Every cybersecurity module sounds like the first one: networks, threat modeling, encryption, incident response. The placement application closes in six weeks. Before clicking enroll, Andrew faces two routes: start with the loudest topic, or split the skill into subskills and pick the first module from the map.",
           "whatToDo": "Split the target into network basics, threat modeling, and lab practice, then choose the first module by the placement task he must perform.",
           "whyItMatters": "The map prevents the catalog from choosing for him. Andrew can now start with the part that connects to the real placement instead of the title that sounds most urgent."
@@ -1054,13 +869,6 @@
             "pastry",
             "method"
           ],
-          "planSpec": {
-            "domain": "Juliette, a pastry apprentice choosing between recipe memorization and hands-on batches",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
-            "format": "vignette",
-            "requiredBeat": "Juliette discovers recipe memorization is the wrong method and adds two timed batch tests to her map."
-          },
           "scenario": "The pastry bench before lunch is lined with unfilled tart shells and a butter-smeared notebook. Juliette has memorized the recipe twice, but her shells still slow down when orders stack. The next line on her map can be another copied ratio, or two timed batch tests that match the service pressure she keeps meeting. The test should look like the pressure that actually breaks the work.",
           "whatToDo": "Move timed batches into the method column and reduce recipe copying. The test should look like the pressure that actually breaks the work.",
           "whyItMatters": "Her first map misread the method. Revising it from real kitchen contact keeps learning tied to the skill instead of the notebook."
@@ -1073,13 +881,6 @@
             "planning",
             "method"
           ],
-          "planSpec": {
-            "domain": "Lukas, a city planner comparing learning methods for zoning software",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the project survives contact with a real schedule and real standards",
-            "format": "dialogue",
-            "requiredBeat": "Lukas compares three zoning-software learning methods against the permit review he must perform, then crosses out the prettiest tutorial."
-          },
           "scenario": "\"Which one gets you through a variance file?\" Ruth from permits asks, then stops herself and points to the packet instead. Lukas has a zoning variance spread beside a mouse with a worn scroll wheel. Three methods are open: a polished tutorial, the old city guide, and exported permit exercises. He has to decide which method matches the review task before the afternoon queue opens.",
           "whatToDo": "Compare each method against the variance review, then cross out the polished tutorial if it never touches real permit files.",
           "whyItMatters": "The best-looking method can be the wrong route. The how column should serve the target performance, not the cleanest video."
@@ -1092,13 +893,6 @@
             "choir",
             "festival"
           ],
-          "planSpec": {
-            "domain": "Adaeze, a choir director mapping a conducting skill before festival season",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether comfort keeps protecting the exact skill gap that matters",
-            "format": "predict_reveal",
-            "requiredBeat": "Adaeze maps conducting into score reading, gesture, rehearsal language, and festival constraints before touching the baton."
-          },
           "scenario": "At 4:40 p.m., Adaeze stands before a choir score propped against a wooden music stand. She predicts an hour of baton drills will settle her nerves. Then the festival schedule arrives with a tight rehearsal limit and two difficult entrances. Before touching the baton, she faces comfort practice on one side and a map of score reading, gesture, rehearsal language, and festival constraints on the other.",
           "whatToDo": "Map the conducting skill first, then practice the baton only where the map says gesture is the limiting part.",
           "whyItMatters": "The festival will test more than hand movement. Adaeze needs the whole terrain visible before comfort drills claim the evening."
@@ -1111,13 +905,6 @@
             "grant",
             "revision"
           ],
-          "planSpec": {
-            "domain": "Anders, a nonprofit grant writer revising the map after first contact with real proposals",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the next attempt changes the skill instead of decorating the plan",
-            "format": "postmortem",
-            "requiredBeat": "Anders revises the grant-writing map after the first real proposal shows that budget narrative, not storytelling, is the weak terrain."
-          },
           "scenario": "It took Anders one rejected proposal to see the blue circle around the grant budget grid. His first map had storytelling in the center and budget narrative in a corner. The reviewer did not object to the opening. In the postmortem, Anders moves budget narrative into the what column, crosses out two storytelling articles, and rewrites the next week around money matching promise.",
           "whatToDo": "Revise the map from the marked proposal. Put budget narrative at the center and choose methods that force numbers and claims onto the same page.",
           "whyItMatters": "Practice taught back. If Anders keeps the old map, he will improve the section that already works and leave the weak terrain untouched."
@@ -1136,8 +923,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The three columns connect purpose, skill parts, and method to the assay. Book ranking and immediate lessons may help later, but they do not orient the project.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1149,8 +935,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The placement task should shape the what column. Sampling widely preserves drift, and skipping the map lets urgency choose the path.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1162,8 +947,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The timed batches revise the method from real contact with the task. Copying recipes ignores the evidence, and unrelated videos dodge the weak point.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1175,8 +959,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Metalearning should guide contact with the skill. Random starting is the opposite error, and adding columns may deepen avoidance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1188,8 +971,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The how column should match the target use. Polished explanations can support the work, but the permit exercises put the learner closer to performance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1201,8 +983,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The map must show the actual parts of the target skill. Removing purpose or refusing method changes would keep the project tied to the wrong terrain.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1214,8 +995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The marked proposal teaches which terrain was misread. Keeping the old map or practicing the enjoyable part ignores the task's correction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1227,8 +1007,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A method mismatch weakens transfer from the start. The purpose can be specific, and confidence cannot replace practice shaped like the target.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1240,8 +1019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Plan A uses metalearning as orientation before contact. Plan B risks turning research into a shelter from the skill, even if the details are impressive.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1302,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "Without a map, speed sends you in the wrong direction faster.",
-          "location": "breakdown.fastRead",
-          "why": "It turns poor preparation into a vivid cost rather than a vague warning."
+          "text": "Without a map, speed sends you in the wrong direction faster."
         },
         {
-          "text": "He needs a map before motion.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence is short, plain, and directly tied to the chapter's mental move."
+          "text": "He needs a map before motion."
         },
         {
-          "text": "Draw before you sprint. Redraw after the first honest contact.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a compact rhythm for both initial orientation and revision."
+          "text": "Draw before you sprint. Redraw after the first honest contact."
         }
       ]
     },
@@ -1341,13 +1113,6 @@
             "financial-aid",
             "start"
           ],
-          "planSpec": {
-            "domain": "Rachel, a financial-aid officer protecting a morning database block",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the next month produces visible evidence or another private feeling of effort",
-            "format": "scene",
-            "requiredBeat": "Rachel closes email and starts the financial-aid database task before any student requests can split the morning block."
-          },
           "scenario": "A locked inbox icon sits beside Rachel's federal-aid error code sheet at 8:03 a.m. The first student requests are already waiting, and the database correction has been postponed three mornings in a row. Her mouse pauses over the mail app. One click opens the queue; the other closes email and starts the aid-system task before the morning splits apart.",
           "whatToDo": "Close email, open the aid system, and work the first error code before any request queue gets a vote.",
           "whyItMatters": "The first contact with the hard task is fragile. If Rachel lets messages enter first, the database block becomes leftovers again."
@@ -1360,13 +1125,6 @@
             "medicine",
             "friction"
           ],
-          "planSpec": {
-            "domain": "Ben, a medical resident starting anatomy recall before rounds interrupt her",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether a deadline exposes the weakness early enough to adjust",
-            "format": "decision_point",
-            "requiredBeat": "Ben begins anatomy recall in the stairwell before rounds so the first contact with the material happens before interruption."
-          },
           "scenario": "You are in the stairwell with Ben, where a folded anatomy card is tucked behind his hospital badge and rounds begin in twelve minutes. The team room is already filling with questions. He can wait for a cleaner study block that may never arrive, or he can begin recall here, before interruption owns the morning. His thumb is on the first card. The imperfect block gives anatomy contact before rounds take the day.",
           "whatToDo": "Start the recall now, in the stairwell, with the first card. The imperfect block gives anatomy contact before rounds take the day.",
           "whyItMatters": "Waiting for a calm block adds start friction. Ben needs the first contact more than he needs the perfect setting."
@@ -1379,13 +1137,6 @@
             "audio",
             "leakage"
           ],
-          "planSpec": {
-            "domain": "Margaux, a radio producer removing notification leakage during audio editing",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
-            "format": "vignette",
-            "requiredBeat": "Margaux moves her phone into the studio mailbox and edits the difficult audio segment while the waveform is still unfamiliar."
-          },
           "scenario": "The studio at 6:18 p.m. is lit by a jagged waveform stretched across Margaux's console. The difficult segment still sounds strange, and the phone buzzes once against the foam pad. Before replaying the clip, she points at the studio mailbox, then at the console, choosing where her attention will live for the next twenty minutes.",
           "whatToDo": "Move the phone into the mailbox, replay the hard segment, and mark the first edit without checking anything else.",
           "whyItMatters": "The edit needs a continuous thread. Each buzz forces Margaux to rebuild the sound in her head before she can make the next cut."
@@ -1398,13 +1149,6 @@
             "carpentry",
             "sustained"
           ],
-          "planSpec": {
-            "domain": "Tomas, a carpenter apprentice choosing the quiet bench for layout calculations",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the project survives contact with a real schedule and real standards",
-            "format": "dialogue",
-            "requiredBeat": "Tomas chooses the quiet bench because the stair layout calculation needs sustained thought, not the apprentice chatter by the saw."
-          },
           "scenario": "\"You hiding?\" Leo calls from the saw as Tomas lifts the half-cut stair stringer. A framing square lies across the board, and the next calculation decides the whole run. The apprentice chatter is easy to stay inside. Tomas answers by carrying the board to the quiet bench, where the numbers can hold still. Give the layout the setting it needs instead of proving toughness beside the saw. Give the layout the setting it needs instead of proving toughness beside the saw. Give the layout the setting it needs instead of proving toughness beside the saw.",
           "whatToDo": "Move to the quiet bench before calculating. Give the layout the setting it needs instead of proving toughness beside the saw.",
           "whyItMatters": "Sustained thought is part of the task. If Tomas protects the calculation, he protects the board and the learning inside the layout."
@@ -1417,13 +1161,6 @@
             "language",
             "start"
           ],
-          "planSpec": {
-            "domain": "Kiran, a language learner noticing setup rituals replacing practice",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether comfort keeps protecting the exact skill gap that matters",
-            "format": "predict_reveal",
-            "requiredBeat": "Kiran stops rearranging the language app settings and speaks the first ugly paragraph into the recorder."
-          },
           "scenario": "At 7:20 p.m., Kiran watches a phone recorder blink beside a Portuguese phrasebook while the app settings menu stays open. He predicts a new review order will make speaking feel smoother. Then he notices he has not spoken once. His finger hovers over save, then moves to record for the first ugly paragraph.",
           "whatToDo": "Press record and speak the paragraph now. Fix the app later only if the spoken attempt shows a real problem the settings can solve.",
           "whyItMatters": "The ritual is replacing contact with the skill. Speaking badly for one minute teaches more than arranging a safer doorway."
@@ -1436,13 +1173,6 @@
             "tax",
             "thread"
           ],
-          "planSpec": {
-            "domain": "Astrid, a tax preparer sustaining focus through a hard rules section",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the next attempt changes the skill instead of decorating the plan",
-            "format": "postmortem",
-            "requiredBeat": "Astrid protects the tax-rule section by putting client calls on hold for twenty minutes, then marks where attention first breaks."
-          },
           "scenario": "It took Astrid one lost afternoon to see that the highlighted tax bulletin was not the problem. The muted desk phone was. In the postmortem, she puts client calls on hold for twenty minutes, reads the hard rules section without switching windows, and marks the exact line where attention first breaks so tomorrow can start there.",
           "whatToDo": "Hold the calls, read the rule section in one protected run, and mark the first break in attention as the next session's starting point.",
           "whyItMatters": "Sustaining focus improves when the leak is visible. Astrid can protect the thread tomorrow because she knows where it snapped today."
@@ -1461,8 +1191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The barriers sit before first contact with the task. Bigger ambition and retention review do not solve the missing doorway into work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1474,8 +1203,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The first contact matters more than the perfect block. Waiting and reorganizing both let start friction steal the available minutes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1487,8 +1215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The problem is the repeated leak, not the length of each check. Postponing or adding ritual protects avoidance rather than the audio thread.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1500,8 +1227,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The quiet bench protects the kind of attention the layout requires. Proving toughness beside the saw confuses distraction with training.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1513,8 +1239,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The ritual has replaced task contact. Recording first exposes the real speaking gap, while more setup only makes avoidance smoother.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1526,8 +1251,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The protected run and break mark address sustained attention directly. Leaving calls open repeats the leak, and highlighting can look active without contact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1539,8 +1263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Focus structures are useful only when they help contact with the task. More ritual delays work, while no structure ignores the value of modest setup.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1552,8 +1275,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cost is not just seconds lost; it is rebuilding the problem after each break. The other answers miss the mechanism of leakage.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1565,8 +1287,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first plan makes starting easier and leakage less likely. The second may become preparation theater, and motivation alone cannot remove friction.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1627,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "A sharp knife is not sharper because it looks tidy. It is sharper because it cuts.",
-          "location": "breakdown.fastRead",
-          "why": "The line ties the title image to the practical demand for real task contact."
+          "text": "A sharp knife is not sharper because it looks tidy. It is sharper because it cuts."
         },
         {
-          "text": "Starting is a separate skill from continuing.",
-          "location": "breakdown.deepRead",
-          "why": "It separates two focus problems readers often blur together."
+          "text": "Starting is a separate skill from continuing."
         },
         {
-          "text": "Protect the first contact. Then protect the thread.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the chapter's two-part practice into a memorable rule."
+          "text": "Protect the first contact. Then protect the thread."
         }
       ]
     },
@@ -1666,13 +1381,6 @@
             "sales",
             "directness"
           ],
-          "planSpec": {
-            "domain": "Laura, a sales engineer practicing with real client objections",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the next month produces visible evidence or another private feeling of effort",
-            "format": "scene",
-            "requiredBeat": "Laura replaces framework notes with a live client-objection rehearsal where the buyer can interrupt and change constraints."
-          },
           "scenario": "A mock client brief is clipped to the conference-room lectern while Laura's framework notes sit closed beside it. Her colleague has a buyer script and permission to interrupt. The old rehearsal would let Laura explain each objection in order. Today she points to the brief and chooses the messier run: changing constraints, live pushback, and no return to the notes until the first round ends. Laura has to choose the interrupted client run before opening her framework notes again.",
           "whatToDo": "Run the objection rehearsal with interruptions and changing constraints. Use the framework afterward to repair misses, not as the place where practice stays.",
           "whyItMatters": "The real call will not serve objections in textbook order. Laura needs practice that contains the buyer's interruptions before the buyer supplies them."
@@ -1685,13 +1393,6 @@
             "social-work",
             "context"
           ],
-          "planSpec": {
-            "domain": "Michael, a social-work student rehearsing in the actual interview room",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether a deadline exposes the weakness early enough to adjust",
-            "format": "decision_point",
-            "requiredBeat": "Michael practices the intake conversation in the actual interview room where silence and chair placement change the task."
-          },
           "scenario": "You are standing with Michael in the intake room, where two plastic visitor chairs face a social-work form on a clipboard. His bedroom practice sounded smooth last night. Here, a ten-second silence feels heavier and the chairs make eye contact harder. The next rehearsal can happen in the safe room at home, or here, with the awkward pause and the form between them. Keep the rehearsal small, but let the real setting shape it. Keep the rehearsal small, but let the real setting shape it. Keep the rehearsal small, but let the real setting shape it.",
           "whatToDo": "Practice in the intake room and include the silence, chair placement, and form. Keep the rehearsal small, but let the real setting shape it.",
           "whyItMatters": "The room changes the performance. If Michael only practices where the task feels clean, the interview will expose problems he never rehearsed."
@@ -1704,13 +1405,6 @@
             "code",
             "transfer"
           ],
-          "planSpec": {
-            "domain": "Manon, a front-end developer leaving guided tutorials for a blank production ticket",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
-            "format": "vignette",
-            "requiredBeat": "Manon leaves guided examples and opens a blank production ticket with only the target behavior written at the top."
-          },
           "scenario": "The engineering room is quiet except for a bug ticket projected beside Manon's empty code editor. The target behavior is written at the top, and no tutorial step is waiting underneath. She can open another guided example, or she can start with the production ticket and let the blank file show what the tutorials have not transferred. Write the first failing case, then use tutorials only to solve the specific block the blank editor reveals. Write the first failing case, then use tutorials only to solve the specific block the blank editor reveals. Write the first failing case, then use tutorials only to solve the specific block the blank editor reveals.",
           "whatToDo": "Start from the production ticket. Write the first failing case, then use tutorials only to solve the specific block the blank editor reveals.",
           "whyItMatters": "Guided examples can hide the missing decision. The blank ticket brings practice closer to the work Manon must actually do."
@@ -1723,13 +1417,6 @@
             "dispatch",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "Diego, a flight-dispatch trainee adding time pressure to route planning",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the project survives contact with a real schedule and real standards",
-            "format": "dialogue",
-            "requiredBeat": "Diego adds dispatch time pressure, weather ambiguity, and a radio call so route planning resembles the real shift."
-          },
           "scenario": "\"Now add weather,\" the trainer says, sliding a storm radar printout beside Diego's dispatch headset. \"And tower just moved your slot.\" The calm route plan was correct five minutes ago. Diego reaches for the old worksheet, then stops. He faces a sharper rehearsal now: time pressure, ambiguous radar, and a radio call before the plan is comfortable. Diego has to choose the route rehearsal with weather, slot change, and radio call included.",
           "whatToDo": "Run the route plan with weather, slot change, and radio call included. Use the rehearsal look like the shift instead of the worksheet.",
           "whyItMatters": "The dispatch skill depends on pressure and ambiguity. Removing them creates a proxy that may not transfer when the headset is live."
@@ -1742,13 +1429,6 @@
             "violin",
             "audition"
           ],
-          "planSpec": {
-            "domain": "Yusuf, a violinist moving from scales to the audition excerpt",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether comfort keeps protecting the exact skill gap that matters",
-            "format": "predict_reveal",
-            "requiredBeat": "Yusuf moves from clean scales to the exact audition excerpt that keeps collapsing under tempo."
-          },
           "scenario": "At 6:30 p.m., Yusuf clips the marked violin excerpt above his shoulder rest. He predicts ten more minutes of clean scales will settle the shift that keeps failing. Then he plays the excerpt at tempo and hears the same collapse. His bow drops for a second before he turns away from the scale book and puts the audition line back on the stand.",
           "whatToDo": "Practice the audition excerpt at the tempo that exposes the collapse. Use scales afterward only for the exact motion the excerpt revealed.",
           "whyItMatters": "Scales support the skill, but the audition will judge the excerpt. Yusuf needs the practice to move toward the performance that counts."
@@ -1761,13 +1441,6 @@
             "brewery",
             "scaffold"
           ],
-          "planSpec": {
-            "domain": "Marit, a brewery quality lead cutting supports from a lab test",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the next attempt changes the skill instead of decorating the plan",
-            "format": "postmortem",
-            "requiredBeat": "Marit removes the lab checklist after two supported runs and performs the brewery quality test from the actual batch sheet."
-          },
           "scenario": "It took Marit two clean supported runs to notice the hydrometer floating beside the yeast-stained batch log was not the real test. The laminated checklist had been carrying half the decisions. In the postmortem, she removes it, works from the actual batch sheet, and marks where the quality test slows without the scaffold.",
           "whatToDo": "Run the next quality test from the batch sheet, with the checklist closed nearby for review only after the attempt.",
           "whyItMatters": "A scaffold helps only if it leads toward independent performance. Marit needs to learn which decisions disappear when the support is removed."
@@ -1786,8 +1459,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The interruption is part of the real performance, so practice must include it. More reading and solo memorizing preserve a proxy that misses the buyer's behavior.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1799,8 +1471,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The room and silence are part of the target context. Home rehearsal can support wording, but it does not train the conditions that are causing failure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1812,8 +1483,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The blank ticket contains the missing decision-making step. More examples and broad documentation can help, but they keep the learner away from the target arena.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1825,8 +1495,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The live shift includes pressure, ambiguity, and communication. Clean worksheets remove the conditions that shape the actual performance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1838,8 +1507,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The audition will judge the excerpt, not clean scales. Avoiding the excerpt protects comfort and delays the performance conditions.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1851,8 +1519,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The checklist has become a scaffold that hides missing decisions. Closing it for one attempt reveals what still needs practice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1864,8 +1531,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Support is useful when it points toward the real context. The mistake is keeping support permanent or staying too far from performance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1877,8 +1543,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The room, timer, and empty seats add performance conditions that the bedroom lacks. Reading and polishing can support but do not solve the transfer gap.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1890,8 +1555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fragments can help, but transfer improves when they return to the context where the skill must work. Travel is not required for a more direct practice.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1952,19 +1616,13 @@
       },
       "memorableLines": [
         {
-          "text": "A proxy can help you start. It should not become where you live.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the useful limit on indirect practice without rejecting scaffolding."
+          "text": "A proxy can help you start. It should not become where you live."
         },
         {
-          "text": "The room is part of the skill.",
-          "location": "breakdown.deepRead",
-          "why": "It makes directness concrete by showing context as part of performance."
+          "text": "The room is part of the skill."
         },
         {
-          "text": "Move closer to the arena. Keep only the supports that move with you.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a concise rule for increasing directness without abandoning all support."
+          "text": "Move closer to the arena. Keep only the supports that move with you."
         }
       ]
     },
@@ -1991,13 +1649,6 @@
             "policy",
             "bottleneck"
           ],
-          "planSpec": {
-            "domain": "Anna, a policy analyst isolating the weak causal paragraph in briefs",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the next month produces visible evidence or another private feeling of effort",
-            "format": "scene",
-            "requiredBeat": "Anna circles the causal paragraph that stalls every policy brief and drills only the evidence-to-claim turn before rewriting the whole memo."
-          },
           "scenario": "A policy memo lies under Anna's red pencil with one paragraph boxed hard enough to dent the page. The evidence is clean, the recommendation is clear, and the causal turn still dissolves. Her next revision can restart the whole memo, or she can drill ten evidence-to-claim sentences before touching the draft again.",
           "whatToDo": "Drill the evidence-to-claim turn by itself, then return to the memo and rewrite only after the weak sentence shape improves.",
           "whyItMatters": "The boxed paragraph is the rate-determining weakness. Reworking the whole memo would spend effort on sections that are not slowing the result."
@@ -2010,13 +1661,6 @@
             "math",
             "isolation"
           ],
-          "planSpec": {
-            "domain": "David, a calculus student drilling one recurring algebra transformation",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether a deadline exposes the weakness early enough to adjust",
-            "format": "decision_point",
-            "requiredBeat": "David practices the single algebra transformation that breaks every longer solution, then returns it to a full problem."
-          },
           "scenario": "You are beside David at the chalkboard, where the same minus sign flips twice in a longer calculus solution. The exam is Friday. Another full problem would feel more legitimate, but the failure keeps happening at one transformation. His chalk rests under the broken line, ready for five isolated repetitions before one full problem returns.",
           "whatToDo": "Practice the algebra transformation alone until the sign change is stable, then place it back inside a full calculus problem immediately.",
           "whyItMatters": "The isolated step controls the longer solution. Drill gives the weak move enough repetitions without pretending the fragment is the final goal."
@@ -2029,13 +1673,6 @@
             "music",
             "reintegration"
           ],
-          "planSpec": {
-            "domain": "Nicolas, a blues guitarist testing whether the timing drill fixes the whole song",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
-            "format": "vignette",
-            "requiredBeat": "Nicolas loops the syncopated bar that throws off the whole blues chorus and checks it against a full-song recording."
-          },
           "scenario": "The basement amp hums while a guitar pick is taped above four measures of syncopation. Nicolas can keep playing the whole chorus and hoping the drag disappears, or he can loop the crooked bar, record the full song afterward, and hear whether the isolated timing actually returns to the chorus.",
           "whatToDo": "Loop the syncopated bar, then record the full chorus before calling the drill successful.",
           "whyItMatters": "The timing problem lives in a fragment but matters in the song. Reintegration prevents a clean drill from becoming a disconnected trick."
@@ -2048,13 +1685,6 @@
             "meeting",
             "phrase"
           ],
-          "planSpec": {
-            "domain": "Pablo, a project manager practicing one meeting interruption move",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the project survives contact with a real schedule and real standards",
-            "format": "dialogue",
-            "requiredBeat": "Pablo isolates the one meeting interruption phrase he freezes on, drills it aloud, then uses it in the next live stand-up."
-          },
           "scenario": "\"Say the line before we go in,\" Marta says. Pablo looks at the sticky note on the meeting-room door: Can we pause on the decision point? In stand-ups, he freezes when the group wanders. The live meeting starts in four minutes, and the next move is five spoken repetitions before he uses the phrase for real.",
           "whatToDo": "Say the interruption phrase aloud five times, then use that exact sentence in the stand-up when side talk starts.",
           "whyItMatters": "Pablo's bottleneck is not meeting theory. It is retrieving one sentence under social pressure, so the drill has to hit that sentence."
@@ -2067,13 +1697,6 @@
             "speech",
             "vowel"
           ],
-          "planSpec": {
-            "domain": "Lin, a speech learner targeting one vowel that distorts the whole dialogue",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether comfort keeps protecting the exact skill gap that matters",
-            "format": "predict_reveal",
-            "requiredBeat": "Lin drills the vowel that keeps distorting the entire dialogue, then records the whole exchange to test reintegration."
-          },
           "scenario": "At 5:15 p.m., Lin studies a mouth-position sketch beside the language-lab microphone. She predicts ten clean vowel repetitions will fix the exchange. The first full recording still bends in the same sentence. She circles the vowel, drills it alone, then records the whole dialogue again to see whether the repair travels.",
           "whatToDo": "Drill the vowel briefly, then test it inside the full dialogue recording before adding more repetitions.",
           "whyItMatters": "The vowel is only worth drilling because it distorts the conversation. The full exchange shows whether the isolated fix transfers."
@@ -2086,13 +1709,6 @@
             "design",
             "perspective"
           ],
-          "planSpec": {
-            "domain": "Ingrid, a landscape designer reintegrating perspective drills into full site sketches",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the next attempt changes the skill instead of decorating the plan",
-            "format": "postmortem",
-            "requiredBeat": "Ingrid stops polishing clean thumbnail sketches and drills the perspective corner that keeps warping the full garden plan."
-          },
           "scenario": "It took Ingrid three neat thumbnail pages to notice the tracing-paper site sketch still warped at one pergola corner. The clean thumbnails were easier to admire. In the postmortem, she marks the crooked corner, drills that perspective angle on scrap paper, and redraws the full garden plan before polishing anything else.",
           "whatToDo": "Drill the warped perspective corner, then redraw the full site sketch to prove the correction belongs in the plan.",
           "whyItMatters": "The thumbnail practice was not hitting the rate-limiting weakness. The corner drill matters only when it changes the full garden drawing."
@@ -2111,8 +1727,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The paragraph is the bottleneck, so it deserves isolated practice. Whole rewrites and passive examples spread effort away from the weak point.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2124,8 +1739,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The isolated transformation gets the repetitions it needs, and the full problem checks reintegration. The other choices avoid the exact failure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2137,8 +1751,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A drill must feed back into performance. Clean looping alone can become a disconnected skill that never fixes the song.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2150,8 +1763,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The bottleneck is retrieving one phrase under pressure. Broad leadership reading and polished slides miss the rate-limiting move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2163,8 +1775,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Drill time belongs to the rate-determining weakness. Clean fragments are tempting, but they matter only if they change the whole task.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2176,8 +1787,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The goal is speech inside the dialogue. Isolated comfort and sketches support the work, but the full recording tests transfer.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2189,8 +1799,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The warped corner is controlling the result. Polishing thumbnails feels productive but does not attack the weakness that matters.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2202,8 +1811,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The turn limits the lap, so it deserves focused repetitions and then a whole-lap test. Endurance and full laps alone leave the bottleneck undertrained.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2215,8 +1823,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The purpose of drill is to attack the rate-determining weakness. Enjoyable fragments may help motivation, but they do not necessarily move performance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2277,19 +1884,13 @@
       },
       "memorableLines": [
         {
-          "text": "A drill is useful only when it attacks the bottleneck.",
-          "location": "breakdown.fastRead",
-          "why": "It states the chapter's selection rule in one plain sentence."
+          "text": "A drill is useful only when it attacks the bottleneck."
         },
         {
-          "text": "Isolation is temporary because the full skill is still the judge.",
-          "location": "breakdown.deepRead",
-          "why": "It prevents the reader from mistaking drills for the final performance."
+          "text": "Isolation is temporary because the full skill is still the judge."
         },
         {
-          "text": "Attack the bottleneck, then return to the whole.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the complete drill loop in a memorable command."
+          "text": "Attack the bottleneck, then return to the whole."
         }
       ]
     },
@@ -2316,13 +1917,6 @@
             "board",
             "recall"
           ],
-          "planSpec": {
-            "domain": "Megan, a board presenter closing the slide deck to recall the case",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the next month produces visible evidence or another private feeling of effort",
-            "format": "scene",
-            "requiredBeat": "Megan turns the board deck face down and writes the acquisition case from memory before checking the slide order."
-          },
           "scenario": "A darkened projector screen hangs above Megan's closed presentation remote at 7:10 p.m. The acquisition deck feels clear while every slide is open. She turns the printed deck face down, pulls a blank page forward, and writes the case from memory before checking slide order. The choice is between another smooth review and the rough answer she can actually produce.",
           "whatToDo": "Keep the deck face down and write the acquisition case from memory before reopening the slides.",
           "whyItMatters": "The board will ask Megan to produce the case, not recognize it. Closed-source recall reveals which reasons still need work."
@@ -2335,13 +1929,6 @@
             "seminar",
             "argument"
           ],
-          "planSpec": {
-            "domain": "Elliot, a history seminar student explaining an argument with the text shut",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether a deadline exposes the weakness early enough to adjust",
-            "format": "decision_point",
-            "requiredBeat": "Elliot explains the history argument to a classmate with the text shut and marks the point where recognition disappears."
-          },
           "scenario": "You are across from Elliot, where a paperback lies face down beside an empty seminar mug. The argument looked clear ten minutes ago. Now his classmate asks for the claim without the page. Elliot starts, stalls at the evidence, and marks that sentence with a pencil before reopening the text.",
           "whatToDo": "Explain first with the text shut, mark the exact point where recall breaks, then reread to repair that point.",
           "whyItMatters": "Recognition stayed strong while the page was open. The stall shows what Elliot cannot yet produce on his own."
@@ -2354,13 +1941,6 @@
             "paramedic",
             "cards"
           ],
-          "planSpec": {
-            "domain": "Chiara, a paramedic trainee using face-down cards for drug doses",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
-            "format": "vignette",
-            "requiredBeat": "Chiara answers drug-dose cards from the back first, then sorts the failed ones into tonight's practice pile."
-          },
           "scenario": "The ambulance training cot holds a stack of face-down dose cards. Chiara's hand starts toward the printed side, then stops. She reads the drug name on the back, says the dose aloud, and sorts misses into a separate pile for tonight. The cards become a recall tool instead of another sheet to recognize.",
           "whatToDo": "Answer from the back first and build tonight's practice pile from the misses.",
           "whyItMatters": "The failed cards tell Chiara what review should target. Familiar-looking doses do not give the same signal."
@@ -2373,13 +1953,6 @@
             "code",
             "hints"
           ],
-          "planSpec": {
-            "domain": "Pavel, a software apprentice covering margin hints before solving again",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the project survives contact with a real schedule and real standards",
-            "format": "dialogue",
-            "requiredBeat": "Pavel covers the margin hints and rebuilds the software solution from the problem statement alone."
-          },
           "scenario": "\"Cover the hint first,\" Noor says, sliding a sticky note over the worked answer in Pavel's workbook. The problem statement is still visible. Pavel has read the solution twice, but the editor beside him is blank. He starts the function from memory, then circles the line where he needs to look back.",
           "whatToDo": "Hide the hints, solve from the problem statement, and use the first stuck line to guide review.",
           "whyItMatters": "The margin hints were carrying part of the solution. Covering them shows what Pavel can rebuild without support."
@@ -2392,13 +1965,6 @@
             "law",
             "questions"
           ],
-          "planSpec": {
-            "domain": "Hadiya, a law student writing questions before reopening the casebook",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether comfort keeps protecting the exact skill gap that matters",
-            "format": "predict_reveal",
-            "requiredBeat": "Hadiya writes three casebook questions before rereading so the next pass has to answer a demand from memory."
-          },
           "scenario": "At 8:35 p.m., Hadiya sets a legal pad headed with questions beside a closed casebook. She predicts another reread will settle the facts. Before opening it, she writes three prompts: conflict, rule, deciding fact. The next pass now has to answer memory's demands instead of washing over familiar pages.",
           "whatToDo": "Write the three questions before rereading and check the case only after trying to answer them.",
           "whyItMatters": "Questions make review active. They force the next pass to repair what recall could not produce."
@@ -2411,13 +1977,6 @@
             "chemistry",
             "quiz"
           ],
-          "planSpec": {
-            "domain": "Lars, a chemistry tutor rewriting prompts that give away the answer",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the next attempt changes the skill instead of decorating the plan",
-            "format": "postmortem",
-            "requiredBeat": "Lars rewrites a chemistry quiz so the prompt no longer gives away the reagent before the student has to recall it."
-          },
           "scenario": "It took Lars one marked quiz to notice the beaker sketch was not the giveaway. The prompt named the reagent before the student had to recall it. In the postmortem, he crosses out the leading question and rewrites it from reaction conditions, so the next answer has to come from memory.",
           "whatToDo": "Remove the reagent clue and make the prompt ask for production from reaction conditions.",
           "whyItMatters": "A prompt that gives away the answer tests recognition. Lars needs a question that makes the student retrieve."
@@ -2436,8 +1995,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Closed-deck recall tests what she can produce. More rereading and design polish may feel smooth while leaving the production gap hidden.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2449,8 +2007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The closed-text explanation makes memory produce the argument. Highlighting and reading aloud keep the source present, so recognition can masquerade as knowledge.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2462,8 +2019,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Answering before seeing the dose creates retrieval. Longer notes and delayed testing keep the learner in passive review.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2475,8 +2031,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Covering hints forces production from the prompt. Hiding the problem or editor removes the actual task rather than the support.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2488,8 +2043,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Questions create a demand from memory. Pens and headnotes may help organization but do not make recall attempt first.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2501,8 +2055,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The prompt supplies the key answer before the student must produce it. More length or decoration would not fix that retrieval failure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2514,8 +2067,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Retrieval during learning finds gaps early. Graded-only testing waits too long, and rereading alone may hide those gaps.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2527,8 +2079,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Drawing from memory makes knowledge work without the source, then review repairs misses. Equal time does not mean equal retrieval.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2540,8 +2091,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The failed recall identifies where review should go. Reviewing everything wastes signal, and reviewing the strong half avoids the gap.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2602,19 +2152,13 @@
       },
       "memorableLines": [
         {
-          "text": "Close the source first. Then see what stands.",
-          "location": "breakdown.fastRead",
-          "why": "It gives retrieval in one compact instruction."
+          "text": "Close the source first. Then see what stands."
         },
         {
-          "text": "Recognition is generous. Recall is stricter.",
-          "location": "breakdown.deepRead",
-          "why": "It contrasts the false ease of rereading with the discipline of production."
+          "text": "Recognition is generous. Recall is stricter."
         },
         {
-          "text": "Keep review, but make it answer to recall.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves rereading's place while putting retrieval in charge."
+          "text": "Keep review, but make it answer to recall."
         }
       ]
     },
@@ -2641,13 +2185,6 @@
             "grant",
             "early"
           ],
-          "planSpec": {
-            "domain": "Claire, a grant writer sending an early draft while comments can still change it",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the next month produces visible evidence or another private feeling of effort",
-            "format": "scene",
-            "requiredBeat": "Claire sends the grant draft before polishing the language because the budget logic can still be corrected today."
-          },
           "scenario": "A shared-document comment pane sits open beside Claire's grant deadline calendar. The prose is still rough, and the budget logic is the part most likely to fail. Her finger pauses above Share. Waiting would make the draft prettier and less movable, so she sends it now with one request: mark the budget argument before noon.",
           "whatToDo": "Send the unfinished draft to the qualified reviewer and ask for budget-logic comments only.",
           "whyItMatters": "Feedback has leverage while the draft can change. Polishing first may protect the very error that needs correction."
@@ -2660,13 +2197,6 @@
             "design",
             "repeat"
           ],
-          "planSpec": {
-            "domain": "Chris, a design student hearing the same critique from two reviewers",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether a deadline exposes the weakness early enough to adjust",
-            "format": "decision_point",
-            "requiredBeat": "Chris writes down the design critique that two reviewers repeat and treats the repetition as data, not insult."
-          },
           "scenario": "You are beside Chris at the studio pinboard, where two critique sheets overlap under the same poster sketch. Both reviewers marked hierarchy. His jaw tightens because the poster felt finished last night. The next move is available: call the comments unfair, or write hierarchy in the margin and treat the repetition as evidence.",
           "whatToDo": "Write down the repeated critique, revise the hierarchy first, and leave taste arguments until after the task-standard issue is fixed.",
           "whyItMatters": "Two reviewers naming the same weakness is a signal. Treating it as insult keeps the error protected."
@@ -2679,13 +2209,6 @@
             "pottery",
             "buyer"
           ],
-          "planSpec": {
-            "domain": "Antoine, a pottery seller posting imperfect product photos for real buyer response",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
-            "format": "vignette",
-            "requiredBeat": "Antoine posts three imperfect pottery photos and watches which buyer question exposes the missing information."
-          },
           "scenario": "The shop page shows a chipped mug photographed on a gray backdrop. Antoine wants another private photo session before anyone sees it. Instead, he posts three imperfect photos and watches the first buyer questions arrive. Size, handle feel, and chip detail matter more than the glaze caption he kept rewriting.",
           "whatToDo": "Post the limited set, read buyer questions, and revise the listing around the missing information they expose.",
           "whyItMatters": "Real buyer response finds the gaps Antoine cannot see alone. Private polish would only improve the wrong details."
@@ -2698,13 +2221,6 @@
             "lab",
             "standard"
           ],
-          "planSpec": {
-            "domain": "Sofia, a lab assistant requesting comments tied to the grading standard",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the project survives contact with a real schedule and real standards",
-            "format": "dialogue",
-            "requiredBeat": "Sofia asks for lab comments only on the rubric dimension that will judge the assignment, not on general neatness."
-          },
           "scenario": "\"Want me to clean up the wording?\" Ruth asks, then catches herself and points to the rubric folded beside the sample rack. Sofia shakes her head. \"Only mark uncertainty explanation,\" she says. The report is due tomorrow, and she chooses feedback tied to the grading standard instead of safer comments on neatness.",
           "whatToDo": "Ask for comments on the rubric dimension that will judge the report, not on general polish.",
           "whyItMatters": "Feedback should answer the standard. Neatness comments might feel easier, but they will not fix the section that controls the grade."
@@ -2717,13 +2233,6 @@
             "choir",
             "recording"
           ],
-          "planSpec": {
-            "domain": "Chidi, a choir soloist recording a rough take for targeted correction",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether comfort keeps protecting the exact skill gap that matters",
-            "format": "predict_reveal",
-            "requiredBeat": "Chidi records the rough choir solo and asks the conductor for one correction on breath timing."
-          },
           "scenario": "At 7:45 p.m., Chidi pauses a phone voice memo under a marked choral score. He predicts one more private run will make the breath timing safe. The high phrase fails again. He sends the rough take anyway and asks the conductor for one correction on breath before the phrase, not a general opinion on the solo.",
           "whatToDo": "Send the rough take and ask for one breath-timing correction tied to the failing phrase.",
           "whyItMatters": "Private repetition keeps the same miss hidden. A narrow correction gives Chidi something he can change before rehearsal."
@@ -2736,13 +2245,6 @@
             "logistics",
             "filter"
           ],
-          "planSpec": {
-            "domain": "Marta, a logistics planner filtering noisy comments without hiding from precise ones",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the next attempt changes the skill instead of decorating the plan",
-            "format": "postmortem",
-            "requiredBeat": "Marta separates noisy logistics complaints from the one routing correction that keeps appearing in real deliveries."
-          },
           "scenario": "It took Marta one rough delivery day to sort the orange marks on the route map. Some comments were heat. Two drivers named the same blocked left turn. In the postmortem, she crosses out the noisy complaints, keeps the repeated routing correction, and rebuilds the downtown loop around that signal.",
           "whatToDo": "Filter the comments by task standard and repetition, then fix the route around the precise correction that real deliveries confirmed.",
           "whyItMatters": "Feedback is useful when it sharpens the work. Marta should not hide from complaints, but she should not obey noise either."
@@ -2761,8 +2263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Budget logic can still change now. Polishing first may preserve the error, and encouragement does not expose the weak part.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2774,8 +2275,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Repeated correction is a strong signal. Assuming bad faith or hiding behind originality protects the weakness.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2787,8 +2287,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Buyer questions exposed missing information, not necessarily bad pottery. Waiting for perfect photos would have delayed that signal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2800,8 +2299,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Feedback should match the task standard. General comments may be easier to hear but less useful for the grade.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2813,8 +2311,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The rough take exposes the exact weakness while it can still be fixed. Waiting or asking general listeners dodges targeted correction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2826,8 +2323,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Useful feedback is tied to the task standard and repeated in the work. Noise should be filtered without hiding from the precise signal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2839,8 +2335,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The value is in useful correction, not emotional tone alone. Harshness is not proof, and not every criticism deserves obedience.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2852,8 +2347,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Feedback has less leverage after the work cannot move. Confidence and filtering matter, but timing is the main failure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2865,8 +2359,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A narrow request to the right reviewer produces usable correction. More general comments can create noise, and delaying feedback protects errors.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2927,19 +2420,13 @@
       },
       "memorableLines": [
         {
-          "text": "Protected errors become stronger each day they stay private.",
-          "location": "breakdown.fastRead",
-          "why": "It frames avoidance as active damage, not harmless delay."
+          "text": "Protected errors become stronger each day they stay private."
         },
         {
-          "text": "Repetition is data when separate readers find the same break in the work.",
-          "location": "breakdown.deepRead",
-          "why": "It gives readers a clean rule for repeated critique."
+          "text": "Repetition is data when separate readers find the same break in the work."
         },
         {
-          "text": "Send the draft while it can still change. Then use the bruise as a map.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter's exposure-and-correction move in a concrete image."
+          "text": "Send the draft while it can still change. Then use the bruise as a map."
         }
       ]
     },
@@ -2966,13 +2453,6 @@
             "clinic",
             "workflow"
           ],
-          "planSpec": {
-            "domain": "Olivia, a clinic receptionist revisiting a referral workflow before the monthly rush",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the next month produces visible evidence or another private feeling of effort",
-            "format": "scene",
-            "requiredBeat": "Olivia rehearses the referral workflow before the monthly clinic rush and notices the step that has already gone soft."
-          },
           "scenario": "A referral stamp sits beside Olivia's half-filled clinic form at 4:50 p.m. The monthly rush starts tomorrow, and last month's workflow felt automatic. She runs it once before leaving and catches the insurance-code step going soft. The choice is clear: trust old fluency, or schedule a short return before patients arrive.",
           "whatToDo": "Rehearse the referral workflow now, mark the soft step, and repeat that step before the rush begins.",
           "whyItMatters": "One smooth month did not make the workflow permanent. Olivia protects the part that would slow the clinic tomorrow."
@@ -2985,13 +2465,6 @@
             "physics",
             "revisit"
           ],
-          "planSpec": {
-            "domain": "Jack, a physics student rebuilding yesterday's method at the board",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether a deadline exposes the weakness early enough to adjust",
-            "format": "decision_point",
-            "requiredBeat": "Jack rebuilds yesterday's physics method at the board without notes and writes the missing step into a revisit slot."
-          },
           "scenario": "You are beside Jack at the board, where a dusty eraser ledge sits under an unfinished force diagram. Yesterday's method felt secure. Today the middle step is missing without notes. New problems are waiting, but Jack writes the missing step into Friday's revisit slot before he moves on.",
           "whatToDo": "Rebuild the method without notes, mark the missing step, and schedule the next return before adding new problems.",
           "whyItMatters": "The gap appeared before the exam, while it can still be repaired. New work would only hide the leak."
@@ -3004,13 +2477,6 @@
             "language",
             "selective"
           ],
-          "planSpec": {
-            "domain": "Olivier, a language learner choosing which phrases deserve scheduled returns",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
-            "format": "vignette",
-            "requiredBeat": "Olivier chooses ten field phrases that must survive next month and leaves the decorative vocabulary alone."
-          },
           "scenario": "The train platform is wet, and Olivier clips a pocket phrase card to his ticket. He has a site visit next month and a long list of pleasant vocabulary. He highlights only ten field phrases that must survive the visit and leaves the decorative words for later.",
           "whatToDo": "Schedule returns for the ten field phrases and let the nice-to-know vocabulary wait.",
           "whyItMatters": "Retention should follow stakes. Olivier cannot maintain everything, so he protects the phrases the site visit will actually demand."
@@ -3023,13 +2489,6 @@
             "piano",
             "leak"
           ],
-          "planSpec": {
-            "domain": "Tomasz, a pianist hearing fluency leak from a passage she thought was secure",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the project survives contact with a real schedule and real standards",
-            "format": "dialogue",
-            "requiredBeat": "Tomasz hears the piano passage leak at bar seventeen and schedules a return before adding new repertoire."
-          },
           "scenario": "\"Again from seventeen,\" the teacher says, tapping the penciled bar number above the keyboard. Tomasz had called the passage done last week. Tonight the left hand hesitates twice. New repertoire waits on the stand, but the calendar gets a return slot for bar seventeen before any new page begins.",
           "whatToDo": "Schedule the return for bar seventeen and play it again before adding new repertoire.",
           "whyItMatters": "The passage is leaking now. Adding new music would turn a repairable slip into a hidden debt."
@@ -3042,13 +2501,6 @@
             "firefighter",
             "equipment"
           ],
-          "planSpec": {
-            "domain": "Min, a firefighter refreshing a rarely used equipment sequence",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether comfort keeps protecting the exact skill gap that matters",
-            "format": "predict_reveal",
-            "requiredBeat": "Min refreshes the equipment sequence that rarely appears but cannot fail when the fire call comes."
-          },
           "scenario": "At 6:40 a.m., Min lays a breathing-apparatus strap beside the station checklist. He predicts the rarely used sequence will come back when needed. Then he misses the seal-check order during a dry run. The call has not come, so he repeats the sequence now instead of trusting emergency adrenaline. Min needs to choose the dry equipment return today before a rare call exposes the gap.",
           "whatToDo": "Run the equipment sequence today and schedule the next dry return before the rare call can expose the gap.",
           "whyItMatters": "Rare does not mean optional. Min protects the sequence because failure would matter most when there is no time to relearn."
@@ -3061,13 +2513,6 @@
             "procurement",
             "maintenance"
           ],
-          "planSpec": {
-            "domain": "Frida, a procurement analyst repairing a plan that treated one clean run as permanent",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the next attempt changes the skill instead of decorating the plan",
-            "format": "postmortem",
-            "requiredBeat": "Frida changes a procurement plan after one clean run fades, adding a spaced return before the next vendor cycle."
-          },
           "scenario": "It took Frida one messy vendor call to see the future date stamped on her comparison sheet should have been a revisit, not a filing mark. The last cycle went clean, then faded. In the postmortem, she adds a return three days before the next review and stops treating one clean run as permanent.",
           "whatToDo": "Add a dated return before the vendor cycle and rebuild the comparison steps before the live review.",
           "whyItMatters": "The earlier success was real but temporary. A scheduled return keeps procurement skill available when the next cycle starts."
@@ -3086,8 +2531,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A quick return tests whether the important workflow still holds. Trusting old fluency risks leakage, and equal review wastes attention.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3099,8 +2543,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The missing step is the leak. A revisit repairs it while new problems or a full restart miss the useful target.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3112,8 +2555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Retention should follow stakes. The ten field phrases carry the next real demand, while equal review dilutes maintenance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3125,8 +2567,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The passage is slipping before performance. A return protects the gain; ignoring it turns leakage into future failure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3138,8 +2579,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Rare high-stakes skills deserve maintenance before demand. Waiting for the call leaves no room to relearn.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3151,8 +2591,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The clean run was real but not permanent. Scheduled returns protect the skill before the next cycle.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3164,8 +2603,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Equal review treats low-value details like high-stakes skills. Selective maintenance protects what matters.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3177,8 +2615,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Retention should prioritize the gain with real consequence. Ease and equality are weaker guides than cost of forgetting.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3190,8 +2627,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Retention begins by scheduling a future check. Fluency right after practice is not proof of durable hold.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3252,19 +2688,13 @@
       },
       "memorableLines": [
         {
-          "text": "Do not review everything. Protect what cannot afford to disappear.",
-          "location": "breakdown.fastRead",
-          "why": "It states the chapter's selective retention rule clearly."
+          "text": "Do not review everything. Protect what cannot afford to disappear."
         },
         {
-          "text": "Forgetting is quiet until performance asks for the skill again.",
-          "location": "breakdown.deepRead",
-          "why": "It makes retention's risk vivid without overclaiming."
+          "text": "Forgetting is quiet until performance asks for the skill again."
         },
         {
-          "text": "Schedule the return before the leak becomes visible to someone else.",
-          "location": "breakdown.fullRead",
-          "why": "It turns retention into a concrete preventive action."
+          "text": "Schedule the return before the leak becomes visible to someone else."
         }
       ]
     },
@@ -3290,13 +2720,6 @@
             "intuition",
             "depth"
           ],
-          "planSpec": {
-            "domain": "Beatrice, a bookkeeper pausing a spreadsheet macro to understand why it works",
-            "audience": "a learner under a real performance constraint",
-            "stakes": "whether shallow understanding gets exposed before more material is added",
-            "format": "scene",
-            "requiredBeat": "A spreadsheet cell shows an unexpected negative number while Beatrice’s macro keeps running. Month-end starts tomorrow. "
-          },
           "scenario": "Month-end starts tomorrow, and a negative number has just appeared in a cell that should not be negative. Beatrice's macro is still running. She can rerun it and hope the exception clears, or trace the formula until she can explain why the number appears and what it changes.",
           "whatToDo": "Trace the formula behind the negative cell and explain the exception before running the macro again.",
           "whyItMatters": "The macro hides shallow understanding. Beatrice needs the cause so the next exception becomes readable."
@@ -3308,13 +2731,6 @@
             "intuition",
             "depth"
           ],
-          "planSpec": {
-            "domain": "Ryan, a seminar student whose smooth explanation fails under one why question",
-            "audience": "a learner under a real performance constraint",
-            "stakes": "whether shallow understanding gets exposed before more material is added",
-            "format": "scene",
-            "requiredBeat": "You are at the seminar table with Ryan, where a highlighted handout sentence sits folded under his palm. His summary sou"
-          },
           "scenario": "A highlighted handout sentence sits folded under Ryan's palm at the seminar table. His summary sounded fluent until one why question landed. The next move is not more polished wording; it is finding the support the sentence was borrowing from memory.",
           "whatToDo": "Answer the why question before adding more notes, and mark the missing support under the highlighted sentence.",
           "whyItMatters": "The smooth sentence is not enough. Ryan needs the link underneath it or the argument will fail in a new discussion."
@@ -3326,13 +2742,6 @@
             "intuition",
             "depth"
           ],
-          "planSpec": {
-            "domain": "Etienne, a pharmacy trainee choosing mechanism over more flashcards",
-            "audience": "a learner under a real performance constraint",
-            "stakes": "whether shallow understanding gets exposed before more material is added",
-            "format": "scene",
-            "requiredBeat": "The pharmacy workroom is quiet around a capsule diagram and a patient case note. Etienne has fifty more cards ready, but"
-          },
           "scenario": "Etienne has fifty more cards ready in the pharmacy workroom, but one mechanism still feels like a label rather than a process. A capsule diagram and a patient case note sit beside the stack. He pauses the stack and follows that mechanism through the patient case before adding another fact.",
           "whatToDo": "Follow the mechanism through one patient case, then add cards only where the explanation still breaks.",
           "whyItMatters": "More cards would add volume on top of a shallow link. The case forces the mechanism to do real work."
@@ -3344,13 +2753,6 @@
             "intuition",
             "depth"
           ],
-          "planSpec": {
-            "domain": "Catarina, a climbing coach using a small breakdown to expose shallow understanding",
-            "audience": "a learner under a real performance constraint",
-            "stakes": "whether shallow understanding gets exposed before more material is added",
-            "format": "scene",
-            "requiredBeat": "\"Why before the foot?\" the student asks, chalk dust on the hold above the mat. Catarina can demonstrate the move but her"
-          },
           "scenario": "Chalk dust settles on the hold above the mat while a student asks why the hip leads before the foot. Catarina can demonstrate the move but her explanation thins out. She steps onto the wall, feels the hip shift, and chooses to rebuild the explanation from the movement instead of adding another drill.",
           "whatToDo": "Use the breakdown to explain the balance transfer, then test the explanation on the wall.",
           "whyItMatters": "The small failure exposes shallow understanding. Coaching improves only when the explanation changes the climb."
@@ -3362,13 +2764,6 @@
             "intuition",
             "depth"
           ],
-          "planSpec": {
-            "domain": "Akira, a statistics student slowing down on one core concept before more pages",
-            "audience": "a learner under a real performance constraint",
-            "stakes": "whether shallow understanding gets exposed before more material is added",
-            "format": "scene",
-            "requiredBeat": "At 9:10 p.m., Akira circles one outlier on a scatterplot and predicts more pages will make the concept settle. The next "
-          },
           "scenario": "One outlier on a scatterplot gets a pencil circle from Akira at 9:10 p.m. He predicts more pages will make the concept settle. The next problem changes shape and the old formula cue fails. He stops there and works until he can explain why the outlier changes interpretation.",
           "whatToDo": "Pause on the concept until the changed problem makes sense, then return to the problem set.",
           "whyItMatters": "The formula cue worked only in the familiar shape. Akira needs the cause that survives a new case."
@@ -3380,13 +2775,6 @@
             "intuition",
             "depth"
           ],
-          "planSpec": {
-            "domain": "Anke, a ceramics instructor reconnecting theory work to the wheel",
-            "audience": "a learner under a real performance constraint",
-            "stakes": "whether shallow understanding gets exposed before more material is added",
-            "format": "scene",
-            "requiredBeat": "It took Anke one collapsed bowl to see that her notes on pressure were too tidy. The clay leaned left while the theory s"
-          },
           "scenario": "Anke's notes on pressure were too tidy, and one collapsed bowl confirmed it. The clay leaned left while the theory stayed dry. In the postmortem, she brings the idea back to the wheel and changes hand pressure on the next attempt.",
           "whatToDo": "Test the theory through the next bowl, changing hand pressure where the collapse appeared.",
           "whyItMatters": "Understanding counts when it changes performance. The wheel tells Anke whether the theory has become usable."
@@ -3405,7 +2793,6 @@
             ],
             "correctIndex": 1,
             "bloomsLevel": "understand",
-            "depthLevel": "standard",
             "explanation": "Tracing the formula builds causal understanding of the exception. More macros add surface machinery, and ignoring the surprise leaves the weak explanation intact."
           },
           {
@@ -3418,7 +2805,6 @@
             ],
             "correctIndex": 1,
             "bloomsLevel": "apply",
-            "depthLevel": "standard",
             "explanation": "The why question exposes the missing support. Memorizing a smoother sentence or rewriting notes would polish the surface while the argument stays hollow."
           },
           {
@@ -3431,7 +2817,6 @@
             ],
             "correctIndex": 2,
             "bloomsLevel": "analyze",
-            "depthLevel": "standard",
             "explanation": "The patient case forces the mechanism to explain something. More labels would stack facts on shallow grasp, and avoiding cases delays the real test."
           },
           {
@@ -3444,7 +2829,6 @@
             ],
             "correctIndex": 1,
             "bloomsLevel": "apply",
-            "depthLevel": "deep",
             "explanation": "The changed hold exposes the gap, so explanation must return to the movement. Generic drills and silent copying avoid the missing cause."
           },
           {
@@ -3457,7 +2841,6 @@
             ],
             "correctIndex": 0,
             "bloomsLevel": "analyze",
-            "depthLevel": "deep",
             "explanation": "A changed problem tests whether the concept is understood. More familiar examples may soothe recognition, and skipping the concept leaves the weak layer untouched."
           },
           {
@@ -3470,7 +2853,6 @@
             ],
             "correctIndex": 0,
             "bloomsLevel": "evaluate",
-            "depthLevel": "deep",
             "explanation": "The wheel is where the theory must work. Cleaner notes may help later, but only the next bowl shows whether the explanation changes performance."
           },
           {
@@ -3483,7 +2865,6 @@
             ],
             "correctIndex": 0,
             "bloomsLevel": "analyze",
-            "depthLevel": "deep",
             "explanation": "Weak lower understanding makes later topics brittle. The issue is not motivation or speed alone, but a foundation that cannot answer why."
           },
           {
@@ -3496,7 +2877,6 @@
             ],
             "correctIndex": 2,
             "bloomsLevel": "evaluate",
-            "depthLevel": "deep",
             "explanation": "Intuition travels to changed cases. Speed on identical examples and large note collections can still hide surface familiarity."
           },
           {
@@ -3509,7 +2889,6 @@
             ],
             "correctIndex": 2,
             "bloomsLevel": "apply",
-            "depthLevel": "standard",
             "explanation": "Understanding should reconnect to performance. Detached explanation may feel deep, but it no longer improves the task it was meant to support."
           }
         ]
@@ -3571,19 +2950,13 @@
       },
       "memorableLines": [
         {
-          "text": "Stop where the step works but your explanation does not.",
-          "location": "breakdown.fastRead",
-          "why": "It gives a direct trigger for depth work."
+          "text": "Stop where the step works but your explanation does not."
         },
         {
-          "text": "That is shallow fluency pretending to be intuition.",
-          "location": "breakdown.deepRead",
-          "why": "It names the failure cleanly after a concrete scene."
+          "text": "That is shallow fluency pretending to be intuition."
         },
         {
-          "text": "Dig until the step can survive a new shape. Then build higher.",
-          "location": "breakdown.fullRead",
-          "why": "It captures depth before expansion in one line."
+          "text": "Dig until the step can survive a new shape. Then build higher."
         }
       ]
     },
@@ -3609,13 +2982,6 @@
             "experiment",
             "test"
           ],
-          "planSpec": {
-            "domain": "Lucy, a newsroom editor testing a new fact-checking workflow",
-            "audience": "a learner testing a bounded alternative",
-            "stakes": "whether comfort keeps hiding a better fit",
-            "format": "scene",
-            "requiredBeat": "A marked-up article proof sits beside Lucy’s red fact-check stamp at 6:05 p.m. The newsroom default feels fast, but two recent cor"
-          },
           "scenario": "Two recent corrections slipped through on Lucy's watch using the newsroom's default approach. The marked-up proof beside her fact-check stamp at 6:05 p.m. belongs to one article. She tests a new checklist on that piece and compares the errors caught against the old workflow before changing anything for the whole desk.",
           "whatToDo": "Run the new workflow on one article and compare caught errors against the default.",
           "whyItMatters": "A bounded test reveals whether discomfort improves the real editing task or only adds process."
@@ -3627,13 +2993,6 @@
             "experiment",
             "test"
           ],
-          "planSpec": {
-            "domain": "Luke, a medical student comparing two study methods on the same anatomy block",
-            "audience": "a learner testing a bounded alternative",
-            "stakes": "whether comfort keeps hiding a better fit",
-            "format": "scene",
-            "requiredBeat": "You are beside Luke with two anatomy diagrams separated by a folded index card. The familiar method feels easier. The alternative "
-          },
           "scenario": "Two anatomy diagrams lie separated by a folded index card in front of Luke. The familiar method feels easier. The alternative feels clumsy. He studies the same block both ways and lets tomorrow’s closed recall score choose the plan, not comfort.",
           "whatToDo": "Compare two methods on the same anatomy block and use recall score as the decision rule.",
           "whyItMatters": "The same target keeps the test fair. Comfort alone would protect the old method from scrutiny."
@@ -3645,13 +3004,6 @@
             "experiment",
             "test"
           ],
-          "planSpec": {
-            "domain": "Hugo, a swimming coach using a plateau to test a different stroke cue",
-            "audience": "a learner testing a bounded alternative",
-            "stakes": "whether comfort keeps hiding a better fit",
-            "format": "scene",
-            "requiredBeat": "The pool deck smells of chlorine, and a damp lap card is clipped to the lane rope. Hugo’s swimmer has plateaued with the old cue. "
-          },
           "scenario": "Hugo's swimmer has plateaued on the same stroke cue for three timed weeks. A damp lap card is clipped to the lane rope, and the splits have not moved. He picks one different cue, runs three timed laps, and records the split before deciding whether the change stays.",
           "whatToDo": "Change one cue for three timed laps and let the split decide the next practice block.",
           "whyItMatters": "A plateau is a signal to test, not proof that random novelty will help. The timed laps keep the experiment honest."
@@ -3663,13 +3015,6 @@
             "experiment",
             "test"
           ],
-          "planSpec": {
-            "domain": "Paula, a researcher scheduling one serious method comparison",
-            "audience": "a learner testing a bounded alternative",
-            "stakes": "whether comfort keeps hiding a better fit",
-            "format": "scene",
-            "requiredBeat": "\"What would count as better?\" Nora asks, pointing at two sample trays on the lab bench. Paula has filled weeks with the familiar p"
-          },
           "scenario": "Nora points at two sample trays on the lab bench and asks what better would actually look like. Paula has filled weeks with the familiar preparation method. She schedules one comparison, same sample type and Friday error rate, instead of repeating the comfortable run again.",
           "whatToDo": "Define the comparison result before the lab week fills with the default method.",
           "whyItMatters": "The result rule prevents the alternative from becoming a vague preference contest."
@@ -3681,13 +3026,6 @@
             "experiment",
             "test"
           ],
-          "planSpec": {
-            "domain": "Aman, a call-center trainer trying an uncomfortable live-call practice",
-            "audience": "a learner testing a bounded alternative",
-            "stakes": "whether comfort keeps hiding a better fit",
-            "format": "scene",
-            "requiredBeat": "At 10:25 a.m., Aman rests a headset on a printed script and predicts another script drill will help. Then a trainee freezes on a l"
-          },
           "scenario": "Aman's script drills have not prevented trainees from freezing on live interruptions. At 10:25 a.m., a headset rests on a printed script, and the latest trainee just stalled mid-call. He moves to a controlled live-call practice because the safe drill has stopped showing the real weakness.",
           "whatToDo": "Use the live-call practice and watch the interruption point, then decide whether script drills still deserve time.",
           "whyItMatters": "Useful discomfort reveals what comfort hid. The live call keeps experimentation tied to the skill."
@@ -3699,13 +3037,6 @@
             "experiment",
             "test"
           ],
-          "planSpec": {
-            "domain": "Kasia, a game designer stopping random method changes and tying tests to playability",
-            "audience": "a learner testing a bounded alternative",
-            "stakes": "whether comfort keeps hiding a better fit",
-            "format": "scene",
-            "requiredBeat": "It took Kasia one useless playtest to see the note beside the loose controller: too many variables changed. In the postmortem, she"
-          },
           "scenario": "One useless playtest left Kasia with a note beside the loose controller: too many variables changed at once. In the postmortem, she chooses one playability problem, the missed jump cue in room two, and changes only tutorial timing for the next test.",
           "whatToDo": "Tie the next experiment to one playability problem and change one variable.",
           "whyItMatters": "Random changes create noise. A single-variable test tells Kasia whether the game improved."
@@ -3724,8 +3055,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The one-article comparison tests a real result. Changing everything creates noise, and comfort alone cannot judge accuracy.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3737,8 +3067,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Recall score ties the comparison to learning. Ease and color can feel better while hiding weak retention.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3750,8 +3079,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The bounded cue test produces information against the plateau. Constant change and boredom-driven novelty do not isolate a cause.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3763,8 +3091,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A result rule keeps the comparison honest. Newness and broad trying cannot decide whether the method improved the target.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3776,8 +3103,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The live-call practice changes the condition that matters. More script reading preserves comfort, and a random framework may miss the weakness.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3789,8 +3115,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Multiple simultaneous changes destroy the signal. A single playability variable would produce a cleaner lesson.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3802,8 +3127,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A plateau gives a reason to test. Excitement alone is novelty, and abandoning everything prevents comparison.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3815,8 +3139,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Discomfort can reveal hidden options, but the target result decides. Difference alone is not evidence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3828,8 +3151,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Controlling the target and variable lets the learner interpret the result. Freshness and total change create noise.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3890,19 +3212,13 @@
       },
       "memorableLines": [
         {
-          "text": "Novelty is cheap. A useful test has a target.",
-          "location": "breakdown.fastRead",
-          "why": "It separates experimentation from random change."
+          "text": "Novelty is cheap. A useful test has a target."
         },
         {
-          "text": "Discomfort can be evidence, but it is not proof.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps useful discomfort tied to results."
+          "text": "Discomfort can be evidence, but it is not proof."
         },
         {
-          "text": "Explore outside comfort, but bring a measuring stick.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the chapter into a memorable rule."
+          "text": "Explore outside comfort, but bring a measuring stick."
         }
       ]
     },
@@ -3927,13 +3243,6 @@
             "project design",
             "scope"
           ],
-          "planSpec": {
-            "domain": "Emma, a customer-support manager choosing a first analytics project",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the next month produces visible evidence or another private feeling of effort",
-            "format": "scene",
-            "requiredBeat": "Emma chooses one customer-support analytics project with a weekly block and one dashboard that will prove the skill."
-          },
           "scenario": "A support-ticket export curls beside a hand-drawn dashboard grid. Emma must decide which version of analytics will survive the month: another private study list or one weekly block that ends in a dashboard showing the top three refund causes. Emma writes Friday beside the refund dashboard and names the operations lead who will read it. That small outside check makes the weekly block harder to skip and keeps the report from becoming private spreadsheet practice.",
           "whatToDo": "Define the first project as one dashboard, one weekly block, and one standard for useful evidence.",
           "whyItMatters": "The proof artifact keeps analytics from becoming a flattering label with no visible result."
@@ -3945,13 +3254,6 @@
             "protected time",
             "first session"
           ],
-          "planSpec": {
-            "domain": "Matthew, a biology student protecting time for one lab-technique sprint",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether a deadline exposes the weakness early enough to adjust",
-            "format": "decision_point",
-            "requiredBeat": "Matthew protects two lab-technique sessions before buying more biology materials, then names the first observable pass."
-          },
           "scenario": "You have a pipette calibration card, a taped lab schedule, and a cart full of extra materials waiting online. Matthew has to choose before the order goes through: buy more preparation or protect two sessions that prove one clean calibration routine. He tapes the two sessions onto the lab calendar before buying anything else. The first pass is not mastery; it is a clean setup with no contamination and a note on the step that still breaks.",
           "whatToDo": "Block the sessions first, then buy only the materials required for the named pass.",
           "whyItMatters": "Protected time makes the project real before the learner can decorate it with more preparation."
@@ -3963,13 +3265,6 @@
             "scope",
             "credibility"
           ],
-          "planSpec": {
-            "domain": "Vincent, a school counsellor scoping a trauma-informed training project",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
-            "format": "vignette",
-            "requiredBeat": "Vincent scopes trauma-informed training to one supervision scenario instead of an entire counselling identity."
-          },
           "scenario": "The supervision-room chair faces a printed scenario sheet with one student incident circled. Vincent is about to decide how to define the project, and he drops the impossible goal of becoming trauma-informed in general for one reviewed supervision response. The printed scenario gives Vincent a boundary he can defend. Instead of promising a new professional identity, he will draft one supervision response and ask his clinical lead to mark where safety language turns vague.",
           "whatToDo": "Choose one scenario, one response format, and one qualified reviewer instead of claiming the whole identity.",
           "whyItMatters": "A narrow scenario turns a noble goal into a first project that can receive useful correction."
@@ -3981,13 +3276,6 @@
             "commitment",
             "artifact"
           ],
-          "planSpec": {
-            "domain": "Isabel, a printmaker making the goal serious enough to deserve studio hours",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the project survives contact with a real schedule and real standards",
-            "format": "dialogue",
-            "requiredBeat": "Isabel makes the printmaking project serious by reserving studio hours and defining a six-print proof set."
-          },
           "scenario": "\"What are you reserving the press for?\" the studio manager asks as six blank sheets wait beside the ink roller. Isabel must choose between a vague improvement plan and a six-print proof set with three booked sessions. The reservation sheet turns Isabel's idea into a cost. If she misses the press time, the blank deckle-edge sheets will still be waiting, which is exactly why the proof set can teach her faster than another sketchbook plan.",
           "whatToDo": "Reserve the studio hours and name the six-print proof set before adding any new artistic goals.",
           "whyItMatters": "The reservation forces the project to compete for real time and produce visible evidence."
@@ -3999,13 +3287,6 @@
             "proof",
             "commitment"
           ],
-          "planSpec": {
-            "domain": "Devon, a cloud-admin apprentice defining the first deployable artifact",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether comfort keeps protecting the exact skill gap that matters",
-            "format": "predict_reveal",
-            "requiredBeat": "Devon names the first deployable cloud artifact and refuses to call the project started until it runs."
-          },
           "scenario": "At 7:40 in the morning, Devon studies a whiteboard server diagram with one missing arrow and predicts another tutorial will make him safer. The reveal comes when he has to choose a harsher start: one deployable artifact running in a test account by Friday. Devon writes the test account name under the missing arrow and deletes two tutorial links from the board. By Friday, either the artifact runs or the diagram has shown him the first piece he does not yet understand.",
           "whatToDo": "Define the project by the first running artifact, not by the amount of cloud material consumed.",
           "whyItMatters": "A running artifact exposes the gap that reading can keep politely hidden."
@@ -4017,13 +3298,6 @@
             "postmortem",
             "reviewer"
           ],
-          "planSpec": {
-            "domain": "Maja, a city volunteer turning a climate-data interest into a scoped project",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the next attempt changes the skill instead of decorating the plan",
-            "format": "postmortem",
-            "requiredBeat": "Maja turns climate-data interest into a scoped volunteer map with a due date and a named reviewer."
-          },
           "scenario": "It took Maja three weeks to see that the community-centre bulletin board still had a blank map pin. Her postmortem crosses out learn climate data and replaces it with one neighbourhood flood-risk map due before the June meeting and reviewed by a city planner. The old folder had sources, but no one could use it. The new map has a meeting date, a planning-office reviewer, and one crossed-out escape: adding more links before drawing the first neighbourhood boundary.",
           "whatToDo": "Rewrite the interest as one map, one due date, and one reviewer with authority to mark weak spots.",
           "whyItMatters": "The scoped artifact turns an admirable interest into a project that can be finished and judged."
@@ -4042,8 +3316,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The dashboard has scope, protected time, and visible proof. Reading more may help later, but here it preserves the vague goal that has already failed to produce evidence.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4055,8 +3328,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The protected sessions and clean pass make the project executable. Buying everything broadens the scope before the first skill has met a real standard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4068,8 +3340,7 @@
             ],
             "correctIndex": 0,
             "explanation": "One scenario plus review gives the learning a concrete direction. A mission statement may sound serious, but it does not create a visible attempt or correction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4081,8 +3352,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The proof set is narrow enough to start and serious enough to deserve studio hours. Keeping every variable open makes the project too shapeless for the calendar.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -4094,8 +3364,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The running artifact is a concrete proof that can reveal missing skill. Provider comparison and more reading can feel productive while avoiding the deployment weakness.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -4107,8 +3376,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The map, date, and reviewer convert interest into a first project. More sources repeat the old pattern that produced a full folder and an empty display.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -4120,8 +3388,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The problem is not the ambition but the missing project container. Making the sentence grander would increase fog; naming the proof and first session would create pressure.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -4133,8 +3400,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The scope is so wide that it can delay action. A first project should still matter, but it needs an early artifact such as auditing one checkout flow.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -4146,8 +3412,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The weekly block, one scenario, and reviewer create a serious but bounded project. Waiting for completeness delays the first attempt, and casual reading weakens commitment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -4208,19 +3473,13 @@
       },
       "memorableLines": [
         {
-          "text": "Seriousness needs a container.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the chapter's demand for scope and protected time."
+          "text": "Seriousness needs a container."
         },
         {
-          "text": "The first project should make avoidance visible.",
-          "location": "breakdown.deepRead",
-          "why": "It turns project design into a diagnostic tool."
+          "text": "The first project should make avoidance visible."
         },
         {
-          "text": "That is the test for a first project: smaller and more serious at the same time.",
-          "location": "breakdown.fullRead",
-          "why": "It balances ambition with startable design."
+          "text": "That is the test for a first project: smaller and more serious at the same time."
         }
       ],
       "readingTimeMinutes": 12
@@ -4246,13 +3505,6 @@
             "continuity",
             "formal routes"
           ],
-          "planSpec": {
-            "domain": "Alice, a mid-career teacher building yearly projects alongside formal PD",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the next month produces visible evidence or another private feeling of effort",
-            "format": "scene",
-            "requiredBeat": "Alice uses a finished classroom project to design the next year of teacher learning instead of waiting for formal PD."
-          },
           "scenario": "A student project rubric is tucked inside Alice's teacher planner beside the printed professional-development calendar. She must decide whether to wait for the next workshop or build one classroom feedback project from the evidence already in her hand.",
           "whatToDo": "Use the finished project to choose one yearly learning project beside the formal training schedule.",
           "whyItMatters": "The formal route can help, but the learner-built project keeps improvement tied to classroom proof."
@@ -4264,13 +3516,6 @@
             "self-direction",
             "standards"
           ],
-          "planSpec": {
-            "domain": "George, a graduate assistant keeping self-direction structured beside university work",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether a deadline exposes the weakness early enough to adjust",
-            "format": "decision_point",
-            "requiredBeat": "George keeps a self-directed research path structured beside university work by setting outside standards for each term."
-          },
           "scenario": "You are looking at a graduate office corkboard with three term cards pinned in a row. George has to choose before the semester starts: let his side research stay optional, or assign each term one outside standard and one reviewer.",
           "whatToDo": "Give the self-directed path term-level standards that someone outside the project can inspect.",
           "whyItMatters": "A university schedule will not automatically protect the learner-built path unless the path has its own rails."
@@ -4282,13 +3527,6 @@
             "adaptation",
             "review"
           ],
-          "planSpec": {
-            "domain": "Julien, a carpenter designing an education path through certifications and projects",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether the learner keeps credibility with a reviewer, client, teacher, or team",
-            "format": "vignette",
-            "requiredBeat": "Julien combines certifications, shop projects, and mentor review into a carpenter's education path."
-          },
           "scenario": "The dovetail sample sits beside a trade certification brochure on Julien's bench. He is about to decide whether to treat the certificate and shop projects as rival paths, then chooses a combined route: standards from the brochure, proof from the bench, correction from a mentor.",
           "whatToDo": "Use formal standards and project evidence together instead of forcing a false choice.",
           "whyItMatters": "Unconventional education can borrow structure from standard routes while still adapting through real work."
@@ -4300,13 +3538,6 @@
             "responsibility",
             "project design"
           ],
-          "planSpec": {
-            "domain": "Giulia, a parent returning to study without waiting for a perfect program",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the project survives contact with a real schedule and real standards",
-            "format": "dialogue",
-            "requiredBeat": "Giulia stops waiting for a perfect program and builds one serious evening project around the study time she actually has."
-          },
           "scenario": "\"When would you even do the work?\" Giulia's sister asks as a child's lunchbox leans against an open enrollment form. Giulia must decide whether to keep waiting for the ideal program or build one reviewed evening project from the study time she actually has.",
           "whatToDo": "Keep the program option open, but start one project with a rubric, reviewer, and real evening block.",
           "whyItMatters": "The learner does not need to reject programs to stop waiting for them to provide every piece of structure."
@@ -4318,13 +3549,6 @@
             "adaptation",
             "continuity"
           ],
-          "planSpec": {
-            "domain": "Nora, a public-health analyst connecting one finished project to a wider learning path",
-            "audience": "a learner who has been mistaking motion for progress",
-            "stakes": "whether comfort keeps protecting the exact skill gap that matters",
-            "format": "predict_reveal",
-            "requiredBeat": "Nora connects one public-health project to the next adaptation she must learn, without claiming the credential question is gone."
-          },
           "scenario": "At 8:15 Monday, Nora places an outbreak dashboard printout beside a continuing-education catalog and predicts completion means more independence. The review reveals fragile field-data assumptions, so she has to choose the next structure: a validation project plus senior analyst challenge.",
           "whatToDo": "Use the finished project identify the next structured learning problem instead of treating completion as the end.",
           "whyItMatters": "Adaptation keeps the education alive without pretending credentials and standards have disappeared."
@@ -4336,13 +3560,6 @@
             "postmortem",
             "continuity"
           ],
-          "planSpec": {
-            "domain": "Niklas, a musician resisting structure-free freedom after a successful project",
-            "audience": "a practitioner under a near-term performance constraint",
-            "stakes": "whether the next attempt changes the skill instead of decorating the plan",
-            "format": "postmortem",
-            "requiredBeat": "Niklas sees that freedom without structure made the last project drift, so he writes continuity rules for the next musical skill."
-          },
           "scenario": "It took Niklas until the set list was clipped to the keyboard stand after the final rehearsal to notice the drift. His postmortem crosses out practice when inspired and replaces it with two protected sessions, one recording sent for review, and one performance standard.",
           "whatToDo": "Turn the successful project's evidence into continuity rules for the next skill.",
           "whyItMatters": "A good result should not become permission to abandon the structure that made improvement possible."
@@ -4361,8 +3578,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The yearly project uses classroom proof to create structure beside formal training. Rejecting every workshop confuses self-direction with anti-institution posture.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4374,8 +3590,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Outside standards and reviewers create rails for the personal path. Leaving it optional repeats the pattern that lets urgent official work erase it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4387,8 +3602,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The combined route borrows useful standards and tests them in real projects. Ignoring standards or avoiding the bench would each remove half the learning pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4400,8 +3614,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The evening project builds structure from the time and reviewer she already has. Waiting hands all responsibility to the program, while rejecting credentials creates needless drift.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4413,8 +3626,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The next project adapts to evidence from the last one. Jumping topics for novelty or declaring completion would both ignore the weakness the review exposed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -4426,8 +3638,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The successful recital should inform the next structure, not erase it. Dropping review and deadlines makes the next project less accountable than the one that worked.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -4439,8 +3650,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Curiosity can start a path, but artifacts, standards, and review make it accountable. Freedom alone does not replace the missing structure.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -4452,8 +3662,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The monthly project supplies structure without waiting for the employer to provide every step. Forum browsing may be useful, but without deadlines or review it stays loose.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -4465,8 +3674,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The correction keeps the value of projects while restoring accountability. Rejecting rubrics and critique turns self-direction into private preference.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -4527,19 +3735,13 @@
       },
       "memorableLines": [
         {
-          "text": "Freedom without structure is just drift with better branding.",
-          "location": "breakdown.fastRead",
-          "why": "It rejects the common mistake of treating self-direction as looseness."
+          "text": "Freedom without structure is just drift with better branding."
         },
         {
-          "text": "Self-direction is structure you can explain.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the chapter's definition of accountable independence."
+          "text": "Self-direction is structure you can explain."
         },
         {
-          "text": "The path is unconventional because you take responsibility for its design.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the book-level teaching arc around responsibility."
+          "text": "The path is unconventional because you take responsibility for its design."
         }
       ],
       "readingTimeMinutes": 12

@@ -25,7 +25,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "factfulness-ch01",
       "number": 1,
       "title": "The Gap Instinct",
@@ -126,8 +125,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 supports the 2017 overlap. A 1965 visual split should not be reused as if it still described most people.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch01-q02",
@@ -139,8 +137,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 says both moved from roughly 240 to 250 deaths per 1,000 to below 35, with Saudi Arabia moving faster.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch01-q03",
@@ -152,8 +149,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 points to the majority before the extremes. The poorest and richest groups are real, but they do not define normal global life.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch01-q04",
@@ -165,8 +161,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 supports the ladder because it shows middle positions. The common error is treating four levels as a softer binary.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch01-q05",
@@ -178,8 +173,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 points to lag. The World Bank wording mattered because an institution can preserve an old category after the distribution changes.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "factfulness-ch01-q06",
@@ -191,8 +185,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 separates the measures. The global extreme-poverty line sits far below many rich-country relative poverty thresholds.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "factfulness-ch01-q07",
@@ -204,8 +197,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 says the data stay the same while the frame changes. Survival wording can reduce misreading without changing the facts.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch01-q08",
@@ -217,8 +209,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 8 warns that people inside one country can live on different levels. Averages are useful, but they can compress internal differences.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch01-q09",
@@ -230,8 +221,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 9 says the cure is distributions, not positivity. This method keeps severe poverty visible while rejecting a false empty gap.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -268,7 +258,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Find the Middle First",
         "coreSkill": "Practice catching a two-box story before it becomes your map. Use Find the Middle: locate the largest group, check movement over time, then ask whether an old label still fits the data.",
         "ifThenPlans": [
           {
@@ -289,24 +278,17 @@
       },
       "memorableLines": [
         {
-          "text": "Most people are often between the extremes.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's warning into a short test of a visual split."
+          "text": "Most people are often between the extremes."
         },
         {
-          "text": "Income levels are a rough ladder, not a verdict.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the middle easy to remember when extremes pull attention."
+          "text": "Income levels are a rough ladder, not a verdict."
         },
         {
-          "text": "Old labels can outlive old facts.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the World Bank wording lesson in a portable line."
+          "text": "Old labels can outlive old facts."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "factfulness-ch02",
       "number": 2,
       "title": "The Negativity Instinct",
@@ -407,8 +389,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Factfulness keeps level and trend apart. A condition can improve and still be bad. Choice 1 treats improvement as solved; choice 2 treats remaining harm as proof that progress is fake.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -420,8 +401,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Eriksberg case shows that conditions now seen as foreign existed recently in a rich country. Choice 1 keeps the old distance; choice 2 turns one local memory into a rigid forecast.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -433,8 +413,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Terrorism is the check against blanket optimism. It worsened over that span. The right move is to keep it real while checking other indicators on their own evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -446,8 +425,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source keeps environmental decline in the picture. Negativity is not always illusion. Choice 0 dismisses real harm; choice 1 lets one warning erase all other trend work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -459,8 +437,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact supports direction despite uncertainty. Exact old levels may be fuzzy, but consistent methods can still show a fall. The other choices turn doubt into total denial.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -472,8 +449,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sidecar points to UN-IGME and historical compilations showing a long fall. The source does not claim perfect measurement; it says the direction is well supported.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -485,8 +461,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The ITOPF figures support a clear drop in average accident count. Choice 0 reverses the trend; choice 1 rejects a direction the cited numbers are strong enough to show.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -498,8 +473,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source names smallpox as a real global improvement tied to WHO vaccination work and the last known case in Somalia in 1977. The other choices deny or replace that mechanism.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q09",
@@ -511,8 +485,7 @@
             ],
             "correctIndex": 0,
             "explanation": "News favors drama. That means an improving world can still produce a grim feed. The other choices mistake visibility for trend evidence or make bad events more reliable by default.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -549,7 +522,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run a Trend Check",
         "coreSkill": "Practice the Trend Check when bad news makes decline feel obvious. Say the level, say the trend, then ask whether a loud event is crowding out slow change. The skill is not cheerfulness; it is holding bad levels and better trends in the same hand.",
         "ifThenPlans": [
           {
@@ -574,24 +546,17 @@
       },
       "memorableLines": [
         {
-          "text": "Bad news starts a check; it does not finish the story.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter into a pause the reader can use."
+          "text": "Bad news starts a check; it does not finish the story."
         },
         {
-          "text": "A trend can improve and still describe pain.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps progress and urgency together in one short sentence."
+          "text": "A trend can improve and still describe pain."
         },
         {
-          "text": "Uncertainty about old levels does not erase every direction.",
-          "location": "breakdown.deepRead",
-          "why": "It warns against treating improvement as permission to relax."
+          "text": "Uncertainty about old levels does not erase every direction."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "factfulness-ch03",
       "number": 3,
       "title": "The Straight Line Instinct",
@@ -692,8 +657,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 says the child population is projected to be about the same in 2100 as in 2017 after a mid-century peak. The other choices turn total growth into the wrong child story.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch03-q02",
@@ -705,8 +669,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 2 points to age-structure momentum. More people surviving into adulthood and old age can lift total population even when births per woman fall.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch03-q03",
@@ -718,8 +681,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 gives the 1950 and 2017 averages and supports a major decline. The other choices keep the common error that family size barely changed.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "factfulness-ch03-q04",
@@ -731,8 +693,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 names several determinants working together. The common error is turning a fertility transition into a one-cause story about contraception alone.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch03-q05",
@@ -744,8 +705,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 says a small part of a curve can look straight. The first check is the viewing window, not the neatness or drama of the recent segment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch03-q06",
@@ -757,8 +717,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 supports a gallery of shapes. Saturation, thresholds, and behavior change can bend a line, so income alone does not make every indicator straight.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch03-q07",
@@ -770,8 +729,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 says UN forecasts have a measurable record. That does not make them perfect, but it does make them more than unchecked guesses.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "factfulness-ch03-q08",
@@ -783,8 +741,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 says replacement depends on mortality conditions and cites about 2.3 globally. The simple two-parent arithmetic misses deaths before replacement can happen.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch03-q09",
@@ -796,8 +753,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 gives the core repair: ask why the line might bend before extrapolating. A recent slope without a mechanism is only a drawing habit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -834,7 +790,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask Why Lines Bend",
         "coreSkill": "Practice Bend Check before you accept a rising or falling line. Name the visible slope, widen the window, then ask what force could bend it. The skill is not doubt for its own sake; it is asking the cause to earn the forecast.",
         "ifThenPlans": [
           {
@@ -859,24 +814,17 @@
       },
       "memorableLines": [
         {
-          "text": "Do not extend a line until you can name its cause.",
-          "location": "breakdown.fastRead",
-          "why": "It turns forecasting into a demand for a cause."
+          "text": "Do not extend a line until you can name its cause."
         },
         {
-          "text": "A short window can hide a curve.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the scale problem easy to remember."
+          "text": "A short window can hide a curve."
         },
         {
-          "text": "Population growth can come from age structure, not more children.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a portable warning before they extrapolate."
+          "text": "Population growth can come from age structure, not more children."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "factfulness-ch04",
       "number": 4,
       "title": "The Fear Instinct",
@@ -977,8 +925,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 separates reported fear from mortality risk. Snakes, heights, and public speaking can rank high in fear without ranking high as causes of death.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch04-q02",
@@ -990,8 +937,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 2 supports the large raw decline. The later count is still tragic, but it is far lower than the early-century average.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch04-q03",
@@ -1003,8 +949,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 says per-capita risk fell even more. The raw count matters, but deaths per million adjusts for the larger exposed population.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch04-q04",
@@ -1016,8 +961,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 names the earthquake, tsunami, and evacuation harms. The cited official accounts reported no confirmed direct deaths from the leak itself.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch04-q05",
@@ -1029,8 +973,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 requires exposure. Fatalities mean little for safety judgment unless they are compared with passenger miles and flight volume.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch04-q06",
@@ -1042,8 +985,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 separates media attention from death risk. Terrorism can be salient because intent and drama are newsworthy, not because airtime measures mortality burden.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "factfulness-ch04-q07",
@@ -1055,8 +997,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 says risk combines danger, exposure, and probability rather than emotional intensity. Scale decides whether it deserves scarce resources.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch04-q08",
@@ -1068,8 +1009,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 keeps psychosocial effects and evacuation damage in view. The source does not limit harm to confirmed radiation deaths.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch04-q09",
@@ -1081,8 +1021,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 says uncertainty should widen ranges, not end comparison. A cautious range is better than pretending the data are useless or clean.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1125,7 +1064,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Check Risk Before Replying",
         "coreSkill": "Practice a Risk Check before you answer a frightening claim. Write the actual words that ask for danger, exposure, probability, and scale. The skill is not calmness for show; it is giving the numbers a turn before fear sets the order.",
         "ifThenPlans": [
           {
@@ -1150,24 +1088,17 @@
       },
       "memorableLines": [
         {
-          "text": "Fear is an alarm, not a risk table.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the core distinction short enough to use under pressure."
+          "text": "Fear is an alarm, not a risk table."
         },
         {
-          "text": "A vivid danger can be real and still not be the largest risk.",
-          "location": "breakdown.deepRead",
-          "why": "It prevents readers from confusing truth with size."
+          "text": "A vivid danger can be real and still not be the largest risk."
         },
         {
-          "text": "Count the pathway before naming the feared agent.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the Fukushima lesson without losing the action step."
+          "text": "Count the pathway before naming the feared agent."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "factfulness-ch05",
       "number": 5,
       "title": "The Size Instinct",
@@ -1268,8 +1199,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 says the Nacala deaths needed births, population, and hospital records before they could guide action. The raw count alone can misdirect scarce help.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch05-q02",
@@ -1281,8 +1211,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 supports ranking by lives saved per dollar in poor settings. Advanced care may matter, but it is not always the best first use of scarce funds.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch05-q03",
@@ -1294,8 +1223,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 says people overestimate visible proportions. The UK guesses of 25 versus 13 percent and 59 versus 23 percent show salience inflating shares.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch05-q04",
@@ -1307,8 +1235,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 says the denominator must fit the decision: per birth, per dollar, per population, or per exposure. A bad denominator can mislead too.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "factfulness-ch05-q05",
@@ -1320,8 +1247,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 says infant death totals need births and trends. A large total can coexist with a falling rate, so risk per child matters.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch05-q06",
@@ -1333,8 +1259,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 says Mozambique's poverty and extremely low doctor density made prioritization severe. Scarcity raises the opportunity cost of each intervention.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch05-q07",
@@ -1346,8 +1271,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 says rare dramatic attacks can receive more attention than repeated intimate-partner killings. Policy focus should track frequency and preventability.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch05-q08",
@@ -1359,8 +1283,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 9 gives the repair: compare and divide. The number may be useful, but not until it is placed against a relevant whole or alternative.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch05-q09",
@@ -1372,8 +1295,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 says war totals need denominators and context. A remembered number can be emotionally large without being the largest current priority.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1410,7 +1332,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Add the Missing Denominator",
         "coreSkill": "Practice Add the Missing Denominator before you pass on a big number. Name the decision first, then ask which total, trend, or alternative would make the number useful. The skill is choosing the comparison that matches the choice.",
         "ifThenPlans": [
           {
@@ -1436,24 +1357,17 @@
       },
       "memorableLines": [
         {
-          "text": "A big number needs the right whole.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the denominator rule easy to carry."
+          "text": "A big number needs the right whole."
         },
         {
-          "text": "Drama is not size, and size is not priority.",
-          "location": "breakdown.deepRead",
-          "why": "It separates attention from impact."
+          "text": "Drama is not size, and size is not priority."
         },
         {
-          "text": "Use the denominator the decision needs.",
-          "location": "breakdown.fullRead",
-          "why": "It protects the hard edge about the right denominator."
+          "text": "Use the denominator the decision needs."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "factfulness-ch06",
       "number": 6,
       "title": "The Generalization Instinct",
@@ -1553,8 +1467,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 says household objects can resemble each other across China and Nigeria at similar income levels. Country-first guessing misses that pattern.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch06-q02",
@@ -1566,8 +1479,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 makes Africa too varied for one mental category. The distance comparison is a warning against treating the continent as one close, uniform place.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch06-q03",
@@ -1579,8 +1491,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 links diabetes care costs to fragile budgets. The rich-country shortcut fails when insulin and care consume money a household cannot spare.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch06-q04",
@@ -1592,8 +1503,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 says met and unmet need must be separated. Use alone can hide women who want to avoid pregnancy but lack contraception.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch06-q05",
@@ -1605,8 +1515,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 rejects origin as the safety test. Toxicity depends on compound and dose, so natural and synthetic are not enough.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch06-q06",
@@ -1618,8 +1527,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 does not make expertise worthless. It says broad medical rules need evidence and revision when later feedback shows harm.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch06-q07",
@@ -1631,8 +1539,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 treats the Salhi material as concrete household evidence. One home can sharpen observation, but it cannot define a country.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch06-q08",
@@ -1644,8 +1551,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 8 uses distance to expose category absurdity. A shared continent label can hide how far apart and varied the cases are.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch06-q09",
@@ -1657,8 +1563,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 says the cure is not category refusal. Split, merge, or replace the label when it no longer predicts the case at hand.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1701,7 +1606,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run Category Hygiene",
         "coreSkill": "Practice testing a label before you let it steer your conclusion. Run Category Hygiene by asking whether to split the group, compare across the border, or replace the label. The skill keeps categories useful without letting them become stereotypes.",
         "ifThenPlans": [
           {
@@ -1726,24 +1630,17 @@
       },
       "memorableLines": [
         {
-          "text": "A label is useful only while it predicts.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the chapter from becoming anti-category."
+          "text": "A label is useful only while it predicts."
         },
         {
-          "text": "Split a group when the group hides the case.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a compact first move."
+          "text": "Split a group when the group hides the case."
         },
         {
-          "text": "Do not split so far that no pattern can guide action.",
-          "location": "breakdown.fullRead",
-          "why": "It names the overcorrection without dulling the tool."
+          "text": "Do not split so far that no pattern can guide action."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "factfulness-ch07",
       "number": 7,
       "title": "The Destiny Instinct",
@@ -1844,8 +1741,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 says several North African countries reached life expectancy above the world average and near historical Sweden. The lesson is movement, not sameness.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch07-q02",
@@ -1857,8 +1753,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 says Iran's lower 2017 rate undercuts religious destiny stories. The rate points to social and policy change, not a fixed label.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch07-q03",
@@ -1870,8 +1765,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 says FSA photographs and Dirt Sweden documented hardship in countries later seen as rich. Comfort can be recent, not timeless.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch07-q04",
@@ -1883,8 +1777,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 9 says the cure for destiny thinking is noticing slow change. Gradual movement can matter long before it becomes headline-sized.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch07-q05",
@@ -1896,8 +1789,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 is the guardrail. The source rejects fixed destiny, but it also rejects automatic catch-up when war or weak institutions block change.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "factfulness-ch07-q06",
@@ -1909,8 +1801,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 says religious categories do not determine family size. Conditions such as income, education, and health can cut across labels.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch07-q07",
@@ -1922,8 +1813,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 says several infrastructure indicators improved over decades. Low levels still matter, but they do not erase movement.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch07-q08",
@@ -1935,8 +1825,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 says forecasts should be checked against their record. The right move is neither obedience nor dismissal, but review.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "factfulness-ch07-q09",
@@ -1948,8 +1837,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 links fertility decline with gains in women's schooling and life expectancy. The transition was broader than one rate.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1992,7 +1880,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Time Trace",
         "coreSkill": "Practice treating a fixed-sounding claim as a moving record. Run the Time Trace by naming the label, finding an older measure, and asking what changed. The skill keeps you from mistaking today's snapshot for fate.",
         "ifThenPlans": [
           {
@@ -2017,24 +1904,17 @@
       },
       "memorableLines": [
         {
-          "text": "A country is a changing time series.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the central habit visual and portable."
+          "text": "A country is a changing time series."
         },
         {
-          "text": "Slow change is still change when the graph keeps moving.",
-          "location": "breakdown.deepRead",
-          "why": "It counters the main blind spot in one sentence."
+          "text": "Slow change is still change when the graph keeps moving."
         },
         {
-          "text": "Old labels need dated measures.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the source discipline without turning it into optimism."
+          "text": "Old labels need dated measures."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "factfulness-ch08",
       "number": 8,
       "title": "The Single Perspective Instinct",
@@ -2135,8 +2015,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 supports scoping expertise. The Lindau miss is not a reason to mock experts or erase facts; it shows that skill in one field does not cover all global knowledge.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch08-q02",
@@ -2148,8 +2027,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 points to broad access. A disease campaign can help, but Alma Ata warns that campaigns do not replace clinics, staff, trust, and local reach.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch08-q03",
@@ -2161,8 +2039,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 says schooling is not only curriculum. Energy, light, and connectivity can change learning conditions, so the second tool looks beyond the classroom plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch08-q04",
@@ -2174,8 +2051,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 supports the outcome check. More spending across categories can sit beside no matching life-expectancy gain, so cost alone is not quality.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "factfulness-ch08-q05",
@@ -2187,8 +2063,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 does not reject democracy. It says elections are not a guaranteed repair when violence and weak institutions change how the tool works.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "factfulness-ch08-q06",
@@ -2200,8 +2075,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 says markets can help without being complete. The better memo keeps the tool and adds the systems that let growth reach people.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "factfulness-ch08-q07",
@@ -2213,8 +2087,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 favors humble updating over confidence. Curiosity and revision improve forecasts; one-lens certainty can sound strong while seeing less.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch08-q08",
@@ -2226,8 +2099,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 says ownership slogans are too thin. Shared resources need rules, incentives, and local management that change extraction behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch08-q09",
@@ -2239,8 +2111,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 says the work is matching tools to mechanisms. A second measure and an outcome test beat the hunt for one theory that explains everything.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2283,7 +2154,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask for the Second Tool",
         "coreSkill": "Practice catching the first lens before it becomes the whole answer. Ask for the Second Tool by naming the tool you favor, adding one outside measure, and deciding which outcome would prove the tool helped. The skill keeps experts useful without letting expertise sprawl.",
         "ifThenPlans": [
           {
@@ -2308,24 +2178,17 @@
       },
       "memorableLines": [
         {
-          "text": "Expertise has a field.",
-          "location": "breakdown.fastRead",
-          "why": "It protects expertise while naming the boundary."
+          "text": "Expertise has a field."
         },
         {
-          "text": "A useful tool becomes risky when it answers every question.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the one-tool warning into a familiar image."
+          "text": "A useful tool becomes risky when it answers every question."
         },
         {
-          "text": "One health-spending chart cannot judge a health system.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the spending-data lesson easy to carry."
+          "text": "One health-spending chart cannot judge a health system."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "factfulness-ch09",
       "number": 9,
       "title": "The Blame Instinct",
@@ -2426,8 +2289,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 supports looking for the repeated mechanism. Blaming the latest worker may feel precise, but the loop can keep producing the miss.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch09-q02",
@@ -2439,8 +2301,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 points to institutional work. Generosity can help, but the source case turns on procurement, tender design, and supply discipline.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch09-q03",
@@ -2452,8 +2313,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 grounds the answer in Monrovia contact tracing. The near-miss is hero worship, whether the hero is foreign or only symbolic.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch09-q04",
@@ -2465,8 +2325,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 separates responsibility from causal diagnosis. The blame check delays accusation to find a changeable cause; it does not erase accountability.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "factfulness-ch09-q05",
@@ -2478,8 +2337,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 says distorted coverage can be sincere. Dishonesty is one possibility, but shared skewed knowledge and attention markets can also mislead.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch09-q06",
@@ -2491,8 +2349,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 points to legal incentives around carriers and smuggling. The trap is treating boat travel as a simple personal preference.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch09-q07",
@@ -2504,8 +2361,7 @@
             ],
             "correctIndex": 1,
             "explanation": "This stem asks for the mistake. Fact 7 rejects single-leader explanations because fertility had already fallen before the famous policy.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch09-q08",
@@ -2517,8 +2373,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 makes institutions practical. Records, services, and enforcement show capacity; a label or logo can leave the work invisible.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch09-q09",
@@ -2530,8 +2385,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 uses the Danish rescue to separate the physical act from its legal and moral context. A boat can mean different things in different systems.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2574,7 +2428,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask What Made This Possible",
         "coreSkill": "Practice pausing at the first name your anger or praise wants to choose. Ask What Made This Possible by naming the person, then listing the rule, incentive, route, or routine that made the result likely. The skill keeps responsibility while finding causes that can be changed.",
         "ifThenPlans": [
           {
@@ -2599,24 +2452,17 @@
       },
       "memorableLines": [
         {
-          "text": "Blame should lead to a repair, not just a name.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the emotional cost of blaming too soon."
+          "text": "Blame should lead to a repair, not just a name."
         },
         {
-          "text": "A hero can hide the helpers.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the praise side of the instinct easy to remember."
+          "text": "A hero can hide the helpers."
         },
         {
-          "text": "Name causes before assigning responsibility.",
-          "location": "breakdown.deepRead",
-          "why": "It states the hard edge without excusing people."
+          "text": "Name causes before assigning responsibility."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "factfulness-ch10",
       "number": 10,
       "title": "The Urgency Instinct",
@@ -2716,8 +2562,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 says controls can fail when contacts move by canoe or forest path. Visibility is not enough, and the answer is not slow review; it is checking the route.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch10-q02",
@@ -2729,8 +2574,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 warns that urgency creates false binaries. The policy analyst should keep ranges and options alive, not force one line or treat uncertainty as denial.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch10-q03",
@@ -2742,8 +2586,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 says data freshness differs by indicator. GDP and CO2 can have very different lags, so the analyst needs dates per measure, not one shared clock.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch10-q04",
@@ -2755,8 +2598,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 says repetition can amplify weak original estimates. The issue is source-chain strength, not the number's fame or a reason to ignore migration.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch10-q05",
@@ -2768,8 +2610,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 separates serious climate risk from one simple event. Rejecting a single catastrophe frame is not denial; it protects a complex risk from a bad story.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch10-q06",
@@ -2781,8 +2622,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 places global pandemic on the short risk list. Factfulness narrows attention to major risks; it does not erase pandemic concern.",
-            "bloomsLevel": "remember",
-            "depthLevel": "standard"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "factfulness-ch10-q07",
@@ -2794,8 +2634,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 says overuse is dangerous, but underaccess can also kill. Careful action must see both harms instead of turning panic into a blanket rule.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch10-q08",
@@ -2807,8 +2646,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 says extreme poverty remains an ongoing risk. A falling rate does not erase the harder remaining cases or justify headline-driven attention.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch10-q09",
@@ -2820,8 +2658,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 supports disciplined speed: small checks keep facts in the loop. It rejects both blind sharing and waiting for perfect certainty.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2864,7 +2701,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Check the Urgent Route",
         "coreSkill": "Practice turning pressure into a route check. Name the path the danger uses, the age of the evidence, and one side effect of your first response. The skill lets you move quickly without letting urgency erase thought.",
         "ifThenPlans": [
           {
@@ -2889,24 +2725,17 @@
       },
       "memorableLines": [
         {
-          "text": "Speed helps only after it is aimed.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the urgency warning a short image without praising delay."
+          "text": "Speed helps only after it is aimed."
         },
         {
-          "text": "A visible barrier can hide a route around it.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the Ebola roadblock case into a useful test."
+          "text": "A visible barrier can hide a route around it."
         },
         {
-          "text": "Serious risk deserves clean facts.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the hard edge: concern and discipline belong together."
+          "text": "Serious risk deserves clean facts."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "factfulness-ch11",
       "number": 11,
       "title": "Factfulness in Practice",
@@ -3006,8 +2835,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 points to reusable Gapminder materials and a teacher community. The practice is repeated correction, not one clean reveal or one private reading.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch11-q02",
@@ -3019,8 +2847,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 2 says services and industries shift across income levels. The stale move is West selling to Rest, even when it adds more examples.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch11-q03",
@@ -3032,8 +2859,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 says development changes supply chains. The error is treating a low-income production location as fixed after it appears on the map.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch11-q04",
@@ -3045,8 +2871,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 frames Ghana, Nigeria, and Kenya as investment opportunities. The aid-only frame is the common error, not the business lens.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch11-q05",
@@ -3058,8 +2883,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 says the Atlas maps existing industries and skills into plausible next capabilities. It guides choices; it does not bless ambition afterward.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch11-q06",
@@ -3071,8 +2895,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 says constructive journalism improves information quality. The near miss is thinking context means ignoring or replacing bad events.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "factfulness-ch11-q07",
@@ -3084,8 +2907,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 says local data can reveal local misconceptions. The error is assuming only global facts need correction or that nearness makes knowledge easy.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "factfulness-ch11-q08",
@@ -3097,8 +2919,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 says factfulness is maintenance. A corrected chart can go stale; waiting for a major error lets the old story rebuild.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "factfulness-ch11-q09",
@@ -3110,8 +2931,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 supports reusable classroom materials, and the mechanism is practice with feedback. A lecture may inform, but it does not by itself rehearse correction.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -3154,7 +2974,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask, Count, Update",
         "coreSkill": "Practice catching a stale assumption while it is still small. Ask one real person what fact you may be treating as settled, count the assumption you hear in your own reply, then update one sentence before it travels.",
         "ifThenPlans": [
           {
@@ -3179,19 +2998,13 @@
       },
       "memorableLines": [
         {
-          "text": "A habit outlasts a headline.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the hard edge into one plain contrast."
+          "text": "A habit outlasts a headline."
         },
         {
-          "text": "Markets move when skills and incomes move.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the business geography lesson portable."
+          "text": "Markets move when skills and incomes move."
         },
         {
-          "text": "Open data helps only when people use it to check.",
-          "location": "breakdown.deepRead",
-          "why": "It links the data infrastructure case to public practice."
+          "text": "Open data helps only when people use it to check."
         }
       ]
     }

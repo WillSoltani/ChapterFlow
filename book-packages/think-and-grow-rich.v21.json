@@ -23,7 +23,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "think-and-grow-rich-ch01",
       "number": 1,
       "title": "Introduction",
@@ -46,13 +45,6 @@
             "proximity",
             "Barnes"
           ],
-          "planSpec": {
-            "domain": "career entry",
-            "audience": "a worker entering through a modest role",
-            "stakes": "East Orange can become proximity to Thomas A. Edison only if the aim remains partnership rather than any respectable job.",
-            "format": "decision_point",
-            "requiredBeat": "Use Barnes arriving at East Orange with no money or standing and an exact aim to work with Edison."
-          },
           "contexts": [
             "work",
             "career"
@@ -71,13 +63,6 @@
             "sales",
             "Dictating Machine"
           ],
-          "planSpec": {
-            "domain": "sales opportunity",
-            "audience": "a product lead noticing a problem others avoid",
-            "stakes": "The Edison Dictating Machine looks unattractive until prepared desire reads it as Barnes's opening.",
-            "format": "dialogue",
-            "requiredBeat": "Show a neglected product becoming the opportunity because others are uninterested."
-          },
           "contexts": [
             "business",
             "sales"
@@ -96,13 +81,6 @@
             "expert counsel",
             "Darby"
           ],
-          "planSpec": {
-            "domain": "project diagnosis",
-            "audience": "a manager deciding what a failed test means",
-            "stakes": "Darby's Colorado mine shows that quitting before diagnosis can sell the claim three feet from the ore.",
-            "format": "audit",
-            "requiredBeat": "Use the three feet and mining engineer details to separate surrender from diagnosis."
-          },
           "contexts": [
             "work",
             "operations"
@@ -121,13 +99,6 @@
             "life insurance",
             "sales"
           ],
-          "planSpec": {
-            "domain": "sales recovery",
-            "audience": "a salesperson turning a loss into a rule",
-            "stakes": "Darby's mining loss later becomes persistence in life insurance rather than a warning never to try again.",
-            "format": "postmortem",
-            "requiredBeat": "Show the mining defeat becoming a sales practice after prospects say no."
-          },
           "contexts": [
             "finance",
             "sales"
@@ -146,13 +117,6 @@
             "ask",
             "old mill"
           ],
-          "planSpec": {
-            "domain": "small request under pressure",
-            "audience": "a junior person holding a clear ask",
-            "stakes": "The tenant farmer's daughter in the old mill wins by keeping one fifty-cent demand concentrated.",
-            "format": "scene",
-            "requiredBeat": "Use the old mill and fifty cents to show persistence without rank or force."
-          },
           "contexts": [
             "school",
             "money"
@@ -171,13 +135,6 @@
             "readiness",
             "pattern"
           ],
-          "planSpec": {
-            "domain": "reading for action",
-            "audience": "a reader tempted to wait for a slogan",
-            "stakes": "The Carnegie secret is withheld so readiness depends on recognizing the pattern in Barnes, Darby, and the child.",
-            "format": "reflection",
-            "requiredBeat": "Show delayed naming forcing active pattern detection rather than passive receipt."
-          },
           "contexts": [
             "personal",
             "learning"
@@ -202,8 +159,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Barnes's aim is precise. A modest role helps only because it keeps him near Edison while the partnership purpose remains intact.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -215,8 +171,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Barnes recognizes the unwanted machine as an opening. The trap is waiting for opportunity to look glamorous before acting.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -228,8 +183,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The three-foot lesson is not blind repetition. It asks for diagnosis before quitting, especially when missing expertise may be the real issue.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -241,8 +195,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Darby turns loss into persistence in insurance. The useful no becomes material for correction, not a command to quit or repeat blindly.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -254,8 +207,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The old mill scene turns on a concentrated ask. The child wins through unyielding clarity, not status, force, or escalation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -267,8 +219,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The withheld secret makes the reader active. Barnes, Darby, and the child are evidence to reason from, not ornamental delays.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -280,8 +231,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Thought matters only when fused with purpose, desire, and persistence. The soft trap is treating thinking alone as the whole method.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -293,8 +243,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Barnes begins without the usual advantages. The point is not that assets never matter; it is that exact purpose can start before they appear.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -306,8 +255,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The mining engineer supplies missing knowledge. Persistence becomes wiser when it seeks the right diagnosis before more effort.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -356,7 +304,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Purpose Receipt",
         "coreSkill": "Practice converting a wish into a receipt you can inspect. The Purpose Receipt names the exact aim, the next proof of movement, and the correction requested by the latest defeat. Use it when ambition feels intense but still blurry.",
         "ifThenPlans": [
           {
@@ -385,24 +332,17 @@
       },
       "memorableLines": [
         {
-          "text": "A fixed aim trains attention.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the Barnes lesson into the mechanism readers can use before opportunity is visible."
+          "text": "A fixed aim trains attention."
         },
         {
-          "text": "Temporary defeat needs diagnosis before surrender.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the Darby mine warning without turning persistence into blind repetition."
+          "text": "Temporary defeat needs diagnosis before surrender."
         },
         {
-          "text": "Opportunity can enter through a side door.",
-          "location": "breakdown.fullRead",
-          "why": "It names the mechanism that links desire to action across the opening stories."
+          "text": "Opportunity can enter through a side door."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "think-and-grow-rich-ch02",
       "number": 2,
       "title": "Desire: The Turning Point of All Achievement",
@@ -425,13 +365,6 @@
             "startup",
             "statement"
           ],
-          "planSpec": {
-            "domain": "software launch planning",
-            "audience": "founders turning a revenue wish into a working statement",
-            "stakes": "avoid mistaking excitement for a goal the team can act on",
-            "format": "audit",
-            "requiredBeat": "the protagonist checks the six steps for exact sum, definite date, and twice-daily rehearsal"
-          },
           "scenario": "Ludivine has three figures on the whiteboard in a Montreal app studio: runway, launch spend, and a blank goal card. The six steps force the card to change. She writes an exact sum, a definite date, and the words twice daily. The question is which outreach starts before the rehearsal begins.",
           "whatToDo": "Ludivine rewrites the card as a compact, then marks the one sales action that has to start before the team leaves the studio.",
           "whyItMatters": "The audit turns excitement into instructions. A precise card can guide work in a way that a mood about more money cannot."
@@ -444,13 +377,6 @@
             "retail",
             "resolve"
           ],
-          "planSpec": {
-            "domain": "independent retail recovery",
-            "audience": "owners facing a public reason to quit",
-            "stakes": "treat catastrophe as a planning condition rather than an ending",
-            "format": "mistake_recovery",
-            "requiredBeat": "the protagonist uses Marshall Field after the Chicago fire as resolve for a rebuilt store"
-          },
           "scenario": "Preston, the retail manager, finds the lease packet at 9:00 a.m. under wet ceiling tile after a warehouse fire. The easy story says the shop is finished. A framed note about Marshall Field, Chicago, and the fire sits by the register. Preston needs to decide which reopening step gets the first dollar for a rebuilt store.",
           "whatToDo": "Preston names the reopening amount and calls the first supplier, letting the Field example shape his next step instead of his mood.",
           "whyItMatters": "A setback becomes final when it is allowed to cancel the aim. The lesson keeps attention on the next route through the wreckage."
@@ -463,13 +389,6 @@
             "family",
             "advocacy"
           ],
-          "planSpec": {
-            "domain": "pediatric hearing care",
-            "audience": "parents responding to a limiting forecast",
-            "stakes": "keep a real impairment from becoming the whole future",
-            "format": "dialogue",
-            "requiredBeat": "the protagonist links Blair Hill, born without ears, hearing, and family persistence"
-          },
           "scenario": "Daniel says \"Write the therapy options too\" at 2:20 p.m. as the parent in the clinic summary review. The audiology room still holds the hearing chart and a folder on Blair Hill, born without ears. Daniel has to tell the clinician what family persistence will do next.",
           "whatToDo": "Daniel asks for the next training step in writing, then schedules it before the clinic visit turns into a verdict.",
           "whyItMatters": "Desire changes conduct first. The obstacle stays real, but the family's behavior stops treating a narrow forecast as the whole map."
@@ -482,13 +401,6 @@
             "rejection",
             "practice"
           ],
-          "planSpec": {
-            "domain": "performing arts training",
-            "audience": "artists weighing a harsh early judgment",
-            "stakes": "hear criticism without letting it end the work",
-            "format": "reset_moment",
-            "requiredBeat": "the protagonist uses Mme. Schumann-Heink, Vienna Court Opera, opera director, and singer"
-          },
           "scenario": "Noel pins the rejection notice above the practice-room piano after a conservatory audition. Beside it she copies the case of Mme. Schumann-Heink, the Vienna Court Opera director, and the singer he dismissed. Noel must pick the next coaching focus before evening scales.",
           "whatToDo": "Noel turns the notice into a practice trigger, then books the next coaching session instead of treating the judgment as a finish line.",
           "whyItMatters": "The scene keeps persistence from becoming denial. An outside verdict can inform the work without owning the future."
@@ -501,13 +413,6 @@
             "exchange",
             "deadline"
           ],
-          "planSpec": {
-            "domain": "solo consulting practice",
-            "audience": "independent workers setting a concrete sales aim",
-            "stakes": "connect the desired money to value offered and immediate action",
-            "format": "decision_memo",
-            "requiredBeat": "the protagonist includes exact sum, definite date, six steps, and twice-daily reading"
-          },
           "scenario": "Charles's memo begins with the client problem, not his hope. By the second paragraph he has the six steps in order: exact sum, service package, definite date, first outreach list, written statement, twice daily reading. The deadline is Friday's proposal slot, and the memo has to leave his desk.",
           "whatToDo": "Charles prices the service he will give in exchange and sends the first proposal while the statement is still fresh.",
           "whyItMatters": "The exchange requirement blocks passive wishing. Money enters the plan as compensation for service, not as a private fantasy."
@@ -520,13 +425,6 @@
             "belief",
             "follow-through"
           ],
-          "planSpec": {
-            "domain": "school accommodation planning",
-            "audience": "educators building support after a hard diagnosis",
-            "stakes": "turn belief into repeated practices instead of soft encouragement",
-            "format": "before_after",
-            "requiredBeat": "the protagonist draws from Blair Hill, hearing, and family persistence"
-          },
           "scenario": "Sabrina's first accommodation plan says the student will participate when possible. After reading the Blair Hill account, hearing notes, and the role of family persistence, she changes the plan at the resource-room table. The new version names daily practice, not vague hope.",
           "whatToDo": "Sabrina replaces the soft clause with a scheduled support routine and assigns one adult to confirm the practice each day.",
           "whyItMatters": "Belief becomes useful when it changes the plan. Encouragement without repeated conduct leaves the limitation in charge."
@@ -545,8 +443,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The formula starts with exactness. A clear amount lets Ludivine's team connect the desire to planning, while a broad phrase keeps effort cloudy.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -558,8 +455,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The method ties riches to service. Charles weakens the compact if he names money but omits the value that earns it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -571,8 +467,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The date changes someday into pressure. Sabrina can still adjust tactics, but the desire needs a clock to guide planning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -584,8 +479,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The statement is meant to be rehearsed, not archived. Melanie needs repeated emotional reading so the aim keeps shaping action.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q05",
@@ -597,8 +491,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Chicago fire example centers on desire outlasting disaster. Preston still needs practical steps, but the loss does not get final say.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -610,8 +503,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The obstacle is real in the Blair Hill story. Daniel follows the lesson by changing behavior around it instead of letting the forecast narrow every next step.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -623,8 +515,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Schumann-Heink case is not anti-expertise. Noel can use criticism while refusing to let one early verdict end the work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -636,8 +527,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The formula asks for a plan and immediate action. Charles does not need a perfect map before making the first move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -649,8 +539,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sequence starts with a definite aim. Sabrina's resources matter, but the aim gives planning a target before conditions look favorable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -693,7 +582,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Desire Compact",
         "coreSkill": "Practice turning a wish into a compact you can test. Write the Desire Compact by naming the amount, exchange, date, first plan, and twice-daily reading cue. The skill is not louder wanting; it is making desire precise enough to command behavior.",
         "ifThenPlans": [
           {
@@ -722,24 +610,17 @@
       },
       "memorableLines": [
         {
-          "text": "A wish can stay soft for years.",
-          "location": "breakdown.fastRead",
-          "why": "It shows why vague wanting can feel alive while producing little."
+          "text": "A wish can stay soft for years."
         },
         {
-          "text": "The date gives the mind a clock.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the role of timing into a simple image."
+          "text": "The date gives the mind a clock."
         },
         {
-          "text": "Do not call a dream definite until it names its price.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the chapter's demand for exchange and specificity."
+          "text": "Do not call a dream definite until it names its price."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "think-and-grow-rich-ch03",
       "number": 3,
       "title": "Faith: Visualization of, and Belief in Attainment of Desire",
@@ -762,13 +643,6 @@
             "conviction",
             "business case"
           ],
-          "planSpec": {
-            "domain": "startup financing for industrial software",
-            "audience": "founders trying to turn conviction into organized persuasion",
-            "stakes": "A large idea will die as fantasy unless the founder can connect belief to a credible plan and capital path.",
-            "format": "decision_memo",
-            "requiredBeat": "Show conviction becoming useful only when it organizes a plan, partners, and finance."
-          },
           "scenario": "Danielle circles \"$600 million\" on a legal pad in a Newark co-working room. As founder, she is not copying Charles M. Schwab or United States Steel, but she sees the pattern before the investor call starts: J. P. Morgan money followed a plan that could be believed. Her memo needs fewer adjectives and a clearer chain from conviction to customers, partners, and capital.",
           "whatToDo": "Danielle turns the investor memo into a plan of proof: name the believed end, show the customer path, list the partners needed, and make the ask match the scale.",
           "whyItMatters": "Schwab's story does not honor private optimism. It honors conviction strong enough to coordinate people, facts, and money around a plan others can act on."
@@ -781,13 +655,6 @@
             "practice",
             "apprenticeship"
           ],
-          "planSpec": {
-            "domain": "apprenticeship application after repeated rejection",
-            "audience": "workers rebuilding confidence without empty pep talk",
-            "stakes": "A rejection pattern can become identity unless the applicant writes and rehearses a better script tied to action.",
-            "format": "dialogue",
-            "requiredBeat": "Use the self-confidence formula as practiced self-command instead of mood repair."
-          },
           "scenario": "Paolo says, \"Five promises feels excessive,\" while the union classroom empties around him. His apprenticeship mentor taps the worksheet: definite major purpose at the top, daily concentration in the middle, written description at the bottom. Before Paolo emails the next foreman, his doubt gets one final chance to sound practical.",
           "whatToDo": "Paolo completes the written description, reads it with feeling, then sends the foreman one direct note tied to his definite major purpose.",
           "whyItMatters": "The formula makes confidence behavioral. It does not ask Paolo to feel brave first; it gives him a script that pushes him toward a visible act."
@@ -800,13 +667,6 @@
             "civic action",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "neighborhood tenant organizing after a small turnout",
-            "audience": "organizers who mistake low resources for low power",
-            "stakes": "A small meeting can look like failure unless the organizer understands how disciplined belief grows social force.",
-            "format": "postmortem",
-            "requiredBeat": "Use Gandhi to show faith as organizing energy beyond money or office."
-          },
           "scenario": "Bilal stacks the last folding chair after only eleven tenants attend the meeting. The poster beside the door quotes Mahatma Gandhi, India, millions, and collective belief. That scale almost embarrasses him. Then Bilal notices the one useful fact: none of those millions began as a crowd. They began as people willing to rehearse courage together.",
           "whatToDo": "Bilal records the eleven names, assigns each person one call, and treats the small meeting as the first rehearsal of shared belief.",
           "whyItMatters": "The Gandhi example separates faith from visible force. Collective confidence can grow before wealth, office, or numbers make the outcome look sensible."
@@ -819,13 +679,6 @@
             "clinic",
             "reset"
           ],
-          "planSpec": {
-            "domain": "small dental clinic after lost clients",
-            "audience": "operators whose private language is shaping public behavior",
-            "stakes": "A fear sentence repeated with emotion may change staff tone, client offers, and follow-up decisions.",
-            "format": "mistake_recovery",
-            "requiredBeat": "Show negative self-suggestion training conduct as powerfully as positive rehearsal."
-          },
           "scenario": "Brynn tapes three cancelled estimates to the dental clinic cabinet and writes, \"This place is failing,\" across the staff agenda. Before the Monday huddle, the Self-confidence formula on her desk looks almost insulting. Yet her fear sentence has already become instruction: lower her voice, avoid calls, offer panicked discounts.",
           "whatToDo": "Brynn replaces the agenda headline with one factual aim and one recovery call, then reads it aloud before staff hear the fear script.",
           "whyItMatters": "Negative suggestion does not need a formal ritual. When fear gets repeated with feeling, it starts issuing orders through tone, choices, and avoidance."
@@ -838,13 +691,6 @@
             "fundraising",
             "audit"
           ],
-          "planSpec": {
-            "domain": "nonprofit sponsorship letter before a board review",
-            "audience": "leaders checking whether ambition has kept its moral guardrail",
-            "stakes": "A confidence statement can become selfish persuasion unless it includes service and non-injury.",
-            "format": "audit",
-            "requiredBeat": "Use the formula's ethical promise as a hard check on desire."
-          },
           "scenario": "Gerald's sponsorship letter fills a conference table with confident language. During the audit, he reads the self-confidence formula again: five promises, a written description, and a pledge that success comes through useful service. The board review is in an hour. His strongest paragraph still sounds as if donors exist to prove his ambition.",
           "whatToDo": "Gerald rewrites the paragraph around the service created for families, then cuts the line that flatters his own image more than the donor's mission.",
           "whyItMatters": "The ethical clause keeps faith from becoming predatory. Confidence earns trust when it offers value instead of dressing selfish gain in noble words."
@@ -857,13 +703,6 @@
             "belief",
             "text thread"
           ],
-          "planSpec": {
-            "domain": "city council testimony for street safety",
-            "audience": "residents turning private conviction into public action",
-            "stakes": "A resident coalition may lose its nerve if belief stays private until the public moment has passed.",
-            "format": "text_thread",
-            "requiredBeat": "Frame faith as shared courage that moves into disciplined public conduct."
-          },
           "scenario": "Pierre receives nine texts while the city council clerk calls the next speaker. One message says Mahatma Gandhi moved India without conventional force; another says millions are not needed tonight. The phrase \"collective belief\" stops looking grand. Before public comment closes, Pierre has to carry the group's practiced sentence to the microphone.",
           "whatToDo": "Pierre reads the shared sentence, names the street change plainly, and treats the microphone as the group's first act of disciplined belief.",
           "whyItMatters": "Faith becomes social power when private conviction is rehearsed into public conduct. The first visible act makes the next believer less alone."
@@ -882,8 +721,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Faith is treated as trainable self-instruction. The words matter when emotion and conduct make them active, not when Everly uses them as a soft wish.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch03-q02",
@@ -895,8 +733,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The formula is a five-part script, not a mood line. Paolo needs aim, behavior, attention, self-image, and an ethical exchange in one practice.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "think-and-grow-rich-ch03-q03",
@@ -908,8 +745,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Destructive inputs can condition behavior too. Brynn's repeated line carries feeling, so it begins shaping voice, prices, and avoidance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "think-and-grow-rich-ch03-q04",
@@ -921,8 +757,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Emotion is the carrier. A flat recital does little for Gerald unless the words become felt and then push him toward a clear act.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch03-q05",
@@ -934,8 +769,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The steel example links belief with planning and finance at scale. Danielle misreads it if she treats confidence as noise around a weak plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "think-and-grow-rich-ch03-q06",
@@ -947,8 +781,7 @@
             ],
             "correctIndex": 2,
             "explanation": "J. P. Morgan matters as a finance anchor. The story moves from conviction into external resource coordination, not into private wishing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "think-and-grow-rich-ch03-q07",
@@ -960,8 +793,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Gandhi is used to show faith as collective force. Bilal applies it by turning shared conviction into conduct before conventional power appears.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch03-q08",
@@ -973,8 +805,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The formula includes a guardrail against harmful gain. Gerald's confidence has to be joined to service, or the practice trains appetite without trust.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "think-and-grow-rich-ch03-q09",
@@ -986,8 +817,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Faith gives desire a felt sense of reach. Pierre should use belief to start plan-seeking and action, not to keep the desire untouched.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1030,7 +860,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Charge the Belief Script",
         "coreSkill": "Practice turning a desired end into charged self-instruction. Name the result, read it with feeling, then attach the next act that would make the result less imaginary. The script fails if it produces only mood; it works when it pulls conduct, plans, and service into motion.",
         "ifThenPlans": [
           {
@@ -1055,24 +884,17 @@
       },
       "memorableLines": [
         {
-          "text": "Dry slogans do little.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's warning against empty positive talk."
+          "text": "Dry slogans do little."
         },
         {
-          "text": "Belief starts as rehearsal before it becomes nerve.",
-          "location": "breakdown.deepRead",
-          "why": "It makes faith trainable without making it passive or mystical."
+          "text": "Belief starts as rehearsal before it becomes nerve."
         },
         {
-          "text": "Empty words are not faith.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the practice tied to conduct rather than recital."
+          "text": "Empty words are not faith."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "think-and-grow-rich-ch04",
       "number": 4,
       "title": "Auto-Suggestion: The Medium for Influencing the Subconscious Mind",
@@ -1095,13 +917,6 @@
             "service offered",
             "morning reading"
           ],
-          "planSpec": {
-            "domain": "personal goal statement",
-            "audience": "readers who skim their written aim without feeling it",
-            "stakes": "turn a money statement from paperwork into felt instruction",
-            "format": "scene",
-            "requiredBeat": "Use the exact sum and service offered during a morning reading."
-          },
           "scenario": "The index card is damp from the coffee ring when Daphne pulls it from under the mug at the kitchen table. Morning is usually when she skims it and hurries away. Today the exact sum catches her eye, and the service offered underneath feels thin. Before she leaves for the train, she has to turn the line from a wish into a scene she can feel.",
           "whatToDo": "Daphne reads the statement aloud again, adds the customer served to the service offered, and imagines the exact sum already in her account.",
           "whyItMatters": "The move tests whether repetition has feeling attached. A money aim starts guiding attention when the reader can feel possession and value exchange together."
@@ -1114,13 +929,6 @@
             "conscious mind",
             "dominant thoughts"
           ],
-          "planSpec": {
-            "domain": "audio editing studio",
-            "audience": "readers whose fear phrases replay during work",
-            "stakes": "choose the mental input before it becomes the repeated channel",
-            "format": "dialogue",
-            "requiredBeat": "Use conscious mind, subconscious mind, dominant thoughts, and receiving station as a channel metaphor."
-          },
           "scenario": "\"What station are you tuned to?\" Bryan asks himself in the studio after a client's complaint loops through his headset. On the whiteboard he writes conscious mind, subconscious mind, and receiving station. The next edit window closes in twenty minutes, so the question is which dominant thoughts get another pass through the channel before he returns to work.",
           "whatToDo": "Bryan writes the fear phrase once, then replaces it with the chosen statement he wants the subconscious mind to receive while he edits.",
           "whyItMatters": "Treating thought as a channel gives discipline a handle. The receiving station works on repeated inputs, so the chosen message needs airtime."
@@ -1133,13 +941,6 @@
             "night reading",
             "value exchange"
           ],
-          "planSpec": {
-            "domain": "salon booking routine",
-            "audience": "service providers who want more income without naming the exchange",
-            "stakes": "connect the desired sum to a specific service promise",
-            "format": "planning_choice",
-            "requiredBeat": "Replace a vague income wish with an exact sum and service offered."
-          },
           "scenario": "Before the salon lights come on, Delaney stands behind the front desk with two versions of her money statement. The old one asks for more income. The new one names an exact sum, morning and night readings, and the service offered through faster color consultations. The booking app is open, and before the first client arrives she needs to choose which statement will govern the day.",
           "whatToDo": "Delaney keeps the new statement, reads it aloud, and adds one follow-up call that proves the service offered is more than wording.",
           "whyItMatters": "Specific service prevents the money goal from floating away from value. Auto-suggestion is strongest when possession and contribution are rehearsed together."
@@ -1152,13 +953,6 @@
             "pricing",
             "imagined possession"
           ],
-          "planSpec": {
-            "domain": "pricing workshop",
-            "audience": "independent operators who underprice while claiming a higher aim",
-            "stakes": "let felt possession affect the next visible business move",
-            "format": "reset_moment",
-            "requiredBeat": "Use the exact sum and service offered to correct an apologetic price."
-          },
           "scenario": "Six unsent price proposals sit on Idris's laptop in the conference room, each one cheaper than the work deserves. His desire statement already names the exact sum and the service offered, but he reads it like an apology. Minutes before the workshop share-out, he pictures the money already possessed and the clients receiving the service, then rewrites the first proposal aloud.",
           "whatToDo": "Idris slows the reading, imagines possession, and changes one proposal so the price matches the service offered in the statement.",
           "whyItMatters": "The exercise is not loud optimism. Emotional possession gives the exact sum enough credibility to affect a visible business move."
@@ -1171,13 +965,6 @@
             "morning reading",
             "dominant aim"
           ],
-          "planSpec": {
-            "domain": "weekly calendar repair",
-            "audience": "readers who let the daily repetition disappear",
-            "stakes": "restore the twice-daily rhythm before drift takes over",
-            "format": "mistake_recovery",
-            "requiredBeat": "Show how missing night readings weakens the exact sum and service offered."
-          },
           "scenario": "By Wednesday, Camila can hear the difference. Two missed night readings have let the old forecast return: no plan, no buyer, no way. Her card still lists the exact sum and service offered, but the words feel cold. Before she opens the calendar, she restarts the morning reading and gives the statement a full scene instead of a glance.",
           "whatToDo": "Camila reads the statement out loud, describes how possession will feel, and schedules the next night reading before opening her inbox.",
           "whyItMatters": "Dominant thoughts are built by recurrence. Missing the practice lets drift take the channel back; resuming with feeling restores the aim."
@@ -1190,13 +977,6 @@
             "subconscious mind",
             "receiving station"
           ],
-          "planSpec": {
-            "domain": "sales call block",
-            "audience": "readers waiting for a perfect plan before taking one step",
-            "stakes": "turn the chosen mental channel into immediate movement",
-            "format": "decision_point",
-            "requiredBeat": "Separate fear from the receiving station and act once."
-          },
           "scenario": "Holden's call sheet has three names circled and none dialed. The office is empty after dinner, which makes the anxious message louder: wait until the plan is perfect. He labels the sentence one of his dominant thoughts, then writes conscious mind above one column and subconscious mind above another. Before the window closes, he needs to decide which message the receiving station gets next.",
           "whatToDo": "Holden places the fear line in the conscious mind column, reads the chosen statement, and dials one circled name before leaving.",
           "whyItMatters": "The channel metaphor keeps auto-suggestion tied to movement. The subconscious mind receives repeated inputs, but action proves the signal is not fantasy."
@@ -1215,8 +995,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Feeling is the carrier. A clean recitation stays weak when it does not picture possession or connect the exact sum to service; shorter wording alone misses the mechanism.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1228,8 +1007,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The gatekeeper role is selection. Bryan cannot stop every stray thought, but he can refuse to rehearse the complaint and admit the chosen instruction instead.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1241,8 +1019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The money aim is tied to exchange. Desire without service turns into fantasy, while naming value gives the repeated statement a practical obligation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1254,8 +1031,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The method allows plans to sharpen after desire is active. Rehearsal is not a substitute for planning; it keeps attention searching for the next workable step.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1267,8 +1043,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Frequency matters. The twice-daily rhythm keeps the desire dominant; occasional contact lets older inputs reclaim the channel.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1280,8 +1055,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Dominance comes from rehearsal. Naming the fear, feeding the chosen statement, and acting once prevents the anxious line from becoming the whole channel.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1293,8 +1067,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Auto-suggestion is the bridge from desire toward faith. Repeated, emotional instruction helps belief form; removing the definite aim weakens the bridge.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1306,8 +1079,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The exercise pairs the written target with imagined possession. Dates and neat copies do little if the end state never becomes emotionally present.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1319,8 +1091,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The medium works inward first. Auto-suggestion is not audience persuasion; it sends repeated desire from conscious intention toward subconscious acceptance.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -1363,7 +1134,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Charge the Statement Daily",
         "coreSkill": "Practice turning a written desire statement into a felt instruction. Charge the Statement Daily by reading it morning and night, picturing possession, naming the service offered, and taking one movement toward a plan. The skill is emotionalized specificity, not prettier wording.",
         "ifThenPlans": [
           {
@@ -1388,19 +1158,13 @@
       },
       "memorableLines": [
         {
-          "text": "Feeling gives them force.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the reason emotion matters to the repetition."
+          "text": "Feeling gives them force."
         },
         {
-          "text": "The discipline is selective feeding.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the conscious-gatekeeper idea into a portable command."
+          "text": "The discipline is selective feeding."
         },
         {
-          "text": "A slogan cannot do the work of belief.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the hard edge against treating wording as a charm."
+          "text": "A slogan cannot do the work of belief."
         }
       ]
     },
@@ -1427,13 +1191,6 @@
             "reference sources",
             "buyer review"
           ],
-          "planSpec": {
-            "domain": "industrial supplier audit",
-            "audience": "operations lead",
-            "stakes": "protecting a buyer relationship without bluffing about technical knowledge",
-            "format": "decision_point",
-            "requiredBeat": "Use Henry Ford, the libel trial, assistants, and reference sources to show organized access rather than stored trivia."
-          },
           "scenario": "Drew hears, \"Who can verify that tolerance?\" in the supplier conference room, minutes before a buyer signs the shipment hold. A libel-trial note about Henry Ford sits in his folder with two names circled: assistants and reference sources. Drew must tell the buyer how the team will answer without pretending memory is proof.",
           "whatToDo": "Drew names the exact tolerance question, assigns one assistant to the plant record, and opens the reference source before giving the buyer a timed answer.",
           "whyItMatters": "Ford's case protects Drew from bluffing and from shame. Useful intelligence means mobilizing the right source fast, not performing encyclopedic recall."
@@ -1446,13 +1203,6 @@
             "service proposition",
             "hiring"
           ],
-          "planSpec": {
-            "domain": "job-search presentation",
-            "audience": "candidate selling personal services",
-            "stakes": "moving from a plea for wages to a value offer",
-            "format": "before_after",
-            "requiredBeat": "Use personal services, written presentation, targeted employer, and service proposition as the concrete anchor."
-          },
           "scenario": "Adeline's first draft is already printed on the kitchen table: three soft paragraphs about needing a chance. By 10 a.m., the targeted employer will receive something stronger. She circles \"personal services\" at the top and rewrites the packet around one service proposition, one proof point, and one problem the employer has named.",
           "whatToDo": "Adeline changes the letter from a request into a written presentation. She states the service, the evidence behind it, and the employer problem it answers.",
           "whyItMatters": "The personal-services frame turns employment into a sale of value. Need may be real, but the market pays for a useful contribution made clear."
@@ -1465,13 +1215,6 @@
             "steel",
             "advisers"
           ],
-          "planSpec": {
-            "domain": "manufacturing venture planning",
-            "audience": "founder building an expert bench",
-            "stakes": "preventing one founder's gaps from weakening a steel-sector plan",
-            "format": "planning_choice",
-            "requiredBeat": "Use Andrew Carnegie, steel, law, and finance to show coordinated expert knowledge."
-          },
           "scenario": "Thomas brings four binders to the mill office instead of one heroic pitch deck. The tabs read steel, law, finance, and plant management, with Andrew Carnegie written across the cover. Before the lender meeting starts, Thomas has to show which adviser owns each gap and how their knowledge joins one plan.",
           "whatToDo": "Thomas maps the venture by knowledge domain. He names the adviser for law, the adviser for finance, and the steel expert whose cost data shapes the offer.",
           "whyItMatters": "Carnegie's lesson is coordination. A leader can command knowledge through people, but only when their specialties are tied to one definite aim."
@@ -1484,13 +1227,6 @@
             "definite purpose",
             "study"
           ],
-          "planSpec": {
-            "domain": "continuing education selection",
-            "audience": "worker choosing a course",
-            "stakes": "avoiding study that delays the service plan",
-            "format": "audit",
-            "requiredBeat": "Show that specialized knowledge should be tied to a definite purpose before study begins."
-          },
           "scenario": "Pierce underlines three night-school options in the union hall while the enrollment clerk stacks forms by the door. Accounting looks safe, sales sounds useful, and machine maintenance feels closest to his hands. Before the window closes, Pierce must match the course to the one service plan he intends to sell.",
           "whatToDo": "Pierce writes the service plan first, then chooses the course that fills the clearest missing skill. He saves the other catalogs for later gaps.",
           "whyItMatters": "Directed study keeps education from becoming delay. The right course is the one that supplies knowledge the plan can use soon."
@@ -1503,13 +1239,6 @@
             "evidence",
             "targeted employer"
           ],
-          "planSpec": {
-            "domain": "freelance operations proposal",
-            "audience": "independent service seller",
-            "stakes": "making ability legible before a buyer ignores the pitch",
-            "format": "text_thread",
-            "requiredBeat": "Use written presentation and packaging of ability to make personal services concrete."
-          },
           "scenario": "Solene's email draft to the targeted employer has one blank subject line and six claims of reliability. On the train platform, she deletes five of them. The new subject names inventory errors, the first paragraph names the service, and the attachment shows before-and-after evidence from a small warehouse audit.",
           "whatToDo": "Solene packages the offer around proof. She replaces self-praise with the employer's problem, the service she can supply, and a sample of measured results.",
           "whyItMatters": "A written presentation makes ability visible before trust exists. Packaging is not vanity; it is how a buyer sees the service being sold."
@@ -1522,13 +1251,6 @@
             "reference desk",
             "expert counsel"
           ],
-          "planSpec": {
-            "domain": "client research recovery",
-            "audience": "consultant preparing a recommendation",
-            "stakes": "answering a narrow client question before the meeting starts",
-            "format": "mistake_recovery",
-            "requiredBeat": "Show that specialized knowledge can be borrowed through experts and reference sources without praising ignorance."
-          },
           "scenario": "Salma has already admitted the mistake: her client memo quotes broad market articles but misses the regulation that decides the recommendation. In the library reference room, with the meeting two hours away, she writes Henry Ford beside the search request and asks the specialist to help locate the exact rule.",
           "whatToDo": "Salma narrows the question, asks the reference specialist for the rule source, and updates the memo only after the borrowed knowledge fits the plan.",
           "whyItMatters": "Borrowed knowledge works when the question is exact. The lesson is not to know less; it is to reach the right mind or source in time."
@@ -1547,8 +1269,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Ford's example treats access as part of intelligence. Drew needs organized knowledge for the live question, while broad study or memory performance misses the buyer's need.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch05-q02",
@@ -1560,8 +1281,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The personal-services advice sells contribution, not deservingness. Adeline's evidence and targeted problem make the offer concrete enough to evaluate.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "think-and-grow-rich-ch05-q03",
@@ -1573,8 +1293,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Carnegie's pattern is coordinated expert knowledge. Thomas still leads, but he joins law, finance, and steel knowledge around the same aim.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch05-q04",
@@ -1586,8 +1305,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Purpose selects the study. Pierce is not rejecting school; he is asking which course supplies knowledge the plan can put to work soon.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "think-and-grow-rich-ch05-q05",
@@ -1599,8 +1317,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Packaging makes ability legible. Solene's proof and problem fit give the employer a service to buy, while sincerity alone leaves the value vague.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch05-q06",
@@ -1612,8 +1329,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Information gains force through application. Salma's folder is useful only when it supplies the exact knowledge the recommendation requires.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "think-and-grow-rich-ch05-q07",
@@ -1625,8 +1341,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Continuing education is endorsed when it closes a known gap. Thomas is choosing useful specialty, not treating courses as display or waste.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "think-and-grow-rich-ch05-q08",
@@ -1638,8 +1353,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Ford story is not anti-learning. It distinguishes schooling from organized intelligence, and it still requires judgment about which knowledge matters.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "think-and-grow-rich-ch05-q09",
@@ -1651,8 +1365,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Specialized knowledge can go stale. Thomas should refresh the parts the plan now depends on, rather than worshiping old data or erasing useful experience.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1695,7 +1408,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Knowledge Ledger",
         "coreSkill": "Practice turning a goal into a knowledge map. Run the Knowledge Ledger by naming the purpose, the knowledge already held, the gap that blocks action, and the person or source that can supply it. The skill keeps learning tied to service instead of pride.",
         "ifThenPlans": [
           {
@@ -1720,24 +1432,17 @@
       },
       "memorableLines": [
         {
-          "text": "Facts do not earn until a plan puts them to work.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the difference between stored information and applied knowledge."
+          "text": "Facts do not earn until a plan puts them to work."
         },
         {
-          "text": "No one has to know everything if the plan knows where to look.",
-          "location": "breakdown.deepRead",
-          "why": "It makes borrowed expertise feel practical without praising ignorance."
+          "text": "No one has to know everything if the plan knows where to look."
         },
         {
-          "text": "Study earns when purpose chooses the shelf.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a short test for whether more learning is useful."
+          "text": "Study earns when purpose chooses the shelf."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "think-and-grow-rich-ch06",
       "number": 6,
       "title": "Imagination: The Workshop of the Mind",
@@ -1760,13 +1465,6 @@
             "commercial plan",
             "distribution"
           ],
-          "planSpec": {
-            "domain": "beverage launch planning",
-            "audience": "founders with a product but no demand system",
-            "stakes": "a product remains a curiosity unless the plan multiplies its reach",
-            "format": "business_case",
-            "requiredBeat": "a protagonist uses Asa Candler's Coca-Cola case to separate physical material from imagined commercial system"
-          },
           "scenario": "The kettle tells Alphonse almost nothing by itself. On the tasting table sit a syrup sample, a rough formula, and a clipping about Asa Candler turning Coca-Cola into a vast enterprise. The investor across from him keeps asking about ingredients. Alphonse turns the sheet around and sketches bottlers, signage, repeat orders, and public demand, so the conversation moves from what the liquid is to how the idea can travel. The room changes when he treats imagination as a plan for movement, not as a label on the bottle.",
           "whatToDo": "Alphonse names the physical asset first, then draws the demand system around it: who sells, who repeats, who sees the sign, and how the formula reaches more buyers.",
           "whyItMatters": "Coca-Cola shows that commercial imagination can multiply ordinary material. The reader can use the same move whenever a product has substance but no route to market."
@@ -1779,13 +1477,6 @@
             "public plan",
             "education"
           ],
-          "planSpec": {
-            "domain": "school fundraising address",
-            "audience": "leaders who need support before resources exist",
-            "stakes": "supporters need to picture the institution before they can fund it",
-            "format": "dialogue",
-            "requiredBeat": "a protagonist makes a need concrete by following the Gunsaulus sermon pattern"
-          },
           "scenario": "\"Say the number before you soften it,\" Murray tells himself behind the auditorium curtain. His notes mention Dr. Frank W. Gunsaulus, $1 million, the sermon, and Armour Institute. The donors have heard wishes before. Murray walks out with a diagram of classrooms, apprenticeships, and machines, then speaks as if the school already has walls. The pledge cards stay blank until the audience can picture what the money will build. He leaves pauses where donors can see benches, tools, and students rather than hear another appeal.",
           "whatToDo": "Murray states the sum, names the school shape, and gives donors a scene they can imagine entering instead of asking them to support a vague wish.",
           "whyItMatters": "Gunsaulus attracted backing by making purpose visible. A reader seeking help should give supporters a concrete design, not merely a private longing."
@@ -1798,13 +1489,6 @@
             "durability",
             "organizing idea"
           ],
-          "planSpec": {
-            "domain": "community legacy planning",
-            "audience": "builders thinking beyond personal ownership",
-            "stakes": "a project fades unless the idea can organize action after the founder leaves",
-            "format": "reflection",
-            "requiredBeat": "a protagonist uses Christianity's endurance to test whether an idea can outlive its originator"
-          },
           "scenario": "2,000 years is the number Diego writes at the top of the ledger. The archive committee wants a donor wall; Diego points instead to Christianity, Christ, and the force of an organizing idea that kept moving after the originator was gone. He rewrites the launch plan around rituals, roles, and repeatable commitments. Names on stone can honor a gift, but the working idea must keep recruiting behavior. The vote changes once the committee measures endurance by transferable practice instead of ceremonial display.",
           "whatToDo": "Diego changes the plan from a memorial list to a repeatable pattern: roles people can inherit, language they can use, and actions that continue without him.",
           "whyItMatters": "The Christianity example widens the lesson. A strong idea can organize people past one lifetime, so plans should carry patterns, not just possessions."
@@ -1817,13 +1501,6 @@
             "retail",
             "combination"
           ],
-          "planSpec": {
-            "domain": "local retail distribution",
-            "audience": "operators who underestimate ordinary combinations",
-            "stakes": "known resources can remain separate or become a working plan",
-            "format": "audit",
-            "requiredBeat": "a protagonist combines existing pieces instead of waiting for pure originality"
-          },
           "scenario": "In the back room of a neighborhood retailer, Farah tapes four cards to a wall: sample table, weekend foot traffic, delivery route, Coca-Cola. The case reminds her that Asa Candler did not need a new universe; he needed a better combination around a formula. She moves the cards until a trial appears: two Saturday tastings, one refill route, and a display that asks buyers to return next week. The route looks modest, but it joins pieces that had been sitting apart all month.",
           "whatToDo": "Farah inventories the pieces already present, rearranges them into one small route, and writes the first trial before adding more material.",
           "whyItMatters": "Synthetic imagination often works by recombination. The reader can stop hunting for novelty and start arranging known assets into a testable path."
@@ -1836,13 +1513,6 @@
             "prototype",
             "purpose"
           ],
-          "planSpec": {
-            "domain": "product redesign session",
-            "audience": "makers who confuse more effort with fresh insight",
-            "stakes": "a failed prototype can become a signal instead of a dead end",
-            "format": "mistake_recovery",
-            "requiredBeat": "a protagonist treats a hunch as useful only after purpose and contact with the problem have prepared the mind"
-          },
           "scenario": "The prototype fails before lunch. Gaelle almost adds another feature, then rereads her note about Dr. Frank W. Gunsaulus making $1 million vivid through a sermon for Armour Institute. The hunch lands sideways: customers do not need to own her device; they need access during events. She records the rental version, checks it against the original desire, and calls three customers before polishing the design again. The failed prototype becomes input, not embarrassment, because the new model still serves the original purpose.",
           "whatToDo": "Gaelle pauses the feature pile, writes the hunch as a new plan, and tests it with customers while the failed prototype is still teaching her.",
           "whyItMatters": "Creative imagination is useful when it turns contact with purpose into a new route. A hunch still has to become a written plan and meet reality."
@@ -1855,13 +1525,6 @@
             "written plan",
             "desire"
           ],
-          "planSpec": {
-            "domain": "first business-plan revision",
-            "audience": "readers defending a first draft too early",
-            "stakes": "the desire can gain shape through revision or stay trapped in a brittle first plan",
-            "format": "before_after",
-            "requiredBeat": "a protagonist revises a written plan as better combinations appear"
-          },
           "scenario": "Bohdan has already crossed out the launch budget. In the margin he has written Coca-Cola, kettle, formula, and Armour Institute as reminders that value grew when plans became concrete enough for others to grasp. The first draft asked for too much money and showed too little proof. Bohdan replaces it with a cheaper demonstration, a partner list, and one sentence naming the desire the plan must serve. The revision feels smaller, yet it gives another person something specific to understand before money is requested.",
           "whatToDo": "Bohdan treats the first draft as material, cuts the oversized launch, and writes a smaller demonstration that can teach the next revision.",
           "whyItMatters": "Imagination strengthens through use. A written plan is supposed to change as better combinations appear, not become a relic after the first attempt."
@@ -1880,8 +1543,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Coca-Cola case makes the formula valuable through the demand system built around it. Ingredient talk alone misses the commercial imagination Candler supplied.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch06-q02",
@@ -1893,8 +1555,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Gunsaulus made the need public through a vivid school plan. Supporters can rally around a visible design, not around an unshaped wish.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "think-and-grow-rich-ch06-q03",
@@ -1906,8 +1567,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Synthetic imagination rearranges existing ideas and materials. Farah does not need pure originality first; she needs a combination that can be tested.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch06-q04",
@@ -1919,8 +1579,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Creative imagination can receive fresh possibilities, but the practical demand remains action. The hunch earns value when Gaelle writes and tests it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "think-and-grow-rich-ch06-q05",
@@ -1932,8 +1591,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Christianity example points to an organizing idea that outlives its originator. Memory matters less than a pattern people can keep using.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "think-and-grow-rich-ch06-q06",
@@ -1945,8 +1603,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Written plans are working material. Revision is not betrayal of desire; it is how imagination improves the route desire will take.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch06-q07",
@@ -1958,8 +1615,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Desire supplies energy, not the route. Imagination converts the aim into organized action, so lack of a plan means the workshop has work to do.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "think-and-grow-rich-ch06-q08",
@@ -1971,8 +1627,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source case centers on commercialization. Candler's contribution was the imagined business system around the formula, not a lab-only invention story.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "think-and-grow-rich-ch06-q09",
@@ -1984,8 +1639,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The distinction assigns different jobs. Synthetic imagination rearranges existing material, while creative imagination receives new possibilities that still need planning.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2022,7 +1676,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build the Idea Workshop Plan",
         "coreSkill": "Practice turning desire into a written combination. Build the Idea Workshop Plan by naming the desire, listing available pieces, choosing one synthetic arrangement, noting any creative hunch, and revising after contact with reality. The skill is not dreaming harder; it is giving the desire a shape someone else can understand.",
         "ifThenPlans": [
           {
@@ -2047,24 +1700,17 @@
       },
       "memorableLines": [
         {
-          "text": "Ideas are starting capital.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's economic claim into a portable sentence."
+          "text": "Ideas are starting capital."
         },
         {
-          "text": "The first plan is a draft, not a shrine.",
-          "location": "breakdown.fullRead",
-          "why": "It protects the reader from defending early plans instead of improving them."
+          "text": "The first plan is a draft, not a shrine."
         },
         {
-          "text": "Imagination earns trust when it makes desire visible.",
-          "location": "breakdown.fullRead",
-          "why": "It links the mental faculty to the practical need for a plan others can see."
+          "text": "Imagination earns trust when it makes desire visible."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "think-and-grow-rich-ch07",
       "number": 7,
       "title": "Organized Planning: The Crystallization of Desire into Action",
@@ -2087,13 +1733,6 @@
             "startup",
             "revision"
           ],
-          "planSpec": {
-            "domain": "neighborhood cafe expansion",
-            "audience": "Roland, a cafe owner turning desire into a workable expansion plan",
-            "stakes": "A lease option will expire unless the plan gains real allies and structure.",
-            "format": "decision_point",
-            "requiredBeat": "Show the Master Mind alliance becoming roles, compensation, meetings, and harmony."
-          },
           "scenario": "Roland has already pinned three supplier quotes to the cafe wall when the landlord asks for a signed expansion plan. The deadline is Friday, and at 6:30 p.m. in the empty dining room the thin notebook shows no lender, no night manager, and no baker. Before the lease option expires, he must answer with a Master Mind list, twice weekly meetings, clear compensation, and rules for harmony.",
           "whatToDo": "Roland writes the names of four needed allies beside the cafe map, then adds what each person receives and when the twice weekly planning meetings begin.",
           "whyItMatters": "The cafe plan stops being private wishwork once help, compensation, cadence, and harmony are named. Desire gains a group strong enough to revise it."
@@ -2106,13 +1745,6 @@
             "service",
             "cooperation"
           ],
-          "planSpec": {
-            "domain": "appliance repair dispatch",
-            "audience": "Donna, a dispatch lead judging service value before the night shift",
-            "stakes": "A fast crew is losing repeat business through poor cooperative habits.",
-            "format": "dialogue",
-            "requiredBeat": "Use Quality, Quantity, and Spirit as a behavioral service audit."
-          },
           "scenario": "Donna's first sentence in the repair dispatch room is, \"The numbers are fine and the mood is costing us customers.\" At 4:20 p.m., a complaint log shows the crew closing plenty of calls while leaving brusque notes. In the next thirty minutes, she needs to choose a route-board standard with QQS: Quality of fixes, Quantity of calls, and Spirit of cooperation.",
           "whatToDo": "Donna reads one complaint aloud, then has the crew mark the next route board with one Quality fix, one Quantity target, and one Spirit behavior.",
           "whyItMatters": "QQS keeps service from shrinking into output count. The manner of work can raise or damage market value even when technical skill is present."
@@ -2125,13 +1757,6 @@
             "postmortem",
             "responsibility"
           ],
-          "planSpec": {
-            "domain": "warehouse systems rollout",
-            "audience": "Nicholas, a project lead auditing his own leadership after a missed deadline",
-            "stakes": "A rollout failure will become blame unless the leader finds his part in the plan.",
-            "format": "postmortem",
-            "requiredBeat": "Turn the 11 leadership traits and 10 failures into a leadership diagnostic."
-          },
           "scenario": "Nicholas reads the rollout postmortem on Wednesday morning in Bay 12, red pencil stalled beside the line that blames the warehouse crew. The missed deadline came after he skipped detail checks and barked instructions. He marks the 11 leadership traits against the 10 leadership failures, circling self-control and cooperation before rewriting his own responsibility line.",
           "whatToDo": "Nicholas changes the postmortem from crew blame to a leadership audit, naming the detail checks he skipped and the cooperation he failed to build.",
           "whyItMatters": "A plan is carried by habits, not paper. Leadership traits expose the human failures that make a plan collapse before the idea itself is tested."
@@ -2144,13 +1769,6 @@
             "new route",
             "allies"
           ],
-          "planSpec": {
-            "domain": "software pilot recovery",
-            "audience": "Arlo, a founder rebuilding a plan after the first prototype fails",
-            "stakes": "Investors will hear the update before the founder has stopped defending the old roadmap.",
-            "format": "mistake_recovery",
-            "requiredBeat": "Show a failed plan being replaced while the definite aim remains."
-          },
           "scenario": "Arlo's prototype is already dead; the pilot customers sent back a page of missing features. Two hours before the investor update in the coworking kitchen, he slides the old roadmap under a fresh sheet. The next answer is not a pep talk. He drafts a Master Mind roster, adds compensation for a data partner, and schedules twice weekly harmony checks.",
           "whatToDo": "Arlo keeps the market aim, retires the broken roadmap, and brings the data partner into a paid alliance before he updates investors.",
           "whyItMatters": "Revision is not surrender. The old plan can be replaced while the aim stays alive, especially when new knowledge joins the effort."
@@ -2163,13 +1781,6 @@
             "clinic",
             "leadership"
           ],
-          "planSpec": {
-            "domain": "community clinic scheduling",
-            "audience": "Zainab, a clinic coordinator protecting cooperation during a staffing shortage",
-            "stakes": "A respected doctor wants command pressure to solve a volunteer shortfall.",
-            "format": "audit",
-            "requiredBeat": "Contrast force with cooperative leadership using the leadership traits."
-          },
           "scenario": "Zainab writes \"consent, not force\" on the clinic whiteboard before the meeting starts. The noon volunteer roster is short, and the loudest doctor wants to order people into extra shifts. Zainab pulls the 11 leadership traits beside the 10 leadership failures, then asks for a plan that shows self-control, justice, and cooperation.",
           "whatToDo": "Zainab slows the meeting long enough to name the leadership traits the schedule must honor, then asks each volunteer for a clear commitment.",
           "whyItMatters": "Cooperative leadership can still be firm. It asks for consent, detail, and responsibility instead of burning harmony for a short burst of compliance."
@@ -2182,13 +1793,6 @@
             "proposal",
             "QQS"
           ],
-          "planSpec": {
-            "domain": "trade-show consulting renewal",
-            "audience": "Hudson, a consultant revising his service plan before asking for renewal",
-            "stakes": "Strong analysis may not overcome late delivery and a sharp cooperative tone.",
-            "format": "before_after",
-            "requiredBeat": "Use QQS to show why service value includes behavior as well as output."
-          },
           "scenario": "Hudson's invoice sits unpaid on a hotel lobby printer after a trade-show week of late reports and sharp emails. At 9:05 a.m., his client praises the sales analysis but questions the renewal. Before he sends the new proposal, he marks QQS across the top: Quality of insight, Quantity of useful work, and Spirit of cooperation.",
           "whatToDo": "Hudson rewrites the proposal around one service promise in each QQS category, then adds a calmer communication rule for the next event.",
           "whyItMatters": "Personal service is judged by more than skill. A strong report loses value when poor cooperation makes the relationship costly to maintain."
@@ -2207,8 +1811,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The alliance is part of the plan, not a late endorsement. Roland needs knowledge, influence, compensation, and cadence before the lease pressure hardens the weak route.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch07-q02",
@@ -2220,8 +1823,7 @@
             ],
             "correctIndex": 2,
             "explanation": "QQS refuses to treat volume as the whole score. Donna must keep technical quality and call count while correcting the cooperative spirit customers feel.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "think-and-grow-rich-ch07-q03",
@@ -2233,8 +1835,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The failure list treats avoidance of humble service and weak organization as leadership faults. Blame skips the self-audit that could repair the next plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "think-and-grow-rich-ch07-q04",
@@ -2246,8 +1847,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The failed route is the object to replace. Treating the prototype as final evidence against the aim confuses a bad plan with a dead desire.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "think-and-grow-rich-ch07-q05",
@@ -2259,8 +1859,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The alliance depends on harmony as a working condition. Expertise helps only when cooperation survives the meeting and roles can be carried out.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch07-q06",
@@ -2272,8 +1871,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Force may create short motion, but consent builds cooperative power. Hudson needs clarity and responsibility, not fear or concealment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "think-and-grow-rich-ch07-q07",
@@ -2285,8 +1883,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Clear compensation keeps cooperation reciprocal. Vague appreciation can turn the alliance into unpaid hope, which weakens commitment.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "think-and-grow-rich-ch07-q08",
@@ -2298,8 +1895,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Definiteness is a leadership trait because people cannot coordinate around mist. Optimism and admiration cannot replace owners, details, and responsibility.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "think-and-grow-rich-ch07-q09",
@@ -2311,8 +1907,7 @@
             ],
             "correctIndex": 0,
             "explanation": "QQS keeps all three parts in view. Donna should not excuse rough cooperation with speed, or replace sound repair with charm.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2355,7 +1950,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Rebuild the Plan With Allies",
         "coreSkill": "Practice Rebuild the Plan With Allies when a plan stalls. Keep the definite aim, replace the route, and pull in people who add knowledge, influence, and accountability. Name compensation and meeting cadence so cooperation has a structure.",
         "ifThenPlans": [
           {
@@ -2384,19 +1978,13 @@
       },
       "memorableLines": [
         {
-          "text": "A failed plan is a verdict on the route, not on the desire.",
-          "location": "breakdown.fastRead",
-          "why": "It preserves the core distinction between a broken route and a living aim."
+          "text": "A failed plan is a verdict on the route, not on the desire."
         },
         {
-          "text": "Cooperation raises the market value of competence.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the QQS lesson into one practical sentence."
+          "text": "Cooperation raises the market value of competence."
         },
         {
-          "text": "Harmony is a work condition, not a mood.",
-          "location": "breakdown.fullRead",
-          "why": "It makes group harmony feel operational rather than sentimental."
+          "text": "Harmony is a work condition, not a mood."
         }
       ]
     },
@@ -2423,13 +2011,6 @@
             "facts",
             "courage"
           ],
-          "planSpec": {
-            "domain": "school foundation grant",
-            "audience": "board chair",
-            "stakes": "donor fear diluting a vote",
-            "format": "decision_memo",
-            "requiredBeat": "A public recommendation is made once the facts are sufficient"
-          },
           "scenario": "Gavin has already written the board memo before the Friday vote at a school foundation office. A framed copy of the Declaration of Independence hangs near the agenda, with 1776, Britain, and treason circled from a history exhibit. Donors want another survey. Gavin records the facts in the memo and lets the vote carry a public cost.",
           "whatToDo": "Gavin signs the recommendation and names the evidence that could reopen it. He lets facts govern the vote instead of donor nervousness.",
           "whyItMatters": "The Declaration anchor makes decision visible as commitment under cost. Delay would invite opinion to drain a choice already supported by facts."
@@ -2442,13 +2023,6 @@
             "Boston",
             "risk"
           ],
-          "planSpec": {
-            "domain": "tenant organizing",
-            "audience": "renters union lead",
-            "stakes": "a pledge weakening into polling",
-            "format": "dialogue",
-            "requiredBeat": "A committed network replaces loose opinion gathering"
-          },
           "scenario": "Andriy says the last polling round is over as Tuesday's tenants gather in a Boston church basement. The sign-in sheet sits under a flyer about Samuel Adams and colonial resistance. Independence is the word on the flyer, but the rent strike needs names before the meeting ends. Andriy asks only for repair facts and who will stand behind them.",
           "whatToDo": "Andriy narrows the talk to facts and signers. He changes a room of opinions into a network willing to carry the risk together.",
           "whyItMatters": "Samuel Adams shows that decisive public action is often prepared in trusted rooms. Endless polling feels safe while it weakens resolve."
@@ -2461,13 +2035,6 @@
             "Model T",
             "reversal"
           ],
-          "planSpec": {
-            "domain": "automotive supplier operations",
-            "audience": "plant lead",
-            "stakes": "one complaint moving policy",
-            "format": "postmortem",
-            "requiredBeat": "Criticism opens review, but evidence moves policy"
-          },
           "scenario": "Dean's Monday postmortem begins with a red customer comment, not a clock. On the plant wall, a case card reads Henry Ford, Model T, advisors, automobile market. His crew had changed tooling after one loud complaint, then missed three steady orders. Dean writes the new rule: criticism opens review; evidence moves policy.",
           "whatToDo": "Dean separates the complaint from the sales record before changing tooling again. He gives evidence the power that noise took last time.",
           "whyItMatters": "Ford's firmness is useful only when tied to reasons. The lesson is not to ignore the market; it is to stop reversing under mere pressure."
@@ -2480,13 +2047,6 @@
             "founder judgment",
             "launch"
           ],
-          "planSpec": {
-            "domain": "medical device launch",
-            "audience": "founder",
-            "stakes": "family anxiety shaping investor terms",
-            "format": "inner_monologue",
-            "requiredBeat": "Concern is heard without receiving control"
-          },
           "scenario": "Isabelle counts nine unread family messages while waiting outside the investor conference room as founder. Her launch deck uses Henry Ford and the Model T to explain why advisors do not get a veto in a nervous automobile market. The call starts in four minutes. She reads the customer evidence once, mutes the thread, and gives the answer she can defend.",
           "whatToDo": "Isabelle treats the family messages as concern, not evidence. She answers from customer facts and keeps the change trigger written beside her.",
           "whyItMatters": "Outside opinions often arrive with affection. Decisiveness protects judgment without mocking the people who are afraid for the chooser."
@@ -2499,13 +2059,6 @@
             "network",
             "public risk"
           ],
-          "planSpec": {
-            "domain": "volunteer campaign",
-            "audience": "strategy coordinator",
-            "stakes": "friends softening a public pledge",
-            "format": "text_thread",
-            "requiredBeat": "The group moves from safety talk to named commitment"
-          },
           "scenario": "Camille's text thread fills the left side of her tablet during a volunteer strategy night at a storefront near Boston. One tab holds notes on Samuel Adams, colonial resistance, and independence. Her friends want the plan softened before the pledge is printed. Camille copies the risk statement into the thread, then asks which helpers will sign, not who feels safest.",
           "whatToDo": "Camille sends the risk statement and asks for named support. She lets the pledge sort committed helpers from casual comfort.",
           "whyItMatters": "Prepared decision is not endless consensus seeking. A smaller committed circle can carry more force than a large room trading doubts."
@@ -2518,13 +2071,6 @@
             "opinion filter",
             "review trigger"
           ],
-          "planSpec": {
-            "domain": "city procurement reform",
-            "audience": "procurement lead",
-            "stakes": "nervous emails after a public stand",
-            "format": "before_after",
-            "requiredBeat": "Public commitment remains open to facts, not panic"
-          },
           "scenario": "Avery submitted the supplier pledge before sunrise, then watched the room react at the 8:30 procurement review in the civic lab. The slide behind him showed the Declaration of Independence, 1776, Britain, and treason as a scale for public commitment. By lunch, the nervous emails arrived. Avery filed them under opinion until a fact changed the risk.",
           "whatToDo": "Avery keeps the pledge active and routes new messages through the written evidence test. Panic does not get the same vote as a fact.",
           "whyItMatters": "Decision is not a refusal to learn. It is a refusal to let the first wave of social heat erase a choice made from facts."
@@ -2543,8 +2089,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Procrastination hides inside another round of opinion after the facts are ready. Gavin protects the grant choice by acting before nervous donors replace judgment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2556,8 +2101,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Samuel Adams makes decision look organized, not merely theatrical. Andriy's pledge needs trusted preparation and real facts before the public act.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2569,8 +2113,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Ford's Model T stance praises firmness against pressure, not blindness to facts. Dean should review evidence without letting advisor dislike control the line.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2582,8 +2125,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Outside opinion can carry borrowed fear even when it is affectionate. Isabelle should hear concern without letting it replace the evidence she has.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2595,8 +2137,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Declaration example depends on visible commitment under danger. Camille does not need reckless exposure, but a clear risk should not remain hidden.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2608,8 +2149,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The failure pattern is slow decision and quick reversal. Avery needs the opposite rhythm: prompt commitment from facts and slower change under evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2621,8 +2161,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Loose talk invites casual opinions to govern the choice. Euphemie uses restraint by gathering facts, reducing speech, and writing the decision.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q08",
@@ -2634,8 +2173,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge is the change trigger. Dean should not use Henry Ford and the Model T as shields for pride; he should name evidence that can reopen policy.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2647,8 +2185,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Decision requires courage because social cost can sting. Andriy should test for new facts before treating embarrassment as a reason to reverse.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2691,7 +2228,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Set the Decision Lock",
         "coreSkill": "Set the Decision Lock by writing the relevant facts, the chosen action, and the evidence that would reopen the case. Then keep casual opinion outside the lock so desire has a route into action. The lock is a short written act, not a mood.",
         "ifThenPlans": [
           {
@@ -2716,24 +2252,17 @@
       },
       "memorableLines": [
         {
-          "text": "Procrastination lets every voice borrow the wheel.",
-          "location": "breakdown.fastRead",
-          "why": "It makes opinion-seeking feel like a physical loss of control."
+          "text": "Procrastination lets every voice borrow the wheel."
         },
         {
-          "text": "A public choice has a different weight from a private wish.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the courage gap between wanting and committing."
+          "text": "A public choice has a different weight from a private wish."
         },
         {
-          "text": "The test is evidence, not embarrassment.",
-          "location": "breakdown.fullRead",
-          "why": "It cleanly separates sound revision from social pressure."
+          "text": "The test is evidence, not embarrassment."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "think-and-grow-rich-ch09",
       "number": 9,
       "title": "Persistence: The Sustained Effort Necessary to Induce Faith",
@@ -2756,13 +2285,6 @@
             "desire",
             "rejection"
           ],
-          "planSpec": {
-            "domain": "fiction submission desk",
-            "audience": "writers discouraged by repeated rejection",
-            "stakes": "A returned envelope can turn a definite purpose into embarrassment unless the next action is already planned.",
-            "format": "decision_point",
-            "requiredBeat": "Use Fannie Hurst's years of rejection to show persistence as ordinary continuation."
-          },
           "scenario": "Tiago counts the returned envelopes in a folder labeled publishing. The newest story is ready, and the contest window closes tonight. Fannie Hurst's years of rejection as a writer are underlined in his notes, which makes the folder feel less like a verdict. Tiago must choose between mailing the story before dinner and hiding the draft until the shame cools.",
           "whatToDo": "Tiago mails the story before dinner and records the next submission date. He treats the rejection folder as training data, not as a verdict on the definite purpose.",
           "whyItMatters": "The move turns refusal into another repetition of the aim. Readers can use the same move when rejection tempts them to protect pride instead of continuing."
@@ -2775,13 +2297,6 @@
             "practice",
             "audience"
           ],
-          "planSpec": {
-            "domain": "local radio audition",
-            "audience": "performers whose confidence drops before public exposure",
-            "stakes": "A missed note can become either a practice cue or a reason to quit before the audience hears the work.",
-            "format": "dialogue",
-            "requiredBeat": "Use Kate Smith and radio to show unseen repetition before opportunity."
-          },
           "scenario": "\"The audience will hear the next take, not the excuse,\" Aubrey says into the quiet mic. The audition engineer has stepped out, and the radio booth still holds the last cracked note. Kate Smith, singer and radio fixture, is written across Aubrey's practice card. Before the red light returns, Aubrey needs to choose the next response.",
           "whatToDo": "Aubrey marks the cracked note, repeats the scale, and records one clean take before leaving the radio booth. Practice becomes the response to embarrassment.",
           "whyItMatters": "Public opportunity often meets talent after private repetition has done its work. The scene gives readers a way to answer embarrassment with one more trained attempt."
@@ -2794,13 +2309,6 @@
             "postmortem",
             "plan"
           ],
-          "planSpec": {
-            "domain": "software launch review",
-            "audience": "founders confusing stubbornness with persistence",
-            "stakes": "A failed launch can tempt the team to abandon the purpose or repeat a plan that evidence has already weakened.",
-            "format": "postmortem",
-            "requiredBeat": "Use the four steps to distinguish persistence in purpose from blind loyalty to a plan."
-          },
           "scenario": "The morning after the failed launch, Beatriz pins the four steps beside the bug report. The definite purpose still matters; the definite plan does not. Support emails show where the old sequence broke, and her friendly alliance has already circled three fixes. The postmortem changes the method without letting temporary defeat cancel the aim.",
           "whatToDo": "Beatriz keeps the purpose, revises the release plan, and assigns the next fix with a partner attached. The plan moves again instead of becoming a speech.",
           "whyItMatters": "Persistence is not repeating evidence-blind tactics. Readers learn to protect the aim while improving the plan that carries it."
@@ -2813,13 +2321,6 @@
             "willpower",
             "alliance"
           ],
-          "planSpec": {
-            "domain": "operations turnaround meeting",
-            "audience": "team leads trying to make follow-through structural",
-            "stakes": "Morale is low enough that private willpower will not carry the turnaround alone.",
-            "format": "audit",
-            "requiredBeat": "Make the four-step method visible as a structure, not a mood."
-          },
           "scenario": "Four blank columns fill Haruto's warehouse whiteboard: definite purpose, definite plan, closed mind against discouragement, friendly alliance. Twelve late orders sit on the table. Haruto asks the team to fill every column before the next route leaves, because another pep talk will not move a single package.",
           "whatToDo": "Haruto turns persistence into an audit: name the aim, pick the moving plan, filter discouragement, and attach each task to an encouraging partner.",
           "whyItMatters": "Willpower fades when conditions stay hostile. A visible structure makes persistence easier to repeat after the room stops feeling motivated."
@@ -2832,13 +2333,6 @@
             "writing",
             "filter"
           ],
-          "planSpec": {
-            "domain": "graduate publishing review",
-            "audience": "writers who let social embarrassment stop a live project",
-            "stakes": "Fear of criticism can end the work before technical weakness gets repaired.",
-            "format": "reflection",
-            "requiredBeat": "Use Fannie Hurst to separate useful criticism from discouragement."
-          },
           "scenario": "Three harsh comments sit in Estelle's review memo, and one sentence keeps burning hotter than the rest. She writes Fannie Hurst, writer, years of rejection, publishing across the top margin. Then she separates the useful edits from the voice telling her to disappear. By the end of the hour, the draft has a revision list instead of a funeral.",
           "whatToDo": "Estelle sorts criticism into repair notes and discouragement. She revises the draft from the first pile and refuses to give the second pile authority.",
           "whyItMatters": "The fear of criticism often stops action before failure does. Filtering feedback keeps the useful knowledge while protecting desire from needless collapse."
@@ -2851,13 +2345,6 @@
             "habit",
             "radio"
           ],
-          "planSpec": {
-            "domain": "daily vocal practice",
-            "audience": "performers waiting for a break without building repetition",
-            "stakes": "Opportunity may arrive before the habit is ready to meet it.",
-            "format": "reset_moment",
-            "requiredBeat": "Use Kate Smith to connect persistence with ability developed before the audience appears."
-          },
           "scenario": "Isabella's practice tape begins with a rough chorus and ends with a better one. No audience is present; only the small radio on the shelf and a card that says Kate Smith, singer. Isabella rewinds the tape once more, then logs the take instead of hunting for a compliment. The break she wants has to meet a habit first.",
           "whatToDo": "Isabella repeats the chorus, logs the cleanest take, and schedules tomorrow's practice before leaving the room. Habit gets placed ahead of applause.",
           "whyItMatters": "Kate Smith's radio example warns that recognition can rest on unseen repetition. Readers can prepare for opportunity before any audience is watching."
@@ -2876,8 +2363,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Faith is strengthened by sustained effort after resistance appears. Waiting for belief first or treating one refusal as final breaks the action loop that persistence creates.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch09-q02",
@@ -2889,8 +2375,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Weak desire produces weak persistence. Avoiding all criticism will not supply fuel, because follow-through depends on how intensely the aim matters.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "think-and-grow-rich-ch09-q03",
@@ -2902,8 +2387,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The method begins with definite purpose backed by burning desire. Random activity and vague effort have motion, but they lack the target and fuel persistence needs.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "think-and-grow-rich-ch09-q04",
@@ -2915,8 +2399,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Persistence is behavior, not private intention. Planning becomes avoidance when it never converts into continuous action the team can see and test.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch09-q05",
@@ -2928,8 +2411,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The filter blocks discouraging influence, not useful evidence. Addison should protect desire from needless negativity while still improving the next action.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "think-and-grow-rich-ch09-q06",
@@ -2941,8 +2423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Friendly alliance is part of the training. Supportive people reinforce effort when willpower thins; isolation and wishing leave the habit fragile.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch09-q07",
@@ -2954,8 +2435,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fannie Hurst is a rejection-to-success example. The lesson is long continuation through refusal, not instant discovery or refusal to improve the work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "think-and-grow-rich-ch09-q08",
@@ -2967,8 +2447,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Kate Smith example links public recognition with developed ability. Luck is not the lesson; staying power before the audience arrives is.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "think-and-grow-rich-ch09-q09",
@@ -2980,8 +2459,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The barrier is social fear, not only technical inability. Fear of criticism can stop the next action before the work even receives a real test.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3024,7 +2502,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Persistence Drill",
         "coreSkill": "Practice turning weak follow-through into a diagnosis instead of a character verdict. Run the Persistence Drill by naming the definite purpose, moving one definite plan, blocking one discouraging influence, and asking one friendly ally to reinforce the next action. The skill keeps temporary defeat from deciding the meaning of the aim.",
         "ifThenPlans": [
           {
@@ -3049,24 +2526,17 @@
       },
       "memorableLines": [
         {
-          "text": "Persistence is desire with a work schedule.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's abstract term into a practical image."
+          "text": "Persistence is desire with a work schedule."
         },
         {
-          "text": "Willpower helps, but habit carries.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the mechanism of repeated continuation."
+          "text": "Willpower helps, but habit carries."
         },
         {
-          "text": "Temporary defeat gets a vote only when the aim lets it.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the hard edge without making persistence blind."
+          "text": "Temporary defeat gets a vote only when the aim lets it."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "think-and-grow-rich-ch10",
       "number": 10,
       "title": "Power of the Master Mind: The Driving Force",
@@ -3089,13 +2559,6 @@
             "steel",
             "coordination"
           ],
-          "planSpec": {
-            "domain": "county contract bid review",
-            "audience": "operators who confuse personal expertise with organized power",
-            "stakes": "a steel supplier can win the bid only if separate specialties become one offer",
-            "format": "decision_point",
-            "requiredBeat": "show Andrew Carnegie's steel alliance as organized specialized minds, not one person's private genius"
-          },
           "scenario": "The bid spreadsheet shows a gap before Marlowe says a word. In the conference room, the steel supplier can win a county contract only if finance, mill scheduling, sales, and installation stop protecting separate answers. Marlowe has been quoting Andrew Carnegie all week: the steel fortune came from organizing specialized minds, not one heroic knower. The real decision is how to build the roster for the next hour. Marlowe can let each department defend its margin, or make them design one coordinated offer.",
           "whatToDo": "Marlowe assigns finance, scheduling, sales, and installation one shared number to improve, then asks each specialist to show how their knowledge moves that number.",
           "whyItMatters": "The Carnegie steel lesson generalizes to any large goal. Power appears when specialized minds are organized around one result instead of guarded in separate lanes."
@@ -3108,13 +2571,6 @@
             "peer circle",
             "thinking"
           ],
-          "planSpec": {
-            "domain": "product lab adviser selection",
-            "audience": "founders building peer circles for stimulation rather than status",
-            "stakes": "choose advisers who change the quality of thought before a retreat calendar closes",
-            "format": "dialogue",
-            "requiredBeat": "use Ford's association with Edison, Firestone, and Burroughs to show chosen mental company"
-          },
           "scenario": "\"Who is in your thinking camp?\" Yasmin writes the question on the whiteboard after the adviser nominations stall. The loudest nominee has status but no useful angle on the product. Yasmin points to Henry Ford's association with Thomas Edison, Harvey Firestone, and John Burroughs as a different model: chosen company that stimulates thought. Before the retreat calendar closes, Yasmin needs to choose companions who will sharpen the lab's questions and keep the work moving.",
           "whatToDo": "Yasmin sorts the adviser list by the kind of thinking each person adds, then removes a prestigious name that contributes attention but not perspective.",
           "whyItMatters": "Ford's circle matters as contact with capable minds, not celebrity proximity. The reader should choose companions who alter judgment and extend reach."
@@ -3127,13 +2583,6 @@
             "purpose",
             "cooperation"
           ],
-          "planSpec": {
-            "domain": "partnership operating agreement",
-            "audience": "small teams whose alliance looks strong on paper but brittle in practice",
-            "stakes": "the agreement gets signed only if the relational condition is repaired",
-            "format": "planning_choice",
-            "requiredBeat": "show that two or more people need harmony, definite purpose, and cooperation"
-          },
           "scenario": "Three signatures sit on Graham's partnership draft, and the legal terms are nearly finished. The trouble is the room. Two or more people have the technical pieces, a definite purpose, and a forecast, yet every correction lands like a strike. The vote is about admitting what the paper hides: without harmony, cooperation will not survive the first missed target. Graham pauses the signing session and asks the partners to define how disagreement will serve the shared aim.",
           "whatToDo": "Graham stops the signature rush, names the conflict pattern, and writes a rule for disagreement that protects the definite purpose before equity is finalized.",
           "whyItMatters": "The harmony requirement keeps the alliance from becoming a brittle committee. Cooperation has to be emotional and practical before knowledge can combine."
@@ -3146,13 +2595,6 @@
             "knowledge",
             "money"
           ],
-          "planSpec": {
-            "domain": "fundraising deck revision",
-            "audience": "builders who have facts but no organized means",
-            "stakes": "a second investor meeting needs directed knowledge instead of better wishes",
-            "format": "postmortem",
-            "requiredBeat": "show power as organized and intelligently directed knowledge"
-          },
           "scenario": "After the investor call ends, Yusra pins the phrase organized knowledge above the dashboard. The money ask failed because the plan sounded like wishes, not power. Carnegie's steel example bothers her: capital followed a system that could direct people, contacts, and facts. The board meets again Friday, and Yusra rewrites the deck around who owns which knowledge, which contact opens which door, and how each piece turns into action.",
           "whatToDo": "Yusra turns the research pile into an action map by assigning each fact to an owner, a contact, and the next decision it should change.",
           "whyItMatters": "Knowledge does not become power by being collected. Readers need a way to direct what they know toward money, decisions, and coordinated action."
@@ -3165,13 +2607,6 @@
             "networking",
             "reciprocity"
           ],
-          "planSpec": {
-            "domain": "founder dinner group reset",
-            "audience": "networkers who mistake friendly access for alliance power",
-            "stakes": "a pleasant group either names a shared aim or remains scattered advice",
-            "format": "scene",
-            "requiredBeat": "show that an alliance must be tied to a definite purpose"
-          },
           "scenario": "On the call after Lacey's third founder dinner, the notes sound generous and useless. Everyone promised introductions, nobody named the result the group exists to produce, and the next gathering is becoming another round of stories. Before the next call, Lacey needs to decide what the group is for. She uses Hill's test plainly: no definite purpose, no real alliance, no claim on coordinated power.",
           "whatToDo": "Lacey writes one shared aim for the group, asks each member for a reciprocal contribution, and cancels the next dinner if the purpose stays vague.",
           "whyItMatters": "Friendly access is not enough. The alliance needs direction, mutual benefit, and work that can be measured against a definite purpose."
@@ -3184,13 +2619,6 @@
             "advisers",
             "stimulus"
           ],
-          "planSpec": {
-            "domain": "manufacturing adviser retreat",
-            "audience": "leaders pruning a large contact list into a serious thinking circle",
-            "stakes": "the final invitation list has to create stimulation, not just attendance",
-            "format": "scene",
-            "requiredBeat": "show Ford's association with Edison, Firestone, and Burroughs as chosen mental company"
-          },
           "scenario": "At the cabin porch, Anika spreads twelve adviser cards across the table. The retreat has room for four voices, and the window closes before dinner. Anika keeps returning to Henry Ford's regular association with Thomas Edison, Harvey Firestone, and John Burroughs. The lesson is not nostalgia for famous men; it is the discipline of choosing contact that enlarges thought. Anika hovers over the final card until she can name what each adviser will stimulate.",
           "whatToDo": "Anika keeps only advisers whose experience changes the questions she can ask, then writes the specific mental stimulus beside each accepted card.",
           "whyItMatters": "The Ford example turns association into design. Strong companions should expand imagination, judgment, and reach instead of filling a guest list."
@@ -3209,8 +2637,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Power is organized knowledge in motion. More facts do little if no one directs them; hiding gaps protects the wish but not the means.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch10-q02",
@@ -3222,8 +2649,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Andrew Carnegie is used as an organizer of specialized minds in steel. The fortune points to coordinated expertise, not solitary omniscience.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "think-and-grow-rich-ch10-q03",
@@ -3235,8 +2661,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Ford's association with Edison, Firestone, and Burroughs shows chosen mental company. Status alone is weaker than companions who stimulate thought.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "think-and-grow-rich-ch10-q04",
@@ -3248,8 +2673,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Two or more people and a definite purpose are incomplete without harmony. Cooperation fails when members compete for victory over the shared aim.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch10-q05",
@@ -3261,8 +2685,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Friendly contact disperses without a shared aim. The alliance needs direction before conversation can become organized power.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "think-and-grow-rich-ch10-q06",
@@ -3274,8 +2697,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Expertise cannot replace harmony. If contempt rules the room, the minds no longer work as a coordinated unit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "think-and-grow-rich-ch10-q07",
@@ -3287,8 +2709,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The advantage comes from complementarity. A useful alliance supplies contacts, skills, and experience one person does not already possess.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "think-and-grow-rich-ch10-q08",
@@ -3300,8 +2721,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Hill treats cooperation as more than arithmetic. Even read metaphorically, the extra mental lift depends on coordinated minds.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "think-and-grow-rich-ch10-q09",
@@ -3313,8 +2733,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The alliance needs reciprocity, definite purpose, and harmony. Status contact by itself does not create organized power.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3357,7 +2776,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build The Harmony Roster",
         "coreSkill": "Build The Harmony Roster by naming the definite purpose first, then listing the knowledge, contacts, and judgment you cannot supply alone. Choose allies for complementarity and mutual benefit, not status. Keep the group useful by protecting harmony as part of the work, not as a pleasant extra.",
         "ifThenPlans": [
           {
@@ -3382,19 +2800,13 @@
       },
       "memorableLines": [
         {
-          "text": "Brilliance without cooperation breaks back into separate effort.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's warning against treating talent as power by itself."
+          "text": "Brilliance without cooperation breaks back into separate effort."
         },
         {
-          "text": "Status proximity is not power, and conversation is not cooperation.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a compact test for the networking misread."
+          "text": "Status proximity is not power, and conversation is not cooperation."
         },
         {
-          "text": "Status is the easiest counterfeit.",
-          "location": "breakdown.fullRead",
-          "why": "It opens the limit that separates a true alliance from impressive access."
+          "text": "Status is the easiest counterfeit."
         }
       ]
     },
@@ -3421,13 +2833,6 @@
             "music",
             "creative work"
           ],
-          "planSpec": {
-            "domain": "music composition",
-            "audience": "artists with intense emotional charge",
-            "stakes": "turn arousal into craft instead of escape",
-            "format": "dialogue",
-            "requiredBeat": "Julia redirects the lifted state from the 10 stimuli list into composition"
-          },
           "scenario": "Julia hears the assistant whisper, \"The 10 stimuli list has sex, music, and auto-suggestion on it,\" while the studio piano still rings. The midnight deadline is close, and the unfinished bridge needs eight bars. Her phone offers flirtation and easy delay; the score offers no applause yet. Before the producer returns from the hallway, Julia must choose where the heat goes.",
           "whatToDo": "Julia turns the phone face down, sings the bridge once, and writes the eight bars while the charge is still bright enough to give the melody force.",
           "whyItMatters": "The scene turns stimulation into craft. Sex and music can lift the mind, but the gain appears only when the raised state is handed to a task."
@@ -3440,13 +2845,6 @@
             "abdication",
             "public duty"
           ],
-          "planSpec": {
-            "domain": "museum exhibition",
-            "audience": "curators teaching emotional force",
-            "stakes": "avoid presenting romance as automatic wisdom",
-            "format": "decision_memo",
-            "requiredBeat": "Forrest frames the abdication as proof of emotional power, not proof of wise judgment"
-          },
           "scenario": "Forrest has three caption cards spread across a museum table: Wallis Simpson, King Edward VIII, and the British throne. The exhibit opens this afternoon, and the abdication panel still sounds like a fairy tale. His memo must say whether the case proves romance is noble by default or proves that desire can overpower rank, duty, and public cost.",
           "whatToDo": "Forrest rewrites the panel around force rather than praise. The caption names the abdication as a royal-scale proof that emotion needs direction.",
           "whyItMatters": "The abdication anchor protects the hard edge. Great feeling can redirect power, but scale does not make the feeling wise or well aimed."
@@ -3459,13 +2857,6 @@
             "maturity",
             "achievement"
           ],
-          "planSpec": {
-            "domain": "biotech entrepreneurship",
-            "audience": "midlife founders and technical leaders",
-            "stakes": "use maturity as focus rather than decline",
-            "format": "reflection",
-            "requiredBeat": "Eleanor notices her creative drive has become less scattered after forty"
-          },
           "scenario": "Eleanor's age forty note is still tucked into the patent binder when the biotech board asks why her work has sharpened at forty-six. In the glass-walled lab, she can trace the change: fewer scattered pursuits, more maturity, and a creative drive pointed at one product line. The achievement record on the wall is recent, not youthful.",
           "whatToDo": "Eleanor names focus as the new advantage, then protects the product line from side quests that would scatter the force she finally knows how to use.",
           "whyItMatters": "The age pattern is not a story of decline. Maturity can increase power when desire becomes less restless and more loyal to a definite aim."
@@ -3478,13 +2869,6 @@
             "persuasion",
             "leadership"
           ],
-          "planSpec": {
-            "domain": "enterprise sales",
-            "audience": "leaders preparing high-stakes pitches",
-            "stakes": "separate magnetism from cosmetic charm",
-            "format": "reset_moment",
-            "requiredBeat": "Walker roots persuasion in disciplined vitality rather than surface polish"
-          },
           "scenario": "Walker enters the boardroom with a glossy deck, two rehearsed jokes, and a case note about King Edward VIII folded in his jacket. The buyer has ten minutes left before the vote. Walker is about to lead with polish, then sees the team wants conviction more than shine. He has to choose the source of his presence before the first slide appears.",
           "whatToDo": "Walker cuts the opening joke, names the customer's risk, and lets disciplined energy carry the pitch instead of leaning on surface charm.",
           "whyItMatters": "Personal magnetism is emotional vitality under command. When persuasion rests on inner force, polish supports the message instead of replacing it."
@@ -3497,13 +2881,6 @@
             "alcohol",
             "stimuli"
           ],
-          "planSpec": {
-            "domain": "restaurant operations",
-            "audience": "operators facing stress after a service failure",
-            "stakes": "tell useful stimulation from dangerous stimulation",
-            "format": "audit",
-            "requiredBeat": "Ezra separates constructive inputs in the 10 stimuli list from fear and intoxicants"
-          },
           "scenario": "Ezra counts broken glasses after dinner service, with the bar register open and the 10 stimuli list scribbled on a prep ticket: sex, music, auto-suggestion, fear, narcotics and alcohol. Tomorrow's inspection is at 9 a.m. The audit gives him one urgent line to draw before staff drinks begin: raised intensity is not the same thing as sound judgment.",
           "whatToDo": "Ezra closes the staff-drink tab, starts music in the empty dining room, and writes three repair steps that auto-suggestion can reinforce in the morning.",
           "whyItMatters": "Not every stimulus deserves trust. Fear and intoxicants can raise intensity while weakening judgment, so the source of the lift has to be screened."
@@ -3516,13 +2893,6 @@
             "scandal",
             "focus"
           ],
-          "planSpec": {
-            "domain": "startup communications",
-            "audience": "founders handling reputation risk",
-            "stakes": "stop unmanaged drive from becoming wasted motion",
-            "format": "postmortem",
-            "requiredBeat": "Sofia sees how unmanaged emotional energy became scandal and lost work"
-          },
           "scenario": "Sofia's Monday postmortem begins with a screenshot from the funding dinner, then a press query, then the words British throne circled in the margin as her cautionary anchor. By lunch, the communications team has spent six hours on rumor control. The original impulse lasted minutes; the cleanup has eaten the product launch.",
           "whatToDo": "Sofia writes the cost in hours, apologizes to the team, and sets a no-private-flirtation rule for investor events where status and desire are both in play.",
           "whyItMatters": "Dissipation spends energy twice: first in impulse, then in repair. A chosen outlet protects plans from becoming cleanup work."
@@ -3541,8 +2911,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Conversion means changing energy from one form into another. Killing the feeling is suppression, while obeying it at once leaves the force undirected.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3554,8 +2923,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The principle centers on sex emotion as a powerful stimulus. Ignoring it misses the force being managed; the practical question is direction, not denial.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -3567,8 +2935,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The list includes helpful and harmful sources. Fear and intoxicants can heighten mental state while damaging judgment, so inclusion is not approval.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3580,8 +2947,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Love, sex, and faith are treated as powerful emotions that can raise imagination. The speech improves when emotion is disciplined into presence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3593,8 +2959,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The case is about emotional force at royal scale. It shows desire overpowering status and convention, not a planning template for ordinary work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -3606,8 +2971,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The abdication case shows that status, throne, and public duty do not cancel desire. High rank may raise the stakes, but it does not remove the need for command.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3619,8 +2983,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The age pattern links later achievement with better-directed energy. The drive is not treated as gone; maturity can make it more focused.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -3632,8 +2995,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Magnetism is tied to disciplined vitality, not surface gloss. The room responds when inner force is under control and aimed at service.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3645,8 +3007,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Unmanaged drive spends itself in impulse and repair. Transmutation asks for a chosen outlet so the force serves plans rather than cleanup.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3689,7 +3050,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Give the Heat a Job",
         "coreSkill": "Practice catching strong emotion at the moment it rises and assigning it to one chosen outlet. Name the pull, block the cheapest release for one short span, and put the energy into a task that serves work, courage, love, or service. The move is not suppression; it is conversion.",
         "ifThenPlans": [
           {
@@ -3714,19 +3074,13 @@
       },
       "memorableLines": [
         {
-          "text": "Desire becomes useful only after it is put under command.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the hard edge into a plain rule about direction."
+          "text": "Desire becomes useful only after it is put under command."
         },
         {
-          "text": "A raised mind is not the same as a well-led mind.",
-          "location": "breakdown.fullRead",
-          "why": "It separates intensity from judgment in a line the reader can test."
+          "text": "A raised mind is not the same as a well-led mind."
         },
         {
-          "text": "Give the heat a job before it gives you one.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the whole practice into a short command."
+          "text": "Give the heat a job before it gives you one."
         }
       ]
     },
@@ -3753,13 +3107,6 @@
             "positive emotion",
             "planning"
           ],
-          "planSpec": {
-            "domain": "repair shop planning",
-            "audience": "owners whose private worry keeps rewriting their plans",
-            "stakes": "tomorrow's sales calls will repeat yesterday's fear unless the input changes",
-            "format": "inner_monologue",
-            "requiredBeat": "show desire, faith, and hope being deliberately supplied as constructive emotional input"
-          },
           "scenario": "Maxwell crosses out the fourth version of tomorrow's sales script and notices every draft begins with an apology. Beside the page is the source list of 7 positive emotions, with desire, faith, and hope circled in blue. The repair shop does need new accounts, but his private rehearsal keeps feeding dread before he speaks to any customer. Instead of polishing the apology, he writes one sentence of desire, reads it until faith enters his voice, and leaves the page open where hope can greet him before the morning calls.",
           "whatToDo": "Maxwell replaces the apologetic opener with a clear desire statement and reads it aloud with faith before writing the first three calls on the ledger.",
           "whyItMatters": "The move turns auto-suggestion from words into emotional input. A plan rehearsed with hope has a different inner starting point than a plan rehearsed with defeat."
@@ -3772,13 +3119,6 @@
             "meeting",
             "input control"
           ],
-          "planSpec": {
-            "domain": "school staff meeting",
-            "audience": "leaders facing a room where private resentment is steering decisions",
-            "stakes": "a staffing plan could be built from fear rather than fact",
-            "format": "dialogue",
-            "requiredBeat": "separate facts from fear, jealousy, and anger before the group plans"
-          },
           "scenario": "\"Name the feeling before we name the fix,\" Sade says, and the table stops trading rumors. A promotion has stirred jealousy, a budget note has stirred fear, and one missed deadline has stirred anger. The handout on the table calls these part of the 7 negative emotions, not harmless background weather. Sade does not let the group vote while those inputs are driving the room. She writes the facts in one column, the emotion in another, and waits until no one is smuggling revenge into a staffing plan.",
           "whatToDo": "Sade separates facts from emotional contaminants, then delays the staffing proposal until fear, jealousy, and anger are named instead of hidden in the vote.",
           "whyItMatters": "Negative emotion becomes dangerous when it becomes the mind's repeated input. Naming it early keeps a practical plan from carrying a private grudge."
@@ -3791,13 +3131,6 @@
             "faith",
             "Infinite Intelligence"
           ],
-          "planSpec": {
-            "domain": "nonprofit grant deadline",
-            "audience": "readers who say brave words while expecting defeat",
-            "stakes": "a request for guidance will be hollow if the emotional state contradicts it",
-            "format": "reflection",
-            "requiredBeat": "show prayer becoming emotionalized thought before the next plan appears"
-          },
           "scenario": "Three numbers sit at the top of Eliana's grant page: shortfall, deadline, payroll. Under them she has copied a prayer for guidance, but the words feel wooden. The source claim about Infinite Intelligence catches her eye: prayer must pass through the subconscious mind with faith, not mere sound. She stops typing, names the outcome she desires, and reads the prayer again until it carries conviction. Only then does she write the donor call she had avoided all week.",
           "whatToDo": "Eliana turns the prayer into emotionalized thought, then lets the new faith point to one concrete donor call instead of leaving the words on the page.",
           "whyItMatters": "In this model, spoken words do not travel far when the emotional state denies them. Faith gives the request enough force to become a plan."
@@ -3810,13 +3143,6 @@
             "anger",
             "recovery"
           ],
-          "planSpec": {
-            "domain": "contractor bid loss",
-            "audience": "operators tempted to rehearse injury after a public loss",
-            "stakes": "one lost bid can become a dominant emotional diet",
-            "format": "postmortem",
-            "requiredBeat": "interrupt fear and anger before they become the next operating impulse"
-          },
           "scenario": "The rejection email has already been answered politely; Tanner's trouble begins afterward. He keeps replaying the competitor's smile, then adds greed, fear, and anger to the story until the lost bid starts to look like proof that everyone is against him. The 7 negative emotions are no longer abstractions on a page; they are his evening routine. Before sending a bitter note to a supplier, Tanner copies the actual bid numbers onto a clean sheet and writes one lesson that does not require hatred to feel true.",
           "whatToDo": "Tanner moves the postmortem back to numbers, writes one usable lesson, and refuses to let fear or anger draft the next message.",
           "whyItMatters": "A setback needs review, not emotional poisoning. The same mind that could build a better bid can also be trained to expect betrayal."
@@ -3829,13 +3155,6 @@
             "team reset",
             "enthusiasm"
           ],
-          "planSpec": {
-            "domain": "game studio prototype review",
-            "audience": "creative teams whose failed tests have drained belief",
-            "stakes": "the next prototype could be guided by dread or by constructive emotion",
-            "format": "audit",
-            "requiredBeat": "use the positive emotion list as a practical inventory before planning"
-          },
           "scenario": "Across the studio wall, Seo draws seven empty boxes. The prototype failed again, and the team has been calling its worry realism. In the first box she writes the 7 positive emotions, then fills them in: desire, faith, love, sex, enthusiasm, romance, and hope. No one pretends a list will fix the code. The audit is about input. Each person marks which emotion has been present in the last week of private work, and the silence around enthusiasm tells Seo where the next plan must begin.",
           "whatToDo": "Seo has the team mark which constructive emotions are actually present, then starts the redesign by rebuilding enthusiasm before assigning new features.",
           "whyItMatters": "The list turns vague morale into visible input. Creative planning improves when the emotional fuel is chosen instead of left to whatever failure supplied."
@@ -3848,13 +3167,6 @@
             "subconscious mind",
             "faith"
           ],
-          "planSpec": {
-            "domain": "restaurant cash crisis",
-            "audience": "owners asking for guidance while feeding fear all day",
-            "stakes": "a divided emotional message keeps practical ideas from forming",
-            "format": "contrast",
-            "requiredBeat": "show prayer failing when fear contradicts faith, then becoming aligned"
-          },
           "scenario": "In Gaston's closed kitchen, the prayer card is clean and the invoices are not. He asks Infinite Intelligence for a plan, then spends the next hour telling himself the restaurant is finished. The contradiction lands hard: the subconscious mind is receiving more fear than faith. Gaston closes the invoice folder, writes the exact cash gap, and repeats the request again with one practical expectation attached. The next act is not mystical. He lists three suppliers to call before noon.",
           "whatToDo": "Gaston stops rehearsing ruin, states the cash gap plainly, and repeats the prayer with faith before naming three supplier calls.",
           "whyItMatters": "Words alone are not the channel. The request becomes useful when the emotional charge and the practical expectation finally point the same way."
@@ -3873,8 +3185,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The subconscious is described as continuously active, not limited to formal practice. Repeated worry supplies material that can be worked into later impulses.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3886,8 +3197,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The positive list gives specific constructive material to cultivate. Neutral suppression misses the point; the method deliberately plants useful emotion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3899,8 +3209,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The warning is not against all difficult facts. It is against letting destructive emotions supply the plan's hidden fuel and direction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3912,8 +3221,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Faith and fear are treated as incompatible companions. Repeating fear beside a faith statement does not deepen belief; it supplies a rival input.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -3925,8 +3233,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Auto-suggestion gives the reader a practical handle. The repeated statement matters when feeling charges it enough to rival stray fear and doubt.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -3938,8 +3245,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The prayer discussion rejects mere recitation. The words need emotional force, especially faith, or the stronger fear rehearsal supplies the real message.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3951,8 +3257,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The intermediary role belongs to the subconscious. The conscious mind can choose and repeat the thought, but the charged material is translated through a deeper channel.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3964,8 +3269,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Negative input can become dominant by default. Active cultivation is needed; waiting for optimism to arrive gives fear more rehearsal time.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3977,13 +3281,11 @@
             ],
             "correctIndex": 2,
             "explanation": "Constructive emotion is tied to mental output. The point is not pleasantness alone; the conditioned mind is expected to return workable ideas and action impulses.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
       "implementationPlan": {
-        "title": "Sort the Emotional Supply",
         "coreSkill": "Sort the Emotional Supply by treating repeated emotion as material you are feeding the subconscious. Name the dominant input, positive or negative, then deliberately replace destructive rehearsal with desire, faith, hope, or another constructive emotion. The skill is not mood-policing; it is choosing what the inner process gets to work on next.",
         "ifThenPlans": [
           {
@@ -4046,19 +3348,13 @@
       ],
       "memorableLines": [
         {
-          "text": "A private fear is still an instruction.",
-          "location": "breakdown.fastRead",
-          "why": "It preserves the hard edge that unseen thought still feeds the mental machinery."
+          "text": "A private fear is still an instruction."
         },
         {
-          "text": "The mind works on the diet it receives.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses subconscious conditioning into a portable daily audit."
+          "text": "The mind works on the diet it receives."
         },
         {
-          "text": "Prayer without feeling is only recitation.",
-          "location": "breakdown.fullRead",
-          "why": "It names the spiritual-mechanical claim without overexplaining it."
+          "text": "Prayer without feeling is only recitation."
         }
       ]
     },
@@ -4085,13 +3381,6 @@
             "Gates",
             "science frame"
           ],
-          "planSpec": {
-            "domain": "museum donor briefing",
-            "audience": "leaders weighing speculative language against useful practice",
-            "stakes": "keep the scientific color without treating names as proof",
-            "format": "dialogue",
-            "requiredBeat": "use Bell and Gates as period anchors while preserving the practical hard edge"
-          },
           "scenario": "\"Alexander Graham Bell sounds solid; the ether talk does not,\" Kyle says in the museum prep room. The donor deck also cites Elmer R. Gates, 20 years of brain study, and a radio metaphor. Minutes before the briefing, Kyle must tell the team how to use those names without selling speculation as settled science.",
           "whatToDo": "Kyle names Bell and Gates as historical color, then shifts the briefing toward the practical routine: charged thought, repeated aim, receptive imagination, and tested action.",
           "whyItMatters": "The useful move keeps authority in its place. Invention-era names can frame mental broadcasting, but they cannot replace evidence or disciplined work."
@@ -4104,13 +3393,6 @@
             "transmission",
             "team call"
           ],
-          "planSpec": {
-            "domain": "product launch rehearsal",
-            "audience": "teams with facts but little emotional force",
-            "stakes": "turn a cold message into a signal people can act on",
-            "format": "predict_reveal",
-            "requiredBeat": "show the radio analogy stepping a message up for sending and down for reception"
-          },
           "scenario": "Three red bars jump on the radio console while Jesse watches the trainer move a voice from static into signal. The launch call starts in ten minutes. His slides are accurate but dull, so he needs to choose how to turn the plan into a sending station, a receiving set, and a clearer vibration for the team.",
           "whatToDo": "Jesse rewrites the opening around the felt aim, then gives the team one quiet minute to catch their best next question before the call begins.",
           "whyItMatters": "The radio analogy makes invisible communication concrete. A plan often needs emotional force before other people can receive it as more than data."
@@ -4123,13 +3405,6 @@
             "creative imagination",
             "routine"
           ],
-          "planSpec": {
-            "domain": "grant proposal planning",
-            "audience": "people who confuse inspiration with a repeatable practice",
-            "stakes": "link the three principles into one operating routine",
-            "format": "planning_choice",
-            "requiredBeat": "combine subconscious sending, creative imagination receiving, and auto-suggestion"
-          },
           "scenario": "A yellow card on Natalia's notebook reads: subconscious mind, creative imagination, auto-suggestion. Her grant proposal is due after lunch, and the three principles feel like loose parts. Before the review meeting starts, Natalia needs to decide how to turn them into one routine she can actually use.",
           "whatToDo": "Natalia writes the proposal aim, repeats it with feeling, pauses for new combinations, and records only the ideas she can turn into the next draft.",
           "whyItMatters": "The triad becomes useful when it operates as a sequence. Sending, receiving, and control method belong together, not in separate boxes."
@@ -4142,13 +3417,6 @@
             "vibration",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "sales pitch postmortem",
-            "audience": "presenters whose message has facts but no current",
-            "stakes": "raise intensity without confusing intensity for proof",
-            "format": "postmortem",
-            "requiredBeat": "emotion raises the intensity of thought while tests still matter"
-          },
           "scenario": "The pitch ended at 4:10 p.m. in the conference room with polite nods and no commitment. Mia replays the room afterward and sees the problem: the radio was powered, but the vibration was faint. Her team had facts, charts, and a clean offer. They had not named the desire strong enough for anyone to feel what should happen next.",
           "whatToDo": "Mia rewrites the first minute around the customer's felt gain, then asks one skeptical teammate to test whether the stronger signal still matches the facts.",
           "whyItMatters": "Emotion can lift attention, but it should not outrank reality. The right charge makes a plan more receivable while keeping it open to correction."
@@ -4161,13 +3429,6 @@
             "practice",
             "workshop"
           ],
-          "planSpec": {
-            "domain": "career workshop",
-            "audience": "people who wait for inspiration without a control method",
-            "stakes": "put the mental station to work through repeated self-instruction",
-            "format": "coach_talk",
-            "requiredBeat": "auto-suggestion is the operating method for the mental station"
-          },
           "scenario": "In the career workshop, Harold hears participants praise mental broadcasting and then wait for an idea to arrive. A small radio sits on the table as a prop. Before the next exercise, Harold must say how auto-suggestion operates the station instead of letting the group drift into wishful waiting.",
           "whatToDo": "Harold has each person write one definite aim, speak it with feeling, and schedule a short reception window before taking the next concrete step.",
           "whyItMatters": "Auto-suggestion turns the metaphor into practice. The station works through repeated direction, not through passive hope that a message will appear."
@@ -4180,13 +3441,6 @@
             "step down",
             "design"
           ],
-          "planSpec": {
-            "domain": "prototype design review",
-            "audience": "creative teams checking hunches against tests",
-            "stakes": "keep the received idea while repairing the weak execution",
-            "format": "mistake_recovery",
-            "requiredBeat": "use stepping up and stepping down to separate signal from implementation"
-          },
           "scenario": "Carly, the designer, has already closed the design brief when the prototype review exposes a flaw. The radio analogy helps her separate the signal from the build: a message may be stepped up for travel and stepped down for reception. Before the window closes, she needs to preserve the useful impulse and repair the weak test result.",
           "whatToDo": "Carly keeps the original aim, translates it into a smaller prototype, and asks what the test proved instead of defending the first version.",
           "whyItMatters": "Reception is only the start. Ideas have to be translated into forms that survive contact with users, materials, money, and time."
@@ -4205,8 +3459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Bell and Gates lend historical color, not final proof. Kyle protects the idea by turning the brain metaphor into a disciplined practice that still welcomes tests.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q02",
@@ -4218,8 +3471,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The radio model links vibration, sending station, and receiving set. Jesse needs more than facts; he needs a charged aim that others can notice and answer.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4231,8 +3483,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Auto-suggestion operates the station, the subconscious mind sends the charged aim, and creative imagination receives. Natalia needs the parts in sequence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4244,8 +3495,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Emotion raises the signal, but it does not settle truth. Mia should add charge while keeping the pitch answerable to evidence and objections.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -4257,8 +3507,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Auto-suggestion is the operating method. Harold has to move the group from passive waiting to repeated direction, then let reception follow.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -4270,8 +3519,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The point is transmutation. Strong feeling can scatter attention or focus it; the practice directs that charge into creative and practical work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -4283,8 +3531,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Creative imagination receives ideas; it does not certify them. Carly should preserve the signal and still let the prototype correct the form.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -4296,8 +3543,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The analogy depends on transformation. Hayes should look for the mental version of stepping up intensity and stepping down the signal into action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -4309,8 +3555,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful reading links the earlier practices into one system. It does not make hunches self-validating, and it does not reduce the work to daydreaming.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -4353,7 +3598,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Tune the Thought Signal",
         "coreSkill": "Practice turning a vague wish into a charged signal. Tune the Thought Signal by writing the aim, naming the feeling behind it, repeating it through auto-suggestion, and giving creative imagination a quiet window. Then test what arrives against facts and the next physical step.",
         "ifThenPlans": [
           {
@@ -4378,24 +3622,17 @@
       },
       "memorableLines": [
         {
-          "text": "A flat wish sends a flat signal.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's radio metaphor into a warning the reader can recall quickly."
+          "text": "A flat wish sends a flat signal."
         },
         {
-          "text": "The receiving set works best after the sending station has been charged.",
-          "location": "breakdown.deepRead",
-          "why": "It names the sequence of charge, transmission, and reception in one portable sentence."
+          "text": "The receiving set works best after the sending station has been charged."
         },
         {
-          "text": "No receiver can save a message the sender refuses to form.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the speculative metaphor tied to definite aim and personal responsibility."
+          "text": "No receiver can save a message the sender refuses to form."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "think-and-grow-rich-ch14",
       "number": 14,
       "title": "The Sixth Sense: The Door to the Temple of Wisdom",
@@ -4418,13 +3655,6 @@
             "judgment",
             "hunches"
           ],
-          "planSpec": {
-            "domain": "partnership offer review",
-            "audience": "a founder tempted to treat a good feeling as proof",
-            "stakes": "a flattering offer could outrun the preparation that makes intuition trustworthy",
-            "format": "object-led scene",
-            "requiredBeat": "Use the invisible counselors as trait rehearsal before giving authority to a hunch."
-          },
           "scenario": "Three index cards sit beside Valentin's laptop: Emerson for self-reliance, Paine for hard candor, Edison for experiment, and Lincoln for patience. The partnership offer looks generous, yet the revenue model keeps snagging his attention. He opens the imagined council before calling the lawyer, asking which borrowed trait should discipline the warning.",
           "whatToDo": "Valentin writes the warning as a testable question, assigns each counselor one lens, and asks for one fact the offer must survive before he replies.",
           "whyItMatters": "Admiration becomes useful when it changes conduct. The council slows a warm impulse long enough for prepared judgment to examine it."
@@ -4437,13 +3667,6 @@
             "justice",
             "resolve"
           ],
-          "planSpec": {
-            "domain": "legal strategy call",
-            "audience": "a professional under pressure to confuse speed with courage",
-            "stakes": "public action could satisfy anger while weakening judgment",
-            "format": "dialogue-led scene",
-            "requiredBeat": "Show Abraham Lincoln as a counselor who gives moral judgment a concrete personality."
-          },
           "scenario": "\"Justice before speed,\" Jules says, then stops with the filing draft still open. Her client wants a lawsuit sent tonight, anger hot enough to feel like resolve. The Abraham Lincoln counselor in her notes is not decoration; he asks whether justice has been served by the evidence, the timing, and the motive behind the public blow.",
           "whatToDo": "Jules delays the filing until morning, lists what evidence justice requires, and separates firm resolve from the client's wish to punish quickly.",
           "whyItMatters": "A named counselor gives a trait weight under pressure. Lincoln turns vague fairness into questions Jules can ask before the act becomes irreversible."
@@ -4456,13 +3679,6 @@
             "evidence",
             "reception"
           ],
-          "planSpec": {
-            "domain": "manufacturing redesign",
-            "audience": "an operations leader sorting signal from nerves",
-            "stakes": "an odd warning could either reveal risk or distract from completed analysis",
-            "format": "data-first scene",
-            "requiredBeat": "Treat the Temple of Wisdom as a threshold reached after analysis, not a casual hunch."
-          },
           "scenario": "The defect chart finally turns green, but Griffin keeps circling one supplier note. Temple of Wisdom is written at the top of his project page beside thirteenth principle, threshold, and Infinite Intelligence. He has already finished the plan review, so the quiet warning earns one more supplier visit instead of instant belief.",
           "whatToDo": "Griffin schedules the supplier visit, brings the defect data, and asks what hidden condition the hunch may have compressed from earlier analysis.",
           "whyItMatters": "Threshold language should raise the standard, not lower it. Griffin honors the signal by inspecting the facts that might have produced it."
@@ -4475,13 +3691,6 @@
             "inner council",
             "pilot"
           ],
-          "planSpec": {
-            "domain": "nonprofit program decision",
-            "audience": "a director tempted to turn embarrassment into prophecy",
-            "stakes": "one failed pitch could cancel useful work before it is tested",
-            "format": "aftermath scene",
-            "requiredBeat": "Use the invisible counselors to convert admiration into standards after an emotional setback."
-          },
           "scenario": "The morning after the donor room goes cold, Rosalie finds her council notes under the coffee mug. Emerson had asked for self-reliance, Paine for plain speech, Edison for a trial, Lincoln for patience. The failed pitch feels like a verdict until the imagined advisers turn it into a smaller question about the next pilot.",
           "whatToDo": "Rosalie drafts a narrower pilot, names the donor objection in plain language, and asks two allies which part of the proposal still deserves testing.",
           "whyItMatters": "A setback can masquerade as intuition. The counselor exercise turns the feeling into standards for revision, experiment, and renewed alliance."
@@ -4494,13 +3703,6 @@
             "justice",
             "disclosure"
           ],
-          "planSpec": {
-            "domain": "hospital disclosure huddle",
-            "audience": "a clinician deciding how to face a near miss",
-            "stakes": "fear could disguise silence as prudence",
-            "format": "place-led scene",
-            "requiredBeat": "Let Abraham Lincoln as counselor supply justice and resolve when fear distorts a hunch."
-          },
           "scenario": "In the hospital stairwell, Trang hears the unit quiet down after a near miss. Abraham Lincoln appears in her notebook as counselor, with justice and resolve underlined twice. Her gut says the family should hear the truth, but panic is loud too. She tests the hunch by asking what a fair record would require.",
           "whatToDo": "Trang asks the charge nurse for the incident timeline, prepares the disclosure points, and refuses to let fear rename silence as wisdom.",
           "whyItMatters": "Fear can imitate intuition when the cost is personal. Lincoln's imagined presence helps Trang separate moral resolve from self-protection."
@@ -4513,13 +3715,6 @@
             "threshold",
             "motive check"
           ],
-          "planSpec": {
-            "domain": "public resignation speech",
-            "audience": "a leader whose intuition may be defending pride",
-            "stakes": "ceremonial certainty could bless a choice formed before reflection",
-            "format": "decision-already-made scene",
-            "requiredBeat": "Show the Temple of Wisdom as a prepared threshold that requires motive checking."
-          },
           "scenario": "Imogen has already closed the resignation speech when the phrase Temple of Wisdom makes her pause. Thirteenth principle, Infinite Intelligence, and threshold are in the margin from last week's notes. The ceremony of the words does not bless the speech; it asks whether preparation or wounded pride wrote it first.",
           "whatToDo": "Imogen waits one day, asks two trusted advisers to challenge the draft, and marks which sentences came from evidence rather than humiliation.",
           "whyItMatters": "The threshold metaphor can flatter a decision already made. A prepared mind uses ceremony to examine motives before claiming guidance."
@@ -4538,8 +3733,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The sixth sense comes last. A tempting shortcut ignores the training that gives a hunch better quality; preparation makes reception more trustworthy.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -4551,8 +3745,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The counselors are an imaginative training device. They borrow standards for judgment; they do not remove responsibility or excuse fact checking.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -4564,8 +3757,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The original council uses named figures so traits become concrete. Vague labels are easier for mood to bend; a model gives judgment a sharper face.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -4577,8 +3769,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Lincoln functions as a moral model, not a shield from exposure. Justice and resolve direct Trang toward accountable judgment instead of image control.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4590,8 +3781,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Creative imagination can receive a pattern before speech catches up. The safeguard is a test, while dismissal and instant certainty both waste the signal.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -4603,8 +3793,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The vocabulary is spiritual as well as practical. It invites reverence, but the hard edge still demands preparation, motive checks, and evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -4616,8 +3805,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A threshold marks entry after readiness, not a command to obey or ignore. Rosalie should receive the warning and examine what preparation uncovered.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -4629,8 +3817,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fear can counterfeit guidance. Trang needs to clear panic from the signal before deciding what the prepared mind has actually noticed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -4642,8 +3829,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sixth sense is a capstone, not a replacement. Planning and persistence prepare the mind; tests keep a flash from becoming fantasy.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4686,7 +3872,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Convene the Inner Council",
         "coreSkill": "Practice Convene the Inner Council when a hunch appears before you can explain it. Name the signal, invite three admired models for specific traits, and ask what evidence or next test each trait requires. The skill is disciplined reception, not instant obedience.",
         "ifThenPlans": [
           {
@@ -4711,24 +3896,17 @@
       },
       "memorableLines": [
         {
-          "text": "The silent council gives the hunch a discipline.",
-          "location": "breakdown.fastRead",
-          "why": "It condenses the invisible-counselor exercise into a practical guardrail."
+          "text": "The silent council gives the hunch a discipline."
         },
         {
-          "text": "A useful hunch has a history.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the capstone ordering easy to remember."
+          "text": "A useful hunch has a history."
         },
         {
-          "text": "Authority is earned by preparation and checked by reality.",
-          "location": "breakdown.fullRead",
-          "why": "It protects intuition from becoming unquestioned impulse."
+          "text": "Authority is earned by preparation and checked by reality."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "think-and-grow-rich-ch15",
       "number": 15,
       "title": "How to Outwit the Six Ghosts of Fear",
@@ -4751,13 +3929,6 @@
             "criticism",
             "decision"
           ],
-          "planSpec": {
-            "domain": "small-agency client proposal",
-            "audience": "founders whose money fear blocks outreach",
-            "stakes": "a late client payment is being mistaken for proof that the whole plan is unsafe",
-            "format": "decision_point",
-            "requiredBeat": "show poverty and criticism fears named before a prompt business move"
-          },
           "scenario": "Skylar reads a bank alert on the counter before the 9 a.m. staff call. One client payment is late, and a sponsor has asked for a shorter proposal. She writes \"6 basic fears\" on her note pad, circles poverty and criticism, and sees how both are pushing the same delay. Before the call, she must choose a clean next step instead of letting fear draft the plan.",
           "whatToDo": "Skylar names poverty as the money fear and criticism as the approval fear, then sends the shorter proposal with one clear ask instead of hiding behind more polish.",
           "whyItMatters": "Naming the fear makes the delay small enough to handle. The invoice is a problem; the ghost is the story that silence will keep her safe."
@@ -4770,13 +3941,6 @@
             "doubt",
             "worry"
           ],
-          "planSpec": {
-            "domain": "arts grant committee",
-            "audience": "committee leads stuck in repeated review cycles",
-            "stakes": "each delay makes the group feel wiser while fear becomes harder to see",
-            "format": "dialogue",
-            "requiredBeat": "break the indecision, doubt, fear, and worry chain with a dated choice"
-          },
           "scenario": "\"You keep calling it research,\" a trustee says, and Ignace hears the word land hard in the conference room. His grant calendar shows three postponed votes, each followed by more doubt and more worry. The fear did not start as panic; it began as indecision. Ten minutes before the agenda closes, Ignace has to say which grant goes forward and why.",
           "whatToDo": "Ignace stops adding research to the pile, states the grant criteria out loud, and names the vote that will happen today before another round of worry.",
           "whyItMatters": "The chain breaks at the first link. When a delayed choice is named as indecision, doubt loses the room it needs to grow into fear."
@@ -4789,13 +3953,6 @@
             "negative influence",
             "alibis"
           ],
-          "planSpec": {
-            "domain": "operations planning calendar",
-            "audience": "directors surrounded by discouraging input",
-            "stakes": "routine complaint loops are feeding mental drift before the plan starts",
-            "format": "audit",
-            "requiredBeat": "use self-analysis to trace negative influence and alibis"
-          },
           "scenario": "Adaeze's audit starts with the break room, not the budget. At 4:20 p.m., she lists the comments that have been feeding negative influence: a rumor thread, a daily complaint circle, and her own alibis about timing. The self-analysis page ends with this line underlined: the question is which input is training mental drift before she even opens the plan.",
           "whatToDo": "Adaeze removes one complaint loop from tomorrow's calendar and replaces it with a short self-analysis note before planning.",
           "whyItMatters": "Negative influence is not only a mood. It is an input stream, and alibis keep it comfortable until the audit makes it visible."
@@ -4808,13 +3965,6 @@
             "self-analysis",
             "mental drift"
           ],
-          "planSpec": {
-            "domain": "creative studio project launch",
-            "audience": "makers who confuse group cynicism with judgment",
-            "stakes": "a message thread is making fear feel like common sense",
-            "format": "before_after",
-            "requiredBeat": "show negative influence removed before the first work block"
-          },
           "scenario": "Natalie's Sunday evening used to vanish inside a group chat that mocked every new project in her studio. By Monday morning, the jokes sounded like common sense. After one self-analysis pass, she labels the thread as negative influence, writes the alibi it gives her, and leaves the phone in the kitchen while she drafts the first outline.",
           "whatToDo": "Natalie treats the chat as an attention source, not a harmless habit, and moves the phone away before she drafts so the first outline gets clean attention.",
           "whyItMatters": "Guarding the mind means changing the channel before fear borrows a friend's voice. The first protected hour is worth more than another complaint."
@@ -4827,13 +3977,6 @@
             "worry",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "clinic follow-up and supplier visit",
-            "audience": "professionals whose health worry displaces useful action",
-            "stakes": "caution is sliding into hypochondria after normal evidence arrives",
-            "format": "postmortem",
-            "requiredBeat": "separate evidence about ill health from worry and hypochondria"
-          },
           "scenario": "Claude's clinic postmortem begins with a lab report that came back normal. For three days he had searched symptoms between calls, canceled a useful supplier visit, and called the spiral caution. On the whiteboard, he writes ill health under the 6 basic fears and marks the point where worry became hypochondria instead of medical judgment.",
           "whatToDo": "Claude separates the doctor's evidence from the fear story, then reschedules the supplier visit that health worry displaced on the same afternoon.",
           "whyItMatters": "Health caution protects life; health fear can steal judgment. The audit keeps care for the body from becoming a license for paralysis."
@@ -4846,13 +3989,6 @@
             "death",
             "alibi"
           ],
-          "planSpec": {
-            "domain": "late-career job offer",
-            "audience": "skilled workers tempted to shrink desire near a deadline",
-            "stakes": "old age and death fears are dressing in practical language",
-            "format": "decision_memo",
-            "requiredBeat": "name the old age and death alibi before choosing a plan"
-          },
           "scenario": "Easton's memo opens with the line he does not want to write: \"I am using age as an alibi.\" At his desk after dinner, he maps the 6 basic fears beside a job offer that would stretch him. Poverty says keep the old role; death says it is late to begin. Before the reply window closes Friday, he needs to choose the plan that honors desire, not the ghost.",
           "whatToDo": "Easton writes the age excuse plainly, names the poverty and death fears behind it, and accepts the stretch offer with a ninety-day plan.",
           "whyItMatters": "Old age and death can become quiet alibis for shrinking desire. Writing the excuse makes the fear answerable instead of sacred."
@@ -4871,8 +4007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The six-fear inventory turns a vague mood into a diagnosable pattern. Skylar should separate the late invoice from poverty fear before fear rewrites the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -4884,8 +4019,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sequence starts with indecision. If Ignace names and makes the delayed choice, doubt has less time to thicken into worry and fear.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -4897,8 +4031,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Worry is negative imagination, not useful planning. Claude can respect evidence while refusing to keep rehearsing outcomes that the facts do not support.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -4910,8 +4043,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fear of criticism suppresses initiative by making approval feel like a condition of action. Natalie needs a concrete next exposure, not another private rewrite.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4923,8 +4055,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fear of poverty affects conduct as well as balances. Hoarding and paralysis can both be fear symptoms, so the proposal needs a fact test.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -4936,8 +4067,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Ill-health fear can feed hypochondria, but the answer is not ignoring the body. Claude should honor evidence and stop letting worry displace his plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -4949,8 +4079,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Loss-of-love fear can appear as jealousy. Obi needs to identify the emotional pattern before it turns uncertainty into accusation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -4962,8 +4091,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Negative influence is an input problem. Guarding attention means changing what feeds the mind before gossip and complaint plant fresh alibis.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -4975,8 +4103,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Self-analysis is the closing tool because alibis hide fear in respectable language. The label matters only when it exposes the excuse that keeps action out.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -5019,7 +4146,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Fear Audit",
         "coreSkill": "Practice a Fear Audit before a fear gets to write the plan. Name the active fear, trace the indecision or worry it is using, and identify the negative influence or alibi that keeps it alive. Then make the smallest clear decision before doubt has time to harden.",
         "ifThenPlans": [
           {
@@ -5048,19 +4174,13 @@
       },
       "memorableLines": [
         {
-          "text": "Name the pattern first.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader the shortest possible command for breaking a vague fear into a usable diagnosis."
+          "text": "Name the pattern first."
         },
         {
-          "text": "A delayed choice is a seedbed, not a pause.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the indecision-to-fear chain concrete enough to feel in ordinary delay."
+          "text": "A delayed choice is a seedbed, not a pause."
         },
         {
-          "text": "An alibi is fear dressed as a reason.",
-          "location": "breakdown.fullRead",
-          "why": "It captures why fear can sound so practical while it protects inaction."
+          "text": "An alibi is fear dressed as a reason."
         }
       ]
     }

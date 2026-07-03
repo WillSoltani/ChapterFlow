@@ -24,7 +24,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "emotional-intelligence-ch01",
       "number": 1,
       "title": "What Are Emotions For?",
@@ -125,8 +124,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 supports the timing claim: emotion prepares action before full explanation. The near misses treat feeling as late commentary or mere noise.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -138,8 +136,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fear can prime flight, freezing, or defense before explanation is complete. Calling it cowardice confuses a protective action program with a moral failure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -151,8 +148,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fact says anger directs blood flow and attention toward confrontation. The error is calling all anger irrational or treating its force as proof.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -164,8 +160,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Chauncey case supports attachment overriding self-protection under danger. The distractors shrink love into mood or slow planning.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -177,8 +172,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 draws the line: usefulness does not guarantee accuracy. The wrong moves either obey every impulse or discard emotion outright.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -190,8 +184,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Emotional memory can give a present cue old urgency. The check is fit, not proof that the past has returned and not a command to suppress feeling.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -203,8 +196,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source fact supports partnership, not rivalry. Feeling guides motivation and perception; reason checks whether the prepared action fits.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -216,8 +208,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A body signal can carry information by summarizing stakes quickly. It is not empty static, but it also should not decide the whole response.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -229,8 +220,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Trouble starts when an emergency program runs after context changes. Speed flags urgency, but it does not prove the present scene matches the alarm.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -273,7 +263,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Prepared Action",
         "coreSkill": "Practice catching the action your body is readying before you obey it. Ask whether the feeling is pushing flight, freezing, confrontation, distance, help, or care. Then check whether the present facts need that move.",
         "ifThenPlans": [
           {
@@ -298,24 +287,17 @@
       },
       "memorableLines": [
         {
-          "text": "Emotion is speed with a job.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's core claim into a line the reader can use under pressure."
+          "text": "Emotion is speed with a job."
         },
         {
-          "text": "A feeling is a signal, not a verdict.",
-          "location": "breakdown.deepRead",
-          "why": "It separates respect for emotion from blind obedience."
+          "text": "A feeling is a signal, not a verdict."
         },
         {
-          "text": "Emotion needs present-tense evidence.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a short check for old alarms in new settings."
+          "text": "Emotion needs present-tense evidence."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "emotional-intelligence-ch02",
       "number": 2,
       "title": "Anatomy of an Emotional Hijacking",
@@ -410,8 +392,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 supports the timing claim: the amygdala can start alarm before detailed cortical checking. The other choices make thought first or treat intensity as proof.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "emotional-intelligence-ch02-q02",
@@ -423,8 +404,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 says the thalamus can route rough input in parallel. The neat-stream view misses how the body can ready itself before a full explanation lands.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "emotional-intelligence-ch02-q03",
@@ -436,8 +416,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 explains disproportion: the cue becomes an emergency before context is checked. Treating intensity as accuracy is the exact trap.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch02-q04",
@@ -449,8 +428,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 says emotional memory stores feeling significance as well as details. A clear factual memory can still carry old threat or shame into the present.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "emotional-intelligence-ch02-q05",
@@ -462,8 +440,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 supports the checking role of the prefrontal cortex. The willpower choice sounds firm but misses the timing and inhibition mechanism.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch02-q06",
@@ -475,8 +452,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 connects past trauma or humiliation with a lower threshold now. That explains the speed without declaring today's cue fully accurate.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "emotional-intelligence-ch02-q07",
@@ -488,8 +464,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 keeps both sides in view: fast emotion can produce heroic speed or destructive action. The other choices make speed all bad or all wise.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "emotional-intelligence-ch02-q08",
@@ -501,8 +476,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 says naming the mechanism can create a gap. It is not an excuse or proof of safety; it is a pause before conduct.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch02-q09",
@@ -514,8 +488,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 says emotional intelligence begins by seeing that the first impulse may be a false alarm. Intensity alone is not truth.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -552,7 +525,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the First Surge",
         "coreSkill": "Practice naming the first surge before it becomes conduct. Say what your body is doing, then ask what fact has not been checked yet. The move is not self-excuse. It is a short bridge between the amygdala alarm and a better next act.",
         "ifThenPlans": [
           {
@@ -573,24 +545,17 @@
       },
       "memorableLines": [
         {
-          "text": "Speed is useful; certainty is not.",
-          "location": "breakdown.fastRead",
-          "why": "It separates fast warning from false proof."
+          "text": "Speed is useful; certainty is not."
         },
         {
-          "text": "A surge can warn you and still misread the room.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the chapter's timing problem in one portable line."
+          "text": "A surge can warn you and still misread the room."
         },
         {
-          "text": "A pause cannot repair harm already done.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the tool from becoming an excuse."
+          "text": "A pause cannot repair harm already done."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "emotional-intelligence-ch03",
       "number": 3,
       "title": "When Smart Is Dumb",
@@ -691,8 +656,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 says IQ predicts some academic outcomes, not all life conduct. The grade-only view misses how emotion shifts attention, memory, and action.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "emotional-intelligence-ch03-q02",
@@ -704,8 +668,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 ties impulse control to using ability under provocation. The near-miss says ability is separate, but the surge can steer it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch03-q03",
@@ -717,8 +680,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 defines interpersonal intelligence as reading other people. Charm can help, but it is too thin to carry the whole skill.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "emotional-intelligence-ch03-q04",
@@ -730,8 +692,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 says self-knowledge gives access to feelings and uses them as guidance. It is not self-absorption or a license to strike.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch03-q05",
@@ -743,8 +704,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 says emotional intelligence is a cluster of abilities. Friendliness is a tempting shortcut, but it hides the separate skills.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "emotional-intelligence-ch03-q06",
@@ -756,8 +716,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 allows brilliance and bad choice to coexist. The error is assuming smart people cannot self-sabotage under emotional pressure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "emotional-intelligence-ch03-q07",
@@ -769,8 +728,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 warns that cognitive rewards alone can miss adult capacities. Harder tests do not measure every needed strength.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "emotional-intelligence-ch03-q08",
@@ -782,8 +740,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 says these skills are learnable. Temperament matters, but it does not freeze the person's next practiced response.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "emotional-intelligence-ch03-q09",
@@ -795,8 +752,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 does not set IQ against emotion. It asks whether arousal guides attention well or narrows judgment too much.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -839,7 +795,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Rank the Heat Before Answering",
         "coreSkill": "Practice catching the feeling before it hires your intelligence as its lawyer. The move is simple: name the heat, rank the possible replies by risk, then choose the one that keeps the future open. This is not anti-IQ. It protects your IQ from a narrow emotional menu.",
         "ifThenPlans": [
           {
@@ -864,24 +819,17 @@
       },
       "memorableLines": [
         {
-          "text": "Brains need brakes, not medals.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the IQ contrast into one image."
+          "text": "Brains need brakes, not medals."
         },
         {
-          "text": "A feeling can shrink a genius.",
-          "location": "breakdown.fastRead",
-          "why": "It names the danger without dismissing intelligence."
+          "text": "A feeling can shrink a genius."
         },
         {
-          "text": "Self-control has a price: you give up the thrill of being right first.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the cost of the skill concrete and memorable."
+          "text": "Self-control has a price: you give up the thrill of being right first."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "emotional-intelligence-ch04",
       "number": 4,
       "title": "Know Thyself",
@@ -982,8 +930,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source fact ties self-awareness to timing. Later review can help, but the skill is noticing the feeling while it is still shaping the next move.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -995,8 +942,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Naming anger helps because it separates the mood from identity. Treating anger as the whole self is the common error the fact rejects.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1008,8 +954,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Regulation starts with awareness, not suppression. Naming the mood gives Daphne room to pick a response instead of letting the first surge choose.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1021,8 +966,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Alexithymia names difficulty identifying and describing feelings. The fact rejects the shortcut that smart people automatically read their own emotions.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q05",
@@ -1034,8 +978,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The body can carry emotional information before words arrive. Ignoring the cue misses data; waiting for all sensation to vanish overcorrects.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1047,8 +990,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The watcher stance creates distance from being swallowed by the feeling. It does not deny irritation; it keeps irritation from becoming the whole field.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1060,8 +1002,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Elliot could reason but struggled to decide because feeling no longer marked value. The case rejects both emotionless purity and mere list-making.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1073,8 +1014,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Self-awareness clarifies; rumination circles. The useful review extracts a better next move instead of turning the same scene over and over.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1086,8 +1026,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fact makes self-assessment the gateway to later skills. If Laurence misses his own arousal, it can narrow attention and weaken his reading of others.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1130,7 +1069,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Live Mood",
         "coreSkill": "Practice catching the feeling while it is still shaping your next word. Name the Live Mood by pairing one body cue with one plain feeling word, then choosing the next response on purpose. This is not overthinking; it is a short pause that keeps old heat from driving.",
         "ifThenPlans": [
           {
@@ -1155,19 +1093,13 @@
       },
       "memorableLines": [
         {
-          "text": "A named feeling leaves room to choose.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the method into one usable sentence."
+          "text": "A named feeling leaves room to choose."
         },
         {
-          "text": "A mood is weather, not a self.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the distance between feeling and identity easy to recall."
+          "text": "A mood is weather, not a self."
         },
         {
-          "text": "Reason needs feeling to mark what matters.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps self-awareness from turning into anti-emotion advice."
+          "text": "Reason needs feeling to mark what matters."
         }
       ]
     },
@@ -1272,8 +1204,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source fact is about timing. Early anger can still be redirected; venting fast may add arousal instead of improving judgment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1285,8 +1216,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Rehearsing a grievance can refresh the body state. A fuller story is not the same as calmer judgment when each pass renews the heat.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1298,8 +1228,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cooling is not avoidance. It gives the body time to leave the surge, so problem solving is less ruled by arousal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1311,8 +1240,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Borkovec's worry loop can feel like planning. The test is whether the thought leads to action or just another pass through danger.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1324,8 +1252,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Chronic worry persists because each pass feels protective for a moment. That small control feeling can block the next useful act.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -1337,8 +1264,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Sadness is not always malfunction. It can slow the pace and point toward reflection or support when it stays in proportion.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1350,8 +1276,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reflection can help, but rumination deepens sadness by circling the same pain. The missing piece is movement toward help or action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1363,8 +1288,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Distraction can help when it changes the body and attention, then returns you to the problem. Avoidance denies the problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1376,8 +1300,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Regulation is not emotional blankness. It keeps arousal from narrowing judgment so the feeling can inform action without ruling it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1420,7 +1343,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Pause Before Fuel",
         "coreSkill": "Practice catching the moment a feeling asks for more fuel. Name the mood, name the fuel it wants, then choose one act that lowers the charge or moves the real problem forward. This keeps passion useful without letting it write your conduct.",
         "ifThenPlans": [
           {
@@ -1445,24 +1367,17 @@
       },
       "memorableLines": [
         {
-          "text": "Heat is not proof.",
-          "location": "breakdown.fastRead",
-          "why": "It separates intensity from accuracy in four plain words."
+          "text": "Heat is not proof."
         },
         {
-          "text": "Worry can sound like care while it stalls choice.",
-          "location": "breakdown.deepRead",
-          "why": "It names the chapter's most common near-miss."
+          "text": "Worry can sound like care while it stalls choice."
         },
         {
-          "text": "A useful mood still needs a leash.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps emotion valuable without letting it rule."
+          "text": "A useful mood still needs a leash."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "emotional-intelligence-ch06",
       "number": 6,
       "title": "The Master Aptitude",
@@ -1557,8 +1472,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The delay lesson is attention management. Staring at the lure makes it hotter, while changing the visual field protects the longer goal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch06-q02",
@@ -1570,8 +1484,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The mechanism is strategy, not mere obedience. Distraction and abstraction lower the reward's pull; vivid focus raises it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "emotional-intelligence-ch06-q03",
@@ -1583,8 +1496,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The claim reaches past childhood. Impulse control protects long-term aims when a short-term pull would steal attention and action.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "emotional-intelligence-ch06-q04",
@@ -1596,8 +1508,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Anxiety can crowd the mental space needed for performance. A workable level can energize, but too much pressure scatters the task.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "emotional-intelligence-ch06-q05",
@@ -1609,8 +1520,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Optimism does not deny the miss. It keeps the setback temporary and specific enough for effort to continue.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch06-q06",
@@ -1622,8 +1532,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Hope is active path-finding. It is not passive wishing, and it does not quit because the first route closes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch06-q07",
@@ -1635,8 +1544,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Flow comes from challenge matched to skill. Too easy invites boredom; too hard lets anxiety take over.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch06-q08",
@@ -1648,8 +1556,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Arousal can energize performance, but beyond a workable range it narrows attention and harms judgment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "emotional-intelligence-ch06-q09",
@@ -1661,8 +1568,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The master aptitude is feeling regulated in service of attention. Talent needs that support when frustration arrives.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1705,7 +1611,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Prewrite the Attention Turn",
         "coreSkill": "Practice writing the words you will use before a feeling takes over the whole scene. The move is simple: name the pull, write the attention turn, and choose the line that keeps the longer goal alive.",
         "ifThenPlans": [
           {
@@ -1730,24 +1635,17 @@
       },
       "memorableLines": [
         {
-          "text": "Willpower begins by choosing what gets your eyes.",
-          "location": "breakdown.fastRead",
-          "why": "It makes self-control visible as attention design."
+          "text": "Willpower begins by choosing what gets your eyes."
         },
         {
-          "text": "Flow is stretch without panic.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the flow condition in a line the reader can carry."
+          "text": "Flow is stretch without panic."
         },
         {
-          "text": "The master aptitude is not raw force.",
-          "location": "breakdown.fullRead",
-          "why": "It punctures the willpower myth in plain words."
+          "text": "The master aptitude is not raw force."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "emotional-intelligence-ch07",
       "number": 7,
       "title": "The Roots of Empathy",
@@ -1842,8 +1740,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 supports cue perception first. The common error is treating empathy as thought guessing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch07-q02",
@@ -1855,8 +1752,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 says emotion often appears in nonverbal signals before clear speech. Words alone are not enough.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "emotional-intelligence-ch07-q03",
@@ -1868,8 +1764,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 supports shared inner states through attunement. The near miss is seeing attunement as spoiling or erasing distress.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "emotional-intelligence-ch07-q04",
@@ -1881,8 +1776,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 says chronic mismatch can blunt trust in feelings. Ignored feelings do not simply disappear.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "emotional-intelligence-ch07-q05",
@@ -1894,8 +1788,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 requires self-awareness. Empathy fails when your feeling merges with another person's signal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch07-q06",
@@ -1907,8 +1800,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 ties social ease to fewer emotional misreads. It is not pure personality.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "emotional-intelligence-ch07-q07",
@@ -1920,8 +1812,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 says distress can block empathy when it overwhelms attention. More distress is not always more care.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "emotional-intelligence-ch07-q08",
@@ -1933,8 +1824,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 supports pain registering as significant. The error is reducing morality to rules alone or replacing rules entirely.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "emotional-intelligence-ch07-q09",
@@ -1946,8 +1836,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 says accuracy can improve through attention to cues. The wrong move is treating cue reading as fixed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1990,7 +1879,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Cue Before You Answer",
         "coreSkill": "Practice naming the cue before you name the feeling. Use the Name the Cue move: notice one face, voice, posture, or timing signal, then check your own surge before you answer.",
         "ifThenPlans": [
           {
@@ -2015,24 +1903,17 @@
       },
       "memorableLines": [
         {
-          "text": "Empathy starts when the body becomes readable.",
-          "location": "breakdown.fastRead",
-          "why": "It turns empathy into a concrete act of perception."
+          "text": "Empathy starts when the body becomes readable."
         },
         {
-          "text": "A matched feeling tells a child, I am not alone.",
-          "location": "breakdown.deepRead",
-          "why": "It captures Stern's attunement idea in plain language."
+          "text": "A matched feeling tells a child, I am not alone."
         },
         {
-          "text": "Too much feeling can crowd out the other person.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the overcorrection in a portable line."
+          "text": "Too much feeling can crowd out the other person."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "emotional-intelligence-ch08",
       "number": 8,
       "title": "The Social Arts",
@@ -2133,8 +2014,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 supports reading the other person's display while regulating your own. Talking more is the common error, not the first move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2146,8 +2026,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 2 says one person's mood can shape a group's atmosphere. The near misses keep mood private until words or tasks take over.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2159,8 +2038,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 supports reading the setting along with the face. The distractors either flatten all expressions or dismiss expression entirely.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2172,8 +2050,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 says poor nonverbal reading can lead to rejection without hostile intent. The wrong choices turn rejection into meanness or passivity.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2185,8 +2062,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 names timing, turn-taking, and synchrony. Good motives and clear opinions do not replace the timing of the exchange.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2198,8 +2074,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 supports leadership as tone-setting in a small group. The other choices treat title as the starting point.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -2211,8 +2086,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 supports fast noticing after a misstep. Ignoring the frozen smile or explaining intent first can miss the needed repair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2224,8 +2098,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 says charm without empathy becomes manipulation. Reading a room can be used to steer, not necessarily to care.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2237,8 +2110,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 9 says the social arts translate inner regulation into public behavior. Private calm alone is the common error.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2281,7 +2153,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Read, Set, Repair",
         "coreSkill": "Practice turning feeling into useful public behavior. Read the other person's face, voice, posture, and setting. Set your own display so it helps the exchange. Repair quickly when the other person's reaction says your signal missed.",
         "ifThenPlans": [
           {
@@ -2306,19 +2177,13 @@
       },
       "memorableLines": [
         {
-          "text": "Charm is not the same as contact.",
-          "location": "breakdown.fastRead",
-          "why": "It separates social polish from real connection in one portable line."
+          "text": "Charm is not the same as contact."
         },
         {
-          "text": "A mood can travel before a reason can speak.",
-          "location": "breakdown.deepRead",
-          "why": "It makes emotional contagion easy to remember in live groups."
+          "text": "A mood can travel before a reason can speak."
         },
         {
-          "text": "Repair starts while the other face is still changing.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a concrete cue for fast repair."
+          "text": "Repair starts while the other face is still changing."
         }
       ]
     },
@@ -2417,8 +2282,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source fact singles out contempt because it signals disgust and superiority. The problem is not plain truth; it is truth delivered as lowered status.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "emotional-intelligence-ch09-q02",
@@ -2430,8 +2294,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Complaint identifies a specific behavior. The other openings turn the missed pickup into character evidence, which is criticism.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch09-q03",
@@ -2443,8 +2306,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Defensiveness escalates because it refuses the grievance. A full defense may feel fair to Henri while Kyle hears his hurt being pushed out.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "emotional-intelligence-ch09-q04",
@@ -2456,8 +2318,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stonewalling can reflect overload rather than indifference or control. The key is to read silence with body load in mind, not only intent.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "emotional-intelligence-ch09-q05",
@@ -2469,8 +2330,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Flooding changes interpretation. Strong arousal does not prove the issue is larger; it can make a normal question sound hostile.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch09-q06",
@@ -2482,8 +2342,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Repair attempts need a reachable body. Waiting too long lets arousal narrow hearing, so the same joke or apology may land too late.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "emotional-intelligence-ch09-q07",
@@ -2495,8 +2354,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Gender socialization can shape how people press, withdraw, or show distress. The difference is a pattern to read, not proof of care level.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "emotional-intelligence-ch09-q08",
@@ -2508,8 +2366,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A softened start-up reduces instant threat by making the issue specific. Hard speed and long history both invite defense before repair can start.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch09-q09",
@@ -2521,8 +2378,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Resilience depends on repeated repair. Feeling love does not erase the learned path from arousal to threat and withdrawal.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2565,7 +2421,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Flood Check",
         "coreSkill": "Practice catching the body shift before the next sentence hardens. Run the Flood Check by asking whether you are making a complaint, launching a character attack, refusing a grievance, or going silent from overload. Then choose the smallest repair the other person can still hear.",
         "ifThenPlans": [
           {
@@ -2590,24 +2445,17 @@
       },
       "memorableLines": [
         {
-          "text": "Contempt turns a partner into a threat.",
-          "location": "breakdown.fastRead",
-          "why": "It names the core danger in one plain causal line."
+          "text": "Contempt turns a partner into a threat."
         },
         {
-          "text": "Silence may be overload, not coldness.",
-          "location": "breakdown.deepRead",
-          "why": "It makes a common misread easy to remember during conflict."
+          "text": "Silence may be overload, not coldness."
         },
         {
-          "text": "Repair is love arriving on time.",
-          "location": "breakdown.fullRead",
-          "why": "It turns timing into the emotional heart of the skill."
+          "text": "Repair is love arriving on time."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "emotional-intelligence-ch10",
       "number": 10,
       "title": "Managing with Heart",
@@ -2702,8 +2550,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Useful criticism is specific about the problem, impact, and remedy. A character label raises defense, while a vague inquiry can delay the needed repair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch10-q02",
@@ -2715,8 +2562,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fact points to character attack as the trigger. Defense is not proof of laziness; it may show that the feedback threatened the person.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "emotional-intelligence-ch10-q03",
@@ -2728,8 +2574,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Bell Labs finding is not solo heroics. Star performers used networks well, so help-seeking became part of high performance.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "emotional-intelligence-ch10-q04",
@@ -2741,8 +2586,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Interdependent work makes tone, trust, and timing more costly. Emotional competence affects the information and help that shared work needs.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "emotional-intelligence-ch10-q05",
@@ -2754,8 +2598,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source fact says training alone is not enough. Bias and group discomfort have to be addressed where they shape daily behavior.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "emotional-intelligence-ch10-q06",
@@ -2767,8 +2610,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Respectful handling can build trust because people learn that bad news leads to repair. Calling it disloyal teaches silence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "emotional-intelligence-ch10-q07",
@@ -2780,8 +2622,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Climate is not decoration here. The manager's attention, tone, and fairness shape what people notice, share, and repair.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "emotional-intelligence-ch10-q08",
@@ -2793,8 +2634,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fear may create motion, but it also hides information. When bad news stays buried, decision quality drops.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "emotional-intelligence-ch10-q09",
@@ -2806,8 +2646,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge is disciplined candor. Caring does not avoid hard truths; it gives them in a form people can use.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2850,7 +2689,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Useful Criticism Line",
         "coreSkill": "Practice writing hard feedback before feeling chooses the wording for you. The move is to name the work problem, the impact, and the next repair in one plain line. That line protects both dignity and useful information.",
         "ifThenPlans": [
           {
@@ -2875,24 +2713,17 @@
       },
       "memorableLines": [
         {
-          "text": "Fear hides the facts work needs.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the cost of fear short and usable."
+          "text": "Fear hides the facts work needs."
         },
         {
-          "text": "Respect makes candor easier to hear.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the chapter's management standard balanced."
+          "text": "Respect makes candor easier to hear."
         },
         {
-          "text": "Heart costs speed, but buys truth.",
-          "location": "breakdown.fullRead",
-          "why": "It names the price of applying the chapter's idea."
+          "text": "Heart costs speed, but buys truth."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "emotional-intelligence-ch11",
       "number": 11,
       "title": "Mind and Medicine",
@@ -2993,8 +2824,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fact supports a body route for chronic stress. The other choices either make stress depend on explanation or delay its relevance until after diagnosis.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3006,8 +2836,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Conditioned immune response means learning reached a body defense process. The taste-only and sealed-off readings repeat the common error.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -3019,8 +2848,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Williams's warning is about repeated hostility and physiology. One loud outburst is too narrow, while treating all anger as risky overstates the claim.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3032,8 +2860,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fact links isolation to behavior and recovery, not just to mood. The other answers make isolation too late or too rare to matter.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3045,8 +2872,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Support can buffer stress during the health process. It need not remove the illness or wait until the formal care is over.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -3058,8 +2884,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Care improves when fear and confusion are recognized early. Facts still matter, but distress can block the patient from using them.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3071,8 +2896,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fact says patients remember and follow advice better when distress is addressed. Facts alone do not ensure adherence under fear.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3084,8 +2908,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The balanced reading rejects blame. The evidence widens care routes; it does not make illness a failure or turn attitude into treatment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3097,8 +2920,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact places emotional care beside treatment. The wrong choices either replace medicine with emotion or strip emotion out of care.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3141,7 +2963,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Health Route",
         "coreSkill": "Practice naming the route a feeling is using before you make it mean too much. The route might be stress, immune readiness, heart strain, memory, trust, or follow-through. This keeps emotional care practical and keeps medical treatment in place.",
         "ifThenPlans": [
           {
@@ -3166,19 +2987,13 @@
       },
       "memorableLines": [
         {
-          "text": "Fear heard late becomes care given badly.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the medical cost of unspoken fear easy to remember."
+          "text": "Fear heard late becomes care given badly."
         },
         {
-          "text": "Stress is biology with a long tail.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses chronic stress into a body image without overclaiming."
+          "text": "Stress is biology with a long tail."
         },
         {
-          "text": "Comfort is care when it helps medicine work.",
-          "location": "breakdown.fullRead",
-          "why": "It separates useful support from vague sentiment."
+          "text": "Comfort is care when it helps medicine work."
         }
       ]
     },
@@ -3283,8 +3098,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 supports repetition as training. The near miss waits for age to solve what the family is already practicing each time.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3296,8 +3110,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 2 says authoritative parenting combines warmth with firm boundaries. Warmth is not the loss of a rule or a reward after compliance.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -3309,8 +3122,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 names the risk: dismissal teaches avoidance, not regulation. The other choices describe permissive rule loss or repair practice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3322,8 +3134,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 supports noticing and naming first. Naming is not a reward for drama; it makes the feeling easier to guide.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3335,8 +3146,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 separates feeling from action. Anger can be accepted while the slammed door still gets a limit and repair.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3348,8 +3158,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 says conflict teaches scripts. The goal is not zero conflict; it is a visible way to disagree and repair.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -3361,8 +3170,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 warns that harsh criticism can move inward. It may motivate in the moment while teaching shame as self-talk.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3374,8 +3182,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 ties secure coaching to empathy and impulse control. The near misses split discipline from feeling or hide feeling entirely.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -3387,8 +3194,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 9 makes family the early training ground. School matters, but it is not the first place children rehearse emotional responses.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3431,7 +3237,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name Then Hold the Line",
         "coreSkill": "Practice separating a child's feeling from the child's behavior. Use Name Then Hold the Line: give the feeling a plain name, state the boundary, and coach the next step. The move keeps warmth and discipline in the same sentence.",
         "ifThenPlans": [
           {
@@ -3456,24 +3261,17 @@
       },
       "memorableLines": [
         {
-          "text": "A named feeling is easier to guide.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader the core coaching sequence in one plain sentence."
+          "text": "A named feeling is easier to guide."
         },
         {
-          "text": "Warmth without limits leaves children alone.",
-          "location": "breakdown.fastRead",
-          "why": "It corrects the false split between care and discipline."
+          "text": "Warmth without limits leaves children alone."
         },
         {
-          "text": "The line protects what love names.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the boundary feel like part of care, not its opposite."
+          "text": "The line protects what love names."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "emotional-intelligence-ch13",
       "number": 13,
       "title": "Trauma and Emotional Relearning",
@@ -3575,8 +3373,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 says trauma may return through bodily alarm, not just ordinary recall. A cleaner timeline can matter later, but it does not explain the first surge.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3588,8 +3385,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 links reminders to distress because emotional memory ties cues to danger. Treating the trigger as a chosen reaction misreads the timing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3601,8 +3397,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 supports both sides: avoidance protects short-term calm and keeps the fear network untested. The tempting error treats relief as a cure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3614,8 +3409,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 says recovery begins with reliable safety. Insight and mourning may matter, but Herman's order keeps them after safety.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3627,8 +3421,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 says talking through trauma too soon can overwhelm. The near miss assumes any careful listener can make timing irrelevant.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -3640,8 +3433,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 supports gradual exposure because the brain learns reminders can be survived. Flooding and total avoidance both miss the learning window.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3653,8 +3445,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 says children need adult containment. Assuming they forget quickly can leave them alone with alarms they cannot yet manage.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -3666,8 +3457,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 8 frames symptoms as adaptations to danger that persist after danger ends. Weakness language turns a survival response into blame.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -3679,8 +3469,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 says emotional relearning changes response strength even when memory remains. Erasing or replacing memory is the common wrong promise.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -3723,7 +3512,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark Cue From Danger",
         "coreSkill": "Practice marking the difference between a present cue and an old danger. The move is small: name what is happening now, name what the body thinks it is, and choose one safe next step. You are not arguing the feeling away. You are giving the alarm new evidence.",
         "ifThenPlans": [
           {
@@ -3748,24 +3536,17 @@
       },
       "memorableLines": [
         {
-          "text": "Old fear can wear today's face.",
-          "location": "breakdown.fastRead",
-          "why": "It turns trauma's cue problem into a compact image the reader can recall."
+          "text": "Old fear can wear today's face."
         },
         {
-          "text": "Memory should be opened like a door, not kicked in.",
-          "location": "breakdown.deepRead",
-          "why": "It makes pacing and safety easy to remember without jargon."
+          "text": "Memory should be opened like a door, not kicked in."
         },
         {
-          "text": "Healing lowers the alarm without deleting the lesson.",
-          "location": "breakdown.fullRead",
-          "why": "It separates recovery from the false promise of erased memory."
+          "text": "Healing lowers the alarm without deleting the lesson."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "emotional-intelligence-ch14",
       "number": 14,
       "title": "Temperament Is Not Destiny",
@@ -3866,8 +3647,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Temperament can show up early as reactivity and approach. The caregiver should not assume all children start alike, or read one toy response as pure training.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3879,8 +3659,7 @@
             ],
             "correctIndex": 1,
             "explanation": "High-reactive children are more likely to become cautious or inhibited. The error is reducing a body-ready response to simple choice.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3892,8 +3671,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source supports bias without destiny. An adult pattern can leave a trace, but learned responses still matter.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -3905,8 +3683,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Reactive children need gradual, manageable novelty. Removing the pool preserves fear, while praise alone does not give the body mastery.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3918,8 +3695,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Overprotection can preserve fear by blocking mastery. The issue is not Annabelle's care, but the repeated lesson that exit is the only relief.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3931,8 +3707,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Repeated safe exposure builds confidence through learned control. Reassurance may help, but the key is practicing a manageable action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3944,8 +3719,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Temperament interacts with environment over development. A setting can help, but it does not override everything in one clean move.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3957,8 +3731,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Bold children are not risk-free. Emotional skill means training the pattern in front of you, including speed that misses social cues.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -3970,8 +3743,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Emotional intelligence adapts training to temperament. One script ignores timing, arousal, and the practiced response each person needs.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -4014,7 +3786,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the First Signal",
         "coreSkill": "Practice catching the body cue before it becomes a story about who you are. Mark the First Signal by naming the cue, shrinking the next step, and repeating a safe action. The goal is not to erase temperament; it is to give the first surge more than one path.",
         "ifThenPlans": [
           {
@@ -4039,24 +3810,17 @@
       },
       "memorableLines": [
         {
-          "text": "Temperament is the first tug, not the final map.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the whole claim in one plain contrast."
+          "text": "Temperament is the first tug, not the final map."
         },
         {
-          "text": "Biology is a weather report, not a prison wall.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the biological evidence real without making it fatal."
+          "text": "Biology is a weather report, not a prison wall."
         },
         {
-          "text": "A trait is a starting pull, not a life sentence.",
-          "location": "breakdown.fullRead",
-          "why": "It is short enough to carry and sharp enough to guide action."
+          "text": "A trait is a starting pull, not a life sentence."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "emotional-intelligence-ch15",
       "number": 15,
       "title": "The Cost of Emotional Illiteracy",
@@ -4157,8 +3921,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 says emotional illiteracy appears in patterns of aggression, despair, and risk. The isolated-choice reading misses shared gaps in impulse, distress, and response.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4170,8 +3933,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 treats adolescent risk indicators as public evidence of unmet needs. The numbers do not replace context, but they are not irrelevant to emotion.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -4183,8 +3945,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 links impulse problems to violence when conflict skills are absent. This does not erase harm; it shows what a consequence must also teach.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4196,8 +3957,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 says depression risk rises when children lack tools for interpreting and managing distress. The key is not a quick fix, but a missing skill set.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -4209,8 +3969,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 says substance use can function as attempted mood regulation. Rule-breaking may still matter, but the emotional function cannot be dismissed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -4222,8 +3981,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 says eating disorders can involve emotional control through body control. The vanity reading is too shallow and misses the need to notice signals early.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -4235,8 +3993,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 ties isolation to trouble reading and repairing interactions. Some solitude is fine, but broken repair can make distance grow.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -4248,8 +4005,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 says prevention must begin before crisis behaviors harden. Waiting makes the old response easier to repeat and harder to unlearn.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -4261,8 +4017,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 makes emotional literacy a civic and public-health concern. It belongs in public prevention because arousal and judgment shape risk in shared life.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4305,7 +4060,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Missing Skill",
         "coreSkill": "Practice reading risky behavior as a signal, not a full verdict. Name the missing skill before you decide the response: impulse control, distress naming, empathy, repair, or help-seeking. The move does not excuse harm. It helps the next consequence teach something.",
         "ifThenPlans": [
           {
@@ -4330,19 +4084,13 @@
       },
       "memorableLines": [
         {
-          "text": "Blame is cheaper than prevention.",
-          "location": "breakdown.fastRead",
-          "why": "It names the tempting shortcut in a form the reader can carry."
+          "text": "Blame is cheaper than prevention."
         },
         {
-          "text": "The row starts long before the crisis.",
-          "location": "breakdown.deepRead",
-          "why": "It turns a public statistic into an early prevention lesson."
+          "text": "The row starts long before the crisis."
         },
         {
-          "text": "Risk rows are missed lessons made visible.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the chapter's public-health frame into one line."
+          "text": "Risk rows are missed lessons made visible."
         }
       ]
     },
@@ -4447,8 +4195,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 says emotional literacy is taught through repeated classroom practice. The near misses assume children learn emotion without instruction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -4460,8 +4207,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 supports vocabulary as a tool for self-control. Calling it decoration misses how a name changes what the child can do next.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -4473,8 +4219,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 says conflict lessons work best when tied to real peer incidents. A purely invented case can dodge the practiced response children need.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4486,8 +4231,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 says teachers model regulation by how they handle disruption. The other choices treat adult emotion as irrelevant to the lesson.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -4499,8 +4243,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 names self-awareness and self-management as explicit competencies. SEL is not only self-esteem or only outward behavior.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q06",
@@ -4512,8 +4255,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 supports social awareness and relationship skills as teachable domains. The near misses make them fixed or less central.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -4525,8 +4267,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 links responsible decision-making to emotion, consequences, and values. The other choices split emotion from judgment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -4538,8 +4279,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 says whole-school consistency helps practice become habit. One lesson can name a skill without making it durable.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -4551,8 +4291,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 connects prevention and character formation through practiced skill. The near misses separate them or replace practice with speeches.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -4595,7 +4334,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name, Mark, Move",
         "coreSkill": "Practice Name, Mark, Move. Name the feeling in plain words, mark whether the body is speeding up or shutting down, then choose the next repair. This turns emotional literacy education into a repeatable school or home move.",
         "ifThenPlans": [
           {
@@ -4620,19 +4358,13 @@
       },
       "memorableLines": [
         {
-          "text": "A feeling with a name gives the child one handle.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the value of feeling vocabulary concrete and easy to remember."
+          "text": "A feeling with a name gives the child one handle."
         },
         {
-          "text": "Feelings need practice before pressure makes the choice.",
-          "location": "breakdown.fastRead",
-          "why": "It captures why the chapter treats emotional literacy as training, not talk."
+          "text": "Feelings need practice before pressure makes the choice."
         },
         {
-          "text": "A classroom climate teaches even when the lesson plan does not.",
-          "location": "breakdown.deepRead",
-          "why": "It names the adult modeling piece in a sentence readers can carry."
+          "text": "A classroom climate teaches even when the lesson plan does not."
         }
       ]
     }

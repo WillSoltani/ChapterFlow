@@ -125,8 +125,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Kennedy's case is not a praise of delay or display. The useful move steadies perception so real risks can be ranked before force, pride, or crowd pressure chooses.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -138,8 +137,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The leader's tone travels. Caleb does not hide the delay; he gives facts the line can use. Guessing fills silence with noise and makes panic easier to copy.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -151,8 +149,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mental clutter makes outside events feel larger. Counting the visible facts lets the room return to its true size before fear supplies the label.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -164,8 +161,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Mental stillness protects judgment from fear and hurry. Tessa needs the sequence first, since blame and mood can make the wrong cause feel obvious.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -177,8 +173,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Equanimity is a reset that lets facts settle. Malik still acts on safety, but he keeps a single fall from becoming a total story before the floor is checked.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -190,8 +185,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The note separates danger from noise. Ranked triage avoids both panic and paralysis by matching action to the clearest risk first.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -203,8 +197,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The misread is treating stillness as slowness. The pause is useful when it prevents panic from creating avoidable cleanup, reversals, or damage.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -216,8 +209,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Qing's calm is not avoidance. The count gives the problem its true size, while Anatole's fast call adds client fear before the shop knows the loss.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -229,8 +221,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The move changes the environment so risk, not volume, guides attention. Hiding noise long enough to rank pressure keeps the loudest item from pretending to be first.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -273,7 +264,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Practice Pause Before Judgment",
         "coreSkill": "Practice making a small gap between impact and judgment. In that gap, write the facts, notice the heat around them, and rank the next moves by risk before acting on the loudest item. The skill is not delay; it is giving your next action a cleaner mind to come from.",
         "ifThenPlans": [
           {
@@ -298,19 +288,13 @@
       },
       "memorableLines": [
         {
-          "text": "A settled mind buys seconds.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the practical value of calm short, clear, and memorable."
+          "text": "A settled mind buys seconds."
         },
         {
-          "text": "Hurry often creates a second emergency.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the hard edge that fast reaction can add damage instead of speed."
+          "text": "Hurry often creates a second emergency."
         },
         {
-          "text": "A mind that can pause before judgment gives the next action a chance to be wise.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the whole practice into a sentence the reader can carry into pressure."
+          "text": "A mind that can pause before judgment gives the next action a chance to be wise."
         }
       ]
     },
@@ -415,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Presence uses all three pillars. Speed alone hides confusion, and a calm face can still miss the room, the body, or the next fact.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -428,8 +411,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The data points to divided attention, not a need for theatrical effort. A checklist helps only if the phone no longer owns the gap.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -441,8 +423,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The audit found the point where attention left. Better wording misses the trigger, and blaming Omar dodges the access problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -454,8 +435,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Presence is full contact, not looking serene. Maya includes the body and the worry, then stops treating the fact as an enemy.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -467,8 +447,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The phone is a test of what gets access. Mateo plans attention before pressure starts, instead of letting stimulation write the shift.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -480,8 +459,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The present is where the torch angle can be corrected. Finishing distracted work treats motion as proof of responsibility.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -493,8 +471,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pattern is not weak character. Past replay is using attention that the current instruction needs.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -506,8 +483,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Relationships read access to attention. A nod can be theater when the mind is elsewhere, and quiet multitasking still divides the room.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -519,8 +495,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The shallow reading worships the feeling. The sharper test is whether conduct changes when the moment is plain, hard, or awkward.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -563,7 +538,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Presence Receipt",
         "coreSkill": "Practice reviewing one recent miss without blame. The Presence Receipt asks three quick questions: what had access to my attention, what did I notice in the room or body, and what judgment did I add too soon? The goal is a better next repetition, not a better self-defense.",
         "ifThenPlans": [
           {
@@ -588,24 +562,17 @@
       },
       "memorableLines": [
         {
-          "text": "Presence begins with access.",
-          "location": "breakdown.fastRead",
-          "why": "It makes attention concrete: something either gets entry or it does not."
+          "text": "Presence begins with access."
         },
         {
-          "text": "Reality has already arrived.",
-          "location": "breakdown.deepRead",
-          "why": "It captures nonjudgment in a sentence the reader can use under pressure."
+          "text": "Reality has already arrived."
         },
         {
-          "text": "Stillness starts when the whole person shows up.",
-          "location": "breakdown.fullRead",
-          "why": "It turns presence from a mood into an embodied standard."
+          "text": "Stillness starts when the whole person shows up."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stillness-is-the-key-ch03",
       "number": 3,
       "title": "Limit Your Inputs",
@@ -706,8 +673,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Aurelius's filter starts with necessity. Felix needed the cue tied to the next action, while the alert pile made volume feel like care.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -719,8 +685,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Jeremy Willets's work-intake filter separates wheat from chaff before a request becomes a commitment. Speedy agreement would let novelty set the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -732,8 +697,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Boundaries around inputs protect peace without leaving life. Nadia did not reject people; she kept a small routine from being steered by a buzz.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -745,8 +709,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The postmortem points to intake failure. The issue was not effort after the delay; it was noise becoming obligation before ownership was clear.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -758,8 +721,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Repeated input can feel harmless until it guides attention. Tyler reaches the cause by cutting the feed that helped produce the bad label.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -771,8 +733,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mental energy is finite. Elise can still handle complaints later, but the game cue needs the attention that stray inputs were spending.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -784,8 +745,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The error is confusing filtering with ignorance. Discernment lets necessary facts in, including unpleasant ones, while refusing noise.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -797,8 +757,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Input sovereignty means deciding what gets access to the mind. A later flood may still be noise if it does not serve duty, care, or learning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -810,8 +769,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Aurelius filter asks if an input is necessary before it governs action. Anger alone is not proof that the comment thread has earned attention.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -854,7 +812,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask the Necessity Gate",
         "coreSkill": "Practice checking an input before it gets access to your mind. Ask the Necessity Gate by naming the next duty, then asking whether the input helps duty, care, or real learning. The skill is not withdrawal; it is attention with a door.",
         "ifThenPlans": [
           {
@@ -879,24 +836,17 @@
       },
       "memorableLines": [
         {
-          "text": "Do not treat arrival as authority.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the input filter a short line the reader can use at the first ping."
+          "text": "Do not treat arrival as authority."
         },
         {
-          "text": "Repeated garbage starts to sound like a witness.",
-          "location": "breakdown.deepRead",
-          "why": "It names how repetition can make bad input feel credible."
+          "text": "Repeated garbage starts to sound like a witness."
         },
         {
-          "text": "A shut gate is useful only when it opens for duty.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the limit: filtering serves responsibility, not escape."
+          "text": "A shut gate is useful only when it opens for duty."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stillness-is-the-key-ch04",
       "number": 4,
       "title": "Empty the Mind",
@@ -997,8 +947,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful move is not pretending frost is pleasant. It is separating weather from duties, then doing the duties. Refreshing and debating keep the loop alive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1010,8 +959,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pattern points to environment before character. A sports-bar-like room can refill the mind with input even when the workers are trying to be careful.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1023,8 +971,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The lesson is not talent or denial. Ludovic keeps the delay in the outside pile and acts on the route, while Aanya keeps feeding the room's noise.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1036,8 +983,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The posted result stayed outside her control. The change was Teagan's first use of attention: from ranking replay to equipment and stroke choices.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1049,8 +995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Suppression measures how hard someone can push. Mental clearing asks for the claim inside the thought, then keeps only the duty it reveals.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1062,8 +1007,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The repair slip already sorted the loop. The next action belongs to the controllable column; chasing mood or old shame moves Ludovic back into rehearsal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1075,8 +1019,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The reply is conduct. The sender's reaction and hidden motive are not in Aanya's hands, so rereading or guessing only gives the loop more fuel.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1088,8 +1031,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mental clearing includes changing the room. A stricter promise leaves the cue in place, while moving the app makes the default mistake harder.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -1101,8 +1043,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Blankness is the false target. The mind needs room to see and choose; pleasant replacement can become another loop if it avoids duty.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -1145,7 +1086,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Sort the Control Queue",
         "coreSkill": "Practice catching one thought loop before it becomes the room you live in. Sort the Control Queue by naming the loop, marking it controllable or uncontrollable, then doing the next conduct step. If the loop has no step, stop feeding it with more input.",
         "ifThenPlans": [
           {
@@ -1170,19 +1110,13 @@
       },
       "memorableLines": [
         {
-          "text": "If a thought cannot lead to conduct, it does not get the chair.",
-          "location": "breakdown.fastRead",
-          "why": "It turns control sorting into a picture the reader can use."
+          "text": "If a thought cannot lead to conduct, it does not get the chair."
         },
         {
-          "text": "A clear mind is a workbench, not a vacant lot.",
-          "location": "breakdown.deepRead",
-          "why": "It prevents stillness from sounding like blankness."
+          "text": "A clear mind is a workbench, not a vacant lot."
         },
         {
-          "text": "Suppression gives the thought a wrestling partner.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the hard edge against force easy to remember."
+          "text": "Suppression gives the thought a wrestling partner."
         }
       ]
     },
@@ -1287,8 +1221,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pattern points to emotional flooding, not laziness. The right first move is to check how urgency narrows the board before Jean sends another crew.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -1300,8 +1233,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The point of slowing is better action. Taras checks the saw path before more wood is lost; Sergei repeats the rush that caused the gap.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q03",
@@ -1313,8 +1245,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Frankl's gap does not erase the sting of losing. It keeps the sting from ordering twelve repairs when one chosen cue would serve the next set better.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1326,8 +1257,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Deliberation is not passivity when it improves the move. Madeleine still answers the client, but she stops the rushed blame from becoming the message.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1339,8 +1269,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Deliberative space is the pause where interpretation gets checked. Reading twice and naming the story gives values a chance before the reply leaves.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1352,8 +1281,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Epictetus pushes against instant answers. Myriam should let one inspected crate set the price, not let one visible flaw rush the whole table.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1365,8 +1293,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The easy misread is to call slowing timidity. Thanh's pause is active: he checks the bottle before his first story turns into an accusation.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1378,8 +1305,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Deep thinking is not a long retreat. Sergei needs one checked cue before action, so speed serves the choice instead of masking frustration.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -1391,8 +1317,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Frankl's gap protects freedom before behavior hardens. The team's rework shows that fast notes are often stimulus wearing the costume of judgment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1435,7 +1360,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Rehearse the Gap Once",
         "coreSkill": "Practice one sentence before pressure gets to write it for you. Rehearse the Gap Once means you name the stimulus, say the response you are tempted to give, and speak one better line aloud before the real moment. The aim is not polish; the aim is freedom before reaction hardens.",
         "ifThenPlans": [
           {
@@ -1460,24 +1384,17 @@
       },
       "memorableLines": [
         {
-          "text": "Speed before sight is just panic in a clean shirt.",
-          "location": "breakdown.fastRead",
-          "why": "It punctures the glamour of fast answers in one concrete image."
+          "text": "Speed before sight is just panic in a clean shirt."
         },
         {
-          "text": "The gap is tiny, but a life can fit inside it.",
-          "location": "breakdown.deepRead",
-          "why": "It makes Frankl's small interval feel large without overexplaining it."
+          "text": "The gap is tiny, but a life can fit inside it."
         },
         {
-          "text": "Slow is not the opposite of strong.",
-          "location": "breakdown.fullRead",
-          "why": "It protects the chapter's hard edge from the timid-delay misread."
+          "text": "Slow is not the opposite of strong."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stillness-is-the-key-ch06",
       "number": 6,
       "title": "Start Journaling",
@@ -1578,8 +1495,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful move is the split. Mood dumping and polished prose both miss the check: what happened, what got added, and what can now be tested.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q02",
@@ -1591,8 +1507,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Repeated entries reveal what one entry hides. The first inference is a timing pattern, not a verdict about character or a prize for intensity.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch06-q03",
@@ -1604,8 +1519,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Writing slows the reaction enough to sequence it. A quick show of control and a premature apology both act before the facts and story are separated.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q04",
@@ -1617,8 +1531,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The page helps when a feeling becomes a claim that can be inspected. Privacy and nicer wording may soothe Cyrille without testing the assumption.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch06-q05",
@@ -1630,8 +1543,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge is not owning a notebook. The practice works when it tests the story, especially when the same blame script keeps returning.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch06-q06",
@@ -1643,8 +1555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Written self-questioning creates accountability before an audience appears. Praise-seeking and blame-waiting both hand the work to someone else.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch06-q07",
@@ -1656,8 +1567,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The record keeps the space between stimulus and response visible. Later calm can still edit memory, and delay alone is not judgment.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "ch06-q08",
@@ -1669,8 +1579,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The practice is private training, not proof for observers. Public sharing may help later, but it is not what makes the first judgment steadier.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch06-q09",
@@ -1682,8 +1591,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The move is not to suppress the issue or dramatize it. The sentence needs edges: fact, story, and a small test before the handoff tone is set.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1726,7 +1634,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Page Claim Check",
         "coreSkill": "Use the Page Claim Check whenever a thought feels too loud to question. Write the event, the story you added, and one testable next question. The skill is not pretty writing; it is catching the first draft before it drives conduct.",
         "ifThenPlans": [
           {
@@ -1751,19 +1658,13 @@
       },
       "memorableLines": [
         {
-          "text": "On the page, the line looks less like a fact and more like a verdict.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the chapter's core split visible in one plain sentence."
+          "text": "On the page, the line looks less like a fact and more like a verdict."
         },
         {
-          "text": "A pen can only move one word at a time, and that slowness is the gift.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the practice's friction into a memorable benefit."
+          "text": "A pen can only move one word at a time, and that slowness is the gift."
         },
         {
-          "text": "The page can lie if the writer uses it as a stage.",
-          "location": "breakdown.fullRead",
-          "why": "It names the limit without weakening the practice."
+          "text": "The page can lie if the writer uses it as a stage."
         }
       ]
     },
@@ -1862,8 +1763,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The data points to attention reaching for prompts during small gaps. A bounded device-free test reveals dependence; a nicer setting or faster clearing keeps the habit intact.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -1875,8 +1775,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Modern prompts are built to pull attention, so the setup matters. Waiting for calm makes the practice depend on the condition it is meant to create.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q03",
@@ -1888,8 +1787,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Alan Watts's muddy water image teaches removal of agitation. Quiet allows clarity to return; sorting harder or demanding instant insight keeps stirring the water.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1901,8 +1799,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The demanding version of quiet exposes fatigue, avoidance, and unresolved choices. It is not a search for smoothness or an excuse to avoid needed speech.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1914,8 +1811,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The useful signal may feel unpleasant at first. Silence lowers incoming demand so hidden strain becomes easier to notice and adjust.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1927,8 +1823,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The practice is cultivated through small forms: closed doors, walks, device-free intervals, and unfilled transitions. Drama and personality myths both avoid training.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -1940,8 +1835,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The practice is not reserved for naturally calm people. Restlessness can reveal dependence on noise, which is exactly the material active silence brings into view.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1953,8 +1847,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The device-free hour is a measurable test, not a mood guarantee. Cell phone notifications wait while attention has a chance to return to the present task.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1966,8 +1859,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The stem asks for the shallow reading. Treating silence as a calm look misses the harder claim: quiet removes hiding places and can make discomfort louder first.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2010,7 +1902,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Count Before Filling the Room",
         "coreSkill": "Practice making a small quiet pocket before the next choice. Change one thing in the room or on the screen, then count six slow breaths so attention has time to settle. Use the quiet to notice what noise was covering, not to chase a perfect mood.",
         "ifThenPlans": [
           {
@@ -2035,19 +1926,13 @@
       },
       "memorableLines": [
         {
-          "text": "Silence is exposure with the volume down.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the hard edge plain without making silence sound fancy."
+          "text": "Silence is exposure with the volume down."
         },
         {
-          "text": "The reach is the lesson.",
-          "location": "breakdown.fullRead",
-          "why": "It turns a tiny physical impulse into the whole practice."
+          "text": "The reach is the lesson."
         },
         {
-          "text": "Quiet lets the silt fall instead of asking the mind to look harder.",
-          "location": "breakdown.fullRead",
-          "why": "It carries the Alan Watts image into a short line the reader can remember."
+          "text": "Quiet lets the silt fall instead of asking the mind to look harder."
         }
       ]
     },
@@ -2152,8 +2037,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful response joins knowledge, experience, and prudence. More dashboards may only feed delay, and old success can bully the present.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2165,8 +2049,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The log already points to a controllable trigger. Another alert or a louder memory may add input without improving judgment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2178,8 +2061,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Ancient traditions are not trophies for the wall. Their test is whether the staff lead handles the late arrival with better conduct.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2191,8 +2073,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The problem is not experience itself. The clerk lets an old pattern outrank a present risk, which is experience without prudence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2204,8 +2085,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tempting misread is to collect more information. When facts are stable, another pass may be fear using research as cover.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2217,8 +2097,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Practical wisdom is trained judgment in action. Citations and tenure may help, but neither replaces the sorting act.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -2230,8 +2109,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Wisdom changes what receives attention before pressure becomes behavior. More refreshing or more witnesses can keep the same fear in charge.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2243,8 +2121,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The three-part model needs knowledge, experience, and prudence. The meeting and old plan may be useful only after prudence tests fit.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2256,8 +2133,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Stoicism, Buddhism, and Christianity are used here as practical paths. The correction is conduct, not a better quote collection.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2300,7 +2176,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Test Input With Prudence",
         "coreSkill": "Practice pausing before input becomes command. Test Input With Prudence by asking what you know, what experience suggests, and what prudence would let become action. The skill is not to sound informed; it is to become less easily fooled by information.",
         "ifThenPlans": [
           {
@@ -2325,19 +2200,13 @@
       },
       "memorableLines": [
         {
-          "text": "More input is not the same as better judgment.",
-          "location": "breakdown.fastRead",
-          "why": "It punctures the chapter's main misread in a sentence the reader can test immediately."
+          "text": "More input is not the same as better judgment."
         },
         {
-          "text": "A still mind is not empty.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps stillness from being mistaken for vacancy or withdrawal."
+          "text": "A still mind is not empty."
         },
         {
-          "text": "Wisdom is judgment with its hands on the work.",
-          "location": "breakdown.fullRead",
-          "why": "It makes wisdom practical, physical, and hard to confuse with trivia."
+          "text": "Wisdom is judgment with its hands on the work."
         }
       ]
     },
@@ -2442,8 +2311,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Powell's test separates Callum from the position. The correction pattern is useful signal; defending image or sinking into shame keeps the self louder than the count.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -2455,8 +2323,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The 48 Laws of Power gives energy to action, and earned confidence disciplines it. Diya's checks keep boldness from becoming a costume for ego.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2468,8 +2335,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ego covers the flaw, and insecurity broods over it. Both consume attention that should go to the pump, the note, and the repair.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2481,8 +2347,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Earned confidence uses competence, values, feedback, and discomfort. The error review may sting, but it improves the work citizens actually meet.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -2494,8 +2359,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Powell's warning makes the patient larger than Lazare's position. Taking heat is better than letting ego hide a count the next shift needs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2507,8 +2371,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Law 28 favors action, not sloppy display. The strong move is to make the note accurate enough to carry force.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2520,8 +2383,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Earned confidence is grounded in competence and feedback, not performance theater. A louder speech can still leave the real gap untouched.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q08",
@@ -2533,8 +2395,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Bold action gets easier when self-worth is not on trial. The team still faces feedback, but the feedback belongs to the work.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -2546,8 +2407,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge rejects inflated self-belief. The useful confidence is quiet, earned, and tested by competence, values, feedback, and discomfort.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2590,7 +2450,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Separate Self From Position",
         "coreSkill": "Practice naming the position as a thing you hold, not as the person you are. Before defending it, run four checks: competence, values, feedback, and discomfort. Then make the smallest calendar change that gives correction a protected place to happen.",
         "ifThenPlans": [
           {
@@ -2615,19 +2474,13 @@
       },
       "memorableLines": [
         {
-          "text": "Confidence can change course without collapse.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the difference between earned confidence and ego into a line the reader can test."
+          "text": "Confidence can change course without collapse."
         },
         {
-          "text": "The egoic person covers the flaw; the insecure person stares at it until work stops.",
-          "location": "breakdown.deepRead",
-          "why": "It shows why arrogance and self-doubt can create the same practical damage."
+          "text": "The egoic person covers the flaw; the insecure person stares at it until work stops."
         },
         {
-          "text": "Real confidence is not a mood; it is a set of checks.",
-          "location": "breakdown.fullRead",
-          "why": "It makes confidence practical by turning it into actions the reader can perform."
+          "text": "Real confidence is not a mood; it is a set of checks."
         }
       ]
     },
@@ -2732,8 +2585,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Release does not erase care. It stops spending effort on a finished outcome and puts control into apology, repair, and the next check.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2745,8 +2597,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The data separates outcome from conduct. Weather is outside Brooks's control; the late signs are effort his crew can repair.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2758,8 +2609,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The risk is not that Joyce cares about accuracy. It is that the first position has become self-protection, so revision feels like personal loss.",
-            "bloomsLevel": "understand",
-            "depthLevel": "deep"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2771,8 +2621,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fatalism drops duty. Release drops false command while keeping the reachable work: facts, updates, safety, and clean boundaries.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -2784,8 +2633,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The complaint is evidence, not a leash. Andre honors it by fixing what remains available and helping the next person in front of him.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2797,8 +2645,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A useful postmortem distinguishes what happened from what can be improved. Zander uses evidence to upgrade conduct, not retry the past.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2810,8 +2657,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Release needs a sturdy self. Joyce can revise the claim because being wrong does not have to mean being ruined.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2823,8 +2669,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The log points to a reachable fix: clearer updates. Joshua can set a boundary around false promises while still serving families.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -2836,8 +2681,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Release looks for the next right act after the outcome lands. Explanation and proof can be useful later, but they often keep the mind gripping first.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2880,7 +2724,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Draw The Control Line",
         "coreSkill": "Practice drawing a hard line between what you can direct and what you are only gripping. Draw The Control Line by naming the outcome, argument, or ego-bound position, then writing one reachable act beside it. The skill is not calm talk; it is moving effort back into conduct.",
         "ifThenPlans": [
           {
@@ -2905,24 +2748,17 @@
       },
       "memorableLines": [
         {
-          "text": "A mind that lets go faster can recover faster.",
-          "location": "breakdown.fastRead",
-          "why": "It makes release practical by linking speed of surrender to speed of recovery."
+          "text": "A mind that lets go faster can recover faster."
         },
         {
-          "text": "The line is not a wall against care.",
-          "location": "breakdown.fullRead",
-          "why": "It prevents the common misread that release means emotional withdrawal."
+          "text": "The line is not a wall against care."
         },
         {
-          "text": "Real release leaves evidence.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a visible test for whether letting go became action."
+          "text": "Real release leaves evidence."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stillness-is-the-key-ch11",
       "number": 11,
       "title": "The Domain of the Soul",
@@ -3023,8 +2859,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The data split points to visible status masking hidden cost. More pace would feed the same bias, and a brighter ritual would not address the missed handoffs.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -3036,8 +2871,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The slammed plate reveals a current the voice concealed. Rewarding only the quiet surface confuses appearance with alignment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3049,8 +2883,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The ocean image separates surface from current. Silence may help, but it does not prove the deeper group state is settled.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -3062,8 +2895,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The attendance sheet changes the meaning of the praise. Social currency can replace virtue when the visible story hides who carries the cost.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -3075,8 +2907,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The ranking turned visibility into social currency. Once speed stopped proving worth, Dawson could let accuracy govern the tag desk.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3088,8 +2919,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The test is whether ambition can still hear conscience. A small false date would let hunger govern the work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3101,8 +2931,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Soul-level stillness asks what governs attention before pressure becomes behavior. Safety deserves the first claim when visibility pulls toward applause.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3114,8 +2943,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge warns against treating stillness as a performance. A calm meeting can still hide burnout, fear, or compromise.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -3127,8 +2955,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Spiritual alignment checks whether desire, wounds, values, and conduct are pulling apart. The question looks below the win instead of extending the high.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -3171,7 +2998,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Current Note",
         "coreSkill": "Practice naming the hidden pull before your next visible move. Write the Current Note by naming what you want, what it might cost, and the line you will not cross. The skill keeps calm from becoming performance.",
         "ifThenPlans": [
           {
@@ -3196,19 +3022,13 @@
       },
       "memorableLines": [
         {
-          "text": "A smooth surface is not the same as safe water.",
-          "location": "breakdown.fastRead",
-          "why": "It carries the ocean-current distinction in one plain image."
+          "text": "A smooth surface is not the same as safe water."
         },
         {
-          "text": "Status can teach hunger to sound like duty.",
-          "location": "breakdown.deepRead",
-          "why": "It names the modern status trap without flattening ambition."
+          "text": "Status can teach hunger to sound like duty."
         },
         {
-          "text": "A calm face can still lie for a hidden current.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the hard edge: appearance cannot certify the soul."
+          "text": "A calm face can still lie for a hidden current."
         }
       ]
     },
@@ -3313,8 +3133,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Emerson's pressure is approval. The clean move fixes the report before applause has a vote; the other two let the room's reaction decide the standard.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3326,8 +3145,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The log points to inner conflict, not mere stress. Long self-defense after small shortcuts is a sign that conduct has split from the value it claims.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3339,8 +3157,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Confucian, Catholic, Buddhist, Hindu, and Islamic patterns all stress formed conduct. The desk shortcut matters because repetition trains the person.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q04",
@@ -3352,8 +3169,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The comments name moralism. The repair is not softer standards; it is showing virtue as less inner bargaining, not as a weapon for ranking people.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -3365,8 +3181,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stoic virtue is civic and moral excellence in action. Owning and repairing the handoff serves the common work; the speech may only polish appearance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -3378,8 +3193,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Virtue as sufficiency means the clean sentence counts before status or ease bless it. Winning and avoidance both ask another master for permission.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3391,8 +3205,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The written line gives conduct a head start before approval pressure arrives. Deference and mood protection preserve the same inner conflict.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q08",
@@ -3404,8 +3217,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The second cook treats virtue as enough before approval speaks. A possible review or a vague wish for harmony would still make image the hidden ruler.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3417,8 +3229,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pattern points to formation through repetition. The heroic act and audience proof both miss how character gets trained in ordinary conduct.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -3461,7 +3272,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Check the Conduct Line",
         "coreSkill": "Practice writing the clean action before the room gets a vote. The Conduct Line is one short sentence that names what you will do if virtue is enough. It works best when the action is visible: correct the report, post the delay, refund the charge, or use the same rule again.",
         "ifThenPlans": [
           {
@@ -3486,19 +3296,13 @@
       },
       "memorableLines": [
         {
-          "text": "Virtue asks for a cleaner test: can you live with the act when no one claps?",
-          "location": "breakdown.fastRead",
-          "why": "It turns virtue from a halo word into a personal test."
+          "text": "Virtue asks for a cleaner test: can you live with the act when no one claps?"
         },
         {
-          "text": "A conscience can make noise without making sound.",
-          "location": "breakdown.fastRead",
-          "why": "It makes inner conflict easy to picture without abstract language."
+          "text": "A conscience can make noise without making sound."
         },
         {
-          "text": "The conduct line is small enough to write before the next reply.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a small tool they can use immediately."
+          "text": "The conduct line is small enough to write before the next reply."
         }
       ]
     },
@@ -3603,8 +3407,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pattern is larger than tray speed. Naming the old script lets Tariq fix the process and the tone; extra timers or blame leave the wound in charge.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -3616,8 +3419,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Compassion works with responsibility. Sloane's move neither denies the hurt nor turns it into a license; the other readings preserve shame or avoidance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q03",
@@ -3629,8 +3431,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The data is clean while the body is loud. The first task is to separate present evidence from an older alarm; stricter forms may hide the same panic.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3642,8 +3443,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The teachback keeps the envelope in view while naming the shame cue. Scolding and quitting both let the past decide what the mistake means.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3655,8 +3455,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The memory explains the size of the reaction, but it does not need to lead. Repair puts the old pain in context and returns Xavier to the task.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3668,8 +3467,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Achievement can numb an old fear without healing it. The coldness after praise suggests pressure, not settled calm; more work may only mask the script.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3681,8 +3479,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pain can explain a pattern without excusing conduct. Carter's repair joins virtue and wound work; busyness and blame keep him away from the real task.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3694,8 +3491,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The repeated phrase gives Leontine something specific to examine. Blaming patrons or cleaning the file protects image, not awareness.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3707,8 +3503,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard line rejects both excuse and badge. The younger fear deserves care, and the snapped words still require repair.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -3751,7 +3546,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Map the Old Script",
         "coreSkill": "Practice catching the moment when a present event feels older than it is. Map the Old Script by naming the exact trigger, the age the reaction feels, and the adult action still required. The move gives care to the younger self without handing over the steering wheel.",
         "ifThenPlans": [
           {
@@ -3776,24 +3570,17 @@
       },
       "memorableLines": [
         {
-          "text": "Stillness begins when you ask what age your reaction feels, then answer from today.",
-          "location": "breakdown.fastRead",
-          "why": "It turns inner-child work into one simple question and one adult response."
+          "text": "Stillness begins when you ask what age your reaction feels, then answer from today."
         },
         {
-          "text": "Skip the first step and shame stays in charge.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the cost of bypassing acknowledgment easy to remember."
+          "text": "Skip the first step and shame stays in charge."
         },
         {
-          "text": "You are listening closely enough to stop the wound from impersonating reality.",
-          "location": "breakdown.fullRead",
-          "why": "It names the chapter's central risk in plain, portable language."
+          "text": "You are listening closely enough to stop the wound from impersonating reality."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stillness-is-the-key-ch14",
       "number": 14,
       "title": "Beware Desire",
@@ -3894,8 +3681,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Aristotle's harder victory is over the inside urge. Praise may feel useful, but the prep duty reveals whether desire is leading or serving.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "stillness-is-the-key-ch14-q02",
@@ -3907,8 +3693,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pattern is not ambition itself. The danger is narrowed sight, where one desired result crowds out money, time, relationships, and conduct.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "stillness-is-the-key-ch14-q03",
@@ -3920,8 +3705,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Bruce Lee's awareness is not denial. It lets Odilon observe appearance as one fact instead of making the mirror the judge of his worth.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "stillness-is-the-key-ch14-q04",
@@ -3933,8 +3717,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first stamp did not free Warren; it handed control to the next object. The warning is postponed calm, not the existence of goals.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "stillness-is-the-key-ch14-q05",
@@ -3946,8 +3729,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The text thread does not erase disappointment. It widens attention so the lineup is information before it becomes a verdict.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "stillness-is-the-key-ch14-q06",
@@ -3959,8 +3741,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The warning targets enslavement, not preference. Amelia can want challenge while refusing to let image dictate sleep, practice, and learning.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "stillness-is-the-key-ch14-q07",
@@ -3972,8 +3753,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The mark records awareness and control, not whether the world rewarded you. Praise would hand the practice back to the desired outcome.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "stillness-is-the-key-ch14-q08",
@@ -3985,8 +3765,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Stoic freedom is lost when the urge dictates the next act. Vivian can still care about replies without letting them steer conduct.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "stillness-is-the-key-ch14-q09",
@@ -3998,8 +3777,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The three effects show bondage, not ordinary preference. The repair is to see the command forming before an external answer owns the inner state.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -4042,7 +3820,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the Wanting Command",
         "coreSkill": "Practice catching the moment a want starts acting like an order. Name what it wants to command, separate the facts from the craving, and place one visible tick mark when you see it before obeying it.",
         "ifThenPlans": [
           {
@@ -4067,19 +3844,13 @@
       },
       "memorableLines": [
         {
-          "text": "Wanting is not the enemy.",
-          "location": "breakdown.fastRead",
-          "why": "It protects the chapter from the false lesson of rejecting every preference."
+          "text": "Wanting is not the enemy."
         },
         {
-          "text": "A wanted thing arrives, and the wanting engine keeps running.",
-          "location": "breakdown.fullRead",
-          "why": "It names the moving finish line in plain language."
+          "text": "A wanted thing arrives, and the wanting engine keeps running."
         },
         {
-          "text": "Desire may knock.",
-          "location": "breakdown.fullRead",
-          "why": "The short sentence makes room for preference without granting command."
+          "text": "Desire may knock."
         }
       ]
     },
@@ -4184,8 +3955,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The chase feeds itself when no finish line is set. Brooklyn already wrote one, so the first check is whether comparison is moving a line that was clear before the rival total appeared.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -4197,8 +3967,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Enough is not a retreat from effort; it is a chosen limit. The leaderboard response lets appetite revise success, while Philippine ties the bonus to real needs already named.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4210,8 +3979,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The expenses stayed still while the rankings moved. That points to comparison, not need, as the force making sufficiency unstable and making the target feel unfinished.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -4223,8 +3991,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Aristotle's self-rule is about who commands wanting. Jeanne sets the line before desire takes over; Sophie keeps asking the next file to bring the peace the last one did not.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -4236,8 +4003,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The stem asks for the false reading. The error is treating enough as smallness or surrender, while the harder claim is freedom from a game that keeps changing its rules.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -4249,8 +4015,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The anger is a clue that the target moved after the plan was complete. Desire loses power when the real need is named before comparison turns two rounds into five.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -4262,8 +4027,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Enoughness sets the measure before appetite, comparison, or status starts bargaining. The peer check hands the measure to status and makes the target easier to move.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -4275,8 +4039,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The chart names the actual need, while the next room supplies the comparison. A visible enough list lets the class see sufficiency before a bigger number becomes the rule.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -4288,8 +4051,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Postponing calm to the next win leaves appetite in charge of the finish line. Choosing enough first gives contentment a place to begin before another total appears.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -4332,7 +4094,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Enough Line",
         "coreSkill": "Practice naming the finish line before pressure starts bargaining. Write one sentence that says what is enough for the task, purchase, praise, or work period in front of you. Then use that line when desire, comparison, or status tries to move the target after a gain.",
         "ifThenPlans": [
           {
@@ -4357,19 +4118,13 @@
       },
       "memorableLines": [
         {
-          "text": "Enoughness means deciding what counts as enough before desire starts moving the line.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's practice into a single order of operations."
+          "text": "Enoughness means deciding what counts as enough before desire starts moving the line."
         },
         {
-          "text": "Desire gets loud when the finish line stays blank.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the danger of an undefined target easy to remember."
+          "text": "Desire gets loud when the finish line stays blank."
         },
         {
-          "text": "Enough is not the enemy of excellence.",
-          "location": "breakdown.fullRead",
-          "why": "It blocks the common misread that defining enough means lowering standards."
+          "text": "Enough is not the enemy of excellence."
         }
       ]
     },
@@ -4474,8 +4229,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The right move receives the beauty before exploiting it. Branding and speed can matter, but both can erase the small rest the customers were already finding.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -4487,8 +4241,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Forest bathing points to embodied exposure, not faster logistics. The riders may still dislike waiting while their bodies get a gentler place to land.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -4500,8 +4253,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The plan treats attention as the first resource. It tests contact with pattern and air before turning calm into another purchase.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -4513,8 +4265,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The move refuses both escape and neglect. Amelie serves the real deadline while adding a visual barrier before work takes every surface.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4526,8 +4277,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Natural settings renew attention through soft interest. Timing the minute would drag the pause back into the same scoring habit it was easing.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -4539,8 +4289,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Light, pattern, and visual cues can regulate the body before a spreadsheet moves. Tardy counts missed the softer landing at the pass tray.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -4552,8 +4301,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The warning sign is conversion. Posting, ranking, selling, and optimizing make beauty serve status or output before it can refresh attention.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q08",
@@ -4565,8 +4313,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Restorative beauty refreshes attention without demanding control. The unmeasured pause lets the practice be received before it is managed.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -4578,8 +4325,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Japanese practice is embodied contact, not a view to admire from a distance. Air, trees, pace, and attention are part of the effect.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4622,7 +4368,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Add a Beauty Pause Barrier",
         "coreSkill": "Practice putting one small barrier between an automatic tool and the next beautiful thing available to you. The barrier can be a note, a moved object, a closed tab, or a changed default screen. The point is to notice the choice before you convert beauty into content, proof, or a productivity trick.",
         "ifThenPlans": [
           {
@@ -4647,24 +4392,17 @@
       },
       "memorableLines": [
         {
-          "text": "Receive them first.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the whole chapter into a command the reader can use in seconds."
+          "text": "Receive them first."
         },
         {
-          "text": "The soul is not forced into stillness.",
-          "location": "breakdown.deepRead",
-          "why": "It names the gentle mechanism without making beauty another demand."
+          "text": "The soul is not forced into stillness."
         },
         {
-          "text": "Use can come later.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the hard edge against turning beauty into a tool too quickly."
+          "text": "Use can come later."
         }
       ]
     },
     {
-      "schemaVersion": "v21-native",
       "chapterId": "stillness-is-the-key-ch17",
       "number": 17,
       "title": "Accept a Higher Power",
@@ -4765,8 +4503,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pattern points to control under pressure, not a need for more speed. Piper still owns the log, but she lets truth outrank the rush.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -4778,8 +4515,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Marlene stays responsible without acting sovereign. Bennett's guessing confuses urgency with duty and makes the building less safe.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q03",
@@ -4791,8 +4527,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge is responsibility intact. Quentin can release control, but he cannot use surrender as a cover for an untrue receipt.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -4804,8 +4539,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Bennett notices the ego claim before the bad label lands. The right move keeps verified duty and releases the fantasy of total command.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4817,8 +4551,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Enough and surrender both limit possession. Mathieu still coaches, but he stops treating every possible rep as something he must seize.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -4830,8 +4563,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Humility is not a feeling of low status. Anaya acts fast, calls help, and honors the wider system that keeps the blood safe.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -4843,8 +4575,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The scheduled check needs room to change conduct. Removing one small demand lets the larger frame shape the day, not just decorate it.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q08",
@@ -4856,8 +4587,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pattern says meaning steadies people under strain. Comfort helps, but it is too small to carry the whole shift.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -4869,8 +4599,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Surrender does not erase duty or kindness. Quentin is not final mercy, but he can tell the truth and still help within the store's limits.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -4913,7 +4642,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Make The Larger Frame Cut",
         "coreSkill": "Practice naming the duty in your hands, then cutting one demand that belongs to fear or pride. Make The Larger Frame Cut turns surrender into a small edit: keep the honest action, remove the extra claim to control. The goal is not to feel vague peace; it is to act cleanly with less ego in the job.",
         "ifThenPlans": [
           {
@@ -4938,24 +4666,17 @@
       },
       "memorableLines": [
         {
-          "text": "Surrender begins when she fixes the slip without trying to become the universe.",
-          "location": "breakdown.fastRead",
-          "why": "It makes surrender active and concrete instead of vague."
+          "text": "Surrender begins when she fixes the slip without trying to become the universe."
         },
         {
-          "text": "Humility gives your will a smaller job.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the whole practice into a sentence someone can use under pressure."
+          "text": "Humility gives your will a smaller job."
         },
         {
-          "text": "Release control, not responsibility.",
-          "location": "breakdown.fullRead",
-          "why": "It guards the hard edge in five words."
+          "text": "Release control, not responsibility."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stillness-is-the-key-ch18",
       "number": 18,
       "title": "Enter Relationships",
@@ -5056,8 +4777,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The right move makes sharing visible through use. The trainee learns that a good thing grows fuller when another person can receive and practice it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -5069,8 +4789,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The data points to connection, not a magic object. The late meal remained, but shared attention made the stress less sealed off and more human.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -5082,8 +4801,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The mirror is useful because it names a specific habit Miri can change. Denial dodges the find, while a blanket ban misses the repair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -5095,8 +4813,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The warning is against loneliness dressed up as peace. Quiet helps, but it is brittle when it survives only by avoiding people who can see the pattern.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -5108,8 +4825,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Seneca's logic does not despise the object. It asks whether the value is shared, so Imani's attention helps the new child use what the counter provides.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -5121,8 +4837,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge is that relationship also corrects. Sanaa is not chasing discomfort, but she refuses to use comfort as an excuse to bury care.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -5134,8 +4849,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pattern appears in groups, so the repair belongs there. Avoidance hides the mirror, and explanation may repeat the same self-centering habit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -5147,8 +4861,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Shared stillness is not a show. It can look ordinary when two people stop performing and give each other real attention.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -5160,8 +4873,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reading aloud tests whether the sentence can live in a real relationship. The caught line is information, not a reason to hide or send blame.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -5204,7 +4916,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Speak the Mirror Sentence",
         "coreSkill": "Practice turning private calm into a sentence that can survive real relationship. Speak the Mirror Sentence by reading one request, apology, plan, or correction out loud before you act. If it sounds blaming, vague, or performative, rewrite it until a real person could hear it without becoming a prop in your story.",
         "ifThenPlans": [
           {
@@ -5229,24 +4940,17 @@
       },
       "memorableLines": [
         {
-          "text": "If your peace depends on nobody correcting you, it is too brittle for life.",
-          "location": "breakdown.fastRead",
-          "why": "It exposes the false calm at the heart of the warning."
+          "text": "If your peace depends on nobody correcting you, it is too brittle for life."
         },
         {
-          "text": "Private reflection often edits the record in your favor.",
-          "location": "breakdown.deepRead",
-          "why": "It names why relationship can reveal what solitude misses."
+          "text": "Private reflection often edits the record in your favor."
         },
         {
-          "text": "A person who only wants soothing will use other people like cushions.",
-          "location": "breakdown.fullRead",
-          "why": "It separates comfort from real relational steadiness."
+          "text": "A person who only wants soothing will use other people like cushions."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stillness-is-the-key-ch19",
       "number": 19,
       "title": "Conquer Your Anger",
@@ -5347,8 +5051,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The log points to a cue, not a license. Public correction starts the arousal chain, so the first move is to pause before anger writes the reply.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -5360,8 +5063,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Repair does not erase the problem. It names the missing roof quote while owning the outburst, which lets trust and accountability return together.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q03",
@@ -5373,8 +5075,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Self-command does not mean silence. Sol resets the body first, then still makes the safety correction without letting passion steer it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -5386,8 +5087,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge is not passivity. The wrong can be named and the boundary can hold, but anger is a poor steering system for the action.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -5399,8 +5099,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The postmortem shows anger's social cost. He made the room choose sides before evidence arrived, so the repair has to start with accountability.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -5412,8 +5111,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The key moment is noticing that passion has taken command. Stopping mid-stream restores judgment before the mistake becomes a full stance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -5425,8 +5123,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Rehearsal lets anger move from signal to master. Recording the cue interrupts the replay before it becomes the whole story.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q08",
@@ -5438,8 +5135,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Anger regulation is not numbness. Inez keeps the information but denies the feeling control over timing, tone, and conduct.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -5451,8 +5147,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A clean repair separates accountability from the operational issue. She owns the heat and still brings the roof quote facts back for review.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -5495,7 +5190,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Log the Heat Before Acting",
         "coreSkill": "Use Log the Heat Before Acting when anger starts to feel like proof that you should speak now. Put the cue, body signal, and likely outcome into words before you answer. Then choose the smallest action that can protect both truth and trust.",
         "ifThenPlans": [
           {
@@ -5520,19 +5214,13 @@
       },
       "memorableLines": [
         {
-          "text": "The angry feeling may point at a wrong; it should not drive the blade.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the signal-versus-steering distinction into a concrete image."
+          "text": "The angry feeling may point at a wrong; it should not drive the blade."
         },
         {
-          "text": "An apology is not a fee you pay so the outburst can stay in charge.",
-          "location": "breakdown.deepRead",
-          "why": "It makes repair stricter than merely saying sorry."
+          "text": "An apology is not a fee you pay so the outburst can stay in charge."
         },
         {
-          "text": "Stillness keeps courage and heat from pretending to be the same thing.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the chapter's hard edge against both passivity and rage."
+          "text": "Stillness keeps courage and heat from pretending to be the same thing."
         }
       ]
     },
@@ -5637,8 +5325,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The regression flag is an initial condition, not just a tiny mark. Fixing it early respects downstream effects, while waiting lets the flaw travel into the release.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -5650,8 +5337,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The log points to traveling effects, not one bad block captain. Interconnection makes selfish blame less plausible because the trouble keeps moving through generator handoffs.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -5663,8 +5349,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Chaos theory is used as an analogy for small changes that alter later outcomes. The sandbag test lets Dion see that shift instead of hiding behind a neat answer.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -5676,8 +5361,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The route order is part of the system that shapes conduct. Jin changes the first contact point and checks whether the effect travels into less waste.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -5689,8 +5373,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The whole chain matters. Blaming the usher alone shrinks the view, while ignoring the escort mistake dodges repair. The connected review keeps truth and care together.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -5702,8 +5385,7 @@
             ],
             "correctIndex": 0,
             "explanation": "An unchecked card can become a downstream risk. Restarting the cycle treats the small start as part of guest safety and allergy trust, not as a private shortcut.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -5715,8 +5397,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The stem asks for the weak reading. Vague comfort dodges the hard edge: connection raises responsibility because conduct travels beyond the self.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -5728,8 +5409,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The threshold cue works before the action travels. Pausing before the update lets Marta clean up the contact point instead of sending heat into the next block.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -5741,8 +5421,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Sympatheia does not make one person own the whole web. Dev reads the chain clearly enough to improve the place where his conduct enters it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -5785,7 +5464,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Ripple Check",
         "coreSkill": "Use a threshold to pause before your next choice enters a wider system. Run the Ripple Check by asking where the action will land, who may inherit it, and which small contact point you can clean now. The skill is not prediction. It is careful entry.",
         "ifThenPlans": [
           {
@@ -5810,19 +5488,13 @@
       },
       "memorableLines": [
         {
-          "text": "Nothing stays private for long.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the accountability side of interdependence into a plain warning."
+          "text": "Nothing stays private for long."
         },
         {
-          "text": "Connection is accountability with a wider map.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the idea from drifting into vague comfort."
+          "text": "Connection is accountability with a wider map."
         },
         {
-          "text": "Small acts are where the whole becomes visible.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the large idea small enough to use."
+          "text": "Small acts are where the whole becomes visible."
         }
       ]
     },
@@ -5927,8 +5599,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pattern points to physical depletion, not only knowledge. A body pushed like a machine can distort attention and language judgment before anyone interprets the next exchange.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -5940,8 +5611,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Epicurus treats relaxation in nature as a condition for clearer living. The courtyard route is not laziness; it lowers arousal before the next demand.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -5953,8 +5623,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The data suggests nature and relaxation helped the body settle, which improved accuracy. Kira should test that condition, not turn one worker into the whole solution.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -5966,8 +5635,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A tired body often follows the easiest cue. Making recovery visible and low effort fits embodied stillness better than adding pressure after depletion.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -5979,8 +5647,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Paul Johnson's Churchill portrait is not pure grind. The balance between flat-out work and creative recovery is the lesson a demanding role needs.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -5992,8 +5659,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Beatrice rejects the idea that judgment floats above the body. Fatigue, posture, water, and light can all shape what a skilled ringer hears.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -6005,8 +5671,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Embodied stillness uses routine, movement, simplicity, and boundaries together. Camila's pause protects the body so practice trains skill, not strain.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -6018,8 +5683,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The notes show conditions changing the signal Joss receives. Calm is not only a trait; the body can be set up to lower noise and return energy.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -6031,8 +5695,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The move is small and physical: remove the barrier before attention is tested. A prepared chair and water make the next clean entrance easier.",
-            "bloomsLevel": "create",
-            "depthLevel": "simple"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -6081,7 +5744,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Make Recovery Easy First",
         "coreSkill": "Practice shaping the body side of stillness before pressure arrives. Make Recovery Easy First by removing one small barrier to rest, movement, water, light, or restorative leisure. The goal is not comfort for its own sake; it is better judgment from a body that has stopped shouting.",
         "ifThenPlans": [
           {
@@ -6106,19 +5768,13 @@
       },
       "memorableLines": [
         {
-          "text": "The body is not a cart for the mind.",
-          "location": "breakdown.fastRead",
-          "why": "It snaps the hard edge into a short image that is easy to remember."
+          "text": "The body is not a cart for the mind."
         },
         {
-          "text": "Restorative leisure is not a prize after seriousness.",
-          "location": "breakdown.deepRead",
-          "why": "It overturns the guilt story around rest in one plain sentence."
+          "text": "Restorative leisure is not a prize after seriousness."
         },
         {
-          "text": "A cared-for body gives stillness somewhere to stand.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the body-first lesson with a portable line."
+          "text": "A cared-for body gives stillness somewhere to stand."
         }
       ]
     },
@@ -6223,8 +5879,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Protective refusal treats the hour as finite. Jobs's Apple lesson makes focus a subtraction act, while courtesy and volume can hide the same overcommitment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -6236,8 +5891,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The data points to access, not character. Moving the admin pings protects the live care call and medication-change line; faster replies keep the same split in place.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -6249,8 +5903,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The number matters only if it changes the door. One channel and one review time turn a statistic into a practical no.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -6262,8 +5915,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The statistic shows repeated micro-consent. The useful move is to change access, not build shame or decorate the same interruption path.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -6275,8 +5927,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge is not rude refusal. Suki needs a clear boundary that protects presence, not a cold disappearance or a hidden delay.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -6288,8 +5939,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The lesson is not less effort. It is fewer claims on the body so the chosen table and the final families receive better attention.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -6301,8 +5951,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The contrast is about subtraction. More add-ons made Ruth busier, but Maia's no kept the work legible and the deadline protected.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -6314,8 +5963,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pattern shows how a soft yes becomes a real claim on the day. Speed and mood do not solve the access problem.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -6327,8 +5975,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A no is not automatically wise. It serves stillness when it protects the right yes; avoidance just wears better language.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -6371,7 +6018,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Access Gate",
         "coreSkill": "Practice naming what wants access before you answer. Run the Access Gate by asking what the request will cost in time, attention, and body, then protect the yes that matters most. The skill is not being harsh; it is refusing before resentment has to do the speaking.",
         "ifThenPlans": [
           {
@@ -6396,19 +6042,13 @@
       },
       "memorableLines": [
         {
-          "text": "No is not a pose.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps refusal from becoming an identity performance."
+          "text": "No is not a pose."
         },
         {
-          "text": "A clean no protects more than your time.",
-          "location": "breakdown.deepRead",
-          "why": "It shifts the reader from schedule math to attention and energy."
+          "text": "A clean no protects more than your time."
         },
         {
-          "text": "A protected yes arrives with its whole body.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the body section's lesson into one practical image."
+          "text": "A protected yes arrives with its whole body."
         }
       ]
     },
@@ -6513,8 +6153,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pattern points to stuck attention, not weak effort. Walking rhythm lowers cognitive load before the next apology sentence asks for judgment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -6526,8 +6165,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Dynamic stillness is unconflicted movement, not frozen posture. Rosa still answers; she uses motion to make the answer less split.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -6539,8 +6177,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge rejects step-counting and avoidance. Rowan narrows the decision and uses rhythm so the report comes from a settled body.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -6552,8 +6189,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The mechanism is not more talk. A known walking route reduces choice load when the lunchroom gets noisy.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -6565,8 +6201,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Walking serves stillness when it contains a narrow decision. Distance and vague wellness can leave the same loop untouched.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -6578,8 +6213,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The data favors rhythm, not mere caution. Repetition gave Pilar's attention a path, so the weight check happened before the ticket left.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -6591,8 +6225,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge rejects performance metrics. The walk matters when rhythm steadies attention and sends the person back to the next act.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -6604,8 +6237,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Moving stillness is judged by harmony in action. Looking calm or buying delay can miss the real test: the next reply is less divided.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -6617,8 +6249,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The prompt asks for the shallow reading. Any-motion-counts misses the harmony requirement that makes movement a stillness practice.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -6667,7 +6298,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Walk One Narrow Decision",
         "coreSkill": "Practice pairing a short walk with one decision that has become sticky. Name the question before you move, walk a fixed route, and choose the next concrete act when you return. The skill is not fitness; it is letting rhythm carry pressure long enough for attention to settle.",
         "ifThenPlans": [
           {
@@ -6692,24 +6322,17 @@
       },
       "memorableLines": [
         {
-          "text": "Use the feet to give the mind a track.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the walking practice into a simple physical cue."
+          "text": "Use the feet to give the mind a track."
         },
         {
-          "text": "Rhythm lets the body stop negotiating every inch.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the mechanism of reduced cognitive load easy to picture."
+          "text": "Rhythm lets the body stop negotiating every inch."
         },
         {
-          "text": "A walk helps only when it returns you to the life waiting at the door.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the limit: movement must come back as conduct."
+          "text": "A walk helps only when it returns you to the life waiting at the door."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stillness-is-the-key-ch24",
       "number": 24,
       "title": "Build a Routine",
@@ -6810,8 +6433,7 @@
             ],
             "correctIndex": 1,
             "explanation": "W. Somerset Maugham's nine o'clock writing joke treats inspiration as something that finds a worker already in place. Petra's prop routine makes the start available before mood becomes the gatekeeper.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "stillness-is-the-key-ch24-q02",
@@ -6823,8 +6445,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The data points to cognitive load and decision fatigue, not weak care. The card reduces repeat choices, which leaves more attention for the medicine, dose, and initials.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "stillness-is-the-key-ch24-q03",
@@ -6836,8 +6457,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Routines manage cognitive load by pre-making recurring decisions. Luis still needs judgment, but not for the trays, labels, water, and light he handles every morning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "stillness-is-the-key-ch24-q04",
@@ -6849,8 +6469,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The weak takeaway is rigidity. Farah's routine should save energy for flexible judgment, not become a rule that outranks the intake.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "stillness-is-the-key-ch24-q05",
@@ -6862,8 +6481,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Anika's routine serves the rehearsal rather than replacing it. The list and tuning cue reduce cognitive load, which lets the room spend energy on hearing the band.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "stillness-is-the-key-ch24-q06",
@@ -6875,8 +6493,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Predictability can reduce burnout and avoidance by making the first step easier. Rae still pays attention; the routine gets him safely into the work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "stillness-is-the-key-ch24-q07",
@@ -6888,8 +6505,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A good routine removes unnecessary choice from daily life. Pre-deciding the first setup protects attention for the work itself.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "stillness-is-the-key-ch24-q08",
@@ -6901,8 +6517,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The packet memo, like W. Somerset Maugham's nine o'clock writing habit, makes inspiration more usable by making the start available.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "stillness-is-the-key-ch24-q09",
@@ -6914,8 +6529,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful routine is a rhythm, not a prison. It standardizes what does not need fresh thought so a person can meet the real exception with energy.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -6958,7 +6572,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Pre-Decide the Small Start",
         "coreSkill": "Practice choosing the first repeat move before the day asks for it. Pre-Decide the Small Start means naming the place, object, and opening action that will begin important work or recovery. The aim is not to control the whole day. It is to keep avoidable decisions from spending your best attention.",
         "ifThenPlans": [
           {
@@ -6983,19 +6596,13 @@
       },
       "memorableLines": [
         {
-          "text": "It puts the body in the right place before mood gets a vote.",
-          "location": "breakdown.fastRead",
-          "why": "It turns routine into a concrete defense against waiting to feel ready."
+          "text": "It puts the body in the right place before mood gets a vote."
         },
         {
-          "text": "Rigidity says the card matters more than the work.",
-          "location": "breakdown.deepRead",
-          "why": "It names routine's hard edge in a clean contrast."
+          "text": "Rigidity says the card matters more than the work."
         },
         {
-          "text": "Peace grows when the day carries some of the weight.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses routine's purpose into an image the reader can keep."
+          "text": "Peace grows when the day carries some of the weight."
         }
       ]
     },
@@ -7100,8 +6707,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The bins are not passive once they block aisles and expire. Neater bins keep the same maintenance burden; removal gives the routine space back.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -7113,8 +6719,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Cam tests the object by service, not appearance. Display can turn simplicity into performance, and liking a pile does not show that it serves the work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -7126,8 +6731,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The path shows the cost. Mara should judge tools by routine service; future fear and display both let objects keep taxing the room.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -7139,8 +6743,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The notes make attachment real, but the rail still serves people now. Bounded care avoids both harsh disposal and endless storage.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -7152,8 +6755,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful test asks what an item does to attention, care, and identity. A photo-ready desk can still be another form of display.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -7165,8 +6767,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The room can lower friction before effort starts. Trying to focus harder keeps the same object tax in place and asks willpower to pay it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -7178,8 +6779,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Digital stuff also asks for care. The first ranking should expose the cost of search and defense, not preserve every trace of effort.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -7191,8 +6791,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Letting go can expose feeling disguised as need. The promise-linked tag serves a duty; the guilt drawer mainly asks for defense.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -7204,8 +6803,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The shallow reading is minimalist performance. Material simplicity is judged by service and freedom from maintenance, not by looking spare.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -7248,7 +6846,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Possession Service Test",
         "coreSkill": "Practice judging an object by what it asks from your life. The Possession Service Test is simple: name the care cost, name the real service, then rank the item before you keep it by habit. The goal is not a bare room. The goal is a room that helps your next routine start cleanly.",
         "ifThenPlans": [
           {
@@ -7273,24 +6870,17 @@
       },
       "memorableLines": [
         {
-          "text": "Stuff looks quiet until it starts assigning chores.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the invisible maintenance load feel like a direct demand."
+          "text": "Stuff looks quiet until it starts assigning chores."
         },
         {
-          "text": "A room cannot think for you, but it can stop interrupting you.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the chapter's environment lesson a compact, usable shape."
+          "text": "A room cannot think for you, but it can stop interrupting you."
         },
         {
-          "text": "Storage can become a second job you pay to keep.",
-          "location": "breakdown.fullRead",
-          "why": "It turns clutter from a vague nuisance into a concrete cost."
+          "text": "Storage can become a second job you pay to keep."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stillness-is-the-key-ch26",
       "number": 26,
       "title": "Seek Solitude",
@@ -7391,8 +6981,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The quiet block is chosen, short, and aimed at repair. Reassurance keeps Celia outside the miss, while avoidance turns solitude into isolation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -7404,8 +6993,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pattern points to social arousal spending attention. The reset worked by lowering cue-monitoring, not by making the garden more pleasant.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -7417,8 +7005,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Walden example makes aloneness rich with attention. Soren uses the gap to return to the task, while the other responses refill the quiet.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -7430,8 +7017,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The evidence points to directed attention fatigue. A quiet review before handoff addresses the broken step better than blame or extra speed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -7443,8 +7029,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Avoiding owed contact is isolation wearing a calm label. The other moves use quiet to prepare a cleaner return to the donor call.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -7456,8 +7041,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pascal's warning is about facing the unrest that distraction covers. The bounded memo faces one error; hiding only protects embarrassment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -7469,8 +7053,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Restoration shows up in the return to action. Soren's next handoff improves, while avoidance and mood relief miss the hard edge.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -7482,8 +7065,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The quiet-room lesson exposes what diversion hid. Naming the body cue turns unrest into data for the next reply.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -7495,8 +7077,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The calendar separates solitude from avoidance. The useful block sends Mina back to people with cleaner attention; hiding dodges contact.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -7539,7 +7120,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Schedule the Error Solitude",
         "coreSkill": "Practice making solitude a dated appointment, not an escape. Choose a short future block, name the place, trigger, and one recent miss to review without blame. Let the quiet lower cue-monitoring long enough for attention and body signals to report what happened, then return with one repair.",
         "ifThenPlans": [
           {
@@ -7564,19 +7144,13 @@
       },
       "memorableLines": [
         {
-          "text": "Your first reach for noise may be a vote against yourself.",
-          "location": "breakdown.fastRead",
-          "why": "It names the hidden default in a line the reader can catch during an ordinary quiet gap."
+          "text": "Your first reach for noise may be a vote against yourself."
         },
         {
-          "text": "Isolation dodges the repair; solitude prepares it.",
-          "location": "breakdown.fastRead",
-          "why": "The contrast protects the hard edge between restoration and avoidance."
+          "text": "Isolation dodges the repair; solitude prepares it."
         },
         {
-          "text": "A scheduled block has edges.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the calendar tactic into a simple standard the reader can check."
+          "text": "A scheduled block has edges."
         }
       ]
     },
@@ -7681,8 +7255,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The log links worse sound to ignored body limits. More effort may protect pride, but recovery protects presence and gives the calls a chance to improve.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -7694,8 +7267,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The break slot teaches structure, not leisure as decoration. Relationships give connection with the family; solitude gives self-knowledge before speed takes over.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -7707,8 +7279,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The changed variable was not the rain or the stage. Recovery treated body limits as design information, and the clearer cue count shows presence returning.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -7720,8 +7291,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The find points to missing relationships, not just wording. Recording connection after double shifts keeps solitude from becoming isolation and turns self-knowledge into a usable handoff.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -7733,8 +7303,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The note treats a body limit as information before it harms presence. Hiding pain looks loyal, but it pushes recovery onto the next person and the next class.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -7746,8 +7315,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The plan gives relationships, solitude, connection, and self-knowledge their own place. Loading first would let pressure spend the whole hour.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -7759,8 +7327,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Performance can make stillness feel wasteful and busyness look virtuous. The calendar shows work replacing recovery and relationships, not a deeper form of care.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -7772,8 +7339,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The shallow version is self-indulgence, but the correction is dignity. A human limit still owes other people a clear signal, not a silent escape.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -7785,8 +7351,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pattern shows solitude losing self-knowledge and relationships losing connection. The repair keeps quiet and contact together instead of turning one against the other.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -7829,7 +7394,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask the Human Check",
         "coreSkill": "Practice pausing before a demand turns your body into equipment. Ask the Human Check: what does a human plan need here, for recovery, relationships, solitude, and the next honest action? The skill is not doing less by default; it is refusing to make output the whole identity.",
         "ifThenPlans": [
           {
@@ -7854,19 +7418,13 @@
       },
       "memorableLines": [
         {
-          "text": "Her body was not blocking the work; it was telling the truth about the work.",
-          "location": "breakdown.fastRead",
-          "why": "It makes bodily limits feel factual rather than weak."
+          "text": "Her body was not blocking the work; it was telling the truth about the work."
         },
         {
-          "text": "Solitude alone can become hiding.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the balance with relationship sharp and easy to recall."
+          "text": "Solitude alone can become hiding."
         },
         {
-          "text": "A machine can be used up and replaced.",
-          "location": "breakdown.fullRead",
-          "why": "It draws the line between usefulness and dignity in one plain image."
+          "text": "A machine can be used up and replaced."
         }
       ]
     },
@@ -7971,8 +7529,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pattern points to fatigue harming judgment, not a missing form. More praise for endurance would reward the condition that produced the medication errors.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -7984,8 +7541,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Earlier checks change the conditions that damaged the work. Praise and caffeine leave the late-night accuracy problem in place.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -7997,8 +7553,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The timing is the clue. When errors gather after sleep debt rises, the first inference should be tired judgment, not equipment or mood theater.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -8010,8 +7565,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The reversed return is evidence about process, not only skill. A rested review protects judgment before client numbers and filing are at risk.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -8023,8 +7577,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The error came from pushing precision past the body's limit. Morning review changes the work condition; speed pressure repeats it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -8036,8 +7589,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Sleep as discipline changes the environment around the work. Making rest visible tells volunteers that service includes the body doing the serving.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -8049,8 +7601,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fatigue changes how risk is read. Calling sleep debt safety data keeps pride from turning a red-eye drive into a bad test of character.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -8062,8 +7613,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge rejects sleep as a prize earned by depletion. Rest is infrastructure for judgment, mood, and decent conduct.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -8075,8 +7625,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The warning is not effort itself. The debt trail shows the body collecting costs after the heroic story has already been told.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -8119,7 +7668,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Set the Sleep Gate",
         "coreSkill": "Practice protecting sleep before the heroic story starts. Set the Sleep Gate by choosing one visible cutoff, then changing the room so work is harder to resume. The skill is not perfect sleep; it is refusing to let tired judgment make the next important call.",
         "ifThenPlans": [
           {
@@ -8144,25 +7692,17 @@
       },
       "memorableLines": [
         {
-          "text": "Rest is not a trophy for the heroic.",
-          "location": "breakdown.fastRead",
-          "why": "It reverses the common reward model in one plain sentence."
+          "text": "Rest is not a trophy for the heroic."
         },
         {
-          "text": "Sleep debt makes small trouble look large.",
-          "location": "breakdown.deepRead",
-          "why": "It names the daily cost of exhaustion without making it abstract."
+          "text": "Sleep debt makes small trouble look large."
         },
         {
-          "text": "The body keeps its own minutes.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the cost of overwork a compact image the reader can remember."
+          "text": "The body keeps its own minutes."
         }
-      ],
-      "schemaVersion": null
+      ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stillness-is-the-key-ch29",
       "number": 29,
       "title": "Find a Hobby",
@@ -8263,8 +7803,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pattern is not laziness. Work is taking over the protected hour. The repair is to guard a practice that matters without career gain.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -8276,8 +7815,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Aristotle's question asks what fills free time. Leona's language practice has effort, but it is not owned by work results.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -8289,8 +7827,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hobby may help Vera later, but making that the reason hollows it out. The protected session keeps leisure from becoming work in softer clothes.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -8302,8 +7839,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Stebbins's frame is about sustained skill and knowledge. The notebook turns quilting from shopping into a practice the hobbyist can learn.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -8315,8 +7851,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The free gap did not vanish. Its contents changed. Aristotle's leisure question points to the quality of the activity that enters the open space.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -8328,8 +7863,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The tempting mistake is making the hobby useful again. Restoring the noninstrumental line keeps the freedom that made the practice restorative.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -8341,8 +7875,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Restorative leisure is not the absence of effort. The chess club has chosen challenge, skill, and meaning without turning the hour into income.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -8354,8 +7887,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Serious leisure can take effort, but its worth is not borrowed from work. The intrinsic defense keeps the practice from becoming a tool for output.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q09",
@@ -8367,8 +7899,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Stebbins's distinction separates serious amateur pursuit from passive collapse and public proof. A streak board can make ranking the new reason.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -8411,7 +7942,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Guard One Unpaid Practice",
         "coreSkill": "Practice protecting one chosen activity from work's measuring habits. Guard One Unpaid Practice by naming the activity, setting a small time and place, and rehearsing the first move once before the hour arrives. The skill is not to become impressive; it is to keep one corner of life free enough to restore you.",
         "ifThenPlans": [
           {
@@ -8436,24 +7966,17 @@
       },
       "memorableLines": [
         {
-          "text": "A hobby is rest with a little shape.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's distinction between idleness and chosen effort."
+          "text": "A hobby is rest with a little shape."
         },
         {
-          "text": "The market does not get every corner of a life.",
-          "location": "breakdown.deepRead",
-          "why": "It names the hard edge against monetizing every source of joy."
+          "text": "The market does not get every corner of a life."
         },
         {
-          "text": "A good hobby protects a room where nothing has to be sold.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a concrete picture of noninstrumental leisure."
+          "text": "A good hobby protects a room where nothing has to be sold."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stillness-is-the-key-ch30",
       "number": 30,
       "title": "Beware Escapism",
@@ -8554,8 +8077,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pattern points to aftermath, not intent. If the break leaves Marek less able to answer, the feed is acting like escape rather than restoration.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -8567,8 +8089,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The storm triad separates running from staying steady. Alina does not need a smooth mood before she can face the landlord with the truth.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -8580,8 +8101,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The test is what Gabe can face afterward. A seated body can still carry a stimulated nervous system and a postponed duty.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -8593,8 +8113,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The reveal sits after the activity. The feed promised relief, but the next task showed less capacity, which marks escape.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -8606,8 +8125,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge rejects self-care language that hides avoidance. Hector may rest after the truth, but the error should not wait behind a nicer label.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -8619,8 +8137,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The reset protects contact with the live task. Chasing the alert would trade a concrete grief letter for a nervous distraction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -8632,8 +8149,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Restoration is visible in returned capacity. Boredom relief or more updates may still leave Iris less able to meet duty or love.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -8645,8 +8161,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge does not attack pleasure or solitude. It asks whether the pleasant activity restored capacity or merely protected avoidance.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -8658,8 +8173,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The data shows which retreat gives capacity back. The dishwashing reset helps Gabe meet the storm; the long feed delays it.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -8702,7 +8216,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the After Test",
         "coreSkill": "Practice judging a retreat by what it returns to you. Run the After Test by naming the activity, naming the next honest act, and checking whether the activity makes that act more possible. The skill protects pleasure without letting avoidance borrow the language of care.",
         "ifThenPlans": [
           {
@@ -8727,24 +8240,17 @@
       },
       "memorableLines": [
         {
-          "text": "Escape can lower the volume without changing the weather.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the false-calm problem visible in one image."
+          "text": "Escape can lower the volume without changing the weather."
         },
         {
-          "text": "False rest is easy to spot after it ends.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a simple aftermath test."
+          "text": "False rest is easy to spot after it ends."
         },
         {
-          "text": "A good retreat sends you back with more truth, not less contact.",
-          "location": "breakdown.fullRead",
-          "why": "It protects real rest while naming the escape test."
+          "text": "A good retreat sends you back with more truth, not less contact."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stillness-is-the-key-ch31",
       "number": 31,
       "title": "Act Bravely",
@@ -8845,8 +8351,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The log shows silence extending harm. Conscious action does not require panic; it asks Dena to name the fraud pattern once the record is clear enough.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -8858,8 +8363,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Lincoln's test cares about the conduct others receive. Fixing the bid matters, and naming the mismatch keeps Mack from hiding behind clean words.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -8871,8 +8375,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The warning does not demand an accusation without proof. It does require a clear record before silence makes the shortage easier to ignore.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -8884,8 +8387,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The lease clause is where the claim becomes real. Speeches can set the value, but the count is the action a roommate can live with.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -8897,8 +8399,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pause serves truth only when it changes conduct. Keeping the line smooth or waiting for confession lets quiet become cover.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -8910,8 +8411,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Conscious action changes pace before it chooses conduct. The breath count lowers heat, then the missing clip still gets named and fixed.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -8923,8 +8423,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The setup makes action easier and delay harder. Waiting for comfort keeps the hard message hidden under a calmer label.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -8936,8 +8435,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The repeated wish to avoid drama is the warning sign. Tone matters, but tone cannot replace naming the complaint and checking the signatures.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -8949,8 +8447,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Intent stays private until conduct gives it shape. The roommate's actual experience is the sharper test than Leo's inner story or Sera's tone.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -8993,7 +8490,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Count Three, Then Show It",
         "coreSkill": "Practice putting one small pause between pressure and conduct. Count three breaths, name the value at stake, then take one visible step a person outside your head could see. The skill keeps stillness from turning into a private excuse.",
         "ifThenPlans": [
           {
@@ -9018,24 +8514,17 @@
       },
       "memorableLines": [
         {
-          "text": "Calm cannot become a room where bad facts wait politely until they disappear.",
-          "location": "breakdown.fullRead",
-          "why": "It states the warning against using stillness as cover."
+          "text": "Calm cannot become a room where bad facts wait politely until they disappear."
         },
         {
-          "text": "The brave act is measured, not loud.",
-          "location": "breakdown.fullRead",
-          "why": "It separates courage from noise in a line the reader can repeat."
+          "text": "The brave act is measured, not loud."
         },
         {
-          "text": "Stillness has failed if it ends as private comfort.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the hard edge into a test of conduct."
+          "text": "Stillness has failed if it ends as private comfort."
         }
       ]
     },
     {
-      "schemaVersion": "chapter-v21",
       "chapterId": "stillness-is-the-key-ch32",
       "number": 32,
       "title": "On to the Final Act",
@@ -9136,8 +8625,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The lamp image does not make the meeting gloomy. It places limited time in view, then sends Adela back to one repair action instead of cheer or avoidance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -9149,8 +8637,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The data points to attention trapped in what cannot be changed. Seneca's lamp cue asks Adela to move from old edits to the next usable line.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -9162,8 +8649,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Aequanimitas does not deny the call or surrender the shift to it. The timed block lets Tomas meet pain and still keep conduct in reach.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -9175,8 +8661,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The data has two real claims on time. A short schedule honors the hard message without letting it erase the discharge duty.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -9188,8 +8673,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The storm lesson keeps both costs visible. Arun is not asked to feel no pain; he is asked to choose without disguising money or regret.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -9201,8 +8685,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The lamp image does not replace ordinary care. The date is final, and that makes the spelling more deserving of a steady hand.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -9214,8 +8697,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The outcome closed, but conduct remained available. Aequanimitas shows after the missed dedication line, not only in a winning frame.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -9227,8 +8709,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The event needs time, place, and a trigger for conduct. A private spiral or an ignored calendar block leaves fear in charge.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -9240,8 +8721,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Even-mindedness is not flatness or ceremony. Jonas meets mortality by letting the final date stand and giving the living record careful work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -9284,7 +8764,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Schedule the Lamp Check",
         "coreSkill": "Practice putting mortality into a small scheduled container before it becomes a fog over the whole day. Schedule the Lamp Check by choosing a time, place, and trigger, then writing one honest act that still belongs to you. The timer keeps the practice from becoming vague gloom.",
         "ifThenPlans": [
           {
@@ -9309,19 +8788,13 @@
       },
       "memorableLines": [
         {
-          "text": "Nobody yells at the lamp for obeying its nature.",
-          "location": "breakdown.fastRead",
-          "why": "It makes Seneca's mortality image plain enough to remember under pressure."
+          "text": "Nobody yells at the lamp for obeying its nature."
         },
         {
-          "text": "Panic is a poor tribute to life.",
-          "location": "breakdown.deepRead",
-          "why": "It cuts through the common habit of treating fear as proof of love."
+          "text": "Panic is a poor tribute to life."
         },
         {
-          "text": "A steady person still pays bills, signs forms, answers calls, and grieves.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps even-mindedness tied to visible duties instead of a pose."
+          "text": "A steady person still pays bills, signs forms, answers calls, and grieves."
         }
       ]
     }

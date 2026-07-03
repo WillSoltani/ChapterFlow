@@ -119,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The historical anchor is Carnegie, not a lab. His sales work and YMCA classes link business success to learned public presentation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -132,8 +131,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pattern belongs to a historical shift. Urban markets and mass media made visible social signals more important, not timeless.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -145,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The contrast needs the two ideals kept apart. The older guide prized duty and honor, while the newer one lifted public impression.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q04",
@@ -158,8 +155,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Carnegie's material tied speaking to business success. The common miss is to shrink it into leisure or grammar practice.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -171,8 +167,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Dominance, speed, and energy are visible traits the Extrovert Ideal rewards. The older character frame would ask a different first question.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -184,8 +179,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The change spreads beyond sales. The cultural point covers many social settings where visible display begins to count.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -197,8 +191,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The critique is overvaluation, not a ban on confidence. Speaking can be useful when it is not mistaken for total worth.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -210,8 +203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The problem is hierarchy, not skill. Beau can learn presentation without accepting charisma as proof of a better inner life.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -223,8 +215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The arc makes temperament cultural as well as personal. Schools, hiring, and public norms can reward one style and penalize another.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -267,7 +258,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Separate Skill From Worth",
         "coreSkill": "Practice separating the useful speaking skill from the worth claim attached to it. Use the phrase Separate Skill From Worth when a room treats speed, charm, or volume as proof. Then name the exact skill the moment needs.",
         "ifThenPlans": [
           {
@@ -292,19 +282,13 @@
       },
       "memorableLines": [
         {
-          "text": "Charm is useful; it is not proof.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the chapter's correction short and usable."
+          "text": "Charm is useful; it is not proof."
         },
         {
-          "text": "Skill should serve substance, not replace it.",
-          "location": "breakdown.deepRead",
-          "why": "It separates practical speech training from status worship."
+          "text": "Skill should serve substance, not replace it."
         },
         {
-          "text": "A louder voice is not a deeper self.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the Extrovert Ideal easy to challenge in daily life."
+          "text": "A louder voice is not a deeper self."
         }
       ]
     },
@@ -409,8 +393,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The firewalk is used as a picture of engineered intensity. It does not prove charisma always improves judgment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -422,8 +405,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The central claim is fit. The same leader behavior can activate one group and silence another.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -435,8 +417,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The exercise tests whether groups follow accuracy or assertiveness. Its warning is that confident voices can sway the outcome.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -448,8 +429,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Grant's result depends on employee proactivity. Extroverted leaders helped passive groups and did worse with proactive groups.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -461,8 +441,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The advantage is active receptivity, not absence. Listening keeps good employee ideas from being buried by the leader's force.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -474,8 +453,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The evidence separates charisma from competence. Visible confidence is not reliable proof of the best information or judgment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -487,8 +465,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Extroverted leadership can be useful with passive followers. The advantage is real, but it is bounded by context.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -500,8 +477,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The central claim is interactional. The same behavior can activate one group and silence another.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -513,8 +489,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Assertiveness can distort group decisions when it outruns evidence. The survival exercise warns that groups do not always pick the best answer.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -557,7 +532,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Fit the Room",
         "coreSkill": "Practice matching your leadership style to the people in front of you. Fit the Room means you ask whether the group needs activation or space before you take the floor. The skill is not being louder or quieter by habit; it is choosing the style that lets the best thinking surface.",
         "ifThenPlans": [
           {
@@ -583,24 +557,17 @@
       },
       "memorableLines": [
         {
-          "text": "Heat is not the same as light.",
-          "location": "breakdown.fastRead",
-          "why": "It separates crowd intensity from useful evidence."
+          "text": "Heat is not the same as light."
         },
         {
-          "text": "Confidence can outrun evidence.",
-          "location": "breakdown.deepRead",
-          "why": "It names the group-decision risk in a short line."
+          "text": "Confidence can outrun evidence."
         },
         {
-          "text": "Good ideas are fragile at the moment they first appear.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the leader's listening role easy to remember."
+          "text": "Good ideas are fragile at the moment they first appear."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "quiet-ch03",
       "number": 3,
       "title": "When Collaboration Kills Creativity: The Rise of the New Groupthink and the Power of Working Alone",
@@ -695,8 +662,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Osborn's role is a business creativity story. The source ties brainstorming to Madison Avenue and corporate idea generation, not to a lab finding about temperament.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "quiet-ch03-q02",
@@ -708,8 +674,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Open-plan offices embody the New Groupthink when they reduce private concentration in favor of frequent interaction. Private blocks point to the mixed model.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "quiet-ch03-q03",
@@ -721,8 +686,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cited study makes interruption a central productivity concern. It is not framed as harmless access or as a useful break from solitude.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "quiet-ch03-q04",
@@ -734,8 +698,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The research summary challenges the automatic faith in brainstorming. It does not say groups always win or that the work mode makes no difference.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "quiet-ch03-q05",
@@ -747,8 +710,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source links deep progress to undisturbed practice in fields like music, chess, and technical design. Group talk may help later, but it is not the main engine here.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "quiet-ch03-q06",
@@ -760,8 +722,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The claim is about fit, not withdrawal. Introverts may work better with quieter preparation and still collaborate well when the work calls for it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "quiet-ch03-q07",
@@ -773,8 +734,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge is balance. The best teams do not choose total collaboration or total solitude; they design a rhythm for both.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "quiet-ch03-q08",
@@ -786,8 +746,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Public idea generation can favor people who are comfortable taking social risks in the moment. Equal airtime is not guaranteed by putting people in one room.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "quiet-ch03-q09",
@@ -799,8 +758,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cain integrates solitude and teamwork. Private work gives collaboration stronger material; it is not a rival value that must defeat the group.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -837,7 +795,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Practice the Solo First Walk",
         "coreSkill": "Practice the Solo-First Walk before a group idea session. Step away from the screen, walk a short route, and choose the one private draft or question you will bring back. The skill is not avoiding the group; it is feeding the group with thought that had time to form.",
         "ifThenPlans": [
           {
@@ -858,24 +815,17 @@
       },
       "memorableLines": [
         {
-          "text": "Solitude feeds the meeting that later gets the credit.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the chapter's balance easy to remember."
+          "text": "Solitude feeds the meeting that later gets the credit."
         },
         {
-          "text": "A room can be full and still lose half its mind.",
-          "location": "breakdown.deepRead",
-          "why": "It turns interruption and open-plan cost into a concrete picture."
+          "text": "A room can be full and still lose half its mind."
         },
         {
-          "text": "Forced togetherness is teamwork with the oxygen taken out.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a sharp boundary between teamwork and overuse."
+          "text": "Forced togetherness is teamwork with the oxygen taken out."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "quiet-ch04",
       "number": 4,
       "title": "Is Temperament Destiny?: Nature, Nurture, and the Orchid Hypothesis",
@@ -976,8 +926,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 names 500 four-month-old infants and their responses to unfamiliar stimuli. The adult and school-child versions move the study away from infancy.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "quiet-ch04-q02",
@@ -989,8 +938,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 supports the counterintuitive link between high reaction and later reserve. The low-reactive and no-link answers miss that specific finding.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "quiet-ch04-q03",
@@ -1002,8 +950,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 makes the orchid idea conditional on environment. The other choices flatten it into weakness or make conditions seem unimportant.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "quiet-ch04-q04",
@@ -1015,8 +962,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 separates early temperament from broader personality. Adult personality includes biology, experience, learning, and environment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "quiet-ch04-q05",
@@ -1028,8 +974,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 says low-reactive infants were calmer around novelty. Crying and arm-pumping belong to the high-reactive pattern.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "quiet-ch04-q06",
@@ -1041,8 +986,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 9 rejects biological fatalism. Early patterns matter, but development still runs through context, practice, and experience.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "quiet-ch04-q07",
@@ -1054,8 +998,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 names mixed blessings. Sensitivity can raise anxiety risk and also increase response to enriched environments.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "quiet-ch04-q08",
@@ -1067,8 +1010,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 says high reactivity is only one route to later introverted behavior. Other traits and experiences can enhance or overshadow it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "quiet-ch04-q09",
@@ -1080,8 +1022,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 defines temperament as an early biologically based pattern. The other answers move too quickly to adult preference or a single adult style.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -1124,7 +1065,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Sensitivity Check",
         "coreSkill": "Practice separating a signal from a sentence. The signal is what the body or behavior shows: crying, freezing, hanging back, or reacting hard to novelty. The sentence is the story you are tempted to write about the whole person.",
         "ifThenPlans": [
           {
@@ -1149,24 +1089,17 @@
       },
       "memorableLines": [
         {
-          "text": "A signal is not a sentence.",
-          "location": "breakdown.fastRead",
-          "why": "It gives readers the anti-fatalism rule in one portable line."
+          "text": "A signal is not a sentence."
         },
         {
-          "text": "Sensitive does not mean doomed; it means more gets through.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps sensitivity from being misread as either weakness or fate."
+          "text": "Sensitive does not mean doomed; it means more gets through."
         },
         {
-          "text": "An orchid needs conditions before its gift can show.",
-          "location": "breakdown.fullRead",
-          "why": "It carries Dobbs's environment lesson without adding a fixed verdict."
+          "text": "An orchid needs conditions before its gift can show."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "quiet-ch05",
       "number": 5,
       "title": "Beyond Temperament: The Role of Free Will (and The Secret of Public Speaking for Introverts)",
@@ -1267,8 +1200,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Schwartz's finding matters because the adults came from Kagan's earlier sample. If they were unrelated adults, the continuity claim would disappear.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q02",
@@ -1280,8 +1212,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fMRI task used novel faces to probe response to unfamiliar stimuli. Financial bets belong to later reward material, not this scan.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -1293,8 +1224,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source reports persistence: high-reactive adults still showed elevated amygdala response. It does not say reactivity vanished.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1306,8 +1236,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The amygdala is described as an alarm system for novelty and threat. Long-range planning belongs closer to prefrontal control.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1319,8 +1248,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Prefrontal regulation helps people act despite arousal. The source does not claim the alarm has no effect or that planning disappears.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1332,8 +1260,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source keeps both sides together: regulation changes behavior, while underlying reactivity may remain. Erasure is the common misread.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1345,8 +1272,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sweet spot balances novelty and comfort. It is not maximum exposure, and it is not total avoidance of stimulation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1358,8 +1284,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Self-knowledge becomes useful when it shapes routines. The source turns temperament insight into design of work, social life, and recovery.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1371,8 +1296,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Performance and internal arousal are separate. Public speaking can be possible through regulation without making someone low-reactive.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1415,7 +1339,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Map the Stimulation Range",
         "coreSkill": "Practice reading arousal as information, not as a command. Map the Stimulation Range by naming the event, ranking its stimulation cost, and pairing each stretch with recovery. The skill protects growth from both avoidance and self-flooding.",
         "ifThenPlans": [
           {
@@ -1440,24 +1363,17 @@
       },
       "memorableLines": [
         {
-          "text": "Temperament is a range, not a jail.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's main correction into a line the reader can repeat."
+          "text": "Temperament is a range, not a jail."
         },
         {
-          "text": "The alarm can ring while the person still chooses.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps biology and agency in one plain sentence."
+          "text": "The alarm can ring while the person still chooses."
         },
         {
-          "text": "Stretching works best when recovery has a reserved seat.",
-          "location": "breakdown.fullRead",
-          "why": "It makes calibrated stretching concrete and easy to carry."
+          "text": "Stretching works best when recovery has a reserved seat."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "quiet-ch06",
       "number": 6,
       "title": "Franklin Was a Politician, but Eleanor Spoke Out of Conscience: Why Cool is Overrated",
@@ -1558,8 +1474,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source depends on difference. Franklin carries charm and crowds, while Eleanor carries shy seriousness. Treating them as identical erases the contrast.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -1571,8 +1486,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Eleanor's awkwardness is not used to disqualify her. The near-miss is hiding it, which still treats polish as the real standard.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1584,8 +1498,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Aron's bridge links responsiveness with empathy. The wrong readings keep sensitivity trapped inside anxiety or private burden.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1597,8 +1510,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Empathy is felt attunement, not cold mind-reading. Strategy may understand behavior, but it misses the shared feeling named here.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1610,8 +1522,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source places Gore's early alarm at Harvard. The documentary matters later as communication, not as his first contact with the issue.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q06",
@@ -1623,8 +1534,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The problem is not false data. It is that data-heavy proof lacked emotional force for many colleagues, so more complexity was not enough.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1636,8 +1546,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The documentary is a translation of concern into cinematic public form. The near-misses mistake form for either extra equations or no feeling.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1649,8 +1558,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Important perception has limited value if it never reaches people who need to act. Silence protects comfort but wastes the signal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1662,8 +1570,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Coolness is overrated when it blocks moral perception. One wrong reading keeps detachment first; the other treats sensitivity as disqualifying.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1706,7 +1613,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Speak the Sensitive Signal",
         "coreSkill": "Practice turning a strong inner signal into a useful outer sentence. Speak the Sensitive Signal by naming the concern, the person affected, and the form that will help others receive it. The skill is not venting; it is disciplined empathy.",
         "ifThenPlans": [
           {
@@ -1731,24 +1637,17 @@
       },
       "memorableLines": [
         {
-          "text": "Cool can miss what conscience catches.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the Roosevelt contrast into one portable warning."
+          "text": "Cool can miss what conscience catches."
         },
         {
-          "text": "Feeling more is useful only when it helps someone else.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps sensitivity tied to service rather than self-display."
+          "text": "Feeling more is useful only when it helps someone else."
         },
         {
-          "text": "A sensitive alarm needs a public shape.",
-          "location": "breakdown.fullRead",
-          "why": "It captures why Gore's concern had to become communication."
+          "text": "A sensitive alarm needs a public shape."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "quiet-ch07",
       "number": 7,
       "title": "Why did Wall Street Crash and Warren Buffett Prosper?: How Introverts and Extroverts Think (and Process Dopamine) Differently",
@@ -1849,8 +1748,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source ties dopamine to reward learning. The triangle matters because it predicts juice, not because it tests conscience or removes appetite.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1862,8 +1760,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source links extroversion with reward sensitivity, novelty, and impulse. Threat scanning belongs more to the introvert side of the contrast.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1875,8 +1772,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Introverts are presented as more threat sensitive and loss attentive. The near-miss swaps in the reward chase described on the extrovert side.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1888,8 +1784,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Newman's task used digits and button presses tied to money. Faces and fMRI belong to other temperament material, while triangles and juice belong to dopamine reward learning.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q05",
@@ -1901,8 +1796,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source says extroverts tended to speed up after mistakes. The tempting opposite is slowing down, but that is not the reported pattern.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1914,8 +1808,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Introverts are described as slowing after mistakes because loss is more salient. Ignoring the mistake reverses the pattern the task is used to show.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1927,8 +1820,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Buffett illustrates restraint around investment success. The wrong readings make him a novelty seeker, which is the opposite of this example.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1940,8 +1832,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Loss aversion means the possible loss can loom larger than the gain, even when the expected value is favorable. Visible math may not settle the feeling.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1953,8 +1844,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge is diagnostic, not tribal. Reward pursuit and loss attention both have value and both can mislead when used automatically.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1997,7 +1887,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask Which Signal Is Loud",
         "coreSkill": "Practice naming the signal before you trust the feeling. Ask Which Signal Is Loud by checking whether reward, loss, or both are pushing the next move. Then compare that signal with one fact in the situation.",
         "ifThenPlans": [
           {
@@ -2022,24 +1911,17 @@
       },
       "memorableLines": [
         {
-          "text": "Excitement spends fast; caution checks the receipt.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the reward-threat contrast into a portable money image."
+          "text": "Excitement spends fast; caution checks the receipt."
         },
         {
-          "text": "Reward can teach the hand before judgment catches up.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the dopamine lesson without technical fog."
+          "text": "Reward can teach the hand before judgment catches up."
         },
         {
-          "text": "The right risk style depends on the risk in front of it.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the lesson from making either temperament the hero."
+          "text": "The right risk style depends on the risk in front of it."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "quiet-ch08",
       "number": 8,
       "title": "Soft Power: Asian-Americans and the Extrovert Ideal",
@@ -2140,8 +2022,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact challenges the idea that assertive talk is the human default. The near-misses either universalize the rule or make speed the cure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -2153,8 +2034,7 @@
             ],
             "correctIndex": 0,
             "explanation": "McCrae anchors the broad cross-cultural comparison. Infant reactivity belongs elsewhere, and the source never makes silence mean one thing.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -2166,8 +2046,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge keeps both sides: cultural summaries can teach, and they can flatten. The wrong choices turn the summary into a box.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2179,8 +2058,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source links some Asian norms with careful listening and speech. It does not turn that care into constant talk or total withdrawal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2192,8 +2070,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Class talk has different meanings across norms. A count of comments can miss careful speech, while the distractors keep one rule for every room.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2205,8 +2082,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Soft power is a form of influence, not the lack of it. The wrong replies treat restraint as disappearance or as a ban on challenge.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -2218,8 +2094,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Gandhi is the major soft-power example because restraint serves strategy. The near-misses recast him as dominant display or no influence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2231,8 +2106,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The proverbs do analytic work. They show rival speech norms, but they do not make every person an exact copy of the saying.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2244,8 +2118,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The point is cultural variability, not a new ranking. Ignoring culture also fails, since the comparison exists to show that norms shape judgment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2288,7 +2161,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Weigh the Speech Rule",
         "coreSkill": "Practice noticing what a room pays for before you judge a quiet person. Weigh the Speech Rule by comparing fast speech with careful speech, then naming which one actually helped. The skill is not ranking cultures; it is reading the local reward system.",
         "ifThenPlans": [
           {
@@ -2313,24 +2185,17 @@
       },
       "memorableLines": [
         {
-          "text": "Quiet strength still has to do real work.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps restraint tied to action rather than mood."
+          "text": "Quiet strength still has to do real work."
         },
         {
-          "text": "A proverb can smuggle a whole culture into one sentence.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the proverb contrast easy to remember."
+          "text": "A proverb can smuggle a whole culture into one sentence."
         },
         {
-          "text": "Soft power is restraint with a job.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the chapter's core mechanism into one sentence."
+          "text": "Soft power is restraint with a job."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "quiet-ch09",
       "number": 9,
       "title": "When Should You Act More Extroverted than You Really Are?",
@@ -2431,8 +2296,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Free Trait Theory explains flexible behavior. The stretch is temporary and tied to a valued goal, not impossible or permanent.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2444,8 +2308,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source compares acting against type to sprinting. A useful burst can still tire the person who made it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2457,8 +2320,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Core personal goals make stretching more sustainable. Pressure and image are near-misses because they can create distress.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2470,8 +2332,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Self-monitoring is situational adjustment. The other choices ignore context, which is the opposite of the source's definition.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q05",
@@ -2483,8 +2344,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Obama illustrates public energy from a seemingly reserved person. The example does not erase private temperament.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -2496,8 +2356,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source warns against sustained false performance for empty demands. Skill alone does not make the stretch healthy.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2509,8 +2368,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The plan is bounded. The source treats stretched behavior as a temporary burst, not a permanent new persona.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2522,8 +2380,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge asks should, not merely can. Capability matters less than whether the stretch serves a worthy goal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2535,8 +2392,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Recovery follows from the cost of acting out of character. A successful stretch still needs replenishment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2579,7 +2435,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Use the Core-and-Recover Test",
         "coreSkill": "Practice the Core-and-Recover Test before you act bigger than your baseline. Name the core goal that earns the stretch, rehearse the first sentence once, and name how you will come back down. The skill is not acting louder; it is spending energy where your values would spend it.",
         "ifThenPlans": [
           {
@@ -2604,24 +2459,17 @@
       },
       "memorableLines": [
         {
-          "text": "A stretch is honest when a value pays for it.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader the moral test for acting out of character."
+          "text": "A stretch is honest when a value pays for it."
         },
         {
-          "text": "A sprint still needs a finish line.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's cost warning into a simple image."
+          "text": "A sprint still needs a finish line."
         },
         {
-          "text": "Do not spend your temperament on hollow applause.",
-          "location": "breakdown.deepRead",
-          "why": "It names the danger of stretching for empty approval."
+          "text": "Do not spend your temperament on hollow applause."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "quiet-ch10",
       "number": 10,
       "title": "The Communication Gap: How to Talk to Members of the Opposite Type",
@@ -2722,8 +2570,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source begins with attraction. The near-miss is making difference only a problem, when contrast can complement before it conflicts.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2735,8 +2582,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Greg's side of the case is wide social energy. Quiet one-on-one time belongs to Emily, so assigning it to Greg reverses the case.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -2748,8 +2594,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source separates quiet connection from antisocial withdrawal. The tempting error is hearing less noise as no love.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2761,8 +2606,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fact says blunt pursuit can trigger guilt and anxiety without proving hostility. The wrong move is turning directness into automatic rejection.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2774,8 +2618,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Withdrawal can protect a person who feels flooded. That does not make silence ideal, but it blocks the contempt-only reading.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2787,8 +2630,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cycle is two-sided. Greg reads withdrawal as dismissal, while Emily reads directness as disappointment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2800,8 +2642,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source rejects moral ranking. The error is declaring one social appetite normal and making the other defend itself.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2813,8 +2654,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Projection is the central error. Asking only what the act would mean for you can misread a partner with a different social need.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2826,8 +2666,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fix is practical and interpretive. Scheduling alone misses the deeper work of validating needs and reading signals more carefully.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2870,7 +2709,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Translate Before You React",
         "coreSkill": "Practice Translate Before You React when a partner's social signal stings. Name the signal, name the possible need under it, then write one fair ask. The skill is not mind-reading; it is a pause before blame.",
         "ifThenPlans": [
           {
@@ -2895,24 +2733,17 @@
       },
       "memorableLines": [
         {
-          "text": "Quiet is a need, not a verdict.",
-          "location": "breakdown.fastRead",
-          "why": "It corrects the core misread in plain relationship language."
+          "text": "Quiet is a need, not a verdict."
         },
         {
-          "text": "Translate the signal before you answer the charge.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a compact repair move."
+          "text": "Translate the signal before you answer the charge."
         },
         {
-          "text": "A compromise can still be a mistranslation.",
-          "location": "breakdown.deepRead",
-          "why": "It warns that schedule fixes are not enough without better assumptions."
+          "text": "A compromise can still be a mistranslation."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "quiet-ch11",
       "number": 11,
       "title": "On Cobblers and Generals: How to Cultivate Quiet Kids in a World That Can't Hear Them",
@@ -3013,8 +2844,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Parent-child fit starts with the clash between adult style and child need. The near-misses make sameness the goal, which is the error the fact rejects.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3026,8 +2856,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source names depression and learning disability as possible misreads by outgoing parents. It does not ban help, but it asks for evidence before the label leads.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3039,8 +2868,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fact gives excited extroversion as another possible read of high activity. The other choices lock in the adult's preference before watching the child.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3052,8 +2880,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Children can read adult concern as a verdict on their natural style. The other answers shift the issue to feedback or hobbies instead of self-understanding.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -3065,8 +2892,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source says old shame can make a parent reactive. Naming the carryover helps; treating it as proof or pretending it has no effect are both near-misses.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -3078,8 +2904,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source flags school and hobbies as settings that can favor extroverted styles. Equal access to a board is not the same as equal fit.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3091,8 +2916,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Acceptance reduces the sense that a lower-stimulation choice is defective. The other replies keep embarrassment or forced display in charge.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -3104,8 +2928,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source pairs acceptance with skill building. Avoiding all learning and forcing louder display are opposite ways of missing that pair.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3117,8 +2940,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge is fit, not personality replacement. The near-misses choose avoidance or ranking instead of tuned environments and careful stretch.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -3161,7 +2983,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Check Fit Before Fix",
         "coreSkill": "Practice pausing before you label a child's style as trouble. Check the child's temperament, your own temperament, and the setting's demands. Then choose one change that keeps acceptance and skill growth together.",
         "ifThenPlans": [
           {
@@ -3186,19 +3007,13 @@
       },
       "memorableLines": [
         {
-          "text": "A quiet child is not a failed loud child.",
-          "location": "breakdown.fastRead",
-          "why": "It gives parents a clean sentence to interrupt the first misread."
+          "text": "A quiet child is not a failed loud child."
         },
         {
-          "text": "Fit comes before repair.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the chapter's main practice into four plain words."
+          "text": "Fit comes before repair."
         },
         {
-          "text": "Stretch should build a bridge, not a mask.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps growth and temperament from being confused with personality replacement."
+          "text": "Stretch should build a bridge, not a mask."
         }
       ]
     }

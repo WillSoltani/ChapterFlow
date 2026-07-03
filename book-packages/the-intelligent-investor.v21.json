@@ -21,1750 +21,8 @@
       "market-quotation-discipline"
     ]
   },
-  "productionManifest": {
-    "schemaVersion": "chapterflow-production-manifest-v2",
-    "contentId": "sha256:3dc7ec6a5d5bee072add7aaf0fd6becec7ab61bffa35ca3c502f313d19c7d6cb",
-    "payloadHash": "sha256:3dc7ec6a5d5bee072add7aaf0fd6becec7ab61bffa35ca3c502f313d19c7d6cb",
-    "payload": {
-      "schemaVersion": "chapterflow-production-manifest-payload-v2",
-      "bookId": "the-intelligent-investor",
-      "packageSchemaVersion": "chapterflow-v21-authored",
-      "book": {
-        "title": "The Intelligent Investor",
-        "author": "Benjamin Graham",
-        "categories": [
-          "Investing"
-        ],
-        "tags": [
-          "investment-discipline",
-          "inflation-resilience",
-          "market-level-history",
-          "defensive-allocation-policy",
-          "defensive-common-stock-ownership",
-          "negative-screen-for-enterprise",
-          "positive-enterprise-opportunities",
-          "market-quotation-discipline"
-        ],
-        "contentOwner": "chapterflow"
-      },
-      "canonicalIndex": {
-        "path": "state/indexes/the-intelligent-investor.json",
-        "semanticHash": "sha256:6d10ac8365a744e07d60adc40e3708f5b2e7cc1b8044c0acdcb7b1d31a79354c",
-        "chapters": [
-          {
-            "chapterId": "the-intelligent-investor-ch01",
-            "chapterNumber": 1,
-            "chapterTitle": "Investment versus Speculation: Results to Be Expected by the Intelligent Investor"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch02",
-            "chapterNumber": 2,
-            "chapterTitle": "The Investor and Inflation"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch03",
-            "chapterNumber": 3,
-            "chapterTitle": "A Century of Stock-Market History: The Level of Stock Prices in Early 1972"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch04",
-            "chapterNumber": 4,
-            "chapterTitle": "General Portfolio Policy: The Defensive Investor"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch05",
-            "chapterNumber": 5,
-            "chapterTitle": "The Defensive Investor and Common Stocks"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch06",
-            "chapterNumber": 6,
-            "chapterTitle": "Portfolio Policy for the Enterprising Investor: Negative Approach"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch07",
-            "chapterNumber": 7,
-            "chapterTitle": "Portfolio Policy for the Enterprising Investor: The Positive Side"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch08",
-            "chapterNumber": 8,
-            "chapterTitle": "The Investor and Market Fluctuations"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch09",
-            "chapterNumber": 9,
-            "chapterTitle": "Investing in Investment Funds"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch10",
-            "chapterNumber": 10,
-            "chapterTitle": "The Investor and His Advisers"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch11",
-            "chapterNumber": 11,
-            "chapterTitle": "Security Analysis for the Lay Investor: General Approach"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch12",
-            "chapterNumber": 12,
-            "chapterTitle": "Things to Consider About Per-Share Earnings"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch13",
-            "chapterNumber": 13,
-            "chapterTitle": "A Comparison of Four Listed Companies"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch14",
-            "chapterNumber": 14,
-            "chapterTitle": "Stock Selection for the Defensive Investor"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch15",
-            "chapterNumber": 15,
-            "chapterTitle": "Stock Selection for the Enterprising Investor"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch16",
-            "chapterNumber": 16,
-            "chapterTitle": "Convertible Issues and Warrants"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch17",
-            "chapterNumber": 17,
-            "chapterTitle": "Four Extremely Instructive Case Histories"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch18",
-            "chapterNumber": 18,
-            "chapterTitle": "A Comparison of Eight Pairs of Companies"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch19",
-            "chapterNumber": 19,
-            "chapterTitle": "Shareholders and Managements: Dividend Policy"
-          },
-          {
-            "chapterId": "the-intelligent-investor-ch20",
-            "chapterNumber": 20,
-            "chapterTitle": "\"Margin of Safety\" as the Central Concept of Investment"
-          }
-        ]
-      },
-      "chapters": [
-        {
-          "chapterId": "the-intelligent-investor-ch01",
-          "chapterNumber": 1,
-          "title": "Investment versus Speculation: Results to Be Expected by the Intelligent Investor",
-          "readerContentHash": "sha256:c6aecadd88f25a3821c253c136365f613a5da5f7dda0fa279a2890b98ea8a2fc",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch01.source.json",
-            "semanticHash": "sha256:e9d4fa7e5bb9c1ade64c3847c5e1877d844fe9d4094d3391534aa85950fac035",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch01.v21-native.chapter.json",
-            "semanticHash": "sha256:e289b9c494abcfaf4b110a93c3004f6e39465463fb23c56f55d3206dc41ef14f",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:e9d4fa7e5bb9c1ade64c3847c5e1877d844fe9d4094d3391534aa85950fac035"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch01.qc.json",
-            "semanticHash": "sha256:34e3f8659b66a1b23af65993f4d126e7426a4b31e6058caffaf6c3b55ac07f11",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "7219aa7ec2142b99",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.651Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch02",
-          "chapterNumber": 2,
-          "title": "The Investor and Inflation",
-          "readerContentHash": "sha256:48bad7a44ea007322b72a73822fff63b34a78163a8cc3cc52917bff986d6e15b",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch02.source.json",
-            "semanticHash": "sha256:2ab8a381e6617f707fdd4dfafc296a1e8531ea1908c63255bbba609d3274a670",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch02.v21-native.chapter.json",
-            "semanticHash": "sha256:9896348ce29228e10f3b40c7da07d9478be09e9ed783db5cbcf4ab9224f3572d",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:2ab8a381e6617f707fdd4dfafc296a1e8531ea1908c63255bbba609d3274a670"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch02.qc.json",
-            "semanticHash": "sha256:8ec0d8b5c8d78927b153036d046820407471c20c8e61dc4565b2a3606d611a12",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "c19a0c50a15ce170",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.651Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch03",
-          "chapterNumber": 3,
-          "title": "A Century of Stock-Market History: The Level of Stock Prices in Early 1972",
-          "readerContentHash": "sha256:346dc85819c7663bdfab0d3ab02fe75e66735d86f6e3b1e810d544f814469532",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch03.source.json",
-            "semanticHash": "sha256:8f38258c46ed5bb13927193440dc8e8a0f34b1302528b15e4fa49ecfa4a66e54",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch03.v21-native.chapter.json",
-            "semanticHash": "sha256:a2f468bacc3ec06d6a695a58327cd98383d968ba8c4aacf0b7fb171ea483a0e2",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:8f38258c46ed5bb13927193440dc8e8a0f34b1302528b15e4fa49ecfa4a66e54"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch03.qc.json",
-            "semanticHash": "sha256:3a8f2f9778ad98ba73e38ea4997b7351b6e18f887796589262e00f16e4513db3",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "8aa803adf15f6cb9",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.652Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch04",
-          "chapterNumber": 4,
-          "title": "General Portfolio Policy: The Defensive Investor",
-          "readerContentHash": "sha256:df98e46198778dfc515ea0ffda88826fc7f4d49bc4e4034e9a0f049598ec2861",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch04.source.json",
-            "semanticHash": "sha256:9cc4b92ec095dff55e96ec7c7d0e9d35f840dc8e89192626cd0da65785f01bf5",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch04.v21-native.chapter.json",
-            "semanticHash": "sha256:3198d2f3f0827753d19459d49f9507755efdb041e1da6a0168dfa92bb6f06888",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:9cc4b92ec095dff55e96ec7c7d0e9d35f840dc8e89192626cd0da65785f01bf5"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch04.qc.json",
-            "semanticHash": "sha256:dcdcd216e15c6d5d7aed9a15be716edaba23be7d9e651df3ae3e26051004646a",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "252d519ab0664799",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.652Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch05",
-          "chapterNumber": 5,
-          "title": "The Defensive Investor and Common Stocks",
-          "readerContentHash": "sha256:413291420e56734c7482a9f5c899bd6d56b3a57bf070846b0d3bb9e5bbb8d279",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch05.source.json",
-            "semanticHash": "sha256:b18bdfeeabece02b35695e338e383fbeb9a24582481ddd8ac301262613679e82",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch05.v21-native.chapter.json",
-            "semanticHash": "sha256:4db4291e7c8f10665a5b756e29650f6d05c869026375c8f667748c86014c42a0",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:b18bdfeeabece02b35695e338e383fbeb9a24582481ddd8ac301262613679e82"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch05.qc.json",
-            "semanticHash": "sha256:2482beaf9eaf8fbdd7513e6adc0fd706b7d29b5fed0f203ec4a80d9900063db4",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "0b751be78f975bf5",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.653Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch06",
-          "chapterNumber": 6,
-          "title": "Portfolio Policy for the Enterprising Investor: Negative Approach",
-          "readerContentHash": "sha256:3f06b2e5f9ada1340ee6b4e51faa4d27d8d08094498824b2aa5691b037df84c9",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch06.source.json",
-            "semanticHash": "sha256:1f55e89f1e4adad512a25da7840823553a6de7da18c0616b85d9f69d6cffa57c",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch06.v21-native.chapter.json",
-            "semanticHash": "sha256:99cff043de4bb7f38671feb05b497167d7b534d788ae38e5ebe7eebe98f6c73d",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:1f55e89f1e4adad512a25da7840823553a6de7da18c0616b85d9f69d6cffa57c"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch06.qc.json",
-            "semanticHash": "sha256:5a99b1118a9f952f6f856864251b6d8f7f4a84ea4e2d1b1c4de4408c5e15cb59",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "cd0c164892bfa6f3",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.653Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch07",
-          "chapterNumber": 7,
-          "title": "Portfolio Policy for the Enterprising Investor: The Positive Side",
-          "readerContentHash": "sha256:cf90aa6b3f53bad73059a86c3f5c2084aa157d07918951743f82c5ff6bbf4fc9",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch07.source.json",
-            "semanticHash": "sha256:6106b16d3e97c8388851b99a92271f4141b23379edab0273bbfd5e0e5372a36a",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch07.v21-native.chapter.json",
-            "semanticHash": "sha256:16cb746ea24432a273850aeadc8922742569b9f095dda4a6a3250a67861d3ea9",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:6106b16d3e97c8388851b99a92271f4141b23379edab0273bbfd5e0e5372a36a"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch07.qc.json",
-            "semanticHash": "sha256:d7704181241e81792747faffd7c2f3b3e4cd98b27169b75ee8c6330c03883c8b",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "415ea2ccbdf0c68e",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.656Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch08",
-          "chapterNumber": 8,
-          "title": "The Investor and Market Fluctuations",
-          "readerContentHash": "sha256:47c5cfb6fbc09a13166c29c048cebd31c7c1477f08e2644a6ca8b2c429ebbb02",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch08.source.json",
-            "semanticHash": "sha256:db72622b173a2562a68c0d0103a58bf4c7a499b422109008bef319f38f63a40a",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch08.v21-native.chapter.json",
-            "semanticHash": "sha256:623dc388127052033a34a5645c8efeb834f7df39cb4d7b1070b7f06aef170212",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:db72622b173a2562a68c0d0103a58bf4c7a499b422109008bef319f38f63a40a"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch08.qc.json",
-            "semanticHash": "sha256:3ad874b7d22de8f9c34a73ade4c547b2b887a3b7f3caf4e9087b947f1e9d44ed",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "a56ca8800d784c7e",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.656Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch09",
-          "chapterNumber": 9,
-          "title": "Investing in Investment Funds",
-          "readerContentHash": "sha256:b9b7c32d6bf2cf14e2c3a71b6abed6b6b7e8ac0798d9157bbd525b12097b6035",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch09.source.json",
-            "semanticHash": "sha256:77e8b6dd4e4e280e87420823f4082e2c400dad92b6b397570e490f5d6c470cf0",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch09.v21-native.chapter.json",
-            "semanticHash": "sha256:6126eb566f1bf56a9916cc3e992576fb8d940cf2adfcc59dff5b65c43973afd7",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:77e8b6dd4e4e280e87420823f4082e2c400dad92b6b397570e490f5d6c470cf0"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch09.qc.json",
-            "semanticHash": "sha256:29d6961353fdbc8a31d2098b41826119baf25b662b738421e544f8ff00ce8988",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "33ab56d12f08beb3",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.657Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch10",
-          "chapterNumber": 10,
-          "title": "The Investor and His Advisers",
-          "readerContentHash": "sha256:94a4c8b501c47ab502af15d3200d0a299e1d16879a46a620180ba47852edb449",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch10.source.json",
-            "semanticHash": "sha256:9cd0fbd1dee2275eb14a77623c0f7679413e036f2f37da6ee3e6f2fd85f51e6b",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch10.v21-native.chapter.json",
-            "semanticHash": "sha256:ba21f06a0f7bcb817e9b9c47c9337ef82894afe1d05f44f8b0ffc67e2c416c2f",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:9cd0fbd1dee2275eb14a77623c0f7679413e036f2f37da6ee3e6f2fd85f51e6b"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch10.qc.json",
-            "semanticHash": "sha256:f1cc2d270175f29df684de58a846ab606e11c429acc72b298b3c21348bb5343c",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "e12fa52d7bc78282",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.657Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch11",
-          "chapterNumber": 11,
-          "title": "Security Analysis for the Lay Investor: General Approach",
-          "readerContentHash": "sha256:3d4d9656cec8a37b4b3e2ee3921ea81d0b79210ef0b71423391494a5f5c14c75",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch11.source.json",
-            "semanticHash": "sha256:5d462e596a581c2b918bf5497fbc262b58a6ba4914ee9df1340ab788a7975ccf",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch11.v21-native.chapter.json",
-            "semanticHash": "sha256:92d7aceac595ff06b7047e1bf5bb55b0ffe7eedddeabe81ab9cd6b4ff6055c51",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:5d462e596a581c2b918bf5497fbc262b58a6ba4914ee9df1340ab788a7975ccf"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch11.qc.json",
-            "semanticHash": "sha256:77a62a1a719d2695c555e70efd13b0f76f4a3b1fd9cdd572cd9832ecf4330ea9",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "3236e6af6bbca2ed",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.658Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch12",
-          "chapterNumber": 12,
-          "title": "Things to Consider About Per-Share Earnings",
-          "readerContentHash": "sha256:a6b5a9788a4421be981f4f95293369e1c7cb0d7c059d1a3297d1a87c27ae1434",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch12.source.json",
-            "semanticHash": "sha256:8d4d53b8d597c149e93e52a4a8a9a68151bd8b6d86f5d696b00dee060fd2335f",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch12.v21-native.chapter.json",
-            "semanticHash": "sha256:034ebec2620d69ad8fc23be204dcce029c6021a87104f7bebc930dadb04d544d",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:8d4d53b8d597c149e93e52a4a8a9a68151bd8b6d86f5d696b00dee060fd2335f"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch12.qc.json",
-            "semanticHash": "sha256:4f972229a2b927294b57d78ad2d7da12db1f7ec51feeb357688a35fd69c6d441",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "f773b5bfc10f12a7",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.658Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch13",
-          "chapterNumber": 13,
-          "title": "A Comparison of Four Listed Companies",
-          "readerContentHash": "sha256:a1139ebdc0044a49fe165c294ac529deccd1ecc6d05153e92f9a67567665b457",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch13.source.json",
-            "semanticHash": "sha256:b42c1ed57f3dcd2f557eebe4183d39f4d8555e588211bd1bb28be9658857a64b",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch13.v21-native.chapter.json",
-            "semanticHash": "sha256:4b5e82eb5cd24724daa9b241a286a8696367b9605b855c5968c1d2a558bec86c",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:b42c1ed57f3dcd2f557eebe4183d39f4d8555e588211bd1bb28be9658857a64b"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch13.qc.json",
-            "semanticHash": "sha256:fab641bcbdd9a73bdb0e9fa7a38bfffbd983b461e19c0a973f56d09bf89b2d69",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "e71abe1f8c2f28a7",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.658Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch14",
-          "chapterNumber": 14,
-          "title": "Stock Selection for the Defensive Investor",
-          "readerContentHash": "sha256:f7d6031a1546373dadd0533c8c4b5e8294649062f5afc9cc550a49797845fe6f",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch14.source.json",
-            "semanticHash": "sha256:bafc23e453eb70777e508308c8b9e4ef447117b2bfb8ca009ca98c2117be53fe",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch14.v21-native.chapter.json",
-            "semanticHash": "sha256:4a0c82050ab2960a8898455f455c3e402a3e292629a36788093f1d49090dd5d5",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:bafc23e453eb70777e508308c8b9e4ef447117b2bfb8ca009ca98c2117be53fe"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch14.qc.json",
-            "semanticHash": "sha256:14f41efb0a4e836a28fcbb38c77b26d045f54c900c50d02296bdac749a7c4ef7",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "35bcbbb7282bf85b",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.659Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch15",
-          "chapterNumber": 15,
-          "title": "Stock Selection for the Enterprising Investor",
-          "readerContentHash": "sha256:d662184c938f3b57eb5843fbff0bba21fc5270d7a266ac96002246cafd8cbfca",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch15.source.json",
-            "semanticHash": "sha256:4ad9a534ff05dc37308392f4e56031488a85e907929bd671c3286cc9c6ddaf80",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch15.v21-native.chapter.json",
-            "semanticHash": "sha256:db000e353c7fb96d85545640fcc43b2f8588f5aab79d4dc2e6d68efc626bbc2e",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:4ad9a534ff05dc37308392f4e56031488a85e907929bd671c3286cc9c6ddaf80"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch15.qc.json",
-            "semanticHash": "sha256:957e0e72c8ba15e84b2588e3ee5358b5053913a16679e4b918b95fc4d526fa6b",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "91fbb0792899dd01",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.659Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch16",
-          "chapterNumber": 16,
-          "title": "Convertible Issues and Warrants",
-          "readerContentHash": "sha256:3e2ef1d6e26e827be116bd918fa8ba66d20072c65df05c29da5abb13f90a5114",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch16.source.json",
-            "semanticHash": "sha256:fb7a6205162a9a563ad6d20ed0770484721b953dc8b08337b71793fc8a02544a",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch16.v21-native.chapter.json",
-            "semanticHash": "sha256:0cc87b52f6513f7b8f92621ed29c4b8e70ffbf67a53f8e273b9ac08b43c3afe2",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:fb7a6205162a9a563ad6d20ed0770484721b953dc8b08337b71793fc8a02544a"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch16.qc.json",
-            "semanticHash": "sha256:d62e70e2ff1a42c90cb11d460a09cfe4cae67895795daa88ab20118f30e28e0a",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "fcb4fe45e9c6b5a3",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.659Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch17",
-          "chapterNumber": 17,
-          "title": "Four Extremely Instructive Case Histories",
-          "readerContentHash": "sha256:780fa1d7a571cee0a50e3de5eae90bdf11d083915c2f42a7bb2b97809680ae19",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch17.source.json",
-            "semanticHash": "sha256:09d0849dcb600d7a136fdc2433b5acf616fb5a387bac45db888aa327a1155650",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch17.v21-native.chapter.json",
-            "semanticHash": "sha256:84860ae016cd7ca1a9da11116f66e0a9ec46f4013197677835e309c699a4600b",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:09d0849dcb600d7a136fdc2433b5acf616fb5a387bac45db888aa327a1155650"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch17.qc.json",
-            "semanticHash": "sha256:7abe8b355c0a50eb5bb0231d4e19177b7eaa247c5e13d4ed827a73b2569d185b",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "8256558dedb69e96",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.659Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch18",
-          "chapterNumber": 18,
-          "title": "A Comparison of Eight Pairs of Companies",
-          "readerContentHash": "sha256:e5f812d4f923c48956927cd80f06580f3af798c713aba237c07ccda2119925ac",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch18.source.json",
-            "semanticHash": "sha256:01eb4a0f69084ce7ecf6b703637f7d5ddcd6bd8477c6d231a753cb57422eb118",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch18.v21-native.chapter.json",
-            "semanticHash": "sha256:390d07e218345c350445686efc6b62f08cabf12ad4c803cd3476ad91087d99a8",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:01eb4a0f69084ce7ecf6b703637f7d5ddcd6bd8477c6d231a753cb57422eb118"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch18.qc.json",
-            "semanticHash": "sha256:8644f1b772850a1c5fabe43dffb7ccfeaba7fc6f2ccfb5dfa1c00ea88a3a7dec",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "79467fee781f12d8",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.660Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch19",
-          "chapterNumber": 19,
-          "title": "Shareholders and Managements: Dividend Policy",
-          "readerContentHash": "sha256:097ab4c1493dda5d163f9aad613987591f42246d6db5ca7a7b941901c27b7251",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch19.source.json",
-            "semanticHash": "sha256:15a47730811502c4f82c08557f40346160b11101a9e3842dbc450a5a65410495",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch19.v21-native.chapter.json",
-            "semanticHash": "sha256:119db339977d4fe7f5c767375e2cf92c80e4fe1c21594a9585d726a487664470",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:15a47730811502c4f82c08557f40346160b11101a9e3842dbc450a5a65410495"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch19.qc.json",
-            "semanticHash": "sha256:c97f299b7eed05167ef3d40d7d267190bcb6dfb583a6fb92790bd16a47c9b916",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "556745cbaed9df6b",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.660Z"
-          }
-        },
-        {
-          "chapterId": "the-intelligent-investor-ch20",
-          "chapterNumber": 20,
-          "title": "\"Margin of Safety\" as the Central Concept of Investment",
-          "readerContentHash": "sha256:12f088870d54cd1c701cd9949a510ebb0f19cf4e5d81ef55b1438fba23c05995",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch20.source.json",
-            "semanticHash": "sha256:c6d220cc5a048099262c4536b13d676f8426263d3c85258f0fd32f181968f8a1",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-intelligent-investor-ch20.v21-native.chapter.json",
-            "semanticHash": "sha256:643d0d207a30d0d10ff83c024931b5eb17d46fbd366fb2ae64cfcc781cc372ed",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:c6d220cc5a048099262c4536b13d676f8426263d3c85258f0fd32f181968f8a1"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-intelligent-investor-ch20.qc.json",
-            "semanticHash": "sha256:5cfabc55ba321512007548c7e932c0c944c3be48768f2efe75e3b9ff6fa70bce",
-            "roundId": "r20260630044617-5f3796",
-            "contentHash": "34c1d52f7f8667be",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260630044617-5f3796",
-            "reviewedAt": "2026-06-30T05:06:36.660Z"
-          }
-        }
-      ],
-      "sourceRealityEvidence": {
-        "bookId": "the-intelligent-investor",
-        "policyResult": "required-and-verified",
-        "classification": "new-source-v2",
-        "record": {
-          "path": ".chapterflow/source-verify-the-intelligent-investor.md",
-          "schemaVersion": "source-verify-record-v1",
-          "semanticHash": "sha256:81bb314107e0730a5411ec31fb1b86ba1c8237a2d436ecb54443ad4afcfe68d5",
-          "bookId": "the-intelligent-investor",
-          "verifier": null,
-          "verifiedAt": null
-        },
-        "exemption": null
-      },
-      "evidencePolicy": {
-        "sourceEvidence": "required",
-        "authoringEvidence": "required-for-source-v2",
-        "sourceReality": "required-for-source-v2",
-        "qcAttestation": "required"
-      },
-      "versions": {
-        "canonicalJson": "canonical-json-sha256-v1",
-        "readerContentHash": "reader-content-canonical-sha256-v1",
-        "readerContentStripRules": "reader-content-strip-v2",
-        "promptBundle": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:d81e99ec2b85605f311f70b46cabf355c9ac9677c4d87a620a23191da42de658",
-          "fileCount": 48,
-          "files": [
-            {
-              "path": "agent-prompts/BOOK-AUTOPILOT-CODEX-SESSION.md",
-              "sha256": "sha256:0eecbc8465dd645f87759253609b1ba1520051870c52ba7ed27cf2e325d2fe0e"
-            },
-            {
-              "path": "agent-prompts/FIELD-PURPOSE-CONTRACTS.md",
-              "sha256": "sha256:855bc491550ea9da1ab8ff27f02250b6c1db816ff7e7fe6d2adeac5a56a5b022"
-            },
-            {
-              "path": "agent-prompts/GENERATE-A-BOOK-CODEX-SESSION.md",
-              "sha256": "sha256:402bd7a9e06b57eb159795c29b2361f90730d20594896de8f8f3a5242e2ef3cd"
-            },
-            {
-              "path": "agent-prompts/PLAYBOOK-GENERATE-A-BOOK.md",
-              "sha256": "sha256:bb9c1ae165f28398e3e9839847f47b3e56ec6328b1ff3782cc646eee919fa231"
-            },
-            {
-              "path": "agent-prompts/PUBLISH-AFTER-QC-CODEX-SESSION.md",
-              "sha256": "sha256:9935baa797e094d4e2007b3dfe4d330e317b82460d21c07c99dc9d3f2f0c7d1f"
-            },
-            {
-              "path": "agent-prompts/QC-AUTO-CODEX-SESSION.md",
-              "sha256": "sha256:76316778015be0fb4113c5784aa16061ad82f79d7487e1ff4046e67541391b2e"
-            },
-            {
-              "path": "agent-prompts/QC-CODEX-SESSION.md",
-              "sha256": "sha256:da1ebae297f359eb43f4bed9086bde53744679d6735e8abc0f7a1f5c0d8af1e3"
-            },
-            {
-              "path": "agent-prompts/QC-ORCHESTRATE-CODEX-SESSION.md",
-              "sha256": "sha256:fc8ff25b7521265cad2f26c2bb154549b4821f0440ce33bfab39bd821e90c07e"
-            },
-            {
-              "path": "agent-prompts/QC-PLAYBOOK.md",
-              "sha256": "sha256:2dfeb6d744015a9eec906f848c6ab53fa015c82f8f1733979c8ef4148168b90d"
-            },
-            {
-              "path": "agent-prompts/QC-SESSION-PROMPT.md",
-              "sha256": "sha256:f7736d3916ed66f0eb558c8cd076d39a7b1be06ba5c1992015d1b8ea5cf4371f"
-            },
-            {
-              "path": "agent-prompts/REPAIR-CODEX-SESSION.md",
-              "sha256": "sha256:b0e93e248432dae3412c2486b2f094cdd57a90cd0931410541dbd4b3ffb46b47"
-            },
-            {
-              "path": "agent-prompts/RESEARCH-CODEX-SESSION.md",
-              "sha256": "sha256:2fa706babea08dacc37462457bccb371b3bbaac20a7ab5f1df1b7dc81adc78fc"
-            },
-            {
-              "path": "agent-prompts/RUN-A-BOOK.md",
-              "sha256": "sha256:e3e18b68e4f230bda8f64b42db6c78a703f9b3033516a7f5fd4fa5882cd42d42"
-            },
-            {
-              "path": "agent-prompts/STEP-1-RESEARCH.md",
-              "sha256": "sha256:56e6b5f74f197f7dd6208cdfe8455d32d57a01097bc635d84b99e02c9789a59f"
-            },
-            {
-              "path": "agent-prompts/STEP-2-WRITE-CHAPTERS.md",
-              "sha256": "sha256:9d8e9964ead108dfa10688040a296f085cec00c630e1a23039fb62afaef24d82"
-            },
-            {
-              "path": "agent-prompts/STEP-3-FINALIZE.md",
-              "sha256": "sha256:e0fff66309b550eaf3974fbbda9308278bd1f6bdd38fc0ff805a3568c5a01ac9"
-            },
-            {
-              "path": "agent-prompts/V22-QC-REVIEWER-CARD.md",
-              "sha256": "sha256:dbd12ebd269030f9925e508073d4aff7e14bb53edd51248545985519fbe4bf6f"
-            },
-            {
-              "path": "agent-prompts/V22-REPAIR-CARD.md",
-              "sha256": "sha256:10ebc06ada71356a8cafee27dfa025de4d4d021b031c7071b8f2d95632a27853"
-            },
-            {
-              "path": "agent-prompts/V22-SUBAGENT-CONTRACT.md",
-              "sha256": "sha256:ae92473e8560851ff736b71388b22309b0c9cf980101d55e7aa534fe17223c83"
-            },
-            {
-              "path": "agent-prompts/V22-WRITER-CARD.md",
-              "sha256": "sha256:9c5a8e74f2d4429606155dce438f0455b1caefd192097a762d6919f3358bc387"
-            },
-            {
-              "path": "agent-prompts/WRITE-ORCHESTRATE-CODEX-SESSION.md",
-              "sha256": "sha256:f98cf09062f4467bf00dadbecfe8ff35eddc8761a4e72126a98a48fcde3b959e"
-            },
-            {
-              "path": "agent-prompts/v23/ACTION-WRITER.md",
-              "sha256": "sha256:e523807953c3680cdc40a100cfaf9079ca13d1623097667167fcdd929c02efd7"
-            },
-            {
-              "path": "agent-prompts/v23/EXAMPLE-WRITER.md",
-              "sha256": "sha256:cb803f89978173772bc7c939c72981cf6108c980b0c194c5aec988772eb39c7e"
-            },
-            {
-              "path": "agent-prompts/v23/LEARNING-WRITER.md",
-              "sha256": "sha256:37b22b948d67fc69948562458564dbe8ad8ef332f8d7f7277dfc3f7ef2ef0665"
-            },
-            {
-              "path": "agent-prompts/v23/PATCH-REPAIR.md",
-              "sha256": "sha256:5dd523ca7c1bdd73f73491cccd68ba50bad75b49e1e728d9463fdd9c968af5f0"
-            },
-            {
-              "path": "agent-prompts/v23/QC-SHADOW-RISK.md",
-              "sha256": "sha256:9cc546453eca1beaf18abd3f7a90b4284def9cddca68ca25ed722755451756d2"
-            },
-            {
-              "path": "agent-prompts/v23/SOURCE-PACKET-REPAIR.md",
-              "sha256": "sha256:86ee945e046f2438d7f552e434b478e0bebdb40e62e5f3381e1e648e9873c808"
-            },
-            {
-              "path": "agent-prompts/v23/SUMMARY-WRITER.md",
-              "sha256": "sha256:3f5d0bc3fb6e589ec9200e4d448a09f419e4d4273b0057717940eff8cec9cfe9"
-            },
-            {
-              "path": "agent-prompts/v23/VOICE-PATCHER.md",
-              "sha256": "sha256:022b0dbdfa209d1478284683447b5967923b0f52c2c16e607cd2222cddc5f126"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-CHAPTER.md",
-              "sha256": "sha256:a18da21713fc6200b57e93edf352173e2eba3c0895bb97157517b3cb111175eb"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-FINALIZE.md",
-              "sha256": "sha256:57a5df9387c9050ee7c7d71e3a51d5ec1aaafabcba2befcd36133ed0aa2e1043"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-RESEARCH.md",
-              "sha256": "sha256:3d6f425fe52a0c50cef493a7f1443d51485e870605117b49c6d8dd0f52f58f76"
-            },
-            {
-              "path": "prompts/categorizer.system.md",
-              "sha256": "sha256:41933513807e03e65d74c280b5df092e36c1367b51385daeb3eba5e19a3af6e6"
-            },
-            {
-              "path": "prompts/curriculum-planner.system.md",
-              "sha256": "sha256:05261ccf482ec37ace0baae12e888c9b5b11f8e8972e42d765bc591f815f4024"
-            },
-            {
-              "path": "prompts/editor-in-chief.system.md",
-              "sha256": "sha256:67ba63b421be474de54a89c495852cd9cff42d999e5504e18f217848012ecbae"
-            },
-            {
-              "path": "prompts/example-curator.system.md",
-              "sha256": "sha256:2d16a31786f06053f1741df895e77ed1d50d1c708f9c52180582e2d3e67a757c"
-            },
-            {
-              "path": "prompts/line-editor.system.md",
-              "sha256": "sha256:d1439dc2bc580eac8b0241ea690d98282f36427403cc96e2676a30b85e1d8201"
-            },
-            {
-              "path": "prompts/memorable-lines.system.md",
-              "sha256": "sha256:48595056576c72ce88119c8bb9a265e44a10b03d631d30aa10c53cdf7c4ea21f"
-            },
-            {
-              "path": "prompts/researcher-bibliography.system.md",
-              "sha256": "sha256:328eefbdacc9fd850c5b719bdf988bac9b4a83fee495278e0cc5f78a7158234a"
-            },
-            {
-              "path": "prompts/researcher-chapter.system.md",
-              "sha256": "sha256:3ac00906eaa3263e8fdbd20ccc7e7a84b07fe1e992dec7dd24b245899dfaa550"
-            },
-            {
-              "path": "prompts/try-this-now.system.md",
-              "sha256": "sha256:4b7d13d9fab2d0654f9322be84a3f4ace991175ad1bd78fa7882413626451297"
-            },
-            {
-              "path": "prompts/voice-pass.system.md",
-              "sha256": "sha256:56c13f66af94f8e19ce8e015faf1bdb584f636530b7d4f70caced5aa4f5c598e"
-            },
-            {
-              "path": "prompts/writer-breakdown.system.md",
-              "sha256": "sha256:e86ccaf11a18f00bd6fa575438aaedb6ecddb2ca41bf4b686605a455c3758ea4"
-            },
-            {
-              "path": "prompts/writer-cards.system.md",
-              "sha256": "sha256:c48ae94c864d33c778ef56d2fa5adb26d1297f7c160c7ac4b68fd7abc1c38bc3"
-            },
-            {
-              "path": "prompts/writer-example.system.md",
-              "sha256": "sha256:5aacc8cfa8c8ef4ca498b41fc1ff12b57b19c25a49657fe40e3060db90f007bb"
-            },
-            {
-              "path": "prompts/writer-hook.system.md",
-              "sha256": "sha256:619df582466e54f06e911bc747cd82eb6eb2fc13d73d3236352b74997b717026"
-            },
-            {
-              "path": "prompts/writer-implementation-plan.system.md",
-              "sha256": "sha256:c13ae2eb8364fff7b26feb6c78a2a48881d1cdb769044f366fb7c313d271b74f"
-            },
-            {
-              "path": "prompts/writer-quiz.system.md",
-              "sha256": "sha256:8c79405b27d78bc212c06961f3e7da36e37558a3d445442d400b87c1284f9515"
-            }
-          ]
-        },
-        "configBundle": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:727adef96496c0386981fb8da4997d10bc6069e6a0a6225fdc54c508ddb3acd6",
-          "fileCount": 16,
-          "files": [
-            {
-              "path": "config/author-voice-profiles.json",
-              "sha256": "sha256:ad50ef88d74c6045746a587477307704d8611fa7b80ebe48c0371237764a1c1b"
-            },
-            {
-              "path": "config/banned-connectives.json",
-              "sha256": "sha256:1e83ec50dd880d8915fa14792b057f1e2eea6e847672d496b2e6737b3f4b5949"
-            },
-            {
-              "path": "config/banned-phrases.json",
-              "sha256": "sha256:39e995a2abf21f85918d82814eb7e2ae32263541f6c72c9d35c4dda792006a1b"
-            },
-            {
-              "path": "config/categories.json",
-              "sha256": "sha256:1df0501dea9183377984bcc9e204f7388f3fa684f7466626fc0e3126b1756c3f"
-            },
-            {
-              "path": "config/common-given-names.json",
-              "sha256": "sha256:61728f8bc4b137cd996096149ae18900911ca556df7c1a3f94a51e2fd31e378d"
-            },
-            {
-              "path": "config/critic-rubric.json",
-              "sha256": "sha256:e08085eb19f450338aa678a6db89e73a23f3a553b75542d9f5bd38a9c956627a"
-            },
-            {
-              "path": "config/meta-patterns.json",
-              "sha256": "sha256:83adbb89df9dab39c9861866e1c17e4e2b1d5a56d41ea9d211e8cd20a9639c2f"
-            },
-            {
-              "path": "config/name-bank.json",
-              "sha256": "sha256:23d8ea9ff61c3e44ec3fb6543aab24110eea5cf50b2e1de93ff06a42b0d7ff5a"
-            },
-            {
-              "path": "config/name-policy.json",
-              "sha256": "sha256:7107daf8d1084b04255351f136e0b7d750d72f4d7a4ab76257e3488b06f5ef86"
-            },
-            {
-              "path": "config/named-frameworks.json",
-              "sha256": "sha256:cc0da18fb0f04774f0be93067c67d69baefcc60a49dac4817d0d3e33c3758aae"
-            },
-            {
-              "path": "config/pedagogy-palettes.json",
-              "sha256": "sha256:f7ceccf85d7f1dd49fe35c13c7c0a4ee721c17a0b09e4c641319797100f65d58"
-            },
-            {
-              "path": "config/scenario-openers.json",
-              "sha256": "sha256:ed7fe8f62aa0c32242baa8bf82416a9f26d5b33d4a67c17be45e48144da9eb82"
-            },
-            {
-              "path": "config/scene-mechanisms.json",
-              "sha256": "sha256:6ffbcf6098d1ab96b67317fd617903f08f609e00b0ceea6c494a588a2205f878"
-            },
-            {
-              "path": "config/scene-shapes.json",
-              "sha256": "sha256:07efd36415fd4b64761fcee5c06ef637d1041d2a5eda7b7d80ed28c982d8ada6"
-            },
-            {
-              "path": "config/stakes-palette.json",
-              "sha256": "sha256:92d60229937b530c73773c90daea8ec2ad12fdbd9bfd25631a6df220e22f088b"
-            },
-            {
-              "path": "config/venue-palette.json",
-              "sha256": "sha256:8ba041c9d34f93f821519a0cbdab73aedc308866d49241f16c02556f527415f8"
-            }
-          ]
-        },
-        "codeFingerprint": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:f8f917f678a4b50e069bd4d45342b86838a9a3d2434551e88c9b32572689969b",
-          "fileCount": 188,
-          "files": [
-            {
-              "path": "package-lock.json",
-              "sha256": "sha256:56a778161eed692e576b03180665d1460f4ff6cb71889f04c0e6a97afcfe4935"
-            },
-            {
-              "path": "package.json",
-              "sha256": "sha256:3e5597f0734ea3aa9aadf6dd215327e9326f74a78e11046e49708d9fef34e67e"
-            },
-            {
-              "path": "src/agents/autoCategorize.ts",
-              "sha256": "sha256:e26617adef8064d4ef9e652e2cd0983447f9be498f7cb8613c65a8fd56121d06"
-            },
-            {
-              "path": "src/agents/categorizer.ts",
-              "sha256": "sha256:660968c56b867eee7e591ee676a8c5fc95584287684e857ddc00145b85d686bd"
-            },
-            {
-              "path": "src/agents/curriculum-planner.ts",
-              "sha256": "sha256:c40746f17938359760e53d4e63cf7533ef9d479987643dcff90ca78b1f9b5a11"
-            },
-            {
-              "path": "src/agents/editor-in-chief.ts",
-              "sha256": "sha256:8bc16f4f26108671b66a4ea15a68f98d1b0c9f56b3854a261028c29723706c6e"
-            },
-            {
-              "path": "src/agents/line-editor.ts",
-              "sha256": "sha256:40a5e9a555629781c838482d586be37b761761fa297b5231cbce15e5f39e179e"
-            },
-            {
-              "path": "src/agents/memorable-lines.ts",
-              "sha256": "sha256:afa3dba1167c4dc0c3ddbeb5b755a03b5db4a31f966dfa757bf70c515b6fe2c0"
-            },
-            {
-              "path": "src/agents/researcher-bibliography.ts",
-              "sha256": "sha256:89d8978efe57b8aaea78ca06a031b02536e33af73337061123f2f86515a006d2"
-            },
-            {
-              "path": "src/agents/researcher-chapter.ts",
-              "sha256": "sha256:b48d70e45b321cf89a4a4000a4fe6d9958bfeb381e2b442c610897504912d980"
-            },
-            {
-              "path": "src/agents/try-this-now.ts",
-              "sha256": "sha256:20eb07fc41f29be563d0dc71d9bb641e13a416d9a25be07353db90e2a77b67a4"
-            },
-            {
-              "path": "src/agents/voice-pass.ts",
-              "sha256": "sha256:25df81aab0f7629e56fa3df8cf518d055d231013cae37420bca0821ecbe53eec"
-            },
-            {
-              "path": "src/agents/writer-breakdown.ts",
-              "sha256": "sha256:3e5a3a583f1a68c45ce3761c1d6cc6035f19fd64d338441d7eeaf121274d1103"
-            },
-            {
-              "path": "src/agents/writer-cards.ts",
-              "sha256": "sha256:dd346934c6e9904d5df326f382541d4da83e3fe6e7d3d5a22cc2f13d6ddbfaa2"
-            },
-            {
-              "path": "src/agents/writer-example.ts",
-              "sha256": "sha256:71c3bf277c2e39b89d80cc6301d29edc06f1dfbbbac05717913af660e981b5d6"
-            },
-            {
-              "path": "src/agents/writer-hook.ts",
-              "sha256": "sha256:de44858619108d4d1cc40a2b7313e4818a6728c7c37f4eb9c09aa484dc70b584"
-            },
-            {
-              "path": "src/agents/writer-implementation-plan.ts",
-              "sha256": "sha256:7be5d5a99ac4880455d3bc9cc8dce9675679e88f650c173086ca57bcd4ca65a8"
-            },
-            {
-              "path": "src/agents/writer-quiz.ts",
-              "sha256": "sha256:ada84acae93e98de404aff6f8faba150d7f2e05b0c2cf11534e782eb338421be"
-            },
-            {
-              "path": "src/artifacts/artifactStore.ts",
-              "sha256": "sha256:402792925f8121f7a586ea6d1cf5d9a3fc9bf3659f2eaf54a7ee1d984b306abc"
-            },
-            {
-              "path": "src/artifacts/artifactTypes.ts",
-              "sha256": "sha256:81c0681116851f563a45d6ffaffea917914cbc3ab303a2ad57a58a51ea8a9d65"
-            },
-            {
-              "path": "src/assembler.ts",
-              "sha256": "sha256:3efb8aa46dc61c68143b1207b2ada644586ae029b375aeb2442798b696fde51b"
-            },
-            {
-              "path": "src/cache/stageCache.ts",
-              "sha256": "sha256:fc655ae2df40e5aec46b867f068f677195547f7f254cace247bcfb4d4b6bfe65"
-            },
-            {
-              "path": "src/claudeClient.ts",
-              "sha256": "sha256:df5a2664c49221e97000f8c19093f621f7a4005adf3ba02365d4f6d09bca4e07"
-            },
-            {
-              "path": "src/cli.ts",
-              "sha256": "sha256:ff7f1421073175afe3ad5af73fbde6db188594e115c888bb94ee3dac5a2cfcbb"
-            },
-            {
-              "path": "src/compiler/blueprintGate.ts",
-              "sha256": "sha256:c7d1baad92e14dd009b4079fcf36fbf64db2ad39f1650c00129731c1315aeacc"
-            },
-            {
-              "path": "src/compiler/chapterBlueprint.ts",
-              "sha256": "sha256:ce75a827b31e123181e12f4db25d7633c0d8ae1b4c4b65771e842cfb29b8ed96"
-            },
-            {
-              "path": "src/compiler/sourceNames.ts",
-              "sha256": "sha256:e3879560fe27d595fe4b6638348d043e3ee6203f6d013c5fbbd833dde4d487dd"
-            },
-            {
-              "path": "src/compiler/sourcePacket.ts",
-              "sha256": "sha256:0f13498b22b7ce42d1eaceb4af491a6c1426dff32ccfa13fb86bdb93003d04d8"
-            },
-            {
-              "path": "src/compiler/sourcePacketGate.ts",
-              "sha256": "sha256:b7587c04f90418c3f2ae4830e385516cd126f002075624041e513534a2f72682"
-            },
-            {
-              "path": "src/cost-tracker.ts",
-              "sha256": "sha256:33f2b394583d72dde731acf7a2ed624db78811a471216817c36d5d5dcc4a7339"
-            },
-            {
-              "path": "src/critics/antiSalting.ts",
-              "sha256": "sha256:c80540cbf5d5115f27443559298af0a8d8af743ee9331d17bbd3ed1bcbb0b0b1"
-            },
-            {
-              "path": "src/critics/authoringContract.ts",
-              "sha256": "sha256:5d32a94f53adca1058f8c596593e93e6573e7ec78e9c58684cacb5b021ca5fe5"
-            },
-            {
-              "path": "src/critics/bookGate.ts",
-              "sha256": "sha256:5c3ef00375679b2b59e3a0deb011494fec435cf6a81a8197a095d5975568aad3"
-            },
-            {
-              "path": "src/critics/bookPatternAudit.ts",
-              "sha256": "sha256:dc5aeaf6abb63eda1eec60c92ae409fe1434a6ca2cb97bb0103f07b4dc4f5a5c"
-            },
-            {
-              "path": "src/critics/bookRepetition.ts",
-              "sha256": "sha256:e0a01800de712962d60ea05d6cf5a06466e38839635a8f5443efd5c482cff838"
-            },
-            {
-              "path": "src/critics/catalogAudit.ts",
-              "sha256": "sha256:553bd8e397cab5faf9e0381bb807d3f95212a85a56fdd7774539b14f4c572a42"
-            },
-            {
-              "path": "src/critics/crossBookSignatureAudit.ts",
-              "sha256": "sha256:0c7f8ea7d9d9888d49ba7e0db0e8eb6ae0e25670257dd4a223f0ca0f574a3edb"
-            },
-            {
-              "path": "src/critics/evidenceIntegrity.ts",
-              "sha256": "sha256:768dbd54c11466714e2de56d873c37d269df1d65eeff1ab5ac92b97b0070ab6a"
-            },
-            {
-              "path": "src/critics/evidenceWitness.ts",
-              "sha256": "sha256:7528811aae991587ed2e9fe7ecf3f1682bafb832bdc0d9a8e1dc2e55be4e5264"
-            },
-            {
-              "path": "src/critics/experiencePlan.ts",
-              "sha256": "sha256:7fea5a2fceb2721b9b619fcec4d98992ab09b78cfe9529e2c73b66a87c17e4e5"
-            },
-            {
-              "path": "src/critics/finalGate.ts",
-              "sha256": "sha256:15d7c6faf1d273558272b1b69b8a6fea2e3ff6c358e0dada891d8feebebb97aa"
-            },
-            {
-              "path": "src/critics/groundedNumbers.ts",
-              "sha256": "sha256:27a6e3f190061fc41c3f2a684cd33b803dd3f5de5acabb5cac88f0bad34a22d3"
-            },
-            {
-              "path": "src/critics/integrity.ts",
-              "sha256": "sha256:b2aff233555a5ec5afdeec00cb31bd537facfcd3a1189ac0ac33c17201e989a1"
-            },
-            {
-              "path": "src/critics/intraBook.ts",
-              "sha256": "sha256:d01ee51b61bdcb3a91ab837ec2074a43d5c957c6f6f1b71aa86625dec3ba3d8d"
-            },
-            {
-              "path": "src/critics/intraBookFieldSimilarity.ts",
-              "sha256": "sha256:bc45858ccc90bf6e3168d8e97cafd3bf81f802b79a2ca093dca176f70d2fc12a"
-            },
-            {
-              "path": "src/critics/intraBookQuizSimilarity.ts",
-              "sha256": "sha256:69d5ecbd0539a723291ff79d41ab47cf43520a4981deb85148c70866262e40b8"
-            },
-            {
-              "path": "src/critics/majorPolicy.ts",
-              "sha256": "sha256:dc5ece7b08ab595e442384ee4c3398f6582ba5561469cf3bf7a7d51e400d7017"
-            },
-            {
-              "path": "src/critics/mechanicalSeam.ts",
-              "sha256": "sha256:4250e762e74b53cefa554e965d3a4757cd305d54657c8718ee77bad00a57fbc3"
-            },
-            {
-              "path": "src/critics/misattribution.ts",
-              "sha256": "sha256:c57e9e161cff57b90ca98b4db6c895a544ecdbca17f2492854133c6e0ff55538"
-            },
-            {
-              "path": "src/critics/namedEnumeration.ts",
-              "sha256": "sha256:0a79617f048ee485589ca0e8c86940e861a551b9692b4ff24aa6de8f1eb1b116"
-            },
-            {
-              "path": "src/critics/narrative.ts",
-              "sha256": "sha256:dd37c62f7e9966f0e158515a622367c4a43d798f297f310d74212a1dbec2ffea"
-            },
-            {
-              "path": "src/critics/outcomeVariety.ts",
-              "sha256": "sha256:41599d101bd1bf8b3bddca2ed633f7df549be2cd61a47560f4a93c79a2f24288"
-            },
-            {
-              "path": "src/critics/pedagogy.ts",
-              "sha256": "sha256:060e0f223385126089e6bc2c6469596f572527acb675446dd5e544fff2f971bf"
-            },
-            {
-              "path": "src/critics/plainLanguage.ts",
-              "sha256": "sha256:6164ed5dd743a0e46cf1576087829daac2bd33a3498e1b52dacd8249110855cf"
-            },
-            {
-              "path": "src/critics/prose.ts",
-              "sha256": "sha256:1e824372385ba368d3697252d8f80ce6230a8c29a16cf8b0c86cb8a3d2adaec5"
-            },
-            {
-              "path": "src/critics/qcAttestation.ts",
-              "sha256": "sha256:d27fca01c676f0d96d96cd7c567e54b1bdc9cbca377228e6d4bc358fb628bd1e"
-            },
-            {
-              "path": "src/critics/quizCorrectness.ts",
-              "sha256": "sha256:8f789f09ad25ca27edef9e27c9df2891f95ec92c78a2a53c23217fdd3b2874f9"
-            },
-            {
-              "path": "src/critics/quizKeyGate.ts",
-              "sha256": "sha256:7c3545d5600f649574fecb1c8d390e72984ca98adbc2ef99e859951c802cc99f"
-            },
-            {
-              "path": "src/critics/quizQuality.ts",
-              "sha256": "sha256:0dfbc5065a78447164339b0875dd8888e79e09d55725eccceb3fce868d792647"
-            },
-            {
-              "path": "src/critics/readingLevel.ts",
-              "sha256": "sha256:a3c1b5fa9aaa1c56c1d5e950ce50e37818ea0d1c832a1c11e4721f18f44dcc40"
-            },
-            {
-              "path": "src/critics/register.ts",
-              "sha256": "sha256:95079ac31bb92ebe2477eb36595ca68ec7293f76a9fae5bfd31567e83ff6e0d6"
-            },
-            {
-              "path": "src/critics/runAllCritics.ts",
-              "sha256": "sha256:fd473ae74bbc6041199ed42d9a766a53dedd1fa02ffc45b92831abbfd1a8212b"
-            },
-            {
-              "path": "src/critics/scaffoldLeak.ts",
-              "sha256": "sha256:f933c7ea7bfe525bc6c70aa1213ba1da29280f20a492cdf2a2f27c1ae7d3acb2"
-            },
-            {
-              "path": "src/critics/sceneConcreteness.ts",
-              "sha256": "sha256:1554a233d6d128b424b3cf8f96d763ca85e60c321c96a7c186e9aba5c1d58a20"
-            },
-            {
-              "path": "src/critics/schema.ts",
-              "sha256": "sha256:27e0908090aa280845cb2b3610e295eac388721def1b5840040c48d2a7bed00c"
-            },
-            {
-              "path": "src/critics/semantic/publishableBar.ts",
-              "sha256": "sha256:dffa25d816df2c912e4f1621b953d4b426a689b36785b87b0a9f030ff3e7e851"
-            },
-            {
-              "path": "src/critics/semantic/quizKeyJudge.ts",
-              "sha256": "sha256:a6088b283c8e1065c71b936da16564548094a1f2bfc89fb10db5b24db9234cd6"
-            },
-            {
-              "path": "src/critics/shared.ts",
-              "sha256": "sha256:dffbede8ba6fbcada941343e1f4c6d1a4caaaf9efa448d0508df61dfec36fbb9"
-            },
-            {
-              "path": "src/critics/sourceCoherence.ts",
-              "sha256": "sha256:bd7bb198769be3be204c9694b8c4df7259480c27c0230db7982592176ec5a95f"
-            },
-            {
-              "path": "src/critics/sourceGrounding.ts",
-              "sha256": "sha256:1162ca33c2da496671f53dfdd8866a6cdb7d40338e09ea4ecbc382f054cec52c"
-            },
-            {
-              "path": "src/critics/sourceRealness.ts",
-              "sha256": "sha256:e945e5d2b30e5649cf6469e1b6c8ee70c1affe12a50a263030f17e78c660d380"
-            },
-            {
-              "path": "src/critics/sourceVerify.ts",
-              "sha256": "sha256:0f00e8ce881f514c7ab114eba6dbfd6138a944eef9f3cecfec759188de501cb8"
-            },
-            {
-              "path": "src/critics/supportSectionAudit.ts",
-              "sha256": "sha256:b55b1f501f632d5c4f60a611e99369f77d60eabec079cab8909cc572e05b4730"
-            },
-            {
-              "path": "src/critics/textUtils.ts",
-              "sha256": "sha256:b39890a8535051f286301b9fa72e2940cb6a0f6bdd225002882351cd0e99d180"
-            },
-            {
-              "path": "src/curator/exampleSelector.ts",
-              "sha256": "sha256:c474bfecf379f7398a17260c7d88038629fa2ab7ef57fa1841f1e4d4ac770a1b"
-            },
-            {
-              "path": "src/diagnose.ts",
-              "sha256": "sha256:20506a4da04b28d05317924af66e86971b0fca0522af30aa51e54baa67e30f80"
-            },
-            {
-              "path": "src/evidence/evidenceGate.ts",
-              "sha256": "sha256:00fa620a509a9ce05edeeec2a69aea5f21e809ac30b143fe14672a519c7ac4f7"
-            },
-            {
-              "path": "src/evidence/evidenceMap.ts",
-              "sha256": "sha256:5e64ec24fd8721969048f580628d5fdcef6fc23a5bd59f1e4faf077f24c48b0c"
-            },
-            {
-              "path": "src/generateBook.ts",
-              "sha256": "sha256:3dcece86c246f4621e5ccae33997e953cc68c2061ee1560d99c02e355bd90375"
-            },
-            {
-              "path": "src/generateChapter.ts",
-              "sha256": "sha256:09b742ba64c56af5178c13076bcb497a8c34ddd3ad9fb9dd2f32a8f0a720918b"
-            },
-            {
-              "path": "src/generationDegradation.ts",
-              "sha256": "sha256:737f8dc7d7f415709b1111beccf30552bb2530372e930d28a873d17a8b5af7a6"
-            },
-            {
-              "path": "src/lib/atomicWrite.ts",
-              "sha256": "sha256:cd4a80010b539604e8aff522d47ad6aed3cafba7a48193e5b92b0159aab79c3a"
-            },
-            {
-              "path": "src/lib/brief-sanitizer.ts",
-              "sha256": "sha256:9a57da614a3129c0d787f7528380b85a304d86943a2f757383fb4411eae343dc"
-            },
-            {
-              "path": "src/lib/canonicalJson.ts",
-              "sha256": "sha256:9ad6c9a4fc8ff24318f757ef157b91413071cc0bd84ef557b896464c1138512b"
-            },
-            {
-              "path": "src/lib/chapterPaths.ts",
-              "sha256": "sha256:92a967ddd44f995d24dee7439f1925b4ae02e6c1248153bd50fbaac32a9ae0fd"
-            },
-            {
-              "path": "src/lib/chapterSet.ts",
-              "sha256": "sha256:5d8bc25303a34830cc7d76bb90a4a4c1a71444fef55679493f3c2dbd3c65ba4f"
-            },
-            {
-              "path": "src/lib/coprime.ts",
-              "sha256": "sha256:1a9654e7c3284b4ecfeef9988b785263bd2270d8af7c2dc4ec5c7353d470600d"
-            },
-            {
-              "path": "src/lib/fnv1a.ts",
-              "sha256": "sha256:61016dec458c076d322e720e22e92dc4aa37028f789dda46e6d7515f044d2ab7"
-            },
-            {
-              "path": "src/lib/pipelineFingerprint.ts",
-              "sha256": "sha256:0554bcba0938fc754c25c18ad0c05a3f73800bafe1642481cfaa7c80b2cec54f"
-            },
-            {
-              "path": "src/lib/readerContent.ts",
-              "sha256": "sha256:e2b15b8bfd4d5a267e2bb1b3ff960d68a2fc2eceefa27e2b2bc75eaa53fa5de7"
-            },
-            {
-              "path": "src/lib/researchRunManifest.ts",
-              "sha256": "sha256:334eebac804ba1e7a1460a27861109d44589a2bd37cae9b880a06231ccfb4e8e"
-            },
-            {
-              "path": "src/lib/runDirs.ts",
-              "sha256": "sha256:75314e23045e1d701d7b185a60b948f3205159b62e80c97793b02ba3f69ac413"
-            },
-            {
-              "path": "src/lib/strictEnv.ts",
-              "sha256": "sha256:514d00911774ac075c92cba4580431186b4b34abdda3f43229210ae8436e76f5"
-            },
-            {
-              "path": "src/lib/tocContract.ts",
-              "sha256": "sha256:53c68b2c5e376f52e2c0f4507113c628037b41ceffae25d59fe3203d17948be8"
-            },
-            {
-              "path": "src/lib/voiceBible.ts",
-              "sha256": "sha256:2339dc3c959290788f091d3bf6efc817a73ac33b1df8cec06208a561fd12b109"
-            },
-            {
-              "path": "src/librarian/actionMechanismPlan.ts",
-              "sha256": "sha256:efe3a3c449b927e8f6c0d714b5703c143d45dac9fc1005bbf080a0fd81a86cef"
-            },
-            {
-              "path": "src/librarian/answerKeyPlan.ts",
-              "sha256": "sha256:00270cf59e9e4e5ff9fc1d66870f3725bf4ccad9b165530d3cb1b6b83d9f09a0"
-            },
-            {
-              "path": "src/librarian/authoringGuardrails.ts",
-              "sha256": "sha256:70cdfdeaba022ac7240902854d02b55d729c0bb74a1c2ecb70e9032f29e16c17"
-            },
-            {
-              "path": "src/librarian/callbackPlan.ts",
-              "sha256": "sha256:35fb7a7f106ab2b354725246074440faeae1fcaebb34b34ef78b55a691e09127"
-            },
-            {
-              "path": "src/librarian/chapterArchetypePlan.ts",
-              "sha256": "sha256:40343341c3a53981d043386615a680dd664a6de1f048747d699ed09df854c246"
-            },
-            {
-              "path": "src/librarian/exemplarPlan.ts",
-              "sha256": "sha256:4a290fff74cdb3b1d0ec9bbad58520a2f098e85005ecf42cc5d3bd67f45f2828"
-            },
-            {
-              "path": "src/librarian/fullReadSkeletonPlan.ts",
-              "sha256": "sha256:40c5d9e0543f8e235048e457c38782b511156d7927786c6a60f9a8b081e12ae8"
-            },
-            {
-              "path": "src/librarian/identityMigration.ts",
-              "sha256": "sha256:cff83c7238de233d4db7f4365ef8ab1c930a55b79f387c7a495965ca2bf72499"
-            },
-            {
-              "path": "src/librarian/libraryState.ts",
-              "sha256": "sha256:2f3970ffe0c85385ee86cc8a287bb26941f32547b28608451f72391346408c0a"
-            },
-            {
-              "path": "src/librarian/namePlan.ts",
-              "sha256": "sha256:bb9799027cbbd96211ab1949515b848373e9c2df493139202283494de6636b0a"
-            },
-            {
-              "path": "src/librarian/namePolicy.ts",
-              "sha256": "sha256:093bfc0933d10eadaeb1ef7d0bdfc4657ca004ee19a4114c441f41d46afdf1b6"
-            },
-            {
-              "path": "src/librarian/openerPlan.ts",
-              "sha256": "sha256:95345b5ddd4574f58d5d8ec215382529543694e0b250bad83f160d82ef5fa56a"
-            },
-            {
-              "path": "src/librarian/pedagogyPlan.ts",
-              "sha256": "sha256:958d6a675678ca723cba38c41cc8766d386d4c90a5f92f952a81c9b7ae0285c8"
-            },
-            {
-              "path": "src/librarian/rhetoricPlan.ts",
-              "sha256": "sha256:8d187af79f123d697e282aeb9820106aaebbf85c5fe4b7ee6835f803c41bfdea"
-            },
-            {
-              "path": "src/librarian/saturationGuard.ts",
-              "sha256": "sha256:1c566953d135c227e329a73bd5a6dcfd9a8b311704182bb57a80287ea2090107"
-            },
-            {
-              "path": "src/librarian/sceneMechanismPlan.ts",
-              "sha256": "sha256:18b2ced6ab7dc7b724548b567aea483dbbcdf077c2bbc07d14189f3faa623dd6"
-            },
-            {
-              "path": "src/librarian/sceneModePlan.ts",
-              "sha256": "sha256:acccfc0fe8ed936e6410d7e6d5d16eec70a3ca8a8dd86690078298279c683cd4"
-            },
-            {
-              "path": "src/librarian/shapePlan.ts",
-              "sha256": "sha256:2a2e39775eee5b77354160550e9a6e7c42b711bf7ac306d9c75af4b7733d86a4"
-            },
-            {
-              "path": "src/librarian/sourceSidecars.ts",
-              "sha256": "sha256:1dae1957a4001d709aa73a95c132645b5bcc0ef945c618aa96cd17121545116d"
-            },
-            {
-              "path": "src/librarian/stakesPlan.ts",
-              "sha256": "sha256:9e7c3325dd0dbe2e09e95867b56ca6d11a6a7a1010d183d415a5823fadb39f46"
-            },
-            {
-              "path": "src/librarian/timingPlan.ts",
-              "sha256": "sha256:1a65c956cf1d261fc3b8286a61b865a943ad0cae2aa92fa307f8b7bd7a46c0f8"
-            },
-            {
-              "path": "src/librarian/venuePlan.ts",
-              "sha256": "sha256:ce859090d5e69410cc7a345969d710cc99f52f26ddd7961ff21ade0e97e84c3d"
-            },
-            {
-              "path": "src/librarian/weeklyPracticePlan.ts",
-              "sha256": "sha256:e95803dd4d01ba07e27f29781d0246c121ab14b8ac29ee712dddce8ec0b85be5"
-            },
-            {
-              "path": "src/lifecycle/bookStatus.ts",
-              "sha256": "sha256:0d997c88ae0d39da11c4eec25f0d7d23a8fd688418cc7087dd665a07d63a3de8"
-            },
-            {
-              "path": "src/lifecycle/doctor.ts",
-              "sha256": "sha256:74400685405537019d8f1c4e1d2f2178933bb12f887af28f076a82ca996d50a2"
-            },
-            {
-              "path": "src/next-task.ts",
-              "sha256": "sha256:2a75ed46296323963d5ffb075c5bdc21788a56045ce91cf916222795f6f81ed6"
-            },
-            {
-              "path": "src/optimizers/exampleScorer.ts",
-              "sha256": "sha256:d313e3d658c639c9d99374289e3880a192b99fd8504f5f260c7804a7bcbd3127"
-            },
-            {
-              "path": "src/optimizers/memorableLines.ts",
-              "sha256": "sha256:068ca499fd2233ceda9c423143a278c18664a5f920d53cc77fc2e7ead8d95f3f"
-            },
-            {
-              "path": "src/optimizers/proseRisk.ts",
-              "sha256": "sha256:29b749e42afa54803304eb46ceb61e4c1b117ed422b975ca3803f49a3e9b0bca"
-            },
-            {
-              "path": "src/orchestrator/autopilot.ts",
-              "sha256": "sha256:86b2f67e756cfea2866a8998bab645a98beff018fa19e41602526a728eec41cd"
-            },
-            {
-              "path": "src/orchestrator/codexAgent.ts",
-              "sha256": "sha256:61d65771db3574dd0b22238527f1764569339579efe95b12664f3830a4df34e4"
-            },
-            {
-              "path": "src/orchestrator/compilerRun.ts",
-              "sha256": "sha256:bb019dc6289951a6dcb9015f3380d0845fdfc4fa4f48cfb17283d0594abc2f92"
-            },
-            {
-              "path": "src/orchestrator/compilerTasks.ts",
-              "sha256": "sha256:aaace5fe7c2330741336b64f8cb7f9f47e4faac8e15e24d125e47237b09f6c16"
-            },
-            {
-              "path": "src/orchestrator/liveRun.ts",
-              "sha256": "sha256:b50c6b6880050208997a308ac0cdbc6ea199f0e0798906118e7c2080e8d005b1"
-            },
-            {
-              "path": "src/orchestrator/optimizedPipeline.ts",
-              "sha256": "sha256:b815696150879ae6f55e4cdb5a640e4b8c78b738b8873368b1436785127fbe7e"
-            },
-            {
-              "path": "src/policy/runPolicy.ts",
-              "sha256": "sha256:602373600332820b732fddbc9184674df50d75b11a1244d2f6be18fc485449bb"
-            },
-            {
-              "path": "src/productionManifest.ts",
-              "sha256": "sha256:e33fdd7c1d4b0b7955d891b09d130c65b5a5787f4a08f77da4c3914b29defcaa"
-            },
-            {
-              "path": "src/promoteBook.ts",
-              "sha256": "sha256:35b81f0e126914dd12d6cd22939cdfba057c2a1b1bf10642e298c3746abd8d18"
-            },
-            {
-              "path": "src/providers/anthropic-api.ts",
-              "sha256": "sha256:3cec61a5121f33ade6ad718af52f8b53a24751ef17a9501a6f79b65e8a346c84"
-            },
-            {
-              "path": "src/providers/cli.ts",
-              "sha256": "sha256:effebe17bc488d0140b85613c536a09d2064884984ca8e599cd3e311656c66cf"
-            },
-            {
-              "path": "src/providers/openai-api.ts",
-              "sha256": "sha256:771063a3e9668792a801acc955563ab1a35db5b6891d91b9702686ce31c2a6a3"
-            },
-            {
-              "path": "src/providers/router.ts",
-              "sha256": "sha256:577da2d691ea0b951e1d9fe4e1784e33c2fd65fb84664a474f8d43dd8ba1bbc2"
-            },
-            {
-              "path": "src/providers/types.ts",
-              "sha256": "sha256:020a22ec2d5a88aed395ee4d16b589cde55bcf239dbaa11a4977cfc1a48af1d4"
-            },
-            {
-              "path": "src/qc/auto/driver.ts",
-              "sha256": "sha256:86d7cce9a5a0964992d112ef70851f300a29dd5177234825e7c164a23a59a2a9"
-            },
-            {
-              "path": "src/qc/auto/generateWorkflow.ts",
-              "sha256": "sha256:03129563c77f56e1d3948d97af118dbbcfba345a04fd31e9997382888da3f9df"
-            },
-            {
-              "path": "src/qc/auto/resolveBook.ts",
-              "sha256": "sha256:dbd2edeb4dc80fccec35acadc31a0d483a6a1e9fa11cfbc4ff3a494786479c8b"
-            },
-            {
-              "path": "src/qc/barReview.ts",
-              "sha256": "sha256:30fb57305a3dfe17bc2ac94e66491e854bcc0f752d2358756ab8a9142d17ca5b"
-            },
-            {
-              "path": "src/qc/majorDisposition.ts",
-              "sha256": "sha256:7c4436a097a9c486473d7d4e54cefbc6bfd27e86a952b54bcf677ad31a0187d7"
-            },
-            {
-              "path": "src/qc/manualKeyJudge.ts",
-              "sha256": "sha256:332ad29d4a797e405516342e5bb3f5210181286bf3c2a4d5876afaebbe53140e"
-            },
-            {
-              "path": "src/qc/metrics.ts",
-              "sha256": "sha256:de46f137669ab02836e2c30adcb8cd8b9e0e7c859f4dd266aee0fb25674176bd"
-            },
-            {
-              "path": "src/qc/noApiMode.ts",
-              "sha256": "sha256:7611d7a8b3a871e3b817398019101b9572e479a2e315927eb3088d14a2abab33"
-            },
-            {
-              "path": "src/qc/normalizeProvenance.ts",
-              "sha256": "sha256:80ef80dc911181d9a7598967b57c46ef6c62ad8029c72fac680957de02ec2ea7"
-            },
-            {
-              "path": "src/qc/orchestrator/artifacts.ts",
-              "sha256": "sha256:8b7e0e1c10a9a7f5ab7d6bc2f5485a923b3a3fd26deb93fe57e50f9055851ee3"
-            },
-            {
-              "path": "src/qc/orchestrator/deterministicGate.ts",
-              "sha256": "sha256:eab5f1e32c3e99c31ddd799fe40328f385cf9633daa1bcc10612a34f8bb8c82c"
-            },
-            {
-              "path": "src/qc/orchestrator/diagnose.ts",
-              "sha256": "sha256:bf44afcf7b0cc9dd801b79073ad1eb00cbf47fbdcca9f6f33ef24dc59f709f90"
-            },
-            {
-              "path": "src/qc/orchestrator/evidenceSource.ts",
-              "sha256": "sha256:25d18eb067698ca2ca105ef00aeff709fe25e2bff397e67b5041ee163c950cbd"
-            },
-            {
-              "path": "src/qc/orchestrator/finalize.ts",
-              "sha256": "sha256:f4dddd42c9f9b2311a9a0c45c4912b789bd5d9bb7dcbba16a73357d4ed98fc19"
-            },
-            {
-              "path": "src/qc/orchestrator/finalizerFindings.ts",
-              "sha256": "sha256:58192b3a433be92c5c6b8f1113155e557f53c465a3f1eb71bb246458e3e78d9b"
-            },
-            {
-              "path": "src/qc/orchestrator/findingGrouping.ts",
-              "sha256": "sha256:0c620ea901027fbe85c4804545f1d7ba4f2f814ed161999531f65b9ee6f6daca"
-            },
-            {
-              "path": "src/qc/orchestrator/findingValidity.ts",
-              "sha256": "sha256:fc940f4f36a298eb1d5124f131cb480f6c3897bbf7814ad423cb8aaf8d728dce"
-            },
-            {
-              "path": "src/qc/orchestrator/index.ts",
-              "sha256": "sha256:927e34573354ced20f5319ae8ee9786c6a2710eae99116ce62d2535120dec9c8"
-            },
-            {
-              "path": "src/qc/orchestrator/ledger.ts",
-              "sha256": "sha256:2fd780c49316742ac5ae470458ae2553c378c6b20004139801de5963c1681646"
-            },
-            {
-              "path": "src/qc/orchestrator/repairBrief.ts",
-              "sha256": "sha256:0a3aea7d0f0d96a45a85b733d54126a41389b7753e23cdfdf7f28d2bcc7c629a"
-            },
-            {
-              "path": "src/qc/orchestrator/reviewPacket.ts",
-              "sha256": "sha256:731862ccc59ea6b50fc32dadc0298e6ae26751b2b1669f5eacb0c362a2e06275"
-            },
-            {
-              "path": "src/qc/orchestrator/schemas.ts",
-              "sha256": "sha256:1f0ab31ab21b24bb346771d8fdb2fc9e3baae094d7b46aa5e66583aff6b282f1"
-            },
-            {
-              "path": "src/qc/orchestrator/submissionSchemas.ts",
-              "sha256": "sha256:4eec9c0805948b68c8e972027b663850046055e4944a7d4f0a52670491a517e3"
-            },
-            {
-              "path": "src/qc/orchestrator/transaction.ts",
-              "sha256": "sha256:7c85843ec65993ef8424aa1622e6c4424c830a903751c104187a704d5e490e7c"
-            },
-            {
-              "path": "src/qc/planEnforcement.ts",
-              "sha256": "sha256:5b0f5453b25c5b8f2ef992ec5fa958528049b3109af71d2c0987a79d3d2c0adf"
-            },
-            {
-              "path": "src/qc/pruneBookState.ts",
-              "sha256": "sha256:7e1d0c19b3d260f2ab635a2260267bb0ea20379c675b5bdf3aeb6d7f08f3ce19"
-            },
-            {
-              "path": "src/qc/publishAfterQc.ts",
-              "sha256": "sha256:36e678b955068f664f8366bdc3e6080afdfbb375615c49703886778b2019330b"
-            },
-            {
-              "path": "src/qc/qcRound.ts",
-              "sha256": "sha256:b766a2039eeed5b9b6f307196077f478176324728049fa21298509231e3aa6f7"
-            },
-            {
-              "path": "src/qc/reviewerId.ts",
-              "sha256": "sha256:66a2a171274c60c1026f7ca0a833cfb90abd8337ae524310f376554158274be6"
-            },
-            {
-              "path": "src/qc/sessionProvenance.ts",
-              "sha256": "sha256:cef606939303caac05da7ef1d0e74fabb722595d5b7ec8e85187c798ba2e99fe"
-            },
-            {
-              "path": "src/qc/sourceRealityPolicy.ts",
-              "sha256": "sha256:af0a3c65893b83a8e0e9fb0ca05b4579e01a8f263e8ce1c80389726fdeee8fef"
-            },
-            {
-              "path": "src/qc/sourceV2Gate.ts",
-              "sha256": "sha256:8eb117b973078ceb7a1961bf43a3967fc953053c438a1da8b601bf1728fd3783"
-            },
-            {
-              "path": "src/qc/sweep.ts",
-              "sha256": "sha256:862bbfa4513e6a95cb2626108b27152afdcc9e908798c87d825fcca81b82e599"
-            },
-            {
-              "path": "src/repair/selfHealingRepair.ts",
-              "sha256": "sha256:ea8f70c354c9892f2549593addfe8f0de3c5ccaeb2b03c63818f583e9549ebd3"
-            },
-            {
-              "path": "src/researcher.ts",
-              "sha256": "sha256:8c863137b94f4b41a8428e30596d80587f3fad65872734783d4508636ea2e2d5"
-            },
-            {
-              "path": "src/risk/chapterRisk.ts",
-              "sha256": "sha256:16fbbb6373b9f3a20ef332e6d87b07ec657f6f3a697ec3263d61ecd553ed65cf"
-            },
-            {
-              "path": "src/roles.ts",
-              "sha256": "sha256:84f43032fdedd04a164b4ffd52d780d508f6616a51023e0b7f7478ff3f7be703"
-            },
-            {
-              "path": "src/runbook.ts",
-              "sha256": "sha256:79b1bda5e43d511e031fea90969f2b046662fce252b849c101c744ffdf69ca24"
-            },
-            {
-              "path": "src/runtimeSchemas.ts",
-              "sha256": "sha256:53413931dc3525de0690a28ffaebf451b82288d5ad1ae191e722ba330be1014d"
-            },
-            {
-              "path": "src/sections/assembleSections.ts",
-              "sha256": "sha256:6589f22658354274aeb36fd9de6c376cf1f15b45e5a96b5d067961351a336d3f"
-            },
-            {
-              "path": "src/sections/sectionGate.ts",
-              "sha256": "sha256:d50a9af4e63abc3557a3e89542e30489a61e723d86d12fc1d50b2512b0969bc8"
-            },
-            {
-              "path": "src/sections/sectionTasks.ts",
-              "sha256": "sha256:548787560fe48b125d0c4b16bfadaffb535d613be633eda18fa382edcb0e76be"
-            },
-            {
-              "path": "src/source-loader.ts",
-              "sha256": "sha256:6426a423be31ec46b62d4f093fff966700ab1cf192eeee722087c608f4f221d2"
-            },
-            {
-              "path": "src/source/sidecarSchema.ts",
-              "sha256": "sha256:a9dc986303168705d894e879c09a64a3e04def99b3294a552cb3ec1f948b95df"
-            },
-            {
-              "path": "src/source/sourceEvidence.ts",
-              "sha256": "sha256:93a27fc9ded4e367da5b40cd806c157d5b5c93a3731bf667aca9c13ba01ac979"
-            },
-            {
-              "path": "src/source/sourceIntegrity.ts",
-              "sha256": "sha256:24082375a4d034724364654adfe785c0c7ea3b2dc4604295b24db5ba90d871c7"
-            },
-            {
-              "path": "src/sourceFit.ts",
-              "sha256": "sha256:78b4bd09ec28927180d124a71076c65daaca983d6d46ef07e80323ea842f32d9"
-            },
-            {
-              "path": "src/sourceVerifyWorkbench.ts",
-              "sha256": "sha256:e360b13af33943ef8b33583b3ae2a4651c750d16d16f49886610af075407c078"
-            },
-            {
-              "path": "src/types.ts",
-              "sha256": "sha256:1aa79a880141ca3f39a522c733149ed4007851dedda3fb2ded6bf0d7a7bdf62e"
-            },
-            {
-              "path": "src/verifyProductionPackage.ts",
-              "sha256": "sha256:91eef894c0b8165c3da951fc58c67fb72a9a3f51442d9ea73f723a34955c55be"
-            }
-          ]
-        },
-        "labels": {
-          "promptSet": "chapterflow-v21-authored-prompts-v1",
-          "config": "chapterflow-v21-authored-config-v1",
-          "code": "chapterflow-v21-authored-production-package-v1"
-        }
-      }
-    },
-    "metadata": {
-      "createdAt": "2026-06-30T13:53:39.372Z",
-      "generator": "promoteBook",
-      "runId": "manual-promote",
-      "packagePath": "book-packages/the-intelligent-investor.v21.json"
-    }
-  },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch01",
       "number": 1,
       "title": "Investment versus Speculation: Results to Be Expected by the Intelligent Investor",
@@ -1865,8 +123,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A purchase earns the investment label only when analysis, principal protection, and adequate return are all present; a respected issuer can still be bought speculatively.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1878,8 +135,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Defensive and enterprising approaches are divided by time, temperament, and disciplined effort, not wealth alone or raw risk appetite.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1891,8 +147,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Common stocks can fit conservative investing only when price and diversification standards buffer their fluctuations.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1904,8 +159,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Speculation is not forbidden; the danger is disguised speculation mixing with investment funds and mindset.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1917,8 +171,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Market popularity is a weak substitute for valuation because prices can rise faster than underlying earning power improves.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1930,8 +183,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Adequate return is intentionally modest: the test favors a satisfactory result protected by capital discipline over spectacular forecasts.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1943,8 +195,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The investment/speculation distinction responded to real capital losses and bad promotion exposed by the Depression.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1956,8 +207,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Temperament can matter as much as technique because a formula must still be followed when prices become uncomfortable.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1969,8 +219,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A security category does not settle the classification; the analytical or speculative terms of the operation do.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2019,7 +268,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Audit Investment Before Risk",
         "coreSkill": "Use a short audit before treating any security purchase as investment. The skill is to require analysis, principal protection, and adequate return together, then match the effort level to defensive or enterprising behavior instead of using risk appetite as proof of discipline.",
         "ifThenPlans": [
           {
@@ -2040,24 +288,17 @@
       },
       "memorableLines": [
         {
-          "text": "Speculation still has a place, but only when it is named and contained.",
-          "location": "breakdown.fullRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Speculation still has a place, but only when it is named and contained."
         },
         {
-          "text": "A small side bet can exist, but keep it outside the main account.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "A small side bet can exist, but keep it outside the main account."
         },
         {
-          "text": "A rising price may show votes, not value.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "A rising price may show votes, not value."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch02",
       "number": 2,
       "title": "The Investor and Inflation",
@@ -2158,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Nominal repayment can hide a real loss. Inflation damages fixed-dollar wealth when the Consumer Price Index rises because the dollars returned buy less.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2171,8 +411,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Common stocks can suffer during inflationary valuation resets. Earnings and dividends may lag costs while market multiples contract.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2184,8 +423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Credit safety does not remove purchasing-power risk. Fixed coupons can lose real value as the price level rises.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2197,8 +435,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Inflation-linked government securities are different because principal or interest terms adjust with official inflation measures. Most nominal bonds pay fixed dollars.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2210,8 +447,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Gold may respond to inflation fear, but it produces no operating earnings. A non-earning asset can still be overpaid for.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2223,8 +459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Real estate can hedge inflation only when price, financing, and income terms are favorable. Property cash flows and debt costs decide the actual result.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2236,8 +471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Tax effects matter when comparing inflation protection. Inflation and taxes can jointly consume nominal return, so pretax yield can misstate real yield.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2249,8 +483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The 1970s inflation problem made purchasing power central because U.S. price-level increases exposed the weakness of fixed nominal claims.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2262,8 +495,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A balanced policy reduces dependence on one macro forecast. Forecast dependence can create concentrated error when inflation surprises investors.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2312,7 +544,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Calendar Trigger Inflation Checks",
         "coreSkill": "Use a calendar trigger to separate nominal safety from purchasing-power safety before you accept a default choice. The checklist is simple: fixed-dollar claims can repay principal while losing purchasing power, stocks can fail as an automatic inflation hedge, and bonds can carry inflation risk even when credit risk is low.",
         "ifThenPlans": [
           {
@@ -2333,24 +564,17 @@
       },
       "memorableLines": [
         {
-          "text": "When the Consumer Price Index rises, each dollar buys less.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "When the Consumer Price Index rises, each dollar buys less."
         },
         {
-          "text": "Gold may rise when people fear inflation, but it has no earnings.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Gold may rise when people fear inflation, but it has no earnings."
         },
         {
-          "text": "If that happens, stock ownership can suffer even while inflation is high.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "If that happens, stock ownership can suffer even while inflation is high."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch03",
       "number": 3,
       "title": "A Century of Stock-Market History: The Level of Stock Prices in Early 1972",
@@ -2451,8 +675,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The right move is to judge price against both a denominator and an alternative yield. A single price level can look persuasive while the combined expected return remains only mediocre.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2464,8 +687,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Dividend yield is a visible part of expected stock return. Ignoring it makes the return estimate too narrow because cash distributions can contribute even when price appreciation is uncertain.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2477,8 +699,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Earnings yield connects valuation to business profits by asking how much profit the buyer receives per dollar paid. Growth can be real and still be overcapitalized into the price.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2490,8 +711,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Bond yields create an opportunity cost for stock buyers. When bond yields are higher, the price a buyer should pay for uncertain equity returns can fall.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -2503,8 +723,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A century-long series reduces dependence on one recent boom or bust. Multiple cycles help reveal how unusual current valuations may be compared with a wider range of conditions.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2516,8 +735,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Long-run return statistics can include periods when quoted values fell sharply. A favorable average does not remove drawdown risk for someone who must live through the sequence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2529,8 +747,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The warning is not that good conditions are irrelevant. It is that extrapolating a prosperous period into high prices can leave weak returns because price paid still governs the outcome.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2542,8 +759,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Inflation changes the meaning of nominal market history. Real returns require adjusting for the fact that dollars from different decades do not have equal purchasing power.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2555,8 +771,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Historical tables discipline narrative forecasting by forcing future claims back to actual starting conditions. They inform ranges and context instead of precise timing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2605,7 +820,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Price With Yield Checks",
         "coreSkill": "Before accepting any market-level claim, ask for the price level beside earnings, dividend yield, and bond yield. Treat the answer as a combined expected-return check, not a verdict from one attractive metric.",
         "ifThenPlans": [
           {
@@ -2626,24 +840,17 @@
       },
       "memorableLines": [
         {
-          "text": "A high Dow tells you where prices are, not what the buyer gets.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "A high Dow tells you where prices are, not what the buyer gets."
         },
         {
-          "text": "A long record helps you avoid trusting one hot stretch.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "A long record helps you avoid trusting one hot stretch."
         },
         {
-          "text": "When a market claim feels urgent, ask what starting price is being used.",
-          "location": "breakdown.fullRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "When a market claim feels urgent, ask what starting price is being used."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch04",
       "number": 4,
       "title": "General Portfolio Policy: The Defensive Investor",
@@ -2743,8 +950,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The keyed answer keeps both sleeves alive; the wrong choices turn policy into timing.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2756,8 +962,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The correct choice treats bonds as stability tools, not coupon contests.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2769,8 +974,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The neutral split works when evidence is thin; it is not a permanent command.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2782,8 +986,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The right answer compares spendable income after tax, not headline yield.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2795,8 +998,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The key values simplicity and credit quality; the other choices add false certainty.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2808,8 +1010,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The keyed choice explains why stocks still matter in a defensive mix.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2821,8 +1022,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The correct answer sets policy before emotion distorts the allocation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2834,8 +1034,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The maturity answer names rate sensitivity; the alternatives flatten bond differences.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2847,8 +1046,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The simplicity answer follows the source warning about mistakes and monitoring costs.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2897,7 +1095,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Keep The Allocation Inside Bounds",
         "coreSkill": "Set the defensive mix before the market tests you: stocks and bonds may move inside the band, but the band keeps one forecast from becoming the whole portfolio. The practice is to compare every proposed trade with the 25 to 75 percent boundary before money moves.",
         "ifThenPlans": [
           {
@@ -2918,24 +1115,17 @@
       },
       "memorableLines": [
         {
-          "text": "When no strong valuation case exists, a 50/50 split is a neutral default, not a prophecy.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "When no strong valuation case exists, a 50/50 split is a neutral default, not a prophecy."
         },
         {
-          "text": "High-grade bonds, Treasury securities, and suitable savings bonds serve stability before return maximization.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "High-grade bonds, Treasury securities, and suitable savings bonds serve stability before return maximization."
         },
         {
-          "text": "A defensive portfolio needs rules before it needs opinions.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "A defensive portfolio needs rules before it needs opinions."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch05",
       "number": 5,
       "title": "The Defensive Investor and Common Stocks",
@@ -3036,8 +1226,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The key permits stocks only through diversification and quality checks.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3049,8 +1238,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The correct response describes timing discipline without promising a guaranteed gain.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -3062,8 +1250,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The seasoned-company answer focuses on evidence, not fame or growth stories.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3075,8 +1262,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The keyed choice treats dividends as evidence, not a complete verdict.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3088,8 +1274,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The right answer keeps valuation beside business quality.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3101,8 +1286,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The diversification answer accepts that analysis can still be wrong.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3114,8 +1298,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The correct choice favors a repeatable low-turnover program.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3127,8 +1310,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The keyed answer looks past one strong report to earnings stability.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3140,8 +1322,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The total-portfolio answer keeps stocks and bonds in one risk decision.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3190,7 +1371,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Test The Stock Before Buying",
         "coreSkill": "A defensive stock program is allowed, but only as a rule-bound sleeve: quality, dividend record, diversification, price, and the bond mix all have to fit. The practice is to make the purchase wait until the stock passes those tests and still belongs inside the total portfolio.",
         "ifThenPlans": [
           {
@@ -3211,24 +1391,17 @@
       },
       "memorableLines": [
         {
-          "text": "Dollar-cost averaging solves a timing problem, not every investment problem.",
-          "location": "breakdown.fullRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Dollar-cost averaging solves a timing problem, not every investment problem."
         },
         {
-          "text": "Dollar-cost averaging can make buying less dependent on one perfect date.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Dollar-cost averaging can make buying less dependent on one perfect date."
         },
         {
-          "text": "Dollar-cost averaging is useful because it turns accumulation into a rule.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Dollar-cost averaging is useful because it turns accumulation into a rule."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch06",
       "number": 6,
       "title": "Portfolio Policy for the Enterprising Investor: Negative Approach",
@@ -3326,8 +1499,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The key requires a bargain price for credit risk, not yield alone.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3339,8 +1511,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The preferred-stock answer names capped upside and business downside.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -3352,8 +1523,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The correct response adds currency, legal, and political risk to the bond decision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3365,8 +1535,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The key notices that distribution is strongest when buyers are enthusiastic.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3378,8 +1547,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The safety answer keeps activity from becoming exposure for its own sake.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3391,8 +1559,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The complex-security answer points to terms that can alter the payoff.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3404,8 +1571,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The keyed choice treats refusal as an active capital-preservation decision.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3417,8 +1583,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The credit-quality answer recognizes that losses can erase coupon income.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3430,8 +1595,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The promotion answer catches speculation dressed in prudent language.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3480,7 +1644,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Refuse The Bad Offer First",
         "coreSkill": "For the enterprising investor, avoidance is work: reject categories where yield, novelty, or complexity asks you to accept risk you cannot appraise. The practice is to name the credit, currency, legal, or incentive risk before the offer is allowed onto the research list.",
         "ifThenPlans": [
           {
@@ -3501,24 +1664,17 @@
       },
       "memorableLines": [
         {
-          "text": "When that proof is missing, passing is the disciplined result.",
-          "location": "breakdown.fullRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "When that proof is missing, passing is the disciplined result."
         },
         {
-          "text": "The investor asks what can go wrong before admiring the income.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "The investor asks what can go wrong before admiring the income."
         },
         {
-          "text": "The negative list should be visible before research begins.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "The negative list should be visible before research begins."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch07",
       "number": 7,
       "title": "Portfolio Policy for the Enterprising Investor: The Positive Side",
@@ -3619,8 +1775,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Large unpopular companies can be better candidates when disappointment depresses price while established resources remain; favorites can already carry high expectations.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3632,8 +1787,7 @@
             ],
             "correctIndex": 2,
             "explanation": "NCAV uses current assets minus all liabilities and excludes much fixed-asset optimism, so it is stricter than ordinary book value.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -3645,8 +1799,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A bargain issue needs a material discount to conservative appraisal because a small discount can disappear through ordinary error or bad luck.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3658,8 +1811,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Special situations need defined events or asset conversions. Without a transaction path, complexity is not enough to make the opportunity attractive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3671,8 +1823,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Enterprise demands recordkeeping and judgment because undervaluation claims must be tested against balance sheets, earnings, and catalysts.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3684,8 +1835,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Unpopularity alone is not sufficient evidence. Some companies decline for valid reasons, so price must be compared with remaining business value.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3697,8 +1847,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Asset bargains can work as a group because diversification spreads appraisal error and liquidation uncertainty when individual cases disappoint.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3710,8 +1859,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The positive approach avoids forecasting brilliance by preferring measurable present discounts to distant growth projections.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3723,8 +1871,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Shareholder action can matter when assets are trapped because value may remain dormant unless governance pressure changes capital allocation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3773,7 +1920,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build a Value Receipt First",
         "coreSkill": "Treat every active idea as unfinished until it has a value receipt. The receipt must show why price is below a conservative view of value: disappointment with resources still present, a severe NCAV floor, or a material gap below conservative appraisal. End each active review with a receipt that names price, appraisal, resources, and the specific value path.",
         "ifThenPlans": [
           {
@@ -3798,24 +1944,17 @@
       },
       "memorableLines": [
         {
-          "text": "A choice earns action only after evidence earns the claim.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "A choice earns action only after evidence earns the claim."
         },
         {
-          "text": "A bargain is not a low price but a tested discount.",
-          "location": "breakdown.fullRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "A bargain is not a low price but a tested discount."
         },
         {
-          "text": "A special situation is not complexity but value with a path.",
-          "location": "breakdown.fullRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "A special situation is not complexity but value with a path."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch08",
       "number": 8,
       "title": "The Investor and Market Fluctuations",
@@ -3914,8 +2053,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Daily quotations are offers instead of appraisals. A price can move for mood or cash pressure, so independent value still guides the response.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3927,8 +2065,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Volatility helps only with valuation discipline. Price swings create opportunity for someone who already knows what would be worth buying or selling.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3940,8 +2077,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A&P shows that business history and market treatment can separate. A real operating company can be priced differently as sentiment changes.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3953,8 +2089,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Formula plans can control behavior, but mechanical buying and selling still need sensible allocation and valuation limits.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3966,8 +2101,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The main enemy in fluctuation is emotional obedience. Fear and enthusiasm can make market prices feel authoritative without making them wise.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3979,8 +2113,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Business ownership framing reduces trading pressure because attention moves from the last quotation to earnings and assets.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3992,8 +2125,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Inaction can be the right response to a decline. No trade is required when value appraisal and allocation remain sound.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -4005,8 +2137,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Borrowed money makes fluctuations more dangerous because leverage can force sales before value is recognized.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -4018,8 +2149,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Contrarian buying is useful only when appraisal supports the gap between price and value. Opposing the crowd is not enough.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -4068,7 +2198,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Log Offers Before Trading",
         "coreSkill": "Use a decision log to turn each market quote back into an offer. The skill is to write the independent value note before acting, then decide whether the offer belongs in the buy, sell, or ignore column. Practice by logging the quote, value note, and chosen response before any trade caused by a market swing.",
         "ifThenPlans": [
           {
@@ -4089,24 +2218,17 @@
       },
       "memorableLines": [
         {
-          "text": "When the price falls, the crowd reaction is not the test.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "When the price falls, the crowd reaction is not the test."
         },
         {
-          "text": "Price swings help only when you already know the price you would buy or sell.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Price swings help only when you already know the price you would buy or sell."
         },
         {
-          "text": "The investor may buy when the offer is attractive.",
-          "location": "breakdown.fullRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "The investor may buy when the offer is attractive."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch09",
       "number": 9,
       "title": "Investing in Investment Funds",
@@ -4207,8 +2329,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Past performance is weak by itself. A ranking can reflect a style cycle that reverses after assets flood in.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4220,8 +2341,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Costs come out before the investor receives net performance. Manager skill does not erase that direct drag.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -4233,8 +2353,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Closed-end shares trade in the market. Their price can sit below net asset value, so the wrapper price matters separately.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4246,8 +2365,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Diversification is a legitimate fund use. A single fund can spread company-specific risk and add convenience.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4259,8 +2377,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A sales load is an upfront commission. It creates a hurdle before results and should not be treated as merit.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -4272,8 +2389,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Index funds reduce manager-selection risk by accepting market return less low expenses. Market exposure still fluctuates.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -4285,8 +2401,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Rapid asset growth can weaken a glamour fund's old edge. A larger base may make the strategy harder to execute.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -4298,8 +2413,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fund structure must match policy. Equity, bond, balanced, and specialty funds carry different risks.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -4311,8 +2425,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Advertising can arrive after the best results. Manager tenure and repeatable process give more useful evidence than promotion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -4361,7 +2474,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Make Each Fund Earn Its Slot",
         "coreSkill": "Change the buying environment so a fund cannot ride on reputation alone. Treat recent performance as a lead, record the cost drag before net return, and flag closed-end structure when share price can differ from net asset value. Keep each fund on probation until ranking, cost, and wrapper price have each earned a written line.",
         "ifThenPlans": [
           {
@@ -4382,24 +2494,17 @@
       },
       "memorableLines": [
         {
-          "text": "Fund selection starts with a pause before applause.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Fund selection starts with a pause before applause."
         },
         {
-          "text": "Funds are still useful when they solve a real portfolio job.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Funds are still useful when they solve a real portfolio job."
         },
         {
-          "text": "A fund should earn a job before it earns a dollar.",
-          "location": "breakdown.fullRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "A fund should earn a job before it earns a dollar."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch10",
       "number": 10,
       "title": "The Investor and His Advisers",
@@ -4500,8 +2605,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Advice can help with judgment, but ownership does not move. The person whose capital is at risk still has to decide whether advice is prudent.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4513,8 +2617,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fee structure affects incentives because commissions, asset-based fees, and hourly fees can reward different recommendations.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4526,8 +2629,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Broker and adviser roles can differ legally and practically; selling securities is not identical to giving ongoing fiduciary advice.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -4539,8 +2641,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A referral can start the search, but personal trust does not replace records. Registration and disciplinary history can reveal risks early.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4552,8 +2653,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Investment counsel should be conservative about promises. For most investors, reliable advice is not mainly a claim to forecast markets accurately.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -4565,8 +2665,7 @@
             ],
             "correctIndex": 0,
             "explanation": "For a defensive investor, allocation, taxes, and behavior can matter more than individual issue selection. Planning and restraint can be the useful service.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -4578,8 +2677,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The investor should understand recommendations before accepting them. Opaque products can hide costs, leverage, or conflicts, and complexity may help the seller.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -4591,8 +2689,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Custody and authority arrangements must be clear because control over assets creates operational and fraud risks. Controls and statements remain necessary.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -4604,8 +2701,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Performance comparisons should match the adviser's mandate. A conservative policy should not be judged against an aggressive stock index.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -4654,7 +2750,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Audit Advice Before Relying",
         "coreSkill": "Treat outside advice as a proposal to audit, not a transfer of responsibility. The audit checks who still bears the loss, how commissions, asset-based fees, or hourly fees may shape the recommendation, and whether the person is selling securities or giving ongoing fiduciary advice. Practice by marking every adviser proposal with owner responsibility, fee structure, and broker-or-adviser role before accepting it.",
         "ifThenPlans": [
           {
@@ -4679,24 +2774,17 @@
       },
       "memorableLines": [
         {
-          "text": "Each one tells you what pressure may sit behind the answer.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Each one tells you what pressure may sit behind the answer."
         },
         {
-          "text": "The duty, scope, and service have to be named before trust gets broad.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "The duty, scope, and service have to be named before trust gets broad."
         },
         {
-          "text": "When that cannot be done, the smart answer is delay, not deference.",
-          "location": "breakdown.fullRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "When that cannot be done, the smart answer is delay, not deference."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch11",
       "number": 11,
       "title": "Security Analysis for the Lay Investor: General Approach",
@@ -4797,8 +2885,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Yield attraction has to wait behind interest coverage. A coupon is useful only if the issuer can keep paying it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4810,8 +2897,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A single year's profit can be bent by cycles or unusual items. Normalized earnings power reduces that distortion.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -4823,8 +2909,7 @@
             ],
             "correctIndex": 0,
             "explanation": "John Burr Williams-style estimates should stay conservative. Small changes in assumed growth can create large valuation changes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4836,8 +2921,7 @@
             ],
             "correctIndex": 2,
             "explanation": "When earnings are uncertain, assets still matter. Balance-sheet value can support the appraisal if profit estimates disappoint.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4849,8 +2933,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Debt changes both value and risk. Fixed claims come before shareholders, so leverage can turn growth into fragility.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -4862,8 +2945,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A multiple capitalizes expected earning power. The price paid per dollar of earnings sets the implied return and risk.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -4875,8 +2957,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Inputs are estimates, not facts. Conservative assumptions help absorb appraisal error instead of letting precision hide it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -4888,8 +2969,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Dividends can support an earnings appraisal because cash paid over time checks whether accounting profits reached shareholders.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -4901,8 +2981,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Common stock valuation includes market context. Bond yields and other available returns affect the required return through opportunity cost.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -4951,7 +3030,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Calendar Review For Coverage First",
         "coreSkill": "Use a weekly calendar review to make valuation wait for the basic checks: a bond needs interest coverage before yield attraction, a stock needs normalized earnings power before the latest profit number, and growth estimates need conservative assumptions. Practice by marking coverage before yield, normalized earnings before latest profit, and conservative growth before a value note is allowed to advance.",
         "ifThenPlans": [
           {
@@ -4976,24 +3054,17 @@
       },
       "memorableLines": [
         {
-          "text": "A higher coupon is not safer until coverage can carry it.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "A higher coupon is not safer until coverage can carry it."
         },
         {
-          "text": "A high yield can be a warning when coverage is weak.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "A high yield can be a warning when coverage is weak."
         },
         {
-          "text": "Growth guesses need brakes before they steer the price.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Growth guesses need brakes before they steer the price."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch12",
       "number": 12,
       "title": "Things to Consider About Per-Share Earnings",
@@ -5094,8 +3165,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Headline EPS can exclude or reclassify costs, so the number needs the notes and adjustments around it before it guides valuation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -5107,8 +3177,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A single strong or weak year may be a cyclical extreme. Averaging across years keeps one recent result from dominating the earning-power estimate.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -5120,8 +3189,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Special charges can deserve adjustment, but repetition changes the meaning. An unusual item that recurs may reveal a problem instead of a clean exception.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -5133,8 +3201,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Options, convertibles, or warrants can increase share count. Future shares spread the same earnings over more owners, so basic EPS may miss the diluted claim.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -5146,8 +3213,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Accrual earnings and cash do not necessarily move together. Revenue recognition and working capital can make profit look better than cash generation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -5159,8 +3225,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Incentives favor flattering results. Adjusted figures need an outside check because the removed items may be real costs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -5172,8 +3237,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A low P/E depends on the earnings denominator. If those earnings are inflated for a short period, the apparent cheapness can fade as conditions normalize.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -5185,8 +3249,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A high P/E can reflect depressed current earnings. If profits normalize above the trough, the denominator was understated.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -5198,8 +3261,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Filed statements carry better evidence than summaries or promotion. Audited reports and footnotes show the definitions, charges, and share counts behind the headline.",
-            "bloomsLevel": "understand",
-            "depthLevel": "deep"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -5248,7 +3310,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Verify EPS Before Valuation",
         "coreSkill": "Treat EPS as a claim that needs a source check, not as a finished answer. Before the idea advances, ask for footnotes, adjustment details, multi-year earnings, and special charges so the headline number cannot hide reclassified costs, cyclical distortion, or repeated exceptions. Practice by keeping every EPS-based idea pending until footnotes, adjustments, average earnings context, and special-charge judgment are written in the same saved template.",
         "ifThenPlans": [
           {
@@ -5273,24 +3334,17 @@
       },
       "memorableLines": [
         {
-          "text": "Look across years before you trust the latest year.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Look across years before you trust the latest year."
         },
         {
-          "text": "When cash is thin, the profit line is weaker than it looks.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "When cash is thin, the profit line is weaker than it looks."
         },
         {
-          "text": "When profits are unusually weak, a high P/E can look like proof of excess cost.",
-          "location": "breakdown.fullRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "When profits are unusually weak, a high P/E can look like proof of excess cost."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch13",
       "number": 13,
       "title": "A Comparison of Four Listed Companies",
@@ -5391,8 +3445,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Recognition is not valuation. The method pairs price with the company's record so a familiar story does not hide what the buyer pays for earnings and assets.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -5404,8 +3457,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Emerson Electric can be high quality and still need valuation caution. A premium price leaves less future return when expectations are already high.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -5417,8 +3469,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Growth can be overpaid for. High multiples may leave little room for disappointment if much of the expected growth is already in the price.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -5430,8 +3481,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Balance-sheet strength affects the comparison because leverage changes both risk and earnings value. Income growth alone can miss how debt makes growth more fragile.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -5443,8 +3493,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The dividend record is a visible check on reported prosperity. Cash distributions show whether earnings have actually reached shareholders.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -5456,8 +3505,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Quality rank and investment rank can diverge. A sufficiently low price may compensate for weaker prospects within limits, so price can reverse the order.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -5469,8 +3517,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A single comparison year is not enough. Cyclical or temporary conditions can make a company look stronger or weaker than its broader record supports.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -5482,8 +3529,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Industry context matters because capital needs and margins differ across industrial, electrical, and freight businesses. Business economics can change capitalization.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -5495,8 +3541,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Side-by-side tables discipline judgment by putting several facts in view at the same time. A narrative can hide unfavorable ratios if it becomes the main evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -5545,7 +3590,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run a Sunday Valuation Reset",
         "coreSkill": "Swap the name-first default for a comparison row before a candidate can stay ready. The row should put price beside record, quality beside valuation caution, and growth beside the question of how much expected growth is already capitalized. Practice the Sunday valuation reset by requiring every candidate to show price, earnings, dividends, assets, debt, growth record, and business quality before it keeps a place on the active list.",
         "ifThenPlans": [
           {
@@ -5570,24 +3614,17 @@
       },
       "memorableLines": [
         {
-          "text": "A table can slow a story before it misleads you.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "A table can slow a story before it misleads you."
         },
         {
-          "text": "A high-quality business can still cost too much.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "A high-quality business can still cost too much."
         },
         {
-          "text": "A story gets less power when the facts are forced to share space.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "A story gets less power when the facts are forced to share space."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch14",
       "number": 14,
       "title": "Stock Selection for the Defensive Investor",
@@ -5687,8 +3724,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Adequate size is part of the defensive checklist because very small companies may bring thin records, liquidity limits, and weaker resilience.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -5700,8 +3736,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A good product does not remove balance-sheet risk. Weak finances can turn ordinary business setbacks into losses for shareholders.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -5713,8 +3748,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Erratic profits make conservative appraisal unreliable. One strong year may be a peak, not a dependable measure of earning power.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -5726,8 +3760,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Sustained payments can show durability and shareholder orientation. Dividends also give evidence of financial consistency.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -5739,8 +3772,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The growth test asks for demonstrated progress, not glamour forecasting. Moderate growth helps guard against stagnant long-term earnings.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -5752,8 +3784,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Quality is still governed by price. Excessive multiples can leave even stable companies producing poor returns.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -5765,8 +3796,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Earnings can be temporarily inflated. A moderate price to assets gives another appraisal check and can affect downside.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -5778,8 +3808,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The checklist is cumulative. A single strength does not make several failures acceptable for a defensive investor.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -5791,8 +3820,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The design is exclusion first. A defensive screen limits error by keeping doubtful issues out, not by chasing every upside possibility.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -5841,7 +3869,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Rehearse Defensive Stock Exclusions",
         "coreSkill": "Use the defensive screen as an exclusion device, not a search for exciting exceptions. A candidate stays pending until the record answers the early gates for size, balance-sheet strength, and steadier earnings, then clears the remaining dividend, growth, and valuation checks together. Practice by sending any stock idea with missing size proof, weak financial evidence, unstable earnings, or unfinished dividend, growth, and valuation checks back to the Friday evidence log.",
         "ifThenPlans": [
           {
@@ -5866,24 +3893,17 @@
       },
       "memorableLines": [
         {
-          "text": "Small size does not prove failure, but it raises the burden of proof.",
-          "location": "breakdown.fullRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Small size does not prove failure, but it raises the burden of proof."
         },
         {
-          "text": "Quality is not a license but a test.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Quality is not a license but a test."
         },
         {
-          "text": "Its business may have less strength when conditions turn rough.",
-          "location": "breakdown.fullRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Its business may have less strength when conditions turn rough."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch15",
       "number": 15,
       "title": "Stock Selection for the Enterprising Investor",
@@ -5984,8 +4004,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Low P/E is a starting screen, not the whole decision. Favorable odds depend on low expectations plus acceptable financial condition.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -5997,8 +4016,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Net-net is stricter than a total-asset shortcut. It asks whether market price sits below current assets after all liabilities are subtracted.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -6010,8 +4028,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Bargain stocks need group handling. One cheap company may hide problems or realize value slowly, so diversification absorbs appraisal mistakes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -6023,8 +4040,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Dividend record is useful evidence because cash distributions make reported earnings less likely to be only an accounting artifact. Cheap earnings can still be low quality.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -6036,8 +4052,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Financial strength remains part of the bargain test. During stress, leverage can consume the asset cushion before the low price helps the buyer.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -6049,8 +4064,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A screen is only the first pass. A low number can come from fraud, obsolescence, or cyclical collapse, so each candidate still needs review.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -6062,8 +4076,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Undervaluation strategies require patience. Recognition can take three to five years, and market neglect can persist.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -6075,8 +4088,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Low popularity can improve odds only with evidence. Neglected securities may be cheap for valid reasons, so unpopularity by itself is not value.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -6088,8 +4100,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Enterprising selection asks for more attention than defensive selection. Without records, screens, and follow-up, active methods can slide into speculation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -6138,7 +4149,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Screen Bargain Stocks As Groups",
         "coreSkill": "Use a written gate before any enterprising bargain moves forward. First place the idea inside a low P/E group, then compare any net-net claim with market price versus current assets minus all liabilities, and finally confirm it belongs in a 20-stock group so a hidden problem cannot dominate the result. Practice by ending each bargain-stock conversation with the same marks: low P/E group checked, net-net cushion checked, and 20-stock group checked.",
         "ifThenPlans": [
           {
@@ -6159,24 +4169,17 @@
       },
       "memorableLines": [
         {
-          "text": "Low hopes can help only when the company is still sound.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Low hopes can help only when the company is still sound."
         },
         {
-          "text": "Low popularity can improve odds only when evidence travels with it.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Low popularity can improve odds only when evidence travels with it."
         },
         {
-          "text": "Debt can take the cushion before owners see it.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Debt can take the cushion before owners see it."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch16",
       "number": 16,
       "title": "Convertible Issues and Warrants",
@@ -6277,8 +4280,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Interest safety and conversion value can succeed or fail separately. A weak bond paired with a poor option can still make the package unattractive.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -6290,8 +4292,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A conversion right is valuable through its terms. The price sets the stock move needed before the option has payoff.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -6303,8 +4304,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A low dollar price does not make a warrant conservative. No income and a possible worthless expiration leave more risk than senior securities.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -6316,8 +4316,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Callable terms matter after upside appears. The issuer may redeem when conversion favors holders, which can compress the holder's decision window.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -6329,8 +4328,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Lower income is part of the option's cost. The conversion privilege needs to be fairly priced relative to the yield given up.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -6342,8 +4340,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Hybrid issues are also financing choices for companies. If a convertible is cheaper than straight financing for the issuer, investor benefit needs extra scrutiny.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -6355,8 +4352,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Conversion can issue new common shares. Once earnings are divided over a larger share base, common owners share the effect.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -6368,8 +4364,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Hybrid costs can be split across different report locations. Diluted analysis helps connect interest, share expansion, and option value.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -6381,8 +4376,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The middle label can hide complexity. Small changes in terms can alter downside and upside, so hybrid securities ask for more skill than ordinary defensive holdings.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -6431,7 +4425,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run a Convertible Receipt Check",
         "coreSkill": "Use a receipt check before a convertible or warrant gets a place on the active list. For a convertible, write the bond-side answer apart from the option-side answer, then show the conversion price before giving the option credit. For a warrant, mark no income and possible expiration before the low price can count as safety. Practice by keeping any convertible or warrant note pending until its receipt separates bond safety, conversion price, and warrant income or expiry risk.",
         "ifThenPlans": [
           {
@@ -6452,24 +4445,17 @@
       },
       "memorableLines": [
         {
-          "text": "Yield you give up is part of the option cost.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Yield you give up is part of the option cost."
         },
         {
-          "text": "Call terms can shrink the upside you thought you owned.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Call terms can shrink the upside you thought you owned."
         },
         {
-          "text": "Low upfront cost can hide full loss risk.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Low upfront cost can hide full loss risk."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch17",
       "number": 17,
       "title": "Four Extremely Instructive Case Histories",
@@ -6570,8 +4556,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Penn Central's 1970 bankruptcy showed that fame did not make the securities safe; weak finances and merger problems still controlled the risk.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -6583,8 +4568,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ling-Temco-Vought's growth required skepticism because leverage and conglomerate accounting could flatter expansion while debt-financed growth remained fragile.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -6596,8 +4580,7 @@
             ],
             "correctIndex": 0,
             "explanation": "NVF's Sharon Steel transaction warns that layered securities and accounting treatment can hide risk; complexity may conceal value transfer.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -6609,8 +4592,7 @@
             ],
             "correctIndex": 1,
             "explanation": "AAA Enterprises illustrates promotional danger in small issues: market appeal can outrun verified business substance, and thin evidence cannot carry a high price.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -6622,8 +4604,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The value is pattern recognition. Company names change, but leverage, promotion, and accounting issues can recur under new labels.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -6635,8 +4616,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Bond investors need skepticism because weak issuers can damage senior claims too. Size and claim priority cannot replace credit analysis.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -6648,8 +4628,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Acquisition accounting can change the earnings picture; purchase terms and consolidation may shift how performance appears after a merger.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -6661,8 +4640,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ratios alone miss the human driver. Governance and incentives shape capital allocation, which can shift risk onto outside investors.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -6674,8 +4652,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Opaque cases leave room for promotional interpretation. Simple, understandable evidence keeps sellers and insiders from filling the gaps with a story.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -6724,7 +4701,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Log Risks Behind Prominence",
         "coreSkill": "Use a decision log to make prominence, acquisition growth, and complex financing earn written evidence before money moves. The log separates name recognition from issuer strength, acquisition excitement from debt and accounting risk, and complicated securities from visible owner economics. Practice by keeping Penn Central, Ling-Temco-Vought, and NVF / Sharon Steel risk prompts in the decision row before approving a holding.",
         "ifThenPlans": [
           {
@@ -6749,24 +4725,17 @@
       },
       "memorableLines": [
         {
-          "text": "Ling-Temco-Vought warns against taking acquisition growth as proof of skill before checking leverage.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Ling-Temco-Vought warns against taking acquisition growth as proof of skill before checking leverage."
         },
         {
-          "text": "Complexity can move risk before owners can see it.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Complexity can move risk before owners can see it."
         },
         {
-          "text": "Names change, but leverage, promotion, accounting issues, and weak governance come back.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Names change, but leverage, promotion, accounting issues, and weak governance come back."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch18",
       "number": 18,
       "title": "A Comparison of Eight Pairs of Companies",
@@ -6867,8 +4836,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Paired comparison reduces one-company tunnel vision. The missing step is another claim on the same capital, because opportunity cost becomes visible through comparison.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -6880,8 +4848,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Similar industry labels do not create equal risk. Structure and finances can diverge sharply, so leverage, assets, stability, and management need separate review.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -6893,8 +4860,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A superior business may still be overpriced relative to a weaker peer. Price can overcapitalize quality when the premium exceeds the value of the advantage.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -6906,8 +4872,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A low-priced peer may be cheap for valid reasons. Weaker balance sheets or cyclical exposure can justify a discount, so cheapness needs an explanation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -6919,8 +4884,7 @@
             ],
             "correctIndex": 1,
             "explanation": "McGraw Edison and McGraw-Hill represent different businesses despite overlapping words. Business economics control appraisal, not name similarity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -6932,8 +4896,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Growth stability earns a premium only up to a point. Paying too high a multiple can consume the benefit of stability, causing expected return to fall as price rises.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -6945,8 +4908,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Pair analysis trains skepticism toward market favorites. Popularity is evidence to test, so the premium needs a concrete advantage behind it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -6958,8 +4920,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cyclical companies need normalized earnings in pair comparisons. Peak or trough results can distort relative cheapness because cycle position changes the denominator.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -6971,8 +4932,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A table of pairs is a tool for judgment, not a formula. Final appraisal still depends on input quality and business interpretation because ratios require context.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -7021,7 +4981,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Install A Paired Valuation Gate",
         "coreSkill": "Make every candidate compete with a nearby claim on the same capital before it can move forward. Edit the note so the favored name shows its peer, the risk differences that change the comparison, and the quality premium that still has to be earned. Practice by holding each paired valuation note at pending until price, risk structure, and premium evidence appear in the same line.",
         "ifThenPlans": [
           {
@@ -7046,24 +5005,17 @@
       },
       "memorableLines": [
         {
-          "text": "Opportunity cost gets clearer when one stock has to face another.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Opportunity cost gets clearer when one stock has to face another."
         },
         {
-          "text": "When a balance sheet is weaker, the discount may be deserved.",
-          "location": "breakdown.fullRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "When a balance sheet is weaker, the discount may be deserved."
         },
         {
-          "text": "Structure and finance decide how much risk is really present.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Structure and finance decide how much risk is really present."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch19",
       "number": 19,
       "title": "Shareholders and Managements: Dividend Policy",
@@ -7164,8 +5116,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Common stock gives economic and voting claims. A public holder may be dispersed, but the role is still ownership, not quote watching.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -7177,8 +5128,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Retained profits still belong to shareholders. The key question is whether keeping them creates comparable value; insider confidence alone does not answer that.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -7190,8 +5140,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cash distributions shape owner outcomes and show how capital is allocated. Separating dividends from valuation misses part of investment return.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -7203,8 +5152,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Proxy voting is limited but real. Shareholders use proxy materials to elect directors and vote on selected matters, so small ownership is not powerless.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -7216,8 +5164,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A low dividend is not bad by itself. Since retained earnings may compound value in a capable business, the issue is whether reinvestment returns are high.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -7229,8 +5176,7 @@
             ],
             "correctIndex": 2,
             "explanation": "When reinvestment opportunities are poor, distributing excess cash can protect owners from low-return empire building. Retention can fund waste, so growth language is not enough.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -7242,8 +5188,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Passivity lowers the pressure on managers to explain how retained profits or acquisitions serve owners. Governance still matters because capital policy affects every share.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -7255,8 +5200,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Earnings growth is not the full attitude check. Cash returned through a consistent dividend record can show whether management respects outside owners.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -7268,8 +5212,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Owner thinking widens the question. Market price matters, but ownership also includes a claim on how the business uses capital.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -7318,7 +5261,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Audit Retained Profits As Owner",
         "coreSkill": "Use the holding note as an owner audit, not a price-watch log. Mark whether management is keeping profits, write the evidence that keeping them can serve owners, and add cash returned to the return record. Practice by making every shareholder note end with retained profits, cash returned, and the voting or report check you will actually use.",
         "ifThenPlans": [
           {
@@ -7343,24 +5285,17 @@
       },
       "memorableLines": [
         {
-          "text": "Price is a signal, not the whole ownership job.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Price is a signal, not the whole ownership job."
         },
         {
-          "text": "Shareholders can vote, receive reports, elect directors, and receive dividends when declared.",
-          "location": "breakdown.deepRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Shareholders can vote, receive reports, elect directors, and receive dividends when declared."
         },
         {
-          "text": "Retention is not a growth signal by itself.",
-          "location": "breakdown.fullRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Retention is not a growth signal by itself."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-intelligent-investor-ch20",
       "number": 20,
       "title": "\"Margin of Safety\" as the Central Concept of Investment",
@@ -7461,8 +5396,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Margin of safety is the gap between price and conservative value. Comfort with a business does not absorb valuation error or adverse outcomes.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -7474,8 +5408,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Diversification is part of the safety allowance. A good price can still meet unexpected failure, appraisal error, or bad luck.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -7487,8 +5420,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Bond safety comes through excess earnings coverage. Repayment capacity is stronger when profits exceed required interest by a large amount.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -7500,8 +5432,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A low stock price by itself does not create protection. The buyer needs business value above the market price, supported by earning power.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -7513,8 +5444,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Growth estimates still need a safety allowance. Good businesses can miss optimistic forecasts, and growth can be overpaid for.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -7526,8 +5456,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A profit plan built mainly on higher resale price lacks margin of safety. A later gain would not change the original operation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -7539,8 +5468,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The concept stays central because estimates can miss. Analysis can reduce error, while accounting, conditions, rates, and temperament keep uncertainty present.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -7552,8 +5480,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Safety and return are linked when undervaluation is present. Paying a protected price can improve both downside and expected return.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -7565,8 +5492,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Businesslike investing views securities as ownership claims. The controlling standard is evidence, price discipline, and protection before capital is committed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -7615,7 +5541,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run The Margin Review Template",
         "coreSkill": "Use a calendar trigger to keep each buy decision tied to a saved margin template. Fill conservative value, the price you would pay, a coverage line for any bond claim, and a diversification note before an idea can move from watch to buy. Practice by letting a candidate advance only when its saved margin entry shows value above price, repayment coverage where relevant, and diversification against single-holding failure.",
         "ifThenPlans": [
           {
@@ -7640,19 +5565,13 @@
       },
       "memorableLines": [
         {
-          "text": "A buyer asks for evidence, price discipline, and protection before committing capital.",
-          "location": "breakdown.fullRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "A buyer asks for evidence, price discipline, and protection before committing capital."
         },
         {
-          "text": "Leave room for error before you commit.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Leave room for error before you commit."
         },
         {
-          "text": "Interest is safer when profits sit well above payments due.",
-          "location": "breakdown.fastRead",
-          "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+          "text": "Interest is safer when profits sit well above payments due."
         }
       ]
     }

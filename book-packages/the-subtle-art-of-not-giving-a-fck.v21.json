@@ -45,13 +45,6 @@
             "image hunger",
             "Bukowski"
           ],
-          "planSpec": {
-            "domain": "design portfolio review",
-            "audience": "early-career designer",
-            "stakes": "whether image panic replaces craft",
-            "format": "decision_point",
-            "requiredBeat": "Use Bukowski to separate rough honest work from polished self-invention"
-          },
           "scenario": "Soren, a junior designer, sits at 11:40 p.m. in a Copenhagen studio with Bukowski quotes taped near his monitor and twelve portfolio layouts open. Minutes before he uploads, he must decide whether to chase one more glossy version or submit the page that explains the client problem clearly.",
           "whatToDo": "Soren should name the value under the work, clear communication, and publish the version that serves it instead of the version meant to hide insecurity.",
           "whyItMatters": "Bukowski works here as an anti-polish case. Selective concern sends energy toward the thing being made, not the pose of seeming impressive."
@@ -64,13 +57,6 @@
             "backwards law",
             "Alan Watts"
           ],
-          "planSpec": {
-            "domain": "public transit anxiety",
-            "audience": "commuter",
-            "stakes": "whether self-monitoring worsens fear",
-            "format": "inner_monologue",
-            "requiredBeat": "Use Alan Watts to show direct pursuit of calm making calm harder"
-          },
           "scenario": "Leila, a nurse, grips a pole on the 7:20 a.m. Toronto bus while an Alan Watts clip plays in one ear. Her chest tightens before the hospital stop. She has to answer the thought that she must feel calm before walking into triage, or the whole shift is already ruined.",
           "whatToDo": "Leila should let the bad feeling exist and move her attention to the first patient handoff. The value is care under pressure, not a perfect mood.",
           "whyItMatters": "The backwards law explains why checking for calm can extend panic. Acceptance frees attention for the concern that actually deserves it."
@@ -83,13 +69,6 @@
             "false emergency",
             "selective concern"
           ],
-          "planSpec": {
-            "domain": "friend group conflict",
-            "audience": "young adult reader",
-            "stakes": "whether social noise gets full attention",
-            "format": "dialogue",
-            "requiredBeat": "Use selective concern to reject a false emergency without becoming cold"
-          },
           "scenario": "Marisol, a graduate student, reads fifteen messages at 10:05 p.m. outside the Austin library after someone mocks her party no-show. The chat says she must explain herself before everyone decides she is selfish. Her phone buzzes while her draft waits on the table.",
           "whatToDo": "Marisol should send one plain reply about the deadline and return to the draft. She can care about friends without renting the night to gossip.",
           "whyItMatters": "Selective concern is not social numbness. It protects a real commitment from a small status flare that wants to look urgent."
@@ -102,13 +81,6 @@
             "positivity loop",
             "retail"
           ],
-          "planSpec": {
-            "domain": "retail shift management",
-            "audience": "store supervisor",
-            "stakes": "whether forced positivity deepens resentment",
-            "format": "mistake_recovery",
-            "requiredBeat": "Show the feeling-bad-about-feeling-bad loop in a work setting"
-          },
           "scenario": "Naveen, a floor supervisor in a Manchester shoe shop, sees the break-room poster about loving every minute of the job. At 3:15 p.m., after a customer insults his staff, he must decide whether to demand smiles or admit the shift is rough and reset the floor.",
           "whatToDo": "Naveen should drop the fake cheer order and give the team a two-minute reset focused on service standards. The feeling can be ugly; the value can stay clear.",
           "whyItMatters": "Forced positivity adds shame to irritation. Better concern accepts the bad mood and asks what standard still deserves action."
@@ -121,13 +93,6 @@
             "rejection",
             "craft"
           ],
-          "planSpec": {
-            "domain": "fiction workshop",
-            "audience": "writer",
-            "stakes": "whether rejection becomes identity proof",
-            "format": "before_after",
-            "requiredBeat": "Use Bukowski to keep rejection from becoming a self-image emergency"
-          },
           "scenario": "Hana, a short-story writer, opens a rejection email at 6:30 a.m. in a Seoul kitchen beside a paperback by Charles Bukowski. Before breakfast burns, she feels the old urge to turn one no into a verdict on her talent and her whole future.",
           "whatToDo": "Hana should mark one useful craft note from the rejection, then schedule the next submission. The answer is steady work, not a courtroom for the self.",
           "whyItMatters": "The Bukowski anchor keeps failure close to practice. A rejection can guide the work without becoming proof that the writer is defective."
@@ -140,13 +105,6 @@
             "career",
             "values filter"
           ],
-          "planSpec": {
-            "domain": "professional conference",
-            "audience": "software lead",
-            "stakes": "whether status envy chooses the day",
-            "format": "planning_choice",
-            "requiredBeat": "Use the values filter to choose a concern before comparison takes over"
-          },
           "scenario": "Ibrahim, a backend lead, checks in at 8:50 a.m. at a Lisbon software conference and sees a rival wearing a keynote badge. Before the hallway fills, he must choose between chasing status photos or attending the database session his team actually needs.",
           "whatToDo": "Ibrahim should pick the database session and write one question for the speaker. The chosen value is useful skill, not the badge economy.",
           "whyItMatters": "Concern cannot be eliminated at a conference. The question is whether it serves learning or gets spent on looking important."
@@ -165,8 +123,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Selective concern points Soren back to the value beneath the page: useful design work. More polishing only feeds image fear once the clear version is ready.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -178,8 +135,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The backwards law warns that chasing a feeling directly can reinforce its absence. Leila can carry anxiety and still act from care.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -191,8 +147,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Selective concern does not erase friendship. It refuses to let a status flare consume the night when a real commitment needs attention.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -204,8 +159,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Feeling bad about feeling bad adds another layer of pain. Naveen can accept irritation while keeping the chosen work standard alive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -217,8 +171,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Bukowski is not a model for worshiping damage. The useful point is to keep working without making approval the measure of the self.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -230,8 +183,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Concern is unavoidable. Selective concern asks Ibrahim to spend it on a value he can practice today, useful skill, rather than status comparison.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -243,8 +195,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge is disciplined selection, not numbness. A person ignores lesser pain only by caring about something stronger.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -256,8 +207,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The value filter moves attention from image management to chosen pain. The founder needs a concern that remains worth acting on without applause.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -269,8 +219,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Selective concern sorts signals. Some mistakes reveal a value worth repair, while others mainly threaten the wish to look flawless.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -307,7 +256,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Spend Care On Purpose",
         "coreSkill": "Practice noticing when a worry is really image protection. Then move attention to the value that can justify discomfort. The skill is not less feeling; it is better spending.",
         "ifThenPlans": [
           {
@@ -332,19 +280,13 @@
       },
       "memorableLines": [
         {
-          "text": "Selective concern begins when a person quits chasing the image of being okay and starts choosing what is worth real pain.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the title into a practical attention rule."
+          "text": "Selective concern begins when a person quits chasing the image of being okay and starts choosing what is worth real pain."
         },
         {
-          "text": "The extra checking becomes a second problem.",
-          "location": "breakdown.deepRead",
-          "why": "It names the loop behind anxious self-monitoring."
+          "text": "The extra checking becomes a second problem."
         },
         {
-          "text": "You have a finite supply of attention.",
-          "location": "breakdown.fullRead",
-          "why": "It makes care feel like a scarce resource."
+          "text": "You have a finite supply of attention."
         }
       ]
     },
@@ -371,13 +313,6 @@
             "Prince Siddhartha",
             "career"
           ],
-          "planSpec": {
-            "domain": "graduate career choice",
-            "audience": "student",
-            "stakes": "whether comfort hides a meaningful problem",
-            "format": "dilemma",
-            "requiredBeat": "Use Prince Siddhartha to show comfort failing as a life answer"
-          },
           "scenario": "Keiko, a final-year medical student, reviews two offer letters at 7:05 p.m. in a quiet Osaka dorm. One path gives prestige and predictable praise. The other means harder clinic work with patients she cares about. Before the reply deadline, Prince Siddhartha's palace story makes the safe offer feel less complete.",
           "whatToDo": "Keiko should compare the problems each path gives her, not just the comfort each path promises. The clinic pain may fit the life she actually respects.",
           "whyItMatters": "The Buddha frame shows that sheltered ease cannot remove dissatisfaction. Better problems can be worth more than cleaner comfort."
@@ -390,13 +325,6 @@
             "Disappointment Panda",
             "startup"
           ],
-          "planSpec": {
-            "domain": "startup customer feedback",
-            "audience": "founder",
-            "stakes": "whether unpleasant evidence gets heard",
-            "format": "predict_reveal",
-            "requiredBeat": "Use Disappointment Panda to make bad news useful"
-          },
           "scenario": "Darius, a SaaS founder, opens the churn dashboard at 8:30 a.m. in a Nairobi coworking room. The red column shows that trial users quit after setup. His team wants a happier launch story before the investor call. Disappointment Panda would say, minutes before the call, that the product is confusing.",
           "whatToDo": "Darius should tell the investor what the churn reveals and set the next sprint around onboarding. The bad news becomes a solvable product problem.",
           "whyItMatters": "Comforting denial protects mood for an hour. Honest discomfort gives the team a problem that can create skill and trust."
@@ -409,13 +337,6 @@
             "avoidance",
             "middle path"
           ],
-          "planSpec": {
-            "domain": "wellness retreat",
-            "audience": "burned-out professional",
-            "stakes": "whether escape is mistaken for healing",
-            "format": "reflection",
-            "requiredBeat": "Use the Buddha middle path to separate rest from avoidance"
-          },
           "scenario": "Arielle, a litigation associate, packs a linen bag at 5:45 a.m. at a Bali retreat after ten days of silence. The instructor mentions the Buddha and the middle path. Arielle notices that the emails she dreads are still waiting, along with the old habit of using retreats to postpone hard conversations.",
           "whatToDo": "Arielle should keep the rest but schedule one honest conversation for her first workday back. Recovery only helps if it returns her to the right problem.",
           "whyItMatters": "Pleasure and rest have a place. They fail when they become a polished way to avoid the conflict that needs care."
@@ -428,13 +349,6 @@
             "service work",
             "problem signal"
           ],
-          "planSpec": {
-            "domain": "restaurant operations",
-            "audience": "kitchen lead",
-            "stakes": "whether anger becomes information",
-            "format": "decision_point",
-            "requiredBeat": "Treat emotion as a signal rather than a sacred verdict"
-          },
           "scenario": "Bastien, a sous-chef, slams a ticket rail at 9:15 p.m. in a Lyon kitchen after the third wrong order. The line freezes. He must answer whether anger proves the night is ruined or whether it points to a broken station handoff that can be fixed before service collapses.",
           "whatToDo": "Bastien should call a thirty-second handoff reset and change the ticket check. The anger can signal a problem without becoming the boss.",
           "whyItMatters": "Bad feelings become useful when they reveal a concrete problem. They become destructive when they are treated as final verdicts."
@@ -447,13 +361,6 @@
             "honesty",
             "denial"
           ],
-          "planSpec": {
-            "domain": "household money talk",
-            "audience": "new parent",
-            "stakes": "whether reassurance delays repair",
-            "format": "dialogue",
-            "requiredBeat": "Use Disappointment Panda as the messenger for a needed household truth"
-          },
           "scenario": "Nikolai, a new father, checks a grocery receipt at 10:20 p.m. in a Minsk apartment while the baby sleeps. His partner says they are fine if they stay positive. Disappointment Panda would be rude but useful: before rent is due, the numbers say their spending plan is fantasy.",
           "whatToDo": "Nikolai should name the budget gap without drama and choose one repair for the week. Reassurance is less kind than a problem both adults can solve.",
           "whyItMatters": "Unpleasant truth can protect love better than a warm lie. The panda joke keeps the sting attached to useful action."
@@ -466,13 +373,6 @@
             "chosen pain",
             "practice"
           ],
-          "planSpec": {
-            "domain": "amateur endurance training",
-            "audience": "runner",
-            "stakes": "whether pain is selected or merely endured",
-            "format": "before_after",
-            "requiredBeat": "Show chosen struggle creating agency without romanticizing pain"
-          },
           "scenario": "Yara, an amateur runner, stands at 6:00 a.m. beside a wet hill in Valparaiso with a training watch on her wrist. Last year knee pain made running feel like punishment. Now the coach has cleared short repeats, and she must decide whether this difficulty is a chosen practice or old denial returning.",
           "whatToDo": "Yara should run the planned repeats and stop at the agreed limit. The chosen problem is training with care, not proving toughness.",
           "whyItMatters": "Pain needs a quality filter. Struggle can build agency when it serves a value and respects reality."
@@ -491,8 +391,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Buddha frame does not worship hardship or luxury. It asks Keiko to choose the problem that fits a life she can honestly inhabit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -504,8 +403,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Disappointment Panda delivers the ugly truth because it can be used. Churn is not a mood problem; it is an onboarding problem.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -517,8 +415,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The middle path does not reject rest. It rejects using rest as a beautiful hiding place from the problem that calls for action.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -530,8 +427,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Emotions are signals, not sacred commands. Bastien can use anger to find the broken handoff without letting anger run the kitchen.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -543,8 +439,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The panda's bad news is useful because it creates a shared problem. Warm denial only delays the repair Nikolai and his partner need.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -556,8 +451,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Chosen struggle needs a quality filter. Yara's pain becomes useful only when it serves training and respects the body's real limits.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -569,8 +463,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Problem-free life is a fantasy. The useful standard is whether the struggle builds agency, skill, honesty, or depth over time.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -582,8 +475,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Pleasure can soothe, but it cannot solve a bad problem by itself. The manager needs to find what the mood is pointing toward.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -595,8 +487,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The shift begins by converting a complaint into a chosen or rejected problem. Comfort chasing alone cannot teach that distinction.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -633,7 +524,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Choose Better Problems",
         "coreSkill": "Train yourself to translate discomfort into a problem statement. Then ask whether the problem is worth solving and what value it serves. This protects you from chasing comfort while also refusing fake nobility around pain.",
         "ifThenPlans": [
           {
@@ -658,19 +548,13 @@
       },
       "memorableLines": [
         {
-          "text": "Happiness starts to look less like escape and more like a way to meet the right problems.",
-          "location": "breakdown.fastRead",
-          "why": "It reverses the reader's normal wish for a problem-free life."
+          "text": "Happiness starts to look less like escape and more like a way to meet the right problems."
         },
         {
-          "text": "Suffering is not holy just because it hurts.",
-          "location": "breakdown.deepRead",
-          "why": "It blocks the easy misreading that all pain is valuable."
+          "text": "Suffering is not holy just because it hurts."
         },
         {
-          "text": "Comfort can become a sealed room.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the palace story a compact modern shape."
+          "text": "Comfort can become a sealed room."
         }
       ]
     },
@@ -697,13 +581,6 @@
             "entrepreneurship",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "small-business pitch",
-            "audience": "aspiring founder",
-            "stakes": "whether big claims avoid measurable work",
-            "format": "business_case",
-            "requiredBeat": "Use Jimmy to expose confidence without evidence"
-          },
           "scenario": "Farid, an aspiring founder, stands at 8:20 in the morning in a Dallas accelerator room with a pitch deck titled after Jimmy's style of grand plans. The mentors ask for customer calls. Before the demo slot closes, he must choose between another destiny speech and showing the twelve empty outreach rows.",
           "whatToDo": "Farid should show the empty rows and book the first calls. Ordinary worth lets him be a beginner instead of performing as a future titan.",
           "whyItMatters": "Jimmy's failure is confidence without testing. The useful move is to trade fantasy status for evidence that can correct the work."
@@ -716,13 +593,6 @@
             "comparison",
             "ordinary worth"
           ],
-          "planSpec": {
-            "domain": "student social media habit",
-            "audience": "college tutor",
-            "stakes": "whether extreme feeds define normal life",
-            "format": "reflection",
-            "requiredBeat": "Use social media exceptionalism to reset the comparison set"
-          },
           "scenario": "Rafi, a community college tutor, scrolls at 7:30 in the morning in Queens before grading essays. Social media exceptionalism hits fast: a singer's award, a millionaire's condo, a public meltdown, a fitness transformation. His own quiet schedule starts to look like proof that he is behind.",
           "whatToDo": "Rafi should close the feed and grade the first essay with care. The honest scale is the work in front of him, not a stream of extremes.",
           "whyItMatters": "Ordinary worth breaks the poisoned comparison set. It lets normal effort matter without needing viral proof of importance."
@@ -735,13 +605,6 @@
             "responsibility",
             "therapy"
           ],
-          "planSpec": {
-            "domain": "therapy homework",
-            "audience": "client in counseling",
-            "stakes": "whether pain becomes exemption",
-            "format": "dialogue",
-            "requiredBeat": "Show inverted specialness without dismissing real pain"
-          },
           "scenario": "Celine, a client, sits at 4:15 in the afternoon in a Montreal therapy office holding a blank worksheet. Her grief is real, and she says no ordinary practice can touch it. The therapist asks, before the session ends, whether being uniquely hurt has started to block one small repair.",
           "whatToDo": "Celine should name one repair that does not deny the grief, such as calling a friend back. Pain can be real without becoming total authority.",
           "whyItMatters": "Ordinary worth respects suffering while refusing to let suffering cancel every responsibility that could help."
@@ -754,13 +617,6 @@
             "creator economy",
             "Jimmy"
           ],
-          "planSpec": {
-            "domain": "podcast production",
-            "audience": "independent creator",
-            "stakes": "whether fame fantasy replaces repetition",
-            "format": "decision_point",
-            "requiredBeat": "Use Jimmy to choose repeatable output over grand identity"
-          },
           "scenario": "Meilin, a podcast host, edits episode three at 11:10 at night in a Taipei apartment while a sticky note says, Jimmy would sell the vision. She has to decide whether to buy ads for a show with no rhythm yet or spend the hour cutting dead air and improving the interview.",
           "whatToDo": "Meilin should edit the interview and publish on schedule. The ordinary work tests the show better than a fame purchase.",
           "whyItMatters": "The specialness fantasy wants status before craft. Ordinary worth keeps attention on the repeatable act that can actually improve."
@@ -773,13 +629,6 @@
             "feedback",
             "anti-entitlement"
           ],
-          "planSpec": {
-            "domain": "sales coaching",
-            "audience": "regional sales rep",
-            "stakes": "whether feedback is heard or personalized",
-            "format": "coach_talk",
-            "requiredBeat": "Turn average performance into usable feedback"
-          },
           "scenario": "Alina, a regional sales rep, reviews a middle-of-the-pack dashboard at 2:00 in a Chicago office. Her manager points to missed follow-ups. Before the coaching call ends, she must choose between claiming the territory is uniquely unfair or accepting that her routine is average and fixable.",
           "whatToDo": "Alina should audit the missed follow-ups and change tomorrow's call block. Being average gives her data, not disgrace.",
           "whyItMatters": "Anti-entitlement makes feedback less threatening. Once average stops meaning worthless, improvement can start from the real numbers."
@@ -792,13 +641,6 @@
             "approval",
             "social media"
           ],
-          "planSpec": {
-            "domain": "local art opening",
-            "audience": "emerging painter",
-            "stakes": "whether low attention becomes identity collapse",
-            "format": "postmortem",
-            "requiredBeat": "Use ordinary worth after a non-spectacular public outcome"
-          },
           "scenario": "Tomas, an emerging painter, stands at 9:00 in the evening in a Porto gallery after only eleven visitors sign the guestbook. Social media exceptionalism whispers that real artists sell out the room. Before he packs the canvases, he must decide what the quiet night means.",
           "whatToDo": "Tomas should ask the curator for two concrete observations and schedule the next studio session. Low turnout is information, not exile.",
           "whyItMatters": "Ordinary worth lets public attention be data. It prevents a normal slow start from becoming a dramatic verdict on the self."
@@ -817,8 +659,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Jimmy's pattern is grand confidence protected from evidence. Farid needs a small test that can prove, disprove, or improve the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -830,8 +671,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Social media exceptionalism warps the scale. Rafi's normal morning is being judged against extremes, not against the values of his own work.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -843,8 +683,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ordinary worth does not deny pain. It refuses to let pain become an identity that blocks every action still available.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -856,8 +695,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The specialness fantasy seeks status before craft. Meilin gains more from the ordinary repetition that exposes and improves the work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -869,8 +707,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Average is not humiliation. Once Alina stops defending specialness, the dashboard becomes usable feedback for tomorrow's behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -882,8 +719,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ordinary worth separates public attention from personal worth. Tomas can learn from the night without making it a dramatic sentence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -895,8 +731,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Confidence detached from behavior becomes protection. The healthier source is action that can be measured, corrected, and repeated.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -908,8 +743,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The entitlement claim avoids measurement. A plain test returns attention to evidence instead of the identity built around talent.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -921,8 +755,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ordinary worth allows a person to practice without a dramatic identity. The next repetition matters because it serves a value, not because it proves specialness.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -959,7 +792,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Practice Without Specialness",
         "coreSkill": "Notice when superiority or unique damage is protecting you from a measurable action. Trade the dramatic identity for one ordinary test. Worth stays intact while the work becomes honest.",
         "ifThenPlans": [
           {
@@ -984,19 +816,13 @@
       },
       "memorableLines": [
         {
-          "text": "His confidence is not courage.",
-          "location": "breakdown.fastRead",
-          "why": "It crisply separates confidence from evidence."
+          "text": "His confidence is not courage."
         },
         {
-          "text": "Entitlement has two costumes.",
-          "location": "breakdown.deepRead",
-          "why": "It makes superiority and victimhood part of the same pattern."
+          "text": "Entitlement has two costumes."
         },
         {
-          "text": "Average is not an insult unless specialness has become the price of self-respect.",
-          "location": "breakdown.fullRead",
-          "why": "It names the emotional bargain the reader must break."
+          "text": "Average is not an insult unless specialness has become the price of self-respect."
         }
       ]
     },
@@ -1023,13 +849,6 @@
             "loyalty",
             "reality check"
           ],
-          "planSpec": {
-            "domain": "history podcast edit",
-            "audience": "producer",
-            "stakes": "whether loyalty survives correction",
-            "format": "business_case",
-            "requiredBeat": "Use Onoda to force a concrete decision instead of generic reflection"
-          },
           "scenario": "Jules, a podcast producer, sits at 2:40 in an Atlanta studio with an episode on Hiroo Onoda and Norio Suzuki open on the timeline. The host wants to frame Onoda only as heroic loyalty. Before the final mix, Jules must decide whether to include the cost of serving a dead war.",
           "whatToDo": "Jules should keep both sides in the edit: endurance and distortion. Loyalty earns respect only when reality is allowed to test it.",
           "whyItMatters": "Onoda shows that commitment gives pain meaning, but also that a value can imprison a person when the world changes."
@@ -1042,13 +861,6 @@
             "comparison",
             "music school"
           ],
-          "planSpec": {
-            "domain": "music school critique",
-            "audience": "guitar student",
-            "stakes": "whether comparison becomes the metric",
-            "format": "dialogue",
-            "requiredBeat": "Use Mustaine to force a concrete decision instead of generic reflection"
-          },
           "scenario": "Lucia, a guitarist, waits at 5:30 in a Madrid conservatory hallway after a recital. Her old bandmate got the louder applause. The teacher mentions Dave Mustaine, Metallica, and Megadeth, then asks before the critique ends whether Lucia wants better music or a permanent revenge score.",
           "whatToDo": "Lucia should ask for one craft note and one next practice target. The bandmate's applause should not become the measure of the song.",
           "whyItMatters": "Mustaine's pain made music, but the Metallica metric kept victory sour. Comparison can turn achievement into another loss."
@@ -1061,13 +873,6 @@
             "Beatles",
             "quiet values"
           ],
-          "planSpec": {
-            "domain": "radio interview prep",
-            "audience": "journalist",
-            "stakes": "whether public loss defines private worth",
-            "format": "reflection",
-            "requiredBeat": "Use Pete Best to force a concrete decision instead of generic reflection"
-          },
           "scenario": "Samira, a radio journalist, reviews notes at 9:10 in a Beirut booth for a segment on Pete Best and the Beatles. The producer wants tragedy and bitterness. Samira notices another angle: the man who missed global fame still built a life not ruled by the famous scoreboard.",
           "whatToDo": "Samira should ask about the later values, not only the lost stage. The interview can honor the wound without making fame the only scale.",
           "whyItMatters": "Pete Best gives a humbler metric. Public victory is not the only way to judge whether a life has become livable."
@@ -1080,13 +885,6 @@
             "team protocol",
             "obsolete value"
           ],
-          "planSpec": {
-            "domain": "security team drill",
-            "audience": "operations lead",
-            "stakes": "whether old protocol gets revised",
-            "format": "decision_point",
-            "requiredBeat": "Use Onoda to force a concrete decision instead of generic reflection"
-          },
           "scenario": "Greta, an airport security lead, reviews a laminated drill map at 6:45 in the morning in Hamburg. The team still obeys a rule from an old threat model. Hours before the audit, she must decide whether to praise discipline or admit the Onoda-like loyalty now protects the wrong thing.",
           "whatToDo": "Greta should retire the obsolete rule and brief the new risk. Discipline should serve present safety, not the memory of an older threat.",
           "whyItMatters": "A value needs contact with current facts. Otherwise loyalty becomes a machine that keeps choosing outdated pain."
@@ -1099,13 +897,6 @@
             "startup envy",
             "metric"
           ],
-          "planSpec": {
-            "domain": "founder scoreboard",
-            "audience": "early-stage CEO",
-            "stakes": "whether revenge picks the strategy",
-            "format": "audit",
-            "requiredBeat": "Use Mustaine to force a concrete decision instead of generic reflection"
-          },
           "scenario": "Ansel, a founder in Cape Town, opens a competitor's funding announcement at 7:55 in the office kitchen. The rival once rejected him as a cofounder. Before the roadmap meeting starts, Dave Mustaine's Metallica problem is right there: build the product, or chase the old insult.",
           "whatToDo": "Ansel should remove the rival from the roadmap slide and rank features by customer pain. Revenge is a poisonous product metric.",
           "whyItMatters": "Comparison can feel motivating while quietly choosing the wrong pain. Better values point toward behavior that helps the business."
@@ -1118,13 +909,6 @@
             "career loss",
             "family"
           ],
-          "planSpec": {
-            "domain": "career counseling office",
-            "audience": "laid-off musician",
-            "stakes": "whether identity can move beyond public defeat",
-            "format": "school_case",
-            "requiredBeat": "Use Pete Best to force a concrete decision instead of generic reflection"
-          },
           "scenario": "Briony, a drummer, sits at 1:25 in a Glasgow career office with a severance form and a photo of her old band. The counselor brings up Pete Best, not to erase the loss, but to ask before the next appointment whether Briony wants a life metric wider than the stage that closed.",
           "whatToDo": "Briony should choose one value for the next month, such as teaching younger drummers, and build a schedule around it.",
           "whyItMatters": "A better metric does not deny grief. It gives the next season a standard that is not controlled by the people who moved on."
@@ -1143,8 +927,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Onoda's pain is not mocked, but it is audited. A value can make suffering meaningful and still become dangerous when facts move on.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q02",
@@ -1156,8 +939,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mustaine's success did not settle the wound because Metallica remained the scorecard. Lucia needs a metric tied to craft.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1169,8 +951,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pete Best helps separate public victory from a livable metric. Samira should ask about values that survived outside fame.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1182,8 +963,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The value is safety, not obedience to an old map. Greta preserves discipline by aiming it at current reality.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1195,8 +975,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A revenge metric can look energizing while selecting the wrong work. Customer pain gives Ansel a value that can be practiced and checked.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1208,8 +987,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Pete Best's contrast is not denial of loss. It is the choice of a value that can make the next season livable.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -1221,8 +999,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Intensity does not validate a metric. Better values remain controllable, constructive, and open to correction.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1234,8 +1011,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The deepest layer asks which standard gives the emotion its meaning. Envy often points to comparison as the hidden metric.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1247,8 +1023,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A good value is behavior-bound and reality-bound. Drama, admiration, and intensity are weak tests of whether pain is worth repeating.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1285,7 +1060,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Audit The Hidden Metric",
         "coreSkill": "When pain repeats, look for the value selecting it. Do not ask only whether the struggle is intense. Ask whether the metric is controllable, constructive, and honest under present facts.",
         "ifThenPlans": [
           {
@@ -1310,19 +1084,13 @@
       },
       "memorableLines": [
         {
-          "text": "The suffering is real.",
-          "location": "breakdown.fastRead",
-          "why": "It honors the pain before judging the value behind it."
+          "text": "The suffering is real."
         },
         {
-          "text": "Values act like pain selectors.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the chapter's central mechanism a plain phrase."
+          "text": "Values act like pain selectors."
         },
         {
-          "text": "Pain alone proves nothing.",
-          "location": "breakdown.fullRead",
-          "why": "It blocks the romance of suffering in five sharp words."
+          "text": "Pain alone proves nothing."
         }
       ]
     },
@@ -1349,13 +1117,6 @@
             "agency",
             "injury"
           ],
-          "planSpec": {
-            "domain": "endurance race recovery",
-            "audience": "injured runner",
-            "stakes": "whether chosen pain gets confused with reckless denial",
-            "format": "decision_point",
-            "requiredBeat": "Use the 26.2-mile marathon contrast to separate pain from ownership"
-          },
           "scenario": "Ruth, a first-time marathoner, sits at 1:50 in the medical tent in Boston with a foil blanket and a swollen ankle. The 26.2-mile finish felt chosen until the injury. Before signing up again, she must decide whether pride means ignoring the pain or owning the recovery plan.",
           "whatToDo": "Ruth should accept the injury data and choose rehab before another race. Ownership means caring for the response, not pretending the pain is noble.",
           "whyItMatters": "The marathon contrast shows that agency changes meaning, but it does not make reality optional. Responsibility includes the next honest repair."
@@ -1368,13 +1129,6 @@
             "despair",
             "practice"
           ],
-          "planSpec": {
-            "domain": "graduate school crisis",
-            "audience": "doctoral student",
-            "stakes": "whether agency must wait for confidence",
-            "format": "reflection",
-            "requiredBeat": "Use William James to begin responsibility before proof arrives"
-          },
           "scenario": "Oksana, a doctoral student, opens a notebook at 6:35 in a Prague library after another rejected fellowship. A margin note on William James catches her eye. She has no proof the semester will improve, but she can still choose the next response before despair turns the rejection into destiny.",
           "whatToDo": "Oksana should send one revision request to her advisor and schedule a new draft block. Responsibility begins as practice, not as certainty.",
           "whyItMatters": "William James matters because he tries agency from inside weakness. The response can start before life feels fair or hopeful."
@@ -1387,13 +1141,6 @@
             "injustice",
             "education"
           ],
-          "planSpec": {
-            "domain": "school board advocacy",
-            "audience": "student activist",
-            "stakes": "whether harm silences response",
-            "format": "scene",
-            "requiredBeat": "Use Malala to keep blame and agency separate"
-          },
           "scenario": "Jun, a student activist, waits at 7:00 in a Fresno school board chamber after anonymous threats target his campaign for girls' tutoring funds. His mother mentions Malala Yousafzai. Before public comments open, Jun must decide whether fear writes the night or whether his prepared statement still belongs to him.",
           "whatToDo": "Jun should report the threat and read the statement with support nearby. The harm is not his fault, and the next public choice remains his.",
           "whyItMatters": "Malala's example keeps innocence and agency together. Responsibility for response does not excuse the people who cause harm."
@@ -1406,13 +1153,6 @@
             "work",
             "next action"
           ],
-          "planSpec": {
-            "domain": "hourly work commute",
-            "audience": "restaurant server",
-            "stakes": "whether bad luck owns the day",
-            "format": "mistake_recovery",
-            "requiredBeat": "Distinguish blame for a theft from responsibility for the next move"
-          },
           "scenario": "Noor, a restaurant server, finds the bike rack empty at 3:10 in the afternoon outside a Minneapolis market. The theft is not her fault. Before the dinner shift starts, she has to choose between replaying the unfairness on the curb or calling the manager and finding a ride.",
           "whatToDo": "Noor should file the report, call the manager, and ask a coworker for pickup. The thief owns the theft; she owns the shift response.",
           "whyItMatters": "Fault and responsibility split cleanly here. Agency returns when the next action is chosen without pretending the theft was fair."
@@ -1425,13 +1165,6 @@
             "fault",
             "ownership"
           ],
-          "planSpec": {
-            "domain": "health diagnosis",
-            "audience": "patient",
-            "stakes": "whether illness becomes total identity",
-            "format": "dialogue",
-            "requiredBeat": "Apply response responsibility to a problem not caused by the person"
-          },
           "scenario": "Eitan, a graphic novelist, takes a call at 10:30 in the morning in Tel Aviv and hears the specialist confirm an autoimmune diagnosis. Genetics and luck do not ask permission. Before the next appointment, he must decide whether the diagnosis will choose every habit or whether he will prepare questions.",
           "whatToDo": "Eitan should write three treatment questions and ask a friend to attend the visit. He does not own the illness, but he can own preparation.",
           "whyItMatters": "Response responsibility protects agency under limits. It refuses both blame and total surrender."
@@ -1444,13 +1177,6 @@
             "agency",
             "fault"
           ],
-          "planSpec": {
-            "domain": "corporate layoff",
-            "audience": "project manager",
-            "stakes": "whether unfair loss freezes action",
-            "format": "postmortem",
-            "requiredBeat": "Show a next response after harm or luck has already happened"
-          },
           "scenario": "Priam, a project manager, turns in an exit badge at 4:00 in a Phoenix office after a layoff caused by a merger he did not choose. The severance folder shakes in his hand. Before the elevator closes, he must decide whether unfairness gets the next week or a job-search plan does.",
           "whatToDo": "Priam should take the evening to grieve, then list five contacts for tomorrow. The merger caused the loss; the next week needs his hand.",
           "whyItMatters": "Agency does not require pretending the layoff was deserved. It requires refusing to let fault own the entire future."
@@ -1469,8 +1195,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Chosen pain changes meaning, but it does not erase facts. Ruth's responsibility is the next honest response to the injury.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1482,8 +1207,7 @@
             ],
             "correctIndex": 0,
             "explanation": "James begins responsibility as practice, not as reward for feeling strong. Oksana can choose one response while still discouraged.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1495,8 +1219,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Malala's case rejects victim-blaming while preserving response power. Jun can seek safety and still act for the value.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -1508,8 +1231,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The thief owns the theft. Noor owns the next response, which protects agency without making the theft fair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1521,8 +1243,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Response responsibility does not blame Eitan for the illness. It gives him a next action inside the limits he faces.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1534,8 +1255,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fault can stay with the merger and company decision. Priam still has to decide what the next week will contain.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1547,8 +1267,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The distinction is moral and practical. Responsibility for response is not responsibility for being harmed.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1560,8 +1279,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Asking for a perfect method can protect passivity. Response responsibility often begins with an imperfect available action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1573,8 +1291,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The two-column exercise keeps the distinction intact. It honors unfairness while returning one piece of agency to the reader.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1611,7 +1328,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Separate Fault From Response",
         "coreSkill": "When a problem hurts, split cause from ownership. Name what you did not choose without apology. Then choose one response that returns agency to the next hour.",
         "ifThenPlans": [
           {
@@ -1636,19 +1352,13 @@
       },
       "memorableLines": [
         {
-          "text": "Ownership changes the meaning.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the marathon contrast in one sentence."
+          "text": "Ownership changes the meaning."
         },
         {
-          "text": "Fault answers one question.",
-          "location": "breakdown.deepRead",
-          "why": "It opens the key distinction with unusual clarity."
+          "text": "Fault answers one question."
         },
         {
-          "text": "The first available action may be tiny, but it returns one piece of life to the person living it.",
-          "location": "breakdown.fullRead",
-          "why": "It makes agency practical instead of abstract."
+          "text": "The first available action may be tiny, but it returns one piece of life to the person living it."
         }
       ]
     },
@@ -1675,13 +1385,6 @@
             "pattern hunger",
             "lab"
           ],
-          "planSpec": {
-            "domain": "behavioral science workshop",
-            "audience": "product analysts",
-            "stakes": "whether random data gets turned into a ritual",
-            "format": "predict_reveal",
-            "requiredBeat": "Use the random-button experiment to expose invented control"
-          },
           "scenario": "Vera, a product analyst, stands at 10:15 in a Berlin workshop beside a demo labeled random-button psychology experiment. The team sees points after taps and starts naming a pattern. Before the debrief, she must decide whether to celebrate the discovery or test whether the reward was random.",
           "whatToDo": "Vera should rerun the demo with the randomness revealed and ask what other dashboards may be getting the same treatment.",
           "whyItMatters": "The experiment shows how quickly the mind invents control. Productive uncertainty turns that embarrassment into a better test."
@@ -1694,13 +1397,6 @@
             "history",
             "confidence"
           ],
-          "planSpec": {
-            "domain": "museum exhibit planning",
-            "audience": "curator",
-            "stakes": "whether authority is mistaken for truth",
-            "format": "audit",
-            "requiredBeat": "Use California island maps to make certainty feel temporary"
-          },
           "scenario": "Hector, a museum curator, inspects a seventeenth-century California island map at 3:00 in a San Diego archive. The engraving is beautiful and wrong. Before writing the exhibit label, he must decide whether to treat the map as a silly old error or a warning about his own confident labels.",
           "whatToDo": "Hector should write the label so the old map reflects back on present certainty. Authority can be elegant and mistaken at the same time.",
           "whyItMatters": "California island maps make correction historical. They remind the reader that common knowledge may be a postponed revision."
@@ -1713,13 +1409,6 @@
             "identity armor",
             "mission"
           ],
-          "planSpec": {
-            "domain": "bioethics startup pitch",
-            "audience": "founder",
-            "stakes": "whether noble certainty blocks feedback",
-            "format": "business_case",
-            "requiredBeat": "Use Erin to show purpose becoming armor"
-          },
           "scenario": "Zadie, a biotech founder, rehearses at 8:00 in a Cambridge conference room under a slide that quotes Erin's cure-death ambition. Investors flagged safety gaps. Minutes before the pitch, Zadie must decide whether feedback is cowardice or whether the mission has become too fused with her identity.",
           "whatToDo": "Zadie should name the safety gaps in the pitch and invite a review. A noble mission still needs permission to be corrected.",
           "whyItMatters": "Erin's certainty warns that high ideals can still protect ego. Productive uncertainty keeps purpose answerable to reality."
@@ -1732,13 +1421,6 @@
             "customer research",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "retail customer research",
-            "audience": "brand manager",
-            "stakes": "whether identity blocks learning",
-            "format": "decision_point",
-            "requiredBeat": "Turn a defended belief into a testable correction"
-          },
           "scenario": "Mikhail, a brand manager, sits at 1:20 in a Warsaw focus-group room after six customers reject his favorite packaging. The phrase productive uncertainty is written on his legal pad. Before the agency call, he must choose between defending taste and asking what the rejection teaches.",
           "whatToDo": "Mikhail should rewrite the packaging hypothesis and run a smaller test. Being wrong becomes useful when it changes the next experiment.",
           "whyItMatters": "Less wrong is progress. The value lies in updating before pride makes the product pay for the old belief."
@@ -1751,13 +1433,6 @@
             "story-making",
             "uncertainty"
           ],
-          "planSpec": {
-            "domain": "couple communication",
-            "audience": "partner",
-            "stakes": "whether a guessed story becomes accusation",
-            "format": "dialogue",
-            "requiredBeat": "Use pattern-making to pause before identity defense"
-          },
           "scenario": "Livia, a partner, notices at 8:45 in a Recife kitchen that her husband answers dinner questions with short replies. Her mind builds a betrayal story from three quiet minutes. Before she accuses him, she must decide whether the story is evidence or a random-button pattern in domestic clothing.",
           "whatToDo": "Livia should ask one direct, calm question about his silence. The pause protects the relationship from a story built too fast.",
           "whyItMatters": "Productive uncertainty is not passivity. It delays the accusation long enough for real information to enter."
@@ -1770,13 +1445,6 @@
             "identity",
             "correction"
           ],
-          "planSpec": {
-            "domain": "mathematics course",
-            "audience": "student",
-            "stakes": "whether one failure becomes self-concept",
-            "format": "coach_talk",
-            "requiredBeat": "Apply the law of avoidance to a threatened identity"
-          },
           "scenario": "Renee, a first-year student, stares at a failed calculus exam at 12:05 in a New Orleans tutoring center. She says math people are born that way. Before she drops the course, the tutor asks what if the verdict is wrong and what smaller problem would replace it.",
           "whatToDo": "Renee should redo three missed problems with the tutor before making a course decision. The identity verdict can wait for evidence.",
           "whyItMatters": "The law of avoidance makes threatened identity flee the test. Productive uncertainty keeps the next learning step available."
@@ -1795,8 +1463,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The random-button experiment warns that the mind invents order quickly. Vera turns the mistake into better testing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1808,8 +1475,7 @@
             ],
             "correctIndex": 1,
             "explanation": "California island maps make certainty feel temporary. The lesson is humility about present knowledge, not smugness about old errors.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1821,8 +1487,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Erin shows how noble certainty can become armor. Zadie needs the mission to remain answerable to feedback.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1834,8 +1499,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Less wrong progress means changing the next experiment when evidence arrives. Mikhail's taste should not outrank the test.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1847,8 +1511,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Productive uncertainty delays the identity-protecting story long enough for information. It is active inquiry, not avoidance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1860,8 +1523,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The identity verdict makes avoidance tempting. A small correction step keeps learning possible without pretending the failure felt good.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1873,8 +1535,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Productive uncertainty is not emptiness. It ranks beliefs by correction, usefulness, and contact with reality.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1886,8 +1547,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The question loosens identity around the belief. It makes correction less humiliating and more practical.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -1899,8 +1559,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A wrong map becomes useful once it is corrected. Defending the old forecast keeps identity safer and action worse.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1937,7 +1596,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Loosen The Map",
         "coreSkill": "Treat strong beliefs as maps that may need revision. When evidence stings, ask whether identity is defending the old map. The aim is better action, not endless doubt.",
         "ifThenPlans": [
           {
@@ -1962,19 +1620,13 @@
       },
       "memorableLines": [
         {
-          "text": "Certainty can feel solid while waiting to become embarrassing.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the California map warning immediate."
+          "text": "Certainty can feel solid while waiting to become embarrassing."
         },
         {
-          "text": "The mind hates blank space.",
-          "location": "breakdown.deepRead",
-          "why": "It explains why people invent patterns so quickly."
+          "text": "The mind hates blank space."
         },
         {
-          "text": "A flexible identity can survive being corrected.",
-          "location": "breakdown.fullRead",
-          "why": "It turns uncertainty into a strength rather than a defect."
+          "text": "A flexible identity can survive being corrected."
         }
       ]
     },
@@ -2001,13 +1653,6 @@
             "business",
             "risk"
           ],
-          "planSpec": {
-            "domain": "online business launch",
-            "audience": "unemployed worker",
-            "stakes": "whether low downside permits a test",
-            "format": "decision_memo",
-            "requiredBeat": "Use the 2007 futon case to make action available"
-          },
           "scenario": "Silas, an unemployed copywriter, wakes at 6:20 on a friend's futon in Denver with a spreadsheet of expenses and a half-built landing page. The 2007 futon and internet-business gamble sits in his notes. Rent is coming, and the choice is stark: keep nursing confidence or sell one test service.",
           "whatToDo": "Silas should send the test offer to ten prospects today. His current safety has already failed, so feedback is more useful than waiting.",
           "whyItMatters": "The futon case makes risk concrete. Action can become rational when the feared downside is already part of the present."
@@ -2020,13 +1665,6 @@
             "avoidance",
             "email"
           ],
-          "planSpec": {
-            "domain": "customer apology email",
-            "audience": "support lead",
-            "stakes": "whether how hides the first step",
-            "format": "dialogue",
-            "requiredBeat": "Use the VCR question to expose avoidance disguised as confusion"
-          },
           "scenario": "Thandi, a support lead, sits at 9:05 in a Johannesburg office asking how to write to an angry customer. Her teammate jokes about the VCR question: if the next button is visible, why keep asking how? Before the refund window closes, Thandi must write the first honest line.",
           "whatToDo": "Thandi should draft the apology with the known facts and send it for one review. The how question should not block the visible next step.",
           "whyItMatters": "The VCR frame catches respectable avoidance. A clumsy draft can teach more than another hour of fog."
@@ -2039,13 +1677,6 @@
             "art",
             "first mark"
           ],
-          "planSpec": {
-            "domain": "studio painting practice",
-            "audience": "artist",
-            "stakes": "whether inspiration is required before work",
-            "format": "reset_moment",
-            "requiredBeat": "Use do something principle to begin before motivation"
-          },
           "scenario": "Beatrice, a painter, stands at 2:30 in a Florence studio before a blank canvas and three sharpened pencils. The do something principle is written on the door. Before the afternoon light shifts, she has to choose between waiting for inspiration and making one ugly composition mark.",
           "whatToDo": "Beatrice should make the first mark and judge the next mark from what appears. The action is allowed to be crude because its job is to start feedback.",
           "whyItMatters": "Motivation can follow contact. The first mark changes the problem from fantasy to something visible."
@@ -2058,13 +1689,6 @@
             "product",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "hardware prototype",
-            "audience": "engineering team",
-            "stakes": "whether a failed test becomes data",
-            "format": "postmortem",
-            "requiredBeat": "Show failure serving a better value through feedback"
-          },
           "scenario": "Kaito, a hardware engineer, watches a sensor prototype fail at 4:40 in a Nagoya lab. The error log prints across the monitor. Before the team scraps the design, he must decide whether failure is a verdict or a map of the next three fixes.",
           "whatToDo": "Kaito should mark the first reproducible failure and build the next test around it. The miss becomes useful only if it changes the experiment.",
           "whyItMatters": "Failure moves the work forward when it produces specific feedback. It becomes waste when pride refuses the lesson."
@@ -2077,13 +1701,6 @@
             "motion",
             "fear"
           ],
-          "planSpec": {
-            "domain": "nonprofit donor outreach",
-            "audience": "fundraiser",
-            "stakes": "whether fear blocks a visible action",
-            "format": "decision_point",
-            "requiredBeat": "Use action before motivation in a social-risk setting"
-          },
           "scenario": "Nerea, a nonprofit fundraiser, sits at 11:00 in a Bilbao office with a donor list and a cold coffee. She wants a better script before calling. Minutes before lunch, action before motivation asks whether one awkward call would teach more than another pass through the script.",
           "whatToDo": "Nerea should call the first donor and write down the objection she hears. The call creates the data the script is missing.",
           "whyItMatters": "Social fear often waits for confidence. The useful confidence comes after the first real contact."
@@ -2096,13 +1713,6 @@
             "small action",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "post-injury fitness",
-            "audience": "office worker",
-            "stakes": "whether all-or-nothing thinking blocks movement",
-            "format": "planning_choice",
-            "requiredBeat": "Start with a small action that gives feedback"
-          },
           "scenario": "Hamza, an accountant, ties his shoes at 7:10 in the evening in Rabat after two months away from exercise. A full program feels too big. Before he returns to the couch, the do something principle gives him a smaller choice: walk ten minutes and learn how the knee responds.",
           "whatToDo": "Hamza should take the ten-minute walk and record the knee response. Small motion gives safer information than another perfect plan.",
           "whyItMatters": "The first action does not need drama. It only needs to make the next decision more grounded."
@@ -2121,8 +1731,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The futon case changes the risk math. Silas needs feedback from motion, not more waiting for confidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2134,8 +1743,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The VCR question exposes avoidance disguised as confusion. Thandi can start with the known facts and improve the draft.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2147,8 +1755,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The first mark creates feedback. Motivation can grow after the canvas stops being a fantasy problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2160,8 +1767,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Failure is forward only when feedback changes the next experiment. Kaito should use the specific miss.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -2173,8 +1779,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first call gives Nerea data no imagined script can provide. Action creates the material that improves the next action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2186,8 +1791,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Small action gives Hamza grounded feedback. The point is not drama; it is a better next decision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2199,8 +1803,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The warning rejects hustle worship. Failure attached to a bad metric can simply repeat pain.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -2212,8 +1815,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The do something principle asks for contact with reality. A tiny action can produce feedback before certainty appears.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -2225,8 +1827,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Action can create emotional movement. A bad first sentence is more useful than another round of readiness-seeking.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2263,7 +1864,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Start With One Contact",
         "coreSkill": "Turn waiting into a test. Pick the smallest action that can touch reality and produce feedback. Then let that feedback choose the next step.",
         "ifThenPlans": [
           {
@@ -2288,19 +1888,13 @@
       },
       "memorableLines": [
         {
-          "text": "Motivation is often a result, not a precondition.",
-          "location": "breakdown.fastRead",
-          "why": "It flips the familiar sequence in plain language."
+          "text": "Motivation is often a result, not a precondition."
         },
         {
-          "text": "Sometimes confusion is honest.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the VCR critique fair instead of dismissive."
+          "text": "Sometimes confusion is honest."
         },
         {
-          "text": "Pain with information is often better than comfort with a story.",
-          "location": "breakdown.fullRead",
-          "why": "It explains why failed attempts can beat waiting."
+          "text": "Pain with information is often better than comfort with a story."
         }
       ]
     },
@@ -2327,13 +1921,6 @@
             "depth",
             "place"
           ],
-          "planSpec": {
-            "domain": "remote work housing choice",
-            "audience": "digital worker",
-            "stakes": "whether novelty hides commitment fear",
-            "format": "planning_choice",
-            "requiredBeat": "Use the 2009 digital-nomad years to show breadth thinning out"
-          },
           "scenario": "Inez, a remote consultant, stares at a 9:30 rental renewal in Mexico City with flight tabs open to three continents. The 2009 digital-nomad years sound glamorous in her journal, but her friendships keep resetting. The decision is whether to chase another story or give one place a season.",
           "whatToDo": "Inez should renew for three months and join one local commitment. Depth needs a no to the next easy exit.",
           "whyItMatters": "The nomad anchor shows that movement can hide from being known. Commitment lets a place become more than scenery."
@@ -2346,13 +1933,6 @@
             "friendship",
             "honesty"
           ],
-          "planSpec": {
-            "domain": "friendship invitation",
-            "audience": "expat",
-            "stakes": "whether politeness creates fog",
-            "format": "text_thread",
-            "requiredBeat": "Use Saint Petersburg bluntness to show direct noes building trust"
-          },
           "scenario": "Lev, an American teacher in Saint Petersburg, rereads an invitation at 6:10 on a tram. He wants to type maybe, though he knows he cannot go. His Russian colleague says a clean no is kinder than a decorative excuse. Lev has to answer before the host buys groceries.",
           "whatToDo": "Lev should send a direct no with thanks and no false opening. The host gets solid ground instead of polite fog.",
           "whyItMatters": "Russian bluntness reveals that clarity can serve care. A no can strengthen trust when it removes guessing."
@@ -2365,13 +1945,6 @@
             "love",
             "boundaries"
           ],
-          "planSpec": {
-            "domain": "relationship counseling",
-            "audience": "couple",
-            "stakes": "whether intensity is mistaken for health",
-            "format": "dialogue",
-            "requiredBeat": "Use Romeo and Juliet romance to separate drama from healthy love"
-          },
           "scenario": "Paolo, a counselor, listens at 7:00 in a Verona office while two clients describe blocking friends, quitting plans, and calling it Romeo and Juliet devotion. The room is warm and tense. Paolo must ask whether their passion supports responsibility or helps both of them escape it.",
           "whatToDo": "Paolo should have each partner name one problem that remains their own. Support can stay; rescue and control need a boundary.",
           "whyItMatters": "The Romeo and Juliet frame makes intensity suspect. Healthy love needs noes that keep responsibility in the right place."
@@ -2384,13 +1957,6 @@
             "commitment",
             "no"
           ],
-          "planSpec": {
-            "domain": "music practice",
-            "audience": "composer",
-            "stakes": "whether a craft yes gets protected",
-            "format": "decision_point",
-            "requiredBeat": "Show a no serving a chosen yes"
-          },
           "scenario": "Linus, a composer, unlocks a rehearsal room at 5:50 in Helsinki while three friends send bar invitations. The quartet deadline is Friday. He enjoys being easy to reach, but the score will not deepen unless something is refused. Ten minutes later, the phone still flashes.",
           "whatToDo": "Linus should decline the bar and silence the phone until the movement is revised. The no protects the chosen craft.",
           "whyItMatters": "Commitment becomes real only when it costs an option. Otherwise the craft remains a label without a border."
@@ -2403,13 +1969,6 @@
             "behavior",
             "boundary"
           ],
-          "planSpec": {
-            "domain": "team leadership",
-            "audience": "manager",
-            "stakes": "whether trust is repaired by words or changed behavior",
-            "format": "postmortem",
-            "requiredBeat": "Use trust as a track record built by honest noes and behavior"
-          },
           "scenario": "Soraya, a design manager, meets at 3:15 in a Vancouver conference room with an employee who missed three handoffs. He apologizes with charm and asks to keep the same deadline freedom. Before assigning the next project, Soraya has to decide whether trust is a feeling or a record.",
           "whatToDo": "Soraya should set a smaller deadline with check-ins. Trust can be rebuilt through changed behavior, not a pleasant apology alone.",
           "whyItMatters": "Boundaries are part of repair. Saying no to the old access protects the standard and gives trust a way back."
@@ -2422,13 +1981,6 @@
             "chosen yes",
             "rejection"
           ],
-          "planSpec": {
-            "domain": "family obligation",
-            "audience": "new parent",
-            "stakes": "whether every request can coexist with a chosen priority",
-            "format": "dilemma",
-            "requiredBeat": "Reject a request to protect a deliberate commitment"
-          },
           "scenario": "Adrian, a new father, holds a Saturday calendar at 8:00 in a Tulsa kitchen while relatives push for another all-day visit. His partner is exhausted, and the baby has slept poorly. The chosen yes is recovery at home; the request wants to turn family love into automatic access.",
           "whatToDo": "Adrian should offer a shorter Sunday visit and protect Saturday rest. A boundary can honor family without sacrificing the household.",
           "whyItMatters": "A no is not rejection of love. It defines the space where a more important yes can survive."
@@ -2447,8 +1999,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The nomad pattern warns that breadth can hide from depth. Inez needs a no that protects the possibility of belonging.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2460,8 +2011,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Bluntness can serve trust. Lev's clear no respects the host more than pleasant ambiguity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2473,8 +2023,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Healthy love supports without taking over. The Romeo and Juliet frame warns that intensity can become escape from responsibility.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2486,8 +2035,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Rejection serves the yes. Linus is not rejecting pleasure as a posture; he is protecting a score that needs depth.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -2499,8 +2047,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Trust is repaired through changed behavior over time. Soraya's boundary protects the work and gives trust a path back.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2512,8 +2059,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The boundary protects the household without rejecting family. A real yes to recovery needs a concrete no.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2525,8 +2071,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The claim is not anti-freedom. It says depth requires exclusion, because every serious yes needs protected space.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -2538,8 +2083,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge is that rejection serves care. If no chosen value is being protected, the refusal may be ego or contempt.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2551,8 +2095,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A boundary begins with a specific yes. The no should protect that commitment rather than become a general mood.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2589,7 +2132,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Protect The Chosen Yes",
         "coreSkill": "Before saying no, name the yes being protected. Then make the refusal clear enough that trust increases rather than fog. Boundaries serve commitments, not ego.",
         "ifThenPlans": [
           {
@@ -2614,19 +2156,13 @@
       },
       "memorableLines": [
         {
-          "text": "Yet breadth can become another form of avoidance when no city, person, or path receives enough time to matter deeply.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the digital-nomad warning into a vivid image."
+          "text": "Yet breadth can become another form of avoidance when no city, person, or path receives enough time to matter deeply."
         },
         {
-          "text": "Rejection gives the yes a border.",
-          "location": "breakdown.fullRead",
-          "why": "It states the central rule in a sentence readers can carry."
+          "text": "Rejection gives the yes a border."
         },
         {
-          "text": "Trust is not a mood.",
-          "location": "breakdown.fullRead",
-          "why": "It makes repair behavioral rather than sentimental."
+          "text": "Trust is not a mood."
         }
       ]
     },
@@ -2653,13 +2189,6 @@
             "mortality",
             "friendship"
           ],
-          "planSpec": {
-            "domain": "college memorial planning",
-            "audience": "student",
-            "stakes": "whether grief becomes avoidance or action",
-            "format": "reflection",
-            "requiredBeat": "Use Josh at the Dallas lake party to expose avoidance"
-          },
           "scenario": "Maeve, a college student, stands at 9:30 in a Denton parking lot after hearing that a friend died at a lake north of Dallas. Josh's story sits too close to her own summer. She has ignored three calls from people who love her. The memorial is tomorrow, and avoidance suddenly looks expensive.",
           "whatToDo": "Maeve should return one call and say plainly that she is not okay. Death makes the cost of hiding easier to see.",
           "whyItMatters": "Josh's death turns mortality into a lived filter. It shows that fear can spend a life unless contact begins now."
@@ -2672,13 +2201,6 @@
             "theory",
             "culture"
           ],
-          "planSpec": {
-            "domain": "university seminar",
-            "audience": "philosophy student",
-            "stakes": "whether legacy gets mistaken for meaning",
-            "format": "school_case",
-            "requiredBeat": "Use Ernest Becker to connect death terror with symbolic selves"
-          },
           "scenario": "Cassian, a philosophy student, opens Ernest Becker's The Denial of Death at 1:15 in an Oxford seminar room. The class debates whether ambition is noble or neurotic. Cassian's margin note says buildings, books, children, victories. He must decide what kind of legacy serves life instead of terror.",
           "whatToDo": "Cassian should separate creation from ego defense in his notes. A project can outlast a person without becoming a shrine to fear.",
           "whyItMatters": "Becker helps explain why humans chase symbolic survival. The filter asks whether that chase helps the living."
@@ -2691,13 +2213,6 @@
             "wealth",
             "legacy"
           ],
-          "planSpec": {
-            "domain": "hospital philanthropy",
-            "audience": "donor advisor",
-            "stakes": "whether a gift serves patients or ego",
-            "format": "business_case",
-            "requiredBeat": "Use immortality projects to distinguish service from symbolic self-protection"
-          },
           "scenario": "Devika, a donor advisor, reviews at 4:25 in a Boston hospital office a pledge that would put a billionaire's name on the atrium. The money helps patients, but the donor rejects funding nurses unless the lettering is larger. The immortality project has started negotiating with care.",
           "whatToDo": "Devika should redirect the terms toward patient impact and honest recognition. The name can remain, but care must outrank the monument.",
           "whyItMatters": "Immortality projects can build or distort. Mortality filtering asks whether legacy serves life or feeds symbolic ego."
@@ -2710,13 +2225,6 @@
             "work",
             "values"
           ],
-          "planSpec": {
-            "domain": "career decision",
-            "audience": "executive",
-            "stakes": "whether status fear chooses another year",
-            "format": "decision_point",
-            "requiredBeat": "Use mortality to audit status-driven work"
-          },
           "scenario": "Malcolm, a finance director, reads an obituary for a former mentor at 6:40 on a train from Newark. His calendar is packed with work he hates because the title still impresses his parents. One stop later, finite time asks whether another year of prestige is worth the same cost.",
           "whatToDo": "Malcolm should schedule the serious career conversation he keeps postponing. Death does not solve the choice, but it changes the weight.",
           "whyItMatters": "Mortality makes status games look thinner. It does not demand a rash exit; it demands a more honest valuation."
@@ -2729,13 +2237,6 @@
             "fear",
             "present meaning"
           ],
-          "planSpec": {
-            "domain": "family repair",
-            "audience": "estranged sibling",
-            "stakes": "whether pride outlives the relationship",
-            "format": "text_thread",
-            "requiredBeat": "Show death awareness lowering the price of apology"
-          },
           "scenario": "Oriel, an older brother, scrolls at 8:05 in a Manchester flat through unsent apology drafts to his sister. A Becker quote on mortality sits in the marked volume beside him. Pride has kept the drafts safe for months. The family reunion is Sunday, and time no longer feels abstract.",
           "whatToDo": "Oriel should send the short apology without defending the old argument. The repair matters more than preserving the flawless self.",
           "whyItMatters": "Death awareness can shrink pride. The apology creates meaning in the present rather than protecting an image."
@@ -2748,13 +2249,6 @@
             "fear",
             "finite clock"
           ],
-          "planSpec": {
-            "domain": "creative practice",
-            "audience": "older artist",
-            "stakes": "whether fear of judgment blocks work",
-            "format": "vignette",
-            "requiredBeat": "Use mortality to turn fear into chosen action"
-          },
           "scenario": "Selene, a sculptor, locks a Brooklyn studio at 10:00 at night after hiding the same unfinished figure under cloth for weeks. A friend's sudden funeral and Josh's lake story have made her avoidance feel childish and human at once. The gallery deadline is nine days away.",
           "whatToDo": "Selene should uncover the figure and finish the next rough surface tomorrow morning. Judgment is real, but the clock is real too.",
           "whyItMatters": "Mortality does not erase fear. It makes fear answer to the finite chance to make and share the work."
@@ -2773,8 +2267,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Josh's death makes avoidance concrete. Mortality does not remove grief, but it can lower the authority of fear and hiding.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2786,8 +2279,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Becker does not make all legacy projects empty. The key test is whether the project serves life or ego defense.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2799,8 +2291,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Immortality projects can serve life or distort it. Here the symbolic self is competing with patient impact.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -2812,8 +2303,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Mortality clarifies values; it does not demand reckless theater. Malcolm needs a truthful next conversation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2825,8 +2315,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mortality reduces the value of ego protection. Oriel's apology creates present meaning that pride has been blocking.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2838,8 +2327,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Mortality does not erase judgment. It asks whether fear deserves more authority than the remaining chance to make the work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2851,8 +2339,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge rejects fatalism. Death filters values so care can be spent with more courage and less vanity.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -2864,8 +2351,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Becker's lens shows how symbolic survival can become dangerous. Reputation cannot outrank the people harmed by its defense.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2877,8 +2363,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The practice uses death awareness to reduce fear's authority. It points toward present values rather than morbid rumination or fame.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2915,7 +2400,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Filter Fear Through Mortality",
         "coreSkill": "Use death awareness to lower the authority of vanity and fear. Do not brood for drama. Let finitude point you toward one action that creates present meaning.",
         "ifThenPlans": [
           {
@@ -2940,19 +2424,13 @@
       },
       "memorableLines": [
         {
-          "text": "Death is no longer an idea on a poster.",
-          "location": "breakdown.fastRead",
-          "why": "It makes mortality concrete rather than abstract."
+          "text": "Death is no longer an idea on a poster."
         },
         {
-          "text": "Mortality clarifies because it removes the fantasy of unlimited postponement.",
-          "location": "breakdown.deepRead",
-          "why": "It states why death awareness changes action."
+          "text": "Mortality clarifies because it removes the fantasy of unlimited postponement."
         },
         {
-          "text": "Death makes false importance feel thin.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the chapter's value filter in one line."
+          "text": "Death makes false importance feel thin."
         }
       ]
     }

@@ -43,13 +43,6 @@
             "hospice",
             "authority cue"
           ],
-          "planSpec": {
-            "domain": "a hospice intake coordinator choosing between two referral calls",
-            "audience": "an intake coordinator with six open beds and a queue of families waiting",
-            "stakes": "which patient receives the first nurse visit and whether a title outweighs home details",
-            "format": "decision_point",
-            "requiredBeat": "one doctor title starts carrying more weight than the actual family details"
-          },
           "scenario": "The intake machine spits out a warm fax at 8:06 a.m., its toner smell still sharp beside Marisol's coffee. The referral line carries the name of a famous surgeon, while the next voicemail is from a daughter whispering over pill bottles at her mother's kitchen sink. One nurse slot is open before noon. Marisol's pen is already moving toward the surgeon's packet, and she weighs whether the title is evidence or just the loudest cue in the stack.",
           "whatToDo": "Set both referrals beside the same three checks: symptom risk, home support, and time sensitivity. Let the title point to a possible concern, but do not let it rank the cases alone.",
           "whyItMatters": "A credential can carry useful information, but it does not contain the home scene. When the cue gets a smaller job, the actual need gets room to speak."
@@ -62,13 +55,6 @@
             "library",
             "reason cue"
           ],
-          "planSpec": {
-            "domain": "a library aide guarding the copy line before a GED class",
-            "audience": "a library aide trying to be helpful without giving away class prep time",
-            "stakes": "whether a reason-shaped request overrides a real deadline",
-            "format": "dialogue",
-            "requiredBeat": "the word because nearly gets him to give up the copier before the reason is real"
-          },
           "scenario": "Beside a campus copy counter, Ellen Langer's copy-machine study turns on one small word: because. The word helped a line-cutting request even when the explanation after it carried little weight. The useful lesson is not that people are foolish. It is that a reason-shaped sentence can get processed as a real reason before anyone inspects it. A reader applying the study sorts out whether the explanation changes the trade or merely sounds complete.",
           "whatToDo": "When a request arrives with because, test the reason itself: how urgent, how many pages, whose deadline, and what cost to others? Courtesy can remain while the reason earns its place.",
           "whyItMatters": "The study gives the cue a precise boundary. The word because can open attention, but the content after it still has to justify the exception."
@@ -81,13 +67,6 @@
             "retail",
             "contrast"
           ],
-          "planSpec": {
-            "domain": "a jeweler pricing two trays after a tourist rush",
-            "audience": "a shop owner who knows sequence can change perceived value",
-            "stakes": "whether customers confuse relief from a high anchor with true fit",
-            "format": "predict_reveal",
-            "requiredBeat": "a high anchor changes what a cheaper ring feels worth"
-          },
           "scenario": "At the shop counter after lunch, Cialdini's turquoise jewelry story turns on a mistaken price instruction. The owner expected a markdown to clear unsold pieces; the higher price made them move instead. The shoppers were not evaluating new stones. They were reading price as a quality signal. The store owner checks whether the sale proved value or exposed a shortcut she should use carefully.",
           "whatToDo": "Treat price as one quality clue among others. Compare materials, workmanship, return rules, and personal use before letting a higher tag create confidence.",
           "whyItMatters": "Price can be informative, but it can also lend confidence to an unchanged object. The cue is useful only when it connects to actual quality."
@@ -100,13 +79,6 @@
             "housing",
             "sequence"
           ],
-          "planSpec": {
-            "domain": "a tenant after three apartment tours",
-            "audience": "a renter tired after work and close to signing",
-            "stakes": "a year lease based on relief rather than fit",
-            "format": "before_after",
-            "requiredBeat": "two bad units make an average third unit feel good until he scores it alone"
-          },
           "scenario": "Rainwater drips from Sanjay's coat onto the listing sheet at 6:18 p.m. Thursday as he stands in the third-floor walk-up hallway. The first apartment smelled like wet plaster. The second shook with the train. This one has a dead stove burner and weak light, but it feels peaceful by comparison. Before he signs the application on the stair rail, he scores it as if it were the first door he opened tonight. The number drops from eight to five.",
           "whatToDo": "Reset the frame by judging the apartment against rent, commute, light, repairs, and the next year of use. Write the score before comparing it with the earlier tours.",
           "whyItMatters": "Relief after bad options is a real feeling, but it is not the same as fit. A separate score keeps the sequence from choosing the lease."
@@ -119,13 +91,6 @@
             "donation",
             "default"
           ],
-          "planSpec": {
-            "domain": "a donor reviewing a highlighted giving amount",
-            "audience": "a regular donor who wants generosity to be chosen rather than steered",
-            "stakes": "whether preset options define her giving standard",
-            "format": "postmortem",
-            "requiredBeat": "she sees that the page chose the number before she did"
-          },
           "scenario": "The donation receipt glows on Nadine's laptop at 10:27 p.m., with a spoon cooling in her tea beside the kitchen island. She meant to give twenty-five dollars after the flood report. The receipt says seventy-five. Looking back, she sees the blue highlighted box, the tiny word recommended, and her own click before she chose a number. She writes on a sticky note for next time: choose first, compare second.",
           "whatToDo": "Pick the gift amount from your own rule before looking at presets. Then compare it with the page suggestion and change it only if your reason changes too.",
           "whyItMatters": "A default can borrow your values and express them at its price. Choosing first keeps generosity yours instead of letting the page set the starting line."
@@ -138,13 +103,6 @@
             "hospital",
             "fluency"
           ],
-          "planSpec": {
-            "domain": "an ER resident thinking over a clean chart and a smudged chart",
-            "audience": "a tired resident learning when polish masquerades as clarity",
-            "stakes": "whether readable paperwork gets mistaken for a safer patient",
-            "format": "reflection",
-            "requiredBeat": "chart polish masqueraded as case clarity"
-          },
           "scenario": "Fluorescent light buzzes over Ilya in the residents' room at 2:33 a.m. as he rubs sanitizer into cracked knuckles. Bed 7 had a clean electronic chart with neat vitals and a typed history. Bed 9 arrived with smudged transfer forms and coffee rings. For six minutes, he treated Bed 7 as the simpler case. Now the lab slip in his pocket says otherwise. He writes on his sign-out sheet: clean reading is not clean thinking.",
           "whatToDo": "When one case reads easier, mark it as easier to read, not easier to solve. Recheck the same risk points before letting polish speed the discharge.",
           "whyItMatters": "Fluent information feels true and safe because the mind works less to process it. Naming that feeling keeps format from pretending to be medical fact."
@@ -163,8 +121,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The badge may mean something, but it cannot do the whole evaluation. The sound move is to name what the cue proves, then check the parts it does not cover.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -176,8 +133,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The word because deserves a check, not blind trust or blanket suspicion. The question tests the content of the reason before acting on the cue.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -189,8 +145,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The second lens has not changed. The first price changed the frame, so the later price feels different without becoming objectively better.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -202,8 +157,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Readable format can create a feeling of safety. Checking the same risk factors keeps fluency from replacing judgment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -215,8 +169,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A prior standard gives the parent a way to use or reject the highlighted cue. Cheapest and most loved are both shortcuts if they decide alone.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -228,8 +181,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Past group behavior can be useful evidence, but it cannot settle whether the vendor fits current needs. The cue should start inquiry, not end it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -241,8 +193,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The problem is not using a review. The problem is letting one clean signal stand in for price, return rules, durability, and fit.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -254,8 +205,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The crowd supplies a useful clue, but it does not know the volunteer's taste, budget, or time. The pause keeps the clue in its proper place.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -267,8 +217,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Shortcuts are useful for low-cost choices. The need for review rises when stakes are higher and one cue starts carrying too much of the decision.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -319,24 +268,17 @@
           }
         ],
         "twentyFourHourChallenge": "Within the next day, catch one fast yes or no. Write the cue that moved first, the stake of the choice, and one fact you would check if the cue were missing.",
-        "weeklyPractice": "Once this week, review one purchase, request, or recommendation. Sort the helpful cue from the actual evidence, then decide whether the cue had earned its influence.",
-        "title": "Practice cue-aware decisions"
+        "weeklyPractice": "Once this week, review one purchase, request, or recommendation. Sort the helpful cue from the actual evidence, then decide whether the cue had earned its influence."
       },
       "memorableLines": [
         {
-          "text": "A cue that normally helps can begin to overrun the case in front of you.",
-          "location": "breakdown.fastRead",
-          "why": "Names the chapter problem in Cialdini-style mechanism language."
+          "text": "A cue that normally helps can begin to overrun the case in front of you."
         },
         {
-          "text": "Each cue starts a question.",
-          "location": "breakdown.deepRead",
-          "why": "Keeps the shortcut useful but limited."
+          "text": "Each cue starts a question."
         },
         {
-          "text": "A cue that survives this test deserves its influence.",
-          "location": "breakdown.fullRead",
-          "why": "Gives the reader a compact rule without turning it into a slogan."
+          "text": "A cue that survives this test deserves its influence."
         }
       ]
     },
@@ -363,13 +305,6 @@
             "market",
             "sample"
           ],
-          "planSpec": {
-            "domain": "a farmers market shopper with a free jam spoon in her hand",
-            "audience": "a shopper who wants to be polite without buying food she does not need",
-            "stakes": "whether a sample becomes a purchase by debt instead of desire",
-            "format": "scene",
-            "requiredBeat": "the sample creates a debt feeling before she knows whether she wants the jar"
-          },
           "scenario": "Which is doing more work, the jam or the spoon? Grazia stands at stall 14 at 9:22 a.m., a cold plastic spoon of peach jam balanced over her tote while rain taps the striped canopy. The vendor has already said, made this yesterday. The jar is twelve dollars, and Grazia came for eggs. She tastes it, smiles, and feels her hand move toward her wallet before she has asked whether she wants jam at all. She judges whether the spoon earned attention or a jar.",
           "whatToDo": "Thank the vendor, name the real return, and pause before buying. The sample earned a fair taste and a kind answer, not automatic money from the grocery budget.",
           "whyItMatters": "A gift can create a debt feeling larger than the gift itself. Naming the correct size of the return keeps politeness from becoming purchase pressure."
@@ -382,13 +317,6 @@
             "vendor",
             "contract"
           ],
-          "planSpec": {
-            "domain": "a facilities manager taking a vendor lunch call",
-            "audience": "a facilities manager reviewing a contract with real performance problems",
-            "stakes": "whether a free meal softens a renewal that should be judged on service",
-            "format": "dialogue",
-            "requiredBeat": "a free lunch invitation tries to soften the contract review"
-          },
           "scenario": "\"Lunch on me before we talk renewal?\" the flooring vendor asks while Wendell signs freight forms at 12:04 p.m. beside the loading dock. Behind Wendell, a custodian rolls a cart past the bubbled hallway tile repaired twice since March. The clipboard smells like diesel and wet cardboard. Wendell likes the vendor, and his stomach answers first. He must decide whether lunch belongs before the scorecard.",
           "whatToDo": "Say yes to meeting and no to the free meal before scoring the renewal. Move lunch after the decision or pay your own way so the contract stands on its own record.",
           "whyItMatters": "Hospitality can sit inside the room as a quiet debt. Moving it outside the review keeps a human gesture from changing the price of poor work."
@@ -401,13 +329,6 @@
             "law",
             "favor"
           ],
-          "planSpec": {
-            "domain": "a junior associate handed a partner's weekend favor",
-            "audience": "a junior lawyer who owes real thanks but not unlimited availability",
-            "stakes": "whether gratitude turns into accepting another team's bad planning",
-            "format": "decision_point",
-            "requiredBeat": "she must decide whether gratitude means accepting a bad staffing ask"
-          },
           "scenario": "Asha kneels in the copier alcove at 5:48 p.m., tugging a jammed staple cartridge while her phone lights with a partner's message. Last month he stayed late to save her brief. Now he needs her Saturday for a filing his team missed. The copier clicks, the hallway is empty, and her first feeling is debt. Her thumb hovers over yes. She has to decide what the old favor actually requires tonight.",
           "whatToDo": "Answer with gratitude first, then set the boundary on the new ask. Offer a smaller repayment if she can, such as one hour tonight, but do not trade a past rescue for an open-ended weekend.",
           "whyItMatters": "Reciprocity should return the help, not erase the size of the request. A past favor can deserve thanks without owning the next two days."
@@ -420,13 +341,6 @@
             "fundraising",
             "gift"
           ],
-          "planSpec": {
-            "domain": "a fundraiser offering a small sticker before the pledge sheet",
-            "audience": "a fundraiser deciding how cleanly to use small gifts",
-            "stakes": "whether donations come from commitment or discomfort after receiving a trinket",
-            "format": "predict_reveal",
-            "requiredBeat": "the tiny gift changes refusal into discomfort"
-          },
           "scenario": "Cialdini describes Hare Krishna solicitors in airport concourses giving travelers a flower before asking for money. The flower is unwanted by many recipients, but once it is in their hands, refusing feels different. The traveler now has to reject a request while holding a gift. The question is whether the flower earned a donation or merely made no feel impolite.",
           "whatToDo": "Return the flower or say thanks and decline before discussing money. Keep the gift and the donation decision separate.",
           "whyItMatters": "An unsolicited gift can create a debt feeling without creating a real debt. Separating the two keeps generosity from being purchased with discomfort."
@@ -439,13 +353,6 @@
             "school",
             "concession"
           ],
-          "planSpec": {
-            "domain": "a principal replaying a concession she accepted too fast",
-            "audience": "a principal with budget pressure and vendor fatigue",
-            "stakes": "whether a concession makes a still-wrong pilot feel fair",
-            "format": "postmortem",
-            "requiredBeat": "a large request made the smaller request feel fair"
-          },
           "scenario": "At her desk at 7:36 p.m., Soraya studies the school software quote beside a tutoring budget. The vendor first asked for a three-year contract. She refused. He came back with a one-year pilot, and the retreat felt like a favor. The pilot still costs too much and solves the wrong problem. The concession changed her feeling before it changed the facts.",
           "whatToDo": "Judge the pilot against the school's needs and budget, not against the rejected first offer. A concession earns a fresh look, not a yes.",
           "whyItMatters": "The smaller request can still be too large. Rejection-then-retreat works by making comparison do work that value has not earned."
@@ -458,13 +365,6 @@
             "neighbor",
             "favor"
           ],
-          "planSpec": {
-            "domain": "a neighbor trading snow shoveling for unwanted weekend help",
-            "audience": "a neighbor who wants to stay kind without being captured by obligation",
-            "stakes": "whether a small kindness sets the price for a much larger request",
-            "format": "before_after",
-            "requiredBeat": "he learns to thank the favor without letting it set the price"
-          },
           "scenario": "Monday at 6:50 a.m., Bruno finds his duplex walkway already shoveled, salt crunching under his boots. His neighbor waves from across the hedge. Before: Bruno feels warm gratitude and says, anytime, too quickly. After: the neighbor asks for Saturday help moving a sofa and painting a room. Bruno hears the shovel scrape in memory, then sets a smaller return: pastries tonight, one hour with the sofa, no full Saturday.",
           "whatToDo": "Repay the real favor at a matching size. Thank the neighbor warmly, offer limited help if he wants, and refuse the oversized return without treating gratitude as a blank check.",
           "whyItMatters": "The first kindness should improve the relationship, not give one person pricing power over the other's weekend. Sized returns keep neighborliness clean."
@@ -483,8 +383,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cookie may deserve attention and thanks. It does not set the price of the return. The tin still has to fit the customer's own standard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -496,8 +395,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A useful audit can still create pressure. The founder should thank the work, then judge the retainer as a separate contract.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -509,8 +407,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The soup deserves gratitude. The truck request carries different risk and scale, so it needs a separate decision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -522,8 +419,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The concession changes the feeling of fairness. The buyer needs an independent standard so the first ask does not define the second.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -535,8 +431,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Gratitude and boundaries can sit together. The return should match the original help, not expand to fit the coworker's next need.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -548,8 +443,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The gift arrives before the ask, so refusal can feel like taking without returning. That feeling is the lever.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -561,8 +455,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The clean policy keeps the gift from entering the decision room. A promise or disclaimer does not remove the felt debt.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -574,8 +467,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The question separates the old kindness from the new ask. It keeps gratitude from deciding a different and larger burden.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -587,8 +479,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The recipient can notice the pressure without becoming hostile. The donation should come from fit and trust, not from the labels alone.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -639,24 +530,17 @@
           }
         ],
         "twentyFourHourChallenge": "In the next day, notice one gift, sample, favor, or concession. Write the felt debt, then write the fair debt. Act only on the fair one.",
-        "weeklyPractice": "Once this week, repay one real kindness at the right size. Send the note, bring the coffee, or offer the hour, then keep any larger ask separate.",
-        "title": "Practice proportionate returns"
+        "weeklyPractice": "Once this week, repay one real kindness at the right size. Send the note, bring the coffee, or offer the hour, then keep any larger ask separate."
       },
       "memorableLines": [
         {
-          "text": "The first move may deserve thanks, attention, or a comparable kindness.",
-          "location": "breakdown.fastRead",
-          "why": "Separates real gratitude from compliance pressure."
+          "text": "The first move may deserve thanks, attention, or a comparable kindness."
         },
         {
-          "text": "The test is whether you would accept the smaller request if it arrived first.",
-          "location": "breakdown.deepRead",
-          "why": "Makes rejection-then-retreat usable in daily decisions."
+          "text": "The test is whether you would accept the smaller request if it arrived first."
         },
         {
-          "text": "A nickel item should not create a hundred-dollar obligation.",
-          "location": "breakdown.fullRead",
-          "why": "Turns reciprocity into a scale test."
+          "text": "A nickel item should not create a hundred-dollar obligation."
         }
       ]
     },
@@ -683,13 +567,6 @@
             "civic",
             "praise"
           ],
-          "planSpec": {
-            "domain": "a school board voter shaking hands after a warm compliment",
-            "audience": "a voter trying to separate personal warmth from candidate quality",
-            "stakes": "whether praise about her question covers a weak answer",
-            "format": "decision_point",
-            "requiredBeat": "praise about her question makes a weak candidate feel more trustworthy"
-          },
           "scenario": "The smell of floor wax rises under the folding chairs as Linette stands in the middle school cafeteria aisle at 8:19 p.m., ballot folded in her coat pocket. The candidate thanks her for the smartest question of the night. The answer he gave was thin, but the compliment is still warm in her face. Linette tests whether the praise belongs with the ballot or outside it.",
           "whatToDo": "Enjoy the compliment, then set it aside. Re-score the candidate on the answer he gave, the numbers he knew, and the promise he avoided before marking the ballot.",
           "whyItMatters": "Praise can feel like proof because it flatters the judge. Separating warmth from evidence keeps the vote tied to the school, not to how the voter felt in the aisle."
@@ -702,13 +579,6 @@
             "repair",
             "similarity"
           ],
-          "planSpec": {
-            "domain": "a mechanic hearing that a customer also restored a 1982 pickup",
-            "audience": "a mechanic who wants trust but still needs a clean estimate",
-            "stakes": "whether shared identity makes the estimate feel settled too soon",
-            "format": "dialogue",
-            "requiredBeat": "similarity makes him relax before the estimate is clear"
-          },
           "scenario": "\"My dad had the same pickup,\" Hamza says while lowering a sedan at bay three at 4:07 p.m., brake dust gray on his forearm. The customer nods toward the primer-spotted truck outside and grins. The repair estimate on the counter still has a vague line for electrical labor. Hamza likes him already. He asks whether the old pickup story belongs in the estimate.",
           "whatToDo": "Let the story build rapport, then return to the inspection checklist. Show the worn part, price the labor, and make the estimate earn trust without leaning on shared nostalgia.",
           "whyItMatters": "Similarity makes people feel known. That feeling can start doing the work of evidence unless the repair still gets shown, priced, and checked."
@@ -721,13 +591,6 @@
             "hospital",
             "cooperation"
           ],
-          "planSpec": {
-            "domain": "a nurse on a mixed-unit safety drill",
-            "audience": "staff from two units who distrust each other before a joint drill",
-            "stakes": "whether shared work creates cooperation faster than slogans",
-            "format": "vignette",
-            "requiredBeat": "shared work turns strangers into allies faster than a poster campaign"
-          },
           "scenario": "Petra braces her shoulder against a stuck wheelchair in the stairwell during a safety drill, while an ICU nurse she barely knows counts the lift. The moment echoes the Robbers Cave lesson: shared work can soften hostility better than slogans. Petra does not need everyone to become friends at once. She needs one useful task that lets both sides see help in action.",
           "whatToDo": "Build cooperation around a real shared task before asking people to feel warmer. Let the group solve something together, then return to the disputed facts.",
           "whyItMatters": "Liking built from useful cooperation has evidence behind it. That is different from charm or similarity pretending the evidence is already there."
@@ -740,13 +603,6 @@
             "hiring",
             "charm"
           ],
-          "planSpec": {
-            "domain": "a junior recruiter screening a charming referral",
-            "audience": "a recruiter under pressure to move fast on referred candidates",
-            "stakes": "whether warmth hides a missing skill until the work sample arrives",
-            "format": "predict_reveal",
-            "requiredBeat": "warmth hides a missing skill until the work sample arrives"
-          },
           "scenario": "At his desk after the phone screen, Devlin likes the referred candidate before the spreadsheet arrives. The candidate is funny, knows people Devlin respects, and uses the company's old nickname. Then the spreadsheet test opens with broken formulas. Devlin's choice is no longer social. Either the sample governs the decision, or rapport gets a job competence should have held.",
           "whatToDo": "Score the work sample before replaying the call. If the sample fails the role, do not use warmth or shared contacts as replacement evidence.",
           "whyItMatters": "Charm can make competence feel present before work proves it. A separate score keeps hiring from confusing social ease with job fit."
@@ -759,13 +615,6 @@
             "restaurant",
             "association"
           ],
-          "planSpec": {
-            "domain": "a restaurant owner reviewing why she trusted a vendor in team colors",
-            "audience": "a restaurant owner who prizes local ties and fast supplier decisions",
-            "stakes": "whether association with a beloved club borrowed credibility",
-            "format": "postmortem",
-            "requiredBeat": "association with her favorite club borrowed credibility"
-          },
           "scenario": "Fryer smell clings to Junia's sweater at 11:08 p.m. as she sits at table six after close, a bad lettuce invoice under the salt shaker. The new produce rep wore the same civic parade scarf her father used to wear and praised her soup special. She wants him to be the answer. She turns the invoice over, writes charm on one side and delivery record on the other, and has to decide which column gets the renewal. The empty dining room makes the two columns feel colder, but also fairer.",
           "whatToDo": "Treat shared symbols as pleasant, then audit the actual terms. Ask for delivery windows, replacement rules, and quality standards in writing before renewing the order.",
           "whyItMatters": "Association borrows trust from something already loved. The lettuce quality depends on cold trucks and standards, not on team colors."
@@ -778,13 +627,6 @@
             "housing",
             "cooperation"
           ],
-          "planSpec": {
-            "domain": "a mediator thinking about two neighbors who stopped glaring after moving boxes together",
-            "audience": "a mediator looking for a path before another complaint hearing",
-            "stakes": "whether cooperation can soften conflict before arguments restart",
-            "format": "reflection",
-            "requiredBeat": "cooperation changed liking before argument changed"
-          },
           "scenario": "Damp socks and a clipboard sit with Rafiq on the apartment lobby bench at 1:26 p.m. Saturday. Two neighbors who filed complaints about each other are carrying boxes after the elevator breaks. They do not smile. They do not apologize. But one holds the door while the other lifts the heavy end. Rafiq pauses over whether shared work is the first useful liking they have had all year. The clipboard gives him a place to record behavior before anyone asks him to pick a side.",
           "whatToDo": "Create a small task where both neighbors help the same outcome before reopening the dispute. Let cooperation change the tone, then return to rules and boundaries.",
           "whyItMatters": "People argue differently after they have been useful to each other. Shared work can lower hostility enough for facts to be heard."
@@ -803,8 +645,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The praise may be sincere, but it does not fix a vague answer. The voter needs to separate feeling valued from judging the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -816,8 +657,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Similarity can be real and pleasant while still making evaluation too easy. The offer needs evidence beyond the shared identity.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -829,8 +669,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Shared work can create liking through coordinated action. A memo asks for a feeling without giving people a new experience of each other.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q04",
@@ -842,8 +681,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Warmth can help after competence is shown. It cannot replace the skill signal when the work sample directly tests the job.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -855,8 +693,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The note keeps liking visible without letting it decide. Team association is not proof of delivery, quality, or fit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -868,8 +705,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Warmth can make a no feel socially costly. The doctor still has to decide by medical need and explain with care.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -881,8 +717,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The stranger test separates shared background from the bid. It lets the buyer keep rapport while checking the actual work.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -894,8 +729,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Sincerity does not remove influence. The parent can appreciate the compliment and still decide based on time and willingness.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -907,8 +741,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A good mood helps discussion, but it does not prove the plan works. The schedule, risks, and owners still need review.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -959,24 +792,17 @@
           }
         ],
         "twentyFourHourChallenge": "Within the next day, find one moment where you like the person making an ask. Write what you like, then write the independent reason to say yes or no.",
-        "weeklyPractice": "Once this week, use the stranger test on a warm offer. Ask what you would think if the same words came from someone you did not already enjoy.",
-        "title": "Practice separating warmth from proof"
+        "weeklyPractice": "Once this week, use the stranger test on a warm offer. Ask what you would think if the same words came from someone you did not already enjoy."
       },
       "memorableLines": [
         {
-          "text": "The repair is to keep two judgments separate: how you feel about the person, and what the offer proves.",
-          "location": "breakdown.fastRead",
-          "why": "Captures the chapter lens without rejecting warmth."
+          "text": "The repair is to keep two judgments separate: how you feel about the person, and what the offer proves."
         },
         {
-          "text": "Use the stranger test when warmth is high.",
-          "location": "breakdown.deepRead",
-          "why": "Gives the reader a concrete transfer move."
+          "text": "Use the stranger test when warmth is high."
         },
         {
-          "text": "That is the mature version of the lesson: liking remains human, but it stops carrying claims it cannot support.",
-          "location": "breakdown.fullRead",
-          "why": "Keeps the feeling while limiting its job."
+          "text": "That is the mature version of the lesson: liking remains human, but it stops carrying claims it cannot support."
         }
       ]
     },
@@ -1003,13 +829,6 @@
             "pool",
             "emergency"
           ],
-          "planSpec": {
-            "domain": "a lifeguard watching other adults stay seated",
-            "audience": "a lifeguard learning not to outsource danger assessment to bystanders",
-            "stakes": "whether a swimmer gets help before seconds are lost",
-            "format": "decision_point",
-            "requiredBeat": "the still crowd makes a possible seizure look less urgent"
-          },
           "scenario": "From the municipal pool chair at 2:17 p.m., Oksana sees the swimmer in lane five stop kicking and grip the rope. Her whistle touches her lip. Three parents keep talking on the deck, and a teenager glances over, then away. The stillness makes the scene look normal for one dangerous beat. Oksana works out whether the quiet crowd knows something or is only borrowing calm from itself. The wet tile below the chair gives Oksana one fact the deck has not yet faced.",
           "whatToDo": "Trust the observed event before the crowd. Blow the whistle, point to a specific guard for backup, and enter the lane if the swimmer does not answer immediately.",
           "whyItMatters": "In unclear moments, bystanders often read each other instead of the danger. One visible action breaks the loop and gives everyone else a cue to help."
@@ -1022,13 +841,6 @@
             "hotel",
             "norm"
           ],
-          "planSpec": {
-            "domain": "a hotel guest reading towel reuse signs",
-            "audience": "a traveler deciding whether a small conservation norm applies to him",
-            "stakes": "whether a specific norm changes behavior more than a broad appeal",
-            "format": "dialogue",
-            "requiredBeat": "a norm about other guests changes his choice more than the environmental claim"
-          },
           "scenario": "At 7:09 a.m. in the hotel bathroom, Darnell reads a towel card based on research linked to Cialdini and his colleagues. The most persuasive norm was local: guests in this room had reused towels. The claim feels close to the guest's actual situation, so reuse feels ordinary rather than heroic. Darnell can use that cue if it fits his stay, while remembering that popularity is not moral proof in every decision.",
           "whatToDo": "Use a specific norm when it supports a choice already worth making. Let it lower friction, but do not let popularity replace independent judgment.",
           "whyItMatters": "Social proof is strongest when the group is close to the situation. Its usefulness comes from relevance, not from the mere existence of a crowd."
@@ -1041,13 +853,6 @@
             "trading",
             "herd"
           ],
-          "planSpec": {
-            "domain": "a junior trader seeing a crowded Slack channel buy signal",
-            "audience": "a trader trying to avoid mistaking motion for knowledge",
-            "stakes": "whether group speed becomes substitute evidence",
-            "format": "scene",
-            "requiredBeat": "other people acting fast feels like evidence even before she checks the chart"
-          },
           "scenario": "Green candles flash across Veda's two monitors at 9:33 a.m. while a Slack channel fills with rocket icons. Four senior traders type buying. Her own order ticket is open. The only source link she can find is one rumor thread from last night. Veda has to choose if the speed of the group is knowledge or the same guess bouncing around the room. The rumor link stays unopened until she forces herself to read it before ordering.",
           "whatToDo": "Open the source before entering the order. Check whether the buyers have independent information or are copying one signal that only looks stronger because many people saw it.",
           "whyItMatters": "A crowd can multiply confidence without multiplying evidence. Independent signals matter; repeated echoes of one rumor do not."
@@ -1060,13 +865,6 @@
             "theater",
             "bystander"
           ],
-          "planSpec": {
-            "domain": "a theater usher after nobody helped a collapsed patron",
-            "audience": "an usher building a better emergency response rule",
-            "stakes": "whether future patrons get named help fast",
-            "format": "postmortem",
-            "requiredBeat": "each person read everyone else's stillness as information"
-          },
           "scenario": "In Darley and Latane's bystander research, a lab waiting room shows how passive others can make trouble look less urgent. If smoke seeps under a door and the room stays calm, each person may borrow calm from the others instead of checking the smoke. The lesson for Callum's balcony incident is direct: quiet witnesses may be waiting, not knowing.",
           "whatToDo": "Replace general alarm with assigned action. Point to a specific person to call while you start the first visible help.",
           "whyItMatters": "A crowd diffuses responsibility when everyone is watching everyone else. A specific assignment turns watchers into helpers."
@@ -1079,13 +877,6 @@
             "food truck",
             "tips"
           ],
-          "planSpec": {
-            "domain": "a food truck owner seeding a tip jar",
-            "audience": "a vendor using visible norms without lying about the product",
-            "stakes": "whether prior behavior changes what customers feel is normal",
-            "format": "predict_reveal",
-            "requiredBeat": "visible prior tips change customer behavior"
-          },
           "scenario": "Mirek parks beside the courthouse curb at 12:11 p.m., steam fogging the taco truck window, and drops three ones and a five into the empty tip jar. He predicts the jar will speak before he does. The first clerk pays, sees the bills, and adds her change. The second adds a dollar without looking at the menu board. Mirek has to decide where the line sits between showing a norm and staging one. The bills in the jar are a cue, not a command, and Mirek knows the difference.",
           "whatToDo": "Use the seeded jar only as a modest cue, not a fake story. Keep the amount believable, serve well, and let real tips take over fast.",
           "whyItMatters": "Visible prior behavior tells customers what is normal here. If the cue becomes a lie, it may win coins while losing trust."
@@ -1098,13 +889,6 @@
             "college",
             "confusion"
           ],
-          "planSpec": {
-            "domain": "a freshman deciding whether silence means everyone understood the problem set",
-            "audience": "a student afraid to reveal confusion in a quiet group",
-            "stakes": "whether shared confusion stays hidden behind calm faces",
-            "format": "reflection",
-            "requiredBeat": "pluralistic ignorance hides confusion behind quiet faces"
-          },
           "scenario": "The vending machine hums beside Fenna at 8:46 p.m. in the dorm study lounge while her pencil taps a dent beside question four. Nobody else asks for help. She assumes she is the only one lost. Across the table, two freshmen stare at the same blank line. Fenna stops treating the quiet as understanding and says the first honest sentence. Her question turns the room from a silent vote into a source of facts.",
           "whatToDo": "Ask the first concrete question when the room is quiet and the task is hard. Do not treat silence as proof that everyone else understands.",
           "whyItMatters": "Groups can hide shared uncertainty because each person reads the others' quiet as confidence. One question gives the group permission to show the truth."
@@ -1123,8 +907,7 @@
             ],
             "correctIndex": 0,
             "explanation": "In emergencies, stillness can spread because everyone reads everyone else. A specific assignment breaks the bystander loop.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1136,8 +919,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The local norm matters because people use similar others as guidance. The sign makes the desired behavior feel ordinary in that setting.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1149,8 +931,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The key is independence. Five copies of one guess do not equal five separate pieces of evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1162,8 +943,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Each student may be reading the same quiet room as understanding. One question can reveal that the silence was shared uncertainty.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1175,8 +955,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Popularity can be a useful shortcut for low-risk choices, especially with similar diners. It should not replace personal constraints.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1188,8 +967,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The number of people can make a single weak source look stronger than it is. Independence is what would make social proof more reliable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1201,8 +979,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The first message gives a close, specific norm. The other messages shame or overstate, which can make the cue feel false.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q08",
@@ -1214,8 +991,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The jar is a norm cue. It can guide what is usual, but it should not dictate the size or override the shopper's own standard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1227,8 +1003,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The group may have no independent knowledge. Asking who actually knows separates information from mere motion.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1279,24 +1054,17 @@
           }
         ],
         "twentyFourHourChallenge": "In the next day, find one moment where you look to others before acting. Ask whether they know something independent or are reading the same room you are.",
-        "weeklyPractice": "Once this week, break one useful silence: ask the question, name the risk, or assign the helper when everyone else is waiting.",
-        "title": "Practice checking the crowd"
+        "weeklyPractice": "Once this week, break one useful silence: ask the question, name the risk, or assign the helper when everyone else is waiting."
       },
       "memorableLines": [
         {
-          "text": "The calm was not knowledge.",
-          "location": "breakdown.deepRead",
-          "why": "Sharpens the counterintuitive risk of social proof."
+          "text": "The calm was not knowledge."
         },
         {
-          "text": "Volume is not independence.",
-          "location": "breakdown.fullRead",
-          "why": "Distinguishes many signals from independent signals."
+          "text": "Volume is not independence."
         },
         {
-          "text": "Social proof should remain a clue, not a substitute for observation.",
-          "location": "breakdown.fullRead",
-          "why": "Summarizes the chapter test plainly."
+          "text": "Social proof should remain a clue, not a substitute for observation."
         }
       ]
     },
@@ -1323,13 +1091,6 @@
             "pharmacy",
             "title"
           ],
-          "planSpec": {
-            "domain": "a pharmacy tech holding a dosage change from a famous cardiologist",
-            "audience": "a pharmacy tech who respects physicians but sees a concrete mismatch",
-            "stakes": "whether a patient receives a dose no one rechecked",
-            "format": "decision_point",
-            "requiredBeat": "the title pressures her to skip the mismatch she sees on the label"
-          },
           "scenario": "Two amber bottles rattle in the blue bin at 3:28 p.m. while Etsuko stands at the pickup counter and a line forms behind the tape. The dose change came from a famous cardiologist. The label in her hand still does not match the patient's weight note. Her body wants to trust the title. She needs to know whether respect means filling fast or checking the mismatch. The amber bottles look identical, which makes the weight note the only thing that can break the spell.",
           "whatToDo": "Stop the fill and ask the pharmacist to verify the dose against the weight note. Treat the cardiologist's order as important, not untouchable.",
           "whyItMatters": "Real expertise can still meet wrong data, wrong transcription, or a changed patient. The label in hand is evidence too."
@@ -1342,13 +1103,6 @@
             "aviation",
             "rank"
           ],
-          "planSpec": {
-            "domain": "a junior pilot hearing a captain misread a taxi instruction",
-            "audience": "a junior pilot balancing respect and safety",
-            "stakes": "whether rank delays correction near an active runway",
-            "format": "dialogue",
-            "requiredBeat": "rank makes correction feel dangerous even when the runway is real"
-          },
           "scenario": "\"Taxi two seven right,\" the captain reads back as rain ticks on the cockpit windshield at 6:12 a.m. Nabil sits in seat two, hearing the runway number land wrong against the clearance in his headset. The captain has four stripes and twenty years on him. Nabil's thumb touches the radio switch. Rank and the runway number compete for the next word. The wrong number is small enough to disappear under the captain's calm voice unless Nabil says it once.",
           "whatToDo": "State the discrepancy in one factual sentence: Tower gave two seven left; you read back two seven right. Keep the correction tied to the instruction, not to the captain's competence.",
           "whyItMatters": "Rank is useful until it muffles fresh evidence. A factual challenge preserves respect while giving safety a voice."
@@ -1361,13 +1115,6 @@
             "museum",
             "status"
           ],
-          "planSpec": {
-            "domain": "a museum donor facing a consultant in an expensive suit",
-            "audience": "a donor deciding whether status symbols are enough proof",
-            "stakes": "whether a vague plan receives repair money meant for conservation",
-            "format": "scene",
-            "requiredBeat": "symbols of status make the vague plan feel more expert than it is"
-          },
           "scenario": "At the lab bench in Yale's lab, Milgram's obedience experiments show that the authority cue does not need to shout. The lab coat, institutional setting, and experimenter's steady prompts help participants continue even when they are uneasy. The example is not a reason to reject expertise. It warns that symbols of expertise can move behavior before conscience or evidence catches up.",
           "whatToDo": "When an authority cue creates pressure, slow the action enough to ask what evidence supports the instruction and what harm the instruction could cause.",
           "whyItMatters": "Authority can organize action, but it can also quiet objections. The cue needs a channel for facts and conscience to answer back."
@@ -1380,13 +1127,6 @@
             "forecast",
             "signature"
           ],
-          "planSpec": {
-            "domain": "a data analyst reviewing a forecast signed by a senior economist",
-            "audience": "an analyst learning how signatures affect checking behavior",
-            "stakes": "whether a published forecast carries a copied input error",
-            "format": "postmortem",
-            "requiredBeat": "the signature stopped him from checking the input sheet"
-          },
           "scenario": "A red banner cuts across row 44 at 9:41 p.m. while Pavel sits at his kitchen table with a cold plate of noodles and the forecast workbook open. This morning he saw the odd input, then noticed the senior economist's signature on the cover note and stopped worrying. Now the raw sheet shows last quarter's column pasted into this quarter. He writes in his notebook: a signature is not a cell check. The cold noodles remind Pavel how long the signature protected a cell nobody checked.",
           "whatToDo": "Add a required input review even when a senior person signs the report. Check the cells that drive the result before letting a signature settle the work.",
           "whyItMatters": "Authority can reduce anxiety without reducing error. The spreadsheet did not become right because a respected name sat on the cover."
@@ -1399,13 +1139,6 @@
             "ICU",
             "orders"
           ],
-          "planSpec": {
-            "domain": "an ICU nurse changing how rounds handle attending orders",
-            "audience": "a clinical team trying to keep hierarchy without losing patient-specific checks",
-            "stakes": "whether silence around attending orders misses contraindications",
-            "format": "before_after",
-            "requiredBeat": "the team moves from silent obedience to one required challenge question"
-          },
           "scenario": "Pumps beep through the glass outside room 18 at 7:22 a.m. Tuesday while Zora stands with the rounding team. Before: the attending named the order, everyone nodded, and Zora swallowed the mismatch in the chart. After: she adds one standard question to rounds: what fact would make this order wrong? The next patient's potassium result answers before anyone's title can. The standard question gives Zora a script before rank can turn the room quiet.",
           "whatToDo": "Make one challenge question part of the routine, not a personal confrontation. Ask what patient fact could make the order wrong before the team leaves the door.",
           "whyItMatters": "A routine question lets evidence rise without forcing a junior person to attack rank. Authority still leads, but the patient gets checked."
@@ -1418,13 +1151,6 @@
             "parenting",
             "fame"
           ],
-          "planSpec": {
-            "domain": "a parent thinking about a celebrity doctor clip",
-            "audience": "a parent sorting expertise from fame online",
-            "stakes": "whether confidence outside the relevant field guides a child's supplement choice",
-            "format": "reflection",
-            "requiredBeat": "fame outside the topic borrowed medical authority"
-          },
           "scenario": "Lucien watches a celebrity doctor recommend a supplement for children. The doctor's delivery is calm, the set looks clinical, and the white coat does its work. Then Lucien checks the specialty and sees that the doctor's fame sits in another lane. The claim may still be testable, but the title has not proved this use for this child.",
           "whatToDo": "Check the expert's actual field before buying or dosing. Look for relevant evidence and advice from a clinician who knows the child.",
           "whyItMatters": "Fame widens attention, not expertise. A white coat on a screen cannot answer whether this claim fits this case."
@@ -1443,8 +1169,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The specialist matters, but the allergy list is direct evidence for this patient. Verification respects expertise and safety together.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1456,8 +1181,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Uniforms are authority cues, but the request still needs to fit the role and rules. Confidence and dress are weaker signals.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1469,8 +1193,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fame can make a claim visible. It does not supply clinical evidence or expertise in the relevant field.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -1482,8 +1205,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Tying the challenge to evidence lowers ego threat and keeps the correction inside the work. Silence lets rank hide a possible error.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q05",
@@ -1495,8 +1217,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Status cues may earn attention, but they do not fill missing proof. Specific evidence must carry the decision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1508,8 +1229,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Authority helps when expertise is real and relevant. The danger appears when that shortcut is stretched beyond its proper range.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1521,8 +1241,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The signature may show review or responsibility, but it does not make the underlying inputs correct. Critical drivers still need inspection.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1534,8 +1253,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A routine question makes speaking up part of the process rather than a personal challenge to rank.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -1547,8 +1265,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Audience size and polish are authority-like cues. The viewer needs relevant expertise, incentive clarity, and evidence before acting.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1599,24 +1316,17 @@
           }
         ],
         "twentyFourHourChallenge": "Within the next day, notice one authority cue. Write the title, uniform, status, or fame, then write the exact question it can answer and the question it cannot.",
-        "weeklyPractice": "Once this week, practice one evidence-based challenge: point to a number, label, instruction, or source that needs a second look, while keeping the tone respectful.",
-        "title": "Practice precise authority checks"
+        "weeklyPractice": "Once this week, practice one evidence-based challenge: point to a number, label, instruction, or source that needs a second look, while keeping the tone respectful."
       },
       "memorableLines": [
         {
-          "text": "But attention is not obedience.",
-          "location": "breakdown.fastRead",
-          "why": "Defines respectful skepticism in a short line."
+          "text": "But attention is not obedience."
         },
         {
-          "text": "Exact respect is stronger than vague deference.",
-          "location": "breakdown.deepRead",
-          "why": "Keeps authority useful while requiring evidence."
+          "text": "Exact respect is stronger than vague deference."
         },
         {
-          "text": "Once you make the question that narrow, scrutiny becomes a form of respect.",
-          "location": "breakdown.fullRead",
-          "why": "Reframes challenge as better authority use."
+          "text": "Once you make the question that narrow, scrutiny becomes a form of respect."
         }
       ]
     },
@@ -1643,13 +1353,6 @@
             "parenting",
             "inventory"
           ],
-          "planSpec": {
-            "domain": "a buyer staring at a final-two inventory notice",
-            "audience": "a new parent making an online purchase under pressure",
-            "stakes": "whether scarcity turns a weak product into an urgent one",
-            "format": "decision_point",
-            "requiredBeat": "scarcity makes a mediocre stroller feel urgent"
-          },
           "scenario": "Rochelle sits at the nursery desk at 9:18 p.m., crib screws spread in a cereal bowl and a browser tab glowing final two in stock. An hour ago, the stroller reviews looked weak. Now the warning makes the stroller feel like a door closing. Her card is saved. Before she clicks, Rochelle must choose if the stock warning changes fit or only fear. The product page has not repaired the weak review; it has only made waiting feel dangerous.",
           "whatToDo": "Write what bothered her before the stock warning, then compare the stroller with her must-have list. Buy only if it still fits without the final-two message.",
           "whyItMatters": "Scarcity changes urgency, not product quality. The old concerns are still evidence after the page starts counting down."
@@ -1662,13 +1365,6 @@
             "tickets",
             "belonging"
           ],
-          "planSpec": {
-            "domain": "a concert volunteer hearing friends say tickets are almost gone",
-            "audience": "a casual fan deciding whether limited access is creating desire",
-            "stakes": "whether social scarcity turns a maybe into a must",
-            "format": "dialogue",
-            "requiredBeat": "limited access turns a casual event into a must-have"
-          },
           "scenario": "\"They are almost gone,\" Jessa says outside the box office window at 6:03 p.m., waving two balcony tickets while Timo's volunteer badge hangs from his hoodie. Ten minutes ago he was only maybe interested. Now the glass window and shrinking stack make the concert feel like a test. He measures whether the music mattered before the line formed. The ticket stack shrinks in public, which makes his maybe feel like a decision already made.",
           "whatToDo": "Ask what he wanted before the ticket count appeared. If the music, price, and night still fit, buy; if only exclusion is pulling him, let the seat go.",
           "whyItMatters": "Limited access can turn a casual option into a social loss. The before test separates real interest from fear of being left outside."
@@ -1681,13 +1377,6 @@
             "startup",
             "deadline"
           ],
-          "planSpec": {
-            "domain": "a founder reviewing an investor's exploding term sheet",
-            "audience": "a founder replaying how urgency affected control terms",
-            "stakes": "whether deadline pressure hid bad governance rights",
-            "format": "postmortem",
-            "requiredBeat": "the deadline compressed judgment and hid bad terms"
-          },
           "scenario": "At 1:42 a.m. in the coworking kitchenette, Giselle's term sheet expires at noon, and the deadline makes the offer feel rare. She highlights a control clause she almost skipped. Nothing about the clause improved because time got short. The deadline has shrunk her review window, not the investor's power over the company.",
           "whatToDo": "Review the control terms with an advisor before treating the deadline as proof of value. If the clock prevents review, count that pressure as part of the deal.",
           "whyItMatters": "Scarcity can compress attention exactly where scrutiny is needed. A rare offer can still be a bad bargain."
@@ -1700,13 +1389,6 @@
             "library",
             "availability"
           ],
-          "planSpec": {
-            "domain": "a librarian removing one copy from a display",
-            "audience": "a librarian observing how availability shifts attention",
-            "stakes": "whether fewer visible copies change perceived interest",
-            "format": "predict_reveal",
-            "requiredBeat": "less availability raises interest in the remaining copy"
-          },
           "scenario": "The dust jacket gloss catches the library skylight at 10:24 a.m. as Anwar stands at the new nonfiction table. Four copies of the local history volume looked ordinary. He removes one for the returns cart. Three look noticed. By lunch, two patrons ask whether it is hard to get. Anwar separates whether the thinner stack changed the value or only the story around it. The display proves how quickly fewness can rewrite the story around an unchanged volume.",
           "whatToDo": "Use scarcity only to make attention easier, not to fake demand. Feature the title clearly, rotate copies honestly, and let real holds speak for interest.",
           "whyItMatters": "Lower availability can raise perceived value before anyone reads a page. Used honestly, it guides attention; used falsely, it trains distrust."
@@ -1719,13 +1401,6 @@
             "family",
             "reactance"
           ],
-          "planSpec": {
-            "domain": "a parent reacting to a banned-app rule",
-            "audience": "a parent trying to set limits without making the forbidden thing shine",
-            "stakes": "whether loss of freedom increases desire for the app",
-            "format": "before_after",
-            "requiredBeat": "lost freedom makes the app more attractive than it was"
-          },
           "scenario": "At the dining-room homework table at 7:55 p.m., Selene's son barely touches the video app until she bans it during homework. Then the cracked phone case is suddenly in his hand. The rule may still be needed, but the restriction has changed the desire it was supposed to manage. Selene has to separate the homework problem from the extra glow created by the ban.",
           "whatToDo": "Keep the homework limit, but make the return time clear and give a choice inside the rule, such as which subject comes first.",
           "whyItMatters": "When freedom is removed, people often want the restricted choice more. A clear, limited rule reduces the desire created by the ban itself."
@@ -1738,13 +1413,6 @@
             "farm",
             "shortage"
           ],
-          "planSpec": {
-            "domain": "a farmer deciding whether a rare equipment part is actually needed",
-            "audience": "a farmer facing a real but possibly overstated supply limit",
-            "stakes": "whether panic buying beats maintenance facts",
-            "format": "reflection",
-            "requiredBeat": "rare supply triggers panic that must be checked against real use"
-          },
           "scenario": "Frost silvers the wrench at 5:32 a.m. in the tractor shed while Armand reads the supplier email on his phone: one hydraulic coupler left in the county. Planting starts in nine days. His old part is worn, not failed. He finds the backup part under the bench and has to settle whether rare means urgent or merely useful. The backup part under the bench gives him one fact stronger than the email headline.",
           "whatToDo": "Check the maintenance log, spare inventory, and real failure risk before buying. Let the shortage flag planning, not panic.",
           "whyItMatters": "A scarce part may matter, but rarity alone cannot say whether the farm needs it today. Inventory and use decide urgency."
@@ -1763,8 +1431,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The warning changes availability, not zipper quality. The shopper should use the concerns that existed before scarcity appeared.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1776,8 +1443,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A short deadline can be real or strategic. Either way, unclear control terms need review before the clock decides.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q03",
@@ -1789,8 +1455,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Restriction can make the choice itself more attractive. The desire may be about regained access, not better content.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1802,8 +1467,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The before question separates real interest from scarcity pressure. Seat count alone says little about value.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1815,8 +1479,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Speed makes sense when value was already established and the limit is meaningful. Emotional presentation is not enough.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1828,8 +1491,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The empty spot signals that others may be buying the item and that supply may be limited. That cue can raise interest.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -1841,8 +1503,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Scarcity becomes relevant when it affects real allocation and patient need. Nerves alone do not set priority.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1854,8 +1515,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The question tests whether desire comes from the object or from the threatened loss of access.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1867,8 +1527,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Limited slots can sharpen effort, but they can also make any opening feel worth chasing. Fit and criteria still matter.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1919,24 +1578,17 @@
           }
         ],
         "twentyFourHourChallenge": "Within the next day, catch one scarcity cue: a timer, low-stock note, deadline, or forbidden option. Write what the cue proves and what it does not prove.",
-        "weeklyPractice": "Once this week, delay one scarcity-driven choice by ten minutes. Use the time to run the before test and decide from value rather than vanishing.",
-        "title": "Practice the before-scarcity test"
+        "weeklyPractice": "Once this week, delay one scarcity-driven choice by ten minutes. Use the time to run the before test and decide from value rather than vanishing."
       },
       "memorableLines": [
         {
-          "text": "Scarcity answers one question: availability.",
-          "location": "breakdown.fastRead",
-          "why": "Limits the cue to what it can actually prove."
+          "text": "Scarcity answers one question: availability."
         },
         {
-          "text": "If only the closing door changed your answer, the door is doing the persuading.",
-          "location": "breakdown.deepRead",
-          "why": "Makes the before test memorable."
+          "text": "If only the closing door changed your answer, the door is doing the persuading."
         },
         {
-          "text": "A rare offer can still be a bad bargain.",
-          "location": "examples[2].whyItMatters",
-          "why": "Shows a partial or failed scarcity outcome."
+          "text": "A rare offer can still be a bad bargain."
         }
       ]
     },
@@ -1963,13 +1615,6 @@
             "fitness",
             "pledge"
           ],
-          "planSpec": {
-            "domain": "a gym member staring at a public pledge board",
-            "audience": "a gym member deciding whether a promise should guide or override pain",
-            "stakes": "whether public commitment helps follow-through or ignores a knee warning",
-            "format": "decision_point",
-            "requiredBeat": "a written promise makes skipping the assessment feel like betraying himself"
-          },
           "scenario": "Blue marker on the gym pledge board puts Bevan's name beside the treadmills at 6:21 a.m. He promised thirty days of sprints. Today his ankle sends a clean warning on the warmup jog. Two regulars wave at the board. Bevan asks whether consistency means honoring the health goal or obeying the exact workout he wrote. The old promise is public, but the pain is private and immediate.",
           "whatToDo": "Keep the commitment to assessment, not to injury. Tell the trainer about the knee and ask for a modified check so the promise serves health instead of pride.",
           "whyItMatters": "Public writing adds force. That force is useful when it carries the original purpose, and risky when it makes a person defend the wording over the reason."
@@ -1982,13 +1627,6 @@
             "canvassing",
             "small yes"
           ],
-          "planSpec": {
-            "domain": "a canvasser asking for a small yard sign before a larger shift",
-            "audience": "a canvasser using commitments without hiding the later ask",
-            "stakes": "whether a small public yes changes future volunteer behavior",
-            "format": "dialogue",
-            "requiredBeat": "a small public yes makes the later volunteer ask easier"
-          },
           "scenario": "Freedman and Fraser's yard-sign research showed how a small public commitment could prepare the way for a larger one. Chika's campaign sign works the same way only if the first ask is honest. If she treats the sign as harmless while planning a larger volunteer ask, the homeowner's self-image becomes a lever he did not knowingly pick up.",
           "whatToDo": "Make the small ask clear, and be transparent if later support may be requested. Do not pretend the first commitment is isolated when it is part of a sequence.",
           "whyItMatters": "A small public yes can reshape self-image. Used cleanly, it helps people act on values; hidden, it turns identity into pressure."
@@ -2001,13 +1639,6 @@
             "management",
             "identity"
           ],
-          "planSpec": {
-            "domain": "a manager reviewing why he defended a bad pilot he had announced early",
-            "audience": "a manager learning how public claims bind later judgment",
-            "stakes": "whether pride keeps resources in a weak project",
-            "format": "postmortem",
-            "requiredBeat": "public commitment made retreat feel like identity loss"
-          },
           "scenario": "The warehouse pilot dashboard glows blue in the dark conference room at 8:57 p.m. while Oren sits alone with the return data. He announced the pilot at all-hands and called it the future. Now the numbers show slower picks and more errors. His first draft says needs more time. He asks whether he is defending the tool or the version of himself who praised it. The empty room gives him no applause to hide behind.",
           "whatToDo": "Separate the project from his self-image. Tell the team which result changed his mind, then close or revise the pilot based on the data.",
           "whyItMatters": "Public commitment can make changing course feel like personal failure. Naming the evidence lets consistency shift from defending pride to defending results."
@@ -2020,13 +1651,6 @@
             "classroom",
             "self-authored"
           ],
-          "planSpec": {
-            "domain": "a teacher changing a student from rule compliance to self-description",
-            "audience": "a teacher helping a talkative student keep a behavior promise",
-            "stakes": "whether the student owns the rule enough to use it without prompting",
-            "format": "before_after",
-            "requiredBeat": "the student keeps a promise he wrote in his own words"
-          },
           "scenario": "A chewed pencil rolls between two math notebooks at 1:14 p.m. Wednesday while Samira sits at the corner desk with Luis. Before: she said stop calling out and watched him shrink. After: she asks him to write one sentence that starts, when I get stuck. He prints slowly: I will raise the yellow card. Samira asks whether his own words should become the new rule. The yellow card is bright enough for Luis to see before the impulse wins.",
           "whatToDo": "Let the student write the promise in his own words and sign it. Refer back to his sentence, not to your scolding, when the habit wobbles.",
           "whyItMatters": "Self-authored commitments feel like identity, not mere compliance. The child is more likely to protect words he chose."
@@ -2039,13 +1663,6 @@
             "sales",
             "worksheet"
           ],
-          "planSpec": {
-            "domain": "a car buyer after writing his target payment on a worksheet",
-            "audience": "a buyer who may defend a written number while fees move elsewhere",
-            "stakes": "whether commitment to a monthly payment hides total cost",
-            "format": "predict_reveal",
-            "requiredBeat": "the seller uses his written number to keep him at the table"
-          },
           "scenario": "At 7:02 p.m. in the dealership office, Haldan writes 410 as his target car payment on the worksheet, and the number starts to feel like discipline. The salesperson returns with 414 and a longer loan. Haldan is close to his own written promise, but farther from affordability. The commitment has shifted from protecting his budget to protecting a number that no longer means what it meant.",
           "whatToDo": "Calculate total cost, loan length, fees, and exit options. Let the old number be a note about affordability, not the definition of it.",
           "whyItMatters": "A self-written target can anchor identity. That feeling can hide costs moved outside the number."
@@ -2058,13 +1675,6 @@
             "volunteer",
             "consistency"
           ],
-          "planSpec": {
-            "domain": "a volunteer deciding whether a prior no still fits new facts",
-            "audience": "a volunteer who values reliability but has new availability",
-            "stakes": "whether consistency blocks useful help after conditions change",
-            "format": "reflection",
-            "requiredBeat": "consistency pressure must yield when the facts change"
-          },
           "scenario": "Twenty food boxes line the church basement pantry at 4:49 p.m. Sunday while Mireya stands under buzzing lights. Last month she said no to pantry shifts because childcare was impossible. Today her sister can help, but the old no still feels like a wall. She rechecks whether consistency means repeating the answer or updating it with the changed fact. The boxes are real, and so is the reason her earlier answer changed.",
           "whatToDo": "Update the old answer out loud: I could not commit then, but I can take today's route. Tie the change to the changed facts.",
           "whyItMatters": "Healthy consistency follows the reason behind a choice. When the reason changes, keeping the old wording can become its own mistake."
@@ -2083,8 +1693,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The commitment should serve the original purpose. Updating it with a clear reason keeps consistency from becoming injury pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2096,8 +1705,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Writing can strengthen commitment to a number. That may distract from fees, term length, and total price.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2109,8 +1717,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sentence preserves honesty while naming the changed evidence. It lets consistency attach to results, not ego.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q04",
@@ -2122,8 +1729,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A small public yes can create an identity of support. Later actions can feel like staying consistent with that identity.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -2135,8 +1741,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Chosen and written commitments carry identity weight. The promise is more likely to be defended because it came from her.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2148,8 +1753,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The manager is defending an old self-presentation. The current result should decide whether the project continues.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2161,8 +1765,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Active and voluntary commitments are easiest to connect to identity. Public effort adds more pull.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q08",
@@ -2174,8 +1777,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The old reason no longer holds. Updating openly keeps faith with truth rather than with static wording.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2187,8 +1789,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A self-written plan builds ownership, and the review condition prevents consistency from overriding new facts.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2239,24 +1840,17 @@
           }
         ],
         "twentyFourHourChallenge": "Within the next day, audit one commitment. Write the promise, the original reason, the current facts, and the condition that would justify changing it.",
-        "weeklyPractice": "Once this week, make one small self-authored promise in writing, then add a review line that says when you will update it.",
-        "title": "Practice commitments with review points"
+        "weeklyPractice": "Once this week, make one small self-authored promise in writing, then add a review line that says when you will update it."
       },
       "memorableLines": [
         {
-          "text": "The repair is to keep the promise tied to the reason that created it.",
-          "location": "breakdown.fastRead",
-          "why": "Keeps consistency connected to purpose."
+          "text": "The repair is to keep the promise tied to the reason that created it."
         },
         {
-          "text": "The condition does not weaken the promise. It keeps the promise honest.",
-          "location": "breakdown.deepRead",
-          "why": "Explains why review points improve commitment."
+          "text": "The condition does not weaken the promise. It keeps the promise honest."
         },
         {
-          "text": "The promise needs interpretation, not blind repetition.",
-          "location": "breakdown.fullRead",
-          "why": "Gives the chapter its practical edge."
+          "text": "The promise needs interpretation, not blind repetition."
         }
       ]
     },
@@ -2283,13 +1877,6 @@
             "union",
             "identity"
           ],
-          "planSpec": {
-            "domain": "a union steward hearing management say family before a concession ask",
-            "audience": "a steward protecting drivers without dismissing real shared purpose",
-            "stakes": "whether family language makes a rest-break concession feel automatic",
-            "format": "decision_point",
-            "requiredBeat": "shared identity language tries to make sacrifice feel automatic"
-          },
           "scenario": "At 6:34 a.m. in the depot break room, Kofi hears management call the drivers one transit family just before asking them to give up rest during holiday routes. The phrase warms the room, but the route board shows who will lose recovery time. Unity may matter here; safety matters too. Kofi has to ask whether the family language protects riders and drivers or hides a scheduling cost.",
           "whatToDo": "Acknowledge the shared mission, then ask who carries the cost and how driver safety is protected. Do not let family language skip the terms.",
           "whyItMatters": "Shared identity can call people to sacrifice, but it can also hide who benefits and who pays. A real we can answer cost questions."
@@ -2302,13 +1889,6 @@
             "family",
             "money"
           ],
-          "planSpec": {
-            "domain": "a cousin asked to co-sign a loan at a reunion",
-            "audience": "a family member under kinship pressure",
-            "stakes": "whether loyalty language blurs financial risk",
-            "format": "dialogue",
-            "requiredBeat": "kinship pressure blurs the financial risk"
-          },
           "scenario": "Runa stands beside the folding table of deviled eggs at 3:27 p.m. when her cousin slides a loan form from under a paper plate. \"You know we take care of our own,\" he says. Children shout near the sprinkler. The form needs a co-signer by Monday. Runa remembers the tow notice on his old car and feels her aunt watching from the grill. She must decide whether family means signing or telling the truth. The loan form is not made safer by the smell of barbecue or the aunt watching from the grill.",
           "whatToDo": "Separate love from the bank risk. Offer help she can afford, such as reviewing the budget or giving a smaller gift, but do not sign a debt she cannot carry.",
           "whyItMatters": "Kinship makes the request feel personal, but the lender will treat the signature as financial fact. Love should not require pretending risk is smaller than it is."
@@ -2321,13 +1901,6 @@
             "faith",
             "belonging"
           ],
-          "planSpec": {
-            "domain": "a synagogue treasurer watching members repair a flood-damaged closet",
-            "audience": "a community treasurer seeing unity create voluntary work",
-            "stakes": "whether real belonging moves help without pressure",
-            "format": "scene",
-            "requiredBeat": "real shared belonging creates help without a hard sell"
-          },
           "scenario": "Wet prayer books stack on a card table at 9:12 a.m. Sunday as Selwyn stands in the basement hallway with a strip of carpet squishing under his shoe. No one has made an appeal. Two teenagers carry boxes. An older member labels damaged pages in careful marker. Someone starts coffee upstairs. Selwyn reads the room: the shared place is already asking for his help. Selwyn sees his own name on the supply sign-out sheet before he reaches for tape.",
           "whatToDo": "Let the shared place organize the work, then make the next need concrete: boxes, tape, drying space, and a repair fund with clear costs.",
           "whyItMatters": "Real unity does not always need a hard sell. When people see a shared home at risk, the ask can be simple and specific."
@@ -2340,13 +1913,6 @@
             "startup",
             "we language"
           ],
-          "planSpec": {
-            "domain": "a startup engineer reviewing a “we are builders” all-hands",
-            "audience": "an engineer deciding whether identity language justified unpaid work",
-            "stakes": "whether founder rhetoric turned poor planning into loyalty pressure",
-            "format": "postmortem",
-            "requiredBeat": "identity language hid unpaid weekend work"
-          },
           "scenario": "At 8:58 p.m. on the train platform, Zahra feels her laptop bag cut into her shoulder after the founder's speech: \"We are builders, not clock-watchers.\" Five minutes later, weekend launch work appeared, unpaid and unplanned. The issue is not whether the team has a mission. The issue is whether identity is covering avoidable planning debt.",
           "whatToDo": "Ask for the weekend work to be tied to scope, recovery time, and why the deadline protects the product. Do not let identity language cover missing planning.",
           "whyItMatters": "A shared mission can justify a hard push, but it should not hide avoidable cost. The team deserves the truth about why sacrifice is needed."
@@ -2359,13 +1925,6 @@
             "sports",
             "symbol"
           ],
-          "planSpec": {
-            "domain": "a team captain handing out old jerseys before asking for dues",
-            "audience": "a captain trying to collect needed money without cheap pressure",
-            "stakes": "whether shared symbols make dues feel like loyalty",
-            "format": "predict_reveal",
-            "requiredBeat": "shared symbols make the dues ask feel like group loyalty"
-          },
           "scenario": "Marnie pulls last season's jerseys from a laundry bag at field three at 5:45 p.m., mud grabbing her cleats. She predicts the fabric will do what her emails did not. Players tug the shirts over shoulder pads and laugh at old grass stains. Then she mentions overdue league dues. Two wallets open before she finishes. Marnie studies whether the timing honors the team or corners it. The dues sheet is now visible beside the laundry bag.",
           "whatToDo": "Explain exactly what dues cover before or with the jerseys: field rental, officials, and insurance. Let the symbol remind people of shared cost, not hide it.",
           "whyItMatters": "Shared symbols can turn payment into loyalty. That is fair only when the money truly protects the group everyone belongs to."
@@ -2378,13 +1937,6 @@
             "firehouse",
             "safety"
           ],
-          "planSpec": {
-            "domain": "a firefighter deciding whether brotherhood means covering a safety violation",
-            "audience": "a firefighter balancing loyalty and crew safety",
-            "stakes": "whether unity hides a violation that could hurt the team later",
-            "format": "reflection",
-            "requiredBeat": "true unity must protect the group, not hide harm"
-          },
           "scenario": "Cold coffee sits beside the failed hose coupling at 2:06 a.m. while Eamon sits at the station kitchen table. A firefighter he loves like a brother skipped the gear check. The old voice says handle it inside, keep his name clean. The alarm panel glows red in the dark. Eamon thinks about the crew entering smoke tomorrow and writes the incident note anyway. The incident note protects the people who will depend on that hose when the next alarm sounds.",
           "whatToDo": "Report the miss and frame it as crew protection, not punishment. Brotherhood means the next team gets safe gear and honest learning.",
           "whyItMatters": "Unity that hides danger protects one person for a moment and risks the whole group later. Real loyalty guards the shared life."
@@ -2403,8 +1955,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Unity language should not erase terms. A real shared identity can answer cost and safety questions.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2416,8 +1967,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Kinship is real, but the signature creates real financial exposure. Help should be sized honestly.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q03",
@@ -2429,8 +1979,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A shared place can call people to act without heavy persuasion. The need is visible and owned by the group.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2442,8 +1991,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The phrase may be sincere, but it can also shift planning debt onto employees. The reason for sacrifice must be clear.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2455,8 +2003,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The symbol can remind players of shared belonging, but the money must still be explained honestly.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2468,8 +2015,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The shared identity should protect everyone who depends on the gear. Covering the miss risks the group.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2481,8 +2027,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Liking says I enjoy you. Unity says your fate is tied to mine. That deeper tie creates stronger influence.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q08",
@@ -2494,8 +2039,7 @@
             ],
             "correctIndex": 1,
             "explanation": "We language can be meaningful or hollow. The buyer needs to inspect the actual ask and beneficiary.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2507,8 +2051,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The clean phrase ties shared identity to a specific protective task without turning belonging into coercion.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2559,24 +2102,17 @@
           }
         ],
         "twentyFourHourChallenge": "Within the next day, notice one use of we, family, team, or community. Write the ask underneath it and whether that ask protects the shared group.",
-        "weeklyPractice": "Once this week, use unity cleanly: name a shared goal, state the real cost, and invite help without making questions sound disloyal.",
-        "title": "Practice the unity ledger"
+        "weeklyPractice": "Once this week, use unity cleanly: name a shared goal, state the real cost, and invite help without making questions sound disloyal."
       },
       "memorableLines": [
         {
-          "text": "A real we can answer.",
-          "location": "breakdown.fastRead",
-          "why": "Captures the daylight test for unity."
+          "text": "A real we can answer."
         },
         {
-          "text": "Love can justify help you can afford. It cannot make a risky debt smaller by calling it family.",
-          "location": "breakdown.deepRead",
-          "why": "Keeps unity warm but bounded."
+          "text": "Love can justify help you can afford. It cannot make a risky debt smaller by calling it family."
         },
         {
-          "text": "The questions do not insult a real group. They protect it from being used.",
-          "location": "breakdown.fullRead",
-          "why": "Defines honest unity without cynicism."
+          "text": "The questions do not insult a real group. They protect it from being used."
         }
       ]
     },
@@ -2603,13 +2139,6 @@
             "ER",
             "overload"
           ],
-          "planSpec": {
-            "domain": "an ER charge nurse triaging while three cues arrive at once",
-            "audience": "a charge nurse managing overload without cue capture",
-            "stakes": "whether a loud signal outranks actual acuity",
-            "format": "decision_point",
-            "requiredBeat": "overload makes the strongest cue feel like the whole decision"
-          },
           "scenario": "Rain dots the gurney wheels at 1:18 a.m. as Yara stands at the ambulance bay doors and three arrivals stack up. A uniformed officer shouts about a detainee, a monitor beeps on a quiet grandmother, and a son says a famous surgeon is waiting for his father. The loudest cue is rank and noise. Yara's gloved hand touches the triage board. She returns to the question that matters: volume or acuity? The bay lights make every shout feel urgent until she returns to the triage criteria.",
           "whatToDo": "Name the cues in her head, then return to triage criteria: airway, breathing, circulation, vitals, and visible distress. Let no cue outrank acuity without evidence.",
           "whyItMatters": "Overload makes the strongest cue feel like the whole signal. Naming it gives the actual decision rule room to work."
@@ -2622,13 +2151,6 @@
             "procurement",
             "stacked cues"
           ],
-          "planSpec": {
-            "domain": "a procurement lead pushing back on a vendor using three levers at once",
-            "audience": "a buyer facing authority, scarcity, and reciprocity in one call",
-            "stakes": "whether stacked cues compress contract review",
-            "format": "dialogue",
-            "requiredBeat": "authority, scarcity, and reciprocity pile up in one call"
-          },
           "scenario": "\"Our compliance expert says today is safest,\" the vendor says as Benton sits in the glass huddle room at 4:36 p.m., speakerphone blinking red. \"The discount closes tonight, and after lunch last week I wanted to bring you first access.\" Benton writes three words on the pad: expert, deadline, lunch. The room smells like dry marker. Benton audits the stack: evidence or pressure. The three words on the pad give Benton a way to slow the offer without ignoring it.",
           "whatToDo": "Answer each cue separately: ask for the expert's written basis, request the deadline reason, and detach lunch from the contract. Then review the offer on terms.",
           "whyItMatters": "Stacked cues work by making refusal feel costly from several directions. Separating them turns a fog of pressure back into checkable claims."
@@ -2641,13 +2163,6 @@
             "subscription",
             "screen"
           ],
-          "planSpec": {
-            "domain": "a parent reviewing a subscription purchase made after a countdown and testimonials",
-            "audience": "a tired parent trying to understand a fast online yes",
-            "stakes": "whether speed plus multiple cues shut down normal checks",
-            "format": "postmortem",
-            "requiredBeat": "speed plus multiple cues shut down her normal checks"
-          },
           "scenario": "At 11:23 p.m. at the laundry table, Celia studies the annual subscription receipt she bought while folding towels. The page gave her a countdown, parent testimonials, a highlighted plan, and a line saying families like hers chose it. The next night, the renewal terms feel stiff. She circles each cue on a napkin. The choice does not become wrong automatically, but it becomes visible enough to judge.",
           "whatToDo": "Rebuild the decision cue by cue: deadline, social proof, default, plan details, and exit terms. Decide again after the stack is visible.",
           "whyItMatters": "Multiple cues can close a choice before normal checks appear. Listing them restores the parts that speed blended together."
@@ -2660,13 +2175,6 @@
             "dispatch",
             "training"
           ],
-          "planSpec": {
-            "domain": "a city dispatcher training a new hire to name the cue before acting",
-            "audience": "a dispatcher learning fast but accurate response under pressure",
-            "stakes": "whether panic, authority, or crowd noise drives the wrong response",
-            "format": "scene",
-            "requiredBeat": "naming the cue restores choice under pressure"
-          },
           "scenario": "Radio static fills one ear at 2:05 p.m. as Maren leans over console seven with a new dispatcher frozen over the keys. The caller is shouting that everyone is running, but has not named smoke, water, or a weapon. Maren taps the laminated card: name the cue. The trainee separates panic from evidence, then asks for location and visible danger. The laminated card keeps the room fast while stopping panic from becoming the answer.",
           "whatToDo": "Train the pause as a spoken habit: name the cue, ask the missing fact, then dispatch. Keep the pause short enough for emergencies and clear enough to prevent cue capture.",
           "whyItMatters": "Naming turns a cue from command into information. Under pressure, that small label can keep speed from becoming error."
@@ -2679,13 +2187,6 @@
             "design",
             "consent"
           ],
-          "planSpec": {
-            "domain": "a product designer testing a checkout page stripped of pressure cues",
-            "audience": "a designer balancing conversion with cleaner consent",
-            "stakes": "whether fewer cues reduce bad-fit purchases",
-            "format": "predict_reveal",
-            "requiredBeat": "fewer cues lower conversion but raise cleaner consent"
-          },
           "scenario": "At 10:47 a.m. in the usability lab, Iskander removes the fake countdown, lowers testimonials, and unhighlights the annual plan. The first test earns fewer clicks. Two weeks later, cancellations and angry tickets are lower too. The old page won more automatic yeses. The cleaner page shows the company a less flattering but more useful result: users understood what they bought.",
           "whatToDo": "Keep pressure cues only when they are true and relevant. Measure cancellation, complaints, and user understanding after purchase, not only conversion.",
           "whyItMatters": "A yes gained by false urgency may be weaker than a slower yes. Clean consent can reduce regret and support burden."
@@ -2698,13 +2199,6 @@
             "organizing",
             "ethics"
           ],
-          "planSpec": {
-            "domain": "a community organizer deciding how to persuade without abusing shortcuts",
-            "audience": "an organizer who needs turnout but wants clean consent",
-            "stakes": "whether influence cues stay true and leave exit visible",
-            "format": "reflection",
-            "requiredBeat": "ethical influence makes the cue true and the exit visible"
-          },
           "scenario": "Folding chairs stack behind Pippa at 8:12 p.m. in the church annex while a tenant flyer sits open on her laptop. The heat is broken in three buildings. She deletes limited seats because the room holds eighty. She keeps neighbors protect neighbors because that is true. Then she adds, come for twenty minutes, leave your name only if you want follow-up. The flyer feels less sharp and more honest. The flyer now uses true urgency without making the exit disappear.",
           "whatToDo": "Use only cues that are true: real shared stakes, real deadlines, real proof. Make the next step and the exit visible before asking people to show up.",
           "whyItMatters": "Ethical influence helps people see a good choice without trapping them inside it. The cue should clarify, not counterfeit, the reason to act."
@@ -2723,8 +2217,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Multiple cues can blend into pressure. Naming and checking each one restores the normal decision parts.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2736,8 +2229,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cues may or may not be legitimate. Separating them lets the buyer test each claim instead of reacting to the stack.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2749,8 +2241,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Panic is a cue of urgency, not a location or cause. The dispatcher needs concrete facts while moving quickly.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2762,8 +2253,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cleaner page may attract fewer impulsive yeses but better-informed buyers. Post-purchase outcomes matter.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -2775,8 +2265,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A cue helps when it clarifies real reasons. It becomes abusive when false, irrelevant, oversized, or trapping.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -2788,8 +2277,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A false limit may increase turnout, but it does so by making urgency up. That damages clean consent.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2801,8 +2289,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Authority may be relevant, but triage needs acuity. Naming the cue keeps it from taking over.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2814,8 +2301,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pressure comes from volume and speed. Shortcuts become more necessary, which also makes them easier to exploit.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -2827,8 +2313,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Clean influence cares about the quality of yes. Regret and confusion after purchase reveal whether the cues clarified or trapped.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2879,24 +2364,17 @@
           }
         ],
         "twentyFourHourChallenge": "Within the next day, pause once before a fast yes. Name the cue out loud or on paper, then check whether it is true, relevant, and still leaves you free to say no.",
-        "weeklyPractice": "Once this week, redesign one ask you make of others so every cue is true, the cost is clear, and the exit is visible.",
-        "title": "Practice cue inventory under speed"
+        "weeklyPractice": "Once this week, redesign one ask you make of others so every cue is true, the cost is clear, and the exit is visible."
       },
       "memorableLines": [
         {
-          "text": "Cialdini's practical defense is still modest: name the cue before it names the choice.",
-          "location": "breakdown.fastRead",
-          "why": "Compresses the whole-book defense."
+          "text": "Cialdini's practical defense is still modest: name the cue before it names the choice."
         },
         {
-          "text": "Stacked cues work because each one removes a different objection.",
-          "location": "breakdown.deepRead",
-          "why": "Explains why stacked cues are stronger than single cues."
+          "text": "Stacked cues work because each one removes a different objection."
         },
         {
-          "text": "Ethical influence is not cue-free influence.",
-          "location": "breakdown.fullRead",
-          "why": "Separates clean persuasion from manipulation."
+          "text": "Ethical influence is not cue-free influence."
         }
       ]
     }

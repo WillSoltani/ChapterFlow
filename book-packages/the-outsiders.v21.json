@@ -46,13 +46,6 @@
             "dispatch",
             "thresholds"
           ],
-          "planSpec": {
-            "domain": "regional ambulance dispatch authority redesigning approval thresholds",
-            "audience": "an operations director whose station chiefs wait for headquarters on routine equipment swaps",
-            "stakes": "ambulance downtime rising before the winter call spike",
-            "format": "decision_point",
-            "requiredBeat": "Sarah circles three routine approvals on the maintenance log, removes headquarters signoff below a fixed dollar threshold, and reserves her own review for exceptions that change safety or capital risk."
-          },
           "scenario": "A laminated ambulance maintenance log is clipped to the metal dispatch desk at 6:10 p.m., with three routine battery swaps still waiting for headquarters. Sarah, the operations director, sees station-chief initials beside each request and a winter call spike on the staffing screen. Sarah has to decide now: leave every equipment swap in the central inbox, or circle the routine approvals, set a dollar threshold, and reserve her review for safety exceptions.",
           "whatToDo": "Circle the routine approvals, set a clear dollar threshold, and let station chiefs own swaps below it. Keep central review for changes that alter safety, insurance, or capital risk.",
           "whyItMatters": "The station chiefs have the freshest operating facts, while headquarters should own the rule and the exceptions. Moving small calls outward protects speed without giving up discipline."
@@ -65,13 +58,6 @@
             "sales",
             "local judgment"
           ],
-          "planSpec": {
-            "domain": "independent radio network merging three local ad-sales teams",
-            "audience": "a station manager with too many central scripts slowing local sellers",
-            "stakes": "losing local sponsors to a larger national chain",
-            "format": "dialogue",
-            "requiredBeat": "Mathieu tells the central sales lead to keep only the rate floor and brand limits, then lets local managers write sponsor packages around their own market knowledge."
-          },
           "scenario": "\"Every seller needs the same script,\" the central sales lead says, tapping a torn sponsor rate card beside the mute studio microphone. Mathieu looks through the glass at the local host recording a farm report for Saturday. Three stations are merging, and a national chain is calling their sponsors. Mathieu has to choose before the rate packet goes out: one central script, or a rate floor and brand limit that let local managers write packages around their own market knowledge.",
           "whatToDo": "Keep the rate floor and brand limits at the center, then give local managers room to shape sponsor packages. Review exceptions, not every ordinary sale.",
           "whyItMatters": "The center protects economics through the floor and the brand rule. Local sellers protect revenue because they know the sponsors, timing, and market facts headquarters cannot see fast enough."
@@ -84,13 +70,6 @@
             "fleet",
             "capital choice"
           ],
-          "planSpec": {
-            "domain": "municipal snow-removal fleet deciding between new supervisors and plow upgrades",
-            "audience": "a public works deputy trying to explain why headquarters roles will not clear roads faster",
-            "stakes": "overtime overruns and delayed plow routes after the first storm",
-            "format": "predict_reveal",
-            "requiredBeat": "Ingrid lays the route-delay map beside the supervisor hiring proposal and redirects the money to blade sensors that local crews can act on without another approval layer."
-          },
           "scenario": "Salt crystals melt on the edge of a folded route-delay map while the first storm report dries beside it. Ingrid asks the public works committee which item will clear roads faster: a new supervisor role or blade sensors that crews can read from the cab. The room predicts the role because it sounds like control. Ingrid must decide whether to add another headquarters position or fund the tool local crews can act on before the next snowfall.",
           "whatToDo": "Put the route-delay map beside the hiring proposal and fund the blade sensors. Give crews authority to act on sensor readings, with headquarters reviewing only route-level exceptions.",
           "whyItMatters": "The supervisor adds a layer between the fact and the response. The sensor moves useful information to the plow crew, where small decisions can improve the route before delay compounds."
@@ -103,13 +82,6 @@
             "throughput",
             "capital"
           ],
-          "planSpec": {
-            "domain": "specialty bakery group choosing one oven investment over five storefront refreshes",
-            "audience": "an owner with store managers pushing visible upgrades",
-            "stakes": "morning wholesale orders missed because the old oven limits batch size",
-            "format": "before_after",
-            "requiredBeat": "It took Marco two missed wholesale mornings to reject the cosmetic refresh list and fund the single oven that changes throughput across all shops."
-          },
           "scenario": "A rack of half-proofed rolls waits beside the cold oven door after the second missed wholesale morning in a row. Marco had wanted to keep peace by approving five small storefront refreshes, one for each manager. The wholesale order sheet says the old oven is the real bottleneck. It took those two failed mornings for him to reject the cosmetic list and fund the single oven that changes throughput across all shops.",
           "whatToDo": "Fund the oven and decline the five refreshes for now. Explain the decision in throughput terms: one investment changes output for every shop, while the refreshes only spread comfort around.",
           "whyItMatters": "Capital gets weaker when it is scattered to keep everyone pleased. The oven improves the operating machine, which makes later nice-to-have spending easier to afford and justify."
@@ -122,13 +94,6 @@
             "authority",
             "guardrails"
           ],
-          "planSpec": {
-            "domain": "community theater cooperative deciding how much authority stage managers own",
-            "audience": "a board chair trying to reduce chaos without centralizing every prop decision",
-            "stakes": "opening night delays and a drained contingency fund",
-            "format": "scene",
-            "requiredBeat": "You watch Anna separate safety-critical approvals from routine backstage purchases, giving stage managers spending cards while keeping the board focused on the two risks that can sink the production."
-          },
           "scenario": "You see gaffer tape stuck to a clipboard under the backstage work light while Anna reviews a prop request that has waited four days for board approval. Opening night is close, and the contingency fund is already thin. She must decide whether every purchase stays with the board or whether stage managers get spending cards for routine backstage needs while safety items and large overruns stay central.",
           "whatToDo": "Separate the safety list from routine purchases. Give stage managers capped spending cards, require receipts, and keep the board focused on hazards and overruns that can sink the show.",
           "whyItMatters": "The board should not spend scarce attention approving tape and replacement screws. A cap plus receipt trail keeps discipline while moving routine judgment to the people doing the work."
@@ -141,13 +106,6 @@
             "routing",
             "runway"
           ],
-          "planSpec": {
-            "domain": "Toronto lab-services startup choosing between a new executive layer and courier-routing software",
-            "audience": "a founder whose investors want adult supervision at headquarters",
-            "stakes": "sample pickups arriving late while cash runway tightens",
-            "format": "postmortem",
-            "requiredBeat": "What if the grown-up move is not a new vice president? Yusuf compares missed-pickup data with the VP salary and funds routing software plus local dispatch authority instead."
-          },
           "scenario": "What if the grown-up move is not a new vice president? Yusuf asks that after a specimen cooler with a cracked barcode label comes back late for the third time in a week. In the postmortem, the missed-pickup report points to route confusion, not executive absence. He compares the VP salary with the routing software quote and gives local dispatchers authority to adjust routes under a service-level rule.",
           "whatToDo": "Buy the routing software and define local dispatch authority before hiring another executive layer. Use the service-level rule to keep exceptions visible at the center.",
           "whyItMatters": "The failure is happening in route information, not in executive polish. Capital should fix the bottleneck and move authority to dispatchers who can change pickups while the clock is still running."
@@ -166,8 +124,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The problem is misplaced control. A threshold would keep routine supply judgment near the work, while a larger procurement desk preserves the same drag in a nicer wrapper.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -179,8 +136,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sensors move facts to the crew while the center keeps the exception rule. Splitting the money for fairness scatters capital without solving the loading bottleneck.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -192,8 +148,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The oven improves the operating base, so capital works harder there. The cosmetic upgrades may be pleasant, but they distribute spending without changing the constraint.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -205,8 +160,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A cap and receipt trail keep accountability while routine calls move outward. Centralizing through the treasurer only changes the bottleneck from a board to one person.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -218,8 +172,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The failure sits in routing information and local response time. A new executive may look mature, but it does not move the operating fact to the people who can act.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -231,8 +184,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The signature ritual looks disciplined but destroys value through delay. A threshold with documentation would hold principals accountable without making the roof wait.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -244,8 +196,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The design keeps routine customer judgment near the floor and reserves margin-policy risk for the center. Full autonomy would detach authority from the larger capital standard.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -257,8 +208,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The redesign cut the center without preserving the center's real job. Real discipline needs local authority plus central ownership of standards, capital choices, and exceptions.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -270,8 +220,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Plan B keeps the useful parts of control while shedding the delay. Plan A confuses speed with discipline, and full central approval preserves the old drag.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -332,19 +281,13 @@
       },
       "memorableLines": [
         {
-          "text": "That is how a center drains capital while claiming to guard it.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the central tension into one concrete reversal about control and waste."
+          "text": "That is how a center drains capital while claiming to guard it."
         },
         {
-          "text": "That trade gets expensive quietly.",
-          "location": "breakdown.deepRead",
-          "why": "The short sentence gives the reader a clean memory hook for hidden overhead costs."
+          "text": "That trade gets expensive quietly."
         },
         {
-          "text": "A center earns its size only when it improves the use of capital.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the whole lesson into a practical test a reader can apply immediately."
+          "text": "A center earns its size only when it improves the use of capital."
         }
       ]
     },
@@ -371,13 +314,6 @@
             "fleet",
             "uptime"
           ],
-          "planSpec": {
-            "domain": "farm-equipment rental cooperative revising purchase rules after used prices spike",
-            "audience": "a cooperative treasurer loyal to last year's fleet expansion rule",
-            "stakes": "members need harvest reliability but resale prices now make repair capacity more valuable than new units",
-            "format": "decision_point",
-            "requiredBeat": "David writes last year's rule and this year's auction prices on the same maintenance bay door, then shifts capital from buying tractors to rebuilding engines because the per-member uptime math changed."
-          },
           "scenario": "At 5:40 a.m. in the county co-op maintenance bay, mud dries on the tire of a rental tractor beside chalked auction prices on the door. David, the cooperative treasurer, wrote last year's rule above them: buy two tractors before harvest. The uptime log now shows engine rebuilds would keep more members running for less cash. He must decide before the board vote whether to defend the old fleet rule or shift capital to rebuilds because the per-member uptime math changed.",
           "whatToDo": "Keep the uptime standard and replace the purchase rule. Put the auction prices, engine rebuild quote, and uptime log on one page so the board sees why the old tool no longer serves harvest reliability.",
           "whyItMatters": "The cooperative needs working hours in members' fields, not loyalty to last year's buying rule. Changing the instrument protects the standard instead of abandoning it."
@@ -390,13 +326,6 @@
             "retention",
             "value"
           ],
-          "planSpec": {
-            "domain": "Paris subscription news app deciding between user growth and churn reduction",
-            "audience": "a product lead pressured to keep chasing headline subscriber counts",
-            "stakes": "new signups look good while paid retention erodes",
-            "format": "predict_reveal",
-            "requiredBeat": "Camille asks the room to predict value per paying user after the discount campaign, then reveals the cohort table and kills the growth tactic that now dilutes the scorecard."
-          },
           "scenario": "\"How much value did the discount users keep after month three?\" Camille asks before anyone in the Paris product room can celebrate the signup chart. The cohort-retention table glows on the dark conference screen. Everyone predicts the campaign helped because the top line jumped. Camille reveals value per paying user falling and has to choose whether to chase another headline subscriber burst or kill the tactic that now dilutes the scorecard.",
           "whatToDo": "Show the cohort table before the signup chart, then stop the discount campaign. Move budget to churn reduction as long as value per paying user is the governing measure.",
           "whyItMatters": "Subscriber count is only useful while it supports retained value. Once the discount tactic weakens the measure, repeating it is ritual growth instead of discipline."
@@ -409,13 +338,6 @@
             "tax",
             "fundraising"
           ],
-          "planSpec": {
-            "domain": "regional hospital foundation shifting donor strategy after tax law changes",
-            "audience": "a foundation director who used to favor gala sponsorships",
-            "stakes": "funding a pediatric ultrasound suite before the fiscal year closes",
-            "format": "scene",
-            "requiredBeat": "Jonas places the old gala return sheet beside the new planned-giving memo and changes the fundraising instrument while keeping the same equipment target."
-          },
           "scenario": "Silver name badges sit in a tray after the donor gala, still warm from the ballroom lights. Jonas, the foundation director, carries them past the pediatric ultrasound quote and a planned-giving memo marked with the new tax rules. He has to decide before the finance committee meets whether to repeat the gala sponsorship push or place the old return sheet beside the memo and change instruments while keeping the same equipment target.",
           "whatToDo": "Keep the ultrasound suite as the target and change the fundraising tool. Use the gala return sheet and planned-giving memo to show donors and trustees why the old instrument has weakened.",
           "whyItMatters": "The foundation's standard is funded equipment, not preserving a beloved event. A tax change can make a quieter tool more faithful to the same mission."
@@ -428,13 +350,6 @@
             "margin",
             "channels"
           ],
-          "planSpec": {
-            "domain": "artisan furniture workshop choosing wholesale channels after lumber costs reverse",
-            "audience": "a shop owner proud of last year's direct-to-consumer rule",
-            "stakes": "cash tied in inventory while margins shift underneath the old doctrine",
-            "format": "before_after",
-            "requiredBeat": "Three inventory counts later, Chiara separates the margin target from the sales-channel rule and moves selected pieces through wholesale because facts made the old channel weaker."
-          },
           "scenario": "Walnut boards are stacked under a handwritten cost tag that makes last year's direct-to-consumer rule look brave and expensive. Chiara believed the workshop should sell every table itself. Three inventory counts later, the lumber invoice and a wholesale offer tell a different story. She separates the margin target from the sales-channel rule and moves selected pieces through wholesale because facts made the old channel weaker.",
           "whatToDo": "Keep the margin target and change the channel for the pieces tying up cash. Use wholesale selectively where it protects margin and inventory flow better than the old direct rule.",
           "whyItMatters": "The direct channel was a tool, not a principle. When lumber costs and inventory pressure change, the disciplined act is to protect margin instead of defend purity."
@@ -447,13 +362,6 @@
             "equipment",
             "utilization"
           ],
-          "planSpec": {
-            "domain": "university lab deciding whether to lease or buy specialized imaging equipment",
-            "audience": "a principal investigator defending the lab's old ownership rule",
-            "stakes": "grant money expires while machine utilization drops",
-            "format": "postmortem",
-            "requiredBeat": "You see Andrew mark the utilization hours against lease rates and admit the ownership rule once made sense, then switch to leasing without treating the old rule as a betrayal."
-          },
           "scenario": "You see a calibration slide glowing under the microscope lamp while Andrew reconstructs why the imaging grant almost bought another underused machine. The old ownership rule once made sense when utilization hours were high. Now the lease rate sheet sits beside a grant deadline and a thinner booking calendar. In the postmortem, Andrew marks the hours against lease rates and admits switching to leasing is not betrayal if access is the real standard.",
           "whatToDo": "Compare utilization hours with lease rates before the grant deadline, then lease if access per research dollar improves. Keep the standard of reliable imaging, not the old ownership rule.",
           "whyItMatters": "Owning equipment helps only when use justifies the capital. If utilization falls, leasing can serve the lab's research standard better than another proud purchase."
@@ -466,13 +374,6 @@
             "currency",
             "margin"
           ],
-          "planSpec": {
-            "domain": "London food importer deciding between warehouse expansion and supplier prepayments",
-            "audience": "a finance head under board pressure to look decisive after a strong year",
-            "stakes": "currency swings can erase the margin before shipments arrive",
-            "format": "dialogue",
-            "requiredBeat": "Which move still serves gross margin after sterling moves? Layla walks the board from warehouse expansion to supplier prepayments because the facts changed while the margin standard did not."
-          },
           "scenario": "Which move still serves gross margin after sterling moves? Layla asks the board that question with a currency hedge confirmation beside the dock arrival notice. The warehouse lease would look decisive after a strong year. Supplier prepayment terms now protect margin before the next shipment leaves Valencia. She has to choose in front of the board whether to buy more space or walk them toward prepayments because the facts changed while the margin standard did not.",
           "whatToDo": "Use gross margin as the ruler, then compare the warehouse lease with supplier prepayment terms under the current sterling rate. Choose prepayments if they protect margin before shipment risk lands.",
           "whyItMatters": "The board wants a visible expansion move, but the currency fact has changed the economics. A quieter instrument can serve the same margin standard better."
@@ -491,8 +392,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The chair rule once served capacity, but lower room use changes the facts. The correct move is to keep the capacity standard and reconsider the instrument, not defend the purchase ritual.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -504,8 +404,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The discount tactic is now weakening the value measure. Hiding churn protects the ritual, while shifting budget keeps the standard and changes the tool.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -517,8 +416,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The conservation target is the ruler. The gala is only a tool, so a change in donor economics can justify a different fundraising instrument.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -530,8 +428,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The decision protects the deeper value measure against impressive-looking size. The wrong choices turn a contextual judgment into a blanket rule.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -543,8 +440,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Reliable access is the standard, ownership is the method. Leasing wins if it improves access per dollar; rushing the grant only preserves the old habit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -556,8 +452,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Peer imitation is the pressure. The institutional imperative makes the conventional expansion feel safe even when the value scorecard says it is weakening.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -569,8 +464,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Consistency sits at the level of the standard. If leases and demand shift, the old growth tool can become weaker while a different tool serves owner value better.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -582,8 +476,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The equipment target is the standard. Tradition can matter, but it cannot overrule evidence that another instrument now funds the target more effectively.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -595,8 +488,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second manager keeps the ruler and moves the tool. The first manager lets outside pressure choose the tool, which is closer to fashion than discipline.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -657,19 +549,13 @@
       },
       "memorableLines": [
         {
-          "text": "The discipline was not the tactic.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader the whole distinction in a sentence short enough to remember."
+          "text": "The discipline was not the tactic."
         },
         {
-          "text": "The tool is temporary.",
-          "location": "breakdown.deepRead",
-          "why": "The one-sentence paragraph lands the core correction without explanation."
+          "text": "The tool is temporary."
         },
         {
-          "text": "The respectable move has to pass the same ruler as the strange one.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the Singleton tension between convention and value in plain language."
+          "text": "The respectable move has to pass the same ruler as the strange one."
         }
       ]
     },
@@ -696,13 +582,6 @@
             "triage",
             "recovery"
           ],
-          "planSpec": {
-            "domain": "ship-repair yard deciding which dock contracts survive after a debt covenant breach",
-            "audience": "a yard president with three legacy service lines and one profitable repair niche",
-            "stakes": "missing the covenant again will put the yard under bank control",
-            "format": "decision_point",
-            "requiredBeat": "Thomas lays each contract folder under a red, yellow, or green tag and cancels the prestige naval refit bid because it consumes dry-dock days the profitable emergency repair work needs."
-          },
           "scenario": "Rainwater pools in a dry-dock inspection groove while Thomas spreads contract folders under red, yellow, and green tags. The covenant letter from the bank sits at the end of the table. The prestige naval refit bid would look noble on the yard wall, but it would consume the dry-dock days needed by emergency repair work that still earns cash. Thomas must decide before the bank call whether to keep the old symbol or cancel it to protect the recovery niche.",
           "whatToDo": "Tag each contract by recovery value, then cancel the naval refit bid if it blocks the profitable emergency repair work. Use the dry-dock schedule and covenant letter as the scorecard.",
           "whyItMatters": "The yard cannot recover by protecting every legacy line. The prestige contract consumes the resource the strongest niche needs, so keeping it would make the bank's control more likely."
@@ -715,13 +594,6 @@
             "staffing",
             "urgent care"
           ],
-          "planSpec": {
-            "domain": "rural clinic network closing one satellite service to save urgent-care coverage",
-            "audience": "a medical director facing three thinly staffed locations",
-            "stakes": "keeping every service open would leave urgent care unsafe by August",
-            "format": "scene",
-            "requiredBeat": "Sophie moves colored pins on the staffing map and closes the low-volume dermatology day so nurses can cover urgent care where patients actually arrive."
-          },
           "scenario": "Colored map pins scatter across a county clinic map in the break room at 7:35 a.m. Sophie has three thinly staffed locations, a patient volume sheet, and an August rota with urgent-care gaps circled twice. The low-volume dermatology day has loyal patients, but the nurses are needed where walk-ins actually arrive. She has to choose whether to preserve every service or move the pins and close the day to keep urgent care safe.",
           "whatToDo": "Move the pins against patient volume and the August rota. Close the low-volume dermatology day, then redeploy nurses to urgent care where the safety risk is real and recurring.",
           "whyItMatters": "Keeping every service open would make the whole network weaker. The recovery scorecard protects the care that carries the most urgent risk, not the service with the most sentimental defense."
@@ -734,13 +606,6 @@
             "payroll",
             "retention"
           ],
-          "planSpec": {
-            "domain": "independent games studio after a failed launch",
-            "audience": "a studio founder attached to three prototype expansions",
-            "stakes": "nine weeks of payroll left and one salvageable core game loop",
-            "format": "before_after",
-            "requiredBeat": "It took Lukas one payroll forecast to freeze two admired expansions and assign every remaining developer to the single loop with evidence of player retention."
-          },
           "scenario": "At 9:15 p.m. in the studio war room, a bug board with three colored columns has one column crossed out after the failed launch. Lukas loves all three prototype expansions, and the team can still describe each one as the future. The payroll forecast says nine weeks remain. The retention graph says one core loop is still working. It took one payroll forecast for Lukas to freeze two admired expansions and assign every remaining developer to the loop with evidence behind it.",
           "whatToDo": "Freeze the two expansions and move the team to the retained core loop. Make payroll weeks and player retention the recovery scorecard, not attachment to the prototype board.",
           "whyItMatters": "The studio cannot save itself by keeping every possible future alive. Concentrating developers on the one loop with demand turns scarce payroll into recovery capacity."
@@ -753,13 +618,6 @@
             "sponsor loss",
             "venues"
           ],
-          "planSpec": {
-            "domain": "city arts festival recovering after a sponsor collapse",
-            "audience": "a festival director deciding which venues to keep",
-            "stakes": "trying to preserve the full map would cancel the festival entirely",
-            "format": "postmortem",
-            "requiredBeat": "What is the smallest festival still worth holding? Aanya cuts the admired waterfront stage first because security costs would drain the whole recovery budget."
-          },
           "scenario": "What is the smallest festival still worth holding? Aanya writes that across a folded venue map with a blue circle around the waterfront stage. The sponsor withdrawal email came in Tuesday, and the security quote for that stage would drain the recovery budget. In the postmortem, she sees the mistake would have been preserving the full map until the whole festival failed. She cuts the admired stage first.",
           "whatToDo": "Start from the smallest festival that still works, then remove the venue whose security cost drains the recovery budget. Keep the program alive before preserving the photograph everyone likes.",
           "whyItMatters": "The waterfront stage is a symbol, but symbols can bankrupt recovery. Cutting it protects enough cash and attention to hold a smaller festival instead of canceling the full one."
@@ -772,13 +630,6 @@
             "routes",
             "fuel"
           ],
-          "planSpec": {
-            "domain": "regional freight carrier after losing its largest retail account",
-            "audience": "a fleet manager protecting routes that once signaled market reach",
-            "stakes": "empty miles are burning fuel cash needed for core medical deliveries",
-            "format": "dialogue",
-            "requiredBeat": "James asks dispatch to name which routes still pay for their trucks, then parks the longest prestige route and reallocates drivers to contracted medical deliveries."
-          },
           "scenario": "\"Which routes still pay for their trucks?\" James asks dispatch, sliding a diesel receipt across the route profitability report. The carrier lost its largest retail account, but the longest route still feels like proof of market reach. Empty miles are burning fuel cash while contracted medical deliveries wait for drivers. James has to choose before the Friday schedule posts: preserve the wall-map route or park it and reassign drivers to work that funds recovery.",
           "whatToDo": "Name the routes that pay for their trucks, then park the longest prestige route. Reassign drivers to contracted medical deliveries where fuel, time, and cash support the recovery path.",
           "whyItMatters": "Market reach once had value, but empty miles now drain the core. Parking the prestige route turns fuel and drivers back into recovery resources."
@@ -791,13 +642,6 @@
             "catalog",
             "quality"
           ],
-          "planSpec": {
-            "domain": "language school with too many course levels after enrollment drops",
-            "audience": "a director worried parents will read cancellations as failure",
-            "stakes": "keeping every level alive leaves each class too small to teach well",
-            "format": "reflection",
-            "requiredBeat": "You watch Marit cross out the least viable intermediate sections, merge students into fewer stronger rooms, and explain that recovery means protecting learning quality instead of preserving the old catalog."
-          },
           "scenario": "You watch Marit hold a course catalog with sticky notes covering half the schedule. The enrollment roster has thinned, and the room schedule shows intermediate sections with too few students to create real conversation. Parents may read cancellations as failure. Marit crosses out the weakest sections, merges students into fewer stronger rooms, and writes a note explaining that recovery means protecting learning quality instead of preserving the old catalog.",
           "whatToDo": "Cross out the least viable intermediate sections and merge students into rooms that can actually function. Explain the change as protection of learning quality, not retreat from ambition.",
           "whyItMatters": "A full catalog can hide weak classes. Fewer stronger rooms use teachers, time, and peer conversation better, which gives the school a real path back to quality."
@@ -816,8 +660,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The recovery scorecard ranks by survival value, not nostalgia or toughness theater. A cut earns its place only if it frees resources for the recoverable core.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -829,8 +672,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Urgent care carries the recurring safety risk. Splitting nurses may look fair, but it preserves the map while weakening the service that needs recovery resources most.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -842,8 +684,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Payroll is scarce, so the loop with retention earns the resources. Keeping all three alive protects hope while spreading the studio too thin to recover.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -855,8 +696,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The stage is a symbol that drains the survival budget. A smaller viable festival protects the mission better than a full map that cancels itself.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -868,8 +708,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The route's old meaning no longer pays for the truck. Reassigning drivers puts fuel and labor behind the work with current recovery value.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -881,8 +720,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The error is treating survival of the old map as success. In recovery, some protected pieces can consume the resources needed by the core that can live.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -894,8 +732,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The leader is ranking by what helps the enterprise regain strength. Fame may matter, but it cannot outrank cash generation and demand in a recovery scorecard.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -907,8 +744,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A real triage cut names the core and the scarce resource it protects. Without that, contraction can become performance instead of recovery discipline.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -920,8 +756,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Plan B deserves support only because the cuts connect to recovery value. Plan A lets identity spend scarce resources, and the third choice treats all contraction as the same.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -982,19 +817,13 @@
       },
       "memorableLines": [
         {
-          "text": "Recovery does not begin with a speech.",
-          "location": "breakdown.fastRead",
-          "why": "It rejects generic crisis rhetoric and pulls the reader toward triage."
+          "text": "Recovery does not begin with a speech."
         },
         {
-          "text": "The useful word is rational.",
-          "location": "breakdown.deepRead",
-          "why": "The short line separates disciplined pruning from mere severity."
+          "text": "The useful word is rational."
         },
         {
-          "text": "Keeping everything can be the softest form of surrender.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a memorable inversion of preservation as responsibility."
+          "text": "Keeping everything can be the softest form of surrender."
         }
       ]
     },
@@ -1021,13 +850,6 @@
             "parts",
             "tax timing"
           ],
-          "planSpec": {
-            "domain": "wind-farm maintenance consortium choosing between simple vendor contracts and a pooled parts structure",
-            "audience": "a CFO facing turbine downtime and tax-credit timing",
-            "stakes": "a simple contract leaves credits and uptime value stranded across three owners",
-            "format": "decision_point",
-            "requiredBeat": "Rachel maps parts ownership, downtime penalties, and tax-credit timing on one sheet, then chooses the pooled structure only after each owner can trace the retained value."
-          },
           "scenario": "A turbine blade inspection photo is clipped to a parts ledger in the consortium trailer while Rachel studies three owners' vendor contracts. The simple contract is ready for signature, but the tax-credit calendar and downtime penalties sit in separate binders. Rachel must decide whether to approve the clean vendor deal or map parts ownership, penalties, and tax timing on one sheet and choose the pooled structure only if each owner can trace the retained value.",
           "whatToDo": "Put parts ownership, downtime penalties, and tax-credit timing on one page. Choose the pooled structure only if every owner can follow the retained-value path after risk and timing are counted.",
           "whyItMatters": "The clean contract ignores value stranded across owners. The pooled structure earns trust only if it makes uptime, credits, and risk clearer instead of harder to audit."
@@ -1040,13 +862,6 @@
             "concessions",
             "revenue share"
           ],
-          "planSpec": {
-            "domain": "minor-league stadium concessions negotiating revenue share across vendors",
-            "audience": "a general manager tempted by the clean flat-fee offer",
-            "stakes": "missing the upside from weekend attendance spikes would underfund field repairs",
-            "format": "predict_reveal",
-            "requiredBeat": "Nicolas asks the board to predict cash after rainouts and sellouts under both structures, then reveals the revenue-share table that keeps more value in the club without hiding risk."
-          },
           "scenario": "\"What does the club keep after a rainout and after a sellout?\" Nicolas asks, holding a nacho tray receipt over the attendance report. The flat-fee concessions offer looks clean, and the field repair invoice is already overdue. The board predicts the flat fee will be safer. Nicolas reveals the revenue-share table for rainouts and sellout weekends, then has to decide whether the extra structure keeps more value in the club without hiding the risk.",
           "whatToDo": "Model both structures under rainout and sellout scenarios, then choose the revenue share only if the upside funds repairs and the downside stays visible to the board.",
           "whyItMatters": "A flat fee is easy to read but may sell away the weekends that fund the field. The revenue share is better only if its risk is clear before the contract is signed."
@@ -1059,13 +874,6 @@
             "inventory",
             "after-cost"
           ],
-          "planSpec": {
-            "domain": "specialty chemicals distributor weighing inventory financing against supplier discounts",
-            "audience": "a controller who dislikes the extra financing layer",
-            "stakes": "a clean cash purchase plan loses more in missed discounts than it saves in simplicity",
-            "format": "scene",
-            "requiredBeat": "Olivia lines up the financing term sheet, supplier discount schedule, and spoilage dates, then approves the layered plan because the after-cost economics stay visible."
-          },
           "scenario": "A hazard label peels from a sealed drum while Olivia lines up the financing term sheet, supplier discount schedule, and spoilage dates on the packing bench. The controller dislikes the added financing layer, and the cash purchase plan feels cleaner. Olivia has to decide before the supplier cutoff whether the layer is hiding complexity or whether the after-cost economics stay visible enough to approve the inventory financing.",
           "whatToDo": "Line up financing cost, supplier discount, and spoilage date before the cutoff. Approve the layered plan only if the after-cost result beats the cash purchase and remains easy to trace.",
           "whyItMatters": "The extra layer is justified only by visible economics. If the discount survives financing cost and spoilage risk, the structured plan is clearer than the clean plan."
@@ -1078,13 +886,6 @@
             "grants",
             "member cost"
           ],
-          "planSpec": {
-            "domain": "regional broadband cooperative building fiber through grant deadlines",
-            "audience": "a cooperative chair deciding whether to combine debt, member prepayments, and grants",
-            "stakes": "one missed filing window delays rural connections for another year",
-            "format": "before_after",
-            "requiredBeat": "Four filing drafts later, Pavel keeps the layered financing plan because every piece points to lower member cost per connected home, not because the structure looks impressive."
-          },
           "scenario": "A coil of orange fiber cable lies beside a grant checklist with the filing window circled in blue. Pavel tried to make the cooperative's build plan clean: one loan, one vote, one monthly bill. Four filing drafts later, the member prepayment ledger and grant terms show lower cost per connected home. He keeps the layered financing plan because every piece points to member value, not because the stack looks impressive.",
           "whatToDo": "Keep the grant, member prepayment, and debt pieces only where each lowers cost per connected home or protects the filing window. Delete any layer that cannot show its job.",
           "whyItMatters": "A rural build can lose a year to a missed deadline. The funding stack earns its place when every layer lowers member cost or protects timing that the clean loan would waste."
@@ -1097,13 +898,6 @@
             "storage",
             "conservation"
           ],
-          "planSpec": {
-            "domain": "museum storage expansion structured through donors, lease terms, and conservation grants",
-            "audience": "a museum director who fears the board will prefer the cleaner building purchase",
-            "stakes": "collections deteriorate if the funding stack collapses under its own complexity",
-            "format": "postmortem",
-            "requiredBeat": "You see Laura remove one clever donor condition that made the plan opaque, keeping only the grant and lease pieces that improve conservation capacity per dollar."
-          },
           "scenario": "You see a humidity card tucked inside a painting crate while Laura reconstructs the storage plan after the board nearly chose a cleaner building purchase. The lease term sheet and conservation grant improved capacity per dollar. One donor condition made control of the space opaque. In the postmortem, Laura removes the clever condition and keeps only the pieces that improve conservation capacity without hiding governance risk.",
           "whatToDo": "Remove the donor condition that clouds control, then keep the lease and grant pieces that raise conservation capacity per dollar. Make the board compare capacity, risk, and cost on one page.",
           "whyItMatters": "Complexity should clarify the conservation tradeoff. A clever condition that hides control risk weakens the plan, even when the rest of the funding stack works."
@@ -1116,13 +910,6 @@
             "electrification",
             "service hours"
           ],
-          "planSpec": {
-            "domain": "Manchester bus electrification program comparing battery leases with full vehicle purchases",
-            "audience": "a transit analyst under pressure to present the simplest fleet plan",
-            "stakes": "wrong structure locks the city into higher lifetime depot costs",
-            "format": "thought_experiment",
-            "requiredBeat": "Which plan leaves the city with more service hours after battery replacement, depot work, and grants? Hadiya walks the council through lifetime cash instead of purchase-price optics."
-          },
           "scenario": "Which plan leaves the city with more service hours after battery replacement, depot work, and grants? Hadiya asks that while a charging cable lies across a painted depot bay number in Manchester. The full vehicle purchase has the simplest slide. The battery lease, depot upgrade quote, and service-hour model take longer. Hadiya must decide whether to present purchase price optics or walk the council through lifetime cash.",
           "whatToDo": "Compare the battery lease and full purchase by lifetime service hours after depot work, replacement risk, and grants. Present the plan that keeps more service running, not the one with the neatest first slide.",
           "whyItMatters": "The city buys useful service, not just vehicles. Purchase price can hide replacement and depot costs, while lifetime service hours reveal what residents actually keep."
@@ -1141,8 +928,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The ruler is after-cost value that can be audited. Fewer pages may hide real costs, while sophistication has no value unless the economics stay traceable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1154,8 +940,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The revenue share can create more retained value, but only if the downside is shown. A flat fee may feel safe while selling away the weekends that matter most.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1167,8 +952,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The layer earns its place only because discount, financing cost, and spoilage risk can be traced. Simplicity alone would leave value behind.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1180,8 +964,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Good structure clarifies the conservation tradeoff. The donor condition adds opacity, while the lease and grant pieces still improve capacity per dollar.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1193,8 +976,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Service hours are the useful output. The lease deserves support if it keeps more service running and the risk path is clear enough for public review.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1206,8 +988,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Every layer should name its job. If the plan gets respect mainly because it is hard to follow, the structure may be hiding weak economics.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1219,8 +1000,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The stack is justified by member value and timing protection. Effort spent or impressive appearance cannot substitute for the retained-value path.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1232,8 +1012,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Clarity is useful, but it cannot erase omitted economics. The wrong alternatives either worship difficulty or abandon the after-cost test entirely.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1245,8 +1024,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Proposal B lets decision makers see what value survives after risk and timing. Proposal A's simplicity is weaker because it hides what could change the outcome.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1307,19 +1085,13 @@
       },
       "memorableLines": [
         {
-          "text": "The audit test is plain.",
-          "location": "breakdown.deepRead",
-          "why": "It resets a complex topic into a simple operational demand."
+          "text": "The audit test is plain."
         },
         {
-          "text": "The stack is not impressive.",
-          "location": "breakdown.fullRead",
-          "why": "It blocks admiration for complexity and returns attention to accountability."
+          "text": "The stack is not impressive."
         },
         {
-          "text": "The best structure makes the value easier to audit, not harder to find.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a portable rule for judging sophisticated plans."
+          "text": "The best structure makes the value easier to audit, not harder to find."
         }
       ]
     },
@@ -1346,13 +1118,6 @@
             "succession",
             "purchasing"
           ],
-          "planSpec": {
-            "domain": "family-owned regional pharmacy chain after the operations chief dies suddenly",
-            "audience": "a new president with pharmacists waiting for clear purchasing calls",
-            "stakes": "stockouts and supplier terms worsening while everyone watches whether she belongs",
-            "format": "scene",
-            "requiredBeat": "Grace opens the supplier binder, asks store managers for fill-rate data, and makes the first purchasing change on evidence instead of on the family name stitched above the door."
-          },
           "scenario": "A pharmacy key ring rests on top of the supplier binder in the back office while the store phones keep lighting up. Grace is the new president after the operations chief dies suddenly, and pharmacists are waiting on purchasing calls as stockouts spread. The family name is stitched above the front door. Grace now has to choose: sound ready from the chair, or open the binder, ask store managers for fill-rate data, and make the first supplier change on evidence.",
           "whatToDo": "Open the supplier binder, collect fill-rate data from store managers, and make the purchasing change the evidence supports. Let the decision, not the family name, carry authority.",
           "whyItMatters": "The stores need reliable supply before they need a performance of certainty. A data-backed purchasing call turns inherited authority into useful stewardship."
@@ -1365,13 +1130,6 @@
             "succession",
             "unit economics"
           ],
-          "planSpec": {
-            "domain": "regional newspaper group after a publisher succession",
-            "audience": "a publisher who inherited the role before mastering ad sales or printing costs",
-            "stakes": "staff needs decisions on print frequency while advertisers question stability",
-            "format": "dialogue",
-            "requiredBeat": "Antoine says he does not know yet, asks the press manager for cost per run, then decides the print schedule on unit economics instead of pretending instant certainty."
-          },
           "scenario": "\"Are we still printing five days?\" the ad director asks while fresh ink dries on a press proof beside an advertising contract. Antoine inherited the publisher role before mastering ad sales or printing costs, and the staff is waiting for a signal. He says, \"I do not know yet,\" then asks the press manager for cost per run. Before advertisers hear a rumor, he must decide the print schedule on unit economics instead of pretending instant certainty.",
           "whatToDo": "Say what you do not know, get cost per run and ad exposure on the table, then set the print schedule from unit economics. Do not buy credibility with fake certainty.",
           "whyItMatters": "The staff needs a defensible schedule more than a confident voice. Asking for the right numbers keeps authority attached to the business instead of to posture."
@@ -1384,13 +1142,6 @@
             "member capital",
             "board"
           ],
-          "planSpec": {
-            "domain": "community credit union board chair stepping in after her father's resignation",
-            "audience": "a chair who has the surname but not yet the lending committee's trust",
-            "stakes": "a bad small-business loan policy could drain member capital",
-            "format": "decision_point",
-            "requiredBeat": "Marta reads the delinquency report aloud, delays the popular expansion vote, and earns authority by protecting member capital under scrutiny."
-          },
           "scenario": "A green-shaded banker's lamp throws light over the delinquency report while Marta takes her father's old chair at the credit union table. The lending committee is polite, not trusting, and the popular expansion vote is next. A bad small-business loan policy could drain member capital. Marta must decide whether to approve the expansion to look decisive or read the report aloud and delay the vote under everyone's scrutiny.",
           "whatToDo": "Read the delinquency report aloud and delay the expansion vote until member capital risk is clear. Use the report to make the room safer, not your surname to make the room quieter.",
           "whyItMatters": "Inherited status cannot protect member capital. Authority grows when the chair absorbs public discomfort to keep the institution from making a weaker lending decision."
@@ -1403,13 +1154,6 @@
             "cash",
             "donors"
           ],
-          "planSpec": {
-            "domain": "orchestra nonprofit after the founder conductor retires",
-            "audience": "an interim executive director with donors doubting his authority",
-            "stakes": "season deposits due before the new conductor contract is signed",
-            "format": "before_after",
-            "requiredBeat": "It took Ben two donor calls to stop sounding ceremonial, publish the cash calendar, and decide which concerts could be contracted without risking payroll."
-          },
           "scenario": "A cello case leans against a stack of donor pledge cards the week after the founder conductor retires. Ben is interim executive director, and two donors have already asked who is really in charge. Season deposits are due before the new conductor contract is signed. It took Ben two donor calls to stop sounding ceremonial, publish the cash calendar, and decide which concerts could be contracted without risking payroll.",
           "whatToDo": "Publish the cash calendar and contract only the concerts payroll can safely support. Let donors see the stewardship logic before asking them to believe in your authority.",
           "whyItMatters": "The orchestra's trust problem is financial before it is emotional. Clear cash timing makes the organization more governable while authority is still being earned."
@@ -1422,13 +1166,6 @@
             "capital",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "specialty manufacturing plant after a founder's widow inherits majority control",
-            "audience": "a controlling owner whose managers expect either passivity or a symbolic speech",
-            "stakes": "capital press replacement decision could determine two years of output",
-            "format": "postmortem",
-            "requiredBeat": "You watch Juliette reject both deference and theater, tour the broken press line, and approve the replacement only after tying it to order backlog and maintenance records."
-          },
           "scenario": "You watch metal shavings gather below a stopped stamping press while Juliette reconstructs her first month as majority owner. Managers expected passivity or a symbolic speech after the founder's death. Instead, she toured the broken press line, read the order backlog and maintenance records, and approved the replacement only after the quote matched two years of output risk. The postmortem shows authority built through evidence, not theater.",
           "whatToDo": "Reject both passivity and symbolic speeches. Tour the line, tie the press quote to backlog and maintenance records, and approve the replacement only when the output case is clear.",
           "whyItMatters": "The plant does not need a gesture from the new owner. It needs a capital decision that protects output, and evidence lets authority form around stewardship."
@@ -1441,13 +1178,6 @@
             "margins",
             "retainers"
           ],
-          "planSpec": {
-            "domain": "London design agency when a quiet partner becomes managing director",
-            "audience": "a partner promoted after the charismatic founder leaves",
-            "stakes": "two major retainers at risk because project margins are unclear",
-            "format": "reflection",
-            "requiredBeat": "What does authority look like before the room believes in it? Akira rebuilds the margin dashboard with project leads and uses it to choose which retainer terms to renegotiate."
-          },
           "scenario": "What does authority look like before the room believes in it? Akira asks that while client mood boards cover one wall and margin notes hang below them. The charismatic founder is gone, two retainers are at risk, and project leads are waiting to see whether the quiet partner can lead. Akira rebuilds the margin dashboard with them and uses it to choose which retainer terms to renegotiate first.",
           "whatToDo": "Rebuild the margin dashboard with project leads, then use it to choose retainer terms to renegotiate. Make the agency clearer to run before asking the room to trust your style.",
           "whyItMatters": "Authority arrives through a better decision surface. The dashboard turns vague doubt into visible margin choices, so the new managing director becomes useful before becoming admired."
@@ -1466,8 +1196,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Authority becomes real through stewardship. A speech may calm the room briefly, but a clearer decision gives the business something useful to trust.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1479,8 +1208,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Evidence-seeking does not surrender responsibility. Fake certainty risks a weaker schedule, while endless delay hides from the role.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1492,8 +1220,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Protecting member capital is the governing duty. The surname cannot make the risk disappear, and silence would leave the institution less safe.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1505,8 +1232,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cash calendar makes the organization governable under uncertainty. Sentiment and surveys may help later, but they do not answer the payroll risk.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1518,8 +1244,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The plant needs a capital decision grounded in output risk. Delegating the whole call avoids ownership, while a speech does not fix the press constraint.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1531,8 +1256,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Listening is useful only if it leads to clearer judgment. Used as a shield, it delays responsibility and leaves the enterprise less governed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1544,8 +1268,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The visible failure is confidence theater. The room got a signal, but the enterprise got a weaker contract because judgment did not lead the decision.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1557,8 +1280,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The dashboard makes retainer choices governable. The point is not quiet versus charismatic style, but useful judgment arriving before social certainty.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1570,8 +1292,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The second path turns learning into judgment. The first delays ownership, and the third treats succession as fixed instead of something earned through decisions.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1632,19 +1353,13 @@
       },
       "memorableLines": [
         {
-          "text": "A title opens the door.",
-          "location": "breakdown.deepRead",
-          "why": "The short line creates a clean image for inherited authority without overstating it."
+          "text": "A title opens the door."
         },
         {
-          "text": "What do you do when the role arrives before the feeling that you deserve it?",
-          "location": "breakdown.fullRead",
-          "why": "The direct question captures the emotional and operational pressure at once."
+          "text": "What do you do when the role arrives before the feeling that you deserve it?"
         },
         {
-          "text": "The room does not need you to feel ready before you make it safer to decide.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the practical answer into a memorable closing rule."
+          "text": "The room does not need you to feel ready before you make it safer to decide."
         }
       ]
     },
@@ -1671,13 +1386,6 @@
             "backlog",
             "pilots"
           ],
-          "planSpec": {
-            "domain": "publicly funded housing nonprofit with unrelated pilot programs",
-            "audience": "an executive director accountable to a broad board and city funders",
-            "stakes": "core repair backlog growing while pilots absorb grant staff",
-            "format": "decision_point",
-            "requiredBeat": "Michael pins each pilot to a repair-backlog dollar and closes the popular rooftop-garden expansion because it does not strengthen the core housing economics."
-          },
           "scenario": "A cracked window work order sits under a city grant folder while Michael reviews the pilot list before the board meeting. Grant staff hours are flowing to a rooftop-garden expansion, and the repair backlog keeps growing. City funders like the pilot's photographs. Tenants keep calling about broken units. Michael must decide whether to preserve the popular expansion or pin each pilot to a repair-backlog dollar and close the one that does not strengthen core housing economics.",
           "whatToDo": "Tie each pilot to a repair-backlog dollar, then close the rooftop-garden expansion if it does not improve core housing economics. Move grant staff back to repairs that tenants can feel.",
           "whyItMatters": "The nonprofit's core is usable housing. A popular pilot that absorbs staff while repairs pile up is sprawl, even when it photographs well for funders."
@@ -1690,13 +1398,6 @@
             "automation",
             "sideline"
           ],
-          "planSpec": {
-            "domain": "listed specialty food company deciding whether to sell a pet-snack sideline",
-            "audience": "a CFO whose board likes the appearance of category breadth",
-            "stakes": "cash trapped in the sideline could fund automation in the profitable sauce plant",
-            "format": "scene",
-            "requiredBeat": "Catarina walks from the pet-snack inventory racks to the sauce bottling line and marks which asset earns automation capital under the owner scorecard."
-          },
           "scenario": "Sealed pet-snack cartons are stacked beside a sauce-line repair tag when Catarina starts the plant walk. The board category memo praises breadth, but the sideline traps cash while the profitable sauce plant waits for an automation quote. She must decide whether the category story stays intact or which asset earns automation capital under an owner scorecard: inventory racks that impress the board or the bottling line that funds the company.",
           "whatToDo": "Walk the sideline inventory and the sauce line together, then fund the asset with stronger owner economics. Sell or stop feeding the sideline if it blocks automation in the core plant.",
           "whyItMatters": "Breadth can hide weak capital use. The sauce line earns the next dollar because it improves the business that actually produces returns."
@@ -1709,13 +1410,6 @@
             "renewals",
             "integration"
           ],
-          "planSpec": {
-            "domain": "software company after years of buying small tools that never integrate",
-            "audience": "a public-company product chief with six underused acquisitions",
-            "stakes": "engineering attention split while the flagship product misses enterprise renewals",
-            "format": "postmortem",
-            "requiredBeat": "Sam asks which acquired tool changes renewal economics, sunsets two vanity acquisitions, and moves engineers back to the core platform reliability work."
-          },
           "scenario": "\"Which tool changes renewal economics?\" Sam asks after the postmortem opens on an integration dashboard with six red warning triangles. The software company bought small tools for years, and every team can defend its own acquisition. The renewal report says enterprise customers are leaving because the flagship platform is unreliable. Sam sunsets two vanity acquisitions and moves engineers back to core reliability work.",
           "whatToDo": "Test every acquired tool against renewal economics. Sunset the tools that fail and move engineers to the reliability work that protects the flagship platform.",
           "whyItMatters": "Acquisitions consume engineering attention long after the announcement. If they do not improve renewals, they are pulling resources away from the product customers pay to keep."
@@ -1728,13 +1422,6 @@
             "utilization",
             "focus"
           ],
-          "planSpec": {
-            "domain": "regional fitness chain pruning boutique class brands after expansion",
-            "audience": "an operations VP facing franchisees who like the wider menu",
-            "stakes": "trainer utilization and equipment maintenance are weakening the core gym model",
-            "format": "before_after",
-            "requiredBeat": "After three utilization audits, Anke closes two low-return class brands and installs a stricter weekly operating dashboard for the core gyms."
-          },
           "scenario": "Unused reformer machines line the studio mirror while Anke reviews the third utilization audit. Franchisees like the wider class menu, but trainer hours are scattered and the maintenance log for the core gyms is getting worse. Before the next franchise call, she compares utilization, equipment costs, and member visits. After three audits, Anke closes two low-return class brands and installs a stricter weekly dashboard for the core gyms.",
           "whatToDo": "Close the class brands that fail utilization and maintenance tests, then install a weekly dashboard for the core gym model. Make the pruning show up in operating measures.",
           "whyItMatters": "Focus only matters if standards get tougher afterward. Closing weak brands frees trainers and maintenance attention for the model that carries the chain."
@@ -1747,13 +1434,6 @@
             "working capital",
             "renewal"
           ],
-          "planSpec": {
-            "domain": "airport services contractor reviewing lounge, cleaning, and baggage add-ons",
-            "audience": "a division manager whose public parent company rewards revenue breadth",
-            "stakes": "margin leakage in side contracts threatens the core baggage-handling renewal",
-            "format": "predict_reveal",
-            "requiredBeat": "You expect the newest lounge contract to be the growth engine; Pablo reveals the working-capital schedule and cuts it because the core baggage renewal has better owner economics."
-          },
           "scenario": "You expect the lounge-service invoice below the baggage tug to be the growth engine. Pablo thought so too, until the working-capital schedule showed cash trapped in side contracts while the core baggage-handling renewal carried better owner economics. The parent company rewards revenue breadth, but the renewal is due in two weeks. Pablo must decide whether to keep funding the new lounge add-on or cut it before it weakens the contract that funds the division.",
           "whatToDo": "Put the working-capital schedule beside the baggage renewal, then cut the lounge add-on if it leaks margin. Protect the contract with the better owner economics.",
           "whyItMatters": "Revenue breadth can hide cash strain. The baggage renewal deserves capital and attention because it funds the division, while the side contract drains working capital."
@@ -1766,13 +1446,6 @@
             "procurement",
             "autonomy"
           ],
-          "planSpec": {
-            "domain": "regional veterinary group centralizing procurement after scattered clinic acquisitions",
-            "audience": "a CEO who wants scale benefits without smothering clinic medicine",
-            "stakes": "drug costs and local autonomy both at risk after acquisitions",
-            "format": "thought_experiment",
-            "requiredBeat": "What would an owner keep strict and what would she leave local? Hannah centralizes supplier terms and kills weak side ventures while leaving medical protocols with clinic leads."
-          },
           "scenario": "What would an owner keep strict and what would she leave local? Hannah asks that with a vaccine refrigerator temperature strip beside a supplier rebate sheet. The veterinary group has acquired scattered clinics, drug costs are rising, and clinic leads fear losing medical judgment. Hannah has to choose between centralizing everything and a narrower owner scorecard: centralize supplier terms, kill weak side ventures, and leave medical protocols with clinic leads.",
           "whatToDo": "Centralize supplier terms and rebate tracking, kill side ventures that do not improve clinic economics, and leave medical protocols with clinic leads under clear quality standards.",
           "whyItMatters": "Owner-like discipline should capture scale benefits without smothering local medicine. Procurement belongs at the center; clinical judgment stays where patient facts live."
@@ -1791,8 +1464,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The side businesses need to justify the capital they trap. Breadth is not enough if the core plant offers stronger owner economics.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1804,8 +1476,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The repair backlog is the core measure. A popular pilot deserves staff only if it strengthens that core, not because it photographs well.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1817,8 +1488,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Renewal economics define the core. Tools that do not support renewals consume engineering attention needed by the product customers are leaving over.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1830,8 +1500,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pruning is only half the move. If the core gym dashboard does not get tougher, the company changed shape without improving discipline.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1843,8 +1512,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Revenue breadth is weaker than owner economics. The baggage renewal deserves attention because it funds the division without the side-contract cash leak.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1856,8 +1524,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Selling units can clarify focus, but operating rigor proves the standard changed. Without tougher core metrics, pruning becomes a shape change.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1869,8 +1536,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The incentive rewards breadth even when economics weaken. Owner-like discipline would force side contracts to justify cash and attention against the renewal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1882,8 +1548,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Owner discipline should centralize supplier economics and weak side ventures, not smother medical judgment. The center has to know which controls actually improve economics.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1895,8 +1560,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Plan B connects pruning to operating rigor. Plan A may look decisive, but it does not prove capital and attention will work harder inside the remaining business.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1957,19 +1621,13 @@
       },
       "memorableLines": [
         {
-          "text": "Pressure is not the same as discipline.",
-          "location": "breakdown.deepRead",
-          "why": "The line separates owner standards from harsh style in a compressed way."
+          "text": "Pressure is not the same as discipline."
         },
         {
-          "text": "Ask what the side bet consumes before asking whether it sounds promising.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a practical first question for sprawl."
+          "text": "Ask what the side bet consumes before asking whether it sounds promising."
         },
         {
-          "text": "Public does not have to mean soft.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the public-company tension in six plain words."
+          "text": "Public does not have to mean soft."
         }
       ]
     },
@@ -1996,13 +1654,6 @@
             "family control",
             "capital"
           ],
-          "planSpec": {
-            "domain": "third-generation hotel group deciding whether to keep a beloved banquet hall",
-            "audience": "a family CEO balancing cousins, guests, and renovation capital",
-            "stakes": "the hall consumes maintenance money needed for profitable room upgrades",
-            "format": "decision_point",
-            "requiredBeat": "Claire compares the banquet hall maintenance ledger with room-upgrade returns and closes weekend banquets while preserving the hotel service standards guests actually value."
-          },
           "scenario": "At 8:20 a.m. in the family hotel's old ballroom, faded banquet carpet curls beside a room-renovation sample board while Claire prepares for the family vote. The banquet hall has cousins, memories, and a maintenance ledger that keeps stealing capital from profitable room upgrades. Guests are rating worn rooms lower every quarter. Claire has to choose between preserving weekend banquets because they feel like continuity and closing them while protecting the service standards guests actually value.",
           "whatToDo": "Compare the banquet hall maintenance ledger with room-upgrade returns, then close weekend banquets if the hall drains capital from guest standards. Keep the hotel, not the nostalgia tax.",
           "whyItMatters": "Continuity should strengthen stewardship. If the protected hall weakens room economics and guest trust, preserving it serves memory instead of the enterprise."
@@ -2015,13 +1666,6 @@
             "safety",
             "continuity"
           ],
-          "planSpec": {
-            "domain": "family-owned quarry choosing between ancestral equipment and safer contracted crushing",
-            "audience": "an operations heir whose uncle treats the old crusher as a monument",
-            "stakes": "downtime and safety incidents threatening supply contracts",
-            "format": "dialogue",
-            "requiredBeat": "Olivier asks his uncle to walk the downtime log line by line, then retires the ancestral crusher because continuity must protect the quarry, not the machine."
-          },
           "scenario": "\"Your grandfather bought that crusher,\" Olivier's uncle says as limestone dust settles on the old nameplate. The downtime log is open, the safety incident report is clipped behind it, and two supply contracts have penalty clauses circled. Olivier has to choose before the maintenance meeting whether to keep treating the machine as a monument or ask his uncle to walk the log line by line and retire it to protect the quarry.",
           "whatToDo": "Walk the downtime log and safety report line by line, then contract crushing if the old machine threatens supply contracts. Make continuity protect the quarry instead of the artifact.",
           "whyItMatters": "The crusher's history matters only while it helps the business endure. Once it creates downtime and safety risk, keeping it confuses loyalty to the quarry with loyalty to metal."
@@ -2034,13 +1678,6 @@
             "booking",
             "family ownership"
           ],
-          "planSpec": {
-            "domain": "independent cinema chain with family ownership and underused weekday screens",
-            "audience": "a programming director whose relatives resist changing old booking rules",
-            "stakes": "weekday losses put two community screens at risk",
-            "format": "before_after",
-            "requiredBeat": "It took Megan one winter attendance report to replace the inherited booking rule with local event rentals that preserve the cinemas by changing how empty screens earn."
-          },
           "scenario": "A blank marquee reflects in wet pavement outside the family cinema on a February Tuesday. Megan's relatives love the inherited booking rule, but the winter attendance report shows weekday screens losing money while two community locations need roof work. It took one report for Megan to replace the old rule with local event rentals that preserve the cinemas by changing how empty screens earn.",
           "whatToDo": "Replace the weekday booking rule where attendance fails, and use local event rentals to make empty screens earn. Preserve the cinemas by changing the rule that no longer supports them.",
           "whyItMatters": "The old booking rule once served the mission, but empty screens now drain it. Changing the use of weekdays protects the family asset better than pretending the old pattern still works."
@@ -2053,13 +1690,6 @@
             "distributors",
             "service"
           ],
-          "planSpec": {
-            "domain": "family-controlled medical device supplier reviewing protected distributor relationships",
-            "audience": "a commercial lead whose father built the distributor network",
-            "stakes": "hospitals are delaying orders because protected distributors miss service calls",
-            "format": "postmortem",
-            "requiredBeat": "Henrik overlays service-call delays on the distributor map and cuts the protected account that hurts hospital reliability most."
-          },
           "scenario": "A sterilized device tray sits beside a distributor map dotted with missed service calls in Henrik's postmortem file. His father built the network, and one protected distributor has been handled gently for years. The hospital order log shows delays tied to missed service windows. Henrik overlays the delays on the map and cuts the protected account that hurts hospital reliability most.",
           "whatToDo": "Overlay service-call delays on the distributor map and cut the protected account if it harms hospital reliability. Let customer service outrank family-network sentiment.",
           "whyItMatters": "A relationship deserves protection only while it helps the business serve customers. Missed service calls turn continuity into insulation that hospitals pay for."
@@ -2072,13 +1702,6 @@
             "cash",
             "relationships"
           ],
-          "planSpec": {
-            "domain": "family-run import warehouse choosing whether to preserve informal credit for longtime retailers",
-            "audience": "a controller who respects the founder's handshake relationships",
-            "stakes": "cash conversion slipping while new suppliers demand faster payment",
-            "format": "scene",
-            "requiredBeat": "You watch Adaeze sort customer cards by payment days and keep the relationship principle only where it still supports cash discipline and supplier trust."
-          },
           "scenario": "You see index cards with retailer names clipped above a pallet scale while Adaeze sorts them by payment days. The founder's handshake credit terms built trust, but new supplier invoice terms require faster payment and the cash conversion sheet is slipping. She has to decide which longtime retailers still earn informal credit and which cards move to tighter terms because supplier trust now matters too.",
           "whatToDo": "Sort customers by payment days and supplier cash needs. Keep informal credit where it supports the relationship and cash discipline, then tighten terms where nostalgia is funding weak retailers.",
           "whyItMatters": "The founder's principle was trust, not unpaid financing forever. Cash discipline keeps supplier relationships healthy enough for the warehouse to serve good retailers."
@@ -2091,13 +1714,6 @@
             "inventory",
             "heritage"
           ],
-          "planSpec": {
-            "domain": "family-controlled outdoor gear maker reviewing a legacy product catalog",
-            "audience": "a product head asked to respect the founder's classics",
-            "stakes": "inventory space tied up in slow-moving heritage items while the core tent line sells out",
-            "format": "reflection",
-            "requiredBeat": "Which classics are still stewardship and which are insulation? Daniel tags each product by cash, brand pull, and production slot before cutting the protected items that fail all three."
-          },
           "scenario": "Which classics are still stewardship and which are insulation? Daniel asks that while canvas sample swatches sit beside the sell-through report. The founder's heritage catalog gets respectful nods in every product meeting, but the core tent line keeps selling out and production slots are full. Daniel tags each item by cash, brand pull, and slot use before cutting the protected items that fail all three.",
           "whatToDo": "Tag every heritage item by cash, brand pull, and production slot use. Keep classics that pass the scorecard and cut protected items that block the core tent line.",
           "whyItMatters": "Heritage earns space when it still carries economic or brand weight. Slow inventory that blocks the core line is insulation wearing the language of respect."
@@ -2116,8 +1732,7 @@
             ],
             "correctIndex": 2,
             "explanation": "History can explain why a process exists, but current stewardship decides whether it stays. The scorecard has to test value, not memory.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2129,8 +1744,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hall deserves a hard scorecard because it is protected. If it weakens guest-room economics, changing its use protects the hotel better than preserving the symbol.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2142,8 +1756,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The decision turns on current reliability and safety, not age alone. Automatic preservation and automatic replacement both dodge the scorecard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2155,8 +1768,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The goal is to preserve viable cinemas, not the exact inherited rule. Event rentals change the tool while protecting the asset.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2168,8 +1780,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Customer reliability is the active scorecard. A protected relationship that damages orders has become insulation, not stewardship.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2181,8 +1792,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The risk is insulation: protected products avoiding the tests others face. Age or manager preference alone does not prove the product should go.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2194,8 +1804,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The relationship principle survives only where it still works with cash discipline. Blanket preservation and blanket termination both ignore the operating facts.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2207,8 +1816,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Optimization is the middle path. Some continuity may be valuable, so theatrical disruption can be as careless as sentimentality.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2220,8 +1828,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Plan B keeps useful continuity while exposing insulation. Plan A gives history automatic immunity, and the third choice ignores that family control can support discipline.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2282,19 +1889,13 @@
       },
       "memorableLines": [
         {
-          "text": "Continuity is a tool, not an alibi.",
-          "location": "breakdown.deepRead",
-          "why": "It sharply separates useful patience from protected drift."
+          "text": "Continuity is a tool, not an alibi."
         },
         {
-          "text": "A protected relationship that damages customers is no longer continuity.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the insulation problem concrete and hard to evade."
+          "text": "A protected relationship that damages customers is no longer continuity."
         },
         {
-          "text": "A protected habit should be able to survive daylight.",
-          "location": "breakdown.fullRead",
-          "why": "It closes with a simple test for family-control discipline."
+          "text": "A protected habit should be able to survive daylight."
         }
       ]
     },
@@ -2321,13 +1922,6 @@
             "capital",
             "autonomy"
           ],
-          "planSpec": {
-            "domain": "multi-site dental group where clinics run locally but expansion capital is central",
-            "audience": "a CEO deciding which clinic earns the next imaging machine",
-            "stakes": "local autonomy could become politics if capital follows the loudest partner",
-            "format": "decision_point",
-            "requiredBeat": "Matthew leaves appointment protocols local, then allocates the imaging machine using referral leakage, payback, and operator trust instead of clinic lobbying."
-          },
           "scenario": "A panoramic X-ray sleeve lies beside three clinic capital requests while Matthew reviews the payback table. Each clinic sets appointment protocols locally, and that autonomy works. The next imaging machine is different. One partner is lobbying hard, but referral leakage and operator trust point elsewhere. Matthew has to choose between rewarding the loudest clinic or allocating capital centrally by payback, leakage, and earned trust.",
           "whatToDo": "Leave appointment protocols local, then allocate the imaging machine centrally using referral leakage, payback, and operator trust. Do not let capital follow volume in the meeting.",
           "whyItMatters": "Local clinics know patient flow, but the center can compare capital across sites. Trust stays healthy when resource decisions follow evidence instead of politics."
@@ -2340,13 +1934,6 @@
             "rights",
             "allocation"
           ],
-          "planSpec": {
-            "domain": "independent publishing group with autonomous imprints and one central rights budget",
-            "audience": "a managing director protecting editorial freedom while allocating translation advances",
-            "stakes": "a weak rights bet ties up cash that stronger imprints could compound",
-            "format": "dialogue",
-            "requiredBeat": "Frida tells imprint heads their lists remain theirs, then ranks translation advances centrally by rights value and editor track record."
-          },
           "scenario": "\"Your lists remain yours,\" Frida tells the imprint heads at 4:30 p.m. in the London rights office while foreign-rights catalogs spread beside a red pencil. The translation advance budget is central, and one weak rights bet can tie up cash for a year. Editors want freedom, and she wants them to keep it. Frida must decide before the rights fair whether to divide the advances evenly or rank them centrally by rights value and editor track record.",
           "whatToDo": "Protect editorial freedom inside each imprint, then rank translation advances centrally by rights value and editor track record. Keep creative autonomy separate from capital allocation.",
           "whyItMatters": "Editors know their lists. The center sees the whole rights budget and can compare where scarce advances are most likely to compound."
@@ -2359,13 +1946,6 @@
             "fleet",
             "returns"
           ],
-          "planSpec": {
-            "domain": "equipment rental holding company with branch managers owning daily operations",
-            "audience": "a holding-company president deciding whether to reinvest in cranes, pumps, or aerial lifts",
-            "stakes": "capital misallocated by branch preference can depress returns for years",
-            "format": "predict_reveal",
-            "requiredBeat": "Ryan asks branch managers to predict fleet return by category, then centralizes the capital call while leaving dispatch and pricing authority local."
-          },
           "scenario": "A crane hook swings over the yard utilization board while Ryan asks branch managers to predict fleet return by category. Each manager wants the asset type customers ask about most loudly: cranes, pumps, or aerial lifts. The fleet return table tells a less local story. Ryan has to choose before the purchase order closes whether to let branch preference allocate capital or centralize the call while leaving dispatch and pricing authority local.",
           "whatToDo": "Ask managers to predict returns, then use the fleet return table for the capital call. Leave dispatch and pricing local, but centralize the asset purchase decision.",
           "whyItMatters": "Branch managers have the freshest customer facts. The center can compare returns across branches and stop local preference from depressing fleet economics for years."
@@ -2378,13 +1958,6 @@
             "commissary",
             "capital"
           ],
-          "planSpec": {
-            "domain": "restaurant holding company with chefs running kitchens independently",
-            "audience": "an owner deciding whether to fund a bakery commissary or individual dining-room upgrades",
-            "stakes": "chef autonomy could turn into scattered capital unless the center judges the better compounding use",
-            "format": "scene",
-            "requiredBeat": "You watch Margaux refuse to change menus, gather each chef's prep bottleneck, and fund the commissary because it improves returns across restaurants without taking kitchens over."
-          },
           "scenario": "You see flour fingerprints on a prep bottleneck worksheet while Margaux walks through three restaurants before lunch service. The chefs run their kitchens independently, and she refuses to change menus. Each also wants a dining-room upgrade. Margaux has to decide whether capital scatters across visible upgrades or funds a bakery commissary that removes prep bottlenecks across restaurants without taking kitchens over.",
           "whatToDo": "Keep menu decisions with the chefs, gather prep bottlenecks, and fund the commissary if it improves returns across restaurants. Centralize capital without centralizing the kitchen.",
           "whyItMatters": "Chef autonomy protects local execution. The commissary decision belongs at the center because it compares returns across restaurants and compounds across the group."
@@ -2397,13 +1970,6 @@
             "search fund",
             "return hurdle"
           ],
-          "planSpec": {
-            "domain": "search-fund acquired group of HVAC service companies",
-            "audience": "an operator-investor overseeing local managers after acquisitions",
-            "stakes": "central meddling could ruin service culture, but loose capital spending could erase returns",
-            "format": "before_after",
-            "requiredBeat": "After one quarter of noisy requests, Chris gives managers control of dispatch and hiring while centralizing truck purchases under a return-on-capital hurdle."
-          },
           "scenario": "Van keys hang under branch labels on a peg rail after one noisy quarter of truck requests. Chris acquired the HVAC service companies to keep local managers close to customers, and central meddling could ruin the service culture. Loose capital spending could also erase returns. After the first quarter, Chris gives managers control of dispatch and hiring while centralizing truck purchases under a return-on-capital hurdle.",
           "whatToDo": "Keep dispatch and hiring local, then put truck purchases under a central return hurdle. Let managers run service while the owner-investor governs scarce capital.",
           "whyItMatters": "Service culture lives at the branch, but truck capital affects returns across the group. Splitting those decisions protects both local judgment and owner economics."
@@ -2416,13 +1982,6 @@
             "safety",
             "capital"
           ],
-          "planSpec": {
-            "domain": "distributed childcare centers with local directors and one owner board",
-            "audience": "a board member deciding where renovation capital belongs",
-            "stakes": "director trust is high but capital needs vary wildly across safety, enrollment, and payback",
-            "format": "thought_experiment",
-            "requiredBeat": "How do you trust directors without letting capital drift? Kiran lets centers run daily care while the board allocates renovation funds by safety risk, enrollment demand, and operator reliability."
-          },
           "scenario": "How do you trust directors without letting capital drift? Kiran asks that with a playground inspection tag clipped to a capital request folder. The childcare centers run daily care locally, and director trust is high. Renovation needs vary by safety score, enrollment waitlist, and operator reliability. Kiran has to choose whether the friendliest director gets funds or the owner board allocates renovation capital by the measures that protect children and returns.",
           "whatToDo": "Let directors run daily care, then allocate renovation funds centrally by safety risk, enrollment demand, and operator reliability. Keep trust local and capital judgment comparative.",
           "whyItMatters": "Daily care depends on local directors, but renovation capital has to compare risks across centers. Central allocation protects trust from becoming politics."
@@ -2441,8 +2000,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The split protects both kinds of judgment. Local managers know operations, while the center can compare scarce capital across units.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2454,8 +2012,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Appointment flow is local execution. The imaging machine is scarce capital, so the center should compare clinics by evidence instead of lobbying.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2467,8 +2024,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Editorial autonomy does not require equal capital. The center should allocate scarce advances where rights value and operator record are strongest.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2480,8 +2036,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fleet table lets the center compare long-run returns. Dispatch and pricing stay local because branch managers have the freshest customer facts.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2493,8 +2048,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The commissary is a central capital decision that compounds across units. Chefs keep menu authority because that is local execution, not capital comparison.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2506,8 +2060,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Autonomy without capital comparison can become neglect. Trust stays disciplined only when the center still judges where scarce resources belong.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2519,8 +2072,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The split follows where knowledge and comparison live. Local managers know service culture, while truck capital affects returns across the group.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2532,8 +2084,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Trust in daily care does not decide capital priority. The board needs comparative measures so safety and demand outrank politics.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2545,8 +2096,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The stronger system separates daily operating knowledge from cross-system capital comparison. Treating all central judgment as distrust confuses autonomy with drift.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2607,19 +2157,13 @@
       },
       "memorableLines": [
         {
-          "text": "That is the distinction: autonomy over the work, discipline over the capital.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the investor-operator split into a practical rule."
+          "text": "That is the distinction: autonomy over the work, discipline over the capital."
         },
         {
-          "text": "Ask where knowledge lives, then ask where comparison lives.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a direct sorting test for local versus central decisions."
+          "text": "Ask where knowledge lives, then ask where comparison lives."
         },
         {
-          "text": "Trust is not the absence of central judgment.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the paradox that decentralization needs disciplined capital ownership."
+          "text": "Trust is not the absence of central judgment."
         }
       ]
     },
@@ -2646,13 +2190,6 @@
             "digital",
             "access"
           ],
-          "planSpec": {
-            "domain": "regional library system copying a no-branches digital strategy from a different city",
-            "audience": "a library director under pressure to imitate a famous turnaround",
-            "stakes": "closing small branches could harm the very patrons the system exists to serve",
-            "format": "decision_point",
-            "requiredBeat": "Emily writes the borrowed tactic on one side of the table and the local patron-access scorecard on the other, then keeps only the digital scheduling principle and rejects branch closures."
-          },
           "scenario": "Library card renewal forms are stacked beside a tablet checkout dock while Emily studies a borrowed strategy memo from a famous no-branches turnaround. The branch usage map shows older patrons and families without easy transport still depend on small locations. Patron-access data sits on the other side of the table. Emily has to choose: copy the branch-closure tactic, or keep only the digital scheduling principle and reject closures that fail her local scorecard.",
           "whatToDo": "Write the borrowed tactic beside the local patron-access scorecard. Keep the digital scheduling principle if it helps access, but reject branch closures that harm the patrons the system serves.",
           "whyItMatters": "The other city solved a different constraint. The reusable discipline is access-based resource judgment, not the visible act of closing branches."
@@ -2665,13 +2202,6 @@
             "autonomy",
             "safety"
           ],
-          "planSpec": {
-            "domain": "manufacturing apprenticeship program tempted to copy decentralization from a larger plant",
-            "audience": "a training director with new supervisors not ready for full local authority",
-            "stakes": "badly copied autonomy could put apprentices near unsafe machines",
-            "format": "predict_reveal",
-            "requiredBeat": "Julien asks supervisors to predict which decisions they can own safely, then keeps decentralization only for tool ordering while centralizing machine-access rules."
-          },
           "scenario": "\"Which decisions can you own safely today?\" Julien asks as a lockout tag hangs from the lathe handle. A larger plant decentralized supervisor calls and got faster. His new supervisors predict they can own almost everything. Then the machine-access rules and readiness notes land on the table. Julien has to choose how much autonomy to copy, and he keeps tool ordering local while machine access stays central.",
           "whatToDo": "Ask supervisors to predict safe ownership, then compare their answers with readiness notes and machine-access risk. Decentralize tool ordering while keeping dangerous access rules central.",
           "whyItMatters": "The larger plant had different supervisor readiness. Copying autonomy without the safety constraint would turn a useful principle into risk for apprentices."
@@ -2684,13 +2214,6 @@
             "distributions",
             "maintenance"
           ],
-          "planSpec": {
-            "domain": "craft brewery copying buyback-like owner distributions while tanks need maintenance",
-            "audience": "a minority owner who admires capital discipline but faces different constraints",
-            "stakes": "cash returned too early could leave the cellar unable to meet demand",
-            "format": "scene",
-            "requiredBeat": "Kasia compares the admired distribution tactic with tank-maintenance and demand data, then keeps the value scorecard but sends cash to the cellar because the local facts demand it."
-          },
           "scenario": "Condensation runs down a fermenter beside a maintenance tag while Kasia compares an owner distribution proposal with the demand forecast. She admires returning cash when the business has no better use for it. The tank maintenance list says the cellar is already the constraint. Kasia faces a choice: imitate the admired distribution tactic, or keep the value scorecard and send cash to the cellar because local facts demand it.",
           "whatToDo": "Compare the distribution proposal with tank maintenance and demand data. Keep the capital discipline principle, but send cash to the cellar if maintenance is the highest-value use now.",
           "whyItMatters": "Returning cash is rational only when the business lacks a better use. Here the tanks are the constraint, so copying the tactic would weaken the value standard it was meant to serve."
@@ -2703,13 +2226,6 @@
             "resilience",
             "pruning"
           ],
-          "planSpec": {
-            "domain": "city procurement office adopting a private-company pruning rule",
-            "audience": "a procurement lead deciding whether to cut supplier categories",
-            "stakes": "copying private-sector focus could reduce resilience during emergency repairs",
-            "format": "postmortem",
-            "requiredBeat": "It took Luke one emergency repair miss to see that the copied pruning rule had killed supplier redundancy without improving value, so he rebuilds the scorecard around resilience and cost."
-          },
           "scenario": "An emergency repair ticket is stamped beside a deleted supplier list in Luke's postmortem folder. The city procurement office copied a private-company pruning rule to reduce categories, and the spreadsheet looked cleaner for three months. Then one repair miss showed the lost redundancy. It took that failure for Luke to see the copied rule had not improved value, so he rebuilt the scorecard around resilience and cost.",
           "whatToDo": "Rebuild the supplier scorecard around resilience and cost, then restore redundancy where emergency repairs require it. Keep the pruning principle only where it fits public repair risk.",
           "whyItMatters": "Private-sector focus can create value in one setting and fragility in another. The city needs a scorecard that includes resilience, not a copied category count."
@@ -2722,13 +2238,6 @@
             "autonomy",
             "risk"
           ],
-          "planSpec": {
-            "domain": "boutique investment office importing Berkshire-style autonomy for outside managers",
-            "audience": "a family office COO mistaking trust language for governance",
-            "stakes": "manager freedom without capital review can compound unnoticed risk",
-            "format": "reflection",
-            "requiredBeat": "You watch Manon keep the long-term trust principle but add a quarterly capital review because local managers do not get to borrow the language of autonomy without the discipline."
-          },
           "scenario": "You watch Manon sort manager letters marked with colored risk tabs before the family office meeting. The office admires Berkshire-style autonomy and wants outside managers to feel trusted. The capital review calendar is blank, and freedom without review can compound unnoticed risk. Manon keeps the long-term trust principle but adds a quarterly capital review because managers cannot borrow the language of autonomy without the discipline.",
           "whatToDo": "Keep the long-term trust principle, then add a quarterly capital review tied to risk tabs and allocation changes. Autonomy must include the discipline that made it rational.",
           "whyItMatters": "Trust becomes drift when capital is never reviewed. The borrowed language only works if the family office also borrows the capital judgment behind it."
@@ -2741,13 +2250,6 @@
             "scorecard",
             "stewardship"
           ],
-          "planSpec": {
-            "domain": "university athletics department copying a corporate scorecard for team funding",
-            "audience": "an athletic director under pressure to become more businesslike",
-            "stakes": "one imported metric would starve low-revenue teams that carry scholarship and compliance value",
-            "format": "thought_experiment",
-            "requiredBeat": "What survives if the metric changes but the value question stays? Devon separates revenue, athlete welfare, and compliance before adapting the scorecard instead of copying the corporate one whole."
-          },
           "scenario": "What survives if the metric changes but the value question stays? Devon asks that with scholarship forms tucked under a practice-court rental report. The university wants the athletics department to become more businesslike, and a corporate scorecard would fund teams by revenue alone. Devon faces a choice: copy the metric whole, or separate revenue, athlete welfare, and compliance before adapting the scorecard.",
           "whatToDo": "Separate revenue, athlete welfare, and compliance before adapting the scorecard. Use businesslike discipline without importing a metric that starves teams carrying nonrevenue value.",
           "whyItMatters": "The corporate metric solves a different problem. Athletics needs resource discipline, but the value question includes scholarships and compliance as well as revenue."
@@ -2766,8 +2268,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The error is surface copying. A tactic travels only after the local problem and value measure prove it still fits.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2779,8 +2280,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The principle may travel while the closure tactic fails. Patron-access data should decide which part of the borrowed model survives.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2792,8 +2292,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The principle is matching authority to readiness and facts. Tool ordering can move local, while dangerous access needs central control under current constraints.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2805,8 +2304,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The value scorecard stays, but the tactic changes. Distribution is rational only when the business lacks a stronger use for cash.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2818,8 +2316,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The private rule missed a public constraint. Rebuilding the scorecard around cost and resilience keeps the principle of discipline while correcting the tactic.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2831,8 +2328,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Autonomy works when paired with capital judgment. Without review, the family office keeps the language and loses the governance mechanism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2844,8 +2340,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Revenue matters, but it is not the whole value question in athletics. The scorecard must adapt to nonrevenue obligations instead of copying the metric whole.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2857,8 +2352,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Trust became fake when detached from capital judgment. The local tactic needed the scorecard that decided where resources belonged.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2870,8 +2364,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The first team tests fit before transfer. The second treats the visible tool as universal, which is how admired practices become fake.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2932,19 +2425,13 @@
       },
       "memorableLines": [
         {
-          "text": "The tactic is not the lesson.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the synthesis into a direct warning against surface copying."
+          "text": "The tactic is not the lesson."
         },
         {
-          "text": "A copied move without the original logic is just theater in borrowed clothes.",
-          "location": "breakdown.deepRead",
-          "why": "It gives readers a vivid phrase for fake transfer."
+          "text": "A copied move without the original logic is just theater in borrowed clothes."
         },
         {
-          "text": "Carry the ruler. Make the tool interview for the role.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the practical logic with a memorable two-step test."
+          "text": "Carry the ruler. Make the tool interview for the role."
         }
       ]
     }

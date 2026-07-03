@@ -37,13 +37,6 @@
             "nonprofit",
             "grant"
           ],
-          "planSpec": {
-            "domain": "a nonprofit founder avoiding the first grant narrative by polishing the budget appendix",
-            "audience": "founders and operators whose mission language hides the exposed ask they have not written",
-            "stakes": "a neighborhood legal clinic loses a matching grant if the narrative is not submitted by Friday",
-            "format": "decision_point",
-            "requiredBeat": "Grace closes the appendix spreadsheet, puts the untouched narrative field full-screen, and types the first ugly sentence before changing another line item."
-          },
           "scenario": "The online grant portal fills Grace's laptop at the legal clinic after closing, the budget appendix neat in a second tab and the narrative box still untouched. The matching grant closes Friday. She reaches for one more line-item note, then sees the cursor waiting where the clinic has to ask for help. Her hand hovers over the spreadsheet tab. She must decide whether to polish the safe page again or make the ask visible.",
           "whatToDo": "Close the appendix, put the narrative field full-screen, and write the first plain sentence of the ask before touching another number. Let the exposed action lead.",
           "whyItMatters": "The appendix can improve forever without risking a verdict. The narrative creates contact with funders, so Resistance hides in the safer work around it."
@@ -56,13 +49,6 @@
             "game",
             "demo"
           ],
-          "planSpec": {
-            "domain": "an indie game designer delaying a playable demo through endless concept art",
-            "audience": "creative technologists who keep improving the world around the thing that must be tested",
-            "stakes": "a small festival submission requires a playable build, not more visual polish",
-            "format": "vignette",
-            "requiredBeat": "Etienne drags the sketch folder into an archive, connects the controller, and records one clumsy playable loop before drawing another creature."
-          },
           "scenario": "Etienne's second monitor is crowded with twenty-seven creature sketches: teeth, wings, and better excuses. The festival form asks for a playable build by Sunday, and the controller sits unplugged beside the keyboard. He is about to open a new canvas for the swamp boss. Before the file loads, he must decide whether the next hour belongs to another drawing or to the clumsy loop a judge can actually play.",
           "whatToDo": "Archive the sketch folder, plug in the controller, and record one rough loop that can be played. Improve the world after the demo has a pulse.",
           "whyItMatters": "More art protects the imagined game. A playable loop exposes whether the game works, which is exactly why Resistance steers him toward polish."
@@ -75,13 +61,6 @@
             "choir",
             "audition"
           ],
-          "planSpec": {
-            "domain": "a choir soloist rehearsing fragments instead of recording the audition file",
-            "audience": "performers who keep protecting the ideal version by refusing a recorded artifact",
-            "stakes": "the audition portal closes at midnight and only one take has to be uploaded",
-            "format": "before_after",
-            "requiredBeat": "Rachel says 'one more run-through,' hears the phrase as Resistance, presses record, and uploads the imperfect take while her throat is still warm."
-          },
           "scenario": "\"One more run-through,\" Rachel says in the church warm-up room, with the audition portal open on her phone and the red record button bright against the black screen. Before, the phrase sounded like care for the music. After six almost-ready passes, it sounds like a locked door. Her throat is warm, midnight is closing in, and she records the take before the private version can grow perfect again.",
           "whatToDo": "Treat the next pass as the file, not another rehearsal. Press record while the voice is warm, upload the take, and let reality become the place for improvement.",
           "whyItMatters": "A song kept in fragments can stay flawless in imagination. A submitted file can disappoint, but it can also move, teach, and be answered."
@@ -94,13 +73,6 @@
             "research",
             "paper"
           ],
-          "planSpec": {
-            "domain": "a climate researcher revising figures instead of submitting the paper",
-            "audience": "academic and technical workers whose standards can hide from verdict",
-            "stakes": "a special issue closes and the model results will not matter if they stay private",
-            "format": "postmortem",
-            "requiredBeat": "It takes Luca three weeks to see that every figure revision happened after the submit button became available, so he writes the cover note and sends the manuscript."
-          },
           "scenario": "It takes Luca three weeks to notice the pattern in his climate paper log. The model results were stable on the tenth, the special issue portal opened on the eleventh, and every figure legend revision came after that. The new edits were real, but their timing was louder. On Friday evening in the institute library, he writes the cover note and sends the manuscript before inventing a cleaner caption.",
           "whatToDo": "Audit the timing of the revisions, keep the ones that change the claim, and submit once the remaining edits only postpone judgment.",
           "whyItMatters": "Standards serve the paper when they clarify the result. They serve Resistance when they keep a stable result away from reviewers."
@@ -113,13 +85,6 @@
             "hardware",
             "filing"
           ],
-          "planSpec": {
-            "domain": "a hardware inventor cleaning the bench instead of filing the provisional patent",
-            "audience": "builders who keep choosing tidy preparation over a commitment that creates public risk",
-            "stakes": "a competitor demo is scheduled next month and the filing date matters",
-            "format": "predict_reveal",
-            "requiredBeat": "Anya predicts the filing form will take all afternoon, starts it anyway, and discovers the real obstacle was pressing submit under her own name."
-          },
           "scenario": "Which will take longer, the provisional patent form or another hour sorting machine screws? Anya predicts the form will swallow the afternoon, with a competitor demo already dated on the wall calendar. In the workshop, she starts anyway. Twenty minutes later the fields are mostly complete, the bench is still untidy, and her finger hovers over submit. She has to choose whether to file under her own name.",
           "whatToDo": "Start the form before cleaning the bench. When the fear moves from paperwork to the submit button, name that shift and press through the exposed step.",
           "whyItMatters": "The false estimate hides the real cost. Filing fixes a date and an owner, so Resistance inflates the paperwork to keep the invention private."
@@ -132,13 +97,6 @@
             "therapy",
             "workshop"
           ],
-          "planSpec": {
-            "domain": "a new therapist postponing the first paid intake workshop",
-            "audience": "new professionals whose care for quality hides fear of being chosen or rejected",
-            "stakes": "a rented studio and twelve registrants will become a loss if the workshop is canceled again",
-            "format": "reflection",
-            "requiredBeat": "You watch James stop rewriting the handout, unlock the studio door, and greet the first registrant instead of sending another postponement note."
-          },
           "scenario": "You stand with James in a rented studio at 5:42 p.m., twelve chairs set in a careful half circle and an intake handout open on his tablet. The registrants arrive in eighteen minutes. He has rewritten the welcome paragraph four times and drafted a postponement note that calls itself care. You watch him close the tablet, unlock the studio door, and greet the first person by name.",
           "whatToDo": "Close the handout, leave the postponement note unsent, and make contact with the people already coming. Let the workshop become real before it becomes perfect.",
           "whyItMatters": "Quality can become a shelter when it delays contact. The paid room and waiting registrants turn the calling from private intent into service."
@@ -157,8 +115,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The timing is the tell: the storage rack becomes urgent when exposed work should begin. Manual work and a clean studio can be useful, but here they protect the unmade maquette.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -170,8 +127,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The exposed claim is where the verdict lives, so it has to lead. Bibliography work supports the essay only after it stops replacing the claim itself.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -183,8 +139,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pilot is the exposed act. More polish may feel responsible, but after two slips it is probably protecting the team from feedback.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -196,8 +151,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Sound quality matters only until it becomes a cover. With a clear enough microphone and real safety stakes, the delay is probably protecting him from being seen.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -209,8 +163,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Naming Resistance does not mean ignoring limits. It means refusing to let a side issue block the main exposed act when a plain caveat would handle it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -222,8 +175,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The key question is function. If the animation blocks testing a usable workflow, it may be carrying fear of judgment rather than product need.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -235,8 +187,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The frame has to stay precise. Real depletion needs care and planning; Resistance is the repeating intelligent delay around meaningful action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -248,8 +199,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Typography feels productive while keeping the service imaginary. The tasting would make the idea answerable to diners, which is why it keeps moving away.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -261,8 +211,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The strongest use is disciplined. It does not flatten every obstacle; it isolates the real blocker and exposes the repeated excuses around commitment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -299,7 +248,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Catching the Threshold Delay Before Work",
         "coreSkill": "Learn to inspect the timing of your reasons. A useful task becomes suspect when it keeps arriving at the exact point where meaningful work would become visible. The skill is to separate support work from displacement, then do the exposed act first.",
         "ifThenPlans": [
           {
@@ -324,19 +272,13 @@
       },
       "memorableLines": [
         {
-          "text": "Private dreams do not fail in public.",
-          "location": "breakdown.fastRead",
-          "why": "The sentence explains the hidden safety of delay in words a reader can carry into any creative or professional project."
+          "text": "Private dreams do not fail in public."
         },
         {
-          "text": "Resistance gets harder to trust when it uses your responsible voice.",
-          "location": "breakdown.deepRead",
-          "why": "It names the central trap: the excuse feels mature precisely when it is most dangerous."
+          "text": "Resistance gets harder to trust when it uses your responsible voice."
         },
         {
-          "text": "The first loss is not the work you botch. It is the work you never let exist.",
-          "location": "breakdown.fullRead",
-          "why": "The line turns fear of bad work into a sharper fear of never making contact with reality."
+          "text": "The first loss is not the work you botch. It is the work you never let exist."
         }
       ]
     },
@@ -363,13 +305,6 @@
             "hospital",
             "schedule"
           ],
-          "planSpec": {
-            "domain": "an emergency department registrar keeping a discharge-summary hour before inbox triage",
-            "audience": "medical administrators whose urgent surroundings constantly invite renegotiation",
-            "stakes": "delayed summaries are slowing beds and making the next shift inherit avoidable confusion",
-            "format": "scene",
-            "requiredBeat": "At 7:10 a.m., Claire opens the discharge queue before the inbox, completes the first summary, and only then checks the overnight messages."
-          },
           "scenario": "At 7:10 a.m., Claire reaches the registrar desk with the discharge queue already sorted and the overnight inbox blinking red beside a half-cold tea. Bed managers need the first summaries before handoff, but every message looks like it can justify a detour. Her cursor moves toward the inbox badge. She has to choose whether the locked first hour belongs to the summaries or to the loudest unread message.",
           "whatToDo": "Open the discharge queue first, complete one summary, and check overnight messages only after the owed hour has made real progress.",
           "whyItMatters": "The inbox can always sound urgent. The professional move protects the appointment that clears beds before urgency becomes another way to avoid the harder queue."
@@ -382,13 +317,6 @@
             "architecture",
             "critique"
           ],
-          "planSpec": {
-            "domain": "an architecture apprentice returning to model work after a harsh critique",
-            "audience": "early-career craft workers who let wounded pride cancel the next session",
-            "stakes": "the model review is in four days and skipping tonight would turn critique into drift",
-            "format": "dialogue",
-            "requiredBeat": "Daniel says he is too embarrassed to touch the model, then sets a repair floor of two clean corner joints and starts before judging the whole project."
-          },
           "scenario": "\"I can't look at it tonight,\" Daniel says, the basswood model split at one corner under the studio lamp, with knife marks still white at the edge. His critique notes sit beside the glue, all red pencil and blunt verbs. The review is four days away. \"Then don't judge it,\" his desk mate says. \"Repair two corners.\" Daniel has to decide whether embarrassment cancels the session or only changes the first task.",
           "whatToDo": "Set a repair floor of two clean corner joints, then begin. Let the session be maintenance before it becomes a verdict on the whole model.",
           "whyItMatters": "Wounded pride wants authority over the schedule. A small craft standard returns authority to the work without pretending the critique did not hurt."
@@ -401,13 +329,6 @@
             "exam",
             "readiness"
           ],
-          "planSpec": {
-            "domain": "a civil-service candidate using a fixed exam block instead of readiness checks",
-            "audience": "career changers who keep taking their emotional temperature before serious study",
-            "stakes": "one retake window remains before the hiring list closes",
-            "format": "decision_point",
-            "requiredBeat": "Sophie breaks the seal on the practice packet at the planned minute, answers the first ten questions, and postpones confidence talk until after the block."
-          },
           "scenario": "The library desk is quiet except for the sealed practice exam packet, a dull pencil, and Sophie's phone showing 6:29 p.m. One retake window remains before the hiring list closes. She has already checked whether she feels ready and received no useful answer. At 6:30, her thumb rests under the seal. She must decide whether confidence gets another vote or the exam block starts as planned.",
           "whatToDo": "Break the packet seal at the planned minute, answer ten questions, and discuss confidence only after the block has begun in real contact with the material.",
           "whyItMatters": "Readiness checks can become a hidden permission system. A fixed start moves authority from the feeling to the appointment."
@@ -420,13 +341,6 @@
             "bakery",
             "standards"
           ],
-          "planSpec": {
-            "domain": "a bakery owner running sourdough tests on schedule despite uneven batches",
-            "audience": "small business owners whose craft experiments keep being postponed by daily service work",
-            "stakes": "a wholesale buyer needs a consistent loaf before signing the account",
-            "format": "predict_reveal",
-            "requiredBeat": "Anders labels three dough tubs, starts the test at the appointed hydration, and refuses to change the plan when the first batch looks weak."
-          },
           "scenario": "The first tub smells sharper than Anders expected, and the dough slumps against its label under the proofing shelf while the deck oven clicks awake. A wholesale buyer wants a consistent loaf by Friday, yet the morning service rush is already calling from the front. He predicts this batch will make the test look foolish. Before changing the hydration plan, he has to choose whether a weak first result cancels the scheduled experiment.",
           "whatToDo": "Keep the three labeled tubs on the planned hydration test, record the weak batch plainly, and finish the sequence before service work absorbs the day.",
           "whyItMatters": "Standards improve through contact with uneven results. Canceling the test protects pride, while completing it gives the loaf real information."
@@ -439,13 +353,6 @@
             "theatre",
             "return"
           ],
-          "planSpec": {
-            "domain": "a theatre understudy protecting vocal warmups after a missed cue",
-            "audience": "performers who turn one mistake into permission to abandon the next practice block",
-            "stakes": "the lead may be out on Saturday and the understudy has one clean week to prepare",
-            "format": "before_after",
-            "requiredBeat": "You watch Catarina stop replaying the missed cue, start the first scale on the app, and complete the warmup before discussing whether she feels ready."
-          },
           "scenario": "You hear Catarina replay the missed cue twice in the dressing room, one shoe still unlaced, then watch her stare at the piano app as if the first scale might accuse her. The lead may be out Saturday, and the understudy week is short. Before, the mistake gave her permission to brood. After she taps the starting note, the warmup becomes ordinary work again, completed before anyone debates whether she feels ready.",
           "whatToDo": "Start the first scale, finish the warmup, and let the missed cue become information for practice rather than a permit to cancel practice.",
           "whyItMatters": "A mistake becomes larger when it controls the next appointment. Returning to the scale keeps shame from managing the work."
@@ -458,13 +365,6 @@
             "software",
             "shipping"
           ],
-          "planSpec": {
-            "domain": "a software maintainer shipping the small patch before debating confidence",
-            "audience": "technical workers whose standards can become a courtroom before contact with the task",
-            "stakes": "a bug is affecting invoice exports for twenty customers and the safe patch is already reviewed",
-            "format": "postmortem",
-            "requiredBeat": "It takes Michael a month of logs to see that his longest delays came after review approval, so he merges the small patch inside the maintenance window."
-          },
           "scenario": "It takes Michael a month of release logs to see the embarrassing pattern, highlighted in three late-night comments. The invoice export bug affected twenty customers, the patch had review approval, and his longest delays began after the safe path was open. During the Thursday maintenance window, with the failing unit test green beside the checklist, he merges the small patch before starting another confidence debate.",
           "whatToDo": "Use the logs to expose when doubt arrived, then merge the reviewed patch inside the maintenance window before reopening the confidence trial.",
           "whyItMatters": "Standards protected the code until review passed. After that, the debate protected Michael from ownership more than it protected customers."
@@ -483,8 +383,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first shift is authority. The appointment leads even if feeling is mixed; the point is not emotionless work or ranking one kind of work above another.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -496,8 +395,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Starting with the first chart honors the appointment without pretending the morning was easy. Waiting gives mood control, and redesigning everything avoids the immediate return.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -509,8 +407,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The weak sample is information, not a vote to cancel the appointment. Switching tasks or waiting lets disappointment govern the sequence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -522,8 +419,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The move protects the start of the owed work without becoming rigid forever. The message may matter later, but it should not seize the first minute.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -535,8 +431,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A modest scale block returns her to craft without revenge. Doubling as penalty keeps ego central, while skipping lets embarrassment run the schedule.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -548,8 +443,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Routine is useful only while it serves meaningful work. Here the hour may have become a shelter from the needed call, not proof of seriousness.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -561,8 +455,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Readiness has become the gatekeeper. The issue is not subject variety or career timing; it is letting a feeling decide whether the block begins.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -574,8 +467,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The same action changes meaning by timing and function. Extra review can protect quality, but after review and green tests it may protect the worker.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -587,8 +479,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Professional routine serves the work; it is not a costume of severity. A fitted appointment protects output better than a harsh ritual detached from people's real constraints.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -625,7 +516,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Keep the Work Appointment",
         "coreSkill": "Turn meaningful work into an appointment already owed. The skill is to begin with the artifact-producing action before readiness, shame, or urgency gets a vote. Routine should lower drama and protect the calling, not become a costume of toughness.",
         "ifThenPlans": [
           {
@@ -650,19 +540,13 @@
       },
       "memorableLines": [
         {
-          "text": "Mood may visit. It does not get the keys.",
-          "location": "breakdown.fastRead",
-          "why": "The sentence compresses the professional posture into a practical rule about authority."
+          "text": "Mood may visit. It does not get the keys."
         },
         {
-          "text": "The appointment becomes the boss.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a simple phrase for moving authority from feeling to schedule."
+          "text": "The appointment becomes the boss."
         },
         {
-          "text": "Professional posture closes the court for the length of the session.",
-          "location": "breakdown.fullRead",
-          "why": "The line turns endless internal negotiation into a concrete image the reader can interrupt."
+          "text": "Professional posture closes the court for the length of the session."
         }
       ]
     },
@@ -689,13 +573,6 @@
             "legal-aid",
             "clarity"
           ],
-          "planSpec": {
-            "domain": "a legal aid lawyer cutting a clever paragraph that clouds the client's strongest fact",
-            "audience": "professionals whose polished style can start serving reputation more than the person helped",
-            "stakes": "a tenant's emergency motion needs clarity before the hearing tomorrow morning",
-            "format": "decision_point",
-            "requiredBeat": "Olivia highlights the paragraph she loves, compares it with the client's one decisive fact, deletes the flourish, and moves the fact into the first line."
-          },
           "scenario": "The paragraph glows yellow on Olivia's screen because she knows it is clever, the kind of sentence another lawyer might admire. The tenant's decisive fact sits below it, too late for tomorrow morning's emergency motion. At the legal aid office, with the copier warming behind her, Olivia's cursor rests over delete. She must decide whether the page serves her style or the client who needs the fact first.",
           "whatToDo": "Delete the admired paragraph, move the tenant's strongest fact into the first line, and let clarity outrank the pleasure of sounding sharp.",
           "whyItMatters": "The motion exists to help the tenant, not to display Olivia's polish. Service gives craft a stricter standard than self-approval does."
@@ -708,13 +585,6 @@
             "conservation",
             "stewardship"
           ],
-          "planSpec": {
-            "domain": "a conservation officer rewriting a field report around the marsh, not personal credit",
-            "audience": "field professionals who want their work recognized but owe accuracy to the place or people served",
-            "stakes": "a restoration grant depends on a report that must guide crews, not impress reviewers",
-            "format": "vignette",
-            "requiredBeat": "Thomas removes the paragraph about his difficult trek, restores the water-level measurements, and lets the marsh's condition govern the report."
-          },
           "scenario": "Mud dries in flakes on Thomas's field notebook, and the first paragraph of the restoration report makes the predawn trek sound heroic. The water-level measurements are lower on the page, under a photo of reeds, where crews may miss them. Before he sends the grant draft, he has to choose whether the report honors his effort or the marsh. He cuts the trek and moves the measurements up.",
           "whatToDo": "Move the marsh data to the center of the report and remove the paragraph that mainly advertises the difficulty of getting it.",
           "whyItMatters": "A restoration report should guide crews toward the place's needs. Personal credit weakens the tool when it displaces the facts that govern action."
@@ -727,13 +597,6 @@
             "documentary",
             "truth"
           ],
-          "planSpec": {
-            "domain": "a documentary editor removing a showy sequence that weakens the witness's story",
-            "audience": "media makers whose technical skill can compete with the truth they are supposed to carry",
-            "stakes": "the cut will screen for the witness's family and a legal advocacy group",
-            "format": "dialogue",
-            "requiredBeat": "Camille admits the sequence will get praise, then mutes it, watches the witness answer in silence, and cuts the beautiful shot that steals the center."
-          },
           "scenario": "\"Everyone will remember that shot,\" Camille says in the edit suite, pointing to the witness reflected in a bus window while rain moves across the glass. The family screening is Friday, the room is dark except for the timeline, and the legal team needs the answer clear. Her producer asks what the shot does to the testimony. Camille mutes the track, watches the answer in silence, and has to decide whether praise is worth the center it steals.",
           "whatToDo": "Mute the sequence, watch the witness's answer without the beautiful shot, and cut anything that makes the editor more visible than the testimony.",
           "whyItMatters": "Technical skill becomes distortion when it competes with the truth it should carry. The cleaner cut protects the witness's answer."
@@ -746,13 +609,6 @@
             "hospice",
             "care"
           ],
-          "planSpec": {
-            "domain": "a hospice coordinator writing a family letter for accuracy rather than praise",
-            "audience": "care workers whose tenderness can become self-image if the task is not kept central",
-            "stakes": "a grieving family needs a clear care summary before a meeting with the nurse practitioner",
-            "format": "reflection",
-            "requiredBeat": "You watch Ingrid replace the lyrical opening with the plain medication and comfort details the family actually needs by noon."
-          },
           "scenario": "You watch Ingrid pause over a half-written family letter in the hospice office, the first lines gentle enough to make anyone trust her kindness. Beside it is the care note the family actually needs before noon, clipped to a blue folder: comfort details, medication timing, and the nurse practitioner's next question. She deletes the lyrical opening and starts again with the facts that will help them speak clearly.",
           "whatToDo": "Replace the beautiful opening with the concrete care details the family needs for the meeting. Let tenderness show through accuracy.",
           "whyItMatters": "Care is not measured by how moving the letter makes Ingrid sound. It is measured by whether the family can use it when the meeting begins."
@@ -765,13 +621,6 @@
             "public-health",
             "triage"
           ],
-          "planSpec": {
-            "domain": "a public health analyst simplifying a dashboard so nurses can act faster",
-            "audience": "data workers whose clever displays can outrun the use case",
-            "stakes": "a vaccination outreach team needs same-day triage, not a portfolio piece",
-            "format": "before_after",
-            "requiredBeat": "At 4:25 p.m., Javier removes the animated map, enlarges the three actionable clinic lists, and sends the version that helps nurses decide tonight."
-          },
           "scenario": "At 4:25 p.m., Javier watches the animated map glide across the vaccination dashboard while three clinic lists sit cramped in the corner, half-hidden below the fold. Before, the map made the tool feel impressive. After the outreach nurse asks which sites to call tonight, he removes the animation, enlarges the lists, and sends the version that answers the room instead of decorating his portfolio.",
           "whatToDo": "Remove the animation, enlarge the clinic lists, and ship the version that helps nurses decide before the evening outreach calls.",
           "whyItMatters": "A dashboard succeeds when it changes action in time. Clever display becomes vanity when it slows the people who came for a decision."
@@ -784,13 +633,6 @@
             "arts",
             "revision"
           ],
-          "planSpec": {
-            "domain": "a community arts director rejecting calling-language that lowers revision standards",
-            "audience": "creative leaders tempted to use vocation language as a shield against criticism",
-            "stakes": "a youth mural grant will be denied if the proposal stays grand and vague",
-            "format": "postmortem",
-            "requiredBeat": "Aanya reads the rejected draft, underlines every holy-sounding phrase that avoided a concrete deliverable, and rewrites the grant around materials, dates, and youth roles."
-          },
           "scenario": "Which sentence actually tells the funder what the teenagers will do? Aanya asks it after reading the rejected youth mural grant in the arts office, with the reviewer's note clipped to the first page. The draft is full of grand language about calling, but the materials list is thin and dates are vague. She underlines each elevated phrase that dodged a deliverable, then rewrites around paint, wall access, supervision, and youth roles.",
           "whatToDo": "Underline the elevated phrases that avoid specifics, then replace them with materials, dates, roles, and supervision details the grant can actually judge.",
           "whyItMatters": "Calling language becomes false when it lowers standards. Service to the project makes the proposal more concrete, not more grand."
@@ -809,8 +651,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Discipline got the deck made, but allegiance is still wrong. The transitions serve the designer's image more than the client's decision.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -822,8 +663,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Service to the grant means the benefit has to lead. The admired paragraph may be good writing, but it is serving the writer if it hides the useful fact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -835,8 +675,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The family needs usable care information first. Warmth is welcome only when it does not bury the detail they need for the meeting.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -848,8 +687,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The dashboard serves action, not admiration. The sorted lists carry the evening decision, so the clever map has to give way.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -861,8 +699,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Beauty serves only while it carries the truth. If the shot steals the center from the witness, cutting it is the more faithful craft choice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -874,8 +711,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Higher-purpose language should increase precision, not replace it. Missing dates and roles show the language is shielding vague execution.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -887,8 +723,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The problem is not narrative itself. It is that the officer's effort has taken space from the measurements that should guide restoration.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -900,8 +735,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The practice is real, but the allegiance is suspect. Praise may be steering choices that the music itself would not ask for.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -913,8 +747,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Trustworthy purpose raises standards. If the language protects image or avoids criticism, it is vanity with better lighting.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -951,7 +784,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Serving the Work Beyond Self-Display",
         "coreSkill": "Keep discipline, then examine allegiance. The skill is to find where ego, praise, or self-image has begun choosing for the work. Replace those choices with the clearer, truer, or more useful form the task requires.",
         "ifThenPlans": [
           {
@@ -976,19 +808,13 @@
       },
       "memorableLines": [
         {
-          "text": "The cleanest sentence may be the one that gives you less credit.",
-          "location": "breakdown.fastRead",
-          "why": "It turns service into a concrete editorial decision rather than an abstract virtue."
+          "text": "The cleanest sentence may be the one that gives you less credit."
         },
         {
-          "text": "A larger duty should make the hand cleaner, the cut truer, and the finished piece more answerable to the person or task in front of it.",
-          "location": "breakdown.deepRead",
-          "why": "The line ties service directly to more exact workmanship instead of vague humility."
+          "text": "A larger duty should make the hand cleaner, the cut truer, and the finished piece more answerable to the person or task in front of it."
         },
         {
-          "text": "The first makes the worker larger. The second makes the work cleaner.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a memorable test for separating vanity choices from service choices."
+          "text": "The first makes the worker larger. The second makes the work cleaner."
         }
       ]
     }

@@ -23,7 +23,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch01",
       "number": 1,
       "title": "Set the table",
@@ -124,8 +123,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The goal has to steer the task choice. Email may contain useful items, but starting there lets visible activity pretend to be priority.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch01-q02",
@@ -137,8 +135,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A deadline exposes urgency before someone else supplies it. Without the date, Wesley's plan can keep favoring comfortable work.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch01-q03",
@@ -150,8 +147,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A mental list is easy to bend around mood. Writing the actions gives Paxton material to organize instead of a promise to remember.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch01-q04",
@@ -163,8 +159,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A list is not yet a plan. Oceane needs order, or the first visible item may beat the action that carries the result.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch01-q05",
@@ -176,8 +171,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The method asks for immediate action after planning. Waiting for confidence gives delay a polished reason to stay in charge.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "eat-that-frog-ch01-q06",
@@ -189,8 +183,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Daily action keeps the goal alive after the plan is written. A weekly review can help, but it is too thin as the main follow-through.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch01-q07",
@@ -202,8 +195,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The frog is chosen by consequence, not by annoyance. A painful task can still be low value if it does not move the stated result.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "eat-that-frog-ch01-q08",
@@ -215,8 +207,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Vagueness lets easy work pass as progress. A clear result does not kill creativity; it gives the creative effort a target.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch01-q09",
@@ -228,8 +219,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Clarity multiplies effort by aiming it. Moving faster through the wrong tasks still leaves the important result untouched.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -272,7 +262,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Result Note",
         "coreSkill": "Write the Result Note before you rank the day. Name the exact result, set the deadline, list actions, and mark the action with the largest consequence. The note is a handoff from your clear self to your busy self.",
         "ifThenPlans": [
           {
@@ -297,19 +286,13 @@
       },
       "memorableLines": [
         {
-          "text": "A named result makes the frog visible.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's first rule into a portable line."
+          "text": "A named result makes the frog visible."
         },
         {
-          "text": "A written goal turns pressure into a next step.",
-          "location": "breakdown.deepRead",
-          "why": "It names the mechanism in plain, useful language."
+          "text": "A written goal turns pressure into a next step."
         },
         {
-          "text": "Clarity costs the comfort of pretending everything matters.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the tradeoff of goal clarity easy to remember."
+          "text": "Clarity costs the comfort of pretending everything matters."
         }
       ]
     },
@@ -414,8 +397,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 says a written list increases control, but the control has to serve the harder priority. An equal-weight list can still let easy work lead.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -427,8 +409,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 2 supports planning before work because it reduces decision friction. Waiting for interruptions makes the day's first pressure too powerful.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -440,8 +421,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 says longer planning horizons feed the daily list. The fix is not a bigger daily page; it is separating timing before choosing today's actions.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -453,8 +433,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 says priority marks convert a list into a sequence. The number of items matters less than whether the page tells work what comes first.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -466,8 +445,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 says unwritten tasks keep pulling attention. Writing them down frees the mind to compare and rank them instead of rehearsing them.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -479,8 +457,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 says a plan can be revised without being abandoned. A changed call asks for a changed page, not a surrender to drift.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -492,8 +469,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 says the daily list should be prepared before execution pressure peaks. Once replies and calls lead, planning starts behind the day.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -505,8 +481,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 says project planning benefits from listing every step first. The visible step can be tempting, but it may hide the real order.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -518,8 +493,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 9 says working from a list makes completion measurable. Feeling busy can mislead; the list shows whether the chosen work moved.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -562,7 +536,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark Tomorrow's First Line",
         "coreSkill": "Practice turning a list into a first action before pressure arrives. Write the day's tasks, mark the one that matters most, and keep the mark visible when replies begin. The reader tool is Mark Tomorrow's First Line: one written line that names the next task before the next message pulls you away.",
         "ifThenPlans": [
           {
@@ -583,24 +556,17 @@
       },
       "memorableLines": [
         {
-          "text": "A plan is a promise made before noise arrives.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the timing rule short enough to carry into a busy morning."
+          "text": "A plan is a promise made before noise arrives."
         },
         {
-          "text": "A list without order is only a parking lot.",
-          "location": "breakdown.deepRead",
-          "why": "It separates task capture from priority in a concrete image."
+          "text": "A list without order is only a parking lot."
         },
         {
-          "text": "Revise the page; do not surrender the day.",
-          "location": "breakdown.fullRead",
-          "why": "It gives interruption recovery a crisp rule without making the plan rigid."
+          "text": "Revise the page; do not surrender the day."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch03",
       "number": 3,
       "title": "Apply the 80/20 rule to everything",
@@ -701,8 +667,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source fact tests consequence, not count. A full checklist can still miss the task that changes the result.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch03-q02",
@@ -714,8 +679,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fact says a minority of tasks can carry most results. Equal attention would treat uneven value as if it were even.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch03-q03",
@@ -727,8 +691,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Low-value tasks tempt because they finish quickly. The fix is to test consequence before speed chooses the order.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch03-q04",
@@ -740,8 +703,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Starting with high value protects the day from residue. Small items can consume the room the important task needed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch03-q05",
@@ -753,8 +715,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source names customers, projects, skills, and responsibilities. Treating 80/20 as sales-only is too narrow.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch03-q06",
@@ -766,8 +727,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact says a hard high-value task should outrank several easy low-value tasks. Number and comfort are weaker clues.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "eat-that-frog-ch03-q07",
@@ -779,8 +739,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Avoidance can hide inside real work. The filing is not harmless if it keeps the consequence task untouched.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch03-q08",
@@ -792,8 +751,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Value has to be judged before effort is spent. Looking back after the work is done cannot protect the priority.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch03-q09",
@@ -805,8 +763,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Prime attention belongs to the Vital few. Loudness and speed can feel urgent without proving consequence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -843,7 +800,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the Vital Few",
         "coreSkill": "Practice marking the Vital few before effort starts. Write the list, put a V beside the one or two tasks with the largest consequence, then move the marked page where your hand reaches first.",
         "ifThenPlans": [
           {
@@ -864,24 +820,17 @@
       },
       "memorableLines": [
         {
-          "text": "Checked boxes can hide a wasted day.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the danger of counting completions instead of consequence."
+          "text": "Checked boxes can hide a wasted day."
         },
         {
-          "text": "Ease is a poor judge of worth.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a compact test for quick-win temptation."
+          "text": "Ease is a poor judge of worth."
         },
         {
-          "text": "The Vital few deserve the first chair.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the 80/20 rule into a portable priority image."
+          "text": "The Vital few deserve the first chair."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch04",
       "number": 4,
       "title": "Consider the consequences",
@@ -982,8 +931,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Future consequence is the priority signal. The proposal earns the mark through later impact, not through discomfort or message pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch04-q02",
@@ -995,8 +943,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Long-term thinking guides the near-term move. Loud pressure can be a trap when it hides the larger result.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch04-q03",
@@ -1008,8 +955,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The only-I-can-do question changes the ranking. Quick delegable work can wait when a higher-value task depends on Lucas.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch04-q04",
@@ -1021,8 +967,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Best use changes with consequence, not convenience. Ease and momentum can help, but they do not outrank the larger result.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "eat-that-frog-ch04-q05",
@@ -1034,8 +979,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Important work may be quiet at first. Waiting for urgency lets small requests crowd the task before its consequence becomes visible.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch04-q06",
@@ -1047,8 +991,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Small urgent tasks can still consume the space for a larger gain. The trap is judging each reply alone instead of the outline it displaced.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch04-q07",
@@ -1060,8 +1003,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A low-consequence yes still claims time. Lucas protects the higher-consequence call instead of preserving every small opening.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch04-q08",
@@ -1073,8 +1015,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Consequence belongs before the start, when it can change behavior. After fatigue arrives, the day has already been spent.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch04-q09",
@@ -1086,8 +1027,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Immediate discomfort is not the test by itself. Long-term value is what can justify doing the harder task before the easier relief.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1130,7 +1070,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the Consequence Check",
         "coreSkill": "Practice marking the task whose result will matter later. Use the consequence questions before comfort chooses for you. The visible check is the tool: it turns long-term perspective into the next file opened, call made, or yes delayed.",
         "ifThenPlans": [
           {
@@ -1155,24 +1094,17 @@
       },
       "memorableLines": [
         {
-          "text": "Relief is not rank.",
-          "location": "breakdown.fastRead",
-          "why": "It cuts the main confusion into four plain words."
+          "text": "Relief is not rank."
         },
         {
-          "text": "Future consequence gives priority its teeth.",
-          "location": "breakdown.deepRead",
-          "why": "It makes priority feel like a test rather than a mood."
+          "text": "Future consequence gives priority its teeth."
         },
         {
-          "text": "A low-consequence yes is still a yes.",
-          "location": "breakdown.fullRead",
-          "why": "It turns a small agreement into a visible cost."
+          "text": "A low-consequence yes is still a yes."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch05",
       "number": 5,
       "title": "Practice creative procrastination",
@@ -1273,8 +1205,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source fact says not everything deserves completion. The keyed move uses consequence to decide what can stay unfinished; the near misses treat completion itself as discipline.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1286,8 +1217,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A posteriorities list is as important as a priorities list. Ranking and completion rules still focus on doing; the key names what should stop, wait, move, or leave.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1299,8 +1229,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact supports deliberate postponement of low-value work. The other choices treat delay as a discipline failure, which is the common error here.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1312,8 +1241,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Saying no is a time-management tool because it stops a hidden yes from weakening the real priority. The yes keeps the common error alive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1325,8 +1253,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Zero-based thinking asks whether the team would start again knowing what it knows now. A no answer exposes a stale commitment rather than honoring sunk time.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1338,8 +1265,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Delegation is useful when personal involvement adds little value. The distractors confuse simplicity and ownership with worthwhile use of the manager's time.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1351,8 +1277,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Creative procrastination requires knowing what is high value first. Otherwise the reader may avoid whatever feels unpleasant, including the real frog.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1364,8 +1289,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stopping an activity can create more progress than improving it. The near misses keep spending time on a task that has not passed the consequence test.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1377,8 +1301,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Selective neglect prevents trivial work from winning by default. The other choices assume low-value work can be handled without cost, which the source rejects.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1421,7 +1344,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build the Stop-Doing List",
         "coreSkill": "Practice choosing what not to do before the day fills itself. Build the Stop-Doing List by naming one task to Stop, one to Postpone, one to Delegate, and one to Eliminate. Then use zero-based thinking on any stale item that asks for fresh time.",
         "ifThenPlans": [
           {
@@ -1446,24 +1368,17 @@
       },
       "memorableLines": [
         {
-          "text": "A stop list guards the hour your frog needs.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the posteriorities list feel like protection rather than neglect."
+          "text": "A stop list guards the hour your frog needs."
         },
         {
-          "text": "Old effort does not own tomorrow's hour.",
-          "location": "breakdown.deepRead",
-          "why": "It gives zero-based thinking a compact test for old tasks."
+          "text": "Old effort does not own tomorrow's hour."
         },
         {
-          "text": "A polite no keeps a hidden yes off the calendar.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the polite no into a practical time-management move."
+          "text": "A polite no keeps a hidden yes off the calendar."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch06",
       "number": 6,
       "title": "Use the ABCDE method continually",
@@ -1558,8 +1473,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A status comes from serious consequences. Size and memory can feel useful, but the source test asks what changes if the task is done, delayed, or ignored.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch06-q02",
@@ -1571,8 +1485,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B work should not take the first block while A work remains. The near miss is using a B task as a warmup because it feels productive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch06-q03",
@@ -1584,8 +1497,7 @@
             ],
             "correctIndex": 1,
             "explanation": "C tasks have no meaningful consequence. Their ease is the trap; easy work can still be low value when A work is waiting.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "eat-that-frog-ch06-q04",
@@ -1597,8 +1509,7 @@
             ],
             "correctIndex": 0,
             "explanation": "D means delegate when the work belongs with someone else. The common error is treating delegation as a manager-only privilege instead of an ownership move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch06-q05",
@@ -1610,8 +1521,7 @@
             ],
             "correctIndex": 2,
             "explanation": "E means eliminate, not store for later. Keeping the item as an optional extra leaves the same false obligation on the page.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch06-q06",
@@ -1623,8 +1533,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Multiple A tasks require numerical ranking. Equal A labels still leave the person bargaining with the list instead of starting the next frog.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "eat-that-frog-ch06-q07",
@@ -1636,8 +1545,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The method belongs before work starts. If priority is assigned as the day unfolds, easy motion can choose first and receive a label later.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch06-q08",
@@ -1649,8 +1557,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A visible code reduces emotional bargaining. Mood may feel like a tiebreaker, but it often points toward relief instead of consequence.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch06-q09",
@@ -1662,8 +1569,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The A-1 mark names the next frog. Lettering is not the finish; it is the decision rule that points to the first task to handle.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1700,7 +1606,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the D/E Gate",
         "coreSkill": "Practice coding the whole list before you start work. Run the D/E Gate by asking which items belong with someone else and which should leave the list. Then number the remaining A tasks so A-1 is visible.",
         "ifThenPlans": [
           {
@@ -1721,24 +1626,17 @@
       },
       "memorableLines": [
         {
-          "text": "A letter is a promise about consequence.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the ABCDE mark behavioral instead of decorative."
+          "text": "A letter is a promise about consequence."
         },
         {
-          "text": "Delegate the task, not the guilt.",
-          "location": "breakdown.deepRead",
-          "why": "It turns D into a clean ownership move."
+          "text": "Delegate the task, not the guilt."
         },
         {
-          "text": "Eliminate cleanly, or the list lies.",
-          "location": "breakdown.deepRead",
-          "why": "It gives E a sharp test the reader can remember."
+          "text": "Eliminate cleanly, or the list lies."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch07",
       "number": 7,
       "title": "Focus on key result areas",
@@ -1833,8 +1731,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source fact says every role has a limited number of key result areas. A long task list may feel complete, but it can hide the required outputs.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch07-q02",
@@ -1846,8 +1743,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Performance should be rated in each key result area. Overall effort can be sincere and still miss the category-specific weak spot.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch07-q03",
@@ -1859,8 +1755,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The weakest key area can limit the whole role. Strong areas help, but they do not fully cancel a weak required output.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch07-q04",
@@ -1872,8 +1767,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Manager expectations should be clarified directly. Recent requests may be urgent or casual, but they are not a reliable map of key result areas.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch07-q05",
@@ -1885,8 +1779,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A task tied to a key result outranks unrelated activity. The near miss is treating any job-related activity as equal progress.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch07-q06",
@@ -1898,8 +1791,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Improvement should focus on the weakest high-consequence area first. Building a strength can be useful, but it may leave the ceiling unchanged.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch07-q07",
@@ -1911,8 +1803,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Activities are not the same as outputs. A busy log can be real work and still fail to produce the result the role is paid for.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch07-q08",
@@ -1924,8 +1815,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Key result areas turn work into measurable responsibility. Informal responsibility can sound flexible while leaving the real output fuzzy.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch07-q09",
@@ -1937,8 +1827,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Avoiding a weak area is a common form of procrastination. Treat it as a priority issue, not a fixed personality problem.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1981,7 +1870,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build The Role Scorecard",
         "coreSkill": "Practice turning your role into a short scorecard of required outputs. Build The Role Scorecard by naming the key result areas, rating each one honestly, and giving the first improvement block to the weakest high-consequence area.",
         "ifThenPlans": [
           {
@@ -2002,24 +1890,17 @@
       },
       "memorableLines": [
         {
-          "text": "A role is a handful of promises.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the job description into a short set of required outputs."
+          "text": "A role is a handful of promises."
         },
         {
-          "text": "The weak area sets the ceiling.",
-          "location": "breakdown.fastRead",
-          "why": "It names why the weakest key result area deserves first attention."
+          "text": "The weak area sets the ceiling."
         },
         {
-          "text": "Rate the promise, not the noise.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the reader from mistaking activity for output."
+          "text": "Rate the promise, not the noise."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch08",
       "number": 8,
       "title": "Apply the law of three",
@@ -2114,8 +1995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source claim says a few tasks account for most work value. Danielle's checked-off errands do not replace time on the highest-contribution work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch08-q02",
@@ -2127,8 +2007,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Naming three core tasks simplifies daily priority choices. The near miss is using role complexity as a reason to keep every item in the first-choice set.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch08-q03",
@@ -2140,8 +2019,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hourly-rate lens exposes the cost of minor tasks. Daphne does not need a billable invoice for prime attention to have value.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch08-q04",
@@ -2153,8 +2031,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The law of three can apply to personal life as well as work. Everly is still choosing where protected attention should go.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch08-q05",
@@ -2166,8 +2043,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The law of three measures the day by time spent on the three highest-value activities. Pierre's checkmarks can hide that the best work got little attention.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch08-q06",
@@ -2179,8 +2055,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The three tasks should be written, not merely assumed. Danielle's visible list can be tested against how the day is actually spent.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch08-q07",
@@ -2192,8 +2067,7 @@
             ],
             "correctIndex": 1,
             "explanation": "When small work pushes out the three, move it away, postpone it, or cut it where possible. Brynn can treat laundry as real without making it highest value.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch08-q08",
@@ -2205,8 +2079,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The three-task list should be revisited as responsibilities change. Gerald's old note can become another way to avoid today's real value.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch08-q09",
@@ -2218,8 +2091,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Concentration beats breadth when value is uneven. Daphne's broad report can look responsible while hiding the few activities that create most contribution.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2262,7 +2134,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Say the Three Out Loud",
         "coreSkill": "Practice turning a crowded day into three spoken commitments. Say the Three Out Loud by naming the three highest-value activities in plain words. If one sounds vague, rewrite it before work begins.",
         "ifThenPlans": [
           {
@@ -2283,24 +2154,17 @@
       },
       "memorableLines": [
         {
-          "text": "Three named tasks make a crowded day tell the truth.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the law of three into a visible test."
+          "text": "Three named tasks make a crowded day tell the truth."
         },
         {
-          "text": "A vague top three is still a hiding place.",
-          "location": "breakdown.deepRead",
-          "why": "It warns that the list must name real activities."
+          "text": "A vague top three is still a hiding place."
         },
         {
-          "text": "Choose three, and you give up the theater of everything.",
-          "location": "breakdown.fullRead",
-          "why": "It names the tradeoff behind the rule."
+          "text": "Choose three, and you give up the theater of everything."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch09",
       "number": 9,
       "title": "Prepare thoroughly before you begin",
@@ -2395,8 +2259,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Preparation is useful when it removes obstacles to starting. Typing first can look bold, but missing files often turn the work block into a series of exits.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch09-q02",
@@ -2408,8 +2271,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A clear workspace strengthens attention on one task. A busy desk may show activity, but it also lets unrelated objects compete for the next glance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch09-q03",
@@ -2421,8 +2283,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reports, notes, files, passwords, and references belong in place before the block. Gathering later fragments attention and gives delay a clean disguise.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch09-q04",
@@ -2434,8 +2295,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Searching during execution can become avoidance. Drew's tabs matter less than the stalled sentence they have replaced.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch09-q05",
@@ -2447,8 +2307,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Physical comfort supports sustained focus. The chair, lamp, screen, and tools matter when they prevent predictable reasons to stop.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch09-q06",
@@ -2460,8 +2319,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Preparation becomes procrastination when it never turns into action. Once the next move is clear, more arranging can become a softer form of delay.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "eat-that-frog-ch09-q07",
@@ -2473,8 +2331,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A ready first step lowers activation energy. Motivation can stay imperfect; the visible next act makes starting less dependent on mood.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch09-q08",
@@ -2486,8 +2343,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Environmental cues should point toward the chosen task. A file beside the keyboard supports the reply; the phone may invite other messages.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "eat-that-frog-ch09-q09",
@@ -2499,8 +2355,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The setup should be simple enough to repeat. A complex ritual adds a new barrier, which works against a frictionless start.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2543,7 +2398,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Stage the First Move",
         "coreSkill": "Practice making the first action visible before you begin hard work. Stage the First Move by clearing the surface, gathering the exact materials, fixing one comfort snag, and starting while the next step is still plain. The skill is not neatness; it is ending setup in action.",
         "ifThenPlans": [
           {
@@ -2568,24 +2422,17 @@
       },
       "memorableLines": [
         {
-          "text": "Clear the desk, then begin.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the clean desk case into a plain action rule."
+          "text": "Clear the desk, then begin."
         },
         {
-          "text": "Preparation earns its keep by ending.",
-          "location": "breakdown.deepRead",
-          "why": "It gives preparation a clean test against procrastination."
+          "text": "Preparation earns its keep by ending."
         },
         {
-          "text": "Comfort counts when it keeps you working.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the chair and light case practical instead of indulgent."
+          "text": "Comfort counts when it keeps you working."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch10",
       "number": 10,
       "title": "Take it one oil barrel at a time",
@@ -2680,8 +2527,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The rule starts by dividing large work into visible segments. Waiting for comfort or hiding under smaller tasks leaves the manual as one blurred load.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch10-q02",
@@ -2693,8 +2539,7 @@
             ],
             "correctIndex": 1,
             "explanation": "During execution, the next marker matters more than seeing the full distance. The full-route request may feel safer, but it can postpone the reachable step.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch10-q03",
@@ -2706,8 +2551,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Overwhelm falls when the next step becomes concrete. The near miss is treating the feeling as proof that the whole goal is too large.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch10-q04",
@@ -2719,8 +2563,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Milestones turn progress into evidence. Calling them decoration ignores how visible completed segments help the next segment feel reachable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch10-q05",
@@ -2732,8 +2575,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A sequence can be planned even when motivation is low. Waiting for drive lets mood set the route, while nearby admin can become polite delay.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch10-q06",
@@ -2745,8 +2587,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Small completed segments build momentum for the next segment. Small parts are not limited to simple tasks, and they do more than feed a status update.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch10-q07",
@@ -2758,8 +2599,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The oil-barrel image teaches reachability, not smaller ambition. The Sahara is still large; the worker simply moves by the next marker.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "eat-that-frog-ch10-q08",
@@ -2771,8 +2611,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A vague project should become named parts. A title can sound clear while hiding the next behavior, and old files can delay the marker.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch10-q09",
@@ -2784,8 +2623,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Finishing the next part beats rethinking the whole project again. Replanning can look careful while it keeps the next marker untouched.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2828,7 +2666,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Count the Next Marker",
         "coreSkill": "Practice turning a large task into the next visible marker. Count the vague project names that make you stall, then rewrite one into a route and first segment. The skill is not cheerleading; it is changing the next behavior you can see.",
         "ifThenPlans": [
           {
@@ -2853,24 +2690,17 @@
       },
       "memorableLines": [
         {
-          "text": "The next barrel beats the whole desert.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the Sahara image portable and action-focused."
+          "text": "The next barrel beats the whole desert."
         },
         {
-          "text": "A marker is proof you can reach.",
-          "location": "breakdown.fastRead",
-          "why": "It links visible milestones to confidence earned through motion."
+          "text": "A marker is proof you can reach."
         },
         {
-          "text": "A vague project grows in the dark.",
-          "location": "breakdown.deepRead",
-          "why": "It warns the reader why unnamed work gets larger."
+          "text": "A vague project grows in the dark."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch11",
       "number": 11,
       "title": "Upgrade your key skills",
@@ -2971,8 +2801,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 says skill gaps can cause procrastination. Easy work may feel active, but it can hide the skill friction inside the report.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch11-q02",
@@ -2984,8 +2813,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 2 supports improving the key skill first. Waiting for confidence reverses the order; practice is what helps confidence grow.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch11-q03",
@@ -2997,8 +2825,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 says learning should target tasks with high consequence. Interesting learning is a near miss when the delayed report needs a report skill.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch11-q04",
@@ -3010,8 +2837,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 says daily learning compounds over time. The trap is treating occasional learning as equal to repeated work on the same skill.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch11-q05",
@@ -3023,8 +2849,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 says feedback speeds skill improvement. More solo effort can repeat the same weak move if no one points out what is unclear.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch11-q06",
@@ -3036,8 +2861,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 says a weak skill should be named rather than hidden behind busyness. Easier work can keep motion alive while the gap stays untouched.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch11-q07",
@@ -3049,8 +2873,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 says training is productive when it supports execution. Course buying is a near miss if no real draft or practice follows.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch11-q08",
@@ -3062,8 +2885,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 says better skill lowers emotional resistance. The feeling does not automatically prove the task is wrong; it may point to the weak move.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch11-q09",
@@ -3075,8 +2897,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 says key-skill upgrading can multiply output. The near miss is assuming only tools or delegation can do that.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -3119,7 +2940,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the Skill Gap",
         "coreSkill": "Practice turning delay into a named skill target. Mark the Skill Gap by writing the weak skill beside the stalled task, then run the Skill-upgrade loop: Identify key skill, Learn deliberately, Practice on real work, Seek feedback. The goal is not to study more; it is to make the next start easier.",
         "ifThenPlans": [
           {
@@ -3140,24 +2960,17 @@
       },
       "memorableLines": [
         {
-          "text": "Skill shrinks fear.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's mechanism into a plain line."
+          "text": "Skill shrinks fear."
         },
         {
-          "text": "Practice turns training into speed.",
-          "location": "breakdown.deepRead",
-          "why": "It separates useful learning from passive study."
+          "text": "Practice turns training into speed."
         },
         {
-          "text": "Do not study to hide.",
-          "location": "breakdown.fullRead",
-          "why": "It names the chapter's sharpest warning in portable form."
+          "text": "Do not study to hide."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch12",
       "number": 12,
       "title": "Identify your key constraints",
@@ -3252,8 +3065,7 @@
             ],
             "correctIndex": 2,
             "explanation": "One dominant constraint usually sets the pace. Extra effort on every task feels fair, but it leaves the launch waiting at the same queue.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch12-q02",
@@ -3265,8 +3077,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Improving non-constraints brings little progress. The near miss is treating every obstacle as equal because the activity is visible.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch12-q03",
@@ -3278,8 +3089,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Constraints can be internal or external. Sorting the type matters because a skill gap needs practice, while a market block needs outside action.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch12-q04",
@@ -3291,8 +3101,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The bottleneck should be named before effort intensifies. More motion first can bury the narrow point under busyness.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch12-q05",
@@ -3304,8 +3113,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Internal constraints are often harder to admit. Treat them as trainable work variables, not character flaws.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch12-q06",
@@ -3317,8 +3125,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A constraint can change after it improves. The first diagnosis is useful only while it still sets the speed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch12-q07",
@@ -3330,8 +3137,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The speed question finds the limiter. The slowest-looking task can be a near miss if another point holds the whole result.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch12-q08",
@@ -3343,8 +3149,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Outside blame can be partly true and still hide an internal bottleneck. The missed calls are visible behavior to test.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch12-q09",
@@ -3356,8 +3161,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Reducing a constraint raises capacity. It does not finish every problem; it often makes the next bottleneck visible.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -3394,7 +3198,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Find the Speed Setter",
         "coreSkill": "Practice finding the speed setter before adding effort. Name the goal, ask what is actually slowing the result, then mark the constraint as internal or external. The skill is useful only when it changes the next visible move.",
         "ifThenPlans": [
           {
@@ -3415,24 +3218,17 @@
       },
       "memorableLines": [
         {
-          "text": "Find the neck before you push the bottle.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the bottleneck image easy to carry."
+          "text": "Find the neck before you push the bottle."
         },
         {
-          "text": "A constraint is a work variable, not a moral verdict.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps internal constraints trainable instead of shaming."
+          "text": "A constraint is a work variable, not a moral verdict."
         },
         {
-          "text": "Activity rises; capacity does not.",
-          "location": "breakdown.fullRead",
-          "why": "It warns against busy work around the bottleneck."
+          "text": "Activity rises; capacity does not."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch13",
       "number": 13,
       "title": "Put the pressure on yourself",
@@ -3527,8 +3323,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Outside pressure is a late trigger. The other answers let a manager or small tasks decide when the draft becomes urgent.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch13-q02",
@@ -3540,8 +3335,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sheet shows urgency arriving too late. A self-imposed deadline moves the start earlier, while the distractors keep the work dependent on outside pressure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch13-q03",
@@ -3553,8 +3347,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source says high performers create their own standards. The two near misses make inspection the real source of the bar.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch13-q04",
@@ -3566,8 +3359,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Accountability can start inside the work block before anyone checks it. The other choices make supervision the source of responsibility.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch13-q05",
@@ -3579,8 +3371,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A chosen deadline works only when Lacey honors it as real. The other answers repeat the mistake that private dates are only suggestions.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "eat-that-frog-ch13-q06",
@@ -3592,8 +3383,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Self-pressure gives Forrest urgency before panic steals options. The other answers treat the late rush as better than the calmer earlier move.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch13-q07",
@@ -3605,8 +3395,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Professional reputation is built through unseen choices. The distractors make the visible review the only place where reputation is formed.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch13-q08",
@@ -3618,8 +3407,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Autonomy requires self-command. Without it, Ezra's blank afternoon becomes drift instead of useful freedom.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch13-q09",
@@ -3631,8 +3419,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Pressure should focus action, not create frantic multitasking. Opening every app makes urgency noisy instead of useful.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3675,7 +3462,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Own the Deadline",
         "coreSkill": "Practice owning the pressure before anyone else supplies it. Use Own the Deadline to set a private date, raise the standard, and name the first task in any no-supervision block. The skill works only when it changes a visible next action.",
         "ifThenPlans": [
           {
@@ -3700,24 +3486,17 @@
       },
       "memorableLines": [
         {
-          "text": "Borrowed pressure arrives late.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the reason self-pressure must come before crisis."
+          "text": "Borrowed pressure arrives late."
         },
         {
-          "text": "Private pressure beats public panic.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the chapter's timing rule a portable phrase."
+          "text": "Private pressure beats public panic."
         },
         {
-          "text": "Pressure should focus action, not scatter it.",
-          "location": "breakdown.fullRead",
-          "why": "It separates useful urgency from frantic multitasking."
+          "text": "Pressure should focus action, not scatter it."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch14",
       "number": 14,
       "title": "Motivate yourself into action",
@@ -3818,8 +3597,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Self-talk affects willingness to start. The near miss is treating the note as a memory aid while missing its effect on the decision to begin.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch14-q02",
@@ -3831,8 +3609,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Optimistic framing should stay tied to action. Denying the problem may sound upbeat, but it leaves the handoff unchanged.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch14-q03",
@@ -3844,8 +3621,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A specific and temporary explanation keeps action available. Calling the mistake a stable flaw makes hesitation look reasonable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch14-q04",
@@ -3857,8 +3633,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The cue phrase interrupts hesitation when it points to action. It is not meant to replace the work with a better mood.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch14-q05",
@@ -3870,8 +3645,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Responsibility questions are more useful than blame questions for starting action. Blame may explain history, but it often leaves the next move blank.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "eat-that-frog-ch14-q06",
@@ -3883,8 +3657,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Motivation can be generated after starting. The common error is waiting for the feeling before making the first visible move.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch14-q07",
@@ -3896,8 +3669,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Language should point to the next action. The phrase is incomplete until it names something the learner can do.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch14-q08",
@@ -3909,8 +3681,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Negative self-talk can trigger delay even when work eventually happens. The damage shows up in slower starts and weaker next moves.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch14-q09",
@@ -3922,8 +3693,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Agency grows when attention returns to controllable behavior. Waiting for ideal conditions can hide the move still within reach.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3966,7 +3736,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Say the Action Sentence",
         "coreSkill": "Practice turning inner language into a start signal. Use Say the Action Sentence: name that the task is possible, make the problem specific, ask what you can do now, then begin the first visible move. The words count only if they change what your hands do next.",
         "ifThenPlans": [
           {
@@ -3987,24 +3756,17 @@
       },
       "memorableLines": [
         {
-          "text": "Mood can lag; motion can lead.",
-          "location": "breakdown.fastRead",
-          "why": "It captures why action can come before feeling ready."
+          "text": "Mood can lag; motion can lead."
         },
         {
-          "text": "A cue earns trust when it changes the next move.",
-          "location": "breakdown.deepRead",
-          "why": "It separates useful cue phrases from empty comfort."
+          "text": "A cue earns trust when it changes the next move."
         },
         {
-          "text": "Blame spends energy that responsibility can turn into work.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the responsibility question memorable and practical."
+          "text": "Blame spends energy that responsibility can turn into work."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch15",
       "number": 15,
       "title": "Technology is a terrible master",
@@ -4099,8 +3861,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Unmanaged technology fragments attention. The near miss is assuming every alert makes work better because it arrives through a work tool.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch15-q02",
@@ -4112,8 +3873,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Notifications create false urgency. Asking about consequence separates a real signal from a bright demand with no immediate cost.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch15-q03",
@@ -4125,8 +3885,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Constant availability can undermine priority work. It may look professional while it gives the best attention to other people's timing.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch15-q04",
@@ -4138,8 +3897,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Checking can feel productive while avoiding the frog. The warmup story is tempting because it sounds like work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch15-q05",
@@ -4151,8 +3909,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A device boundary must be deliberate. Discipline can help, but the rule asks for a visible limit the next reach has to meet.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch15-q06",
@@ -4164,8 +3921,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Technology should be subordinate to the work plan. Incoming messages may matter, but they do not get automatic command.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch15-q07",
@@ -4177,8 +3933,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Interruptions carry recovery costs. The break also forces the worker to rebuild the sentence, problem, or decision.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch15-q08",
@@ -4190,8 +3945,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Digital tools are most dangerous when they blend work and distraction. The work label can hide the need to rank the stream.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch15-q09",
@@ -4203,8 +3957,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Turning off alerts can be a productivity act. The key condition is that the muted alerts do not carry real consequence for the block.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -4241,7 +3994,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Rank the Signal",
         "coreSkill": "Practice making technology answer to the work plan. Use Rank the Signal: name the frog, list the incoming channels, then sort each signal by real consequence for the next block. The skill ends with one visible setting, status, or calendar choice.",
         "ifThenPlans": [
           {
@@ -4262,24 +4014,17 @@
       },
       "memorableLines": [
         {
-          "text": "A beep is not a boss.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's rule into a quick test."
+          "text": "A beep is not a boss."
         },
         {
-          "text": "The loudest signal rarely deserves first place.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the ranking move easy to remember."
+          "text": "The loudest signal rarely deserves first place."
         },
         {
-          "text": "A boundary costs the comfort of instant reply.",
-          "location": "breakdown.fullRead",
-          "why": "It names the tradeoff without softening it."
+          "text": "A boundary costs the comfort of instant reply."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch16",
       "number": 16,
       "title": "Technology is a wonderful servant",
@@ -4378,8 +4123,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Technology should serve a chosen objective. Starting with the app treats novelty as progress before the result has a job for the tool.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch16-q02",
@@ -4391,8 +4135,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Digital tools can protect priority appointments. Treating the calendar as storage misses its job of defending the chosen work block.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch16-q03",
@@ -4404,8 +4147,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Online learning helps when it meets a real performance gap. A broad course list can feel useful while the weak report skill stays untouched.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch16-q04",
@@ -4417,8 +4159,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Automation belongs on repeated low-judgment steps. Applying it everywhere can remove attention from places that still need judgment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "eat-that-frog-ch16-q05",
@@ -4430,8 +4171,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The right tool reduces friction around important work. Features are a near miss when they draw attention away from finishing the reply.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "eat-that-frog-ch16-q06",
@@ -4443,8 +4183,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A tool should be judged by output. A new dashboard can feel useful, but the finished proposal is the better proof.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch16-q07",
@@ -4456,8 +4195,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reminders support commitments when priorities are clear. More alerts cannot solve the problem of an unclear task.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch16-q08",
@@ -4469,8 +4207,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Purposeful communication makes the next action easier. More updates can bury the approval the work actually needs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch16-q09",
@@ -4482,8 +4219,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Servant technology requires user control. The app can help only after Brandon names the result it must serve.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4526,7 +4262,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Servant Tool Test",
         "coreSkill": "Practice making a tool prove its service before it earns your time. Name the objective, choose the smallest fitting tool, remove one friction point, and check the output. The skill is not using more technology; it is keeping technology under the frog.",
         "ifThenPlans": [
           {
@@ -4551,24 +4286,17 @@
       },
       "memorableLines": [
         {
-          "text": "Tools should earn their keep.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the servant standard into a sentence the reader can use before opening an app."
+          "text": "Tools should earn their keep."
         },
         {
-          "text": "Novelty is not output.",
-          "location": "breakdown.deepRead",
-          "why": "It cuts through the common mistake of treating a new tool as proof of progress."
+          "text": "Novelty is not output."
         },
         {
-          "text": "Let the task choose the tool.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a short rule for keeping technology under the work."
+          "text": "Let the task choose the tool."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch17",
       "number": 17,
       "title": "Focus your attention",
@@ -4663,8 +4391,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Attention is limited, so the protected report window fits the lesson. The other starts assume attention can divide without meaningful loss.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch17-q02",
@@ -4676,8 +4403,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Task switching reduces depth. The repeated rereading shows the cost is not just seconds; part of the mind is still in the thread.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch17-q03",
@@ -4689,8 +4415,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Visible distractions invite drift before a click happens. The near miss is thinking ignored panes are harmless just because the draft remains open.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch17-q04",
@@ -4702,8 +4427,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A hard task needs duration, not only intent. Tiny fragments can help simple chores, but they rarely give a hard outline enough continuity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch17-q05",
@@ -4715,8 +4439,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Focus should be designed before resistance starts. Waiting for a focused mood gives every input a chance to claim attention first.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "eat-that-frog-ch17-q06",
@@ -4728,8 +4451,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Responsiveness can conflict with completion. The instant answer may feel responsible while breaking the continuity the draft needs.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch17-q07",
@@ -4741,8 +4463,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Internal distraction is handled by returning to the next action. The tug is not proof the task is wrong, and opening the thread feeds the switch.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch17-q08",
@@ -4754,8 +4475,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Focus improves when the environment matches the task. The crowded setup gives attention extra targets, even if the worker means well.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "eat-that-frog-ch17-q09",
@@ -4767,8 +4487,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Attention turns priority into finished output. A label or memory can name importance, but the proposal still needs protected work time.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -4811,7 +4530,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Guard the Focus Interval",
         "coreSkill": "Practice guarding one chosen task long enough for real progress to appear. Guard the Focus Interval by choosing the task, removing inputs, working without interruption, and returning to the next action when your mind wanders. The skill is not heroic willpower; it is designing fewer exits.",
         "ifThenPlans": [
           {
@@ -4836,24 +4554,17 @@
       },
       "memorableLines": [
         {
-          "text": "A priority without protected attention is only a named wish.",
-          "location": "breakdown.fastRead",
-          "why": "It separates naming a priority from giving it the attention that finishes work."
+          "text": "A priority without protected attention is only a named wish."
         },
         {
-          "text": "Every open thread asks your task to start over.",
-          "location": "breakdown.deepRead",
-          "why": "It makes attention residue easy to remember and notice."
+          "text": "Every open thread asks your task to start over."
         },
         {
-          "text": "Quiet is a work tool, not a mood.",
-          "location": "breakdown.fullRead",
-          "why": "It turns quiet intervals into a practical work condition."
+          "text": "Quiet is a work tool, not a mood."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch18",
       "number": 18,
       "title": "Slice and dice the task",
@@ -4954,8 +4665,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 says large tasks should be divided into small pieces. The waiting choice treats size as a reason not to touch the proposal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch18-q02",
@@ -4967,8 +4677,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 supports the small start. Waiting for the feeling to change keeps the report untouched.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch18-q03",
@@ -4980,8 +4689,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 says the Swiss cheese method uses partial work to weaken avoidance. The blanks can look messy, but the task has been entered.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch18-q04",
@@ -4993,8 +4701,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 says salami slices use sequential small completion. Opening everything can look active while no slice gets finished.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch18-q05",
@@ -5006,8 +4713,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 says a timed start separates beginning from finishing. Calling it fake work misses the value of getting the task open.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch18-q06",
@@ -5019,8 +4725,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 says momentum often appears after contact. The near miss is waiting for momentum before the first sentence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch18-q07",
@@ -5032,8 +4737,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 says the first slice should be easy to identify. Broad wording can hide the next move even when it sounds responsible.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch18-q08",
@@ -5045,8 +4749,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 says slicing is not an excuse to avoid the whole result. Formatting checks are a near miss when the recommendation stays blank.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch18-q09",
@@ -5058,8 +4761,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 9 says small pieces need connection to the larger outcome. Finished bits can still miss if they do not move the report.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -5102,7 +4804,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the First Slice",
         "coreSkill": "Practice turning a large task into one visible next move. Mark the First Slice by naming two possible pieces, comparing them, and choosing the one tied to the final result. The goal is to touch the frog, not arrange the plate.",
         "ifThenPlans": [
           {
@@ -5123,24 +4824,17 @@
       },
       "memorableLines": [
         {
-          "text": "Small starts make big work touchable.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's mechanism into a short rule."
+          "text": "Small starts make big work touchable."
         },
         {
-          "text": "One finished slice beats six open tabs.",
-          "location": "breakdown.deepRead",
-          "why": "It separates completed progress from scattered activity."
+          "text": "One finished slice beats six open tabs."
         },
         {
-          "text": "Clear slices beat brave speeches.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the action test easy to remember."
+          "text": "Clear slices beat brave speeches."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch19",
       "number": 19,
       "title": "Create large chunks of time",
@@ -5241,8 +4935,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 says complex work benefits from uninterrupted blocks. Spare gaps repeat the error that important work can always fit between other demands.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch19-q02",
@@ -5254,8 +4947,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 says high-value tasks require calendar protection. A margin note is a near miss because it names importance without reserving time.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch19-q03",
@@ -5267,8 +4959,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 says short fragments may be too small for deep progress. Adding up minutes misses the reentry cost of the report.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch19-q04",
@@ -5280,8 +4971,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 says early blocks can protect work from later interruption. Waiting for routine demands lets those demands claim the day first.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch19-q05",
@@ -5293,8 +4983,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 says setup costs make repeated reentry expensive. Review can sound useful, but here the repeated setup eats the time.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch19-q06",
@@ -5306,8 +4995,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 says a block should be tied to a specific outcome. A broad label can hide vagueness even when it sounds important.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch19-q07",
@@ -5319,8 +5007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 says other people need to know when a block is protected. Silence leaves reasonable teammates guessing that she is available.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch19-q08",
@@ -5332,8 +5019,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 says large blocks are created, not found. Waiting for minor work to clear gives small tasks first claim on the calendar.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch19-q09",
@@ -5345,8 +5031,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 says the best block should go to the highest-consequence task. Ease and readiness are tempting but weaker sorting rules.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -5389,7 +5074,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Protect the Best Block",
         "coreSkill": "Practice giving the frog a real container. Protect the Best Block by naming the outcome, choosing your clearest stretch, and telling people when that stretch is closed. The move is visible protection for important work.",
         "ifThenPlans": [
           {
@@ -5410,24 +5094,17 @@
       },
       "memorableLines": [
         {
-          "text": "Big frogs need big rooms.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's time-block rule into a portable line."
+          "text": "Big frogs need big rooms."
         },
         {
-          "text": "Work blocks need a named finish line.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps protected time tied to a visible outcome."
+          "text": "Work blocks need a named finish line."
         },
         {
-          "text": "Protected time serves the frog.",
-          "location": "breakdown.fullRead",
-          "why": "It states the boundary against overprotecting time for its own sake."
+          "text": "Protected time serves the frog."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch20",
       "number": 20,
       "title": "Develop a sense of urgency",
@@ -5528,8 +5205,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Action tempo closes the space between deciding and doing. Blair stayed busy, but the circled follow-up did not move.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch20-q02",
@@ -5541,8 +5217,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cue is useful when it interrupts hesitation. Rereading the words is close, but the blank email is the visible move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch20-q03",
@@ -5554,8 +5229,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Momentum often follows movement. Bailey did not wait to feel ready; the rough line gave the task a place to start.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch20-q04",
@@ -5567,8 +5241,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fast follow-up keeps a decision alive. Waiting for polish lets the noon choice cool into another open loop.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch20-q05",
@@ -5580,8 +5253,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Urgency should attach to important work. Donovan's labels look active, but the customer note is the work that needs tempo.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "eat-that-frog-ch20-q06",
@@ -5593,8 +5265,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A bias for action can be trained. Thierry's cue and first move make tempo a practiced behavior, not a fixed trait.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch20-q07",
@@ -5606,8 +5277,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Delay creates new resistance. Finn hopes the feeling will fade, but the pause gives the note more time to feel heavy.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch20-q08",
@@ -5619,8 +5289,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Speed and calm can coexist when the task is clear. Bailey moves one clear line; Finn only performs hurry.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "eat-that-frog-ch20-q09",
@@ -5632,8 +5301,7 @@
             ],
             "correctIndex": 0,
             "explanation": "High tempo supports completion. Allison's quick linked moves keep the work alive; intention alone would not do that.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -5676,7 +5344,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark Now, Move Next",
         "coreSkill": "Practice Mark Now, Move Next: attach a short cue to one important task and make one visible move before delay starts bargaining. The cue is not the skill by itself. It works when it changes the next line written, file opened, note sent, call placed, or task protected.",
         "ifThenPlans": [
           {
@@ -5697,24 +5364,17 @@
       },
       "memorableLines": [
         {
-          "text": "The cue matters only when a hand moves next.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the do it now cue tied to behavior."
+          "text": "The cue matters only when a hand moves next."
         },
         {
-          "text": "Delay fattens resistance; movement starves it.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the cost of waiting easy to remember."
+          "text": "Delay fattens resistance; movement starves it."
         },
         {
-          "text": "Calm speed starts with a clear task.",
-          "location": "breakdown.deepRead",
-          "why": "It separates useful urgency from frantic multitasking."
+          "text": "Calm speed starts with a clear task."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "eat-that-frog-ch21",
       "number": 21,
       "title": "Single handle every task",
@@ -5815,8 +5475,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Single handling keeps the chosen task active until completion. The request-by-request answer treats interruption as equal to progress.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch21-q02",
@@ -5828,8 +5487,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The A-1 task starts first. The visible and quick tasks are plausible near misses, but they let ease outrank priority.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch21-q03",
@@ -5841,8 +5499,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The log points to restart cost: each return asks Elaine to rebuild context. The energy and research readings miss the repeated restarting.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch21-q04",
@@ -5854,8 +5511,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Completion matters more than activity. Jacqueline's count can look strong while the main frog remains unfinished.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch21-q05",
@@ -5867,8 +5523,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Lower-value work should not interrupt the frog. The inbox sweep looks harmless because it is short, but it still pulls Adele away.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch21-q06",
@@ -5880,8 +5535,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Resistance often drops after sustained work begins. Waiting for the feeling to disappear puts comfort before action.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "eat-that-frog-ch21-q07",
@@ -5893,8 +5547,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A defined stopping point is acceptable when full completion is impossible. Kira's specific note shows what is done and what comes next.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "eat-that-frog-ch21-q08",
@@ -5906,8 +5559,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Single handling requires prior prioritization. Without the A-1 mark, Jacques is just choosing by feel or activity.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "eat-that-frog-ch21-q09",
@@ -5919,8 +5571,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The final habit joins earlier methods into one behavior: choose the A-1 task, start it, and carry it to done.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -5963,7 +5614,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Prewrite the Finish Line",
         "coreSkill": "Practice protecting the A-1 task with words you have already written. Prewrite the Finish Line by naming the task, the lower-value work you will delay, and the sentence you will say when a switch tempts you. The skill is simple: start first, stay longer, and leave a clear handle if you must stop.",
         "ifThenPlans": [
           {
@@ -5984,19 +5634,13 @@
       },
       "memorableLines": [
         {
-          "text": "Completion proves priority.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the chapter's core test in three words."
+          "text": "Completion proves priority."
         },
         {
-          "text": "Restart costs hide inside switches.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the invisible price of task switching memorable."
+          "text": "Restart costs hide inside switches."
         },
         {
-          "text": "Finished work beats repeated starting.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the chapter with a portable behavior test."
+          "text": "Finished work beats repeated starting."
         }
       ]
     }

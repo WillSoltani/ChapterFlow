@@ -46,13 +46,6 @@
             "hospital",
             "insurance"
           ],
-          "planSpec": {
-            "domain": "hospital discharge planning after a failed insurance authorization",
-            "audience": "a case manager trying to move a defensive insurer from denial language to actual constraints",
-            "stakes": "a patient may spend an extra night in a hallway bed because the plan keeps getting rejected",
-            "format": "scene",
-            "requiredBeat": "the case manager closes the appeal template, repeats the insurer's stated concern about unsafe discharge, and waits until the reviewer names the missing home-health document"
-          },
           "scenario": "A rolling vitals cart blocks the hallway outside bed 12 while Clara, the case manager, holds a fax confirmation sheet and listens to the reviewer repeat unsafe discharge. The bed board alert is already flashing. Clara is about to resend the appeal template, but she must decide whether to defend the plan or say the concern sounds like a missing home-health safety piece and wait. The visible shift is that the next fact comes from the other side instead of another prepared defense.",
           "whatToDo": "Close the template. Repeat the safety concern in plain language, then stop. Let the reviewer correct or complete the picture before you argue another clinical fact.",
           "whyItMatters": "The denial language is guarding a specific risk. When Clara names that risk, the reviewer can reveal the missing checkbox without feeling forced to surrender."
@@ -65,13 +58,6 @@
             "harbor",
             "quota"
           ],
-          "planSpec": {
-            "domain": "commercial fishing quota dispute at a harbor office",
-            "audience": "a harbor coordinator facing captains who assume the new allocation is punishment",
-            "stakes": "three boats may ignore the landing schedule and trigger fines for the whole pier",
-            "format": "dialogue",
-            "requiredBeat": "the coordinator stops defending the quota table and names the captains' fear that they are being made to pay for another crew's overrun"
-          },
           "scenario": "\"So we eat the fine for somebody else?\" Captain Rees says, tapping the quota table under the brass paperweight. Martin has landing slips fanned beside the tide chart and the ice-house cutoff is forty minutes away. He is about to defend the allocation, but before the captains walk out he must decide whether to name the fear that they are paying for another crew. The safer sentence turns a demand into a clue before anyone has to surrender position.",
           "whatToDo": "Stop defending the table. Say it sounds like they believe the schedule makes their boats carry another crew’s mistake, then let the captains answer that charge.",
           "whyItMatters": "The quota argument is also a control argument. Naming the unfairness fear gives the captains a safer way to explain what they might otherwise resist by breaking schedule."
@@ -84,13 +70,6 @@
             "lab",
             "grant"
           ],
-          "planSpec": {
-            "domain": "university lab equipment booking conflict",
-            "audience": "a lab manager dealing with two research teams fighting over the same sequencer slot",
-            "stakes": "a grant milestone may be missed if one group hides sample-prep delays",
-            "format": "decision_point",
-            "requiredBeat": "the manager quits arguing about policy and asks each team what would make the other booking unsafe to swap, drawing out a contamination window nobody had mentioned"
-          },
           "scenario": "The red reservation tag hangs from the sequencer handle at 6:40 a.m. while Sofie holds the clean-room log and two teams crowd the doorway. A grant milestone email sits open on her laptop. She has to decide whether to quote booking policy or ask what would make the other slot unsafe to swap before the sample tray comes out. The response gives the counterpart a way to correct the read and reveal the protected constraint.",
           "whatToDo": "Ask each team what risk would make the swap unsafe. Keep policy closed until you know whether timing, contamination, or pride is driving the fight.",
           "whyItMatters": "Policy can settle the visible dispute and still miss the hidden risk. The safety question lets the unspoken contamination window enter the room."
@@ -103,13 +82,6 @@
             "theater",
             "contract"
           ],
-          "planSpec": {
-            "domain": "independent theater contract renegotiation with a touring company",
-            "audience": "a venue director who needs the company to admit what term is blocking signature",
-            "stakes": "the season opener may be canceled if both sides keep arguing over headline fee",
-            "format": "vignette",
-            "requiredBeat": "the director stops defending the fee and says it sounds like the real risk is the load-in penalty, prompting the tour manager to show the freight clause"
-          },
           "scenario": "You are beside the lighting console with a folded stage plot taped to the edge and a deposit invoice in your hand. Daniel has heard the tour manager reject the headline fee twice. Before the season opener slips, he must decide whether to keep defending the number or say the real risk sounds like the load-in penalty and look at the freight clause. The pressure in the scene changes from argument over the demand to discovery of the risk beneath it.",
           "whatToDo": "Move away from the fee and label the load-in risk. Ask to see the freight clause before sending another number across the table.",
           "whyItMatters": "The fee is the loud item, but the penalty is what makes signing unsafe. Once the blocked term is visible, the negotiation can leave the wrong battlefield."
@@ -122,13 +94,6 @@
             "storm",
             "dispatch"
           ],
-          "planSpec": {
-            "domain": "municipal snow-removal complaint desk during a storm",
-            "audience": "a dispatcher handling an angry resident who thinks the city forgot his street",
-            "stakes": "plow drivers are being diverted by repeated calls while emergency routes are still blocked",
-            "format": "before_after",
-            "requiredBeat": "instead of insisting on the route map, the dispatcher names the caller's fear that his street is invisible and then asks what he is seeing at the intersection"
-          },
           "scenario": "It took Heather three calls to hear the fear under the shouting. The salt-streaked route monitor showed the street in priority code yellow, and her first two answers quoted the map. On the third call, beside a half-empty thermos lid, she said it sounded like his street felt invisible and asked what he saw at the intersection. He named the fallen branch blocking the plow. The visible shift is that the next fact comes from the other side instead of another prepared defense.",
           "whatToDo": "Name the invisibility fear, then ask for what the caller can see from the curb. Use his view to update the route problem instead of defending the screen.",
           "whyItMatters": "The caller is protecting proof that he exists in the system. Once Heather gives him that control, he can provide the field fact the map lacks."
@@ -141,13 +106,6 @@
             "pharmacy",
             "rare-med"
           ],
-          "planSpec": {
-            "domain": "specialty pharmacy prior-authorization call for a rare medication",
-            "audience": "a pharmacist trying to learn why the payer keeps rejecting the same drug",
-            "stakes": "a temperature-controlled shipment will expire if the denial reason stays hidden",
-            "format": "postmortem",
-            "requiredBeat": "the pharmacist reviews the call where pressure produced three scripted denials, then shows how naming the reviewer's audit concern uncovered the missing diagnostic code"
-          },
           "scenario": "A gel-pack shipping box sweats on the pharmacy intake counter while Tomasz replays yesterday’s prior-authorization call. The cold-chain label expires tonight. His pressure produced three scripted denials and no diagnostic code. In the postmortem, he marks the moment he named the reviewer’s audit concern and the missing code finally surfaced in the appeal queue. The safer sentence turns a demand into a clue before anyone has to surrender position.",
           "whatToDo": "Carry that lesson into the next call. Name the audit risk before arguing the medication, then ask which code would let the reviewer document approval cleanly.",
           "whyItMatters": "The reviewer was not hiding a medical opinion. She was guarding an audit trail. Naming that constraint changed the call from pressure to discovery."
@@ -166,8 +124,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful move is to uncover the protected risk behind the phrase. A cleaner summary stays inside the visible dispute, and outside pressure may make the administrator less honest.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -179,8 +136,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The repeated attention to insurance is a clue about the hidden constraint. Price or a rival venue might matter, but neither follows from the specific signal in front of the manager.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -192,8 +148,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The label names the fear that the process is already fixed, which can make correction safer. The schedule defense and why question both push the parent back into resistance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -205,8 +160,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A no-safe question lets the supplier reject a risky plan while explaining the constraint. The other options either add pressure or seek a formal answer without learning why.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -218,8 +172,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The denial phrase may be hiding a missing document or safety concern. More calls or a standards fight can still miss the constraint the reviewer needs named.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -231,8 +184,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The dispatcher needs field information and reduced defensiveness. Proving the map or ending the call may feel efficient, but both can leave the real obstruction hidden.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -244,8 +196,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The safety question searches for the hidden constraint, such as contamination timing. Neutrality alone does not guarantee acceptance, and delay is not the mechanism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -257,8 +208,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The repeated load-in reference points to the real blocker. A discount or calmer comparison keeps attention on the fee and may leave the freight clause untouched.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -270,8 +220,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The audit concern is the protected risk. Firm challenge might harden the script, and lack of authority is possible but not the lesson shown by the code finally surfacing.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -332,19 +281,13 @@
       },
       "memorableLines": [
         {
-          "text": "The demand is a cover story until proven otherwise.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a short test for every pressure conversation."
+          "text": "The demand is a cover story until proven otherwise."
         },
         {
-          "text": "She needed his eyes, not his surrender.",
-          "location": "breakdown.fullRead",
-          "why": "The line turns tactical empathy into a concrete information advantage."
+          "text": "She needed his eyes, not his surrender."
         },
         {
-          "text": "The demand is where the conversation begins, not where the negotiation lives.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the opening rule in a sentence that can guide the next exchange."
+          "text": "The demand is where the conversation begins, not where the negotiation lives."
         }
       ]
     },
@@ -371,13 +314,6 @@
             "airport",
             "custody"
           ],
-          "planSpec": {
-            "domain": "airport gate rebooking after a mechanical delay",
-            "audience": "a gate supervisor facing a passenger who says the airline ruined a custody handoff",
-            "stakes": "the passenger may miss the legally scheduled exchange unless the real constraint surfaces",
-            "format": "dialogue",
-            "requiredBeat": "the supervisor mirrors 'custody handoff' in a low voice and stays quiet until the passenger explains the court-ordered time window"
-          },
           "scenario": "\"You ruined a custody handoff,\" the passenger says before Rebecca, the gate lead, can scan the standby list. The boarding scanner blinks red beside delayed-flight meal vouchers at the gate podium. She is about to explain mechanical-delay policy, but before the next boarding group crowds in she has to choose between policy talk and a low echo of custody handoff. The pause is long enough for the hidden constraint to become more specific than the first complaint.",
           "whatToDo": "Repeat custody handoff softly and stop. Let the passenger fill the silence before you offer policy, vouchers, or a standby option.",
           "whyItMatters": "The phrase carries the real constraint. The mirror slows the argument long enough for the court-ordered time window to surface."
@@ -390,13 +326,6 @@
             "bakery",
             "supplier"
           ],
-          "planSpec": {
-            "domain": "industrial bakery ingredient shortage call",
-            "audience": "a procurement lead trying to learn whether a supplier's impossible delivery claim is firm",
-            "stakes": "a regional bread run may be canceled if the flour blend is truly unavailable",
-            "format": "predict_reveal",
-            "requiredBeat": "the lead mirrors 'absolutely no pallets' and lets the silence run until the supplier admits two partial pallets are held for another buyer"
-          },
           "scenario": "Graham, the procurement lead, sees a flour-dusted purchase order beside a scale ticket from the loading dock when the supplier says there are absolutely no pallets of blend 44. The dough schedule closes in the next delivery slot. Graham predicts the answer is firm, but he must decide whether to argue or mirror no pallets and wait through the silence. The exact echoed phrase gives the other person a path to clarify without being cross-examined.",
           "whatToDo": "Mirror the loaded phrase, not the whole refusal. Let the supplier sit with no pallets until the partial-pallet exception becomes easier to say.",
           "whyItMatters": "A direct challenge invites defense. The echo tests whether impossible is a fact or a position protecting another buyer."
@@ -409,13 +338,6 @@
             "shelter",
             "privacy"
           ],
-          "planSpec": {
-            "domain": "wildfire evacuation shelter intake",
-            "audience": "a shelter coordinator speaking with a resident refusing to register",
-            "stakes": "the family may leave without medication access because the privacy fear remains unnamed",
-            "format": "scene",
-            "requiredBeat": "the coordinator mirrors 'government list' and waits until the resident explains an immigration concern that changes the intake path"
-          },
           "scenario": "Which words matter when the gym is full of cots and smoke? Aanya clips an intake badge to a clipboard under fluorescent lights while a father holds a medication bag behind the privacy screen. He says he will not put his family on a government list. She is about to explain shelter rules, then catches herself and weighs a quieter echo of government list. That small silence keeps the scene from turning into a policy lecture nobody wants to hear.",
           "whatToDo": "Say government list with calm curiosity, then let the father explain. Keep the badge and form still until the privacy concern is clear.",
           "whyItMatters": "The refusal is not about paperwork alone. The mirrored phrase gives the resident control over the next detail, which reveals the immigration concern."
@@ -428,13 +350,6 @@
             "museum",
             "freight"
           ],
-          "planSpec": {
-            "domain": "museum artifact loan negotiation",
-            "audience": "a registrar trying to understand why a partner museum says the loan is impossible",
-            "stakes": "a centerpiece exhibit may open with an empty case if the true condition is not discovered",
-            "format": "vignette",
-            "requiredBeat": "the registrar mirrors 'not stable enough' and says nothing until the counterpart explains the vibration limit in the freight contract"
-          },
           "scenario": "The conservation lamp warms the edge of a foam-lined crate diagram while Ingrid reads a clean condition report. The partner museum says the artifact is not stable enough for loan. An empty case waits on the exhibit floor. Before she debates insurance, Ingrid has to pick between another fact sheet and letting not stable enough hang in the air. The visible change is that the next sentence comes from the other side, not from a defensive explanation.",
           "whatToDo": "Repeat not stable enough and stay quiet. Give the counterpart space to point to the vibration limit instead of forcing a defense of the refusal.",
           "whyItMatters": "The mirror turns a vague no into a testable condition. Once the freight limit appears, the negotiation can move from prestige to transport."
@@ -447,13 +362,6 @@
             "rail",
             "safety"
           ],
-          "planSpec": {
-            "domain": "regional rail maintenance dispatch during signal failure",
-            "audience": "a dispatcher trying to locate the real cause of a crew's refusal to clear a track",
-            "stakes": "commuter service will cascade into cancellations if the hidden safety concern stays vague",
-            "format": "decision_point",
-            "requiredBeat": "the dispatcher mirrors 'not putting anyone on that section' and waits through the radio hiss until the crew names the wet junction box"
-          },
           "scenario": "It took Patrick four minutes to stop treating the crew’s refusal as delay. At 5:18 p.m., the green track diagram freezes on the dispatch wall and radio channel three crackles. The foreman says they are not putting anyone on that section. Patrick has to decide whether to order clearance or mirror the phrase and wait for the wet junction box. The pause is long enough for the hidden constraint to become more specific than the first complaint.",
           "whatToDo": "Mirror not putting anyone on that section and hold the channel open. Do not fill the hiss with an order until the safety concern names itself.",
           "whyItMatters": "The crew’s position may be protecting a specific hazard. Silence after the mirror lets the junction box appear before pressure creates a worse decision."
@@ -466,13 +374,6 @@
             "permit",
             "festival"
           ],
-          "planSpec": {
-            "domain": "special-events permit review for a street festival",
-            "audience": "a nonprofit organizer hearing that the permit is not acceptable",
-            "stakes": "the festival loses its food vendors unless the city reviewer reveals the exact blockage",
-            "format": "before_after",
-            "requiredBeat": "after a failed defense of the application, the organizer mirrors 'not acceptable as submitted' and the reviewer finally points to the fire-lane diagram"
-          },
           "scenario": "Camille stands at the permit counter with a rolled street-closure map held flat by two stamps. She has already defended the vendor row and lost. The reviewer repeats not acceptable as submitted. Before the lunch rush behind her grows impatient, Camille has to decide whether to explain again or mirror those words. After one quiet beat, his finger moves to the fire-lane diagram beside the food trucks. The exact echoed phrase gives the other person a path to clarify without being cross-examined.",
           "whatToDo": "Echo not acceptable as submitted and let the reviewer point. Treat the mirror as a way to locate the exact blockage, not as a plea.",
           "whyItMatters": "Her defense kept the reviewer at the level of rejection. The mirror made the vague refusal narrower, which exposed the fire-lane problem."
@@ -491,8 +392,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Nobody is touching it carries the heat and the refusal. Mirroring the sheet or rack may be useful later, but the loaded phrase is more likely to draw out the hidden safety concern.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -504,8 +404,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The mirror tests whether zero is literal or protective language. Cost pressure and blame both invite defense before the buyer learns whether partial stock exists.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -517,8 +416,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The mirror points to the charged phrase without accepting the tenant’s judgment. Agreement and stalling are different moves and do not explain why the tenant names the risk.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -530,8 +428,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Your name catches the personal risk in the sentence and keeps the mirror short. The long paraphrase adds an interpretation, while that slot may miss the accountability pressure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -543,8 +440,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A mirror works best as a selected phrase, not a robotic replay. Control is useful here, and mirroring does not block later questions once the exact issue appears.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -556,8 +452,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The mirror plus silence lets the crew name the hazard without being cornered. Demands and impact arguments can harden the position before the junction issue emerges.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -569,8 +464,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Government list holds the privacy fear. Shortness helps only when the selected words carry meaning; avoiding the children is not the reason the mirror works.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -582,8 +476,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The mirror tests the vague stability claim and can reveal the freight vibration limit. Credit and insurance may be irrelevant if the hidden issue is the truck route.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -595,8 +488,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The silence after the echo is the discovery space. Explaining too soon rescues the other side from filling it, though later questions can still be used.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -657,19 +549,13 @@
       },
       "memorableLines": [
         {
-          "text": "The mirror works because it asks for more without sounding like an interrogation.",
-          "location": "breakdown.deepRead",
-          "why": "It states the mechanism in plain language."
+          "text": "The mirror works because it asks for more without sounding like an interrogation."
         },
         {
-          "text": "The first version demands an answer. The second version leaves a doorway.",
-          "location": "breakdown.fullRead",
-          "why": "It contrasts a direct question with a mirror in a memorable way."
+          "text": "The first version demands an answer. The second version leaves a doorway."
         },
         {
-          "text": "The answer you need often arrives in the space you were about to fill.",
-          "location": "breakdown.fullRead",
-          "why": "It gives silence a concrete payoff."
+          "text": "The answer you need often arrives in the space you were about to fill."
         }
       ]
     },
@@ -696,13 +582,6 @@
             "customs",
             "medical"
           ],
-          "planSpec": {
-            "domain": "freight customs inspection for detained medical devices",
-            "audience": "a logistics coordinator speaking with an inspector who keeps saying paperwork is incomplete",
-            "stakes": "surgical trays may miss a hospital sterilization window if the inspection fear stays unnamed",
-            "format": "scene",
-            "requiredBeat": "the coordinator says it seems like the risk is releasing devices without traceable serial numbers, then stops arguing until the inspector points to the missing manifest column"
-          },
           "scenario": "The orange customs tape wrinkles across a shrink-wrapped pallet while Laura stands beside a customs seal and the serial-number manifest. The hospital sterilization window closes after lunch. The inspector says paperwork is incomplete again. Laura is about to resend the upload receipt, then has to choose whether to label the traceability risk and stop arguing. The label turns the inspection fight toward the risk the official is actually guarding.",
           "whatToDo": "Say it seems like the risk is releasing devices without traceable serial numbers. Then pause until the inspector points to the exact missing column.",
           "whyItMatters": "The label names the inspection fear without blaming the inspector. Once the risk is clear, the missing manifest detail can surface."
@@ -715,13 +594,6 @@
             "film",
             "neighbors"
           ],
-          "planSpec": {
-            "domain": "independent film location dispute with a neighborhood association",
-            "audience": "a location manager facing residents who oppose a night shoot",
-            "stakes": "the permit may be revoked if residents believe the crew will ignore sleep and parking concerns",
-            "format": "dialogue",
-            "requiredBeat": "the manager labels that it sounds like residents expect the crew to vanish after leaving the mess behind, causing the association chair to name the prior production's broken promise"
-          },
           "scenario": "\"You people leave and we live with the mess,\" the chair says while a yellow no-parking sleeve hangs half-taped to the sign at dusk. Ben has the generator curfew and cleanup deposit in his folder. Before the permit hearing ends, he must pick between defending the crew or saying it sounds like residents expect another broken promise. The phrase gives residents a chance to correct the assumption without losing face in public.",
           "whatToDo": "Label the expectation of being abandoned after the shoot. Keep the curfew notes closed until the chair names the prior crew’s broken promise.",
           "whyItMatters": "The residents are fighting a memory, not only tonight’s parking plan. The label lets that memory enter the room without Ben accepting blame for it."
@@ -734,13 +606,6 @@
             "clinic",
             "parent"
           ],
-          "planSpec": {
-            "domain": "pediatric vaccine clinic line management",
-            "audience": "a clinic lead dealing with a parent who is loudly refusing the consent desk",
-            "stakes": "the line is freezing and staff may call security before the actual worry is heard",
-            "format": "decision_point",
-            "requiredBeat": "the clinic lead chooses not to correct the parent and instead labels that it seems like the form feels like signing away choice, making the parent point to the allergy field"
-          },
           "scenario": "You are behind the registration table as the plastic consent tray slides toward the edge and the line stiffens in winter coats. Marianne sees a parent jab a finger at the privacy curtain while a numbered wristband twists on a child’s sleeve. She is about to correct the consent rule, but before staff call security she must decide how to label the loss of choice. The visible beat is that staff stop explaining long enough for the parent to name the control fear.",
           "whatToDo": "Say it seems like the form feels like signing away choice. Leave the paper still and let the parent show which field carries the fear.",
           "whyItMatters": "The label lowers the need to fight the whole clinic process. It narrows the heat to the allergy field, where a real fix is possible."
@@ -753,13 +618,6 @@
             "outage",
             "client"
           ],
-          "planSpec": {
-            "domain": "data-center outage bridge with a furious enterprise client",
-            "audience": "an incident commander trying to keep the call useful while engineers diagnose",
-            "stakes": "the client may force a public escalation if the outage feels minimized",
-            "format": "postmortem",
-            "requiredBeat": "the commander reviews how labeling 'it sounds like your board thinks we are hiding the blast radius' changed the client's tone and produced the one service dependency not in the ticket"
-          },
           "scenario": "It took Simon until the postmortem to see the missed opening. The red incident timer had climbed above the muted bridge while engineers stared at a dependency map and the client demanded a board update. Status-page facts failed. The call changed only when he labeled that it sounded like the board thought the blast radius was being hidden. The incident call changes when the label names the board pressure rather than another status fact.",
           "whatToDo": "Carry the label forward. Name the fear of a hidden blast radius early, then ask which dependency the board cannot yet see.",
           "whyItMatters": "The client’s anger guarded an information gap. The label kept distance from the anger while revealing the missing service dependency."
@@ -772,13 +630,6 @@
             "restaurant",
             "inspection"
           ],
-          "planSpec": {
-            "domain": "restaurant health inspection corrective meeting",
-            "audience": "a chef-owner hearing a violation list from an inspector",
-            "stakes": "a defensive outburst may turn a fixable recheck into a shutdown threat",
-            "format": "before_after",
-            "requiredBeat": "after resisting the report, the chef labels that it seems like the inspector is worried the cooling log is performative, and the inspector explains the exact timestamp gap"
-          },
           "scenario": "A metal prep table holds a printed cooling log under a sanitizer bottle when Grace hears the violation list. First she argues about the walk-in shelf and the recheck date. The inspector’s face closes. Then Grace labels that it seems like the cooling log looks performative. He points to the timestamp gap between the soup batch and the recorded chill. The inspector responds to the exact timestamp worry, not to a vague apology for being behind.",
           "whatToDo": "Stop defending the kitchen. Label the worry that the log is only for show, then let the inspector identify the timestamp gap.",
           "whyItMatters": "The inspector needs confidence in the record, not a tour of the shelf. The label turns a shutdown threat into a fixable documentation problem."
@@ -791,13 +642,6 @@
             "broadband",
             "land"
           ],
-          "planSpec": {
-            "domain": "rural broadband easement conversation with a landowner",
-            "audience": "a fiber-project negotiator facing a landowner who refuses survey access",
-            "stakes": "an entire road's installation may be rerouted at high cost if the landowner's fear stays hidden",
-            "format": "reflection",
-            "requiredBeat": "the negotiator labels that it sounds like temporary access feels like permanent loss of control, leading the landowner to describe an old pipeline dispute"
-          },
           "scenario": "What does a survey stake mean when it lies beside a cattle gate with pink flagging still attached? Petra studies the easement map and the gate lock after a landowner refuses survey access. In reflection, she sees that a legal explanation would have missed the fear. Her label about temporary access feeling permanent brought out the old pipeline dispute. The fear becomes negotiable only after the label names what the gate and old dispute represent.",
           "whatToDo": "Label the loss-of-control fear before discussing the easement map. Let the landowner tell the old access story in his own terms.",
           "whyItMatters": "The refusal protects control of the gate. Once that pressure is named, the negotiation can address trust and access instead of threatening legal rights."
@@ -816,8 +660,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The traceability label names the inspection pressure without attacking the inspector. Calling him unreasonable creates defense, and vague frustration does not identify the risk.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -829,8 +672,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A label recognizes the perspective; it does not accept guilt for a different crew. Naming the fear and inviting correction both preserve strategic distance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -842,8 +684,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The label names the pressure without scolding or joining the claim. Calm down escalates control loss, and complete agreement gives away the boundary.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -855,8 +696,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The blast-radius label names the perceived concealment and invites the missing dependency. The other choices insult the board or accuse the client of impatience.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -868,8 +708,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful label is specific: the log may look performative. Flattery and blame shifting do not reveal the timestamp gap the chef needs to fix.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -881,8 +720,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The gate lock points to control, not generic dislike or confusion. This label gives the landowner a path to explain the old pipeline dispute.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -894,8 +732,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Over-identifying can pull the negotiator into the storm and shift focus to her story. The problem is not brevity or lack of emotion, but loss of useful distance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -907,8 +744,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A rejected label can still reveal the better path because the correction gives content. Abandoning the tool or accusing dishonesty misses that value.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -920,8 +756,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The engineer’s pressure is file corruption, not merely anger. Either label opener can work, and room for correction is a strength when the label is aimed well.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -982,19 +817,13 @@
       },
       "memorableLines": [
         {
-          "text": "A label is tactical empathy with distance.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the core distinction into six words."
+          "text": "A label is tactical empathy with distance."
         },
         {
-          "text": "This sentence works because it separates recognition from surrender.",
-          "location": "breakdown.deepRead",
-          "why": "It guards against the main misunderstanding without repeating the paragraph opener."
+          "text": "This sentence works because it separates recognition from surrender."
         },
         {
-          "text": "The fact you need is often waiting behind the feeling nobody has named yet.",
-          "location": "breakdown.fullRead",
-          "why": "It connects emotional recognition to practical discovery."
+          "text": "The fact you need is often waiting behind the feeling nobody has named yet."
         }
       ]
     },
@@ -1021,13 +850,6 @@
             "legal",
             "risk"
           ],
-          "planSpec": {
-            "domain": "public defender plea discussion with a skeptical client",
-            "audience": "a defender who needs truthful risk tolerance rather than a pressured agreement",
-            "stakes": "the client may accept a plea he does not understand and later withdraw trust",
-            "format": "dialogue",
-            "requiredBeat": "the defender asks 'Would it be a bad idea to slow down before you decide?' and the client finally says no, then explains the sentence length he fears"
-          },
           "scenario": "Rachel stands beside a plea form and the scratched interview-room phone while the court clock ticks above her client. \"So I just say yes?\" he asks, staring at the sentence range. Rachel is about to explain again, but before the deputy knocks she has to choose a safer question: would it be a bad idea to slow down before you decide? The sentence range is circled in blue ink, and the hallway speaker has already called the next case.",
           "whatToDo": "Ask the no-oriented question and let the client reject the rush. Do not treat his earlier yes as real until he can name the sentence fear.",
           "whyItMatters": "The client needs control before he can be honest. A protected no opens the risk tolerance question that a pressured yes concealed."
@@ -1040,13 +862,6 @@
             "storefront",
             "review"
           ],
-          "planSpec": {
-            "domain": "architectural review for a historic storefront sign",
-            "audience": "a shop owner facing a preservation board that keeps giving polite yeses and later objections",
-            "stakes": "manufacturing the sign before real approval could waste the store's opening budget",
-            "format": "decision_point",
-            "requiredBeat": "the owner stops asking if the design is acceptable and asks whether approving the brushed steel letters would be impossible, prompting the board chair to name the reflective finish issue"
-          },
           "scenario": "Luca studies a brushed steel letter sample in kraft paper on the hearing table beside the historic district guideline. The board has said looks fine twice and objected later, while his opening date is printed on the quote. Before he orders fabrication, Luca must decide whether to ask if approval would be impossible. The finish sample catches the fluorescent light each time the chair turns it in her hand.",
           "whatToDo": "Stop asking for acceptability. Ask whether the brushed steel finish would be impossible to approve, then listen for the condition that triggers no.",
           "whyItMatters": "The board’s polite yes is too vague to spend money on. A safe no reveals the reflective finish issue before the budget is committed."
@@ -1059,13 +874,6 @@
             "donor",
             "budget"
           ],
-          "planSpec": {
-            "domain": "nonprofit donor renewal after a failed campaign",
-            "audience": "a development director trying to learn whether a major donor is truly out",
-            "stakes": "the budget assumes a renewal that may be only a politeness yes",
-            "format": "postmortem",
-            "requiredBeat": "the director compares the old 'Can we count on you?' call with the no-oriented 'Would it be wrong to assume this year is off the table?' call that produces an honest condition"
-          },
           "scenario": "It took Fiona one failed forecast to mistrust the polite yes. Under a desk lamp, the blank pledge card sits on the campaign report. Her old call asked if they could count on the donor and got warmth, not money. In the postmortem she marks the new line, would it be wrong to assume this year is off the table, because it produced the restricted gift condition. The campaign report shows the failed appeal in the margin where last year’s pledge used to sit.",
           "whatToDo": "Ask the donor whether it is wrong to assume renewal is off the table. Let no protect the relationship while the real funding condition appears.",
           "whyItMatters": "The old yes preserved politeness. The no-oriented question gave the donor a face-saving route to explain the restricted gift."
@@ -1078,13 +886,6 @@
             "shipyard",
             "budget"
           ],
-          "planSpec": {
-            "domain": "shipyard repair estimate for an owner worried about overruns",
-            "audience": "a yard manager who needs the owner to reveal the real budget ceiling",
-            "stakes": "work may begin under false approval and stall when hidden cash limits appear",
-            "format": "scene",
-            "requiredBeat": "the manager asks whether starting with the full refit would be reckless, giving the owner a safe no that opens a conversation about phased repairs"
-          },
           "scenario": "\"Full refit by the haul-out date,\" the owner says, but his hand stays on the refit estimate. Anders, the yard manager, stands near the lift bay beside a barnacle-scraped propeller on a wooden cradle and a phased repair list. Before the crew books parts, he is about to decide between accepting the nod and asking whether starting the full refit would be reckless. The lift bay smells like diesel, and the parts clerk is waiting for a real authorization number.",
           "whatToDo": "Ask whether the full refit would be reckless under the current ceiling. Let the owner say no to the unsafe start and move into phases.",
           "whyItMatters": "The nod hides a cash limit. A protected no lets the owner reveal the budget ceiling before the yard begins work that will stall."
@@ -1097,13 +898,6 @@
             "bank",
             "security"
           ],
-          "planSpec": {
-            "domain": "software security exception request at a bank",
-            "audience": "a product lead who keeps hearing yes from risk reviewers and then getting blocked",
-            "stakes": "a release date will slip unless reviewers can safely say what they cannot accept",
-            "format": "before_after",
-            "requiredBeat": "the lead replaces 'Are we approved?' with 'Would it be unsafe to ship this exception?' and the reviewer finally says no to the current logging gap"
-          },
           "scenario": "The risk waiver tab glows beside a failed audit screenshot, and Claire, the product lead, can almost feel the release freeze approaching. For two meetings, are we approved produced nods and later blocks. The room changed when she asked whether it would be unsafe to ship the exception with the current logging gap. The reviewer finally said no and named the missing alert trail. The failed audit screenshot shows the missing log line in a red box beside the waiver tab.",
           "whatToDo": "Ask the safety version, not the approval version. Invite no around the logging gap so the reviewer can identify the unacceptable condition.",
           "whyItMatters": "Approval language rewards politeness. Safety language protects refusal and turns a vague block into a specific logging fix."
@@ -1116,13 +910,6 @@
             "market",
             "stall"
           ],
-          "planSpec": {
-            "domain": "farmers market stall placement dispute",
-            "audience": "a market manager mediating between two vendors who keep agreeing in public and complaining later",
-            "stakes": "the Saturday map may collapse if the hidden refusal stays private",
-            "format": "vignette",
-            "requiredBeat": "the manager asks each vendor whether the proposed aisle swap would be unacceptable, and one finally names the cold-storage distance as the true issue"
-          },
           "scenario": "You are beside a laminated stall map pinned under a crate of peaches before sunrise. Neil has two vendor badges in his palm and both sellers have smiled through the aisle swap. Before the map is taped to the gate, he must pick a question that permits refusal: would this swap be unacceptable for either of you because of the cold-storage trailer? The cold-storage trailer hums at the far end of the aisle, too far for dairy samples in July.",
           "whatToDo": "Ask whether the aisle swap is unacceptable before posting the map. Keep the question narrow enough that the cold-storage distance can be named.",
           "whyItMatters": "Public agreement was hiding private refusal. A no-safe question brings the dairy vendor’s real constraint out before the Saturday layout fails."
@@ -1141,8 +928,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The slow-down phrasing lets the client decline the rush without losing face. The other two push him toward agreement and may mask fear about the sentencing range.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1154,8 +940,7 @@
             ],
             "correctIndex": 1,
             "explanation": "She needs the board to safely name what cannot pass before the metal is cut. Warmth and speed do not protect her from paying for an unapproved finish.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1167,8 +952,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The no-oriented opener lets the donor preserve the relationship while naming the real condition. The other two keep chasing a yes that has already proven hollow.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1180,8 +964,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Framing the question around safety invites a clear refusal about the logging gap. Approval language repeats the polite-yes trap, and comfort wording lets him dodge the blocker.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1193,8 +976,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The phrasing legitimizes refusal, which can surface the cold-storage issue early. It does not force acceptance and should reduce the pressure to perform cooperation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -1206,8 +988,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The nod can be a false yes covering a hard budget ceiling. Raising the price is not the issue, and phased repairs are exactly what can emerge after a protected refusal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1219,8 +1000,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The method works only when refusal protects control and honesty. A smirking performance recreates pressure; switching to yes or limiting the tool to law misses the mechanism.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1232,8 +1012,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The rewrite lets the inspector safely reject the unsafe exit path. Preference and provisional approval can both preserve a vague yes that hides the blocker.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1245,8 +1024,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The valuable part is the information that follows a protected refusal. Punishment and labeling the supplier inflexible waste the honesty the question created.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1307,19 +1085,13 @@
       },
       "memorableLines": [
         {
-          "text": "The agreement sounds useful and behaves like fog.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the false-yes problem a clear image."
+          "text": "The agreement sounds useful and behaves like fog."
         },
         {
-          "text": "The agreement sounds useful and behaves like fog.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the false-yes problem a concrete image with enough weight to remember."
+          "text": "The agreement sounds useful and behaves like fog."
         },
         {
-          "text": "The safest refusal often carries the first honest detail.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the mechanism of no-oriented questions clearly."
+          "text": "The safest refusal often carries the first honest detail."
         }
       ]
     },
@@ -1346,13 +1118,6 @@
             "coffee",
             "import"
           ],
-          "planSpec": {
-            "domain": "specialty coffee roaster negotiating green-bean delivery terms",
-            "audience": "a roaster trying to move an importer after weeks of argument about late shipments",
-            "stakes": "a seasonal roast launch may fail if the importer sees only blame",
-            "format": "scene",
-            "requiredBeat": "the roaster summarizes the importer's cash-flow, port-delay, and reputation pressures until the importer says that's right and offers a split-container schedule"
-          },
           "scenario": "The burlap sample bag smells grassy beside Celia’s roast-profile printout while the port delay sits in red on the container schedule. She is about to accuse the importer of risking the seasonal launch again. Before she sends the email, she has to decide whether to summarize his cash-flow squeeze, port delay, and reputation pressure until he can say that’s right. The visible beat is that the next proposal waits until the importer recognizes the whole pressure map.",
           "whatToDo": "Summarize the importer’s three pressures before asking for a date. Wait for recognition, then discuss the split-container schedule.",
           "whyItMatters": "The importer hears blame in every demand until his constraints are accurately described. Recognition makes a workable schedule safer to offer."
@@ -1365,13 +1130,6 @@
             "soccer",
             "allocation"
           ],
-          "planSpec": {
-            "domain": "youth soccer league field allocation after rain closures",
-            "audience": "a league director facing coaches who accuse her of favoritism",
-            "stakes": "the season schedule may break if coaches reject the revised field grid",
-            "format": "dialogue",
-            "requiredBeat": "the director summarizes each coach's lost practice nights, parent pressure, and tournament deadline before asking for options, waiting for the first that's right before proposing the grid"
-          },
           "scenario": "\"You gave the north field everything,\" a coach says while the soaked closure sign leans against the chain-link fence. Ryan has the field grid folded under his arm and the tournament deadline in his phone. Practice lights buzz overhead. He is about to defend the schedule, but before he opens it he must choose whether to summarize every coach’s lost nights and parent pressure first. The summary earns room for the schedule only because it includes every coach’s lost nights and parent pressure.",
           "whatToDo": "Summarize the lost practice nights, parent pressure, and deadline. Wait until a coach says that’s right before showing the field grid.",
           "whyItMatters": "The grid will look rigged until the coaches hear their own losses carried accurately. Recognition gives the proposal permission to be considered."
@@ -1384,13 +1142,6 @@
             "auction",
             "estate"
           ],
-          "planSpec": {
-            "domain": "estate auction reserve-price disagreement",
-            "audience": "an auctioneer working with heirs who reject a realistic reserve",
-            "stakes": "a valuable collection may fail to sell because grief is hidden under price demands",
-            "format": "reflection",
-            "requiredBeat": "the auctioneer summarizes that the reserve is carrying grief, family fairness, and fear of disrespect, and the heirs say that's right before discussing separate lots"
-          },
           "scenario": "It took Marta, the lead auctioneer, three visits to stop treating the reserve price as math. A porcelain appraisal tag tied with cotton string hangs from the cabinet handle, and the lot sheet has been crossed out twice. In reflection after the appraisal meeting, she sees the better summary: the price is carrying grief, family fairness, and fear of disrespect. The heirs say that’s right before separate lots become possible.",
           "whatToDo": "Summarize what the reserve is protecting before discussing market value. Let the heirs hear grief, fairness, and respect named together.",
           "whyItMatters": "The heirs are not only pricing furniture. Once the summary honors what the number is carrying, a practical lot structure stops feeling like disrespect."
@@ -1403,13 +1154,6 @@
             "newspaper",
             "delivery"
           ],
-          "planSpec": {
-            "domain": "regional newspaper subscription dispute with a printing partner",
-            "audience": "a publisher trying to renegotiate print deadlines after missed rural deliveries",
-            "stakes": "cancellations will spike if the partner sees the complaint as one-sided",
-            "format": "before_after",
-            "requiredBeat": "after a failed demand, the publisher summarizes the printer's labor shortage, press maintenance, and carrier handoff constraints until the printer says that's right and reveals a viable earlier handoff"
-          },
           "scenario": "A stack of unsold papers is banded in blue plastic at the depot door beside Peter’s cancellation report. First he demands earlier rural deliveries and gets a wall of excuses. Then he summarizes the labor shortage, press maintenance, and carrier handoff problem. The printer says that’s right and names an earlier handoff if the bundling order changes. The printer can offer a new handoff only after the summary names the maintenance and carrier constraints together.",
           "whatToDo": "Lead with the printer’s constraints, not your cancellation count. Earn recognition before asking for the earlier handoff.",
           "whyItMatters": "The partner cannot help while feeling blamed for the whole delivery failure. An accurate summary turns defense into problem solving."
@@ -1422,13 +1166,6 @@
             "aquarium",
             "permit"
           ],
-          "planSpec": {
-            "domain": "aquarium animal-transport permit with state regulators",
-            "audience": "a curator seeking approval for a transfer that regulators keep slowing",
-            "stakes": "a fragile animal may miss the safe transport window if trust does not form",
-            "format": "decision_point",
-            "requiredBeat": "the curator decides to summarize the regulator's disease-control, public scrutiny, and contingency fears before presenting the revised transport plan"
-          },
           "scenario": "What should Julia say before she presents the revised transport plan? A sealed crate checklist hangs above the quarantine tank, and the transport window narrows after Friday. Regulators keep slowing the permit. She is about to send the disease-control protocol, but must decide whether to first summarize their public scrutiny and contingency fears. The regulator’s fears become part of the plan instead of obstacles the curator tries to rush past.",
           "whatToDo": "Hold the plan back for one summary. Name disease control, public scrutiny, and contingency risk before asking whether the revision answers them.",
           "whyItMatters": "The regulator needs to know the risks were understood before the plan can be trusted. Accuracy creates room for permission to persuade."
@@ -1441,13 +1178,6 @@
             "hardware",
             "lease"
           ],
-          "planSpec": {
-            "domain": "independent hardware store negotiating a landlord repair contribution",
-            "audience": "a store owner who needs the landlord to share roof-repair costs",
-            "stakes": "inventory will be damaged during the rainy season if both sides stay positional",
-            "format": "postmortem",
-            "requiredBeat": "the store owner reviews how accurately summarizing the landlord's insurance deductible, tenant precedent, and vacancy fear produced that's right and opened a repair-credit option"
-          },
           "scenario": "You are looking at a rain-darkened ceiling tile propped beside inventory invoices and the lease clause while Thomas, the store owner, reviews the roof talks at his counter. He first blamed the landlord and got nothing. In the postmortem, he marks the turn: he summarized the insurance deductible, tenant-precedent worry, and vacancy fear. That’s right came before the repair-credit option appeared. The landlord moves only after deductible, precedent, and vacancy fear are all stated without accusation.",
           "whatToDo": "Describe the landlord’s deductible, precedent, and vacancy fear before asking for money. Then propose repair credit as a way to solve those pressures too.",
           "whyItMatters": "The landlord hears shared reality instead of blame. Once his constraints are accurately stated, contributing through a credit becomes less threatening."
@@ -1466,8 +1196,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second summary names the importer’s actual pressures without blame. The first is accusation, and the third guesses motive instead of showing accurate understanding.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1479,8 +1208,7 @@
             ],
             "correctIndex": 1,
             "explanation": "That’s right signals recognition and alignment, not automatic agreement. The field grid still has to be discussed after the summary lands.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1492,8 +1220,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Beauty is too thin; the reserve is carrying family pressure. Deadlines and market arguments can still feel like pressure if the emotional load is unnamed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1505,8 +1232,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The summary removes one-sided blame and lets the printer reveal a workable handoff. The report and threat keep the partner defending its position.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1518,8 +1244,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The regulator needs accurate recognition of the risks before trusting the plan. The summary is not proof of legal sufficiency or an emotional appeal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1531,8 +1256,7 @@
             ],
             "correctIndex": 0,
             "explanation": "You’re right can be a polite surrender phrase. That’s right matters when it comes from recognition of the speaker’s own situation, not because it binds anyone.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1544,8 +1268,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A partial summary that avoids the hard part feels tactical in the bad sense. Length is not the issue, and autonomy is exactly what the summary should preserve.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1557,8 +1280,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second summary names the partner’s concrete pressures. Credit and persistence may be distractions if the blocker is risk around damage.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1570,8 +1292,7 @@
             ],
             "correctIndex": 2,
             "explanation": "That’s right opens the door to persuasion but does not guarantee a concession. Demanding instant movement would turn recognition back into pressure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1632,19 +1353,13 @@
       },
       "memorableLines": [
         {
-          "text": "Those two words are not a trick.",
-          "location": "breakdown.fastRead",
-          "why": "It rejects the main misread immediately."
+          "text": "Those two words are not a trick."
         },
         {
-          "text": "A summary is not a recap of words.",
-          "location": "breakdown.deepRead",
-          "why": "It distinguishes summary from parroting."
+          "text": "A summary is not a recap of words."
         },
         {
-          "text": "The phrase is only valuable when it arrives as a verdict from the other side’s own experience.",
-          "location": "breakdown.fullRead",
-          "why": "It anchors the phrase in recognition, not technique."
+          "text": "The phrase is only valuable when it arrives as a verdict from the other side’s own experience."
         }
       ]
     },
@@ -1671,13 +1386,6 @@
             "blood-bank",
             "scheduling"
           ],
-          "planSpec": {
-            "domain": "regional blood bank scheduling mobile drives",
-            "audience": "a coordinator asking a corporate host to keep a low-turnout drive on the calendar",
-            "stakes": "canceled appointments mean a hospital trauma unit starts the weekend short",
-            "format": "scene",
-            "requiredBeat": "the coordinator reframes the request from adding inconvenience to preventing a specific platelet shortfall already scheduled for Friday"
-          },
           "scenario": "The cooler inventory screen shows two yellow platelet rows near zero while Emma checks the appointment sheet beside Friday’s trauma schedule. The corporate host wants to cancel the low-turnout mobile drive. Emma is about to make a charity appeal, but before the host closes the calendar she must choose whether to frame the drive as preventing the listed shortfall. The first frame she chooses decides whether the host sees a thin turnout or a preventable shortage on a named schedule.",
           "whatToDo": "Point to the platelet count and Friday trauma schedule. Make the choice about preventing a specific shortfall, not adding a small inconvenience.",
           "whyItMatters": "The host needs a concrete loss to judge against the hassle. The frame shifts perception from optional goodwill to a preventable hospital gap."
@@ -1690,13 +1398,6 @@
             "hotel",
             "conference"
           ],
-          "planSpec": {
-            "domain": "hotel group-block dispute before a medical conference",
-            "audience": "an event planner trying to keep a hotel from releasing reserved rooms",
-            "stakes": "doctors may scatter across the city and miss early clinical sessions",
-            "format": "decision_point",
-            "requiredBeat": "the planner uses the hotel's own service-standard language as the fairness reference point before discussing release dates"
-          },
           "scenario": "You have a rooming-list spreadsheet open beside the brass key-card encoder, and the release date is noon. Malcolm can hear doctors asking about early clinical sessions. Before the hotel releases the block, he must decide whether to plead for an exception or quote the service standard the hotel uses for medical groups as the fairness reference. The fairness reference is visible in the hotel’s own standard, which keeps the request from sounding like special pleading.",
           "whatToDo": "Use the hotel’s service standard first, then discuss the release date. Let fairness rest on its own promise, not on Malcolm’s urgency.",
           "whyItMatters": "The same room hold feels different when judged against the hotel’s stated standard. The frame makes the request inspectable instead of emotional."
@@ -1709,13 +1410,6 @@
             "ballots",
             "printer"
           ],
-          "planSpec": {
-            "domain": "print shop rush order for election ballots",
-            "audience": "a county clerk negotiating with a printer after a proofing error",
-            "stakes": "late ballots could force public notice and erode trust in the election process",
-            "format": "vignette",
-            "requiredBeat": "the clerk anchors on the public cost of a missed mailing date rather than the shop's overtime charge"
-          },
           "scenario": "The proof sheet smells like toner, and one precinct line is circled in red pencil. Georgia stands at the counter with the mailing date highlighted while the printer points to the overtime charge. Before she approves the rush invoice, she has to pick the first number in the room: the shop’s labor cost or the public cost of a missed mailing date. The anchor moves from a labor charge to a public deadline that everyone in the room can inspect.",
           "whatToDo": "Anchor on the mailing date and public notice cost before negotiating overtime. Keep partisan politics out of the frame.",
           "whyItMatters": "The printer’s charge is real, but it is not the only reference point. Public trust changes what the rush order is worth."
@@ -1728,13 +1422,6 @@
             "solar",
             "church"
           ],
-          "planSpec": {
-            "domain": "community solar subscription renegotiation",
-            "audience": "a project lead asking a church board to sign after the rebate changed",
-            "stakes": "the board may walk away if the new price feels like a bait and switch",
-            "format": "before_after",
-            "requiredBeat": "the lead stops defending the higher monthly number and reframes the loss as forfeiting locked winter credits already reserved in the church's name"
-          },
           "scenario": "It took Isabel half the meeting to stop defending the higher monthly number. The utility bill with the winter credit line highlighted sat beside the chapel floor plan while the board called the rebate change a bait and switch. Then she reframed the decision as losing credits already reserved in the church’s name and opening the subscription slot. The loss becomes concrete because the reserved credit and the open subscription slot are both already on the table.",
           "whatToDo": "Stop defending the new price alone. Show the winter credit and reserved slot so the board weighs the price against the loss of what is already held.",
           "whyItMatters": "The board is judging the number against the old rebate. The winter-credit frame adds the loss that is also part of the real choice."
@@ -1747,13 +1434,6 @@
             "rental",
             "storm"
           ],
-          "planSpec": {
-            "domain": "specialty tool rental dispute after storm damage",
-            "audience": "a rental manager negotiating with a contractor who resists the damage charge",
-            "stakes": "the contractor may walk from a long account if the charge feels arbitrary",
-            "format": "dialogue",
-            "requiredBeat": "the manager frames the charge against the signed replacement schedule and asks what would feel fair given the cracked torque housing in front of them"
-          },
           "scenario": "\"That fee came out of nowhere,\" the contractor says as the cracked torque housing rests on a black rubber service mat. Robert, the rental manager, has the storm clause, replacement schedule, and account history beside the register. Before the contractor walks, Robert has to decide whether to cite policy or ask what feels fair against the signed schedule and cracked part. The signed schedule and cracked housing turn fairness from mood into something the contractor can compare.",
           "whatToDo": "Put the cracked housing and replacement schedule in the same frame. Ask what would feel fair with both visible.",
           "whyItMatters": "The charge feels arbitrary until it is judged against a signed standard and visible damage. Fairness becomes a reference point, not a mood."
@@ -1766,13 +1446,6 @@
             "audio",
             "royalty"
           ],
-          "planSpec": {
-            "domain": "small publisher audiobook royalty renegotiation",
-            "audience": "an editor discussing royalty terms with a narrator after production delays",
-            "stakes": "the audiobook may miss a seasonal launch if both sides lock onto hourly rate",
-            "format": "postmortem",
-            "requiredBeat": "the editor reviews how shifting from hourly loss to launch-window upside changed the narrator's perception of a revised royalty split"
-          },
           "scenario": "Which number should matter first, the pickup-session hours or the launch window? Nora studies the waveform timeline paused on track eight while the narrator circles the hourly loss from delays. In the postmortem, she sees the turn: once she framed the revised royalty split around seasonal launch upside, the narrator stopped treating the offer as lost studio time. The launch window gives the royalty split a reference point beyond the hours already spent in the studio.",
           "whatToDo": "Move the reference point from hourly loss to launch-window upside, then discuss the royalty split and pickup session together.",
           "whyItMatters": "The narrator’s perception changes when the split is attached to recovered launch value. The frame makes the new terms feel connected to upside, not only sacrifice."
@@ -1791,8 +1464,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The platelet shortfall is a concrete loss already attached to the host's decision. Pride and reciprocity may pressure him without exposing the real stake.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1804,8 +1476,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hotel's own published standard is an inspectable fairness anchor. Stress and competitor reviews are weaker reference points for this dispute.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1817,8 +1488,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The clerk has replaced the first reference point, not denied overtime exists. The price can still be negotiated once the public cost is on the table.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1830,8 +1500,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reserved winter credits are the concrete loss embedded in the choice. Reputation pressure and repeating fairness claims will feel manipulative or abstract.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1843,8 +1512,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The visible damage plus the signed inspection sheet creates a shared reference point. Embarrassment would damage trust, and legal perfection is not established by the display.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -1856,8 +1524,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Anchoring on the launch window gives the narrator a different reference point for splitting royalties. It is not blame shifting nor a move away from royalties.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1869,8 +1536,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A frame has to be inspectable and connected to the deal. Invented loss creates pressure but makes perception-shaping careless and untrustworthy.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1882,8 +1548,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Leading with the mailing-date cost sets the reference point for value. Shame and busyness are pressure tactics, not concrete anchors.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1895,8 +1560,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A policy standard turns fairness from a vague plea into a shared reference. It does not guarantee concession or remove the need for trust.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1957,19 +1621,13 @@
       },
       "memorableLines": [
         {
-          "text": "The frame has to be concrete enough that the other side could inspect it.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps reality-bending tied to visible standards instead of pressure theater."
+          "text": "The frame has to be concrete enough that the other side could inspect it."
         },
         {
-          "text": "Anchoring is not only about throwing out a price.",
-          "location": "breakdown.fullRead",
-          "why": "It widens the idea beyond a pricing trick."
+          "text": "Anchoring is not only about throwing out a price."
         },
         {
-          "text": "A fair frame gives both sides something outside mood to touch.",
-          "location": "breakdown.fullRead",
-          "why": "It makes fairness concrete and memorable."
+          "text": "A fair frame gives both sides something outside mood to touch."
         }
       ]
     },
@@ -1996,13 +1654,6 @@
             "port",
             "schedule"
           ],
-          "planSpec": {
-            "domain": "port crane unloading schedule after a labor shortage",
-            "audience": "a terminal operations lead facing a shipping agent demanding an impossible unload time",
-            "stakes": "reefers may lose power if the schedule is promised without a workable crew plan",
-            "format": "dialogue",
-            "requiredBeat": "the lead asks how the agent wants to keep refrigerated containers powered if the crane slot stays fixed, making the agent propose a staggered discharge order"
-          },
           "scenario": "\"Keep the crane slot and make it work,\" the shipping agent says while a reefer power cord lies coiled beside the blinking container stack. Kelly, the terminal operations lead, has the discharge order and labor sheet open. Before reefers lose power, she has to choose between refusing the unload time and asking how he wants containers powered if the slot stays fixed. The reefer stack temperature display is dropping one digit at a time beside the crane schedule.",
           "whatToDo": "Ask how the agent wants reefers powered under the fixed crane slot. Let him design the staggered discharge order.",
           "whyItMatters": "The question keeps agency with the agent while making the power constraint impossible to ignore. He starts solving instead of demanding."
@@ -2015,13 +1666,6 @@
             "operating-room",
             "safety"
           ],
-          "planSpec": {
-            "domain": "hospital operating-room turnover conflict",
-            "audience": "a charge nurse dealing with a surgeon pressing for a room before sterilization is complete",
-            "stakes": "rushing turnover creates infection risk and staff blame",
-            "format": "decision_point",
-            "requiredBeat": "the nurse asks what part of the sterile count the surgeon wants documented as skipped, forcing the surgeon to solve for time another way"
-          },
           "scenario": "The wrapped instrument tray waits under a blue sterile indicator strip while the turnover board flashes a late case start time. Louise, the charge nurse, hears the surgeon press for the room before the sterile count is complete. She is about to say no, but before the door opens she must decide whether to ask what part of the count he wants documented as skipped. The case cart waits in the corridor, and the circulating nurse has not signed the count sheet.",
           "whatToDo": "Ask what part of the sterile count should be documented as skipped. Keep the question factual and let the surgeon solve for time another way.",
           "whyItMatters": "The question makes the consequence visible without a lecture. It preserves the surgeon’s agency while preventing an unsafe shortcut."
@@ -2034,13 +1678,6 @@
             "game",
             "QA"
           ],
-          "planSpec": {
-            "domain": "indie game publisher milestone dispute",
-            "audience": "a studio producer trying to keep a publisher from demanding a feature freeze before QA findings are known",
-            "stakes": "the release may ship with a save-corruption bug if the demand is accepted as stated",
-            "format": "scene",
-            "requiredBeat": "the producer asks how the publisher wants to handle refunds if the save bug survives the freeze, shifting the publisher into planning the QA exception"
-          },
           "scenario": "Max looks at the dashboard filtered to one red save-corruption ticket while the publisher asks for feature freeze before QA is done. Refund risk sits in the release notes. Before the launch meeting ends, Max has to decide whether to defend process or ask how refunds should be handled if the bug ships. The refund forecast is open beside the red ticket, with three markets highlighted in yellow.",
           "whatToDo": "Ask how refunds should be handled if the save bug survives the freeze. Use the answer to open the QA exception path.",
           "whyItMatters": "The publisher still owns the launch goal, but now must solve the consequence of speed. The question turns pressure into planning."
@@ -2053,13 +1690,6 @@
             "orchard",
             "dock"
           ],
-          "planSpec": {
-            "domain": "orchard packing-house contract with a grocery chain",
-            "audience": "a packing-house owner facing a buyer demanding tighter delivery windows",
-            "stakes": "fruit may bruise in staging if the chain refuses flexible dock times",
-            "format": "vignette",
-            "requiredBeat": "the owner asks what the buyer would like the packers to do with picked fruit when trucks are held outside the dock window"
-          },
           "scenario": "George, the packing lead, studies a waxed apple tray stamped with a harvest-lot number at the packing-house door while the buyer asks for tighter arrivals and a lower bruise allowance. Before the trucks are scheduled, George has to pick between arguing delivery terms and asking what packers should do with picked fruit held outside the window. The dock clerk has already written the harvest lot on a clipboard near the staging racks.",
           "whatToDo": "Ask what the buyer wants done with picked fruit when trucks wait outside the dock window. Keep the question on bruising, not price.",
           "whyItMatters": "The buyer’s demand creates a staging problem. The what question makes the buyer help solve the fruit damage consequence."
@@ -2072,13 +1702,6 @@
             "archive",
             "privacy"
           ],
-          "planSpec": {
-            "domain": "library digitization rights negotiation with a family archive",
-            "audience": "an archivist trying to move a family trustee from blanket refusal to workable safeguards",
-            "stakes": "fragile letters may stay inaccessible until they physically deteriorate",
-            "format": "reflection",
-            "requiredBeat": "the archivist asks what protections would make limited access acceptable, letting the trustee design a redaction and embargo path"
-          },
           "scenario": "It took Annika, the archivist, one brittle letter to change her question. A cotton-gloved hand lifted the page from an acid-free folder while the family trustee repeated no access. In reflection at the archive table, Annika sees that asking why hardened the refusal. Asking what protections would make limited access acceptable brought out a redaction rule and embargo date. The trustee keeps one hand on the folder tab while the redaction draft sits blank beside her.",
           "whatToDo": "Ask what protections would make limited access acceptable. Let the trustee build the redaction and embargo path before discussing digitization.",
           "whyItMatters": "The trustee needs agency over safeguards. A calibrated what question turns blanket refusal into design work."
@@ -2091,13 +1714,6 @@
             "commissary",
             "inspection"
           ],
-          "planSpec": {
-            "domain": "food-truck commissary lease conflict",
-            "audience": "a commissary owner dealing with a truck operator demanding more prep hours",
-            "stakes": "health-code compliance fails if the owner simply says yes to overlapping prep slots",
-            "format": "before_after",
-            "requiredBeat": "the owner replaces refusal with 'How would you like us to pass inspection with both trucks using the same wash sink at 6 a.m.?' and the operator suggests a split prep window"
-          },
           "scenario": "You are beside a three-basin wash sink tagged with a health-department sticker and an inspection log clipped above it. Frank first refuses the extra prep window and gets an argument. Then he asks how they pass inspection with both trucks using the same sink at 6 a.m. The operator suggests a split prep window before the next truck arrives. The inspection log has yesterday’s initials on it, and the second truck is already backing toward the door.",
           "whatToDo": "Replace refusal with the inspection question. Let the operator propose a prep window that protects the wash sink and the log.",
           "whyItMatters": "The question keeps the operator involved while forcing the compliance constraint into the plan. The solution becomes shared."
@@ -2264,19 +1880,13 @@
       },
       "memorableLines": [
         {
-          "text": "The question transfers problem-solving responsibility without humiliation.",
-          "location": "breakdown.deepRead",
-          "why": "It states the chapter’s practical mechanism."
+          "text": "The question transfers problem-solving responsibility without humiliation."
         },
         {
-          "text": "That wording works because it asks for design, not defense.",
-          "location": "breakdown.fullRead",
-          "why": "It cleanly separates calibrated questions from blame."
+          "text": "That wording works because it asks for design, not defense."
         },
         {
-          "text": "The strong version keeps agency intact while making reality impossible to ignore.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the balance of control and steering."
+          "text": "The strong version keeps agency intact while making reality impossible to ignore."
         }
       ]
     },
@@ -2303,13 +1913,6 @@
             "clean-room",
             "shutdown"
           ],
-          "planSpec": {
-            "domain": "pharmaceutical clean-room maintenance shutdown",
-            "audience": "a maintenance planner confirming a contractor's promise before a sterile line goes offline",
-            "stakes": "a missed valve replacement could waste a batch worth six figures",
-            "format": "scene",
-            "requiredBeat": "the planner asks how the contractor will stage certified parts before the shutdown and watches the promise fail when the part lot number is missing"
-          },
           "scenario": "Erin, the maintenance lead, reviews a stainless valve tag hanging from a sealed parts bin outside the gowning room before the shutdown window. The contractor says the valve replacement is covered. Before the sterile line goes offline, she has to choose whether to trust the promise or ask how certified parts will be staged with the part lot number documented. The gowning-room log is clipped to the wall, and the blank lot field is the only thing not filled in.",
           "whatToDo": "Ask the contractor to walk the staging plan and produce the part lot number. Treat the promise as unready until the certified part can be named.",
           "whyItMatters": "The missing lot number would waste the batch later. Implementation detail reveals readiness before the shutdown begins."
@@ -2322,13 +1925,6 @@
             "alerts",
             "cutover"
           ],
-          "planSpec": {
-            "domain": "county emergency-alert vendor cutover",
-            "audience": "an IT director testing whether the vendor's cutover commitment can actually execute",
-            "stakes": "residents may miss storm alerts if the old and new systems do not overlap",
-            "format": "decision_point",
-            "requiredBeat": "the director asks who will send the live test to the Spanish-language list and when, revealing that the vendor has not imported the list"
-          },
           "scenario": "It took Matthew, the IT director, one console screenshot to doubt the cutover. The Spanish-language list count showed zero, though the runbook said overlap was ready. Before the old system is turned off, he must decide whether to accept the vendor’s yes or ask who will send the live test to that list and when. The runbook cursor blinks on the test step while the storm-season date sits in the header.",
           "whatToDo": "Ask for the named sender and time of the live test. Do not treat cutover as ready until the Spanish-language list exists in the runbook.",
           "whyItMatters": "The vendor’s commitment sounds complete until a specific owner and list are required. The missing import is the execution risk."
@@ -2341,13 +1937,6 @@
             "inspection",
             "certificate"
           ],
-          "planSpec": {
-            "domain": "commercial kitchen hood repair before a fire inspection",
-            "audience": "a property manager verifying a tenant's assurance that repairs are handled",
-            "stakes": "the restaurant may fail inspection and close for the weekend if the hood certificate is absent",
-            "format": "postmortem",
-            "requiredBeat": "the manager traces how a confident yes collapsed when she asked which technician would upload the certificate before noon"
-          },
           "scenario": "Olivia, the property manager, looks at a grease-filter panel leaning against tile below the inspection notice after the tenant says, \"We handled it.\" In the postmortem, she marks the moment the confident yes failed: she asked which technician would upload the hood certificate before noon. No technician name existed, and the weekend inspection was suddenly at risk. The inspection notice has Friday circled, and the repair shop voicemail is still unopened.",
           "whatToDo": "Ask for the technician name and upload time. Convert the assurance into a document path before inspection day.",
           "whyItMatters": "The repair is not executable until the certificate has an owner. The missing name exposes the gap without guessing motives."
@@ -2360,13 +1949,6 @@
             "courier",
             "temperature"
           ],
-          "planSpec": {
-            "domain": "regional blood courier route handoff",
-            "audience": "a dispatch supervisor checking a courier's claim that a new route is covered",
-            "stakes": "a blood unit may arrive outside temperature range if nobody owns the second handoff",
-            "format": "dialogue",
-            "requiredBeat": "the supervisor asks how the courier will keep the logger in range during the pharmacy stop, exposing that the backup cooler is still at another depot"
-          },
           "scenario": "The temperature logger blinks inside the red transport case while Callum, the dispatch lead, hears, \"The new route is covered.\" The pharmacy stop adds twelve minutes and a second handoff. Before the unit leaves the depot, Callum has to decide whether to accept covered or ask how the logger stays in range without the backup cooler. The route board shows the pharmacy stop in orange, with the second handoff still unnamed.",
           "whatToDo": "Ask how temperature stays in range during the pharmacy stop. Require the backup cooler location before releasing the route.",
           "whyItMatters": "Route coverage is not the same as temperature control. The how question exposes the missing cooler while there is still time to fix it."
@@ -2379,13 +1961,6 @@
             "festival",
             "electrical"
           ],
-          "planSpec": {
-            "domain": "festival electrical inspection for temporary stages",
-            "audience": "a production manager confirming a contractor's ready-to-open claim",
-            "stakes": "the gates cannot open if grounding certificates are missing",
-            "format": "before_after",
-            "requiredBeat": "the production manager contrasts the contractor's confident yes with the moment a how question reveals nobody scheduled the grounding test"
-          },
           "scenario": "Angela stands beside a coil of stage cable and a locked electrical panel at dawn while the contractor gives a confident yes. Before the gates open, she has to decide whether to accept ready or ask how the grounding certificate will be issued before gate opening. The answer changes: nobody scheduled the grounding test, and the panel stays locked. The gate-opening clock is taped to the production desk beside an unsigned certificate line.",
           "whatToDo": "Ask how the grounding certificate will be produced before opening. Keep the gate plan provisional until the test has an owner and time.",
           "whyItMatters": "Ready-to-open language is weak without the certificate path. The how question finds the missing inspection step early."
@@ -2398,13 +1973,6 @@
             "warehouse",
             "robotics"
           ],
-          "planSpec": {
-            "domain": "warehouse robotics installation at a fulfillment center",
-            "audience": "an operations lead testing the integrator's promise before go-live",
-            "stakes": "orders may jam for a full shift if manual exception lanes are not staffed",
-            "format": "predict_reveal",
-            "requiredBeat": "the lead asks the integrator to walk the first exception tote from scanner to human review, revealing that the review station has no badge access"
-          },
           "scenario": "Stefan, the operations lead, stands beside a yellow exception tote stopped under the scanner arch while the integrator predicts the exception lane will be ready for go-live. Stefan has the checklist in hand. Before the first live shift, he has to choose whether to accept the prediction or walk the tote to human review. The badge reader denies access at the station. The review station light stays red while the tote waits under the scanner arch.",
           "whatToDo": "Walk the first exception tote from scanner to review station. Verify badge access before go-live, not after orders start to jam.",
           "whyItMatters": "The promise sounded complete until it touched a locked reader. Execution testing turns confidence into observable readiness."
@@ -2571,19 +2139,13 @@
       },
       "memorableLines": [
         {
-          "text": "A commitment has owners, documents, sequence, and physical handoffs.",
-          "location": "breakdown.fastRead",
-          "why": "It turns execution readiness into a concrete checklist."
+          "text": "A commitment has owners, documents, sequence, and physical handoffs."
         },
         {
-          "text": "That question saved residents from a silent failure.",
-          "location": "breakdown.deepRead",
-          "why": "It makes execution checking feel consequential."
+          "text": "That question saved residents from a silent failure."
         },
         {
-          "text": "A promise earns trust when it can move through the world.",
-          "location": "breakdown.fullRead",
-          "why": "It gives commitment a physical test."
+          "text": "A promise earns trust when it can move through the world."
         }
       ]
     },
@@ -2610,13 +2172,6 @@
             "marine",
             "salvage"
           ],
-          "planSpec": {
-            "domain": "marine salvage contract after a disabled research vessel",
-            "audience": "a university procurement officer bargaining with a salvage firm under time pressure",
-            "stakes": "equipment losses grow each tide, but accepting the first midpoint would erase the lab's repair budget",
-            "format": "decision_point",
-            "requiredBeat": "the officer anchors with a specific mobilization number tied to tug hours and refuses the simple midpoint until the firm separates standby fees from lift fees"
-          },
           "scenario": "The wet salvage estimate curls on the chart table beside tide notes while Valerie calculates tug hours. The salvage firm offers a midpoint, and each tide threatens lab equipment. Before she accepts the middle, she must decide whether to anchor on the mobilization number and require standby fee and lift fee to be separated. The visible turn is that the next number comes from a ledger line, not from discomfort with conflict.",
           "whatToDo": "Anchor with the tug-hour mobilization number and refuse the midpoint until standby and lift fees are separated.",
           "whyItMatters": "The midpoint hides two different costs. Separating the fees protects the repair budget from being averaged away under tide pressure."
@@ -2629,13 +2184,6 @@
             "textile",
             "repair"
           ],
-          "planSpec": {
-            "domain": "boutique textile mill negotiating a loom repair invoice",
-            "audience": "a mill owner challenging a repair vendor's bundled charge",
-            "stakes": "paying the full invoice may consume cash needed for next month's wool purchase",
-            "format": "dialogue",
-            "requiredBeat": "the owner shows calibrated umbrage at the bundled total, then offers a non-round number based on parts actually logged"
-          },
           "scenario": "\"That total is not acceptable,\" Erik says while the broken heddle frame rests on a canvas drop cloth near the silent loom. The vendor points to a bundled invoice. Next month’s wool purchase is already tight. Erik has to choose between arguing the round total and making a non-round offer from the parts log. The counter names the component that can move and protects the term that cannot be averaged away.",
           "whatToDo": "Show clear umbrage at the bundle, then offer the non-round number tied to logged parts and recorded labor.",
           "whyItMatters": "The counter sounds firm because it comes from the log. Umbrage marks the bundle as unacceptable without turning the room into shouting."
@@ -2648,13 +2196,6 @@
             "ambulance",
             "surcharge"
           ],
-          "planSpec": {
-            "domain": "regional ambulance service fuel surcharge negotiation",
-            "audience": "a county contract officer bargaining with a private ambulance provider",
-            "stakes": "a vague surcharge could drain funds from rural coverage hours",
-            "format": "postmortem",
-            "requiredBeat": "the officer reviews how refusing the rounded surcharge and presenting a cents-per-mile counter forced the provider to reveal idle-time assumptions"
-          },
           "scenario": "It took Diana one budget scare to mistrust the rounded surcharge. A fuel receipt is taped to the route-mileage sheet beside a dispatch radio, and rural coverage hours sit in the margin. In the postmortem, she sees the turn: refusing the round increase and presenting a cents-per-mile counter forced the provider to reveal idle-time assumptions. The other side now has to answer the calculation instead of enjoying the comfort of a round midpoint.",
           "whatToDo": "Reject the rounded surcharge and counter in cents per mile. Ask which idle-time assumption is inside the provider’s total.",
           "whyItMatters": "The county cannot protect coverage hours while bargaining a vague lump. The precise counter exposes the cost driver."
@@ -2667,13 +2208,6 @@
             "rights",
             "publishing"
           ],
-          "planSpec": {
-            "domain": "translation-rights auction for a niche technical manual",
-            "audience": "a small publisher bargaining with an overseas rights agent",
-            "stakes": "a careless split could give away rights that matter more than the advance",
-            "format": "vignette",
-            "requiredBeat": "the publisher reacts to the agent's bundle as unacceptable, then separates territory, term length, and glossary ownership instead of meeting at the middle advance"
-          },
           "scenario": "Which part of a rights grid costs more than the advance? Henrik, the publishing director, studies the printed grid beside a marked-up glossary page while the agent bundles territory, term length, and glossary ownership. Before the auction clock moves, he has to pick between meeting at the middle advance and calling the bundle unacceptable term by term. The precise figure slows the ritual of splitting because it points to a cost someone can inspect.",
           "whatToDo": "React to the bundled terms as unacceptable, then bargain territory, term length, and glossary ownership separately.",
           "whyItMatters": "The middle advance would look fair while giving away glossary control. Separating terms prevents a quiet loss inside the bundle."
@@ -2686,13 +2220,6 @@
             "catering",
             "venue"
           ],
-          "planSpec": {
-            "domain": "catering equipment lease after a venue policy change",
-            "audience": "a caterer renegotiating refrigeration fees with an event venue",
-            "stakes": "absorbing the new fee would wipe out profit on three booked weddings",
-            "format": "before_after",
-            "requiredBeat": "the caterer moves from arguing fairness to a precise counter tied to actual compressor hours and refuses a round halfway concession"
-          },
           "scenario": "The compressor-hour meter glows inside the walk-in trailer while Natalie reviews three booked weddings. First she argues fairness against the venue’s new refrigeration fee and gets a round halfway offer. Then she calculates actual compressor hours, makes a precise counter, and refuses the midpoint that would erase profit on the booked dates. The visible turn is that the next number comes from a ledger line, not from discomfort with conflict.",
           "whatToDo": "Counter from compressor hours and reject the round halfway number. Keep the discussion tied to measured use, not general fairness.",
           "whyItMatters": "The venue’s midpoint treats the fee as a blur. Compressor hours make the counter inspectable and protect the wedding profit."
@@ -2705,13 +2232,6 @@
             "theater",
             "contract"
           ],
-          "planSpec": {
-            "domain": "regional theater musicians' contract renewal",
-            "audience": "an artistic director bargaining with a musicians' representative over rehearsal pay",
-            "stakes": "splitting the difference may still leave the orchestra unwilling to cover added tech rehearsals",
-            "format": "reflection",
-            "requiredBeat": "the director refuses the midpoint frame and counters with a non-round package that trades rehearsal blocks, meal penalties, and matinee call times"
-          },
           "scenario": "You are looking at a marked rehearsal schedule tucked under a bass bow on the pit rail while Quentin, the artistic director, reviews a midpoint offer on rehearsal pay. The orchestra is still unwilling to cover added tech rehearsals. In reflection after the bargaining session, he sees why the midpoint failed: he needed a non-round package trading rehearsal blocks, meal penalties, and matinee call times.",
           "whatToDo": "Refuse the midpoint frame and rebuild the package around rehearsal blocks, meal penalties, and matinee calls.",
           "whyItMatters": "The orchestra’s issue is not one average rate. The package has to solve the real terms that make added rehearsals workable."
@@ -2730,8 +2250,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The officer needs the terms separated before bargaining. Accepting the midpoint hides costs, and accusation adds heat without revealing the fee structure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2743,8 +2262,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Precision works only when it signals real calculation. It does not guarantee acceptance and should not be used as confusion theater.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2756,8 +2274,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cents-per-mile counter exposes the cost driver. Public spirit is vague pressure, and the midpoint may preserve the hidden idle-time assumption.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2769,8 +2286,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The midpoint on advance can hide losses in territory or glossary ownership. Respect and future precision are not the core risk.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2782,8 +2298,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Measured compressor hours make the counter concrete. The caterer is still bargaining firmly, and the policy change remains part of the dispute.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2795,8 +2310,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The director protects the real terms instead of averaging the headline pay. The move is not blanket rejection or sympathy seeking.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2808,8 +2322,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Strategic umbrage has value only when tied to a real structural problem and followed by a grounded counter. Constant offense becomes noise.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2821,8 +2334,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The terms need names before compromise is meaningful. Good faith can still be careless, and random precision is not calculation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2834,8 +2346,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Grounded firmness keeps pressure from becoming performance. It does not eliminate pressure or remove non-price terms from the deal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2896,19 +2407,13 @@
       },
       "memorableLines": [
         {
-          "text": "Precision is evidence, not magic.",
-          "location": "breakdown.deepRead",
-          "why": "It prevents overreading non-round numbers."
+          "text": "Precision is evidence, not magic."
         },
         {
-          "text": "The midpoint looks fair only when the important term has no name.",
-          "location": "breakdown.fullRead",
-          "why": "It explains why compromise can be dangerous."
+          "text": "The midpoint looks fair only when the important term has no name."
         },
         {
-          "text": "The hard bargain is calm enough to be credible and firm enough not to disappear into the middle.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the chapter’s tone and behavior."
+          "text": "The hard bargain is calm enough to be credible and firm enough not to disappear into the middle."
         }
       ]
     },
@@ -2935,13 +2440,6 @@
             "clinic",
             "merger"
           ],
-          "planSpec": {
-            "domain": "rural clinic merger negotiation with a hospital network",
-            "audience": "a clinic board chair trying to understand why the network suddenly softened its terms",
-            "stakes": "the board may give up governance rights without seeing the network's hidden state-license deadline",
-            "format": "scene",
-            "requiredBeat": "the chair asks what happens if the deal is not signed this quarter and discovers the network needs the clinic's license address to keep a service line open"
-          },
           "scenario": "Beth reviews a state license renewal envelope sitting half-visible under the merger binder tab while softened network terms land on the table. Governance rights are in play and the board wants speed. Before she recommends the offer, she has to choose between treating the soft terms as generosity and asking what happens if the deal is not signed this quarter. The renewal envelope keeps sliding from under the tab each time she turns the binder page.",
           "whatToDo": "Ask what changes if the deal misses the quarter. Listen for the license deadline and service-line need before trading governance rights.",
           "whyItMatters": "The network’s hidden deadline changes leverage. The clinic’s license address has value the visible offer did not reveal."
@@ -2954,13 +2452,6 @@
             "supplier",
             "launch"
           ],
-          "planSpec": {
-            "domain": "manufacturer negotiating with a sole-source sensor supplier",
-            "audience": "a production director trying to learn why the supplier resists a modest volume increase",
-            "stakes": "a product launch may stall unless the hidden bottleneck is found",
-            "format": "dialogue",
-            "requiredBeat": "the director asks what would make the added volume easy, and the supplier reveals the limiting factor is a calibration bench, not raw parts"
-          },
           "scenario": "Kiran, the production director, lifts a tray of tiny sensors under the magnifying inspection lamp and asks, \"What would make the added volume easy?\" The supplier has raw-parts stock and still resists the launch-date increase. Before Kiran pushes price, he must decide whether to ask the ease question and let the answer expose the calibration bench. The answer points to a physical bottleneck that price pressure alone would not have solved.",
           "whatToDo": "Ask what would make the added volume easy. Shift the discussion from raw parts to calibration-bench time once the bottleneck appears.",
           "whyItMatters": "The hidden constraint is not supply quantity. Finding the bench changes the deal from price pressure to bottleneck scheduling."
@@ -2973,13 +2464,6 @@
             "orchestra",
             "contract"
           ],
-          "planSpec": {
-            "domain": "professional orchestra guest-conductor contract",
-            "audience": "an orchestra manager negotiating with an agent over a fee that suddenly seems rigid",
-            "stakes": "the concert may be canceled if the manager misses the non-fee condition driving the agent",
-            "format": "vignette",
-            "requiredBeat": "the manager asks what makes this date difficult, uncovering that the conductor needs a rehearsal recording for a visa dossier"
-          },
           "scenario": "\"That date will not work,\" the agent says as the conductor’s marked score lies beside the unsigned artist agreement. Leo has been treating the fee as the rigid point. Before the concert is canceled, he has to pick between another fee counter and asking what makes the date difficult. The rehearsal recording for a visa dossier is the answer. The date stops being a refusal and becomes a clue to the outside requirement shaping the deal.",
           "whatToDo": "Ask what makes the date difficult before changing the fee. Use the visa recording need to rebuild the schedule.",
           "whyItMatters": "The non-fee condition changes the package. Once the recording need is visible, fee pressure stops being the only path."
@@ -2992,13 +2476,6 @@
             "lease",
             "cold-storage"
           ],
-          "planSpec": {
-            "domain": "regional grocery cold-storage lease negotiation",
-            "audience": "a grocer bargaining with a warehouse owner over renewal terms",
-            "stakes": "the grocer may overpay if she misses the warehouse's hidden vacancy problem",
-            "format": "predict_reveal",
-            "requiredBeat": "the grocer predicts that price is the only issue, then asks what happens to the adjacent freezer bay and learns the owner needs her tenancy to qualify for a utility rebate"
-          },
           "scenario": "It took Sylvia until the second renewal draft to stop predicting price was the whole fight. A frost line traced the empty freezer bay door beside her current unit. She asked what happened to the adjacent bay if she left. The owner needed her tenancy to qualify for a utility rebate, and the renewal term changed in the next minute. The discovery changes the renewal from a price fight into a dependency the owner has to protect.",
           "whatToDo": "Ask what happens to the adjacent freezer bay if you leave. Treat the utility rebate as hidden leverage in the renewal term.",
           "whyItMatters": "The owner’s vacancy problem changes the bargaining power. The price was visible; the rebate dependency was the black swan."
@@ -3011,13 +2488,6 @@
             "sponsorship",
             "grant"
           ],
-          "planSpec": {
-            "domain": "college esports arena sponsorship negotiation",
-            "audience": "an athletic director trying to understand a sponsor's sudden insistence on naming rights",
-            "stakes": "the school may reject money it needs because it misses the sponsor's hidden grant-matching requirement",
-            "format": "decision_point",
-            "requiredBeat": "the director pauses before refusing naming rights and asks what internal deadline the sponsor is trying to satisfy, revealing a grant match that changes the package"
-          },
           "scenario": "The neon arena rendering glows above Morgan’s spreadsheet of sponsorship tiers while the sponsor insists on naming rights. Morgan, the athletic director, knows the school dislikes the optics and needs the money. Before she refuses, she must decide whether to ask what internal deadline the sponsor is trying to satisfy. The answer reveals a grant match tied to the naming package. The visible shift is that the negotiation moves from stated generosity to the deadline hiding beneath it.",
           "whatToDo": "Pause the refusal and ask about the internal deadline. Rebuild the package around the grant match, naming term, and student-equipment funding.",
           "whyItMatters": "The sponsor’s insistence is not random vanity. The grant match changes timing and makes a narrower naming deal possible."
@@ -3030,13 +2500,6 @@
             "compost",
             "permit"
           ],
-          "planSpec": {
-            "domain": "specialty compost facility permit appeal",
-            "audience": "an operator negotiating with nearby growers who oppose a permit expansion",
-            "stakes": "the facility may abandon expansion when the hidden objection is truck timing, not odor",
-            "format": "postmortem",
-            "requiredBeat": "the operator reviews how asking what would make the expansion harmless revealed that growers feared harvest-road congestion during two October weeks"
-          },
           "scenario": "You are looking at a harvest-road map smudged with soil beside an odor-monitoring report. Jasper assumed odor was the permit fight and nearly abandoned expansion. In the postmortem, he marks the question that changed it: what would make the expansion harmless? Growers named harvest-road congestion during two October weeks. The answer points to a physical bottleneck that price pressure alone would not have solved.",
           "whatToDo": "Ask what would make the expansion harmless before conceding the permit fight. Listen for timing constraints outside the odor report.",
           "whyItMatters": "The hidden objection was truck timing, not odor. That fact changes the appeal from an all-or-nothing fight to an October-window condition."
@@ -3055,8 +2518,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The deadline question can reveal the license-address need. Asking for more or blaming the timing may miss the hidden service-line constraint.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3068,8 +2530,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Calibration capacity would change the deal by exposing the true constraint. Dislike and office trivia may be interesting, but they are not necessarily leverage-shifting.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3081,8 +2542,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The date question can uncover the visa-dossier recording need. Fee pressure and accusation keep the visible fight intact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3094,8 +2554,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The rebate dependency changes the owner’s incentives and the renewal term. Email style and frost are details only if they do not alter leverage.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -3107,8 +2566,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The deadline question can reveal the grant match and change the package. The other questions challenge the demand without discovering the constraint.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3120,8 +2578,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The October road window changes the workable permit terms. Logo dislike and meeting preference are not decisive unless they alter constraints or leverage.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3133,8 +2590,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The test is whether the fact changes the deal. Random surprises can distract, while decisive hidden constraints deserve attention.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3146,8 +2602,7 @@
             ],
             "correctIndex": 1,
             "explanation": "One side knows a deadline the other has not discovered, so the visible price fight is incomplete. Charisma and zero leverage do not describe the information gap.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3159,8 +2614,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A black swan matters because it changes the structure of the deal. Surprise and embarrassment are poor tests of strategic value.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3221,19 +2675,13 @@
       },
       "memorableLines": [
         {
-          "text": "A black swan is not a random surprise.",
-          "location": "breakdown.fastRead",
-          "why": "It prevents the central misread."
+          "text": "A black swan is not a random surprise."
         },
         {
-          "text": "The hidden fact changes the map.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the leverage shift into one line."
+          "text": "The hidden fact changes the map."
         },
         {
-          "text": "Do not call every new fact a black swan.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the final discipline a memorable warning."
+          "text": "Do not call every new fact a black swan."
         }
       ]
     }

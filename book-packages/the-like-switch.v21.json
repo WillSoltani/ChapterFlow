@@ -46,13 +46,6 @@
             "decision",
             "intensity"
           ],
-          "planSpec": {
-            "domain": "a museum volunteer coordinator trying to revive a thin docent pairing",
-            "audience": "a coordinator who sees two capable volunteers never become a team",
-            "stakes": "a tour launch will fail if they keep trading only logistics",
-            "format": "decision_point",
-            "requiredBeat": "the coordinator moves the pair from rushed sign-in contact to a shared 20-minute object-handling prep and watches warmth appear only after intensity enters"
-          },
           "scenario": "White cotton gloves sit beside a tray of Roman coins in the quiet conservation room at 9:10 Thursday morning. Mathieu, the volunteer coordinator, watches two docents check the visitor-flow sheet and avoid each other's eyes. They have shared this room for six weeks. He is about to decide whether to give them another reminder to cooperate or move them into a 20-minute object-handling prep where each must correct the other's coin notes before the tour.",
           "whatToDo": "Change the missing variable. Keep their proximity and frequency, but add duration and a small useful task that gives the contact emotional weight.",
           "whyItMatters": "The pair already has access and repetition. The relationship is thin because the contact has no shared consequence, so another reminder only repeats the weak condition."
@@ -65,13 +58,6 @@
             "scene",
             "duration"
           ],
-          "planSpec": {
-            "domain": "a youth hockey assistant coach managing a quiet goalie and a new defender",
-            "audience": "a coach who wants trust without forcing friendship",
-            "stakes": "one blown tournament game could harden the pair into blame",
-            "format": "scene",
-            "requiredBeat": "the coach changes short locker-room proximity into repeated five-minute post-drill reviews where the defender asks the goalie what he saw"
-          },
           "scenario": "Skate guards line the bench under the rink glass while Laura studies a crease map with a quiet goalie and a new defender. The two boys dress beside each other every practice and still talk only through blame after rebounds. Before the next drill, Laura must decide whether to lecture them about teamwork or require a five-minute review where the defender asks what the goalie saw before each loose puck.",
           "whatToDo": "Turn shared space into a recurring review with a real question. Let the defender ask and the goalie answer while the crease map is still wet from practice.",
           "whyItMatters": "Locker-room proximity has not become trust. A short, repeated review adds duration and purpose without forcing the boys into fake closeness."
@@ -84,13 +70,6 @@
             "vignette",
             "pacing"
           ],
-          "planSpec": {
-            "domain": "a hospice volunteer lead pairing a new visitor with a guarded family caregiver",
-            "audience": "a volunteer lead handling fragile trust",
-            "stakes": "too much intensity too early could feel intrusive, too little will make visits useless",
-            "format": "vignette",
-            "requiredBeat": "it takes three visits for the lead to see that shorter, steadier visits beat one long emotional first visit"
-          },
           "scenario": "It takes Ingrid three entries in the hospice family-room visit log to see the pattern. At 2:15 p.m. each Tuesday, the new volunteer spent twelve careful minutes in the folding chair, left when the caregiver's phone buzzed, and returned two days later for the same short window. No bedside confession, no forced warmth. Ingrid must decide before the next pairing whether to schedule one long emotional visit or keep the shorter rhythm that is making the room feel safer.",
           "whatToDo": "Keep the visits short, steady, and low pressure. Let proximity and frequency build safety before asking duration or intensity to carry more weight.",
           "whyItMatters": "Fragile trust can be flooded by too much feeling too soon. In this room, the smaller repeat contact is the condition that lets closeness grow."
@@ -103,13 +82,6 @@
             "before-after",
             "ritual"
           ],
-          "planSpec": {
-            "domain": "a community theater stage manager blending two backstage crews",
-            "audience": "a stage manager before opening night",
-            "stakes": "missed cues will look like incompetence to the audience",
-            "format": "before_after",
-            "requiredBeat": "the stage manager stops counting rehearsal attendance as closeness and adds one shared cue-reset ritual that gives the contact intensity"
-          },
           "scenario": "\"Reset from the blackout,\" Grace says into the headset while the cue light blinks above a strip of gaffer tape. Before, the lighting crew and props crew attended every rehearsal and still blamed each other after missed cues. After Grace adds a shared reset ritual, each crew has to name what the other needs before the next run. The same people in the same room finally have contact with consequence.",
           "whatToDo": "Add a shared cue-reset ritual instead of another attendance reminder. Make each crew voice what the other crew needs before the scene runs again.",
           "whyItMatters": "Attendance created frequency, not attachment. The ritual gives the repeated contact a useful charge, so the crews experience one another as partners."
@@ -122,13 +94,6 @@
             "postmortem",
             "cooling"
           ],
-          "planSpec": {
-            "domain": "a tenant association treasurer cooling an exhausting relationship with an overbearing member",
-            "audience": "a volunteer treasurer who needs distance without a fight",
-            "stakes": "the member is turning every repair email into a two-hour call",
-            "format": "postmortem",
-            "requiredBeat": "the treasurer reviews which variable she fed by answering instantly and begins reducing frequency and duration without hostility"
-          },
           "scenario": "What made one repair request become a nightly phone call? Aanya studies the repair inbox, the call log, and the building notice she meant to send before dinner. She answered every message within minutes, stayed on the line until the member felt calm, and added reassurance after each complaint. The next rule is clear: posted reply hours, shorter calls, and no extra emotional fuel after the facts are handled.",
           "whatToDo": "Reduce frequency and duration without making a speech. Answer during posted hours, keep calls bounded, and remove the reassurance that keeps renewing the bond.",
           "whyItMatters": "Cooling a relationship uses the same map as strengthening one. Lower the fed variables and the attachment can thin without a dramatic rupture."
@@ -141,13 +106,6 @@
             "predict-reveal",
             "belonging"
           ],
-          "planSpec": {
-            "domain": "a rowing club captain integrating a shy novice into a crew",
-            "audience": "a captain who mistakes shared practice for attachment",
-            "stakes": "the novice may quit before regatta season starts",
-            "format": "predict_reveal",
-            "requiredBeat": "At 6:12 a.m., Laura predicts that shared water time is enough, then sees the novice bond only after a small recovery task carries emotional weight"
-          },
           "scenario": "At 6:12 a.m., David sees two oars resting on wet dock planks and predicts that another shared practice will pull the shy novice into the crew. The seat wrench is still in the launch box, fogged sunglasses sit by the stroke seat, and the novice is already drifting away. David has to decide whether to run the usual cooldown or ask the novice to help fix the loose foot stretcher with the bow pair before breakfast.",
           "whatToDo": "Give the novice a small recovery task that matters to the boat. Let shared usefulness add intensity to the practice time they already have.",
           "whyItMatters": "Shared water time creates exposure, but belonging starts when the novice feels needed. The task turns background presence into a felt contribution."
@@ -166,8 +124,7 @@
             ],
             "correctIndex": 0,
             "explanation": "They already have access and repetition. The thinness comes from contact that carries no useful emotional weight, so intensity is the missing piece.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -179,8 +136,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The review adds duration and meaningful exchange to existing proximity. More seating only repeats nearness without changing the quality of contact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -192,8 +148,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cooling means reducing the variables being fed. Coffee and warmer reassurance would add duration and intensity, which is exactly what keeps the bond active.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -205,8 +160,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The setting needs safety before intensity. Short repeated visits build nonthreatening proximity and frequency without forcing emotional weight too early.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -218,8 +172,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Six practices prove repetition, not belonging. The novice may need a shared task that makes the contact matter, not simply more time nearby.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -231,8 +184,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Attendance alone can become background. A cue-reset ritual adds a purposeful exchange, which changes the contact from parallel work into mutual reliance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -244,8 +196,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The formula describes how bonds strengthen, not whether they deserve to. Intensity around pressure can bind the founder to the wrong influence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -257,8 +208,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A shared task tests whether contact has weight beyond greeting warmth. Longer greetings may add duration without proving the relationship can carry effort.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -270,8 +220,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The shared task adds duration and modest intensity inside a safe setting. A private confession jumps past earned trust, and ignoring the bond treats the variables as invisible.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -332,19 +281,13 @@
       },
       "memorableLines": [
         {
-          "text": "Familiar is not the same as close.",
-          "location": "breakdown.deepRead",
-          "why": "The short contrast makes the central diagnostic distinction easy to remember."
+          "text": "Familiar is not the same as close."
         },
         {
-          "text": "A bond is not mysterious just because it is emotional.",
-          "location": "breakdown.fullRead",
-          "why": "It protects the chapter from vague chemistry talk while staying plain."
+          "text": "A bond is not mysterious just because it is emotional."
         },
         {
-          "text": "Use the formula as a diagnostic before you use it as a lever.",
-          "location": "breakdown.fullRead",
-          "why": "It carries the ethical limit in one practical sentence."
+          "text": "Use the formula as a diagnostic before you use it as a lever."
         }
       ]
     },
@@ -371,13 +314,6 @@
             "scene",
             "approach"
           ],
-          "planSpec": {
-            "domain": "a hospital wayfinding volunteer approaching worried visitors at a cardiac wing elevator",
-            "audience": "a volunteer whose first move can calm or crowd a family",
-            "stakes": "the family is already scared and may snap at help that feels intrusive",
-            "format": "scene",
-            "requiredBeat": "the volunteer stops walking straight into their path, uses an eyebrow flash from two steps away, tilts his head, and points to the desk before speaking"
-          },
           "scenario": "The elevator doors open onto a blue cardiac-wing sign, and Henrik sees three visitor badges clipped to shaking hands. A folded ward map is half-crushed in the oldest son's fist, and the nurses' station is still twenty feet away. Henrik is about to step straight into their path, then stops two steps away. He must decide whether to lead with instructions or give a quick eyebrow flash, tilt his head, and point gently toward the desk before he speaks.",
           "whatToDo": "Stop outside their path, signal recognition, and point before closing distance. Let the family choose to receive help instead of feeling intercepted.",
           "whyItMatters": "A frightened family is scanning for threat. The cue works because it lowers pressure before information arrives, so help does not feel like another demand."
@@ -390,13 +326,6 @@
             "predict-reveal",
             "posture"
           ],
-          "planSpec": {
-            "domain": "a farmers market stall owner trying to invite browsing without pouncing",
-            "audience": "a first-time vendor in a crowded Saturday market",
-            "stakes": "too much eagerness sends shoppers past the table",
-            "format": "predict_reveal",
-            "requiredBeat": "the vendor compares crossed-arm watching with an open posture and brief smile, then sees browsers slow when the signal says safe rather than sales trap"
-          },
           "scenario": "Steam rises from a crate of apple-cider samples beside Sofia's chalk price board on a crowded Saturday. She predicts a brighter pitch will pull shoppers in, but the awning rope trembles as people brush past her crossed arms without slowing. She has to decide whether to call louder or stand half-turned, open her posture, give a brief smile, and let the sample cups sit where browsers can choose them.",
           "whatToDo": "Loosen the stance before changing the pitch. Make the table feel browsable, then let the cider and price board do some of the inviting.",
           "whyItMatters": "The shoppers are not rejecting cider; they are avoiding capture. Open posture gives them room to approach without committing to a sales exchange."
@@ -409,13 +338,6 @@
             "decision",
             "threat"
           ],
-          "planSpec": {
-            "domain": "a probation office receptionist greeting a tense client arriving late",
-            "audience": "a receptionist who controls the first emotional temperature of the room",
-            "stakes": "one sharp opening could turn delay into confrontation",
-            "format": "decision_point",
-            "requiredBeat": "At 9:04 a.m., Thomas chooses a visible open palm and low-threat nod before asking for the appointment card"
-          },
           "scenario": "At 9:04 a.m., Thomas sees a laminated appointment card bent at one corner slide toward the security window. The client is late, flushed, and standing beside a plastic chair without sitting, one hand still on the metal rail. Thomas has to decide whether to open with the missed time or keep one palm visible, nod once, and ask for the appointment card before the room turns into a confrontation.",
           "whatToDo": "Use the open palm and low nod first, then ask for the card. Keep the greeting procedural without making lateness the emotional headline.",
           "whyItMatters": "The first cue sets the room temperature. If the client reads attack, every later sentence has to fight defensiveness the receptionist created."
@@ -428,13 +350,6 @@
             "dialogue",
             "entry"
           ],
-          "planSpec": {
-            "domain": "a university lab partner joining an established research bench",
-            "audience": "a student entering a group that already has routines",
-            "stakes": "if the first approach feels presumptuous, collaboration starts cold",
-            "format": "dialogue",
-            "requiredBeat": "\"Is this the pipette rack everyone fights over?\" Camille asks after a small smile and head tilt soften the joke"
-          },
           "scenario": "\"Is this the pipette rack everyone fights over?\" Camille asks at 3:20 p.m. at the university bench, one hand near the nitrile gloves and one foot behind the orange bench tape. She gives a small smile and tilts her head before the joke lands. The group pauses over the labels for the enzyme assay. Camille must decide whether to push another line or let the softened opening give them space to answer.",
           "whatToDo": "Let the cue carry the first risk. Smile lightly, tilt your head, ask the low-stakes question, and wait instead of stacking more jokes.",
           "whyItMatters": "A newcomer can sound presumptuous fast. The head tilt and pause make the line feel like entry, not takeover."
@@ -447,13 +362,6 @@
             "vignette",
             "embarrassment"
           ],
-          "planSpec": {
-            "domain": "a cycling repair shop owner handling a customer embarrassed about a broken commuter bike",
-            "audience": "a shop owner who needs approachability before advice",
-            "stakes": "the customer may leave rather than admit what happened",
-            "format": "vignette",
-            "requiredBeat": "you notice the customer scanning for judgment, so you lower the tool, uncross your stance, and let the first cue say there is no threat here"
-          },
           "scenario": "You see Chidi behind the repair counter with a bent derailleur hanging above a rubber shop mat. The customer keeps glancing at the repair ticket and the oil-stained rag, clearly deciding whether to admit she hit a curb or leave before the question comes. Chidi lowers the wrench, uncrosses his stance, and must choose whether his first cue will say judgment or safety.",
           "whatToDo": "Lower the tool and soften the stance before asking what happened. Make honesty feel cheaper than escape.",
           "whyItMatters": "Embarrassment makes advice sound like judgment. A low-threat cue keeps the customer in the room long enough for the useful conversation."
@@ -466,13 +374,6 @@
             "postmortem",
             "distance"
           ],
-          "planSpec": {
-            "domain": "a local election canvasser approaching a porch with a wary homeowner",
-            "audience": "a canvasser learning that distance and posture decide whether the door stays open",
-            "stakes": "a rushed pitch will get the door closed before policy is heard",
-            "format": "postmortem",
-            "requiredBeat": "it takes three slammed doors for the canvasser to see that stepping back, flashing recognition, and angling his body matters before the script"
-          },
           "scenario": "It takes Rachel three crossed-out addresses on a clipboard to see the pattern. Under each porch light, she stood square to the door with her campaign badge high and started the policy script before the homeowner had settled a hand on the latch. On the fourth porch, she steps back, angles her body toward the railing, gives brief recognition, and lets the doorway stay open before she asks anything.",
           "whatToDo": "Give the porch more room. Step back, angle your body away from the doorway, and let recognition precede the script.",
           "whyItMatters": "The policy never gets heard if the body at the door reads as pressure. Distance and angle protect the homeowner's sense of control."
@@ -491,8 +392,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stopping short protects their control while recognition lowers threat. Stepping into their path or calling loudly can turn help into pressure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -504,8 +404,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A visible palm and calm nod lower threat without making a performance of friendliness. The clock accuses, and the joke can feel dismissive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -517,8 +416,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The issue is perceived capture, not product clarity. Open posture and choice make browsing safer, while stronger claims or direct questions raise pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -530,8 +428,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The soft cues lower the social risk of the joke and give the group room to respond. Louder delivery or correction makes the newcomer feel intrusive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -543,8 +440,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The lowered tool and open stance reduce judgment before the story comes out. Technical explanation arrives too early, and blame closes the customer down.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -556,8 +452,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The closed doors do not prove the policy failed. The opening stance likely made homeowners protect the doorway before they considered the content.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -569,8 +464,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The cues may create safer seconds, but later behavior has to match them. Interrupting and pushing breaks the promise the opening made.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -582,8 +476,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pause, hands, and waiting lower perceived threat while respecting control. Speed, stare, closeness, or forced cheer can make the room feel less safe.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -595,8 +488,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Recovery needs safer opening cues plus matching behavior afterward. A bigger warmth performance can feel like a mask, and arguments do not erase the first scan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -657,19 +549,13 @@
       },
       "memorableLines": [
         {
-          "text": "The signal says recognition, not capture.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the physical cue a clear social purpose."
+          "text": "The signal says recognition, not capture."
         },
         {
-          "text": "Safety comes before persuasion.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence is short enough to carry into any first-contact scene."
+          "text": "Safety comes before persuasion."
         },
         {
-          "text": "Approachability is a doorway, not a verdict.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the limit that signals begin trust but do not complete it."
+          "text": "Approachability is a doorway, not a verdict."
         }
       ]
     },
@@ -696,13 +582,6 @@
             "scene",
             "correction"
           ],
-          "planSpec": {
-            "domain": "a paramedic preceptor debriefing a new EMT after a messy call",
-            "audience": "a senior medic who wants confidence without false praise",
-            "stakes": "a shaky trainee may either learn or shut down",
-            "format": "scene",
-            "requiredBeat": "the preceptor names the exact patient-care decision the trainee handled well before discussing the miss, so the trainee feels competent enough to hear correction"
-          },
           "scenario": "The ambulance floor smells faintly of antiseptic and rainwater while Luca picks up a glove wrapper beside the run sheet after a difficult downtown call. The new EMT is staring at the oxygen key like it might accuse him. Luca is about to start with the missed radio update, then stops. He must decide whether to lead with the exact patient-care decision the trainee handled well before naming the error that still needs work.",
           "whatToDo": "Name the sound decision first, then correct the miss. Give the trainee one real foothold before asking him to absorb the harder feedback.",
           "whyItMatters": "The trainee can hear correction better when his competence is visible. False praise would feel soft, but a precise strength gives him a stable place to learn from."
@@ -715,13 +594,6 @@
             "dialogue",
             "usefulness"
           ],
-          "planSpec": {
-            "domain": "a public library branch manager welcoming a retired engineer to a volunteer tech-help desk",
-            "audience": "a manager who needs the volunteer to feel useful without being patronized",
-            "stakes": "the volunteer may quit if treated like a mascot instead of skilled help",
-            "format": "dialogue",
-            "requiredBeat": "\"You caught what our form misses,\" Rachel says, pointing to his note before asking for help redesigning the sign-up sheet"
-          },
           "scenario": "\"You caught what our form misses,\" Rachel says, pointing to a pencil note on the tech-help sign-up sheet. The retired engineer's library lanyard is still creased, and the magnifier lamp throws a circle over the desk. He shrugs like it was nothing. Rachel has to decide whether to thank him politely and move on or ask him to help redesign the sheet around the flaw he noticed.",
           "whatToDo": "Treat the note as useful expertise. Ask for his help on the redesign instead of offering a vague welcome or patronizing praise.",
           "whyItMatters": "The volunteer needs to feel skilled, not merely included. Naming the concrete contribution makes the good feeling belong to him."
@@ -734,13 +606,6 @@
             "decision",
             "confidence"
           ],
-          "planSpec": {
-            "domain": "a climbing gym instructor handling a nervous adult beginner",
-            "audience": "an instructor who must keep attention on the beginner instead of performing expertise",
-            "stakes": "one humiliating moment could make the beginner leave the sport",
-            "format": "decision_point",
-            "requiredBeat": "At 7:18 p.m., James chooses to notice the beginner checking her knot correctly instead of showing off a harder move"
-          },
           "scenario": "At 7:18 p.m., James sees a figure-eight knot held in chalky fingers beside the top-rope lane. The beginner's belay card is clipped backward, and his own chalk bag is open for a demonstration he does not need while two climbers wait behind her. James has to decide whether to show a cleaner advanced tie-in or notice that she checked the knot correctly before turning the card around.",
           "whatToDo": "Name the correct check first, then fix the card. Keep the attention on what the beginner did well instead of displaying a harder move.",
           "whyItMatters": "A nervous beginner can leave after one public embarrassment. Precise recognition lets correction feel like progress rather than proof she does not belong."
@@ -753,13 +618,6 @@
             "vignette",
             "respect"
           ],
-          "planSpec": {
-            "domain": "a city planning facilitator listening to residents angry about a bus-lane proposal",
-            "audience": "a facilitator whose credibility depends on making opponents feel heard",
-            "stakes": "a public meeting can turn hostile before the maps are discussed",
-            "format": "vignette",
-            "requiredBeat": "the facilitator repeats the resident concerns as practical local knowledge and asks where the map is blind, making critics feel respected without surrendering the proposal"
-          },
           "scenario": "Lukas stands beside a roll of traffic maps curling at the corners beneath name placards and a microphone stand. He hears residents describe delivery vans, school pickup, and the left turn everyone avoids after rain. He is about to defend the bus-lane proposal slide by slide, but he must choose whether to treat their anger as obstruction or repeat it as practical local knowledge and ask where the map is blind.",
           "whatToDo": "Restate the concrete concerns as knowledge the map needs. Ask where the plan misses street-level reality before defending the proposal.",
           "whyItMatters": "People soften when their experience becomes useful. Respecting the local knowledge lets them feel seen without requiring you to abandon the plan."
@@ -772,13 +630,6 @@
             "before-after",
             "mentoring"
           ],
-          "planSpec": {
-            "domain": "a software mentor reviewing a junior developer pull request",
-            "audience": "a mentor who must correct without stealing ownership",
-            "stakes": "the junior dev may learn the habit or start hiding mistakes",
-            "format": "before_after",
-            "requiredBeat": "you can either showcase your own elegant fix or ask what tradeoff the junior developer was protecting, then name the sound instinct underneath it"
-          },
           "scenario": "You see a red test failure beside a small green diff in Layla's 4:40 p.m. pull request review queue for a Toronto fintech sprint. Before, she rewrote junior code in a crisp review comment and watched the developer go quiet for two sprints. After, she asks what tradeoff he was protecting, then names the sound instinct under the bug before suggesting the fix. The code still changes, but ownership stays in the room.",
           "whatToDo": "Ask what the junior developer was trying to protect, then name the useful instinct before the correction. Let the fix keep his agency intact.",
           "whyItMatters": "A mentor who displays elegance can steal ownership. Recognizing the sound instinct makes the developer feel capable enough to keep learning in public."
@@ -791,13 +642,6 @@
             "postmortem",
             "belonging"
           ],
-          "planSpec": {
-            "domain": "a neighborhood choir director keeping an alto from quitting after missed entrances",
-            "audience": "a director balancing correction with belonging",
-            "stakes": "losing one singer will thin the section before a memorial concert",
-            "format": "postmortem",
-            "requiredBeat": "it takes two rehearsals for Juliette to realize the alto returns when feedback starts with the blend she adds, not the mistake she made"
-          },
           "scenario": "It takes Juliette two rehearsals and a pencil mark beside measure 42 to see why the alto stopped meeting her eyes before the memorial concert. The sheet music is open on the folding riser, and a water bottle with a choir sticker leans against the leg. When Juliette begins with the blend the alto adds before naming the missed entrance, the singer returns the next week with the same folder under her arm.",
           "whatToDo": "Begin with the real contribution the alto brings to the section, then correct the missed entrance in that context.",
           "whyItMatters": "Belonging gives correction somewhere to land. If the singer hears only failure, the memorial concert loses her voice before the music improves."
@@ -816,8 +660,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second response makes the developer feel capable through a real observation. Generic praise is thin, and silent rewriting removes ownership.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -829,8 +672,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The correct patient-care decision gives the trainee a true competence anchor. Starting with the miss may trigger defense, and vague comfort avoids the lesson.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -842,8 +684,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Asking for help turns his observation into useful expertise. Vague gratitude is pleasant but weaker, and defending the form wastes his contribution.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -855,8 +696,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The beginner keeps dignity while learning. A harder demo centers the instructor, and ignoring the mistake sacrifices safety for comfort.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -868,8 +708,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Treating concerns as knowledge gives residents status in the discussion. Authority talk dismisses them, and complimenting passion dodges the substance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -881,8 +720,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The issue is not praise volume. The good feeling has to be grounded in a real contribution or quality, or it feels like technique.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -894,8 +732,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The singer can hear correction while still feeling valuable to the section. The mistake is still corrected, and distraction is not the mechanism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -907,8 +744,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The surface question may sound warm, but the structure is self-serving. Outward attention fails when the person feels used as a route to compliance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -920,8 +756,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The plan protects competence while still correcting reality. Compliment padding feels artificial, and skipping the correction avoids the responsibility.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -982,19 +817,13 @@
       },
       "memorableLines": [
         {
-          "text": "Praise is cheap when it points back at the praiser.",
-          "location": "breakdown.deepRead",
-          "why": "It separates sincere attention from performance in a sharp line."
+          "text": "Praise is cheap when it points back at the praiser."
         },
         {
-          "text": "The hard part is getting your own need to shine out of the center of the room.",
-          "location": "breakdown.fullRead",
-          "why": "It names the ego problem in plain human terms."
+          "text": "The hard part is getting your own need to shine out of the center of the room."
         },
         {
-          "text": "People remember the room where they felt more capable.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the social rule into an image readers can carry."
+          "text": "People remember the room where they felt more capable."
         }
       ]
     },
@@ -1021,13 +850,6 @@
             "decision",
             "reciprocity"
           ],
-          "planSpec": {
-            "domain": "a disaster-relief volunteer roster where two crews cross paths every morning but do not trust each other",
-            "audience": "a field coordinator reading why repeated contact has stalled",
-            "stakes": "handoffs are slow during flood cleanup",
-            "format": "decision_point",
-            "requiredBeat": "the coordinator adds a reciprocal handoff ritual where each crew states one risk and one need, turning contact into mutual support"
-          },
           "scenario": "Mud dries on laminated shift cards beside rubber boots and a radio charger at the flood-cleanup tent. Tomas watches the morning crew and afternoon crew cross paths for the tenth time without trusting a single handoff, even though pump locations and closed roads keep changing by the hour. He has to decide whether to add another shared briefing or require each crew to name one risk and one need before the shift cards change hands.",
           "whatToDo": "Make the handoff reciprocal. Have each crew give one risk and ask for one need, so contact becomes mutual support instead of parallel traffic.",
           "whyItMatters": "The crews already have repeated contact. Attraction to the team grows only when each side experiences the other as useful and responsive."
@@ -1040,13 +862,6 @@
             "predict-reveal",
             "disclosure"
           ],
-          "planSpec": {
-            "domain": "an indie game studio playtest channel with fans who comment often but never feel close to the team",
-            "audience": "a community lead trying to build real attraction to the project",
-            "stakes": "a public beta could lose its core testers",
-            "format": "predict_reveal",
-            "requiredBeat": "What changes when the lead shares a small design tradeoff and asks testers to share their own play constraints?"
-          },
           "scenario": "What changes when the bug board has two hundred comments and the studio still feels far away? Kiran sees controller batteries scattered beside the private beta link before the Friday test and a Discord thread full of polite bug reports. He predicts another update post will be enough, then has to decide whether to share one small design tradeoff and ask testers what play constraints are shaping their feedback.",
           "whatToDo": "Share one bounded tradeoff, then ask for the testers' constraints. Turn the channel from broadcast into a reciprocal exchange.",
           "whyItMatters": "Fans who only receive updates may stay interested without feeling attached. Mutual disclosure makes them part of the work rather than an audience outside it."
@@ -1059,13 +874,6 @@
             "postmortem",
             "contact"
           ],
-          "planSpec": {
-            "domain": "a neighborhood running group where a newcomer attends every week but remains peripheral",
-            "audience": "a group organizer who confuses attendance with attraction",
-            "stakes": "the runner may stop showing up before the charity race",
-            "format": "postmortem",
-            "requiredBeat": "it takes Emily four Saturdays to see that nobody has traded real information with the newcomer beyond pace and route"
-          },
           "scenario": "It takes Maja four Saturdays and a race bib pinned to the cork board to see the failure. The newcomer wears the reflective sash, follows the route card, and disappears after stretching while the others refill bottles by the park gate. Nobody has traded a real detail beyond pace and distance. Before the charity race, Maja changes the warmup so each runner names what brought them to this event and who can help with the next training gap.",
           "whatToDo": "Move beyond attendance. Add a small reciprocal exchange tied to the race, so the newcomer can give and receive something real.",
           "whyItMatters": "Weekly contact created familiarity, not attraction. The runner needs mutual information and support before the group feels worth returning to."
@@ -1078,13 +886,6 @@
             "dialogue",
             "pacing"
           ],
-          "planSpec": {
-            "domain": "a small architecture firm pairing a client and project lead over a home renovation",
-            "audience": "a project lead who needs supportiveness without premature intimacy",
-            "stakes": "the client is anxious about spending savings on a rebuild",
-            "format": "dialogue",
-            "requiredBeat": "\"We had the same fear when we opened the west wall,\" Nicolas says, then stops before turning the meeting into his story and asks what risk feels largest to the client"
-          },
           "scenario": "\"We had the same fear when we opened the west wall,\" Nicolas says, with a sample tile beside the floor plan and a load-bearing note under his hand. The client has savings tied to the rebuild and keeps touching the estimate. Nicolas is about to tell the whole story. He must decide whether to keep talking or stop and ask which risk feels largest to her.",
           "whatToDo": "Share just enough to humanize the fear, then turn the attention back to the client's risk. Keep disclosure calibrated and supportive.",
           "whyItMatters": "Small disclosure can deepen attraction when it opens room for the other person. Too much turns support into self-display."
@@ -1097,13 +898,6 @@
             "before-after",
             "support"
           ],
-          "planSpec": {
-            "domain": "a parent committee planning a school fundraiser after a tense year",
-            "audience": "a committee chair rebuilding attraction among volunteers",
-            "stakes": "one-sided support will leave three parents carrying everything",
-            "format": "before_after",
-            "requiredBeat": "the chair shifts from broad gratitude to paired reciprocal commitments, so each parent gives and receives support visibly"
-          },
           "scenario": "The smell of poster paint fills the multipurpose room while Frida studies the signup grid beside the cash box. Before, she thanked everyone broadly and watched the same three parents carry the fundraiser. After, she pairs every commitment with a named support partner: ticket table with cash count, poster crew with cleanup, raffle calls with receipt tracking. Help finally moves both ways.",
           "whatToDo": "Replace broad gratitude with paired commitments. Make support visible and reciprocal so volunteering feels shared rather than extracted.",
           "whyItMatters": "Groups become attractive when effort returns. If support flows one way, the people carrying the load start feeling used instead of drawn in."
@@ -1116,13 +910,6 @@
             "vignette",
             "fairness"
           ],
-          "planSpec": {
-            "domain": "a freelance photography collective where members trade referrals unevenly",
-            "audience": "a founder diagnosing why the group feels attractive to some and draining to others",
-            "stakes": "unreciprocated leads could break the collective",
-            "format": "vignette",
-            "requiredBeat": "At 4:45 p.m., Chiara maps who shared leads and who only received them, then resets the group around reciprocal support before the next client call"
-          },
           "scenario": "At 4:45 p.m., Chiara marks referral arrows on a wall calendar while a lens cap rolls under the studio table. The client inquiry email is due before six, and the pattern is blunt: three members share leads, two mostly receive them. Chiara must decide whether to keep the next call friendly or reset the collective around reciprocal support before another lead leaves the same hands.",
           "whatToDo": "Name the referral pattern and set a reciprocal rule before the client call. Make lead-sharing support visible instead of hoping warmth will cover imbalance.",
           "whyItMatters": "A collective feels attractive to receivers and draining to givers when support runs one way. Reciprocity protects the pull for everyone."
@@ -1141,8 +928,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The group already has repeated contact. The missing piece is mutual exchange: people need to give and receive support, not just hear updates.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1154,8 +940,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The small disclosure humanizes the moment and then returns attention to the client. The full story takes over, while silence may feel remote.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1167,8 +952,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Attraction returns when support becomes reciprocal. Warmer thanks or more modeling can leave the same one-sided burden intact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1180,8 +964,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The tradeoff plus question creates reciprocal disclosure. More notes increase contact, and public praise asks for loyalty before the exchange deepens.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1193,8 +976,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Attendance proves frequency, not attraction. A small reciprocal exchange tied to the race can make the contact feel mutual and worth repeating.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1206,8 +988,7 @@
             ],
             "correctIndex": 2,
             "explanation": "One-sided support makes the group attractive only for receivers. More meetings or branding would not fix the imbalance in what people give and get.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1219,8 +1000,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Disclosure helps when it is paced and reciprocal. A heavy share too early can feel like pressure rather than attraction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1232,8 +1012,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The handoff creates reciprocal support. Same office or longer meetings may add exposure without making the relationship mutual.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1245,8 +1024,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Healthy attraction shows reciprocity across contact, disclosure, and support. Fast replies can mislead, and forced disclosure may create pressure.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1307,19 +1085,13 @@
       },
       "memorableLines": [
         {
-          "text": "Contact opens the gate. Reciprocity pulls people through.",
-          "location": "breakdown.deepRead",
-          "why": "It distinguishes exposure from the deeper mechanism in two short sentences."
+          "text": "Contact opens the gate. Reciprocity pulls people through."
         },
         {
-          "text": "One-sided support is a warning sign disguised as closeness.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the chapter's hard edge memorable and practical."
+          "text": "One-sided support is a warning sign disguised as closeness."
         },
         {
-          "text": "Attraction lasts when the exchange gives both people evidence that contact is worth repeating.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a compact diagnostic for reciprocity."
+          "text": "Attraction lasts when the exchange gives both people evidence that contact is worth repeating."
         }
       ]
     },
@@ -1346,13 +1118,6 @@
             "dialogue",
             "empathy"
           ],
-          "planSpec": {
-            "domain": "a veterinary clinic front desk handling a panicked pet owner after surgery delays",
-            "audience": "a receptionist under pressure to explain without escalating",
-            "stakes": "a frightened owner may turn fear into anger at the staff",
-            "format": "dialogue",
-            "requiredBeat": "\"You expected the call an hour ago,\" Claire says before giving logistics, naming the owner pain without pretending the delay is fine"
-          },
           "scenario": "\"You expected the call an hour ago,\" Claire says while the surgery board blinks behind her and a ringing phone shakes beside a carrier towel. The pet owner grips the counter and asks whether anyone even checked on Milo after the promised noon update slipped. Claire has to decide whether to defend the delay first or name the fear, then explain what the surgeon is finishing and when the next update will come.",
           "whatToDo": "Name the missed expectation before the logistics. Then give the next concrete update and ask what the owner most needs to know.",
           "whyItMatters": "Fear sounds like anger at the desk. If Claire answers only the anger, the owner feels managed instead of heard."
@@ -1365,13 +1130,6 @@
             "scene",
             "safety"
           ],
-          "planSpec": {
-            "domain": "a shipyard apprentice reporting a near miss to a foreman",
-            "audience": "a foreman who usually jumps to fixes too soon",
-            "stakes": "if the apprentice feels brushed off, the safety report will disappear",
-            "format": "scene",
-            "requiredBeat": "the foreman sets down the inspection stamp, names the scare, and asks what happened next before offering any solution"
-          },
           "scenario": "Metal filings sparkle in the groove of the Bay 3 shipyard workbench at 6:40 a.m. while Anders reaches for the inspection stamp. The apprentice stands in steel-toe boots with a safety tag folded in his fist, describing a chain hook that snapped past his knee. Anders is about to offer the fix. He must decide whether to set down the stamp, name the scare, and ask what happened next before solving anything.",
           "whatToDo": "Put the stamp down, name the fear, and ask for the next detail. Let the apprentice finish the report before the repair plan starts.",
           "whyItMatters": "If the apprentice feels brushed off, the next near miss may stay hidden. Listening first protects the safety information."
@@ -1384,13 +1142,6 @@
             "decision",
             "paperwork"
           ],
-          "planSpec": {
-            "domain": "a college financial-aid advisor speaking with a student whose form was rejected",
-            "audience": "an advisor who must use empathy without sounding like a script",
-            "stakes": "the student may leave school over a solvable paperwork issue",
-            "format": "decision_point",
-            "requiredBeat": "you hear yourself reaching for policy language, then choose one empathic sentence about how trapped the student feels before the checklist"
-          },
           "scenario": "You see a rejected-aid notice folded into quarters beside Olivia's campus ID and a yellow highlighter at the financial-aid counter. The student says he may have to leave school, and policy language is already forming in her mouth. Olivia must decide whether to lead with line numbers and deadlines or say, \"This feels like one form is deciding your whole semester,\" before opening the checklist.",
           "whatToDo": "Name the trapped feeling first, then move to the checklist. Keep the empathy specific to this notice rather than using a stock comfort line.",
           "whyItMatters": "The form problem is solvable, but the student cannot hear steps while he feels dismissed. A precise empathic sentence lowers that barrier."
@@ -1403,13 +1154,6 @@
             "vignette",
             "delay"
           ],
-          "planSpec": {
-            "domain": "a restaurant host mediating between kitchen delay and anniversary guests",
-            "audience": "a host who can either defend the kitchen or validate the moment",
-            "stakes": "a special dinner is about to become a public complaint",
-            "format": "vignette",
-            "requiredBeat": "At 8:37 p.m., Daniel names the disappointment before discussing the kitchen delay, then asks which timing would rescue the evening"
-          },
           "scenario": "At 8:37 p.m., Daniel sees two untouched champagne flutes on table twelve, a reservation tablet glowing in his hand, and an anniversary dessert card still in his apron pocket. The guests are deciding whether to leave. Daniel has to decide whether to defend the kitchen delay or name the disappointment first, then ask which timing would rescue the evening.",
           "whatToDo": "Validate the lost moment before explaining the delay. Ask what timing would still make the dinner work, then negotiate from there.",
           "whyItMatters": "The guests are not only waiting for food. They are watching a planned evening lose its shape, so logistics need empathy before they can help."
@@ -1422,13 +1166,6 @@
             "predict-reveal",
             "follow-up"
           ],
-          "planSpec": {
-            "domain": "a municipal snowplow dispatcher taking calls after a missed street",
-            "audience": "a dispatcher trying to keep residents engaged while crews are overloaded",
-            "stakes": "bad listening can turn one missed plow into dozens of angry call-backs",
-            "format": "predict_reveal",
-            "requiredBeat": "the dispatcher predicts the caller wants action only, then learns that naming the caller fear about an icy hill lowers the heat enough to gather details"
-          },
           "scenario": "A wall map dotted with blue plow magnets hangs behind Yusuf in the public works dispatch room at 5:18 p.m. while the radio headset crackles over a storm bulletin. He predicts the caller wants only a truck time, then hears the phrase my father and the hill. Yusuf must decide whether to repeat the route list or say, \"You are worried he will try that slope with his walker,\" before asking for the exact block.",
           "whatToDo": "Name the fear, then gather the details. Use the empathic statement to keep the caller engaged long enough to improve the dispatch.",
           "whyItMatters": "The resident's urgency contains useful information. When Yusuf hears the fear, he gets the address, slope, and timing instead of another angry call."
@@ -1441,13 +1178,6 @@
             "before-after",
             "repair"
           ],
-          "planSpec": {
-            "domain": "a theater costume supervisor receiving criticism from an actor before opening night",
-            "audience": "a supervisor whose pride could make the actor stop reporting fit problems",
-            "stakes": "a torn seam under stage lights will distract the audience",
-            "format": "before_after",
-            "requiredBeat": "it takes Marta one defensive reply to see the actor needed acknowledgment before pins and measurements"
-          },
           "scenario": "It takes Marta one defensive reply under the fluorescent row of labeled garment bags to see the actor did not need a lecture on fittings. The pin cushion is open, the measurement tape is looped around her wrist, and the jacket seam is pulling under the arm before opening night. After she says, \"You need to know it will hold under lights,\" the actor steps closer for the pins.",
           "whatToDo": "Acknowledge the worry before measuring. Let the actor hear that the fit problem is real, then move to the pins and repair.",
           "whyItMatters": "Pride can make a supervisor defend the rack instead of hearing the performer. Acknowledgment keeps future fit problems from going unreported."
@@ -1466,8 +1196,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second sentence names the felt meaning before logistics. The others may be true, but they answer process before fear.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1479,8 +1208,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Setting down the stamp and asking next keeps attention on the apprentice's account. Immediate repair or reassurance can shut down useful details.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1492,8 +1220,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The empathic sentence fits the student's fear and then moves to action. Rules first can feel cold, and easy-to-fix reassurance may minimize the stakes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1505,8 +1232,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The guests need the lost moment recognized before options. Kitchen detail skips emotion, and dessert may feel like a payoff without understanding.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1518,8 +1244,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Naming the fear keeps the caller engaged and helps gather better data. Schedule repetition and workload defense ignore the reason the call is hot.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1531,8 +1256,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Canned empathy points to the technique instead of the person. Length is not the core problem, and validation can support logic when it is specific.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1544,8 +1268,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Active listening is not parroting plus advice. The supervisor took control before understanding the emotional meaning.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1557,8 +1280,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The actor is risking a complaint that could prevent a stage problem. Acknowledgment keeps the report open; measurements still matter afterward.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1570,8 +1292,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The plan validates without getting stuck. A fast solution may miss the real issue, and sending them away can make the person feel dismissed.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1632,19 +1353,13 @@
       },
       "memorableLines": [
         {
-          "text": "The language of friendship has to sound like attention in this room.",
-          "location": "breakdown.deepRead",
-          "why": "It warns against canned empathy in a compact, memorable way."
+          "text": "The language of friendship has to sound like attention in this room."
         },
         {
-          "text": "The advice may be good, but it lands like interruption.",
-          "location": "breakdown.fullRead",
-          "why": "It captures why early advice fails even when accurate."
+          "text": "The advice may be good, but it lands like interruption."
         },
         {
-          "text": "Good conversation does not make you the hero of the exchange.",
-          "location": "breakdown.fullRead",
-          "why": "It ties the conversation skill back to outward attention."
+          "text": "Good conversation does not make you the hero of the exchange."
         }
       ]
     },
@@ -1671,13 +1386,6 @@
             "scene",
             "similarity"
           ],
-          "planSpec": {
-            "domain": "a neighborhood emergency-preparedness team pairing an ex-firefighter with a software analyst",
-            "audience": "a team lead who needs trust across different backgrounds",
-            "stakes": "storm season starts in two weeks",
-            "format": "scene",
-            "requiredBeat": "the lead finds real common ground in checklists and after-action notes before asking either person to share more personal history"
-          },
           "scenario": "Cases of bottled water stack beside a folding table while Ben lays out laminated route cards and a battery tester for the neighborhood storm team. The ex-firefighter speaks in crew habits; the software analyst speaks in failure logs. Storm season starts in two weeks. Ben is about to ask them to introduce themselves, then must decide whether to start with the checklist risks and after-action notes both already understand.",
           "whatToDo": "Find the work-ground first. Let them compare route cards, batteries, and failure notes before asking for personal history.",
           "whyItMatters": "Common ground lands faster when it is real. Their shared respect for checklists gives trust a practical base before personal disclosure is needed."
@@ -1690,13 +1398,6 @@
             "dialogue",
             "pacing"
           ],
-          "planSpec": {
-            "domain": "a language-exchange cafe where a confident speaker overwhelms a shy partner",
-            "audience": "a facilitator pacing disclosure between strangers",
-            "stakes": "one person may stop attending if every session feels exposed",
-            "format": "dialogue",
-            "requiredBeat": "\"Let us trade one small mistake, not life stories,\" Olivia says, setting a disclosure size both partners can match"
-          },
           "scenario": "\"Let us trade one small mistake,\" Hadiya says at table seven. \"Not life stories.\" Vocabulary cards sit beside an espresso spoon, and the confident speaker has turned every prompt into a story about family, travel, and failure. The shy partner is staring at the door. Hadiya has to decide whether to let the imbalance continue or set a disclosure size both strangers can match.",
           "whatToDo": "Set the exchange at one small mistake each. Keep disclosure mutual and small enough that both partners can participate without feeling exposed.",
           "whyItMatters": "A one-sided life story creates pressure, not closeness. Matched disclosure lets trust grow through equal risk."
@@ -1709,13 +1410,6 @@
             "decision",
             "trust"
           ],
-          "planSpec": {
-            "domain": "a product-design research panel with parents of children using medical devices",
-            "audience": "a researcher who must build closeness without extracting pain",
-            "stakes": "rushed disclosure could feel like exploitation",
-            "format": "decision_point",
-            "requiredBeat": "the researcher notices a real shared constraint around nighttime alarms and discloses only enough about the design team to invite reciprocal practical detail"
-          },
           "scenario": "A soft alarm chirps from the demo monitor while Aanya checks sticky tabs on the consent form. Parents of children using medical devices sit across from her, already guarded. She is about to ask about fear at night. Aanya must decide whether to begin there or disclose one small design-team argument about alarm noise so parents can answer with practical detail at the same level.",
           "whatToDo": "Start with the shared nighttime constraint, then disclose one modest design-team detail. Invite practical response before personal pain.",
           "whyItMatters": "Rushed intimacy can feel extracted. A shared constraint gives parents a safer place to enter before deeper trust is earned."
@@ -1728,13 +1422,6 @@
             "before-after",
             "common ground"
           ],
-          "planSpec": {
-            "domain": "a community garden conflict between longtime plot holders and new apartment residents",
-            "audience": "a volunteer mediator finding authentic similarity",
-            "stakes": "the garden board may split into old and new factions",
-            "format": "before_after",
-            "requiredBeat": "it takes Antoine one failed icebreaker to stop forcing hobbies and ask each side what they are trying to protect in the soil"
-          },
           "scenario": "It takes Antoine one failed 10:30 a.m. garden-shed icebreaker beside tomato twine tied to a splintered stake to stop forcing shared hobbies. The watering schedule is smeared, and a seed tray sits between longtime plot holders and new apartment residents. Before, he asked what everyone liked to grow. After, he asks what each side is trying to protect in the soil, and the room finally has ground that is real.",
           "whatToDo": "Drop the forced hobby question. Ask what each group is protecting, then build discussion from the real overlap around care for the garden.",
           "whyItMatters": "Invented similarity feels thin. A shared stake in the soil can hold conflict because both sides recognize it as true."
@@ -1747,13 +1434,6 @@
             "predict-reveal",
             "risk"
           ],
-          "planSpec": {
-            "domain": "a jazz workshop pairing a classical pianist and a drummer",
-            "audience": "a workshop leader building trust through paced musical disclosure",
-            "stakes": "the duo will not improvise if one person feels exposed alone",
-            "format": "predict_reveal",
-            "requiredBeat": "What happens when the pianist plays one imperfect phrase first and the drummer answers with one of his own?"
-          },
           "scenario": "What happens when the practice room clock ticks over a silent lead sheet? Andrew sees the classical pianist stare at a snare brush in the drummer's hand and predicts that encouragement will be enough. He must decide whether to ask the pianist to risk the first imperfect phrase alone or have each musician trade one flawed phrase so exposure moves both ways.",
           "whatToDo": "Make the musical risk reciprocal. Ask one imperfect phrase from the pianist and one from the drummer before asking for real improvisation.",
           "whyItMatters": "Trust does not grow when one person is exposed and the other stays safe. Matched risk lets closeness enter the work."
@@ -1766,13 +1446,6 @@
             "vignette",
             "screen"
           ],
-          "planSpec": {
-            "domain": "a remote compliance team onboarding a contractor in another country",
-            "audience": "a team lead who needs closeness across screens without pretending intimacy",
-            "stakes": "the contractor must report risks early instead of hiding confusion",
-            "format": "vignette",
-            "requiredBeat": "At 10:06 a.m., Lin chooses a small work-process disclosure about a past checklist miss, then waits for the contractor to match at the same level"
-          },
           "scenario": "At 10:06 in the morning, Lin pauses a shared screen on a redacted audit log while a time-zone note sits beside the video tile. The contractor is new, quiet, and likely to hide confusion during the compliance handoff. Lin must decide whether to force friendliness across the screen or share one small work-process mistake from a past checklist and wait for the contractor to match at the same level.",
           "whatToDo": "Disclose one small process mistake and then wait. Let the contractor match modestly before asking for more openness.",
           "whyItMatters": "Remote closeness can turn fake fast. A small, work-level disclosure builds trust without pretending the screen has already made the relationship intimate."
@@ -1791,8 +1464,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The route cards and checks give them a true shared working language. Childhood stories are too personal, and reassurance does not create evidence.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1804,8 +1476,7 @@
             ],
             "correctIndex": 0,
             "explanation": "One small mistake each makes disclosure mutual and sized. More performance or pressure would deepen the imbalance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1817,8 +1488,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The shared constraint lets parents enter safely. Worst-night stories are too heavy early, and avoiding all disclosure can make the exchange cold.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1830,8 +1500,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Protecting the soil names a real shared stake. Tenure and compromise pressure can harden factions before common ground appears.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1843,8 +1512,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Matched imperfection makes the risk reciprocal. A solo first risk exposes one person, and a slogan does not change the power of the moment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1856,8 +1524,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Disclosure helps when paced and mutual. Heavy early sharing can feel like a demand, not an invitation to trust.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1869,8 +1536,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A small process disclosure shows that risk can be named safely. Informality alone is not trust, and follow-up is still needed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1882,8 +1548,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Common ground has to be true enough to stand on. Forced likeness can feel like a tactic and weaken trust.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1895,8 +1560,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The best test is matched, modest disclosure plus careful response. Forced stories rush trust, and total reserve gives closeness nothing to grow from.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1957,19 +1621,13 @@
       },
       "memorableLines": [
         {
-          "text": "Closeness is not created by maximum openness.",
-          "location": "breakdown.deepRead",
-          "why": "It makes pacing memorable without overexplaining it."
+          "text": "Closeness is not created by maximum openness."
         },
         {
-          "text": "What kind of similarity are you offering?",
-          "location": "breakdown.fullRead",
-          "why": "It turns the chapter's warning into a direct diagnostic question."
+          "text": "What kind of similarity are you offering?"
         },
         {
-          "text": "The useful middle is modest and sturdy: find what is true, disclose what fits, and let the next step depend on how the other person carries this one.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses common ground, disclosure, and pacing into one carryable rule."
+          "text": "The useful middle is modest and sturdy: find what is true, disclose what fits, and let the next step depend on how the other person carries this one."
         }
       ]
     },
@@ -1996,13 +1654,6 @@
             "scene",
             "maintenance"
           ],
-          "planSpec": {
-            "domain": "a volunteer search-and-rescue unit where two longtime partners stop checking each other gear",
-            "audience": "a unit captain seeing familiarity replace maintenance",
-            "stakes": "one missed battery check could cost a night search",
-            "format": "scene",
-            "requiredBeat": "the captain reinstates a mutual gear check and watches irritation turn into relief when one dead headlamp is found before deployment"
-          },
           "scenario": "A headlamp beam flickers against wet gravel while Lars unfolds the grid map beside a radio battery case. The two longtime partners laugh that they know each other's packs by now, and one already has a compass clipped to his jacket. The night search starts in fifteen minutes. Lars is about to skip the old routine, then must decide whether to reinstate the mutual gear check before one dead lamp becomes a problem in the woods.",
           "whatToDo": "Run the mutual gear check even if the partners roll their eyes. Make care visible before the search begins.",
           "whyItMatters": "History can hide maintenance gaps. Finding the dead headlamp turns upkeep from insult into protection."
@@ -2015,13 +1666,6 @@
             "postmortem",
             "reciprocity"
           ],
-          "planSpec": {
-            "domain": "a university alumni scholarship committee with lopsided follow-through",
-            "audience": "a committee chair protecting a long-running partnership",
-            "stakes": "donor deadlines will be missed if one member keeps carrying the invisible work",
-            "format": "postmortem",
-            "requiredBeat": "the chair traces the drift through unanswered task notes and asks each person to return one piece of effort before resentment hardens"
-          },
           "scenario": "Sticky flags bristle from a stack of scholarship files beside the deadline calendar. Giulia reads the task notes again and sees the drift: one member answered every donor question, three members praised the tradition, and nobody returned the invisible work while the inbox kept filling after dinner. Before resentment hardens into the committee's new habit, she asks each person to take back one named task by Friday.",
           "whatToDo": "Trace the lopsided effort in concrete tasks, then ask each member to return one visible piece of work before the deadline.",
           "whyItMatters": "A long-running partnership weakens when reciprocity disappears. Naming the tasks repairs the pattern before it becomes the relationship."
@@ -2034,13 +1678,6 @@
             "dialogue",
             "repair"
           ],
-          "planSpec": {
-            "domain": "a sibling pair managing care for an aging parent from different cities",
-            "audience": "an adult child who confuses family history with current reciprocity",
-            "stakes": "unspoken strain could rupture the care plan",
-            "format": "dialogue",
-            "requiredBeat": "\"I know we both love her, and the calls are not landing evenly,\" Megan says, naming the maintenance gap before blame takes over"
-          },
           "scenario": "\"I know we both love her,\" Megan says. \"The calls are not landing evenly.\" A pill organizer sits beside a train ticket and the shared care calendar is open after a missed pharmacy pickup. Her brother starts to list his travel days. Megan has to decide whether to argue over who cares more or name the maintenance gap before blame takes over and the care plan breaks.",
           "whatToDo": "Name the uneven calls as a maintenance problem, not a love contest. Then move one recurring task onto the calendar with a clear owner.",
           "whyItMatters": "Family history does not balance current effort. Early repair keeps strain from becoming the hidden structure of the care plan."
@@ -2053,13 +1690,6 @@
             "before-after",
             "repair"
           ],
-          "planSpec": {
-            "domain": "a chamber-music quartet after ten years together",
-            "audience": "a first violinist who assumes history will carry rehearsals",
-            "stakes": "a festival audition will expose quiet resentment",
-            "format": "before_after",
-            "requiredBeat": "it takes Margaux one brittle rehearsal to see that shared history stopped replacing prompt apology and rotated administrative work"
-          },
           "scenario": "It takes Margaux one brittle rehearsal and rosin dust on a black folder to see the quartet's history has stopped doing the work. The chair chart is wrong, the invoice envelope is unopened, and the same violist has handled logistics for months. Before, Margaux trusted ten years together. After, she apologizes for snapping and rotates the administrative work before the festival audition.",
           "whatToDo": "Repair the sharp comment and rotate the logistics. Turn shared history back into current care.",
           "whyItMatters": "A decade together can disguise one-sided effort. Prompt repair keeps resentment from walking into the audition with the music."
@@ -2072,13 +1702,6 @@
             "decision",
             "upkeep"
           ],
-          "planSpec": {
-            "domain": "a co-op bakery partnership after the first profitable year",
-            "audience": "partners who built closeness under pressure but now need upkeep",
-            "stakes": "one partner is doing all supplier calls and slowly detaching",
-            "format": "decision_point",
-            "requiredBeat": "At 5:22 a.m., Michael decides whether to defend his long hours or move two supplier calls back onto his own list"
-          },
           "scenario": "At 5:22 in the morning, Michael sees flour handprints across a steel prep table while the supplier list lies between the proofing rack and the cash drawer. His partner has made every call for two months. Michael is about to defend his long hours, then must decide whether to move two supplier calls back onto his own list before detachment becomes permanent.",
           "whatToDo": "Take back two supplier calls without a speech. Let the maintenance show up as returned effort.",
           "whyItMatters": "The partnership was built under pressure, but durability now depends on visible reciprocity. Defending effort is weaker than returning it."
@@ -2091,13 +1714,6 @@
             "vignette",
             "current care"
           ],
-          "planSpec": {
-            "domain": "a neighborhood mutual-aid freezer program entering its third winter",
-            "audience": "a coordinator maintaining trust after early enthusiasm fades",
-            "stakes": "missed restocks mean families arrive to empty shelves",
-            "format": "vignette",
-            "requiredBeat": "you stop praising the founding story and ask who checked the freezer this week, making current care visible again"
-          },
           "scenario": "You see frost around a handwritten freezer inventory sheet held by magnet clips in the church basement at 4:10 p.m., and Etienne is still telling the founding story to new volunteers. A grocery receipt is missing, and two shelves are low. He has to decide whether to keep praising how the program began or ask who checked the freezer this week so current care becomes visible before families arrive.",
           "whatToDo": "Shift from origin story to present upkeep. Ask who checked inventory, who has the receipt, and which shelf needs restocking today.",
           "whyItMatters": "Trust fades when early enthusiasm replaces current care. Families need stocked shelves, not a memory of how generous the program once felt."
@@ -2116,8 +1732,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Durability needs current care. Familiarity can hide missing upkeep, while checking only new people treats maintenance as a beginner issue.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2129,8 +1744,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Returning named tasks restores reciprocity. Public thanks may soften the imbalance, and delay lets resentment harden.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2142,8 +1756,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second option names the maintenance gap without turning love into a courtroom. Blame escalates, and refusing to track effort hides the pattern.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2155,8 +1768,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Rotating work and repairing tone make current care visible. Music quality matters, but it will not fix the one-sided maintenance load.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2168,8 +1780,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Returned effort repairs the maintenance gap. Explanation and celebration may be sincere, but they do not change the lopsided pattern.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2181,8 +1792,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The empty shelves show maintenance has fallen behind. Storytelling may inspire, but it cannot replace present upkeep.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2194,8 +1804,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Durability depends on present reciprocity, not the age of the bond. Personality explanations can hide one-sided effort.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2207,8 +1816,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Early repair prevents drift from becoming structure. Waiting for obvious damage makes the fix larger, not smaller.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2220,8 +1828,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Current follow-up, reciprocity, and repair show living maintenance. Years and low conflict can hide passivity or avoidance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2282,19 +1889,13 @@
       },
       "memorableLines": [
         {
-          "text": "Old closeness does not do today's work.",
-          "location": "breakdown.deepRead",
-          "why": "It states the chapter's maintenance rule in one plain line."
+          "text": "Old closeness does not do today's work."
         },
         {
-          "text": "Repair works best while the distance is still soft enough to answer.",
-          "location": "breakdown.fullRead",
-          "why": "It gives early repair a concrete image without overexplaining."
+          "text": "Repair works best while the distance is still soft enough to answer."
         },
         {
-          "text": "If the bond matters, prove it in the present.",
-          "location": "breakdown.fullRead",
-          "why": "It closes with an actionable standard for durable care."
+          "text": "If the bond matters, prove it in the present."
         }
       ]
     },
@@ -2321,13 +1922,6 @@
             "decision",
             "verification"
           ],
-          "planSpec": {
-            "domain": "a freelance illustrator considering a large online commission from a charming new client",
-            "audience": "a creator balancing opportunity with payment risk",
-            "stakes": "two weeks of unpaid work could wipe out rent money",
-            "format": "decision_point",
-            "requiredBeat": "the illustrator slows trust by requiring a deposit and checking the business record even though the client feels warm and urgent"
-          },
           "scenario": "A color palette is open beside an unsigned contract while Petra reads a warm client message and a portfolio link in the same browser window. The project would cover rent, but two unpaid weeks would wreck her month, and the client wants first sketches before Monday. She has to decide whether to start sketches tonight or send a deposit invoice and check the business record before the friendly urgency becomes trust.",
           "whatToDo": "Keep the opportunity open while requiring a deposit and basic business check. Let verified commitment catch up to the client's warmth.",
           "whyItMatters": "The signal feels promising, but the risk is financial. Trust should not move faster than evidence when unpaid work carries real cost."
@@ -2340,13 +1934,6 @@
             "predict-reveal",
             "boundaries"
           ],
-          "planSpec": {
-            "domain": "a parent evaluating a private online tutor for a teenager",
-            "audience": "a parent who wants help without handing over trust too quickly",
-            "stakes": "a child will spend unsupervised video hours with a stranger",
-            "format": "predict_reveal",
-            "requiredBeat": "What evidence matters more than the tutor profile: references, trial boundaries, or the speed of the friendly messages?"
-          },
           "scenario": "What evidence matters more than the tutor profile? At 7:35 p.m. in the kitchen, Diego has a sample lesson PDF open, the video-call waiting room ready, and no reply yet to the reference email. The messages are friendly and fast, and his teenager needs help before the algebra retake. Diego must decide whether to begin unsupervised sessions or set a short trial, wait for references, and keep the first calls observable.",
           "whatToDo": "Use a trial boundary and wait for references. Keep the tone warm while the access level stays limited.",
           "whyItMatters": "A polished profile can feel trustworthy before it is checked. The child-facing risk means warmth should invite verification, not replace it."
@@ -2359,13 +1946,6 @@
             "dialogue",
             "access"
           ],
-          "planSpec": {
-            "domain": "a remote nonprofit board vetting a volunteer treasurer met through a forum",
-            "audience": "a board chair tempted by competence signals",
-            "stakes": "bank access could expose donor funds",
-            "format": "dialogue",
-            "requiredBeat": "\"He sounds perfect,\" Anna says, then separates signal from evidence by asking what has actually been verified before access is granted"
-          },
           "scenario": "\"He sounds perfect,\" Anna says. The board agenda sits beside a bank authorization form and a forum profile on her screen. The volunteer answers every question cleanly, and donor reports are behind schedule before the Friday grant update. Anna has to decide whether competence signals are enough for access or ask the board what has actually been verified before any bank role is granted.",
           "whatToDo": "List the signals and the verified facts separately. Offer a smaller trial role before bank access.",
           "whyItMatters": "Competence signals can be real and still insufficient for high trust. Donor funds require evidence beyond a polished forum profile."
@@ -2378,13 +1958,6 @@
             "vignette",
             "boundaries"
           ],
-          "planSpec": {
-            "domain": "a community language app user invited to move a conversation off-platform",
-            "audience": "a user practicing guarded optimism without shutting down connection",
-            "stakes": "the relationship could be real, but the new channel removes safeguards",
-            "format": "vignette",
-            "requiredBeat": "you keep the conversation warm while asking for slower steps and platform boundaries until claims and behavior align"
-          },
           "scenario": "You see a blinking off-platform invitation under the translation prompt while Min checks the privacy setting and a voice-note request after three evenings of practice. The exchange has been kind, and the connection may be real. Min must decide whether to follow the warmth to a private channel or keep the conversation friendly on-platform until claims and behavior align for longer.",
           "whatToDo": "Keep the warmth and hold the boundary. Stay on platform, slow the channel shift, and let consistency earn more access.",
           "whyItMatters": "Guarded optimism preserves possibility without handing over safeguards. A real connection can survive a slower pace."
@@ -2397,13 +1970,6 @@
             "before-after",
             "due diligence"
           ],
-          "planSpec": {
-            "domain": "a small manufacturer approached by a polished distributor at a trade show",
-            "audience": "an owner balancing a promising partnership with due diligence",
-            "stakes": "one premature purchase order could trap inventory for months",
-            "format": "before_after",
-            "requiredBeat": "the owner enjoys the rapport at the booth but waits for references and a test order before granting exclusivity"
-          },
           "scenario": "Sample parts sit under bright trade-show lights at the trade-show table in booth C-14 of the Lyon packaging expo while Catarina, the product lead for a small parts manufacturer, hears the badge scanner chirp beside a test order form. Before, she would have rewarded strong booth rapport with a large purchase order. After, she enjoys the conversation, asks for two references, and starts with a small test order before exclusivity can trap inventory for months.",
           "whatToDo": "Let the rapport continue, but make exclusivity wait for references and a test order. Turn promise into evidence before inventory is committed.",
           "whyItMatters": "A polished distributor may be a real opportunity. Due diligence protects that opportunity from becoming expensive hope."
@@ -2416,13 +1982,6 @@
             "postmortem",
             "verification"
           ],
-          "planSpec": {
-            "domain": "a tenant group receiving urgent messages from a supposed building inspector",
-            "audience": "a tenant organizer protecting neighbors without becoming suspicious of everyone",
-            "stakes": "residents might share personal details or miss a real safety notice",
-            "format": "postmortem",
-            "requiredBeat": "At 6:48 p.m., Marit compares the message style with verified city contact channels before forwarding anything to the building list"
-          },
           "scenario": "At 6:48 in the evening, Marit stands in a dim stairwell with a phone screen glowing over an urgent inspection notice. The building list is ready, and residents may need real safety information before morning. Before forwarding, she compares the message style with the verified city contact page and saves the building from both panic and careless dismissal.",
           "whatToDo": "Check the verified city channel before forwarding. Treat urgency as a reason to verify faster, not to skip verification.",
           "whyItMatters": "The notice could be real or false. Verification protects neighbors from sharing personal details while still respecting genuine safety risk."
@@ -2441,8 +2000,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The deposit and check preserve opportunity while tying trust to evidence. Starting work trusts too fast, while blanket refusal kills possible connection.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2454,8 +2012,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The bounded trial keeps openness while verifying. Friendly messages are signals, and cancellation turns caution into total suspicion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2467,8 +2024,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Bank access needs verified evidence and staged trust. A statement adds more signal, and full access makes the test too costly.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2480,8 +2036,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The response preserves connection and safeguards. Immediate movement gives trust too fast, while blocking treats uncertainty as proof of danger.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2493,8 +2048,7 @@
             ],
             "correctIndex": 1,
             "explanation": "References and a test order convert rapport into evidence. Exclusivity trusts the booth too much, while blanket avoidance rejects real opportunity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2506,8 +2060,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Truth bias makes a plausible notice feel usable too soon. Checking and then warning keep trust tied to reality.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2519,8 +2072,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Verification is compatible with warmth when stakes are real. Good feeling can guide attention, but it should not replace evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2532,8 +2084,7 @@
             ],
             "correctIndex": 1,
             "explanation": "High access before verified history creates exposure. Polished samples and fast answers may be positive signals, but they are not enough for admin trust.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2545,8 +2096,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The plan keeps connection possible while pacing trust. Quick trust is naive, and withholding all warmth turns caution into suspicion.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2607,19 +2157,13 @@
       },
       "memorableLines": [
         {
-          "text": "Verification does not insult a real relationship.",
-          "location": "breakdown.deepRead",
-          "why": "It captures truth bias risk in a short, quotable line."
+          "text": "Verification does not insult a real relationship."
         },
         {
-          "text": "Trust should move at the speed of verified reality, not at the speed of relief, urgency, polish, or hope.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the closing chapter its operating standard."
+          "text": "Trust should move at the speed of verified reality, not at the speed of relief, urgency, polish, or hope."
         },
         {
-          "text": "Stay open. Keep evidence in the room.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves promise and caution in a compact ending."
+          "text": "Stay open. Keep evidence in the room."
         }
       ]
     }

@@ -41,13 +41,6 @@
             "ego-state",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "hospital shift handoff after a medication near-miss",
-            "audience": "a charge nurse deciding how to respond to a junior nurse who asks a clean dosage question",
-            "stakes": "patient safety, shame, and whether the room stays factual",
-            "format": "scene",
-            "requiredBeat": "Sarah hears her own first reply start as data and end as scolding, stops before the last clause, and restates the dose check in Adult language."
-          },
           "scenario": "\"Can I ask why the order changed from 5 to 2.5?\" The question hangs over the nurses station at 6:17 a.m. Sarah is the charge nurse, standing under the fluorescent task light with a laminated medication chart and a half-filled incident form. Her answer starts with the patient's kidney numbers, then swerves toward, \"you should know this.\" She must decide whether to finish the scold or return to the dose.",
           "whatToDo": "Stop before the rule voice lands. Say the lab value, the revised order, and the check-back step. Keep the exchange in Adult language so the nurse can verify the dose without shame.",
           "whyItMatters": "The patient needs current data more than the room needs a hierarchy lesson. Once Sarah shifts into Parent, the junior nurse starts managing shame instead of checking medication."
@@ -60,13 +53,6 @@
             "feedback",
             "adult-state"
           ],
-          "planSpec": {
-            "domain": "Paris product design critique for a flawed checkout screen",
-            "audience": "a design lead whose feedback can either teach the interface problem or shame the designer",
-            "stakes": "whether the junior designer learns the pattern or only learns to hide draft work",
-            "format": "decision_point",
-            "requiredBeat": "Camille points to the abandoned-cart data instead of saying the designer should have known better."
-          },
           "scenario": "The projector throws a pale checkout form across the glass wall in Camille's Paris studio. A junior designer stands beside a sticky-note cluster while the abandoned-cart graph sits open on the laptop. Camille can already hear the sentence that would turn the critique into a lesson in obedience. Before the prototype review continues, she has to choose between pointing at the person and pointing at the payment-field drop.",
           "whatToDo": "Point to the graph and ask what changed on the third screen. Keep the problem attached to the prototype click path, not to the designer's worth or maturity.",
           "whyItMatters": "Adult feedback gives the designer something to test. Parent feedback makes the designer defend status, which hides the checkout pattern everyone needs to see."
@@ -79,13 +65,6 @@
             "texting",
             "child-state"
           ],
-          "planSpec": {
-            "domain": "family group text about an elderly parent's appointment",
-            "audience": "an adult son pulled between practical scheduling and old sibling rank",
-            "stakes": "a simple appointment can become a childhood argument in six messages",
-            "format": "vignette",
-            "requiredBeat": "Thomas notices that his thumbs are answering his sister from the twelve-year-old who hated being corrected, then writes the appointment time only."
-          },
           "scenario": "You are holding the phone over the counter while three gray dots blink in the muted group chat. Thomas's sister asks who is taking Dad to cardiology, and the shared calendar invite is already open beside an orange prescription bottle. His thumbs reach for the old sibling reply. He must decide whether to answer from the twelve-year-old who hated correction or from the adult with the appointment time.",
           "whatToDo": "Send the time, entrance, and medication reminder only. If the old rank fight wants a sentence, leave it unsent until the practical exchange is complete.",
           "whyItMatters": "The family needs coordination. The Child state needs to settle an older score. Mixing them turns a calendar detail into a childhood argument with new punctuation."
@@ -98,13 +77,6 @@
             "budget",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "tenant association budget meeting in a cold community room",
-            "audience": "a volunteer treasurer trying to stay in Adult while an older member speaks in Parent rules",
-            "stakes": "a repair fund vote may fail because the tone pulls everyone backward",
-            "format": "dialogue",
-            "requiredBeat": "Anke separates the member's rule-tone from the useful number hidden inside it and asks for the invoice date."
-          },
           "scenario": "The room smells of wet coats and copier toner before anyone sits down. Anke, the volunteer treasurer, has the roof repair invoice beside a coffee urn and six folding chairs. \"We always pay roof work first,\" Mr. Voss says. \"That is how responsible people do it.\" Anke hears the Parent rule and the useful clue inside it. Her next move has to choose a target: the tone or the invoice date.",
           "whatToDo": "Ask for the invoice date and payment deadline. Let the rule voice pass without taking the bait, then put the useful number on the repair fund sheet.",
           "whyItMatters": "A Parent tone can carry an Adult fact. If Anke argues with the posture, the room debates respect. If she extracts the date, the vote gets information."
@@ -117,13 +89,6 @@
             "youth-sport",
             "nurturing-parent"
           ],
-          "planSpec": {
-            "domain": "youth football sideline after a missed penalty kick",
-            "audience": "a coach whose comfort can still come from Parent if it tells the player what to feel",
-            "stakes": "whether a child gets present information or a borrowed script about toughness",
-            "format": "before_after",
-            "requiredBeat": "Diego sees that his gentle line still commands the child to feel proud, then asks what the player noticed about his plant foot."
-          },
           "scenario": "It took Diego until the second missed kick to hear the order inside his kindness. The muddy penalty spot is chewed up, the substitution card is folded in his palm, and a team water crate rattles behind him. He almost says, \"You should be proud for trying.\" The player is staring at the ground. Diego hears Nurturing Parent in the line and changes course.",
           "whatToDo": "Ask what the player noticed about his plant foot. Offer care without telling him what feeling is allowed, then bring attention back to the next kickable detail.",
           "whyItMatters": "A warm order is still an order. The player can use information about his foot; he cannot use a borrowed feeling that makes the coach comfortable."
@@ -136,13 +101,6 @@
             "intake",
             "rescue"
           ],
-          "planSpec": {
-            "domain": "Toronto immigration clinic intake interview",
-            "audience": "a legal-aid coordinator trying not to let an applicant's panic become her own Parent rescue script",
-            "stakes": "one wrong tone can turn an adult client into someone being managed",
-            "format": "reflection",
-            "requiredBeat": "Aanya notices the urge to soothe and instead names the next document needed in present-tense terms."
-          },
           "scenario": "What changes when a kind voice starts telling someone how they should feel? Aanya is at a Toronto immigration clinic with a folder of translated documents, an intake checklist, and a numbered waiting ticket on the desk. The applicant is panicking over a missing date. Aanya feels the rescue script rise, soft and managerial, then notices it before it becomes the room's voice.",
           "whatToDo": "Name the one document still needed and the next appointment window. Keep your tone steady, but do not tell the applicant what feeling to have.",
           "whyItMatters": "Rescue can pull an adult client into Child position. Present-tense information keeps dignity in the room while still reducing the practical uncertainty."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The dose data may be Adult, but the should-and-judgment turn is Parent. Accuracy alone does not make the whole reply Adult, and hierarchy by age or rank is not what defines Child.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Adult handles present facts and revisable decisions. A calm tone alone is not enough, and an instruction can still be Adult when it follows from current information.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The practical exchange needs Adult information. Naming the old pull internally helps keep Child from running the reply; acting it out or analyzing the family first changes the task.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Pointing to the graph keeps attention on present evidence. A gentle insult is still Parent judgment, and silence leaves the observable product problem untouched.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A Parent delivery can contain Adult information. Extracting the deadline keeps the meeting useful; fighting the tone or dismissing the fact both lose the data.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Nurturing Parent can sound warm while still prescribing feeling. Adult-to-child speech is not automatically Parent, and the issue is not praise versus criticism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sentence claims Adult neutrality while carrying a broad judgment learned as a rule. That is contamination, not missing Parent access or playful Child spontaneity.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Present-tense information keeps the applicant in Adult position. Warm reassurance can still manage the person's feelings, and asking for calm makes the same Parent move sharper.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The model does not ask people to delete Parent or Child. It helps them notice live state shifts; Adult is useful, but healthy functioning needs range rather than one permanent setting.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -327,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "Hear the voice before you answer the words.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's core skill into a short instruction the reader can use during a live exchange."
+          "text": "Hear the voice before you answer the words."
         },
         {
-          "text": "Nothing about the appointment created that sentence.",
-          "location": "breakdown.fullRead",
-          "why": "The line makes the difference between present facts and old emotional state visible without explaining it heavily."
+          "text": "Nothing about the appointment created that sentence."
         },
         {
-          "text": "The model does not give you a remote control.",
-          "location": "breakdown.fullRead",
-          "why": "It protects the reader from overpromising control while preserving the value of recognition."
+          "text": "The model does not give you a remote control."
         }
       ]
     },
@@ -366,13 +309,6 @@
             "slack",
             "adult-to-adult"
           ],
-          "planSpec": {
-            "domain": "remote software incident Slack thread during a payment outage",
-            "audience": "an engineering lead trying to keep a status request Adult-to-Adult",
-            "stakes": "the outage clock is running and shame will slow the fix",
-            "format": "scene",
-            "requiredBeat": "James answers the blame-tinged reply with the current rollback status and one needed log line rather than defending the team."
-          },
           "scenario": "At 10:42 a.m., James sees the red incident banner stretch across three monitors while the error-rate graph climbs. In the incident channel, he asks for rollback status. A product lead replies, \"Maybe release review should have mattered yesterday.\" James has the rollback checklist open and must choose a next line: defend the team or ask for the missing checkout log.",
           "whatToDo": "Reply with current rollback percent and the exact log needed from node seven. Leave the blame sentence untouched until the payment system is stable.",
           "whyItMatters": "The outage needs Adult-to-Adult information. Answering the accusation would cross into rank and blame, slowing the one exchange that can still reduce damage."
@@ -385,13 +321,6 @@
             "refund",
             "repair"
           ],
-          "planSpec": {
-            "domain": "bakery counter refund after a wedding cake pickup error",
-            "audience": "a shop owner hearing a customer's complaint arrive as Adult but feeling pulled into Child apology",
-            "stakes": "a refund conversation can become humiliation or repair",
-            "format": "decision_point",
-            "requiredBeat": "Léa notices that the customer asked for a remedy, not a confession, and replies with options and timing."
-          },
           "scenario": "\"I need to know what you can do before Saturday,\" the bride says, holding the cake box label beside the receipt roll. Lea stands at the bakery refund terminal with flour on her sleeve and feels the old urge to over-apologize until she sounds small. Before the counter line grows, Lea must decide between giving a confession and giving a remedy with timing.",
           "whatToDo": "Name the refund amount, the corrected cake option, and the delivery window. Apologize once, then keep the exchange in practical repair.",
           "whyItMatters": "The customer addressed Adult by asking what can be done. If Léa answers from Child shame, the conversation becomes about humiliation instead of solving the cake problem."
@@ -404,13 +333,6 @@
             "booking",
             "crossed"
           ],
-          "planSpec": {
-            "domain": "university lab equipment booking conflict",
-            "audience": "a PhD candidate answering a professor who treats a scheduling question as defiance",
-            "stakes": "access to the microscope and future trust in the lab",
-            "format": "predict_reveal",
-            "requiredBeat": "Andrew waits two beats, then restates the booking question without accepting the Parent-to-Child frame."
-          },
           "scenario": "The microscope room hums behind a keypad that has locked three students out. Andrew has the booking spreadsheet open and the keypad log folded under his lab coat sleeve. He asks if the 3 p.m. slot moved. The professor answers, \"Graduate students need to respect equipment rules.\" Andrew predicted a time answer. Now he has to choose whether to accept the scolding frame or restate the booking question.",
           "whatToDo": "Wait two beats and ask, \"Was the 3 p.m. booking moved to another user?\" Keep your reply aimed at the schedule, not at the rank implied by the scold.",
           "whyItMatters": "The professor crossed from Adult scheduling into Parent correction. Restating the scheduling arrow gives the exchange one chance to return to usable information."
@@ -423,13 +345,6 @@
             "service",
             "reassurance"
           ],
-          "planSpec": {
-            "domain": "local council snow-clearing complaint line",
-            "audience": "a city employee handling residents who want reassurance but ask as accusations",
-            "stakes": "a winter storm queue can turn into mutual contempt",
-            "format": "vignette",
-            "requiredBeat": "Ingrid hears the caller's Child appeal under the angry phrasing and gives a precise plow estimate without parental correction."
-          },
           "scenario": "At 8:35 a.m. inside the city hall municipal service desk, salt dust marks the cuffs of everyone walking past Ingrid's counter. Ingrid, the snow-clearing clerk, studies the plow route map while a resident snaps, \"Do you people even know my street exists?\" The wet boots tray is overflowing and the call queue display has been stuck above thirty all morning. Ingrid has to choose between correcting his tone and giving the route-four estimate he is really asking for.",
           "whatToDo": "Give the plow window, route number, and callback option. Skip the lecture about patience, even if the accusation was unfair.",
           "whyItMatters": "A reassurance request can arrive wearing anger. Parent correction would answer the anger and deepen the cross; precise information answers the need that can be served."
@@ -442,13 +357,6 @@
             "allergy",
             "dinner-rush"
           ],
-          "planSpec": {
-            "domain": "restaurant kitchen allergy ticket during dinner rush",
-            "audience": "a sous-chef catching a server's panicked request before it crosses into accusation",
-            "stakes": "one crossed reply can endanger the diner and split the line staff",
-            "format": "dialogue",
-            "requiredBeat": "Marco repeats the allergen list and asks for the table number instead of answering the server's fear as blame."
-          },
           "scenario": "You can hear the printer spit another ticket before the server finishes the sentence. Marco is at the expo window, red-handled tongs in one hand, allergy ticket in the other. \"If table twelve gets sick, that is on the kitchen,\" the server says as the bell rings. Marco must decide in the next order call whether to answer the fear as blame or repeat the allergen list.",
           "whatToDo": "Say the allergens, ask for the table number, and confirm the separate pan. Keep the reply tied to safety steps until the plate leaves the window.",
           "whyItMatters": "The diner needs a clean process. If Marco answers the implied accusation, the kitchen shifts from coordination into self-defense at the worst possible second."
@@ -461,13 +369,6 @@
             "conference",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "parent-teacher conference about missing assignments",
-            "audience": "a teacher trying to answer a parent's Adult question while the parent's tone invites Parent defense",
-            "stakes": "the student's plan depends on adults not reenacting rank",
-            "format": "postmortem",
-            "requiredBeat": "Layla sees later that she answered the father's tone instead of his question, then writes the crossed arrows on the conference notes."
-          },
           "scenario": "It took Layla until the parking lot to see the cross. The assignment tracker was open, the conference table name tent still leaned against her notebook, and the student's planner sat between two adults. The father had asked which assignments were missing. His tone sounded like an accusation. Layla answered the tone, not the question. Now she writes the two arrows beside her notes for the next meeting.",
           "whatToDo": "Mark the sent arrow and the returned arrow. For the next conference, prepare the missing-assignment list first and decide how you will answer tone without losing the question.",
           "whyItMatters": "A postmortem cannot undo the crossed exchange, but it can identify where the subject vanished. That map gives Layla a cleaner opening next time."
@@ -486,8 +387,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The dispatcher asked for route data and received a rule-laden correction. Same topic is not enough for complementarity; the answering state missed the addressed state.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -499,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The booking question calls for current schedule information. The other replies answer from Parent judgment, so the original scheduling problem would be replaced by rank and correction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -512,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The customer asked for remedy and timing, so Adult repair fits. The long apology shifts to Child shame, while blaming the customer crosses into Parent defense.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -525,8 +423,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The live system needs the Adult information path restored. Defending QA accepts the crossed blame frame, and a general pause may delay the concrete recovery step.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -538,8 +435,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The clerk can answer the service need without rewarding the accusation. Correction would deepen the cross, while blanket soothing ignores the concrete plow information available.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -551,8 +447,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The allergen list restores Adult coordination. The point is not to protect the server from challenge or accept blanket blame; it is to keep the transaction attached to diner safety.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -564,8 +459,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The transaction map tracks stimulus and response by state. Guessing motive goes beyond the evidence, and avoidance skips the useful diagnosis of where the exchange crossed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -577,8 +471,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The request wanted a file or time estimate. The reply judged a pattern, so the state shifted. The word \"always\" can signal judgment, but that does not make the answer Child.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -590,8 +483,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The arrow map tells you what happened; it does not choose the social risk for you. A live outage, classroom, and family table may each require a different next move.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -652,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "The payment outage is still live, but the exchange has already left the outage.",
-          "location": "breakdown.fastRead",
-          "why": "It shows how quickly a crossed transaction can remove people from the practical problem."
+          "text": "The payment outage is still live, but the exchange has already left the outage."
         },
         {
-          "text": "The arrow decides the room.",
-          "location": "breakdown.deepRead",
-          "why": "The line gives the chapter's diagnostic tool a compact visual form."
+          "text": "The arrow decides the room."
         },
         {
-          "text": "That drawing does not fix the meeting.",
-          "location": "breakdown.fullRead",
-          "why": "It names the honest limit of diagnosis without making the tool feel useless."
+          "text": "That drawing does not fix the meeting."
         }
       ]
     },
@@ -691,13 +577,6 @@
             "compliment",
             "status"
           ],
-          "planSpec": {
-            "domain": "venture-capital pitch feedback coffee",
-            "audience": "a founder receiving a compliment that quietly tests whether she will chase approval",
-            "stakes": "the next funding meeting may be shaped by a hidden status bid",
-            "format": "scene",
-            "requiredBeat": "Claire thanks the investor for the public praise but asks for the specific risk he wants resolved, refusing the vanity hook."
-          },
           "scenario": "The espresso foam has gone flat by the time the compliment arrives. Claire sits across from an investor with a pitch deck printout between them, an espresso cup near the term-sheet margin notes. \"You are unusually coachable,\" he says. She hears praise on the surface and a status test underneath. Before the next meeting is scheduled, Claire has to choose between chasing approval and asking which risk remains.",
           "whatToDo": "Thank him once, then ask for the specific risk he wants resolved before the partner meeting. Keep the exchange tied to the business decision.",
           "whyItMatters": "The compliment is safe only if it stays a compliment. Chasing it would accept the hidden role of eager student and give the investor control he has not named."
@@ -710,13 +589,6 @@
             "rank",
             "antithesis"
           ],
-          "planSpec": {
-            "domain": "choir rehearsal seating dispute",
-            "audience": "a volunteer conductor hearing a singer's helpful suggestion carry a rank challenge underneath",
-            "stakes": "the rehearsal can become a weekly status game",
-            "format": "dialogue",
-            "requiredBeat": "Mathieu answers the hidden demand for special status by restating the audition rule without shaming the singer."
-          },
           "scenario": "\"I only thought the altos might sound better if I stood front row,\" Erin says, tapping the folding music stand in the church hall rehearsal at 7:40 p.m. Mathieu, the volunteer conductor, has the seating chart clipped to a pencil-marked score. \"The front row was assigned from auditions,\" he says. \"We can test balance from where people were placed.\" He must decide whether to shame the challenge or answer the special-status request through the rule.",
           "whatToDo": "Restate the seating rule and offer a sound check from assigned places. Do not punish the singer for making the hidden request visible.",
           "whyItMatters": "The social sentence is about acoustics; the psychological message asks for exception. The antithesis answers the exception without turning rehearsal into humiliation."
@@ -729,13 +601,6 @@
             "note",
             "rota"
           ],
-          "planSpec": {
-            "domain": "shared flat cleaning rota after a passive note appears",
-            "audience": "a housemate deciding whether to answer the note or the accusation under it",
-            "stakes": "three people may enter a months-long grievance pattern",
-            "format": "decision_point",
-            "requiredBeat": "Grace takes the note off the fridge and asks for a 10-minute rota reset instead of adding a sharper note below it."
-          },
           "scenario": "The yellow note curls at one corner on the refrigerator door, held by a lemon magnet above the cleaning rota. Grace reads, \"Some of us clean without reminders,\" while the recycling bin overflows below it. A pen sits on the counter, ready for a sharper reply. Grace must decide whether to add another line to the fridge or take the note down and ask for a ten-minute rota reset.",
           "whatToDo": "Remove the note and ask both housemates for a short reset of the rota. Answer the cleaning problem, not the accusation written into the paper.",
           "whyItMatters": "A note war gives everyone a role and no one a cleaner flat. Resetting the rota refuses the hidden invitation while still taking the visible complaint seriously."
@@ -748,13 +613,6 @@
             "donor",
             "switch"
           ],
-          "planSpec": {
-            "domain": "museum donor tour after a veiled board remark",
-            "audience": "a curator hearing praise that is really an invitation to owe someone",
-            "stakes": "future exhibit choices can be bent by one accepted hidden bargain",
-            "format": "vignette",
-            "requiredBeat": "Jonas later spots the switch: the donor's praise became a claim on exhibit placement, so he drafts a neutral policy response."
-          },
           "scenario": "Three days later, Jonas rereads the donor's email and sees the hook in the second sentence. White cotton gloves sit beside his keyboard, his donor badge is still in the desk drawer, and the exhibit placement grid glows on the screen. The praise has become a claim on a front-gallery case. Jonas has to choose whether to repay admiration with placement or answer through museum policy.",
           "whatToDo": "Send the placement policy and review timeline. Thank the donor for the gift, but keep exhibit decisions attached to curatorial criteria.",
           "whyItMatters": "The switch turns gratitude into debt. A policy reply keeps the visible gift clean and refuses the hidden bargain without making the donor the villain."
@@ -767,13 +625,6 @@
             "school",
             "boundary"
           ],
-          "planSpec": {
-            "domain": "after-school robotics team sponsorship",
-            "audience": "a teacher fielding a parent's offer that may become control over team decisions",
-            "stakes": "student access to equipment depends on clean boundaries",
-            "format": "predict_reveal",
-            "requiredBeat": "What makes a generous offer turn into a game before the first cheque clears?"
-          },
           "scenario": "What makes a generous offer turn into a game before the first cheque clears? Rachel is at the robotics table with a sponsorship form, the tool cabinet key, and the competition registration page open. A parent offers funds for new motors, then asks whether his son can help pick the drive team. Rachel predicted gratitude. Now she must decide whether to accept the hidden leverage or route the gift through the school fund.",
           "whatToDo": "Accept the donation only through the school fund and state that drive-team selection stays with the posted rubric. Keep help separate from control.",
           "whyItMatters": "The money can serve the students, but the side request tries to buy a role. Naming the route and rule blocks the hidden sequence before it starts."
@@ -786,13 +637,6 @@
             "consultation",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "neighborhood bike-lane consultation",
-            "audience": "a planner hearing a citizen ask a factual question that keeps returning as a trap",
-            "stakes": "the public meeting can get captured by predictable outrage",
-            "format": "postmortem",
-            "requiredBeat": "Hiroshi marks the thesis, switch, and payoff after the meeting, then prepares an antithesis that answers process rather than outrage next time."
-          },
           "scenario": "You leave the city gymnasium at 9:15 p.m. with a stack of comment cards and the same exchange repeating in your ears. Hiroshi, the transportation planner, had a traffic-count map and a portable microphone, but one resident kept asking for numbers, then turning each answer into proof of corruption. At home, Hiroshi marks the thesis, the switch, and the payoff, then prepares a process answer for next time.",
           "whatToDo": "Write the repeated plot, the moment it switched, and the ending it kept reaching. Prepare one process answer that does not feed the outrage role.",
           "whyItMatters": "The meeting was not captured by one hard question. It was captured by a sequence that turned every answer into the same ending."
@@ -811,8 +655,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The two levels differ: praise above, claim below. Wealth and discomfort alone do not define the structure; the hidden request attached to the praise does.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -824,8 +667,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The rule-based answer refuses the exception while keeping the singer intact. Accusation exposes her publicly, and granting the seat accepts the hidden status move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -837,8 +679,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The rota reset answers the social problem and refuses the psychological invitation. Ignoring the mess dodges the visible issue; adding a note enters the sequence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -850,8 +691,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The risk question returns to the business issue. The comparison chases the vanity hook, while the accusation may be true or false but still makes status the subject.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -863,8 +703,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The switch is from generosity to leverage. Better funding may help, and coaching status is a separate question, but the hidden sequence ties the gift to control.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -876,8 +715,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The repeated plot is the useful diagnostic unit. Personality judgment and fact correction both miss how each answer was converted into the same ending.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -889,8 +727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first task is separating the visible help from the obligation underneath it. The other questions may matter later, but they skip the two-level reading.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -902,8 +739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A game requires a repeated hidden sequence and familiar ending. Group size and real disagreement can exist without that patterned payoff.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -915,8 +751,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A good antithesis refuses the hidden demand at the lowest social cost available. Public exposure may be needed sometimes, but it often gives the pattern more theater.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -977,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "The social level sounds generous.",
-          "location": "breakdown.fastRead",
-          "why": "It marks the gap between pleasant surface and working message in a short, memorable way."
+          "text": "The social level sounds generous."
         },
         {
-          "text": "The antithesis is expensive.",
-          "location": "breakdown.deepRead",
-          "why": "It gives weight to the difficulty of refusing the hidden demand."
+          "text": "The antithesis is expensive."
         },
         {
-          "text": "The game needs your part.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the reader's agency concrete without blaming them for the whole pattern."
+          "text": "The game needs your part."
         }
       ]
     },
@@ -1016,13 +845,6 @@
             "strokes",
             "shift"
           ],
-          "planSpec": {
-            "domain": "night-shift warehouse complaint ritual before loading doors open",
-            "audience": "a team lead who wants to stop the daily boss-bashing without removing the only reliable contact workers get",
-            "stakes": "morale, safety checks, and a fragile sense of belonging",
-            "format": "scene",
-            "requiredBeat": "Heather replaces the complaint circle with a two-minute load-risk check that still gives each person a turn and a nod."
-          },
           "scenario": "Forklift backup beeps echo before the loading doors rise at the night-shift warehouse. Heather, the shift lead, sees four workers gathered by the scanner cradle, with a pallet wrap roll on the floor and the dock schedule board still unchecked. The usual boss-bashing is starting. She could shut it down and leave a blank silence. Instead, she has to choose a replacement that gives each person a turn before the shift starts.",
           "whatToDo": "Run a two-minute load-risk check. Each worker names one risk on the dock schedule, and Heather gives one clear answer or assignment.",
           "whyItMatters": "The complaint circle supplies recognition. If Heather removes it without another contact point, the team loses its only reliable nod and will rebuild the old ritual."
@@ -1035,13 +857,6 @@
             "invoice",
             "replacement"
           ],
-          "planSpec": {
-            "domain": "freelance invoice chase with a late-paying client",
-            "audience": "a designer who keeps entering a drama that proves clients never respect him",
-            "stakes": "cash flow and a familiar grievance both arrive through the same pattern",
-            "format": "decision_point",
-            "requiredBeat": "Nicolas sets an automatic deposit rule before the next project instead of sending the fourth angry message that would supply proof."
-          },
           "scenario": "At 7:18 p.m., Nicolas refreshes the unpaid invoice for the sixth time. The invoice portal is blank, the deposit clause is still only a draft in his template, and his bank app notification never came. A fourth angry message would feel clean and justified. Nicolas must decide tonight whether to send proof that clients disrespect him or change the next project's payment rule.",
           "whatToDo": "Do not send the hot fourth message. Add the automatic deposit clause to the next contract and send one neutral payment reminder with the due date.",
           "whyItMatters": "The angry chase gives Nicolas position proof, but it does not change cash flow. A deposit rule replaces drama with a structure that pays before resentment builds."
@@ -1054,13 +869,6 @@
             "handoff",
             "negative-strokes"
           ],
-          "planSpec": {
-            "domain": "post-divorce co-parenting pickup at a swimming pool lobby",
-            "audience": "a parent whose small accusations reliably pull the other parent into contact",
-            "stakes": "the child's transition and both adults' stroke hunger are at stake",
-            "format": "dialogue",
-            "requiredBeat": "Megan answers the pickup time and backpack contents only, then gets social contact elsewhere before the next handoff."
-          },
           "scenario": "Chlorine hangs in the swimming pool lobby while the child ties one wet shoelace after practice. Megan holds the goggles case, the custody calendar, and a snack container. \"Late again,\" her ex says, though the phone says 5:58. Megan can feel the familiar five-minute argument waiting. Before the child stands up, she must decide whether to trade accusations or answer only the pickup facts.",
           "whatToDo": "State the pickup time and what is in the backpack. Later, call a friend or join a planned adult conversation before the next handoff.",
           "whyItMatters": "The accusation supplies contact, even when it hurts. Megan needs another source of recognition or the handoff fight will keep feeling useful."
@@ -1073,13 +881,6 @@
             "status",
             "revision"
           ],
-          "planSpec": {
-            "domain": "graduate seminar where one student always demolishes drafts",
-            "audience": "a student using critique to confirm he is the only serious thinker in the room",
-            "stakes": "peer trust and his own protection from inadequacy",
-            "format": "predict_reveal",
-            "requiredBeat": "Olivier requires each critique to include one testable revision question, removing the superiority payoff while preserving recognition."
-          },
           "scenario": "\"I just think the argument is naive,\" Olivier says before anyone has opened their notebook in the Thursday graduate seminar room. Printed draft packets sit under seminar table placards, and the revision rubric is still face down. The instructor predicts another demolition round. Then she changes the rule: every critique needs one testable revision question. Olivier has to choose between status performance and usable rigor.",
           "whatToDo": "Turn the critique into a question the writer can test in revision. Keep the attention on rigor, but remove the payoff of being the only serious person.",
           "whyItMatters": "The old critique pattern gives Olivier recognition through superiority. A question keeps his intelligence in the room while changing what earns the nod."
@@ -1092,13 +893,6 @@
             "rota",
             "position"
           ],
-          "planSpec": {
-            "domain": "family small business rota where one sibling always arrives late",
-            "audience": "a sibling who keeps proving she is the irresponsible one everyone expects",
-            "stakes": "the shop opens short-staffed and the family story stays intact",
-            "format": "before_after",
-            "requiredBeat": "Sofia sees that scolding supplies the role, so she changes the rota consequence and adds one clean place to earn trust."
-          },
           "scenario": "It took Sofia four Saturdays in the family bakery to notice that the lecture was part of the schedule. The bakery keys waited under the till float envelope, the shift rota said 6:00, and her sibling arrived after the first customers. Before, Sofia scolded and everyone knew their part. After, she changes the consequence for lateness and adds one Friday prep task where trust can be earned cleanly.",
           "whatToDo": "Replace the lecture with a posted consequence and one reachable trust-building task. Make the new role specific enough to succeed or fail without a family speech.",
           "whyItMatters": "The scolding confirms the irresponsible role. A clean consequence plus a clean earning path removes the old proof without pretending the lateness is harmless."
@@ -1111,13 +905,6 @@
             "online",
             "practice"
           ],
-          "planSpec": {
-            "domain": "online language-learning group that rewards self-deprecation",
-            "audience": "a learner who gets attention by announcing failure before trying",
-            "stakes": "practice time is being traded for comforting strokes",
-            "format": "reflection",
-            "requiredBeat": "Min posts one specific pronunciation clip and asks for one correction, replacing pity strokes with usable contact."
-          },
           "scenario": "You can get ten kind replies in the online language group by saying you are hopeless before you record a single sentence. Min sees the group chat thread fill with soft encouragement whenever he jokes about his accent. The voice memo waveform is empty, and a phonetic note card sits beside the laptop. He notices that pity has become easier than practice.",
           "whatToDo": "Post one short pronunciation clip and ask for one correction on one sound. Trade general comfort for a piece of contact that improves the next attempt.",
           "whyItMatters": "Self-deprecation draws strokes before risk. A specific clip still gets recognition, but it ties the recognition to practice instead of helplessness."
@@ -1136,8 +923,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The key is regular recognition, not complaint accuracy. Negative strokes are costly, but they can still supply contact when positive acknowledgment is scarce.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1149,8 +935,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The deposit clause replaces grievance drama with a new structure. A longer angry email feeds the old supply, and blanket refusal may be too broad to solve the mechanism.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1162,8 +947,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The factual answer refuses the fight, and the outside contact replaces some recognition the fight supplied. Timestamps feed the exchange, while total silence may harm coordination.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1175,8 +959,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A revision question preserves recognition for rigor while changing what earns it. Banning critique removes useful standards, and speaking order does not alter the payoff.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1188,8 +971,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The repeated lecture proves old roles again. Enjoyment is too simple, and dropping standards avoids the business problem rather than replacing the role structure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1201,8 +983,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The clip keeps contact but attaches it to practice. Leaving removes supply without replacement, and confidence-first praise keeps attention detached from the skill.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1214,8 +995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Removing the ritual leaves the social supply empty. Whether the complaints are justified is separate, and immaturity language misses the structure of recognition.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1227,8 +1007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The self-other stance is a life position. A transaction is one exchange unit, and a positive stroke is recognition, not the underlying position being confirmed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1240,8 +1019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The argument is harmful, but it supplies contact. A replacement route lowers the deprivation that would otherwise pull the old pattern back into service.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1302,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "A stroke is a unit of recognition, proof that someone noticed you exist.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the opening concrete while implying the ritual's exhaustion."
+          "text": "A stroke is a unit of recognition, proof that someone noticed you exist."
         },
         {
-          "text": "Criticism, angry messages, and recurring fights are not good food.",
-          "location": "breakdown.deepRead",
-          "why": "It lands the mechanism after the invoice scene in plain language."
+          "text": "Criticism, angry messages, and recurring fights are not good food."
         },
         {
-          "text": "Leaving is rarely the first move. First, find what the game has been feeding and put something less costly in its place.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the replacement-before-exit logic without moralizing."
+          "text": "Leaving is rarely the first move. First, find what the game has been feeding and put something less costly in its place."
         }
       ]
     },
@@ -1341,13 +1113,6 @@
             "kick-me",
             "courtesy"
           ],
-          "planSpec": {
-            "domain": "municipal permit desk where one contractor arrives with incomplete forms every month",
-            "audience": "a clerk trying not to become the predictable kicker",
-            "stakes": "the contractor gets proof that city staff are against him and the queue backs up",
-            "format": "scene",
-            "requiredBeat": "David checks the missing attachment, gives the same neutral next step, and refuses the sharp aside that would complete Kick Me."
-          },
           "scenario": "The permit lobby clock clicks louder than the printer at the downtown municipal counter. David, the permit clerk, watches a contractor take plastic queue number 18, slide over a form, and tap the empty attachment line before the date stamp is uncapped. The permit checklist says the drawing is missing. David can already hear the contractor preparing to be wounded. He has to choose between the sharp aside and the same neutral next step.",
           "whatToDo": "Name the missing drawing and the resubmission window. Keep your tone flat and courteous, with no extra line about how often this happens.",
           "whyItMatters": "The missing document is real. The extra jab would supply the expected kick and let the contractor leave with proof that the desk is against him."
@@ -1360,13 +1125,6 @@
             "catching",
             "procedure"
           ],
-          "planSpec": {
-            "domain": "independent theatre rehearsal budget dispute",
-            "audience": "a producer facing an actor who waits to catch tiny fairness errors",
-            "stakes": "one caught mistake can become moral authority over the whole production",
-            "format": "dialogue",
-            "requiredBeat": "Margaux fixes the stipend typo immediately and keeps the discussion on the corrected document, giving NIGYSOB no broader trial."
-          },
           "scenario": "\"So you admit the ensemble contract was wrong,\" the actor says, one shoe on the black box stage tape. Margaux has the stipend spreadsheet open beside the rehearsal call sheet. The typo is four dollars, and the room is waiting to see whether it becomes a trial. Margaux must decide whether to defend herself or correct the cell and keep the discussion on the document.",
           "whatToDo": "Correct the stipend cell, send the updated sheet, and ask if any other line differs from the signed call sheet. Do not argue your character.",
           "whyItMatters": "NIGYSOB needs a moral opening wider than the mistake. Procedural exactness fixes the real error while denying the larger outrage scene."
@@ -1379,13 +1137,6 @@
             "swymd",
             "home"
           ],
-          "planSpec": {
-            "domain": "home espresso machine repair that becomes a blame scene",
-            "audience": "a partner who drops a screw after being interrupted and reaches for SWYMD",
-            "stakes": "the small repair can become a familiar responsibility escape",
-            "format": "decision_point",
-            "requiredBeat": "Daniel says the interruption did not drop the screw, then offers to pause the repair without accepting blame."
-          },
           "scenario": "A brass screw ticks once against the tile and vanishes under the cabinet toe-kick. Daniel is holding the espresso portafilter while a tiny screwdriver rests beside the parts dish. He asked one question from the doorway. His partner snaps, \"See what you made me do.\" Daniel's next sentence has to choose between accepting the blame and refusing it without turning the repair into a fight.",
           "whatToDo": "Say, \"The interruption did not drop the screw. We can pause if you want.\" Then help find the part only if blame is no longer the price of helping.",
           "whyItMatters": "The dropped screw may be frustrating, but borrowed blame gives the mistake a witness to blame. Refusal keeps responsibility attached to the actual action."
@@ -1398,13 +1149,6 @@
             "debtor",
             "limits"
           ],
-          "planSpec": {
-            "domain": "student loan repayment call after repeated deferment extensions",
-            "audience": "a financial-aid adviser distinguishing Debtor drama from real constraint",
-            "stakes": "helping without lending the pattern more crisis energy",
-            "format": "vignette",
-            "requiredBeat": "Petra maps the actual payment floor and refuses the heroic rescue call that would keep the near-miss story alive."
-          },
           "scenario": "You hear the word temporary for the fifth time before the student-loan account screen finishes loading in the adviser cubicle. Petra studies the repayment portal, the income certificate, and the last deferment email while the caller describes another near miss. The hardship may be real. Petra has to choose between another heroic extension call and a plain map of the lowest payment that can actually be kept.",
           "whatToDo": "Map the payment floor, deadlines, and documents needed. Offer the sustainable option, not a dramatic rescue that keeps the next crisis intact.",
           "whyItMatters": "Debtor drama uses near-miss survival as structure. Clean limits can respect real constraint without making emergency the only way to receive help."
@@ -1417,13 +1161,6 @@
             "safety",
             "kick-me"
           ],
-          "planSpec": {
-            "domain": "climbing gym belay partnership where one member keeps inviting criticism",
-            "audience": "a recreation group captain seeing a Kick Me loop in repeated safety mistakes",
-            "stakes": "physical safety and social belonging are both at risk",
-            "format": "predict_reveal",
-            "requiredBeat": "Lucas stops teasing after the predictable knot error and gives a binary safety standard instead."
-          },
           "scenario": "By the third Thursday, Lucas can predict the joke before the knot is checked. The belay device hangs ready, the chalk bag is open, and the route tag says 5.9 in red tape. The same member ties the same sloppy figure eight, waits for the group's teasing, then flinches when it comes. Lucas must decide whether to tease again or set one binary safety standard.",
           "whatToDo": "Skip the joke. Say, \"Knot correct, you climb. Knot wrong, you step off the rope.\" Check it the same way every time.",
           "whyItMatters": "Teasing supplies the expected bruise and pity. A binary standard protects safety without giving the pattern the rejection it came to collect."
@@ -1436,13 +1173,6 @@
             "outrage",
             "maintainer"
           ],
-          "planSpec": {
-            "domain": "open-source maintainer issue tracker after a minor patch regression",
-            "audience": "a maintainer tempted to enter a righteous-catching exchange",
-            "stakes": "project trust can become a rage payoff machine",
-            "format": "postmortem",
-            "requiredBeat": "Aman sees the pleasure of catching the contributor and writes a reproduction request instead of a public takedown."
-          },
           "scenario": "What does it feel like to be right at exactly the moment someone else is exposed? Aman, an open-source maintainer reviewing from his kitchen table after midnight, stares at a failing test log, a pull request diff, and an issue label marked regression. The patch is small, the mistake is clear, and the public takedown is already writing itself in his head. He notices the pleasure before he posts.",
           "whatToDo": "Ask for reproduction steps and mark the failing test. Save any maintainer policy note for later, after the bug report is clean.",
           "whyItMatters": "Correctness can become a rage payoff. A reproduction request fixes the project while refusing the larger scene of catching someone in public."
@@ -1461,8 +1191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The repeated setup invites a kick and then treats the kick as proof. Debtor concerns obligations, and SWYMD shifts blame for one's own action to a witness.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1474,8 +1203,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Neutral courtesy denies the expected kick while handling the real defect. A pattern accusation feeds the bruise, and a harsh penalty creates another rejection scene.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1487,8 +1215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Procedural exactness fixes the real error and narrows the exchange. Defending character or naming manipulation makes the broader outrage scene easier to sustain.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1500,8 +1227,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The reply refuses borrowed blame and still leaves a practical path. Accusation starts a new fight, while accepting blame completes the game.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1513,8 +1239,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The ethical reading holds both facts: constraint may be real, and crisis can become the structure. Blame and automatic rescue each erase half the problem.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1526,8 +1251,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The safety rule removes the teasing payoff while protecting the climber. Gentler teasing still kicks; not checking sacrifices safety to avoid the pattern.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1539,8 +1263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The warning is the payoff of exposure, not the mere existence of a bug. Public correction can be needed, but rage pleasure can distort the move.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1552,8 +1275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The model reads patterns; it does not erase real harm. Calling someone dramatic is blame, while abandoning the tool loses a useful but limited distinction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1565,8 +1287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Long-running life games are built into role supply and position proof. A single sentence may open a door, but durable change needs replacement over time.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1627,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "The missing attachment is real.",
-          "location": "breakdown.fastRead",
-          "why": "It preserves the difference between actual problems and the game layer around them."
+          "text": "The missing attachment is real."
         },
         {
-          "text": "No extra trial.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the NIGYSOB antithesis in three plain words."
+          "text": "No extra trial."
         },
         {
-          "text": "The antithesis is a door, not a cure.",
-          "location": "breakdown.fullRead",
-          "why": "It prevents overpromising while keeping the move useful."
+          "text": "The antithesis is a door, not a cure."
         }
       ]
     },
@@ -1666,13 +1381,6 @@
             "corner",
             "constraints"
           ],
-          "planSpec": {
-            "domain": "shared renovation decision over flooring samples",
-            "audience": "a partner trapped in Corner where every choice proves selfishness or passivity",
-            "stakes": "the couple can avoid closeness by debating taste for a month",
-            "format": "scene",
-            "requiredBeat": "Anna names the no-winning setup and asks for the actual shared constraint before choosing a sample."
-          },
           "scenario": "Dust from the pulled-up hallway carpet sticks to six flooring samples. Anna holds the renovation budget note while blue painter tape marks the doorway. If she chooses oak, her partner says she ignores cost; if she chooses laminate, she \"never cares how things look.\" Anna has to decide whether to defend another sample or name the no-winning setup and ask which shared constraint comes first.",
           "whatToDo": "Say that every option is being turned into proof against you, then ask whether the decision is about budget, durability, or look.",
           "whyItMatters": "Corner makes the choice impossible so the old accusation can stay alive. Naming the setup moves attention from character proof to the actual constraint."
@@ -1685,13 +1393,6 @@
             "courtroom",
             "therapy"
           ],
-          "planSpec": {
-            "domain": "couples therapist intake after three friends have already judged the same fight",
-            "audience": "a partner pulling a third party into Courtroom for vindication",
-            "stakes": "therapy can become the next courtroom instead of contact",
-            "format": "dialogue",
-            "requiredBeat": "Julien asks what would change if nobody declared a winner, exposing the judgment payoff."
-          },
           "scenario": "\"Just tell us who was unreasonable,\" Julien says before taking off his coat. The intake clipboard is blank, two water glasses sit untouched, and the therapist's wall clock is loud in the pause. His partner looks ready for the ruling too. Julien must decide whether to keep seeking the next verdict or ask what would change if nobody in the room declared a winner.",
           "whatToDo": "Ask what repair would look like if no one won the case. Move the session away from verdict and toward the contact both people are avoiding.",
           "whyItMatters": "Courtroom lets the dispute continue under the cover of seeking help. Removing the verdict exposes whether the couple wants repair or only moral position."
@@ -1704,13 +1405,6 @@
             "restriction",
             "choice"
           ],
-          "planSpec": {
-            "domain": "career-change conversation before a nursing-school deadline",
-            "audience": "a spouse blaming the other for not applying while using that restriction as protection",
-            "stakes": "a life decision hides inside marital blame",
-            "format": "decision_point",
-            "requiredBeat": "Emily sees that the application link has been open for six weeks and the alleged blocker is permission she never actually asked for."
-          },
           "scenario": "It took Emily until the application deadline week to notice the browser tab was still open. The nursing-school application portal sits beside a shift calendar and a tuition estimate. She has told friends Sam would panic if she applied. Sam has never actually been asked. Emily must decide whether to blame the restriction again or find out whether the door was locked.",
           "whatToDo": "Ask the concrete question: \"Can we review the tuition plan tonight so I can decide by Friday?\" Then treat the answer as information, not as a ready-made excuse.",
           "whyItMatters": "If It Weren't For You can protect the person blaming from trying. Asking directly tests the restriction instead of using the partner as the door."
@@ -1723,13 +1417,6 @@
             "dinner",
             "public-joke"
           ],
-          "planSpec": {
-            "domain": "dinner party anecdote where affection carries a small public cut",
-            "audience": "a partner deciding whether to laugh along with Sweetheart or name it later",
-            "stakes": "public deniability protects stored grievance",
-            "format": "vignette",
-            "requiredBeat": "Henrik lets the room pass, then later quotes the exact punchline and asks what anger it carried."
-          },
           "scenario": "Candle wax pools near the bread plate while everyone laughs half a beat too long. Henrik's partner has wrapped a small public cut in an affectionate story. Linen napkins sit beside the shared dessert plate, and the taxi receipt is tucked under Henrik's phone. He has to choose between objecting in public, where he will look humorless, or naming the exact punchline later.",
           "whatToDo": "Let the dinner table pass. Later, quote the punchline exactly and ask what anger or request it carried without litigating the whole evening.",
           "whyItMatters": "Sweetheart uses affection as cover. Public objection feeds the cover; precise private naming removes deniability without turning the guests into witnesses."
@@ -1742,13 +1429,6 @@
             "effort",
             "agreement"
           ],
-          "planSpec": {
-            "domain": "weekend childcare plan where visible effort replaces actual agreement",
-            "audience": "a parent performing Look How Hard I've Tried at an impossible plan",
-            "stakes": "one adult gets moral credit and the other remains abandoned",
-            "format": "before_after",
-            "requiredBeat": "Sophie separates effort display from workable care by asking for the one task that will actually happen by noon."
-          },
           "scenario": "You can hear effort in the hallway before you can see whether anything changed. Sophie finds the childcare rota under a laundry basket, packed lunch containers open on the counter, and three half-started tasks. Before, she praised the effort and absorbed the failure. Now she must decide whether to reward the display again or ask which one task will actually be done by noon.",
           "whatToDo": "Ask for the single noon task and write it on the rota. Treat effort as information, not as a substitute for an agreement that can be checked.",
           "whyItMatters": "Look How Hard I've Tried turns visible labor into moral credit. A checkable task keeps responsibility attached to an outcome."
@@ -1761,13 +1441,6 @@
             "withdrawal",
             "fatigue"
           ],
-          "planSpec": {
-            "domain": "long-distance relationship video call that always ends when closeness appears",
-            "audience": "a partner in an unnamed withdrawal variant using fatigue to dodge direct contact",
-            "stakes": "real tiredness and intimacy avoidance must be distinguished carefully",
-            "format": "reflection",
-            "requiredBeat": "Pavel asks for a specific time to continue instead of accusing avoidance, testing whether contact is being deferred or refused."
-          },
           "scenario": "How do you tell fatigue from the pattern that borrows fatigue as a door? Pavel watches a video-call freeze frame while a time-zone converter and an unopened voice note sit on the laptop. The call has reached the same quiet place as last week. His partner says they are tired. Pavel notices the urge to accuse, then reaches for a more testable question.",
           "whatToDo": "Ask for a specific time to continue the conversation. Do not argue with the fatigue; test whether contact is being deferred or quietly refused.",
           "whyItMatters": "Real tiredness deserves respect. A repeat exit still needs shape, and a specific continuation time separates ordinary fatigue from avoidance."
@@ -1786,8 +1459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Corner creates no winning move. The sample may change, but the accusation stays ready. No third-party verdict or affectionate joke is doing the work here.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1799,8 +1471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The question removes the verdict payoff. Evidence ranking and friend-counting keep the third-party judgment structure alive under a more formal name.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1812,8 +1483,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A specific ask tests whether the restriction is real. Staying angry preserves the locked-door story, while secrecy may avoid contact rather than clarify it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1825,8 +1495,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Sweetheart hides aggression inside affection and witnesses. Public objection may strengthen the cover; precise later naming targets the cut without recruiting the table.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1838,8 +1507,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A checkable task separates effort from outcome. Praise can reward the performance, while taking over grants freedom from responsibility.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1851,8 +1519,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A continuation time respects real fatigue while testing whether contact is only being postponed. Accusation guesses motive; dropping it lets the exit remain shapeless.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1864,8 +1531,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The repeated roles protect distance. Skill deficits may be present, but the reliable avoidance of direct contact is the stronger structural clue.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1877,8 +1543,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The restriction may be real or partly real, but it can also protect the speaker from risk. The right move tests the restriction directly instead of assuming blame.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1890,8 +1555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The shared constraint or checkable ask interrupts the structure without making the partner a defendant. Prosecution and avoidance both keep familiar roles available.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1952,19 +1616,13 @@
       },
       "memorableLines": [
         {
-          "text": "Every sample is a door into the same accusation.",
-          "location": "breakdown.fastRead",
-          "why": "It makes Corner visible through a concrete renovation object."
+          "text": "Every sample is a door into the same accusation."
         },
         {
-          "text": "The therapist asks what would change if nobody won.",
-          "location": "breakdown.deepRead",
-          "why": "It turns Courtroom into a single sharp diagnostic question."
+          "text": "The therapist asks what would change if nobody won."
         },
         {
-          "text": "Winning is often the game.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the relationship-game trap into a memorable reversal."
+          "text": "Winning is often the game."
         }
       ]
     },
@@ -1991,13 +1649,6 @@
             "complaint",
             "action"
           ],
-          "planSpec": {
-            "domain": "parent sideline chat at a rainy youth orchestra pickup",
-            "audience": "a parent hearing weather, school, and city complaints become Ain't It Awful",
-            "stakes": "social belonging is being bought by shared helplessness",
-            "format": "scene",
-            "requiredBeat": "Laura asks what one parent can actually email the venue about, testing whether the group wants movement or only agreement."
-          },
           "scenario": "Rainwater runs off instrument cases lined against the lobby wall at youth orchestra pickup. Laura stands beside a violin case while a parent scrolls to a venue leak photo and another opens the parent email thread. The talk has moved from leaks to taxes to how nothing works. Laura has to choose between nodding into the circle and asking which photo they can send to the venue today.",
           "whatToDo": "Ask for one photo, one recipient, and one sentence for the email. Keep the complaint attached to a possible action before the circle widens again.",
           "whyItMatters": "Ain't It Awful can use real problems as fuel. The action question tests whether the group wants repair or only the strokes of shared helplessness."
@@ -2010,13 +1661,6 @@
             "critique",
             "blemish"
           ],
-          "planSpec": {
-            "domain": "architecture firm portfolio review before a client bid",
-            "audience": "a senior designer tempted to play Blemish on a junior team's model",
-            "stakes": "quality control can become status protection",
-            "format": "decision_point",
-            "requiredBeat": "Etienne names the one flaw that affects the bid and refuses the pleasure of listing the harmless ones."
-          },
           "scenario": "At 4:20 p.m. in the architecture firm's bid room, a tiny shadow gap under the model stairs catches Etienne's eye first. Etienne, the senior reviewer, has a foam-core model beside a bid checklist and a scale ruler while the junior team waits for his review. He can see a dozen harmless imperfections. Etienne must decide whether to prove his eye again or name only the stair gap that could affect the client bid.",
           "whatToDo": "Name the one flaw that affects the bid, assign the fix, and stop. Save harmless imperfections unless they change the decision or teach a clear standard.",
           "whyItMatters": "Blemish rewards the critic for finding defects first. Narrow critique protects quality without using the junior team as a stage for superiority."
@@ -2029,13 +1673,6 @@
             "advice",
             "yes-but"
           ],
-          "planSpec": {
-            "domain": "group chat about a friend's impossible apartment search",
-            "audience": "a friend recognizing Why Don't You Yes But after four rejected suggestions",
-            "stakes": "care can become a proof machine that nothing helps",
-            "format": "dialogue",
-            "requiredBeat": "Olivia stops offering fixes and asks which option the friend has already tried this week."
-          },
           "scenario": "\"What about a short sublet near the train?\" Olivia types into the apartment-search group chat, pasting a rental listing screenshot beside the train-zone map. Three reaction icons pop up. \"Yes, but they never answer,\" her friend replies, after rejecting a guarantor, a room share, and a commute trade. Olivia must decide whether to send a fifth idea or ask which option has actually been tried this week.",
           "whatToDo": "Stop offering new fixes. Ask which option has already been tried and what happened. If nothing has been tried, pause the advice loop.",
           "whyItMatters": "The repeated yes-but turns care into evidence that nothing works. Asking about attempted action shifts the exchange from performance to reality."
@@ -2048,13 +1685,6 @@
             "critique",
             "movement"
           ],
-          "planSpec": {
-            "domain": "conference lunch table after a keynote everyone disliked",
-            "audience": "a researcher deciding whether shared critique is analysis or AIA",
-            "stakes": "networking can become grievance bonding that blocks useful contact",
-            "format": "vignette",
-            "requiredBeat": "Lars moves from deploring to one specific question he wants to ask the speaker in the hallway."
-          },
           "scenario": "You watch Lars balance a paper plate on one knee in the hotel conference lunchroom while the keynote becomes worse with each retelling. Lars has a conference badge, a paper lunch plate, and a blank question card. The table's complaints are sharp enough to be useful, but the loop is warming itself. Lars has to choose between another clever criticism and one hallway question he would ask the speaker directly.",
           "whatToDo": "Write one question for the speaker and say it at the table. If the critique is real, it should survive contact with the person who can answer it.",
           "whyItMatters": "Shared grievance can feel like analysis. A question aimed at the speaker tests whether the talk wants knowledge or only agreement."
@@ -2067,13 +1697,6 @@
             "blemish",
             "hosting"
           ],
-          "planSpec": {
-            "domain": "neighborhood book club where one member always finds the plot hole first",
-            "audience": "a host distinguishing real literary critique from Blemish as superiority",
-            "stakes": "the club may stop being a place of contact",
-            "format": "before_after",
-            "requiredBeat": "Kasia later changes the first round to what each reader noticed before flaws, removing the race to be first with a defect."
-          },
           "scenario": "By the third Thursday book-club meeting, Kasia can predict the page number of the first objection. The marked paperback sits near the cheese board, and the reading lamp throws a yellow pool over the chairs. Before, the quickest flaw won the first five minutes. After, Kasia changes the first round: each reader names one thing they noticed before anyone is allowed to name a defect.",
           "whatToDo": "Open with observations before flaws. Let critique return after everyone has made contact with the text in more than defect-hunting mode.",
           "whyItMatters": "Real critique can deepen a discussion. Blemish narrows the room to a contest over who finds the crack first."
@@ -2086,13 +1709,6 @@
             "discord",
             "organizing"
           ],
-          "planSpec": {
-            "domain": "public transit advocacy Discord after a service cut",
-            "audience": "a moderator seeing advice requests turn into Yes But loops",
-            "stakes": "anger can either organize a petition or become the night's entertainment",
-            "format": "postmortem",
-            "requiredBeat": "Devon pins a choices-only thread and closes solution replies when the poster rejects three concrete next steps."
-          },
           "scenario": "When does asking for help become a way to prove help cannot work? Devon reviews the transit advocacy Discord thread beside a route cancellation notice and a petition draft. One poster asked for next steps, then rejected a council email, a rider count, and a press contact. Devon pins a choices-only thread and closes open-ended solution replies for the night.",
           "whatToDo": "Pin the concrete options and ask people to choose one action. Close the advice loop once three workable steps have been rejected without testing.",
           "whyItMatters": "Anger can organize or entertain. A choices-only thread keeps the service cut attached to action instead of letting yes-but become the night's social reward."
@@ -2111,8 +1727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sign is the refusal of movement, not the complaint itself. Blemish centers on flaw-finding superiority; yes-but requires invited solutions being rejected.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2124,8 +1739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The narrow critique moves the work. Listing everything rewards defect-hunting, while silence confuses legitimate quality control with the game.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2137,8 +1751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tried-this-week question moves from advice theater to action. More listings feed the loop, while contempt turns the label into a weapon.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2150,8 +1763,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A direct question tests whether the talk wants knowledge or only shared grievance. Scolding the table or sharpening the complaint leaves the direction problem unsolved.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2163,8 +1775,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The host should preserve critique while removing the prize for first defect. Banning flaws or privileging the fastest critic both miss that distinction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2176,8 +1787,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A choices thread keeps anger connected to action. Letting it run may turn action into entertainment, while an instant ban may punish without testing the structure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2189,8 +1799,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Vocabulary can become its own Blemish when it makes the user feel clever and superior. The better use is quieter, aimed at structure and one's own role.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2202,8 +1811,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Direction is the key distinction. Topic and tone can vary; the pattern is visible when the exchange feeds on complaint while resisting any door out.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2215,8 +1823,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The response refuses the loop without contempt. It treats the stated problem seriously but stops supplying endless suggestions for the pattern to reject.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2277,19 +1884,13 @@
       },
       "memorableLines": [
         {
-          "text": "If the talk resents the exit, you have found the game.",
-          "location": "breakdown.fastRead",
-          "why": "It protects legitimate complaint while setting up the distinction from the game."
+          "text": "If the talk resents the exit, you have found the game."
         },
         {
-          "text": "Blemish moves the critic upward for a moment.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the payoff of flaw-finding socially visible."
+          "text": "Blemish moves the critic upward for a moment."
         },
         {
-          "text": "The game begins when movement becomes unwelcome.",
-          "location": "breakdown.deepRead",
-          "why": "It gives a portable test for the whole chapter."
+          "text": "The game begins when movement becomes unwelcome."
         }
       ]
     },
@@ -2316,13 +1917,6 @@
             "help",
             "use"
           ],
-          "planSpec": {
-            "domain": "nonprofit case-management meeting with repeated unused referrals",
-            "audience": "a social worker checking whether her rescue plan needs the client to fail",
-            "stakes": "services, dignity, and the helper's self-image are all involved",
-            "format": "scene",
-            "requiredBeat": "Rebecca asks the client which referral he will actually use and what barrier blocked the last one, instead of adding a third impressive option."
-          },
           "scenario": "\"I found another program that might help,\" Rebecca says, then hears the old script in her own voice. The referral binder is open, the bus pass envelope is still sealed, and the case note screen shows two unused options. Her hand rests on a third brochure. Rebecca has to choose between a more impressive rescue plan and asking which referral can actually be used this week.",
           "whatToDo": "Ask which referral the client would use and what blocked the last one. Offer help only after the barrier and use path are named.",
           "whyItMatters": "A failed referral can prove the helper tried and the client is hopeless. A usable path tests help without making failure useful to either side."
@@ -2335,13 +1929,6 @@
             "vocabulary",
             "action"
           ],
-          "planSpec": {
-            "domain": "corporate coaching package for an executive who collects frameworks",
-            "audience": "a coach recognizing Psychiatry-style vocabulary touring",
-            "stakes": "expensive insight can replace one hard behavior change",
-            "format": "decision_point",
-            "requiredBeat": "Matteo stops the terminology loop and asks the executive to make one phone call before the next session."
-          },
           "scenario": "The leather notebook already has three models boxed in blue ink. Matteo watches the executive connect attachment style, incentives, and family systems while the call list sits untouched beside the next calendar invite. The analysis is fluent. Matteo faces the choice of admiring another framework or asking for one phone call before the next session.",
           "whatToDo": "Pause the terminology loop and assign one phone call with a date, person, and first sentence. Make the next session begin with whether the call happened.",
           "whyItMatters": "Vocabulary can tour the problem without touching it. A small action tests whether insight is serving change or replacing it."
@@ -2354,13 +1941,6 @@
             "limits",
             "quiz"
           ],
-          "planSpec": {
-            "domain": "university accessibility office reviewing missed lab work",
-            "audience": "an adviser separating real accommodation from Wooden Leg deployment",
-            "stakes": "respecting disability while keeping unrelated responsibilities clear",
-            "format": "vignette",
-            "requiredBeat": "Frida grants the sensory accommodation and still requires the lab safety quiz by a new date."
-          },
           "scenario": "The accessibility office window faces a courtyard full of construction noise. Frida reads the accommodation letter while noise-canceling headphones rest beside the missed lab safety quiz. The sensory limit is documented. The safety quiz is still unrelated to the noise exposure. Frida has to choose a response that grants access without erasing accountability.",
           "whatToDo": "Approve the sensory accommodation and set a new quiz deadline. State which requirement changed and which requirement remains.",
           "whyItMatters": "The limitation deserves respect. The game starts only when a real limit is used to cover a demand it does not touch."
@@ -2373,13 +1953,6 @@
             "measurement",
             "rescue"
           ],
-          "planSpec": {
-            "domain": "apprenticeship workshop where a trainee keeps acting helpless around measurements",
-            "audience": "a mentor seeing Stupid as a lowered-expectations pattern",
-            "stakes": "the trainee may lose skill and the mentor may enjoy being indispensable",
-            "format": "predict_reveal",
-            "requiredBeat": "Ben hands back the calipers and waits for the trainee to read the measurement out loud before stepping in."
-          },
           "scenario": "You can rescue a bad measurement so quickly that no one learns who needed the rescue. Ben watches a trainee hold digital calipers against a scrap aluminum bar while the measurement worksheet stays blank. \"I am terrible at this,\" the trainee says. Ben predicts the usual handoff. This time he must decide whether to take over or hand the calipers back.",
           "whatToDo": "Hand back the calipers and ask the trainee to read the number aloud. Step in only after the attempt is visible.",
           "whyItMatters": "Quick rescue lowers the expectation permanently. Waiting preserves dignity and skill by making the measurement belong to the trainee."
@@ -2392,13 +1965,6 @@
             "greenhouse",
             "contact"
           ],
-          "planSpec": {
-            "domain": "therapy group where emotion words replace actual contact",
-            "audience": "a facilitator recognizing Greenhouse in polished self-observation",
-            "stakes": "the group can admire insight while no risk is taken",
-            "format": "dialogue",
-            "requiredBeat": "Chiara asks the speaker to say the sentence directly to the person named, not about the feeling category."
-          },
           "scenario": "What happens when every feeling has a label before anyone has felt it in the room? Chiara sits in a circle of chairs near a tissue box and a handwritten feeling list. A member says, \"I am noticing abandonment activation around Alex.\" Chiara must decide whether to praise the insight or ask for the direct sentence to Alex.",
           "whatToDo": "Ask the member to say the sentence to Alex in plain words. Keep the feeling label available, but do not let it replace contact.",
           "whyItMatters": "Greenhouse keeps feeling observed behind glass. Direct speech tests whether the label supports experience or protects against it."
@@ -2411,13 +1977,6 @@
             "onboarding",
             "criteria"
           ],
-          "planSpec": {
-            "domain": "customer-success manager with a client who ignores onboarding then blames the tool",
-            "audience": "a professional helper whose role invites endless rescue",
-            "stakes": "renewal revenue can hide a repeated help-failure game",
-            "format": "postmortem",
-            "requiredBeat": "Yusuf notices that each unused training session lets both sides keep their story, then moves to a written use criterion."
-          },
           "scenario": "Two renewals later in the customer-success review, Yusuf sees that the unused onboarding call was not an accident. The onboarding checklist is blank, the screen-share recording has no views, and the renewal spreadsheet still rewards rescue. The client keeps blaming the tool after skipping training. Yusuf writes a use criterion before the next escalation.",
           "whatToDo": "Set written criteria: sessions attended, workflow installed, and screenshot-backed ticket before escalation. Make help measurable before adding more help.",
           "whyItMatters": "Unused help can prove the client is impossible and the helper diligent. Use criteria stop both sides from profiting from another failed rescue."
@@ -2436,8 +1995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The key is the helper's payoff from failed help. Wooden Leg concerns limitation as exemption, while Greenhouse concerns vocabulary replacing experience.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2449,8 +2007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A concrete call tests whether language is producing movement. More models may extend the tour, while dismissing insight misses that insight can still be useful.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2462,8 +2019,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The response respects the real limit and preserves unrelated accountability. Denial punishes the limitation; blanket waiver lets the limitation cover what it does not touch.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2475,8 +2031,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The visible attempt prevents rescue from lowering expectations. Taking over reinforces helplessness, and quitting turns a performance of inability into a permanent verdict.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2488,8 +2043,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Greenhouse is about vocabulary replacing lived contact. The words may be accurate; the problem is using them to avoid the direct sentence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2501,8 +2055,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Use criteria make help measurable. More rescue repeats the failed-help cycle, while accusation may be satisfying but does not create a usable path.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2514,8 +2067,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Helping games often pay the helper too. The point is not to blame professionals more, but to see how the role itself can hide a payoff.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2527,8 +2079,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The careful reading protects real limits while naming misuse. Calling the limit fake is cruel; treating it as universal exemption erases accountability.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2540,8 +2091,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A use criterion makes help concrete. The point is not skepticism or blame; it is preventing another offer whose failure benefits the pattern.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2602,19 +2152,13 @@
       },
       "memorableLines": [
         {
-          "text": "Help becomes testable, not impressive.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the difference between a usable offer and a helper performance."
+          "text": "Help becomes testable, not impressive."
         },
         {
-          "text": "The helper is part of the game.",
-          "location": "breakdown.deepRead",
-          "why": "It states the chapter's central reversal in one plain line."
+          "text": "The helper is part of the game."
         },
         {
-          "text": "Helping is cleanest when use is imaginable.",
-          "location": "breakdown.fullRead",
-          "why": "It gives a practical test for every professional example."
+          "text": "Helping is cleanest when use is imaginable."
         }
       ]
     },
@@ -2641,13 +2185,6 @@
             "busmans-holiday",
             "volunteer"
           ],
-          "planSpec": {
-            "domain": "retired chef volunteering during a rural clinic vaccination day",
-            "audience": "a coordinator deciding whether Busman's Holiday needs correction",
-            "stakes": "mixed identity motives produce real food for tired nurses",
-            "format": "scene",
-            "requiredBeat": "Michael cooks because he misses being needed, and the coordinator lets the good game feed the room without exposing it."
-          },
           "scenario": "Onion steam fogs the clinic kitchen window before the first appointment slot. Michael stirs a stockpot while vaccination clipboards pile up and paper bowls wait on the counter. He is a retired chef, and everyone can see he misses being needed. The coordinator must decide whether to name the mixed motive or let the soup feed the nurses.",
           "whatToDo": "Let him cook, thank him for the food, and make sure no one is trapped by his help. Do not expose a motive that is doing useful work.",
           "whyItMatters": "Busman's Holiday can be mixed and still benign. The room gets fed, Michael gets usefulness, and no one has to fail for the pattern to continue."
@@ -2660,13 +2197,6 @@
             "homely-sage",
             "gift"
           ],
-          "planSpec": {
-            "domain": "elderly neighbor giving gardening advice to new renters",
-            "audience": "a renter receiving Homely Sage without making the neighbor prove relevance",
-            "stakes": "knowledge can be a gift or a demand, depending on whether obedience is required",
-            "format": "dialogue",
-            "requiredBeat": "Manon listens, thanks the neighbor, and watches whether the advice is offered freely or becomes a test."
-          },
           "scenario": "\"Tomatoes sulk if you water the leaves,\" Manon hears over the fence on a Saturday morning behind the rented terrace. Her neighbor lifts a green watering can beside tomato seedlings while the fence latch clicks in the wind. Manon is new to the garden and the advice is probably useful. She has to decide whether to receive it as a gift or treat every bit of elder pride as a demand.",
           "whatToDo": "Thank the neighbor and try the advice if it fits. Watch whether she offers it freely or later uses obedience as the price of friendliness.",
           "whyItMatters": "Homely Sage can be generous when the lesson is released. The motive only becomes costly if wisdom turns into a test the younger person must pass."
@@ -2679,13 +2209,6 @@
             "expertise",
             "identity"
           ],
-          "planSpec": {
-            "domain": "weekend hackathon where a burned-out developer fixes the sign-in bug for fun",
-            "audience": "an organizer deciding whether the expert's mixed motive is harmful",
-            "stakes": "the event works because usefulness and identity overlap",
-            "format": "vignette",
-            "requiredBeat": "Chris lets the developer solve the bug as long as he does not make others dependent on his rescue."
-          },
           "scenario": "Sticker-covered laptops glow under a basketball hoop in the school gym during the Saturday hackathon. Chris, the event organizer, watches a burned-out developer fix the sign-in QR code, open a merge request, and shove a pizza box stack aside to reach the power strip. The developer misses feeling useful. Chris has to choose whether to stop the rescue or turn it into a handoff.",
           "whatToDo": "Let the bug get fixed, then ask the developer to walk two students through the merge request. Keep the usefulness and spread the skill.",
           "whyItMatters": "The mixed motive is not harmful by itself. Dependency would be harmful; teaching converts the expert's identity need into shared capacity."
@@ -2698,13 +2221,6 @@
             "cavalier",
             "attention"
           ],
-          "planSpec": {
-            "domain": "formal dance class where sincere compliments could become Cavalier",
-            "audience": "a dancer giving admiration without pursuit or claim",
-            "stakes": "pleasure in giving strokes can remain clean if no debt is attached",
-            "format": "decision_point",
-            "requiredBeat": "Isabel gives one specific compliment and leaves it there, checking that the stroke does not become a hook."
-          },
           "scenario": "You can admire the precision of someone's turn without asking for anything afterward. Isabel stands on the polished floor with a dance card in hand and a silver shoe buckle catching the light. Her partner's last turn was clean and balanced. Isabel must decide whether to give one exact compliment or use the compliment to open a claim.",
           "whatToDo": "Name the exact turn and stop. Do not ask for extra attention, a dance, a message, or proof that the compliment mattered.",
           "whyItMatters": "Cavalier is clean when pleasure stays in giving the stroke. The compliment becomes a hook only when admiration tries to collect a debt."
@@ -2717,13 +2233,6 @@
             "legacy",
             "mentoring"
           ],
-          "planSpec": {
-            "domain": "community science fair mentored by a retired engineer",
-            "audience": "a mentor with vanity about future recognition through students",
-            "stakes": "the students benefit even if the motive is not pure",
-            "format": "predict_reveal",
-            "requiredBeat": "Mikkel admits he likes being remembered and still lets the students own the soldering decisions."
-          },
           "scenario": "Years after leaving the lab, Mikkel still imagines one student saying his name in a speech. The soldering iron stand is warm, the circuit board is ready, and a science fair ribbon from last year hangs nearby. He predicts his own urge to take over the hard joint. Now he must decide whether to be remembered as the fixer or let the students own the soldering.",
           "whatToDo": "Admit the vanity privately, then keep your hands off the circuit board while students make the soldering decisions. Coach only when safety requires it.",
           "whyItMatters": "They'll Be Glad They Knew Me can mix vanity with real contribution. The work stays good when the students gain skill instead of becoming props in a legacy scene."
@@ -2736,13 +2245,6 @@
             "happy-to-help",
             "storm"
           ],
-          "planSpec": {
-            "domain": "mutual-aid dispatch during a storm outage",
-            "audience": "a volunteer coordinator deciding whether Happy to Help is slipping into needed failure",
-            "stakes": "neighbors need deliveries, but the helper's payoff must not depend on chaos continuing",
-            "format": "postmortem",
-            "requiredBeat": "Hadiya notices the volunteer is happy when routes shrink too, which separates help from the trap that needs helplessness."
-          },
           "scenario": "How can you tell whether help is clean? Watch the helper when help is no longer needed. Hadiya reviews the delivery route sheet after a storm outage while a portable battery pack charges beside a thermal grocery bag. One volunteer smiles when the remaining routes shrink. Hadiya notes the relief, not disappointment.",
           "whatToDo": "Keep the volunteer in the dispatch pool and let the work wind down. Use shrinking need as the test: clean help can be glad when the need decreases.",
           "whyItMatters": "Happy to Help does not need failure. If the helper can enjoy being useful and also enjoy becoming unnecessary, the pattern is worth protecting."
@@ -2761,8 +2263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The contribution outweighs the private reward, and no one is trapped. Purity is too high a standard, while mixed identity alone is not a reason to interrupt.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2774,8 +2275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Homely Sage gives the lesson away. The pattern turns costly when obedience becomes the price of the relationship.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2787,8 +2287,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The handoff preserves usefulness while preventing dependency. Banning help wastes value, and exposing motive adds nothing the event needs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2800,8 +2299,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Clean admiration gives the stroke and leaves it there. The hook appears when the compliment tries to collect debt or access.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2813,8 +2311,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Vanity can coexist with real contribution if students become more capable. Hiding the motive is unnecessary, and taking over turns students into props.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2826,8 +2323,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Being glad when need decreases separates Happy to Help from rescue that requires failure. More tasks would risk feeding the helper rather than serving need.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2839,8 +2335,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cost and dependency matter more than purity. The other questions center the observer's need to diagnose rather than the pattern's effect.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2852,8 +2347,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Needing the other person to remain needy is the danger sign. Enjoying usefulness or sharing advice can stay net positive when no one is trapped.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2865,8 +2359,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A good game can be imperfect and useful. Forced confession or interruption may serve the observer more than the people being helped.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2927,19 +2420,13 @@
       },
       "memorableLines": [
         {
-          "text": "The room is also fed.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the net-positive test concrete through the clinic kitchen scene."
+          "text": "The room is also fed."
         },
         {
-          "text": "Purity is a poor test for human contact.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the chapter's resistance to cynical overdiagnosis."
+          "text": "Purity is a poor test for human contact."
         },
         {
-          "text": "Some games are not worth fighting.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the closing judgment in the book's own plain vocabulary."
+          "text": "Some games are not worth fighting."
         }
       ]
     },
@@ -2966,13 +2453,6 @@
             "editorial",
             "autonomy"
           ],
-          "planSpec": {
-            "domain": "editorial meeting where an old defensive line appears",
-            "audience": "a magazine editor catching awareness before the sentence delivers itself",
-            "stakes": "the team can either hear current facts or another old status move",
-            "format": "scene",
-            "requiredBeat": "Audrey sees the prepared line form, waits one breath, and asks what changed in the draft instead."
-          },
           "scenario": "At 9:06 a.m. in the magazine conference room, Audrey feels the sentence arrive before her mouth moves. A marked manuscript sits beside the meeting agenda, and the red pen cap is already between her fingers. The junior editor has improved a section Audrey criticized yesterday, but Audrey's status is still attached to the old mark. Audrey must decide whether to defend the old judgment or ask what changed.",
           "whatToDo": "Let one breath pass, name the present draft rather than the old position, and ask what the group is seeing now.",
           "whyItMatters": "Awareness is the gap before the rehearsed response becomes action. Audrey does not need a new performance; she needs the old line to lose automatic control."
@@ -2985,13 +2465,6 @@
             "learning",
             "range"
           ],
-          "planSpec": {
-            "domain": "adult piano lesson after years of apologizing before mistakes",
-            "audience": "a learner finding spontaneity by accessing a playful Child state instead of his usual shame script",
-            "stakes": "practice can open range or confirm limitation",
-            "format": "vignette",
-            "requiredBeat": "Antoine laughs at the wrong note and tries the bar again from curiosity rather than apology."
-          },
           "scenario": "The wrong note rings brighter than the right ones in the small studio during Antoine's Tuesday evening lesson. Antoine sits at an upright piano while the metronome ticks beside penciled fingering marks. His hand has slipped in the same bar three times, and the apology is ready before the teacher speaks. He has to choose between apologizing again and trying the phrase with curiosity.",
           "whatToDo": "Laugh once, keep his hands on the keys, and replay the bar to discover what his fingers did instead of performing shame.",
           "whyItMatters": "Spontaneity is not wildness. It is access to more than the usual script, so a playful response can serve learning instead of blocking it."
@@ -3004,13 +2477,6 @@
             "friendship",
             "directness"
           ],
-          "planSpec": {
-            "domain": "friendship conversation after a missed birthday",
-            "audience": "a friend testing whether contact can happen without prosecuting or performing injury",
-            "stakes": "a close friendship may leave the familiar grievance track for one clean exchange",
-            "format": "dialogue",
-            "requiredBeat": "Marta says the hurt plainly and stops before adding the line that would make the other person pay."
-          },
           "scenario": "\"I was hurt, and I do not want to make a case out of it,\" Marta says at 6:10 p.m. in the corner cafe after work. Marta, a longtime friend trying not to prosecute a missed birthday, has the unopened birthday card still in her bag, a cafe receipt curling near her cup, and her phone face down. The next sentence would be familiar, polished, and punitive. She must decide whether to stop there or add the old line that would make her friend pay.",
           "whatToDo": "Say the hurt once, stop before the punishment, and let the other person answer the real sentence.",
           "whyItMatters": "Direct contact gets destroyed when the honest sentence is followed by a payoff demand. Marta protects the chance for intimacy by refusing the extra move."
@@ -3023,13 +2489,6 @@
             "debrief",
             "range"
           ],
-          "planSpec": {
-            "domain": "firehouse debrief after a call went badly",
-            "audience": "a captain allowing Adult fact and genuine Child fear without collapsing into command voice",
-            "stakes": "safety learning depends on range, not forced toughness",
-            "format": "before_after",
-            "requiredBeat": "Jack moves from data to fear to next procedure without pretending one state cancels the others."
-          },
           "scenario": "Soot dries in the creases of every hand around the firehouse debrief table after the morning call. Jack, the captain, has an incident map, a helmet shield, and a coffee thermos between him and the crew. Before the next shift, he moves through timing, fear, and procedure without pretending one state cancels the others.",
           "whatToDo": "Start with facts, admit the fear without asking to be rescued, then convert both into the next procedure.",
           "whyItMatters": "Autonomy includes range. Jack can use Adult analysis, Parent standards, and Child feeling without letting any one state run the whole room."
@@ -3042,13 +2501,6 @@
             "dating",
             "performance"
           ],
-          "planSpec": {
-            "domain": "first date after recognizing old performance habits",
-            "audience": "a person seeing that charm can become a game even when nothing cruel is intended",
-            "stakes": "a possible connection can stay direct or become a performance of being easy to like",
-            "format": "reflection",
-            "requiredBeat": "Chloe lets one quiet answer stand instead of filling the silence with her reliable entertaining story."
-          },
           "scenario": "You know the story that always works before the waiter takes the glasses away on a first date. Chloe knows hers too, with a rain-specked window beside the table, a softened menu corner under her thumb, and an untouched dessert spoon in front of her. The quiet answer she just gave is enough if she lets it stand, but her reliable charm is already reaching for the silence.",
           "whatToDo": "Leave the quiet answer in the room. Do not fill the silence with the reliable story just to secure being liked.",
           "whyItMatters": "Charm can become a game even when no one means harm. Chloe protects a possible direct exchange by refusing to manage every second of the impression."
@@ -3061,13 +2513,6 @@
             "intimacy",
             "grief"
           ],
-          "planSpec": {
-            "domain": "adult siblings sorting a parent's storage unit",
-            "audience": "two people finding a brief game-free hour inside a grief-heavy task",
-            "stakes": "intimacy requires both to drop the old roles at once, however briefly",
-            "format": "postmortem",
-            "requiredBeat": "Kiran sees later that neither sibling prepared a defense while the other held the photograph, which made the hour different."
-          },
           "scenario": "Only later does Kiran understand why the storage unit felt quiet instead of loaded on Sunday afternoon. He and his sibling were sorting their parent's things in a narrow concrete aisle while a cardboard photo box sat open on the floor, the padlock hung from the latch, and a dusty lamp shade leaned sideways. One sibling held a photograph, and neither person prepared a defense.",
           "whatToDo": "Notice the hour as a real event, not a permanent cure. Treat the unplayed roles as evidence that direct contact can happen briefly.",
           "whyItMatters": "Intimacy requires two people to be free of their patterns at once. Kiran cannot force that alone, but he can recognize and protect it when it appears."
@@ -3086,8 +2531,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Awareness lets Audrey catch the programmed response before it takes over. Silence alone may dodge the moment, and a calmer old judgment still answers yesterday's draft.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3099,8 +2543,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Spontaneity gives Antoine more range than shame. Playing louder hides the mistake, while quitting leaves the old script in charge.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3112,8 +2555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The clean sentence invites direct contact. A prosecution list seeks a payoff, and pretending to be fine restarts the guessing game.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3125,8 +2567,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Range lets Jack use fact, standards, and feeling in sequence. Pure toughness excludes fear, while making the meeting about his feelings loses the safety purpose.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3138,8 +2579,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The test is direct contact, not a moral ban on charm. Performing likability would protect the old payoff instead of seeing what is present.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3151,8 +2591,7 @@
             ],
             "correctIndex": 1,
             "explanation": "One person cannot manufacture intimacy alone. The hour mattered because both siblings left the usual roles unplayed, even if only briefly.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3164,8 +2603,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Awareness is useful when it interrupts automatic response. If it becomes self-monitoring theater that avoids action, the old game has gained new vocabulary.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3177,8 +2615,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The triad points toward cleaner contact, not isolation. Treating autonomy as distance misses intimacy and keeps the person organized around avoidance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3190,8 +2627,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Spontaneity widens range. The first harsh impulse can be just as programmed as polite compliance, while serious conversations may need even more choice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3252,19 +2688,13 @@
       },
       "memorableLines": [
         {
-          "text": "A familiar game can feel safer than a clean moment.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses spontaneity into a concrete test of available responses."
+          "text": "A familiar game can feel safer than a clean moment."
         },
         {
-          "text": "Intimacy is rare because one person cannot produce it alone.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps directness from becoming a solo achievement or demand."
+          "text": "Intimacy is rare because one person cannot produce it alone."
         },
         {
-          "text": "Autonomy is not a pose. It is the moment you can leave the game unplayed.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the book by rejecting performance as the final trap."
+          "text": "Autonomy is not a pose. It is the moment you can leave the game unplayed."
         }
       ]
     }

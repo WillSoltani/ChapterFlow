@@ -32,13 +32,6 @@
             "consumer",
             "commute"
           ],
-          "planSpec": {
-            "domain": "train station grab-and-go kiosk",
-            "audience": "brand product manager shadowing a commuter observation session",
-            "stakes": "her survey asks the wrong question while the real job plays out in front of her",
-            "format": "scene",
-            "requiredBeat": "Vera watches a commuter bypass the healthier option and take the thick sealed shake, realizing the commuter is managing a 45-minute ride one-handed, not making a health decision"
-          },
           "scenario": "The kiosk smells of hot coffee and warm pastry at 7:48 a.m. Vera stands two steps back with her clipboard, watching a commuter reach past the granola cups and banana display to pull a thick sealed shake from the cooler. The survey in Vera's hand asks about flavor, portion, and price. The commuter is not weighing any of those. She is about to board a train with one free hand and forty-five minutes of nothing to do, and the sealed cup is the only option that will last the whole ride without a mess.",
           "whatToDo": "Pause the survey. Write down the commuter's visible constraints: one occupied hand, a long ride, a need for volume that outlasts the trip. Only after naming those can you design a question worth asking.",
           "whyItMatters": "When the circumstance drives the hire, feature questions arrive too late. Vera's clipboard captures preferences; the kiosk behavior captures the job. The two are not the same data."
@@ -51,13 +44,6 @@
             "product management",
             "two distinct jobs"
           ],
-          "planSpec": {
-            "domain": "home resistance training equipment",
-            "audience": "brand manager reviewing a return spike after adding features power users requested",
-            "stakes": "new features pleased one job while breaking another",
-            "format": "postmortem",
-            "requiredBeat": "Laurent takes a return call from a physical therapy patient who says the new guide assumes I already know what I am doing, revealing the recovery job versus the performance job"
-          },
           "scenario": "Laurent pulls the return data at 2:15 p.m., four weeks after launching the upgraded resistance band set with the detailed progression guide power users had requested. The chart shows a 34-percent spike in the 40-to-60 age bracket. He calls a returner. \"The new guide assumes I already know what I am doing,\" the woman says. \"My therapist recommended this after my hip replacement. I need someone to tell me where to start.\" Laurent is weighing whether to split the SKU or back out the guide.",
           "whatToDo": "Separate the two jobs before changing the product again. The performance job and the recovery job share a price point but require different onboarding, different language, and different proof of success.",
           "whyItMatters": "Power-user feedback is valid data for one job. It is wrong data for a different job riding the same SKU. Laurent's upgrade served the wrong customer by asking only the loudest one."
@@ -70,13 +56,6 @@
             "retail",
             "circumstance creates the job"
           ],
-          "planSpec": {
-            "domain": "mountain lodge gift shop selling hot cocoa kits",
-            "audience": "lodge retail manager comparing lodge sales to grocery store performance",
-            "stakes": "same product moves at the lodge and sits at the grocery store two valleys down",
-            "format": "vignette",
-            "requiredBeat": "a customer says I am not even a cocoa person while buying it, and Sofía realizes the job is 20 quiet indoor minutes for two kids while adults rest, a job the lodge circumstance creates entirely"
-          },
           "scenario": "Sofía watches a woman in ski pants set the foil cocoa kit on the counter. \"I am not even a cocoa person,\" the woman says, while two kids chase each other around the display rack. Outside, sleet hits the windows. \"But they need something to do for twenty minutes while we dry out.\" Sofía rings it up and watches the family head toward the fireplace. The same kit sits unsold at a grocery store two valleys down. Sofía faces a choice: lower the grocery price, or understand why the lodge sells a product the buyer does not prefer.",
           "whatToDo": "Name the lodge circumstance as the job creator. Wet weather, tired adults, two restless children, and twenty minutes indoors combine to make the kit hireable. The grocery store context provides none of those forces.",
           "whyItMatters": "The product did not change between the lodge shelf and the valley shelf. The circumstance did. Sofía is not selling cocoa at the lodge; she is selling a twenty-minute solution to a specific indoor problem."
@@ -89,13 +68,6 @@
             "second_person",
             "anxiety elimination"
           ],
-          "planSpec": {
-            "domain": "university late-night print center",
-            "audience": "print center manager and through second-person the reader facing the queue decision",
-            "stakes": "the buyer at 11:30pm is not choosing paper quality",
-            "format": "decision_point",
-            "requiredBeat": "at 11:30pm with a 7am thesis deadline, the buyer is hiring speed and certainty to eliminate the anxiety of a failed reprint at 3am"
-          },
           "scenario": "You are Marco, standing at the print center counter at 11:30 p.m. A student with a thesis folder needs to decide between the standard queue (90 minutes, cheaper) and the priority lane (12 minutes, twice the price). Her deadline is 7 a.m. She is not comparing paper stock or binding quality. She is weighing the risk of a 3 a.m. failed print job against a price premium now. The job is not printing. The job is certainty that the document exists, finished and in her hand, before anxiety brings her back out of bed.",
           "whatToDo": "Price the priority lane against anxiety elimination, not against paper cost. If the student is hiring certainty, the competitor is not a cheaper queue, it is the fear of a 3 a.m. crisis.",
           "whyItMatters": "Marco's queue options look identical on a feature comparison. The circumstance makes them completely different hires. The job is visible only after you name what the buyer needs to stop worrying about."
@@ -108,13 +80,6 @@
             "HR",
             "operational stability"
           ],
-          "planSpec": {
-            "domain": "corporate wellness program enrollment",
-            "audience": "HR manager reviewing benefit take-up rates",
-            "stakes": "Astrid predicted yoga leads but meal delivery credits led 3 to 1",
-            "format": "predict_reveal",
-            "requiredBeat": "at 9:03am Astrid's prediction that yoga leads is wrong; meal delivery credits led 3 to 1, and three users say it kept the household running during crunch weeks, revealing the job as operational stability, not nutrition"
-          },
           "scenario": "At 9:03 a.m., Astrid opens the Q1 enrollment dashboard and reads her own prediction sticky note: yoga leads, nutrition second. Meal delivery credits led 3 to 1. She pulls three exit interviews. Each says the same thing: during crunch weeks, dinner was the first thing that fell apart and the credit kept the household running. Astrid needs to decide whether to add more yoga options for next year or reframe the entire benefit narrative.",
           "whatToDo": "Read the enrollment data against household circumstance, not wellness category. The job employees hired was operational stability during high-pressure work cycles, not nutrition improvement.",
           "whyItMatters": "Astrid was measuring by product category. The employees were hiring by household survival. The gap between those two framings explains the entire prediction error."
@@ -127,13 +92,6 @@
             "artisan retail",
             "emotional hire"
           ],
-          "planSpec": {
-            "domain": "artisan soap at weekend market",
-            "audience": "market vendor who has misread a 3 to 1 lavender-to-citrus ratio as scent preference",
-            "stakes": "over-ordering lavender based on wrong interpretation of the ratio",
-            "format": "vignette",
-            "requiredBeat": "a buyer picks up lavender and says this is what my mom's bathroom smelled like on Sunday mornings, revealing the product is hired to restore an emotional state, not for cleansing quality"
-          },
           "scenario": "Bruno restacks the lavender bars at the corner of the market table, proud of the 3-to-1 sales ratio over citrus. A woman in her fifties picks up a bar, presses it to her wrist, and says quietly: \"This is what my mom's bathroom smelled like on Sunday mornings.\" She buys four. Bruno has to decide whether to double the lavender order before next weekend, based on what looks like a clear preference signal, except the signal is not about scent preference at all.",
           "whatToDo": "Separate the emotional job from the product attribute. The lavender bar is being hired to restore a specific memory and feeling, not because buyers prefer lavender as a cleansing ingredient. That job may not scale with more inventory.",
           "whyItMatters": "Bruno's ratio looks like demand data. It is actually emotional hire data. Ordering more lavender addresses the supply side of the wrong question; understanding the restoration job addresses the right one."
@@ -152,8 +110,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The commuter's constraints, one free hand, a long ride, a need for lasting volume, are the job specification. Flavor and demographic data arrive only after that causal question is answered.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch01-q02",
@@ -165,8 +122,7 @@
             ],
             "correctIndex": 0,
             "explanation": "When an improvement pleases one group and alienates another, two distinct jobs likely share one SKU. Investigating price or marketing first skips the more fundamental question about competing jobs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch01-q03",
@@ -178,8 +134,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The circumstance at the lodge produces the hiring moment: adults needing quiet, children needing activity, weather forcing everyone indoors. The product did not change; the surrounding job did.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch01-q04",
@@ -191,8 +146,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Late at night before a high-stakes deadline, the student is hiring certainty to eliminate a future anxiety, not comparing print queues by cost. That reframes both the product and its real competitor.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch01-q05",
@@ -204,8 +158,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The enrollment data makes sense only after naming the circumstance: high-pressure work weeks where dinner preparation collapses. That operational stability job has nothing to do with nutrition category preferences.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch01-q06",
@@ -217,8 +170,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A memory-restoration job is tied to a specific emotional circumstance, not a general scent preference. Treating the ratio as preference data rather than emotional occasion data leads to the wrong stocking decision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch01-q07",
@@ -230,8 +182,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Averaging occasions removes the specific constraints behind each hire. The commuter job and the parent-child treat job have different competitors, different failure modes, and different design requirements that disappear in the average.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch01-q08",
@@ -243,8 +194,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Power-user feedback is accurate for the performance job. It is the wrong data for the recovery job. The error was treating feedback from one hiring occasion as guidance for a different one that happened to share a product name.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch01-q09",
@@ -256,8 +206,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Preference surveys assume the team already understands why the product gets hired. They arrive after the real question. Starting with the moment of struggle reveals what the product must actually accomplish before any feature is worth testing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -294,7 +243,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mapping the Buyer's Hiring Moment",
         "coreSkill": "Before any product decision, write the buyer's exact moment: time, place, constraint, and what old approach was being replaced. Check that every proposed change improves that specific moment, not a hypothetical average user.",
         "ifThenPlans": [
           {
@@ -319,19 +267,13 @@
       },
       "memorableLines": [
         {
-          "text": "Circumstance defines the field. Category labels do not.",
-          "location": "breakdown.deepRead",
-          "why": "It reframes competition in one sentence, replacing product-category thinking with situation-based thinking."
+          "text": "Circumstance defines the field. Category labels do not."
         },
         {
-          "text": "Features earn their place after the team understands the job they must serve.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the correct sequence for product work: job first, features second."
+          "text": "Features earn their place after the team understands the job they must serve."
         },
         {
-          "text": "The circumstance is the specification. The job is the standard.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the argument by naming what replaces preference data as the design anchor."
+          "text": "The circumstance is the specification. The job is the standard."
         }
       ]
     },
@@ -358,13 +300,6 @@
             "subscription",
             "emotional progress"
           ],
-          "planSpec": {
-            "domain": "dog grooming subscription service",
-            "audience": "subscription founder reviewing post-cancellation interviews",
-            "stakes": "quality scores are high but churn is rising and the exit data points somewhere unexpected",
-            "format": "predict_reveal",
-            "requiredBeat": "at 9:11am Claire's groom-quality data is green but churn is red; exit interviews say every Friday he hid under the bed, revealing that the emotional progress job, the dog's experience plus the owner's guilt, drove the cancellation"
-          },
           "scenario": "At 9:11 a.m., Claire opens the monthly dashboard with her prediction sticky note still visible: quality score up, churn stable. Quality is up. Churn is up too. She pulls the exit interview transcripts and reads the same line in different forms: every Friday he hid under the bed, he shook when I picked up his leash, I felt terrible the whole day. The grooms were excellent by every measure the team tracked. She must decide whether to rebuild the service around dog comfort or defend the quality scores.",
           "whatToDo": "Add the emotional progress layer to the cancellation review. Track whether the dog's experience of the service, and the owner's feeling about it, meets the same standard as technical groom quality.",
           "whyItMatters": "A technically excellent service can fail the emotional dimension of the job entirely. Claire's metrics captured the product. They missed the progress the owner was actually trying to make."
@@ -377,13 +312,6 @@
             "membership",
             "social progress"
           ],
-          "planSpec": {
-            "domain": "yoga studio membership",
-            "audience": "studio co-owner in pause negotiation with a long-term member",
-            "stakes": "a three-year member is pausing and the reason is not the classes",
-            "format": "dialogue",
-            "requiredBeat": "the member says it is the one hour where I am not managing anyone's feelings, revealing that the functional product was hired for a social progress job: relief from a caregiving role"
-          },
           "scenario": "\"The classes are fine,\" Valentina says, sitting across from Étienne at 10:55 a.m. with her membership card on the table. \"I am just burned out.\" Étienne is about to offer a discounted pause rate when she adds: \"It is the one hour where I am not managing anyone's feelings. Not my kids, not my team, not my mother.\" Étienne sets the pricing sheet aside. The studio is one of the only hours in Valentina's week that belongs entirely to her, and she needs him to understand that before money enters the room.",
           "whatToDo": "Name the social progress job before negotiating on price. Valentina hired the membership for relief from a caregiving role. A discount does not address that job; a different framing of what the hour is for might.",
           "whyItMatters": "Three years of attendance built around a social progress job will not be retained by a product improvement. Étienne needs to understand the job before he can offer anything relevant."
@@ -396,13 +324,6 @@
             "retail",
             "two jobs competing"
           ],
-          "planSpec": {
-            "domain": "independent bookshop with café",
-            "audience": "bookshop manager reviewing traffic-up but transaction-size-down after café expansion",
-            "stakes": "the café expansion changed who is hiring the space and for what",
-            "format": "postmortem",
-            "requiredBeat": "remote workers stay 3 hours, buy 2 lattes and 1 book as a cover charge; the café is hired as a third place with a functional workspace job, a social not-home-not-office job, and an emotional acceptable-loitering job; two distinct jobs now compete for the same space"
-          },
           "scenario": "Giulia reviews the monthly P&L at 4:30 p.m. on a Tuesday. Foot traffic is up 28 percent since the café expansion. Average transaction is down 19 percent. She walks the floor and counts: fourteen people with laptops, three with books, two browsing. A remote worker at table seven has been there since 9 a.m., bought two lattes and one paperback. Giulia needs to decide before next quarter whether the café created a new job for a new buyer, or broke the original job for the old one.",
           "whatToDo": "Name both jobs explicitly before making any floor or pricing change. The third-place job and the browse-and-buy job may be incompatible in the same physical space at the same time.",
           "whyItMatters": "The café expansion succeeded at creating a new hiring occasion. It also introduced a conflict between two jobs competing for the same resource: space, quiet, and atmosphere. Giulia cannot optimize for both without first naming each."
@@ -415,13 +336,6 @@
             "second_person",
             "functional progress"
           ],
-          "planSpec": {
-            "domain": "company offsite venue selection",
-            "audience": "operations manager choosing between hotel conference center and farmhouse through second-person",
-            "stakes": "the real progress job is forcing remote workers to be genuinely present together without the escape hatch of normal work mode",
-            "format": "decision_point",
-            "requiredBeat": "the real progress job is forcing remote workers to be genuinely present together without the escape hatch of normal work mode; the farmhouse wins because it removes the wifi distraction; Thomas needs to name the job before choosing"
-          },
           "scenario": "You are Thomas. The hotel has fast wifi, breakout rooms, and a catering team. The farmhouse forty minutes outside has slow internet, one long dining table, and nowhere to take a side call. Your budget covers either. Reservations close Friday and you are about to choose. The real progress job for this offsite is not completing the agenda. It is making twelve remote colleagues spend two days genuinely present together, without the escape hatch of a Slack channel pulling someone into a corner. You must decide which space gives that a real chance.",
           "whatToDo": "Name the job before evaluating the venue features. If the job is genuine presence, the farmhouse's friction is a feature, not a flaw. Choose against the job, not against the amenities checklist.",
           "whyItMatters": "Thomas cannot make a good venue decision by comparing room sizes and catering menus. The right choice depends entirely on which environment creates the conditions for the progress he is actually trying to make."
@@ -434,13 +348,6 @@
             "nonprofit",
             "emotional job"
           ],
-          "planSpec": {
-            "domain": "community radio pledge drive",
-            "audience": "pledge drive coordinator with 40 percent below-target conversion",
-            "stakes": "the appeal is built around journalism, but the job is something different",
-            "format": "vignette",
-            "requiredBeat": "donors are not preserving journalism; they are keeping one familiar voice on during morning commutes; functional job is companionship, emotional job is managing start-of-day anxiety; journalism is the category, not the job"
-          },
           "scenario": "Maja stands at the pledge drive whiteboard at 8:40 a.m. with conversion rates 40 percent below last year's goal. The campaign says: support local journalism. Three listener interviews are pinned to the board. All three say the same thing in different ways: it is what I put on when I am getting ready, it is just on in the background, it is the voice I know. None of them mention journalism. Maja must decide whether to rewrite the appeal around a different story before the drive closes on Friday.",
           "whatToDo": "Build the appeal around companionship during the morning transition, not the journalism category. Test whether donors respond to losing the familiar voice rather than losing investigative reporting.",
           "whyItMatters": "Journalism is what the station produces. Manageable morning anxiety is what the listeners are hiring the station to reduce. Those are not the same job, and they require a completely different appeal."
@@ -453,13 +360,6 @@
             "sports facility",
             "social progress"
           ],
-          "planSpec": {
-            "domain": "driving range membership",
-            "audience": "sports facility manager deciding between premium bays and short-game area",
-            "stakes": "survey says power improvement; observation says something different",
-            "format": "thought_experiment",
-            "requiredBeat": "survey says power improvement; observation shows Friday evening pairs arriving together, staying 2 hours; the job is low-stakes outdoor social activity with a physical prop; Devon needs to name the social progress job before choosing the investment"
-          },
           "scenario": "Devon is weighing two capital requests: automated launch monitors for four premium bays at forty thousand, or a short-game area with casual seating at twenty-two thousand. The member survey says power improvement is the top priority. He walks the range Friday evening and sees something the survey missed: pairs sharing a bucket, staying ninety minutes, rarely checking swing data. He needs to decide whether the survey or the observation answers the right question about what members actually hire the range to do.",
           "whatToDo": "Name the social progress job the Friday observation reveals before presenting the request. If members hire the range for low-stakes outdoor social time, the short-game area may serve that job better than launch monitors.",
           "whyItMatters": "Survey answers reflect stated preferences in the abstract. Observed behavior reflects the job in action. Devon needs to know which one he is designing for before spending forty thousand dollars."
@@ -478,8 +378,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Quality scores track the functional output. The owner's guilt about the dog's visible distress belongs to the emotional progress layer, and that layer was driving cancellation regardless of technical quality.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch02-q02",
@@ -491,8 +390,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The member named relief from managing other people's needs, which is a social progress job. She is not hiring yoga instruction; she is hiring a structured hour that belongs entirely to her. A discount or class upgrade does not address that job.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch02-q03",
@@ -504,8 +402,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Remote workers are hiring the space for a third-place job: functional workspace, social legitimacy for lingering, and emotional permission to not be at home or in a formal office. That job conflicts with the browse-and-buy job for the same resource.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch02-q04",
@@ -517,8 +414,7 @@
             ],
             "correctIndex": 0,
             "explanation": "When the progress job is genuine presence, friction is a feature. A venue that removes normal-work-mode escape options directly serves the job. Amenities that make it easier to retreat into regular work patterns work against it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch02-q05",
@@ -530,8 +426,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Listeners are hiring the station to manage morning-routine anxiety through a familiar companionship cue, not to fund investigative reporting. The journalism frame describes what the station produces, not the progress listeners are trying to make.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch02-q06",
@@ -543,8 +438,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Survey data reflects abstract stated preferences. Observed behavior reflects the live job in a specific circumstance. The Friday evening pattern reveals a social progress job that a power-improvement investment would fail to serve.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch02-q07",
@@ -556,8 +450,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Buyers are not inconsistent; their progress targets shift by circumstance. The same person hires different options because the functional, social, or emotional job they need done differs in each situation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch02-q08",
@@ -569,8 +462,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Progress goals require a concrete before state, a specific circumstance, and a recognizable better state. Option C names the circumstance, the starting condition, and the target state precisely enough to test and observe.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch02-q09",
@@ -582,8 +474,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A service can execute the functional task correctly and still fail the hire if the social or emotional layer drives the decision to stay or leave. Claire's grooming subscription is the exact example: perfect functional output, failed emotional job.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -620,7 +511,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Writing a Three-Layer Progress Statement",
         "coreSkill": "For any product or service, write a complete three-layer progress statement: the functional movement, the social change, and the emotional shift the buyer experiences when the job is done well. Hold all three against the circumstance before making any design or investment decision.",
         "ifThenPlans": [
           {
@@ -645,19 +535,13 @@
       },
       "memorableLines": [
         {
-          "text": "A product is a thing. Progress is a change.",
-          "location": "breakdown.fullRead",
-          "why": "It states the core distinction in six words, making it easy to retrieve and hard to misremember."
+          "text": "A product is a thing. Progress is a change."
         },
         {
-          "text": "The full job includes how the buyer feels about themselves when it works.",
-          "location": "breakdown.fastRead",
-          "why": "It extends the job definition beyond functional output and names the emotional layer as a design requirement, not an afterthought."
+          "text": "The full job includes how the buyer feels about themselves when it works."
         },
         {
-          "text": "That gap is the specification. Functional, social, and emotional progress together are the standard.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the chapter's argument by naming all three layers as the measurement standard, replacing a purely functional design target."
+          "text": "That gap is the specification. Functional, social, and emotional progress together are the standard."
         }
       ]
     },
@@ -684,13 +568,6 @@
             "certainty",
             "substitutes"
           ],
-          "planSpec": {
-            "domain": "airport parking valet service",
-            "audience": "service researchers",
-            "stakes": "quality and price gap does not explain the hiring pattern",
-            "format": "scene",
-            "requiredBeat": "a frequent traveler reveals the job is certainty of retrieval under stress, not price; a circled photo is the real substitute"
-          },
           "scenario": "At 10:30 a.m., \"Last time you used valet?\" Emily asks, recorder between them. The traveler shows a phone photo: concrete pillar marked 3B, her car hood in the corner. \"I landed at midnight. Delay. Forty minutes before the last hotel shuttle. That is why I do not valet. I need to know exactly which level my car is on before the elevator opens. Valet cannot promise that after a delay.\" Emily's notepad says quality gap, price gap. She crosses both out.",
           "whatToDo": "Run the three-part diagnostic on the retrieval moment, not the drop-off. Ask what circumstance makes the hire active, what certainty feels like when it works, and what substitute already does that job for the traveler.",
           "whyItMatters": "Price and quality are not the competing variables here. The real substitute is a self-park space documented with a phone photo. Valet loses that contest by design, regardless of quality improvements."
@@ -703,13 +580,6 @@
             "belonging",
             "job evaporation"
           ],
-          "planSpec": {
-            "domain": "community garden plot allocation",
-            "audience": "community coordinators",
-            "stakes": "underuse looks like commitment failure but is job evaporation",
-            "format": "vignette",
-            "requiredBeat": "interviews reveal three distinct jobs; plots hired for the social belonging job go underused when the neighboring plot-holder moves away"
-          },
           "scenario": "Warm soil and a hose running in the next row. André, the community garden manager, kneels beside untended beds in late July, plot stakes still bearing April names. Three rounds of interviews reveal three distinct jobs: stress relief through physical work, fresh produce access, and belonging with the neighbor in the adjacent plot. The third group drove across town for one specific person. When that neighbor moved away in June, those plots went fallow within two weeks. Commitment had nothing to do with it.",
           "whatToDo": "Segment the plot-holder pool by the job that drove the hire. Treat social-belonging jobs as weather-dependent: when the circumstance that made the hire active changes, plan for turnover, not renewal campaigns.",
           "whyItMatters": "Job evaporation is not churn. The gardener did not fail to commit. The circumstance that made the garden worth hiring quietly ended, and no retention letter will reconstruct it."
@@ -722,13 +592,6 @@
             "churn analysis",
             "unexpected job"
           ],
-          "planSpec": {
-            "domain": "freelance accounting software",
-            "audience": "product designers",
-            "stakes": "churn data points away from invoicing and toward an unexpected job",
-            "format": "postmortem",
-            "requiredBeat": "retained users engage the CLIENT NOTES field most; the job is relationship-anxiety management, not billing speed"
-          },
           "scenario": "Chiara, the product lead, sorts feature engagement by twelve-month retention correlation. The CLIENT NOTES field wins, not invoice templates or payment tracking. Retained users log call tone, client mood, and relationship anxiety. Exit interviews with lapsed users almost never mention billing; several mention not knowing where they stood with their biggest client. The postmortem conclusion: the product's best job is emotional bookkeeping for freelancers afraid a client relationship is quietly going wrong.",
           "whatToDo": "Redesign the onboarding sequence to surface CLIENT NOTES early. Frame the product around relationship confidence over billing efficiency in positioning and feature priorities.",
           "whyItMatters": "Retained users hired a relationship-anxiety management tool that also handles invoices. A billing-speed roadmap would have spent the next year improving the part of the product that was not driving retention."
@@ -741,13 +604,6 @@
             "stated want vs. hired job",
             "decision point"
           ],
-          "planSpec": {
-            "domain": "language exchange app",
-            "audience": "community managers",
-            "stakes": "pronunciation AI answers the stated want and misses the hired job",
-            "format": "decision_point",
-            "requiredBeat": "sessions where partner says 'you're easy to understand' cancel less than high-accuracy sessions; job is lowering the emotional cost of trying; James faces the decision"
-          },
           "scenario": "You are James. Top feature request: pronunciation-scoring AI, 340 upvotes. You pull cancellation data sorted by the last partner message before a session ends without rescheduling. Sessions where the partner wrote you are easy to understand cancel thirty percent less often than high-accuracy-score sessions. The accuracy score answers what users asked for. The partner's words answer the fear of being a burden. You must decide which one to build.",
           "whatToDo": "Test a lightweight partner-feedback prompt before committing to the pronunciation AI build. Measure whether explicit reassurance from a human partner reduces cancellations more than any accuracy metric improvement.",
           "whyItMatters": "The stated want and the hired job are not the same. Pronunciation AI solves what users asked for and misses the emotional cost that drives attrition. Building it without this distinction is a bet on the wrong variable."
@@ -760,13 +616,6 @@
             "permission",
             "predict reveal"
           ],
-          "planSpec": {
-            "domain": "paint supply store serving contractors",
-            "audience": "store owners",
-            "stakes": "color consultation service expected to lift premium sales",
-            "format": "predict_reveal",
-            "requiredBeat": "prediction is premium paint sales; reality is mid-range plus the job of permission to proceed; exit line reveals the job"
-          },
           "scenario": "At 10:15 a.m. Ingrid logs her prediction: premium paint sales will rise among consultees. By noon, five of six consultees return to the floor and pick the same mid-range brand their neighbor used. At the register one buyer says: \"You told me it would look fine with our trim. I just needed someone to say I was not going to ruin it.\" Ingrid reads back through her notes. Every session ended with the same line. The consultation earned its fee by removing the fear of a visible mistake in front of neighbors. Ingrid must decide whether to rebuild the consultation pitch around this job rather than premium paint recommendations.",
           "whatToDo": "Reframe the consultation service around the permission job. Train staff to name the anxiety, validate the choice early, and close with a plain statement that the decision is defensible. Track confidence ratings, not paint tier.",
           "whyItMatters": "The consultation is not being hired for expertise. It is being hired for the relief that follows a clear, trusted answer from another person. Pricing and staffing built around color knowledge will underserve the actual job."
@@ -779,13 +628,6 @@
             "social belonging",
             "unintended consequence"
           ],
-          "planSpec": {
-            "domain": "public swimming pool lap lane scheduling",
-            "audience": "pool managers",
-            "stakes": "speed designations created a belonging problem instead of solving a flow problem",
-            "format": "vignette",
-            "requiredBeat": "fast lane fills because the designation signals 'serious swimmers only,' not because fastest swimmers self-selected; job is social belonging in a peer-defined lane; Kiran misread his own fix"
-          },
           "scenario": "This afternoon, Kiran watches the lane distribution from the spectator bench after new speed designations go up. The fast lane is full. Medium-speed swimmers still crowd the middle, even when the fast lane opens. Exit conversations reveal why: the fast lane sign reads serious swimmers only to anyone who is fast but does not claim that identity. The designation created a peer-defined in-group. Kiran fixed a flow problem and built a belonging barrier in the same move. Kiran must decide whether to remove the social signal or add a parallel lane for fast-but-not-serious swimmers.",
           "whatToDo": "Reframe the lane criteria around pace over identity. Use observable benchmarks like yards per minute instead of labels like fast or serious, and watch whether the distribution changes.",
           "whyItMatters": "The fix addressed speed management and hired a social sorting function nobody asked for. Kiran learned the job by reading the consequence, not the intention, and now has specific evidence for what to change."
@@ -804,8 +646,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A phone photo of a parking level beats valet because certainty at midnight is the job, not price or quality. That finding only appears by following local evidence instead of assuming category boundaries define the substitute.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch03-q02",
@@ -817,8 +658,7 @@
             ],
             "correctIndex": 2,
             "explanation": "When the circumstance that made a hire active disappears, no messaging campaign recreates it. The job ended with the neighbor's move. The response needs to address the circumstance gap, not the communication gap.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03-q03",
@@ -830,8 +670,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Feature engagement data is evidence of what job is being hired. When retention correlates with CLIENT NOTES over invoice templates, improving billing features responds to assumed demand, not observed hiring behavior.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch03-q04",
@@ -843,8 +682,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Upvotes capture the stated want. The cancellation data surfaces the hired job: reducing the emotional cost of trying. Testing reassurance against cancellation rate is the disciplined next step before committing a full AI build.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03-q05",
@@ -856,8 +694,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The exit line names the desired end state directly: not expert guidance but the confidence that the decision is defensible. That is the progress dimension of the diagnostic, and it reframes what the consultation service is actually selling.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03-q06",
@@ -869,8 +706,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fast lane filled through identity signaling, not pace sorting. The designation hired a social function Kiran did not intend. The distribution only makes sense when read through the belonging job, not the flow problem he was solving.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch03-q07",
@@ -882,8 +718,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Analogy produces hypotheses, not proved jobs. André's finding holds because he followed observable evidence in that specific domain. The app team needs local behavioral data before treating the imported conclusion as actionable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch03-q08",
@@ -895,8 +730,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Category thinking keeps the substitute set narrow. The real substitute often lives outside the category, the way a self-park photo substitutes for valet or a neighbor conversation substitutes for a color expert. Observation of actual behavior before the hire surfaces those options.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch03-q09",
@@ -908,8 +742,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A diagnostic that always produces an answer can still produce unproved ones. The colleague's objection is that each conclusion must be earned through local evidence. The question form travels; the conclusions must be re-earned every time.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -946,7 +779,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Applying the Job Diagnostic in New Domains",
         "coreSkill": "Apply the three-part diagnostic in a domain you have not mapped before. Name the circumstance that makes the hire active, describe the progress being sought, and identify what the buyer actually compared or used instead. Let observable evidence in that specific domain confirm or revise your prediction before you act on it.",
         "ifThenPlans": [
           {
@@ -971,19 +803,13 @@
       },
       "memorableLines": [
         {
-          "text": "Portability is proven when local evidence, not category logic, defines the substitute set.",
-          "location": "breakdown.deepRead",
-          "why": "It states what portability actually requires and draws the line between assumption and proof."
+          "text": "Portability is proven when local evidence, not category logic, defines the substitute set."
         },
         {
-          "text": "You do not carry the answer. You carry the discipline of asking: what situation made this person reach for something, what would a better version of this situation feel like, and what else was this person comparing in that moment.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the central paradox of portability and names the three questions in one retrievable passage."
+          "text": "You do not carry the answer. You carry the discipline of asking: what situation made this person reach for something, what would a better version of this situation feel like, and what else was this person comparing in that moment."
         },
         {
-          "text": "The category changes. The pressure, the substitute, and the measure of success are what you have to re-earn with local evidence each time.",
-          "location": "breakdown.deepRead",
-          "why": "It names exactly what travels and what must be rebuilt, making the discipline concrete."
+          "text": "The category changes. The pressure, the substitute, and the measure of success are what you have to re-earn with local evidence each time."
         }
       ]
     },
@@ -1010,13 +836,6 @@
             "returns",
             "struggling moment"
           ],
-          "planSpec": {
-            "domain": "local hardware store renovation materials",
-            "audience": "buyers and category managers",
-            "stakes": "return spike investigation points upstream from the register to the aisle",
-            "format": "scene",
-            "requiredBeat": "buyer holds two adhesive labels, buys both plus spacers and grout, returns two items three days later; struggling moment is inability to validate combination before purchase; return desk is downstream symptom"
-          },
           "scenario": "Camille moves through the tile aisle, clipboard in hand, a return spike on adhesive SKU making no sense from register data. She watches a buyer hold two adhesive labels side by side, then add both plus spacers and grout to the cart. Three days later two items come back. Incompatible, the buyer says at the desk. Camille walks back to the aisle: no compatibility guide anywhere near the shelf. The struggling moment is here, not at the return desk. Camille must decide whether to flag this as a label copy problem or an aisle information gap.",
           "whatToDo": "Map the combination validation problem in the aisle before redesigning return policy. Ask what a buyer needs at selection to avoid the incompatible purchase, and treat return desk numbers as a count of how often the aisle fails.",
           "whyItMatters": "Return data is downstream evidence. The job lives upstream, at the moment a buyer is holding two labels and has no way to confirm they will work together. Solving at the return desk misses the struggling moment entirely."
@@ -1029,13 +848,6 @@
             "uncertainty",
             "struggling moment"
           ],
-          "planSpec": {
-            "domain": "urgent care clinic evening hours",
-            "audience": "clinic operations managers",
-            "stakes": "extended hours did not grow walk-in volume; struggling moment is uncertainty before arrival",
-            "format": "postmortem",
-            "requiredBeat": "exit data reveals evening patients needed resolution of 'ER or wait' before arriving; struggling moment is pre-arrival uncertainty; competitor added a triage phone line"
-          },
           "scenario": "Lars pulls the six-month report: extended evening hours, almost no growth in walk-ins. The initiative matched what patients said they wanted. Exit data from the competing clinic three blocks away tells a different story. The difference: a triage phone line. Evening patients called first to answer one question before leaving home: ER tonight, or can this wait? Available hours did not answer that question. The struggling moment was uncertainty before any drive began.",
           "whatToDo": "Add a pre-arrival triage line before adjusting hours further. Test whether call volume predicts walk-in conversion and treat calls as the struggling-moment intervention, not a scheduling tool.",
           "whyItMatters": "Patients did not want more evening availability. They wanted someone to resolve uncertainty before the drive. The competing clinic found the struggling moment. Lars's extended hours solved for the right category one step too late."
@@ -1048,13 +860,6 @@
             "trucking",
             "certainty in dead zones"
           ],
-          "planSpec": {
-            "domain": "rural road atlas vs. GPS navigation",
-            "audience": "product researchers at mapping companies",
-            "stakes": "trucker's atlas use points to a job GPS fails by design",
-            "format": "dialogue",
-            "requiredBeat": "trucker says atlas is for signal drop at mile marker 112; job is certainty in the dead zone; GPS fails this job by design"
-          },
           "scenario": "\"You have the app,\" Isabel says at the truck stop table. The trucker taps a dog-eared atlas page with three exits circled in red. \"I know where I am going. But if the signal drops at mile marker 112, which it does every time, I want the exit I circled six years ago. The app cannot promise me that at two in the morning.\" Isabel closes her notebook. Her company has been treating this driver as someone who has not adopted the product. Isabel must decide whether to close the interview or open a new research thread on the dead-zone use case.",
           "whatToDo": "Reframe the job around certainty in dead zones, not navigation efficiency. Test whether offline caching of specific previously-marked routes addresses the struggling moment better than general connectivity improvement.",
           "whyItMatters": "GPS fails this job by design: it requires signal. The atlas does not. The struggling moment is signal loss at a known location, and no navigation feature improvement will reach a driver whose job is certainty when coverage ends."
@@ -1067,13 +872,6 @@
             "planting season",
             "visible start"
           ],
-          "planSpec": {
-            "domain": "garden center spring planting selection",
-            "audience": "garden center managers",
-            "stakes": "stocking decision misses the struggling moment visible in floor observation",
-            "format": "decision_point",
-            "requiredBeat": "buyers linger at small sparse flats and walk away; struggling moment is 'will this look like a started garden today'; small flats fail this job at any price; David faces the stocking decision"
-          },
           "scenario": "You are David. Spring order deadline tomorrow. Your April observation notes show buyers at full tall flats deciding fast; buyers at small sparse flats reading tags twice, setting things down, leaving. One exit note: I just needed it to look like something had already started. You have priced the small flats competitively and placed them at the front. They still do not sell. The tall flats can deliver a visible start by this evening. The small flats cannot. You are looking at the order form. You must choose whether to shift the balance toward the tall flats based on what the exit notes showed.",
           "whatToDo": "Shift the stocking mix toward tall flats for the first weeks of spring. Frame the decision around what the yard looks like tonight, not in six weeks. Track the lingering-to-leaving ratio as a struggling-moment indicator.",
           "whyItMatters": "The struggling moment is the dread of a bare yard on a Saturday afternoon when the street is already showing color. Price has nothing to do with it. Small flats fail the job regardless of cost because the visible start is not there."
@@ -1086,13 +884,6 @@
             "emotional memory",
             "predict reveal"
           ],
-          "planSpec": {
-            "domain": "wedding venue viewing",
-            "audience": "venue managers",
-            "stakes": "AV and catering expected to be decision points; real job is carrying an emotional memory forward",
-            "format": "predict_reveal",
-            "requiredBeat": "at 2:15pm, Frida walks couple through; they return to same window three times; reveal is emotional memory job; pricing sheet organized around wrong value"
-          },
           "scenario": "At 2:15 p.m. Frida notes her prediction: the couple will ask about AV and catering. She has walked nineteen couples through and the conversation always lands there. This couple asks about ceiling height, then goes quiet. They return to the east-facing window once, then again, then a third time. Frida stays silent on the third pass. One of them says: my parents got married somewhere like this. Frida looks at her pricing sheet. None of those columns holds what just happened. Frida must decide whether to step away from the sheet and ask a different kind of question.",
           "whatToDo": "Ask one early question that surfaces emotional memory anchors before the formal tour. Let that answer reorganize what you emphasize, not the capacity and catering packages.",
           "whyItMatters": "The couple is not comparing venues on catering or AV. The job is carrying an emotional memory forward without recreating it exactly. A negotiation built around the wrong dimensions will feel like it is solving the wrong problem."
@@ -1105,13 +896,6 @@
             "occasion readiness",
             "survey vs. observation"
           ],
-          "planSpec": {
-            "domain": "children's clothing resale pop-up market",
-            "audience": "pop-up organizers",
-            "stakes": "survey says price; observation says occasion readiness; struggling moment is pre-event panic",
-            "format": "vignette",
-            "requiredBeat": "parents linger at occasion-labeled section; struggling moment is 'avoid 10pm panic before school play'; pop-up is hired as a readiness system"
-          },
           "scenario": "Folded tables, labeled bins, fabric-softener smell on the donated coats. Ben watches from the corner. Price signs at every table; parents look and keep moving. Longest dwell time by far is at one section: school plays, swim season, winter parties. A father lifts a costume tunic, checks the size twice, carries it to three other tables, comes back, buys it. In the exit line: I did not think you would have this. I stayed up until midnight last year looking for one. Ben must decide whether to reorganize the entire market by occasion or keep price as the primary display logic.",
           "whatToDo": "Reorganize around occasion timing over price tiers. Promote occasion sections before each seasonal event and track dwell time as a leading indicator of which jobs are most active at that moment.",
           "whyItMatters": "The struggling moment is the ten p.m. panic before a school event. The pop-up is hired as a readiness system, not a discount shop. Occasion availability is what brought the father back to the tunic three times. Price was not the variable."
@@ -1130,8 +914,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Return data is downstream evidence that the aisle failed a buyer at the moment of selection. Addressing the return policy leaves the struggling moment untouched. The job hunt points to the aisle as the right location for intervention.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch04-q02",
@@ -1143,8 +926,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Patients expressed a preference they could imagine. The actual job was pre-arrival uncertainty, which only appeared in data about what happened before the patient decided to drive anywhere. Surveys surface imagined solutions; the struggling moment lives upstream of that language.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch04-q03",
@@ -1156,8 +938,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The struggling moment is signal loss at a specific known mile marker, not general navigation gaps. Full-region offline maps are a category solution. The test should match the job's precision: the exit already marked, reliably available, at mile 112.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch04-q04",
@@ -1169,8 +950,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The struggling moment is the dread of a bare yard on a Saturday afternoon. Price is not the variable preventing a small flat from solving that job. The buyer needs something that looks started now, and small flats cannot deliver that regardless of cost.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch04-q05",
@@ -1182,8 +962,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Unprompted repeated behavior at a specific spot is observable job evidence. The couple was not evaluating catering or AV at the window. The emotional memory job is absent from Frida's sheet, and no package discount reaches that gap.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch04-q06",
@@ -1195,8 +974,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Survey responses reflect what buyers can articulate. Dwell time under buying pressure shows what they actually do when a job is active. The occasion-section behavior shows the readiness job in motion, which a price-preference survey cannot surface.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch04-q07",
@@ -1208,8 +986,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Feature requests and complaint categories are solution language. The struggling moment appears in the specific action just before a switch decision, before the buyer translated the struggle into a request. Pre-cancellation behavior is closest to the raw moment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch04-q08",
@@ -1221,8 +998,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The core problem is translation. By the time a buyer is answering an interview question, the raw struggling moment has become a feature request, a preference, or a complaint. Floor observation and behavioral data catch the pre-translation moment, which is where the job lives.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch04-q09",
@@ -1234,8 +1010,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A cross-domain pattern is a hypothesis until grounded in domain-specific behavioral evidence. The uncertainty claim needs observable workarounds or substitutes in each setting. Survey ratings produce correlation, not a causal struggling moment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1272,7 +1047,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Locating the Struggling Moment Before Solutions",
         "coreSkill": "Before naming any feature or solution, locate the struggling moment: the specific instant where the buyer's current path to progress stops being reliable enough to follow without risk. The evidence for that moment lives in returns, workarounds, delays, and the behavior that happens just before a buyer improvises or walks away.",
         "ifThenPlans": [
           {
@@ -1297,19 +1071,13 @@
       },
       "memorableLines": [
         {
-          "text": "The return desk is a downstream symptom. The job lives upstream, in the moment before the mistake.",
-          "location": "breakdown.fastRead",
-          "why": "It relocates where the problem actually lives, changing where teams should look for evidence."
+          "text": "The return desk is a downstream symptom. The job lives upstream, in the moment before the mistake."
         },
         {
-          "text": "The struggling moment is not a feature request. It is the raw situation where a person still needs to make progress and has not yet found a reliable path.",
-          "location": "breakdown.fullRead",
-          "why": "It draws the line between the job and all the solution language that comes after it."
+          "text": "The struggling moment is not a feature request. It is the raw situation where a person still needs to make progress and has not yet found a reliable path."
         },
         {
-          "text": "The job lives in the moment itself.",
-          "location": "breakdown.fullRead",
-          "why": "Short, precise, and impossible to misread. It anchors the entire chapter's discipline in one line."
+          "text": "The job lives in the moment itself."
         }
       ]
     },
@@ -1337,14 +1105,6 @@
             "anxiety",
             "holding forces"
           ],
-          "planSpec": {
-            "domain": "corporate IT helpdesk ticketing system",
-            "audience": "product teams",
-            "stakes": "adoption flat despite real improvement",
-            "format": "postmortem",
-            "openingDevice": "retrospective",
-            "requiredBeat": "IT portal plateaued at 37%. Employees don't submit tickets because written records feel like evidence they caused the problem. Habit plus anxiety outweigh the pull. Rachel's UX improvement addresses none of the holding forces."
-          },
           "scenario": "Three months after launch, Rachel sits at her desk with the adoption dashboard open. The portal is cleaner, faster, and better on mobile. The submitted-ticket rate has moved from 34% to 37%. Exit interviews from the previous quarter come back to one phrase in different forms: employees call IT because a phone call disappears. A ticket stays. The written record is evidence. Habit and anxiety were never touched by the redesign. The pull improved. The holding forces stayed exactly where they were.",
           "whatToDo": "Map habit and anxiety before the next release. Ask what calling protects and what writing risks. Design a path where the ticket record is visible to the employee, not only to IT.",
           "whyItMatters": "A product can improve on every technical measure while adoption stalls because the dominant force is anxiety, not usability. Rachel's team optimized the pull while the holding forces remained untouched."
@@ -1358,14 +1118,6 @@
             "habit",
             "predict reveal"
           ],
-          "planSpec": {
-            "domain": "online therapy session booking",
-            "audience": "service designers",
-            "stakes": "completion rate at 22% despite strong booking volume",
-            "format": "predict_reveal",
-            "openingDevice": "timestamp_named",
-            "requiredBeat": "At 6:14am, bookings are high but first-session attendance is 22%. Patients book to relieve the anxiety of not-having-sought-help-yet. The booking resolves the decision anxiety. Habit: feeling better after deciding delays the first session."
-          },
           "scenario": "At 6:14 a.m., Mathieu expects the shortfall to trace to scheduling friction. Bookings are healthy. First-session attendance is 22%. The gap is not in the reminder sequence. Patients book, feel the relief of having decided, and find that urgency softens. The booking was hired to end the anxiety of not having sought help. Once that job is done, the habit of functioning adequately fills the gap. The session stays on the calendar as a future option, not an urgent appointment. Mathieu must decide whether to redesign the reminder sequence or investigate the booking step itself.",
           "whatToDo": "Separate the job of booking from the job of attending. Test a brief contact that reactivates the original push without creating a new obligation. Measure the gap before adjusting the product.",
           "whyItMatters": "When the booking is hired to relieve the anxiety of not deciding, it competes with the session and blocks it. Habit and anxiety together can turn a healthy funnel into a dead end between two steps."
@@ -1379,14 +1131,6 @@
             "four forces",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "camping and outdoor gear sleeping bag display",
-            "audience": "retail product teams",
-            "stakes": "information that strengthens pull amplifies anxiety",
-            "format": "vignette",
-            "openingDevice": "environmental",
-            "requiredBeat": "Paula adds a warmth-rating comparison board. Customers spend more time but buy less. Floor observation maps all four forces. The comparison board amplified anxiety by making the cost-of-overbuy explicit."
-          },
           "scenario": "Nylon and dried mud fill the display wall's scent. This afternoon, Paula watches two customers work through the warmth-rating board for eleven minutes, then leave. Push: their current bag was too cold. Pull: the board clarifies performance. But four tiers and seven price points made the cost-of-overbuy explicit. Habit kept the old bag alive as mostly adequate. The customer leaves knowing more and buying nothing. Paula must decide whether the board stays or changes.",
           "whatToDo": "Reframe the board around trip type over spec tier. Help customers match a trip description to a bag. That keeps pull intact while reducing the overbuy anxiety the ratings table was amplifying.",
           "whyItMatters": "Transparency about performance can raise the anxiety of a wrong decision faster than it raises the pull of the right one. Four-force thinking predicts that outcome before the board goes up."
@@ -1400,14 +1144,6 @@
             "dialogue",
             "four forces"
           ],
-          "planSpec": {
-            "domain": "nonprofit financial literacy coaching intake",
-            "audience": "service designers",
-            "stakes": "functional job masks the social job",
-            "format": "dialogue",
-            "openingDevice": "dialogue_first",
-            "requiredBeat": "Functional job masks social job. Push: household shame. Pull: competence in partner's eyes. Habit: avoiding the money conversation. Anxiety: the budget reveals how bad it actually is."
-          },
           "scenario": "\"I don't actually need a budget,\" the client says. \"I need my husband to stop looking at me like I don't understand money.\" Luke writes it down verbatim. The intake form covers income and debt. None of those fields hold what just walked in. Push: the look across the dinner table. Pull: walking into that conversation differently. Habit: years of avoiding the money talk. Anxiety: what the budget will show once it is real on paper. Luke must decide whether to continue with the intake form or set it aside.",
           "whatToDo": "Hold the intake form and ask what a good outcome would feel like in the household, not just the account. If the job is relational credibility, the coaching design has to address the social dimension before the spreadsheet is useful.",
           "whyItMatters": "A budget intake designed for functional progress leaves the dominant job unaddressed. Luke can build a technically sound plan that the client never uses because it solved the wrong four forces."
@@ -1421,14 +1157,6 @@
             "second person",
             "decision point"
           ],
-          "planSpec": {
-            "domain": "corporate cafeteria special-diet station",
-            "audience": "operations managers",
-            "stakes": "expansion addresses pull without touching holding forces",
-            "format": "decision_point",
-            "openingDevice": "second_person",
-            "requiredBeat": "Special-diet station usage below 30% of target group. Interviews: using the designated station marks them as different during the only casual social time of the work day. Push and pull are real but habit plus anxiety block the hire. Petra faces the expansion decision."
-          },
           "scenario": "Usage is at 28%. You have the interview notes. The phrase that repeats is a version of: lunch is the one time I walk to whoever I want, and the station makes that harder. Push is real. Pull is real. But the habit of eating with any colleague is the social texture of the day. The anxiety of being visibly separated during the only unstructured thirty minutes is blocking the hire. Petra's expansion adds more options at the same designated space. You are holding the proposal and must decide whether to approve it, revise it, or return it with a question.",
           "whatToDo": "Return the proposal with one question: which force does the expanded station address? If the answer is pull, test whether a distributed option reaches the job that a designated space cannot.",
           "whyItMatters": "Expanding a product that serves push and pull well does not help when the barrier is habit and anxiety. Petra's decision is not about the food. It is about which force is actually dominant."
@@ -1442,14 +1170,6 @@
             "job redefinition",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "notary appointment scheduling",
-            "audience": "service operators",
-            "stakes": "walk-in availability does not address the dominant anxiety",
-            "format": "vignette",
-            "openingDevice": "sensory_first",
-            "requiredBeat": "Walk-in hours are open but appointment-only competitors are fuller. Anxiety: what if I fill it in wrong and have to come back? The appointment is hired for certainty that the document will be valid. Walk-in implies improvisation; appointment implies the notary has been briefed."
-          },
           "scenario": "Ink smell and the tick of the wall clock fill Aman's office at 2:15 p.m. Two chairs sit open. The competitor two blocks north has a three-day wait. Aman asks customers who book why they chose an appointment. The answer repeats in different words: they are afraid of filling something in wrong and coming back. The appointment is hired for the confidence that the document will be valid on arrival. Walk-in implies improvisation. Appointment implies the notary has been briefed. Aman must decide whether to add a pre-visit confirmation protocol or continue with walk-in availability.",
           "whatToDo": "Build the confirmation into a pre-visit protocol: one message confirming document type, requirements, and what to bring. That message is the actual product. The stamp is secondary.",
           "whyItMatters": "When the dominant force is anxiety about document validity, walk-in availability is not an advantage. It signals that no one has been briefed. The job includes certainty before arrival, and Aman's office was only selling access."
@@ -1468,8 +1188,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Stated preference and observed behavior diverge when holding forces dominate. The employee's continued phone calls show that habit and anxiety outweigh pull, regardless of what the survey captured.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch05-q02",
@@ -1481,8 +1200,7 @@
             ],
             "correctIndex": 1,
             "explanation": "When the act of booking completes the job of relieving decision anxiety, the session no longer carries urgency. The habit of functioning adequately fills the gap and the appointment becomes optional.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q03",
@@ -1494,8 +1212,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Information that increases pull can also make the cost of an error more salient, raising anxiety. A four-force map would have predicted that making price tiers explicit could activate the overbuy fear already holding buyers back.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch05-q04",
@@ -1507,8 +1224,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The client's words name a social job directly. Push is relational shame, pull is household credibility, and anxiety is that the budget will confirm the underlying problem instead of resolving it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q05",
@@ -1520,8 +1236,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The dominant force is the anxiety of social separation during a valued routine. More options at the same station add pull without touching the holding force. Integration targets the anxiety directly.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q06",
@@ -1533,8 +1248,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The customer's anxiety is about document validity, not access. The appointment signals a briefed professional. Walk-in access removes that signal. The job is pre-visit certainty, not same-day availability.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch05-q07",
@@ -1546,8 +1260,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Customers volunteer push and pull naturally because those forces feel like reasons. Habit rarely feels like a choice and anxiety is uncomfortable to admit. Researchers have to create conditions where holding forces can surface.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch05-q08",
@@ -1559,8 +1272,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Satisfaction rising while behavior stays flat is the clearest evidence that pull improved while a holding force remained dominant. The team improved the wrong side of the four-force map.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch05-q09",
@@ -1572,8 +1284,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The moment a customer names a habit that would disappear or an anxiety they are protecting is the moment the researcher has found where behavior actually lives. Those are the holding forces the four-force model is designed to surface.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1610,7 +1321,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mapping All Four Adoption Forces",
         "coreSkill": "Map all four forces before diagnosing an adoption problem. The skill is to name the push, pull, habit, and anxiety separately, then identify which force is dominant in the current behavior rather than in the stated preference.",
         "ifThenPlans": [
           {
@@ -1635,19 +1345,13 @@
       },
       "memorableLines": [
         {
-          "text": "A buyer who praised the new tool and still rescheduled four times is not confused, because push and pull are real, but so are habit and anxiety, and the pair on the holding side can outweigh the pair on the switching side.",
-          "location": "breakdown.fastRead",
-          "why": "It names all four forces in one sentence and explains the divergence between stated preference and behavior."
+          "text": "A buyer who praised the new tool and still rescheduled four times is not confused, because push and pull are real, but so are habit and anxiety, and the pair on the holding side can outweigh the pair on the switching side."
         },
         {
-          "text": "Habit does not feel like a choice from the inside.",
-          "location": "breakdown.deepRead",
-          "why": "It captures why holding forces are invisible to the people who hold them and why researchers must create space for them."
+          "text": "Habit does not feel like a choice from the inside."
         },
         {
-          "text": "Information that increases pull can also make the cost of an error more salient, which raises anxiety.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the counterintuitive dynamic where a helpful change amplifies the force it was meant to overcome."
+          "text": "Information that increases pull can also make the cost of an error more salient, which raises anxiety."
         }
       ]
     },
@@ -1675,14 +1379,6 @@
             "grant strategy",
             "predict reveal"
           ],
-          "planSpec": {
-            "domain": "crisis text line",
-            "audience": "nonprofit program designers",
-            "stakes": "grant identity diverges from earned usage pattern",
-            "format": "predict_reveal",
-            "openingDevice": "timestamp_named",
-            "requiredBeat": "At 8:47am, Sophie reviews metrics expecting crisis intervention to dominate. Repeat contacts cluster outside crisis moments. The earned resume is pre-crisis maintenance. The grant proposal has been selling crisis intervention."
-          },
           "scenario": "At 8:47 a.m., Sophie pulls up the metrics expecting crisis volume to anchor the story. Repeat contacts cluster elsewhere: before hard conversations, before stressful weeks. Three years of service have built a resume as a trusted pre-crisis check-in space. The grant proposal due Friday calls it crisis intervention. The market has decided to trust something quieter and more sustained. Sophie must decide whether to defend the original framing or renegotiate what the grant is actually funding.",
           "whatToDo": "Separate the crisis contacts from the pre-crisis check-in pattern. Describe the earned resume accurately in the grant proposal and measure outcomes that match the actual job, not the originally intended one.",
           "whyItMatters": "Funding for crisis intervention may not cover the job the market has actually hired. If Sophie builds the next service expansion around crisis, she may miss the users whose trust built the resume."
@@ -1696,14 +1392,6 @@
             "earned use",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "urban cycling infrastructure",
-            "audience": "city planners",
-            "stakes": "original justification diverges from actual use pattern",
-            "format": "dialogue",
-            "openingDevice": "dialogue_first",
-            "requiredBeat": "The paths were built for commutes. They are heavily used for weekend recreation. Mikkel faces the decision of whether to argue the earned resume or retrofit the data."
-          },
           "scenario": "The report lands on Mikkel's desk at 9:15 a.m. \"You said commuters,\" the council liaison says. Weekend recreational traffic is double the weekday commute volume. The paths were built around a commuter justification. The market has written a different resume. Mikkel must decide whether to defend the original framing at the meeting or acknowledge what the paths have earned and build the next phase around that.",
           "whatToDo": "Name the earned resume directly. If recreational use is the stronger pattern, the next phase of infrastructure investment should serve that job rather than retrofit it into the original commuter framing.",
           "whyItMatters": "Defending a claimed identity against an earned one protects the original story at the cost of the actual opportunity. The market has decided what to trust the paths with. That decision is more useful than the original justification."
@@ -1717,14 +1405,6 @@
             "social proof",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "community college evening program",
-            "audience": "program administrators",
-            "stakes": "skill branding misses the job three cohorts confirmed",
-            "format": "postmortem",
-            "openingDevice": "retrospective",
-            "requiredBeat": "Career accelerator built for skills. Three cohorts show same pattern: people who had already decided to change careers needed a credible step to show family. Job is social proof for a household conversation. Branding says one thing; earned resume says another."
-          },
           "scenario": "Catarina reads the third cohort debrief and marks the same observation she marked in cohorts one and two. Participants arrived having already made the career decision. What they needed was a credential they could put on the table in a household conversation. The branding says skills accelerator. The earned resume says I went back to school, which means this is serious. Three cohorts have written the same line. Catarina has a program that has earned a specific trust and is selling something else entirely.",
           "whatToDo": "Reframe the program around the job three cohorts confirmed. Design the outcomes, testimonials, and enrollment materials around the household conversation the credential is hired to enable, not the skill it is assumed to deliver.",
           "whyItMatters": "A program that earns trust as social proof and markets itself as skills is invisible to the people who most need it and unconvincing to the families it actually helps."
@@ -1738,14 +1418,6 @@
             "earned resume",
             "decision point"
           ],
-          "planSpec": {
-            "domain": "pet boarding intake survey",
-            "audience": "service operators",
-            "stakes": "two years of repeat data reveal the actual job the survey never asked about",
-            "format": "decision_point",
-            "openingDevice": "second_person",
-            "requiredBeat": "Reviewing two years of intake surveys. Verbal handoff notes tell a different story. Repeat clients spend almost all verbal time on separation anxiety behavior. The facility has been hired to manage separation anxiety. The survey measured the wrong job. Chris faces the survey redesign decision."
-          },
           "scenario": "At 8:30 a.m., you review two years of intake surveys alongside the front desk handoff notes. The survey covers feeding, exercise, and medication. The notes cover one topic across repeat clients: how the dog behaved when the owner left, and whether that got better or worse. The facility has been hired to manage separation anxiety. The survey never asked about that job. You must decide whether to adopt Chris's redesign proposal or commission a survey that asks the right question first.",
           "whatToDo": "Approve the redesign with a condition: ask about separation anxiety as its own section, track it as an outcome, and design the boarding environment around the job repeat clients confirmed.",
           "whyItMatters": "Two years of repeat hires have written a resume the intake form never captured. Chris's redesign is not adding a question. It is finally asking about the job the market already trusted the facility with."
@@ -1759,14 +1431,6 @@
             "repeat bookings",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "commercial photography studio",
-            "audience": "small business operators",
-            "stakes": "strongest job is invisible in marketing",
-            "format": "vignette",
-            "openingDevice": "environmental",
-            "requiredBeat": "Anke built the studio around architecture and interior photography. Repeat bookings come from event coordinators needing post-event documentation for funder reports. The studio has earned a resume as trusted documentary evidence. Its strongest job is invisible in the marketing."
-          },
           "scenario": "Flash powder and fresh gesso scent the studio. Anke sorts eighteen months of invoices by repeat clients. Architecture bookings are one-time. The repeat column fills with event coordinators: post-event documentation for funder reports, proof images for grant accountability. The studio has earned a resume as trusted documentary evidence. That job appears nowhere in the website. Anke must decide whether to update the website to reflect what the market has actually hired the studio for.",
           "whatToDo": "Give the earned resume a voice in the marketing. Name the documentary evidence job explicitly, show examples of grant accountability work, and design the intake process around the standards funders use to evaluate proof images.",
           "whyItMatters": "The strongest part of Anke's business is invisible to the clients who most need it. The earned resume is not a surprise discovery. It is a competitive position the studio has already built. It just has no name."
@@ -1780,14 +1444,6 @@
             "first-time homeowner",
             "retrospective"
           ],
-          "planSpec": {
-            "domain": "neighborhood tool lending library",
-            "audience": "community program operators",
-            "stakes": "original cost-sharing mission diverges from actual repeat borrower job",
-            "format": "postmortem",
-            "openingDevice": "sensory_first",
-            "requiredBeat": "Built to reduce costs by sharing expensive tools. Highest-repeat borrowers consistently check out modest items. Same first-time homeowner borrowing the same basic tool multiple times. Job: permission to start a task you're not sure you know how to do, without committing to owning the tool if it goes wrong."
-          },
           "scenario": "Machine oil and sawdust fill the library. This afternoon, Layla sorts circulation records by repeat borrower volume. The highest-repeat column is not expensive tools avoided for cost reasons. It is caulk guns, pipe wrenches, and basic hand tools from the same addresses. The same person rents a caulk gun three times in one year. The job is not cost avoidance. It is permission to start a repair you are not confident about, without committing to the tool if it goes wrong. Layla must decide whether to reframe the lending program around confidence rather than cost savings.",
           "whatToDo": "Redesign the library's description around the earned resume. Name the first-attempt job explicitly in materials, add brief how-to guidance with each modest tool, and measure outcomes around completed first repairs over cost savings.",
           "whyItMatters": "The library was built to serve cost-conscious borrowers. It has earned a resume with people who need confidence, not savings. Those are different jobs with different success measures and different expansion paths."
@@ -1806,8 +1462,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Repeat hires in similar circumstances write the earned resume. The pre-crisis pattern is not a misuse finding. It is the market naming the job it has decided to trust the service with.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch06-q02",
@@ -1819,8 +1474,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Three cohorts is a pattern, not a sample. The earned resume has been confirmed. The design question is whether to align the program with what the market has trusted, not whether to trust the pattern.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q03",
@@ -1832,8 +1486,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The verbal notes capture what repeat clients actually care about at the handoff moment. Two years of that pattern is the earned resume. The survey was measuring around the job, not at it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch06-q04",
@@ -1845,8 +1498,7 @@
             ],
             "correctIndex": 0,
             "explanation": "An earned resume that is invisible in marketing cannot attract the clients who most need it. The studio has built a competitive position it has not named. That silence is a cost, not a safety measure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch06-q05",
@@ -1858,8 +1510,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Renting a modest tool three times is not cost avoidance. It is repeated permission to try something uncertain. The earned resume is enabling the attempt, and that job has different design implications than cost sharing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q06",
@@ -1871,8 +1522,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The earned resume is a boundary as well as a foundation. Adjacency in product space does not guarantee adjacency in trust. The question is whether the market has given permission, not whether the team has capability.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q07",
@@ -1884,8 +1534,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Repetition without consistent circumstances can hide two different resumes. A team that blends unlike jobs into one claimed identity will struggle to serve either job well and will claim a trust the market has not granted for the combined use case.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch06-q08",
@@ -1897,8 +1546,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Defending a claimed identity against an earned one protects the original story at the cost of the real opportunity. The market has written the resume. The strongest next move is to build from it, not argue against it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch06-q09",
@@ -1910,8 +1558,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Funding for the wrong job creates pressure to perform on metrics that do not match actual impact. Describing the earned resume accurately and finding aligned funders is more sustainable than retrofitting the mission to meet mismatched expectations.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1948,7 +1595,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Reading the Pattern of Repeat Hires",
         "coreSkill": "Read the pattern of repeat hires before writing the next product promise. The skill is to name who returned, under what pressure, and for what progress, then test whether the claimed identity matches the record the market has actually written.",
         "ifThenPlans": [
           {
@@ -1973,19 +1619,13 @@
       },
       "memorableLines": [
         {
-          "text": "The market has trusted the service with something specific and repeatable. That pattern is the most honest description of what the offering actually does well.",
-          "location": "breakdown.fastRead",
-          "why": "It frames the earned resume as an honest record, not a positioning choice."
+          "text": "The market has trusted the service with something specific and repeatable. That pattern is the most honest description of what the offering actually does well."
         },
         {
-          "text": "The claimed identity reflects the team's original intention. The earned resume reflects what buyers have actually decided to rely on.",
-          "location": "breakdown.deepRead",
-          "why": "It names the gap cleanly and explains why the earned resume is the stronger strategic signal."
+          "text": "The claimed identity reflects the team's original intention. The earned resume reflects what buyers have actually decided to rely on."
         },
         {
-          "text": "An offering earns its identity the same way a professional earns theirs: through repeated proof under pressure.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the resume metaphor concrete and connects identity to demonstrated performance, not assertion."
+          "text": "An offering earns its identity the same way a professional earns theirs: through repeated proof under pressure."
         }
       ]
     },
@@ -2012,13 +1652,6 @@
             "integration",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "regional newspaper (print and digital split P&L)",
-            "audience": "editorial and product leaders",
-            "stakes": "two teams hit their numbers while the subscriber job breaks",
-            "format": "dialogue",
-            "requiredBeat": "both teams hitting their numbers while the subscriber job breaks at the boundary"
-          },
           "scenario": "\"Both teams are hitting their numbers,\" the publisher says, leaning back in the chair. Grace sets the subscriber complaint on the conference table. \"Your Wednesday property section is two weeks old by the time I get the digital version.\" Print runs its own P&L. Digital runs its own. Neither is wrong on paper. Grace faces a choice: praise the quarterly results or name the job that the internal division is fracturing. The property editor is waiting on the phone for the verdict.",
           "whatToDo": "Name the subscriber's job before discussing team metrics: timely property news in the format she chose. Map which boundary between print and digital caused the delay and assign a governing owner there.",
           "whyItMatters": "Split P&Ls reward local performance and leave the boundary between them unmanaged. The job cannot survive a boundary no one owns."
@@ -2031,13 +1664,6 @@
             "dispatch",
             "predict_reveal"
           ],
-          "planSpec": {
-            "domain": "bicycle courier dispatch operations",
-            "audience": "operations managers",
-            "stakes": "volume optimization damages time-sensitive delivery job",
-            "format": "predict_reveal",
-            "requiredBeat": "efficiency gain and satisfaction drop reveal two metrics serving two different jobs"
-          },
           "scenario": "At 7:38 a.m., Antoine reviews the dispatch dashboard. Efficiency per courier-hour is up 18 percent. He predicts a strong week. The client satisfaction report arrives at noon: scores fell. The algorithm routed for volume. The client's job is time-sensitive document delivery with signature confirmation before 10 a.m. The reveal is quiet and specific. Antoine must decide whether to attribute the gap to algorithm scope or to reconfigure what the dispatch system is being asked to optimize.",
           "whatToDo": "Separate the two metrics by the job each serves. Ask which job the client hired the service to do, then make that job the constraint the algorithm must satisfy before optimizing anything else.",
           "whyItMatters": "Two metrics measuring two different jobs will always conflict. The job that pays the client's contract should govern, not the one that is easier to track."
@@ -2050,13 +1676,6 @@
             "belonging",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "private school lunch allergy accommodation",
-            "audience": "school administrators",
-            "stakes": "safety job and belonging job never coordinated",
-            "format": "vignette",
-            "requiredBeat": "safety protocols pass while the belonging job breaks at the organizational boundary"
-          },
           "scenario": "The allergy table smells of sanitizer and fresh fruit, every item labeled, every surface certified. Giuliana checks the safety log. Everything passes. A parent's note is clipped to the folder above the log: \"My son eats alone every day because none of his friends will sit at the allergy table.\" Food services optimized for safety. The school's social environment, belonging and learning together, was never coordinated into the same accountability structure. Two jobs, two departments, no one governing the gap. Giuliana must decide whether to flag the coordination gap to the principal or absorb it as a food services redesign problem.",
           "whatToDo": "Name both jobs explicitly: physical safety and social belonging. Assign someone to govern the boundary between food services and student life, with authority to require changes when one job breaks the other.",
           "whyItMatters": "Two functions can each succeed on their own terms while a student pays the cost of the unmanaged gap between them. Integration requires the boundary to be owned."
@@ -2069,13 +1688,6 @@
             "handoff",
             "decision_point"
           ],
-          "planSpec": {
-            "domain": "home renovation contractor handoff (plumber to tile subcontractor)",
-            "audience": "project managers and general contractors",
-            "stakes": "both contractors succeeded; nobody held the whole job",
-            "format": "decision_point",
-            "requiredBeat": "technically correct drain placement is wrong for the tile pattern; nobody held the whole bathroom job"
-          },
           "scenario": "You are holding the plumber's as-built in one hand and the homeowner's tile pattern in the other. The drain is placed exactly where the spec said to put it. The tile pattern the homeowner chose requires a centered drain. Both contractors delivered their scopes on time and on budget. Neither was wrong on paper. You are about to decide whether to absorb the coordination cost now, before the tile goes down, or let the handoff complete and send the problem forward. The homeowner moves in on Friday.",
           "whatToDo": "Stop the handoff before the tile goes down. Name the whole job: a functional, beautiful bathroom by move-in day. Assign that job as the governing reference for the scope conflict. The coordination cost now is cheaper than a floor tear-out.",
           "whyItMatters": "Correct individual scopes do not guarantee the whole job survives the handoff. Someone has to hold the full job across contractors, or the buyer pays for the gap."
@@ -2088,13 +1700,6 @@
             "payment systems",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "urban transit multi-modal ticketing integration",
-            "audience": "transit planners and product leaders",
-            "stakes": "agencies integrated the wrong job and left the rider job unserved",
-            "format": "postmortem",
-            "requiredBeat": "payment integration served internal accounting; rider job of planning a multi-modal trip remained broken"
-          },
           "scenario": "Hanna pulls the six-month ridership report and sets it beside the launch press release. The three-agency payment integration was technically successful. Cross-agency ridership in the overlap zone is flat. Exit surveys are plain: riders still buy two day-passes because neither app shows combined journey time. Payment integration served the agencies' accounting job. The rider's job, plan and execute an efficient multi-modal trip, was never integrated around.",
           "whatToDo": "Restate the rider's job and test every integration decision against it. Combined journey time visibility is not a feature request; it is the integration the agencies did not build because they governed by their own accounting job.",
           "whyItMatters": "Technical integration between systems can miss the buyer's job entirely if the governing question is internal efficiency instead of the rider's full progress."
@@ -2107,13 +1712,6 @@
             "IT",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "corporate IT onboarding for new employees",
-            "audience": "HR and IT operations leaders",
-            "stakes": "IT completed its scope; the job broke at the boundary IT does not own",
-            "format": "vignette",
-            "requiredBeat": "IT completed within SLA; job broke at IT-to-manager boundary IT does not own"
-          },
           "scenario": "Hadiya reviews the week-two onboarding survey. IT completed every task within SLA: hardware, accounts, licenses, access to company drives. Forty percent of new employees still could not access the project management tool before their first team meeting. The tool requires a manager approval step. IT does not own that step. The job, productive in team by week one, broke at the boundary between IT and the hiring manager, not inside IT's scope. IT's SLA was met. The job was not. Hadiya must decide whether to close the ticket as complete or reopen the process to include the manager approval step in the onboarding definition.",
           "whatToDo": "Map the onboarding path to the job, not to departmental handoffs. Assign a single owner who is accountable for the job surviving every transfer, including the IT-to-manager step IT cannot control alone.",
           "whyItMatters": "SLA completion inside one department does not protect a job that crosses multiple departments. The job needs a governing owner at every boundary, not just a checklist inside each scope."
@@ -2132,8 +1730,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Both teams succeeded on their own metrics while the subscriber's job, timely property news, broke at the boundary between them. Meeting internal targets does not guarantee the buyer's progress is protected.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch07-q02",
@@ -2145,8 +1742,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Two metrics serving two different jobs will always conflict. The question is which job the client hired for, and whether the optimization served that job or a different internal one.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q03",
@@ -2158,8 +1754,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Safety and belonging are two separate jobs, each owned by a different function. Neither failed within its own scope. The integration gap is the unmanaged boundary between them.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q04",
@@ -2171,8 +1766,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Each contractor succeeded inside their own scope. The integration gap is the absence of anyone governing the full job across the handoff between them.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q05",
@@ -2184,8 +1778,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Technical success between systems can miss the buyer's job entirely when the governing question is internal efficiency over the rider's full progress. The right job was never used as the integration target.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q06",
@@ -2197,8 +1790,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The job broke at a boundary IT does not own. Adding SLA measures to IT for steps IT cannot control does not fix the integration gap. The fix is governance across the boundary.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q07",
@@ -2210,8 +1802,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Coordination and integration are different. Coordination creates shared information. Integration requires a governing authority that can require local changes when they damage the buyer's full progress.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q08",
@@ -2223,8 +1814,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The integration test asks whether the local win serves or damages the buyer's job across the full path, not whether the saving is large enough to justify a tradeoff.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch07-q09",
@@ -2236,8 +1826,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Green internal metrics do not guarantee the buyer's job is protected. Integration success requires a path analysis that checks whether the job survives each boundary, not just whether each department reported a good quarter.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2274,7 +1863,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Governing the Job Across Departmental Boundaries",
         "coreSkill": "The core skill is governing the job across departmental boundaries, not just inside each function. Trace the buyer's full path, mark every handoff, and assign accountability for the job surviving each transfer.",
         "ifThenPlans": [
           {
@@ -2299,19 +1887,13 @@
       },
       "memorableLines": [
         {
-          "text": "Local optimization is not coordination, and coordination is not integration.",
-          "location": "breakdown.counterintuition",
-          "why": "It draws the three-level distinction that most teams collapse into one word."
+          "text": "Local optimization is not coordination, and coordination is not integration."
         },
         {
-          "text": "Two metrics. Two jobs. The algorithm served one and damaged the other because nobody was governing which job should win when they conflicted.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the integration gap concrete and names the missing governance."
+          "text": "Two metrics. Two jobs. The algorithm served one and damaged the other because nobody was governing which job should win when they conflicted."
         },
         {
-          "text": "gaps are not managed by accident.",
-          "location": "breakdown.fullRead",
-          "why": "It is the shortest statement of why integration requires deliberate ownership."
+          "text": "gaps are not managed by accident."
         }
       ]
     },
@@ -2338,13 +1920,6 @@
             "visualization",
             "scene"
           ],
-          "planSpec": {
-            "domain": "architecture firm client presentation workflow",
-            "audience": "design and account leaders",
-            "stakes": "visualization improvement blurred the approval-readiness job",
-            "format": "scene",
-            "requiredBeat": "beautiful walkthroughs improve visualization while blurring the approval-readiness job; Laura faces whether to deploy before applying the job-first test"
-          },
           "scenario": "Laura sits with the walkthrough demo open on the conference room screen, the hospital facilities director scrolling backward through the rendered corridor. \"The walkthroughs are beautiful,\" he says. \"But I don't know what I'm approving anymore.\" Feedback cycles shortened. The visualization improved. The comment arrives in a side conversation, not a formal complaint. Laura must decide whether to deploy the enhanced walkthrough before applying the job-first test to a change that already has positive internal signals.",
           "whatToDo": "State the approval-readiness job before deploying the tool. Ask whether the walkthrough makes the signing-off moment clearer or less clear before it becomes the standard for this account.",
           "whyItMatters": "A tool can improve a real thing, like visualization or feedback speed, and still weaken the job the client hired for. The job-first test must be applied before deployment, not after the client signals confusion."
@@ -2357,13 +1932,6 @@
             "curriculum",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "coding bootcamp curriculum update",
-            "audience": "program directors and curriculum leads",
-            "stakes": "impressive content optimizes against the employment job",
-            "format": "dialogue",
-            "requiredBeat": "ML module takes six weeks from job-ready time to serve impressiveness, not the employment job"
-          },
           "scenario": "\"The ML module takes six weeks from fundamentals,\" the alumni advisory board member says. \"That's six weeks of job-ready time spent on terminology that impresses hiring managers who don't actually hire bootcamp grads for ML.\" Olivier leans forward with the curriculum map. The module scores well on student surveys. Employers in the advisory group rated the graduates as technically current. The job buyers hired: ready to contribute to a working codebase in week one. Olivier is about to respond to the feedback.",
           "whatToDo": "Apply the job-first test to every module in the curriculum: does this content make graduates more or less ready to contribute to a working codebase in week one? Modules that serve impressiveness over readiness are drift candidates.",
           "whyItMatters": "Curriculum additions that impress the wrong audience are a form of job drift. The test is not whether the content is valuable in the abstract but whether it serves the job the buyer hired."
@@ -2376,13 +1944,6 @@
             "protocol",
             "predict_reveal"
           ],
-          "planSpec": {
-            "domain": "volunteer fire department dispatch protocol",
-            "audience": "fire department operations and leadership",
-            "stakes": "overtime optimization was approved without applying the job-first test to emergency reliability",
-            "format": "predict_reveal",
-            "requiredBeat": "non-emergency routing reduces overtime; three months later a fire escalates through a roster gap the protocol created"
-          },
           "scenario": "At 11:55 p.m., Tomas signs off on the non-emergency routing change. Response times stay within acceptable range. Overtime costs drop 11 percent. He predicts a clean operational win. Three months later, a kitchen fire escalates. A non-duty responder hit a roster gap the routing protocol created. The postmortem is not about the fire. It is about the question that was not required before approval: does this change make reliable emergency response more or less protected? Tomas must decide whether to require the job-first question in all future routing approvals.",
           "whatToDo": "Before approving any protocol change, apply the job-first test: state the job (reliable emergency response) and require an answer about whether the change protects that job across the range of scenarios the department faces.",
           "whyItMatters": "A change can pass every available operational test and still fail the job-first test if the test was never required. In emergency services, the postmortem arrives at a cost that cannot be recovered."
@@ -2395,13 +1956,6 @@
             "knowledge management",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "consulting firm knowledge management system",
-            "audience": "consulting firm leadership",
-            "stakes": "case library serves the consultant's presentation job, not the advisory judgment job",
-            "format": "postmortem",
-            "requiredBeat": "library scores positively internally; consultants use it for presentations; advisory judgment job went underserved"
-          },
           "scenario": "At 2:00 p.m., Andrew reviews the case library metrics a year after deployment. Internal scores are positive. Consultants rate it useful. Client satisfaction held flat. He pulls the usage logs: the library is used most heavily in the 48 hours before client presentations. It is not showing up in the project work phases where recommendations are formed. The firm is hired to give clients advice they cannot generate internally. The library is being used to prepare how advice looks, not to improve what the advice is.",
           "whatToDo": "Restate the firm's job before reviewing the library's design. For each feature, ask: does this help consultants form better recommendations or just present them more confidently? Redirect toward the former.",
           "whyItMatters": "A tool that earns high internal scores while serving a secondary job is a drift signal, not a success signal. The job-first test applied after deployment is better than never, but it is costlier than applying it before launch."
@@ -2414,13 +1968,6 @@
             "ordering",
             "decision_point"
           ],
-          "planSpec": {
-            "domain": "cooperative grocery store ordering cycle",
-            "audience": "cooperative management and board",
-            "stakes": "14 percent logistics savings conflicts with the member's predictability job",
-            "format": "decision_point",
-            "requiredBeat": "biweekly ordering improves logistics cost; 38 percent of member comments reference shelf predictability; Nina faces the recommendation decision"
-          },
           "scenario": "You are Nina, preparing the recommendation for the cooperative's ordering cycle review. The biweekly shift cuts logistics costs by 14 percent. The member survey is open on your screen: 38 percent of comments reference knowing what will be on the shelf this Sunday. The weekly rhythm is not just a preference; it is the predictability contract members hired the cooperative for. Biweekly breaks that job even as it improves the operational one. Your recommendation is due before the board meeting closes. You must choose whether to recommend the biweekly shift or hold the weekly rhythm.",
           "whatToDo": "Apply the job-first test before the recommendation: state the member's job (predictable shelf access), then evaluate whether the logistics saving is worth disrupting the contract members hired the cooperative for.",
           "whyItMatters": "A logistics improvement that disrupts a job members hired for is not a straightforward operational win. The job-first test makes the tradeoff visible before it is approved, not after members start shopping elsewhere."
@@ -2433,13 +1980,6 @@
             "regulars",
             "thought_experiment"
           ],
-          "planSpec": {
-            "domain": "food truck regular corner schedule",
-            "audience": "independent business operators",
-            "stakes": "catering revenue growth is actually a job-abandonment decision",
-            "format": "thought_experiment",
-            "requiredBeat": "regular customers hired predictable midweek presence, not lunch; the contract is a job-abandonment decision"
-          },
           "scenario": "When did you last ask what your regulars actually hired you for? Chidi is holding a corporate catering contract that would take the truck off his regular corner three days a week. The revenue model says yes without hesitation. The regulars who appear at noon on Tuesday are not hiring lunch. They are hiring the predictable midweek punctuation, the truck being there when the week gets hard. The catering contract is a job-abandonment decision wearing the disguise of a revenue gain. Chidi must decide whether to take the contract or hold his corner.",
           "whatToDo": "Apply the job-first test before signing: state the job regulars hired the truck for. If three days away per week makes that job less reliably delivered, name the contract as a tradeoff and decide it deliberately.",
           "whyItMatters": "Revenue growth that abandons the job buyers hired for is not growth of the business they hired. The job-first test makes the abandonment decision visible so it can be made intentionally."
@@ -2458,8 +1998,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Faster feedback cycles and clearer approval readiness can point in different directions. The side conversation is the signal that the job-first test was not applied before the tool was deployed.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch08-q02",
@@ -2471,8 +2010,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Strong internal survey scores do not confirm the module serves the employment job. The job-first test requires asking whether the content serves the buyer's progress, not whether students find it interesting.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q03",
@@ -2484,8 +2022,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The approval process had operational and financial tests but not the job-first test. Requiring that test before approval would have forced the question of emergency reliability into the decision.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch08-q04",
@@ -2497,8 +2034,7 @@
             ],
             "correctIndex": 1,
             "explanation": "High internal scores and frequent use do not confirm the tool serves the buyer's job. The usage pattern reveals which job the tool actually serves, and it is not the one that produces client satisfaction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch08-q05",
@@ -2510,8 +2046,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The job-first test requires naming the job before evaluating the change. A savings calculation and a preference survey both skip the step of defining what buyers hired the cooperative to deliver.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q06",
@@ -2523,8 +2058,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The job regulars hired for is not lunch; it is a predictable presence at a specific time. The job-first test asks whether the contract change protects or abandons that job, not whether the revenue is attractive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q07",
@@ -2536,8 +2070,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Stating that the job is a priority is not the same as testing whether a specific change serves it. The test requires tracing the change through the buyer's progress, not through the internal strategy document.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch08-q08",
@@ -2549,8 +2082,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A postmortem finds the problem after the damage is done. Requiring the job-first test before approval prevents the decision from being made without the buyer's job as a required input.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch08-q09",
@@ -2562,8 +2094,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The job-first test applies to any change that affects the buyer's path, including internal processes that alter handoffs, timing, or quality. Whether a change is internal does not determine whether it affects the buyer's job.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2600,7 +2131,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Applying the Job-First Test to Changes",
         "coreSkill": "The core skill is applying the job-first test as a required gate before approving any change, not as an optional reflection afterward. This requires naming the buyer's job in one sentence and testing the proposed change against it.",
         "ifThenPlans": [
           {
@@ -2625,19 +2155,13 @@
       },
       "memorableLines": [
         {
-          "text": "The contract is not a growth win. It is a job-abandonment decision wearing the disguise of a revenue gain.",
-          "location": "breakdown.fastRead",
-          "why": "It names the disguise that makes drift hard to see and gives it a precise label."
+          "text": "The contract is not a growth win. It is a job-abandonment decision wearing the disguise of a revenue gain."
         },
         {
-          "text": "The job-first test is not applied automatically; it has to be a required step before approval, especially when the change looks locally harmless.",
-          "location": "breakdown.counterintuition",
-          "why": "It explains why good intentions are not sufficient and why the test must be structural."
+          "text": "The job-first test is not applied automatically; it has to be a required step before approval, especially when the change looks locally harmless."
         },
         {
-          "text": "The test has to be applied before the decision is framed as purely operational.",
-          "location": "breakdown.deepRead",
-          "why": "It identifies the precise moment when the test can still change the outcome."
+          "text": "The test has to be applied before the decision is framed as purely operational."
         }
       ]
     },
@@ -2664,13 +2188,6 @@
             "governance",
             "internal metrics"
           ],
-          "planSpec": {
-            "domain": "municipal emergency dispatch center",
-            "audience": "public sector leaders",
-            "stakes": "internal efficiency metric masks community job failure",
-            "format": "predict_reveal",
-            "requiredBeat": "response times are down but citizens cannot reach help fast at 2am"
-          },
           "scenario": "At 3:22pm, Megan reviews the quarterly data: response times are down across the board. She opens a second report, a community survey, and reads that citizens call the non-emergency line during genuine emergencies at 2am because they cannot remember which number to dial. The center is governed by internal response efficiency. The community's job, reach the right help fast, is absent from the decision record. Language says community-centered service. The decision record says internal metrics first. Megan must decide whether to add the community job to the governing standard or accept the gap.",
           "whatToDo": "Present both reports together. Frame the board question as which standard governs the center's recurring decisions, and whether that standard matches the community's job.",
           "whyItMatters": "A jobs-focused organization is visible in its decision record, not its mission language. If the efficiency report wins and the 2am failure stays unaddressed, the governance pattern has named itself."
@@ -2683,13 +2200,6 @@
             "departmental logic",
             "governance"
           ],
-          "planSpec": {
-            "domain": "urban planning department rezoning",
-            "audience": "government and civic teams",
-            "stakes": "coherent departmental objections crowd out the community job",
-            "format": "dialogue",
-            "requiredBeat": "every department is correct on its own metric while the neighborhood job goes unasked"
-          },
           "scenario": "\"Traffic won't support it.\" \"Fire access is compromised.\" \"We lose the greenspace buffer.\" The planning meeting has run forty minutes. Every department objection is internally coherent. Julien, the city planning director, asks the question nobody asked: what job is this neighborhood hiring the city to deliver here? The room pauses. The answer, a safe, walkable block near the school, is not present in any objection. The city speaks planning language in its public documents. It is governed, in this room, by departmental logic. Julien must decide whether to stop the meeting and reframe the question or let the objection map continue.",
           "whatToDo": "Name the job the neighborhood is hiring the city to perform and route each departmental objection through it. The goal is not to override expertise but to give every objection a common reference point.",
           "whyItMatters": "Departmental coherence is not jobs governance. When every function is correct on its own metric and the buyer's job goes unasked, the organization is governed by internal defensibility."
@@ -2702,13 +2212,6 @@
             "renewal process",
             "vocabulary vs governance"
           ],
-          "planSpec": {
-            "domain": "independent insurance brokerage renewal process",
-            "audience": "financial services teams",
-            "stakes": "jobs language in onboarding does not change renewal governance",
-            "format": "vignette",
-            "requiredBeat": "training changed vocabulary but decision rights for renewals stayed with product compensation"
-          },
           "scenario": "Jobs-centered onboarding launched six months ago and advisors use the new language well. Diego pulls the renewal queue and opens the first call recording. The advisor leads with product comparisons. The renewal process still opens where it always opened, with the product lineup, not a question about whether the client's job has changed. Decision rights for renewals stayed with the product team and its compensation structure. Onboarding speaks jobs language. Renewals are governed by product logic. Diego must decide whether to escalate the governance gap or absorb it as a training scope problem.",
           "whatToDo": "Confirm who controls the first renewal-call decision. If product owns it, escalate the issue as a governance choice and ask to move that opening question to the jobs-focused side of the boundary: start renewals by asking whether the client's job has changed. If that move is blocked, find the smallest renewal decision that can be reassigned without changing compensation, and begin there. The fix is structural, not instructional.",
           "whyItMatters": "Training changes what people say. Governance changes what decides. A jobs-focused organization requires both; the renewal process is where the gap between them becomes visible."
@@ -2721,13 +2224,6 @@
             "front-end vs operations",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "commercial printing company",
-            "audience": "operations and sales leaders",
-            "stakes": "jobs language in sales does not survive into production governance",
-            "format": "postmortem",
-            "requiredBeat": "client departs because production is governed by cost reduction not the client's job"
-          },
           "scenario": "The consulting engagement worked. Bid win rates climbed after the front-end sales team learned to speak clients' jobs fluently. Henrik, the account director, watches a major client's account go to zero nine months later. The exit interview is direct: the client said the team understood their job better than any vendor. Then proofs came back wrong three times and each time the client had to prove the error. The front end spoke jobs; the production floor optimized proof-cycle cost reduction.",
           "whatToDo": "Extend the jobs governance test into production. Ask which standard governs proof review and error correction. If cost reduction outranks the client's job there, the language change reached only the front door.",
           "whyItMatters": "Clients experience the production floor, not the pitch. Jobs language that governs the sale but not the delivery creates a gap the client will eventually name in an exit interview."
@@ -2740,13 +2236,6 @@
             "standardization",
             "contextual judgment"
           ],
-          "planSpec": {
-            "domain": "sports scouting network",
-            "audience": "sports organizations and analytics teams",
-            "stakes": "standardization may replace the job the network is actually hired to do",
-            "format": "decision_point",
-            "requiredBeat": "five standard metrics serve a different job than the contextual judgment coaches hire scouts to deliver"
-          },
           "scenario": "You are Kasia, managing a scouting network asked to standardize. The analytics team has proposed five metrics across every scout in every market. A senior scout pushes back. \"Five metrics tell you who runs fastest. The job coaches hire scouts to do is find the player who makes this specific roster better in this specific context. That's not in five numbers.\" The room divides. You must decide whether to impose the standardization or protect the contextual judgment job. Both choices carry a cost.",
           "whatToDo": "Before deciding, name the job coaches hire the scouting network to perform. Test whether the five-metric proposal serves that job or replaces it with a different, more measurable one.",
           "whyItMatters": "Standardization serves internal efficiency. Contextual judgment serves the job coaches hire. A jobs-focused organization knows which one it is organized to deliver before imposing a governance change."
@@ -2759,13 +2248,6 @@
             "volunteer retention",
             "multiple stakeholders"
           ],
-          "planSpec": {
-            "domain": "community arts center grants and volunteers",
-            "audience": "nonprofit and community organization leaders",
-            "stakes": "jobs governance for primary audience blinds the organization to a different stakeholder's job",
-            "format": "vignette",
-            "requiredBeat": "rebrand language served funders and audiences but never represented the volunteer's craft job"
-          },
           "scenario": "The walls are newly painted in the updated brand palette and attendance is up. Lin reads the volunteer exit interviews on a Tuesday morning. Three departing volunteers used nearly the same sentence: they did not sign up to help the community connect creatively. They signed up to make something with their hands. The rebrand language was built for funders and program audiences. The volunteer's craft job was never represented in the governing standard. Lin must decide whether to add the craft job to the governing standard or reframe the rebrand around it.",
           "whatToDo": "Map every stakeholder who makes the organization function and name the job each is hiring it to help them do. Build the governing standard to represent all of them.",
           "whyItMatters": "A jobs-focused organization routes decisions for every stakeholder through their job. When the volunteer's craft job is absent from the governing standard, the organization is jobs-blind for the people who run the programs."
@@ -2784,8 +2266,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The gap between strong efficiency scores and residents failing to reach help in off-hours is exactly the language-versus-governance split. The decision record, not the mission statement, reveals which standard actually governs the organization.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch09-q02",
@@ -2797,8 +2278,7 @@
             ],
             "correctIndex": 1,
             "explanation": "When language changes but renewal governance stays tied to product compensation and decision rights, the organization has completed a vocabulary upgrade, not a governance change. Renewal behavior follows whatever standard controls the actual decision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch09-q03",
@@ -2810,8 +2290,7 @@
             ],
             "correctIndex": 0,
             "explanation": "When every department is coherent on its own metric but nobody routes the decision through the buyer's job, departmental logic governs. The absence of a shared jobs standard, not lack of expertise, is the problem.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch09-q04",
@@ -2823,8 +2302,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The client experienced the production floor, not the pitch. When jobs language governs the sale but cost reduction governs production, the gap becomes visible at each proof cycle error. The governance split was never addressed by the training.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch09-q05",
@@ -2836,8 +2314,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The governance question is not which option is cleaner internally but which one the clients are hiring the network to perform. Standardization serves an internal efficiency job; the coaches' contextual-fit job may require something the five metrics cannot hold.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch09-q06",
@@ -2849,8 +2326,7 @@
             ],
             "correctIndex": 0,
             "explanation": "When the governing standard is built only around funders and program audiences, the volunteer's craft job goes unrepresented until it surfaces in exit interviews. A jobs-focused organization routes decisions for every stakeholder through their job.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch09-q07",
@@ -2862,8 +2338,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The governing standard is visible in the decision record under pressure, not in language produced during calm planning sessions. Reviewing actual tradeoff decisions reveals whether the job outranked competing standards when it mattered.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch09-q08",
@@ -2875,8 +2350,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Articulation is the first stage of jobs thinking. Governance is the second. When decision rights, compensation, and measurement systems still route choices through departmental metrics, the organization has vocabulary adoption but not governance adoption.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch09-q09",
@@ -2888,8 +2362,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The recommendation needs to name the governance split, not just the data gap. The decision record shows the center is governed by response efficiency. Naming that directly is the step that opens the question of whether the standard should change.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2926,7 +2399,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Identifying the Standard That Actually Governed",
         "coreSkill": "Practice identifying which standard actually governed a recent decision, not which standard the team would claim in a meeting. The skill is to trace a specific tradeoff back to what won, departmental metric, revenue threshold, or buyer's progress, and name the governance structure that produced that outcome.",
         "ifThenPlans": [
           {
@@ -2951,19 +2423,13 @@
       },
       "memorableLines": [
         {
-          "text": "Jobs language appeared in the mission statement. Jobs governance did not appear in the decision that kept the two-number system intact.",
-          "location": "breakdown.fastRead",
-          "why": "It names the language-versus-governance split in concrete terms the reader can recognize in their own organization."
+          "text": "Jobs language appeared in the mission statement. Jobs governance did not appear in the decision that kept the two-number system intact."
         },
         {
-          "text": "The language-versus-governance split is visible at the moment of a hard tradeoff.",
-          "location": "breakdown.deepRead",
-          "why": "It gives readers a precise diagnostic moment to watch for, not a vague cultural aspiration."
+          "text": "The language-versus-governance split is visible at the moment of a hard tradeoff."
         },
         {
-          "text": "Governance means the job outranks the departmental metric in the moment when they conflict. That is not a language change. It is a structural one.",
-          "location": "breakdown.fullRead",
-          "why": "It states the chapter's core argument in its most unambiguous form and raises the bar from vocabulary to structure."
+          "text": "Governance means the job outranks the departmental metric in the moment when they conflict. That is not a language change. It is a structural one."
         }
       ]
     },
@@ -2990,13 +2456,6 @@
             "evidence collection",
             "circumstances"
           ],
-          "planSpec": {
-            "domain": "urban mobility startup",
-            "audience": "founders and product teams",
-            "stakes": "jobs analysis treated as proof leaves team blind to circumstance change",
-            "format": "postmortem",
-            "requiredBeat": "team stopped watching circumstances after initial analysis and missed a permit change"
-          },
           "scenario": "The jobs analysis was well-formed and confirmed by early traction. Anna, the startup founder, had named what riders were hiring and built around it. Six months in, a city permit change removed the primary route. The postmortem is not that the analysis was wrong. The analysis was accurate. The team had treated it as proof and stopped watching circumstances. There was no evidence-collection habit. Nobody was monitoring the permit landscape or the activation conditions the analysis had named.",
           "whatToDo": "After any jobs analysis that drives a launch or investment, name the circumstances that activate the hire. Build a monitoring habit around each one. Treat circumstance stability as an ongoing assumption, not a permanent fact.",
           "whyItMatters": "Jobs Theory gives teams a better question to ask. It cannot account for circumstances the team stops monitoring. The discipline of ongoing evidence collection is what keeps the analysis from aging into assumption."
@@ -3009,13 +2468,6 @@
             "diagnostic tool",
             "hypothesis vs finding"
           ],
-          "planSpec": {
-            "domain": "scientific research lab diagnostic tool",
-            "audience": "research and product teams",
-            "stakes": "jobs-framed hypothesis must be separated from jobs-confirmed finding",
-            "format": "dialogue",
-            "requiredBeat": "theory sharpened the question but does not replace the experiment"
-          },
           "scenario": "\"Clinicians don't need perfect accuracy. They need to reduce decision time.\" The postdoc has laid out the jobs claim and the team agrees it is more powerful than the previous framing. Javier pauses. \"You've named a testable hypothesis. Now tell me the test that would prove you wrong.\" The postdoc looks at the whiteboard. The claim is strong. The falsification condition is not yet named. The room must distinguish a jobs-framed hypothesis from a jobs-confirmed finding. Javier must decide whether to advance the claim or hold until a falsification test is named.",
           "whatToDo": "For every jobs statement, name the test that would prove it wrong before investing in design or development. A statement without a falsification condition is not yet a finding.",
           "whyItMatters": "The theory sharpened what to test. The experiment is still required. A team that cannot name what would prove their jobs statement wrong is holding a belief, not a hypothesis."
@@ -3028,13 +2480,6 @@
             "algorithm",
             "causal path"
           ],
-          "planSpec": {
-            "domain": "independent film festival distribution",
-            "audience": "creative industry and distribution teams",
-            "stakes": "correct job statement coexists with incomplete causal model",
-            "format": "vignette",
-            "requiredBeat": "the job was real but the distribution plan did not map the path from demand to hire"
-          },
           "scenario": "Marta identified the job with precision: two adults who want to feel like they made a cultural choice together without leaving home on a weeknight. The research was solid. The job was real. The distribution plan failed. The streaming platform's algorithm does not surface films matching that description during the browsing moment. The analysis correctly named the demand. It did not trace the full causal path to a successful hire. Marta is reviewing where the causal model stopped short and must decide whether to rework the distribution model or reframe the job.",
           "whatToDo": "After naming the job, trace the full path from the job being activated to the hire completing. Identify every point where the causal chain can break and treat each one as a testable assumption.",
           "whyItMatters": "A correct job statement is not a complete causal model. The job names what buyers want. The causal model explains how that want becomes a hire. Both are required for the analysis to guide design."
@@ -3047,13 +2492,6 @@
             "acquisition",
             "circumstance stability"
           ],
-          "planSpec": {
-            "domain": "financial acquisition due diligence",
-            "audience": "investors and strategy teams",
-            "stakes": "jobs thesis accurate at acquisition did not account for circumstance change",
-            "format": "predict_reveal",
-            "requiredBeat": "thesis was correct but treated specific procurement team composition as a stable circumstance"
-          },
           "scenario": "At 4:55pm, Vincent presents the jobs-based acquisition thesis: the target company is hired by procurement managers to reduce approval cycle time, not cut unit cost. The committee approves. Eighteen months later, the company loses its largest client. The new procurement team was hired for compliance, not speed. The jobs thesis was accurate at acquisition. It assumed the procurement team's priorities were stable. No one was monitoring the circumstance the thesis depended on. Vincent must decide whether to build a monitoring system into the integration plan.",
           "whatToDo": "Identify the specific circumstances that activate the job your thesis names. Build post-acquisition monitoring around the stability of those circumstances, not just the financial metrics.",
           "whyItMatters": "A jobs thesis accurate at one point can become inaccurate as circumstances change. The analysis is a starting point for ongoing evidence collection, not a permanent explanation."
@@ -3066,13 +2504,6 @@
             "screening",
             "falsification"
           ],
-          "planSpec": {
-            "domain": "product incubator screening",
-            "audience": "investors and incubator leaders",
-            "stakes": "questioning discipline more valuable than polished statement",
-            "format": "decision_point",
-            "requiredBeat": "reader chooses Team B because the theory's value is in questioning discipline not articulation"
-          },
           "scenario": "You are Lea, an incubator director screening two pitches. Team A has a sharp, compelling jobs statement supported by interview evidence. When you ask what would prove them wrong, they describe more evidence of the same kind. Team B's jobs statement is hazier, but when you ask the same question, they name a specific test with a clear result that would force revision. Team A cannot produce a falsification condition. Team B has built one into their plan. You need to decide before the committee meets.",
           "whatToDo": "In every screening, ask for the falsification condition before scoring the jobs statement. A team that cannot name what would prove them wrong has a polished narrative, not a testable hypothesis.",
           "whyItMatters": "The value of Jobs Theory is in the discipline of asking better causal questions, not in producing compelling statements. A team with a clear falsification condition is more likely to learn from the market."
@@ -3085,13 +2516,6 @@
             "committee",
             "question clarity"
           ],
-          "planSpec": {
-            "domain": "museum acquisition committee",
-            "audience": "cultural institution leaders",
-            "stakes": "jobs question clarifies what vote is actually needed",
-            "format": "thought_experiment",
-            "requiredBeat": "the question did not decide the vote, it clarified what vote was needed"
-          },
           "scenario": "\"What job are we hiring this artwork to do for the collection?\" Hiroshi, the acquisitions director, sets the question before the acquisition vote. The committee pauses. After working through it, they find three pending acquisitions all serve the same job: anchoring a new gallery. The unmet job had not been discussed: something that a twelve-year-old visitor would hire to stay in the room longer than sixty seconds. The committee still needed to vote. What changed was what they understood themselves to be deciding. Hiroshi must decide whether to call the vote now or return to the acquisition list first.",
           "whatToDo": "Before a major allocation decision, ask what job the proposed investment is being hired to do and whether any jobs the collection or offering currently fails to serve would be better addressed by a different choice.",
           "whyItMatters": "A sharp causal question does not produce the answer. It identifies the right question to answer. That is what Jobs Theory does at its best, it clarifies the decision, not the outcome."
@@ -3110,8 +2534,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Jobs Theory gave the team a better question, not immunity from circumstance change. The failure was treating the analysis as stable proof instead of maintaining an evidence-collection habit around the activation conditions.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch10-q02",
@@ -3123,8 +2546,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Supporting evidence and falsification evidence are different. A jobs-framed hypothesis requires a test that could prove it wrong. More confirming interviews do not provide that. The claim is still a hypothesis until a disconfirming test is named.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch10-q03",
@@ -3136,8 +2558,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A correct jobs statement and a complete causal model are different things. The job named what buyers want. The causal model explains how that want becomes a hire. The team's analysis stopped at demand without mapping the path to delivery.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch10-q04",
@@ -3149,8 +2570,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The thesis was not wrong, it was accurate for the circumstances at acquisition. The failure was treating those circumstances as permanent instead of building post-acquisition monitoring around their stability.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch10-q05",
@@ -3162,8 +2582,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A polished jobs statement without a falsification condition is a narrative. A hazier statement with a clear disconfirmation test is a hypothesis. The theory's value is in maintaining the questioning discipline that keeps analysis testable.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch10-q06",
@@ -3175,8 +2594,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A sharp causal question does not produce the answer. It identifies what question the decision actually needs to answer. The committee arrived to vote on quality and price and left with a clearer picture of which jobs the collection serves.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch10-q07",
@@ -3188,8 +2606,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A jobs statement that cannot be destabilized by naming a circumstance change assumes its own permanence. That assumption prevents ongoing evidence collection and leaves the team blind to changes in the activation conditions the job depends on.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch10-q08",
@@ -3201,8 +2618,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Jobs Theory does not claim to remove uncertainty. Its value is that it shifts explanation from correlation, traits that coexist with purchase, to causation, the circumstance and progress that activate the hire. That is a better question, not a guarantee.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch10-q09",
@@ -3214,8 +2630,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reconfirming the original statement through interviews is useful but insufficient if it does not include monitoring the activation circumstances. The ongoing discipline is tracking circumstance stability and updating the analysis when those conditions shift.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3252,7 +2667,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Naming Circumstances That Activate Job Statements",
         "coreSkill": "Practice naming the circumstance that activates any jobs statement you hold, and naming the change to that circumstance that would make the job evaporate. The skill is to hold a jobs claim as a testable hypothesis, not as a stable fact, and to maintain evidence collection around the activation conditions, not the assumption that the initial analysis is permanent.",
         "ifThenPlans": [
           {
@@ -3277,19 +2691,13 @@
       },
       "memorableLines": [
         {
-          "text": "Jobs Theory gave them a better question; it could not account for a circumstance the team stopped monitoring.",
-          "location": "breakdown.fastRead",
-          "why": "It draws the exact boundary of the theory's value and names the failure mode that follows when teams mistake a better question for a permanent answer."
+          "text": "Jobs Theory gave them a better question; it could not account for a circumstance the team stopped monitoring."
         },
         {
-          "text": "A jobs-framed hypothesis is a better starting question. A jobs-confirmed finding requires evidence.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the sharpest possible statement of the distinction the chapter is built on and hands the reader a test they can apply immediately."
+          "text": "A jobs-framed hypothesis is a better starting question. A jobs-confirmed finding requires evidence."
         },
         {
-          "text": "It does not produce the answer. It identifies the right question to answer.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the final, restrained claim for what Jobs Theory actually does, clarifying the decision, not foreclosing it."
+          "text": "It does not produce the answer. It identifies the right question to answer."
         }
       ]
     }

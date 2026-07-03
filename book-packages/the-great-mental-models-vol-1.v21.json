@@ -41,13 +41,6 @@
             "metrics",
             "scene"
           ],
-          "planSpec": {
-            "domain": "customer-service dashboard audit",
-            "audience": "an operations lead whose call-center report shows healthy wait times",
-            "stakes": "renewal calls are being lost while the executive team trusts a green metric",
-            "format": "scene",
-            "requiredBeat": "Hannah calls the support line from the conference room speakerphone and lets the actual hold music run past the dashboard's promised answer time"
-          },
           "scenario": "Tinny hold music fills the glass conference room before anyone says the word metric. Claire, the operations lead, has the green dashboard tile open beside a customer complaint log full of missed renewal calls. The report promises answers in under a minute. The speakerphone timer crosses ninety seconds while the executives stare at it. Claire has to decide before the renewal review ends whether the dashboard still gets to govern the staffing call.",
           "whatToDo": "Let the call keep running, write the actual wait time beside the green tile, and pause the staffing decision until the metric explains the customer experience it claims to measure.",
           "whyItMatters": "The live call is the territory pushing back. It does not make the dashboard useless; it shows the edge where the reduction stopped matching the thing it was built to track."
@@ -60,13 +53,6 @@
             "grant",
             "map"
           ],
-          "planSpec": {
-            "domain": "grant-funded river restoration survey",
-            "audience": "a conservation coordinator reading a neat habitat map",
-            "stakes": "grant money may be spent on the wrong bend of the river",
-            "format": "decision_point",
-            "requiredBeat": "Michael places the laminated habitat map beside muddy boot photos from the riverbank and delays the grant order until the two disagreeing pictures are reconciled"
-          },
           "scenario": "The tailgate is wet with boot grit and a laminated habitat map curls at the corners. Michael, a conservation coordinator, sets the map beside six muddy photos from this morning's river walk. The grant order points to the north bend. The photos show saplings failing on the south bank. His pen hovers over the purchase request, and he must decide whether the map is enough or the field evidence gets another visit.",
           "whatToDo": "Stop the purchase request, mark the disagreement between the map and the photos, and send the crew back to the river before committing the grant money.",
           "whyItMatters": "The map is useful for narrowing attention, not for ending inspection. When the field photos disagree, the next action has to reconnect the plan to the ground."
@@ -79,13 +65,6 @@
             "resume",
             "bench"
           ],
-          "planSpec": {
-            "domain": "resume screen for tool-and-die apprentice",
-            "audience": "a plant manager selecting candidates from polished resumes",
-            "stakes": "the wrong hire will slow a short-staffed apprenticeship bench",
-            "format": "predict_reveal",
-            "requiredBeat": "Rachel compares a perfect resume with a five-minute bench test and watches the weaker paper candidate solve the caliper setup cleanly"
-          },
           "scenario": "It took Rachel one minute to prefer the perfect resume and five minutes to doubt it. The caliper blinks on the tool-room bench beside two applications. One candidate's paper looks tidy; the other reads like a patchwork of odd jobs. Rachel predicts the polished candidate will finish first, then watches the uneven resume solve the setup cleanly. She must decide which map of skill deserves the offer.",
           "whatToDo": "Treat the resume as a first filter, not a verdict. Put the bench test result beside the paper record and hire from the work that actually showed up.",
           "whyItMatters": "A resume is a compressed story about ability. The bench test brings the territory into the room, where neat paper can lose to steadier hands."
@@ -98,13 +77,6 @@
             "city",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "city playground redesign walk-through",
-            "audience": "a parks planner relying on a clean safety diagram",
-            "stakes": "children may avoid the new layout because the plan misses how families actually move",
-            "format": "vignette",
-            "requiredBeat": "You watch Olivier follow parents across the site with a clipboard and mark the desire paths that never appear on the approved plan"
-          },
           "scenario": "You stand by the mulch while chalk arrows cross the future swing area. Olivier, the parks planner, follows parents with a clipboard and marks where strollers actually turn. The approved plan keeps every path clean and square. The ground keeps drawing diagonals. Before the contractor stakes the first post, Olivier must decide whether the safety diagram is describing movement or trying to command it.",
           "whatToDo": "Move the plan back into contact with the site. Add the desire paths to the drawing before the layout hardens into concrete, fencing, and frustrated families.",
           "whyItMatters": "The approved plan has authority, but the walking paths reveal behavior. If the design ignores the territory, families will either resist it or be shaped badly by it."
@@ -117,13 +89,6 @@
             "fees",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "farmers market vendor fee review",
-            "audience": "a market treasurer trusting a clean vendor-revenue sheet",
-            "stakes": "a fee increase could drive out the small vendors who make the market worth visiting",
-            "format": "postmortem",
-            "requiredBeat": "Aman counts the empty end stalls at closing and writes the missing vendors directly onto the revenue sheet before approving the fee change"
-          },
           "scenario": "Which number belongs in the fee vote: vendor revenue or the empty end stalls after closing? Aman, the market treasurer, folds two stall weights where vegetable tents used to stand and carries them to the office. The vendor-revenue sheet looks strong because the largest booths are paying more. He writes the missing small vendors in the margin before next Saturday's board packet is printed.",
           "whatToDo": "Add the absence to the sheet. Count the vendors the revenue map has erased before voting on a fee increase that may keep the spreadsheet healthy and weaken the market.",
           "whyItMatters": "A map can hide losses by counting what remains. The empty stalls are not sentimental detail; they are part of the territory the decision will change."
@@ -136,13 +101,6 @@
             "uptime",
             "definition"
           ],
-          "planSpec": {
-            "domain": "software uptime incident log",
-            "audience": "a reliability lead whose uptime report excludes degraded login failures",
-            "stakes": "customers are technically online while unable to complete work",
-            "format": "before_after",
-            "requiredBeat": "Marit reads one customer screen recording beside the uptime incident log and changes the incident definition before the weekly report goes out"
-          },
           "scenario": "\"The site was up,\" someone says, while a customer's screen recording shows a frozen login spinner for forty-two seconds. Marit, the reliability lead, has the uptime report on one monitor and the incident log on the other. Before the weekly report goes out, she changes the incident definition so degraded login failures count as failures, not footnotes.",
           "whatToDo": "Revise the map so it tracks the experience that matters. Keep uptime, but add degraded login failure to the incident definition before the report earns another green week.",
           "whyItMatters": "The old metric was technically true and practically misleading. Better definitions keep the representation attached to what customers are actually trying to do."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The direct check makes the map answer to the territory. The recordings should not be dismissed, but replacing measurement with anecdotes repeats the same overtrust problem in another form.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The resume remains useful as a reduction, but the work sample is closer to the territory. Ignoring paper completely or choosing defensibility both confuse convenience with evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The muddy path is territory evidence. It may not automatically decide the design, but it should force the planner to question what the diagram omitted before the plan hardens.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The map is no longer passive. The score changes staff behavior, so the organization must inspect the incentive the metric created rather than simply trust the clean count.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The policy is a map of intended practice. Watching the conversation and checking patient understanding tests whether the map still touches what happens in the hallway and at home.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Averages reduce reality. That reduction can be useful, but here it may hide a setup failure. The answer is not to worship comments or reject summaries outright.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The ranking is now shaping behavior. Whether comparison is possible is a separate issue; the immediate danger is that people are optimizing the proxy instead of the learning.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The corner observation tests the checklist against the territory. More signatures may only strengthen the map, and removing the checklist loses a tool that may still help once corrected.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The strongest plan keeps multiple maps in play and checks their range against the ground. Choosing one source as sacred, even interviews, skips the work of locating the mismatch.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -327,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "Use the map, then touch the ground.",
-          "location": "breakdown.fastRead",
-          "why": "The sentence turns a broad mental model into a concrete operating rule."
+          "text": "Use the map, then touch the ground."
         },
         {
-          "text": "Every useful map is incomplete on purpose.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the tradeoff without making models sound defective."
+          "text": "Every useful map is incomplete on purpose."
         },
         {
-          "text": "A map that refuses correction is a trap with clean labels.",
-          "location": "breakdown.fullRead",
-          "why": "The image makes overtrusted representations feel dangerous and visible."
+          "text": "A map that refuses correction is a trap with clean labels."
         }
       ]
     },
@@ -366,13 +309,6 @@
             "logistics",
             "perimeter"
           ],
-          "planSpec": {
-            "domain": "specialty cheese shop product expansion",
-            "audience": "a shop owner who knows aging, suppliers, and local customers but is tempted by online meal kits",
-            "stakes": "a profitable shop could burn cash in a business whose logistics she has not earned",
-            "format": "decision_point",
-            "requiredBeat": "Andrew places the aged-cheese margin sheet beside the refrigerated meal-kit shipping quote and marks which facts come from direct experience and which are guesses"
-          },
           "scenario": "The ammoniac bite of washed-rind cheese hangs in the prep room while Andrew lays his aged-cheese margin sheet beside a refrigerated meal-kit shipping quote. He knows local suppliers and Saturday customers cold. He does not know spoilage rates across three provinces. His thumb rests on the approval email, and he has to decide whether this is still his game or a nearby game with different rules. He writes spoilage rate, packing labor, and failed-delivery refunds in the guess column before anyone orders new packaging.",
           "whatToDo": "Mark each line as earned knowledge or guesswork before approving the expansion. Play the cheese-margin game, but learn or partner on refrigerated shipping.",
           "whyItMatters": "Competence lives in particulars. Knowing aging rooms and customers gives Andrew an edge, but cold-chain logistics can transfer that edge to people who have earned a different map."
@@ -385,13 +321,6 @@
             "handoff",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "emergency-room ultrasound shift",
-            "audience": "a senior nurse asked to interpret a scan outside her certification",
-            "stakes": "a fast call could mislead treatment before radiology arrives",
-            "format": "dialogue",
-            "requiredBeat": "Sophie names exactly what she can verify from the bedside protocol and exactly where the radiologist's edge begins"
-          },
           "scenario": "\"Can you tell if that's fluid?\" the resident asks while blue gel dries around the ultrasound probe in triage bay three. Sophie, the senior nurse, checks the bedside protocol and the radiology callback time. \"I can verify placement and pain response,\" she says. \"I cannot read the scan.\" Before the dose is changed, she must tell the team where her edge ends. The resident still gets speed, but not a pretend interpretation outside Sophie's feedback history.",
           "whatToDo": "State the competent part out loud, then hand off the interpretation. Keep the protocol moving without pretending a nearby clinical skill is yours.",
           "whyItMatters": "The patient needs speed and accuracy. Sophie's competence helps only while it stays inside the boundary where her training and feedback are real."
@@ -404,13 +333,6 @@
             "transfer",
             "prediction"
           ],
-          "planSpec": {
-            "domain": "chess club coach asked about poker",
-            "audience": "a brilliant chess coach invited into a high-stakes poker stream",
-            "stakes": "his pattern skill may be mistaken for transferable edge",
-            "format": "predict_reveal",
-            "requiredBeat": "Nicolas reviews one poker hand aloud, catches himself using chess certainty, and writes 'learn' rather than 'play' beside the invitation"
-          },
           "scenario": "Which game is Nicolas actually good at? The paused river card glows on his laptop beside a wooden chess clock. The charity stream invitation includes a fee and a public table. Nicolas reviews one hand aloud, predicts the obvious fold, then hears two players explain pot odds he never considered. He must decide whether his chess pattern skill is an edge here or only borrowed confidence. The public table can wait until he has real poker feedback instead of familiar confidence.",
           "whatToDo": "Write learn beside the invitation, not play. Treat poker as a new feedback system, even if the pattern-recognition feeling is familiar.",
           "whyItMatters": "A nearby game can feel like home while hiding different rules. The perimeter protects Nicolas from mistaking one kind of expertise for another."
@@ -423,13 +345,6 @@
             "real-estate",
             "edge"
           ],
-          "planSpec": {
-            "domain": "furniture warehouse lease negotiation",
-            "audience": "a warehouse operator deciding whether to buy a neighboring building",
-            "stakes": "one familiar lease term hides an unfamiliar zoning fight",
-            "format": "vignette",
-            "requiredBeat": "Mikkel circles the parts of the deal his warehouse history covers, then slides the zoning packet to counsel instead of pretending the whole transaction is inside his circle"
-          },
           "scenario": "It took Mikkel three pages to stop treating the neighboring building as a warehouse problem. A folded zoning packet lies under a tape measure on the loading dock, next to his lease ledger. He circles freight access, heating cost, and rack layout in blue. Then he slides the zoning packet across the desk to counsel. Before the purchase meeting, he must decide which parts he knows and which parts only look familiar.",
           "whatToDo": "Split the deal by competence. Keep the lease and operations judgments, but move the zoning fight to someone whose edge covers that terrain.",
           "whyItMatters": "The familiar building can hide an unfamiliar rule system. Naming the perimeter keeps Mikkel's warehouse knowledge useful without letting it overrun legal risk."
@@ -442,13 +357,6 @@
             "rights",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "indie documentary distribution rights",
-            "audience": "a filmmaker who understands editing but not international licensing",
-            "stakes": "a rights clause could lock the film away from festivals for years",
-            "format": "postmortem",
-            "requiredBeat": "You watch Layla highlight every clause she can explain unaided and every clause that requires a distribution lawyer before the signature page moves"
-          },
           "scenario": "You watch Layla at the editing suite table, a festival lanyard lying across a redlined rights contract. She can explain every cut in the documentary and almost none of the international distribution language. After one bad clause nearly locks the film away from festivals, she marks what she can defend unaided and what needs a distribution lawyer before any future signature page moves.",
           "whatToDo": "Separate creative competence from rights competence. Highlight the clauses that exceed Layla's earned knowledge and get expert review before signing.",
           "whyItMatters": "A finished film does not make its creator competent in every contract attached to it. The circle preserves the work by admitting where another edge is needed."
@@ -461,13 +369,6 @@
             "forecast",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "ski guide avalanche forecast handoff",
-            "audience": "a mountain guide strong on route feel but new to a different snowpack",
-            "stakes": "local confidence could outrun unfamiliar avalanche patterns",
-            "format": "reflection",
-            "requiredBeat": "Janek writes the day's route plan only after asking the local forecaster where his home-range knowledge stops applying"
-          },
           "scenario": "Wind-slab crystals skitter across a tailgate map outside the guide hut. Janek has twenty seasons of route feel in his home range, but this valley's avalanche bulletin reads differently. The local forecaster points to a loaded slope his eye had treated as harmless. Janek writes the day's route only after asking which parts of his home judgment do not transfer here. The ski team gets a weather handoff from the person who reads that mountain every morning.",
           "whatToDo": "Use the home-range skill as a starting point, then ask the local forecaster where it fails. Build the route around the edge of Janek's knowledge.",
           "whyItMatters": "Confidence can travel faster than competence in the mountains. The snowpack does not care where Janek earned his instincts; it tests only whether they apply here."
@@ -486,8 +387,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first issue is perimeter. Current bakery skill may not cover cold-chain shipping. Customer praise and competitor behavior can help later, but they do not prove competence.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -499,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Leadership may be inside her circle, while technical security is not. The right move splits the request rather than pretending all skill transfers or refusing useful help.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -512,8 +411,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The warning is transfer error. Chess pattern skill is real, but poker has different information, incentives, and feedback. A smaller buy-in manages loss but does not create competence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -525,8 +423,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The strongest move preserves real knowledge while deferring the unfamiliar assessment game. Experience with the building does not automatically cover the legal and valuation rules.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -538,8 +435,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The question separates earned knowledge from guesses. Vocabulary and analogy can help learning, but neither proves that enterprise pricing is inside the current circle.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -551,8 +447,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The years of skill matter, but the perimeter has moved. The bulletin and local knowledge show where his advantage thins, so the route must respect that edge.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -564,8 +459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Competence includes knowing its edge. The lawyer does not replace Layla's creative judgment; the lawyer covers a different game attached to the work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -577,8 +471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The danger is misplaced transfer. Consumer subscriptions and hospital procurement can look adjacent while using different buyers, timelines, incentives, and failure costs.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -590,8 +483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The model does not force avoidance. It asks for an accurate perimeter, then matches the action to it: play where edge is real, partner or pilot where learning is still owed.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -652,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "The goal is not to stay small. It is to stop pretending the edge moved just because your confidence did.",
-          "location": "breakdown.fastRead",
-          "why": "It prevents the model from being reduced to comfort-zone advice."
+          "text": "The goal is not to stay small. It is to stop pretending the edge moved just because your confidence did."
         },
         {
-          "text": "Perimeter is the whole skill when confidence travels.",
-          "location": "breakdown.deepRead",
-          "why": "The short line compresses the chapter's practical demand into one memorable rule."
+          "text": "Perimeter is the whole skill when confidence travels."
         },
         {
-          "text": "Play where the edge is real. Learn where the gap is honest.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a direct phrase for applying the model under pressure."
+          "text": "Play where the edge is real. Learn where the gap is honest."
         }
       ]
     },
@@ -691,13 +577,6 @@
             "health",
             "test"
           ],
-          "planSpec": {
-            "domain": "nutrition supplement trial claim",
-            "audience": "a wellness retailer testing whether a new supplement reduces afternoon fatigue",
-            "stakes": "customers may be sold a story built only from praise cards",
-            "format": "decision_point",
-            "requiredBeat": "Chris writes the exact result that would make him pull the supplement from the front shelf before reading another glowing testimonial"
-          },
           "scenario": "Sample packets sit beside a clipboard of praise cards at the front counter. Chris, the wellness retailer, wants the new supplement to reduce afternoon fatigue because customers keep leaving cheerful notes. Before he reads another testimonial, his pen hovers over the fatigue log. He must decide what result would make him pull the product from the shelf instead of searching for more support. The label stays on the bottle until one patient group can make the claim lose.",
           "whatToDo": "Write the pull-from-shelf rule before counting praise cards. Define the fatigue-log result that would make the claim lose, then run the trial against that line.",
           "whyItMatters": "Testimonials can confirm almost anything after the fact. A prewritten loss rule makes the supplement claim answer to a result that can actually hurt it."
@@ -710,13 +589,6 @@
             "pilot",
             "prediction"
           ],
-          "planSpec": {
-            "domain": "museum attendance hypothesis",
-            "audience": "a museum program director who believes evening hours will bring younger visitors",
-            "stakes": "staff overtime could be wasted on an untested assumption",
-            "format": "predict_reveal",
-            "requiredBeat": "Margaux commits to a falsifying threshold before the pilot: if under-30 ticket scans do not rise after four Fridays, the hypothesis loses"
-          },
           "scenario": "Will evening hours actually bring younger visitors, or just make the atrium feel livelier? Margaux watches the Friday-night ticket scanner blink beside the overtime roster. She predicts the under-30 scans will rise, then writes the four-Friday threshold that would prove her wrong. Before approving the pilot, she has to decide whether that loss condition is clear enough to stop the idea. The scanner report will matter more than praise gathered in the lobby after the event.",
           "whatToDo": "Commit to the under-30 scan threshold before the pilot starts. If four Fridays miss it, stop treating atmosphere and compliments as proof.",
           "whyItMatters": "The threshold turns a hopeful program into a risky prediction. Without it, every pleasant evening can be reinterpreted as success."
@@ -729,13 +601,6 @@
             "sports",
             "disproof"
           ],
-          "planSpec": {
-            "domain": "youth swim training plan",
-            "audience": "a coach convinced that extra sprint sets improve starts",
-            "stakes": "young swimmers may be exhausted without getting faster off the block",
-            "format": "scene",
-            "requiredBeat": "Henrik times three starts before and after the sprint block and tells the assistant which result would make them stop the new plan"
-          },
           "scenario": "Chlorine haze hangs above lane four as Henrik, the coach, clicks the stopwatch for the third start. The assistant likes the new sprint block, and the swimmers look satisfyingly tired. Henrik writes the before times, then says which after-times would make them stop. He has to decide before practice ends whether exhaustion will count as effort or whether only faster starts can save the plan. The stopwatches decide the routine before tired swimmers can call effort progress.",
           "whatToDo": "Measure starts before and after the sprint block, then obey the stopping rule. If the starts do not improve, remove the extra work instead of praising effort.",
           "whyItMatters": "Fatigue can feel like evidence when the coach wants the plan to work. Timing the result gives the claim a possible loss."
@@ -748,13 +613,6 @@
             "email",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "fundraising email subject-line test",
-            "audience": "a nonprofit communications lead attached to an urgent subject line",
-            "stakes": "donor fatigue could rise while the team counts only opens",
-            "format": "dialogue",
-            "requiredBeat": "Kasia says the line must lose if unsubscribes pass a set level, even if open rates climb"
-          },
           "scenario": "\"The urgent line will win opens,\" the analyst says. Two subject lines sit on sticky notes beside the unsubscribe column. Kasia, the communications lead, nods and points to the loss rule. \"If unsubscribes cross this level, it loses even with more opens.\" Before the send button lights up, she must decide whether the test is measuring attention or damaging trust. The unsubscribe threshold stays visible even if the open-rate graph looks exciting.",
           "whatToDo": "Set the unsubscribe loss rule beside the open-rate goal. Let the subject line fail if it buys attention by burning donor trust.",
           "whyItMatters": "A test that counts only the flattering metric protects the favored idea. A falsifying metric keeps the team from winning the wrong game."
@@ -767,13 +625,6 @@
             "seeds",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "farm seed germination batch",
-            "audience": "a seed cooperative manager defending a new drying process",
-            "stakes": "bad germination could cost growers a short planting window",
-            "format": "postmortem",
-            "requiredBeat": "Devon compares the failed tray to the pre-written germination cutoff instead of explaining the failure away as weather"
-          },
           "scenario": "It took Devon, the seed cooperative manager, one greenhouse tray to learn whether the new drying process had been protected from failure. Pale seedlings lean toward the fan, and the germination cutoff is taped to the bench. The batch misses the line. Instead of blaming the cold week, Devon compares the tray to the rule he wrote before the test and records the process as failed for the spring run. The seed tray is split before the team starts explaining every sprout as proof.",
           "whatToDo": "Use the cutoff written before the tray sprouted. Do not rescue the drying process with a weather story after the result is already visible.",
           "whyItMatters": "A prewritten cutoff blocks after-the-fact flexibility. It keeps a costly seed process from surviving by inventing explanations after growers have lost time."
@@ -786,13 +637,6 @@
             "reading",
             "tool"
           ],
-          "planSpec": {
-            "domain": "after-school tutoring promise",
-            "audience": "a tutoring coordinator claiming a reading game improves comprehension",
-            "stakes": "students may lose six weeks to a tool that only feels engaging",
-            "format": "before_after",
-            "requiredBeat": "You watch Jack set the disproof rule before launch: if cold-read summaries do not improve by week three, the game is entertainment, not instruction"
-          },
           "scenario": "You watch Jack spread laminated reading cards beside a tablet cart before the tutoring program opens. The game looks lively, and students ask for it during snack. Before launch, Jack writes the disproof rule: if cold-read summaries do not improve by week three, the tool is entertainment, not instruction. Three weeks later, he reads the summaries before the usage report. The tutoring promise now has a date when the claim either earns trust or gets revised.",
           "whatToDo": "Judge the game by cold-read summaries, not by enthusiasm alone. Keep it only if the prewritten learning result improves by the deadline.",
           "whyItMatters": "Engagement can confirm a tool that teaches little. The disproof rule protects students from losing weeks to something that only feels productive."
@@ -811,8 +655,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A falsifiable claim names the losing result before the evidence arrives. Positive comments support the idea weakly, and an undefined future review lets the claim keep moving.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -824,8 +667,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pre-set sales lift gives the claim a clear way to lose. Opinions about appearance and open-ended time both make it easier to protect the preferred story.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -837,8 +679,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The rise alone is not enough because another change may explain it. A sharper test must expose the specific remote-Friday claim to possible disproof.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -850,8 +691,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The drill needs a result that can defeat the coach's claim. Feeling intense can confirm the coach's preference without proving the drill improves performance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -863,8 +703,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pilot has become self-protecting. Interviews may help, but the deeper flaw is that no possible result is allowed to count against the idea.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -876,8 +715,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Grateful replies are easy confirmations. A rule covering donations and unsubscribes makes the claim risk a meaningful loss instead of counting only praise.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -889,8 +727,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The claim is about comprehension, so the test must risk failure on comprehension. Fun and usage can be real while leaving the learning claim untested.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -902,8 +739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A narrow revenue metric can protect the favored claim. A prewritten result set gives the pricing idea a way to lose if it buys revenue through hidden damage.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -915,8 +751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The design names the result that can defeat the checklist. Staff impressions and vague later discussion keep the claim too flexible to teach much.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -977,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "Disproof gives the idea a spine.",
-          "location": "breakdown.deepRead",
-          "why": "The line turns an abstract testing principle into a physical image."
+          "text": "Disproof gives the idea a spine."
         },
         {
-          "text": "A flexible claim has a seductive quality.",
-          "location": "breakdown.fullRead",
-          "why": "It names why unfalsifiable ideas feel strong before showing why they are weak."
+          "text": "A flexible claim has a seductive quality."
         },
         {
-          "text": "A claim that risks nothing teaches nothing.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the whole falsifiability move into a sentence with bite."
+          "text": "A claim that risks nothing teaches nothing."
         }
       ]
     },
@@ -1016,13 +845,6 @@
             "battery",
             "cost"
           ],
-          "planSpec": {
-            "domain": "municipal battery-cart procurement",
-            "audience": "a facilities manager told electric maintenance carts are too expensive",
-            "stakes": "the city may keep buying gas carts because the vendor bundle looks inevitable",
-            "format": "decision_point",
-            "requiredBeat": "Matthew separates battery cells, frame, charger, and service contract costs on the bid sheet before accepting the bundled price"
-          },
           "scenario": "Matthew, the facilities manager, parks a yellow maintenance cart beside a stack of vendor bids in the garage. The battery pack quote looks like a single fixed price, but he must decide whether to accept it or break the cart into cells, casing, charger, labor, and disposal. The parts list reveals which costs are physics and which are vendor packaging.",
           "whatToDo": "Break the bid into parts before rejecting the option. Price the cells, frame, charger, and service contract separately, then rebuild the comparison from verified costs.",
           "whyItMatters": "The bundled price imports the vendor's assumptions. Separating the pieces lets Matthew see which cost is real and which one belongs to the package design."
@@ -1035,13 +857,6 @@
             "packaging",
             "design"
           ],
-          "planSpec": {
-            "domain": "bakery packaging redesign",
-            "audience": "a bakery owner whose boxes crush croissants during delivery",
-            "stakes": "delivery growth stalls if the team only buys thicker versions of the same bad box",
-            "format": "before_after",
-            "requiredBeat": "Juliette takes the crushed box apart, lists what the pastry actually needs, and rebuilds the package from steam escape and corner pressure instead of copying the old box"
-          },
           "scenario": "Butter flakes stick to the inside of a collapsed pastry box after the lunch delivery run. Juliette, the bakery manager, first orders thicker samples, then stops. She cuts the crushed box open, lists steam escape, corner pressure, and flake space, and designs from those needs instead of copying the old shape. The next test box looks less pretty and carries the croissant intact. The new insert is sketched beside the old box so the team can see which assumptions survived disassembly.",
           "whatToDo": "Stop improving the old box. List what the pastry physically needs, then rebuild the package from steam, pressure, and movement.",
           "whyItMatters": "A thicker bad design preserves the hidden assumption. First principles shift authority from the old package to the croissant's actual constraints."
@@ -1054,13 +869,6 @@
             "staffing",
             "tasks"
           ],
-          "planSpec": {
-            "domain": "hotel housekeeping staffing model",
-            "audience": "an operations analyst copying a competitor's room-per-attendant target",
-            "stakes": "rooms may be marked clean while attendants skip safety checks",
-            "format": "postmortem",
-            "requiredBeat": "Lars walks one room reset with a timer and breaks the job into physical tasks before accepting the industry benchmark"
-          },
           "scenario": "It took Lars, the operations analyst, one squeaking cart outside room 417 to distrust the competitor benchmark. The industry target said the shift was staffed correctly, but attendants were skipping safety checks. Lars walks one reset with a timer, counts linen weight, bathroom steps, elevator waits, and inspection time, then rebuilds the staffing model from the tasks the benchmark never saw. His stopwatch separates linen weight, elevator wait, and inspection time before the benchmark gets another vote.",
           "whatToDo": "Take the benchmark apart into the physical work it hides. Time the actual reset and rebuild the staffing target from the room's real tasks.",
           "whyItMatters": "The benchmark is analogy, not ground truth. It may fit another hotel while failing the constraints of this building and checklist."
@@ -1073,13 +881,6 @@
             "students",
             "terrain"
           ],
-          "planSpec": {
-            "domain": "robotics club bridge build",
-            "audience": "a student team copying last year's winning robot chassis",
-            "stakes": "the copied design may fail the new terrain requirement",
-            "format": "scene",
-            "requiredBeat": "Chiara asks what the robot must actually cross, carry, and turn around, then removes three copied parts from the table"
-          },
           "scenario": "\"Last year's chassis won,\" one student says as aluminum brackets scatter across the plywood bridge mockup. Chiara, the robotics mentor, opens the terrain rule sheet and asks what the robot must cross, carry, and turn around. Three copied parts come off the table. Before the build night ends, she must decide whether the trophy photo or the terrain rules get to define the robot. The terrain rule sheet sits in the center of the table, replacing the trophy photo as the authority.",
           "whatToDo": "Start from the terrain requirement, payload, and turning space. Remove copied parts that do not serve those facts before the team cuts more metal.",
           "whyItMatters": "The old chassis is an analogy from a different problem. Taking it apart lets the team design for the constraints in front of them."
@@ -1092,13 +893,6 @@
             "reminders",
             "Five Whys"
           ],
-          "planSpec": {
-            "domain": "dental clinic reminder system",
-            "audience": "a clinic manager trying to reduce missed appointments",
-            "stakes": "patients keep missing visits while the clinic buys reminder software by analogy",
-            "format": "vignette",
-            "requiredBeat": "Hadiya asks five whys on one missed visit and finds the real constraint is shift work and bus timing, not forgetfulness"
-          },
           "scenario": "Why did the reminder text fail if the patient received it? Hadiya, the clinic manager, sits with a missed-visit log, an unanswered text, and a bus schedule printout. Five whys later, forgetfulness has disappeared as the main constraint. Shift work and a bad bus connection are doing the damage. Before buying reminder software, she must decide whether memory is really the problem. The bus timetable and shift calendar now sit beside the reminder script before anyone buys new software.",
           "whatToDo": "Run the Five Whys on one missed visit before buying software. Rebuild the fix around shift timing and transit instead of copying a reminder-tool answer.",
           "whyItMatters": "The first explanation was an assumption dressed as fact. Digging below it changes the problem from memory to access."
@@ -1111,13 +905,6 @@
             "lighting",
             "constraints"
           ],
-          "planSpec": {
-            "domain": "community theater lighting rig",
-            "audience": "a volunteer technical director upgrading an old lighting setup",
-            "stakes": "a donated rig may look modern but overload the building's electrical limits",
-            "format": "reflection",
-            "requiredBeat": "You watch Pavel list electricity, throw distance, heat, and cue needs before deciding which donated lights are useful and which are just familiar theater gear"
-          },
           "scenario": "You watch Pavel, the volunteer technical director, stand in the community theater aisle while dust brightens inside a stage beam above a coil of old cable. The donated lights look modern. The building's electrical limit does not. Pavel lists electricity, throw distance, heat, and cue needs before deciding which fixtures help and which only look like theater gear he recognizes. The lighting cue list is rebuilt from sightline, cable run, and load limit instead of last year's rig.",
           "whatToDo": "Judge the lights from the stage constraints: power, throw distance, heat, and cues. Accept only the donated gear that fits those facts.",
           "whyItMatters": "Familiar equipment can smuggle in the wrong assumptions. The stage's physical limits, not the donation's appeal, should shape the rig."
@@ -1136,8 +923,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The bundle may hide assumptions. Separating the cart into parts lets the buyer reason from verified costs rather than a vendor's packaged answer.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1149,8 +935,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The croissant's constraints are the foundation. Thicker boxes and competitor choices may preserve the old assumption instead of rebuilding from steam, pressure, and movement.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1162,8 +947,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The copied benchmark compressed a different setting. First principles require breaking the work into tasks before accepting a borrowed room-per-attendant number.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1175,8 +959,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The new terrain facts should govern the design. First principles do not ban old parts; they make every part earn its place against the current constraints.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1188,8 +971,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The first explanation was an assumption. Digging down revealed a different constraint, so copying the reminder-software answer would solve the wrong problem.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1201,8 +983,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The stage constraints are the ground facts. The donation's professional look is only analogy unless the lights fit power, heat, distance, and cue requirements.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1214,8 +995,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The question separates local facts from inherited analogy. Competitor history and cosmetic originality both keep the old structure in charge.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1227,8 +1007,7 @@
             ],
             "correctIndex": 0,
             "explanation": "First principles are meant to guide rebuilding. Once a verified constraint appears, the next move is design from it, not endless questioning or blame.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1240,8 +1019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "First principles are most valuable when the inherited shape is costly or mismatched. Familiarity and innovation theater are both weak reasons for the harder path.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1302,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "Take it apart before you improve it.",
-          "location": "breakdown.fastRead",
-          "why": "The sentence gives first principles thinking a concrete starting action."
+          "text": "Take it apart before you improve it."
         },
         {
-          "text": "Disassembly creates room for facts that habit covered.",
-          "location": "breakdown.deepRead",
-          "why": "It captures why breaking a problem into pieces can produce new options."
+          "text": "Disassembly creates room for facts that habit covered."
         },
         {
-          "text": "The method is hard because assumptions rarely announce themselves.",
-          "location": "breakdown.fullRead",
-          "why": "The line names the practical difficulty without turning it into theory."
+          "text": "The method is hard because assumptions rarely announce themselves."
         }
       ]
     },
@@ -1341,13 +1113,6 @@
             "triage",
             "simulation"
           ],
-          "planSpec": {
-            "domain": "ethics board triage exercise",
-            "audience": "a hospital ethics chair preparing for a scarce-bed protocol",
-            "stakes": "the first real crisis will arrive too fast for untested moral rules",
-            "format": "thought_experiment",
-            "requiredBeat": "Ryan removes all patient names from three hypothetical cases and forces the board to choose by stated criteria before any real patient is waiting"
-          },
           "scenario": "Three blank case cards sit under a harsh meeting-room lamp before Tuesday's ethics board. Ryan, the hospital chair, has removed every patient name from the scarce-bed exercise. The protocol draft lists stated criteria, but the board keeps drifting toward personal sympathy. Before any real patient is waiting, Ryan must decide whether they will choose by the written rule or by the story each card used to carry.",
           "whatToDo": "Keep the names off the cases and force the board to choose by stated criteria. Use the stripped-down simulation to expose the rule before the crisis arrives.",
           "whyItMatters": "The missing names remove noise without removing the moral pressure. The board can see whether its rule works before a real patient pays for confusion."
@@ -1360,13 +1125,6 @@
             "risk",
             "prediction"
           ],
-          "planSpec": {
-            "domain": "satellite launch delay simulation",
-            "audience": "a mission planner weighing whether to delay a small satellite launch",
-            "stakes": "a rushed launch could waste years of lab work",
-            "format": "predict_reveal",
-            "requiredBeat": "Manon asks the team to simulate the launch with the sensor fault unresolved and name the first irreversible loss before voting"
-          },
           "scenario": "Manon, the mission lead, points to the red sensor flag as the launch-window countdown glows over the console. \"Assume the fault stays red,\" she says. The team wants to vote, and the satellite has waited years. She asks them to run the launch in their heads and name the first irreversible loss. Before the window closes, she must decide whether a mental simulation is enough to delay a physical launch.",
           "whatToDo": "Fix the sensor fault inside the simulation and trace the first loss that cannot be undone. Vote only after the team has named that consequence.",
           "whyItMatters": "The mental run makes optimism face a fixed constraint. If the first irreversible loss appears quickly, the delay has a reason stronger than general caution."
@@ -1379,13 +1137,6 @@
             "weather",
             "crowd"
           ],
-          "planSpec": {
-            "domain": "food truck festival rain plan",
-            "audience": "a festival organizer considering a rain-or-shine policy",
-            "stakes": "vendors could lose inventory and customers could crowd unsafe tents",
-            "format": "decision_point",
-            "requiredBeat": "Tomas walks the planned festival in his mind during a thunderstorm and moves the ticket queue after noticing where wet people will bottleneck"
-          },
           "scenario": "Rainwater pools in the chalk marks for the ticket line while Tomas studies the weather map on his phone. The vendor coolers are already staged under the tents. He walks the whole festival in his mind during a thunderstorm and sees wet customers bottleneck at the narrow gate. His hand hovers over the site map, and he must decide whether to move the ticket queue before the policy is announced.",
           "whatToDo": "Run the festival once under rain as a fixed condition, then move the queue away from the narrow gate before the crowd arrives.",
           "whyItMatters": "The simulation exposes the crowd problem while chalk is still easy to redraw. Waiting for real rain would make the same lesson expensive and unsafe."
@@ -1398,13 +1149,6 @@
             "paperwork",
             "patient"
           ],
-          "planSpec": {
-            "domain": "hospital discharge thought experiment",
-            "audience": "a ward manager redesigning discharge paperwork",
-            "stakes": "patients may misunderstand medication instructions after leaving",
-            "format": "before_after",
-            "requiredBeat": "You watch Anke pretend she is a tired patient with one bus transfer and test whether the new packet survives that path"
-          },
           "scenario": "You watch Anke fold the discharge packet under a plastic pharmacy bag at the nurses' station. Before, the medication list looked clear on the ward desk. After she pretends she is a tired patient with one bus transfer, the callback number disappears under two pages of instructions. She redesigns the packet around the bus ride, not the desk.",
           "whatToDo": "Run the paperwork through the patient's path: tired body, bus transfer, pharmacy bag, and one small phone screen. Redesign where the packet fails.",
           "whyItMatters": "The thought experiment imports the constraint the desk view hides. It shows how instructions that look clear in calm conditions break during actual use."
@@ -1417,13 +1161,6 @@
             "fuel",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "arctic field camp fuel plan",
-            "audience": "a field researcher planning a remote sampling season",
-            "stakes": "a miscounted fuel cache could strand the team",
-            "format": "postmortem",
-            "requiredBeat": "Akira writes a postmortem from the future where the camp runs short, then identifies the hidden assumption about generator hours"
-          },
           "scenario": "It took Akira one invented report to see the fuel plan clearly. Frost silvered the drum stencil at the edge of camp in the future postmortem: generator short by day nine, sampling stopped, evacuation delayed. Back at the planning table, Akira finds the hidden assumption. The cache used ideal generator hours, not storm-bound hours, so the fuel order changes before the flight.",
           "whatToDo": "Write the future failure report before the season starts. Use it to find the assumption about generator hours and change the cache while fuel can still move.",
           "whyItMatters": "The imagined shortage gives the plan a consequence to inspect. It turns a quiet spreadsheet assumption into a visible failure before the team is remote."
@@ -1436,13 +1173,6 @@
             "fairness",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "music conservatory audition rule",
-            "audience": "a conservatory dean testing blind audition procedures",
-            "stakes": "a rule meant to increase fairness may create a new hidden advantage",
-            "format": "reflection",
-            "requiredBeat": "Isabel mentally runs the audition from the hallway, the sign-in desk, and the screen, then spots that accompanist access still reveals privilege"
-          },
           "scenario": "Which part of the blind audition is still visible? Isabel, the conservatory dean, fans numbered audition cards beside a piano bench and mentally walks the day from hallway to sign-in desk to screen. The screen hides faces. The accompanist access does not. Students who can afford rehearsal time still arrive with an edge the rule had not hidden.",
           "whatToDo": "Run the audition path from arrival to final note, not only from behind the screen. Add the accompanist step to the fairness test.",
           "whyItMatters": "A mental simulation can reveal the hidden advantage that the official rule misses. The screen solves one bias while leaving another path open."
@@ -1461,8 +1191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A useful thought experiment simplifies deliberately and fixes the constraint. Too much detail can blur the rule, while hopeful imagining avoids the hard test.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1474,8 +1203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fixed constraints make the mental run teach. Happy imagining and map opinions may be pleasant, but they do not pressure the route's hidden assumptions.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1487,8 +1215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The simulation does not decide everything by itself, but it surfaces a real consequence for the team to weigh. Anxiety and automatic cancellation miss the point.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1500,8 +1227,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The mental run found a cheap adjustment before the real cost appears. The organizer should not treat the simulation as certainty, but it gives a concrete redesign target.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1513,8 +1239,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The structure matters. A constrained mental run is not loose fantasy. It is a way to expose assumptions before a physical test is possible or affordable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1526,8 +1251,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The mental simulation imports the patient's constraints. It is not judging polish or reducing information blindly; it is testing how the packet works under real pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1539,8 +1263,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The imagined postmortem turned a quiet assumption into a visible failure path. It does not remove the need for later evidence, but it improves the plan early.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1552,8 +1275,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The simulation is too narrow. Walking the whole path can reveal hidden advantages before the official blind moment begins. More emotion or automatic removal skips the test.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1565,8 +1287,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Thought experiments are previews, not final proof. Once a safe real-world test is possible, reality should update or correct the mental result.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1627,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "Run the future while the cost is still imaginary.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the value of thought experiments immediate and practical."
+          "text": "Run the future while the cost is still imaginary."
         },
         {
-          "text": "The constraint does the teaching.",
-          "location": "breakdown.deepRead",
-          "why": "The line distinguishes structured simulation from fantasy."
+          "text": "The constraint does the teaching."
         },
         {
-          "text": "The mind is a rehearsal room, not the whole stage.",
-          "location": "breakdown.fullRead",
-          "why": "It captures both the power and limit of the model."
+          "text": "The mind is a rehearsal room, not the whole stage."
         }
       ]
     },
@@ -1666,13 +1381,6 @@
             "allergy",
             "conditions"
           ],
-          "planSpec": {
-            "domain": "allergy clinic trigger investigation",
-            "audience": "a clinic nurse helping a patient identify what produces hives",
-            "stakes": "the patient may cut foods randomly while missing the sufficient trigger combination",
-            "format": "scene",
-            "requiredBeat": "Emma separates foods that were present during every reaction from the one food-medication combination that is enough to reproduce the rash"
-          },
           "scenario": "Emma, the clinic nurse, circles red welts in pen on an allergy diary page while the patient asks which foods to cut. Strawberries, shellfish, late dinners, and poor sleep appear often, but the rash returns only when one medication follows one food. Before the appointment ends, Emma has to decide which conditions were merely present and which combination is enough to reproduce the hives.",
           "whatToDo": "Separate repeated presence from sufficient trigger. Keep foods on the suspect list only when the timing pattern shows they help produce the rash.",
           "whyItMatters": "Randomly cutting every present food confuses association with condition type. The useful lever is the combination that is enough to bring the outcome back."
@@ -1685,13 +1393,6 @@
             "permit",
             "project"
           ],
-          "planSpec": {
-            "domain": "harbor dredging permit",
-            "audience": "a port coordinator trying to restart a delayed dredging project",
-            "stakes": "the crew may chase optional paperwork while the missing permit blocks everything",
-            "format": "decision_point",
-            "requiredBeat": "Louis sorts the checklist into must-be-present approvals and enough-to-start approvals before calling another contractor"
-          },
           "scenario": "Louis, the port coordinator, stands under a tide chart taped beside unsigned permits in the harbor office. A contractor is ready and a crew is waiting for dredging work. The checklist mixes optional reports with approvals that must be present. His phone is already open to call another contractor, but he must decide whether the real blocker is labor or the one missing permit that no crew can work around.",
           "whatToDo": "Sort the checklist into must-be-present approvals and enough-to-start approvals before making another contractor call. Clear the gate first.",
           "whyItMatters": "More ready resources cannot overcome a missing necessary condition. The project starts only when the required approval is present."
@@ -1704,13 +1405,6 @@
             "schedule",
             "safety"
           ],
-          "planSpec": {
-            "domain": "youth soccer tournament scheduling",
-            "audience": "a volunteer coordinator assembling a weekend tournament",
-            "stakes": "games cannot start if one required referee condition is absent",
-            "format": "predict_reveal",
-            "requiredBeat": "Nina asks which conditions are nice, which are required, and which set is enough to begin the first match safely"
-          },
           "scenario": "Which condition actually starts the tournament? Nina stands beside bundled orange corner flags and an empty referee sign-in table. The field permit has arrived, the snack tent is ready, and parents are texting about kickoff. She predicts the checklist is complete, then sees the referee count is short. Before the first match, she must decide which conditions are nice, which are required, and which set is enough to begin safely.",
           "whatToDo": "Name the required set: field, referee count, and setup. Delay the match until that set is present, even if every nice-to-have item is ready.",
           "whyItMatters": "A tournament can look prepared while missing the one condition that makes play safe. Helpful extras cannot substitute for a required gate."
@@ -1723,13 +1417,6 @@
             "fermentation",
             "fault"
           ],
-          "planSpec": {
-            "domain": "microbrewery fermentation fault",
-            "audience": "a head brewer diagnosing a sour batch",
-            "stakes": "another ruined batch will waste tanks during a seasonal release",
-            "format": "postmortem",
-            "requiredBeat": "Hiroshi marks sanitation as necessary for good beer but not sufficient, then finds the temperature spike that is enough to explain this fault"
-          },
           "scenario": "It took Hiroshi, the brewery manager, one dumped seasonal tank to stop treating sanitation as the whole answer. Condensation streaked down the stainless fermenter, and the sanitation checklist was clean. In the postmortem, he marks sanitation as necessary for good beer but not sufficient to explain this fault. The temperature log shows the warm-night spike that is enough to account for the sour batch.",
           "whatToDo": "Keep sanitation on the necessary list, then look for the condition that is enough to explain this batch. Follow the temperature log to the actual fault.",
           "whyItMatters": "A necessary condition can be clean and still fail to explain the outcome. Diagnosis improves when each condition gets the right role."
@@ -1742,13 +1429,6 @@
             "water",
             "repair"
           ],
-          "planSpec": {
-            "domain": "community garden irrigation repair",
-            "audience": "a garden board deciding why seedlings keep dying",
-            "stakes": "volunteers may keep adding mulch when water pressure is the missing condition",
-            "format": "before_after",
-            "requiredBeat": "Maja names sunlight and soil as necessary but shows the dry pressure gauge that prevents either from being enough"
-          },
           "scenario": "Maja, the garden board lead, points past the mulch pile to the cracked pressure gauge zip-tied to a raised bed. Before, volunteers kept adding compost, shade cloth, and cheerful signs while seedling trays curled dry. After the gauge reads empty again, Maja names sunlight and soil as necessary, then shows why neither is enough without water pressure.",
           "whatToDo": "Stop adding helpful extras until the missing water-pressure condition is restored. Keep sunlight and soil on the list, but repair the gate.",
           "whyItMatters": "Necessary conditions can sit uselessly beside a missing blocker. The seedlings do not need more effort until the condition that lets the others work is present."
@@ -1761,13 +1441,6 @@
             "intake",
             "eligibility"
           ],
-          "planSpec": {
-            "domain": "legal clinic eligibility screen",
-            "audience": "a clinic intake lead designing criteria for eviction help",
-            "stakes": "eligible tenants could be turned away because helpful signals are confused with required ones",
-            "format": "reflection",
-            "requiredBeat": "You watch Luca move income, notice date, county, and hearing date into necessary or sufficient groups before training volunteers"
-          },
           "scenario": "You watch Luca, the intake lead, spread a stamped eviction notice under sticky notes at the legal clinic while two volunteers wait for the training script. Income, notice date, county, and hearing date all matter, but they do not matter the same way. Before training volunteers, Luca moves each field into necessary, sufficient for urgent intake, or helpful later, so eligible tenants are not delayed by optional details.",
           "whatToDo": "Sort each intake field by condition type before training volunteers. Do not let helpful context masquerade as required eligibility.",
           "whyItMatters": "When volunteers confuse helpful signals with necessary ones, people who qualify can wait. Clear condition roles make the screen faster and fairer."
@@ -1786,8 +1459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Sunlight and soil may be required, but they are not sufficient without water. The missing pressure is a blocker, not a cosmetic improvement.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1799,8 +1471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The missing permit is necessary. More crews or equipment cannot start the project if the required approval is absent.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1812,8 +1483,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A necessary condition can be satisfied and still not explain the outcome. The warm spike is sufficient for this fault; sanitation remains required in general.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1825,8 +1495,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The referee count is part of the necessary set for safe play. Nice-to-have readiness cannot substitute for a required condition.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1838,8 +1507,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The list mixes condition types. Sorting them prevents the clinic from improving a helpful factor while missing the blocker or trigger.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1851,8 +1519,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The screen should reflect condition roles. Helpful context can still be collected later, but it should not block the sufficient urgent-intake set.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1864,8 +1531,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Importance is too broad. The useful question assigns roles: gates, triggers, and helpful supports. Ease and senior attention do not reveal condition type.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1877,8 +1543,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Repeated presence is not the same as necessity. The nurse should avoid cutting every present food when the sufficient pattern may be narrower.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1890,8 +1555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A necessary condition has priority because the outcome cannot happen without it. Training may help and the dashboard may inform, but neither opens the gate.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1952,19 +1616,13 @@
       },
       "memorableLines": [
         {
-          "text": "Do not ask only what matters; ask how it matters.",
-          "location": "breakdown.fastRead",
-          "why": "It redirects the reader from vague importance to condition roles."
+          "text": "Do not ask only what matters; ask how it matters."
         },
         {
-          "text": "The label changes the action you take.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence makes the distinction practical rather than academic."
+          "text": "The label changes the action you take."
         },
         {
-          "text": "Find the gate. Find the trigger.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the chapter's reasoning tool a memorable two-step phrase."
+          "text": "Find the gate. Find the trigger."
         }
       ]
     },
@@ -1991,13 +1649,6 @@
             "parking",
             "spillover"
           ],
-          "planSpec": {
-            "domain": "coastal town parking-fee change",
-            "audience": "a town manager considering higher beach parking fees",
-            "stakes": "a revenue win may push cars into residential streets and anger year-round residents",
-            "format": "decision_point",
-            "requiredBeat": "Amelia traces the first-order revenue gain into the second-order spillover of cars filling side streets before the council vote"
-          },
           "scenario": "Sand is stuck in a parking meter coin slot beside the beach access path. Amelia, the town manager, sees the fee schedule close the summer budget gap before the council vote. A side-street map shows the next move: drivers will dodge the meters and fill residential blocks. She must decide whether the first-order revenue gain is worth the second-order spillover. The map shows exactly which homes inherit the problem if the fee schedule is treated as the whole decision.",
           "whatToDo": "Trace the fee from budget line to driver behavior to resident complaints before recommending the vote.",
           "whyItMatters": "The revenue is real, but it creates a downstream parking problem. The decision is not only about the first gain."
@@ -2010,13 +1661,6 @@
             "delivery",
             "refunds"
           ],
-          "planSpec": {
-            "domain": "restaurant delivery packaging",
-            "audience": "a restaurant owner switching to cheaper delivery containers",
-            "stakes": "unit savings may create soggy food, refunds, and worse reviews",
-            "format": "before_after",
-            "requiredBeat": "Aidan follows the cheap container from packing line to twenty-minute delivery and writes the refund chain before approving the order"
-          },
           "scenario": "Steam beads under a clear plastic lid while the first test order waits on the pass. Aidan, the restaurant manager, compares the unit-cost quote with a twenty-minute delivery route and the refund log. Before approving the cheaper container, he follows the chain from saved cents to soggy fries to Monday refunds. The refund log turns the twelve-cent saving into a Monday customer-service cost.",
           "whatToDo": "Test the container through the delivery path, then count refunds and reviews as part of the cost.",
           "whyItMatters": "A cheaper input can become an expensive customer experience. The later effect belongs in the same decision."
@@ -2029,13 +1673,6 @@
             "safety",
             "norms"
           ],
-          "planSpec": {
-            "domain": "university lab safety shortcut",
-            "audience": "a lab manager tempted to waive a glove-change step to save time",
-            "stakes": "one faster protocol may normalize contamination risk",
-            "format": "postmortem",
-            "requiredBeat": "Astrid asks the team to name what the shortcut teaches next week's interns before signing off"
-          },
           "scenario": "\"Can we skip the glove change just for this batch?\" a student asks while purple nitrile gloves sit beside the sample rack. Astrid, the lab manager, opens the intern checklist and writes the waived step in red. In the postmortem, she asks the team what lesson next week's interns will copy if speed wins here. The intern checklist shows how a one-time exception becomes next week's default habit.",
           "whatToDo": "Name the behavior the shortcut will teach, not just the minutes it saves.",
           "whyItMatters": "The first-order gain is speed. The second-order cost is a norm that makes the next unsafe shortcut easier."
@@ -2048,13 +1685,6 @@
             "incentives",
             "queue"
           ],
-          "planSpec": {
-            "domain": "mobile blood-drive incentives",
-            "audience": "a blood bank coordinator adding gift cards to increase donations",
-            "stakes": "today's signups may crowd out repeat donors or attract poorly screened donors",
-            "format": "predict_reveal",
-            "requiredBeat": "Frida asks what happens after the first surge and checks repeat-donor retention before scaling the incentive"
-          },
           "scenario": "Will a gift card make the blood drive healthier after the first rush? Frida, the blood bank manager, sees the stack beside the mobile-clinic cooler and predicts a signup surge. Before scaling the offer, she must decide whether the repeat-donor list and screening queue can handle the second-order effects. The repeat-donor list tells her whether the rush creates durable supply or only a crowded morning.",
           "whatToDo": "Look past the first surge to retention and screening load. Scale only if the later donor pattern still helps.",
           "whyItMatters": "An incentive can improve today's count while weakening tomorrow's reliability. The consequence chain decides whether the gain holds."
@@ -2067,13 +1697,6 @@
             "subscription",
             "renewal"
           ],
-          "planSpec": {
-            "domain": "subscription news trial offer",
-            "audience": "a newsroom growth lead planning a ninety-nine-cent trial",
-            "stakes": "trial growth may train readers to churn before full-price renewal",
-            "format": "reflection",
-            "requiredBeat": "You watch Chidi draw the second-order renewal behavior behind the first-order signup spike and change the cancellation timing"
-          },
           "scenario": "You see a renewal curve printed beside a half-finished headline budget. Chidi, the newsroom growth lead, can buy a signup spike with a ninety-nine-cent trial, but he sketches what readers do at renewal. Before launch, he changes the cancellation timing so the first-order growth does not train people to churn. The renewal curve shows whether the trial creates subscribers or trains readers to wait for discounts.",
           "whatToDo": "Draw the renewal behavior behind the signup spike and adjust the offer before it teaches the wrong habit.",
           "whyItMatters": "Growth can borrow attention from the future. The second-order question asks whether new users become subscribers or trained bargain hunters."
@@ -2086,13 +1709,6 @@
             "procurement",
             "closure"
           ],
-          "planSpec": {
-            "domain": "public pool chemical ordering",
-            "audience": "a recreation supervisor buying a cheaper chlorine supply",
-            "stakes": "short-term savings could cause cloudy water, closures, and lost swim lessons",
-            "format": "vignette",
-            "requiredBeat": "Javier traces the cheaper order through storage, dosing, water clarity, and parent refunds before changing suppliers"
-          },
           "scenario": "It took one closed Saturday lesson block for Javier, the recreation manager, to reprice the chlorine quote. Test strips dry on the pool office counter while he traces the cheaper supply through storage, dosing, water clarity, and lesson refunds. Before changing suppliers, he must decide whether the first-order savings survive the second-order closure risk. The test strips connect procurement savings to cloudy water before parents ask for lesson refunds.",
           "whatToDo": "Follow the chemical order through use, water quality, closures, and refunds before choosing the cheaper supplier.",
           "whyItMatters": "A lower quote is not the full cost if the later chain creates cloudy water and cancelled lessons."
@@ -2111,8 +1727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful move is to follow the first-order revenue into the next behavior it creates. Approving only from the budget line ignores the spillover, while rejecting all fees turns the model into blanket caution.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2124,8 +1739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The container's price is only the first effect. The manager should count the downstream refund and review pattern; stopping delivery skips the concrete comparison the model asks for.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2137,8 +1751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The shortcut's second-order effect is the norm it creates for future interns. Feelings and beneficiaries may matter, but they do not trace the consequence chain as directly.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2150,8 +1763,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first surge is not enough. The manager needs to see whether the later queue and retention effects preserve or reverse the benefit; permanent avoidance is too broad.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2163,8 +1775,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The concern is the behavior the offer teaches after the initial signup. Calling the spike useless overstates the case, and hiding cancellation timing creates a different trust problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2176,8 +1787,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The supplier decision has to include the downstream operating chain. The lower quote alone is a first-order view, and the parent survey does not replace tracing the actual failure path.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2189,8 +1799,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The team should compare the first activation gain with the next effects on support and confusion. Keeping everything is blanket caution; waiting for failure delays a consequence that can be checked now.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2202,8 +1811,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Second-order thinking is disciplined, not unlimited worry. It improves when the manager traces visible next effects instead of treating every imagined downside as equally important.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2215,8 +1823,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The extra prep time is the first-order gain. The lost afternoon focus may erase or reverse it, so it belongs in the decision; the other answers stop too early or overgeneralize.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2277,19 +1884,13 @@
       },
       "memorableLines": [
         {
-          "text": "The first answer is only the door.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the model feel like a practical next-step question."
+          "text": "The first answer is only the door."
         },
         {
-          "text": "And then what is the hinge that opens the second room.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the source anchor into a compact retrieval cue."
+          "text": "And then what is the hinge that opens the second room."
         },
         {
-          "text": "A later cost can outrank an early win.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the chapter's core reversal in plain language."
+          "text": "A later cost can outrank an early win."
         }
       ]
     },
@@ -2316,13 +1917,6 @@
             "evacuation",
             "risk"
           ],
-          "planSpec": {
-            "domain": "regional wildfire evacuation notice",
-            "audience": "an emergency manager deciding when to issue a voluntary evacuation",
-            "stakes": "waiting for certainty could trap residents if winds shift",
-            "format": "decision_point",
-            "requiredBeat": "Rebecca lays three wind scenarios on the map with rough odds and chooses the notice because the low-probability bad outcome is too costly"
-          },
           "scenario": "Ash specks land on a laminated evacuation map in the county command room. Rebecca, the emergency manager, lays out three wind scenarios with rough odds while the mayor asks for one answer. Before issuing a voluntary notice, she must decide whether the low-probability road-closure case is too costly to wait on. The voluntary notice is inconvenient, but it gives slow-moving residents daylight and time.",
           "whatToDo": "Put rough odds beside each wind scenario, then weigh the road-closure downside against the cost of an early voluntary notice.",
           "whyItMatters": "Waiting for certainty can trap residents. A less likely outcome can deserve action when the downside is severe and hard to reverse."
@@ -2335,13 +1929,6 @@
             "stockout",
             "update"
           ],
-          "planSpec": {
-            "domain": "pharmacy stockout planning",
-            "audience": "a pharmacy manager ordering a scarce antibiotic",
-            "stakes": "overordering wastes supply, underordering leaves patients untreated",
-            "format": "predict_reveal",
-            "requiredBeat": "Patrick updates his order after two new clinic alerts change the likelihood of a weekend surge"
-          },
           "scenario": "Orange prescription bottles click inside a locked drawer as Patrick, the pharmacy manager, reads a second clinic alert. Yesterday's order assumed a modest weekend surge for the scarce antibiotic. Before the courier cutoff, he must decide whether the new alerts raise the likelihood enough to change the order. The locked drawer count changes because the new alerts arrive before the courier cutoff. Patrick writes the revised order beside the two clinic alerts.",
           "whatToDo": "Update the order from the new clinic evidence instead of defending yesterday's estimate.",
           "whyItMatters": "Probabilistic thinking changes weights when evidence changes. The first number is a starting point, not a promise."
@@ -2354,13 +1941,6 @@
             "frost",
             "asymmetry"
           ],
-          "planSpec": {
-            "domain": "orchard frost forecast",
-            "audience": "an orchard manager deciding whether to run frost fans overnight",
-            "stakes": "fuel costs are high, but a hard frost could damage blossoms",
-            "format": "vignette",
-            "requiredBeat": "Paula weighs forecast ranges against blossom loss and starts the fans because the downside is asymmetric"
-          },
           "scenario": "\"The low might miss us,\" the night foreman says as white blossom petals tremble under a portable frost fan. Paula, the orchard manager, holds the forecast range beside the fuel invoice. Before sunset, she must decide whether a costly night of fans is justified by the asymmetric risk of blossom loss. The fuel bill is annoying; the blossom loss would be season-defining and hard to reverse.",
           "whatToDo": "Compare the forecast range with the size of the loss, not just the fuel bill. Start the fans when the downside dominates.",
           "whyItMatters": "A moderate probability can matter when the damage is large. The shape of the loss changes the weight of the odds."
@@ -2373,13 +1953,6 @@
             "debt",
             "cases"
           ],
-          "planSpec": {
-            "domain": "venture debt covenant review",
-            "audience": "a finance lead considering a loan with a strict covenant",
-            "stakes": "a likely growth plan may still fail under one plausible revenue miss",
-            "format": "postmortem",
-            "requiredBeat": "Min writes three revenue cases and notices the medium-bad case triggers a covenant breach before the cash actually runs out"
-          },
           "scenario": "It took Min, the finance lead, one highlighted covenant to stop calling the loan safe. The revenue cases show the optimistic path, the base path, and one medium-bad miss. In the postmortem, she notices the covenant breach arrives before the cash runway ends, so the probable case is not enough to judge the risk. The covenant sheet shows that a lender call, not empty cash, is the first painful event.",
           "whatToDo": "Model several revenue cases and check whether any plausible miss triggers a covenant before cash runs out.",
           "whyItMatters": "The danger may sit in a less likely but still plausible path. Probability needs to be paired with the consequence that path creates."
@@ -2392,13 +1965,6 @@
             "insurance",
             "budget"
           ],
-          "planSpec": {
-            "domain": "charity gala weather insurance",
-            "audience": "a nonprofit director deciding whether to insure an outdoor fundraiser",
-            "stakes": "a small premium may protect the year's scholarship budget",
-            "format": "reflection",
-            "requiredBeat": "You watch Matteo compare the rain probability with the scholarship loss instead of treating thirty percent as small"
-          },
           "scenario": "You watch linen tablecloths stack up beside a rain-insurance quote on the venue desk. Matteo, the nonprofit director, sees a thirty percent rain probability and an insurance premium that looks annoying. Before rejecting it, he compares that probability with the scholarship budget a storm would erase. The premium is judged against scholarships lost, not against the comfort of a dry forecast.",
           "whatToDo": "Compare the premium with the size of the protected loss. Do not treat thirty percent as small until the downside is named.",
           "whyItMatters": "The probability is only half the decision. A modest chance can matter when the loss is central to the mission."
@@ -2411,13 +1977,6 @@
             "logs",
             "tail"
           ],
-          "planSpec": {
-            "domain": "cybersecurity incident response",
-            "audience": "a security lead deciding whether a small anomaly deserves escalation",
-            "stakes": "a rare intrusion path may cause serious damage if dismissed as noise",
-            "format": "before_after",
-            "requiredBeat": "Soren updates the intrusion odds after a second log pattern appears and isolates the server before proof is complete"
-          },
           "scenario": "How much proof is enough when the quiet hour breaks twice? Soren, the security lead, compares two red log entries separated by a long pause. Before the second pattern, he would have watched. After it, he updates the intrusion odds and isolates the server before the rare path becomes expensive. The isolation step is reversible, while the rare intrusion path is not polite if it is real.",
           "whatToDo": "Update the intrusion likelihood after the second pattern and choose a reversible isolation step before proof is complete.",
           "whyItMatters": "Rare risks with heavy damage cannot be handled like ordinary noise. Isolation is justified when the downside is asymmetric and the action is reversible."
@@ -2436,8 +1995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The team should hold several futures and compare their costs. Waiting for certainty ignores severe downside, while always issuing the strongest order skips the rough weighting step.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2449,8 +2007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "New evidence should update the probability. That does not mean ordering the maximum; it means the old estimate no longer deserves the same weight.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2462,8 +2019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Asymmetry means the size of the loss matters with the odds. Waiting for majority likelihood can be too late, while running fans every cold night ignores cost and range.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2475,8 +2031,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A plausible downside case can control the decision when it triggers a serious constraint. The base case alone hides the covenant timing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2488,8 +2043,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The decision combines probability and payoff shape. Thirty percent may matter when the loss is large, but that does not make every insurance purchase automatically right.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2501,8 +2055,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The second pattern changes the probability, and the action is reversible while the downside is severe. Waiting for proof treats a fat-tail risk like ordinary noise.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2514,8 +2067,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The model helps action under uncertainty by using rough weights and consequence size. Senior confidence and endless delay both replace probability with something weaker.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2527,8 +2079,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A fat-tail outcome can matter more than its probability suggests. The answer is to study and reduce that path, not to ignore it or cancel automatically.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2540,8 +2091,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Probability and asymmetry work together. The safer trial changes the downside, so the lower-likelihood but higher-upside option deserves real comparison.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2602,19 +2152,13 @@
       },
       "memorableLines": [
         {
-          "text": "The odds matter, but the shape of the payoff can matter more.",
-          "location": "breakdown.fastRead",
-          "why": "It captures probability and asymmetry in one practical sentence."
+          "text": "The odds matter, but the shape of the payoff can matter more."
         },
         {
-          "text": "Asymmetries change the decision.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a compact cue for mismatched odds and consequences."
+          "text": "Asymmetries change the decision."
         },
         {
-          "text": "A range is often more honest than a single brave answer.",
-          "location": "breakdown.fullRead",
-          "why": "It replaces false certainty with a useful mental move."
+          "text": "A range is often more honest than a single brave answer."
         }
       ]
     },
@@ -2641,13 +2185,6 @@
             "product",
             "mechanism"
           ],
-          "planSpec": {
-            "domain": "sleep-tracker productivity claim",
-            "audience": "a product manager tempted to claim that sleep-score nudges cause better work output",
-            "stakes": "marketing may promise a cause when motivated users simply use the tracker more",
-            "format": "decision_point",
-            "requiredBeat": "Luke writes the possible third factor, already disciplined users, beside the rising sleep and productivity lines before approving the claim"
-          },
           "scenario": "Two rising lines glow on a tablet in a dark bedroom: sleep-score chart and productivity survey. Luke, the product manager, is reviewing a campaign claim that the nudges cause better work. Before approval, he must decide whether already disciplined users are the third factor making both lines rise together. The third-factor note stays beside the landing-page copy until a test can show production, not just association.",
           "whatToDo": "Write the possible third factor beside the chart and ask what mechanism would let the nudge produce better output.",
           "whyItMatters": "The association may be real without proving cause. Motivated users could explain both tracker use and productivity."
@@ -2660,13 +2197,6 @@
             "helmets",
             "confounder"
           ],
-          "planSpec": {
-            "domain": "bike-share helmet pickup",
-            "audience": "a city mobility analyst reviewing a link between free helmets and fewer injuries",
-            "stakes": "funds may shift away from intersection fixes if the causal story is wrong",
-            "format": "decision_point",
-            "requiredBeat": "Eva asks whether safer riders are the ones taking helmets, then requests station-level crash data before claiming the helmets caused the drop"
-          },
           "scenario": "Did the free helmets reduce injuries, or did safer riders pick them up? Eva, the city mobility analyst, stands beside a row of helmets clipped to a bike-share kiosk. Before shifting funds from the intersection fix list, she must decide whether helmet pickup counts and station crash data show a mechanism or only association. The crash map stays open so the safety budget does not chase the wrong cause.",
           "whatToDo": "Compare helmet pickups with station-level crash changes and rider behavior before naming helmets as the cause.",
           "whyItMatters": "If safer riders self-select into helmets, the program may look causal while dangerous intersections still need money."
@@ -2679,13 +2209,6 @@
             "discount",
             "sales"
           ],
-          "planSpec": {
-            "domain": "coffee roaster loyalty campaign",
-            "audience": "a cafe owner seeing loyalty-card users buy more beans",
-            "stakes": "a discount campaign may reward customers who were already loyal",
-            "format": "predict_reveal",
-            "requiredBeat": "Vincent compares new loyalty-card customers with prior purchase history before saying the card caused higher bean sales"
-          },
           "scenario": "Warm coffee oil shines on a paper loyalty card beside the bean-sales report. Vincent, the cafe manager, predicts the card caused bigger purchases, then checks purchase history. Before expanding the discount, he must decide whether new loyalty-card customers changed behavior or old loyal buyers simply took the reward. The prior receipts tell him whether the card produced sales or merely labeled loyalty.",
           "whatToDo": "Compare new card users with their prior buying before treating higher bean sales as caused by the campaign.",
           "whyItMatters": "The loyalty card may be rewarding existing behavior. A causal claim needs evidence that the card produced a change."
@@ -2698,13 +2221,6 @@
             "bees",
             "program"
           ],
-          "planSpec": {
-            "domain": "wildflower planting and bees",
-            "audience": "a parks ecologist reviewing more bees after a planting program",
-            "stakes": "the city may expand a program without checking weather and mowing changes",
-            "format": "postmortem",
-            "requiredBeat": "Adaeze lays rainfall, mowing schedule, and wildflower acreage beside bee counts before naming the program as the cause"
-          },
           "scenario": "It took Adaeze, the parks analyst, one rainy season to question the simple planting story. Pollen dust covers the bee-count clipboard, and the wildflower acreage rose with the counts. In the postmortem, she adds the rainfall log and mowing schedule before naming the program as the cause. The city can still expand planting, but not before the rival explanations sit beside the bee counts.",
           "whatToDo": "Put rainfall, mowing, and acreage beside bee counts before deciding what produced the increase.",
           "whyItMatters": "The planting may help, but other changes can move bee counts too. The causal story needs a plausible production path."
@@ -2717,13 +2233,6 @@
             "retention",
             "test"
           ],
-          "planSpec": {
-            "domain": "app retention dashboard",
-            "audience": "a mobile app team seeing tutorial completions rise with retention",
-            "stakes": "the team may force a longer tutorial and reduce actual use",
-            "format": "before_after",
-            "requiredBeat": "Tom asks whether committed users finish tutorials because they already intend to stay, then proposes a test that changes tutorial order for new users"
-          },
           "scenario": "\"The tutorial is saving retention,\" the lead says while a funnel chart sits beside a phone stuck on step seven. Tom, the product lead, asks whether committed users finish because they already intend to stay. Before lengthening onboarding, he proposes an order test for new users to see whether the tutorial actually produces retention. The test protects new users from a longer flow built on self-selection.",
           "whatToDo": "Test tutorial order for new users instead of assuming completion caused retention.",
           "whyItMatters": "Committed users may complete more steps because they already plan to stay. A test can separate cause from self-selection."
@@ -2736,13 +2245,6 @@
             "reminders",
             "attendance"
           ],
-          "planSpec": {
-            "domain": "clinic no-show reminder",
-            "audience": "a clinic administrator linking appointment reminders to lower no-shows",
-            "stakes": "the clinic may overlook same-week scheduling changes that actually caused attendance to rise",
-            "format": "reflection",
-            "requiredBeat": "You watch Anya hold the reminder texts and schedule-shortening change apart until she can see which mechanism plausibly explains attendance"
-          },
           "scenario": "You watch a reminder-text report slide under a stack of same-week appointment cards. Anya, the clinic manager, sees no-show rates fall after texts began, but scheduling windows shortened too. Before calling reminders the cause, she holds both changes apart and asks which mechanism plausibly explains attendance. The clinic can keep reminders while it checks whether faster scheduling did the real work.",
           "whatToDo": "Separate reminder texts from same-week scheduling and look for the mechanism that best explains lower no-shows.",
           "whyItMatters": "Two changes happened together. The clinic should not crown the visible notification if scheduling timing produced the attendance gain."
@@ -2761,8 +2263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The association is a clue, but the causal claim needs a mechanism and a check for the third factor of disciplined users. Dropping the pattern would waste useful evidence.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2774,8 +2275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The analyst should check for self-selection and station data before claiming helmets caused the drop. Advertising first treats association as proof.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2787,8 +2287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Prior purchase history points to self-selection. The card might not be producing the behavior, even though card use and bean sales move together.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2800,8 +2299,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Rainfall and mowing are plausible confounders. The program may still help, but the causal claim needs the competing explanations beside it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2813,8 +2311,7 @@
             ],
             "correctIndex": 1,
             "explanation": "An order test can show whether tutorial exposure produces retention. Forcing a longer tutorial assumes the causal story and may punish users.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2826,8 +2323,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Two changes moved together with the result. Same-week scheduling is a plausible mechanism, so crediting reminders alone would be premature.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2839,8 +2335,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Movement together is not the same as production. The manager needs a mechanism or test, not a prettier chart or total dismissal of associations.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2852,8 +2347,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The celebrity mention could explain the movement. The team can still learn from the pattern, but it should not crown the email without separating the confounder.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2865,8 +2359,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The shorter shift is a plausible cause, not just background noise. The poster may help, but the team needs a mechanism or comparison before assigning credit.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2927,19 +2420,13 @@
       },
       "memorableLines": [
         {
-          "text": "A pattern can point, but it cannot produce proof by itself.",
-          "location": "breakdown.fastRead",
-          "why": "It preserves the value of correlation without overclaiming."
+          "text": "A pattern can point, but it cannot produce proof by itself."
         },
         {
-          "text": "Ask for the mechanism before you spend.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a direct diagnostic move."
+          "text": "Ask for the mechanism before you spend."
         },
         {
-          "text": "Respect the clue. Do not crown it before the mechanism has earned the crown.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the chapter's balanced skepticism."
+          "text": "Respect the clue. Do not crown it before the mechanism has earned the crown."
         }
       ]
     },
@@ -2966,13 +2453,6 @@
             "safety",
             "cutoff"
           ],
-          "planSpec": {
-            "domain": "mountain race safety plan",
-            "audience": "a race director preparing a high-altitude trail event",
-            "stakes": "one preventable route or hydration failure could injure runners",
-            "format": "postmortem",
-            "requiredBeat": "Anna writes the headline she never wants to read, then removes the three causes most likely to put a runner in that story"
-          },
           "scenario": "Orange course flags snap above a rocky switchback while Anna, the race director, writes the headline she never wants to read. In the postmortem, she lists the three causes most likely to injure a runner: missing route flags, dry aid-station water, and a weather cutoff nobody owns. Then she removes those causes before printing the final plan and assigns one marshal to verify each fix on race morning. The written headline stays at the top of the clipboard while she checks each aid station.",
           "whatToDo": "Write the failure headline, name the route, water, and weather causes, then assign prevention before race week.",
           "whyItMatters": "The ugly ending makes prevention specific. Safety improves when the causes of failure are removed, not when optimism gets louder."
@@ -2985,13 +2465,6 @@
             "handoff",
             "opening"
           ],
-          "planSpec": {
-            "domain": "airport baggage meltdown premortem",
-            "audience": "an airline station manager opening a new baggage belt",
-            "stakes": "opening weekend could bury the station in delayed bags",
-            "format": "decision_point",
-            "requiredBeat": "Anders imagines the belt jammed at midnight and removes the scanner handoff failure before praising the new system"
-          },
           "scenario": "Rubber belt smell rises from a silent baggage carousel before opening weekend. Anders, the station manager, can praise the new system or imagine the midnight jam first. Before signing off, he must decide whether the scanner handoff is clear enough to prevent delayed bags from burying the station. He runs the handoff drill with two tired agents instead of trusting the diagram. The night supervisor has to repeat the scanner handoff without coaching before the belt opens.",
           "whatToDo": "Work backward from the midnight jam and fix the scanner handoff before celebrating the belt.",
           "whyItMatters": "The preventable failure sits in a handoff, not in the system's sales pitch. Inversion exposes it before passengers do."
@@ -3004,13 +2477,6 @@
             "cold-chain",
             "service"
           ],
-          "planSpec": {
-            "domain": "restaurant food-poisoning prevention",
-            "audience": "a chef opening a raw-bar special",
-            "stakes": "one missed cold-chain step could harm guests and close the restaurant",
-            "format": "scene",
-            "requiredBeat": "Pablo asks what would have to go wrong for the raw bar to make guests sick, then deletes the weak ice-bin handoff from the service plan"
-          },
           "scenario": "\"What would have to go wrong for this to make guests sick?\" Pablo, the kitchen manager, asks as crushed ice melts around oyster tags. Before the raw-bar special opens, he must decide whether the cold-chain log and ice-bin handoff have a named owner. The weak handoff disappears from the service plan, and one person signs the cold-chain log during the rush. The oyster tags and ice-bin owner now travel together on the cold-chain checklist.",
           "whatToDo": "Start with the guest-harm ending, find the cold-chain break that could cause it, and remove that handoff.",
           "whyItMatters": "Food safety is protected by deleting the path to failure. The useful question is what would have to go wrong."
@@ -3023,13 +2489,6 @@
             "backup",
             "remote"
           ],
-          "planSpec": {
-            "domain": "film shoot data backup",
-            "audience": "a documentary producer with a three-day remote shoot",
-            "stakes": "lost footage cannot be recreated once the crew leaves",
-            "format": "before_after",
-            "requiredBeat": "Rita imagines landing home with no usable footage and builds the backup ritual backward from that loss"
-          },
           "scenario": "It took Rita, the documentary producer, one imagined empty drive to change the remote shoot plan. Before, two memory cards rode together in the camera bag. After she pictures landing home with no usable footage, she builds a backup ritual: field copy before dinner, cards logged in the notebook, and one drive kept away from the bag. The ritual is checked before anyone leaves the location. The field notebook includes a checkbox that no vehicle leaves until both copies exist.",
           "whatToDo": "Imagine the lost-footage ending and build the backup ritual backward from that loss.",
           "whyItMatters": "Remote footage cannot be recreated. The backup plan matters because it removes the causes of an irreversible failure."
@@ -3042,13 +2501,6 @@
             "timetable",
             "connection"
           ],
-          "planSpec": {
-            "domain": "ferry winter timetable",
-            "audience": "a transit planner adjusting winter ferry service",
-            "stakes": "a missed connection could strand shift workers after the last bus",
-            "format": "vignette",
-            "requiredBeat": "You watch Nicole start with the stranded-passenger outcome and remove the timetable gap that would create it"
-          },
           "scenario": "You watch a dark ferry terminal after the last bus pulls away. Nicole, the transit manager, starts with the stranded-passenger outcome instead of the clean winter timetable. Before approving the crew shift change, she must decide which nine-minute gap would create the missed connection and remove it. The timetable now protects the last hospital shift, not just the average rider. She calls the bus dispatcher with the exact ferry arrival time before the public timetable is posted.",
           "whatToDo": "Begin with the stranded passenger, trace the timetable gap that creates it, and adjust the crew-shift connection.",
           "whyItMatters": "The timetable can look efficient while producing a bad ending. Inversion forces the hidden failure into the schedule review."
@@ -3061,13 +2513,6 @@
             "crowd",
             "entrance"
           ],
-          "planSpec": {
-            "domain": "neighborhood festival crowd control",
-            "audience": "a volunteer marshal planning a street festival entrance",
-            "stakes": "a crowd pinch could turn a family event unsafe",
-            "format": "predict_reveal",
-            "requiredBeat": "Alex asks what would cause a crush at the entrance and moves the ticket scan away from the narrow gate before opening"
-          },
           "scenario": "What would turn the family festival unsafe before the band starts? Martin, the festival safety lead, looks at temporary fencing leaning beside a painted curb and predicts the pinch point. Before gates open, he must decide whether ticket scan belongs at the narrow gate or farther inside where the crowd can spread. He marks the pavement with tape so volunteers do not drift back to the old choke point. The moved scan point gets one marshal whose only job is to keep the narrow gate flowing.",
           "whatToDo": "Ask what would cause a crush, then move scanning away from the narrow gate before the crowd arrives.",
           "whyItMatters": "The entrance fails when scanning and a narrow passage combine. Removing that cause beats adding more volunteers at the same pinch point."
@@ -3086,8 +2531,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Inversion starts with the failed ending and works backward to removable causes. Canceling or adding inspiration misses the concrete route, water, and cutoff problems.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3099,8 +2543,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The imagined jam points to a specific removable cause. Fixing the handoff is inversion; praising the system or chasing every complaint avoids the sharper failure path.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3112,8 +2555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The handoff is the cause that could produce the bad ending. Inversion removes it directly instead of relying on experience or better messaging.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3125,8 +2567,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The irreversible loss points to the backup ritual as the prevention target. Past luck and creative ambition do not remove the cause of data loss.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3138,8 +2579,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The bad ending reveals the exact timetable gap. Closing it prevents the failure; warning passengers leaves the cause in place.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3151,8 +2591,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The narrow gate plus scanning creates the failure path. Moving the scan point removes the cause instead of decorating or preserving the tidy plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3164,8 +2603,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Inversion is practical, not gloomy. It starts with failure to identify causes that can be removed; fear and forced positivity both miss that mechanism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3177,8 +2615,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Inversion favors removing the cause that would make success impossible. Speeches and reminders may help, but they do not clear the approval failure.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3190,8 +2627,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Inversion becomes useful when the bad ending is concrete and tied to removable causes. Treating every fear equally turns the model into dread.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3252,19 +2688,13 @@
       },
       "memorableLines": [
         {
-          "text": "Remove the cause before admiring the goal.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the practical inversion move in plain words."
+          "text": "Remove the cause before admiring the goal."
         },
         {
-          "text": "The bad ending gives instructions.",
-          "location": "breakdown.deepRead",
-          "why": "It reframes failure imagery as a source of useful action."
+          "text": "The bad ending gives instructions."
         },
         {
-          "text": "You do not have to be brilliant to avoid the obvious loss.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the source idea of avoiding stupidity without sounding abstract."
+          "text": "You do not have to be brilliant to avoid the obvious loss."
         }
       ]
     },
@@ -3291,13 +2721,6 @@
             "inverter",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "home solar inverter fault",
-            "audience": "a homeowner and installer diagnosing a sudden solar drop",
-            "stakes": "unneeded panel replacements could cost thousands",
-            "format": "decision_point",
-            "requiredBeat": "Charlotte checks the tripped inverter breaker before accepting a theory about failing roof panels"
-          },
           "scenario": "A silent inverter box hangs beside Charlotte, the solar installer lead, while the breaker blinks and the production graph shows a sudden drop. The homeowner thinks all roof panels are failing. Before ordering roof work, she must decide whether the inverter breaker is the simpler sufficient explanation. She writes breaker reset, inverter status, and roof inspection as separate tests so the small explanation gets a fair first pass.",
           "whatToDo": "Check the inverter breaker and reset path before accepting a costly panel-failure theory.",
           "whyItMatters": "The simpler explanation fits the sudden drop. Panel failure may be possible, but it needs evidence beyond a blinking inverter."
@@ -3310,13 +2733,6 @@
             "claim",
             "invoice"
           ],
-          "planSpec": {
-            "domain": "insurance claim review",
-            "audience": "a claims supervisor reviewing a delayed water-damage file",
-            "stakes": "a fraud theory may delay a legitimate payout",
-            "format": "postmortem",
-            "requiredBeat": "Steven tests the ordinary explanation, a missing plumber invoice, before building a complex fraud narrative"
-          },
           "scenario": "Steven, the claims manager, needed one damp folder to stop the fraud story from growing. In the postmortem, the claim timeline had delays and one empty invoice tab. Before building a complex narrative, he tested the ordinary explanation: the plumber invoice was missing from the file. The fraud note stayed open only if the invoice failed to explain the timeline.",
           "whatToDo": "Test the missing-invoice explanation against the timeline before escalating the fraud note.",
           "whyItMatters": "Fraud may be possible, but the ordinary missing document explains the delay with fewer unsupported parts."
@@ -3329,13 +2745,6 @@
             "pump",
             "maintenance"
           ],
-          "planSpec": {
-            "domain": "aquarium pump noise diagnosis",
-            "audience": "an aquarium technician troubleshooting a loud exhibit pump",
-            "stakes": "the team may order a new pump when a clogged intake explains enough",
-            "format": "scene",
-            "requiredBeat": "Mathieu clears the intake mesh and watches the noise stop before approving the expensive pump replacement"
-          },
           "scenario": "A low metallic hum reaches Mathieu, the aquarium maintenance lead, through the wet concrete floor near the exhibit pump. He holds the replacement quote while the team waits. Before approving the purchase, he must decide whether a clogged intake mesh explains the pump noise, then clears it and hears the hum stop. The replacement quote stays clipped to the binder until the cleaned mesh fails to explain the sound.",
           "whatToDo": "Clear the intake mesh and observe the result before approving a replacement pump.",
           "whyItMatters": "The clogged intake is simple and sufficient. A new pump is unnecessary complexity unless the noise remains."
@@ -3348,13 +2757,6 @@
             "attendance",
             "calendar"
           ],
-          "planSpec": {
-            "domain": "choir rehearsal attendance",
-            "audience": "a choir director explaining why altos keep missing rehearsal",
-            "stakes": "the director may blame commitment when a calendar conflict explains enough",
-            "format": "dialogue",
-            "requiredBeat": "Clara checks the school concert calendar before inventing a morale theory about the alto section"
-          },
           "scenario": "\"The altos have stopped caring,\" the pianist says as folded sheet music rests on an empty row of chairs. Clara, the choir director, checks the concert calendar against the attendance sheet. Before giving a commitment speech, she must decide whether school concert week is the sufficient explanation. The alto section still owes notice, but the calendar explains enough to avoid a commitment sermon.",
           "whatToDo": "Check the calendar conflict before building a morale theory about the alto section.",
           "whyItMatters": "A calendar conflict explains the empty chairs without adding a psychological story the evidence has not earned."
@@ -3367,13 +2769,6 @@
             "printer",
             "server"
           ],
-          "planSpec": {
-            "domain": "printer fleet troubleshooting",
-            "audience": "a facilities lead facing complaints that all office printers are unreliable",
-            "stakes": "a vendor replacement could miss the one network queue causing failures",
-            "format": "predict_reveal",
-            "requiredBeat": "Hugo compares failure timestamps and tests the single print server queue before replacing hardware"
-          },
           "scenario": "Hugo, the facilities lead, asks whether all the printers are failing or one queue is making them look guilty. Three jammed printouts cool beside a server-room badge while he studies failure timestamps. Before accepting the vendor quote, he must decide whether the failure timestamps point to one print server queue, then tests it. The hardware refresh waits until the queue explanation fails.",
           "whatToDo": "Compare timestamps and test the shared queue before replacing hardware.",
           "whyItMatters": "One queue can explain many printer complaints. Hardware replacement adds cost before the lean explanation is tested."
@@ -3386,13 +2781,6 @@
             "booking",
             "filter"
           ],
-          "planSpec": {
-            "domain": "campground booking system",
-            "audience": "a park administrator explaining a sudden booking drop",
-            "stakes": "marketing money may be wasted if a broken date filter explains the drop",
-            "format": "before_after",
-            "requiredBeat": "You watch Kira test one date filter before accepting a broad theory about changing camper preferences"
-          },
           "scenario": "You watch an empty campsite calendar with one blocked weekend highlighted in red. Kira, the park manager, has a booking graph that looks like camper preferences changed overnight. Before approving the marketing proposal, she tests one date filter and finds the simpler explanation for the drop. The booking graph can still raise marketing questions later, but the filter gets tested before the budget moves.",
           "whatToDo": "Test the date filter before accepting a broad theory about changing camper preferences.",
           "whyItMatters": "A broken filter fits the sudden drop. Marketing money should wait until the lean explanation fails."
@@ -3411,8 +2799,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The breaker explains the evidence with fewer parts. Panel failure may be tested later if the breaker does not account for the drop.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3424,8 +2811,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The missing invoice is a lean explanation that may fit the evidence. It is not automatic proof, so it should be tested before either fraud escalation or blind approval.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3437,8 +2823,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The clogged intake explains the noise and its removal stops the problem. More complexity should wait until evidence forces it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3450,8 +2835,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The calendar conflict explains the absences without extra psychological machinery. A commitment theory should wait for evidence that the calendar is insufficient.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3463,8 +2847,7 @@
             ],
             "correctIndex": 1,
             "explanation": "One queue can account for many complaints. Replacing the fleet adds unnecessary complexity before testing the sufficient explanation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3476,8 +2859,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A broken filter is simpler and sufficient for a sudden drop. Market preference changes may matter later, but they need evidence beyond one blocked weekend.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3489,8 +2871,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Occam's razor prefers the lean explanation that fits the evidence. It does not turn simplicity into proof or complexity into guilt.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3502,8 +2883,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Complexity earns its place when the lean explanation cannot fit the evidence. Strategic language and emotional weight do not justify extra machinery.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3515,8 +2895,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The scanner is the lean explanation that fits the immediate evidence. Training may be considered if the scanner does not explain enough.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3577,19 +2956,13 @@
       },
       "memorableLines": [
         {
-          "text": "Simplicity is a starting preference, not proof.",
-          "location": "breakdown.fastRead",
-          "why": "It prevents the common misread of Occam's razor."
+          "text": "Simplicity is a starting preference, not proof."
         },
         {
-          "text": "Fit all the evidence first, then choose the lean explanation.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps sufficiency ahead of mere ease."
+          "text": "Fit all the evidence first, then choose the lean explanation."
         },
         {
-          "text": "Start simple enough to be disciplined.",
-          "location": "breakdown.fullRead",
-          "why": "It closes with a compact version of the chapter's balance."
+          "text": "Start simple enough to be disciplined."
         }
       ]
     },
@@ -3616,13 +2989,6 @@
             "boundary",
             "survey"
           ],
-          "planSpec": {
-            "domain": "shared driveway complaint",
-            "audience": "a homeowner whose neighbor keeps blocking a shared driveway",
-            "stakes": "a hostile confrontation could escalate a problem caused by a confusing property line",
-            "format": "decision_point",
-            "requiredBeat": "Natalie checks the faded driveway marker and old survey before accusing the neighbor of deliberate disrespect"
-          },
           "scenario": "A faded yellow property marker sits beside Natalie, the block association lead, half-buried in gravel near the blocked driveway. The accusation forms before she finds the old survey. Before confronting the neighbor, she must decide whether a confusing boundary explains enough to start with facts instead of malice. She tapes a fresh marker line before deciding whether the next blockage is confusion or refusal.",
           "whatToDo": "Check the property marker and old survey, then address the blocked driveway with the boundary evidence in hand.",
           "whyItMatters": "The driveway still needs clearing. But a confusing marker changes the first move from accusation to correction."
@@ -3635,13 +3001,6 @@
             "labels",
             "safety"
           ],
-          "planSpec": {
-            "domain": "hospital medication label mix-up",
-            "audience": "a charge nurse reacting to a repeated mislabeled tray",
-            "stakes": "patient safety needs action, but blame may land before the process error is found",
-            "format": "postmortem",
-            "requiredBeat": "Sean traces the mislabeled tray to two nearly identical shelf bins before deciding whether discipline or system repair comes first"
-          },
           "scenario": "Two white medication bins have labels peeling at the same corner under the shelf light. Sean, the charge nurse, reviews the safety report after a mislabeled tray reaches the floor twice. In the postmortem, he traces the error to the shelf bins before deciding whether discipline or system repair comes first. The safety fix goes in the same day, and the report keeps a line open for discipline if the error repeats.",
           "whatToDo": "Trace the tray to the process point, repair the labeling system, and preserve discipline if evidence shows neglect after correction.",
           "whyItMatters": "Patient safety requires action. Hanlon's razor changes the order of diagnosis; it does not minimize the harm."
@@ -3654,13 +3013,6 @@
             "portal",
             "payment"
           ],
-          "planSpec": {
-            "domain": "delayed invoice dispute",
-            "audience": "a freelancer who believes a client is stalling payment",
-            "stakes": "a relationship may be damaged if a portal error explains the missing approval",
-            "format": "dialogue",
-            "requiredBeat": "Valeria asks for the approval screenshot and discovers the invoice is stuck under the wrong purchase-order field before sending the angry email"
-          },
           "scenario": "\"Can you send me the approval screenshot?\" Valeria, the freelance designer, asks while an unpaid invoice tab sits beside a drafted angry email. Before she sends the accusation, she must decide whether the purchase-order field trapped the invoice under the wrong approval route. The drafted email becomes a firm request for payment status rather than a character charge.",
           "whatToDo": "Ask for the approval screenshot and inspect the purchase-order field before sending the angry email.",
           "whyItMatters": "The client still owes the money. But a portal error calls for a different first message than a deliberate stall."
@@ -3673,13 +3025,6 @@
             "repair",
             "deadline"
           ],
-          "planSpec": {
-            "domain": "apartment smoke alarm issue",
-            "audience": "a tenant convinced the building manager ignores repairs",
-            "stakes": "the alarm must be fixed while the cause of the silence is still unknown",
-            "format": "before_after",
-            "requiredBeat": "Nils checks the maintenance queue and finds the request filed under the wrong unit, then still sets a deadline for repair"
-          },
           "scenario": "It took Nils, the tenant association lead, one maintenance queue search to change the accusation. Before, a chirping smoke alarm sat on a hallway radiator cover and the manager looked careless. After he finds the request under the wrong unit number, he still sets a repair deadline and tracks whether the fix happens. If the corrected ticket still stalls, the next message escalates from queue repair to manager accountability.",
           "whatToDo": "Check the maintenance queue, correct the unit number, and set a concrete repair deadline.",
           "whyItMatters": "Ordinary error explains the silence, but it does not solve the safety issue. Accountability stays attached to the repair."
@@ -3692,13 +3037,6 @@
             "roster",
             "registration"
           ],
-          "planSpec": {
-            "domain": "community soccer roster error",
-            "audience": "a parent whose child was left off the tournament roster",
-            "stakes": "the parent may accuse the coach before checking whether a registration field failed",
-            "format": "predict_reveal",
-            "requiredBeat": "Ada compares the roster export with the payment receipt and finds the software dropped late registrations, then asks for correction without inventing intent"
-          },
           "scenario": "Was the coach excluding her child, or did the roster export drop a late registration? Ada, the team parent, holds a creased printout beside a muddy cleat bag. Before accusing anyone, she must decide whether the payment receipt and roster export point to a software error that needs correction. The payment receipt gives her a clean correction request and a clear line if the roster is not fixed.",
           "whatToDo": "Compare the roster export with the payment receipt, then ask for correction without inventing intent.",
           "whyItMatters": "The missing name matters. Checking the export keeps the response focused on fixing the error before assigning motive."
@@ -3711,13 +3049,6 @@
             "phone",
             "trust"
           ],
-          "planSpec": {
-            "domain": "partner's missed pickup explanation",
-            "audience": "someone angry after being left waiting at a train station",
-            "stakes": "the response must protect trust without turning a phone failure into a character trial",
-            "format": "reflection",
-            "requiredBeat": "You watch Zoe check the missed-call log and dead phone before deciding whether the pattern is ordinary error or a deeper reliability problem"
-          },
           "scenario": "You watch a station clock reflected in a dark phone screen while Zoe waits under the departure board. The missed-call log and dead phone explain tonight, but she checks the reliability pattern before deciding whether this is ordinary error or a deeper trust problem. The dead phone explains the missed pickup only if the wider pattern does not show the same failure repeating. The station pickup gets discussed as one event and as a pattern.",
           "whatToDo": "Check the missed-call log, the dead phone, and the wider reliability pattern before turning one pickup failure into a character verdict.",
           "whyItMatters": "A dead phone can explain one incident. Repeated failures require a different conversation and firmer accountability."
@@ -3736,8 +3067,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The ordinary-error explanation should be checked first, and the driveway still needs fixing. Ignoring harm and jumping to malice both miss the model's balance.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3749,8 +3079,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The bin labels offer an ordinary process explanation, but the safety issue remains serious. The right order is repair first, with accountability if evidence supports it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3762,8 +3091,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The portal error may explain the delay, but payment still needs follow-up. Asking for evidence checks ordinary error without surrendering accountability.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3775,8 +3103,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The wrong unit number explains why nothing happened, but the alarm remains a safety issue. The model checks intent while keeping the repair deadline.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3788,8 +3115,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The export error is a plausible ordinary explanation. The parent should still seek correction, but not create a hostile motive before checking the evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3801,8 +3127,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A dead phone can explain one incident, but repeated failures change the evidence. Hanlon's razor does not require ignoring a pattern.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3814,8 +3139,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Hanlon's razor is not an excuse. It improves diagnosis before blame while preserving action when harm, patterns, or evidence call for accountability.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3827,8 +3151,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Repeated harm after correction plus hidden evidence weakens the ordinary-error story. Impact alone matters, but it does not prove intent or unreliability by itself.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3840,8 +3163,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The first error had a sufficient ordinary explanation. Repetition after correction changes the evidence, so accountability should become firmer without leaping to sabotage.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3902,19 +3224,13 @@
       },
       "memorableLines": [
         {
-          "text": "Separate the harm from the intent.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps accountability and diagnostic restraint together."
+          "text": "Separate the harm from the intent."
         },
         {
-          "text": "The repair still has teeth when ordinary error explains the first story.",
-          "location": "breakdown.deepRead",
-          "why": "It prevents the reader from reading the model as excusing harm."
+          "text": "The repair still has teeth when ordinary error explains the first story."
         },
         {
-          "text": "Start with the mistake that could explain enough.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the chapter's core move in one line."
+          "text": "Start with the mistake that could explain enough."
         }
       ]
     }

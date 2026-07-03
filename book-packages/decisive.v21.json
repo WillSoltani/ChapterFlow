@@ -23,7 +23,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "decisive-ch01",
       "number": 1,
       "title": "The Four Villains of Decision Making",
@@ -124,8 +123,7 @@
             ],
             "correctIndex": 1,
             "explanation": "WRAP is not one soft warning. Each move counters a different stage: frame, evidence, emotion, and forecast.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "decisive-ch01-q02",
@@ -137,8 +135,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Narrow framing happens before data review. More facts can still serve a cramped yes-or-no choice if the option set stays small.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch01-q03",
@@ -150,8 +147,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Confirmation bias can be sincere. The repair is to gather evidence that can challenge the favored plan, not just defend it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch01-q04",
@@ -163,8 +159,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The target is short-term distortion, not emotion itself. Distance lets the feeling be heard without letting it own the long-term call.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "decisive-ch01-q05",
@@ -176,8 +171,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Overconfidence is misplaced certainty about prediction accuracy. A range of outcomes keeps one imagined future from posing as fact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch01-q06",
@@ -189,8 +183,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Parallel exploration is not indecision. It buys comparison data before the team locks onto one design path.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch01-q07",
@@ -202,8 +195,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Grove's question worked by creating distance from attachment. It did not assume outsiders had better technical knowledge.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "decisive-ch01-q08",
@@ -215,8 +207,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The villains strike at different stages. A late review cannot restore options or evidence that never entered the choice.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "decisive-ch01-q09",
@@ -228,8 +219,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Good process does not guarantee a result. It improves the choice by widening evidence and preparing for variance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -272,7 +262,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Villain First",
         "coreSkill": "Practice naming the distortion before you improve the answer. Ask whether the choice is suffering from a tight frame, friendly evidence, hot feeling, or false certainty. Then use the matching WRAP move instead of trying to be generally careful.",
         "ifThenPlans": [
           {
@@ -297,19 +286,13 @@
       },
       "memorableLines": [
         {
-          "text": "A live option set keeps a bad frame from feeling like fate.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the narrow-framing lesson a compact handle."
+          "text": "A live option set keeps a bad frame from feeling like fate."
         },
         {
-          "text": "Evidence gets crooked when the favorite answer hires the researcher.",
-          "location": "breakdown.deepRead",
-          "why": "It makes confirmation bias vivid without jargon."
+          "text": "Evidence gets crooked when the favorite answer hires the researcher."
         },
         {
-          "text": "Good process raises the odds without promising the outcome.",
-          "location": "breakdown.fullRead",
-          "why": "It states the chapter's process claim without overpromising."
+          "text": "Good process raises the odds without promising the outcome."
         }
       ]
     },
@@ -414,8 +397,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A whether-or-not question starts with one candidate answer. The stronger move creates options before the team starts defending the visible one.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch02-q02",
@@ -427,8 +409,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The claireabelle case is not naturally only two doors. The break-up frame hides other moves that might address the relationship and the family pressure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "decisive-ch02-q03",
@@ -440,8 +421,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Quaker and Snapple show how a growth question can become a one-deal push. The risk is the early narrowing, not only the final price.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "decisive-ch02-q04",
@@ -453,8 +433,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Snapple deal was not a small trial. A large commitment raises the cost of ignoring what else those resources might have bought.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "decisive-ch02-q05",
@@ -466,8 +445,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The test generates alternatives by taking the visible answers away. It widens the set; it does not choose the winner by itself.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch02-q06",
@@ -479,8 +457,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Both-and thinking tests the tradeoff before accepting it. Some conflicts remain, but the team should first see whether the design can satisfy both aims.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "decisive-ch02-q07",
@@ -492,8 +469,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The narrow move is treating accept-or-reject as the whole job. Naming the need or another use of staff time widens the frame.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "decisive-ch02-q08",
@@ -505,8 +481,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Large organizations can narrow early too. A neat acquisition packet may show advocacy, not a real comparison of growth paths.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "decisive-ch02-q09",
@@ -518,8 +493,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The test breaks fixation by producing alternatives. Judgment still has to compare the options after the set is wider.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -556,7 +530,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Widen the First Frame",
         "coreSkill": "Practice catching the first wording of a decision before you evaluate it. Use Widen the First Frame: name the whether-or-not wording, state the resource at stake, then add one credible alternative. The skill is not brainstorming forever. It is making sure the visible option has to compete.",
         "ifThenPlans": [
           {
@@ -581,24 +554,17 @@
       },
       "memorableLines": [
         {
-          "text": "A framed choice becomes a hidden choice.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's warning into a short diagnostic line."
+          "text": "A framed choice becomes a hidden choice."
         },
         {
-          "text": "A price tag is also a mirror.",
-          "location": "breakdown.deepRead",
-          "why": "It makes opportunity cost concrete and easy to recall."
+          "text": "A price tag is also a mirror."
         },
         {
-          "text": "Size can make a narrow frame louder.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the Quaker and Snapple warning into one portable sentence."
+          "text": "Size can make a narrow frame louder."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "decisive-ch03",
       "number": 3,
       "title": "Multitrack",
@@ -699,8 +665,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Multitracking means simultaneous comparison among real options. A huge list or one polished favorite misses the learning that contrast creates.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "decisive-ch03-q02",
@@ -712,8 +677,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Lexicon case uses parallel routes to surface associations and criteria. Choosing one favorite too early hides that evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch03-q03",
@@ -725,8 +689,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Wisp example shows that a name does more than please the ear. It has to signal what the compact product is for.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "decisive-ch03-q04",
@@ -738,8 +701,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Parallel design improves output by comparing alternatives. A polished first draft may still be weaker than another direction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch03-q05",
@@ -751,8 +713,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Several options distribute feedback across the set. The critique becomes less like rejection of the person who proposed one answer.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "decisive-ch03-q06",
@@ -764,8 +725,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Choice overload is the boundary. Multitracking works through a few genuine tracks, not an indiscriminate menu.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "decisive-ch03-q07",
@@ -777,8 +737,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Sham options dress up a preselected choice. Only viable alternatives create learning and expose decision criteria.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "decisive-ch03-q08",
@@ -790,8 +749,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Options are diagnostic tools before they are final choices. Their differences reveal what the decision is really about.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch03-q09",
@@ -803,8 +761,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Multitracking can lead to recombination, not only selection. Parallel tracks reveal pieces that can work together.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -841,7 +798,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Side-by-Side Three",
         "coreSkill": "Practice turning one early answer into 2 or 3 credible tracks. The skill is to make the tracks different enough to teach, then compare what each one reveals before anyone chooses.",
         "ifThenPlans": [
           {
@@ -862,24 +818,17 @@
       },
       "memorableLines": [
         {
-          "text": "Options teach before they win.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the chapter's core mechanism portable."
+          "text": "Options teach before they win."
         },
         {
-          "text": "A fake option is decoration, not evidence.",
-          "location": "breakdown.deepRead",
-          "why": "It names the sham-option boundary in a compact form."
+          "text": "A fake option is decoration, not evidence."
         },
         {
-          "text": "Too many tracks turn comparison into fog.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the overload edge without overexplaining it."
+          "text": "Too many tracks turn comparison into fog."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "decisive-ch04",
       "number": 4,
       "title": "Find Someone Who's Solved Your Problem",
@@ -973,8 +922,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Solved-problem search works when the team studies a similar problem and adapts the pattern. The other choices treat borrowing as a threat, which is the common error.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -986,8 +934,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Walton used outside observation to generate options, not to copy rivals blindly. Exact copying is the misconception this search method rejects.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -999,8 +946,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Internal bright spots are useful because they succeed under similar constraints. They start option generation; they do not replace evidence or end the work.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1012,8 +958,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Internal performance differences become useful when you study them for repeatable patterns. Treating them as morale stories leaves the lesson too vague.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1025,8 +970,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Playlists are prompt sets for option generation. Checklists protect execution, and rulebooks try to decide the issue more completely than this tool can.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -1038,8 +982,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Analogies work as search tools before the decision is made. Using them only as later decoration misses the mechanism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1051,8 +994,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful move is adapting the water-movement principle. That rejects both literal copying and staying only with direct competitors.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1064,8 +1006,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Copied best practices can stop differentiating or fit poorly. The answer is adaptation, not automatic rejection.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1077,8 +1018,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Laddering up broadens the search from the product itself to the wider job it performs. The closest competitor may not be the best analogy.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1121,7 +1061,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask the Solver Question",
         "coreSkill": "Practice turning a stuck choice into a search for solved patterns. Ask the Solver Question means you name the problem in plain words, then ask who has already solved that kind of problem. The skill is translation: bring back the mechanism, not the costume.",
         "ifThenPlans": [
           {
@@ -1146,19 +1085,13 @@
       },
       "memorableLines": [
         {
-          "text": "Borrow patterns, not costumes.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the borrowing warning into one portable line."
+          "text": "Borrow patterns, not costumes."
         },
         {
-          "text": "A playlist opens search; a checklist protects steps.",
-          "location": "breakdown.deepRead",
-          "why": "It separates two tools readers often confuse."
+          "text": "A playlist opens search; a checklist protects steps."
         },
         {
-          "text": "Bright spots make hope local.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the Kaiser Permanente lesson easy to recall."
+          "text": "Bright spots make hope local."
         }
       ]
     },
@@ -1263,8 +1196,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Confirmation bias tilts search and reading toward the preferred answer. A bigger sample helps only if the team also seeks evidence that could disconfirm the feature.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1276,8 +1208,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Hayward and Hambrick link hubris with acquisition premiums. The warning is not that every premium is irrational, but that confidence can inflate the price.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1289,8 +1220,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The 41% premium is a danger signal because it makes value harder to create. Payment size alone does not prove the target is worth the price.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1302,8 +1232,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Constructive disagreement helps when dissent brings information the favorite plan suppresses. A concern with no evidence can become ceremony.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1315,8 +1244,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The question asks what would have to be true. It tests conditions and evidence, which lowers blame and keeps people from attacking one another.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q06",
@@ -1328,8 +1256,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A probing question asks for specifics and possible weakness. The other questions can still invite praise for a candidate the manager already likes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1341,8 +1268,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A devil's advocate role works only when it creates real tests. Without assumptions and evidence standards, the role becomes theater.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1354,8 +1280,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A controlled mistake creates evidence about the process. It is safer than trusting an inherited belief that the review works.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -1367,8 +1292,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Reality testing fights confirmation bias. More data is not enough if all of it supports the preferred answer.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1411,7 +1335,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask the Losing Fact",
         "coreSkill": "Practice asking for the fact that could make your favorite answer lose. Use a simple order: name the preferred option, name the rival condition, then ask one person for the evidence you are missing. The skill is not arguing longer. It is making disproof safe enough to enter the room.",
         "ifThenPlans": [
           {
@@ -1436,24 +1359,17 @@
       },
       "memorableLines": [
         {
-          "text": "A favored answer needs a fair enemy.",
-          "location": "breakdown.fastRead",
-          "why": "It makes dissent feel like a test of the choice, not an attack on the chooser."
+          "text": "A favored answer needs a fair enemy."
         },
         {
-          "text": "The opposite is not a mood.",
-          "location": "breakdown.deepRead",
-          "why": "It warns readers that real skepticism needs a search plan, not a pose."
+          "text": "The opposite is not a mood."
         },
         {
-          "text": "A loud objection is cheap.",
-          "location": "breakdown.deepRead",
-          "why": "It separates noisy criticism from evidence that can change a decision."
+          "text": "A loud objection is cheap."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "decisive-ch06",
       "number": 6,
       "title": "Zoom Out, Zoom In",
@@ -1548,8 +1464,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The inside view is not useless. It carries detail, but vivid detail can make the case feel too unique and push comparable outcomes out of sight.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1561,8 +1476,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The outside view starts with similar cases. It does not erase local context, but it anchors the forecast before the team's story adjusts it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1574,8 +1488,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The restaurant founder's inside story may matter, but it cannot cancel the restaurant category. The failure rate is the anchor his forecast has to face.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1587,8 +1500,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Expertise does not cancel insider bias when the project is personal. The team can know the comparison and still discount it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1600,8 +1512,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Experts help when they turn experience into a base rate. A precise promise about one case can sound useful while giving less evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1613,8 +1524,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Patient accounts reveal lived demands. They do not replace the statistics; they add the day-to-day texture the statistics leave out.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1626,8 +1536,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Zooming in is not trusting one anecdote over data. The patient story adds texture while the broader evidence still anchors the choice.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1639,8 +1548,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Reality includes aggregate outcomes and lived details. The better order starts with the class, then tests which local facts deserve an adjustment.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -1652,8 +1560,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Exceptional-feeling plans are exactly when base rates matter. Most plans still have a reference class, even if the first match is imperfect.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1696,7 +1603,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Two-Lens Check",
         "coreSkill": "Practice moving a forecast through two distances. First name the reference class and its base rate. Then add only the close-up details that would change the estimate in a visible way.",
         "ifThenPlans": [
           {
@@ -1721,24 +1627,17 @@
       },
       "memorableLines": [
         {
-          "text": "Base rates cool the story before the story runs the room.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the outside view a simple image and a reason to use it."
+          "text": "Base rates cool the story before the story runs the room."
         },
         {
-          "text": "Close-up stories warm the average without letting it drive alone.",
-          "location": "breakdown.deepRead",
-          "why": "It protects both data and lived detail in one line."
+          "text": "Close-up stories warm the average without letting it drive alone."
         },
         {
-          "text": "Numbers anchor the forecast; stories test the landing.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the chapter's two-lens balance into a portable rule."
+          "text": "Numbers anchor the forecast; stories test the landing."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "decisive-ch07",
       "number": 7,
       "title": "Ooch",
@@ -1833,8 +1732,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Ooching uses a small experiment to replace unsupported prediction with evidence. A smaller contract or longer debate may not test the key uncertainty.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1846,8 +1744,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The jungle is not decoration. Rain, distance, and rough use can reveal technical and practical constraints that office speculation misses.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1859,8 +1756,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Tetlock's work supports humility about prediction. Expertise matters, but a real test can beat confidence when the future is hard to forecast.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1872,8 +1768,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Cars Direct needed behavior, not only stated interest. Actual purchase steps are stronger evidence than a survey or a broad internet forecast.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1885,8 +1780,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Effectuation favors action under uncertainty. The founder can take an affordable step and learn from response instead of trying to see the whole market first.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1898,8 +1792,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Scott Cook's culture favors experiments that reveal user behavior. A leader's preference or a shared forecast is weaker than watching users act.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1911,8 +1804,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A work sample tests the work more directly. Interviews can reward impression management, so more interview talk may repeat the same weak signal.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1924,8 +1816,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Some choices cannot be sampled without weakening them. If the test dodges the commitment itself, it delays responsibility instead of producing evidence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1937,8 +1828,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A useful ooch targets the central uncertainty. Testing a side question can create false comfort while the real launch risk stays untouched.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1981,7 +1871,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Small Reality Check",
         "coreSkill": "Practice turning a prediction into one small contact with reality. Name the riskiest assumption, choose the smallest honest test, then record what people actually do. Use the Small Reality Check only when the test can teach without hollowing out a needed commitment.",
         "ifThenPlans": [
           {
@@ -2006,24 +1895,17 @@
       },
       "memorableLines": [
         {
-          "text": "Tiny tests make guesses face the weather.",
-          "location": "breakdown.fastRead",
-          "why": "It turns ooching into a concrete image and a portable rule."
+          "text": "Tiny tests make guesses face the weather."
         },
         {
-          "text": "A good ooch changes the next step.",
-          "location": "breakdown.deepRead",
-          "why": "It distinguishes real evidence from busywork in eight words."
+          "text": "A good ooch changes the next step."
         },
         {
-          "text": "A small test can hide a large dodge.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the hard edge without dulling the tool."
+          "text": "A small test can hide a large dodge."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "decisive-ch08",
       "number": 8,
       "title": "Overcome Short-Term Emotion",
@@ -2118,8 +2000,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The warning is about temporary distortion, not emotion itself. The problem is that immediate relief can overpower later priorities.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2131,8 +2012,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Hallam's distance comes from precommitment. Criteria chosen away from the lot beat improvised confidence inside the sales moment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2144,8 +2024,7 @@
             ],
             "correctIndex": 0,
             "explanation": "10/10/10 creates perspective across time. It is not a precise forecast and it does not remove emotion from the choice.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2157,8 +2036,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The decision maker's case does not treat fear as useless. It shows that immediate anxiety can lose power when longer regret is considered.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2170,8 +2048,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mere exposure makes repeated contact feel attractive. The comfort is not proof that the option is objectively stronger.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -2183,8 +2060,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Loss aversion is about psychological weight, not objective value. The pain of giving up can distort the choice.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -2196,8 +2072,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Status quo bias can come from mere exposure plus loss aversion. The current path may feel safe without having the stronger case.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2209,8 +2084,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The outside view clarifies judgment; it does not outsource responsibility. Feelings still count, but they stop crowding the whole room.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2222,8 +2096,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Distance is a separate step. Evidence helps, but people can still be captured by attachment after the evidence arrives.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2266,7 +2139,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Distance Mark",
         "coreSkill": "Practice making space between the hot feeling and the final choice. Run the Distance Mark by putting one cue word on a visible surface, then asking which feeling will still deserve weight later.",
         "ifThenPlans": [
           {
@@ -2291,24 +2163,17 @@
       },
       "memorableLines": [
         {
-          "text": "Short feelings should not get long votes.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the chapter's main warning in a compact sentence."
+          "text": "Short feelings should not get long votes."
         },
         {
-          "text": "Distance is a pause, not a freeze.",
-          "location": "breakdown.deepRead",
-          "why": "It protects the hard edge that distance is not avoidance."
+          "text": "Distance is a pause, not a freeze."
         },
         {
-          "text": "The familiar can feel true before it is tested.",
-          "location": "breakdown.fullRead",
-          "why": "It makes mere exposure and status quo bias easy to remember."
+          "text": "The familiar can feel true before it is tested."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "decisive-ch09",
       "number": 9,
       "title": "Honor Your Core Priorities",
@@ -2403,8 +2268,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Core priorities represent long-term aims. Urgency may be real, but it is not the same as the value that should govern the decision.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2416,8 +2280,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The career seeker's case is not just emotional noise. It is a values conflict, so calm helps but does not supply the priority by itself.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2429,8 +2292,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Interplast used the patient as the ultimate customer. Other stakeholders mattered, but the patient priority gave conflicts a clear standard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2442,8 +2304,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Mission agreement can still leave daily choices vague. Enshrined priorities give people repeatable language or rules for pressure moments.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -2455,8 +2316,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Good rules do not kill judgment. They carry the priority to people who must act away from the room where it was named.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2468,8 +2328,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The USS Benfold case shows that a priority often needs subtraction. Without removing lesser work, the old load defeats the new aim.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2481,8 +2340,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Behavior follows what gets protected. If the calendar always shields status work, that work is acting as the real priority.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2494,8 +2352,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Lesser priorities can be useful and appealing. Their quick rewards are exactly why they can crowd out slower core priorities.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2507,8 +2364,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Distance cools heat, but it does not name the value to protect. Core priorities finish the job by giving the choice a standard.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2551,7 +2407,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Priority Line",
         "coreSkill": "Practice turning a value into a sentence that can guide a real tradeoff. Write the Priority Line by naming what must be protected, then check whether your time, rules, or refusals protect it.",
         "ifThenPlans": [
           {
@@ -2576,24 +2431,17 @@
       },
       "memorableLines": [
         {
-          "text": "A real priority gets protected before pressure arrives.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's main idea into a test the reader can use."
+          "text": "A real priority gets protected before pressure arrives."
         },
         {
-          "text": "Urgency is loud; priority is loyal.",
-          "location": "breakdown.deepRead",
-          "why": "It names why short-term pressure so often beats durable values."
+          "text": "Urgency is loud; priority is loyal."
         },
         {
-          "text": "A slogan without subtraction is only wall art.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the hard edge of behavioral priority easy to remember."
+          "text": "A slogan without subtraction is only wall art."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "decisive-ch10",
       "number": 10,
       "title": "Bookend the Future",
@@ -2694,8 +2542,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Bookending treats the future as a range. A sharper middle estimate still leaves the team exposed to outcomes above or below it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch10-q02",
@@ -2707,8 +2554,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Coinstar case teaches asymmetry. Expected return alone can hide whether the downside is tolerable and the upside is worth it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "decisive-ch10-q03",
@@ -2720,8 +2566,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A premortem borrows a future failure while the team can still act. It is not mood management or after-the-fact review.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch10-q04",
@@ -2733,8 +2578,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The campaign had real legal and operational risks. Imagining failure early helped readiness outside a corporate setting.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "decisive-ch10-q05",
@@ -2746,8 +2590,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A preparade plans for the strain of success. It is not just optimism, and it is different from a failure-focused premortem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch10-q06",
@@ -2759,8 +2602,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Softsoap case shows upside demand can be fragile. If pumps are not ready, the opportunity may pass before capacity catches up.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "decisive-ch10-q07",
@@ -2772,8 +2614,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Margin answers uncertainty. It is not a reward for loose planning, and waiting for proof can make the cushion arrive too late.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "decisive-ch10-q08",
@@ -2785,8 +2626,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A realistic preview calibrates expectations. Hiding predictable hardship may create surprise and quitting later.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch10-q09",
@@ -2798,8 +2638,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Bookending widens the imagined future in both directions. It prepares for failure and for success that strains the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2842,7 +2681,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Draw Both Bookends First",
         "coreSkill": "Practice treating every important forecast as a range before you act on it. Draw Both Bookends First means you name the lower-end future, the upper-end future, and the margin each one needs. Then you change the plan while change is still cheap.",
         "ifThenPlans": [
           {
@@ -2867,24 +2705,17 @@
       },
       "memorableLines": [
         {
-          "text": "The future has edges.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses range thinking into a portable image."
+          "text": "The future has edges."
         },
         {
-          "text": "A forecast is a map, not a seat belt.",
-          "location": "breakdown.fastRead",
-          "why": "It warns against treating prediction as protection."
+          "text": "A forecast is a map, not a seat belt."
         },
         {
-          "text": "Margin is humility made practical.",
-          "location": "breakdown.deepRead",
-          "why": "It explains safety factors in plain language."
+          "text": "Margin is humility made practical."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "decisive-ch11",
       "number": 11,
       "title": "Set a Tripwire",
@@ -2985,8 +2816,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A tripwire is a preset signal, not a loose hope to check later. A deadline can be one form, but the key is the forced awareness moment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "decisive-ch11-q02",
@@ -2998,8 +2828,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The offer's function is decision quality. It turns passive continuation into active recommitment, rather than serving mainly as publicity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch11-q03",
@@ -3011,8 +2840,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Autopilot is the danger after a decision. The first choice can keep running because routine makes continuation feel normal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "decisive-ch11-q04",
@@ -3024,8 +2852,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Slow change can hide the threat. A forced review point keeps the team from minimizing each step because no crisis has arrived.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "decisive-ch11-q05",
@@ -3037,8 +2864,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Deadlines can be artificial and still useful. The point is that the date forces review instead of letting delay stretch unseen.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "decisive-ch11-q06",
@@ -3050,8 +2876,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Partitions are not just packaging. Each chunk creates a moment to notice use, progress, or drift before the next chunk is consumed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch11-q07",
@@ -3063,8 +2888,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A budget cap fights escalation of commitment. It protects learning by forcing review before sunk cost quietly expands.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "decisive-ch11-q08",
@@ -3076,8 +2900,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Tripwires can flag opportunity. Rogaine's minoxidil story shows that a surprising upside pattern may deserve a formal look.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "decisive-ch11-q09",
@@ -3089,8 +2912,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A useful tripwire names what will be seen and what happens next. A vague later check is easy to postpone.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -3133,7 +2955,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Wake Line",
         "coreSkill": "Practice turning a loose review promise into a wake line. Name the signal, threshold, owner, and review action before the choice starts drifting. The skill is not constant checking. It is making one future moment hard to miss.",
         "ifThenPlans": [
           {
@@ -3158,24 +2979,17 @@
       },
       "memorableLines": [
         {
-          "text": "Autopilot loves a vague promise.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's warning into a sentence a reader can hear in a meeting."
+          "text": "Autopilot loves a vague promise."
         },
         {
-          "text": "A good trigger makes drift visible.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the mechanism without losing the human problem."
+          "text": "A good trigger makes drift visible."
         },
         {
-          "text": "Upside needs an alarm too.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the Rogaine lesson portable and surprising."
+          "text": "Upside needs an alarm too."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "decisive-ch12",
       "number": 12,
       "title": "Trusting the Process",
@@ -3270,8 +3084,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Implementation needs cooperation from people who may dislike the result. Correctness alone can fail when the route feels unfair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3283,8 +3096,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The process shapes alternatives, buy-in, and implementation. Some time up front can reduce later resistance and rework.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -3296,8 +3108,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Structured bargaining is not mere compromise theater. It can reveal practical limits and create a choice more people can accept.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3309,8 +3120,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Procedural justice says people judge the route too. Voice, neutrality, respect, and explanation can shape acceptance after a loss.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -3322,8 +3132,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Voice signals respect and improves the information in the room. It does not mean every participant gets to block the choice.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3335,8 +3144,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Acknowledgment does not weaken authority. It shows fair consideration, which makes disagreement less likely to feel like dismissal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3348,8 +3156,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A good mission does not erase conflict. A Reason To Survive still had to handle local needs, mission, and expansion pressure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3361,8 +3168,7 @@
             ],
             "correctIndex": 2,
             "explanation": "WRAP can structure group deliberation. When people see the steps, the decision looks less arbitrary and gains legitimacy.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3374,8 +3180,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Trusting the process means trusting real steps, not ceremony. People notice when a process cannot change anything.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3418,7 +3223,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Visible Process Check",
         "coreSkill": "Practice making the route of a decision visible before you sell the answer. Name who was heard, what standard guided the tradeoff, and what work will happen next. The skill is not adding meetings; it is showing the steps that make the choice legitimate.",
         "ifThenPlans": [
           {
@@ -3443,19 +3247,13 @@
       },
       "memorableLines": [
         {
-          "text": "Fair process helps losers carry the work.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's legitimacy claim into a practical result."
+          "text": "Fair process helps losers carry the work."
         },
         {
-          "text": "Voice is not veto power.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps participation distinct from unanimity."
+          "text": "Voice is not veto power."
         },
         {
-          "text": "Hollow process spends trust it never earned.",
-          "location": "breakdown.fullRead",
-          "why": "It names the danger of fake participation in a portable line."
+          "text": "Hollow process spends trust it never earned."
         }
       ]
     }

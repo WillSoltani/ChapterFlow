@@ -23,7 +23,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "behave-ch01",
       "number": 1,
       "title": "The Behavior",
@@ -124,8 +123,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact supports compatible causes at different depths. Training can be real without canceling immediate neural state, body state, development, or culture.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -137,8 +135,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The visible act is the end of a chain. Conscious intention is late and partial, while perception, arousal, and learned context shape what the body does.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -150,8 +147,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source fact separates explanation from pardon. Causes help prediction, prevention, and design, while responsibility answers a different practical question.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -163,8 +159,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fast and slow causes combine by changing thresholds. The drill response can be immediate and still shaped by the system built over years.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -176,8 +171,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A single label hides the target and social meaning. The same outward force can belong to attack, defense, dominance, or protection.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -189,8 +183,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fact says good and bad behavior can share substrates. Empathy, threat detection, bonding, and obedience can be steered by context.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -202,8 +195,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source fact points upstream. When conditions keep loading the response, a final lecture arrives late and leaves the stronger causes in place.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -215,8 +207,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact rejects the bucket split. Genes, experience, and culture interact, and development changes how later triggers are received.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -228,8 +219,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Moral naming may be right, but it does not identify mechanism. The careful account begins by describing what happened in useful detail.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -272,7 +262,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Walk Back the Clock",
         "coreSkill": "Practice separating the act from the first story you tell about it. Walk Back the Clock means you describe what happened, then name at least two earlier layers that made it more likely. This is not excuse-making. It is how you find the place where repair can happen.",
         "ifThenPlans": [
           {
@@ -297,19 +286,13 @@
       },
       "memorableLines": [
         {
-          "text": "A behavior is a doorway, not the whole ransacked house.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the reader from mistaking the visible act for the whole cause."
+          "text": "A behavior is a doorway, not the whole ransacked house."
         },
         {
-          "text": "One true cause does not cancel the others before it.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the chapter's layered logic into one portable test."
+          "text": "One true cause does not cancel the others before it."
         },
         {
-          "text": "Prevention starts where the last second has not yet arrived.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the upstream use of the time-scale method easy to remember."
+          "text": "Prevention starts where the last second has not yet arrived."
         }
       ]
     },
@@ -408,8 +391,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fact supports threat learning and defensive priming, not a one-word fear box. The pleasure claim confuses this circuit with the dopamine error.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -421,8 +403,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Prefrontal inhibition can help block an immediate move, but it is conditional. The wrong choices make control either pure morality or a perfect eraser.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -434,8 +415,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Dopamine is tied to prediction and learning, including shifts toward cues. The pleasure-only reading misses why a badge can pull behavior early.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -447,8 +427,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The insula integrates body states with disgust and appraisal. That makes disgust relevant, but not the same as proof.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -460,8 +439,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Readiness-potential work is about timing in voluntary movement. It does not settle all choice, and it does not put the report first.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -473,8 +451,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Gage matters because frontal systems support restraint and judgment. The case is not mainly about speech, and the source does not claim lost intelligence.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -486,8 +463,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A last-second account is incomplete on its own. Earlier learning and context tune the system before the trigger arrives.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -499,8 +475,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Emotion and cognition are not strict rivals. Appraisal combines value, memory, and body signals, so removing emotion is not the path to pure reason.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -512,8 +487,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Brain regions are nodes in flexible circuits. Fixed labels can help at first, but they fail when partners and tasks change the role.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -556,7 +530,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the One-Second Gate",
         "coreSkill": "Practice catching the instant before a response leaves your body. Run the One-Second Gate by naming the cue, the body signal, and the brake still open. Then ask what earlier load made the cue feel so strong.",
         "ifThenPlans": [
           {
@@ -581,24 +554,17 @@
       },
       "memorableLines": [
         {
-          "text": "One second is crowded.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's timing lesson into a phrase a reader can use under pressure."
+          "text": "One second is crowded."
         },
         {
-          "text": "A brain part is not the little villain in a cape.",
-          "location": "breakdown.fastRead",
-          "why": "It blocks the common move of turning a region into a total explanation."
+          "text": "A brain part is not the little villain in a cape."
         },
         {
-          "text": "A brake works best before the skid.",
-          "location": "breakdown.fullRead",
-          "why": "It makes upstream prevention easy to remember without losing the final-second focus."
+          "text": "A brake works best before the skid."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "behave-ch03",
       "number": 3,
       "title": "Seconds to Minutes Before",
@@ -693,8 +659,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact supports status sensitivity, not automatic violence. The tempting shortcut treats testosterone as a fixed command instead of a bias shaped by the contest.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "behave-ch03-q02",
@@ -706,8 +671,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Oxytocin can raise trust toward insiders by making bonding cues stand out. The broad kindness reading misses the in-group boundary.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "behave-ch03-q03",
@@ -719,8 +683,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source fact separates acute use from chronic risk. Treating stress hormones as simply bad loses the survival function.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "behave-ch03-q04",
@@ -732,8 +695,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Adrenaline prepares action by raising heart rate and energy flow. That can help movement, but high arousal can narrow judgment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "behave-ch03-q05",
@@ -745,8 +707,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Hormone levels modify odds; they do not read intention directly. Receptors and context help decide what the signal does.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "behave-ch03-q06",
@@ -758,8 +719,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The same hormone can have different social effects. A single emotional label misses how threat, trust, and group lines shape the result.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "behave-ch03-q07",
@@ -771,8 +731,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Moderate arousal can help, but sustained stress can weaken working memory and flexible control. The pressure-as-sharpening story is too broad.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "behave-ch03-q08",
@@ -784,8 +743,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Endocrine signals are slower and more diffuse than synapses. The instant-action version confuses hormone timing with nerve firing.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "behave-ch03-q09",
@@ -797,8 +755,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Hormones interact with prior learning. History helps interpret the signal, so chemistry is not a clean override.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -841,7 +798,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Check the Body Bid",
         "coreSkill": "Practice catching the body's first bid before you obey it. Ask what the signal is pushing toward: status defense, trust, alarm, or quick action. Then change one part of the setting before you answer.",
         "ifThenPlans": [
           {
@@ -866,24 +822,17 @@
       },
       "memorableLines": [
         {
-          "text": "Hormones tilt the room; they do not get a director's chair.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's main correction without losing the biology."
+          "text": "Hormones tilt the room; they do not get a director's chair."
         },
         {
-          "text": "Trust can draw a circle with a wall.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the oxytocin boundary easy to remember."
+          "text": "Trust can draw a circle with a wall."
         },
         {
-          "text": "Status chemistry asks what winning means here.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the testosterone myth into a portable status question."
+          "text": "Status chemistry asks what winning means here."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "behave-ch04",
       "number": 4,
       "title": "Hours to Days Before",
@@ -984,8 +933,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source fact says sleep loss changes regulation, not just energy. The near-miss treats fatigue as ordinary tiredness while leaving appraisal untouched.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -997,8 +945,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cytokines can help produce sickness behavior. The wrong reads turn a coordinated body response into attitude or loyalty.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1010,8 +957,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The parole finding is useful but debated. It supports a state question, not a simple verdict about the judges' moral quality.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1023,8 +969,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fact is conditional. Uncontrollable or poorly timed stress can bias habit and threat systems, while the quote treats stress as uniformly helpful.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1036,8 +981,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pain competes for attention and can make defense easier to trigger. The private-sensation read misses the social spillover.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1049,8 +993,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Metabolic state can change what feels urgent and valuable. Calling the choice pure character misses the changed decision landscape.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1062,8 +1005,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The body may need time to return to baseline. The instant-reset read ignores lingering stress chemistry after the event ends.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1075,8 +1017,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Recent rejection can prime watchfulness after the scene is over. The near-misses erase the carryover that the fact asks you to track.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1088,8 +1029,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Hours-to-days causes are probabilistic. They explain risk and guide prevention, but they do not make repair or responsibility disappear.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1132,7 +1072,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Rank the Recent State",
         "coreSkill": "Practice checking the state before you lock in the story. Rank the recent body and social pressures by likely pull, then change the highest-risk pressure you can change. The skill is not excusing conduct; it is designing the moment so conduct has a better chance.",
         "ifThenPlans": [
           {
@@ -1157,24 +1096,17 @@
       },
       "memorableLines": [
         {
-          "text": "A body can vote before a person speaks.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's time scale into a compact picture."
+          "text": "A body can vote before a person speaks."
         },
         {
-          "text": "The body writes in pencil, not stone.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the idea probabilistic without making it vague."
+          "text": "The body writes in pencil, not stone."
         },
         {
-          "text": "Check the body before pretending the soul ate lunch.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a portable order of operations."
+          "text": "Check the body before pretending the soul ate lunch."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "behave-ch05",
       "number": 5,
       "title": "Days to Months Before",
@@ -1275,8 +1207,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Long-term potentiation supports stronger later signaling after repeated activity. The file image misses the changed network that makes recall more likely.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1288,8 +1219,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The taxi-driver evidence points to adult plasticity under sustained navigation demand. Mere fact storage misses practice changing the relevant circuits.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1301,8 +1231,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Chronic stress is not just a bigger acute stress. Duration changes the biological outcome, including immune, metabolic, and neural effects.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1314,8 +1243,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Threat sensitization is learned, not mere drama. Ambiguous cues can feel predictive of harm after danger has trained the system.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1327,8 +1255,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Habits often show learning, not its absence. Repeated cue-response patterns can run with less deliberation and conserve attention.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1340,8 +1267,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Positive environments can also remodel systems. Social buffering can reduce stress load and build capacity for later regulation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1353,8 +1279,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Extinction learning does not delete the first association. Context can revive older threat learning, so safety has to keep practicing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1366,8 +1291,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Reward systems adapt with experience. Repeated exposure changes expected value, so the same object may not produce the same pull.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1379,8 +1303,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Immediate triggers act on trained systems. Months of repeated starts can change the threshold that the last-second cue inherits.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1423,7 +1346,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Trained Threshold",
         "coreSkill": "Practice naming the learned threshold before you judge the final reaction. A threshold is the point where a cue becomes strong enough to launch a response. When you name what trained it, you can change the next repetition instead of lecturing the last second.",
         "ifThenPlans": [
           {
@@ -1448,24 +1370,17 @@
       },
       "memorableLines": [
         {
-          "text": "Practice trains the door the next impulse barges through.",
-          "location": "breakdown.fastRead",
-          "why": "It makes plasticity feel like a threshold the reader can picture."
+          "text": "Practice trains the door the next impulse barges through."
         },
         {
-          "text": "The trigger is sudden; the threshold is not.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the chapter's time-scale reversal into one contrast."
+          "text": "The trigger is sudden; the threshold is not."
         },
         {
-          "text": "Fear can learn; safety has to practice.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps trauma and repair in the same biological frame."
+          "text": "Fear can learn; safety has to practice."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "behave-ch06",
       "number": 6,
       "title": "Adolescence; or, Dude, Where's My Frontal Cortex?",
@@ -1566,8 +1481,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source fact says prefrontal maturation extends into young adulthood. The parent is using body timing as if it proved adult control, which is the common error.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1579,8 +1493,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Peer presence can raise the reward value of bold action. The near misses blame ignorance alone or treat biology as sealed off from context.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1592,8 +1505,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Novelty seeking can support exploration and learning. The staff are treating risk as only pathology, so they may remove a useful developmental engine.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -1605,8 +1517,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Adolescent asynchrony means reward sensitivity and frontal regulation can run on different schedules. The wrong choices flatten that timing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1618,8 +1529,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact separates harm from adult neural maturity. Juvenile culpability can differ even when the act is grave, because control and foresight are still changing.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1631,8 +1541,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source fact says adolescent learning is powerful, not fixed. Hormones matter, but experience and social motivation still shape the path.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1644,8 +1553,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sleep fact warns against reading tiredness as laziness alone. Circadian timing can make an early schedule fight the teen body's clock.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1657,8 +1565,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Risk varies by context. Supportive structure can change the expression of risk while keeping room for choice and growth.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -1670,8 +1577,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The same motivational systems that can fuel risk can also fuel courage, belonging, and generosity. Adolescence is not only selfishness.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1714,7 +1620,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask the Missing Pressure",
         "coreSkill": "Use Ask the Missing Pressure before you judge a teen choice or your own fast reply. Name the visible act, then ask what peer, reward, novelty, sleep, or control pressure was louder at that moment. The skill does not excuse harm. It helps you change the setting before the next pass.",
         "ifThenPlans": [
           {
@@ -1739,24 +1644,17 @@
       },
       "memorableLines": [
         {
-          "text": "A teen brain can know the rule and still feel the crowd.",
-          "location": "breakdown.fastRead",
-          "why": "It makes peer-amplified risk easy to remember without excusing it."
+          "text": "A teen brain can know the rule and still feel the crowd."
         },
         {
-          "text": "The crowd can move the price tag while the brakes are still being installed.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses Steinberg's peer finding into a portable image."
+          "text": "The crowd can move the price tag while the brakes are still being installed."
         },
         {
-          "text": "Mercy is not the same as excuse.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the legal and moral boundary in one sentence."
+          "text": "Mercy is not the same as excuse."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "behave-ch07",
       "number": 7,
       "title": "Back to the Crib, Back to the Womb",
@@ -1857,8 +1755,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Secure care is not just warm feeling. Repeated repair teaches the nervous system that fear can be met and calmed with another person.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "behave-ch07-q02",
@@ -1870,8 +1767,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The ACE lesson is graded risk. Focusing only on extreme trauma misses how repeated stress load can stack across a life.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "behave-ch07-q03",
@@ -1883,8 +1779,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Prenatal famine exposure shows the womb is part of the signal stream. The risk comes from early tuning that may meet a different later environment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "behave-ch07-q04",
@@ -1896,8 +1791,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Severe deprivation is not only a lack of supplies. Responsive care is input the developing brain uses to build cognition and attachment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "behave-ch07-q05",
@@ -1909,8 +1803,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Early life is powerful, but it is not a life sentence. Later safety, care, and intervention can still alter stress and social patterns.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "behave-ch07-q06",
@@ -1922,8 +1815,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The prenatal environment carries information too. Stress signals and placental regulation can shape development before birth.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "behave-ch07-q07",
@@ -1935,8 +1827,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Abuse and neglect are not one mechanism with one repair. Threat and absence can tune different systems and call for different supports.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "behave-ch07-q08",
@@ -1948,8 +1839,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Regulation often begins as co-regulation. A trusted adult can lower threat physiology so the child can learn control.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "behave-ch07-q09",
@@ -1961,8 +1851,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Calibration changes probabilities. It can make some reactions more likely without writing a fixed script for every adult act.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2005,7 +1894,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Compare the Early Cue",
         "coreSkill": "Practice pausing before you turn a reaction into a character verdict. Compare the present trigger with one possible early cue: repair, threat, absence, or scarcity. The goal is not to diagnose yourself. It is to notice which cue you count first.",
         "ifThenPlans": [
           {
@@ -2030,19 +1918,13 @@
       },
       "memorableLines": [
         {
-          "text": "Repair teaches a body that fear can end.",
-          "location": "breakdown.fastRead",
-          "why": "It makes attachment biological without making it cold."
+          "text": "Repair teaches a body that fear can end."
         },
         {
-          "text": "An old forecast can be loud without being king.",
-          "location": "breakdown.deepRead",
-          "why": "It protects the core nuance in seven words."
+          "text": "An old forecast can be loud without being king."
         },
         {
-          "text": "Biology changes the odds; it does not erase the person.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps causation and agency in the same frame."
+          "text": "Biology changes the odds; it does not erase the person."
         }
       ]
     },
@@ -2147,8 +2029,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Heritability describes variation in a setting. It does not tell one person's fate, and it does not identify one gene as the cause.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2160,8 +2041,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Gene-environment interaction means the effect of a genotype can differ by experience. The error is treating genes and environment as separate piles.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2173,8 +2053,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Methylation affects whether genes are read. The sequence stays the same, so the right correction is regulation, not DNA rewriting.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2186,8 +2065,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Complex behavior is usually polygenic. The wrong shortcut is hunting for one gene for violence, kindness, or any other broad trait.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2199,8 +2077,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Twin designs compare degrees of genetic similarity. They estimate influence on variation; they do not directly name the gene causing a trait.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q06",
@@ -2212,8 +2089,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Adoption designs help separate home from genetic similarity. They are still imperfect, so the correct stance is useful but limited.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2225,8 +2101,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Genes can affect sensitivity to experience. That is different from saying genes set a fixed tendency and environment merely fights it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -2238,8 +2113,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fetal development starts with DNA but needs regulated input. Nutrients, hormones, and immune signals help shape the pathways that develop.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -2251,8 +2125,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Risk mechanisms can soften blame and sharpen prevention. If outcomes depend on environments, changing those environments still matters.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2295,7 +2168,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the Conditional Gene",
         "coreSkill": "Practice replacing a gene-for sentence with a conditional one. Mark the Conditional Gene by naming the gene or trait, then adding the setting that changes its meaning. The move keeps heredity in the story without turning it into fate.",
         "ifThenPlans": [
           {
@@ -2320,24 +2192,17 @@
       },
       "memorableLines": [
         {
-          "text": "Genes bend probabilities; they do not write a person.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps heredity serious without making it fatalistic."
+          "text": "Genes bend probabilities; they do not write a person."
         },
         {
-          "text": "Heritability is a map of variation, not fate.",
-          "location": "breakdown.deepRead",
-          "why": "It gives readers a compact correction for a common genetic shortcut."
+          "text": "Heritability is a map of variation, not fate."
         },
         {
-          "text": "Regulation changes the reading, not the alphabet.",
-          "location": "breakdown.fullRead",
-          "why": "It makes gene expression concrete without distorting the mechanism."
+          "text": "Regulation changes the reading, not the alphabet."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "behave-ch09",
       "number": 9,
       "title": "Centuries to Millennia Before",
@@ -2438,8 +2303,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Honor norms can make reputation defense feel like safety and status. Removing exits leaves the public threat in place.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "behave-ch09-q02",
@@ -2451,8 +2315,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Rice irrigation could build institutions and habits that last. The claim is about learned coordination, not a fixed national trait.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "behave-ch09-q03",
@@ -2464,8 +2327,7 @@
             ],
             "correctIndex": 1,
             "explanation": "WEIRD samples can be real evidence without being the human default. Size does not erase cultural narrowness.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "behave-ch09-q04",
@@ -2477,8 +2339,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Ritual can bind people by making commitment visible. Calling it decoration misses its social job.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "behave-ch09-q05",
@@ -2490,8 +2351,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Culture becomes an input to development. Children learn expectations in bodies, not just in ideas.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "behave-ch09-q06",
@@ -2503,8 +2363,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Moral emotions draw on shared human capacities, but cultures weight purity, honor, autonomy, and duty differently.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "behave-ch09-q07",
@@ -2516,8 +2375,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Institutions alter risk and restraint over time. Violence is not read straight from natural temperament.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "behave-ch09-q08",
@@ -2529,8 +2387,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Religious systems can organize cooperation and group lines. Private belief is only part of the effect.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "behave-ch09-q09",
@@ -2542,8 +2399,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Long cultural time scales can shape the setting for fast choices. The recent trigger is not the whole story.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2580,7 +2436,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Rewrite the Local Rule",
         "coreSkill": "Practice Rewrite the Local Rule when a reaction feels bigger than the event. Name the local rule that may be speaking, then write one sentence that gives the other person a lower-heat path. This keeps culture in view without excusing harm.",
         "ifThenPlans": [
           {
@@ -2605,24 +2460,17 @@
       },
       "memorableLines": [
         {
-          "text": "Old rules can take a ridiculous commute into a fresh pulse.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's time-scale surprise into a bodily image."
+          "text": "Old rules can take a ridiculous commute into a fresh pulse."
         },
         {
-          "text": "Culture is not outside biology; it trains biology.",
-          "location": "breakdown.deepRead",
-          "why": "It states the core correction in a portable form."
+          "text": "Culture is not outside biology; it trains biology."
         },
         {
-          "text": "A sample is a place, not the planet.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the WEIRD warning easy to recall."
+          "text": "A sample is a place, not the planet."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "behave-ch10",
       "number": 10,
       "title": "The Evolution of Behavior",
@@ -2723,8 +2571,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Kin selection can favor help to relatives because shared genes may gain. The error is thinking altruism itself defeats evolution.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2736,8 +2583,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Reciprocal altruism needs repeat contact, memory, and cheating control. Kinship is not the only path to stable help.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2749,8 +2595,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Sexual selection can keep costly traits when mating benefits are high enough. Cost alone does not settle the case.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2762,8 +2607,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Evolution does not aim at subjective well-being. A trait may spread through fitness even when it feels bad for a person.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -2775,8 +2619,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A plausible story is not proof. Evolutionary claims need evidence that can rule out other accounts.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2788,8 +2631,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Behavioral adaptations are context-sensitive. Different environments change the payoff and can change the behavior.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2801,8 +2643,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Selection works with constraints and compromises. Improving one function can make another worse.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -2814,8 +2655,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Human cooperation draws on several supports. One rule cannot explain all helping across family, friends, and groups.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2827,8 +2667,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Modern environments can change what a cue does. A once-useful tendency can become costly when the setting changes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2871,7 +2710,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Payoff Check",
         "coreSkill": "Practice using evolution as a question before it becomes an excuse. Run the Payoff Check by naming the likely payoff, the cost, and the cue in the current setting. Then ask whether the old pull still fits the moment in front of you.",
         "ifThenPlans": [
           {
@@ -2896,24 +2734,17 @@
       },
       "memorableLines": [
         {
-          "text": "A reason is not a permission slip.",
-          "location": "breakdown.fastRead",
-          "why": "It blocks the common move from explanation to excuse."
+          "text": "A reason is not a permission slip."
         },
         {
-          "text": "Tradeoffs are the point.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses evolution into costs, gains, and constraints."
+          "text": "Tradeoffs are the point."
         },
         {
-          "text": "Natural is a clue, not a command.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a portable test for biological claims."
+          "text": "Natural is a clue, not a command."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "behave-ch11",
       "number": 11,
       "title": "Us Versus Them",
@@ -3014,8 +2845,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 says even arbitrary labels can create an in-group comparison frame. The deep-history answer misses how thin the trigger can be.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3027,8 +2857,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 says perceived membership can alter empathy. Competition may sharpen the effect, but equal concern is not the default guarantee.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3040,8 +2869,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 supports the dehumanization answer. The error is thinking violence needs personal hatred before ideology lowers concern.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3053,8 +2881,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 says racial categories are culturally learned. The fixed-taxonomy answer treats social meaning as if it were biology alone.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -3066,8 +2893,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 points to superordinate goals. Contact works best when conditions make cooperation necessary, not when rivals merely share space.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3079,8 +2905,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 says rapid category responses can be regulated by later frontal processing. The claim mistakes a first spark for a final order.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -3092,8 +2917,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 says in-group loyalty can support generosity. The stronger reading keeps both sides: cooperation inside and danger outside.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3105,8 +2929,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 says threat narratives increase punitive support. Fear can change what feels necessary, not just add facts to a policy ledger.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3118,8 +2941,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 says cross-cutting identities weaken simple splits. The single-identity answer misses how one person can share and differ at once.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3156,7 +2978,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Practice the Name-Share-Goal move",
         "coreSkill": "Practice the Name-Share-Goal move when a group label takes over. First name the line your mind drew. Then add one shared role or goal before you judge what response is fair.",
         "ifThenPlans": [
           {
@@ -3181,19 +3002,13 @@
       },
       "memorableLines": [
         {
-          "text": "Thin labels can grow teeth without a respectable backstory.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the speed and danger of minimal groups easy to remember."
+          "text": "Thin labels can grow teeth without a respectable backstory."
         },
         {
-          "text": "Fear makes punishment feel like repair.",
-          "location": "breakdown.deepRead",
-          "why": "It names why threat stories can change what seems fair."
+          "text": "Fear makes punishment feel like repair."
         },
         {
-          "text": "Loyalty needs a door back to the human.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps belonging valuable without letting exclusion harden."
+          "text": "Loyalty needs a door back to the human."
         }
       ]
     },
@@ -3298,8 +3113,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact is not money alone. Chronic low control under subordination keeps stress systems engaged, so a pay-only story misses a key part of rank.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3311,8 +3125,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Milgram's result does not require sadism. The authority frame made continuing feel required and legitimate, which moved ordinary people.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -3324,8 +3137,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Power can reduce perspective-taking because the powerful depend less on reading others accurately. Thin reports are a warning, not proof of wisdom.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3337,8 +3149,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Dominance and prestige are not the same route to rank. Fear and earned respect create different habits around attention, correction, and speech.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -3350,8 +3161,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Resistance is socially supported. Seeing allies makes refusal feel less costly, so dissent can spread without assuming a fixed heroic trait.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3363,8 +3173,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Role assignment can change behavior because institutions provide scripts and permissions. The point is not fixed character in new clothes.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3376,8 +3185,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Hierarchy bends attention upward. Lower-ranking people often monitor higher-ranking people more closely because they depend on them more.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -3389,8 +3197,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Inequality can intensify status anxiety even when absolute resources improve. Relative position changes comparison, threat, and behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3402,8 +3209,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Authority can diffuse responsibility by making agency feel elsewhere. That feeling matters, but it does not remove causal participation.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3446,7 +3252,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Practice the Pause Before Obedience",
         "coreSkill": "Practice pausing before rank turns speed into consent. Name who has the authority, who has the control, and who would bear the harm. Then change the setting so a real objection can enter before the action locks.",
         "ifThenPlans": [
           {
@@ -3471,19 +3276,13 @@
       },
       "memorableLines": [
         {
-          "text": "Obedience is a nasty little rental agreement for your hand.",
-          "location": "breakdown.fastRead",
-          "why": "It makes diffusion of responsibility concrete."
+          "text": "Obedience is a nasty little rental agreement for your hand."
         },
         {
-          "text": "Rank is biology with an office chart attached.",
-          "location": "breakdown.deepRead",
-          "why": "It ties hierarchy to stress in a memorable image."
+          "text": "Rank is biology with an office chart attached."
         },
         {
-          "text": "Power shrinks the room other minds get to occupy.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the perspective cost of unchecked power."
+          "text": "Power shrinks the room other minds get to occupy."
         }
       ]
     },
@@ -3588,8 +3387,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The trolley fact says means, contact, and intention alter judgment. Equal counts do not make the two cases morally identical.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3601,8 +3399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Haidt's dumbfounding cases show that purity and taboo can drive condemnation even when direct harm is absent.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -3614,8 +3411,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Moral emotions can arrive before verbal reasons. That does not erase reasoning, but it means the stated reason may be late.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3627,8 +3423,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The ultimatum game shows costly fairness. Rejecting an unfair offer can make sense as a social response, not a math mistake.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3640,8 +3435,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The concept says moral systems weight foundations differently. Disagreement can be predictable without assuming bad faith.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -3653,8 +3447,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Empathy is not identical to morality. It can guide concern, but it can also be partial and blind to wider outcomes.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -3666,8 +3459,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact names a real conflict. A rule against direct harm can clash with maximizing total welfare, so there is no single obvious algorithm.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3679,8 +3471,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reasoning can come late, but it is not useless. Evidence and discussion can reshape later judgments.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3692,8 +3483,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Moral certainty can feel like proof while hiding learned assumptions or missing facts. The feeling needs evidence before public judgment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3736,7 +3526,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the First Verdict",
         "coreSkill": "Practice catching the first moral verdict before you turn it into a reply. Use Name the First Verdict: write the gut answer, name the value it claims to protect, then ask what evidence would change it. The skill is not softness. It is a way to keep certainty from outrunning reasons.",
         "ifThenPlans": [
           {
@@ -3761,19 +3550,13 @@
       },
       "memorableLines": [
         {
-          "text": "A clean reason can arrive late and still act as if it chaired the meeting.",
-          "location": "breakdown.fastRead",
-          "why": "It captures why moral certainty may need checking."
+          "text": "A clean reason can arrive late and still act as if it chaired the meeting."
         },
         {
-          "text": "Fairness sometimes pays by losing first.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the costly side of fairness memorable."
+          "text": "Fairness sometimes pays by losing first."
         },
         {
-          "text": "Certainty is a feeling, not a witness.",
-          "location": "breakdown.fullRead",
-          "why": "It warns against treating confidence as proof."
+          "text": "Certainty is a feeling, not a witness."
         }
       ]
     },
@@ -3878,8 +3661,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Affective empathy can create real distress in the observer. Without regulation, that distress may seek escape rather than useful help for the sufferer.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3891,8 +3673,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cognitive empathy is separable from compassion. A person can read another state well and still use that knowledge to help, pressure, or harm.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3904,8 +3685,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Compassion training can change prosocial responses. It does not erase concern; it moves attention away from flooding and toward steadier help.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3917,8 +3697,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The identifiable victim effect means attention is pulled by a concrete person. That pull is real, but it does not measure total need.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -3930,8 +3709,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pain empathy partly recruits the observer's own pain system. The overlap matters, but it is not a perfect copy or a plan for help.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -3943,8 +3721,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Helping needs concern without flooding. The most overwhelmed person may care deeply, but overwhelm can narrow action or make the response about relief.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -3956,8 +3733,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Empathy is not evenly spread. Shared identity can make another person's state easier and more motivating to represent, which can tilt care.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -3969,8 +3745,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Perspective-taking can shift appraisal when the setting supports it. That is weaker than a guarantee, but stronger than saying imagination never matters.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3982,8 +3757,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Compassion moves toward help while preserving the other's agency. Pity can stay above the person, feeling bad without changing the need.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -4026,7 +3800,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Say the Care Handoff",
         "coreSkill": "Practice turning a felt alarm into a useful handoff. Say what you know, what you do not know, and the next concrete help the person may need. The skill is not to feel less; it is to keep feeling from grabbing the steering wheel.",
         "ifThenPlans": [
           {
@@ -4051,19 +3824,13 @@
       },
       "memorableLines": [
         {
-          "text": "Care is not the same as pain.",
-          "location": "breakdown.fastRead",
-          "why": "It cuts through the chapter's central confusion in one sentence."
+          "text": "Care is not the same as pain."
         },
         {
-          "text": "Understanding can aim a hand or sharpen a knife.",
-          "location": "breakdown.deepRead",
-          "why": "It makes cognitive empathy's moral split easy to recall."
+          "text": "Understanding can aim a hand or sharpen a knife."
         },
         {
-          "text": "Good help costs you the rush of becoming the emergency.",
-          "location": "breakdown.fullRead",
-          "why": "It names the tradeoff that makes compassion harder than raw feeling."
+          "text": "Good help costs you the rush of becoming the emergency."
         }
       ]
     },
@@ -4168,8 +3935,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Conceptual metaphors carry assumptions from one domain into another. War points toward enemies and defeat; repair points toward causes and fixes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -4181,8 +3947,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source does not say disgust controls every verdict. It says contamination cues can transfer into moral feeling, depending on timing and context.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -4194,8 +3959,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Dehumanizing metaphors change moral concern by moving targets out of the person category. The issue is not style alone.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -4207,8 +3971,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Cleansing imagery can affect moral feeling through learned links between physical and symbolic purity. It is a cue, not a truth test.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -4220,8 +3983,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A war frame can focus attention, but it also narrows the menu. Enemies invite defeat, while other frames may invite repair.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -4233,8 +3995,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Disease metaphors can make contact itself seem unsafe. That can push a social boundary toward exclusion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -4246,8 +4007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The claim is layered. Material forces matter, and repeated metaphors can prepare permission by normalizing harsh measures.",
-            "bloomsLevel": "understand",
-            "depthLevel": "deep"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -4259,8 +4019,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Embodied cognition does not make thought irrational noise. It shows that bodily associations help process abstract ideas.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -4272,8 +4031,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A description is not a neutral label. Crime and illness frames point to different forms of blame, care, and repair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -4316,7 +4074,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Rewrite the Frame Line",
         "coreSkill": "Practice catching the action hidden inside a metaphor. Use Rewrite the Frame Line when a phrase makes people sound like stains, pests, enemies, floods, or disease. Write one plainer line that names the problem without making a person into the thing to remove.",
         "ifThenPlans": [
           {
@@ -4341,19 +4098,13 @@
       },
       "memorableLines": [
         {
-          "text": "Metaphors lend your body a script.",
-          "location": "breakdown.fastRead",
-          "why": "It makes an abstract theory feel physical and repeatable."
+          "text": "Metaphors lend your body a script."
         },
         {
-          "text": "A metaphor arrives with luggage, and some of it is sharp.",
-          "location": "breakdown.fastRead",
-          "why": "It shows how one image can choose the next action."
+          "text": "A metaphor arrives with luggage, and some of it is sharp."
         },
         {
-          "text": "Change the frame before disgust gets a vote.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the metaphor warning into a short practical rule."
+          "text": "Change the frame before disgust gets a vote."
         }
       ]
     },
@@ -4452,8 +4203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fact supports impaired regulation, not biology-free choice. It also does not say all control is gone in every context.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4465,8 +4215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source supports conditional relevance through regulation. The wrong choices demand total erasure or make the tumor a total cause.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4478,8 +4227,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Cashmore's argument undercuts strong desert-based punishment. It does not remove safety, restraint, or prevention as goals.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -4491,8 +4239,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Risk assessment can help, but the fact warns about prediction error. A probability is not certainty or a substitute for evidence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -4504,8 +4251,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Causal systems can be changed. Rehabilitation fits the biology because environments and capacities can alter later behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -4517,8 +4263,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Diminished capacity already recognizes differences in mental state and control. The source does not say harm alone settles culpability.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -4530,8 +4275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact separates harm from blameworthiness. Biology can explain capacity while the system still protects victims and repairs harm.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -4543,8 +4287,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact supports developmental effects on control and rehabilitation potential. It does not make youth irrelevant or erase responsibility.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -4556,8 +4299,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The humane model treats prevention as serious justice. It follows causes to lower future harm rather than equating justice with cruelty.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -4600,7 +4342,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Blame-to-Prevention Tally",
         "coreSkill": "Practice catching the jump from harm to pure blame. Run the Blame-to-Prevention Tally by marking the blame thought, naming the capacity question, and choosing the safety response. The skill is firm without being cruel.",
         "ifThenPlans": [
           {
@@ -4625,24 +4366,17 @@
       },
       "memorableLines": [
         {
-          "text": "Causes are maps, not pardons, and the victims are still on the map.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps explanation from collapsing into excuse."
+          "text": "Causes are maps, not pardons, and the victims are still on the map."
         },
         {
-          "text": "Prevention is justice before the siren.",
-          "location": "breakdown.deepRead",
-          "why": "It makes prevention feel active and serious."
+          "text": "Prevention is justice before the siren."
         },
         {
-          "text": "A changed brake is still a brake.",
-          "location": "breakdown.fullRead",
-          "why": "It captures rehabilitation in plain physical language."
+          "text": "A changed brake is still a brake."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "behave-ch17",
       "number": 17,
       "title": "War and Peace",
@@ -4743,8 +4477,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fact centers dehumanization before the final act. It lowers the moral threshold by changing who counts as protected, not by proving innate hatred.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -4756,8 +4489,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The truce was temporary and conditional. Direct contact and shared ritual softened categories, but they did not end the war or make danger disappear.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -4769,8 +4501,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The supported answer is about credible institutions. A change of heart is fragile if each side still fears that restraint leaves it exposed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4782,8 +4513,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Truth and Reconciliation Commission is the hybrid case. It used acknowledgment and conditional amnesty rather than pure revenge or forgetting.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -4795,8 +4525,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Power sharing gives groups a reason to protect the future system. Exclusion can leave incentives hostile, so imposed peace may not hold.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -4808,8 +4537,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fact points to variation across societies and eras. If rates and forms change with context, prevention can work upstream of the crisis.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -4821,8 +4549,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Coalitional psychology can serve peace when shared identity widens or shifts. The answer keeps loyalty but points it toward restraint.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -4834,8 +4561,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Accountability matters because buried atrocity can preserve grievance. Memory can support repair when it is organized in public, not ignored.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -4847,8 +4573,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source fact is conditional. The same human capacities can support harm or peace, depending on incentives, norms, identity, and future expectations.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -4891,7 +4616,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the Safer Future",
         "coreSkill": "Practice asking what would make restraint feel safe before you ask who deserves blame. Use one visible mark to pull your attention toward future stakes, public memory, and fair rules. The mark is small on purpose; it gives your next sentence a job.",
         "ifThenPlans": [
           {
@@ -4916,19 +4640,13 @@
       },
       "memorableLines": [
         {
-          "text": "A border in the mind can move.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the chapter's conditional claim small enough to remember."
+          "text": "A border in the mind can move."
         },
         {
-          "text": "Peace is built before the beautiful moment, usually with less singing and more paperwork.",
-          "location": "breakdown.fastRead",
-          "why": "It turns peace from a feeling into preparation."
+          "text": "Peace is built before the beautiful moment, usually with less singing and more paperwork."
         },
         {
-          "text": "Memory can heal only when it stays honest.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps reconciliation from sliding into forgetting."
+          "text": "Memory can heal only when it stays honest."
         }
       ]
     }

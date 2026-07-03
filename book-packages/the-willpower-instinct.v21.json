@@ -21,1278 +21,8 @@
       "social-contagion-of-willpower"
     ]
   },
-  "productionManifest": {
-    "schemaVersion": "chapterflow-production-manifest-v2",
-    "contentId": "sha256:147ab7cacad931f2bb38f8a383396883c1d6e688300ca12ea54b6604ac449439",
-    "payloadHash": "sha256:147ab7cacad931f2bb38f8a383396883c1d6e688300ca12ea54b6604ac449439",
-    "payload": {
-      "schemaVersion": "chapterflow-production-manifest-payload-v2",
-      "bookId": "the-willpower-instinct",
-      "packageSchemaVersion": "chapterflow-v21-authored",
-      "book": {
-        "title": "The Willpower Instinct",
-        "author": "Kelly McGonigal",
-        "categories": [
-          "Psychology"
-        ],
-        "tags": [
-          "three-powers-of-willpower",
-          "pause-and-plan-response",
-          "self-control-fatigue-and-training",
-          "moral-licensing",
-          "wanting-is-not-happiness",
-          "what-the-hell-effect",
-          "delay-discounting",
-          "social-contagion-of-willpower"
-        ],
-        "contentOwner": "chapterflow"
-      },
-      "canonicalIndex": {
-        "path": "state/indexes/the-willpower-instinct.json",
-        "semanticHash": "sha256:bf2278c81a216e95704aa9bb38b27a4ff2ba84643476fef990517519aef532a1",
-        "chapters": [
-          {
-            "chapterId": "the-willpower-instinct-ch01",
-            "chapterNumber": 1,
-            "chapterTitle": "I Will, I Won't, I Want: What Willpower Is, and Why It Matters"
-          },
-          {
-            "chapterId": "the-willpower-instinct-ch02",
-            "chapterNumber": 2,
-            "chapterTitle": "The Willpower Instinct: Your Body Was Born to Resist Cheesecake"
-          },
-          {
-            "chapterId": "the-willpower-instinct-ch03",
-            "chapterNumber": 3,
-            "chapterTitle": "Too Tired to Resist: Why Self-Control Is Like a Muscle"
-          },
-          {
-            "chapterId": "the-willpower-instinct-ch04",
-            "chapterNumber": 4,
-            "chapterTitle": "License to Sin: Why Being Good Gives Us Permission to Be Bad"
-          },
-          {
-            "chapterId": "the-willpower-instinct-ch05",
-            "chapterNumber": 5,
-            "chapterTitle": "The Brain's Big Lie: Why We Mistake Wanting for Happiness"
-          },
-          {
-            "chapterId": "the-willpower-instinct-ch06",
-            "chapterNumber": 6,
-            "chapterTitle": "What the Hell: How Feeling Bad Leads to Giving In"
-          },
-          {
-            "chapterId": "the-willpower-instinct-ch07",
-            "chapterNumber": 7,
-            "chapterTitle": "Putting the Future on Sale: The Economics of Instant Gratification"
-          },
-          {
-            "chapterId": "the-willpower-instinct-ch08",
-            "chapterNumber": 8,
-            "chapterTitle": "Infected! Why Willpower Is Contagious"
-          },
-          {
-            "chapterId": "the-willpower-instinct-ch09",
-            "chapterNumber": 9,
-            "chapterTitle": "Don't Read This Chapter: The Limits of \"I Won't\" Power"
-          },
-          {
-            "chapterId": "the-willpower-instinct-ch10",
-            "chapterNumber": 10,
-            "chapterTitle": "Final Thoughts"
-          }
-        ]
-      },
-      "chapters": [
-        {
-          "chapterId": "the-willpower-instinct-ch01",
-          "chapterNumber": 1,
-          "title": "I Will, I Won't, I Want: What Willpower Is, and Why It Matters",
-          "readerContentHash": "sha256:37bacc2ec096cc0a8c6cb0a1ce28c7a76636110f5288d1a52fbbaa373566977e",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-willpower-instinct/20260626T032310154Z-ce178f54-5fa4-4f8e-ae18-c54713ac0307/sidecars/source/ch01.source.json",
-            "semanticHash": "sha256:16afc69401169a977dbee204a8901ae41c9bd86a0313d31f4869eed4bce0712d",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-willpower-instinct-ch01.v21-native.chapter.json",
-            "semanticHash": "sha256:638111c0b73aa25c064c2cd7897a5c5128d60f272b8c3fb90bf81210a3101ea8",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:8ad52c57fddbb1717c098c8f39adc1c32ec3201a0d43b079c66661388347d4cd"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-willpower-instinct-ch01.qc.json",
-            "semanticHash": "sha256:ee2cff1c542224f70094052e76b607dee440e2c024c81e72e8c1d29dfcd77d52",
-            "roundId": "r20260626053321-b9ba30",
-            "contentHash": "52faeeb4bf9ce06f",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626053321-b9ba30",
-            "reviewedAt": "2026-06-26T05:38:06.890Z"
-          }
-        },
-        {
-          "chapterId": "the-willpower-instinct-ch02",
-          "chapterNumber": 2,
-          "title": "The Willpower Instinct: Your Body Was Born to Resist Cheesecake",
-          "readerContentHash": "sha256:ba44e0876f1d66e8d808d78e0263d1f4d1180f48bcd6bcada3a5030b85392cee",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-willpower-instinct/20260626T032310154Z-ce178f54-5fa4-4f8e-ae18-c54713ac0307/sidecars/source/ch02.source.json",
-            "semanticHash": "sha256:7a29747139da87cf85a1836cdc83a8387e770683871615759cb9c0efe8c95c7c",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-willpower-instinct-ch02.v21-native.chapter.json",
-            "semanticHash": "sha256:52e673aff148269653c41f00167f5b73aeb43bb9b295fb452f066957b6e3ed27",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": null
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-willpower-instinct-ch02.qc.json",
-            "semanticHash": "sha256:bebc604d75660c1a045ffdfec30810b2596f125473879c5e7041f0a321b75f92",
-            "roundId": "r20260626053321-b9ba30",
-            "contentHash": "fbca20ef64678923",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626053321-b9ba30",
-            "reviewedAt": "2026-06-26T05:38:06.891Z"
-          }
-        },
-        {
-          "chapterId": "the-willpower-instinct-ch03",
-          "chapterNumber": 3,
-          "title": "Too Tired to Resist: Why Self-Control Is Like a Muscle",
-          "readerContentHash": "sha256:a5e31d3e1cf33470302816391817f343fa9f34c300207f075459b2689461e3c0",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-willpower-instinct/20260626T032310154Z-ce178f54-5fa4-4f8e-ae18-c54713ac0307/sidecars/source/ch03.source.json",
-            "semanticHash": "sha256:7797c72a067aea3a73712045e1af779009588be68d0ea4b2687fd916891d3bd7",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-willpower-instinct-ch03.v21-native.chapter.json",
-            "semanticHash": "sha256:f6b7f2dec40ab181d44ed2a95e14437779a2e830c209a310167992eb37b5a50a",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:709c53d675e45344514b45631e652a64953354c7cbed2c9eb737ccb443532f8d"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-willpower-instinct-ch03.qc.json",
-            "semanticHash": "sha256:e912062a413878bf8bc67050110ebe439002a3eebc6313f2234b5d1b10bfb436",
-            "roundId": "r20260626045037-5d9df0",
-            "contentHash": "8297683ceca901c2",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626045037-5d9df0",
-            "reviewedAt": "2026-06-26T04:57:31.577Z"
-          }
-        },
-        {
-          "chapterId": "the-willpower-instinct-ch04",
-          "chapterNumber": 4,
-          "title": "License to Sin: Why Being Good Gives Us Permission to Be Bad",
-          "readerContentHash": "sha256:ddcdcf7ae94070938957abd125e30dd501f59a94cf0054fe2fe4c3b1469959e6",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-willpower-instinct/20260626T032310154Z-ce178f54-5fa4-4f8e-ae18-c54713ac0307/sidecars/source/ch04.source.json",
-            "semanticHash": "sha256:ad7276170f53aa305c37322881cccf4c4466047fb545bcf626eaefb8faf73ee0",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-willpower-instinct-ch04.v21-native.chapter.json",
-            "semanticHash": "sha256:f4cfd11ec32514a71348fd59e5cfa01c231f2ed846da6f6540613cdf55bbd81b",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:1ebc2d3dd067d2a0e74150060f82acdac3aef68626e009c9dde915f8c34f81eb"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-willpower-instinct-ch04.qc.json",
-            "semanticHash": "sha256:9c32c2b8a75588302006f3520b42093a2728862f1a0503f9194d3bdf8d8010ca",
-            "roundId": "r20260626053321-b9ba30",
-            "contentHash": "65d6faf994a3ffc3",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626053321-b9ba30",
-            "reviewedAt": "2026-06-26T05:38:06.891Z"
-          }
-        },
-        {
-          "chapterId": "the-willpower-instinct-ch05",
-          "chapterNumber": 5,
-          "title": "The Brain's Big Lie: Why We Mistake Wanting for Happiness",
-          "readerContentHash": "sha256:52d20f58088c0739e407aacb4a286fabd756f54a74836aa2a07e389634d21ece",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-willpower-instinct/20260626T032310154Z-ce178f54-5fa4-4f8e-ae18-c54713ac0307/sidecars/source/ch05.source.json",
-            "semanticHash": "sha256:607e1e90681587167a765e70df5c3a7615dd615ee4bda9a11d4caa967c20ea2f",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-willpower-instinct-ch05.v21-native.chapter.json",
-            "semanticHash": "sha256:a0dcd098a8a5b27d605cbe09abf1607babed1feab534a1a9b48ce60152d58110",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": null
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-willpower-instinct-ch05.qc.json",
-            "semanticHash": "sha256:2060398c71de506b8c2d63c741b32700b4e692ebb825c66d7c56a6d31671a872",
-            "roundId": "r20260626045037-5d9df0",
-            "contentHash": "7a5d14004f9d2938",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626045037-5d9df0",
-            "reviewedAt": "2026-06-26T04:57:31.578Z"
-          }
-        },
-        {
-          "chapterId": "the-willpower-instinct-ch06",
-          "chapterNumber": 6,
-          "title": "What the Hell: How Feeling Bad Leads to Giving In",
-          "readerContentHash": "sha256:62ee70f80c197eb74565f34a9d59085aab18cea3cf5ad1ddee549afcbd3c18d9",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-willpower-instinct/20260626T032310154Z-ce178f54-5fa4-4f8e-ae18-c54713ac0307/sidecars/source/ch06.source.json",
-            "semanticHash": "sha256:d535540b2a48281151a145325c88e62ecd2afb902296396a5e62f2658fd58622",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-willpower-instinct-ch06.v21-native.chapter.json",
-            "semanticHash": "sha256:9c6c7e180c8b260b0080e89312a284f4b095549e430ab67b3f3867e62e38414a",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "bd1be91bfb73e4c92ba15588910dcf3e469b8fe41d6c3798c221b8a7549b70c7"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-willpower-instinct-ch06.qc.json",
-            "semanticHash": "sha256:fb2fc6f63ab4bcd91e1aeb67f1715718afd82746c0bf6c0088c32568fd68b8f2",
-            "roundId": "r20260626053321-b9ba30",
-            "contentHash": "0b2111db261da9f3",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626053321-b9ba30",
-            "reviewedAt": "2026-06-26T05:38:06.891Z"
-          }
-        },
-        {
-          "chapterId": "the-willpower-instinct-ch07",
-          "chapterNumber": 7,
-          "title": "Putting the Future on Sale: The Economics of Instant Gratification",
-          "readerContentHash": "sha256:50a1cbd829175dc71c9ba3fac8462d2721a229b045439064fe938b7c5c7c903b",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-willpower-instinct/20260626T032310154Z-ce178f54-5fa4-4f8e-ae18-c54713ac0307/sidecars/source/ch07.source.json",
-            "semanticHash": "sha256:6b9752ed6fccab1a16f0eb0beecd8672a9e5a3df250a6824020aa7111e2ed181",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-willpower-instinct-ch07.v21-native.chapter.json",
-            "semanticHash": "sha256:025dfba64ff07ec2654c0cf1385ca8563e9efbcc26b7eeef67cb5cc5a7957261",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:7df8e6f998890086c85661334e3dac1541db7ad8226f2e58858c18af292f591c"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-willpower-instinct-ch07.qc.json",
-            "semanticHash": "sha256:d05cf17e58e83cc4fa518c2f584c855d903560926bd31348802f0a4833e939b7",
-            "roundId": "r20260626053321-b9ba30",
-            "contentHash": "eff2c14f0f5685e6",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626053321-b9ba30",
-            "reviewedAt": "2026-06-26T05:38:06.892Z"
-          }
-        },
-        {
-          "chapterId": "the-willpower-instinct-ch08",
-          "chapterNumber": 8,
-          "title": "Infected! Why Willpower Is Contagious",
-          "readerContentHash": "sha256:de6d604a155433f84dd708a3a7ca82d7bd4ea8285d1bfdbcc95493d2dd8b1001",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-willpower-instinct/20260626T032310154Z-ce178f54-5fa4-4f8e-ae18-c54713ac0307/sidecars/source/ch08.source.json",
-            "semanticHash": "sha256:4a75c7f0b6cfd77f13001463fb56ad3bc309303a119f701e1e27945ef8ea6bed",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-willpower-instinct-ch08.v21-native.chapter.json",
-            "semanticHash": "sha256:24a88602e7829e375ae8e463489103b84ba76d108d7631646748cfeaa5e00f16",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": null
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-willpower-instinct-ch08.qc.json",
-            "semanticHash": "sha256:e2ed24db76d9f0a7e8c7f051978a15f92328bcd3a5e4cf9e34c0a5637f47bb52",
-            "roundId": "r20260626045037-5d9df0",
-            "contentHash": "f0783ef56763df8b",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626045037-5d9df0",
-            "reviewedAt": "2026-06-26T04:57:31.579Z"
-          }
-        },
-        {
-          "chapterId": "the-willpower-instinct-ch09",
-          "chapterNumber": 9,
-          "title": "Don't Read This Chapter: The Limits of \"I Won't\" Power",
-          "readerContentHash": "sha256:d53f32c7bb1b467ae48eb3bff60e2e3dc92ef894731e78550056419181d65297",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-willpower-instinct/20260626T032310154Z-ce178f54-5fa4-4f8e-ae18-c54713ac0307/sidecars/source/ch09.source.json",
-            "semanticHash": "sha256:b7bfb63128e3f1b1244cbc1bd7967c6e2a20ea8317840f1de18a63f7ad80523e",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-willpower-instinct-ch09.v21-native.chapter.json",
-            "semanticHash": "sha256:5a0b1743fd592d4511d721ce327a136de5bf26159105254f47db9077e0d2b49c",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "28514220aa265256e58e1dddc75f42e9bfbb1b0ffee207fca722af063299e6e5"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-willpower-instinct-ch09.qc.json",
-            "semanticHash": "sha256:05605152519c91326f799077377d0bcdf38ca3a7446766f53658e3a3d69a7aaa",
-            "roundId": "r20260626045037-5d9df0",
-            "contentHash": "f2b8e72f8daa6630",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626045037-5d9df0",
-            "reviewedAt": "2026-06-26T04:57:31.579Z"
-          }
-        },
-        {
-          "chapterId": "the-willpower-instinct-ch10",
-          "chapterNumber": 10,
-          "title": "Final Thoughts",
-          "readerContentHash": "sha256:0d207ccaf190e97cec24feca53f58dc561de585d131a759262c390f8cdc5f4c8",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-willpower-instinct/20260626T032310154Z-ce178f54-5fa4-4f8e-ae18-c54713ac0307/sidecars/source/ch10.source.json",
-            "semanticHash": "sha256:488f94b902c6b58ea633415871636ed25da93c5ea852eff98ee1e7049f79906e",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-willpower-instinct-ch10.v21-native.chapter.json",
-            "semanticHash": "sha256:e89734069a719c7dfc55471e3cc0e6b26a1afe3caa6ef8c7e2964ff444cb9730",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": null
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-willpower-instinct-ch10.qc.json",
-            "semanticHash": "sha256:6c185b691cb126c269760556ee6f289ca409a63a77f56c75b55701945973d318",
-            "roundId": "r20260626053321-b9ba30",
-            "contentHash": "06bff486593fa5e4",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626053321-b9ba30",
-            "reviewedAt": "2026-06-26T05:38:06.892Z"
-          }
-        }
-      ],
-      "sourceRealityEvidence": {
-        "bookId": "the-willpower-instinct",
-        "policyResult": "required-and-verified",
-        "classification": "new-source-v2",
-        "record": {
-          "path": ".chapterflow/source-verify-the-willpower-instinct.md",
-          "schemaVersion": "source-verify-record-v1",
-          "semanticHash": "sha256:4677d3713aa9bc99dbe8c72268a40dc78ad7e6356bb6cbdd4fe0a687cb1462e9",
-          "bookId": "the-willpower-instinct",
-          "verifier": null,
-          "verifiedAt": null
-        },
-        "exemption": null
-      },
-      "evidencePolicy": {
-        "sourceEvidence": "required",
-        "authoringEvidence": "required-for-source-v2",
-        "sourceReality": "required-for-source-v2",
-        "qcAttestation": "required"
-      },
-      "versions": {
-        "canonicalJson": "canonical-json-sha256-v1",
-        "readerContentHash": "reader-content-canonical-sha256-v1",
-        "readerContentStripRules": "reader-content-strip-v2",
-        "promptBundle": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:735b5b42eaa0364442ef0f6aa253f8797413b825f889c1cba322664046658f63",
-          "fileCount": 36,
-          "files": [
-            {
-              "path": "agent-prompts/BOOK-AUTOPILOT-CODEX-SESSION.md",
-              "sha256": "sha256:0eecbc8465dd645f87759253609b1ba1520051870c52ba7ed27cf2e325d2fe0e"
-            },
-            {
-              "path": "agent-prompts/FIELD-PURPOSE-CONTRACTS.md",
-              "sha256": "sha256:855bc491550ea9da1ab8ff27f02250b6c1db816ff7e7fe6d2adeac5a56a5b022"
-            },
-            {
-              "path": "agent-prompts/GENERATE-A-BOOK-CODEX-SESSION.md",
-              "sha256": "sha256:402bd7a9e06b57eb159795c29b2361f90730d20594896de8f8f3a5242e2ef3cd"
-            },
-            {
-              "path": "agent-prompts/PLAYBOOK-GENERATE-A-BOOK.md",
-              "sha256": "sha256:bb9c1ae165f28398e3e9839847f47b3e56ec6328b1ff3782cc646eee919fa231"
-            },
-            {
-              "path": "agent-prompts/PUBLISH-AFTER-QC-CODEX-SESSION.md",
-              "sha256": "sha256:9935baa797e094d4e2007b3dfe4d330e317b82460d21c07c99dc9d3f2f0c7d1f"
-            },
-            {
-              "path": "agent-prompts/QC-AUTO-CODEX-SESSION.md",
-              "sha256": "sha256:76316778015be0fb4113c5784aa16061ad82f79d7487e1ff4046e67541391b2e"
-            },
-            {
-              "path": "agent-prompts/QC-CODEX-SESSION.md",
-              "sha256": "sha256:da1ebae297f359eb43f4bed9086bde53744679d6735e8abc0f7a1f5c0d8af1e3"
-            },
-            {
-              "path": "agent-prompts/QC-ORCHESTRATE-CODEX-SESSION.md",
-              "sha256": "sha256:fc8ff25b7521265cad2f26c2bb154549b4821f0440ce33bfab39bd821e90c07e"
-            },
-            {
-              "path": "agent-prompts/QC-PLAYBOOK.md",
-              "sha256": "sha256:2dfeb6d744015a9eec906f848c6ab53fa015c82f8f1733979c8ef4148168b90d"
-            },
-            {
-              "path": "agent-prompts/QC-SESSION-PROMPT.md",
-              "sha256": "sha256:f7736d3916ed66f0eb558c8cd076d39a7b1be06ba5c1992015d1b8ea5cf4371f"
-            },
-            {
-              "path": "agent-prompts/REPAIR-CODEX-SESSION.md",
-              "sha256": "sha256:b0e93e248432dae3412c2486b2f094cdd57a90cd0931410541dbd4b3ffb46b47"
-            },
-            {
-              "path": "agent-prompts/RESEARCH-CODEX-SESSION.md",
-              "sha256": "sha256:600f58db777edaf51eee63e145b45dc1c8c4a6cfcde542c5f488fa14ed7554eb"
-            },
-            {
-              "path": "agent-prompts/RUN-A-BOOK.md",
-              "sha256": "sha256:e3e18b68e4f230bda8f64b42db6c78a703f9b3033516a7f5fd4fa5882cd42d42"
-            },
-            {
-              "path": "agent-prompts/STEP-1-RESEARCH.md",
-              "sha256": "sha256:d897e2595c849397b685f0cfb1eda5cfbc3ddbf4ece76124fdad312c62ea6459"
-            },
-            {
-              "path": "agent-prompts/STEP-2-WRITE-CHAPTERS.md",
-              "sha256": "sha256:e2f8c96472e1dd611012535429871847a2c91426e40ba91876c270e0a333c128"
-            },
-            {
-              "path": "agent-prompts/STEP-3-FINALIZE.md",
-              "sha256": "sha256:e0fff66309b550eaf3974fbbda9308278bd1f6bdd38fc0ff805a3568c5a01ac9"
-            },
-            {
-              "path": "agent-prompts/WRITE-ORCHESTRATE-CODEX-SESSION.md",
-              "sha256": "sha256:f98cf09062f4467bf00dadbecfe8ff35eddc8761a4e72126a98a48fcde3b959e"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-CHAPTER.md",
-              "sha256": "sha256:a18da21713fc6200b57e93edf352173e2eba3c0895bb97157517b3cb111175eb"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-FINALIZE.md",
-              "sha256": "sha256:57a5df9387c9050ee7c7d71e3a51d5ec1aaafabcba2befcd36133ed0aa2e1043"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-RESEARCH.md",
-              "sha256": "sha256:3d6f425fe52a0c50cef493a7f1443d51485e870605117b49c6d8dd0f52f58f76"
-            },
-            {
-              "path": "prompts/categorizer.system.md",
-              "sha256": "sha256:41933513807e03e65d74c280b5df092e36c1367b51385daeb3eba5e19a3af6e6"
-            },
-            {
-              "path": "prompts/curriculum-planner.system.md",
-              "sha256": "sha256:c325d544a978ed0d41d07b5d48cfea41cda31b32a369817dbd14eb08c8254359"
-            },
-            {
-              "path": "prompts/editor-in-chief.system.md",
-              "sha256": "sha256:5ea77e3745a0e41fd653dd1168865476abe3d2362623c670d318099cd48d11ba"
-            },
-            {
-              "path": "prompts/example-curator.system.md",
-              "sha256": "sha256:0d6ad29a3a1cdf494c489bc25a0a6b2e1ec3a043e4b093faede02cb0f2c70479"
-            },
-            {
-              "path": "prompts/line-editor.system.md",
-              "sha256": "sha256:ff761ae79702a1d2874743b1f5ee9782f427949ccb129dbf130577d98a9e6398"
-            },
-            {
-              "path": "prompts/memorable-lines.system.md",
-              "sha256": "sha256:b3d198c05bbe4e445ff1ecf5ea3704d62e79756086114a162cbd4cc5a6bf80c9"
-            },
-            {
-              "path": "prompts/researcher-bibliography.system.md",
-              "sha256": "sha256:328eefbdacc9fd850c5b719bdf988bac9b4a83fee495278e0cc5f78a7158234a"
-            },
-            {
-              "path": "prompts/researcher-chapter.system.md",
-              "sha256": "sha256:3ac00906eaa3263e8fdbd20ccc7e7a84b07fe1e992dec7dd24b245899dfaa550"
-            },
-            {
-              "path": "prompts/try-this-now.system.md",
-              "sha256": "sha256:944542af9172d409cf7094a52896c86af396ee51ab09e9ccf134c9706f3a23c7"
-            },
-            {
-              "path": "prompts/voice-pass.system.md",
-              "sha256": "sha256:8f8b3eebfde6f1f36b6a9c9cb3c9258ff95ed028ba93eb7422f25ef453507086"
-            },
-            {
-              "path": "prompts/writer-breakdown.system.md",
-              "sha256": "sha256:a0e5662b6606a33ba79a86a8800abdadc813cb1f4ee4d23c81379763f3d6b688"
-            },
-            {
-              "path": "prompts/writer-cards.system.md",
-              "sha256": "sha256:ad966d203cf2f692b60b32fba51e4927214a32edfd2bee17ca068c72db3a9ace"
-            },
-            {
-              "path": "prompts/writer-example.system.md",
-              "sha256": "sha256:ce2349be56f4738cc7dc3a713e7cbe26326a8b77b262e507de94f1978fb36d08"
-            },
-            {
-              "path": "prompts/writer-hook.system.md",
-              "sha256": "sha256:a25803598031232a7b9980bc3b7e02f8f4c924956c01050559eff6713f94f0fc"
-            },
-            {
-              "path": "prompts/writer-implementation-plan.system.md",
-              "sha256": "sha256:86fb5ef91f3c5f31d67dd3239056dc9ef2b27d548fc4c441adf89d570c5546a3"
-            },
-            {
-              "path": "prompts/writer-quiz.system.md",
-              "sha256": "sha256:1a1e448f989fb919766610a5c415d08d02e5626683fe34677a2193bc68f88cad"
-            }
-          ]
-        },
-        "configBundle": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:0e01499682288944fb6909288b96acef6914afa21641c0044183519334041397",
-          "fileCount": 16,
-          "files": [
-            {
-              "path": "config/author-voice-profiles.json",
-              "sha256": "sha256:ad50ef88d74c6045746a587477307704d8611fa7b80ebe48c0371237764a1c1b"
-            },
-            {
-              "path": "config/banned-connectives.json",
-              "sha256": "sha256:1e83ec50dd880d8915fa14792b057f1e2eea6e847672d496b2e6737b3f4b5949"
-            },
-            {
-              "path": "config/banned-phrases.json",
-              "sha256": "sha256:3de6d00688cf467a98d9645768585238ac63d7bde8c3b711a23d192f7352932d"
-            },
-            {
-              "path": "config/categories.json",
-              "sha256": "sha256:1df0501dea9183377984bcc9e204f7388f3fa684f7466626fc0e3126b1756c3f"
-            },
-            {
-              "path": "config/common-given-names.json",
-              "sha256": "sha256:61728f8bc4b137cd996096149ae18900911ca556df7c1a3f94a51e2fd31e378d"
-            },
-            {
-              "path": "config/critic-rubric.json",
-              "sha256": "sha256:e08085eb19f450338aa678a6db89e73a23f3a553b75542d9f5bd38a9c956627a"
-            },
-            {
-              "path": "config/meta-patterns.json",
-              "sha256": "sha256:83adbb89df9dab39c9861866e1c17e4e2b1d5a56d41ea9d211e8cd20a9639c2f"
-            },
-            {
-              "path": "config/name-bank.json",
-              "sha256": "sha256:23d8ea9ff61c3e44ec3fb6543aab24110eea5cf50b2e1de93ff06a42b0d7ff5a"
-            },
-            {
-              "path": "config/name-policy.json",
-              "sha256": "sha256:7107daf8d1084b04255351f136e0b7d750d72f4d7a4ab76257e3488b06f5ef86"
-            },
-            {
-              "path": "config/named-frameworks.json",
-              "sha256": "sha256:cc0da18fb0f04774f0be93067c67d69baefcc60a49dac4817d0d3e33c3758aae"
-            },
-            {
-              "path": "config/pedagogy-palettes.json",
-              "sha256": "sha256:f7ceccf85d7f1dd49fe35c13c7c0a4ee721c17a0b09e4c641319797100f65d58"
-            },
-            {
-              "path": "config/scenario-openers.json",
-              "sha256": "sha256:ed7fe8f62aa0c32242baa8bf82416a9f26d5b33d4a67c17be45e48144da9eb82"
-            },
-            {
-              "path": "config/scene-mechanisms.json",
-              "sha256": "sha256:6ffbcf6098d1ab96b67317fd617903f08f609e00b0ceea6c494a588a2205f878"
-            },
-            {
-              "path": "config/scene-shapes.json",
-              "sha256": "sha256:07efd36415fd4b64761fcee5c06ef637d1041d2a5eda7b7d80ed28c982d8ada6"
-            },
-            {
-              "path": "config/stakes-palette.json",
-              "sha256": "sha256:92d60229937b530c73773c90daea8ec2ad12fdbd9bfd25631a6df220e22f088b"
-            },
-            {
-              "path": "config/venue-palette.json",
-              "sha256": "sha256:8ba041c9d34f93f821519a0cbdab73aedc308866d49241f16c02556f527415f8"
-            }
-          ]
-        },
-        "codeFingerprint": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:ee5acb3d2ee029386abce5d408e17fbf2c02f5fc98d68bf10c8e528ff22cebaa",
-          "fileCount": 162,
-          "files": [
-            {
-              "path": "package-lock.json",
-              "sha256": "sha256:2aeb73471797ac4fd9286327997806c894657716271000d34d9acc6f45a15e84"
-            },
-            {
-              "path": "package.json",
-              "sha256": "sha256:f1683aac5b4b7e865e138dfbb4532d458d0c7dd90f8944c0637b028d83ad5298"
-            },
-            {
-              "path": "src/agents/autoCategorize.ts",
-              "sha256": "sha256:8497cd1a40734f6bfe9fe59e4d1dd74f9f0fa1a90ad91becce2b7e5e7165fbb7"
-            },
-            {
-              "path": "src/agents/categorizer.ts",
-              "sha256": "sha256:c6686634332a0efcd6721801c77c351e78930c935f5f0dff65ff6146b1d3d765"
-            },
-            {
-              "path": "src/agents/curriculum-planner.ts",
-              "sha256": "sha256:b0838ebbf2d162b16ede327f09adc02074203daf4ccd16cc56e98af32d1b4984"
-            },
-            {
-              "path": "src/agents/editor-in-chief.ts",
-              "sha256": "sha256:90f9fc0958255c81ff2672458624c809f1455e3432c4c293e98e44f4e75afcbe"
-            },
-            {
-              "path": "src/agents/line-editor.ts",
-              "sha256": "sha256:c0f804e0bd940552b4a351b2528380f2e1c284173c96b44691e4570fd1646987"
-            },
-            {
-              "path": "src/agents/memorable-lines.ts",
-              "sha256": "sha256:5eca291142f6b015c1ac2e99c233c55dbf828dd6d664e1707e80fe1d09986573"
-            },
-            {
-              "path": "src/agents/researcher-bibliography.ts",
-              "sha256": "sha256:efd8474cd56bc643badeedd5bf427df4314a574d44eb84c52831fbd3970811fd"
-            },
-            {
-              "path": "src/agents/researcher-chapter.ts",
-              "sha256": "sha256:fabc0fd3a046aedd992c89b5f11267b5023db331396347bfc9fa942a25848e32"
-            },
-            {
-              "path": "src/agents/try-this-now.ts",
-              "sha256": "sha256:e14bb4063c4d66233331bacc9e993c44c8cace50abf83d17c0e06443ba631fbd"
-            },
-            {
-              "path": "src/agents/voice-pass.ts",
-              "sha256": "sha256:f46637ba9ea89f5080b0d7ed03954ec4562fb934ba2677c77ef5d74a8059e79e"
-            },
-            {
-              "path": "src/agents/writer-breakdown.ts",
-              "sha256": "sha256:157f87dc4ab5b501e9c348ce4b9cb4ef613e0e2610a6cb51e4412329330f135e"
-            },
-            {
-              "path": "src/agents/writer-cards.ts",
-              "sha256": "sha256:28f3e93b5e762fafa8f60c1cc9b6bc55e843367c69d63133cb6fcc824827fd2a"
-            },
-            {
-              "path": "src/agents/writer-example.ts",
-              "sha256": "sha256:22e27e23047110602252d5109306cf180a665e58843ba4c2707b4d09fd09f08b"
-            },
-            {
-              "path": "src/agents/writer-hook.ts",
-              "sha256": "sha256:88d1a25238ef9d84f6fd57c5f5185524fe11129763d1a4692843c4678035fc5b"
-            },
-            {
-              "path": "src/agents/writer-implementation-plan.ts",
-              "sha256": "sha256:2276512d7838e3eedf7906a5326c3c9915c275a4282cdf3c5cb5c92b5afacfac"
-            },
-            {
-              "path": "src/agents/writer-quiz.ts",
-              "sha256": "sha256:dc30ba5e073f133e485b64f6aed7319b7b6168186ac8da5f3f28fc4874194f39"
-            },
-            {
-              "path": "src/assembler.ts",
-              "sha256": "sha256:92e405e1d1b29433cd6e602799711a292dfe2575118b67209f4840b9d491ea42"
-            },
-            {
-              "path": "src/cache/stageCache.ts",
-              "sha256": "sha256:fc655ae2df40e5aec46b867f068f677195547f7f254cace247bcfb4d4b6bfe65"
-            },
-            {
-              "path": "src/claudeClient.ts",
-              "sha256": "sha256:e5a29140ab757083a13e05833804ba2a93db5e572ed0cdc8381c370e19996338"
-            },
-            {
-              "path": "src/cli.ts",
-              "sha256": "sha256:f55c7442eebcc28db6e8d0e9641a49a11abda7e61a1add63de6e1401d13660d3"
-            },
-            {
-              "path": "src/cost-tracker.ts",
-              "sha256": "sha256:9f6413f09ce238af382706b2e65ba71d4a3fed79e59bc636858c0615885405d6"
-            },
-            {
-              "path": "src/critics/antiSalting.ts",
-              "sha256": "sha256:c80540cbf5d5115f27443559298af0a8d8af743ee9331d17bbd3ed1bcbb0b0b1"
-            },
-            {
-              "path": "src/critics/authoringContract.ts",
-              "sha256": "sha256:6dd1d597c3f4824cb711f1e8aefb62bf9f4c7bfde175832ed7311adc1f46d659"
-            },
-            {
-              "path": "src/critics/bookGate.ts",
-              "sha256": "sha256:a9356298ff87d6d24fef42e68c985fcc62de83e72f8f54db625485b516109192"
-            },
-            {
-              "path": "src/critics/bookPatternAudit.ts",
-              "sha256": "sha256:dc5aeaf6abb63eda1eec60c92ae409fe1434a6ca2cb97bb0103f07b4dc4f5a5c"
-            },
-            {
-              "path": "src/critics/bookRepetition.ts",
-              "sha256": "sha256:e0c926d987466945ed50774b06e720a56320d8168b1c11871211af2bc03ff863"
-            },
-            {
-              "path": "src/critics/catalogAudit.ts",
-              "sha256": "sha256:553bd8e397cab5faf9e0381bb807d3f95212a85a56fdd7774539b14f4c572a42"
-            },
-            {
-              "path": "src/critics/crossBookSignatureAudit.ts",
-              "sha256": "sha256:0c7f8ea7d9d9888d49ba7e0db0e8eb6ae0e25670257dd4a223f0ca0f574a3edb"
-            },
-            {
-              "path": "src/critics/evidenceIntegrity.ts",
-              "sha256": "sha256:768dbd54c11466714e2de56d873c37d269df1d65eeff1ab5ac92b97b0070ab6a"
-            },
-            {
-              "path": "src/critics/experiencePlan.ts",
-              "sha256": "sha256:7fea5a2fceb2721b9b619fcec4d98992ab09b78cfe9529e2c73b66a87c17e4e5"
-            },
-            {
-              "path": "src/critics/finalGate.ts",
-              "sha256": "sha256:91136fe5afd5f2b2c588bc1fa464fa9a54461d3852c2772742abebc3117c10bb"
-            },
-            {
-              "path": "src/critics/groundedNumbers.ts",
-              "sha256": "sha256:27a6e3f190061fc41c3f2a684cd33b803dd3f5de5acabb5cac88f0bad34a22d3"
-            },
-            {
-              "path": "src/critics/integrity.ts",
-              "sha256": "sha256:b2aff233555a5ec5afdeec00cb31bd537facfcd3a1189ac0ac33c17201e989a1"
-            },
-            {
-              "path": "src/critics/intraBook.ts",
-              "sha256": "sha256:d01ee51b61bdcb3a91ab837ec2074a43d5c957c6f6f1b71aa86625dec3ba3d8d"
-            },
-            {
-              "path": "src/critics/intraBookFieldSimilarity.ts",
-              "sha256": "sha256:bc45858ccc90bf6e3168d8e97cafd3bf81f802b79a2ca093dca176f70d2fc12a"
-            },
-            {
-              "path": "src/critics/intraBookQuizSimilarity.ts",
-              "sha256": "sha256:69d5ecbd0539a723291ff79d41ab47cf43520a4981deb85148c70866262e40b8"
-            },
-            {
-              "path": "src/critics/narrative.ts",
-              "sha256": "sha256:3595f3356e0c9e37545a972cf3c257bcaf7031e2c81914f1a93abbb4678b376a"
-            },
-            {
-              "path": "src/critics/outcomeVariety.ts",
-              "sha256": "sha256:2a836db54bf2d196d4b117f0149f24a88b628ab11b11143fa8ef650aaea26d47"
-            },
-            {
-              "path": "src/critics/pedagogy.ts",
-              "sha256": "sha256:060e0f223385126089e6bc2c6469596f572527acb675446dd5e544fff2f971bf"
-            },
-            {
-              "path": "src/critics/plainLanguage.ts",
-              "sha256": "sha256:6164ed5dd743a0e46cf1576087829daac2bd33a3498e1b52dacd8249110855cf"
-            },
-            {
-              "path": "src/critics/prose.ts",
-              "sha256": "sha256:1e824372385ba368d3697252d8f80ce6230a8c29a16cf8b0c86cb8a3d2adaec5"
-            },
-            {
-              "path": "src/critics/qcAttestation.ts",
-              "sha256": "sha256:d27fca01c676f0d96d96cd7c567e54b1bdc9cbca377228e6d4bc358fb628bd1e"
-            },
-            {
-              "path": "src/critics/quizCorrectness.ts",
-              "sha256": "sha256:8f789f09ad25ca27edef9e27c9df2891f95ec92c78a2a53c23217fdd3b2874f9"
-            },
-            {
-              "path": "src/critics/quizKeyGate.ts",
-              "sha256": "sha256:7c3545d5600f649574fecb1c8d390e72984ca98adbc2ef99e859951c802cc99f"
-            },
-            {
-              "path": "src/critics/quizQuality.ts",
-              "sha256": "sha256:6f6a4ab2e05fb62935c88dc9bb7cbf9fc50d730c6dbcd6930e4f33f8ca5aec4f"
-            },
-            {
-              "path": "src/critics/readingLevel.ts",
-              "sha256": "sha256:a3c1b5fa9aaa1c56c1d5e950ce50e37818ea0d1c832a1c11e4721f18f44dcc40"
-            },
-            {
-              "path": "src/critics/register.ts",
-              "sha256": "sha256:95079ac31bb92ebe2477eb36595ca68ec7293f76a9fae5bfd31567e83ff6e0d6"
-            },
-            {
-              "path": "src/critics/runAllCritics.ts",
-              "sha256": "sha256:fd473ae74bbc6041199ed42d9a766a53dedd1fa02ffc45b92831abbfd1a8212b"
-            },
-            {
-              "path": "src/critics/scaffoldLeak.ts",
-              "sha256": "sha256:93bf473a2636d7a8ec066ec116d149e1ab7db93de5ef1532f9a3cf8f269f3d42"
-            },
-            {
-              "path": "src/critics/sceneConcreteness.ts",
-              "sha256": "sha256:1554a233d6d128b424b3cf8f96d763ca85e60c321c96a7c186e9aba5c1d58a20"
-            },
-            {
-              "path": "src/critics/schema.ts",
-              "sha256": "sha256:27e0908090aa280845cb2b3610e295eac388721def1b5840040c48d2a7bed00c"
-            },
-            {
-              "path": "src/critics/semantic/publishableBar.ts",
-              "sha256": "sha256:dffa25d816df2c912e4f1621b953d4b426a689b36785b87b0a9f030ff3e7e851"
-            },
-            {
-              "path": "src/critics/semantic/quizKeyJudge.ts",
-              "sha256": "sha256:a6088b283c8e1065c71b936da16564548094a1f2bfc89fb10db5b24db9234cd6"
-            },
-            {
-              "path": "src/critics/shared.ts",
-              "sha256": "sha256:dffbede8ba6fbcada941343e1f4c6d1a4caaaf9efa448d0508df61dfec36fbb9"
-            },
-            {
-              "path": "src/critics/sourceCoherence.ts",
-              "sha256": "sha256:bd7bb198769be3be204c9694b8c4df7259480c27c0230db7982592176ec5a95f"
-            },
-            {
-              "path": "src/critics/sourceGrounding.ts",
-              "sha256": "sha256:55a7625d5f5021a8b8c42e475552560c38a7b4b7131e450d350a2f83fdfc94ae"
-            },
-            {
-              "path": "src/critics/sourceRealness.ts",
-              "sha256": "sha256:e945e5d2b30e5649cf6469e1b6c8ee70c1affe12a50a263030f17e78c660d380"
-            },
-            {
-              "path": "src/critics/sourceVerify.ts",
-              "sha256": "sha256:0f00e8ce881f514c7ab114eba6dbfd6138a944eef9f3cecfec759188de501cb8"
-            },
-            {
-              "path": "src/critics/supportSectionAudit.ts",
-              "sha256": "sha256:b55b1f501f632d5c4f60a611e99369f77d60eabec079cab8909cc572e05b4730"
-            },
-            {
-              "path": "src/critics/textUtils.ts",
-              "sha256": "sha256:b39890a8535051f286301b9fa72e2940cb6a0f6bdd225002882351cd0e99d180"
-            },
-            {
-              "path": "src/curator/exampleSelector.ts",
-              "sha256": "sha256:b87c8ea06c8f332af6b91a9e83a266b5e7397640aff600e513cd80cac291a08b"
-            },
-            {
-              "path": "src/diagnose.ts",
-              "sha256": "sha256:20506a4da04b28d05317924af66e86971b0fca0522af30aa51e54baa67e30f80"
-            },
-            {
-              "path": "src/generateBook.ts",
-              "sha256": "sha256:b328e7fa5a3e36cd633a2911337ad83dc1bfaae457bfcf01cac1f601ef7f9cf9"
-            },
-            {
-              "path": "src/generateChapter.ts",
-              "sha256": "sha256:e5e3cddd9d58792ece72840572e06c7c5eaeb68050595818856540169024311c"
-            },
-            {
-              "path": "src/generationDegradation.ts",
-              "sha256": "sha256:737f8dc7d7f415709b1111beccf30552bb2530372e930d28a873d17a8b5af7a6"
-            },
-            {
-              "path": "src/lib/atomicWrite.ts",
-              "sha256": "sha256:cd4a80010b539604e8aff522d47ad6aed3cafba7a48193e5b92b0159aab79c3a"
-            },
-            {
-              "path": "src/lib/brief-sanitizer.ts",
-              "sha256": "sha256:9a57da614a3129c0d787f7528380b85a304d86943a2f757383fb4411eae343dc"
-            },
-            {
-              "path": "src/lib/canonicalJson.ts",
-              "sha256": "sha256:9ad6c9a4fc8ff24318f757ef157b91413071cc0bd84ef557b896464c1138512b"
-            },
-            {
-              "path": "src/lib/chapterPaths.ts",
-              "sha256": "sha256:ccc20df4f559e86d3926d69e3ee69d81dc16b96d4fbd4a6522e56da5508aa783"
-            },
-            {
-              "path": "src/lib/chapterSet.ts",
-              "sha256": "sha256:5d8bc25303a34830cc7d76bb90a4a4c1a71444fef55679493f3c2dbd3c65ba4f"
-            },
-            {
-              "path": "src/lib/coprime.ts",
-              "sha256": "sha256:1a9654e7c3284b4ecfeef9988b785263bd2270d8af7c2dc4ec5c7353d470600d"
-            },
-            {
-              "path": "src/lib/fnv1a.ts",
-              "sha256": "sha256:61016dec458c076d322e720e22e92dc4aa37028f789dda46e6d7515f044d2ab7"
-            },
-            {
-              "path": "src/lib/pipelineFingerprint.ts",
-              "sha256": "sha256:0554bcba0938fc754c25c18ad0c05a3f73800bafe1642481cfaa7c80b2cec54f"
-            },
-            {
-              "path": "src/lib/readerContent.ts",
-              "sha256": "sha256:e2b15b8bfd4d5a267e2bb1b3ff960d68a2fc2eceefa27e2b2bc75eaa53fa5de7"
-            },
-            {
-              "path": "src/lib/researchRunManifest.ts",
-              "sha256": "sha256:334eebac804ba1e7a1460a27861109d44589a2bd37cae9b880a06231ccfb4e8e"
-            },
-            {
-              "path": "src/lib/runDirs.ts",
-              "sha256": "sha256:75314e23045e1d701d7b185a60b948f3205159b62e80c97793b02ba3f69ac413"
-            },
-            {
-              "path": "src/lib/strictEnv.ts",
-              "sha256": "sha256:514d00911774ac075c92cba4580431186b4b34abdda3f43229210ae8436e76f5"
-            },
-            {
-              "path": "src/lib/tocContract.ts",
-              "sha256": "sha256:53c68b2c5e376f52e2c0f4507113c628037b41ceffae25d59fe3203d17948be8"
-            },
-            {
-              "path": "src/lib/voiceBible.ts",
-              "sha256": "sha256:2339dc3c959290788f091d3bf6efc817a73ac33b1df8cec06208a561fd12b109"
-            },
-            {
-              "path": "src/librarian/actionMechanismPlan.ts",
-              "sha256": "sha256:efe3a3c449b927e8f6c0d714b5703c143d45dac9fc1005bbf080a0fd81a86cef"
-            },
-            {
-              "path": "src/librarian/answerKeyPlan.ts",
-              "sha256": "sha256:00270cf59e9e4e5ff9fc1d66870f3725bf4ccad9b165530d3cb1b6b83d9f09a0"
-            },
-            {
-              "path": "src/librarian/authoringGuardrails.ts",
-              "sha256": "sha256:07312d442ea536fae75cebf3834a3f02c69657f7978645ac5f9811e36f153bdf"
-            },
-            {
-              "path": "src/librarian/callbackPlan.ts",
-              "sha256": "sha256:35fb7a7f106ab2b354725246074440faeae1fcaebb34b34ef78b55a691e09127"
-            },
-            {
-              "path": "src/librarian/chapterArchetypePlan.ts",
-              "sha256": "sha256:40343341c3a53981d043386615a680dd664a6de1f048747d699ed09df854c246"
-            },
-            {
-              "path": "src/librarian/exemplarPlan.ts",
-              "sha256": "sha256:4a290fff74cdb3b1d0ec9bbad58520a2f098e85005ecf42cc5d3bd67f45f2828"
-            },
-            {
-              "path": "src/librarian/fullReadSkeletonPlan.ts",
-              "sha256": "sha256:40c5d9e0543f8e235048e457c38782b511156d7927786c6a60f9a8b081e12ae8"
-            },
-            {
-              "path": "src/librarian/identityMigration.ts",
-              "sha256": "sha256:a1e7d5b4b8043c062fc998026dab29e43838456d0f4cdc48be7b34126e3d7528"
-            },
-            {
-              "path": "src/librarian/libraryState.ts",
-              "sha256": "sha256:b6dc3455f79f9cefe7961d832276ecc951ed9596e6ae7533d2f0a29506546f9d"
-            },
-            {
-              "path": "src/librarian/namePlan.ts",
-              "sha256": "sha256:bb9799027cbbd96211ab1949515b848373e9c2df493139202283494de6636b0a"
-            },
-            {
-              "path": "src/librarian/namePolicy.ts",
-              "sha256": "sha256:093bfc0933d10eadaeb1ef7d0bdfc4657ca004ee19a4114c441f41d46afdf1b6"
-            },
-            {
-              "path": "src/librarian/openerPlan.ts",
-              "sha256": "sha256:95345b5ddd4574f58d5d8ec215382529543694e0b250bad83f160d82ef5fa56a"
-            },
-            {
-              "path": "src/librarian/pedagogyPlan.ts",
-              "sha256": "sha256:958d6a675678ca723cba38c41cc8766d386d4c90a5f92f952a81c9b7ae0285c8"
-            },
-            {
-              "path": "src/librarian/rhetoricPlan.ts",
-              "sha256": "sha256:8d187af79f123d697e282aeb9820106aaebbf85c5fe4b7ee6835f803c41bfdea"
-            },
-            {
-              "path": "src/librarian/saturationGuard.ts",
-              "sha256": "sha256:1c566953d135c227e329a73bd5a6dcfd9a8b311704182bb57a80287ea2090107"
-            },
-            {
-              "path": "src/librarian/sceneMechanismPlan.ts",
-              "sha256": "sha256:18b2ced6ab7dc7b724548b567aea483dbbcdf077c2bbc07d14189f3faa623dd6"
-            },
-            {
-              "path": "src/librarian/sceneModePlan.ts",
-              "sha256": "sha256:acccfc0fe8ed936e6410d7e6d5d16eec70a3ca8a8dd86690078298279c683cd4"
-            },
-            {
-              "path": "src/librarian/shapePlan.ts",
-              "sha256": "sha256:2a2e39775eee5b77354160550e9a6e7c42b711bf7ac306d9c75af4b7733d86a4"
-            },
-            {
-              "path": "src/librarian/sourceSidecars.ts",
-              "sha256": "sha256:0d7af1950a5476d7472d7f584024b74cb4c4f8c2d02a087127815076743de0b1"
-            },
-            {
-              "path": "src/librarian/stakesPlan.ts",
-              "sha256": "sha256:9e7c3325dd0dbe2e09e95867b56ca6d11a6a7a1010d183d415a5823fadb39f46"
-            },
-            {
-              "path": "src/librarian/timingPlan.ts",
-              "sha256": "sha256:1a65c956cf1d261fc3b8286a61b865a943ad0cae2aa92fa307f8b7bd7a46c0f8"
-            },
-            {
-              "path": "src/librarian/venuePlan.ts",
-              "sha256": "sha256:ce859090d5e69410cc7a345969d710cc99f52f26ddd7961ff21ade0e97e84c3d"
-            },
-            {
-              "path": "src/librarian/weeklyPracticePlan.ts",
-              "sha256": "sha256:e95803dd4d01ba07e27f29781d0246c121ab14b8ac29ee712dddce8ec0b85be5"
-            },
-            {
-              "path": "src/lifecycle/bookStatus.ts",
-              "sha256": "sha256:ae301e7a500fa1cb865bcf1e28a6ade3eb48d08b7b16e66981c48fc41707d011"
-            },
-            {
-              "path": "src/lifecycle/doctor.ts",
-              "sha256": "sha256:e5c5b7bb44873eee0bbad478f34cab49ae36cf5744327bc97f99f92be54ce9c5"
-            },
-            {
-              "path": "src/next-task.ts",
-              "sha256": "sha256:1592b596e4d99b2bc0db2ae096f65445b71384a97ea582edb3d05bd3e3f26f8a"
-            },
-            {
-              "path": "src/orchestrator/autopilot.ts",
-              "sha256": "sha256:18e6283a12ffc51a5328753c5a2859ade13e6dcccc3b9576d7293a5a0f75b968"
-            },
-            {
-              "path": "src/orchestrator/codexAgent.ts",
-              "sha256": "sha256:61d65771db3574dd0b22238527f1764569339579efe95b12664f3830a4df34e4"
-            },
-            {
-              "path": "src/orchestrator/liveRun.ts",
-              "sha256": "sha256:c6acf88ff4a37c093d5e643b39e514a2bf34a20d18af52419bdaf8da234067ad"
-            },
-            {
-              "path": "src/productionManifest.ts",
-              "sha256": "sha256:e33fdd7c1d4b0b7955d891b09d130c65b5a5787f4a08f77da4c3914b29defcaa"
-            },
-            {
-              "path": "src/promoteBook.ts",
-              "sha256": "sha256:a88f709d8e19ae2235bb8abcdbdbb432677f762fb86856fac30b59fada969cb7"
-            },
-            {
-              "path": "src/providers/anthropic-api.ts",
-              "sha256": "sha256:3cec61a5121f33ade6ad718af52f8b53a24751ef17a9501a6f79b65e8a346c84"
-            },
-            {
-              "path": "src/providers/cli.ts",
-              "sha256": "sha256:484d020fb9704086ea61c51833bac5cd4dda29843f78a18b283c9bb9e67a5b6c"
-            },
-            {
-              "path": "src/providers/openai-api.ts",
-              "sha256": "sha256:771063a3e9668792a801acc955563ab1a35db5b6891d91b9702686ce31c2a6a3"
-            },
-            {
-              "path": "src/providers/router.ts",
-              "sha256": "sha256:577da2d691ea0b951e1d9fe4e1784e33c2fd65fb84664a474f8d43dd8ba1bbc2"
-            },
-            {
-              "path": "src/providers/types.ts",
-              "sha256": "sha256:62b4f6c653701cabd78e0992e29c17dfba978b36132da0ceb2bf54f94398585e"
-            },
-            {
-              "path": "src/qc/auto/driver.ts",
-              "sha256": "sha256:e40f72d308d6b00f8a1f08cea7f13746b1f2b78cb15a853bcdbebd6377e9944a"
-            },
-            {
-              "path": "src/qc/auto/generateWorkflow.ts",
-              "sha256": "sha256:03129563c77f56e1d3948d97af118dbbcfba345a04fd31e9997382888da3f9df"
-            },
-            {
-              "path": "src/qc/auto/resolveBook.ts",
-              "sha256": "sha256:dbd2edeb4dc80fccec35acadc31a0d483a6a1e9fa11cfbc4ff3a494786479c8b"
-            },
-            {
-              "path": "src/qc/barReview.ts",
-              "sha256": "sha256:a1fd21bab474f8fdc334acb95e9f651080618bff60294bd196e3895c22058c7e"
-            },
-            {
-              "path": "src/qc/majorDisposition.ts",
-              "sha256": "sha256:c611a7b12b3605dff443296e78080d7308b3f8ae50577191e215ea564e9bc62f"
-            },
-            {
-              "path": "src/qc/manualKeyJudge.ts",
-              "sha256": "sha256:f504121cd0a6a8d65ce8081bce10f12354b5a0021124bceeb119d90cf7a3c978"
-            },
-            {
-              "path": "src/qc/metrics.ts",
-              "sha256": "sha256:de46f137669ab02836e2c30adcb8cd8b9e0e7c859f4dd266aee0fb25674176bd"
-            },
-            {
-              "path": "src/qc/noApiMode.ts",
-              "sha256": "sha256:7611d7a8b3a871e3b817398019101b9572e479a2e315927eb3088d14a2abab33"
-            },
-            {
-              "path": "src/qc/normalizeProvenance.ts",
-              "sha256": "sha256:80ef80dc911181d9a7598967b57c46ef6c62ad8029c72fac680957de02ec2ea7"
-            },
-            {
-              "path": "src/qc/orchestrator/artifacts.ts",
-              "sha256": "sha256:8b7e0e1c10a9a7f5ab7d6bc2f5485a923b3a3fd26deb93fe57e50f9055851ee3"
-            },
-            {
-              "path": "src/qc/orchestrator/deterministicGate.ts",
-              "sha256": "sha256:eab5f1e32c3e99c31ddd799fe40328f385cf9633daa1bcc10612a34f8bb8c82c"
-            },
-            {
-              "path": "src/qc/orchestrator/diagnose.ts",
-              "sha256": "sha256:bf44afcf7b0cc9dd801b79073ad1eb00cbf47fbdcca9f6f33ef24dc59f709f90"
-            },
-            {
-              "path": "src/qc/orchestrator/evidenceSource.ts",
-              "sha256": "sha256:25d18eb067698ca2ca105ef00aeff709fe25e2bff397e67b5041ee163c950cbd"
-            },
-            {
-              "path": "src/qc/orchestrator/finalize.ts",
-              "sha256": "sha256:991ba361dea4cc0029ad3329052ad4eceb6ba64c90aa1d4fe4b2d3fed013e351"
-            },
-            {
-              "path": "src/qc/orchestrator/finalizerFindings.ts",
-              "sha256": "sha256:58192b3a433be92c5c6b8f1113155e557f53c465a3f1eb71bb246458e3e78d9b"
-            },
-            {
-              "path": "src/qc/orchestrator/findingGrouping.ts",
-              "sha256": "sha256:0c620ea901027fbe85c4804545f1d7ba4f2f814ed161999531f65b9ee6f6daca"
-            },
-            {
-              "path": "src/qc/orchestrator/findingValidity.ts",
-              "sha256": "sha256:fc940f4f36a298eb1d5124f131cb480f6c3897bbf7814ad423cb8aaf8d728dce"
-            },
-            {
-              "path": "src/qc/orchestrator/index.ts",
-              "sha256": "sha256:02d4ea59b78aa9c5b1de91298194b967262c8ad3e91831f46d95999de5e51179"
-            },
-            {
-              "path": "src/qc/orchestrator/ledger.ts",
-              "sha256": "sha256:2fd780c49316742ac5ae470458ae2553c378c6b20004139801de5963c1681646"
-            },
-            {
-              "path": "src/qc/orchestrator/repairBrief.ts",
-              "sha256": "sha256:0a3aea7d0f0d96a45a85b733d54126a41389b7753e23cdfdf7f28d2bcc7c629a"
-            },
-            {
-              "path": "src/qc/orchestrator/reviewPacket.ts",
-              "sha256": "sha256:731862ccc59ea6b50fc32dadc0298e6ae26751b2b1669f5eacb0c362a2e06275"
-            },
-            {
-              "path": "src/qc/orchestrator/schemas.ts",
-              "sha256": "sha256:1f0ab31ab21b24bb346771d8fdb2fc9e3baae094d7b46aa5e66583aff6b282f1"
-            },
-            {
-              "path": "src/qc/orchestrator/submissionSchemas.ts",
-              "sha256": "sha256:4eec9c0805948b68c8e972027b663850046055e4944a7d4f0a52670491a517e3"
-            },
-            {
-              "path": "src/qc/orchestrator/transaction.ts",
-              "sha256": "sha256:7d45f49d1c5a1049d8c3758c317e93fb535a7b9f1951126b847aaeb9240551e6"
-            },
-            {
-              "path": "src/qc/planEnforcement.ts",
-              "sha256": "sha256:5b0f5453b25c5b8f2ef992ec5fa958528049b3109af71d2c0987a79d3d2c0adf"
-            },
-            {
-              "path": "src/qc/pruneBookState.ts",
-              "sha256": "sha256:7e1d0c19b3d260f2ab635a2260267bb0ea20379c675b5bdf3aeb6d7f08f3ce19"
-            },
-            {
-              "path": "src/qc/publishAfterQc.ts",
-              "sha256": "sha256:96813042beec77aa2c87dc343379e82c2a4e8d9ba103881127dffdd492df2752"
-            },
-            {
-              "path": "src/qc/qcRound.ts",
-              "sha256": "sha256:b766a2039eeed5b9b6f307196077f478176324728049fa21298509231e3aa6f7"
-            },
-            {
-              "path": "src/qc/reviewerId.ts",
-              "sha256": "sha256:66a2a171274c60c1026f7ca0a833cfb90abd8337ae524310f376554158274be6"
-            },
-            {
-              "path": "src/qc/sessionProvenance.ts",
-              "sha256": "sha256:bf3bd293a85c1c0a6dfb5938769fe4e64b9bfbee6703a76128dc005a177052c0"
-            },
-            {
-              "path": "src/qc/sourceRealityPolicy.ts",
-              "sha256": "sha256:af0a3c65893b83a8e0e9fb0ca05b4579e01a8f263e8ce1c80389726fdeee8fef"
-            },
-            {
-              "path": "src/qc/sourceV2Gate.ts",
-              "sha256": "sha256:f7c052fd8bbbe83cbd2b80eb75e06bc9f853ecf48b3ab93c8708fcb9a73da231"
-            },
-            {
-              "path": "src/qc/sweep.ts",
-              "sha256": "sha256:862bbfa4513e6a95cb2626108b27152afdcc9e908798c87d825fcca81b82e599"
-            },
-            {
-              "path": "src/researcher.ts",
-              "sha256": "sha256:5721c9a1b276fe4214c619ee54a2d098deafaa029a05a8f9cee77f3513b9909b"
-            },
-            {
-              "path": "src/roles.ts",
-              "sha256": "sha256:84f43032fdedd04a164b4ffd52d780d508f6616a51023e0b7f7478ff3f7be703"
-            },
-            {
-              "path": "src/runbook.ts",
-              "sha256": "sha256:79b1bda5e43d511e031fea90969f2b046662fce252b849c101c744ffdf69ca24"
-            },
-            {
-              "path": "src/runtimeSchemas.ts",
-              "sha256": "sha256:53413931dc3525de0690a28ffaebf451b82288d5ad1ae191e722ba330be1014d"
-            },
-            {
-              "path": "src/source-loader.ts",
-              "sha256": "sha256:021d771a36dfc8edbeacb0e0f6e4fbaf68d1addae3433a6bc831f0e042fb87b4"
-            },
-            {
-              "path": "src/source/sidecarSchema.ts",
-              "sha256": "sha256:a9dc986303168705d894e879c09a64a3e04def99b3294a552cb3ec1f948b95df"
-            },
-            {
-              "path": "src/source/sourceEvidence.ts",
-              "sha256": "sha256:93a27fc9ded4e367da5b40cd806c157d5b5c93a3731bf667aca9c13ba01ac979"
-            },
-            {
-              "path": "src/source/sourceIntegrity.ts",
-              "sha256": "sha256:24082375a4d034724364654adfe785c0c7ea3b2dc4604295b24db5ba90d871c7"
-            },
-            {
-              "path": "src/sourceFit.ts",
-              "sha256": "sha256:78b4bd09ec28927180d124a71076c65daaca983d6d46ef07e80323ea842f32d9"
-            },
-            {
-              "path": "src/sourceVerifyWorkbench.ts",
-              "sha256": "sha256:e360b13af33943ef8b33583b3ae2a4651c750d16d16f49886610af075407c078"
-            },
-            {
-              "path": "src/types.ts",
-              "sha256": "sha256:55934704e5f160a170030083ed9c253aced82196c23a7baa40723973bdbfa376"
-            },
-            {
-              "path": "src/verifyProductionPackage.ts",
-              "sha256": "sha256:91eef894c0b8165c3da951fc58c67fb72a9a3f51442d9ea73f723a34955c55be"
-            }
-          ]
-        },
-        "labels": {
-          "promptSet": "chapterflow-v21-authored-prompts-v1",
-          "config": "chapterflow-v21-authored-config-v1",
-          "code": "chapterflow-v21-authored-production-package-v1"
-        }
-      }
-    },
-    "metadata": {
-      "createdAt": "2026-06-26T05:51:30.186Z",
-      "generator": "promoteBook",
-      "runId": "manual-promote",
-      "packagePath": "book-packages/the-willpower-instinct.v21.json"
-    }
-  },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-willpower-instinct-ch01",
       "number": 1,
       "title": "I Will, I Won't, I Want: What Willpower Is, and Why It Matters",
@@ -1387,8 +117,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The three powers split the problem into I will, I won't, and I want. Stronger refusal may help, but it misses failures of action and purpose.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-willpower-instinct-ch01-q02",
@@ -1400,8 +129,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Miller and Cohen's model puts active goals in the control loop. The personality-only reading misses the brain system doing the steering.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-willpower-instinct-ch01-q03",
@@ -1413,8 +141,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The core lesson is the split between basic ability and regulation. Doubting every detail or reducing control to speech loses that evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-willpower-instinct-ch01-q04",
@@ -1426,8 +153,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Self-awareness has to catch the choice point. Motivation or regret after the fact cannot redirect a cue Amelia never notices.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-willpower-instinct-ch01-q05",
@@ -1439,8 +165,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source links self-control to cooperation, restraint, and commitments. A private-achievement reading misses the social pressure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-willpower-instinct-ch01-q06",
@@ -1452,8 +177,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Importance is not the same as salience. The snack is vivid now, so the run goal needs attention before it can guide action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-willpower-instinct-ch01-q07",
@@ -1465,8 +189,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Conflicting motives are normal. This frame does not read relief as proof the value is fake; it asks which motive gets support.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-willpower-instinct-ch01-q08",
@@ -1478,8 +201,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A concrete experiment can be observed and adjusted when the cue appears. A declaration alone does not show where behavior breaks down.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "the-willpower-instinct-ch01-q09",
@@ -1491,8 +213,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Prefrontal control matters when an automatic response conflicts with the current goal. It is not limited to abstract puzzles.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1535,7 +256,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Three-Power Check",
         "coreSkill": "Practice sorting one struggle into I will, I won't, and I want. The skill is not harsher self-talk; it is finding which power went quiet at the choice point. Once you name the missing power, add a small barrier before the old default can run.",
         "ifThenPlans": [
           {
@@ -1556,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "Refusal is only one third of willpower.",
-          "location": "breakdown.fastRead",
-          "why": "It corrects the common refusal-only model in one short line."
+          "text": "Refusal is only one third of willpower."
         },
         {
-          "text": "A goal must be present to have power.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the prefrontal control mechanism easy to remember."
+          "text": "A goal must be present to have power."
         },
         {
-          "text": "Self-control costs the comfort of staying vague.",
-          "location": "breakdown.fullRead",
-          "why": "It names the tradeoff of the practical tool."
+          "text": "Self-control costs the comfort of staying vague."
         }
       ]
     },
@@ -1673,8 +387,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The finding concerns heart rate variability, not heart rate alone. Variability points to flexible control that can support attention and inhibition.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1686,8 +399,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Trier setup shows that threat does not need physical danger. Social judgment and low control can be enough to activate stress physiology.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1699,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Stress can narrow attention toward fast regulation. The candy may feel urgent because relief is loud, not because the long goal stopped mattering.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1712,8 +423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The relevant mechanism is attention and self-regulation. Mood may change, but the willpower value is noticing an urge without immediately serving it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1725,8 +435,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Breathing is not just distraction. It can shift bodily signals through vagal pathways, which changes arousal and gives attention more room.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1738,8 +447,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pause-and-plan is not fight-or-flight with a nobler target. It asks for enough calm to weigh the immediate pull against the future cost.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1751,8 +459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Sleep loss affects more than energy. It can weaken attention and executive function, so the planned stop has less protection when cues appear.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1764,8 +471,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Exercise can be more than a willpower demand. By improving mood and regulation, it can lower the load that later temptations place on control.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1777,8 +483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Body-first tactics work best before the urge is strongest. Waiting until dessert is in hand gives reflective control too little runway.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1821,7 +526,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Make the Body Vote Last",
         "coreSkill": "Practice changing your state before you ask willpower to decide. Make the Body Vote Last means you remove one small demand, move one object into view, and give your body a calmer signal before the hardest moment. The aim is not perfect calm; it is enough room for the future to be heard.",
         "ifThenPlans": [
           {
@@ -1846,24 +550,17 @@
       },
       "memorableLines": [
         {
-          "text": "Panic is a poor coach.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the chapter's fight-or-flight warning a compact form."
+          "text": "Panic is a poor coach."
         },
         {
-          "text": "Breath buys time for choice.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the breathing mechanism into a line the reader can use under pressure."
+          "text": "Breath buys time for choice."
         },
         {
-          "text": "A tired body makes shortcuts sound wise.",
-          "location": "breakdown.fullRead",
-          "why": "It links fatigue, attention, and temptation in one plain warning."
+          "text": "A tired body makes shortcuts sound wise."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-willpower-instinct-ch03",
       "number": 3,
       "title": "Too Tired to Resist: Why Self-Control Is Like a Muscle",
@@ -1964,8 +661,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The original result supports a fatigue risk after restraint. It does not make the whole strength model permanent or turn later lapses into character evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -1977,8 +673,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The glucose model claimed a fuel link, but that mechanism has serious challenges. Hunger may matter, yet sugar should not be taught as the fix.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q03",
@@ -1990,8 +685,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The multilab result lowers confidence in a broad effect. It does not prove effort, fatigue, and motivation have no role in self-control.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2003,8 +697,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Mindset can change how effort is read after a demand. The correction is not pure glucose or denial of fatigue; it is a better interpretation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2016,8 +709,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Training is useful when it is small and recoverable. Constant deprivation can raise stress and rebound, which is the wrong lesson.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2029,8 +721,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Demands without recovery can strain attention, mood, and motivation. The log is a planning clue, not proof that the goal was fake.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2042,8 +733,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A realistic plan moves friction and decisions away from vulnerable windows. It does not ask the hardest hour to prove the whole goal.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q08",
@@ -2055,8 +745,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The muscle image is useful only with both fatigue and training. Used as an excuse, it drops the practice half of the idea.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2068,8 +757,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Modern caution weakens the simple resource story, not every practical tool. Planning around fatigue can still help when stated modestly.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2112,7 +800,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Low-Point Cue",
         "coreSkill": "Practice spotting the hour when self-control gets expensive. Name the cue in ordinary words: tired, hungry, stressed, rushed, lonely, or already resisting. Then move one hard choice away from that window or make the window easier to survive.",
         "ifThenPlans": [
           {
@@ -2137,24 +824,17 @@
       },
       "memorableLines": [
         {
-          "text": "Tired is data, not a verdict.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps fatigue useful without making it an excuse."
+          "text": "Tired is data, not a verdict."
         },
         {
-          "text": "A plan beats a heroic evening.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the chapter's planning move easy to recall."
+          "text": "A plan beats a heroic evening."
         },
         {
-          "text": "A muscle needs both rest and reps.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the fatigue-and-training caveat into one line."
+          "text": "A muscle needs both rest and reps."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-willpower-instinct-ch04",
       "number": 4,
       "title": "License to Sin: Why Being Good Gives Us Permission to Be Bad",
@@ -2249,8 +929,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Moral licensing appears when prior virtue protects self-image. The clean mornings may help, but the note shows they may also be spent as credit.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-willpower-instinct-ch04-q02",
@@ -2262,8 +941,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Moral credentials reduce worry that a later choice reveals a bad identity. The food-only reading misses the social judgment case.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-willpower-instinct-ch04-q03",
@@ -2275,8 +953,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Khan and Dhar's pattern includes imagined virtue. The trap is thinking only completed sacrifice can license the luxury.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-willpower-instinct-ch04-q04",
@@ -2288,8 +965,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A health halo can make the whole meal look safer. Counting only the venue or sandwich misses add-ons and weak calorie estimates.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-willpower-instinct-ch04-q05",
@@ -2301,8 +977,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The green-products finding is a caution about self-image spillover. The product-only reading misses how an ethical cue can lower later vigilance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-willpower-instinct-ch04-q06",
@@ -2314,8 +989,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Progress can reduce effort when it shifts the mind toward balance and reward. The safer use points forward to commitment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-willpower-instinct-ch04-q07",
@@ -2327,8 +1001,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The why question links behavior to values. A reward question can convert the workout into credit that works against the same goal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-willpower-instinct-ch04-q08",
@@ -2340,8 +1013,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Good identity can become a blind spot. The label feels protective, but the next behavior still needs honest accounting.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-willpower-instinct-ch04-q09",
@@ -2353,8 +1025,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Future good intentions can create moral satisfaction before the act occurs. Counting the plan early weakens the present commitment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2397,7 +1068,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask Why, Not What You Earned",
         "coreSkill": "Practice catching the credit story that appears after a good act or good intention. Ask why the act mattered, then make the next choice serve that reason. The skill lets progress strengthen commitment instead of buying a loophole.",
         "ifThenPlans": [
           {
@@ -2422,24 +1092,17 @@
       },
       "memorableLines": [
         {
-          "text": "A good choice can become a coupon.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the chapter's reversal small enough to remember."
+          "text": "A good choice can become a coupon."
         },
         {
-          "text": "Credit is the enemy of commitment.",
-          "location": "breakdown.fastRead",
-          "why": "It turns a hidden self-control failure into a sharp contrast."
+          "text": "Credit is the enemy of commitment."
         },
         {
-          "text": "Values do not need receipts.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a portable test for moral credit."
+          "text": "Values do not need receipts."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-willpower-instinct-ch05",
       "number": 5,
       "title": "The Brain's Big Lie: Why We Mistake Wanting for Happiness",
@@ -2540,8 +1203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Dopamine is tied to wanting, prediction, and pursuit. The tempting misread is treating the surge as happiness itself, which skips the wanting versus liking split.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2553,8 +1215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Olds and Milner's work showed that brain stimulation could powerfully reinforce behavior. The case came before modern consumer examples.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -2566,8 +1227,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Prediction-error learning lets cues and surprises train pursuit. The near miss is thinking dopamine waits for the consumed drink.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2579,8 +1239,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Knutson's finding puts reward anticipation before receipt. Possibility can engage the system before the account changes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2592,8 +1251,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Uncertainty sustains checking because the next attempt might pay. Predictable rewards can lose pull when the maybe disappears.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2605,8 +1263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Craving strength is not proof of equal satisfaction. Wanting can rise high while liking stays modest or fades quickly.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2618,8 +1275,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mindful observation tests the forecast. Suppression skips the evidence, and first relief may miss taste, satisfaction, and aftereffects.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2631,8 +1287,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Commercial cues can start wanting before a conscious plan forms. The smell and display can move first, then the story follows.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -2644,8 +1299,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The lesson is not anti-pleasure. It targets compulsion that keeps chasing after satisfaction fails or never arrives.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2688,7 +1342,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Reward-Promise Test",
         "coreSkill": "Use the Reward-Promise Test when a cue starts pulling you. Notice cue-triggered wanting, predict expected satisfaction, observe actual experience, compare aftereffects, and update the craving story. The skill is curiosity, not purity.",
         "ifThenPlans": [
           {
@@ -2713,24 +1366,17 @@
       },
       "memorableLines": [
         {
-          "text": "The craving is loudest before the evidence arrives.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a short warning about urge timing."
+          "text": "The craving is loudest before the evidence arrives."
         },
         {
-          "text": "Dopamine teaches pursuit, not proof.",
-          "location": "breakdown.deepRead",
-          "why": "It corrects the dopamine myth in a compact line."
+          "text": "Dopamine teaches pursuit, not proof."
         },
         {
-          "text": "Pleasure is not the villain; the false promise is.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the lesson from becoming anti-pleasure."
+          "text": "Pleasure is not the villain; the false promise is."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-willpower-instinct-ch06",
       "number": 6,
       "title": "What the Hell: How Feeling Bad Leads to Giving In",
@@ -2831,8 +1477,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The what-the-hell effect is escalation after a perceived violation. The goal may still matter, but the lapse can make coping with failure feel more urgent.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -2844,8 +1489,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The preload matters because it creates a perceived violation. Hunger or taste may be present, but the fact points to the meaning of having blown the diet.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2857,8 +1501,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Emotional distress can make relief feel urgent. The temptation may be trying to change a feeling, not simply deliver pleasure or reveal a false goal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2870,8 +1513,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Self-criticism can worsen willpower by raising shame and stress. It may sound like accountability, but it adds the feeling the temptation may be used to escape.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -2883,8 +1525,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Self-compassion is not the same as lowering standards. By reducing defensiveness, it can make honest review and motivation more likely.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2896,8 +1537,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The first repair is to interrupt the cascade. If panic or shame is still driving, even a practical repair can become another round of giving in.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2909,8 +1549,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A lapse can reveal a cue, emotion, or unsupported moment. Treating it as identity hides the useful signal, and ignoring it loses the repair data.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2922,8 +1561,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Forgiveness addresses the emotional fallout, not the standard. Recommitment keeps the goal alive by naming what happens next.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -2935,8 +1573,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mood-repair temptations change when the underlying feeling is named. A replacement plan must answer the real need, not only police the cookie.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2979,7 +1616,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Lapse Repair Sequence",
         "coreSkill": "Practice repairing the emotional spill before you repair the record. Run the Lapse Repair Sequence: name the lapse, name the feeling, offer self-compassion, extract trigger information, choose the next repair. The skill is not being soft. It is getting steady enough to see what happened and do the next honest thing.",
         "ifThenPlans": [
           {
@@ -3004,24 +1640,17 @@
       },
       "memorableLines": [
         {
-          "text": "Shame makes the second lapse look cheaper.",
-          "location": "breakdown.fastRead",
-          "why": "It names the hidden price shift that drives the spiral."
+          "text": "Shame makes the second lapse look cheaper."
         },
         {
-          "text": "A lapse is data, not a sentence.",
-          "location": "breakdown.fastRead",
-          "why": "It turns failure into information without lowering the standard."
+          "text": "A lapse is data, not a sentence."
         },
         {
-          "text": "Forgiveness keeps standards within reach.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the chapter's reframe of kindness and accountability."
+          "text": "Forgiveness keeps standards within reach."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-willpower-instinct-ch07",
       "number": 7,
       "title": "Putting the Future on Sale: The Economics of Instant Gratification",
@@ -3122,8 +1751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Delay discounting is patterned, not random foolishness. The later refund loses pull because it is less vivid than the store credit on the screen.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3135,8 +1763,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Hyperbolic discounting predicts this flip. The plan can be sincere at lunch, then lose to the near reward when immediacy raises its value.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3148,8 +1775,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The marshmallow task isolated a delay conflict. Later context and resources matter, so the result should not become destiny talk about a child.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -3161,8 +1787,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Future-self vividness gives the later beneficiary emotional presence. The point is not novelty or fantasy; it is ownership of the older self.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3174,8 +1799,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Self-imposed deadlines can reduce delay when they carry real cost. Full freedom may feel kind, but it can leave the later student exposed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3187,8 +1811,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Precommitment changes the future choice set. The daytime customer is not just feeling determined; they are making dessert harder to reach later.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3200,8 +1823,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Knowing a future cost is not the same as feeling it belongs to you. The weak link is distance from the future person who will pay.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -3213,8 +1835,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Hot sensory cues raise present value. Covering the treat and singing redirect attention, so waiting no longer means staring down the reward.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3226,8 +1847,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Commitments work best while the planner still values the future. Once the cart is full, the immediate reward can rewrite the bargain.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3270,7 +1890,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Price the Future Now",
         "coreSkill": "Practice making the future cost visible before the tempting option is close. Price the Future Now means you name who pays later, change one part of the setup, and protect attention from the cue that makes now feel cheap.",
         "ifThenPlans": [
           {
@@ -3295,24 +1914,17 @@
       },
       "memorableLines": [
         {
-          "text": "Nearness lies like a sale tag.",
-          "location": "breakdown.fastRead",
-          "why": "It turns delay discounting into an image the reader can spot in daily life."
+          "text": "Nearness lies like a sale tag."
         },
         {
-          "text": "Freedom is not always friendly.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the precommitment lesson without shaming the reader."
+          "text": "Freedom is not always friendly."
         },
         {
-          "text": "The future self needs a place at the counter.",
-          "location": "breakdown.fullRead",
-          "why": "It makes future-self vividness feel concrete and easy to recall."
+          "text": "The future self needs a place at the counter."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-willpower-instinct-ch08",
       "number": 8,
       "title": "Infected! Why Willpower Is Contagious",
@@ -3413,8 +2025,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source reports clustering, but the causal meaning is debated. The careful lesson is social ecology, not proof of simple direct infection.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-willpower-instinct-ch08-q02",
@@ -3426,8 +2037,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The smoking analysis reported clustered quitting. The useful move is to make the desired behavior visible and supported, not to hide it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-willpower-instinct-ch08-q03",
@@ -3439,8 +2049,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Descriptive norms say what people seem to do. If the visible message says many visitors litter, moral approval alone can lose force.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-willpower-instinct-ch08-q04",
@@ -3452,8 +2061,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Centola's work supports the idea that structure matters. Who sees whom, and how often, can change whether a behavior spreads.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-willpower-instinct-ch08-q05",
@@ -3465,8 +2073,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Visible behavior can reset normal. The dessert is not only food; it is a social cue about what people like him do after stress.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-willpower-instinct-ch08-q06",
@@ -3478,8 +2085,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Observation can activate different scripts. Social influence can support exercise or trigger a lapse, depending on the modeled action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-willpower-instinct-ch08-q07",
@@ -3491,8 +2097,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Accountability is part of the self-control setting. The friend does not own the goal; the check-in makes quiet drift harder.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-willpower-instinct-ch08-q08",
@@ -3504,8 +2109,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Identity-relevant groups influence more than random examples. Violet looks to a close, relevant person for evidence of who she is.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-willpower-instinct-ch08-q09",
@@ -3517,8 +2121,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Positive visibility can strengthen self-control. Secrecy may protect pride, but it also removes modeling and support.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3567,7 +2170,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Make the Norm Visible",
         "coreSkill": "Practice Make the Norm Visible. Notice the behavior your group is making ordinary, then choose one visible model or check-in that supports your goal. This is not blaming people; it is editing the cues that make a lapse or a goal feel normal.",
         "ifThenPlans": [
           {
@@ -3592,24 +2194,17 @@
       },
       "memorableLines": [
         {
-          "text": "Private goals borrow public permission.",
-          "location": "breakdown.fastRead",
-          "why": "It captures social willpower's core reversal in one portable line."
+          "text": "Private goals borrow public permission."
         },
         {
-          "text": "Bad examples spread when nobody names the norm.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the social-contagion mechanism into a warning the reader can use."
+          "text": "Bad examples spread when nobody names the norm."
         },
         {
-          "text": "Support costs you the fantasy of being untouched.",
-          "location": "breakdown.fullRead",
-          "why": "It names the tradeoff of applying social willpower."
+          "text": "Support costs you the fantasy of being untouched."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-willpower-instinct-ch09",
       "number": 9,
       "title": "Don't Read This Chapter: The Limits of \"I Won't\" Power",
@@ -3710,8 +2305,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The rebound loop comes from monitoring. To know whether the snack thought is absent, the user keeps looking for it, which makes the cue easier to find again.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -3723,8 +2317,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Stress and load can weaken the active control process while the monitor keeps checking for slips. A stronger ban can feed the same scan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3736,8 +2329,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Some food-suppression work links blocked food thoughts with later attention or eating. The risk is cue activation, not proof that eating is required.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3749,8 +2341,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Acceptance allows the inner event without handing it the decision. Buying from the urge or waiting for perfect calm both miss the distinction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3762,8 +2353,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mindfulness-based relapse prevention teaches observation without automatic reaction. It does not require the craving to vanish before a skilled action starts.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3775,8 +2365,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mindfulness training targets the urge-action link by practicing contact with craving sensations. It can add skill without replacing evidence-based care.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -3788,8 +2377,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Urge surfing treats craving as changing body sensations, not a fixed command. A firmer ban or less body contact would miss the wave.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -3801,8 +2389,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Labeling turns the line into a mental event instead of a fact or order. Debate can keep the student locked to the thought's content.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3814,8 +2401,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Pure prohibition keeps attention on the offer. Pairing I won't with a valued I want gives the user somewhere to move before money leaks away.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3858,7 +2444,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Label the Urge, Then Choose",
         "coreSkill": "Practice catching the moment when a ban turns into a spotlight. Label the thought as a thought or urge, find one body sensation, and choose by the larger want. This is acceptance, not permission.",
         "ifThenPlans": [
           {
@@ -3883,24 +2468,17 @@
       },
       "memorableLines": [
         {
-          "text": "A ban can become a spotlight.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the rebound mechanism into a picture readers can recall."
+          "text": "A ban can become a spotlight."
         },
         {
-          "text": "An urge is weather, not an order.",
-          "location": "breakdown.deepRead",
-          "why": "It separates sensation from command in a line that transfers easily."
+          "text": "An urge is weather, not an order."
         },
         {
-          "text": "A refusal needs a destination.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the I won't plus I want pairing easy to remember."
+          "text": "A refusal needs a destination."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-willpower-instinct-ch10",
       "number": 10,
       "title": "Final Thoughts",
@@ -4001,8 +2579,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Small experiments turn insight into feedback. The app points to a trigger, so one tested change fits better than another article or a larger identity promise.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-willpower-instinct-ch10-q02",
@@ -4014,8 +2591,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Self-compassion is kind, human, and mindful contact with difficulty. It is not denial of standards, and it does not require waiting for guilt to fade.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-willpower-instinct-ch10-q03",
@@ -4027,8 +2603,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The finding is cautious: belief can shape how effort is read, but fatigue remains real. The error is making either belief or the body the whole story.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-willpower-instinct-ch10-q04",
@@ -4040,8 +2615,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The model can still guide planning, but later replication concerns call for caution. Treating it as settled law or tossing out effort planning both miss the nuance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-willpower-instinct-ch10-q05",
@@ -4053,8 +2627,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The same surface failure can have different causes. A copied tactic or stricter rule can miss the mechanism that actually needs repair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-willpower-instinct-ch10-q06",
@@ -4066,8 +2639,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Observation has to come before intervention. Without the cue, feeling, timing, and payoff, the repair may target the wrong failure point.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-willpower-instinct-ch10-q07",
@@ -4079,8 +2651,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A lapse can reveal missing support. The loop stays open when the person repairs the harm and changes the conditions, not when the lapse becomes a verdict.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-willpower-instinct-ch10-q08",
@@ -4092,8 +2663,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Severity is not the measure. A practice earns its place when it helps the person act on what matters, even if it looks less impressive.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-willpower-instinct-ch10-q09",
@@ -4105,8 +2675,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Willpower is trainable and context-dependent. The fixed-trait view gives up too soon; the command view ignores the conditions that shape control.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -4149,7 +2718,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Test the Next Fit",
         "coreSkill": "Practice Test the Next Fit: pick one live challenge, watch where it breaks, choose a repair for that break, try it in the real moment, learn from lapses, and run the next test. The skill is saying, \"What failed here?\" before you install a fix. You are training curiosity, not polishing a self-image.",
         "ifThenPlans": [
           {
@@ -4174,19 +2742,13 @@
       },
       "memorableLines": [
         {
-          "text": "A lapse is data, not a verdict.",
-          "location": "breakdown.fastRead",
-          "why": "It turns failure into evidence without excusing the behavior."
+          "text": "A lapse is data, not a verdict."
         },
         {
-          "text": "A tactic earns trust by fitting the failure.",
-          "location": "breakdown.deepRead",
-          "why": "It makes diagnosis the test of any willpower tool."
+          "text": "A tactic earns trust by fitting the failure."
         },
         {
-          "text": "The goal is fit, not force.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the chapter's closing method compact and useful."
+          "text": "The goal is fit, not force."
         }
       ]
     }

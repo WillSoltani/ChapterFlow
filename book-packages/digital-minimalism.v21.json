@@ -118,8 +118,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The launch story centered on converged utility. The later feed habit shows how a tool can grow beyond the reason people first accepted it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -131,8 +130,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Like button is small, but its signal is visible and repeatable. That can turn approval into a loop of posting and checking.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -144,8 +142,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A real benefit can coexist with extra capture. The right test asks what job the tool serves and what attention cost rides along.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -157,8 +154,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Push alerts move the first move from user to device. They may help at times, but they also make Cedric respond to someone else's timing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -170,8 +166,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Attention companies can profit from many small sessions. The low value to Brielle does not mean the glance has low value to the platform.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -183,8 +178,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Willpower still matters, but it is facing systems tuned at scale. A promise without rules keeps restarting against tested triggers.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -196,8 +190,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The danger is lost self-rule, not the mere presence of a screen. A selected tool can stay if its rules serve Maxime's values.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -209,8 +202,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Notification tactics address one symptom. A philosophy decides which tools belong before each new convenience gets a default yes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -222,8 +214,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Usefulness has to be weighed against full cost. A birthday feature can be real while the extra browsing still fails Gwen's values.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -266,7 +257,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Value Admission Test",
         "coreSkill": "Practice asking what a tool is admitted to do before judging whether it feels useful. Run the Value Admission Test by naming the value served, the exact feature needed, and the attention cost bundled around it. The skill protects autonomy by refusing to let convenience choose the rule.",
         "ifThenPlans": [
           {
@@ -291,19 +281,13 @@
       },
       "memorableLines": [
         {
-          "text": "Convenience is not consent.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's warning into a short test for every new tool."
+          "text": "Convenience is not consent."
         },
         {
-          "text": "A useful tool can still become a leash.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the useful feature and the capture risk in one sharp line."
+          "text": "A useful tool can still become a leash."
         },
         {
-          "text": "Willpower needs a map before it needs a scold.",
-          "location": "breakdown.deepRead",
-          "why": "It moves the reader from shame toward sizing the real contest."
+          "text": "Willpower needs a map before it needs a scold."
         }
       ]
     },
@@ -408,8 +392,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Digital minimalism rejects the any-benefit test. The app may help, but it still has to beat alternatives and justify its attention cost.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -421,8 +404,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Clutter costs more than active minutes. A closed app can still add prompts, decisions, and a standing sense that something might need checking.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -434,8 +416,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tool may serve a real value, but default use is not neutral. Optimization captures the notice without accepting the feed around it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -447,8 +428,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Intentionality satisfies when limits express values. The relief comes from self-government, not from being anti-technology.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -460,8 +440,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Thoreau's cost logic asks whether the convenience saves more life than it costs. Speed alone is an incomplete ledger.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -473,8 +452,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Amish case is selective adoption, not blanket refusal. The same tool can be placed under rules when its social effect changes.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -486,8 +464,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A philosophy reduces repeated renegotiation. Scattered tips can be sensible and still fail when each new case reopens the standard.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -499,8 +476,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Raw count is only a weak proxy. Value density matters more: what each tool serves, what it costs, and how tightly it is governed.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -512,8 +488,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A strict philosophy must say no to good but nonessential tools. Otherwise small benefits rebuild the same clutter.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -556,7 +531,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Value Receipt",
         "coreSkill": "Practice making each tool show its receipt before you give it attention. Name the value it serves, the quieter alternative it has to beat, and the rule that keeps use narrow. The skill is not refusal; it is deliberate admission.",
         "ifThenPlans": [
           {
@@ -581,19 +555,13 @@
       },
       "memorableLines": [
         {
-          "text": "Useful is not the same as worth keeping.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's strict filter into one clean contrast."
+          "text": "Useful is not the same as worth keeping."
         },
         {
-          "text": "A useful tool still needs a fence.",
-          "location": "breakdown.deepRead",
-          "why": "It makes optimization concrete and easy to recall."
+          "text": "A useful tool still needs a fence."
         },
         {
-          "text": "Attention pays the full bill.",
-          "location": "breakdown.fullRead",
-          "why": "It turns hidden digital cost into a memorable accounting image."
+          "text": "Attention pays the full bill."
         }
       ]
     },
@@ -698,8 +666,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Thirty days is the source standard. A weekend can feel novel and survivable, while the longer break reveals the routine urges that keep the habit alive.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -711,8 +678,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Optional does not mean useless. The test is serious harm, so a helpful service can still be tested if its value can wait or move for thirty days.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -724,8 +690,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Prewritten rules answer before the craving starts arguing. Improvised rules leave the hardest moments in charge of the standard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -737,8 +702,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Pure abstinence makes boredom louder. Replacement activities make the break bearable and show what the feed had displaced.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -750,8 +714,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The public reports include difficulty and recovery. The evidence is not ease; it is the change that appears after habit noise quiets.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -763,8 +726,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Missing a tool is not the same as valuing it. Reentry starts by naming the priority the tool serves, then testing rule and fit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -776,8 +738,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A concrete operating rule changes the cues. A promise to use less leaves the old phone, feed, and habit path intact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -789,8 +750,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The goal is redesign, not purity. Some tools may return when they serve values and operate under constraints.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -802,8 +762,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The reset targets optional drains, not essential obligations. Narrow rules keep necessary access from becoming a broad loophole.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -840,7 +799,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Reset Before Return",
         "coreSkill": "Practice catching the moment a tool calls itself necessary. Use Reset Before Return: remove optional tools long enough to hear the craving, fill the opened time with a better activity, then let a tool return only with a value and rule.",
         "ifThenPlans": [
           {
@@ -861,19 +819,13 @@
       },
       "memorableLines": [
         {
-          "text": "Empty space invites old loops.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the replacement problem easy to remember."
+          "text": "Empty space invites old loops."
         },
         {
-          "text": "Distance makes appetite honest.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses why the thirty-day break is needed."
+          "text": "Distance makes appetite honest."
         },
         {
-          "text": "Rules are where desire becomes design.",
-          "location": "breakdown.fullRead",
-          "why": "It turns reintroduction into a portable rule."
+          "text": "Rules are where desire becomes design."
         }
       ]
     },
@@ -978,8 +930,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Solitude is defined by input, not by walls. Scrolling means other minds kept entering the room, so the empty setting did not give the mind its own space.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -991,8 +942,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Solitude deprivation can come from repeated tiny checks. The issue is not only total minutes; it is the loss of natural gaps for reflection.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1004,8 +954,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Soldiers' Home routine matters because it served responsibility. Time away from the White House made judgment possible under pressure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1017,8 +966,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Lead Yourself First treats solitude as a leadership discipline. It is not a personality preference, and it does not cancel the need to meet.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1030,8 +978,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source uses Twenge as a warning signal, not nostalgia. The timing after broad smartphone adoption makes constant connection hard to dismiss.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1043,8 +990,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A phone-free walk works because movement meets uninterrupted thought. A podcast may be useful, but it is still input from another mind.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1056,8 +1002,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Written reflection can be solitude when it is self-directed. The value is not speed; writing orders the mind before other voices arrive.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1069,8 +1014,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Solitude and connection serve different needs. The practice should restore self-knowledge and steadiness, not become a rejection of people.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1082,8 +1026,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Lost minutes matter, but the deeper loss is self-reflection. Constant input leaves fewer chances to test what matters and what needs repair.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1126,7 +1069,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Input Gap",
         "coreSkill": "Practice noticing the moment before outside input enters. The move is Write the Input Gap: name the cue, the input you wanted, and the thought or feeling it would cover. This builds solitude without needing a retreat.",
         "ifThenPlans": [
           {
@@ -1151,19 +1093,13 @@
       },
       "memorableLines": [
         {
-          "text": "Quiet is not solitude if the crowd fits in your pocket.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the phone the visible test of the whole idea."
+          "text": "Quiet is not solitude if the crowd fits in your pocket."
         },
         {
-          "text": "Input control is self-respect in practical clothes.",
-          "location": "breakdown.deepRead",
-          "why": "It turns an abstract practice into a sharp everyday standard."
+          "text": "Input control is self-respect in practical clothes."
         },
         {
-          "text": "A clear mind needs empty minutes, not empty rooms.",
-          "location": "breakdown.fullRead",
-          "why": "It corrects the common mistake in a portable sentence."
+          "text": "A clear mind needs empty minutes, not empty rooms."
         }
       ]
     },
@@ -1268,8 +1204,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The critique begins by accepting social need as real. The target is substitution by weak signals, not friendship itself, so suppression and total openness both miss the mechanism.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1281,8 +1216,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A Like can feel like reaching out because it is easy and public. More acknowledgement is not the same as deeper contact, which is the near-miss in the claim.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1294,8 +1228,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Turkle's standard is richer interaction: listening, timing, ambiguity, and response. The wrong choices treat the call as a shortcut, not as harder social work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1307,8 +1240,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Constant texting can maintain a low-grade sense of contact. That can reduce the push to schedule calls, visits, or longer exchanges where the friendship deepens.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1320,8 +1252,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Conversation office hours concentrate availability. They are not avoidance or ranking; they make richer contact easier while reducing all-day reactivity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1333,8 +1264,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Giving and receiving visible reactions trains attention toward the reward loop. Opting out changes what Everly teaches herself to value.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1346,8 +1276,7 @@
             ],
             "correctIndex": 2,
             "explanation": "High-bandwidth contact carries more social information. A comment can be friendly, but it lacks much of the shared context and attention of a walk.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1359,8 +1288,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The goal is social upgrade, not withdrawal. Pierre reduces a weak signal so he can spend more effort on a visit, which is stronger presence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1372,8 +1300,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Digital minimalism separates jobs. Texting can be excellent for logistics, but closeness usually needs a richer channel than the coordination thread.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1416,7 +1343,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Say the Stronger Channel",
         "coreSkill": "Practice naming the channel that would carry care best before you react. The move is simple: pause at the next social prompt, say the stronger channel aloud, then use the tiny signal only if it supports that channel. This keeps logistics useful and keeps friendship from shrinking to visible clicks.",
         "ifThenPlans": [
           {
@@ -1441,19 +1367,13 @@
       },
       "memorableLines": [
         {
-          "text": "A Like is not care; it is a receipt.",
-          "location": "breakdown.fastRead",
-          "why": "It draws a clean line between acknowledgement and real relational effort."
+          "text": "A Like is not care; it is a receipt."
         },
         {
-          "text": "A ping can arrange a walk, but it cannot take the walk for you.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the role of texting concrete without demonizing the tool."
+          "text": "A ping can arrange a walk, but it cannot take the walk for you."
         },
         {
-          "text": "Weak signals are fine as sparks; they fail as meals.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the chapter's upgrade rule into a plain image."
+          "text": "Weak signals are fine as sparks; they fail as meals."
         }
       ]
     },
@@ -1558,8 +1478,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source fact says reclaimed time needs satisfying replacements. The first choice overstates discipline, and the third narrows leisure to one category.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch06-q02",
@@ -1571,8 +1490,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Bennett favors demanding activity over passive consumption. The other choices either make rest serve work or treat friction as automatic evidence against leisure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q03",
@@ -1584,8 +1502,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fact names active engagement across several forms, not only exercise. The other choices either leave the source focus or make the standard too loose.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch06-q04",
@@ -1597,8 +1514,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Pete Adeney's case pairs frugality with active competence. The distractors flatten the example into deferred pleasure or accounting alone.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch06-q05",
@@ -1610,8 +1526,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Crawford's point is agency through contact with reality. The other choices reduce craft to productivity or delayed entertainment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "deep"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch06-q06",
@@ -1623,8 +1538,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fact says structured shared activity carries connection better than ambient contact. Less online chatter alone does not create a meeting place.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q07",
@@ -1636,8 +1550,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source allows contained low-quality leisure. The first choice invents an ease test, and the third swaps one screen default for another.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch06-q08",
@@ -1649,8 +1562,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 8 warns against reading startup friction as failure. The distractors expect instant ease or reduce the choice to price.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q09",
@@ -1662,8 +1574,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact says planning protects the declutter from becoming a void. The other choices repeat the error that structure ruins leisure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1712,7 +1623,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Place The Harder Fun",
         "coreSkill": "Practice giving reclaimed time a visible destination before the easy screen claims it. Use the Place the Harder Fun move: put one tool, book, racket, recipe, or invitation where the next leisure moment will begin. Then treat early friction as a cue to start smaller, not as proof the activity is wrong.",
         "ifThenPlans": [
           {
@@ -1737,19 +1647,13 @@
       },
       "memorableLines": [
         {
-          "text": "Easy fun fades when it asks nothing of you.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's reversal into one plain contrast."
+          "text": "Easy fun fades when it asks nothing of you."
         },
         {
-          "text": "Hands remember progress before feeds do.",
-          "location": "breakdown.deepRead",
-          "why": "It makes active competence feel bodily rather than abstract."
+          "text": "Hands remember progress before feeds do."
         },
         {
-          "text": "A screen can rest you; it cannot replace a life.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the counter-case while keeping the chapter's boundary clear."
+          "text": "A screen can rest you; it cannot replace a life."
         }
       ]
     },
@@ -1854,8 +1758,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The conflict is not only the user's intent. Platforms can gain from extra return visits, while the first and third choices shift the issue to settings or total rejection.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch07-q02",
@@ -1867,8 +1770,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Lanier's argument supports exit as one strong strategy, not a universal rule. The other choices either reduce exit to image or make it a last resort only.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch07-q03",
@@ -1880,8 +1782,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Harris's work treats defaults as ethical design choices because they shape behavior. Taste and user preference matter, but they do not settle the steering effect.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q04",
@@ -1893,8 +1794,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The account remains, but the easy access path is gone. That friction can interrupt automatic checking, while the other choices treat app removal as empty.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q05",
@@ -1906,8 +1806,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Professional use means a purpose, schedule, and exit condition. Better polish or constant availability can still leave the session open to wandering.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q06",
@@ -1919,8 +1818,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Slow media reduces speed and frequency to improve context. It is not headline skimming all day, and it is not outsourcing attention to friends.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q07",
@@ -1932,8 +1830,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Friction tools align the setting with the desired behavior. The other choices confuse design support with total exit or with making technology feel bad.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch07-q08",
@@ -1945,8 +1842,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Attention resistance is ongoing. A declutter can reset habits, but platforms and routines keep changing, so the defenses need upkeep.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch07-q09",
@@ -1958,8 +1854,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The goal is autonomy, not purity. Useful tools may remain, but the user sets terms. The other choices lean toward image or loose permission.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2008,7 +1903,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Rank The Capture Paths",
         "coreSkill": "Practice spotting the easiest path your attention takes before you argue with yourself. Use Rank The Capture Paths: count the cue, name the app or device, then rank the top risks by how often they override your own plan. Start with the highest-risk path and add one piece of friction.",
         "ifThenPlans": [
           {
@@ -2033,19 +1927,13 @@
       },
       "memorableLines": [
         {
-          "text": "Defaults vote before you do.",
-          "location": "breakdown.fastRead",
-          "why": "It makes invisible design pressure feel immediate and easy to recall."
+          "text": "Defaults vote before you do."
         },
         {
-          "text": "Friction is a fence around chosen attention.",
-          "location": "breakdown.deepRead",
-          "why": "It turns blockers and device rules into a vivid protection image."
+          "text": "Friction is a fence around chosen attention."
         },
         {
-          "text": "Purity can become another feed.",
-          "location": "breakdown.fullRead",
-          "why": "It names the overcorrection in a compact warning."
+          "text": "Purity can become another feed."
         }
       ]
     }

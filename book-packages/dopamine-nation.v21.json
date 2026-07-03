@@ -21,1222 +21,8 @@
       "radical-honesty"
     ]
   },
-  "productionManifest": {
-    "schemaVersion": "chapterflow-production-manifest-v2",
-    "contentId": "sha256:d303a75c06110d9eac4f5df659b37db4dd7f4cde096fd1315dfda8787d9fc166",
-    "payloadHash": "sha256:d303a75c06110d9eac4f5df659b37db4dd7f4cde096fd1315dfda8787d9fc166",
-    "payload": {
-      "schemaVersion": "chapterflow-production-manifest-payload-v2",
-      "bookId": "dopamine-nation",
-      "packageSchemaVersion": "chapterflow-v21-authored",
-      "book": {
-        "title": "Dopamine Nation",
-        "author": "Anna Lembke, MD",
-        "categories": [
-          "Psychology"
-        ],
-        "tags": [
-          "addiction-in-abundance",
-          "pain-avoidance-loop",
-          "pleasure-pain-balance",
-          "dopamine-fasting",
-          "self-binding",
-          "medicated-balance",
-          "adaptive-pain",
-          "radical-honesty"
-        ],
-        "contentOwner": "chapterflow"
-      },
-      "canonicalIndex": {
-        "path": "state/indexes/dopamine-nation.json",
-        "semanticHash": "sha256:6c724690326a742084e8eba73623c1324ef2b5f40c45fa4e97fc79787dc2ddfe",
-        "chapters": [
-          {
-            "chapterId": "dopamine-nation-ch01",
-            "chapterNumber": 1,
-            "chapterTitle": "Our Masturbation Machines"
-          },
-          {
-            "chapterId": "dopamine-nation-ch02",
-            "chapterNumber": 2,
-            "chapterTitle": "Running from Pain"
-          },
-          {
-            "chapterId": "dopamine-nation-ch03",
-            "chapterNumber": 3,
-            "chapterTitle": "The Pleasure-Pain Balance"
-          },
-          {
-            "chapterId": "dopamine-nation-ch04",
-            "chapterNumber": 4,
-            "chapterTitle": "Dopamine Fasting"
-          },
-          {
-            "chapterId": "dopamine-nation-ch05",
-            "chapterNumber": 5,
-            "chapterTitle": "Space, Time, and Meaning"
-          },
-          {
-            "chapterId": "dopamine-nation-ch06",
-            "chapterNumber": 6,
-            "chapterTitle": "A Broken Balance?"
-          },
-          {
-            "chapterId": "dopamine-nation-ch07",
-            "chapterNumber": 7,
-            "chapterTitle": "Pressing on the Pain Side"
-          },
-          {
-            "chapterId": "dopamine-nation-ch08",
-            "chapterNumber": 8,
-            "chapterTitle": "Radical Honesty"
-          },
-          {
-            "chapterId": "dopamine-nation-ch09",
-            "chapterNumber": 9,
-            "chapterTitle": "Prosocial Shame"
-          }
-        ]
-      },
-      "chapters": [
-        {
-          "chapterId": "dopamine-nation-ch01",
-          "chapterNumber": 1,
-          "title": "Our Masturbation Machines",
-          "readerContentHash": "sha256:8eeda1d74f758fac9f1c0b8763eb798b036d4ebfa4381633197659d8ddba17bc",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch01.source.json",
-            "semanticHash": "sha256:8313e5953ed2c422b9f46e00a4b3158fde7eb7672273ba669ed56185bb68cef3",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/dopamine-nation-ch01.v21-native.chapter.json",
-            "semanticHash": "sha256:3c34f9da8ad5f40c641dd5a9b7342d4fef9bd34ced01e57b729250b6f62007c7",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:49719356cff528beb3f4104ef23f2bed7ec15ae84a3d8535cdee8a7c5b02aef5"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/dopamine-nation-ch01.qc.json",
-            "semanticHash": "sha256:ae92efeebc9d86608ef168b200227a45a5abd6b30aa6a8fdaa5485e20ab28510",
-            "roundId": "r20260624205423-0bf84f",
-            "contentHash": "d371cef95319ca54",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260624205423-0bf84f",
-            "reviewedAt": "2026-06-24T21:02:41.104Z"
-          }
-        },
-        {
-          "chapterId": "dopamine-nation-ch02",
-          "chapterNumber": 2,
-          "title": "Running from Pain",
-          "readerContentHash": "sha256:822d1e9e2f6378d4f68420f921638a1a20a5276cf137ae51c7e07a6199f75817",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch02.source.json",
-            "semanticHash": "sha256:b26b7a7d2892619bcf8795dca959108ab4b4a2adaa26673bb9f8b747c852f90a",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/dopamine-nation-ch02.v21-native.chapter.json",
-            "semanticHash": "sha256:4cb3426bf545f8b4d25168e88b4b7da4679edd2c0831646f1bee4e9da00db51f",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:1e91bc16f9a3c65a425fcb9d0489bfe1113192a424b97a4316040ab5f2b15074"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/dopamine-nation-ch02.qc.json",
-            "semanticHash": "sha256:b85308dcae328c65488f4b8d2e1066a4b0c0bdef0c5e671606b98ff004fd08fb",
-            "roundId": "r20260624205423-0bf84f",
-            "contentHash": "61382f667ad1dbc5",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260624205423-0bf84f",
-            "reviewedAt": "2026-06-24T21:02:41.104Z"
-          }
-        },
-        {
-          "chapterId": "dopamine-nation-ch03",
-          "chapterNumber": 3,
-          "title": "The Pleasure-Pain Balance",
-          "readerContentHash": "sha256:b4745e2747bbea75bbfeaf67aa22bb56e9caed6d4a861c7c2d1334f026af6c50",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch03.source.json",
-            "semanticHash": "sha256:86c250245beec6eb73ea08b5fb783bfbe55084f6c5242623a1c0b819715fa4d1",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/dopamine-nation-ch03.v21-native.chapter.json",
-            "semanticHash": "sha256:afd86fd95960a99f5403f14f7f14a90800dbd0e553079bbf801b622f26db0b47",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:c3a89b9d9388cce52af346d9e4eb5b49b2a9d05591a82535fe2b16a09da40a21"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/dopamine-nation-ch03.qc.json",
-            "semanticHash": "sha256:7c348e5ce058e303371d59708eadba567493308dca16af9cb43a9e5c9fd21904",
-            "roundId": "r20260624205423-0bf84f",
-            "contentHash": "ed39843813f50164",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260624205423-0bf84f",
-            "reviewedAt": "2026-06-24T21:02:41.104Z"
-          }
-        },
-        {
-          "chapterId": "dopamine-nation-ch04",
-          "chapterNumber": 4,
-          "title": "Dopamine Fasting",
-          "readerContentHash": "sha256:e8f8f79175dd8b9e1c2b98dd149666c6fc77057a48d957a5e931ad78362cfbf0",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch04.source.json",
-            "semanticHash": "sha256:8f0a4edbce6a869ee614447f1dcbeb2bb2d8594be10bc4ac177bea1e8a039a35",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/dopamine-nation-ch04.v21-native.chapter.json",
-            "semanticHash": "sha256:ee4fc48986e3ec7918bb8260db1eab19290bb6f27926551c9327591cf4321cbc",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:3e5e340038a62abb70f83301b2f28486b37a113d575af6d6fe477367d7dac6f9"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/dopamine-nation-ch04.qc.json",
-            "semanticHash": "sha256:67eb64319cd624ac60f5f1cc1c5ec78fc2bb23ae4e14d99280878c4b32b74619",
-            "roundId": "r20260624205423-0bf84f",
-            "contentHash": "8e85dc460e608eaf",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260624205423-0bf84f",
-            "reviewedAt": "2026-06-24T21:02:41.104Z"
-          }
-        },
-        {
-          "chapterId": "dopamine-nation-ch05",
-          "chapterNumber": 5,
-          "title": "Space, Time, and Meaning",
-          "readerContentHash": "sha256:13a511139e80313e9203ffe43fb1dd77929cb365fc8a32f0adb0bb15d1b9ba34",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch05.source.json",
-            "semanticHash": "sha256:38d73ad10dda198ac2487bec05291e5fe85f28d27439d463a528bb327a53f09b",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/dopamine-nation-ch05.v21-native.chapter.json",
-            "semanticHash": "sha256:8927044aeaa9f90875ea6bc98e096e2e5c5188723e5a11316defc210a2b9d09d",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:9412ec7f621f91558a42d9a7a54b34177b68fabec40a94ba3399f25b2d7f255d"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/dopamine-nation-ch05.qc.json",
-            "semanticHash": "sha256:2fdabb5b0397d3e6cc7729e814b0179be71c66a616265227585864dfc6eee0f2",
-            "roundId": "r20260624205423-0bf84f",
-            "contentHash": "1389f55dbf215f49",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260624205423-0bf84f",
-            "reviewedAt": "2026-06-24T21:02:41.104Z"
-          }
-        },
-        {
-          "chapterId": "dopamine-nation-ch06",
-          "chapterNumber": 6,
-          "title": "A Broken Balance?",
-          "readerContentHash": "sha256:19e29e469d5a95de8ec7fdbb92d7d159b1e408e43eb3e6274c841844ae24f33a",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch06.source.json",
-            "semanticHash": "sha256:e5d0a094b75b22045d2177ca8515395465a2afd2cf183d2606f4d453df18d5cc",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/dopamine-nation-ch06.v21-native.chapter.json",
-            "semanticHash": "sha256:91c511791bc9a6168609af0b2bbab177fe0658aeff4df902aa8f62d2a592e479",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:9bf0ad5440a0f8cdd11e1be284df1b0c5a7af351f1aafd1966926380e610140b"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/dopamine-nation-ch06.qc.json",
-            "semanticHash": "sha256:a4551aa3db7ea3a7751d8ebdd7ed91cf27f807526e037d78c1ddbac82eba491a",
-            "roundId": "r20260624205423-0bf84f",
-            "contentHash": "66123a766540019c",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260624205423-0bf84f",
-            "reviewedAt": "2026-06-24T21:02:41.105Z"
-          }
-        },
-        {
-          "chapterId": "dopamine-nation-ch07",
-          "chapterNumber": 7,
-          "title": "Pressing on the Pain Side",
-          "readerContentHash": "sha256:40b341ee1123a749b8b5a421436fa3ee01b7150716ac5b5db3aca492c339f995",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch07.source.json",
-            "semanticHash": "sha256:05c90779d9a84cfea48863f4b16aa2c4f19c2bf3957f201e2a7973a3c5400cbe",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/dopamine-nation-ch07.v21-native.chapter.json",
-            "semanticHash": "sha256:d5eb787500da733baa20755ef0353f8d3029cfcf6ecf3b767923c2ccfcb02d61",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:9952be904e6a0e7becce1d4774ba8c7393f9d30c7923e65111ccd9e3492bc347"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/dopamine-nation-ch07.qc.json",
-            "semanticHash": "sha256:03bc8fbbe7221b7ddcbee9a81be8e4d99393e45111860621ba8535ccb89ba1c5",
-            "roundId": "r20260624205423-0bf84f",
-            "contentHash": "c864ca97edc46346",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260624205423-0bf84f",
-            "reviewedAt": "2026-06-24T21:02:41.105Z"
-          }
-        },
-        {
-          "chapterId": "dopamine-nation-ch08",
-          "chapterNumber": 8,
-          "title": "Radical Honesty",
-          "readerContentHash": "sha256:1ef7450454cc60e9303f5d59d5b6e508957bf40ee6dcf0600c3bf1fd5fb2ed61",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch08.source.json",
-            "semanticHash": "sha256:8b7e443c2f650c72f4fc81571ec668b4f2fbfb9892ae2e9f17430d27704cda26",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/dopamine-nation-ch08.v21-native.chapter.json",
-            "semanticHash": "sha256:bc1c11b87608348e89f22107e486f64be420faca91785c7ae58df02f453820cc",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:ae4eb63ab918cff780a1f435a539726e52249ee900dceb3edb5bab43f9923e5e"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/dopamine-nation-ch08.qc.json",
-            "semanticHash": "sha256:df10af97e525445e29f9fd77e5792d499f21533187abe1f90f1b52bf96b6fc00",
-            "roundId": "r20260624205423-0bf84f",
-            "contentHash": "35eb50e53fae3bfd",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260624205423-0bf84f",
-            "reviewedAt": "2026-06-24T21:02:41.105Z"
-          }
-        },
-        {
-          "chapterId": "dopamine-nation-ch09",
-          "chapterNumber": 9,
-          "title": "Prosocial Shame",
-          "readerContentHash": "sha256:ac5e152f2536ce5ac49a5f5130071262f00a326401dabec5755d420c097cd9a2",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch09.source.json",
-            "semanticHash": "sha256:2c7852f0a3c0a2629326a0b218c191ede237e061cc20803dca79b3a13345e114",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/dopamine-nation-ch09.v21-native.chapter.json",
-            "semanticHash": "sha256:898a546a3d75f7beecddb4c348f9401a28c23b4c405b9e0aeb31a69480469757",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:8b646375ca8e2d154e57a4bd256ec06e4c70a29cec5ac31331f8350cf6cc6498"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/dopamine-nation-ch09.qc.json",
-            "semanticHash": "sha256:a3eaa6c327031f7c6a6998fbac75cadc78d167ed4e702c47f85250e0cbad955c",
-            "roundId": "r20260624205423-0bf84f",
-            "contentHash": "6d694ec4118e0758",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260624205423-0bf84f",
-            "reviewedAt": "2026-06-24T21:02:41.105Z"
-          }
-        }
-      ],
-      "sourceRealityEvidence": {
-        "bookId": "dopamine-nation",
-        "policyResult": "required-and-verified",
-        "classification": "new-source-v2",
-        "record": {
-          "path": ".chapterflow/source-verify-dopamine-nation.md",
-          "schemaVersion": "source-verify-record-v1",
-          "semanticHash": "sha256:600c7892de841079198d8a8eb54ff98256aec233725779904502f7880e186dc7",
-          "bookId": "dopamine-nation",
-          "verifier": null,
-          "verifiedAt": null
-        },
-        "exemption": null
-      },
-      "evidencePolicy": {
-        "sourceEvidence": "required",
-        "authoringEvidence": "required-for-source-v2",
-        "sourceReality": "required-for-source-v2",
-        "qcAttestation": "required"
-      },
-      "versions": {
-        "canonicalJson": "canonical-json-sha256-v1",
-        "readerContentHash": "reader-content-canonical-sha256-v1",
-        "readerContentStripRules": "reader-content-strip-v2",
-        "promptBundle": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:c9f449887aa2e167d9fd234ebd9e7a56ca1b684a04199c1f6651903501a6b4f1",
-          "fileCount": 36,
-          "files": [
-            {
-              "path": "agent-prompts/BOOK-AUTOPILOT-CODEX-SESSION.md",
-              "sha256": "sha256:0eecbc8465dd645f87759253609b1ba1520051870c52ba7ed27cf2e325d2fe0e"
-            },
-            {
-              "path": "agent-prompts/FIELD-PURPOSE-CONTRACTS.md",
-              "sha256": "sha256:855bc491550ea9da1ab8ff27f02250b6c1db816ff7e7fe6d2adeac5a56a5b022"
-            },
-            {
-              "path": "agent-prompts/GENERATE-A-BOOK-CODEX-SESSION.md",
-              "sha256": "sha256:402bd7a9e06b57eb159795c29b2361f90730d20594896de8f8f3a5242e2ef3cd"
-            },
-            {
-              "path": "agent-prompts/PLAYBOOK-GENERATE-A-BOOK.md",
-              "sha256": "sha256:bb9c1ae165f28398e3e9839847f47b3e56ec6328b1ff3782cc646eee919fa231"
-            },
-            {
-              "path": "agent-prompts/PUBLISH-AFTER-QC-CODEX-SESSION.md",
-              "sha256": "sha256:9935baa797e094d4e2007b3dfe4d330e317b82460d21c07c99dc9d3f2f0c7d1f"
-            },
-            {
-              "path": "agent-prompts/QC-AUTO-CODEX-SESSION.md",
-              "sha256": "sha256:76316778015be0fb4113c5784aa16061ad82f79d7487e1ff4046e67541391b2e"
-            },
-            {
-              "path": "agent-prompts/QC-CODEX-SESSION.md",
-              "sha256": "sha256:da1ebae297f359eb43f4bed9086bde53744679d6735e8abc0f7a1f5c0d8af1e3"
-            },
-            {
-              "path": "agent-prompts/QC-ORCHESTRATE-CODEX-SESSION.md",
-              "sha256": "sha256:fc8ff25b7521265cad2f26c2bb154549b4821f0440ce33bfab39bd821e90c07e"
-            },
-            {
-              "path": "agent-prompts/QC-PLAYBOOK.md",
-              "sha256": "sha256:2dfeb6d744015a9eec906f848c6ab53fa015c82f8f1733979c8ef4148168b90d"
-            },
-            {
-              "path": "agent-prompts/QC-SESSION-PROMPT.md",
-              "sha256": "sha256:90738338baf67b39f9281a17f254c29ca3f27f88637755200814558e9454b74a"
-            },
-            {
-              "path": "agent-prompts/REPAIR-CODEX-SESSION.md",
-              "sha256": "sha256:bc83ac7db7d23ddccbf0ad3374629aea67434565425357bdd769d9b8ec8c3733"
-            },
-            {
-              "path": "agent-prompts/RESEARCH-CODEX-SESSION.md",
-              "sha256": "sha256:600f58db777edaf51eee63e145b45dc1c8c4a6cfcde542c5f488fa14ed7554eb"
-            },
-            {
-              "path": "agent-prompts/RUN-A-BOOK.md",
-              "sha256": "sha256:e3e18b68e4f230bda8f64b42db6c78a703f9b3033516a7f5fd4fa5882cd42d42"
-            },
-            {
-              "path": "agent-prompts/STEP-1-RESEARCH.md",
-              "sha256": "sha256:eb58ab247b68f8f4dcae8ceadad61b281a216b8a28fbe917d37bc7b51ce85eed"
-            },
-            {
-              "path": "agent-prompts/STEP-2-WRITE-CHAPTERS.md",
-              "sha256": "sha256:69163b04cd39f147fa161e1498e40c31e26b6aaec9645e7f35e908ab0ad3fca0"
-            },
-            {
-              "path": "agent-prompts/STEP-3-FINALIZE.md",
-              "sha256": "sha256:e0fff66309b550eaf3974fbbda9308278bd1f6bdd38fc0ff805a3568c5a01ac9"
-            },
-            {
-              "path": "agent-prompts/WRITE-ORCHESTRATE-CODEX-SESSION.md",
-              "sha256": "sha256:f98cf09062f4467bf00dadbecfe8ff35eddc8761a4e72126a98a48fcde3b959e"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-CHAPTER.md",
-              "sha256": "sha256:a18da21713fc6200b57e93edf352173e2eba3c0895bb97157517b3cb111175eb"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-FINALIZE.md",
-              "sha256": "sha256:57a5df9387c9050ee7c7d71e3a51d5ec1aaafabcba2befcd36133ed0aa2e1043"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-RESEARCH.md",
-              "sha256": "sha256:3d6f425fe52a0c50cef493a7f1443d51485e870605117b49c6d8dd0f52f58f76"
-            },
-            {
-              "path": "prompts/categorizer.system.md",
-              "sha256": "sha256:41933513807e03e65d74c280b5df092e36c1367b51385daeb3eba5e19a3af6e6"
-            },
-            {
-              "path": "prompts/curriculum-planner.system.md",
-              "sha256": "sha256:c325d544a978ed0d41d07b5d48cfea41cda31b32a369817dbd14eb08c8254359"
-            },
-            {
-              "path": "prompts/editor-in-chief.system.md",
-              "sha256": "sha256:5ea77e3745a0e41fd653dd1168865476abe3d2362623c670d318099cd48d11ba"
-            },
-            {
-              "path": "prompts/example-curator.system.md",
-              "sha256": "sha256:0d6ad29a3a1cdf494c489bc25a0a6b2e1ec3a043e4b093faede02cb0f2c70479"
-            },
-            {
-              "path": "prompts/line-editor.system.md",
-              "sha256": "sha256:6ea417c1ea9bdbae24d203053c3cac05b48c807efd677fc4afa0270347aca782"
-            },
-            {
-              "path": "prompts/memorable-lines.system.md",
-              "sha256": "sha256:b3d198c05bbe4e445ff1ecf5ea3704d62e79756086114a162cbd4cc5a6bf80c9"
-            },
-            {
-              "path": "prompts/researcher-bibliography.system.md",
-              "sha256": "sha256:328eefbdacc9fd850c5b719bdf988bac9b4a83fee495278e0cc5f78a7158234a"
-            },
-            {
-              "path": "prompts/researcher-chapter.system.md",
-              "sha256": "sha256:3ac00906eaa3263e8fdbd20ccc7e7a84b07fe1e992dec7dd24b245899dfaa550"
-            },
-            {
-              "path": "prompts/try-this-now.system.md",
-              "sha256": "sha256:944542af9172d409cf7094a52896c86af396ee51ab09e9ccf134c9706f3a23c7"
-            },
-            {
-              "path": "prompts/voice-pass.system.md",
-              "sha256": "sha256:8f8b3eebfde6f1f36b6a9c9cb3c9258ff95ed028ba93eb7422f25ef453507086"
-            },
-            {
-              "path": "prompts/writer-breakdown.system.md",
-              "sha256": "sha256:4178e7d4a70901f2f831b1d03150c39441d5dec5aaf30529ea6c48fc067322ef"
-            },
-            {
-              "path": "prompts/writer-cards.system.md",
-              "sha256": "sha256:ad966d203cf2f692b60b32fba51e4927214a32edfd2bee17ca068c72db3a9ace"
-            },
-            {
-              "path": "prompts/writer-example.system.md",
-              "sha256": "sha256:081ec998b478fda75a3437fb32ec34bcabadc8826c62e414116f734662a3a4b0"
-            },
-            {
-              "path": "prompts/writer-hook.system.md",
-              "sha256": "sha256:a25803598031232a7b9980bc3b7e02f8f4c924956c01050559eff6713f94f0fc"
-            },
-            {
-              "path": "prompts/writer-implementation-plan.system.md",
-              "sha256": "sha256:86fb5ef91f3c5f31d67dd3239056dc9ef2b27d548fc4c441adf89d570c5546a3"
-            },
-            {
-              "path": "prompts/writer-quiz.system.md",
-              "sha256": "sha256:ad873f44de1b73d94f9d2f79f0942f774adf8eea6fc08892db763b69f5508817"
-            }
-          ]
-        },
-        "configBundle": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:93da5488820722048c862828a6bad408882449687b48718584f970378eb24f1a",
-          "fileCount": 15,
-          "files": [
-            {
-              "path": "config/author-voice-profiles.json",
-              "sha256": "sha256:ad50ef88d74c6045746a587477307704d8611fa7b80ebe48c0371237764a1c1b"
-            },
-            {
-              "path": "config/banned-connectives.json",
-              "sha256": "sha256:1e83ec50dd880d8915fa14792b057f1e2eea6e847672d496b2e6737b3f4b5949"
-            },
-            {
-              "path": "config/banned-phrases.json",
-              "sha256": "sha256:3de6d00688cf467a98d9645768585238ac63d7bde8c3b711a23d192f7352932d"
-            },
-            {
-              "path": "config/categories.json",
-              "sha256": "sha256:1df0501dea9183377984bcc9e204f7388f3fa684f7466626fc0e3126b1756c3f"
-            },
-            {
-              "path": "config/critic-rubric.json",
-              "sha256": "sha256:e08085eb19f450338aa678a6db89e73a23f3a553b75542d9f5bd38a9c956627a"
-            },
-            {
-              "path": "config/meta-patterns.json",
-              "sha256": "sha256:83adbb89df9dab39c9861866e1c17e4e2b1d5a56d41ea9d211e8cd20a9639c2f"
-            },
-            {
-              "path": "config/name-bank.json",
-              "sha256": "sha256:23d8ea9ff61c3e44ec3fb6543aab24110eea5cf50b2e1de93ff06a42b0d7ff5a"
-            },
-            {
-              "path": "config/name-policy.json",
-              "sha256": "sha256:7107daf8d1084b04255351f136e0b7d750d72f4d7a4ab76257e3488b06f5ef86"
-            },
-            {
-              "path": "config/named-frameworks.json",
-              "sha256": "sha256:cc0da18fb0f04774f0be93067c67d69baefcc60a49dac4817d0d3e33c3758aae"
-            },
-            {
-              "path": "config/pedagogy-palettes.json",
-              "sha256": "sha256:f7ceccf85d7f1dd49fe35c13c7c0a4ee721c17a0b09e4c641319797100f65d58"
-            },
-            {
-              "path": "config/scenario-openers.json",
-              "sha256": "sha256:ed7fe8f62aa0c32242baa8bf82416a9f26d5b33d4a67c17be45e48144da9eb82"
-            },
-            {
-              "path": "config/scene-mechanisms.json",
-              "sha256": "sha256:6ffbcf6098d1ab96b67317fd617903f08f609e00b0ceea6c494a588a2205f878"
-            },
-            {
-              "path": "config/scene-shapes.json",
-              "sha256": "sha256:07efd36415fd4b64761fcee5c06ef637d1041d2a5eda7b7d80ed28c982d8ada6"
-            },
-            {
-              "path": "config/stakes-palette.json",
-              "sha256": "sha256:92d60229937b530c73773c90daea8ec2ad12fdbd9bfd25631a6df220e22f088b"
-            },
-            {
-              "path": "config/venue-palette.json",
-              "sha256": "sha256:8ba041c9d34f93f821519a0cbdab73aedc308866d49241f16c02556f527415f8"
-            }
-          ]
-        },
-        "codeFingerprint": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:819b61c6a010aa39f8da28dcbb7aa490878f736b28f4a6d36eee1fad338ebfcc",
-          "fileCount": 157,
-          "files": [
-            {
-              "path": "package-lock.json",
-              "sha256": "sha256:d940ac6c961b3cccb57322ae2b67fa6eb53edcd0d767bb7e79db96e950c010ca"
-            },
-            {
-              "path": "package.json",
-              "sha256": "sha256:f1683aac5b4b7e865e138dfbb4532d458d0c7dd90f8944c0637b028d83ad5298"
-            },
-            {
-              "path": "src/agents/autoCategorize.ts",
-              "sha256": "sha256:8497cd1a40734f6bfe9fe59e4d1dd74f9f0fa1a90ad91becce2b7e5e7165fbb7"
-            },
-            {
-              "path": "src/agents/categorizer.ts",
-              "sha256": "sha256:c6686634332a0efcd6721801c77c351e78930c935f5f0dff65ff6146b1d3d765"
-            },
-            {
-              "path": "src/agents/curriculum-planner.ts",
-              "sha256": "sha256:b0838ebbf2d162b16ede327f09adc02074203daf4ccd16cc56e98af32d1b4984"
-            },
-            {
-              "path": "src/agents/editor-in-chief.ts",
-              "sha256": "sha256:90f9fc0958255c81ff2672458624c809f1455e3432c4c293e98e44f4e75afcbe"
-            },
-            {
-              "path": "src/agents/line-editor.ts",
-              "sha256": "sha256:c0f804e0bd940552b4a351b2528380f2e1c284173c96b44691e4570fd1646987"
-            },
-            {
-              "path": "src/agents/memorable-lines.ts",
-              "sha256": "sha256:5eca291142f6b015c1ac2e99c233c55dbf828dd6d664e1707e80fe1d09986573"
-            },
-            {
-              "path": "src/agents/researcher-bibliography.ts",
-              "sha256": "sha256:efd8474cd56bc643badeedd5bf427df4314a574d44eb84c52831fbd3970811fd"
-            },
-            {
-              "path": "src/agents/researcher-chapter.ts",
-              "sha256": "sha256:fabc0fd3a046aedd992c89b5f11267b5023db331396347bfc9fa942a25848e32"
-            },
-            {
-              "path": "src/agents/try-this-now.ts",
-              "sha256": "sha256:e14bb4063c4d66233331bacc9e993c44c8cace50abf83d17c0e06443ba631fbd"
-            },
-            {
-              "path": "src/agents/voice-pass.ts",
-              "sha256": "sha256:f46637ba9ea89f5080b0d7ed03954ec4562fb934ba2677c77ef5d74a8059e79e"
-            },
-            {
-              "path": "src/agents/writer-breakdown.ts",
-              "sha256": "sha256:157f87dc4ab5b501e9c348ce4b9cb4ef613e0e2610a6cb51e4412329330f135e"
-            },
-            {
-              "path": "src/agents/writer-cards.ts",
-              "sha256": "sha256:28f3e93b5e762fafa8f60c1cc9b6bc55e843367c69d63133cb6fcc824827fd2a"
-            },
-            {
-              "path": "src/agents/writer-example.ts",
-              "sha256": "sha256:22e27e23047110602252d5109306cf180a665e58843ba4c2707b4d09fd09f08b"
-            },
-            {
-              "path": "src/agents/writer-hook.ts",
-              "sha256": "sha256:88d1a25238ef9d84f6fd57c5f5185524fe11129763d1a4692843c4678035fc5b"
-            },
-            {
-              "path": "src/agents/writer-implementation-plan.ts",
-              "sha256": "sha256:2276512d7838e3eedf7906a5326c3c9915c275a4282cdf3c5cb5c92b5afacfac"
-            },
-            {
-              "path": "src/agents/writer-quiz.ts",
-              "sha256": "sha256:dc30ba5e073f133e485b64f6aed7319b7b6168186ac8da5f3f28fc4874194f39"
-            },
-            {
-              "path": "src/assembler.ts",
-              "sha256": "sha256:92e405e1d1b29433cd6e602799711a292dfe2575118b67209f4840b9d491ea42"
-            },
-            {
-              "path": "src/cache/stageCache.ts",
-              "sha256": "sha256:fc655ae2df40e5aec46b867f068f677195547f7f254cace247bcfb4d4b6bfe65"
-            },
-            {
-              "path": "src/claudeClient.ts",
-              "sha256": "sha256:e5a29140ab757083a13e05833804ba2a93db5e572ed0cdc8381c370e19996338"
-            },
-            {
-              "path": "src/cli.ts",
-              "sha256": "sha256:2f7b364e9a509211d95a6aa3ac0e7c31345bb71c71bf953b0b2f9dc8212e7c87"
-            },
-            {
-              "path": "src/cost-tracker.ts",
-              "sha256": "sha256:9f6413f09ce238af382706b2e65ba71d4a3fed79e59bc636858c0615885405d6"
-            },
-            {
-              "path": "src/critics/antiSalting.ts",
-              "sha256": "sha256:c80540cbf5d5115f27443559298af0a8d8af743ee9331d17bbd3ed1bcbb0b0b1"
-            },
-            {
-              "path": "src/critics/authoringContract.ts",
-              "sha256": "sha256:4a7d5ddcb6e6c4f9ddc56dca0a5969beadf0e72fb3fadc3f3c5333570f86d4c8"
-            },
-            {
-              "path": "src/critics/bookGate.ts",
-              "sha256": "sha256:a9356298ff87d6d24fef42e68c985fcc62de83e72f8f54db625485b516109192"
-            },
-            {
-              "path": "src/critics/bookPatternAudit.ts",
-              "sha256": "sha256:dc5aeaf6abb63eda1eec60c92ae409fe1434a6ca2cb97bb0103f07b4dc4f5a5c"
-            },
-            {
-              "path": "src/critics/bookRepetition.ts",
-              "sha256": "sha256:e0c926d987466945ed50774b06e720a56320d8168b1c11871211af2bc03ff863"
-            },
-            {
-              "path": "src/critics/catalogAudit.ts",
-              "sha256": "sha256:553bd8e397cab5faf9e0381bb807d3f95212a85a56fdd7774539b14f4c572a42"
-            },
-            {
-              "path": "src/critics/crossBookSignatureAudit.ts",
-              "sha256": "sha256:0c7f8ea7d9d9888d49ba7e0db0e8eb6ae0e25670257dd4a223f0ca0f574a3edb"
-            },
-            {
-              "path": "src/critics/experiencePlan.ts",
-              "sha256": "sha256:7fea5a2fceb2721b9b619fcec4d98992ab09b78cfe9529e2c73b66a87c17e4e5"
-            },
-            {
-              "path": "src/critics/finalGate.ts",
-              "sha256": "sha256:1a4e4f14a0aeac99af74f2228027754577f1a3f14c36ea0ff83399f569df8afc"
-            },
-            {
-              "path": "src/critics/integrity.ts",
-              "sha256": "sha256:b2aff233555a5ec5afdeec00cb31bd537facfcd3a1189ac0ac33c17201e989a1"
-            },
-            {
-              "path": "src/critics/intraBook.ts",
-              "sha256": "sha256:d01ee51b61bdcb3a91ab837ec2074a43d5c957c6f6f1b71aa86625dec3ba3d8d"
-            },
-            {
-              "path": "src/critics/intraBookFieldSimilarity.ts",
-              "sha256": "sha256:701ec281ae7bd5445f195ce482304f413ac1e56e300b75c183a1e8dabc449444"
-            },
-            {
-              "path": "src/critics/intraBookQuizSimilarity.ts",
-              "sha256": "sha256:69d5ecbd0539a723291ff79d41ab47cf43520a4981deb85148c70866262e40b8"
-            },
-            {
-              "path": "src/critics/narrative.ts",
-              "sha256": "sha256:a1ae1005df56930dac1607eb2bd8f52eeece441cc0da1dff6e312b1877a2c5be"
-            },
-            {
-              "path": "src/critics/pedagogy.ts",
-              "sha256": "sha256:e35577d41fe13a417e1fa39ba8aee5a1e3a84d65af859e7c1df46b67923b3ac0"
-            },
-            {
-              "path": "src/critics/plainLanguage.ts",
-              "sha256": "sha256:6164ed5dd743a0e46cf1576087829daac2bd33a3498e1b52dacd8249110855cf"
-            },
-            {
-              "path": "src/critics/prose.ts",
-              "sha256": "sha256:85ed4d61afa7c55f9f0c55cca69ca33cc7bf4d111b068c38553f76a894d70f08"
-            },
-            {
-              "path": "src/critics/qcAttestation.ts",
-              "sha256": "sha256:5b0b8e94f421b1b158a9c5296f9ff05bb1336c4a8a57ae48f600092bd4beb129"
-            },
-            {
-              "path": "src/critics/quizCorrectness.ts",
-              "sha256": "sha256:8f789f09ad25ca27edef9e27c9df2891f95ec92c78a2a53c23217fdd3b2874f9"
-            },
-            {
-              "path": "src/critics/quizKeyGate.ts",
-              "sha256": "sha256:7c3545d5600f649574fecb1c8d390e72984ca98adbc2ef99e859951c802cc99f"
-            },
-            {
-              "path": "src/critics/quizQuality.ts",
-              "sha256": "sha256:6f6a4ab2e05fb62935c88dc9bb7cbf9fc50d730c6dbcd6930e4f33f8ca5aec4f"
-            },
-            {
-              "path": "src/critics/readingLevel.ts",
-              "sha256": "sha256:a3c1b5fa9aaa1c56c1d5e950ce50e37818ea0d1c832a1c11e4721f18f44dcc40"
-            },
-            {
-              "path": "src/critics/register.ts",
-              "sha256": "sha256:95079ac31bb92ebe2477eb36595ca68ec7293f76a9fae5bfd31567e83ff6e0d6"
-            },
-            {
-              "path": "src/critics/runAllCritics.ts",
-              "sha256": "sha256:fd473ae74bbc6041199ed42d9a766a53dedd1fa02ffc45b92831abbfd1a8212b"
-            },
-            {
-              "path": "src/critics/scaffoldLeak.ts",
-              "sha256": "sha256:93bf473a2636d7a8ec066ec116d149e1ab7db93de5ef1532f9a3cf8f269f3d42"
-            },
-            {
-              "path": "src/critics/schema.ts",
-              "sha256": "sha256:27e0908090aa280845cb2b3610e295eac388721def1b5840040c48d2a7bed00c"
-            },
-            {
-              "path": "src/critics/semantic/publishableBar.ts",
-              "sha256": "sha256:2577a0ac49108b95d0fb25a95e0d119709a13770a8cbf04dc8d776450514f0cb"
-            },
-            {
-              "path": "src/critics/semantic/quizKeyJudge.ts",
-              "sha256": "sha256:a6088b283c8e1065c71b936da16564548094a1f2bfc89fb10db5b24db9234cd6"
-            },
-            {
-              "path": "src/critics/shared.ts",
-              "sha256": "sha256:7f6fadcebe362b829f5f18e2392141993437ff754fde3e73c9737a1e82575d95"
-            },
-            {
-              "path": "src/critics/sourceCoherence.ts",
-              "sha256": "sha256:bd7bb198769be3be204c9694b8c4df7259480c27c0230db7982592176ec5a95f"
-            },
-            {
-              "path": "src/critics/sourceGrounding.ts",
-              "sha256": "sha256:55a7625d5f5021a8b8c42e475552560c38a7b4b7131e450d350a2f83fdfc94ae"
-            },
-            {
-              "path": "src/critics/sourceRealness.ts",
-              "sha256": "sha256:e945e5d2b30e5649cf6469e1b6c8ee70c1affe12a50a263030f17e78c660d380"
-            },
-            {
-              "path": "src/critics/sourceVerify.ts",
-              "sha256": "sha256:0f00e8ce881f514c7ab114eba6dbfd6138a944eef9f3cecfec759188de501cb8"
-            },
-            {
-              "path": "src/critics/supportSectionAudit.ts",
-              "sha256": "sha256:b55b1f501f632d5c4f60a611e99369f77d60eabec079cab8909cc572e05b4730"
-            },
-            {
-              "path": "src/critics/textUtils.ts",
-              "sha256": "sha256:b39890a8535051f286301b9fa72e2940cb6a0f6bdd225002882351cd0e99d180"
-            },
-            {
-              "path": "src/curator/exampleSelector.ts",
-              "sha256": "sha256:b87c8ea06c8f332af6b91a9e83a266b5e7397640aff600e513cd80cac291a08b"
-            },
-            {
-              "path": "src/diagnose.ts",
-              "sha256": "sha256:20506a4da04b28d05317924af66e86971b0fca0522af30aa51e54baa67e30f80"
-            },
-            {
-              "path": "src/generateBook.ts",
-              "sha256": "sha256:b328e7fa5a3e36cd633a2911337ad83dc1bfaae457bfcf01cac1f601ef7f9cf9"
-            },
-            {
-              "path": "src/generateChapter.ts",
-              "sha256": "sha256:e5e3cddd9d58792ece72840572e06c7c5eaeb68050595818856540169024311c"
-            },
-            {
-              "path": "src/generationDegradation.ts",
-              "sha256": "sha256:737f8dc7d7f415709b1111beccf30552bb2530372e930d28a873d17a8b5af7a6"
-            },
-            {
-              "path": "src/lib/atomicWrite.ts",
-              "sha256": "sha256:cd4a80010b539604e8aff522d47ad6aed3cafba7a48193e5b92b0159aab79c3a"
-            },
-            {
-              "path": "src/lib/brief-sanitizer.ts",
-              "sha256": "sha256:9a57da614a3129c0d787f7528380b85a304d86943a2f757383fb4411eae343dc"
-            },
-            {
-              "path": "src/lib/canonicalJson.ts",
-              "sha256": "sha256:9ad6c9a4fc8ff24318f757ef157b91413071cc0bd84ef557b896464c1138512b"
-            },
-            {
-              "path": "src/lib/chapterPaths.ts",
-              "sha256": "sha256:ccc20df4f559e86d3926d69e3ee69d81dc16b96d4fbd4a6522e56da5508aa783"
-            },
-            {
-              "path": "src/lib/chapterSet.ts",
-              "sha256": "sha256:5d8bc25303a34830cc7d76bb90a4a4c1a71444fef55679493f3c2dbd3c65ba4f"
-            },
-            {
-              "path": "src/lib/coprime.ts",
-              "sha256": "sha256:1a9654e7c3284b4ecfeef9988b785263bd2270d8af7c2dc4ec5c7353d470600d"
-            },
-            {
-              "path": "src/lib/fnv1a.ts",
-              "sha256": "sha256:61016dec458c076d322e720e22e92dc4aa37028f789dda46e6d7515f044d2ab7"
-            },
-            {
-              "path": "src/lib/pipelineFingerprint.ts",
-              "sha256": "sha256:0554bcba0938fc754c25c18ad0c05a3f73800bafe1642481cfaa7c80b2cec54f"
-            },
-            {
-              "path": "src/lib/readerContent.ts",
-              "sha256": "sha256:e2b15b8bfd4d5a267e2bb1b3ff960d68a2fc2eceefa27e2b2bc75eaa53fa5de7"
-            },
-            {
-              "path": "src/lib/researchRunManifest.ts",
-              "sha256": "sha256:334eebac804ba1e7a1460a27861109d44589a2bd37cae9b880a06231ccfb4e8e"
-            },
-            {
-              "path": "src/lib/runDirs.ts",
-              "sha256": "sha256:75314e23045e1d701d7b185a60b948f3205159b62e80c97793b02ba3f69ac413"
-            },
-            {
-              "path": "src/lib/strictEnv.ts",
-              "sha256": "sha256:514d00911774ac075c92cba4580431186b4b34abdda3f43229210ae8436e76f5"
-            },
-            {
-              "path": "src/lib/tocContract.ts",
-              "sha256": "sha256:53c68b2c5e376f52e2c0f4507113c628037b41ceffae25d59fe3203d17948be8"
-            },
-            {
-              "path": "src/lib/voiceBible.ts",
-              "sha256": "sha256:2339dc3c959290788f091d3bf6efc817a73ac33b1df8cec06208a561fd12b109"
-            },
-            {
-              "path": "src/librarian/actionMechanismPlan.ts",
-              "sha256": "sha256:efe3a3c449b927e8f6c0d714b5703c143d45dac9fc1005bbf080a0fd81a86cef"
-            },
-            {
-              "path": "src/librarian/answerKeyPlan.ts",
-              "sha256": "sha256:00270cf59e9e4e5ff9fc1d66870f3725bf4ccad9b165530d3cb1b6b83d9f09a0"
-            },
-            {
-              "path": "src/librarian/authoringGuardrails.ts",
-              "sha256": "sha256:07312d442ea536fae75cebf3834a3f02c69657f7978645ac5f9811e36f153bdf"
-            },
-            {
-              "path": "src/librarian/callbackPlan.ts",
-              "sha256": "sha256:35fb7a7f106ab2b354725246074440faeae1fcaebb34b34ef78b55a691e09127"
-            },
-            {
-              "path": "src/librarian/chapterArchetypePlan.ts",
-              "sha256": "sha256:40343341c3a53981d043386615a680dd664a6de1f048747d699ed09df854c246"
-            },
-            {
-              "path": "src/librarian/exemplarPlan.ts",
-              "sha256": "sha256:4a290fff74cdb3b1d0ec9bbad58520a2f098e85005ecf42cc5d3bd67f45f2828"
-            },
-            {
-              "path": "src/librarian/fullReadSkeletonPlan.ts",
-              "sha256": "sha256:40c5d9e0543f8e235048e457c38782b511156d7927786c6a60f9a8b081e12ae8"
-            },
-            {
-              "path": "src/librarian/identityMigration.ts",
-              "sha256": "sha256:a1e7d5b4b8043c062fc998026dab29e43838456d0f4cdc48be7b34126e3d7528"
-            },
-            {
-              "path": "src/librarian/libraryState.ts",
-              "sha256": "sha256:b6dc3455f79f9cefe7961d832276ecc951ed9596e6ae7533d2f0a29506546f9d"
-            },
-            {
-              "path": "src/librarian/namePlan.ts",
-              "sha256": "sha256:bb9799027cbbd96211ab1949515b848373e9c2df493139202283494de6636b0a"
-            },
-            {
-              "path": "src/librarian/namePolicy.ts",
-              "sha256": "sha256:093bfc0933d10eadaeb1ef7d0bdfc4657ca004ee19a4114c441f41d46afdf1b6"
-            },
-            {
-              "path": "src/librarian/openerPlan.ts",
-              "sha256": "sha256:95345b5ddd4574f58d5d8ec215382529543694e0b250bad83f160d82ef5fa56a"
-            },
-            {
-              "path": "src/librarian/pedagogyPlan.ts",
-              "sha256": "sha256:958d6a675678ca723cba38c41cc8766d386d4c90a5f92f952a81c9b7ae0285c8"
-            },
-            {
-              "path": "src/librarian/rhetoricPlan.ts",
-              "sha256": "sha256:8d187af79f123d697e282aeb9820106aaebbf85c5fe4b7ee6835f803c41bfdea"
-            },
-            {
-              "path": "src/librarian/saturationGuard.ts",
-              "sha256": "sha256:1c566953d135c227e329a73bd5a6dcfd9a8b311704182bb57a80287ea2090107"
-            },
-            {
-              "path": "src/librarian/sceneMechanismPlan.ts",
-              "sha256": "sha256:18b2ced6ab7dc7b724548b567aea483dbbcdf077c2bbc07d14189f3faa623dd6"
-            },
-            {
-              "path": "src/librarian/sceneModePlan.ts",
-              "sha256": "sha256:acccfc0fe8ed936e6410d7e6d5d16eec70a3ca8a8dd86690078298279c683cd4"
-            },
-            {
-              "path": "src/librarian/shapePlan.ts",
-              "sha256": "sha256:2a2e39775eee5b77354160550e9a6e7c42b711bf7ac306d9c75af4b7733d86a4"
-            },
-            {
-              "path": "src/librarian/sourceSidecars.ts",
-              "sha256": "sha256:0d7af1950a5476d7472d7f584024b74cb4c4f8c2d02a087127815076743de0b1"
-            },
-            {
-              "path": "src/librarian/stakesPlan.ts",
-              "sha256": "sha256:9e7c3325dd0dbe2e09e95867b56ca6d11a6a7a1010d183d415a5823fadb39f46"
-            },
-            {
-              "path": "src/librarian/timingPlan.ts",
-              "sha256": "sha256:1a65c956cf1d261fc3b8286a61b865a943ad0cae2aa92fa307f8b7bd7a46c0f8"
-            },
-            {
-              "path": "src/librarian/venuePlan.ts",
-              "sha256": "sha256:ce859090d5e69410cc7a345969d710cc99f52f26ddd7961ff21ade0e97e84c3d"
-            },
-            {
-              "path": "src/librarian/weeklyPracticePlan.ts",
-              "sha256": "sha256:e95803dd4d01ba07e27f29781d0246c121ab14b8ac29ee712dddce8ec0b85be5"
-            },
-            {
-              "path": "src/lifecycle/bookStatus.ts",
-              "sha256": "sha256:ae301e7a500fa1cb865bcf1e28a6ade3eb48d08b7b16e66981c48fc41707d011"
-            },
-            {
-              "path": "src/lifecycle/doctor.ts",
-              "sha256": "sha256:e5c5b7bb44873eee0bbad478f34cab49ae36cf5744327bc97f99f92be54ce9c5"
-            },
-            {
-              "path": "src/next-task.ts",
-              "sha256": "sha256:1592b596e4d99b2bc0db2ae096f65445b71384a97ea582edb3d05bd3e3f26f8a"
-            },
-            {
-              "path": "src/orchestrator/autopilot.ts",
-              "sha256": "sha256:a0cab30c50f2bbe512c5c609c68c7747ef82446520df34660a16fc8fa1e33f4d"
-            },
-            {
-              "path": "src/orchestrator/codexAgent.ts",
-              "sha256": "sha256:61d65771db3574dd0b22238527f1764569339579efe95b12664f3830a4df34e4"
-            },
-            {
-              "path": "src/orchestrator/liveRun.ts",
-              "sha256": "sha256:7f7e2adec880c723802d1b7987a9fab5256c69af1c0e3329b95e7c1017ae4e23"
-            },
-            {
-              "path": "src/productionManifest.ts",
-              "sha256": "sha256:e33fdd7c1d4b0b7955d891b09d130c65b5a5787f4a08f77da4c3914b29defcaa"
-            },
-            {
-              "path": "src/promoteBook.ts",
-              "sha256": "sha256:a88f709d8e19ae2235bb8abcdbdbb432677f762fb86856fac30b59fada969cb7"
-            },
-            {
-              "path": "src/providers/anthropic-api.ts",
-              "sha256": "sha256:3cec61a5121f33ade6ad718af52f8b53a24751ef17a9501a6f79b65e8a346c84"
-            },
-            {
-              "path": "src/providers/cli.ts",
-              "sha256": "sha256:484d020fb9704086ea61c51833bac5cd4dda29843f78a18b283c9bb9e67a5b6c"
-            },
-            {
-              "path": "src/providers/openai-api.ts",
-              "sha256": "sha256:771063a3e9668792a801acc955563ab1a35db5b6891d91b9702686ce31c2a6a3"
-            },
-            {
-              "path": "src/providers/router.ts",
-              "sha256": "sha256:577da2d691ea0b951e1d9fe4e1784e33c2fd65fb84664a474f8d43dd8ba1bbc2"
-            },
-            {
-              "path": "src/providers/types.ts",
-              "sha256": "sha256:62b4f6c653701cabd78e0992e29c17dfba978b36132da0ceb2bf54f94398585e"
-            },
-            {
-              "path": "src/qc/auto/driver.ts",
-              "sha256": "sha256:e40f72d308d6b00f8a1f08cea7f13746b1f2b78cb15a853bcdbebd6377e9944a"
-            },
-            {
-              "path": "src/qc/auto/generateWorkflow.ts",
-              "sha256": "sha256:03129563c77f56e1d3948d97af118dbbcfba345a04fd31e9997382888da3f9df"
-            },
-            {
-              "path": "src/qc/auto/resolveBook.ts",
-              "sha256": "sha256:dbd2edeb4dc80fccec35acadc31a0d483a6a1e9fa11cfbc4ff3a494786479c8b"
-            },
-            {
-              "path": "src/qc/barReview.ts",
-              "sha256": "sha256:a1fd21bab474f8fdc334acb95e9f651080618bff60294bd196e3895c22058c7e"
-            },
-            {
-              "path": "src/qc/majorDisposition.ts",
-              "sha256": "sha256:c611a7b12b3605dff443296e78080d7308b3f8ae50577191e215ea564e9bc62f"
-            },
-            {
-              "path": "src/qc/manualKeyJudge.ts",
-              "sha256": "sha256:f504121cd0a6a8d65ce8081bce10f12354b5a0021124bceeb119d90cf7a3c978"
-            },
-            {
-              "path": "src/qc/metrics.ts",
-              "sha256": "sha256:de46f137669ab02836e2c30adcb8cd8b9e0e7c859f4dd266aee0fb25674176bd"
-            },
-            {
-              "path": "src/qc/noApiMode.ts",
-              "sha256": "sha256:7611d7a8b3a871e3b817398019101b9572e479a2e315927eb3088d14a2abab33"
-            },
-            {
-              "path": "src/qc/orchestrator/artifacts.ts",
-              "sha256": "sha256:8b7e0e1c10a9a7f5ab7d6bc2f5485a923b3a3fd26deb93fe57e50f9055851ee3"
-            },
-            {
-              "path": "src/qc/orchestrator/deterministicGate.ts",
-              "sha256": "sha256:eab5f1e32c3e99c31ddd799fe40328f385cf9633daa1bcc10612a34f8bb8c82c"
-            },
-            {
-              "path": "src/qc/orchestrator/diagnose.ts",
-              "sha256": "sha256:bf44afcf7b0cc9dd801b79073ad1eb00cbf47fbdcca9f6f33ef24dc59f709f90"
-            },
-            {
-              "path": "src/qc/orchestrator/evidenceSource.ts",
-              "sha256": "sha256:25d18eb067698ca2ca105ef00aeff709fe25e2bff397e67b5041ee163c950cbd"
-            },
-            {
-              "path": "src/qc/orchestrator/finalize.ts",
-              "sha256": "sha256:863f8870777f6460e862994e169311dd83156211466c97e5e7f3550cb733b3b9"
-            },
-            {
-              "path": "src/qc/orchestrator/finalizerFindings.ts",
-              "sha256": "sha256:58192b3a433be92c5c6b8f1113155e557f53c465a3f1eb71bb246458e3e78d9b"
-            },
-            {
-              "path": "src/qc/orchestrator/findingGrouping.ts",
-              "sha256": "sha256:0c620ea901027fbe85c4804545f1d7ba4f2f814ed161999531f65b9ee6f6daca"
-            },
-            {
-              "path": "src/qc/orchestrator/findingValidity.ts",
-              "sha256": "sha256:fc940f4f36a298eb1d5124f131cb480f6c3897bbf7814ad423cb8aaf8d728dce"
-            },
-            {
-              "path": "src/qc/orchestrator/index.ts",
-              "sha256": "sha256:4cc1404163dc1fa62a145dac06d3c861f3c83f855a2656333ea9da33ee9e7959"
-            },
-            {
-              "path": "src/qc/orchestrator/ledger.ts",
-              "sha256": "sha256:f2d3941fe2aedb6bd79c9e86f55be0d9cb46969941459fc8f3fcc91274fa319a"
-            },
-            {
-              "path": "src/qc/orchestrator/repairBrief.ts",
-              "sha256": "sha256:0a3aea7d0f0d96a45a85b733d54126a41389b7753e23cdfdf7f28d2bcc7c629a"
-            },
-            {
-              "path": "src/qc/orchestrator/reviewPacket.ts",
-              "sha256": "sha256:731862ccc59ea6b50fc32dadc0298e6ae26751b2b1669f5eacb0c362a2e06275"
-            },
-            {
-              "path": "src/qc/orchestrator/schemas.ts",
-              "sha256": "sha256:1f0ab31ab21b24bb346771d8fdb2fc9e3baae094d7b46aa5e66583aff6b282f1"
-            },
-            {
-              "path": "src/qc/orchestrator/submissionSchemas.ts",
-              "sha256": "sha256:4eec9c0805948b68c8e972027b663850046055e4944a7d4f0a52670491a517e3"
-            },
-            {
-              "path": "src/qc/orchestrator/transaction.ts",
-              "sha256": "sha256:352c35506d9b80eb8805195a23779fae91b74f235fa45e58b4e13768e997fbc7"
-            },
-            {
-              "path": "src/qc/planEnforcement.ts",
-              "sha256": "sha256:5b0f5453b25c5b8f2ef992ec5fa958528049b3109af71d2c0987a79d3d2c0adf"
-            },
-            {
-              "path": "src/qc/pruneBookState.ts",
-              "sha256": "sha256:f6068133e511d6cccb02f0a4b235a7880b8e11c9d9d3d472cdd70e5561e328ca"
-            },
-            {
-              "path": "src/qc/publishAfterQc.ts",
-              "sha256": "sha256:c8f555c9ef5514ee44fe2c72c2a04b07ee7b3f9bb0d029b548683bc470e6229d"
-            },
-            {
-              "path": "src/qc/qcRound.ts",
-              "sha256": "sha256:b766a2039eeed5b9b6f307196077f478176324728049fa21298509231e3aa6f7"
-            },
-            {
-              "path": "src/qc/reviewerId.ts",
-              "sha256": "sha256:66a2a171274c60c1026f7ca0a833cfb90abd8337ae524310f376554158274be6"
-            },
-            {
-              "path": "src/qc/sessionProvenance.ts",
-              "sha256": "sha256:bf3bd293a85c1c0a6dfb5938769fe4e64b9bfbee6703a76128dc005a177052c0"
-            },
-            {
-              "path": "src/qc/sourceRealityPolicy.ts",
-              "sha256": "sha256:8a61be1f77f912c0fe05f14183540f8eac63e0d59c2129c01ad46024ed8e657d"
-            },
-            {
-              "path": "src/qc/sourceV2Gate.ts",
-              "sha256": "sha256:f7c052fd8bbbe83cbd2b80eb75e06bc9f853ecf48b3ab93c8708fcb9a73da231"
-            },
-            {
-              "path": "src/qc/sweep.ts",
-              "sha256": "sha256:862bbfa4513e6a95cb2626108b27152afdcc9e908798c87d825fcca81b82e599"
-            },
-            {
-              "path": "src/researcher.ts",
-              "sha256": "sha256:5721c9a1b276fe4214c619ee54a2d098deafaa029a05a8f9cee77f3513b9909b"
-            },
-            {
-              "path": "src/roles.ts",
-              "sha256": "sha256:84f43032fdedd04a164b4ffd52d780d508f6616a51023e0b7f7478ff3f7be703"
-            },
-            {
-              "path": "src/runbook.ts",
-              "sha256": "sha256:79b1bda5e43d511e031fea90969f2b046662fce252b849c101c744ffdf69ca24"
-            },
-            {
-              "path": "src/runtimeSchemas.ts",
-              "sha256": "sha256:53413931dc3525de0690a28ffaebf451b82288d5ad1ae191e722ba330be1014d"
-            },
-            {
-              "path": "src/source-loader.ts",
-              "sha256": "sha256:021d771a36dfc8edbeacb0e0f6e4fbaf68d1addae3433a6bc831f0e042fb87b4"
-            },
-            {
-              "path": "src/source/sidecarSchema.ts",
-              "sha256": "sha256:f3c8efa9a2e7ce5ba0429a811755ac54e6b459444cb327635faeb29055f93b8c"
-            },
-            {
-              "path": "src/source/sourceEvidence.ts",
-              "sha256": "sha256:93a27fc9ded4e367da5b40cd806c157d5b5c93a3731bf667aca9c13ba01ac979"
-            },
-            {
-              "path": "src/source/sourceIntegrity.ts",
-              "sha256": "sha256:ee9b8019e48d3490a92c4f13ec090d7ba0d3210d7aa42fdb0a6de6085b5391b8"
-            },
-            {
-              "path": "src/sourceFit.ts",
-              "sha256": "sha256:78b4bd09ec28927180d124a71076c65daaca983d6d46ef07e80323ea842f32d9"
-            },
-            {
-              "path": "src/sourceVerifyWorkbench.ts",
-              "sha256": "sha256:e360b13af33943ef8b33583b3ae2a4651c750d16d16f49886610af075407c078"
-            },
-            {
-              "path": "src/types.ts",
-              "sha256": "sha256:0793786d8a1d22ef511addfbe16c1b8a9c826ea2cdbd1b045a10f96a40404d22"
-            },
-            {
-              "path": "src/verifyProductionPackage.ts",
-              "sha256": "sha256:91eef894c0b8165c3da951fc58c67fb72a9a3f51442d9ea73f723a34955c55be"
-            }
-          ]
-        },
-        "labels": {
-          "promptSet": "chapterflow-v21-authored-prompts-v1",
-          "config": "chapterflow-v21-authored-config-v1",
-          "code": "chapterflow-v21-authored-production-package-v1"
-        }
-      }
-    },
-    "metadata": {
-      "createdAt": "2026-06-24T22:14:51.936Z",
-      "generator": "promoteBook",
-      "runId": "manual-promote",
-      "packagePath": "book-packages/dopamine-nation.v21.json"
-    }
-  },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "dopamine-nation-ch01",
       "number": 1,
       "title": "Our Masturbation Machines",
@@ -1260,14 +46,7 @@
           ],
           "scenario": "The first note on Jacob could easily read like a spectacle: early sixties, Eastern Europe, handmade masturbation machine, then internet pornography. The repair is a plainer label. Instead of \"odd case,\" the file reads, \"private, repeatable, low-friction reward.\" The detail stays factual, but the reader is no longer invited to stare from a distance.",
           "whatToDo": "Keep Jacob in the room as a person, then track access: privacy, a machine, online supply, and repetition.",
-          "whyItMatters": "The label change turns a shocking detail into a transferable pattern without pretending Jacob stands for everyone.",
-          "planSpec": {
-            "domain": "our masturbation machines example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "dialogue",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The label change turns a shocking detail into a transferable pattern without pretending Jacob stands for everyone."
         },
         {
           "exampleId": "ex02",
@@ -1278,14 +57,7 @@
           ],
           "scenario": "Amelia tugs the neighborhood library return slot near closing, and it sticks halfway. She expects a late fee. Instead she pulls Twilight back out, then finds the vampire romance she renewed after it and the fantasy hold slip tucked behind it. \"You said one book,\" Brooklyn says. Amelia points to the sleep-loss note on her phone: \"One book found a shelf.\"",
           "whatToDo": "Amelia names the reveal out loud: Twilight was the doorway, not the whole binge. She follows how the neighborhood library made novelty easy to keep sampling.",
-          "whyItMatters": "The scene keeps the lesson away from drug-only thinking. A respectable story can still become a stronger chase when supply and privacy keep widening.",
-          "planSpec": {
-            "domain": "our masturbation machines example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "predict_reveal",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The scene keeps the lesson away from drug-only thinking. A respectable story can still become a stronger chase when supply and privacy keep widening."
         },
         {
           "exampleId": "ex03",
@@ -1296,14 +68,7 @@
           ],
           "scenario": "At the pickup counter after lunch, Brooklyn feels the bag sweating through the paper while Brooklyn's phone delivers a coupon, a news alert, and a casino ad before the fries cool. David Courtwright's limbic capitalism names the market piece: businesses can rent attention by waking reward circuits. The ride code is also on that phone, now at 1 percent.",
           "whatToDo": "Read the pileup before chasing any one ping. Separate the useful task from the extra doors into reward.",
-          "whyItMatters": "The phone is not one temptation. It is a stack of businesses that benefit when the next cue arrives before the last want settles.",
-          "planSpec": {
-            "domain": "our masturbation machines example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "text_thread",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The phone is not one temptation. It is a stack of businesses that benefit when the next cue arrives before the last want settles."
         },
         {
           "exampleId": "ex04",
@@ -1314,14 +79,7 @@
           ],
           "scenario": "In the bathroom hallway before the late train, Landon stops the charging cable one inch from the socket. Landon's old routine is charge, swipe, news, shopping, then miss the train. The new routine is smaller and less heroic: leave the phone outside the bathroom and send the train text from the kitchen.",
           "whatToDo": "Change the first small act before the phone is live. The reward circuits still get cues, but the charger no longer feeds the bathroom swipe.",
-          "whyItMatters": "This is a partial win, not a personality transplant. One access gap protects one vulnerable hour.",
-          "planSpec": {
-            "domain": "our masturbation machines example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "reset_moment",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "This is a partial win, not a personality transplant. One access gap protects one vulnerable hour."
         },
         {
           "exampleId": "ex05",
@@ -1332,14 +90,7 @@
           ],
           "scenario": "Jeanne slides the paperback under a tea towel before Landon sees the cover. The kitchen is quiet except for the page scrape and the fridge hum. Twilight was the clean excuse; vampire romance is the later stack; sleep loss is the gray skin under her eyes. Landon says, \"Still awake?\" Jeanne says, \"The next one was right there.\"",
           "whatToDo": "Jeanne lets Landon see the stack instead of hiding the paperback. She names the cheap step from one safe story to the next stronger fantasy.",
-          "whyItMatters": "The vignette shows escalation without a speech. When the next reward is within arm's reach, \"one more\" can quietly become the rule.",
-          "planSpec": {
-            "domain": "our masturbation machines example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "vignette",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The vignette shows escalation without a speech. When the next reward is within arm's reach, \"one more\" can quietly become the rule."
         },
         {
           "exampleId": "ex06",
@@ -1350,14 +101,7 @@
           ],
           "scenario": "At her desk after an intake review, Gemma starts a secure chart note with \"bizarre\" and then Gemma corrects it before it hardens. The replacement line is boring on purpose: \"private, repeatable, low-friction reward.\" The handmade machine made Jacob's story feel singular; later internet pornography made the pattern portable.",
           "whatToDo": "Keep the sexual detail factual, then rewrite the case around access, privacy, and repetition.",
-          "whyItMatters": "If Jacob stays merely bizarre, the access pattern never reaches ordinary phones, feeds, and shopping tabs.",
-          "planSpec": {
-            "domain": "our masturbation machines example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "decision_memo",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "If Jacob stays merely bizarre, the access pattern never reaches ordinary phones, feeds, and shopping tabs."
         }
       ],
       "quiz": {
@@ -1373,8 +117,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The case is not there to isolate one taboo behavior. The handmade machine and internet pornography show privacy, repetition, and low friction.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1386,8 +129,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Easy access raises risk before willpower gets much room to act. The near miss is making character the first cause after exposure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1399,8 +141,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Twilight case shows behavioral rewards can climb through novelty and intensity. The wrong read reserves escalation for illegal drugs.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1412,8 +153,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Courtwright's frame points to business incentives, not just private weakness. The near miss keeps the term inside personal habit talk.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1425,8 +165,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Access is central, but it is not the whole cause. Inherited risk and mental distress help explain why the same cue traps some people.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1438,8 +177,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Modern technology expands reward stimuli beyond chemicals. The weak read counts only substances while ignoring phone-delivered rewards.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1451,8 +189,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The warning is not anti-medicine. It is that potency can raise risk when access grows, so newer does not settle the safety question.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1464,8 +201,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Everyday overuse and severe addiction can share reward pathways. The near miss keeps them in separate categories.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1477,8 +213,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The risk model starts with access. Secrecy, speed, and low effort raise repetition before a character verdict explains much.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1521,7 +256,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Access Gap",
         "coreSkill": "Practice naming what makes a reward easy to repeat before you judge yourself. Name the Access Gap by asking what made the reward near, private, strong, or varied. Then add one small pause where the first reach used to happen.",
         "ifThenPlans": [
           {
@@ -1546,24 +280,17 @@
       },
       "memorableLines": [
         {
-          "text": "Easy access makes the first reach feel harmless.",
-          "location": "breakdown.fastRead",
-          "why": "It names the danger before shame enters."
+          "text": "Easy access makes the first reach feel harmless."
         },
         {
-          "text": "A private loop gets loud when no one can interrupt it.",
-          "location": "breakdown.deepRead",
-          "why": "It makes secrecy feel audible and risky."
+          "text": "A private loop gets loud when no one can interrupt it."
         },
         {
-          "text": "The gap only works when you want to see the reach.",
-          "location": "breakdown.fullRead",
-          "why": "It states the precondition in plain words."
+          "text": "The gap only works when you want to see the reach."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "dopamine-nation-ch02",
       "number": 2,
       "title": "Running from Pain",
@@ -1588,14 +315,7 @@
           ],
           "scenario": "David's line is easy to miss because each step sounds reasonable by itself: a 45-minute consultation, Adderall for attention and fear of failure, sleeplessness, Ambien, then Paxil in the history. Before treating the sleep problem as a brand-new target, the chart needs one question: did the first relief create the next distress?",
           "whatToDo": "Trace the second symptom back through Adderall before adding another quick fix. The original anxiety belongs beside the sleep complaint.",
-          "whyItMatters": "A drug may help, but the next symptom should not hide the pain that started the chain.",
-          "planSpec": {
-            "domain": "running from pain example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "before_after",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "A drug may help, but the next symptom should not hide the pain that started the chain."
         },
         {
           "exampleId": "dopamine-nation-ch02-ex02",
@@ -1607,14 +327,7 @@
           ],
           "scenario": "The rent transfer is still unsent when the group chat goes quiet. Adam answers Sophie's depression and anxiety by sending reels, saying a college student needs relief between classes. Sierra sits with the same shake in Sophie's hands, moves the phone across the park picnic table, and asks for one evening without social media. By dusk, the feed is quiet enough for Sophie to see the tab she had been avoiding.",
           "whatToDo": "Adam keeps offering escape. Sierra makes the room less easy to flee, then stays beside Sophie while the rough hour passes without the feed.",
-          "whyItMatters": "The contrast shows care and escape can look alike at first. The useful helper reduces panic without feeding the tool that keeps the loop alive.",
-          "planSpec": {
-            "domain": "running from pain example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "contrast",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The contrast shows care and escape can look alike at first. The useful helper reduces panic without feeding the tool that keeps the loop alive."
         },
         {
           "exampleId": "dopamine-nation-ch02-ex03",
@@ -1626,14 +339,7 @@
           ],
           "scenario": "In the campus clinic hallway before the next appointment, Kelsey watches a resident reach for the sleep-medication line. Kelsey slows him with one sentence: the second symptom may be a footprint, not only a new target. David's insomnia matters, but speed can turn a cascade into a treatment plan.",
           "whatToDo": "Slow the chart review and ask whether wakefulness follows stimulant relief before Ambien becomes automatic.",
-          "whyItMatters": "When a fix creates a symptom, speed can deepen the cascade instead of ending distress.",
-          "planSpec": {
-            "domain": "running from pain example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "decision_point",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "When a fix creates a symptom, speed can deepen the cascade instead of ending distress."
         },
         {
           "exampleId": "dopamine-nation-ch02-ex04",
@@ -1645,14 +351,7 @@
           ],
           "scenario": "On the classroom whiteboard before lunch, Piper writes two national figures: more than one in four adults taking a psychiatric drug daily, and more than one in twenty children included too. Piper faces a choice: turn the numbers into \"medicine is bad,\" or ask what pain is being erased. She chooses the question.",
           "whatToDo": "Separate necessary treatment from the reflex to treat every bad feeling as a defect. Keep adults, children, care, and avoidance in view together.",
-          "whyItMatters": "The numbers widen David's case without turning prescription care into a villain.",
-          "planSpec": {
-            "domain": "running from pain example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "decision_point",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The numbers widen David's case without turning prescription care into a villain."
         },
         {
           "exampleId": "dopamine-nation-ch02-ex05",
@@ -1664,14 +363,7 @@
           ],
           "scenario": "Marlene is asked to be the test case instead of the comfortable observer. The dorm peer session is discussing Sophie, a college student whose depression and anxiety sit beside constant social media. Last week Marlene kept her phone beside her notebook, and every buzz cut the silence short. This week she slides the phone under a sealed envelope before she speaks. The same rough quiet arrives, but no feed opens to carry it away.",
           "whatToDo": "Marlene uses herself as the experiment. She moves one phone out of reach before the discussion starts, then lets the group feel the rough silence long enough to name it.",
-          "whyItMatters": "The changed object shows the variable that matters. Removing the easy escape changes what people can notice about their own discomfort.",
-          "planSpec": {
-            "domain": "running from pain example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "before_after",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The changed object shows the variable that matters. Removing the easy escape changes what people can notice about their own discomfort."
         },
         {
           "exampleId": "dopamine-nation-ch02-ex06",
@@ -1683,14 +375,7 @@
           ],
           "scenario": "At the clinic training desk, Quentin hears the adult and child figures and Quentin almost concludes that sitting with pain is pointless. The correction is modest: daily does not mean automatic. Before the intake path is marked, the pen stays still for one more question about what pain the request is trying to remove.",
           "whatToDo": "Keep the pen still long enough to ask what is being treated and what is being avoided.",
-          "whyItMatters": "This protects both truths. Medication can be care, and a culture can still flee discomfort too quickly.",
-          "planSpec": {
-            "domain": "running from pain example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "dialogue",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "This protects both truths. Medication can be care, and a culture can still flee discomfort too quickly."
         }
       ],
       "quiz": {
@@ -1706,8 +391,7 @@
             ],
             "correctIndex": 0,
             "explanation": "David begins by seeking help, not by chasing a high. The brief consultation and diagnostic questioning move him toward Adderall before his full context is clear.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "dopamine-nation-ch02-q02",
@@ -1719,8 +403,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cascade is the clue. Stimulant wakefulness can create a second symptom, so Ambien may be treating a problem the earlier relief helped produce.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "dopamine-nation-ch02-q03",
@@ -1732,8 +415,7 @@
             ],
             "correctIndex": 2,
             "explanation": "More than one in four adults makes the issue mainstream. The common error is to see psychiatric-drug use as rare or limited to extreme cases.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "dopamine-nation-ch02-q04",
@@ -1745,8 +427,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Children are part of the cited pattern. The pain-avoidance claim is broader than adult consumer choice, since more than one in twenty children are included.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "dopamine-nation-ch02-q05",
@@ -1758,8 +439,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The abstinence suggestion is tied to mood and anxiety. Treating it as mere productivity or moral discipline misses the discomfort she keeps escaping.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "dopamine-nation-ch02-q06",
@@ -1771,8 +451,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Screens matter because they offer instant escape from the present moment. The avoidance mechanism does not require swallowing a chemical drug.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "dopamine-nation-ch02-q07",
@@ -1784,8 +463,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pattern reaches medicine, religion, psychology, and child-rearing. The source does not reduce it to prescribing or reject all care.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "dopamine-nation-ch02-q08",
@@ -1797,8 +475,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Affluent settings can provide more exits from boredom, hardship, and distress. More relief tools can mean less practice tolerating ordinary pain.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "dopamine-nation-ch02-q09",
@@ -1810,8 +487,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge is not pain worship. It is that repeated escape can teach the nervous system that discomfort is intolerable.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1842,7 +518,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Pause Before the Escape",
         "coreSkill": "Practice catching the first reach for relief before it becomes automatic. Name the pain you want to dodge, then ask whether the tool will build tolerance or only erase the minute.",
         "ifThenPlans": [
           {
@@ -1867,19 +542,13 @@
       },
       "memorableLines": [
         {
-          "text": "Relief can become rehearsal.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the loop into a sentence a reader can catch mid-habit."
+          "text": "Relief can become rehearsal."
         },
         {
-          "text": "The fastest escape often trains the next alarm.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the paradox of quick relief easy to remember."
+          "text": "The fastest escape often trains the next alarm."
         },
         {
-          "text": "A pill can help without becoming the whole plan.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the hard edge without sounding anti-medicine."
+          "text": "A pill can help without becoming the whole plan."
         }
       ]
     },
@@ -1907,14 +576,7 @@
           ],
           "scenario": "The booth vinyl sticks to designer Bennett's wrist after lunch, and the phone glow makes the diner booth feel smaller. He has not pressed play. A teeter-totter sketch on the receipt names the pleasure side, the pain side, and homeostasis. Bennett budgets the next half hour before any clip starts, asking how much attention he can spend without making the low heavier.",
           "whatToDo": "Bennett gives attention a budget before the feed begins. He marks what the pleasure side would gain and what the pain side might charge back.",
-          "whyItMatters": "Planning before the reward protects the reader from calling every urge a need. The balance is easier to read before the cue gets loud.",
-          "planSpec": {
-            "domain": "the pleasure-pain balance example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "planning_choice",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Planning before the reward protects the reader from calling every urge a need. The balance is easier to read before the cue gets loud."
         },
         {
           "exampleId": "ex02",
@@ -1925,14 +587,7 @@
           ],
           "scenario": "Deborah stops the pill bottle halfway out of her bedroom closet and sets it on the shelf. Her chart from the pain clinic says early 2000s clinicians saw high-dose opioids and long-term opioid therapy linked with worsened pain. She is torn between asking for more, which may deepen the pain side, and saying nothing through another day afraid of her back. No doctor is in the closet with her. She owns the next call.",
           "whatToDo": "Deborah writes the pattern in plain words: more medicine, worse pain, more fear. She brings that pattern to the pain clinician instead of hiding it.",
-          "whyItMatters": "The opioid case stays medical, not moral. Relief can be real in the short run while repeated exposure can weight the balance toward pain.",
-          "planSpec": {
-            "domain": "the pleasure-pain balance example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "decision_point",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The opioid case stays medical, not moral. Relief can be real in the short run while repeated exposure can weight the balance toward pain."
         },
         {
           "exampleId": "ex03",
@@ -1943,14 +598,7 @@
           ],
           "scenario": "Four baseballs sit between Mathieu and Colby on the teacher's desk. Mathieu says, \"Pitcher?\" Colby taps the first ball: \"Presynaptic neuron.\" \"Catcher?\" \"Postsynaptic neuron.\" Mathieu draws a gap in chalk and asks where the balls travel. Colby says, \"Across the synaptic cleft.\" The reward lesson stops sounding like mood magic; it has parts moving across a space.",
           "whatToDo": "Mathieu has Colby draw arrows from release to reception. The desk objects stay put until the path of the signal is clear.",
-          "whyItMatters": "A visible map reduces shame and fuzz. Dopamine is not a moral prize; it is a brain-made signal moving through a system.",
-          "planSpec": {
-            "domain": "the pleasure-pain balance example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "dialogue",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "A visible map reduces shame and fuzz. Dopamine is not a moral prize; it is a brain-made signal moving through a system."
         },
         {
           "exampleId": "ex04",
@@ -1961,14 +609,7 @@
           ],
           "scenario": "At her kitchen table on Sunday night, Stella expects a weekend of high-dopamine substances to leave extra drive. Instead Stella feels flat, and Stella weighs two readings: regret, or a baseline problem. Nora Volkow's dopamine-deficit state gives that low a name: the reward baseline may sit lower after heavy use.",
           "whatToDo": "Name the baseline shift before judging the craving as weak character. Build patience and structure around the low instead of chasing an instant lift.",
-          "whyItMatters": "The reveal changes the target. The misery is not only regret; it can be a body state that needs time to recalibrate.",
-          "planSpec": {
-            "domain": "the pleasure-pain balance example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "decision_point",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The reveal changes the target. The misery is not only regret; it can be a body state that needs time to recalibrate."
         },
         {
           "exampleId": "ex05",
@@ -1979,14 +620,7 @@
           ],
           "scenario": "At his desk before the referral window closes, Connor sees the betting app icon flash on his phone screen. Connor has not placed a bet yet. The cue has. A learned place, icon, or promise of a win can start craving before the act begins, and that early pull can cost the message that mattered.",
           "whatToDo": "Name the cue before opening the app. Send the referral message first, then record that craving started before the bet.",
-          "whyItMatters": "Cue-triggered craving can cost real chances. Seeing the pull before use gives one place to act before the window closes.",
-          "planSpec": {
-            "domain": "the pleasure-pain balance example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "before_after",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Cue-triggered craving can cost real chances. Seeing the pull before use gives one place to act before the window closes."
         },
         {
           "exampleId": "ex06",
@@ -1997,14 +631,7 @@
           ],
           "scenario": "At the clinic desk on Monday morning, Coralie reads a pain diary with the same unsettling line: more relief, then more pain. Coralie pauses the old refill habit long enough to ask whether the drug is now weighting the pain side. The answer may still require medical care, but the form cannot settle it alone.",
           "whatToDo": "Ask for a balance review instead of stamping the refill automatically. Treat worse pain on long-term opioids as a signal to examine.",
-          "whyItMatters": "The reset is not anti-medicine. It stops the automatic rescue long enough to reread the after-pain.",
-          "planSpec": {
-            "domain": "the pleasure-pain balance example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "reset_moment",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The reset is not anti-medicine. It stops the automatic rescue long enough to reread the after-pain."
         }
       ],
       "quiz": {
@@ -2020,8 +647,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Dopamine is released inside brain pathways. The app can affect that system, but the signal is not an outside pleasure ingredient.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2033,8 +659,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The baseball parts map onto neural signaling: release, crossing the synaptic cleft, and reception. It is not a sports lesson about drive.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -2046,8 +671,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The teeter-totter image works because pleasure and pain regulate each other. Treating them as separate tracks misses the pushback.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2059,8 +683,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Tolerance means the brain has adapted, so the old amount gives less effect. Needing more is not proof that Bennett has control.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2072,8 +695,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The opioid example allows both facts: relief can happen early, while repeated exposure can tilt the balance toward worse pain.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2085,8 +707,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A dopamine-deficit state names a baseline shift after heavy reward flooding. That is different from regret alone.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2098,8 +719,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Places, people, and objects can trigger reward prediction before use. Craving does not need to wait for the act to begin.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2111,8 +731,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Homeostasis can overshoot and linger. The pain response may outlast the high instead of ending when the pleasure stops.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2124,8 +743,7 @@
             ],
             "correctIndex": 1,
             "explanation": "For some long-term opioid patients, removing the drug can let the balance recalibrate. That does not mean the original pain was fake.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2168,7 +786,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Count the After Pain Signal",
         "coreSkill": "Practice noticing the cost that follows a reward before you call the next reward the cure. Count the After Pain Signal by naming the cue, the lift you want, and the low that followed last time. The skill keeps pleasure in the picture while showing what the balance is charging.",
         "ifThenPlans": [
           {
@@ -2193,19 +810,13 @@
       },
       "memorableLines": [
         {
-          "text": "A free high still sends a bill.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the rebound cost compact enough to remember at the moment of craving."
+          "text": "A free high still sends a bill."
         },
         {
-          "text": "The cue can arrive before the choice.",
-          "location": "breakdown.deepRead",
-          "why": "It warns the reader to notice craving before treating it as a settled decision."
+          "text": "The cue can arrive before the choice."
         },
         {
-          "text": "Balance costs the right to chase every lift.",
-          "location": "breakdown.fullRead",
-          "why": "It names the tradeoff without turning balance into pleasure denial."
+          "text": "Balance costs the right to chase every lift."
         }
       ]
     },
@@ -2234,14 +845,7 @@
           ],
           "scenario": "The intake form is still blank when the first argument starts. Her parents call cannabis the problem; Delilah calls it the thing that quiets anxiety and stress. Delilah is choosing between two meanings for abstinence: punishment or test. Data and Objectives change that choice.",
           "whatToDo": "Record Delilah's stated relief before arguing for abstinence. Ask what cannabis seems to solve, how often she uses it, and what it costs.",
-          "whyItMatters": "If you skip what the drug seems to solve, abstinence feels like punishment instead of a test.",
-          "planSpec": {
-            "domain": "dopamine fasting example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "dialogue",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "If you skip what the drug seems to solve, abstinence feels like punishment instead of a test."
         },
         {
           "exampleId": "ex02",
@@ -2253,14 +857,7 @@
           ],
           "scenario": "The bright tray of gummies, oils, cartridges, and flower sits beside William's unopened notebook, and both make his first plan look thin. William must choose: lecture a daily user about potency, or ask how each delivery mechanism changes use before naming Abstinence. He crosses out \"lecture\" and writes the question first.",
           "whatToDo": "William catches the rush to advice and changes the first move. He maps products and delivery mechanisms before asking what abstinence should test.",
-          "whyItMatters": "The correction keeps the reset grounded. Modern cannabis risk depends on forms, dose, and routine, not just the old word cannabis.",
-          "planSpec": {
-            "domain": "dopamine fasting example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "decision_point",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The correction keeps the reset grounded. Modern cannabis risk depends on forms, dose, and routine, not just the old word cannabis."
         },
         {
           "exampleId": "ex03",
@@ -2272,14 +869,7 @@
           ],
           "scenario": "A family-summary note can be useful if it admits what is missing: \"We have Problems and a demand for Abstinence. We do not yet have Data or Objectives. Delilah says cannabis helps anxiety and stress. If we skip that line, Mindfulness, Insight, Next steps, and Experiment will rest on a guess.\"",
           "whatToDo": "Fill Data and Objectives before turning abstinence into the plan.",
-          "whyItMatters": "A framework works only when its early questions are answered before its harder demands begin.",
-          "planSpec": {
-            "domain": "dopamine fasting example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "decision_memo",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "A framework works only when its early questions are answered before its harder demands begin."
         },
         {
           "exampleId": "ex04",
@@ -2291,14 +881,7 @@
           ],
           "scenario": "The clinic printer pushes out two mood forms while Yann waits by the door. Rachel reads the first report and starts drafting a lasting depression story. Yann marks alcohol use, pauses at the four weeks box, and asks for a sober window before the label hardens. Rachel has a neat answer now. Yann has a test that may make the answer less wrong.",
           "whatToDo": "Yann uses the alcohol and depression link as a reason to wait for cleaner mood data. Rachel can still care for distress, but Yann refuses to treat the first report as final.",
-          "whyItMatters": "The contrast keeps abstinence diagnostic. Four weeks without alcohol can show what remains, so the plan is not built on active-use fog.",
-          "planSpec": {
-            "domain": "dopamine fasting example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "contrast",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The contrast keeps abstinence diagnostic. Four weeks without alcohol can show what remains, so the plan is not built on active-use fog."
         },
         {
           "exampleId": "ex05",
@@ -2310,14 +893,7 @@
           ],
           "scenario": "In the hallway during a first home reset, Nancy feels the dresser drawer jam halfway, leaving the old cartridge visible. Before her hand moves again, Nancy faces a choice: obey the hot chest, or name it as craving. Mindfulness is not liking that minute. It is staying close enough to the body to notice craving without obeying it at once.",
           "whatToDo": "Leave the drawer half-open, name the body state out loud, and wait through one breath before deciding the next move.",
-          "whyItMatters": "Mindfulness becomes beginner-friendly when it is a concrete delay inside a hard body state, not a virtue word.",
-          "planSpec": {
-            "domain": "dopamine fasting example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "decision_point",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Mindfulness becomes beginner-friendly when it is a concrete delay inside a hard body state, not a virtue word."
         },
         {
           "exampleId": "ex06",
@@ -2329,14 +905,7 @@
           ],
           "scenario": "A worksheet feels finished at Abstinence because the no-use window was the hard part. That is the tempting mistake. If the fast worked, it produced evidence. Insight names what became clear, Next steps turns it into a rule, and Experiment tests a safer limit only when the pattern is less severe.",
           "whatToDo": "Translate the final letters in plain words: what did we learn, what rule follows, and what careful test is allowed or ruled out?",
-          "whyItMatters": "Surviving withdrawal matters, but the framework ends by deciding what future contact with the reward should look like.",
-          "planSpec": {
-            "domain": "dopamine fasting example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "before_after",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Surviving withdrawal matters, but the framework ends by deciding what future contact with the reward should look like."
         }
       ],
       "quiz": {
@@ -2352,8 +921,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Delilah resists because cannabis feels like treatment for anxiety and stress. Starting with that objective makes abstinence a test, not a scold.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2365,8 +933,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The framework begins with concrete use patterns, not discipline or detox slogans.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -2378,8 +945,7 @@
             ],
             "correctIndex": 2,
             "explanation": "O means Objectives. The step asks what the user thinks the drug accomplishes, which is why outside goals are not enough.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2391,8 +957,7 @@
             ],
             "correctIndex": 1,
             "explanation": "P means Problems, and it comes before the reset. Naming harms early helps decide whether abstinence is needed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2404,8 +969,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A means Abstinence. The reset is central because the same stimulus keeps the balance from settling.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -2417,8 +981,7 @@
             ],
             "correctIndex": 0,
             "explanation": "M means Mindfulness. It asks for observation and tolerance, not thought suppression or a fight with the body.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2430,8 +993,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The framework keeps going after withdrawal so the person can choose future rules.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2443,8 +1005,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Schuckit's point supports the four-week window. Mood during active alcohol use can mislead, so abstinence helps sort the source.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2456,8 +1017,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Experiment leaves room for moderation in some less severe cases. Severe addiction may still call for continued abstinence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2500,7 +1060,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the Relief Gap",
         "coreSkill": "Practice marking the moment when quick relief would normally take over. Mark the Relief Gap means you name the urge, the relief it promises, and the problem it may be hiding before you act. This turns abstinence into information.",
         "ifThenPlans": [
           {
@@ -2525,24 +1084,17 @@
       },
       "memorableLines": [
         {
-          "text": "Abstinence turns noise into evidence.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the clinical purpose of the reset short and portable."
+          "text": "Abstinence turns noise into evidence."
         },
         {
-          "text": "A reset is not a verdict.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps abstinence from sounding like a moral sentence."
+          "text": "A reset is not a verdict."
         },
         {
-          "text": "Abstinence clarifies; it does not replace care.",
-          "location": "breakdown.fullRead",
-          "why": "It names the boundary without weakening the method."
+          "text": "Abstinence clarifies; it does not replace care."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "dopamine-nation-ch05",
       "number": 5,
       "title": "Space, Time, and Meaning",
@@ -2567,14 +1119,7 @@
           ],
           "scenario": "Counselor Bryce unscrews the side panel of Jacob's masturbation machine in the clinic storage room after the relapse visit, while still talking about a promise plan. Then the counselor hears the mistake. Words were being offered while the tool stayed whole. Jacob can refuse the next urge today and lose tomorrow. The help changes: pieces first, dump next.",
           "whatToDo": "Bryce drops the promise speech and makes the barrier physical. He helps Jacob dismantle the masturbation machine before any new plan can pretend the cue is harmless.",
-          "whyItMatters": "The lesson sits in Bryce noticing the error. Insight helps only after the object that restarts the loop is no longer waiting in the room.",
-          "planSpec": {
-            "domain": "space, time, and meaning example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "mistake_recovery",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The lesson sits in Bryce noticing the error. Insight helps only after the object that restarts the loop is no longer waiting in the room."
         },
         {
           "exampleId": "ex02",
@@ -2586,14 +1131,7 @@
           ],
           "scenario": "A deckhand is tying the last rope around Odysseus beside the ship mast when the Sirens' first note cuts across the deck. Let him hear more? No, wrong turn. Homer gave the mast the job before desire arrived. The rope is the sane part of the voyage speaking early.",
           "whatToDo": "Brandon trusts the knot already tied to the ship mast. He does not wait for Odysseus to prove strength after the Sirens begin singing.",
-          "whyItMatters": "The scene makes voluntary constraint memorable. Wise restraint often means limiting future action while you still expect future desire.",
-          "planSpec": {
-            "domain": "space, time, and meaning example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "before_after",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The scene makes voluntary constraint memorable. Wise restraint often means limiting future action while you still expect future desire."
         },
         {
           "exampleId": "ex03",
@@ -2605,14 +1143,7 @@
           ],
           "scenario": "In the parked car before Saturday kickoff, Janet sees too much open time on the calendar. Janet knows sports on TV can make the betting loop feel close even with the app deleted. Before any game starts, the open hours need a ride, errand, call, or meeting that keeps boredom from becoming the dealer.",
           "whatToDo": "Assign the risky window before it starts. Give the open hours a place to go so sports on TV is not left to wake the betting loop.",
-          "whyItMatters": "Planning can protect a person before the cue speaks. The category may need distance even when the exact bet is not yet in sight.",
-          "planSpec": {
-            "domain": "space, time, and meaning example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "planning_choice",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Planning can protect a person before the cue speaks. The category may need distance even when the exact bet is not yet in sight."
         },
         {
           "exampleId": "ex04",
@@ -2624,14 +1155,7 @@
           ],
           "scenario": "The locked liquor cabinet in the hallway is not really closed. After dinner, partner Presley can see Oscar's bottle of wine through the gap, and Oscar has already found a straw. Leaving it in place avoids a fight and keeps the house calm. Removing the bottle breaks the truce and feels like policing. Presley weighs two poor choices: protect the peace or protect the barrier that the craving state will test first.",
           "whatToDo": "Presley removes the bottle and fixes the lock before the next craving state gets a vote. She chooses the barrier that can hold under pressure.",
-          "whyItMatters": "Oscar's straw shows how partial access can undo a good plan. A barrier has to work for the hard moment, not the calm one.",
-          "planSpec": {
-            "domain": "space, time, and meaning example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "dilemma",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Oscar's straw shows how partial access can undo a good plan. A barrier has to work for the hard moment, not the calm one."
         },
         {
           "exampleId": "ex05",
@@ -2643,14 +1167,7 @@
           ],
           "scenario": "At the hospital nurses' station after the pamphlet lands on the counter, Chantal hears naltrexone offered like recovery in a bottle. Chantal needs the narrower claim: it can block opioid receptors and reduce reward from alcohol or opioids. It is one lock on one door while the rooms around it still need work.",
           "whatToDo": "Use naltrexone as one barrier, not as a promise that the rest of recovery is solved.",
-          "whyItMatters": "A cellular barrier can reduce reward while habits, pain, and social cues still need care.",
-          "planSpec": {
-            "domain": "space, time, and meaning example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "dialogue",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "A cellular barrier can reduce reward while habits, pain, and social cues still need care."
         },
         {
           "exampleId": "ex06",
@@ -2662,14 +1179,7 @@
           ],
           "scenario": "On the living-room couch Sunday night, Tobias says, \"Just watch the game with the betting app deleted.\" It sounds reasonable. Then the broadcast starts doing the old work: odds talk, suspense, loyalty, prediction. The wager has not happened. The category is already alive.",
           "whatToDo": "Reshape help from app deletion to category distance. Avoid sports on TV while the betting loop is still raw.",
-          "whyItMatters": "Categorical self-binding catches cues outside the exact act. The safer boundary may be around the culture that keeps the old chase awake.",
-          "planSpec": {
-            "domain": "space, time, and meaning example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "before_after",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Categorical self-binding catches cues outside the exact act. The safer boundary may be around the culture that keeps the old chase awake."
         }
       ],
       "quiz": {
@@ -2685,8 +1195,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Self-binding is precommitment, not grit at the hot moment. The promise helps less if the cue and reward stay easy to reach.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2698,8 +1207,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The machine is both cue and tool. Leaving it intact keeps the loop within reach, so the physical barrier has to happen now.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2711,8 +1219,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Odysseus limits future action before hearing the Sirens. The scene warns against trusting willpower after desire is active.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2724,8 +1231,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Oscar's case shows that partial access can defeat a sober plan. The barrier must hold during craving, not just during agreement.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2737,8 +1243,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Naltrexone can reduce reward from opioids or alcohol by receptor blockade. It does not erase psychological cues or social patterns.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2750,8 +1255,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Categories carry cues beyond the exact object. The bar trivia night can trigger the pursuit system before a drink is offered.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2763,8 +1267,7 @@
             ],
             "correctIndex": 2,
             "explanation": "For sports-gambling recovery, televised sports are part of the cue. Removing the app may not remove the anticipation the game itself starts.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2776,8 +1279,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Chronological self-binding treats time windows as risk. Filling the empty stretch can interrupt boredom before craving builds.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -2789,8 +1291,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The statistic links unstructured leisure to more exposure to boredom and cues. Free time helps only when it is not left open to high-dopamine use.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2833,7 +1334,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Prewrite the Barrier Line",
         "coreSkill": "Practice writing the words you will use before the cue appears. Prewrite the Barrier Line by naming the cue, the barrier, and the sentence you will say under pressure. Then match the line to physical, chronological, or categorical self-binding.",
         "ifThenPlans": [
           {
@@ -2858,24 +1358,17 @@
       },
       "memorableLines": [
         {
-          "text": "Willpower is weakest at arm's length.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the danger of nearby cues easy to recall."
+          "text": "Willpower is weakest at arm's length."
         },
         {
-          "text": "A cue nearby is a plan already started.",
-          "location": "breakdown.fastRead",
-          "why": "It turns access into the real problem, not a side detail."
+          "text": "A cue nearby is a plan already started."
         },
         {
-          "text": "A pill can lock one door.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps naltrexone useful without letting it become a whole recovery story."
+          "text": "A pill can lock one door."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "dopamine-nation-ch06",
       "number": 6,
       "title": "A Broken Balance?",
@@ -2900,14 +1393,7 @@
           ],
           "scenario": "At the meeting in the church basement, Cyrus reads a printed card that says \"next taper goal.\" Cyrus sees Chris's history asks for a better first line. Stanford, heroin, and buprenorphine all belong in the room because Chris says the medicine saved his life. The card turns over. The real opening is not purity or tapering. It is: what is this medicine saving, and what still needs care?",
           "whatToDo": "Start with what buprenorphine protects, then ask what support must carry pain, craving, mood, and fear around it.",
-          "whyItMatters": "Chris's case blocks the cruel shortcut. Medication can be a bridge out of heroin and still deserve careful long-term questions.",
-          "planSpec": {
-            "domain": "a broken balance? example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "reset_moment",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Chris's case blocks the cruel shortcut. Medication can be a bridge out of heroin and still deserve careful long-term questions."
         },
         {
           "exampleId": "ex02",
@@ -2919,14 +1405,7 @@
           ],
           "scenario": "Lawrence drops a spare Klonopin into the Tuesday slot of the pill organizer while the pharmacy bag crinkles against the kitchen counter. A Xanax bottle sits open beside it. His relief log has one mark for every tight-chest hour, but no note for sleep, calls, or the rush refill fee he paid to get through the week. The row of lids clicks shut, and the small sound makes the system look cleaner than his day feels.",
           "whatToDo": "Lawrence changes the log's heading before the next entry. It will count what the benzodiazepine relieved and what fear, sleep, or money problem remains.",
-          "whyItMatters": "Xanax and Klonopin can calm fast, which is exactly why a legal prescription is not the whole safety check. Relief can become dependence.",
-          "planSpec": {
-            "domain": "a broken balance? example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "vignette",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Xanax and Klonopin can calm fast, which is exactly why a legal prescription is not the whole safety check. Relief can become dependence."
         },
         {
           "exampleId": "ex03",
@@ -2938,14 +1417,7 @@
           ],
           "scenario": "At a buprenorphine refill visit, \"You think I should come off it\" is the fear in the room. The careful answer is, \"No. The form asks too little.\" If the medicine saved him from heroin, the review starts there, then asks what else is strong enough to help.",
           "whatToDo": "Keep the life-saving claim first. Widen the refill into a supported recovery question instead of a purity test.",
-          "whyItMatters": "Buprenorphine works through opioid biology, and that is part of why it can reduce craving. Treatment and dependence questions can both be real.",
-          "planSpec": {
-            "domain": "a broken balance? example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "dialogue",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Buprenorphine works through opioid biology, and that is part of why it can reduce craving. Treatment and dependence questions can both be real."
         },
         {
           "exampleId": "ex04",
@@ -2957,14 +1429,7 @@
           ],
           "scenario": "Mathias hears the pharmacy bag rasp against his jacket after lunch in the parked car outside the pharmacy. On his phone he is typing, \"refill needed, pain still high,\" after weeks of daily opioid use. Halfway through, he remembers how Chris's path moved from pain pills to heroin. Mathias sees his error: the log treats more pills as proof of better pain control. He deletes the line and asks whether the medicine could now be adding risk.",
           "whatToDo": "Mathias stops the refill message mid-sentence and rewrites it for a clinician. He asks about addiction risk, worse pain, and a plan beyond another bottle.",
-          "whyItMatters": "Daily opioid use past a month is linked here to addiction and worsened-pain risk. A longer prescription is not always stronger repair.",
-          "planSpec": {
-            "domain": "a broken balance? example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "mistake_recovery",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Daily opioid use past a month is linked here to addiction and worsened-pain risk. A longer prescription is not always stronger repair."
         },
         {
           "exampleId": "ex05",
@@ -2976,14 +1441,7 @@
           ],
           "scenario": "The blank appointment note starts before the refill request: \"Fast relief helped last night. It also made the next hard hour feel impossible without a pill. Ask what else can carry panic, and ask whether dependence is starting.\" The action is in the note before the message is sent.",
           "whatToDo": "Write the handoff note before asking for more medication. Name the relief, then name the dependence question that stress might skip.",
-          "whyItMatters": "The memo keeps benefit visible without letting it swallow risk. A benzodiazepine can help tonight and still need a careful plan.",
-          "planSpec": {
-            "domain": "a broken balance? example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "before_after",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The memo keeps benefit visible without letting it swallow risk. A benzodiazepine can help tonight and still need a careful plan."
         },
         {
           "exampleId": "ex06",
@@ -2995,14 +1453,7 @@
           ],
           "scenario": "At the kitchen table after a quiet call with her mother, Lana writes down the part that went well: no shouting. Lana also writes the part that cost her: the evening feels flat and dim. The better note holds both facts: Prozac may have lowered family conflict, and the price may be feeling less fully alive.",
           "whatToDo": "Record the benefit and the cost in the same note. Treat less conflict as real, then ask what fuller experience still needs.",
-          "whyItMatters": "The Prozac account does not erase the benefit. It adds the missing question: did the medicine smooth conflict while also muting aliveness?",
-          "planSpec": {
-            "domain": "a broken balance? example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "contrast",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The Prozac account does not erase the benefit. It adds the missing question: did the medicine smooth conflict while also muting aliveness?"
         }
       ],
       "quiz": {
@@ -3018,8 +1469,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Chris insists buprenorphine saved him from heroin and resists stopping it. The near-miss is treating medication-assisted recovery as unnecessary once heroin use stops.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3031,8 +1481,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source ties Chris's heroin path to earlier opioid pain pills around 2009. Calling it a detached recreational choice cuts out the prescription route.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -3044,8 +1493,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Buprenorphine's treatment role depends on opioid pharmacology. The false shortcut is assuming a treatment cannot itself work through opioid receptors.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -3057,8 +1505,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source names Xanax and Klonopin as benzodiazepines with dependence concerns. Legal prescribing does not remove the risk of hard stopping.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3070,8 +1517,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Prozac example holds benefit and cost together: less conflict with a mother and less felt aliveness. The near-miss counts calm as complete improvement.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3083,8 +1529,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source traces the diagnose-and-prescribe reflex to 1990s residency culture. It is not framed as a new habit caused by smartphones or apps.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -3096,8 +1541,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source links daily opioid use beyond a month with higher addiction risk and worsened pain. The error is assuming longer use always means better control.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -3109,8 +1553,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source rejects a forced choice between total trust and total rejection. The supported frame holds clinical benefit and overuse risk together.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3122,8 +1565,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Benzodiazepines can bring fast relief and dependence risk. The mistake is letting legal familiarity or short-term panic relief stand in for a review.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -3166,7 +1608,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Relief Handoff",
         "coreSkill": "Practice separating relief from repair before you ask for the next fix. Write the Relief Handoff names what the medication is saving, then names what pain, craving, fear, or flatness still needs care. It is a note for your future self and for the trained person helping with the choice.",
         "ifThenPlans": [
           {
@@ -3191,24 +1632,17 @@
       },
       "memorableLines": [
         {
-          "text": "Relief is not the same as repair.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the whole medication caution into one plain distinction."
+          "text": "Relief is not the same as repair."
         },
         {
-          "text": "A legal prescription can still train dependence.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the benzodiazepine warning portable without sounding anti-care."
+          "text": "A legal prescription can still train dependence."
         },
         {
-          "text": "Good medicine still needs a second question.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the chapter's two-handed stance short enough to remember."
+          "text": "Good medicine still needs a second question."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "dopamine-nation-ch07",
       "number": 7,
       "title": "Pressing on the Pain Side",
@@ -3233,14 +1667,7 @@
           ],
           "scenario": "On the clinic classroom board before lunch, Peyton draws hormesis and intermittent fasting while three hands stay up. Peyton faces a choice: give a recipe, or teach the limit. One person wants the exact fasting window, and another asks how cold is cold enough. The honest answer is the lesson: the pattern can be taught from the front of the room, but each body's safe edge cannot.",
           "whatToDo": "Change the class task from copying a recipe to writing a dose line: the mild stress, the purpose, and the stop sign.",
-          "whyItMatters": "Hormesis depends on stress mild enough to recover from. The expert limit keeps useful discomfort from becoming more-is-better pain.",
-          "planSpec": {
-            "domain": "pressing on the pain side example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "decision_point",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Hormesis depends on stress mild enough to recover from. The expert limit keeps useful discomfort from becoming more-is-better pain."
         },
         {
           "exampleId": "ex02",
@@ -3252,14 +1679,7 @@
           ],
           "scenario": "The towel is on the floor, and the shower is already hissing. Earlier, Michael would have let his cold-water immersion plan begin with the shock and end whenever the mood lifted after cocaine. Today the towel hangs over the door with one sentence clipped to it: out when the first lift arrives. The water is the same. The changed variable is the boundary before the pain.",
           "whatToDo": "Michael puts the exit line where he will see it before the cold starts. He keeps the cold-water immersion practice tied to mood repair, not to chasing the next lift.",
-          "whyItMatters": "Michael's cold-water immersion works by pressing the pain side first. The towel line keeps the later reward from becoming the only thing the routine serves.",
-          "planSpec": {
-            "domain": "pressing on the pain side example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "before_after",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Michael's cold-water immersion works by pressing the pain side first. The towel line keeps the later reward from becoming the only thing the routine serves."
         },
         {
           "exampleId": "ex03",
@@ -3271,14 +1691,7 @@
           ],
           "scenario": "In the hospital hallway during morning consent review, Jordan hears the shortcut: \"So shock is just pain with a certificate.\" Jordan points back to the ECT packet. ECT is a controlled noxious stimulus under consent, dose, and medical watch. Knowing the principle does not tell a person their risk from a hallway or a bathroom.",
           "whatToDo": "Refuse to turn ECT into a home rule. Keep medical pain with the clinician who can judge dose and risk.",
-          "whyItMatters": "ECT makes pain-as-treatment harder to dismiss, and it also proves context and supervision matter.",
-          "planSpec": {
-            "domain": "pressing on the pain side example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "dialogue",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "ECT makes pain-as-treatment harder to dismiss, and it also proves context and supervision matter."
         },
         {
           "exampleId": "ex04",
@@ -3290,14 +1703,7 @@
           ],
           "scenario": "\"No food until lunch,\" the note says, and Brigitte folds it beside the front stoop railing before work. Good, hunger means discipline. No, that is the trap. Hormesis is mild stress with recovery, not a contest. If the fast makes her sharp and mean, it is already too large. She writes a second line under the first: stop if hunger starts steering the whole morning.",
           "whatToDo": "Brigitte catches the self-punishing thought before the fast begins. She rewrites the note so the dose has a recovery check, not just a harder rule.",
-          "whyItMatters": "Intermittent fasting is useful here as voluntary discomfort. The benefit comes from bounded stress, not from making hunger the proof of virtue.",
-          "planSpec": {
-            "domain": "pressing on the pain side example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "decision_memo",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Intermittent fasting is useful here as voluntary discomfort. The benefit comes from bounded stress, not from making hunger the proof of virtue."
         },
         {
           "exampleId": "ex05",
@@ -3309,14 +1715,7 @@
           ],
           "scenario": "The cleared recovery row sits beside the punishing route, and Zoe has both open on the lake dock bench. Her phone is at 1 percent, the charger is gone, and the group route is still on the screen. The endurance athletes' plan promises training discomfort and the post-effort high she loves. The recovery row protects the ride home, sleep, and work due later. Before any step, Zoe has to budget attention for pain and safety.",
           "whatToDo": "Zoe writes the route only after the recovery row is filled. She treats training pain as one input, then protects charge, sleep, and the work that still matters.",
-          "whyItMatters": "Endurance pain can become rewarding in its own right. Planning keeps the after-effort high from outranking safety and the rest of life.",
-          "planSpec": {
-            "domain": "pressing on the pain side example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "planning_choice",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Endurance pain can become rewarding in its own right. Planning keeps the after-effort high from outranking safety and the rest of life."
         },
         {
           "exampleId": "ex06",
@@ -3328,14 +1727,7 @@
           ],
           "scenario": "In the recovery-center circle this evening, Benoit hears Michael say the plunge is the only mood tool he trusts after cocaine. Before the group copies the idea, Benoit faces a choice. A blanket yes may feed the clean high Michael keeps extending, and a blanket no may strip away a recovery aid. The answer stays partial: dose, purpose, and compulsion signs named first.",
           "whatToDo": "Let cold-water immersion stay only if the dose, aim, and warning signs are named before use.",
-          "whyItMatters": "Michael's after-cold reward can become another chase. The dilemma protects the useful pain-side press without pretending discomfort is safe because it hurts.",
-          "planSpec": {
-            "domain": "pressing on the pain side example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "dilemma",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Michael's after-cold reward can become another chase. The dilemma protects the useful pain-side press without pretending discomfort is safe because it hurts."
         }
       ],
       "quiz": {
@@ -3351,8 +1743,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Michael's cold-water practice is framed after cocaine use stops, when low mood and emptiness need a new way to be handled. Starting cold before the drug issue reverses the case.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3364,8 +1755,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cold water presses on the pain side first. The later lift comes from the body's answer to that first aversive signal, not from instant comfort.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3377,8 +1767,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cold-water example is set against a long human baseline of ordinary cold bathing. The newer convenience is warm indoor water on demand.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q04",
@@ -3390,8 +1779,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Hormesis depends on a mild stressor and recovery. The near-miss is using pain as proof, which misses the dose that makes adaptation possible.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3403,8 +1791,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Intermittent fasting is used as another voluntary discomfort practice. It belongs to the same pain-side logic when the stress is manageable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -3416,8 +1803,7 @@
             ],
             "correctIndex": 2,
             "explanation": "ECT supplies a supervised medical case of a controlled noxious stimulus used for severe suffering. It does not license home shock or folk pain chasing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3429,8 +1815,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Michael's cold-water use begins to look compulsive because the reward after discomfort can reinforce more use. Painful starts do not block addiction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3442,8 +1827,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Endurance athletes show that repeated discomfort followed by reward can become self-reinforcing. Exercise is not safe by definition when compulsion drives it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3455,8 +1839,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Adaptive pain requires tolerable dose and recovery. More pain can push the balance into another loop, especially when the reward starts running the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3499,7 +1882,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Dose the Pain Side",
         "coreSkill": "Practice choosing discomfort by dose, not drama. Dose the Pain Side means writing one line before cold, fasting, or hard training: what discomfort, why now, where out. The line keeps adaptive pain tied to recovery instead of a new high.",
         "ifThenPlans": [
           {
@@ -3524,24 +1906,17 @@
       },
       "memorableLines": [
         {
-          "text": "Small pain can help pleasure return.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the pain-first reversal concrete and easy to recall."
+          "text": "Small pain can help pleasure return."
         },
         {
-          "text": "Dose makes pain useful.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the dose boundary into four plain words."
+          "text": "Dose makes pain useful."
         },
         {
-          "text": "Pain pursued for its own high becomes another imbalance.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the warning about compulsion into a portable test."
+          "text": "Pain pursued for its own high becomes another imbalance."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "dopamine-nation-ch08",
       "number": 8,
       "title": "Radical Honesty",
@@ -3566,14 +1941,7 @@
           ],
           "scenario": "After the meeting, Lane stands by the Alcoholics Anonymous coffee urn and hears Maria's truth-telling move past one hidden bottle. Lane asks where else secrecy has been doing work. The lying reached her calendar, her apologies, and the story she told her sister. Recovery asks for ordinary truth, not only the dramatic confession.",
           "whatToDo": "Keep Maria talking past the bottle. Tie the next sober step to one everyday truth she can tell.",
-          "whyItMatters": "Maria's recovery shows honesty as practice, not one speech. The loop weakens when truth reaches daily hiding places.",
-          "planSpec": {
-            "domain": "radical honesty example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "predict_reveal",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Maria's recovery shows honesty as practice, not one speech. The loop weakens when truth reaches daily hiding places."
         },
         {
           "exampleId": "ex02",
@@ -3585,14 +1953,7 @@
           ],
           "scenario": "The betting app badge climbs while Gerard's rent text slides lower in the thread. Gerard: I lost, but gamblers read the table. Lane: The losses still counted. Gerard: It was control practice. Lane: Or denial is keeping the bet alive. The buried rent message is still unanswered when Gerard scrolls back to the actual loss.",
           "whatToDo": "Gerard pins the rent message above the betting thread and writes the loss as a loss. He stops using control language until the missed bill is handled.",
-          "whyItMatters": "Denial is active editing. When Gerard names the loss plainly, the next bet cannot hide behind the story that he is getting closer.",
-          "planSpec": {
-            "domain": "radical honesty example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "text_thread",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Denial is active editing. When Gerard names the loss plainly, the next bet cannot hide behind the story that he is getting closer."
         },
         {
           "exampleId": "ex03",
@@ -3604,14 +1965,7 @@
           ],
           "scenario": "In the Alcoholics Anonymous hallway after the meeting, Violet holds a paper cup and recognizes the same dramatic share can become a routine: tell it, feel the room, leave unchanged. Violet needs the narrower AA shape: admit the wrong to God, to herself, and to another human being, then connect it to repair.",
           "whatToDo": "Narrow the confession to one wrong and one person who needs repair after the meeting.",
-          "whyItMatters": "The pause changes the use of truth. It stops chasing relief from the room and puts one wrong into accountable relationship.",
-          "planSpec": {
-            "domain": "radical honesty example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "before_after",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The pause changes the use of truth. It stops chasing relief from the room and puts one wrong into accountable relationship."
         },
         {
           "exampleId": "ex04",
@@ -3623,14 +1977,7 @@
           ],
           "scenario": "In the lab classroom by the ant chamber, Weston watches Lomechusa pubicollis move among ants that accept it as if it belongs. Weston uses the beetle to keep the honesty rule exact: deception can protect life in one setting and still damage a human recovery room in another.",
           "whatToDo": "Use the beetle as a boundary case, not an excuse. Ask whether the current lie protects safety or protects the loop.",
-          "whyItMatters": "The example prevents a simple slogan. Some deception has survival value, but secrecy in recovery often isolates the person who needs help.",
-          "planSpec": {
-            "domain": "radical honesty example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "vignette",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The example prevents a simple slogan. Some deception has survival value, but secrecy in recovery often isolates the person who needs help."
         },
         {
           "exampleId": "ex05",
@@ -3642,14 +1989,7 @@
           ],
           "scenario": "Eileen is three sentences into the family video call when Finley cuts in on the call from the tablet. Eileen: My mother always makes me the problem. Finley: What did you say before she snapped? Eileen: I said she never listens. Finley: That may be true, and it is one point of view. Eileen stops using the victim narrative as a shield.",
           "whatToDo": "Eileen keeps the harm in view and adds the missing line. She writes her mother's point of view beside her own before making the next call.",
-          "whyItMatters": "Honesty is not loyalty to the first painful version. The fuller story can lower resentment because it no longer hides Eileen from herself.",
-          "planSpec": {
-            "domain": "radical honesty example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "dialogue",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Honesty is not loyalty to the first painful version. The fuller story can lower resentment because it no longer hides Eileen from herself."
         },
         {
           "exampleId": "ex06",
@@ -3661,14 +2001,7 @@
           ],
           "scenario": "In the meeting circle before the close, Veronique adds one more painful detail, then another. Veronique feels the room watching and recognizes the feeling itself is becoming the reward. The better ending is less theatrical: stop the share and name the person who needs repair after the meeting.",
           "whatToDo": "Turn the confession away from attention and toward one accountable next step.",
-          "whyItMatters": "Truth helps when it reaches a witness and a repair path. Without that, confession can become a cleaner-looking loop.",
-          "planSpec": {
-            "domain": "radical honesty example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "before_after",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Truth helps when it reaches a witness and a repair path. Without that, confession can become a cleaner-looking loop."
         }
       ],
       "quiz": {
@@ -3684,8 +2017,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Maria's lying is broader than drinking episodes. AA practice makes secrecy harder across daily life, not only around alcohol.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3697,8 +2029,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source puts awareness before abstinence. Without seeing the problem, the pause feels like needless punishment, not chosen recovery.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3710,8 +2041,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The gambler case shows denial as active editing. Losses and control get reworked so continued play still feels reasonable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3723,8 +2053,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The beetle broadens the view of deception. It can aid survival, but that does not erase the human cost of secrecy in recovery.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -3736,8 +2065,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The mechanism includes body reward, not only moral duty. Honest closeness can involve oxytocin, which is linked with dopamine.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -3749,8 +2077,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The AA confession shape moves the wrong out of the private room and toward another person who can connect truth to repair.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -3762,8 +2089,7 @@
             ],
             "correctIndex": 0,
             "explanation": "More disclosure is not always more recovery. A drunkalogue turns emotional attention into a reward instead of repair.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3775,8 +2101,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The mother example does not erase harm. It widens the story by adding another point of view and the narrator's own role.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3788,8 +2113,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The mindset frame is social. Scarcity makes self-protective lying more likely; trust makes honesty easier to risk.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3832,7 +2156,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Place the Truth Window",
         "coreSkill": "Practice putting a small timed window between the urge to smooth a story and the story you send. Place the Truth Window by naming the fact, the motive, and the person who should hear it. The aim is accountable truth, not a bigger confession.",
         "ifThenPlans": [
           {
@@ -3857,24 +2180,17 @@
       },
       "memorableLines": [
         {
-          "text": "Secrets keep the loop warm.",
-          "location": "breakdown.fastRead",
-          "why": "It turns secrecy into the thing that keeps addiction active."
+          "text": "Secrets keep the loop warm."
         },
         {
-          "text": "Confession without repair can become applause.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the chapter's warning about performance disclosure."
+          "text": "Confession without repair can become applause."
         },
         {
-          "text": "Truth needs a witness, not a spotlight.",
-          "location": "breakdown.deepRead",
-          "why": "It separates accountable honesty from attention-seeking exposure."
+          "text": "Truth needs a witness, not a spotlight."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "dopamine-nation-ch09",
       "number": 9,
       "title": "Prosocial Shame",
@@ -3899,14 +2215,7 @@
           ],
           "scenario": "Lori's intake sheet lists Ambien, alcohol, food, and more than six times the prescribed antidepressant dose. In one room, contempt turns the case into \"manipulative\" and gets clipped answers. In the better room, the same overuse is named without contempt, and the first mention of a vengeful God becomes speakable.",
           "whatToDo": "Name the overuse plainly while keeping the person in the room. Ask what shame made unsafe to say.",
-          "whyItMatters": "The contrast is not softness versus accountability. It is silence versus a first truthful sentence.",
-          "planSpec": {
-            "domain": "prosocial shame example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "contrast",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The contrast is not softness versus accountability. It is silence versus a first truthful sentence."
         },
         {
           "exampleId": "ex02",
@@ -3918,14 +2227,7 @@
           ],
           "scenario": "\"Tell the truth while the wrapper is still in your hand,\" the senior parent says as Tatum sinks into the living-room couch. He has eaten his daughter's chocolate, denied it, and now calls the lying small enough to skip. He wants a parenting lecture about honesty. The reframe lands hard: \"A child learns repair from the cost you pay out loud.\" Tatum gives up the clean parent story before he knows whether his daughter will be angry or relieved.",
           "whatToDo": "Tatum names the act and the lie before giving any lesson. He asks how to replace the chocolate and lets his daughter see shame move into repair.",
-          "whyItMatters": "Small wrongs train big habits. A child who sees adult honesty learns that shame does not have to become concealment.",
-          "planSpec": {
-            "domain": "prosocial shame example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "decision_point",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Small wrongs train big habits. A child who sees adult honesty learns that shame does not have to become concealment."
         },
         {
           "exampleId": "ex03",
@@ -3937,14 +2239,7 @@
           ],
           "scenario": "On the peer-support classroom board, Simon sees the two lists and Simon gets stuck because shame appears in both: overconsumption, shame, lying, isolation; overconsumption, shame, radical honesty, acceptance. The deciding word is not shame. It is what comes after shame.",
           "whatToDo": "Track the next step after the sting. Does the room push the person toward hiding or toward accepted repair?",
-          "whyItMatters": "Beginners need the fork in the road. Shame is not automatically useful or destructive; the response gives it direction.",
-          "planSpec": {
-            "domain": "prosocial shame example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "contrast",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Beginners need the fork in the road. Shame is not automatically useful or destructive; the response gives it direction."
         },
         {
           "exampleId": "ex04",
@@ -3956,14 +2251,7 @@
           ],
           "scenario": "At the recovery doorway before the hard report, Chase sets out coffee, a saved chair, a ride number, and known faces. Chase knows the doorway can work like a rule desk or like a place to return. No confession has arrived yet. More people stay long enough to tell the truth.",
           "whatToDo": "Offer the club goods first: ordinary signs of belonging that make a hard report survivable.",
-          "whyItMatters": "Belonging is not decoration. It is the structure that lets accountability stay in the room.",
-          "planSpec": {
-            "domain": "prosocial shame example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "before_after",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "Belonging is not decoration. It is the structure that lets accountability stay in the room."
         },
         {
           "exampleId": "ex05",
@@ -3975,14 +2263,7 @@
           ],
           "scenario": "Parent Rowan is already folding his daughter's chocolate wrapper into a square by the apartment doorway, lying still warm in his throat, when Colleen walks in after school. \"You said there was one left.\" \"I ate it.\" \"You said you didn't.\" \"I lied about that too.\" The foil crackles in Rowan's palm. \"Are you in trouble?\" Colleen asks. \"Yes,\" Rowan says. \"I owe you chocolate, and I owe you the truth.\"",
           "whatToDo": "Rowan tells Colleen the act and the lie in the same breath. He names the repair as replacement plus truth, not a lecture about her future honesty.",
-          "whyItMatters": "The exchange keeps accountability small enough to copy. Repair is modeled in the room where the lie happened.",
-          "planSpec": {
-            "domain": "prosocial shame example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "dialogue",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The exchange keeps accountability small enough to copy. Repair is modeled in the room where the lie happened."
         },
         {
           "exampleId": "ex06",
@@ -3994,14 +2275,7 @@
           ],
           "scenario": "The pharmacy bag catches under Lori's thumbnail, and the old religious fear starts its sentence: God saw, so no one else can. That is the tunnel. Food counted. Alcohol counted. Ambien counted. More than six times the prescribed dose counted. The doctor's portal waits, and the first line will cost the clean story before it earns help.",
           "whatToDo": "Write the first portal line as overuse, shame, and need for help, not as a polished excuse.",
-          "whyItMatters": "The result is uncertain. Prosocial shame begins before reassurance, when truth gives up the hiding place.",
-          "planSpec": {
-            "domain": "prosocial shame example",
-            "audience": "general reader",
-            "stakes": "clear transfer without overclaim",
-            "format": "inner_monologue",
-            "requiredBeat": "apply the chapter move"
-          }
+          "whyItMatters": "The result is uncertain. Prosocial shame begins before reassurance, when truth gives up the hiding place."
         }
       ],
       "quiz": {
@@ -4017,8 +2291,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source separates shame from guilt by aim. Shame can make the whole self feel wrong; guilt can stay closer to what was done. Treating them as identical misses that split.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4030,8 +2303,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Lori's case includes clear overuse of an antidepressant: more than six times the prescribed dose. Calling it only mood trouble erases the overconsumption piece.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -4043,8 +2315,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The case names several reward channels plus medication overuse. Reducing it to one drug misses how destructive shame can spread.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q04",
@@ -4056,8 +2327,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The destructive shame cycle is overconsumption, shame, lying, and isolation. Stricter self-talk sounds accountable, but the source marks hiding as the danger.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4069,8 +2339,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The prosocial cycle keeps shame but changes what follows it: radical honesty and acceptance. Avoiding shame or adding distance misses the repair path.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -4082,8 +2351,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Club goods are membership rewards. In recovery, belonging can reinforce honest participation. The private-willpower reading misses the social reward in the source.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -4095,8 +2363,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The chocolate incident shows that children learn from modeled repair. Rules still matter, but hiding adult wrongdoing teaches concealment under shame.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -4108,8 +2375,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Acceptance is not permission. It keeps the person connected so the wrong act can be named and repaired. Excuse and exile each break one side of the cycle.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -4121,8 +2387,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Prosocial shame needs acceptance and accountability together. Lowering the signal or using comfort alone makes acceptance look like an excuse.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4165,7 +2430,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Admit and Stay Connected",
         "coreSkill": "Practice paying the first cost of repair: tell the truth while you still want to save face. Admit and Stay Connected has two parts: name the act, then name the repair while keeping the person in the circle. Acceptance is not a pass; it is the ground that lets the truth stay spoken.",
         "ifThenPlans": [
           {
@@ -4190,19 +2454,13 @@
       },
       "memorableLines": [
         {
-          "text": "Contempt makes shame hide.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the destructive cycle into one plain warning."
+          "text": "Contempt makes shame hide."
         },
         {
-          "text": "Belonging makes honesty worth the sting.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the club-goods idea portable without using jargon."
+          "text": "Belonging makes honesty worth the sting."
         },
         {
-          "text": "Acceptance without repair becomes cover.",
-          "location": "breakdown.fullRead",
-          "why": "It guards against confusing acceptance with permission."
+          "text": "Acceptance without repair becomes cover."
         }
       ]
     }

@@ -46,13 +46,6 @@
             "access",
             "PDT"
           ],
-          "planSpec": {
-            "domain": "speakeasy reservation design",
-            "audience": "bar operators shaping first-time visits",
-            "stakes": "a hidden entrance can feel cheap unless the guest earns a story",
-            "format": "decision_point",
-            "requiredBeat": "Selin uses Please Don't Tell to protect insider status"
-          },
           "scenario": "Selin stands at 6:40 p.m. beside the Crif Dogs phone booth with the Please Don't Tell host list on a tablet. A sponsor wants a bright sign outside before Friday's press walk-through. The printer closes in twelve minutes, and the booth ritual is the part guests brag about after they leave.",
           "whatToDo": "Keep the entrance cue subtle and let the host teach first-timers the ritual, so guests gain a discovery they can retell without sounding like they followed an ad.",
           "whyItMatters": "Please Don't Tell shows that access can be the product's social badge. The guest needs a real secret to carry, not a louder arrow to the door."
@@ -65,13 +58,6 @@
             "remarkability",
             "Blendtec"
           ],
-          "planSpec": {
-            "domain": "appliance demo planning",
-            "audience": "hardware marketers choosing launch footage",
-            "stakes": "a normal feature list will not give viewers a compact surprise",
-            "format": "planning_choice",
-            "requiredBeat": "Rafael applies Will It Blend? logic to a proof demo"
-          },
           "scenario": "Rafael is in a Utah test kitchen at 9:15 a.m. with a Blendtec 'Will It Blend?' clip paused beside three demo scripts. The team wants a polished video about motor speed. Rafael has to choose before the shoot crew arrives, and one script shows the grinder chewing through dried cinnamon sticks in five seconds.",
           "whatToDo": "Lead with the extreme, visible proof and let the technical claims follow, because the shareable sentence is the surprising capability viewers can repeat.",
           "whyItMatters": "Blendtec made dull machinery remarkable by showing an unexpected limit. Rafael needs a concrete stunt that makes the teller seem observant."
@@ -84,13 +70,6 @@
             "trivia",
             "Snapple"
           ],
-          "planSpec": {
-            "domain": "beverage packaging refresh",
-            "audience": "brand team choosing cap copy",
-            "stakes": "a joke that falls flat gives drinkers nothing worth saying",
-            "format": "mistake_recovery",
-            "requiredBeat": "Keiko replaces failed jokes with Snapple Real Facts"
-          },
           "scenario": "Keiko sits at 2:25 p.m. in a Queens packaging studio with rejected joke caps in one tray and Snapple Real Facts samples in another. The bottling line locks copy tonight. She must tell the design lead whether to keep cute slogans or print odd facts that a customer can read aloud at lunch.",
           "whatToDo": "Choose the fact line that sounds strange enough to repeat, then make the cap feel like a tiny discovery instead of a brand voice exercise.",
           "whyItMatters": "Snapple worked when the cap handed status to the drinker. A surprising fact lets Keiko's customer start a social moment."
@@ -103,13 +82,6 @@
             "game mechanics",
             "airlines"
           ],
-          "planSpec": {
-            "domain": "travel loyalty dashboard",
-            "audience": "airline product managers",
-            "stakes": "miles feel abstract until rank and progress become easy to compare",
-            "format": "audit",
-            "requiredBeat": "Amara uses frequent-flyer status as visible achievement"
-          },
           "scenario": "Amara reviews a frequent-flyer prototype at 11:05 a.m. in the Atlanta operations floor. The old page hides tier progress under account history. Sales wants another discount tile. Amara must decide before the sprint review whether to show miles as quiet bookkeeping or as a progress bar toward Gold status.",
           "whatToDo": "Put tier progress, next threshold, and earned perks in view, so travelers can see achievement rather than just a balance.",
           "whyItMatters": "Frequent-flyer programs turn consumption into rank. The dashboard should give members a status marker they want to mention."
@@ -122,13 +94,6 @@
             "scarcity",
             "access"
           ],
-          "planSpec": {
-            "domain": "beta launch access",
-            "audience": "startup founders choosing rollout mechanics",
-            "stakes": "open signup may erase the feeling of being early",
-            "format": "dilemma",
-            "requiredBeat": "Declan treats exclusivity as identity performance, not hype"
-          },
           "scenario": "Declan is in a Dublin video call at 7:50 p.m. with a beta invite counter and a Please Don't Tell note pinned near his webcam. The waitlist is growing. The launch email sends in twenty minutes, and the choice is open doors for all or two coded invites per current user.",
           "whatToDo": "Give members a small number of named invites and explain the craft reason for the cap, so access feels selective without becoming empty theater.",
           "whyItMatters": "Scarcity earns talk only when it makes the sharer look discerning. Declan needs access that feels earned and credible."
@@ -141,13 +106,6 @@
             "identity",
             "status"
           ],
-          "planSpec": {
-            "domain": "limited sneaker release",
-            "audience": "retail merchandisers writing product copy",
-            "stakes": "forced prestige language can make buyers feel used",
-            "format": "reflection",
-            "requiredBeat": "Imani distinguishes social currency from bragging bait"
-          },
           "scenario": "Imani sits at 4:10 p.m. in a Chicago retail office with a sneaker sample, a scarcity brief, and a Blendtec transcript on her desk. The draft copy says owners will be envied. She has to revise it before the product page freezes, and the shoe's real story is the recycled race-tire sole.",
           "whatToDo": "Replace envy language with the unexpected material story, giving buyers a fact they can share without sounding like they are boasting.",
           "whyItMatters": "Social currency is not a command to brag. Imani should give customers a tasteful proof point that reflects well on them."
@@ -166,8 +124,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The phone booth ritual is correct because it gives guests insider standing. A neon sign would make access too obvious, and a discount board would shift the talk from discovery to price.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -179,8 +136,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The surprising destruction demo is correct because it makes ordinary power remarkable. Specs and charts may inform buyers but give little story to repeat, while smoothie preferences do not prove the machine can do something unexpected.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -192,8 +148,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The small discovery is correct because it gives the drinker social material to offer. A larger serving is a price or quantity benefit, and avoiding jokes versus claims misses the status payoff of having a tidbit to share.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q04",
@@ -205,8 +160,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Visible miles and thresholds are correct because game mechanics turn activity into achievement. Removing labels hides the progress people compare, and a fare search changes the task from status design to price shopping.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -218,8 +172,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A craft-based invite limit is correct because scarcity needs a credible reason people can repeat. Mystery without substance feels empty, and open access relabeled as exclusive gives members no honest insider story.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -231,8 +184,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The race-tire sole is correct because it lets buyers share a tasteful status-bearing detail. Vague rarity withholds the useful story, and promising envy turns social currency into crude boasting.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -244,8 +196,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The informed feeling is correct because the secret phrase must create social value. Printing it for everyone removes the insider payoff, and food cost does not explain why guests would retell the secret.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -257,8 +208,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Weak achievement value is correct because badges spread when they mark progress members care about. Hiding badges reduces observability, and flooding people with trivial badges can cheapen the signal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -270,8 +220,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The tableside texture change is correct because inner remarkability comes from a compact surprise. A lower price creates practical value, and saying regulars like it leans on social proof rather than surprise.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -314,7 +263,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build a share badge",
         "coreSkill": "Design one detail that improves the sharer's identity when repeated. Start with the sentence a real customer could say to a friend, then make the product supply proof for that sentence.",
         "ifThenPlans": [
           {
@@ -339,19 +287,13 @@
       },
       "memorableLines": [
         {
-          "text": "The first prize is the story of finding the door.",
-          "location": "breakdown.fastRead",
-          "why": "It turns secrecy into a concrete social reward."
+          "text": "The first prize is the story of finding the door."
         },
         {
-          "text": "Sharing begins as self-presentation.",
-          "location": "breakdown.deepRead",
-          "why": "It names the mechanism without making it abstract."
+          "text": "Sharing begins as self-presentation."
         },
         {
-          "text": "A strong social-currency design gives ordinary people a flattering sentence.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a usable test for shareability."
+          "text": "A strong social-currency design gives ordinary people a flattering sentence."
         }
       ]
     },
@@ -378,13 +320,6 @@
             "frequency",
             "Cheerios"
           ],
-          "planSpec": {
-            "domain": "grocery endcap planning",
-            "audience": "retail marketers deciding where reminders belong",
-            "stakes": "an exciting display may miss the breakfast moment",
-            "format": "decision_point",
-            "requiredBeat": "Lucien chooses Cheerios-style frequency over vacation-style intensity"
-          },
           "scenario": "Lucien walks the Montreal grocery aisle at 7:30 a.m. with a Cheerios sales map and a Disney World comparison note folded in his pocket. The store can place cereal near a weekend travel contest or beside milk. He must decide before the endcap reset, and the milk case is where breakfast plans form.",
           "whatToDo": "Place the cereal beside the milk so the daily breakfast cue does the recall work at the moment shoppers can act.",
           "whyItMatters": "Cheerios shows that frequent cues can beat exciting ones. Lucien should choose the habitat that repeats, not the display with more sparkle."
@@ -397,13 +332,6 @@
             "calendar",
             "Rebecca Black"
           ],
-          "planSpec": {
-            "domain": "music catalog promotion",
-            "audience": "streaming editors scheduling throwback clips",
-            "stakes": "a funny song reference loses power if posted away from its natural cue",
-            "format": "planning_choice",
-            "requiredBeat": "Hanaa uses Rebecca Black's weekday cue"
-          },
           "scenario": "Hanaa is in a London streaming office at 3:18 p.m. on Thursday with a Rebecca Black 'Friday' chart open on her monitor. The social team wants to post the clip now to fill a gap. Hanaa has to answer before scheduling closes, and the song's natural cue arrives tomorrow morning.",
           "whatToDo": "Schedule the post for Friday morning, letting the day named in the title prime recall before the clip asks for attention.",
           "whyItMatters": "The song's waves came from the calendar, not universal affection. Hanaa should let the recurring cue carry the timing."
@@ -416,13 +344,6 @@
             "coffee",
             "Kit Kat"
           ],
-          "planSpec": {
-            "domain": "convenience-store merchandising",
-            "audience": "brand managers pairing products with routines",
-            "stakes": "a candy bar can vanish among snacks unless a strong routine calls it up",
-            "format": "business_case",
-            "requiredBeat": "Soren copies Kit Kat and coffee habitat design"
-          },
           "scenario": "Soren stands at 10:45 a.m. in a Toronto convenience store with a Kit Kat and coffee case study on his clipboard. The buyer offers space near gum or beside the espresso machine. Soren must tell the rep before the planogram prints, and the espresso line is packed during office breaks.",
           "whatToDo": "Put the bars by the espresso machine and use break language in the shelf tag, so coffee becomes the cue for the snack.",
           "whyItMatters": "Kit Kat grew by borrowing memory from coffee breaks. Soren needs a cue that appears often and sits close to use."
@@ -435,13 +356,6 @@
             "naming",
             "Mars bars"
           ],
-          "planSpec": {
-            "domain": "brand monitoring during news cycle",
-            "audience": "consumer goods analysts watching cultural cues",
-            "stakes": "a public event can create recall the brand did not buy",
-            "format": "predict_reveal",
-            "requiredBeat": "Beatrice recognizes NASA Mars mission spillover"
-          },
           "scenario": "Beatrice reviews a dashboard at 8:05 a.m. in a Sydney candy office while NASA Mars mission headlines fill the news crawl. Mars bar mentions are climbing without new ads. She has to brief the sales team before noon and decide whether the spike is channel error or a cue from public language.",
           "whatToDo": "Treat the spike as cue-driven recall, then move displays while the Mars headlines are still making the name easy to retrieve.",
           "whyItMatters": "Mars bars show that ambient culture can trigger a product. Beatrice should use the window while the cue is alive."
@@ -454,13 +368,6 @@
             "association",
             "habitat"
           ],
-          "planSpec": {
-            "domain": "gym referral campaign",
-            "audience": "membership teams choosing reminder cues",
-            "stakes": "a broad cue may remind people of too many unrelated things",
-            "format": "dilemma",
-            "requiredBeat": "Yara checks association strength and cue distance"
-          },
           "scenario": "Yara sits at 1:35 p.m. in a Nairobi gym office with a Kit Kat coffee-break diagram and two referral posters. One uses the word 'summer.' The other appears on locker mirrors after class. She must choose before printing, and members invite friends most often while changing after workouts.",
           "whatToDo": "Use the locker-mirror prompt and tie it to the post-class moment, because the cue is closer to the referral behavior.",
           "whyItMatters": "Trigger strength depends on habitat. Yara should avoid a broad word when a narrow, well-timed cue can prompt action."
@@ -473,13 +380,6 @@
             "distance",
             "cues"
           ],
-          "planSpec": {
-            "domain": "clinic appointment reminders",
-            "audience": "public health coordinators reducing missed visits",
-            "stakes": "remembering a clinic at home may not help if transport decisions happen later",
-            "format": "audit",
-            "requiredBeat": "Kofi places the cue near the action moment"
-          },
           "scenario": "Kofi is at 6:55 a.m. by an Accra bus stop with a clinic reminder map and a Cheerios frequency note in his bag. Patients miss morning appointments after passing the transfer point. He must decide before the poster crew arrives whether reminders belong in homes or at the bus shelter.",
           "whatToDo": "Place the reminder at the transfer shelter, where the cue appears close to the travel choice and repeats on appointment mornings.",
           "whyItMatters": "Triggers work best near behavior. Kofi's cue has to meet patients where the next step is possible."
@@ -498,8 +398,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Milk placement is correct because the cue is frequent and near breakfast buying. Vacation is exciting but too distant from the cereal habit, and a checkout surprise is less tied to the repeated breakfast context.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -511,8 +410,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Posting on the named weekday is correct because the calendar supplies the cue. An empty slot ignores the trigger, and late Sunday relies on broad traffic rather than the specific recurring reminder.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -524,8 +422,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Repeated coffee breaks near snacking are correct because trigger power depends on frequency and action distance. Premium feelings are not the core mechanism, and packaging formality does not explain recall.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -537,8 +434,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The temporary cue conclusion is correct because public Mars language can make the candy name easier to retrieve. Recipe improvement is not shown by the case, and lasting loyalty from space stories goes beyond the evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -550,8 +446,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The locker mirror is correct because it places the cue near the referral moment. A postcard is too far from action, and a website footer is easy to miss when members are not in the post-workout context.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -563,8 +458,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The crowded-cue warning is correct because summer points to many sunscreen brands and occasions. Saving it for winter may make it odd but not useful, and a longer tagline does not fix weak association strength by itself.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -576,8 +470,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The transfer-stop reminder is correct because the cue belongs where the route choice happens. A longer brochure may be forgotten in transit, and a holiday name is memorable without solving action distance.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q08",
@@ -589,8 +482,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The frequency, distinctiveness, and action-distance reply is correct because triggers are memory placement. Colorful packaging may help noticeability but not cue habitat, and puns can be clever without driving recall at the right moment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -602,8 +494,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Repeated access through context is correct because triggers keep an idea retrievable after novelty fades. They do not guarantee liking, and they are no substitute for improving the offer.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -646,7 +537,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Map the memory habitat",
         "coreSkill": "Place the idea beside a cue your audience already meets. Judge the cue by frequency, clarity, and closeness to the desired behavior, not by how clever it sounds in isolation.",
         "ifThenPlans": [
           {
@@ -671,19 +561,13 @@
       },
       "memorableLines": [
         {
-          "text": "Repetition gives the cereal more chances to come to mind.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the Cheerios reversal in plain words."
+          "text": "Repetition gives the cereal more chances to come to mind."
         },
         {
-          "text": "Recall depends on habitat.",
-          "location": "breakdown.deepRead",
-          "why": "It turns memory into a design problem."
+          "text": "Recall depends on habitat."
         },
         {
-          "text": "Trigger design is not wordplay for its own sake.",
-          "location": "breakdown.fullRead",
-          "why": "It blocks the common mistake of confusing puns with cues."
+          "text": "Trigger design is not wordplay for its own sake."
         }
       ]
     },
@@ -710,13 +594,6 @@
             "awe",
             "New York Times"
           ],
-          "planSpec": {
-            "domain": "science desk headline review",
-            "audience": "editors deciding how to package research",
-            "stakes": "a technical article may look dry unless wonder is visible quickly",
-            "format": "decision_point",
-            "requiredBeat": "Ingrid uses Denise Grady's cough photography as awe"
-          },
           "scenario": "Ingrid sits at 9:05 a.m. in a Boston newsroom with Denise Grady's cough photography article and two headline drafts on her screen. One says the research is important. The other shows how a cough cloud hangs in air. With nine minutes left before the newsletter locks, the image is what made her stop.",
           "whatToDo": "Lead with the visible cough cloud and let the health point follow, so readers feel awe before they meet the technical claim.",
           "whyItMatters": "The cough article traveled because wonder made science social. Ingrid needs the image to activate care, not just a sober claim."
@@ -729,13 +606,6 @@
             "arousal",
             "NYT study"
           ],
-          "planSpec": {
-            "domain": "newsletter analytics",
-            "audience": "editors interpreting share data",
-            "stakes": "pleasant stories may be overvalued if activation is ignored",
-            "format": "audit",
-            "requiredBeat": "Tomas applies New York Times Most E-Mailed categories"
-          },
           "scenario": "Tomas reviews a New York Times Most E-Mailed study summary at 4:35 p.m. in a Madrid analytics room. The team's cheerful travel essays underperform, while anxious consumer warnings spread. He has to brief the editor before tomorrow's lineup meeting and explain why positive mood is not enough.",
           "whatToDo": "Sort candidate pieces by emotional activation, then look for awe, anger, anxiety, amusement, or excitement that points to sharing.",
           "whyItMatters": "The study separates pleasantness from arousal. Tomas should track the body energy that makes readers act."
@@ -748,13 +618,6 @@
             "awe",
             "Susan Boyle"
           ],
-          "planSpec": {
-            "domain": "talent-show clip edit",
-            "audience": "producers choosing social cuts",
-            "stakes": "cutting the setup may remove the emotional flip that makes the clip spread",
-            "format": "planning_choice",
-            "requiredBeat": "Farah preserves the Susan Boyle before-and-after"
-          },
           "scenario": "Farah is in a Glasgow edit bay at 10:20 p.m. with the Susan Boyle audition open beside a thirty-second cut. The fast version starts at the first note. She must tell the producer before export whether to keep the audience's doubtful faces, even though they slow the clip.",
           "whatToDo": "Keep a brief setup of skepticism before the song, because the awe depends on watching doubt turn into amazement.",
           "whyItMatters": "Susan Boyle spread through a reversal viewers wanted others to feel. Farah should protect the emotional hinge."
@@ -767,13 +630,6 @@
             "anger",
             "United"
           ],
-          "planSpec": {
-            "domain": "airline service recovery",
-            "audience": "customer care leaders handling public complaints",
-            "stakes": "a vague apology can leave anger with nowhere useful to go",
-            "format": "mistake_recovery",
-            "requiredBeat": "Leandro learns from United Breaks Guitars"
-          },
           "scenario": "Leandro sits at 7:45 a.m. in a Sao Paulo airline office with Dave Carroll's 'United Breaks Guitars' lyrics printed beside a broken-luggage complaint. A musician's video is gaining views. He has to answer before legal joins the call, and the anger is focused on one ignored claim.",
           "whatToDo": "Address the concrete broken item and the missed response first, then give viewers proof that the complaint changed action.",
           "whyItMatters": "United Breaks Guitars moved because anger had a clear target. Leandro needs to resolve the wrong, not drain it with vague regret."
@@ -786,13 +642,6 @@
             "emotion",
             "Google"
           ],
-          "planSpec": {
-            "domain": "software ad concept",
-            "audience": "brand planners making a utility product human",
-            "stakes": "feature lists may hide the emotional reason people care",
-            "format": "coach_talk",
-            "requiredBeat": "Chiara uses Google Parisian Love to expose a human stake"
-          },
           "scenario": "Chiara stands at 1:10 p.m. in a Milan agency room with Google Parisian Love playing silently on the wall. Her search-client script lists speed, filters, and maps. The creative director asks for a decision before the pitch, and Chiara can see the stronger story inside a daughter's move abroad.",
           "whatToDo": "Ask why each feature matters until the human stake appears, then build the script around the relationship the searches help carry.",
           "whyItMatters": "Google Parisian Love made a tool emotional without losing the tool. Chiara should let function reveal care."
@@ -805,13 +654,6 @@
             "activation",
             "limits"
           ],
-          "planSpec": {
-            "domain": "public health video edit",
-            "audience": "campaign staff warning about food safety",
-            "stakes": "shock may make viewers turn away before they share the warning",
-            "format": "dilemma",
-            "requiredBeat": "Sanaa distinguishes activation from repulsion"
-          },
           "scenario": "Sanaa is in a Minneapolis health department studio at 5:55 p.m. with the New York Times emotion categories taped beside a raw food-safety video. The worst shot is disgusting. She must approve an edit before the media buy closes, and the warning should make parents act, not close the tab.",
           "whatToDo": "Use an anxious but watchable scene that shows risk and prevention, rather than a repulsive image that overwhelms the useful warning.",
           "whyItMatters": "High arousal should point toward action. Sanaa needs concern that moves outward, not disgust that makes people flee."
@@ -830,8 +672,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Using the image with the lesson is correct because awe can activate curiosity while keeping the idea attached. Removing the image drains the emotional hook, and a celebrity quote shifts attention away from the science.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -843,8 +684,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Action energy is correct because Berger distinguishes high arousal from simple positivity. Comfortable positivity can stay passive, and removing emotion may leave useful material without a motive to share.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -856,8 +696,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Losing the reversal is correct because the doubtful setup makes the later singing astonishing. The risk is not that the clip becomes too negative, and more product information would not create the awe.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -869,8 +708,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fixing the specific claim publicly is correct because focused anger spreads around a concrete wrong and a visible repair. Waiting ignores the grievance, and a vague apology avoids the broken luggage that gives the anger its target.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -882,8 +720,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The family search story is correct because the function stays central while human stakes create feeling. A feature table is useful but low in emotion, and a slapstick tag risks separating entertainment from the tool.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -895,8 +732,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Anxious concern with a prevention step is correct because arousal should move people toward action. Making the image more graphic can trigger avoidance, and publishing only code removes the emotional signal that prompts sharing.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -908,8 +744,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Low activation is correct because quiet sadness can reduce outward motion. Sponsor names do not solve the emotional energy problem, and asking viewers to ignore feeling undermines the appeal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -921,8 +756,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The high-arousal stake question is correct because useful material travels farther when readers feel activated care. A clearer utility headline can still stay inert, and a calmer low-energy mood works against sharing.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -934,8 +768,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The push into action is correct because high arousal turns caring into warning, commenting, or sharing. It does not require happiness, and spectacle that replaces the idea is emotional theft rather than useful emotion.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -978,7 +811,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Find activated care",
         "coreSkill": "Look beneath the feature or fact until a human stake appears. Then choose an emotion that raises energy and sends people toward the desired action.",
         "ifThenPlans": [
           {
@@ -1003,19 +835,13 @@
       },
       "memorableLines": [
         {
-          "text": "Arousal is the useful axis.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the whole emotion distinction into one line."
+          "text": "Arousal is the useful axis."
         },
         {
-          "text": "A message can be moving and still fail to move.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the difference between feeling and action memorable."
+          "text": "A message can be moving and still fail to move."
         },
         {
-          "text": "Activated care gives people a reason to pass the message on.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical target for emotional design."
+          "text": "Activated care gives people a reason to pass the message on."
         }
       ]
     },
@@ -1042,13 +868,6 @@
             "Apple",
             "visibility"
           ],
-          "planSpec": {
-            "domain": "hardware branding review",
-            "audience": "industrial designers choosing logo orientation",
-            "stakes": "a private convenience choice can remove public brand evidence",
-            "format": "decision_point",
-            "requiredBeat": "Linh uses Apple laptop logo orientation"
-          },
           "scenario": "Linh stands at 8:25 a.m. in a Cupertino mockup room with two Apple-style laptop lids on a table. One logo faces the owner while closed. The other faces the room when open. She must decide before tooling starts, and the product will spend most of its public life open in cafes.",
           "whatToDo": "Orient the mark for onlookers during use, so each open laptop becomes a clear public signal without asking owners to say anything.",
           "whyItMatters": "Apple's logo choice made private use visible. Linh should design for the people who observe adoption."
@@ -1061,13 +880,6 @@
             "iPod",
             "social proof"
           ],
-          "planSpec": {
-            "domain": "audio-device launch",
-            "audience": "consumer electronics marketers",
-            "stakes": "a pocketed device may look absent unless an accessory announces use",
-            "format": "planning_choice",
-            "requiredBeat": "Bruno applies white iPod earbuds logic"
-          },
           "scenario": "Bruno is in a Berlin product lab at 6:15 p.m. with white iPod earbuds in one hand and matte black prototypes in the other. The new player stays inside a jacket pocket. The supplier call starts in six minutes, and Bruno has to settle whether the cord should blend in or stand out on the street.",
           "whatToDo": "Choose the distinctive cord and make it consistent, because the visible accessory is the public proof that hidden use is happening.",
           "whyItMatters": "White earbuds made iPods observable. Bruno needs the marker that lets strangers see the product in use."
@@ -1080,13 +892,6 @@
             "Hotmail",
             "growth"
           ],
-          "planSpec": {
-            "domain": "freemium email product",
-            "audience": "growth teams adding invitation prompts",
-            "stakes": "normal use can expose recipients without adding a separate campaign",
-            "format": "business_case",
-            "requiredBeat": "Celine uses Hotmail signatures as public use"
-          },
           "scenario": "Celine reviews a Hotmail signature case at 11:40 a.m. in a Paris startup office. Her team wants pop-up ads after login. With the release branch closing at noon, Celine has to pick the surface that already reaches people who might need the same free account.",
           "whatToDo": "Put a short signup invitation in outgoing emails, so use itself shows proof and gives recipients a direct adoption path.",
           "whyItMatters": "Hotmail grew by making communication public evidence. Celine should place the prompt inside the natural channel."
@@ -1099,13 +904,6 @@
             "Livestrong",
             "residue"
           ],
-          "planSpec": {
-            "domain": "cancer fundraiser design",
-            "audience": "nonprofit staff choosing donor reminders",
-            "stakes": "a private donation can vanish after payment unless residue keeps it visible",
-            "format": "dilemma",
-            "requiredBeat": "Kwame uses Livestrong wristbands"
-          },
           "scenario": "Kwame sits at 3:30 p.m. in an Accra nonprofit office with Livestrong wristband photos and a donor receipt mockup. The budget covers either nicer thank-you emails or simple yellow bracelets. The vendor deadline is two hours away, and the campaign needs supporters to spark questions for weeks.",
           "whatToDo": "Choose the bracelets and connect them to the cause story, so a private donation leaves a visible trace people can ask about.",
           "whyItMatters": "Livestrong shows how residue extends the signal. Kwame needs support to remain observable after checkout."
@@ -1118,13 +916,6 @@
             "Movember",
             "questions"
           ],
-          "planSpec": {
-            "domain": "men's health campaign",
-            "audience": "community organizers recruiting participants",
-            "stakes": "a hidden pledge will not invite the conversations the cause needs",
-            "format": "coach_talk",
-            "requiredBeat": "Anouk uses Movember's visible temporary behavior"
-          },
           "scenario": "Anouk is at 8:50 p.m. in an Amsterdam community hall with Movember posters and a sign-up sheet. A sponsor suggests private online pledges instead of mustache photos. She must respond before the launch briefing, and the strange facial-hair cue is what makes coworkers ask questions.",
           "whatToDo": "Keep the public mustache challenge and give participants a simple answer for the questions it will invite.",
           "whyItMatters": "Movember turns concern into visible conversation. Anouk should protect the cue that makes advocacy observable."
@@ -1137,13 +928,6 @@
             "backfire",
             "social proof"
           ],
-          "planSpec": {
-            "domain": "campus drinking prevention",
-            "audience": "student health staff writing posters",
-            "stakes": "warning about a bad behavior can make it look common",
-            "format": "mistake_recovery",
-            "requiredBeat": "Petra avoids reverse social proof"
-          },
           "scenario": "Petra sits at 1:22 p.m. in a Prague student health office with a draft poster saying many students binge drink. An Apple visibility note and a social proof warning sit beside her laptop. She must approve copy before printing, and the current line makes the bad behavior look normal.",
           "whatToDo": "Rewrite the poster around visible sober choices and protective peer actions, not the number of students doing the harmful thing.",
           "whyItMatters": "Public signals normalize what they show. Petra should make the desired behavior observable instead of advertising the wrong one."
@@ -1162,8 +946,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Orienting the logo for onlookers is correct because public design makes adoption observable during use. Owner-facing ease is private, and removing the mark erases the signal observers can copy.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1175,8 +958,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Making the hidden product observable is correct because white earbuds turned pocketed use into a public signal. They did not estimate battery life, and they did not remove the user choice of music.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -1188,8 +970,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Adding a signup invitation to sent messages is correct because Hotmail embedded exposure in normal use. A memorized code adds friction, and an account-settings history page is too hidden to travel.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1201,8 +982,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Visible residue is correct because bracelets keep the act observable after donation. They do not guarantee larger gifts from every donor, and privacy would reduce the public signal that invites conversation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1214,8 +994,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The visible change is correct because Movember makes the cause noticeable and question-worthy. Hidden sincerity may feel meaningful but is harder to imitate, and a sponsor logo alone does not show the desired behavior.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1227,8 +1006,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Inferring that binge drinking is common is correct because public signals can normalize what they show. Visibility distance is a design issue, and feeling judged is possible but not the norm-error Berger warns about.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1240,8 +1018,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The visible trace is correct because the sticker turns a private ballot into public evidence. A private reminder cannot be copied by observers, and a discount would be an incentive rather than behavioral residue.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1253,8 +1030,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The visible-trace test is correct because public design starts with observability of the wanted act. Hiding participants blocks imitation, and warning-heavy flyers can accidentally spotlight the unwanted behavior.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -1266,8 +1042,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Visibility is harmful when it makes an unwanted act look normal. Showing a product already used in public can help adoption, and a trace that invites a helpful question is the beneficial version of public design.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1310,7 +1085,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Leave the right trace",
         "coreSkill": "Make the desired behavior observable in a way users can accept. Choose a signal that appears during or after use, then check what a stranger would infer from it.",
         "ifThenPlans": [
           {
@@ -1335,19 +1109,13 @@
       },
       "memorableLines": [
         {
-          "text": "Social proof needs evidence.",
-          "location": "breakdown.deepRead",
-          "why": "It states why visibility matters in four words."
+          "text": "Social proof needs evidence."
         },
         {
-          "text": "A private choice cannot become social proof until it leaves the private realm.",
-          "location": "breakdown.fullRead",
-          "why": "It names the core constraint on imitation."
+          "text": "A private choice cannot become social proof until it leaves the private realm."
         },
         {
-          "text": "Build to show the behavior that should grow, then leave the user's dignity intact.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the chapter into a practical rule."
+          "text": "Build to show the behavior that should grow, then leave the user's dignity intact."
         }
       ]
     },
@@ -1374,13 +1142,6 @@
             "Ken Craig",
             "utility"
           ],
-          "planSpec": {
-            "domain": "kitchen video production",
-            "audience": "food editors choosing tutorial structure",
-            "stakes": "viewers need to see the benefit before they decide whom to send it to",
-            "format": "decision_point",
-            "requiredBeat": "Rosa uses Ken Craig's visible corn-shucking payoff"
-          },
           "scenario": "Rosa is in a Portland test kitchen at 8:15 a.m. with Ken Craig's corn-shucking video open beside two rough cuts. One starts with family backstory. The other shows silk sliding off a hot ear of corn. The newsletter goes out at noon, so dinner help has to be visible fast.",
           "whatToDo": "Open with the clean corn reveal, then add the steps, so viewers can see the practical payoff before attention drifts.",
           "whyItMatters": "Ken Craig spread because the benefit was obvious within seconds. Rosa should let usefulness prove itself on screen."
@@ -1393,13 +1154,6 @@
             "reference point",
             "discount"
           ],
-          "planSpec": {
-            "domain": "outdoor retail promotion",
-            "audience": "merchandisers advertising seasonal markdowns",
-            "stakes": "the same final price can feel ordinary or worth forwarding",
-            "format": "business_case",
-            "requiredBeat": "Nikhil applies barbecue grill reference-point logic"
-          },
           "scenario": "Nikhil sits at 5:05 p.m. in a Dallas outdoor store with a barbecue grill discount experiment summary and two signs. One says 'Now $350.' The other shows the original $500 price and the markdown. He must decide before the weekend flyer closes, and customers share deals that feel exceptional.",
           "whatToDo": "Show the reference price and savings clearly, so the deal feels notable rather than like another shelf price.",
           "whyItMatters": "The grill example shows that perceived value depends on comparison. Nikhil needs the frame that makes the benefit worth telling."
@@ -1412,13 +1166,6 @@
             "Rule of 100",
             "framing"
           ],
-          "planSpec": {
-            "domain": "ecommerce coupon display",
-            "audience": "pricing analysts choosing discount labels",
-            "stakes": "a true discount may look small if framed on the wrong scale",
-            "format": "planning_choice",
-            "requiredBeat": "Greta uses Rule of 100 below and above $100"
-          },
           "scenario": "Greta is in a Stockholm ecommerce office at 9:50 a.m. with the Rule of 100 written on a sticky note. A $40 pan and a $240 mixer both need sale labels before the site refresh. She must tell design whether each should show dollars off or percent off.",
           "whatToDo": "Use a percentage for the $40 pan and dollars for the $240 mixer, making the same savings feel easier to recognize at each scale.",
           "whyItMatters": "The Rule of 100 packages value in the frame people perceive as larger. Greta should match the label to the price."
@@ -1431,13 +1178,6 @@
             "misinformation",
             "safeguards"
           ],
-          "planSpec": {
-            "domain": "parent group moderation",
-            "audience": "community moderators handling health warnings",
-            "stakes": "protective intent can spread a false claim quickly",
-            "format": "mistake_recovery",
-            "requiredBeat": "Samira catches vaccine-autism misinformation"
-          },
           "scenario": "Samira moderates a parent chat at 7:12 p.m. in Toronto while a vaccine-autism warning gets forwarded with crying emojis. The sender says she only wants to protect children. Samira must answer before more parents share it, and the claim lacks credible support.",
           "whatToDo": "Pause the forward, add a verified health source, and explain that protective intent still needs evidence before the group spreads a warning.",
           "whyItMatters": "Vaccine-autism misinformation shows practical value's dark side. Samira has to keep helpfulness tied to truth."
@@ -1450,13 +1190,6 @@
             "relevance",
             "usefulness"
           ],
-          "planSpec": {
-            "domain": "software tip email",
-            "audience": "customer success teams sending workflow advice",
-            "stakes": "a good tip can feel irrelevant if the recipient is vague",
-            "format": "coach_talk",
-            "requiredBeat": "Pavel makes utility recipient-specific"
-          },
           "scenario": "Pavel is at 11:25 a.m. in a Warsaw customer-success bullpen with Ken Craig's corn example and a draft email titled 'Five dashboard tips.' He must approve the send before lunch. The best tip saves payroll managers ten minutes on Friday exports, but the draft addresses every user.",
           "whatToDo": "Rewrite the email for payroll managers and lead with the Friday export time saved, so the right recipient sees the benefit immediately.",
           "whyItMatters": "Practical value needs a clear beneficiary. Pavel should make the useful person and payoff easy to picture."
@@ -1469,13 +1202,6 @@
             "specificity",
             "help"
           ],
-          "planSpec": {
-            "domain": "neighborhood newsletter",
-            "audience": "editors choosing community advice",
-            "stakes": "too many small tips can bury the one neighbors would forward",
-            "format": "audit",
-            "requiredBeat": "June avoids generic tip-list dilution"
-          },
           "scenario": "June sits at 6:05 a.m. in a Boise library with a community newsletter draft and a Rule of 100 note beside her mug. Twelve tips fill the page. She must choose before volunteers print copies, and only one item shows residents how to cut winter heating bills this week.",
           "whatToDo": "Feature the heating-bill tip with exact steps and expected savings, rather than burying it inside a broad advice list.",
           "whyItMatters": "Useful information spreads when the payoff is concrete and timely. June should package one favor well."
@@ -1494,8 +1220,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Showing the payoff first is correct because practical value spreads when usefulness is immediately visible. A biography delays the benefit, and hiding the result makes the favor harder to recognize and forward.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1507,8 +1232,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The reference price is correct because it frames whether the savings feel exceptional. It does not help assembly, and it cannot prove customers will buy multiples.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1520,8 +1244,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Percent for the pan and dollars for the mixer is correct because the Rule of 100 changes the most impressive frame by price level. Dollars on the cheap pan can look small, and percent for every price ignores that large-ticket dollar savings often feel bigger.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1533,8 +1256,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Pausing for verification is correct because helpful intent can spread false practical advice. Forwarding faster amplifies risk, and a caution label without source checking still passes the claim along.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1546,8 +1268,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The payroll-specific line is correct because it names the recipient, timing, and payoff. Broad workflow thoughts feel vague, and product notes center the sender rather than the useful favor.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -1559,8 +1280,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Leading with the heating-bill tactic is correct because practical value needs a concrete, timely benefit. Treating all twelve tips equally dilutes the favor, and a general essay removes the exact action people can pass on.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1572,8 +1292,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Diminishing sensitivity is correct because five dollars feels small against a five-hundred-dollar item. The issue is not a general dislike of dollar amounts, and reference points can matter even when the final price is visible.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1585,8 +1304,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The clear, verified action step is correct because a useful warning needs relevance, truth, and a recipient. An unranked risk list is hard to use, and drama that weakens verification can spread harm.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -1598,8 +1316,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Helping someone save time, money, effort, risk, or frustration is correct because practical value is shared as a favor. Secret-place status belongs to social currency, and visible residue belongs to the Public principle.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -1642,7 +1359,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Package one useful favor",
         "coreSkill": "Turn a tip, deal, or warning into a concrete favor for a specific person. Make the payoff visible, frame the value at the right scale, and verify claims before asking anyone to forward them.",
         "ifThenPlans": [
           {
@@ -1667,19 +1383,13 @@
       },
       "memorableLines": [
         {
-          "text": "Usefulness is social.",
-          "location": "breakdown.deepRead",
-          "why": "It explains why helpful information moves between people."
+          "text": "Usefulness is social."
         },
         {
-          "text": "A useful idea can spread without glamour because help is a social gift.",
-          "location": "breakdown.fullRead",
-          "why": "It makes humble utility feel powerful."
+          "text": "A useful idea can spread without glamour because help is a social gift."
         },
         {
-          "text": "Help that misleads is harm with good manners.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the ethical warning sharply."
+          "text": "Help that misleads is harm with good manners."
         }
       ]
     },
@@ -1706,13 +1416,6 @@
             "Trojan Horse",
             "payload"
           ],
-          "planSpec": {
-            "domain": "museum education exhibit",
-            "audience": "curators explaining ancient lessons to visitors",
-            "stakes": "a label may state the lesson while the display fails to carry it",
-            "format": "decision_point",
-            "requiredBeat": "Dalia uses the Trojan Horse as payload inside plot"
-          },
           "scenario": "Dalia stands at 9:40 a.m. in an Athens museum gallery with a Trojan Horse model and two label drafts. One explains hidden danger in abstract terms. The other lets visitors follow the gift, the gate, and the soldiers inside. Minutes before the school tour arrives, the plot version is the only one children can retell.",
           "whatToDo": "Use the plot sequence, so the warning about hidden danger travels inside the event rather than beside it as a lecture.",
           "whyItMatters": "The Trojan Horse endures because lesson and story are fused. Dalia should make the message impossible to remove."
@@ -1725,13 +1428,6 @@
             "Subway",
             "transformation"
           ],
-          "planSpec": {
-            "domain": "restaurant campaign review",
-            "audience": "brand managers judging testimonial stories",
-            "stakes": "a dramatic customer story may drop the restaurant if the product is not causal",
-            "format": "business_case",
-            "requiredBeat": "Henrik checks the Jared Fogle/Subway structural tie"
-          },
           "scenario": "Henrik is in a Copenhagen restaurant office at 2:45 p.m. with the Jared Fogle Subway case and a new customer video. The customer lost weight after many changes, but the restaurant appears only in the final logo. Henrik must decide before media spend is approved.",
           "whatToDo": "Approve only a version where the meal choice explains the transformation, so removing the restaurant would break the story.",
           "whyItMatters": "Jared's Subway story worked because the brand was causal. Henrik needs a plot where the product carries the change."
@@ -1744,13 +1440,6 @@
             "Land's End",
             "trust"
           ],
-          "planSpec": {
-            "domain": "customer service training",
-            "audience": "support leaders teaching warranty values",
-            "stakes": "a policy statement may not be remembered or believed",
-            "format": "vignette",
-            "requiredBeat": "Soraya turns Land's End zipper replacement into a service story"
-          },
           "scenario": "Soraya sits at 6:30 p.m. in a Minneapolis support classroom with a Land's End zipper replacement note and a warranty slide deck. New hires look bored by policy language. She has to open training in five minutes, and the broken-coat incident shows the promise better than any rule.",
           "whatToDo": "Start with the zipper story, then extract the service standard from the action the company took.",
           "whyItMatters": "Land's End turns trust into an event. Soraya should teach the value through a case people can retell."
@@ -1763,13 +1452,6 @@
             "GoldenPalace",
             "virality"
           ],
-          "planSpec": {
-            "domain": "sports sponsorship pitch",
-            "audience": "agency strategists evaluating stunt ideas",
-            "stakes": "attention can detach from the sponsor and waste the spend",
-            "format": "postmortem",
-            "requiredBeat": "Benji diagnoses Golden Palace Olympic pool crash"
-          },
           "scenario": "Benji reviews a stunt deck at 10:10 p.m. in a Los Angeles agency office with the Golden Palace Olympic pool crash highlighted in red. The proposed mascot interruption would dominate social feeds. The client call starts in fifteen minutes, and the brand promise has no role in the incident.",
           "whatToDo": "Reject the stunt unless the brand becomes necessary to the story people will retell, not just a logo near the chaos.",
           "whyItMatters": "Golden Palace shows attention without payload. Benji should not buy views that leave the message behind."
@@ -1782,13 +1464,6 @@
             "Panda Cheese",
             "product"
           ],
-          "planSpec": {
-            "domain": "food ad storyboard",
-            "audience": "creative directors judging comedy scripts",
-            "stakes": "a funny scene can be retold without naming the food",
-            "format": "planning_choice",
-            "requiredBeat": "Mei uses Panda Cheese's refusal-trigger structure"
-          },
           "scenario": "Mei is at 3:05 p.m. in a Shanghai studio with Panda Cheese ads and three comedy boards. One board has a random office prank. Another begins when someone refuses the cheese. She must choose before animatics start, and only the refusal makes the product cause the joke.",
           "whatToDo": "Choose the refusal-trigger story, so the product remains the reason the funny escalation happens.",
           "whyItMatters": "Panda Cheese keeps the brand as the hinge. Mei needs humor that cannot be separated from the product."
@@ -1801,13 +1476,6 @@
             "valuable virality",
             "retention"
           ],
-          "planSpec": {
-            "domain": "launch message testing",
-            "audience": "founders checking whether stories retain payload",
-            "stakes": "early testers may remember the anecdote and forget the idea",
-            "format": "audit",
-            "requiredBeat": "Alonzo runs a payload-retention retell test"
-          },
           "scenario": "Alonzo sits at 12:18 p.m. in a Mexico City startup room with a Subway case note and five user interview recordings. Testers love the founder's travel mishap but never mention the product's safety feature. He must decide before launch copy freezes whether the story is viral or just entertaining.",
           "whatToDo": "Ask testers to retell the story after one listen, then rebuild the plot if the safety feature disappears from their version.",
           "whyItMatters": "Valuable virality requires message retention. Alonzo should test what survives retelling, not just whether people laugh."
@@ -1826,8 +1494,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Using the plot is correct because the Trojan Horse lesson travels inside the event. An abstract warning loses the memorable carrier, and bare dates or facts do not make the lesson easier to retell.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1839,8 +1506,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Payload drop-out is correct because a logo tag can vanish when the story is retold. The issue is too little product causality, not too much, and transformation is exactly what makes the Subway example memorable when the restaurant remains causal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1852,8 +1518,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The broken-zipper incident is correct because it shows the warranty promise in action. A clause list may be complete but less memorable, and a slogan without an event gives trainees little to repeat.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q04",
@@ -1865,8 +1530,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The retelling test is correct because valuable virality requires the payload to stay with the story. A larger banner can still be omitted, and attention alone does not make the sponsor necessary or trusted.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1878,8 +1542,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cheese refusal is correct because the product causes the joke. Random humor can travel without the brand, and fewer mentions do not matter if the product is no longer the plot hinge.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1891,8 +1554,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Rebuilding the plot around the safety feature is correct because the payload must be load-bearing. Laughter without the feature is merely visible, and a larger logo can still be dropped from retellings.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -1904,8 +1566,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Sharing information under the cover of a story is correct because people can pass along the payload without sounding like advertisers. Avoiding the plot removes the cover, and stripping out the message defeats the purpose.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1917,8 +1578,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The plot hinge is correct because details needed for the story are least likely to fall away. A sponsor tag after the fun is easy to detach, and a footnote is too peripheral to survive retelling.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1930,8 +1590,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reach with message retention is correct because useful spread carries the intended idea along. Views without product memory are empty attention, and surprise that can be retold without the cause loses the payload.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -1974,7 +1633,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Lock payload to plot",
         "coreSkill": "Build stories where the message is needed for the event to make sense. Test retellings for payload retention before celebrating reach.",
         "ifThenPlans": [
           {
@@ -1999,19 +1657,13 @@
       },
       "memorableLines": [
         {
-          "text": "Stories are memory vehicles, but vehicles can drive away without the cargo.",
-          "location": "breakdown.fullRead",
-          "why": "It makes detached virality easy to picture."
+          "text": "Stories are memory vehicles, but vehicles can drive away without the cargo."
         },
         {
-          "text": "A strong story makes the idea load-bearing.",
-          "location": "breakdown.deepRead",
-          "why": "It states the payload test in practical terms."
+          "text": "A strong story makes the idea load-bearing."
         },
         {
-          "text": "Useful stories earn retelling and preserve meaning.",
-          "location": "breakdown.fullRead",
-          "why": "It balances attention with message retention."
+          "text": "Useful stories earn retelling and preserve meaning."
         }
       ]
     }

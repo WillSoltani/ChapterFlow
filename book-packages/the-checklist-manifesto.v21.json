@@ -44,13 +44,6 @@
             "handoff",
             "clinical"
           ],
-          "planSpec": {
-            "domain": "Emily, a trauma nurse in a winter rescue handoff",
-            "audience": "clinicians who assume skill covers every transition",
-            "stakes": "a hypothermia patient loses time if one warm-fluid setup is assumed instead of owned",
-            "format": "scene",
-            "requiredBeat": "Emily tags each handoff on the trauma bay wall and finds the unowned warm-fluid step before the patient leaves the ambulance stretcher"
-          },
           "scenario": "Meltwater drips from a yellow rescue blanket onto the trauma bay floor as Emily, the charge nurse, watches the ambulance stretcher cross the doors. The paramedic gives exposure time, the resident calls for labs, and the respiratory therapist checks the mask. Emily tags each handoff on the wall board, then sees no name beside warm fluids. Before the patient leaves the stretcher, she has to decide whether to trust the room's speed or stop it long enough to assign the cabinet.",
           "whatToDo": "Stop the flow for one sentence and assign the warm-fluid setup to a named person on the wall. Treat the transition as the risk, not the team's competence.",
           "whyItMatters": "The room has skill, but skill is split across roles. The dangerous gap is the unowned handoff, where everyone can assume the same basic has already been handled."
@@ -63,13 +56,6 @@
             "maintenance",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "Mathieu, an urban rail signal maintainer during overnight work",
-            "audience": "technical teams with many expert roles in one narrow window",
-            "stakes": "a morning commuter shutdown if power isolation and signal testing pass each other unseen",
-            "format": "decision_point",
-            "requiredBeat": "Mathieu maps the work window by owner, not task type, and exposes the one test nobody has claimed"
-          },
           "scenario": "Orange work lamps reflect on wet rails in an empty station while Mathieu studies the signal cabinet and the 2:30 a.m. service deadline. The lockout tag is signed, the cable crew is ready, and the test train is waiting beyond the bend. He draws the window by owner instead of task type and finds the final return-power signal test has no name beside it. He must decide whether to let the schedule keep moving or stop the crew before the gap becomes tomorrow's shutdown.",
           "whatToDo": "Map the window by named owner and assign the return-power test before work resumes. The missing owner is the warning sign, even when every technical task looks familiar.",
           "whyItMatters": "Crowded technical work fails at crossings. A task can be known by everyone and still be owned by no one when the window is tight."
@@ -82,13 +68,6 @@
             "postmortem",
             "coordination"
           ],
-          "planSpec": {
-            "domain": "Ingrid, a specialty pharmacy coordinator handling transplant orders",
-            "audience": "health administrators who see errors as staff attentiveness problems",
-            "stakes": "a transplant patient misses a narrow medication delivery window",
-            "format": "postmortem",
-            "requiredBeat": "Ingrid rebuilds the missed order path across prescriber, insurer, courier, and cold storage instead of blaming the last person who touched the screen"
-          },
           "scenario": "Ingrid opens an empty pharmacy tote where a cold-pack label curls at the edge the morning after the transplant order missed its courier cutoff. She checks the insurer portal, the prescriber approval, the cold-chain tag, and the delivery log in four separate windows. The last screen shows one technician's name, but Ingrid rebuilds the path across every handoff before she lets the meeting blame the person who touched the order last.",
           "whatToDo": "Trace the order across prescriber, insurer, cold storage, and courier before assigning fault. Look for the crossing where ownership faded.",
           "whyItMatters": "The last visible hand on a task is often only the last screen in a chain. A postmortem that follows the crossings finds the system risk instead of the easiest name."
@@ -101,13 +80,6 @@
             "volunteers",
             "weather"
           ],
-          "planSpec": {
-            "domain": "James, a youth sailing regatta safety officer",
-            "audience": "volunteer leaders coordinating weather, boats, and children",
-            "stakes": "a storm line arrives while adults believe another boat has counted the beginners",
-            "format": "predict_reveal",
-            "requiredBeat": "James asks which adult owns the beginner headcount and reveals that three adults each thought another clipboard held it"
-          },
           "scenario": "Which adult owns the beginner headcount when the wind turns? James stands on the dock as gray gusts flatten the flags and the weather radio mutters about a storm line. Three safety skiffs are already idling. He asks the skiff leads to point to the laminated fleet list with the beginner count. Each points to a different clipboard. Before the first boat launches, James must decide whether to treat the confusion as harmless overlap or stop the start sequence.",
           "whatToDo": "Pause the launch and put the beginner headcount under one named adult before the skiffs leave. Do not confuse three clipboards with one owner.",
           "whyItMatters": "When volunteers overlap, responsibility can feel covered while the real count is floating. The reveal shows that duplication is not the same as ownership."
@@ -120,13 +92,6 @@
             "conservation",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "Sofia, a museum conservation lead moving a fragile crate",
-            "audience": "project leads who mistake expertise in each specialty for control of the whole move",
-            "stakes": "a cracked artifact if lift timing, humidity, and loading dock access do not line up",
-            "format": "before_after",
-            "requiredBeat": "Sofia stops the crate move until each specialist states the one dependency they need from the next person"
-          },
           "scenario": "\"Who owns the dock door?\" Sofia asks while the crate straps hang loose beside the humidity logger. Ten minutes earlier, the art handler, facilities lead, and conservator had each said ready. Then the dock access code failed and the crate sat under warm lights. Sofia stops the second attempt until each specialist states the one dependency needed from the next person, from lift timing to loading access.",
           "whatToDo": "Restart only after every specialist names the dependency they need from another role. The move is not ready until the handoffs are ready.",
           "whyItMatters": "A fragile object can be surrounded by experts and still be exposed. The danger lives where their separate readiness claims meet."
@@ -139,13 +104,6 @@
             "weather",
             "operations"
           ],
-          "planSpec": {
-            "domain": "Hadiya, a municipal snow emergency dispatcher",
-            "audience": "operations managers who trust experience during peak load",
-            "stakes": "ambulance access to a hill street depends on plow routing, salt supply, and police closure timing",
-            "format": "reflection",
-            "requiredBeat": "Hadiya circles the street where three departments overlap and names it as an omission risk before the calls arrive"
-          },
           "scenario": "You watch blue plow dots crawl across a dispatch map while Hadiya listens to the radio queue grow. One hill street sits between the salt yard, a police closure log, and an ambulance route. Each department has an experienced lead, and each lead has a partial plan. Hadiya circles the street in red before the calls arrive and writes one phrase beside it: overlap without owner.",
           "whatToDo": "Mark the overlap before peak load and give the street a named owner across plow, salt, police, and ambulance access. Do it before the radio queue takes over.",
           "whyItMatters": "Experience inside each department does not automatically create coordination between them. The map shows the seam before the storm turns it into a failure."
@@ -164,8 +122,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The miss sits between capable roles, so the core issue is ownership at the seam. More medical knowledge or stronger command may miss the actual transition failure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -177,8 +134,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The release risk is not weak local effort. The missing item is handoff ownership, so naming the owner before the window opens targets the actual failure point.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -190,8 +146,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The visible last actor may not be the source of the failure. Tracing the path tests whether the miss lived in the transition between roles.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -203,8 +158,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pattern points to the crossings, not to the isolated competence of each role. Explicit cue handoffs address the place where complexity is showing up.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -216,8 +170,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The local tasks were done, so the failure is cross-department reliability. Centralizing everything or lecturing about care skips the seam where the deadline was lost.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -229,8 +182,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The road is a seam across experienced groups. A named owner for the timing point fixes the assumption gap; longer reports arrive too late, and replacement misreads the issue.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -242,8 +194,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The near miss came from dependencies between competent people. The tempting wrong answers chase command or difficulty instead of the crossing between roles.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -255,8 +206,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The reasoning respects excellence but refuses to make it carry invisible handoffs alone. Checks are for the seams, not for insulting capable people.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -268,8 +218,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The drill depends on hidden coordination in one person's memory. Asking which transition lived there reveals the structural weak point better than training or punishment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -330,19 +279,13 @@
       },
       "memorableLines": [
         {
-          "text": "The save lives in the chain, not in one brilliant pair of hands.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's pressure into a plain contrast between heroics and coordinated sequence."
+          "text": "The save lives in the chain, not in one brilliant pair of hands."
         },
         {
-          "text": "Complexity changes the location of danger.",
-          "location": "breakdown.deepRead",
-          "why": "The short sentence gives the reader a portable way to reinterpret repeat failures."
+          "text": "Complexity changes the location of danger."
         },
         {
-          "text": "Movement creates seams, and seams create assumptions.",
-          "location": "breakdown.fullRead",
-          "why": "It turns an abstract coordination problem into a vivid mechanical rule."
+          "text": "Movement creates seams, and seams create assumptions."
         }
       ]
     },
@@ -369,13 +312,6 @@
             "minimum checks",
             "surgery"
           ],
-          "planSpec": {
-            "domain": "Claire, an anesthesia resident at the pre-induction pause",
-            "audience": "medical trainees who know the steps but face rushed rooms",
-            "stakes": "antibiotics and airway backup are assumed complete before incision",
-            "format": "scene",
-            "requiredBeat": "Claire reads only the three non-negotiable checks aloud and catches the missing antibiotic before the drape goes up"
-          },
           "scenario": "At 7:06 a.m., Claire sees the empty antibiotic line beside the anesthesia cart while the incision clock starts to matter. The attending is scrubbed, the airway kit is ready, and the drape is folded at the patient's shoulder. Claire reads only three checks aloud: identity, airway backup, antibiotic. The second nurse looks at the line and stops. Before the drape goes up, Claire has to decide whether to hold the room for the missing dose.",
           "whatToDo": "Hold the room and make the missing antibiotic visible before the drape rises. Keep it narrow enough that the team can use it while the case is already moving.",
           "whyItMatters": "Everyone knew antibiotics mattered. Its power comes from turning a familiar basic into a shared fact at the moment pressure would let it slide."
@@ -388,13 +324,6 @@
             "seasonal",
             "safety"
           ],
-          "planSpec": {
-            "domain": "Lukas, a community pool operator opening for swim lessons",
-            "audience": "seasonal supervisors who rely on habit after years of routine",
-            "stakes": "children enter the water before chemical levels are verified",
-            "format": "decision_point",
-            "requiredBeat": "Lukas stops the gate opening until the chlorine reading, rescue tube, and drain cover check are marked in front of the lifeguards"
-          },
           "scenario": "The sharp smell of chlorine hangs over a silent pool deck as Lukas holds the test strip vial and gate key. Two lifeguards are stacking kickboards, parents are waiting outside, and the rescue tube rests on the wrong chair. The drain cover looks fine from six meters away. Lukas must decide whether to open on time or stop the gate until chlorine reading, rescue tube, and drain cover are marked in front of the lifeguards.",
           "whatToDo": "Keep the gate closed until the three vital checks are marked where the guards can see them. Do not let years of routine stand in for proof.",
           "whyItMatters": "The pool does not need a full manual at opening. It needs the few checks that could hurt children if habit turns into assumption."
@@ -407,13 +336,6 @@
             "temporary clinic",
             "verification"
           ],
-          "planSpec": {
-            "domain": "Anya, a mobile blood drive coordinator",
-            "audience": "nursing teams setting up temporary clinical spaces",
-            "stakes": "a donor reaction becomes harder to handle if the emergency kit is still in the van",
-            "format": "dialogue",
-            "requiredBeat": "Anya asks the team to point to the emergency kit and donor ID scanner before the first donor sits down"
-          },
           "scenario": "\"Show me the kit before we open,\" Anya says in the church basement while folding cots scrape across the tile. \"Van's unloaded,\" a nurse answers. Anya points to the first donor waiting by the registration table. \"Scanner?\" The volunteer lifts it from a box. \"Emergency kit?\" Nobody points. The first donor is about to sit down, and Anya must decide whether set-up is truly complete.",
           "whatToDo": "Ask the team to physically point to the kit and donor ID scanner before the first donor sits. Treat unseen essentials as missing until someone shows them.",
           "whyItMatters": "Temporary spaces create false readiness. A short visible check catches the item still in the van before the first reaction turns it into a crisis."
@@ -426,13 +348,6 @@
             "allergens",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "David, a commercial bakery allergen-line supervisor",
-            "audience": "food production leads who see repeated cleaning as obvious",
-            "stakes": "an almond residue miss sends mislabeled pastries to a school order",
-            "format": "postmortem",
-            "requiredBeat": "David reduces the changeover list to swab, label roll, and bin seal, then makes the line lead verify them before restart"
-          },
           "scenario": "It took David one returned tray to stop trusting the changeover from memory. The allergen swab was unsigned, the label roll still showed the almond SKU, and a sealed ingredient bin had been moved behind flour sacks. The old sheet listed twenty-seven cleaning tasks. David rebuilds it around three marks before restart: swab, label roll, bin seal. The line lead must verify those before the mixer runs.",
           "whatToDo": "Cut the changeover check to the three omissions that can send the wrong pastry out: allergen swab, label roll, and sealed bin. Make the lead verify them before restart.",
           "whyItMatters": "A long sheet hid the dangerous basics among visible chores. The shorter list is safer because each mark protects against a real, repeated failure."
@@ -445,13 +360,6 @@
             "equipment",
             "readiness"
           ],
-          "planSpec": {
-            "domain": "Camille, a fire station lieutenant checking the truck",
-            "audience": "first responders who prize speed but depend on ready equipment",
-            "stakes": "a missing oxygen cylinder turns up only after the engine is rolling",
-            "format": "predict_reveal",
-            "requiredBeat": "Camille asks the crew which three items would stop them cold on a call, then verifies those before letting the full inventory distract them"
-          },
           "scenario": "Which missing item would make the siren useless? Camille asks the crew in the engine bay while the oxygen compartment door hangs open. The rookie starts reading the full inventory from a tablet. Camille stops him and names three truck stoppers: oxygen cylinder, thermal camera, radio battery. The oxygen slot is empty. Before the next tone drops, she must decide whether to chase the whole list or secure the essentials first.",
           "whatToDo": "Verify the three items that would stop the crew cold before walking the full inventory. Replace the oxygen cylinder before the engine leaves the bay.",
           "whyItMatters": "Speed is not readiness if the essential equipment is assumed. The minimum check protects the call from the one missing item that ruins everything after departure."
@@ -464,13 +372,6 @@
             "craft",
             "sequence"
           ],
-          "planSpec": {
-            "domain": "Akira, a photo lab manager processing film",
-            "audience": "craft workers who think skill protects routine sequence",
-            "stakes": "a wedding roll is ruined if chemical temperature is assumed",
-            "format": "before_after",
-            "requiredBeat": "Akira posts a two-check strip at the developer tank and makes temperature and fixer freshness visible before the roll is opened"
-          },
           "scenario": "Red safelight pools over a stainless developer tank in the basement darkroom at 9:10 p.m. while Akira, the night lab technician, sets a sealed wedding roll beside the thermometer. Last month, a senior technician trusted feel and ruined a family set with tired fixer. The new strip has only two boxes: developer temperature and fixer freshness. Before any roll is opened, the technician has to mark both beside the tank, not from memory at the sink.",
           "whatToDo": "Post the two live checks at the tank and require both marks before the canister opens. Keep craft judgment for the work after the basics are proved.",
           "whyItMatters": "Skill cannot rescue film after the wrong chemical condition begins. Place this verification at the point where assumption would become irreversible."
@@ -489,8 +390,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The value is not new medical knowledge. It protects the small known actions that pressure and familiarity can erase before anyone notices.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -502,8 +402,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The miss calls for a narrow anti-omission check at changeover. Rereading or signing the full guide keeps the vital item buried in too much material.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -515,8 +414,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The departure check puts the vital omissions where the miss happens. A bigger inventory or mindfulness request leaves the dangerous step exposed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -528,8 +426,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The failure happens at transfer, so the check belongs there and should cover only the vital items. Manuals and lectures do not protect that moment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -541,8 +438,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A bloated list weakens the signal. The right standard is focused protection of high-consequence omissions, not maximum coverage.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -554,8 +450,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The mechanic knows the check but negotiates it away. A focused checklist helps because it makes the non-negotiable step harder to treat as optional.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -567,8 +462,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A checklist has to meet the live risk point. A binder away from bedside cannot catch the skipped step when the team is acting.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -580,8 +474,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Plan B has a sharper operating purpose. It names the high-consequence omissions at the moment of use, while Plan A risks becoming unread paperwork.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -593,8 +486,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The claim needs visible proof at the moment of risk. Training notes and later inventory do not help when the first patient is about to sit down.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -655,19 +547,13 @@
       },
       "memorableLines": [
         {
-          "text": "It holds the few actions too important to leave to mood, memory, or a rushed assumption.",
-          "location": "breakdown.fastRead",
-          "why": "The sentence defines the checklist by its job, not by its format."
+          "text": "It holds the few actions too important to leave to mood, memory, or a rushed assumption."
         },
         {
-          "text": "A checklist protects the minimum.",
-          "location": "breakdown.deepRead",
-          "why": "The short line gives the reader a sharp test for every item on a list."
+          "text": "A checklist protects the minimum."
         },
         {
-          "text": "The stronger the culture, the easier it becomes to assume the basics are beneath attention.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the expert trap without insulting experts."
+          "text": "The stronger the culture, the easier it becomes to assume the basics are beneath attention."
         }
       ]
     },
@@ -694,13 +580,6 @@
             "construction",
             "handoffs"
           ],
-          "planSpec": {
-            "domain": "Thomas, a harbor redevelopment coordinator",
-            "audience": "civic project leads managing engineers, tenants, and utilities",
-            "stakes": "a seawall pour collides with tenant access and utility shutdowns",
-            "format": "scene",
-            "requiredBeat": "Thomas replaces the single master schedule with a dependency board where each trade marks the handoff it needs from another crew"
-          },
           "scenario": "Tidewater slaps below temporary plywood stairs while Thomas, the harbor coordinator, stands at the site table between the seawall form, tenant access gate, and utility shutdown notice. The master schedule says pour at noon, but the electrician needs the gate cleared before the concrete truck arrives. Thomas is about to let the schedule rule the site. He must decide whether to keep defending one master plan or replace it with a dependency board each trade can mark.",
           "whatToDo": "Move the project from a private master schedule to a visible dependency board. Make each trade mark the handoff it needs before the pour begins.",
           "whyItMatters": "The conflict is not a weak schedule. It is a project whose dependencies are too distributed for one line of control to represent honestly."
@@ -713,13 +592,6 @@
             "permits",
             "coordination"
           ],
-          "planSpec": {
-            "domain": "Maja, a university field expedition planner",
-            "audience": "academic teams coordinating science, transport, permits, and safety",
-            "stakes": "a remote geology trip stalls because permits, satellite phones, and sample custody are owned separately",
-            "format": "decision_point",
-            "requiredBeat": "Maja stops asking one professor to approve everything and makes each role state its handoff trigger before departure"
-          },
           "scenario": "\"The permit is not the plan,\" Maja says beside a stack of sample tubes and custody labels. The professor wants one final approval. The transport lead needs the ferry booking, the safety lead needs the satellite phone test, and the lab needs the first sample sequence. Maja must decide whether to keep waiting for one professor's signoff or make each role state the handoff trigger it needs before departure.",
           "whatToDo": "Stop routing every dependency through one professor. Ask transport, safety, and lab leads to state their handoff triggers before the team leaves.",
           "whyItMatters": "The trip is complex because the pieces change one another. One approval can feel orderly while hiding the dependencies that will stall the work."
@@ -732,13 +604,6 @@
             "outage",
             "authority"
           ],
-          "planSpec": {
-            "domain": "Ben, a telecom outage restoration lead",
-            "audience": "technical incident leads tempted to centralize every decision",
-            "stakes": "a hospital circuit remains dark while fiber, power, and access teams wait for central permission",
-            "format": "predict_reveal",
-            "requiredBeat": "Ben asks which decisions can be local and which must be escalated, then moves the access crew without waiting for a full-command call"
-          },
           "scenario": "What if the bottleneck is the person trying to be helpful? Ben, the telecom outage lead, watches a hospital circuit ticket stay red in the control room while the fiber map, substation access badge, and power crew update sit in separate channels. Everyone is waiting for the full-command call to decide. Ben asks which decisions must be escalated and which can move locally. Before the call finishes, he has to decide whether to send the access crew to the locked gate.",
           "whatToDo": "Separate local decisions from true escalation points, then move the access crew with the badge. Keep central command for the few decisions that require it.",
           "whyItMatters": "Central control becomes a bottleneck when it tries to process local facts it cannot improve. Distributed action needs boundaries, not paralysis."
@@ -751,13 +616,6 @@
             "technical rehearsal",
             "dependency"
           ],
-          "planSpec": {
-            "domain": "Juliette, an opera stage manager in technical rehearsal",
-            "audience": "creative production leads coordinating artists and safety crews",
-            "stakes": "a flying set piece depends on lighting, rigging, conductor timing, and stage clearance",
-            "format": "vignette",
-            "requiredBeat": "Juliette calls a cross-role cue pause where rigging, lights, and music each confirm the next dependency before the set piece moves"
-          },
           "scenario": "Dust drifts through a cone of blue stage light while Juliette, the stage manager, stands in the opera house and watches the fly rail, conductor monitor, and stage spike tape line up for the set piece. Rigging says ready, lights says ready, music says ready. The word ready is too thin. Before the set moves, Juliette must decide whether to accept separate readiness or call a cross-role cue pause where each department confirms what it needs next.",
           "whatToDo": "Call the cue pause and have rigging, lights, and music confirm the dependency they need from another role before the set piece moves.",
           "whyItMatters": "Separate readiness can still collide at the cue. The pause turns isolated expertise into coordinated movement at the one point where timing matters."
@@ -770,13 +628,6 @@
             "postmortem",
             "planning"
           ],
-          "planSpec": {
-            "domain": "Anders, an offshore wind maintenance scheduler",
-            "audience": "operations planners working around weather windows and specialist crews",
-            "stakes": "a turbine repair misses its weather window if vessel, blade tech, and grid operator act from separate plans",
-            "format": "postmortem",
-            "requiredBeat": "Anders traces the missed window to three locally correct plans that never exposed their dependencies to one another"
-          },
           "scenario": "It took Anders, the offshore maintenance scheduler, one cancelled vessel at the port office to see that every plan had been right in isolation. The weather window was real, the crew transfer vessel was booked, the blade techs were ready, and the grid dispatch notice had its own clock. None of the plans showed the dependency between vessel departure and grid release. Anders traces the miss to three correct plans that never exposed their crossings.",
           "whatToDo": "Rebuild the maintenance plan around the dependencies between vessel, blade crew, weather, and grid release. Do not accept isolated readiness as project readiness.",
           "whyItMatters": "Complex work can fail with every local plan correct. The missing layer is the visible relationship between those plans."
@@ -789,13 +640,6 @@
             "renovation",
             "public sector"
           ],
-          "planSpec": {
-            "domain": "Lin, a public library renovation permit coordinator",
-            "audience": "public-sector staff balancing contractors, public access, and inspectors",
-            "stakes": "the children's wing reopens late if fire inspection and shelving installation are sequenced by one overloaded manager",
-            "format": "before_after",
-            "requiredBeat": "Lin turns the overloaded manager's private plan into a shared handoff calendar with inspector, shelving vendor, and librarian signoffs"
-          },
           "scenario": "You stand between bare carpet squares and boxed picture books while the inspector's voicemail plays from Lin's phone. The overloaded project manager has a private sequence for the fire inspection, shelving pallets, and public reopening sign. After one missed inspection slot, Lin turns that private plan into a shared handoff calendar where the inspector, shelving vendor, and children's librarian each sign the next dependency.",
           "whatToDo": "Put the fire inspection, shelving delivery, and reopening tasks into a shared handoff calendar. Make every next dependency visible to the people who can block it.",
           "whyItMatters": "A private plan can look controlled while the actual blockers sit in other people's calendars. Shared handoffs make the control structure match the work."
@@ -814,8 +658,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The issue is not merely the supervisor's skill. The work has many changing dependencies, so one central mind becomes a bottleneck and a blind spot.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -827,8 +670,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The delays occur at the crossings, so the fix is visible coordination between roles. More central approval or better isolated plans misses the source of friction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -840,8 +682,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The expedition includes interacting dependencies, so recipe-style control is too thin. The failure came from treating complex work as if steps could sit separately.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -853,8 +694,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The central call is slowing facts it cannot improve. Clear boundaries let local actors move while preserving escalation for choices that truly need the center.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -866,8 +706,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The failure is at the cue where expert plans meet. A cross-role pause targets that dependency; craft explanations and one-person approval do not.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -879,8 +718,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Authority still matters, but complex work outruns one person's processing. The better test is whether the center can honestly see and update the dependencies.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -892,8 +730,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Local completion did not create project coordination. The first question is whether the relationships among vessel, crew, weather, and grid were visible.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -905,8 +742,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The private plan hides dependencies from the people who can block them. A shared handoff calendar makes coordination part of the work itself.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -918,8 +754,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Complexity shows up through interaction and changing local facts. Credentials and duration can make work hard, but they do not by themselves require distributed coordination.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -980,19 +815,13 @@
       },
       "memorableLines": [
         {
-          "text": "Complex work needs coordination you can see.",
-          "location": "breakdown.fastRead",
-          "why": "It states the practical demand in a short, memorable line."
+          "text": "Complex work needs coordination you can see."
         },
         {
-          "text": "Control has not vanished. It has moved into the structure.",
-          "location": "breakdown.deepRead",
-          "why": "The line prevents the reader from mistaking decentralization for disorder."
+          "text": "Control has not vanished. It has moved into the structure."
         },
         {
-          "text": "Ask what kind of charge the work can bear.",
-          "location": "breakdown.fullRead",
-          "why": "It reframes authority as something that must fit the problem, not the leader's preference."
+          "text": "Ask what kind of charge the work can bear."
         }
       ]
     },
@@ -1019,13 +848,6 @@
             "local action",
             "signal"
           ],
-          "planSpec": {
-            "domain": "Megan, a flood relief supply hub coordinator",
-            "audience": "disaster volunteers deciding what can be local and what must be shared",
-            "stakes": "neighborhood shelters wait for diapers and insulin coolers while the central desk tries to approve every load",
-            "format": "scene",
-            "requiredBeat": "Megan gives shelter leads authority to reroute essentials but requires a two-line status update before each truck leaves"
-          },
           "scenario": "Cardboard softens under rainwater at the loading dock while Megan, the relief hub coordinator, watches insulin coolers and diaper boxes wait behind the truck bay. The shelter status board is already wrong by two hours. A shelter lead knows which truck should turn west, but the central desk is still approving every load. Megan is about to decide whether to keep the approval queue or let shelter leads reroute essentials with a two-line update before each truck leaves.",
           "whatToDo": "Give shelter leads authority to reroute essentials, then require destination and changed need before any truck leaves the bay. Move action and signal together.",
           "whyItMatters": "The local lead sees the need first, but the hub still has to learn where supplies went. Decentralization works only when the system receives the small signal."
@@ -1038,13 +860,6 @@
             "ramp",
             "communication"
           ],
-          "planSpec": {
-            "domain": "Marco, an airport ground delay operations lead",
-            "audience": "transport coordinators balancing local gates and network consequences",
-            "stakes": "gate crews improvise aircraft moves that strand wheelchairs and baggage if nobody shares the signal",
-            "format": "decision_point",
-            "requiredBeat": "Marco authorizes gate agents to swap two stands locally, then requires the wheelchair desk and baggage lead to confirm the move in one shared channel"
-          },
           "scenario": "At 6:18 a.m., Marco sees three delayed flights blinking amber on the ramp board while baggage carts stack along lane four. A gate agent can swap two stands and clear the first aircraft, but the wheelchair desk has passengers at the old door. Marco must decide whether to hold every move for operations approval or authorize the local swap only after wheelchair service and the baggage lead confirm in one shared channel.",
           "whatToDo": "Authorize the gate swap with a required channel confirmation from wheelchair service and baggage. Let the local fix move, but make its effects visible.",
           "whyItMatters": "A gate crew can solve its own delay and create two new ones. The signal keeps local action from becoming hidden work for another team."
@@ -1057,13 +872,6 @@
             "mutual aid",
             "radio"
           ],
-          "planSpec": {
-            "domain": "Frida, a rural ambulance mutual-aid dispatcher",
-            "audience": "emergency coordinators who cannot run every call from one desk",
-            "stakes": "two towns have ambulances moving toward the same crash while a dialysis call goes uncovered",
-            "format": "dialogue",
-            "requiredBeat": "Frida lets field crews choose the closest unit but makes each crew state destination, coverage gap, and next available time over the radio"
-          },
           "scenario": "\"Say the gap before you roll,\" Frida says into the headset at the county radio console. A crash sits near the town line on the map, and two crews both say they are closest. The dialysis pickup card is still clipped beside the screen. Frida lets the field choose the nearest unit, but before the wheels turn she must decide whether to require destination, coverage gap, and next available time over the radio.",
           "whatToDo": "Let the nearest crew move, then make each crew state destination, uncovered area, and next available time. Keep the field fast and the county map honest.",
           "whyItMatters": "Emergency work cannot wait for one desk to calculate every route. It also cannot let local choices hide the next uncovered patient."
@@ -1076,13 +884,6 @@
             "evacuation",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "Nicolas, a hotel evacuation desk manager",
-            "audience": "hospitality leaders handling a smoke alarm across departments",
-            "stakes": "housekeeping, security, and front desk each act quickly but leave one stairwell unchecked",
-            "format": "postmortem",
-            "requiredBeat": "Nicolas redesigns the alarm response so each floor captain can clear rooms locally but must call in stairwell status and guest count"
-          },
           "scenario": "It took Nicolas one false alarm to see the missing stairwell was a communication failure. Housekeeping cleared rooms, security handled the lobby, and the front desk calmed guests, but stairwell C never appeared on the guest count sheet. In the postmortem at the service desk, Nicolas redesigns the alarm response so each floor captain can clear locally but must call in stairwell status and guest count over the security radio.",
           "whatToDo": "Map guest movements against food timing and clear signal. This verification becomes the signal that lets separate action be shared across the call.",
           "whyItMatters": "Fast local action failed because nobody sent the shared facts back. The redesign preserves speed while closing the communication gap."
@@ -1095,13 +896,6 @@
             "surge",
             "coordination"
           ],
-          "planSpec": {
-            "domain": "Aanya, a community kitchen meal-surge organizer",
-            "audience": "nonprofit teams serving a sudden influx without formal hierarchy",
-            "stakes": "allergy meals and hot trays drift apart when volunteers solve local problems silently",
-            "format": "before_after",
-            "requiredBeat": "Aanya assigns local station decisions but makes each station move a colored magnet when allergy stock, hot trays, or drivers change"
-          },
           "scenario": "You hear the foil lids crackle while three vans idle outside the kitchen door and Aanya watches the allergy meal rack drift away from the hot trays. Volunteers keep solving local problems silently. After one driver leaves with the wrong set, Aanya gives each station authority to adjust its own flow but makes the station lead move a colored magnet whenever allergy stock, hot trays, or driver timing changes.",
           "whatToDo": "Let each station adjust locally, then require a magnet move for allergy stock, hot trays, or driver timing. Make every local change visible on the board.",
           "whyItMatters": "The kitchen needs local judgment during a surge, but silent fixes split the meal path. The magnet is the small signal that keeps the whole service aligned."
@@ -1114,13 +908,6 @@
             "records",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "Henrik, a wildfire animal shelter intake lead",
-            "audience": "temporary shelter teams matching fast local care with shared records",
-            "stakes": "animals are fed and medicated locally but owners cannot be reunited if tags and cage moves vanish",
-            "format": "vignette",
-            "requiredBeat": "Henrik allows each aisle team to move animals for safety but requires every move to hit the intake photo board within two minutes"
-          },
           "scenario": "How do you move fast without losing the animal someone is searching for? Henrik, the intake lead, stands beside the photo board as temporary cage tags pile up and the medication bin moves down aisle two. A barking dog needs a quieter crate now. Henrik must decide whether to make every move wait for him or let aisle teams move animals for safety if each move hits the intake photo board within two minutes.",
           "whatToDo": "Let aisle teams move animals for safety, then require the photo board update within two minutes. Local care and shared record have to travel together.",
           "whyItMatters": "The shelter cannot freeze every cage decision, but owners search through the shared record. The update keeps speed from becoming disappearance."
@@ -1139,8 +926,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The structure moves action near the facts while preserving alignment. Central approval is too slow, and no communication would turn speed into drift.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1152,8 +938,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The gate team has local facts, but its decision changes other work. The shared confirmation keeps local action from creating hidden downstream failures.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1165,8 +950,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The field can choose quickly, but the system needs the coverage signal immediately. Later updates or full central review miss one side of the balance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1178,8 +962,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The miss came from local action without a shared signal. The radio check keeps speed while making the missing stairwell visible.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1191,8 +974,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The local choices may be necessary, but they need a signal. A shared board keeps allergy stock, trays, and drivers aligned as the situation changes.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1204,8 +986,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The problem is not local action itself. The weak version is silent local action, where the rest of the system cannot learn what changed.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1217,8 +998,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The shelter needs fast local care and a shared record. A two-minute board update keeps the local move from becoming a lost animal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1230,8 +1010,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The center becomes too slow for changing field facts. The better design lets local actors move essentials while sending back compact status signals.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1243,8 +1022,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first option combines local authority with immediate signals to affected teams. The other options choose either central delay or silent drift.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1305,19 +1083,13 @@
       },
       "memorableLines": [
         {
-          "text": "Local action needs a signal, not a leash.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the balance between authority and communication in plain language."
+          "text": "Local action needs a signal, not a leash."
         },
         {
-          "text": "Speed without signal becomes another failure.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence gives readers a quick diagnostic for weak decentralization."
+          "text": "Speed without signal becomes another failure."
         },
         {
-          "text": "More freedom requires a tighter signal back to the system.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the paradox easy to remember."
+          "text": "More freedom requires a tighter signal back to the system."
         }
       ]
     },
@@ -1344,13 +1116,6 @@
             "pilot",
             "timing"
           ],
-          "planSpec": {
-            "domain": "Olivia, a surgical educator rehearsing a first checklist pause",
-            "audience": "clinical leaders introducing a safety pause to skeptical teams",
-            "stakes": "the team performs the pause once, finds it awkward, and may abandon the whole tool",
-            "format": "scene",
-            "requiredBeat": "Olivia marks the exact moment the pause interrupts sterile setup and moves that item later without removing the identity and antibiotic checks"
-          },
           "scenario": "At 6:52 a.m., Olivia watches two gloved hands freeze over a blue sterile drape while the new pause is read aloud. The identity band and antibiotic check both matter, but one question arrives after the sterile setup has already begun. The surgeon sighs, and a nurse looks away. Olivia has to decide whether to defend the draft as written or mark the exact interruption and move that item later.",
           "whatToDo": "Mark the moment that jammed the room, move the late item, and keep the identity and antibiotic checks intact. Revise timing without cutting the vital pause.",
           "whyItMatters": "The first use shows both value and bad fit. Treating every complaint as defiance would waste the information the room just gave you."
@@ -1363,13 +1128,6 @@
             "postmortem",
             "workflow"
           ],
-          "planSpec": {
-            "domain": "Etienne, a dental clinic manager testing sterilization workflow",
-            "audience": "clinic managers refining a routine with assistants and dentists",
-            "stakes": "a too-long checklist makes assistants skip it between patients",
-            "format": "postmortem",
-            "requiredBeat": "Etienne times the failed first version, cuts the duplicate tray items, and keeps the sterilizer indicator check at the chair turnover point"
-          },
           "scenario": "It took Etienne six ignored laminated cards in Room 3 at the 4:40 p.m. chair turnover to admit the first version was too slow. Assistants were signing after the patient was already seated. The sterilizer indicator mattered, but duplicate tray items and supply counts buried it. Etienne times the failed routine, cuts the visible tray checks, and keeps the sterilizer indicator at the moment before the next tray sleeve opens.",
           "whatToDo": "First, clean surfaces. Then, confirm sterilizer indicator at chair turnover. Protect this single verification that prevents real harm.",
           "whyItMatters": "The skipped card is not just attitude. Its length and timing make the vital indicator harder to use at the only moment it can still help."
@@ -1382,13 +1140,6 @@
             "changeover",
             "revision"
           ],
-          "planSpec": {
-            "domain": "Marta, a factory changeover pilot lead",
-            "audience": "manufacturing supervisors trialing a line-start checklist",
-            "stakes": "operators reject a list that asks for confirmations after the machine is already running",
-            "format": "before_after",
-            "requiredBeat": "Marta moves two checks to before the guard closes and deletes the items operators can see without help"
-          },
           "scenario": "Metal shavings glitter beneath the stopped Line 4 press during the 6:15 a.m. changeover as Marta watches the first line-start list fail. Operators are asked to confirm the guard latch and caliper setting after the guard has already closed. They rush the marks once the press starts. By the next trial, Marta has moved those checks before the guard closes, kept the first-part bin check, and deleted items operators can see without help.",
           "whatToDo": "Move the guard and caliper checks before the point of no return, then cut the obvious items. Make the list fit the physical sequence of the line.",
           "whyItMatters": "Compliance becomes theater. Revision has to land the verification where it can still affect the work."
@@ -1401,13 +1152,6 @@
             "medication",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "Jack, a school trip coordinator handling medication handoff",
-            "audience": "teachers piloting a student safety routine outside school",
-            "stakes": "a trip checklist is so long that the inhaler handoff gets lost in paperwork",
-            "format": "decision_point",
-            "requiredBeat": "Jack rewrites the first try so the bus lead, nurse, and teacher confirm only medication owner, emergency contact, and return count before departure"
-          },
           "scenario": "Which part of the form would actually save a child on the bus? Jack stands at the curb with the bus roster, inhaler pouch, and emergency contact cards while parents wave from the sidewalk. The first draft asks for lunch counts, permission slips, and weather notes before the medication handoff. He must decide whether to keep the complete form or rewrite the departure pause around medication owner, emergency contact, and return count.",
           "whatToDo": "Rewrite the departure pause around medication owner, emergency contact, and return count. Move the rest of the form out of the moment before the bus leaves.",
           "whyItMatters": "The first draft hides the inhaler inside paperwork. The revision protects the few facts that would matter if trouble starts on the road."
@@ -1420,13 +1164,6 @@
             "stunt",
             "safety"
           ],
-          "planSpec": {
-            "domain": "Chiara, a film set stunt safety coordinator",
-            "audience": "creative crews that dislike pauses which break momentum",
-            "stakes": "the first stunt checklist irritates the director and misses the actual harness risk",
-            "format": "dialogue",
-            "requiredBeat": "Chiara listens to the stunt lead's complaint, moves the pause to before camera lock, and keeps the harness tug test visible"
-          },
           "scenario": "\"You are asking after I am already wired,\" the stunt lead says while the rain bar ticks across the concrete floor. Chiara can hear the director calling for camera lock. The first checklist has irritated everyone and still missed the harness risk because the tug test comes too late. Chiara must decide whether to treat the complaint as resistance or move the pause before camera lock while keeping the harness tug visible.",
           "whatToDo": "Move the stunt pause before camera lock and keep the harness tug test in the open. Let the complaint fix timing, not erase the check.",
           "whyItMatters": "The crew is not objecting to safety itself. The first draft asks for proof after the body is already committed to the setup."
@@ -1439,13 +1176,6 @@
             "intake",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "Yusuf, a refugee clinic intake desk lead",
-            "audience": "frontline service teams adding structure without slowing urgent help",
-            "stakes": "a first draft intake list delays interpreters but still misses consent for document sharing",
-            "format": "reflection",
-            "requiredBeat": "Yusuf watches the line stall, then revises the pause to occur only when interpreter, consent, and urgent medical flag can be confirmed together"
-          },
           "scenario": "You hear three languages in the waiting room and see the interpreter sheet slipping behind the consent stamp. Yusuf watches the line stall while the first draft asks every applicant the same long sequence. Worse, the urgent medical flag is still being missed. He revises the pause so it happens only when interpreter, consent, and medical flag can be confirmed together at the intake desk.",
           "whatToDo": "Move the pause to the point where interpreter, consent, and medical flag can be confirmed together. Cut the questions that slow urgent routing without protecting it.",
           "whyItMatters": "The first draft created delay without catching the true risk. A better pause protects the handoff while respecting the pressure in the waiting room."
@@ -1464,8 +1194,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The first use revealed bad timing and real value. The right move is to revise the fit without cutting the check that caught risk.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1477,8 +1206,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful complaint points to length and timing. Cutting duplicate items while keeping the indicator preserves the safety purpose.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1490,8 +1218,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The check must move before the point where it can still change action. Supervisor signatures and cancellation both miss the timing lesson.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1503,8 +1230,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The departure pause should protect the few facts that matter on the bus. The full form hides the inhaler handoff inside low-risk material.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1516,8 +1242,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The complaint identifies a timing flaw. Moving the harness check earlier keeps the real safety protection while reducing needless disruption.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1529,8 +1254,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The first draft is failing both speed and protection. A combined pause at the real handoff preserves the vital checks and reduces useless delay.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1542,8 +1266,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Awkwardness is too broad to diagnose by itself. The useful response is to identify whether timing, length, wording, or ownership caused the jam.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1555,8 +1278,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Some awkwardness protects the vital pause. Revision should improve use without removing the check that caught a real risk.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1568,8 +1290,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The complaints identify design faults. The revision should preserve the purpose while fixing length, wording, and ownership.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1630,19 +1351,13 @@
       },
       "memorableLines": [
         {
-          "text": "A first try is a test, not a verdict.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clean way to handle awkward first use."
+          "text": "A first try is a test, not a verdict."
         },
         {
-          "text": "Friction is data with an attitude.",
-          "location": "breakdown.deepRead",
-          "why": "The line is memorable because it respects resistance without obeying it blindly."
+          "text": "Friction is data with an attitude."
         },
         {
-          "text": "Good revision has a spine strong enough to keep the vital pause.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the need to edit without surrendering the safety purpose."
+          "text": "Good revision has a spine strong enough to keep the vital pause."
         }
       ]
     },
@@ -1669,13 +1384,6 @@
             "simulator",
             "brevity"
           ],
-          "planSpec": {
-            "domain": "Anna, an aircraft emergency checklist reviewer",
-            "audience": "safety designers deciding what belongs in a live-use aid",
-            "stakes": "pilots in a smoke event cannot use a bloated page while masks are on",
-            "format": "scene",
-            "requiredBeat": "Anna cuts a seven-line explanation into two cockpit actions and moves background detail to the reference manual"
-          },
           "scenario": "Gray training smoke curls around the Renton simulator bay at 10:20 a.m. while Anna, the emergency checklist reviewer, watches a pilot in an oxygen mask lose the line halfway down a laminated quick card. The reference manual explains the system well, but the cockpit card is trying to do the same job. Anna has to choose between leaving the seven-line explanation in place or cutting it to two cockpit actions and moving the background detail to the manual.",
           "whatToDo": "Cut the smoke card to the two actions a masked crew can use, then move explanation to the reference manual. Design for the cockpit moment.",
           "whyItMatters": "Opera timing steals attention during the live event. The card has to serve the moment, not display all knowledge."
@@ -1688,13 +1396,6 @@
             "code cart",
             "restock"
           ],
-          "planSpec": {
-            "domain": "Daniel, a hospital code-cart restock designer",
-            "audience": "clinical operations teams building checks for rushed restocking",
-            "stakes": "a cart looks complete but lacks the item needed in the next code",
-            "format": "decision_point",
-            "requiredBeat": "Daniel moves from drawer-by-drawer inventory to a short stop-point check for expired pads, airway kit seal, and first-dose meds"
-          },
           "scenario": "At 11:44 p.m., Daniel opens a code cart drawer full of perfect-looking plastic in the supply room. The old restock sheet walks drawer by drawer, and the night nurse is signing it without seeing the expired defibrillator pads. The airway kit seal and first-dose tray are the real stoppers. Daniel faces a choice: preserve the full inventory sheet or create a short stop-point check before the cart returns to the floor.",
           "whatToDo": "Move expired pads, airway kit seal, and first-dose meds into a short stop-point check. Leave drawer inventory to a separate restock process.",
           "whyItMatters": "A cart can look complete while missing what matters in a code. The live check should guard the few items that would stop care."
@@ -1707,13 +1408,6 @@
             "rescue",
             "field test"
           ],
-          "planSpec": {
-            "domain": "Sophie, a ski patrol lead building an avalanche response card",
-            "audience": "outdoor rescue teams designing aids for cold, noisy conditions",
-            "stakes": "a long card cannot be used with gloves while beacon search is underway",
-            "format": "predict_reveal",
-            "requiredBeat": "Sophie tests the card with gloves on and removes any item that cannot guide the first three minutes of beacon, probe, and radio work"
-          },
           "scenario": "Wind snaps ice crystals against a red patrol jacket above Trail 7 at 2:14 p.m. as Sophie, the ski patrol lead, holds the avalanche response card with gloves on. She predicts the card will work because every item is correct. Then the beacon starts chirping, the probe line forms, and nobody can find the radio channel in the middle of the text. Sophie must decide whether to keep the complete card or remove everything that cannot guide the first three minutes.",
           "whatToDo": "Test the card with gloves on, then keep only beacon, probe line, and radio channel for the first three minutes. Move the rest to training.",
           "whyItMatters": "The field test shows which lines can actually guide action. Correct information that cannot be used in the moment belongs elsewhere."
@@ -1726,13 +1420,6 @@
             "food safety",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "Diego, a restaurant closing food-safety list designer",
-            "audience": "restaurant owners fighting false thoroughness at end of shift",
-            "stakes": "a tired closer signs a long sheet while the walk-in temperature alarm is ignored",
-            "format": "postmortem",
-            "requiredBeat": "Diego cuts the closing sheet to the four items that can spoil food overnight and moves cleaning reminders to training"
-          },
           "scenario": "It took Diego one tray of spoiled fish to stop confusing length with safety. The closer had signed the long sheet, including sweep notes and shelf reminders, while the walk-in alarm blinked behind a swinging door. The date labels and cooling log were buried. Diego cuts the closing sheet to four overnight spoilage risks and moves cleaning reminders to training.",
           "whatToDo": "Cut the closing sheet to the checks that can spoil food overnight: alarm, date labels, cooling log, and storage. Move cleaning guidance out of the live close.",
           "whyItMatters": "A long list gave the tired closer a way to sign without seeing the true risk. Shorter is safer when every remaining item can cost you by morning."
@@ -1745,13 +1432,6 @@
             "incident",
             "runbook"
           ],
-          "planSpec": {
-            "domain": "Anke, a data center incident checklist owner",
-            "audience": "technical incident teams whose aids get too verbose",
-            "stakes": "engineers scroll past the one customer-impact step while reading incident background",
-            "format": "dialogue",
-            "requiredBeat": "Anke separates the live incident card from the reference runbook and keeps only isolate, notify, and preserve logs on the card"
-          },
           "scenario": "\"Nobody reads this while the alarms are red,\" Anke says beside the status wall in the data center control room. The live incident card has diagrams, policy notes, and eight paragraphs of background. A customer-impact step sits halfway down. The on-call engineer is hovering over the scroll bar. Anke's hand hovers above the print queue as she weighs one complete document against a split live card and reference runbook.",
           "whatToDo": "Separate the live incident card from the reference runbook. Keep isolate, notify, and preserve logs on the card, then move background to the runbook.",
           "whyItMatters": "During an incident, scrolling is risk. The live card should protect the few actions that cannot wait, while the runbook carries explanation."
@@ -1764,13 +1444,6 @@
             "transport",
             "boarding"
           ],
-          "planSpec": {
-            "domain": "Hiroshi, a ferry bridge officer designing pre-departure checks",
-            "audience": "transport operators balancing routine and live constraints",
-            "stakes": "a long pre-departure form hides the two checks that prevent leaving with a loose vehicle deck",
-            "format": "before_after",
-            "requiredBeat": "Hiroshi tests the list during actual boarding noise and moves vehicle latch and passenger count to the last moment before lines are cast"
-          },
           "scenario": "You feel the 6:20 a.m. harbor ferry deck vibrate as truck tires thump over the ramp plate and Hiroshi, the bridge officer, watches the mooring line crew wait for the bridge call. The old pre-departure form is finished too early, before the final vehicle deck latch and passenger count can be trusted. After one noisy trial, Hiroshi moves those checks to the last moment before lines are cast.",
           "whatToDo": "Test the list during boarding noise and move vehicle deck latch plus passenger count to the final bridge call before lines are cast.",
           "whyItMatters": "A check done too early can be accurate and useless. The design has to place the item where it still reflects the real departure state."
@@ -1789,8 +1462,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The live card should guide action under pressure. Background still matters, but it belongs in reference material where it does not steal scarce attention.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1802,8 +1474,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The live check should protect the items that stop care. Full inventory can exist elsewhere, but it is too broad for the pressure point.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1815,8 +1486,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The field test reveals what can actually guide action. The live card should hold beacon, probe, and radio steps, while the rest moves to training.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1828,8 +1498,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The problem is mixed purpose. The live closing check should protect overnight spoilage risks, not carry every cleaning and training reminder.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1841,8 +1510,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The notification step must be easy to reach during alarms. Diagrams and philosophy may belong in a runbook, but not ahead of live actions.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1854,8 +1522,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The checks are useful only when they reflect the real departure state. Earlier completion creates false certainty before conditions settle.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1867,8 +1534,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Live attention is limited. Important background can be stored elsewhere, but the pressure-point list must stay selective enough to be used.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1880,8 +1546,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Explanations teach, but the rushed restock needs a short visible check. Mixing those jobs makes the live aid harder to use.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1893,8 +1558,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The test is live usability under real constraints. Meeting approval and stakeholder additions can make the document feel complete while weakening the tool.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1955,19 +1619,13 @@
       },
       "memorableLines": [
         {
-          "text": "Attention is the scarce material.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence names the design constraint more sharply than a general call for brevity."
+          "text": "Attention is the scarce material."
         },
         {
-          "text": "Brevity is not style. It is respect for the moment of use, when seconds are already scarce.",
-          "location": "breakdown.deepRead",
-          "why": "It explains why shortness is a functional requirement rather than a preference."
+          "text": "Brevity is not style. It is respect for the moment of use, when seconds are already scarce."
         },
         {
-          "text": "The best checklist is not the one that proves you cared about everything.",
-          "location": "breakdown.fullRead",
-          "why": "It punctures the common urge to add lines for reassurance instead of live usefulness."
+          "text": "The best checklist is not the one that proves you cared about everything."
         }
       ]
     },
@@ -1994,13 +1652,6 @@
             "trial",
             "variation"
           ],
-          "planSpec": {
-            "domain": "Rachel, a multi-site surgical trial coordinator",
-            "audience": "clinical researchers moving from promising design to real evidence",
-            "stakes": "a checklist that worked in one operating room may fail in hospitals with different staffing and habits",
-            "format": "scene",
-            "requiredBeat": "Rachel compares the same pause across three sites and marks which failures come from local habit versus the checklist's structure"
-          },
           "scenario": "Incision-prep names sit on color cards. Rachel is about to declare the tool proven because one room liked it. She has to decide whether a shortcut becomes a guide.",
           "whatToDo": "Compare the same pause across sites and label each failure as local habit or checklist structure. Do not let one smooth room stand in for proof.",
           "whyItMatters": "A checklist has to survive more than its home culture. Sorting local noise from design weakness is how promise becomes evidence."
@@ -2013,13 +1664,6 @@
             "handoff",
             "Do-Confirm"
           ],
-          "planSpec": {
-            "domain": "Tomas, a regional maternity ward rollout lead",
-            "audience": "health-system operators adapting a safety aid across small and large hospitals",
-            "stakes": "a newborn handoff checklist helps the urban ward but slows the rural night shift",
-            "format": "decision_point",
-            "requiredBeat": "Tomas keeps the same core checks but tests whether Do-Confirm or Read-Do fits each ward's handoff rhythm"
-          },
           "scenario": "The handoff sheet lines up transport, NICU readiness, and nursery signs. The urban ward runs its card after action as Do-Confirm. Here, the call becomes shared at the shift change only if both teams verify it.",
           "whatToDo": "Keep the newborn identity and handoff checks, then test Do-Confirm against Read-Do in each ward's real rhythm. Adapt the mode, not the purpose.",
           "whyItMatters": "The same minimum can need a different rhythm. A checklist that helps one staffing pattern may slow another unless the test includes the local workflow."
@@ -2032,13 +1676,6 @@
             "rescue",
             "field test"
           ],
-          "planSpec": {
-            "domain": "Astrid, a mining rescue drill verification lead",
-            "audience": "safety teams deciding whether a checklist works beyond training day",
-            "stakes": "a drill list passes at headquarters but fails underground when radios and dust change the conditions",
-            "format": "predict_reveal",
-            "requiredBeat": "Astrid predicts the list will hold, then follows the underground drill and marks the item that cannot be heard over the radio"
-          },
           "scenario": "Grit ticks against the plastic face shield in the mine tunnel as Astrid predicts the rescue drill list will hold. At headquarters, the radio check, escape map, and oxygen cache sequence looked clean. Underground, the ventilation fan eats the radio confirmation. The team keeps moving without hearing it. Astrid must decide whether to call the list passed or mark the line that cannot be heard in the real drill.",
           "whatToDo": "Mark the radio check as failed under tunnel conditions and redesign its signal. Keep the items that worked under dust, noise, and masks.",
           "whyItMatters": "Headquarters proof is too clean. The tunnel reveals whether the list can function inside the same noise and grit as the actual rescue."
@@ -2051,13 +1688,6 @@
             "public health",
             "variation"
           ],
-          "planSpec": {
-            "domain": "Peter, a charity vaccine clinic trial planner",
-            "audience": "public health teams that need proof beyond one successful Saturday",
-            "stakes": "the clinic checklist works in a gym but may break in a mobile van and a senior center",
-            "format": "before_after",
-            "requiredBeat": "Peter tests the same minimum checks in three clinic formats and records where layout changes threaten consent, cold chain, or observation time"
-          },
           "scenario": "What would still work if the room disappeared? Peter asks after the gym clinic runs perfectly with observation chairs, a consent tablet, and a cold-chain cooler lined against one wall. The next week, the same checks move to a mobile van and then a senior center. Consent still matters, cold chain still matters, observation time still matters, but each layout threatens a different step. Peter records the breakpoints instead of trusting one good Saturday.",
           "whatToDo": "Test the same minimum checks in the gym, van, and senior center. Record where each layout threatens consent, cold chain, or observation time.",
           "whyItMatters": "A checklist can owe its success to the room. Testing the same core in different layouts shows whether the structure travels."
@@ -2070,13 +1700,6 @@
             "public process",
             "validation"
           ],
-          "planSpec": {
-            "domain": "Luca, a municipal election recount process owner",
-            "audience": "public administrators validating a process under scrutiny",
-            "stakes": "a recount process must work in different precinct rooms with observers, paper ballots, and tired staff",
-            "format": "dialogue",
-            "requiredBeat": "Luca asks each precinct to run the same ballot-chain check and compare where observers interrupt the sequence"
-          },
           "scenario": "\"Run it once with observers talking,\" Luca says over the sealed ballot boxes at the precinct table. The chain-of-custody form worked in the quiet office. Now the observer table is close enough to interrupt, paper stacks are uneven, and staff are tired. Luca has to decide whether to accept the office rehearsal or ask each precinct to run the same ballot-chain check and compare where observers break the sequence.",
           "whatToDo": "Run the ballot-chain check in each precinct room with observers present. Compare the interruption points before calling the recount process ready.",
           "whyItMatters": "A public process has to survive scrutiny, not just quiet rehearsal. The test should include the conditions that will actually stress the sequence."
@@ -2089,13 +1712,6 @@
             "customs",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "Kasia, a cross-border freight inspection pilot lead",
-            "audience": "logistics leaders proving a customs handoff works across ports",
-            "stakes": "one border terminal succeeds while another backs up trucks because drivers, brokers, and inspectors use different rhythms",
-            "format": "postmortem",
-            "requiredBeat": "Kasia separates the checklist's stable checks from local process noise after comparing two terminals and a rail yard"
-          },
           "scenario": "It took Kasia one dawn queue of idling trucks to distrust the first terminal's easy success. The customs seal check worked where drivers, brokers, and inspectors shared one counter. At the second terminal, the broker packet arrived by window, and the rail-yard gate had its own clock. Kasia separates stable checks from local process noise after comparing both terminals and the rail yard.",
           "whatToDo": "Compare the customs seal, broker packet, and rail-yard gate across sites. Keep stable checks and redesign around local process noise.",
           "whyItMatters": "One smooth terminal can hide fragile assumptions. Variation shows which checks are strong and which depended on one local rhythm."
@@ -2114,8 +1730,7 @@
             ],
             "correctIndex": 0,
             "explanation": "One room can show promise, but variation tests dependability. Liking the tool locally does not prove the structure works across conditions.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2127,8 +1742,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The core checks may still matter while the rhythm changes. Testing Do-Confirm against Read-Do respects both variation and purpose.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2140,8 +1754,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The field test reveals a specific failure, not total collapse. Keep what works and redesign the line that cannot function underground.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2153,8 +1766,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The evidence needs to follow the core checks across varied layouts. Volunteer approval or more length does not show whether the structure travels.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2166,8 +1778,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The real stress includes observers, paper stacks, and fatigue. Testing there reveals whether the sequence holds under scrutiny.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2179,8 +1790,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The key is separating stable checklist value from local process noise. Discipline and building layout may matter, but they do not answer whether the checks travel.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2192,8 +1802,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Promise and dependability are different standards. A friendly site can hide supports that disappear elsewhere.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2205,8 +1814,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The mode has to fit the work. Read-Do can feel intrusive when the real need is a final verification after skilled action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2218,8 +1826,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The site failure may reflect local support rather than the checklist's core structure. Variation helps separate those causes instead of lumping them together.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2280,19 +1887,13 @@
       },
       "memorableLines": [
         {
-          "text": "Proof has to leave the friendly room.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the difference between local comfort and real evidence immediately clear."
+          "text": "Proof has to leave the friendly room."
         },
         {
-          "text": "Variation is not noise. It is the test.",
-          "location": "breakdown.deepRead",
-          "why": "The compact contrast captures the chapter's method."
+          "text": "Variation is not noise. It is the test."
         },
         {
-          "text": "Different sites do not merely threaten the checklist.",
-          "location": "breakdown.fullRead",
-          "why": "It reframes variation as a tool for validation rather than an obstacle."
+          "text": "Different sites do not merely threaten the checklist."
         }
       ]
     },
@@ -2319,13 +1920,6 @@
             "identity",
             "teamwork"
           ],
-          "planSpec": {
-            "domain": "Grace, a cardiac surgery fellow leading timeout adoption",
-            "audience": "high-skill teams where hierarchy makes verification feel embarrassing",
-            "stakes": "a senior surgeon sees the timeout as an insult and the junior team goes silent",
-            "format": "scene",
-            "requiredBeat": "Grace frames the timeout as a team reliability act and asks the senior surgeon to answer the same identity and antibiotic checks as everyone else"
-          },
           "scenario": "Inside OR 4 at 7:18 a.m., the snap of sterile gloves lands in a room that has gone quiet while Grace, the cardiac surgery fellow, holds the timeout card beside the senior surgeon. The identity band and antibiotic confirmation are waiting. The junior team looks down because the surgeon treats the pause like an insult. Grace has to decide whether to skip the public check or frame it as a team reliability act and ask him to answer like everyone else.",
           "whatToDo": "Frame the timeout as a team standard and ask the surgeon to answer the identity and antibiotic checks aloud. Make verification normal at the top.",
           "whyItMatters": "Status kills deference when expertise becomes visible. When senior people opt out, junior people learn that verification is optional when status enters."
@@ -2338,13 +1932,6 @@
             "status",
             "verification"
           ],
-          "planSpec": {
-            "domain": "Olivier, a law firm partner debating a closing checklist",
-            "audience": "elite professionals who equate verification with junior work",
-            "stakes": "a financing close depends on signatures, wire instructions, and filing windows that partners assume associates handle",
-            "format": "dialogue",
-            "requiredBeat": "Olivier stops calling the list administrative and signs the same final verification line before the wire release"
-          },
           "scenario": "\"I did not spend twenty years to read boxes,\" Olivier says beside the closing binder at the conference table. The associate points to wire instructions, signature pages, and a filing window that closes at 4:00 p.m. \"Then sign the final verification line with us,\" she says. Olivier must decide whether to keep calling the list administrative or sign the same line before the wire release.",
           "whatToDo": "Sign the final verification line before release and treat the list as closing discipline, not junior paperwork. Let status reinforce the standard.",
           "whyItMatters": "When the partner uses the same check, the act stops marking inexperience. It becomes part of how the firm protects a high-stakes close."
@@ -2357,13 +1944,6 @@
             "tour",
             "load-in"
           ],
-          "planSpec": {
-            "domain": "Margaux, an orchestra tour manager managing load-in",
-            "audience": "arts leaders coordinating expert performers and technical crews",
-            "stakes": "a principal musician resents equipment checks until the missing case threatens the evening performance",
-            "format": "before_after",
-            "requiredBeat": "Margaux makes the soloist verify instrument, case tag, and stage position with crew instead of treating the check as beneath artistry"
-          },
           "scenario": "Signal-box chatter fills the theater booth where Margaux calls cues. The stage crew moves in sections, treating verification as part of performance quality. She must decide whether unscripted timing becomes a signal layer.",
           "whatToDo": "Have the soloist verify the instrument, case tag, and stage position with the crew. Put the artist inside the shared standard instead of above it.",
           "whyItMatters": "Professional identity takes shape through visible standards. Verification earns respect when elite performers visibly support it across technical coordination as much as talent."
@@ -2376,13 +1956,6 @@
             "handoff",
             "hierarchy"
           ],
-          "planSpec": {
-            "domain": "Pavel, an emergency department attending during senior surgeon handoff",
-            "audience": "clinical leaders who need status to bend toward team reliability",
-            "stakes": "a high-status consultant skips the handoff pause and leaves blood type verification vague",
-            "format": "decision_point",
-            "requiredBeat": "Pavel chooses to make the consultant repeat the shared verification in front of the team rather than privately patching the gap"
-          },
           "scenario": "At 1:27 a.m., Pavel sees the trauma bay doors swing open behind the consultant, whose pager is still chirping. The blood type label is half-covered on the transfer sheet, and the handoff pause is about to be skipped. Pavel can privately patch the gap later, preserving the consultant's ease. He must decide whether to make the consultant repeat the shared verification in front of the team.",
           "whatToDo": "Ask for the blood type verification in the shared handoff pause. Keep the tone neutral, but make status answer the same standard as everyone else.",
           "whyItMatters": "Private patching protects hierarchy and leaves the team silent. Public verification teaches that reliability outranks rank when the patient is exposed."
@@ -2395,13 +1968,6 @@
             "culture",
             "second check"
           ],
-          "planSpec": {
-            "domain": "Isabel, an aviation maintenance supervisor changing signoff culture",
-            "audience": "maintenance teams where senior mechanics rely on reputation",
-            "stakes": "a veteran mechanic views a second signoff as distrust after twenty years on the line",
-            "format": "reflection",
-            "requiredBeat": "Isabel moves the second signoff from a suspicion ritual to a shared standard every mechanic uses on critical fasteners"
-          },
           "scenario": "You watch a veteran in Hangar C at 11:05 p.m. place his torque wrench down without looking at the second-signoff slot beside a critical fastener. Isabel knows he reads the slot as distrust after twenty years on the line. She changes the standard across the hangar: every mechanic, senior or new, gets a second signoff on that class of fastener. The ritual shifts from accusation to shared protection.",
           "whatToDo": "Make the second signoff universal for critical fasteners. Remove the personal accusation by making the best mechanics follow the same rule.",
           "whyItMatters": "A check aimed only at some people feels like suspicion. A check used by everyone becomes a standard of serious work."
@@ -2414,13 +1980,6 @@
             "identity",
             "public check"
           ],
-          "planSpec": {
-            "domain": "Min, a mountain rescue rope-team leader",
-            "audience": "rescue teams whose identity prizes toughness and improvisation",
-            "stakes": "a rope-team knot check feels like novice theater until fatigue and darkness raise the cost of pride",
-            "format": "predict_reveal",
-            "requiredBeat": "Min asks the fastest climber to lead the knot callout and makes public verification part of elite behavior"
-          },
           "scenario": "Who has enough skill to say the knot out loud? Min asks under a headlamp beam while the anchor knot sits in wet rope and the team is tired enough to get quiet. The fastest climber smirks at the rope-team callout as novice theater. Min asks him to lead it. Before the descent, Min must decide whether public verification will look weak or become the behavior that marks the strongest climber.",
           "whatToDo": "Ask the fastest climber to lead the knot callout. Make public verification part of elite rescue behavior, not a novice ritual.",
           "whyItMatters": "Identity can block the very check fatigue makes necessary. When the strongest climber leads it, the team's status code changes."
@@ -2439,8 +1998,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The surgeon is not missing the evidence. The public act feels like a status loss, so adoption has to redefine verification as professional excellence.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2452,8 +2010,7 @@
             ],
             "correctIndex": 0,
             "explanation": "When the partner uses the check, it becomes closing discipline rather than junior work. Private associate use would leave the status problem intact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2465,8 +2022,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The check should be reframed as protecting the performance. Leaving the soloist above it keeps verification low-status and fragile.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2478,8 +2034,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Public, neutral verification teaches the team that status does not exempt the check. Private patching protects hierarchy instead of reliability.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2491,8 +2046,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Universal use removes the personal accusation and makes the check a standard of high-skill work. Targeted use would deepen the insult.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2504,8 +2058,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fastest climber changes the status meaning of the ritual. Private checks preserve pride but do not build a shared team standard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2517,8 +2070,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Evidence can answer whether the tool works, while identity shapes whether people will use it. Waiting for zero discomfort dodges the cultural work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2530,8 +2082,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Suspicion framing makes verification a status threat. People defend themselves instead of treating the check as a shared reliability standard.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2543,8 +2094,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The reframing makes verification part of expert reliability. Treating checks as remedial leaves the system exposed whenever senior people opt out.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2605,19 +2155,13 @@
       },
       "memorableLines": [
         {
-          "text": "Status is part of the operating field.",
-          "location": "breakdown.deepRead",
-          "why": "It explains why identity affects reliability as much as workflow does."
+          "text": "Status is part of the operating field."
         },
         {
-          "text": "The lone hero looks brave on the poster and brittle in a crowded operating room.",
-          "location": "breakdown.fullRead",
-          "why": "The image captures the source's contrast between hero mythology and teamwork."
+          "text": "The lone hero looks brave on the poster and brittle in a crowded operating room."
         },
         {
-          "text": "The strongest person in the room becomes the one willing to make the check normal.",
-          "location": "breakdown.fullRead",
-          "why": "It turns status from an obstacle into the lever for adoption."
+          "text": "The strongest person in the room becomes the one willing to make the check normal."
         }
       ]
     },
@@ -2644,13 +2188,6 @@
             "committee",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "Laura, an investment committee analyst building a decision checklist",
-            "audience": "investors who have enough analysis but repeat the same judgment errors",
-            "stakes": "a tempting acquisition looks cheap while debt covenants and customer concentration repeat a past mistake",
-            "format": "scene",
-            "requiredBeat": "Laura uses the checklist to force covenant, concentration, and downside-case checks before the committee debates upside"
-          },
           "scenario": "Quarterly reports sit beside a silent speakerphone while Laura, the investment committee analyst, watches the acquisition deck glow on the wall. The price looks cheap, and the chair wants to discuss upside. The debt covenant footnote and customer concentration chart sit unopened. Laura is about to let the story set the meeting. She has to decide whether to force covenant, concentration, and downside-case checks before upside talk begins.",
           "whatToDo": "Run the debt covenant, customer concentration, and downside-case checks before the committee debates upside. Guard the recurring investment errors first.",
           "whyItMatters": "A covenant is not a contract. A card does not choose the deal. It stops the commitment until one party name drops and answers are visible."
@@ -2663,13 +2200,6 @@
             "expansion",
             "domain fit"
           ],
-          "planSpec": {
-            "domain": "Julien, a restaurant group owner reviewing expansion",
-            "audience": "operators transferring checklist logic without copying medicine",
-            "stakes": "a second location decision fails if lease excitement hides staffing and supplier weaknesses",
-            "format": "decision_point",
-            "requiredBeat": "Julien rebuilds the checklist around lease terms, chef bench strength, supplier redundancy, and cash runway instead of borrowing a safety form"
-          },
           "scenario": "What would be stupid to copy from a hospital checklist into a restaurant lease meeting? Julien looks at the lease packet, supplier map, and cash runway page while the broker praises the corner location. The old safety form in his folder has the wrong shape for this decision. Julien must decide whether to borrow a medical-looking checklist or rebuild the pause around lease terms, chef bench strength, supplier redundancy, and runway.",
           "whatToDo": "Build the restaurant checklist from restaurant failure points: lease terms, chef bench strength, supplier redundancy, and cash runway. Do not copy the medical form.",
           "whyItMatters": "The discipline transfers, not the surface. A copied form misses the local risks that actually decide whether the second location survives."
@@ -2682,13 +2212,6 @@
             "safeguarding",
             "before-after"
           ],
-          "planSpec": {
-            "domain": "Chloe, an independent school safeguarding lead",
-            "audience": "school leaders adapting verification to child safety decisions",
-            "stakes": "a volunteer approval process depends on memory and goodwill across three offices",
-            "format": "before_after",
-            "requiredBeat": "Chloe turns repeated volunteer approval misses into a safeguarding checklist that verifies background check, contact boundaries, and trip role before assignment"
-          },
           "scenario": "Rain taps against the admissions office glass at 5:40 p.m. beside a stack of volunteer badges while Chloe, the safeguarding lead, reviews another approval miss. The background check receipt sits in one office, the trip role sheet in another, and contact boundaries are being assumed because everyone likes the volunteer. After the second miss, Chloe builds a safeguarding checklist that verifies background check, contact boundaries, and trip role before assignment.",
           "whatToDo": "Create a safeguarding check at assignment: background check receipt, contact boundaries, and trip role. Aim it at the offices where memory has failed.",
           "whyItMatters": "Goodwill is not a process. A shared card protects the recurring weak points without turning culture inside out or blaming people for care."
@@ -2701,13 +2224,6 @@
             "incident",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "Michael, a cybersecurity incident lead",
-            "audience": "technical leaders deciding where a routine safeguard can support judgment",
-            "stakes": "containment choices repeat past misses when the team trusts memory during live attack response",
-            "format": "dialogue",
-            "requiredBeat": "Michael adapts checklist logic to the recurring failure points: isolate host, preserve evidence, notify legal, and confirm backup integrity before restoration"
-          },
           "scenario": "\"Do not restore until we know what we are restoring from,\" Michael says in the incident room while the isolated host, evidence snapshot, and backup integrity report sit on separate screens. The team wants the service back now. Legal has not been notified. Michael must decide whether to trust memory during the attack response or force the recurring checks: isolate, preserve evidence, notify legal, confirm backup integrity.",
           "whatToDo": "Run the four incident safeguards before restoration: isolate host, preserve evidence, notify legal, and confirm backup integrity. Then judge the restore path.",
           "whyItMatters": "A narrow list supports judgment at the repeated panic point. It blocks the moment when people trust impression over evidence."
@@ -2720,13 +2236,6 @@
             "postmortem",
             "blind spot"
           ],
-          "planSpec": {
-            "domain": "Catarina, an architecture firm code-review partner",
-            "audience": "professional-service teams who need safeguards without flattening design judgment",
-            "stakes": "a beautiful design repeats a costly accessibility miss from last year",
-            "format": "postmortem",
-            "requiredBeat": "Catarina builds a code-review checklist only around recurring misses, then leaves aesthetic and site-specific judgment outside the list"
-          },
           "scenario": "It took Catarina one rejected permit set at the firm's code-review desk after a 3:30 p.m. city email to stop treating memory as a quality system. The accessibility clearance was wrong again, and the permit comment letter echoed last year's mistake. The site section and design review were strong. Catarina builds a code-review checklist only around recurring misses, including clearance and permit comments, then leaves aesthetic and site-specific judgment outside the list.",
           "whatToDo": "Build a short safeguard around recurring code misses and keep design judgment visible.",
           "whyItMatters": "A good transfer is narrow. It guards the mistake the firm keeps repeating and leaves expert judgment alive where judgment still belongs."
@@ -2739,13 +2248,6 @@
             "grant",
             "board"
           ],
-          "planSpec": {
-            "domain": "Chidi, a nonprofit grant approval chair",
-            "audience": "boards deciding whether a checklist fits mission decisions",
-            "stakes": "a beloved project wins approval while conflicts, reporting burden, and reserve risk are missed again",
-            "format": "reflection",
-            "requiredBeat": "Chidi limits the checklist to recurring blind spots before the vote and refuses to let it score the mission value itself"
-          },
           "scenario": "You watch the boardroom at 8:05 p.m. lean toward the story before anyone asks about the reserve account. Chidi, the grant approval chair, sees the conflict disclosure blank, the reporting calendar vague, and the reserve risk untouched. The project may still deserve funding. He narrows his safeguard list to recurring blind spots before the vote and keeps the reserve board memo out.",
           "whatToDo": "Use a short safeguard list covering conflict disclosure, reporting burden, and legal review before final approval.",
           "whyItMatters": "Neither rule nor instinct alone survives complexity. A narrow safeguard only protects the recurring blind spots that judgment had started to see."
@@ -2764,8 +2266,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The discipline travels through local failure points, not surface form. Investment needs checks for investment errors, not surgical steps.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2777,8 +2278,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The recurring investment misses are covenants, concentration, and downside. The checklist should guard those before upside excitement takes over.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2790,8 +2290,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The checklist should protect the decision from known restaurant-specific failures. It should not copy another domain or judge inspiration.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2803,8 +2302,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The school needs a check aimed at its actual recurring misses. A reminder is too vague, and a copied surgical form has the wrong risks.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2816,8 +2314,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The safeguard targets the recurring panic point before restoration. It supports technical judgment without trying to run the whole incident.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2829,8 +2326,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful checklist is narrow. It protects known code-review blind spots and avoids flattening design judgment into boxes.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2842,8 +2338,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The board still needs value judgment. The checklist should guard the repeat misses that enthusiasm hides, not replace mission deliberation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2855,8 +2350,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The transferable part is disciplined checking at known weak points. A single form ignores local risks and becomes blind procedure.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2868,8 +2362,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A good checklist guards known weak points and leaves the final judgment alive. When it tries to decide everything, it becomes the wrong tool.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2930,19 +2423,13 @@
       },
       "memorableLines": [
         {
-          "text": "The field changes, so the form has to change too.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the core transfer rule without making checklists sound universal in surface form."
+          "text": "The field changes, so the form has to change too."
         },
         {
-          "text": "The discipline can travel when it changes shape to fit the risk.",
-          "location": "breakdown.deepRead",
-          "why": "The short line distinguishes portable logic from copied format."
+          "text": "The discipline can travel when it changes shape to fit the risk."
         },
         {
-          "text": "A checklist is powerful only when it knows its job.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the book's argument with a disciplined limit on checklist use."
+          "text": "A checklist is powerful only when it knows its job."
         }
       ]
     }

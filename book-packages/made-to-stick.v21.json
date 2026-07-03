@@ -46,13 +46,6 @@
             "hospital",
             "triage"
           ],
-          "planSpec": {
-            "domain": "emergency-room triage board redesign",
-            "audience": "a charge nurse trying to align a rotating night team",
-            "stakes": "a full waiting room and three competing priorities during a storm surge",
-            "format": "decision_point",
-            "requiredBeat": "Megan erases four color codes from the board and leaves one red tag rule that tells the float nurse which patient moves first"
-          },
           "scenario": "Rainwater pools under the ambulance-bay doors at 11:40 p.m. while Megan, the charge nurse, studies the laminated triage board. Four color codes, red tag stickers, and three overflow rows are confusing the float nurse beside the waiting-room chairs. Megan has to choose before the next ambulance backs in: keep every priority visible, or erase the board and leave one red-tag rule for who moves first.",
           "whatToDo": "Erase the codes that compete for first place. Write the one red-tag rule that names the delay that changes outcomes, then use the stickers only to support that rule.",
           "whyItMatters": "The float nurse needs a tradeoff winner, not more accurate clutter. One governing rule lets her act when Megan is across the room and the waiting area gets louder."
@@ -65,13 +58,6 @@
             "public works",
             "priority"
           ],
-          "planSpec": {
-            "domain": "municipal snowplow routing",
-            "audience": "a public-works supervisor briefing contractors before first snow",
-            "stakes": "school buses and dialysis pickups depend on the same two-lane roads",
-            "format": "vignette",
-            "requiredBeat": "Mathieu circles the school and clinic routes in black and tells every driver that those roads beat complaints from side streets"
-          },
           "scenario": "At 4:42 a.m. inside the public-works depot, Mathieu spreads a salt-streaked paper route map across a folding table. Black grease pencil rings the school loop and clinic road while radio call signs crackle from coat pockets. Contractors are already naming side streets that always complain. He must decide whether to let complaints steer the plows or make those two circles outrank every call. The school superintendent is already on the radio, and Mathieu keeps his hand on the map until the drivers repeat the priority back.",
           "whatToDo": "Name the route priority before the first angry call arrives. Circle the roads tied to buses and dialysis, and let that compact rule settle the morning order.",
           "whyItMatters": "Every driver will face a local exception. A clear core keeps the routing from being rewritten by whoever complains loudest once the snow starts."
@@ -84,13 +70,6 @@
             "retail",
             "inventory"
           ],
-          "planSpec": {
-            "domain": "independent bookstore buying list",
-            "audience": "a buyer with limited shelf space before holiday ordering",
-            "stakes": "cash tied up in unsold inventory can decide January payroll",
-            "format": "before_after",
-            "requiredBeat": "Ingrid pulls every maybe title from the cart and keeps only books that serve the stores local-gift identity"
-          },
           "scenario": "The smell of cardboard and pine-scented candles hangs behind the register as Ingrid stacks invoice sheets beside a rolling book cart. By noon, the cart is full of maybe titles: prize novels, staff pets, clever imports. After checking January payroll, she pulls every book that does not fit the local-gift table and leaves the cart half full. A sales rep is waiting near the candle display, and Ingrid keeps the invoice stack visible so the choice stays tied to payroll.",
           "whatToDo": "Use the store identity as a buying filter. Keep the books that serve local gifts, and remove the defensible titles that do not settle the holiday job.",
           "whyItMatters": "Shelf space and cash are tradeoffs. The core keeps taste, prestige, and staff enthusiasm from pretending they all deserve the same answer."
@@ -103,13 +82,6 @@
             "theater",
             "safety"
           ],
-          "planSpec": {
-            "domain": "community theater safety rehearsal",
-            "audience": "a stage manager coordinating volunteers and teenage actors",
-            "stakes": "a blackout scene can injure someone if everyone follows separate cues",
-            "format": "dialogue",
-            "requiredBeat": "Daniel stops the cue-by-cue lecture and makes the single rule hands off the stairs until work lights are up"
-          },
           "scenario": "\"Nobody moves on the stairs until I call white light,\" Daniel says into the empty house. Gaffer tape marks the painted steps. Two volunteers are waiting for headset cues, and the teenagers keep asking about their entrances. Daniel must choose during rehearsal: explain every blackout cue again, or make the single safety rule carry the scene. A ladder sits half-folded in the wing, and one volunteer is already reaching for the dark stair rail.",
           "whatToDo": "Stop the cue lecture. Repeat the white-light rule, mark the stairs, and make every other instruction secondary to keeping hands and feet off the steps in darkness.",
           "whyItMatters": "A blackout breaks detailed memory. One safety core gives volunteers and actors the same decision rule when the headset chatter turns messy."
@@ -122,13 +94,6 @@
             "market",
             "training"
           ],
-          "planSpec": {
-            "domain": "family-run cheese counter opening routine",
-            "audience": "a new manager training weekend staff in a crowded market hall",
-            "stakes": "health inspection risk and line speed collide before noon",
-            "format": "reflection",
-            "requiredBeat": "Catarina realizes the staff need one priority, keep cold stock cold, before they learn the whole display ritual"
-          },
           "scenario": "It took Catarina three Saturdays to see why the checklist kept failing. Wax paper, sample knives, the digital thermometer, and the cold case drawer all mattered before the market hall filled. New staff tried to do the whole ritual at once. Catarina is about to choose what to teach first: the full opening dance, or the one rule that keeps cold stock cold. The cheese case alarm chirps once, which is exactly the kind of detail the old checklist buried.",
           "whatToDo": "Teach the cold-stock rule first. Let the thermometer and drawer routine carry the morning, then add the display details after the health risk is protected.",
           "whyItMatters": "The staff cannot honor every step equally during a rush. A core priority keeps the most costly failure from being buried inside a long checklist."
@@ -141,13 +106,6 @@
             "museum",
             "focus"
           ],
-          "planSpec": {
-            "domain": "museum audio-guide redesign",
-            "audience": "a curator cutting an overstuffed tour for first-time visitors",
-            "stakes": "visitors quit after room two if every object gets equal importance",
-            "format": "thought_experiment",
-            "requiredBeat": "Akira chooses the one question each gallery should answer and removes every clip that does not serve it"
-          },
           "scenario": "What should a visitor remember after the headphones come off? Akira stands beside a bronze gallery label with an audio transcript full of dates, donors, wars, and techniques. The visitor flow counter shows people quitting after room two. He must choose before recording day: preserve the full tour, or give each gallery one question and cut every clip that wanders. The bronze gallery opens in two weeks, and the recording booth is already booked for Friday morning.",
           "whatToDo": "Choose the one question each room should answer. Keep clips that help answer it, and remove facts that are accurate but do not guide the visitor through the gallery.",
           "whyItMatters": "Equal importance exhausts attention. A gallery question gives visitors a compact schema, so the facts attach to a shape they can carry out of the room."
@@ -166,8 +124,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The script needs a governing choice before it needs polish. A warm opener or big statistic may help later, but neither tells volunteers what to protect when the call gets messy.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -179,8 +136,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The team is missing a ranked core. An acronym or more examples may improve recall, but the edge case still stalls unless one priority wins the tradeoff.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -192,8 +148,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The policy leaves several goods competing. Teachers need to know what wins when calm, inclusion, and time conflict. Stronger feeling or fancier language would not settle that choice.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -205,8 +160,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Short wording is not enough. The phrase cannot decide whether speed, fairness, or recovery wins in the rush. A longer manual could still avoid the hard ranking.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -218,8 +172,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The rat problem sets the governing priority. The color list is accurate, but the simpler core tells workers what to protect when bins overflow or signs get ignored.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -231,8 +184,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A familiar schema helps only while it stays honest. Here the comparison creates a false expectation, so the compact frame needs a boundary, not more novelty or jargon.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -244,8 +196,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The new line names the concrete priority at the danger point. It does not replace all training, and seriousness is not the mechanism. It guides action under pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -257,8 +208,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Compression failed because the useful constraint disappeared. A number might help credibility later, but the immediate problem is that the line no longer guides judgment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -270,8 +220,7 @@
             ],
             "correctIndex": 0,
             "explanation": "First visits first ranks the next decisions. The broader line may sound kind, but it leaves too many choices unresolved. Simple earns its place by governing action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -308,7 +257,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Finding the Core Decision Rule",
         "coreSkill": "You learn to turn a crowded message into a decision rule. The skill is not trimming for elegance. It is choosing the priority that should survive when people cannot honor every detail.",
         "ifThenPlans": [
           {
@@ -333,19 +281,13 @@
       },
       "memorableLines": [
         {
-          "text": "If a sentence cannot settle the next choice, it is still clutter.",
-          "location": "breakdown.fastRead",
-          "why": "It turns simplicity into a test the reader can use immediately."
+          "text": "If a sentence cannot settle the next choice, it is still clutter."
         },
         {
-          "text": "That is the difference between compact and shallow.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a clean distinction without drifting into slogan language."
+          "text": "That is the difference between compact and shallow."
         },
         {
-          "text": "The core is the part of the message that still knows what to do when the rest of the message falls away.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the abstract claim concrete by treating the core as the surviving decision engine."
+          "text": "The core is the part of the message that still knows what to do when the rest of the message falls away."
         }
       ]
     },
@@ -372,13 +314,6 @@
             "planning",
             "risk"
           ],
-          "planSpec": {
-            "domain": "coastal flood-insurance town hall",
-            "audience": "a planner facing residents tired of risk maps",
-            "stakes": "families will reject new premiums if the danger feels like old paperwork",
-            "format": "predict_reveal",
-            "requiredBeat": "Claire asks residents to predict which street flooded first, then reveals it was the high road everyone assumed was safe"
-          },
           "scenario": "Which street went under first when the tide topped the wall? Claire stands beside a laminated flood map while residents hold unopened insurance letters in their laps. They choose the marina road. Claire must decide when to reveal the blue pushpin on Church Hill, the high road everyone trusted, and let the wrong guess open the room. The meeting is in the high-school gym, and the tide chart is taped beside the exit doors.",
           "whatToDo": "Ask for the prediction before showing the pin. Let residents commit to the safe assumption, then reveal the high-road flood and connect the gap to the new premiums.",
           "whyItMatters": "The map becomes interesting only after the old pattern fails. The reveal makes residents want the explanation instead of treating another risk chart as paperwork."
@@ -391,13 +326,6 @@
             "welding",
             "safety"
           ],
-          "planSpec": {
-            "domain": "vocational welding safety demo",
-            "audience": "an instructor teaching apprentices who tune out warnings",
-            "stakes": "a shortcut around eye protection can cause permanent damage",
-            "format": "scene",
-            "requiredBeat": "Jonas starts with the tiny burn mark on a clear face shield, then opens the gap about where the spark landed"
-          },
           "scenario": "The face shield has one white scar no wider than a grain of rice on the welding bay bench at 8:15 a.m. Jonas sets it beside the slag bucket while apprentices clamp scrap steel in the bench vise. They expect the usual eye-protection warning. Jonas must choose before the first arc: start with the rule, or ask where they think the spark landed and let the tiny mark unsettle them. A grinder coughs in the next booth, and Jonas keeps the shield at eye level until every apprentice has guessed.",
           "whatToDo": "Open with the scar, not the lecture. Ask for guesses, reveal the mark near eye level, and then attach the safety rule to the question the shield created.",
           "whyItMatters": "The apprentices already know the warning. The mark breaks their casual pattern and creates a gap the eye-protection rule can fill without turning into a scare story."
@@ -410,13 +338,6 @@
             "radio",
             "pledge"
           ],
-          "planSpec": {
-            "domain": "public-radio pledge script rewrite",
-            "audience": "a producer trying to stop listeners from tuning out the annual appeal",
-            "stakes": "the station misses payroll if the appeal sounds like last year",
-            "format": "before_after",
-            "requiredBeat": "\"We are not asking for money first,\" Camille says, then opens with the unanswered question of who keeps the overnight transmitter running"
-          },
           "scenario": "\"We are not asking for money first,\" Camille says over the studio talkback. The old pledge script begins with member support, matching last year word for word. After the red ON AIR light goes dark, she rewrites the lead around one unanswered question from the transmitter log: who keeps the signal alive at 3:17 a.m.? The overnight host is waiting outside the glass, and Camille keeps one finger on the transmitter log as she edits.",
           "whatToDo": "Replace the familiar ask with the hidden-work question. Let listeners wonder who protects the overnight signal before the script names the cost.",
           "whyItMatters": "The pledge drive sounds new because it disturbs the expected opening and makes the money question serve a concrete gap instead of arriving first."
@@ -429,13 +350,6 @@
             "pharmacy",
             "health"
           ],
-          "planSpec": {
-            "domain": "pharmacy vaccine reminder redesign",
-            "audience": "a pharmacist writing reminders for older patients",
-            "stakes": "patients ignore messages that sound like routine notices",
-            "format": "decision_point",
-            "requiredBeat": "Thomas moves the consequence to the first line, then creates a gap about which appointments prevent missed holiday visits"
-          },
           "scenario": "At 9:10 a.m., Thomas stares at postcard proofs beside the flu-shot fridge. The appointment calendar is full, yet older patients ignore reminders that sound like routine notices. He must choose before the printer deadline: lead with vaccine availability, or move missed holiday visits to line one and ask which appointments protect them. A patient queue is forming at the counter, and the printer tray is already loaded with blank cards.",
           "whatToDo": "Move the consequence to the first line, then ask which appointment protects the holiday visit. Use the gap to lead patients back to the vaccine slot.",
           "whyItMatters": "Availability is expected pharmacy language. A missed visit breaks the routine frame and makes the reminder answer a question patients already care about."
@@ -448,13 +362,6 @@
             "museum",
             "children"
           ],
-          "planSpec": {
-            "domain": "art-history museum label for children",
-            "audience": "an educator making a quiet painting matter to fifth graders",
-            "stakes": "the group walks past the painting unless the label opens a chase",
-            "format": "vignette",
-            "requiredBeat": "You notice Sofia covers the title and asks what is missing from the banquet table before giving the historical fact"
-          },
           "scenario": "You are standing with twenty fifth graders at the bench in Gallery 4, in front of a painting full of silver plates and one empty chair. Sofia, the museum educator, covers the wall label with her sketch clipboard while the group shuffles. She must choose how to hold them: give the date first, or ask what is missing from the banquet table before the historical fact appears. The teacher is counting heads by the doorway, and Sofia has less than two minutes before the group moves on.",
           "whatToDo": "Hide the title long enough for students to search the table. Let the empty chair create the gap, then use the date and context as the answer.",
           "whyItMatters": "Children walk past labels that start finished. The missing-chair question makes them notice before the fact arrives, so the history lands as payoff."
@@ -467,13 +374,6 @@
             "software",
             "reliability"
           ],
-          "planSpec": {
-            "domain": "software incident postmortem",
-            "audience": "a reliability lead presenting a boring outage review",
-            "stakes": "engineers repeat the failure if the timeline feels familiar too soon",
-            "format": "postmortem",
-            "requiredBeat": "Aanya starts with the dashboard metric that looked healthy, then reveals the hidden queue that made the safe signal dangerous"
-          },
           "scenario": "It took Aanya six hours to stop trusting the green dashboard tile. In the postmortem, the message queue graph sits beside the pager transcript, and every engineer expects another timeline slide. She begins with the healthy metric, then reveals the hidden queue that made the safe signal dangerous and asks what green failed to show. The review is in the engineering war room, with stale pizza on the side table and the incident channel still open on a wall screen.",
           "whatToDo": "Start with the healthy signal everyone trusted. Reveal the hidden queue only after the room feels the mismatch, then tie the new alert rule to that missing view.",
           "whyItMatters": "A standard outage timeline lets engineers relax into familiar blame. The green-tile mismatch breaks that pattern and makes the next monitoring change feel necessary."
@@ -492,8 +392,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The jar matters because it opens a specific question the lesson can answer. The visual helps, but the mechanism is the gap. Total confusion would kill curiosity.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -505,8 +404,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The photo seized attention but sent it away from the paperwork habit. Strong surprise must pull curiosity toward the action the trainer needs, not toward fear alone.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -518,8 +416,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The tile question lets riders make a reasonable guess, then reveals the hidden wiring problem. The joke may entertain, and the schedule informs, but neither creates a useful gap.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -531,8 +428,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Curiosity needs footing. If the team lacks context, the question is a guessing game. Faster reveal or bigger drama still leaves the gap unfelt.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -544,8 +440,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The high-road reveal breaks a local expectation and opens a practical question. Numbers can matter later, but here the local pattern break creates the pull.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -557,8 +452,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The shadow gap has earned attention for the technique. Jumping away wastes the gap, and a full biography would scatter the curiosity that just formed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -570,8 +464,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The surprise overpromised and trained readers to distrust the message. Unexpectedness has to match the core, not inflate a routine point into false drama.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -583,8 +476,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The patient question breaks the stable-looking pattern and opens the exact gap the handoff risk will explain. The rule list and slogan begin where attention is weakest.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -596,8 +488,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The button line opens a focused gap about Friday work, and the reveal points to the feature. It is not mere exaggeration or avoidance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -634,7 +525,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Opening the Gap to Create Curiosity",
         "coreSkill": "You learn to disturb a useful expectation. The skill is to give people enough context to predict, break that prediction, and then use their curiosity to pull them toward the core.",
         "ifThenPlans": [
           {
@@ -659,19 +549,13 @@
       },
       "memorableLines": [
         {
-          "text": "Curiosity begins where certainty cracks.",
-          "location": "breakdown.fastRead",
-          "why": "It condenses the mechanism into a vivid sentence without using a stock opener."
+          "text": "Curiosity begins where certainty cracks."
         },
         {
-          "text": "If the reveal points away from the core, attention becomes a trick.",
-          "location": "breakdown.deepRead",
-          "why": "It names the risk of surprise that wakes attention but loses the message."
+          "text": "If the reveal points away from the core, attention becomes a trick."
         },
         {
-          "text": "Break the pattern. Open the gap. Keep the trail tied to the core.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a portable sequence for building useful unexpectedness."
+          "text": "Break the pattern. Open the gap. Keep the trail tied to the core."
         }
       ]
     },
@@ -698,13 +582,6 @@
             "airport",
             "signage"
           ],
-          "planSpec": {
-            "domain": "airport baggage-claim signage",
-            "audience": "an operations manager coordinating travelers across languages",
-            "stakes": "missed bags and clogged walkways during a holiday rush",
-            "format": "scene",
-            "requiredBeat": "James replaces abstract directional text with a floor decal path that every passenger can point to and follow"
-          },
           "scenario": "Fluorescent arrows flicker above carousel 8 at Pearson Terminal 3 while travelers stand three deep with ski bags and stroller boxes. James, the operations manager, watches a family read Proceed to oversize collection point and turn the wrong way. He must choose before the holiday rush peaks: print clearer wording, or lay yellow floor decals to the oversized suitcase icon everyone can follow. James waits until two travelers point to the decal without asking for help.",
           "whatToDo": "Put the path on the floor. Use yellow decals, carousel cards, and the suitcase icon so travelers can point, walk, and correct themselves without translating abstract directions.",
           "whyItMatters": "The decal gives every traveler the same reference. A better sentence still forces private interpretation, especially across languages and fatigue."
@@ -717,13 +594,6 @@
             "broadband",
             "civic"
           ],
-          "planSpec": {
-            "domain": "rural broadband grant application",
-            "audience": "a county administrator explaining bandwidth to council members",
-            "stakes": "a grant vote fails if megabits stay invisible",
-            "format": "predict_reveal",
-            "requiredBeat": "Juliette asks the council to upload the same farm inspection photo on two connections and watches the slow bar teach the difference"
-          },
           "scenario": "\"Tell me when the calf photo finishes uploading,\" Juliette says in the county council chamber at 6:10 p.m., placing a tablet hotspot beside a council timer. The farm inspection image loads at once on one connection and crawls on the rural line. Council members must decide after watching the slow bar: treat megabits as budget jargon, or fund the grant that fixes this delay. The vote is scheduled for the same agenda, and Juliette keeps the timer visible until the slow bar finishes.",
           "whatToDo": "Make bandwidth visible through the upload. Use the same photo, two connections, and a timer so the council sees the gap instead of hearing a technical unit.",
           "whyItMatters": "Megabits stay abstract until delay has a face and a clock. The photo turns the grant into a shared event the council can judge together."
@@ -736,13 +606,6 @@
             "restaurant",
             "allergens"
           ],
-          "planSpec": {
-            "domain": "restaurant allergen training",
-            "audience": "a chef teaching new servers cross-contact rules",
-            "stakes": "one vague instruction can send a diner to the hospital",
-            "format": "vignette",
-            "requiredBeat": "Marco sprinkles flour on a black cutting board and lets servers see the invisible trail become visible under a flashlight"
-          },
           "scenario": "White flour dust hangs in the prep-room light like smoke during Friday server training. Marco taps it over a black cutting board while the allergen ticket waits on the rail. New servers watch the visible patch near the knife groove. Then the UV flashlight moves across the apron and cooler handle. Marco must choose whether to lecture on cross-contact or let the glowing trail teach the route. A server is still holding a clean towel, and the chef waits until she sees the mark on the cooler handle.",
           "whatToDo": "Show the trail before naming the rule. Sweep the flashlight across every touched surface, then tie the cleaning habit to the path servers just saw.",
           "whyItMatters": "Cross-contact is easy to underestimate while it stays verbal. The glowing flour gives servers a shared map of how the risk travels."
@@ -755,13 +618,6 @@
             "farming",
             "climate"
           ],
-          "planSpec": {
-            "domain": "climate adaptation workshop for farmers",
-            "audience": "an extension officer translating rainfall projections",
-            "stakes": "farmers need to choose drainage upgrades before spring planting",
-            "format": "before_after",
-            "requiredBeat": "Astrid pours measured water over two soil trays so the runoff shows what the projection means for one field edge"
-          },
           "scenario": "At 2:05 p.m., Astrid sets two soil trays on the co-op counter with a measuring jug and a runoff pan. Before the demo, the rainfall projection sounds like another chart. After she pours the same water over compacted and loosened soil, farmers watch one pan fill fast and start talking about the field edge by the lower gate. The workshop is at the county co-op before spring planting, and Astrid asks two farmers to hold the pans while the runoff gathers.",
           "whatToDo": "Translate the projection into two trays and a runoff pan. Let farmers see how the same rain behaves before asking them to choose drainage upgrades.",
           "whyItMatters": "The tray gives the number a field shape. Once runoff is visible, the upgrade is no longer an abstract climate recommendation."
@@ -774,13 +630,6 @@
             "music",
             "rhythm"
           ],
-          "planSpec": {
-            "domain": "youth orchestra rhythm rehearsal",
-            "audience": "a conductor helping beginners feel syncopation",
-            "stakes": "the piece falls apart if the pattern stays verbal",
-            "format": "dialogue",
-            "requiredBeat": "You watch Kiran move the rhythm from notation to claps, steps, and a single tennis ball passed on the offbeat"
-          },
           "scenario": "You hear twenty bows scrape the same wrong beat again in the practice room at 4:15 p.m. Kiran closes the score, sets a tennis ball on the nearest music stand, and says, Pass it only when your foot is up. The metronome clicks. He must choose whether to keep explaining syncopation from notation or move the rhythm into claps, steps, and the ball. The rehearsal is in the practice room after school, and the first violins are watching the tennis ball more closely than the score.",
           "whatToDo": "Move the rhythm into the room. Have players clap, step, and pass the tennis ball on the offbeat before they return to the page.",
           "whyItMatters": "Beginners need a shared felt pattern, not another term. The ball makes the offbeat visible enough for the section to coordinate."
@@ -793,13 +642,6 @@
             "legal aid",
             "housing"
           ],
-          "planSpec": {
-            "domain": "housing-policy explainer for tenants",
-            "audience": "a legal-aid worker explaining rent escrow rights",
-            "stakes": "tenants miss deadlines when the process stays abstract",
-            "format": "decision_point",
-            "requiredBeat": "Marta turns the process into three envelopes on the table and has the tenant place each document where it belongs"
-          },
           "scenario": "It took Marta two failed clinics to stop saying procedure out loud. Now three labeled envelopes sit beside a lease copy and repair photos. A tenant keeps asking what to file first before Friday. Marta must choose in that moment: recite rent escrow steps again, or have him place each paper into the envelope where it belongs. The clinic is in a housing co-op basement on Thursday night, and the tenant keeps the repair photos in a folder on his lap.",
           "whatToDo": "Turn the process into three envelopes. Ask the tenant to sort the lease, photos, and notice by hand, then use the envelopes as the deadline map.",
           "whyItMatters": "The tenant needs sequence he can see and repeat. Envelopes turn a legal process into a physical order that survives after the clinic ends."
@@ -818,8 +660,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The bins give staff a shared object for the categories. Breach trends may be credible, and a shorter slogan may be memorable, but neither shows what to do.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -831,8 +672,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cones turn spacing into positions players can see and occupy. Video may help later, but the immediate problem is a shared reference on the court.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -844,8 +684,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The image sticks but does not carry the working request. A concrete detail should clarify the action, not absorb attention while the need disappears.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -857,8 +696,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The printed circle gives patients a standard they can inspect. The other choices still ask each person to invent what unusual or worse means.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -870,8 +708,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The tickets make the vague word collaboration inspectable. The point is shared reference and ownership, not pressure or meeting energy.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -883,8 +720,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The model needs to serve the concept. Bigger spectacle worsens the hijack, while definitions alone remove the useful handle.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -896,8 +732,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The mockup gives residents the same street change to inspect. More terminology keeps the disagreement abstract, and the value of safety was not the real confusion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -909,8 +744,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The named chairs turn an average into a visible line of people. Font size and a satisfaction claim do not create a shared operational picture.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -922,8 +756,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The objects make the tradeoff visible while numbers can still support it. They are not a substitute for truth or a decoration; they are handles for the claim.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -960,7 +793,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Giving Abstract Messages Concrete Handles",
         "coreSkill": "You learn to replace slippery language with shared reference. The skill is choosing a concrete detail that makes the same meaning visible to everyone without letting the detail take over.",
         "ifThenPlans": [
           {
@@ -985,19 +817,13 @@
       },
       "memorableLines": [
         {
-          "text": "If the room can point to the same thing, the room can work from the same thing.",
-          "location": "breakdown.fastRead",
-          "why": "It turns concreteness into coordination rather than mere vividness."
+          "text": "If the room can point to the same thing, the room can work from the same thing."
         },
         {
-          "text": "Concrete framing gives memory more hooks, the way Velcro Theory of Memory suggests: more catches, more chances for the thought to hold.",
-          "location": "breakdown.deepRead",
-          "why": "It links the memory mechanism to a concrete image with enough length to stand as a line."
+          "text": "Concrete framing gives memory more hooks, the way Velcro Theory of Memory suggests: more catches, more chances for the thought to hold."
         },
         {
-          "text": "A concrete message is not one with more color. It is one with a handle people can use.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the precise difference between useful detail and decorative detail."
+          "text": "A concrete message is not one with more color. It is one with a handle people can use."
         }
       ]
     },
@@ -1024,13 +850,6 @@
             "market",
             "proof"
           ],
-          "planSpec": {
-            "domain": "fish-market freshness claim",
-            "audience": "a stall owner answering skeptical restaurant buyers",
-            "stakes": "buyers drop the stall if freshness sounds like sales talk",
-            "format": "scene",
-            "requiredBeat": "Rachel places the catch log, ice temperature reading, and stamped delivery tag beside the fish so buyers can judge the claim"
-          },
           "scenario": "The cod still smells like clean salt as Rachel slides it onto crushed ice before two restaurant buyers. A catch log, ice thermometer, and stamped delivery tag sit under the counter. She must choose before they ask about freshness: praise the fish again, or place the proof beside it so they can judge time, cold, and route. The buyers have a 10 a.m. menu meeting across town, and Rachel keeps the tag dry under a clear sleeve.",
           "whatToDo": "Put the catch log, thermometer, and delivery tag beside the fish. Let the buyers inspect the conditions that make the freshness claim true.",
           "whyItMatters": "Fresh is easy to say and easy to doubt. Checkable details move the claim from Rachel’s confidence to evidence the buyers can judge."
@@ -1043,13 +862,6 @@
             "rail",
             "budget"
           ],
-          "planSpec": {
-            "domain": "railway maintenance budget hearing",
-            "audience": "an engineer defending track replacement to a finance committee",
-            "stakes": "a delayed repair raises derailment risk on a commuter line",
-            "format": "postmortem",
-            "requiredBeat": "Lars translates vibration readings into the number of loose bolts found on a single platform section and shows the inspection photos"
-          },
           "scenario": "The committee room table trembles when the freight train passes outside. In the postmortem, Lars sets a vibration printout beside inspection photos and a tray of loose bolts from one platform section. The repair delay has already happened. Now he has to decide what evidence the finance committee should carry into the next budget vote. The hearing is in the transit boardroom, and a budget analyst has already closed the binder once.",
           "whatToDo": "Translate the vibration readings into bolts, photos, and one platform section. Keep the printout, but give the committee evidence they can understand without engineering training.",
           "whyItMatters": "The budget risk feels vague until it has hardware attached. Human-scale proof makes the printout easier to believe and harder to file away."
@@ -1062,13 +874,6 @@
             "product",
             "testing"
           ],
-          "planSpec": {
-            "domain": "consumer sunscreen testing",
-            "audience": "a product manager deciding whether a claim can go on packaging",
-            "stakes": "a bold claim could mislead families and trigger regulator scrutiny",
-            "format": "decision_point",
-            "requiredBeat": "\"Can a parent test this?\" Chiara asks, then rejects the claim until the lab result and use condition fit on the package"
-          },
           "scenario": "\"Can a parent test this?\" Chiara asks with the label proof in her hand. The lab result sheet supports the sunscreen claim only under a water-resistance condition printed in tiny type. Legal wants speed, marketing wants bold type, and she must choose before approval: let the claim stand, or reject it until the use condition fits on the package. The packaging review is in a glass conference room, with summer display mockups spread across the table.",
           "whatToDo": "Reject the claim until the test result and condition travel together. Put the water-resistance limit where a parent can see it before trusting the promise.",
           "whyItMatters": "A lab result hidden from the user does not make a public claim trustworthy. Credibility depends on proof reaching the moment of judgment."
@@ -1081,13 +886,6 @@
             "sports",
             "witness"
           ],
-          "planSpec": {
-            "domain": "youth-sports concussion policy",
-            "audience": "a league director persuading coaches to follow removal rules",
-            "stakes": "a player could return too soon if the evidence feels bureaucratic",
-            "format": "vignette",
-            "requiredBeat": "David brings a parent witness and the sideline checklist instead of a lecture from league headquarters"
-          },
           "scenario": "At 6:30 p.m., David clips the folded sideline checklist to a goalpost while coaches peel helmet stickers from a sheet. A parent stands beside him, ready to describe the ride home after a player looked fine. David must choose how to open the policy talk: headquarters rules first, or the witness and checklist that make removal real. Practice starts on the north field in fifteen minutes, and the coaches are still joking near the sideline cones.",
           "whatToDo": "Start with the parent witness and the sideline checklist. Let lived cost and a checkable procedure carry the policy before league authority enters.",
           "whyItMatters": "Coaches can dismiss bureaucracy. A parent’s account plus the exact checklist makes the risk harder to treat as paperwork."
@@ -1100,13 +898,6 @@
             "home energy",
             "test"
           ],
-          "planSpec": {
-            "domain": "home energy retrofit estimate",
-            "audience": "an auditor convincing a homeowner that attic sealing matters",
-            "stakes": "the homeowner will spend money only if the leak is believable",
-            "format": "predict_reveal",
-            "requiredBeat": "You watch Chidi ask the homeowner to predict the leak, then run a smoke pencil near the attic hatch until the draft appears"
-          },
           "scenario": "You feel the hallway cool down at 2:30 p.m. in a brick semi-detached house when the attic hatch opens. Chidi holds an infrared photo and a smoke pencil while the homeowner studies the retrofit estimate. He asks where she thinks the leak is, then must choose: point to the utility bill again, or run the smoke near the hatch until the draft bends into view. The estimate folder is open on the hall table, and the homeowner has a pen in her hand but has not signed.",
           "whatToDo": "Ask for the prediction, then run the smoke pencil at the hatch. Use the infrared photo as support after the homeowner sees the draft move.",
           "whyItMatters": "The homeowner is buying a fix for an invisible leak. A small test makes the claim observable before the estimate asks for trust."
@@ -1119,13 +910,6 @@
             "library",
             "scale"
           ],
-          "planSpec": {
-            "domain": "public-library program report",
-            "audience": "a librarian defending a teen program to trustees",
-            "stakes": "the program loses evening staff if impact sounds soft",
-            "format": "before_after",
-            "requiredBeat": "Anke pairs attendance numbers with one checkable tutoring schedule and a student work sample so trustees can inspect impact at human scale"
-          },
           "scenario": "It took Anke one budget cycle to stop saying engagement. Before, trustees saw attendance tallies and soft language. After, she brings the same tally, a tutoring schedule, and a marked essay draft from one student who returned three Thursdays in a row. The evening-staff line now has evidence trustees can inspect at human scale. The trustees are meeting in the library boardroom, and the evening staffing line is highlighted in yellow.",
           "whatToDo": "Pair the count with a schedule and work sample. Let trustees see one student’s repeat visits and revision trail beside the attendance number.",
           "whyItMatters": "The number needs a human-scale trail. The essay draft keeps the report from becoming sentiment while making impact easier to judge."
@@ -1144,8 +928,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The batch log lets the buyer inspect the claim. Aroma and a quote may sound appealing, but neither gives checkable proof of longer fermentation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1157,8 +940,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The local vial with its threshold is proof residents can connect to their own street. Authority may support it, but the checkable evidence should carry the message.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1170,8 +952,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The calendar blocks and logs make the time savings inspectable. A headline or investor quote may create interest, but neither proves the claim.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1183,8 +964,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The school-district map gives the number a scale residents can feel. Repetition leaves it abstract, and a dramatic image may stir fear without clarifying size.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1196,8 +976,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Her credibility comes from consequence she has lived, not popularity. Medical evidence can still matter, but lived cost reaches a different kind of doubt.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1209,8 +988,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The image gives vivid detail, but donors need scale they can judge. A celebrity quote or stronger image would not answer the spread question.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1222,8 +1000,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The screenshot plus account logs connects the claim to observable loss. Confidence and a longer memo keep belief dependent on the manager’s assertion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1235,8 +1012,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A witness can help, but credibility needs fit between claim and support. Without route data, the story may move people while leaving the decision underproved.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1248,8 +1024,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The parts and service records make durability inspectable. Longevity and premium wording may support trust, but they do not let the customer judge the claim directly.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1286,7 +1061,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Moving Belief to Inspectable Evidence",
         "coreSkill": "You learn to move belief away from your confidence and toward evidence the audience can judge. The skill is matching the claim with the right proof, witness, test, detail, or scale.",
         "ifThenPlans": [
           {
@@ -1311,19 +1085,13 @@
       },
       "memorableLines": [
         {
-          "text": "Belief gets easier when the audience has something to inspect.",
-          "location": "breakdown.fastRead",
-          "why": "It captures credibility as a shift from assertion to inspection."
+          "text": "Belief gets easier when the audience has something to inspect."
         },
         {
-          "text": "Rachel does not need the buyers to like her. She needs the evidence to stay visible after she stops talking.",
-          "location": "breakdown.deepRead",
-          "why": "It shows credibility shifting from personal trust to inspectable evidence."
+          "text": "Rachel does not need the buyers to like her. She needs the evidence to stay visible after she stops talking."
         },
         {
-          "text": "Confidence asks the audience to trust you. Credibility lets them see why they can.",
-          "location": "breakdown.fullRead",
-          "why": "It closes with a clean contrast between sounding sure and earning belief."
+          "text": "Confidence asks the audience to trust you. Credibility lets them see why they can."
         }
       ]
     },
@@ -1350,13 +1118,6 @@
             "factory",
             "hearing"
           ],
-          "planSpec": {
-            "domain": "factory hearing-protection campaign",
-            "audience": "a safety lead addressing machinists who ignore decibel charts",
-            "stakes": "workers risk permanent hearing loss while seeing earplugs as nuisance gear",
-            "format": "scene",
-            "requiredBeat": "Grace plays a recording of one retired machinists muffled grandchild conversation, then ties protection to keeping family voices clear"
-          },
           "scenario": "The recording sounds like it is playing through a wall. Grace sets an audio recorder beside the earplug dispenser and a decibel card while machinists wipe oil from their hands. A retired machinist’s grandchild asks a question and the words blur. Grace must choose now: point again at the chart, or connect protection to keeping family voices clear. A foreman stands by the time clock, arms folded, and Grace waits until the room stops laughing at the dispenser.",
           "whatToDo": "Play the recording, let the loss of the voice land, then point to the earplugs as protection for a relationship people want to keep hearing.",
           "whyItMatters": "The decibel card gives information, but the muffled voice gives the information a human stake. Care attaches to someone, not to a unit."
@@ -1369,13 +1130,6 @@
             "hospital",
             "donors"
           ],
-          "planSpec": {
-            "domain": "regional blood-donor recruitment",
-            "audience": "a hospital volunteer coordinator writing a campaign for first-time donors",
-            "stakes": "summer shortages cancel planned surgeries",
-            "format": "vignette",
-            "requiredBeat": "Hugo replaces regional shortage totals with one surgery slot held open for a named patient status board entry without inventing private details"
-          },
           "scenario": "At 7:20 a.m., Hugo reads the blank donor column beside Tuesday surgery prep. Donor appointment cards sit near cooler labels, and the regional shortage total is still on his draft. He must decide before the campaign goes out: lead with the big number, or show one surgery slot held open on the status board without inventing private details. The campaign draft is due before lunch, and the operating-room coordinator is waiting for final wording.",
           "whatToDo": "Lead with the held surgery slot, then use the shortage total to explain why that slot is at risk. Keep the patient detail true and limited.",
           "whyItMatters": "One visible slot lets first-time donors feel the consequence. The number still matters, but it supports a stake people can picture."
@@ -1388,13 +1142,6 @@
             "apprentice",
             "identity"
           ],
-          "planSpec": {
-            "domain": "apprentice electrician retention talk",
-            "audience": "a training director trying to keep first-year apprentices from quitting",
-            "stakes": "the region loses skilled workers if the program feels like hazing",
-            "format": "dialogue",
-            "requiredBeat": "\"This is not about toughness,\" Kasia says, then reframes the program as becoming the person trusted near live wires"
-          },
           "scenario": "\"This is not about toughness,\" Kasia says at 7:45 p.m. in the electrical training bay while the practice panel hums. Rubber gloves hang beside the signed logbook, and two first-year apprentices are ready to quit. One calls the program hazing. Kasia must choose her reply: defend the grind, or reframe the work as becoming the person trusted near live wires. The apprentices are still wearing their work boots, and one has a resignation text half typed on his phone.",
           "whatToDo": "Name the identity worth earning. Connect the hard practice to being trusted around live current, then use the logbook and gloves as proof of that standard.",
           "whyItMatters": "The apprentices can reject toughness theater. They are more likely to care about a role that carries trust, skill, and adult responsibility."
@@ -1407,13 +1154,6 @@
             "civic",
             "heat"
           ],
-          "planSpec": {
-            "domain": "urban tree-canopy vote",
-            "audience": "a neighborhood organizer persuading renters and homeowners together",
-            "stakes": "heat risk stays abstract until tied to one bus stop people use",
-            "format": "before_after",
-            "requiredBeat": "You watch Ryan move from citywide canopy percentages to the noon temperature at the uncovered bus stop where parents wait with strollers"
-          },
           "scenario": "You can feel the heat coming off the bus shelter bench through your jeans. Before the meeting, Ryan’s shade map used citywide canopy percentages and nobody stayed with it. After noon, he brings an infrared thermometer reading from the uncovered stop where parents wait with strollers, and the vote turns toward that bench. The council vote is that evening, and the shade map is clipped to Ryan's board beside the thermometer reading.",
           "whatToDo": "Move from canopy percentages to the bus stop people use. Show the noon temperature and then return to the shade map as the repair plan.",
           "whyItMatters": "The percentage becomes care only after it touches a routine people recognize. The hot bench gives renters and homeowners the same human stake."
@@ -1426,13 +1166,6 @@
             "university",
             "aid"
           ],
-          "planSpec": {
-            "domain": "university financial-aid appeal",
-            "audience": "an advisor helping students see why paperwork matters",
-            "stakes": "missed forms can cost a semester, but reminders feel bureaucratic",
-            "format": "decision_point",
-            "requiredBeat": "Layla connects the form to keeping a students lab coat and campus job, not to compliance language"
-          },
           "scenario": "It took Layla four unopened reminder emails to see the word deadline was the wrong stake. The aid portal screenshot is open beside a campus job schedule and a lab coat on the chair. A student is about to leave without uploading the last form. Layla must choose: repeat compliance language, or connect the upload to keeping the coat and job next term. Her campus job starts in twenty minutes, and the lab coat sleeve is stained from that morning’s chemistry section.",
           "whatToDo": "Tie the form to the semester the student can picture. Show the lab coat and job schedule first, then walk through the portal step.",
           "whyItMatters": "The form feels bureaucratic until it protects something the student already values. The stake turns paperwork into continuity."
@@ -1445,13 +1178,6 @@
             "rescue",
             "identity"
           ],
-          "planSpec": {
-            "domain": "search-and-rescue volunteer onboarding",
-            "audience": "a team lead explaining radio discipline to new volunteers",
-            "stakes": "a casual missed call can delay a real rescue",
-            "format": "reflection",
-            "requiredBeat": "Luca frames radio checks as belonging to the kind of team that brings someone home, then shows the empty map square that depends on one clear reply"
-          },
           "scenario": "Fog presses against the windows of the volunteer hall before dawn. Luca lays an orange vest, a radio handset, and a grid map on the table. The empty square in the northeast corner depends on one clear reply. He is thinking through how to explain radio discipline: as a rule, or as belonging to the kind of team that brings someone home. A new volunteer keeps spinning the radio dial, and Luca waits until the static clears before pointing to the square.",
           "whatToDo": "Frame the radio check as part of team identity. Point to the empty map square and make one clear reply the behavior that protects the search.",
           "whyItMatters": "Volunteers can resent procedure. They are more likely to care when the procedure marks the kind of team they came to join."
@@ -1470,8 +1196,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The school walkway gives the abstract gap a human routine. The larger chart may inform, but it does not create care by itself.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1483,8 +1208,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The lab kit makes the stake immediate without inventing a sob story. The broader lines sound worthy but leave readers at a distance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1496,8 +1220,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The line uses identity to hide errors. A better appeal would define professionalism as catching and reporting risks before they hurt someone.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1509,8 +1232,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Human stakes and numbers do different jobs. The stake opens concern; the numbers protect truth and scale. Dropping either weakens the message.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1522,8 +1244,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The safer-home line ties the behavior to the unit’s dignified role. The careless line shames, and the counting-on-you line is vague pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1535,8 +1256,7 @@
             ],
             "correctIndex": 1,
             "explanation": "One person should focus true stakes, not distort them. If the case misleads about scale or target, the emotional force becomes manipulation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1548,8 +1268,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The kitchen-table stake turns paperwork into a near personal consequence. Importance language is flat, and insult creates resistance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1561,8 +1280,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The stitch line invites visitors into the role of steward. Age and cost may support the case, but they do not create the same identity stake.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1574,8 +1292,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The first customer gives the routine a human stake and dignified service purpose. Respect language and bold type leave the behavior bureaucratic.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1612,7 +1329,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Anchoring Significance to a Human Stake",
         "coreSkill": "You learn to make significance felt without manipulating the audience. The skill is finding the true person, identity, dignity, or meaningful cost that the abstract message is protecting.",
         "ifThenPlans": [
           {
@@ -1637,19 +1353,13 @@
       },
       "memorableLines": [
         {
-          "text": "Care begins when the consequence has a human place to land.",
-          "location": "breakdown.fastRead",
-          "why": "It states the emotional mechanism in concrete, memorable terms."
+          "text": "Care begins when the consequence has a human place to land."
         },
         {
-          "text": "Once the person vanishes, the mind can solve the problem instead of caring about it.",
-          "location": "breakdown.deepRead",
-          "why": "It captures how analysis can drain concern when the human stake disappears."
+          "text": "Once the person vanishes, the mind can solve the problem instead of caring about it."
         },
         {
-          "text": "Feeling is strongest when it carries truth at human size.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the balance between emotion and honesty."
+          "text": "Feeling is strongest when it carries truth at human size."
         }
       ]
     },
@@ -1676,13 +1386,6 @@
             "rescue",
             "challenge"
           ],
-          "planSpec": {
-            "domain": "mountain-rescue avalanche briefing",
-            "audience": "a rescue trainer teaching new volunteers probe-line spacing",
-            "stakes": "a search pattern fails if the rule stays a number",
-            "format": "scene",
-            "requiredBeat": "Emily tells the story of one search where a skipped arm length changed the outcome, with the spacing lesson embedded in the sequence of moves"
-          },
           "scenario": "Snow squeaks under the probe tips at 8:05 a.m. in the mountain-rescue training field as Emily plants orange flags beside an avalanche beacon. New volunteers expect the spacing rule as a number. She must choose before the drill starts: recite arm lengths again, or tell one search where a skipped arm length changed the outcome and let the sequence teach the spacing. A cold wind lifts snow across the flags, and Emily waits until the volunteers can see the gap between two probe lines.",
           "whatToDo": "Tell the search as a sequence: flags, probe line, missed gap, delayed find. Let the volunteers recover the spacing rule from what happened.",
           "whyItMatters": "The number is easy to forget under stress. A challenge story gives the rule a path volunteers can replay in the snow."
@@ -1695,13 +1398,6 @@
             "bakery",
             "challenge"
           ],
-          "planSpec": {
-            "domain": "bakery sourdough apprenticeship",
-            "audience": "a head baker teaching patience to new apprentices",
-            "stakes": "rushed fermentation ruins a weekend batch",
-            "format": "before_after",
-            "requiredBeat": "Nicolas builds the patience rule into the story of two loaves, one cut by the clock and one cut by the doughs signs"
-          },
           "scenario": "At 3:18 a.m., Nicolas taps two proofing baskets dusted with rice flour. Before, apprentices cut dough when the schedule said move. After he shows the oven spring photo, he tells the story of two loaves: one cut by the clock, one by the dough’s signs. The patience rule now lives inside the contrast. A rack of cooled loaves waits behind him, and one apprentice has the weekend bake sheet folded in his apron.",
           "whatToDo": "Use the two-loaf story instead of a clock lecture. Show the proofing baskets, bench knife, and oven spring photo as the sequence unfolds.",
           "whyItMatters": "Apprentices need a cue they can recognize later. The story ties patience to visible signs and a consequence, not to obedience."
@@ -1714,13 +1410,6 @@
             "nursing",
             "connection"
           ],
-          "planSpec": {
-            "domain": "neonatal ward handoff training",
-            "audience": "a nurse educator teaching calm escalation to new staff",
-            "stakes": "tiny changes get missed if the protocol is just recited",
-            "format": "dialogue",
-            "requiredBeat": "\"Listen to what her mother noticed first,\" Frida says, then tells a handoff story where family observation and nurse action fit together"
-          },
           "scenario": "\"Listen to what her mother noticed first,\" Frida says beside the isolette. The handoff sheet rests near the monitor, and a knitted cap lies by the chart. New staff expect the escalation protocol. Frida must choose in the training room: read the steps, or tell a handoff story where family observation and nurse action fit together. The night shift is gathering at the doorway, and the monitor tone is low enough that everyone leans closer.",
           "whatToDo": "Tell the handoff as a connection sequence. Put the mother’s observation, the nurse’s pause, and the escalation step in order before naming the protocol.",
           "whyItMatters": "The story teaches when to slow down and who to listen to. A protocol list alone cannot carry that judgment into a busy shift."
@@ -1733,13 +1422,6 @@
             "repair",
             "diagnosis"
           ],
-          "planSpec": {
-            "domain": "bike-share repair shop training",
-            "audience": "a mechanic teaching apprentices to diagnose recurring brake failures",
-            "stakes": "bad repairs return to the street as safety risks",
-            "format": "postmortem",
-            "requiredBeat": "Ben reconstructs one returned bike from first squeak to final test ride so the diagnostic rule is recoverable from the sequence"
-          },
           "scenario": "Rain ticks on the repair-bay skylight while one orange bike hangs from the stand. Ben clips the work order tag to the brake cable and opens the test-ride loop map. The failed repair is already back from the street. He reconstructs it from first squeak to final ride so the diagnostic rule can be recovered from the mistake. Two apprentices stand with wrenches in hand, and the rain has kept three more damaged bikes lined against the wall.",
           "whatToDo": "Walk apprentices through the returned bike in order: symptom, rushed adjustment, skipped check, failed ride. Let the diagnostic rule emerge from the path.",
           "whyItMatters": "The postmortem carries the action cue because apprentices see where the repair went wrong and where to interrupt the pattern next time."
@@ -1752,13 +1434,6 @@
             "organizing",
             "connection"
           ],
-          "planSpec": {
-            "domain": "tenant-organizing meeting",
-            "audience": "an organizer teaching new volunteers how trust builds",
-            "stakes": "volunteers lose tenants if they lead with demands before listening",
-            "format": "reflection",
-            "requiredBeat": "Tomas chooses a connection plot where a quiet hallway conversation changes the order of action, and the lesson is never stated as a moral at the end"
-          },
           "scenario": "It took Tomas one failed door-knocking night to notice who the tenants already trusted. A clipboard route sheet lies beside folding chairs, and the hallway bulletin board has more authority than his speech. He chooses a quiet hallway conversation where listening changes the order of action, and he leaves the lesson unstated at the end. New volunteers sit in a half circle, and Tomas keeps the route sheet face down until the hallway story has landed.",
           "whatToDo": "Use the hallway story. Let volunteers hear how trust changed the next step, then stop before adding a moral that the sequence already taught.",
           "whyItMatters": "A connection plot can carry listening better than a demand for empathy. Retelling preserves the changed order of action."
@@ -1771,13 +1446,6 @@
             "design",
             "creativity"
           ],
-          "planSpec": {
-            "domain": "industrial-design lab constraint exercise",
-            "audience": "a professor teaching creativity under material limits",
-            "stakes": "students treat constraints as unfair unless the plot shows breakthrough through limits",
-            "format": "thought_experiment",
-            "requiredBeat": "You watch Adaeze tell a redesign story where the missing material forces the student to invent a better hinge, embedding the creativity lesson in the turn"
-          },
           "scenario": "You can hear the prototype hinge click wrong from across the lab. Adaeze holds a foam-core model, a brass hinge, and a material-ration card. Students think the missing sheet stock is unfair. She must choose: explain constraints again, or tell the redesign story where the missing material forced a better hinge into existence. The studio crit starts in ten minutes, and three students are already blaming the ration card for bad ideas.",
           "whatToDo": "Tell the constraint as the turning point. Make the missing material cause the better hinge, so the creativity lesson lives in the redesign sequence.",
           "whyItMatters": "Students remember the breakthrough because the constraint creates it. The story carries the cue to use limits instead of resenting them."
@@ -1796,8 +1464,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The call sequence embeds the rule in action and consequence. A pasted anecdote may entertain, and a diagram may inform, but neither carries the cue as well.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1809,8 +1476,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The resilience lesson needs to live in the action, not the label. Bigger drama would make the wrong part even easier to retell.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1822,8 +1488,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The key engine is invention through constraint. Challenge may be present, but the lesson turns on the creative use of the failed condition.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1835,8 +1500,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The story moved people without carrying a usable next action. Volunteers need the sequence to show what to notice, say, or do.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1848,8 +1512,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The lesson centers on trust and relationship, so a connection plot fits. The other plots may be useful elsewhere, but they point to different engines.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1861,8 +1524,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The carrier is drifting. The story survives, but the action cue has changed, so the story now teaches the wrong behavior.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1874,8 +1536,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The game sequence embeds the defensive cue in consequence. The quote and memory may be memorable, but they do not teach the move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1887,8 +1548,7 @@
             ],
             "correctIndex": 0,
             "explanation": "If the sequence already teaches the move, the moral weakens ownership. Stronger lecturing repeats the problem, and policy alone loses the carrier.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1900,8 +1560,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Rapport is a connection lesson, so the trust story fits the target skill. Memorable struggle or creativity would aim the trainee at the wrong cue.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1938,7 +1597,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Choosing the Right Story Plot Engine",
         "coreSkill": "You learn to turn a rule into a sequence people can retell. The skill is choosing the right plot engine and putting the lesson inside the choice, turn, and consequence.",
         "ifThenPlans": [
           {
@@ -1963,19 +1621,13 @@
       },
       "memorableLines": [
         {
-          "text": "A story works when the lesson can survive without a caption.",
-          "location": "breakdown.fastRead",
-          "why": "It defines embedded narrative without turning into a generic praise of story."
+          "text": "A story works when the lesson can survive without a caption."
         },
         {
-          "text": "The challenge, connection, and creativity plots give story power three different engines instead of one vague praise of narrative.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps story selection specific by tying each plot shape to a different engine."
+          "text": "The challenge, connection, and creativity plots give story power three different engines instead of one vague praise of narrative."
         },
         {
-          "text": "Volunteers remember the move because they remember what happened when the move was missed.",
-          "location": "breakdown.fastRead",
-          "why": "It shows why a sequence carries a practical cue better than a detached rule."
+          "text": "Volunteers remember the move because they remember what happened when the move was missed."
         }
       ]
     }

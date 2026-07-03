@@ -44,13 +44,6 @@
             "family",
             "diagnosis"
           ],
-          "planSpec": {
-            "domain": "memory-care wayfinding on an assisted-living hallway",
-            "audience": "an adult child who thinks a parent is wandering at random",
-            "stakes": "whether the family responds with correction and alarm or sees a preserved procedural route that can be supported",
-            "format": "scene",
-            "requiredBeat": "The daughter stops repeating directions, watches her father touch the brass sailboat plaque, turn left, and settle on the aquarium bench, then writes plaque cue, hallway walk routine, and relief payoff on the care-team clipboard."
-          },
           "scenario": "A brass sailboat plaque hangs beside a locked garden door in the hallway outside Room 214. Rina has a laminated floor map folded in her hand while her father Harlan taps the plaque, turns left without reading the sign, and walks to the aquarium bench. She is about to repeat the directions again. Instead she watches him settle, then writes on the care-team clipboard: plaque cue, hallway walk routine, relief payoff.",
           "whatToDo": "Stop giving directions for one pass. Watch the preserved route from plaque to bench, then write the cue, routine, and reward on the clipboard before asking the care team for changes.",
           "whyItMatters": "The route is not random just because Harlan cannot explain it. Seeing the procedural path lets the family support a working cue instead of treating every walk as defiance or danger."
@@ -63,13 +56,6 @@
             "postmortem",
             "safety"
           ],
-          "planSpec": {
-            "domain": "airport baggage-screening false alarms during a holiday rush",
-            "audience": "a screening supervisor reviewing why a reliable screener keeps clearing the same alert too fast",
-            "stakes": "a backed-up checkpoint and the risk that speed starts substituting for inspection",
-            "format": "postmortem",
-            "requiredBeat": "The supervisor freezes the replay on the orange density box, sees the screener tap the same clear button after every cookie tin, and separates screen glow cue, button tap routine, and line-moving relief reward."
-          },
           "scenario": "A row of holiday cookie tins waits beside an X-ray monitor at 5:40 a.m., with the snaking checkpoint belt already full. Gael, the screening supervisor, replays yesterday's rush after three false alarms were cleared too fast. He freezes the video on an orange density box, then sees Lotte tap the clear button after every tin. On the incident sheet he separates screen glow cue, button tap routine, and line-moving relief reward.",
           "whatToDo": "Review the replay as a loop, not as a lecture about vigilance. Mark the screen glow, the clear-button tap, and the relief of a moving belt before retraining the checkpoint rule.",
           "whyItMatters": "Speed became rewarding because the belt pressure dropped each time the screen cleared. If Gael names only carelessness, he misses the payoff that made fast clearing feel correct."
@@ -82,13 +68,6 @@
             "dialogue",
             "cueing"
           ],
-          "planSpec": {
-            "domain": "community theater blackout cues before opening night",
-            "audience": "a volunteer stage manager whose assistant keeps hitting the wrong light slider",
-            "stakes": "one missed cue could leave an actor crossing in darkness during the final dress rehearsal",
-            "format": "dialogue",
-            "requiredBeat": "Instead of saying pay attention, the stage manager watches the assistant hear a headset click, reach for the house-light slider, and exhale when the booth quiets, then names the click, reach, and quiet in three short lines."
-          },
           "scenario": "A headset cord twists around the edge of a lighting console at 9:12 p.m. Ishani, the volunteer stage manager, points to the taped cue sheet. \"Don't hit it yet.\" A headset click snaps in Bao's ear, and his hand moves to the house-light slider. \"There,\" Ishani says. \"Click.\" Bao exhales when the booth quiets. \"Reach,\" she says, tapping his hand. \"Quiet.\" Bao must choose between blaming his focus and marking the sequence.",
           "whatToDo": "Name the three pieces out loud: headset click, reach for the house-light slider, quiet booth. Then rehearse the right cue line after the old sequence is visible.",
           "whyItMatters": "Telling Bao to focus attacks his intention, not the automatic chain. The wrong reach keeps winning because the click predicts relief, and relief has been training the hand."
@@ -101,13 +80,6 @@
             "predict reveal",
             "queue"
           ],
-          "planSpec": {
-            "domain": "pharmacy pickup counter repeating insurance overrides",
-            "audience": "a lead pharmacist trying to understand why a technician keeps bypassing a warning screen",
-            "stakes": "customers are waiting, but one automatic override could hide a real coverage or safety problem",
-            "format": "predict_reveal",
-            "requiredBeat": "The pharmacist predicts the override will happen when the red queue number blinks; the rejection tone sounds, the technician taps F8 without looking, and the pharmacist marks tone cue, F8 routine, and cleared-screen reward."
-          },
           "scenario": "A red queue number blinks above a stack of prescription bags at the pickup counter. Sanne, the lead pharmacist, tells herself the override will happen when the number flashes again. The rejection tone sounds. Noor taps the F8 key without looking, and the warning screen clears while the line exhales. Sanne faces a choice: call it carelessness, or mark rejection tone cue, F8 routine, cleared-screen reward.",
           "whatToDo": "Use the prediction as evidence. Write down the rejection tone, the F8 tap, and the cleared screen before coaching Noor on which warnings must be read aloud.",
           "whyItMatters": "The automatic override is tied to a tiny burst of order at the counter. Once Sanne can predict the tap, she has a loop to retrain, not just an employee to scold."
@@ -120,13 +92,6 @@
             "weather",
             "safety"
           ],
-          "planSpec": {
-            "domain": "marina dockhand tying boats before a storm front",
-            "audience": "a dockmaster who keeps finding the same weak knot on transient slips",
-            "stakes": "a loose line could send a rented boat into the seawall when the wind shifts",
-            "format": "decision_point",
-            "requiredBeat": "The dockmaster starts to scold, then notices the wind chime clatter, the dockhand throw the same half-hitch, and the relief of an empty cleat row, so he diagnoses the sequence before correcting the knot."
-          },
           "scenario": "A green bow line slaps against a wet cleat at 6:20 p.m. as the storm front darkens the marina. Solene, the dockmaster, finds the same weak half-hitch on three transient slips and starts down the dock to scold Niko. Then the wind chime clatter hits, Niko throws the half-hitch, and his shoulders drop at the sight of an empty cleat row. Solene needs to decide: correct the knot first, or diagnose the sequence that made it feel finished.",
           "whatToDo": "Secure the boats, then write the loop: wind chime clatter, quick half-hitch, empty cleat row. Correct the knot after the cue and payoff are visible.",
           "whyItMatters": "The weak knot is being rewarded by visual completion under weather pressure. Scolding may stop one line, but the same clatter will call back the same shortcut tomorrow."
@@ -139,13 +104,6 @@
             "cleanup",
             "studio"
           ],
-          "planSpec": {
-            "domain": "ceramics studio cleanup after a kiln-loading class",
-            "audience": "a studio instructor whose students keep contaminating one glaze bucket",
-            "stakes": "one automatic cleanup pass can ruin a week's worth of student pieces",
-            "format": "before_after",
-            "requiredBeat": "Before changing the shelf labels, the instructor watches the kiln fan stop, a student drop the sponge into the cobalt bucket, wipe the table, and smile at the cleared space, making fan, sponge drop, and clear table the first diagnosis."
-          },
           "scenario": "A damp sponge rests on the rim of a cobalt glaze bucket after kiln-loading class. Before Anouk changes the shelf labels, she stands by the kiln fan and watches final cleanup. When the fan stops, student Keiko drops the sponge into the cobalt glaze bucket, wipes the table, and smiles at the cleared worktable. After class, Anouk checks the specked test tiles and writes the first diagnosis in her log: fan cue, sponge drop routine, clear table reward.",
           "whatToDo": "Delay the label fix long enough to watch one cleanup cycle. Mark kiln fan, sponge drop, and cleared worktable before deciding what to move or relabel.",
           "whyItMatters": "The contamination starts as a cleanup loop, not as ignorance about glaze. If Anouk skips diagnosis, new labels may leave the same fan-stop cue and clear-table payoff untouched."
@@ -164,8 +122,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The aide has observed a full order: sound, walk, calm. That fits diagnosis. Firmer reminders skip the sequence, and moving the chair guesses at a fix before checking what payoff the resident is getting.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -177,8 +134,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The yellow flash, click, and clean queue show cue, routine, and reward. A policy may be needed later, but it does not explain why five seconds feels right. Disabling the alert removes evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -190,8 +146,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The open hallway is a plausible reward, so the parent should capture that before installing a fix. Punishment targets the child, and a bigger hook assumes the problem is storage rather than payoff.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -203,8 +158,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The relief after seeing no red line explains why refresh wins before standup. Starting without them may enforce time but leaves the loop hidden. Deleting a bookmark ignores the cue that can find another path.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -216,8 +170,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A full drawer does not erase the possible reward. Relief can be the payoff even when no supplies are added. The other choices stay close to observed cue and reward instead of moralizing the nurse.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -229,8 +182,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The manager needs the cue, routine, and reward before deciding whether the folder is harmful. A ban or promise may miss the end-of-day pressure that makes a cleared screen feel necessary.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -242,8 +194,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The observed inhale, entrance, and changed facial pressure make a loop plausible. Moving the tenor turns diagnosis into labeling, while blaming the pianist ignores the routine the tenor has practiced.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -255,8 +206,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second scan may be a safety-relief routine called by the horn. Public tracking adds pressure without understanding the payoff, and moving him dodges the loop instead of learning from it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -268,8 +218,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The note names the sequence without overreading it. Deleting the app may be useful later, but it skips what certainty is doing. Calling it discipline failure replaces evidence with blame.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -330,19 +279,13 @@
       },
       "memorableLines": [
         {
-          "text": "A visible loop is a map, not a verdict.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps diagnosis separate from blame, which is the core mental move."
+          "text": "A visible loop is a map, not a verdict."
         },
         {
-          "text": "The reward is the change that teaches the loop to come back.",
-          "location": "breakdown.deepRead",
-          "why": "It makes reward practical by tying it to repetition, not pleasure."
+          "text": "The reward is the change that teaches the loop to come back."
         },
         {
-          "text": "The first responsible act is not replacement. It is diagnosis.",
-          "location": "breakdown.fullRead",
-          "why": "It resists the rush to fix and gives the reader a first action."
+          "text": "The first responsible act is not replacement. It is diagnosis."
         }
       ]
     },
@@ -369,13 +312,6 @@
             "before after",
             "housing"
           ],
-          "planSpec": {
-            "domain": "apartment-building compost pilot in a high-rise with contamination fines",
-            "audience": "a resident-council organizer whose reminder signs have failed",
-            "stakes": "the building will lose its compost service if residents keep dropping food scraps into the wrong chute",
-            "format": "before_after",
-            "requiredBeat": "Contrast the ignored rules poster with the new chute-room board showing a clean bin and rent-credit tally; the resident sees the tally, smiles before opening the caddy, and the cue now promises the clean-room reward before the sorting starts."
-          },
           "scenario": "A banana peel hovers over a green countertop caddy in Unit 18F. For three weeks, Tova's rules poster by the chute room has been ignored. After the second contamination fine, she swaps it for a chute-room board with a photo of a clean bin and a rent-credit tally. At 7:05 p.m., resident Farid sees the tally, smiles before opening the caddy, and starts sorting because the clean-room reward has arrived before the peel moves.",
           "whatToDo": "Replace the rule reminder with a cue that previews the payoff: clean bin photo, rent-credit tally, and the next visible step beside the chute.",
           "whyItMatters": "The old poster asked residents to spend effort for an abstract civic good. The new board makes the expected payoff near, visible, and tied to the exact moment sorting begins."
@@ -388,13 +324,6 @@
             "practice",
             "music"
           ],
-          "planSpec": {
-            "domain": "youth orchestra scale practice with a private recording reward",
-            "audience": "a violin teacher whose eleven-year-old student only practices songs, never scales",
-            "stakes": "the student will keep missing auditions if the dull preparation never feels connected to the sound she wants",
-            "format": "scene",
-            "requiredBeat": "The teacher tapes a QR sticker inside the violin case that plays last week's clean four bars; when the student opens the case and hears the sound, she reaches for the bow before being reminded because the cue has made the reward arrive early."
-          },
           "scenario": "Rosin dust freckles the velvet inside Liora's violin case at Tuesday lesson. Maris, her teacher, is about to say \"scales first\" again, then stops. She tapes a QR sticker near the bow grip. Liora scans it and hears last week's four clean bars bloom from the phone speaker. Before Maris can remind her, Liora reaches for the bow and sets her fingers on the G scale.",
           "whatToDo": "Put the QR sticker where the case itself becomes the cue, and let the clean sound play before the scale starts. Keep the reward private and tied to the audition sound she wants.",
           "whyItMatters": "The dull routine now points to a sound Liora can want in advance. The cue carries the reward early, so practice begins as pursuit instead of compliance."
@@ -407,13 +336,6 @@
             "predict reveal",
             "warm-up"
           ],
-          "planSpec": {
-            "domain": "climbing gym warm-up wall before first lead route",
-            "audience": "a climbing coach trying to make beginners warm up without nagging",
-            "stakes": "cold shoulders and skipped warm-ups are producing preventable injuries on busy evenings",
-            "format": "predict_reveal",
-            "requiredBeat": "The coach asks whether a reminder sign will change anything, then adds a small bell climbers can ring only after the warm-up circuit; by Friday they touch the easy rungs while looking at the bell because the cue now carries the expected send-day payoff."
-          },
           "scenario": "A chalked hand pauses under the easiest rung on the warm-up wall while the lead ropes fill up at 6:30 p.m. Orla must choose between another reminder sign and a cue with pull. She asks her assistant, \"Will another sign change anything?\" Then she mounts a small brass bell that climbers can ring only after the warm-up circuit. By Friday, beginners touch the easy rungs while glancing at the bell, already tasting the send-day payoff before the first route.",
           "whatToDo": "Make the warm-up cue preview the climbing reward. Put the bell at the end of the circuit and tie ringing it to feeling ready for the first lead, not to generic praise.",
           "whyItMatters": "The bell pulls because it belongs to the route they want. A safety sign names a risk, but the expected send-day feeling gives the warm-up a reward before effort starts."
@@ -426,13 +348,6 @@
             "dialogue",
             "reading"
           ],
-          "planSpec": {
-            "domain": "public library manga checkout challenge for reluctant teen readers",
-            "audience": "a teen services librarian whose overdue warnings are not bringing books back",
-            "stakes": "a grant-funded reading program will fail if returns feel like punishment instead of a path to the next volume",
-            "format": "dialogue",
-            "requiredBeat": "The librarian slides the next-volume cover into a clear pocket beside the return slot; the teen sees the cover before dropping off the old book and asks for the sequel, showing the cue has begun promising the next-story reward."
-          },
           "scenario": "A glossy manga cover peeks from a clear pocket beside the return slot at 3:25 p.m. Celia, the teen services librarian, is about to point Nari toward the overdue notice. Instead she slides the next-volume cover into the pocket. \"Is that volume six?\" Nari asks, book still in hand. \"It is if volume five lands here.\" Nari drops the old book through the slot and reaches for the sequel card.",
           "whatToDo": "Move the next-volume cover beside the return slot so the act of returning previews the next story. Let the cue promise continuation before mentioning overdue rules.",
           "whyItMatters": "Warnings make return feel like punishment. The sequel cover makes return feel like access, so the expected reward appears before Nari gives up the old book."
@@ -445,13 +360,6 @@
             "volunteers",
             "attendance"
           ],
-          "planSpec": {
-            "domain": "independent film festival volunteer check-in",
-            "audience": "a festival coordinator whose volunteers keep arriving late for second shifts",
-            "stakes": "empty door posts could delay screenings and strand ticket holders outside in the rain",
-            "format": "decision_point",
-            "requiredBeat": "The coordinator can send another scolding email, but instead pins each lanyard under a Polaroid of the full theater the volunteer helped open; the volunteer reaches for the lanyard because the cue previews the applause and full-house reward."
-          },
           "scenario": "A red volunteer lanyard hangs below a Polaroid of a packed theater in the lobby office. Outside, the rain line is already curling around the block. Pavel has another scolding email drafted for volunteers who miss second shifts. Then he pins each lanyard under a full-house photo from the screening that person helped open. Lin reaches for hers at 5:10 p.m., grinning before the door post begins. Pavel must decide whether to send the email or keep the lanyard cue.",
           "whatToDo": "Keep the lanyards under the packed-theater Polaroids. Let check-in preview the full-house reward the volunteer helped create before asking for another wet shift.",
           "whyItMatters": "Late arrivals are not fixed by generic praise or scolding. The lanyard now carries a specific expected payoff: a room opened on time and an audience inside."
@@ -464,13 +372,6 @@
             "postmortem",
             "backup"
           ],
-          "planSpec": {
-            "domain": "freelance wedding photographer file-backup ritual after receptions",
-            "audience": "a photographer who knows backups matter but still postpones them after late events",
-            "stakes": "one corrupted memory card could erase a client's only record of the night",
-            "format": "postmortem",
-            "requiredBeat": "After a near loss, she places a printed thank-you note beside the drive dock; when she sees it at 1:12 a.m., the relief of safe delivery arrives before the copy begins, and the backup cue finally pulls the routine forward."
-          },
           "scenario": "A silver memory-card wallet sits beside a printed thank-you note at 1:12 a.m. Saira is back from a reception, still in rain-damp shoes, remembering the corrupted card she nearly lost in June. After that scare, she placed the couple's note beside the drive dock. Tonight she sees their handwriting before opening the laptop, feels the relief of safe delivery, and starts the copy before taking off her coat.",
           "whatToDo": "Put a client's printed thank-you note beside the drive dock before the next event. Make the backup cue preview safe delivery, not just data loss.",
           "whyItMatters": "A checklist reminds Saira of risk after a long night. The note makes the reward arrive early: the couple's record safely delivered, which pulls the backup forward."
@@ -489,8 +390,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pizza-party count gives the bin a felt payoff before the drop. Visibility alone was already present in the sign, and discipline is a weak read because the new cue changed expectation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -502,8 +402,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The filling chart makes the expected payoff visible during the cue. Louder alerts still only point, and hiding the chart delays the reward until after the routine needs pull.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -515,8 +414,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The photo makes the desired feeling near at the moment shoes come off. The door note names a reason, and the Sunday review is too far from the decision point to create pull.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -528,8 +426,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sound clip brings the clean-cue reward into the headset moment. More boxes add instruction without pull, while a meeting threat makes the cue heavier, not more wanted.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -541,8 +438,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The board connects logging to visible plant recovery, so the reward gets close. The instruction was not the main missing piece, and the answer is not visual versus written. It is expected payoff.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -554,8 +450,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The card gives the floss cue a near expected reward the child can see forming. A bigger note still points without payoff, and a monthly article is distant from the night routine.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -567,8 +462,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The collage can pull because it previews completion, but the reward must fit the real task. False receipts are a risk to monitor, yet assuming fraud skips evaluation. Subject-line strength misses the mechanism.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -580,8 +474,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The best sentence previews the reward of cleaner speech before the drills. Distraction is not the point, and the medium is secondary. The cue now carries the desired payoff.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -593,8 +486,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The marked card makes the cue promise a valued state before the sip. More reminders repeat the failed pointer, and relying on thirst waits until the body supplies pressure too late.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -655,19 +547,13 @@
       },
       "memorableLines": [
         {
-          "text": "Craving is the reward arriving early.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the whole chapter's mechanism in one plain sentence."
+          "text": "Craving is the reward arriving early."
         },
         {
-          "text": "A reminder points; an anticipated reward pulls.",
-          "location": "breakdown.fastRead",
-          "why": "It cleanly separates weak cues from cues that carry force."
+          "text": "A reminder points; an anticipated reward pulls."
         },
         {
-          "text": "A cue becomes strong when it carries a future feeling.",
-          "location": "breakdown.fullRead",
-          "why": "It turns anticipation into a practical design test."
+          "text": "A cue becomes strong when it carries a future feeling."
         }
       ]
     },
@@ -694,13 +580,6 @@
             "bar",
             "support"
           ],
-          "planSpec": {
-            "domain": "bartender in early sobriety after last call",
-            "audience": "a person whose highest-risk cue arrives at the end of a shift, not at the start of the day",
-            "stakes": "one automatic pour could become a relapse precisely when the room is quiet and support feels far away",
-            "format": "scene",
-            "requiredBeat": "The neon last-call sign clicks off, her hand moves toward the rail, then she fills the same rocks glass with seltzer and lime while sending the agreed check-in text, preserving the cue and hand-settling reward while changing the middle."
-          },
           "scenario": "A neon last-call sign flickers above a polished bar rail at 1:48 a.m. Zadie has locked the door, wiped the taps, and heard the room go quiet. Her hand moves toward the rail before she thinks. She has to decide in the empty bar whether the cue will run the old pour. She fills the same rocks glass with seltzer and lime, then sends the agreed check-in text: \"closing now.\"",
           "whatToDo": "Keep the last-call cue and the hand-settling reward visible. Put seltzer and lime in the same rocks glass, then send the check-in text before the room has time to feel private.",
           "whyItMatters": "The old routine met two rewards: a closing ritual and relief from being alone. The replacement has to answer both, or the quiet bar will keep pulling the pour back."
@@ -713,13 +592,6 @@
             "dialogue",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "seafood restaurant line cook when the ticket printer jams",
-            "audience": "a sous chef trying to stop a skilled cook from snapping at servers under rush pressure",
-            "stakes": "one shouted exchange can freeze the pass and slow every table in the dining room",
-            "format": "dialogue",
-            "requiredBeat": "The printer spits a red ticket, the cook's shoulders rise, then he presses his palm to the steel shelf and calls reset station while the sous chef repeats it back, getting the same sense of control without the old outburst."
-          },
           "scenario": "A red ticket curls from a jammed printer above the seafood pass at 8:17 p.m. Rui's shoulders rise. \"Server stacked it wrong,\" he starts. Sous chef Iben points to the steel shelf. \"Palm down.\" Rui presses the cold steel. \"Reset station,\" he calls. \"Reset station heard,\" Iben says back. Rui must choose whether to keep shouting at the pass or take the control the new call gives him.",
           "whatToDo": "Use the jammed red ticket as the cue. Press palm to the steel shelf, call \"reset station,\" and have the sous chef repeat it back before any server gets named.",
           "whyItMatters": "The outburst used to give Rui fast control. The reset call gives control too, but it organizes the station and brings coaching into the loud moment."
@@ -732,13 +604,6 @@
             "decision",
             "control"
           ],
-          "planSpec": {
-            "domain": "casino poker player after a bad beat",
-            "audience": "a serious recreational player who keeps chasing losses after one public mistake",
-            "stakes": "the next three minutes can turn one lost hand into a lost rent payment",
-            "format": "decision_point",
-            "requiredBeat": "When the river card lands and the table gasps, he starts to shove chips forward, then moves five chips into a timeout stack and stands for one orbit because the replacement gives him the same regained-control feeling without a revenge bet."
-          },
           "scenario": "A river card lands beside a pile of scattered red chips at 11:26 p.m. in the casino's back room. The table hears the gasp before Dima does. His face is hot, and his thumb starts pushing a new stack forward. He has a decision to make before the dealer gathers the cards. Instead of chasing, he moves five chips into a timeout stack and stands for one orbit, taking back control without buying a revenge hand.",
           "whatToDo": "Treat the gasp and bad beat as the cue. Move five chips into the timeout stack, stand for one orbit, and do not sit until the orbit returns to your blind.",
           "whyItMatters": "The revenge bet was buying a sense of control after public loss. The timeout stack gives Dima a visible control move without turning one hand into a rent-sized mistake."
@@ -751,13 +616,6 @@
             "postmortem",
             "support"
           ],
-          "planSpec": {
-            "domain": "public defender after a hostile client voicemail outside court",
-            "audience": "a young lawyer whose old routine is to fire back a defensive message",
-            "stakes": "one reactive reply can damage trust and leave the actual case work untouched",
-            "format": "postmortem",
-            "requiredBeat": "The phone buzzes on the marble bench, she hears the accusation, then writes three verifiable facts in the case notebook before calling her mentor, using the same need to feel prepared and less alone without the old reply."
-          },
           "scenario": "A phone vibrates on a marble courthouse bench at 2:15 p.m. after arraignments. Juniper, a young attorney, hears her client accuse her of not fighting, and her thumb opens the reply box. In last month's postmortem, she marks the cue in red: hostile voicemail outside court. This time she writes three facts in the case notebook before calling her mentor, getting prepared and less alone without sending the defensive message.",
           "whatToDo": "Keep the accusation cue and the need to feel prepared in view. Write three verifiable facts in the notebook, then call the mentor before replying to the client.",
           "whyItMatters": "The old reply reduced panic and loneliness for a minute. The fact list plus mentor call gives the same steadiness while protecting trust and returning attention to the case."
@@ -770,13 +628,6 @@
             "radio",
             "drill"
           ],
-          "planSpec": {
-            "domain": "wildland fire crew trainee during a radio-static drill",
-            "audience": "a crew trainer whose trainee overtalks the channel whenever uncertainty spikes",
-            "stakes": "in a live burn, panic on the radio can hide the one update the crew needs",
-            "format": "predict_reveal",
-            "requiredBeat": "The trainer predicts the static burst will trigger overtalk; when it crackles, the trainee touches the laminated radio card, states location once, and waits for confirmation, getting certainty through the new routine under pressure."
-          },
           "scenario": "A laminated radio card is clipped to Kanoa's orange Nomex sleeve during the ridge drill. Trainer Vesa says, \"The static burst is where you'll want to talk over everyone.\" The radio crackles. Kanoa's mouth opens, then his glove taps the card. \"Crew two, lower switchback,\" he says once. He holds the confirmation pause. Vesa has to decide whether the new routine gave Kanoa certainty without flooding the channel.",
           "whatToDo": "Use the static burst as the cue. Touch the laminated radio card, state location once, and wait through the confirmation pause before adding anything else.",
           "whyItMatters": "Overtalk gave Kanoa certainty by filling the silence. The card and pause give certainty through structure, so the crew can still hear the update that matters."
@@ -789,13 +640,6 @@
             "reflection",
             "spending"
           ],
-          "planSpec": {
-            "domain": "online auction collector outbid seconds before closing",
-            "audience": "a hobby collector whose old routine is revenge bidding after the red banner appears",
-            "stakes": "a ten-second surge can turn a planned purchase into a month of credit-card regret",
-            "format": "reflection",
-            "requiredBeat": "The red outbid banner flashes, his cursor jumps to the bid box, then he checks the max price written on a shipping label and texts the screenshot to a friend, preserving the not-losing-alone reward without the old bid."
-          },
           "scenario": "A red outbid banner flashes above a ticking auction clock at 10:59 p.m. Mikkel feels his cursor jump to the bid box before the thought finishes. The shipping-label max price is taped to the monitor: 180, including postage. He wants not to lose alone more than he wants the figurine. So he texts a screenshot to Freya, waits for her thumbs-up, and lets the clock close without the revenge bid.",
           "whatToDo": "Keep the red banner cue and the not-losing-alone reward visible. Check the shipping-label max price, send the screenshot to the friend, and let the clock close.",
           "whyItMatters": "The old bid bought company and control in the final seconds. The screenshot gives Mikkel the same social steadiness without turning a planned purchase into debt."
@@ -814,8 +658,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The red card and reset call preserve the cue and control reward while changing the middle. A promise relies on resolve, and avoidance does not help when the cue returns on the next cart.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -827,8 +670,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The placemat and reset phrase answer the same control reward the yelling gave. Moral reminders do not supply a new middle, and moving the work dodges the cue without building a replacement.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -840,8 +682,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Copying the change and messaging a teammate gives relief and support while preserving the work. Auto-archiving hides the cue, and waiting a day leaves the attacked feeling waiting unchanged.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -853,8 +694,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Lower-calorie crackers keep the old routine almost intact, so the middle has not really changed. The porch and partner options preserve completion and settling with a different action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -866,8 +706,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The script gives him control by naming ownership, and the deputy supplies support in the live meeting. A ban and a patience goal leave the pressure moment without a working middle.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -879,8 +718,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cue and readiness reward are real, but the middle can change to writing plus support. Keeping folder cleanup leaves the old routine, while dismissing readiness misses why it repeats.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -892,8 +730,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Candy may occupy the mouth but may not provide the same relief, pause, or company under stress. The plan also lacked support when the original cue came back hard.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -905,8 +742,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The score mark plus coach text keeps the exposed cue and social support reward while changing the routine. Phone removal and skipping playback leave the same pressure without a substitute.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -918,8 +754,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The substitute must answer the same payoff. Push-ups may interrupt the body, but they do not make him feel heard or supported. A promise does not fix the reward mismatch.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -980,19 +815,13 @@
       },
       "memorableLines": [
         {
-          "text": "Do not delete the loop in your head.",
-          "location": "breakdown.fastRead",
-          "why": "It warns against the common fantasy that understanding a habit makes the cue disappear."
+          "text": "Do not delete the loop in your head."
         },
         {
-          "text": "A random healthy action is not a replacement routine.",
-          "location": "breakdown.deepRead",
-          "why": "It sharply separates real substitution from generic better-choice advice."
+          "text": "A random healthy action is not a replacement routine."
         },
         {
-          "text": "The new middle has to be waiting where the old middle used to live.",
-          "location": "breakdown.fullRead",
-          "why": "It makes pressure and placement concrete, which is the chapter's practical edge."
+          "text": "The new middle has to be waiting where the old middle used to live."
         }
       ]
     },
@@ -1019,13 +848,6 @@
             "sterile processing",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "sterile-processing instrument tray checks before first surgery",
-            "audience": "an operating-room charge nurse deciding where to start a quality push",
-            "stakes": "a missing clamp can delay the first case and teach every department to hide its small misses",
-            "format": "scene",
-            "requiredBeat": "The charge nurse points to the empty groove in a gray silicone tray and chooses the pre-op tray readback because it forces sterilization logs, courier timing, surgeon notice, and defect reporting to line up before the patient arrives."
-          },
           "scenario": "An empty clamp groove sits in a gray silicone instrument tray at 6:42 a.m. Blythe, the operating-room charge nurse, has ten minutes before the first patient rolls. She points to the groove, then to the sterilization log and courier timestamp. She is about to start a broad quality push, but chooses the pre-op tray readback because it forces sterile processing, transport, surgeon notice, and defect reporting to line up before the patient arrives.",
           "whatToDo": "Start with the pre-op tray readback. Require the gray tray, sterilization log, courier timestamp, and defect note to be checked aloud before the first case.",
           "whyItMatters": "The missing clamp is small, but the readback changes four handoffs at once. That spillover makes it keystone material, not just another safety reminder."
@@ -1038,13 +860,6 @@
             "decision",
             "operations"
           ],
-          "planSpec": {
-            "domain": "regional bakery first-batch scale-zero log",
-            "audience": "a bakery operations lead choosing between a branding campaign and a production habit",
-            "stakes": "bad weights are causing wasted dough, customer complaints, and fights between bakers and purchasing",
-            "format": "decision_point",
-            "requiredBeat": "The operations lead watches the digital scale blink 0.0, then chooses the first-batch zero log because that one mark changes flour orders, oven timing, waste boards, and shift handoffs by noon."
-          },
           "scenario": "A digital flour scale blinks 0.0 beside a torn proofing schedule before dawn. Cosima, the bakery operations lead, is holding a proposal for new window signs in one hand and yesterday's waste board in the other. She watches the first baker zero the scale and must choose where the quality push starts. She picks the first-batch zero log because that one mark changes flour orders, oven timing, waste boards, and shift handoffs by noon.",
           "whatToDo": "Choose the first-batch zero log over the branding campaign. Tie the scale mark to flour ordering, proofing schedule checks, waste board updates, and shift handoff notes.",
           "whyItMatters": "The log reaches the causes of bad weight, not the appearance of quality. It creates a small win early enough for purchasing, baking, and handoff routines to adjust the same day."
@@ -1057,13 +872,6 @@
             "before after",
             "accountability"
           ],
-          "planSpec": {
-            "domain": "museum art-shipping crate condition photos",
-            "audience": "a collections director trying to stop blame fights between conservators, shippers, and insurers",
-            "stakes": "one undocumented scratch can freeze a traveling exhibit and damage institutional trust",
-            "format": "before_after",
-            "requiredBeat": "Before the protocol, everyone argues from memory; after it, the first crate-opening photo shows the foam corner block, scratch, and timestamp, making insurance, conservation, and shipper accountability move together."
-          },
           "scenario": "A foam corner block falls from a wooden art crate onto a clean table at 9:05 a.m. Before Ansel's protocol, the conservator, shipper, and insurer would argue from memory by lunch. Now Mirae lifts cotton gloves, takes the timestamped photo, and captures the scratch beside the loose block. Afterward, the claim file, conservation note, and shipper reply all point to the same image.",
           "whatToDo": "Make the first crate-opening photo mandatory. Capture the foam corner block, scratch, cotton gloves, and timestamp before anyone moves the artwork or starts a blame thread.",
           "whyItMatters": "The photo habit aligns insurance, conservation, and shipper accountability. It turns a fragile memory fight into a shared record that can move."
@@ -1076,13 +884,6 @@
             "postmortem",
             "maintenance"
           ],
-          "planSpec": {
-            "domain": "municipal snowplow garage blade-inspection tags before storms",
-            "audience": "a public-works superintendent trying to reduce route delays without another morale speech",
-            "stakes": "one cracked blade can strand a plow and leave side streets iced over during the morning commute",
-            "format": "postmortem",
-            "requiredBeat": "After a stalled route, the superintendent tracks the failure back to a missing blade tag and chooses the tag habit because it forces parts inventory, mechanic escalation, route assignment, and driver trust before snow starts."
-          },
           "scenario": "Salt crust flakes from a chipped plow blade under fluorescent lights at 7:40 a.m., the morning after Route 6 stalled. Hester, the public-works superintendent, follows the delay from the route board to the parts shelf and finds no blade tag. Another morale speech would be easy. Instead she chooses the tag habit because it forces parts inventory, mechanic escalation, route assignment, and driver trust before the next snow starts.",
           "whatToDo": "Install blade-inspection tags before storms and connect each missing or failed tag to the parts shelf, mechanic escalation, route board, and driver signoff.",
           "whyItMatters": "The tag matters because it changes the garage's timing. Problems surface before routes are assigned, so drivers trust the board and mechanics get parts before snow."
@@ -1095,13 +896,6 @@
             "predict reveal",
             "safety"
           ],
-          "planSpec": {
-            "domain": "community pool chemical-test board before gates open",
-            "audience": "an aquatics manager deciding which routine will make young lifeguards take safety seriously",
-            "stakes": "a skipped water test can close the pool after families are already lined up outside",
-            "format": "predict_reveal",
-            "requiredBeat": "The manager asks which habit will change the most other behavior, then posts the first water-test reading before unlock; the visible number changes lifeguard rotation, maintenance calls, parent notices, and opening confidence."
-          },
           "scenario": "A clear test vial stands beside a locked pool gate at 8:31 a.m. Ramona, the aquatics manager, must decide which routine will make young lifeguards take safety seriously. She asks her assistant, \"Which habit changes the most other behavior before families line up?\" She posts the first water-test reading on the opening clipboard before unlock. By 9:00, the visible number has changed lifeguard rotation, a maintenance radio call, parent notices, and opening confidence.",
           "whatToDo": "Post the first chemical-test reading before the gate unlocks. Make the opening clipboard trigger rotation choices, maintenance radio calls, and parent notices.",
           "whyItMatters": "The water test is keystone because it changes decisions beyond the vial. It makes safety visible early enough for staff and families to trust the opening."
@@ -1114,13 +908,6 @@
             "dialogue",
             "delivery"
           ],
-          "planSpec": {
-            "domain": "translation agency glossary-change log before client delivery",
-            "audience": "a project lead whose multilingual teams keep fixing the same client terms late",
-            "stakes": "one inconsistent term can force an expensive reprint and make reviewers distrust every page",
-            "format": "dialogue",
-            "requiredBeat": "The lead holds up the marked glossary card and explains that every term change must hit the log first because that one habit updates translators, reviewers, layout, and client approval at the same time."
-          },
           "scenario": "A marked glossary card lies across a stack of page proofs at 4:18 p.m. Soraya holds it up beside the approval stamp. \"If a client term changes, where does it go first?\" \"In the file?\" Tomas asks. \"In the log,\" Soraya says. \"Then translators, reviewers, layout, and client approval all move from the same mark.\" She has to decide whether to send another warning or make the log the first habit.",
           "whatToDo": "Make every glossary change hit the log before page proofs move. Use the marked card and approval stamp to show translators, reviewers, layout, and client approval the same source.",
           "whyItMatters": "The log is keystone only if it updates several handoffs at once. It prevents the same term from being fixed privately in four places and trusted nowhere."
@@ -1139,8 +926,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The callback log reaches multiple parts of the system: reports, routing, timing, and ownership. The lobby script may help, but it does not force hidden work to surface or move.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1152,8 +938,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The bin scan changes the shared facts used by pickers, packers, and restock staff. Speeches and speed contests may alter mood or effort, but they do not repair the handoff system.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1165,8 +950,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The read-aloud label ties kitchen work, signoff, and the nurse list into one early handoff. Carefulness and posters point at the value without changing the reporting path.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1178,8 +962,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Keystone choice starts with spillover, not positivity or speed. The reopened-ticket tag may expose handoffs and accountability; the gratitude round may be useful but needs a systems effect.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1191,8 +974,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The photo checklist creates a shared release point for three teams and gives a visible win before guests arrive. Scripts and signs address presentation after the system has already failed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1204,8 +986,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The habit becomes keystone if it changes the surrounding flows: parts, records, schedules, and public notice. Ease and concreteness help adoption but do not prove leverage.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1217,8 +998,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The shelf photo creates one shared fact before prep, purchasing, and packing diverge. A slogan lacks an operational handoff, and a prize may reward underuse instead of better coordination.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1230,8 +1010,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The morning confirmation matters if it changes downstream planning and accountability. Being liked or moving quickly may help, but neither shows the routine reshaping the system.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1243,8 +1022,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The outcome log changes reporting integrity, ownership, correction, and donor trust at once. Stories and celebrations can matter, but they do not make the numbers more accountable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1305,19 +1083,13 @@
       },
       "memorableLines": [
         {
-          "text": "Do not ask which habit sounds inspiring.",
-          "location": "breakdown.fastRead",
-          "why": "It blocks the common drift toward symbolic routines and redirects attention to leverage."
+          "text": "Do not ask which habit sounds inspiring."
         },
         {
-          "text": "A keystone habit is chosen by spillover, not by virtue.",
-          "location": "breakdown.fullRead",
-          "why": "It names the selection test in a compact, memorable contrast."
+          "text": "A keystone habit is chosen by spillover, not by virtue."
         },
         {
-          "text": "A keystone habit is not the biggest habit in the room.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter's practical claim without making the habit sound magical."
+          "text": "A keystone habit is not the biggest habit in the room."
         }
       ]
     },
@@ -1344,13 +1116,6 @@
             "returns",
             "rehearsal"
           ],
-          "planSpec": {
-            "domain": "independent bookstore holiday return desk",
-            "audience": "a seasonal bookseller who freezes when a customer slams a gift receipt on the counter",
-            "stakes": "one defensive reply can turn a solvable return into a public argument in a packed store",
-            "format": "scene",
-            "requiredBeat": "Before opening, the manager has the bookseller practice the first sentence with a bent gift receipt in hand; when the receipt hits the counter later, the practiced line comes out before the old flinch."
-          },
           "scenario": "A bent gift receipt lies under a stack of returned hardcovers at 8:55 a.m. Maelle, the seasonal bookseller, stands behind the holiday return desk while manager Cleo hands her a laminated return card. They do one practice round before opening: receipt in hand, first sentence out loud. At 11:20, a customer slams the receipt on the counter. Maelle has to decide whether to defend the policy or let the practiced line arrive before the old flinch.",
           "whatToDo": "Practice the first sentence before opening with the bent gift receipt and laminated return card in hand. Use that exact line when the receipt hits the counter.",
           "whyItMatters": "The stressful cue is predictable. Speaking the line in the same physical setup turns the first response into a routine instead of a test of Maelle's temperament."
@@ -1363,13 +1128,6 @@
             "dialogue",
             "delay"
           ],
-          "planSpec": {
-            "domain": "medical imaging front desk running two hours behind",
-            "audience": "a receptionist who gets rattled when anxious patients demand exact wait times",
-            "stakes": "a bad first response can make a frightened patient leave before a needed scan",
-            "format": "dialogue",
-            "requiredBeat": "The supervisor rehearses the exact opening line beside the delay board; when a patient points at the clock and raises his voice, the receptionist reads the first sentence from memory and then checks the scanner queue."
-          },
           "scenario": "A delay board shows two hours beside a quiet MRI hallway at 2:40 p.m. Supervisor Hana stands with Nikhil at the front desk. \"First sentence,\" she says. Nikhil repeats it beside the board. Twenty minutes later, a patient points at the clock. \"How much longer?\" His voice climbs. Nikhil has to choose between guessing and the rehearsed line: \"I can see this wait is hard. I am checking the scanner queue now.\" Then he opens the queue.",
           "whatToDo": "Rehearse the exact opening line beside the delay board, then pair it with the next action: checking the scanner queue while the patient can see you doing it.",
           "whyItMatters": "The line is not decoration. It buys the first calm second and sends Nikhil into the useful next step before anxiety pushes him into guessing or overexplaining."
@@ -1382,13 +1140,6 @@
             "referee",
             "predict reveal"
           ],
-          "planSpec": {
-            "domain": "youth hockey referee facing a parent protest",
-            "audience": "a new referee who loses control when adults crowd the glass after a penalty",
-            "stakes": "one shouted answer can turn a youth game into a bench-clearing mess",
-            "format": "predict_reveal",
-            "requiredBeat": "The referee trainer predicts the shove at the glass will be the cue, then drills whistle, two steps back, and the same penalty explanation until the sequence appears during the actual protest."
-          },
           "scenario": "A black puck sits still near a scuffed penalty-box door before the 7:10 game. Trainer Petra tells new referee Soren, \"The shove at the glass is your cue.\" They drill whistle, two steps back, penalty explanation. In the second period a parent pounds the glass after a tripping call. Soren has to decide whether to answer from the glass or trust the drill. Petra sees the reveal land: whistle, two steps back, same penalty explanation, no shouted answer.",
           "whatToDo": "Drill the sequence before the game: whistle, two steps back, same penalty explanation. Treat the glass shove as the cue that starts the practiced response.",
           "whyItMatters": "The protest cue was already predictable. Rehearsing the body move and words gives Soren a default before pride, fear, or the crowd chooses his first answer."
@@ -1401,13 +1152,6 @@
             "decision",
             "role-play"
           ],
-          "planSpec": {
-            "domain": "free tax-prep clinic when a refund is smaller than expected",
-            "audience": "a volunteer preparer who tends to overexplain when clients get angry",
-            "stakes": "a confusing answer can make a low-income client mistrust the whole filing and walk out without submitting",
-            "format": "decision_point",
-            "requiredBeat": "The clinic lead chooses role-play over another tax-law handout; the volunteer practices pointing to the refund line, naming the change, and pausing before explanation so the first response is ready when the chair scrapes back."
-          },
           "scenario": "A refund line glows on a laptop beside a half-zipped folder at the free tax-prep clinic. Amara, a volunteer preparer, watches a client's chair scrape back when the number is smaller than expected. Clinic lead Jules can hand out another tax-law sheet, but chooses role-play. Amara practices pointing to the refund line, naming the change, and taking one pause before explanation. She must decide whether to trust the drill when the next chair scrapes.",
           "whatToDo": "Choose role-play over another handout. Practice pointing to the refund line, naming the change in one sentence, and pausing before any longer explanation.",
           "whyItMatters": "Amara's risk is not lack of tax knowledge. It is the first rattled response. Role-play makes the opening move available before overexplaining loses the client."
@@ -1420,13 +1164,6 @@
             "before after",
             "boundary"
           ],
-          "planSpec": {
-            "domain": "concert hall usher refusing re-entry during a live recording",
-            "audience": "an usher who caves when late patrons insist they only need ten seconds",
-            "stakes": "one opened door can ruin the recording take and anger the people already seated",
-            "format": "before_after",
-            "requiredBeat": "Before rehearsal, the usher argues and apologizes; after three practiced doorway scripts with the house manager, she holds the velvet rope and gives the same first line when a patron reaches for the handle."
-          },
           "scenario": "A velvet rope cuts across a dim concert-hall doorway during the afternoon sound check. Before rehearsal, Davian argues, apologizes, and half-opens the door when patrons insist they need ten seconds. House manager Isha runs three doorway scripts with him: hand on rope, eyes up, first line. That night a patron reaches for the door handle during the live recording. Davian holds the rope and gives the same first line.",
           "whatToDo": "Rehearse the doorway script with the house manager before the recording: hand on velvet rope, eyes up, first line before any apology.",
           "whyItMatters": "The old default was an apology that moved his hand toward the door. The rehearsal ties the boundary line to the rope and handle before pressure reaches him."
@@ -1439,13 +1176,6 @@
             "postmortem",
             "script"
           ],
-          "planSpec": {
-            "domain": "passport office missing-document window",
-            "audience": "a clerk who gets defensive when travelers blame her for an impossible same-day request",
-            "stakes": "one irritated exchange can shut down the only path to a workable appointment",
-            "format": "postmortem",
-            "requiredBeat": "After reviewing the complaint log, the supervisor marks the cue as a traveler tapping the appointment slip and drills the clerk's first two sentences until the next tap triggers the script instead of a snapped answer."
-          },
           "scenario": "An appointment slip is tapped against a scratched service window at 3:05 p.m. Odette, the passport clerk, remembers the complaint log from Friday: traveler taps slip, clerk snaps, same-day request collapses. Supervisor Kenji marked the cue and drilled her first two sentences until she could say them without looking down. This time the tap triggers the script instead of the snapped answer.",
           "whatToDo": "Mark the appointment-slip tap as the cue. Drill the first two sentences from the complaint log review until the tap starts the script automatically.",
           "whyItMatters": "The complaint pattern begins before the facts are discussed. Practicing the first two sentences gives Odette a route to the workable appointment instead of the old defense."
@@ -1464,8 +1194,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The caller's opening is a predictable cue, so the trainee needs a rehearsed line and action. Caring more is too vague, and avoidance leaves the first hard call unchanged.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1477,8 +1206,7 @@
             ],
             "correctIndex": 0,
             "explanation": "She already knows the task. The issue is the first response under a known cue. The stop-name-move sequence gives pressure a script; reminders and promises do not.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1490,8 +1218,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The live counter demand is the stressful cue that needs a first line. A yearly meeting is too distant, and a wish to sound patient gives no practiced behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1503,8 +1230,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The failure appears when pressure matches the real cue. Rehearsal needs the noise and interruption, not just policy knowledge. Personality language hides the missing routine.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1516,8 +1242,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The visitor's phrase and reach are the cue. Rehearsing the line in that scene makes the boundary response available. A value reminder or sign may not change the first second.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1529,8 +1254,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The weak plan gives no first response for the cue. The other two make pressure familiar and tie the opening line to a real next step, which is what automatic willpower needs.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1542,8 +1266,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The drill turns the known cue into a practiced sequence. The poster may name a value but does not train behavior, and the claim that anger cannot be prepared for ignores scenario planning.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1555,8 +1278,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Knowing a script is not the same as having it under pressure. The donor challenge, receipt, and spoken first line must be rehearsed together. Silent review is too weak.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1568,8 +1290,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The rehearsal links the loud complaint to a body cue, clipboard touch, and first sentence. Memorizing at home misses the stress cue, and scolding drivers may escalate before information appears.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1630,19 +1351,13 @@
       },
       "memorableLines": [
         {
-          "text": "You do not wait for pressure and hope calm appears.",
-          "location": "breakdown.fastRead",
-          "why": "It cuts directly against the weak willpower-as-trait assumption."
+          "text": "You do not wait for pressure and hope calm appears."
         },
         {
-          "text": "A script is not fake calm.",
-          "location": "breakdown.deepRead",
-          "why": "It defends rehearsal against the common worry that scripts are artificial."
+          "text": "A script is not fake calm."
         },
         {
-          "text": "Rehearsal gives pressure a road to follow.",
-          "location": "breakdown.fullRead",
-          "why": "It turns stress planning into a concrete image readers can remember."
+          "text": "Rehearsal gives pressure a road to follow."
         }
       ]
     },
@@ -1669,13 +1384,6 @@
             "postmortem",
             "signoff"
           ],
-          "planSpec": {
-            "domain": "regional blood bank freezer alarm failure",
-            "audience": "a lab director facing staff who have ignored small temperature warnings for years",
-            "stakes": "one freezer failure can destroy rare blood units and expose how many warnings had no owner",
-            "format": "postmortem",
-            "requiredBeat": "The director places the thawed inventory sheet beside the amber thermometer strip and installs a two-person alarm signoff before the replacement freezer arrives, while everyone still remembers the loss."
-          },
           "scenario": "An amber thermometer strip curls beside a thawed inventory sheet at 6:35 a.m. in the regional blood bank. Sabela, the lab director, reviews the overnight notes with Ivo from quality. For years, small temperature warnings were cleared by whoever happened to be closest. Before the replacement freezer arrives, Sabela sets the sheet and strip on the conference table and must decide whether to hunt for one careless technician or install a two-person alarm signoff while the loss is still visible.",
           "whatToDo": "Put the thawed inventory sheet and amber strip in the postmortem room, then require two named people to sign every freezer alarm response before the new freezer is accepted.",
           "whyItMatters": "The failed habit was ownerless warning clearance. The crisis makes that routine impossible to defend, so the new signoff has to change ownership before staff drift back to informal clearing."
@@ -1688,13 +1396,6 @@
             "readback",
             "scene"
           ],
-          "planSpec": {
-            "domain": "public radio newsroom after a false storm alert",
-            "audience": "a station manager whose team relied on informal hallway checks before broadcasts",
-            "stakes": "a false emergency alert can erode listener trust and crowd out a real warning later",
-            "format": "scene",
-            "requiredBeat": "With the silent studio clock still lit, the manager tapes a new alert-release card to the console and requires producer-engineer readback before the next warning, using the mistake to replace the hallway habit."
-          },
           "scenario": "A silent studio clock glows above the alert-release console at 5:18 p.m. in the public radio newsroom. Veyra, the station manager, still hears the false storm alert in her headphones. Producer Kellan says the apology draft is ready. Veyra must decide whether to stop at regret or change release. She tapes a new alert-release card to the console: source named, producer read, engineer readback. The next warning cannot go live on a hallway yes.",
           "whatToDo": "Tape the alert-release card to the console before the next warning and require producer-engineer readback from the card, not an informal hallway check.",
           "whyItMatters": "The crisis exposed a trust shortcut at the release point. The card and readback create a new broadcast habit while the false alert still has everyone's attention."
@@ -1707,13 +1408,6 @@
             "escalation",
             "decision"
           ],
-          "planSpec": {
-            "domain": "construction crane near-miss on a hospital expansion site",
-            "audience": "a project executive who discovers that subcontractors report hazards through favors and whispers",
-            "stakes": "the next missed outrigger warning could injure workers and shut down the site",
-            "format": "decision_point",
-            "requiredBeat": "The executive can fire the signaler and move on, but instead holds up the cracked outrigger pad and creates a stop-work tag that any trade can hang without supervisor permission before the old chain of command returns."
-          },
           "scenario": "A cracked outrigger pad lies on plywood beside the subcontractor gate at 6:50 a.m. on the hospital expansion site. Eamon, the project executive, hears three versions of the same near-miss: everyone noticed something, no one had permission to stop the lift. He can fire the signaler and close the meeting. Instead he holds up the pad and must decide whether to create a stop-work tag any trade can hang before supervisors pull reporting back into whispers.",
           "whatToDo": "Create a stop-work tag at the subcontractor gate and give every trade authority to hang it without supervisor permission when a hazard appears.",
           "whyItMatters": "The near-miss revealed that bad news traveled through favors and rank. The tag changes the escalation route while the cracked pad still makes the old route indefensible."
@@ -1726,13 +1420,6 @@
             "receiving",
             "before after"
           ],
-          "planSpec": {
-            "domain": "food pantry spoiled dairy delivery after a holiday closure",
-            "audience": "a pantry director whose volunteers have been improvising receiving checks for years",
-            "stakes": "families lose food, donors lose trust, and volunteers start blaming each other instead of the receiving routine",
-            "format": "before_after",
-            "requiredBeat": "Before the holiday loss, milk crates go straight to the cooler; after it, the director puts a receiving stamp at the dock and makes every cold delivery show time, temperature, and initials before storage."
-          },
           "scenario": "A warm milk crate sweats on the pantry loading dock at 9:10 a.m. after the holiday closure. Before the loss, volunteers waved dairy deliveries straight to the cooler door and trusted memory for the check. After donors call, director Mirek stands with Alda at the dock and adds a receiving stamp: time, temperature, initials. Every cold delivery now gets marked before storage, not explained afterward.",
           "whatToDo": "Place the receiving stamp at the loading dock and require time, temperature, and initials on every cold delivery before anyone opens the cooler door.",
           "whyItMatters": "The spoiled dairy exposed an improvised handoff, not a lack of caring. The stamp fixes the receiving routine at the moment where memory used to hide responsibility."
@@ -1745,13 +1432,6 @@
             "handoff",
             "predict reveal"
           ],
-          "planSpec": {
-            "domain": "university greenhouse irrigation collapse during a heat wave",
-            "audience": "a research coordinator whose labs assumed facilities would notice failing equipment",
-            "stakes": "months of plant trials can die overnight if no one owns the handoff between research and maintenance",
-            "format": "predict_reveal",
-            "requiredBeat": "The coordinator predicts the team will want a new pump and stop there, then points to the dry soil probes and creates a daily exception board that requires lab and facilities initials before sunset."
-          },
           "scenario": "Dry soil probes lean from cracked greenhouse trays at 4:45 p.m. during the heat wave. Sabine, the research coordinator, predicts the first meeting will end with a new pump order and no handoff. Facilities lead Roan nods toward the dead trials. Sabine must decide whether to let the pump order count as reform. She points to the probes and adds a daily exception board by the greenhouse door: lab initials, facilities initials, before sunset. The reveal is that the pump was not the only failed routine.",
           "whatToDo": "Order the repair, but also post a daily exception board that requires both lab and facilities initials before sunset when irrigation readings are out of range.",
           "whyItMatters": "The heat made the handoff gap visible. A new pump may help the equipment, but the exception board changes who owns abnormal readings before the next failure."
@@ -1764,13 +1444,6 @@
             "custody",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "county clerk ballot-chain gap after a power outage",
-            "audience": "an elections supervisor whose office has trusted memory and seniority during late-night counts",
-            "stakes": "a missing custody mark can make a valid election look careless to the public",
-            "format": "dialogue",
-            "requiredBeat": "The supervisor sets the unmarked custody sleeve on the table and tells the team the outage made the old memory-based routine indefensible, then assigns a scan-and-witness step before the next count night."
-          },
           "scenario": "An unmarked custody sleeve rests under a battery lantern at 12:32 a.m. in the county clerk's count room. Yael sets it on the table. \"The ballots may be valid,\" she tells Dario and the night team, \"but our memory routine is no longer defensible.\" Dario says senior staff always know the chain. Yael points to the blank mark. \"Before the next count night, every sleeve gets a scan-and-witness step.\"",
           "whatToDo": "Use the outage gap to replace memory with a scan-and-witness step for every custody sleeve before the next late-night count begins.",
           "whyItMatters": "The crisis exposed how a valid process can look careless when proof depends on memory. The new step creates public accountability at the exact custody handoff."
@@ -1789,8 +1462,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The collision exposed an ownerless reporting habit. A named signoff changes the route of warnings while the damaged bus is still visible; speeches and one-person punishment leave sticky-note reporting intact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1802,8 +1474,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The crisis made the verbal warning routine negotiable. A tray readback changes the handoff at the serving line; reminding people or naming the substitute avoids the failed routine.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1815,8 +1486,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The refrigerator may be needed, but equipment alone does not assign ownership when power fails. The escalation rule turns the outage into a new response habit instead of a purchase-only fix.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1828,8 +1498,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The blank log shows the new habit did not catch the work. The verbal all-clear has returned as the real routine, so inspiration or minimizing the delay misses the accountability failure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1841,8 +1510,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The readback changes the exposed handoff at the pass. Hospitality language and apology may matter, but neither creates a routine that catches allergy risk once urgency fades.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1854,8 +1522,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The false notice exposed a release habit that trusted an unchecked map layer. Readback plus witness changes the publishing path; delay and storm explanations let the old process survive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1867,8 +1534,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The scare exposed a memory-based routine before injury occurred. A marked and confirmed gate check changes the pickup habit; gratitude and assigning one aide do not redesign the handoff.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1880,8 +1546,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The near-miss exposed an ownership gap in the release routine. A camera may help, but without a named photo handoff the old assumption can return on the next rushed courier change.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1893,8 +1558,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The renovation exposed a handoff that depended on place and memory. Custody scans make the transfer visible; discipline and restoring the shelf leave the deeper pickup routine weak.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1955,19 +1619,13 @@
       },
       "memorableLines": [
         {
-          "text": "A crisis makes the old routine visible while people still care enough to change it.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the chapter's window: visibility plus urgency, not crisis as inspiration."
+          "text": "A crisis makes the old routine visible while people still care enough to change it."
         },
         {
-          "text": "The accident is only the opening.",
-          "location": "breakdown.deepRead",
-          "why": "It separates the disruption from the designed habit that must follow."
+          "text": "The accident is only the opening."
         },
         {
-          "text": "A new habit has to catch the work before the old one closes around it.",
-          "location": "breakdown.fullRead",
-          "why": "It gives re-hardening a concrete image and names the timing pressure."
+          "text": "A new habit has to catch the work before the old one closes around it."
         }
       ]
     },
@@ -1994,13 +1652,6 @@
             "loyalty data",
             "health shift"
           ],
-          "planSpec": {
-            "domain": "regional grocer detecting a low-sodium cooking shift",
-            "audience": "a loyalty-program manager deciding what to do with a sudden pattern in regular basket data",
-            "stakes": "a helpful nudge could support a health change, while a blunt coupon could expose something private at the checkout",
-            "format": "decision_point",
-            "requiredBeat": "The manager circles low-sodium broth, unsalted crackers, and the same Tuesday pickup slot, then chooses a familiar receipt placement for general heart-healthy staples instead of a message that announces a diagnosis."
-          },
           "scenario": "A receipt shows low-sodium broth beside the same Tuesday pickup slot at 8:15 a.m. in the regional grocer's loyalty office. Nessa circles broth, unsalted crackers, and the pickup slot on three weeks of baskets. She can send a bold heart-condition coupon, but her pen pauses. She must decide whether to announce a private guess or use the familiar coupon strip for general heart-healthy staples.",
           "whatToDo": "Use the familiar coupon strip for general heart-healthy staples and avoid any message that names or implies a diagnosis from the low-sodium basket pattern.",
           "whyItMatters": "The receipt trail is only partial evidence. Familiar placement can support the shift without exposing the shopper at checkout or turning a guess into a label."
@@ -2013,13 +1664,6 @@
             "new homeowner",
             "familiar placement"
           ],
-          "planSpec": {
-            "domain": "hardware store project purchases revealing a first winter in a new house",
-            "audience": "a merchandising analyst deciding how to place unfamiliar maintenance products",
-            "stakes": "new homeowners need help, but a store can turn uncertainty into overselling",
-            "format": "predict_reveal",
-            "requiredBeat": "The analyst predicts the shopper will resist a big winterization banner, then places pipe insulation beside the paint trays and furnace filters already in the basket so novelty rides with familiar projects."
-          },
           "scenario": "A cart holds paint trays, furnace filters, and one roll of pipe insulation at 6:30 p.m. near the hardware store checkout. Bram, the merchandising analyst, predicts the shopper will resist a giant winterization banner. He moves the winterization shelf tag beside paint trays and filters instead. The reveal comes in the next basket review: novelty rides with familiar projects, not a scare display.",
           "whatToDo": "Place the winterization shelf tag beside paint trays and furnace filters already tied to first-home projects, rather than leading with a large warning banner.",
           "whyItMatters": "The purchase trail suggests a new need, not permission to scare. Familiar placement helps the shopper notice useful maintenance without turning uncertainty into overselling."
@@ -2032,13 +1676,6 @@
             "interface choice",
             "late night"
           ],
-          "planSpec": {
-            "domain": "music streaming app reading late-night replay patterns",
-            "audience": "a product lead reviewing whether to personalize after repeated 2 a.m. listening sessions",
-            "stakes": "the same inference could help a listener wind down or push them deeper into sleepless autoplay",
-            "format": "dialogue",
-            "requiredBeat": "The lead points to the 2 a.m. replay cluster and asks whether the next card should be a sleep-timer shortcut or another endless mix, making the ethical line visible in the interface choice."
-          },
           "scenario": "A replay graph spikes at 2 a.m. beside a glowing sleep-timer button in the streaming app review room. Cyra points to the cluster. \"We know late repeats are happening,\" she tells Jo, the designer. Jo says an endless mix card would lift minutes. Cyra asks, \"Or should the next card be the sleep-timer shortcut?\" The team must decide which interface use helps and which one deepens the loop.",
           "whatToDo": "Put the sleep-timer shortcut in the next-card slot for the 2 a.m. replay cluster, and reject the endless mix card when the pattern suggests fatigue.",
           "whyItMatters": "The same late-night trail supports two designs. The timer uses the inference to help the listener stop; the endless mix uses the weak moment to keep play going."
@@ -2051,13 +1688,6 @@
             "fees",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "checking-account transaction pattern before recurring overdrafts",
-            "audience": "a bank service designer deciding between a warning, a fee product, and silence",
-            "stakes": "predictive inference can prevent avoidable fees or quietly monetize a customer's tightest week",
-            "format": "postmortem",
-            "requiredBeat": "After a complaint, the designer lays payroll dates, grocery debits, and overdraft fees on one timeline and sees that the trail was readable before the fee; the next design choice must pass a help-versus-steer test."
-          },
           "scenario": "A transaction timeline shows payroll dates, grocery debits, and overdraft fees on Arvid's monitor after a complaint call at 10:05 a.m. The pattern was readable before the fee hit. Arvid lays a fee-warning draft beside a short-term credit offer and a do-nothing option. He must decide which design passes a help-versus-steer test for a customer entering the tightest week.",
           "whatToDo": "Send the fee-warning draft early enough for action, make the no-fee step clear, and separate it from any product offer that profits from the predicted shortfall.",
           "whyItMatters": "The transaction trail can prevent a fee or monetize stress. The ethical design gives the customer usable warning before selling a product built around the same vulnerability."
@@ -2070,13 +1700,6 @@
             "reorder",
             "before after"
           ],
-          "planSpec": {
-            "domain": "running-shoe retailer using purchase cadence and blister-pad add-ons",
-            "audience": "a store analyst who wants to personalize without making customers feel watched",
-            "stakes": "the data can prevent injury through a fitting check or exploit anxiety with unnecessary gear",
-            "format": "before_after",
-            "requiredBeat": "Before the change, the email screams injury risk; after revision, the blister-pad add-on and worn-shoe timing trigger a normal fitting invitation tucked beside the usual reorder reminder."
-          },
           "scenario": "A worn-shoe photo sits beside a blister-pad receipt in Tindra's campaign review at 3:20 p.m. Before revision, the email screams injury risk and pushes three add-ons. After Tindra's edit, the blister-pad receipt and worn-shoe timing trigger a normal fitting invitation tucked beside the usual reorder reminder. The same trail now offers a check instead of fear.",
           "whatToDo": "Replace the injury-risk email with a fitting invitation placed beside the usual reorder reminder, keyed to worn-shoe timing and the blister-pad receipt.",
           "whyItMatters": "The cadence and add-on suggest possible fit trouble, not a right to frighten the runner. The revised placement makes help normal and optional."
@@ -2089,13 +1712,6 @@
             "life change",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "meal-kit service noticing a shift from shared dinners to single-serving orders",
-            "audience": "a retention manager deciding whether to chase a churn risk or respect a life change",
-            "stakes": "a company can make a hard transition easier or turn a private change into relentless pressure to buy",
-            "format": "reflection",
-            "requiredBeat": "The manager sees family-size dinners give way to single-serving soups and skipped Fridays, then chooses a pause-and-adjust card in the normal menu flow rather than a barrage of win-back discounts."
-          },
           "scenario": "Single-serving soup cards replace family-size dinners in the meal-kit menu queue on Eleri's dashboard at 7:40 a.m. Skipped Fridays sit in gray along the side. The churn tool wants win-back discounts by noon. Eleri sits with the private weight of the pattern and must decide whether to chase the account or add a pause-and-adjust card in the normal menu flow.",
           "whatToDo": "Place a pause-and-adjust card inside the normal menu queue and hold back the barrage of win-back discounts triggered by single-serving orders and skipped Fridays.",
           "whyItMatters": "The order shift may mark a hard life change. A quiet adjustment path respects uncertainty, while aggressive discounts turn a private transition into pressure to keep buying."
@@ -2114,8 +1730,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The checkout trail is partial, but it can support a useful format option in a familiar place. Naming a health condition overreaches, while ignoring the pattern rejects a possible help.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2127,8 +1742,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The repeated train time supports a quiet shortcut, not a public label or a job inference. The planner placement helps without pretending the system knows the reason.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2140,8 +1754,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The trail may point to an aging pet, but the private meaning is uncertain. A comfort-care option near reorder can help; a blunt decline label turns inference into exposure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2153,8 +1766,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The timing trail is real, but the design exploits a likely weak moment for more spending. The problem is not all pattern use; it is steering that benefits the store against the shopper.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2166,8 +1778,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The repeated stop point suggests friction, not failure or dislike. A shorter card in the normal lesson flow uses familiar placement to reduce friction without shaming the learner.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2179,8 +1790,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The refill trail may reveal a useful timing need, but the public screen exposes and shames. A private option helps while respecting how sensitive the inference may be.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2192,8 +1802,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The seating trail may signal a need, but the cause is not known. Better filter placement helps in the familiar map; asking for a private reason or removing options overclaims.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2205,8 +1814,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The help-versus-pressure test keeps the design grounded in the customer's interest. Add-on maximization invites manipulation, while demanding proof misses the value of partial prediction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2218,8 +1826,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The purchase trail may suggest a private loss, but the store cannot know. A grief-labeled email exposes a guess; quiet controls or a pause option leave room for the person.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2280,19 +1887,13 @@
       },
       "memorableLines": [
         {
-          "text": "Prediction is useful only when it stays humble.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the difference between partial inference and overclaiming."
+          "text": "Prediction is useful only when it stays humble."
         },
         {
-          "text": "Familiar placement lowers resistance, so it also raises responsibility.",
-          "location": "breakdown.deepRead",
-          "why": "It shows why a helpful design tactic can also become a manipulation risk."
+          "text": "Familiar placement lowers resistance, so it also raises responsibility."
         },
         {
-          "text": "The same habit trail can invite care or become a trap.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the ethical fork memorable without turning the lesson into privacy panic."
+          "text": "The same habit trail can invite care or become a trap."
         }
       ]
     },
@@ -2319,13 +1920,6 @@
             "strong ties",
             "ledger"
           ],
-          "planSpec": {
-            "domain": "tenant elevator-repair campaign in a high-rise",
-            "audience": "a tenant organizer whose neighbors complain privately but skip public meetings",
-            "stakes": "elderly residents remain trapped upstairs if complaints never become visible pressure",
-            "format": "scene",
-            "requiredBeat": "The organizer starts with two neighbors who check on each other daily, then puts a floor-by-floor repair ledger by the mailboxes so weak-tie neighbors can see signatures accumulating and feel expected to add theirs."
-          },
           "scenario": "An elevator inspection sticker curls beside the mailboxes at 7:25 a.m. in Tower C. Imani, a tenant organizer, watches Etta from 12 and Luan from 14 check on each other before the elevator stalls again. Private complaints have skipped every meeting. Imani must decide whether to push another meeting or make signatures visible. She puts a floor-by-floor repair ledger on the mailbox shelf and gets those two daily-check neighbors to sign first.",
           "whatToDo": "Start with the two neighbors who already check on each other, then place the floor-by-floor repair ledger on the mailbox shelf where every tenant sees signatures adding up.",
           "whyItMatters": "The close pair makes the first public step safer. The mailbox ledger lets weak-tie neighbors see participation becoming expected instead of hearing another private complaint."
@@ -2338,13 +1932,6 @@
             "heat breaks",
             "board"
           ],
-          "planSpec": {
-            "domain": "warehouse heat-break policy campaign during summer shifts",
-            "audience": "a veteran picker trying to move coworkers from grumbling to coordinated participation",
-            "stakes": "workers keep getting dizzy on the line because everyone assumes someone else will speak first",
-            "format": "before_after",
-            "requiredBeat": "Before the routine, complaints vanish at the time clock; after it, each crew pins a heat card to the shared board after break, making participation visible across friends, acquaintances, and supervisors."
-          },
           "scenario": "A warped time clock sits beside a blank heat-break board at 2:05 p.m. in the warehouse. Before Nolwen's routine, pickers mutter about dizziness and scatter when the clock clicks. After she talks with her closest crew, they pin the first heat card after break: crew initials, time, temperature. By Friday, acquaintances from packing and returns add cards too, and supervisors can see which crews are joining.",
           "whatToDo": "Have the trusted crew pin the first heat card after break, then keep the shared board by the time clock so other crews add initials where friends and supervisors can see them.",
           "whyItMatters": "The old complaint disappeared into solo clock-outs. The heat card turns a private gripe into a repeated visible act that close coworkers can start and weak ties can copy."
@@ -2357,13 +1944,6 @@
             "accessibility",
             "peer norm"
           ],
-          "planSpec": {
-            "domain": "farmers market vendors organizing accessible stall placement",
-            "audience": "a vendor with one loyal aisle group but little reach across the whole market",
-            "stakes": "disabled shoppers will keep finding blocked paths unless isolated sympathy becomes a market-wide expectation",
-            "format": "decision_point",
-            "requiredBeat": "The vendor can complain to the manager alone, but instead stamps each stall map after a neighbor clears one path, so nearby friends start it and distant vendors see the stamp as the new norm."
-          },
           "scenario": "A stall map is smudged with rain near a stack of folding tables at 8:10 a.m. Cassia, a flower vendor, sees another chair user turn back from a blocked aisle. Her loyal aisle friends agree the layout is wrong. She must decide whether to complain to the manager alone or make the norm visible. Her hand moves toward the path-clear stamp. Once the first neighbor shifts a table, Cassia marks the stall map for distant vendors.",
           "whatToDo": "Ask the loyal aisle neighbors to clear one path first, then stamp each stall map in public so vendors outside the close group see the path-clear norm spreading.",
           "whyItMatters": "An official complaint may stay isolated. The stamp makes participation visible, so strong-tie vendors start the act and weak-tie vendors can see what is expected."
@@ -2376,13 +1956,6 @@
             "soundcheck",
             "weak ties"
           ],
-          "planSpec": {
-            "domain": "basement music venues adopting hearing-protection norms",
-            "audience": "a drummer who wants more than a one-night safety announcement",
-            "stakes": "regulars and openers are damaging their hearing because earplugs still signal weakness in the scene",
-            "format": "dialogue",
-            "requiredBeat": "The drummer asks two close bands to put earplug tins on their amps first, then gives every visiting band the same soundcheck line until the weak-tie touring groups copy what the regulars visibly do."
-          },
           "scenario": "A tin of foam earplugs rattles on a guitar amp at 6:45 p.m. in the basement venue. Rika must decide whether to make another safety speech or ask close bands to model the norm. She tells Pax's band and Vale's opener, \"Tin on the amp before doors.\" A touring guitarist points at the regulars' amps. \"We doing that too?\" Rika nods toward the touring-band table. \"Same soundcheck line for everyone.\"",
           "whatToDo": "Ask two close bands to place earplug tins on their amps first, then repeat the same soundcheck line to every visiting band at the touring-band table.",
           "whyItMatters": "A one-night announcement fades. Visible tins from trusted regulars make earplugs normal, and the repeated soundcheck line carries the norm to weak-tie touring groups."
@@ -2395,13 +1968,6 @@
             "ride board",
             "participation"
           ],
-          "planSpec": {
-            "domain": "rural clinic patients coordinating rides to keep a route open",
-            "audience": "a patient advocate whose clients agree the shuttle matters but cancel alone",
-            "stakes": "the county will cut the route if ridership looks too low for another month",
-            "format": "predict_reveal",
-            "requiredBeat": "The advocate predicts reminder calls will not be enough, then creates a weekly ride board where church friends, cousins, and waiting-room acquaintances can see who has claimed seats and who still needs a partner."
-          },
           "scenario": "A shuttle timetable is taped beside the clinic waiting-room window at 9:30 a.m. Hollis, the patient advocate, predicts reminder calls will still leave riders canceling alone. He must decide whether to keep calling one by one or make rides visible. He sets up a weekly board: claimed seats on the left, needs partner on the right. Church friends claim two seats, cousins add names, and waiting-room acquaintances see the gaps.",
           "whatToDo": "Replace solo reminder calls with a weekly ride board by the waiting-room window, showing claimed seats and partner needs where friends, cousins, and acquaintances meet.",
           "whyItMatters": "The route cannot survive as private intention. The board makes ridership visible, lets close ties start the pattern, and gives weak ties a simple way to join."
@@ -2414,13 +1980,6 @@
             "handoff",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "coastal town campaign against illegal river dumping",
-            "audience": "a fish-house owner trying to connect dockworkers, parents, and weekend volunteers",
-            "stakes": "private outrage will fade if residents do not get a repeated way to show up before the next permit hearing",
-            "format": "postmortem",
-            "requiredBeat": "After a small hearing fails, the owner replaces one-off speeches with a Friday sample-tag handoff: close dock friends collect first, parent groups carry the tags to storefronts, and weekend volunteers sign the delivery sheet."
-          },
           "scenario": "A stained test strip dries on Greta's fish-house counter at 5:50 p.m., beside the next permit hearing notice. Last week's hearing failed because speeches ended at the door. Greta maps the miss with dockworker Mace: close dock friends collect Friday samples first, parent groups carry sample tags to storefronts, and weekend volunteers sign the storefront sheet when tags arrive.",
           "whatToDo": "Replace one-off hearing speeches with a Friday sample-tag handoff: dock friends collect, parent groups carry tags, and weekend volunteers sign the storefront sheet.",
           "whyItMatters": "Outrage faded because no repeated role connected the groups. The handoff gives strong ties, weak ties, and weekend volunteers a visible chain before the next hearing."
@@ -2439,8 +1998,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The board gives agreement a visible repeated act. Close neighbors can start it, nearby blocks can copy it, and the Friday rhythm beats another message or a leader-centered speech.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2452,8 +2010,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The bed map turns caring into a visible role. Friend groups lower the risk of starting, and other families can see where to join. Guilt and top-down announcements lack a repeatable act.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2465,8 +2022,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A movement cannot rest on one caller. The missing piece is a shared repair log, floor role, or repeated reporting routine that neighbors can carry without the same leader present.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2478,8 +2034,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The trusted translators can launch the board, and partner groups can see open roles. The private spreadsheet hides participation, while a post names the value without creating a routine.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2491,8 +2046,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The route card creates a repeated handoff between riders. The viral photo had attention but no durable role; more posts or blame do not build peer expectation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2504,8 +2058,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The core team is strong-tie launch work, but scaling needs weak-tie visibility. A public shelf card gives other blocks a clear role; closed chat and thanks keep the work inside the same circle.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2517,8 +2070,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first student groups make the act less lonely, and the checklist lets weaker ties copy the norm. A hidden list and a talk do not make captioning a repeated visible role.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2530,8 +2082,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The guiding question looks for strong-tie launch, weak-tie spread, and a repeatable public role. Moving statements may help, but they do not by themselves create participation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2543,8 +2094,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Caring is private until it has a role. Weekly bag claims and a drop-off sheet make participation visible and repeatable; photos and moral statements can spark attention without carrying action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2605,19 +2155,13 @@
       },
       "memorableLines": [
         {
-          "text": "A movement starts to move when agreement gets a place to stand.",
-          "location": "breakdown.fastRead",
-          "why": "It turns private support into a physical, repeatable image."
+          "text": "A movement starts to move when agreement gets a place to stand."
         },
         {
-          "text": "Strong ties light the first match; weak ties carry the flame across the room.",
-          "location": "breakdown.deepRead",
-          "why": "It separates launch work from scaling work in one memorable contrast."
+          "text": "Strong ties light the first match; weak ties carry the flame across the room."
         },
         {
-          "text": "Peer expectation works when it becomes a visible role people can see each other keeping.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps social pressure grounded in a concrete action rather than abstract belonging."
+          "text": "Peer expectation works when it becomes a visible role people can see each other keeping."
         }
       ]
     },
@@ -2644,13 +2188,6 @@
             "hotel",
             "containment"
           ],
-          "planSpec": {
-            "domain": "diagnosed sleepwalking during hotel travel",
-            "audience": "a person whose sleepwalking has stopped feeling mysterious after two documented hallway incidents",
-            "stakes": "a stranger, staff member, or the traveler could be hurt if the same nighttime loop is treated as unknowable again",
-            "format": "scene",
-            "requiredBeat": "At check-in, he looks at the folded sleep-clinic note, feels the old embarrassment, then asks for a door-alarm wedge and ground-floor room because the hallway loop is now foreseeable enough to contain before sleep."
-          },
           "scenario": "A folded sleep-clinic note rests beside a hotel key packet at 4:10 p.m. Kiran feels the old embarrassment at the front desk. Two hallway incidents are documented now, and the night loop no longer feels like a mystery. He must decide whether to stay quiet or contain the cue before sleep. He asks for a door-alarm wedge and a ground-floor room before taking the key.",
           "whatToDo": "Ask at check-in for the door-alarm wedge and a ground-floor room, using the sleep-clinic note as evidence that the hallway loop is foreseeable.",
           "whyItMatters": "The automatic episode may happen during sleep, but the risk is now known while Kiran is awake. Containment belongs before the next night begins."
@@ -2663,13 +2200,6 @@
             "fatigue",
             "avoidance"
           ],
-          "planSpec": {
-            "domain": "ride-share driver after repeated lane-drift warnings on overnight shifts",
-            "audience": "a driver who has treated the warning chime as annoying instead of evidence of a predictable loop",
-            "stakes": "a passenger and other drivers share the risk once the drowsy-shift pattern is visible",
-            "format": "postmortem",
-            "requiredBeat": "After printing the lane-alert log, she circles the same 3 a.m. drift pattern and blocks overnight rides in the app before the next weekend, accepting that the known cue now creates a duty to avoid it."
-          },
           "scenario": "A lane-alert log curls from a dashboard printer at 9:05 a.m. after Laleh's Saturday shift. She used to slap the dashboard chime silent and keep driving. Now three warnings cluster near 3 a.m. with passengers in the back. In the postmortem, she circles the drift pattern, opens the driver app, and blocks overnight rides before the next weekend.",
           "whatToDo": "Treat the lane-alert log as evidence, circle the 3 a.m. pattern, and block overnight rides in the app before the next weekend shift opens.",
           "whyItMatters": "The chime stopped being random once the pattern repeated. Known drowsy-driving cues create a duty to avoid the trigger, not merely regret the last drift."
@@ -2682,13 +2212,6 @@
             "safety",
             "redesign"
           ],
-          "planSpec": {
-            "domain": "community rocketry club launch-controller arming sequence",
-            "audience": "a volunteer safety officer after a near misfire shows one member always skips the verbal arming call",
-            "stakes": "spectators and students stand behind a rope line that depends on a sequence everyone can verify",
-            "format": "decision_point",
-            "requiredBeat": "The safety officer can call the member careless, but instead holds up the brass arming key, names the skipped call as a foreseeable loop, and installs a two-voice callout before the key can turn."
-          },
           "scenario": "A brass arming key hangs from the launch-controller switch while students wait behind the rope line. Bastien, the volunteer safety officer, has just reviewed a near misfire. Noura skips the verbal arming call whenever spectators crowd close. Bastien can call her careless and end the meeting, but he holds up the key and must decide whether to redesign the step. He installs a two-voice callout before the key can turn.",
           "whatToDo": "Name the skipped verbal call as a foreseeable loop, then require a two-voice callout at the rope line before anyone turns the brass arming key.",
           "whyItMatters": "Blame alone leaves the same crowded cue in place. The second voice changes the arming sequence so the known shortcut cannot pass unnoticed."
@@ -2701,13 +2224,6 @@
             "phishing",
             "gate"
           ],
-          "planSpec": {
-            "domain": "accounts-payable wire approval after a familiar-sender phishing attempt",
-            "audience": "a finance controller whose team learned that month-end pressure makes one shortcut predictable",
-            "stakes": "a single automatic approval could move six figures before anyone notices the false vendor domain",
-            "format": "predict_reveal",
-            "requiredBeat": "The controller predicts the next fake invoice will arrive near close, then makes the analyst hover over the vendor domain and place the orange hold flag before approval, turning awareness into a redesigned gate."
-          },
           "scenario": "An orange hold flag sits beside the month-end invoice queue at 5:35 p.m. Saskia, the finance controller, predicts the next fake invoice will arrive near close with a familiar sender name. Analyst Beren opens a wire request and starts to approve. Saskia must decide whether awareness is enough. She points to the vendor domain field. The redesign: hover over the domain, place the orange hold flag, then approve only after the check clears.",
           "whatToDo": "Make the analyst hover over the vendor domain and place the orange hold flag before wire approval whenever the month-end queue is under pressure.",
           "whyItMatters": "The shortcut is predictable at close. The hold flag turns awareness into a gate that interrupts the familiar-sender approval loop before money moves."
@@ -2720,13 +2236,6 @@
             "chemical disposal",
             "before after"
           ],
-          "planSpec": {
-            "domain": "darkroom photographer disposing of chemical fixer after late print sessions",
-            "audience": "a studio owner who now knows fatigue makes the sink-pour routine likely after midnight",
-            "stakes": "hazardous chemical disposal is not excused once the cue, shortcut, and harm are predictable",
-            "format": "before_after",
-            "requiredBeat": "Before the redesign, the black fixer jug sits beside the sink after late sessions; after the complaint, the owner chains the jug to a silver recovery can and locks the sink cover before printing starts."
-          },
           "scenario": "A black fixer jug sits beside a stainless sink at 12:20 a.m. in Oona's darkroom studio. Before the redesign, Oona ends late print sessions tired, sets the jug by the drain, and tells herself she will carry it out later. After the disposal complaint, she changes the room before printing starts: the jug is chained to a silver recovery can, and the sink cover locks before trays fill.",
           "whatToDo": "Chain the black fixer jug to the silver recovery can and lock the sink cover before late printing starts, so fatigue cannot reopen the sink-pour routine.",
           "whyItMatters": "The risky cue is now known: midnight fatigue plus a jug beside the drain. Changing the room is accountability; another apology would leave the shortcut ready."
@@ -2739,13 +2248,6 @@
             "applause cue",
             "routine"
           ],
-          "planSpec": {
-            "domain": "glassblowing studio torch valve left open during applause breaks",
-            "audience": "a studio director whose best demonstrator keeps missing one shutoff step when the crowd claps",
-            "stakes": "students and visitors are exposed to a known gas risk if the studio treats applause as a harmless distraction",
-            "format": "dialogue",
-            "requiredBeat": "The director taps the cold torch valve tag and says the applause cue is now known, then moves the demonstration line behind a shutoff-and-point routine that must happen before anyone bows."
-          },
           "scenario": "A cold torch valve tag dangles beside a cooling glass gather at 2:15 p.m. in the glassblowing studio. Yara taps the tag while Quill, the demonstrator, wipes his gloves. She must decide whether to treat applause as harmless. \"The applause cue is known now,\" she says. Quill says he only missed it when the crowd stood up. Yara points to the demo line. \"Then the bow moves. Shutoff-and-point first, applause second.\"",
           "whatToDo": "Move the demonstration line behind a shutoff-and-point routine: close the valve, point to the tag, then bow only after the step is visible.",
           "whyItMatters": "The applause cue is pleasant but predictable. Once it is known to pull attention away from the valve, the studio has to redesign the bow sequence."
@@ -2764,8 +2266,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The early-driver cue and open-door harm are now foreseeable. Changing check-in and adding a latch check contains the loop; remorse and automatic-action excuses leave the next rush exposed.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2777,8 +2278,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The song has become a known cue for the skipped lock. Moving the speaker and posting the lock rule redesign the conditions; awareness promises and blaming the cue do not protect the child.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2790,8 +2290,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Habit explains the skipped check but does not settle responsibility. A known friend-interruption cue calls for containment, such as a pickup tag. Calling it habit and stopping there is the failure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2803,8 +2302,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The repeated charting cue and silenced alert make the loop foreseeable. The useful question seeks a block before the next exposure; character judgment and abstract debate miss the redesign point.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2816,8 +2314,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The rain, texting, and sticky gate form a known risk path. The carabiner and texting stop contain the cue before another dog escapes; apology or weather explanation leaves the loop open.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2829,8 +2326,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The overlap cue is already known, so trying harder is too thin. A pause, second read, and tray hold redesign the risky moment; blame statements and philosophy leave labels exposed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2842,8 +2338,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The music cue matters only because it intersects with kiln days. Clipping a vent-open card to the speaker changes the trigger path; broad bans and full excuse both miss the specific loop.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2855,8 +2350,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The camera has made the interruption loop visible. Reminder-only accountability keeps the same cue in place; pausing questions or using a hand signal changes the conditions.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2868,8 +2362,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tourist-photo cue is now foreseeable. Crew confirmation and a rail-clear cue contain the next docking risk; private resolve and blaming tourists do not redesign the moment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2930,19 +2423,13 @@
       },
       "memorableLines": [
         {
-          "text": "Once the loop is visible, you no longer get to call it mysterious.",
-          "location": "breakdown.fastRead",
-          "why": "It states the responsibility shift in plain, memorable terms."
+          "text": "Once the loop is visible, you no longer get to call it mysterious."
         },
         {
-          "text": "Explanation is useful because it points to the lever.",
-          "location": "breakdown.deepRead",
-          "why": "It separates habit explanation from habit excuse."
+          "text": "Explanation is useful because it points to the lever."
         },
         {
-          "text": "Responsibility returns before the next cue.",
-          "location": "breakdown.fullRead",
-          "why": "It locates accountability before repetition, not after regret."
+          "text": "Responsibility returns before the next cue."
         }
       ]
     }

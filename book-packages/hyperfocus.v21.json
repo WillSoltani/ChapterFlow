@@ -23,7 +23,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "hyperfocus-ch01",
       "number": 1,
       "title": "Switching Off Autopilot Mode",
@@ -124,8 +123,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Resistance plus novelty is the mechanism. Free time can matter, but Bruno's reach starts when the hard task makes fast reward more tempting.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -137,8 +135,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A pocket hides the screen but keeps alert anticipation alive. Airplane mode removes incoming hooks, so attention has fewer live signals to monitor.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -150,8 +147,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The swap keeps urgent use while removing personalized temptations. Total separation misses the tactic's balance between access and distraction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -163,8 +159,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The tactic isolates tempting apps from the main phone. It is about added friction, not novelty or closer monitoring.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -176,8 +171,7 @@
             ],
             "correctIndex": 1,
             "explanation": "App pruning targets duplicate jobs. Convenience can create cue density, so Amelia should ask which useful functions need to live on the phone.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -189,8 +183,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The label is an awareness cue. It does not solve the whole habit, but it makes the choice visible at the moment of selection.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -202,8 +195,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Gap protection treats the line as recovery time. Filling it with headlines or messages keeps attention in checking mode.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -215,8 +207,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The audit names the job first. Feature count can hide redundant pulls, while the hiring question separates useful work from distraction.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q09",
@@ -228,8 +219,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Consumption spends attention too. Asking whether the article is worth it makes the commitment deliberate before the input begins.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -272,7 +262,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the Attention Job",
         "coreSkill": "Practice catching the reach before it becomes a check. Mark the Attention Job by naming what the device or tab is for, then change one cue so the chosen target is easier than the drift. The skill is small design before willpower gets tested.",
         "ifThenPlans": [
           {
@@ -297,19 +286,13 @@
       },
       "memorableLines": [
         {
-          "text": "Autopilot spends attention before intention speaks.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the invisible cost of autopilot easy to recall."
+          "text": "Autopilot spends attention before intention speaks."
         },
         {
-          "text": "A tool earns its place by the job it does.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the device-job audit into one portable test."
+          "text": "A tool earns its place by the job it does."
         },
         {
-          "text": "Awareness needs a visible target before the cue arrives.",
-          "location": "breakdown.fullRead",
-          "why": "It captures why the chapter pairs noticing with environment design."
+          "text": "Awareness needs a visible target before the cue arrives."
         }
       ]
     },
@@ -414,8 +397,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Working memory has a small active capacity. The near miss is treating simple thoughts as free, but even a small reminder can take space when it guides behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -427,8 +409,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cowan's review is used because it revises the roomy seven-item intuition downward. The error is keeping Miller's slogan as the modern planning rule.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -440,8 +421,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Multitasking often means fast switching, not parallel focus. Familiar tasks can still carry a cost when the mind has to reload goals and rules.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -453,8 +433,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Switch cost is measured in performance after alternation. The tempting mistake is making it about liking the change, when the cost is rule reconfiguration.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -466,8 +445,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The list works by memory offloading. It is not mainly a morale boost, and it does not ask Jeanne to deny the reminder.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -479,8 +457,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Visible clients can occupy attention even without pings. The near miss is thinking only active notifications count as distractions.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -492,8 +469,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A clear environment helps by reducing cue competition. Cleanup is not just taste, and it does not prove the article itself became easier.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -505,8 +481,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Demand changes capacity needs. A complex target needs more active pieces held together than a habit, so a chat window can crowd it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -518,8 +493,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Attention limits make selection matter more than raw speed. The near miss is counting finished items while the best target never gets enough space.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -562,7 +536,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Park the Fifth Object",
         "coreSkill": "Practice spotting the moment a new item tries to enter an already full workspace. Park the Fifth Object means you keep the chosen target active and move the extra cue to paper, out of sight, or to a later pass. The skill is not ignoring life; it is protecting room for the work you picked.",
         "ifThenPlans": [
           {
@@ -587,24 +560,17 @@
       },
       "memorableLines": [
         {
-          "text": "Small rooms reward clean choices.",
-          "location": "breakdown.fastRead",
-          "why": "It turns working-memory capacity into a picture the reader can use."
+          "text": "Small rooms reward clean choices."
         },
         {
-          "text": "Switching is work wearing a speed costume.",
-          "location": "breakdown.deepRead",
-          "why": "It punctures the feeling that fast alternation is free."
+          "text": "Switching is work wearing a speed costume."
         },
         {
-          "text": "A full mind mistakes motion for progress.",
-          "location": "breakdown.fullRead",
-          "why": "It names the main productivity trap in a portable line."
+          "text": "A full mind mistakes motion for progress."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "hyperfocus-ch03",
       "number": 3,
       "title": "The Power of Hyperfocus",
@@ -700,8 +666,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The target comes first. Clearing space helps, but a blank space without a chosen object can still be filled by the next easy cue.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "hyperfocus-ch03-q02",
@@ -713,8 +678,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Attention earns more when it goes to the task with larger consequence. The email may matter, but speed alone is a poor guide for the first block.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "hyperfocus-ch03-q03",
@@ -726,8 +690,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Environment design lowers the burden before self-control is tested. The old sheet remains real work, but it should not compete during the next target.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "hyperfocus-ch03-q04",
@@ -739,8 +702,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The routine expects wandering. Noticing the drift supplies the return point; calling the whole block a failure only adds another distraction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "hyperfocus-ch03-q05",
@@ -752,8 +714,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Flow and hyperfocus overlap, but they are not the same. Hyperfocus includes choosing, clearing, attending, and returning even before absorption appears.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "hyperfocus-ch03-q06",
@@ -765,8 +726,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Attention residue means the prior target can keep tugging after the visible switch. Closing the tab helps, but it may not end the mental carryover.",
-            "bloomsLevel": "remember",
-            "depthLevel": "standard"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "hyperfocus-ch03-q07",
@@ -778,8 +738,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The value is not just calm or fewer tabs. Staying with one target lets structure, links, and quality build around the work that matters.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "hyperfocus-ch03-q08",
@@ -791,8 +750,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Hyperfocus can be prepared. Choice, setting, and return cues reduce the need for a perfect mood at the start.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "hyperfocus-ch03-q09",
@@ -804,8 +762,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Harsh self-talk becomes another object for attention to hold. A simple return preserves more capacity for the paragraph itself.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -848,7 +805,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Give One Target The Room",
         "coreSkill": "Practice giving one valuable target the first chair. Use a daily object you already touch, such as your laptop lid, notebook, or office door, as the cue to clear competing cues before you begin. When attention wanders, name the drift once and return.",
         "ifThenPlans": [
           {
@@ -873,24 +829,17 @@
       },
       "memorableLines": [
         {
-          "text": "Busy work wins when it gets the first chair.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the priority mistake concrete and easy to recall."
+          "text": "Busy work wins when it gets the first chair."
         },
         {
-          "text": "Drift is not failure; drift is the bell to return.",
-          "location": "breakdown.fastRead",
-          "why": "It turns a common frustration into the focus loop."
+          "text": "Drift is not failure; drift is the bell to return."
         },
         {
-          "text": "Depth costs the comfort of being instantly available.",
-          "location": "breakdown.fullRead",
-          "why": "It names the tradeoff behind the practice in plain words."
+          "text": "Depth costs the comfort of being instantly available."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "hyperfocus-ch04",
       "number": 4,
       "title": "Taming Distractions",
@@ -985,8 +934,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The 40-second figure points to frequent small pulls. Stella should prevent early cue contact, not treat interruption as rare or use it as a reason to give up.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -998,8 +946,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cited interruption work treats recovery as costly. The roster question may be brief, but rebuilding the scoring context can take far longer.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1011,8 +958,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Prevention lowers the willpower demand. Removing the cue helps Kevin avoid a direct contest with novelty and possible reward.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1024,8 +970,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The shift can happen before action. An unanswered alert still introduces another target, which is why cue removal matters.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1037,8 +982,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Internal interruptions need capture, not suppression. Writing the errand down lets Yann defer it without keeping it active in memory.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1050,8 +994,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Batching protects attention by reducing switches. William has to weigh responsiveness against the higher-value work that continuous checking weakens.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1063,8 +1006,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Attention favors novelty, reward, and threat. That does not make the news more important; it means the proposal needs a stronger cue path.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1076,8 +1018,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Urgency increases salience through threat, not pleasure. Stella can learn from that pull without deciding pressure is the only way to work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -1089,8 +1030,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The tactics assume ordinary minds respond to context. Kevin should change what attention meets first before judging himself as the problem.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1133,7 +1073,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Stage the Cue Path",
         "coreSkill": "Practice setting the room before the pull arrives. Stage the Cue Path means you look for outside pulls, inside urges, tempting cues, and communication checks before a focus block. Then you change one cue so the task is easier to stay with.",
         "ifThenPlans": [
           {
@@ -1158,24 +1097,17 @@
       },
       "memorableLines": [
         {
-          "text": "Cues beat willpower when the cue arrives first.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the prevention logic into a line the reader can use before work."
+          "text": "Cues beat willpower when the cue arrives first."
         },
         {
-          "text": "A listed urge is lighter than a hidden urge.",
-          "location": "breakdown.deepRead",
-          "why": "It makes internal capture feel concrete and easy to remember."
+          "text": "A listed urge is lighter than a hidden urge."
         },
         {
-          "text": "Do not sterilize life to protect attention.",
-          "location": "breakdown.fullRead",
-          "why": "It guards against the shallow reading that all distraction is bad."
+          "text": "Do not sterilize life to protect attention."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "hyperfocus-ch05",
       "number": 5,
       "title": "Making Hyperfocus a Habit",
@@ -1276,8 +1208,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The habit works by repeating useful conditions, not by counting minutes alone. The cue stack lowers setup effort before deep work starts.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1289,8 +1220,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Relaxation can help, but the source mechanism is attention training. Mindfulness repeats the notice-and-return move that focus blocks need.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1302,8 +1232,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The 40 percent figure came from a personal calculation. It supports testing a ritual, not selling a universal productivity guarantee.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1315,8 +1244,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Absence protects the block. A face-down phone can still invite checking, while a missing phone cannot produce alerts during the work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1328,8 +1256,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source case turns on unavailable connectivity. A public setting can still work when the usual route into email and browsing is closed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1341,8 +1268,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Mrazek work is not only a mood claim. It links mindfulness training with attention measures, working memory, GRE performance, and less mind wandering.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -1354,8 +1280,7 @@
             ],
             "correctIndex": 0,
             "explanation": "High energy should be matched to important work. Small tasks can consume the best attention window before the meaningful target begins.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1367,8 +1292,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Intentions guide attention when they help select the next target. As decoration, they do not shape what gets the clearest mind.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1380,8 +1304,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Breaks can protect later focus. The wrong reading treats recovery as weakness, but the habit needs energy to be repeatable.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1424,7 +1347,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Cue the Focus Block",
         "coreSkill": "Cue the Focus Block by naming the task, setting one cue that makes drift harder, and matching your best energy to the work that matters most. Add a planned recovery point before you start. The skill is flexible: the cue repeats, but the exact block can change with the day.",
         "ifThenPlans": [
           {
@@ -1449,24 +1371,17 @@
       },
       "memorableLines": [
         {
-          "text": "Small cues make focus come back.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the habit mechanism into one plain line."
+          "text": "Small cues make focus come back."
         },
         {
-          "text": "Energy is a budget, not a badge.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the chapter's energy rule easy to remember."
+          "text": "Energy is a budget, not a badge."
         },
         {
-          "text": "A cue is a doorway, not a cage.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the adaptive hard edge of the chapter."
+          "text": "A cue is a doorway, not a cage."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "hyperfocus-ch06",
       "number": 6,
       "title": "Your Brain's Hidden Creative Mode",
@@ -1567,8 +1482,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Scatterfocus is chosen wandering with low-value capture kept out. News may feel like a break, but it points Tobias at external novelty instead of his own thought.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1580,8 +1494,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Focused work matters, but insight can come when attention loosens. Scatterfocus lets ideas from different mental contexts meet without a single task squeezing them.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1593,8 +1506,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Proper idleness is different from stimulation. Email, news, and feeds can keep attention busy, so the team may leave the break more crowded.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1606,8 +1518,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cited research makes future thought prominent in wandering. Past replay happens, but the key finding is that drift often looks forward.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1619,8 +1530,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The numbers mark destinations of wandering thought, not a schedule for focused work. They make the planning value of idle thought more concrete.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q06",
@@ -1632,8 +1542,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Scatterfocus can support planning because future thought becomes available when attention is not locked on the next task. The list still matters later.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1645,8 +1554,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Waking attention can recover when demands drop. A fast feed or light messages may still ask Sarah to regulate a target and process novelty.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1658,8 +1566,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Smallwood and Schooler show that internal thought can be studied through reports and performance links. Vague feeling is not the only evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1671,8 +1578,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Phones can provide input, but scatterfocus needs uncaptured mental space. The risk is that novelty takes over before Asher's own thought can move.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1715,7 +1621,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Roaming Line",
         "coreSkill": "Practice choosing one idle gap before a feed fills it. Write one Roaming Line that names the concern you want your mind to circle. Then keep the gap clear enough for memory, plans, and current concerns to meet.",
         "ifThenPlans": [
           {
@@ -1740,24 +1645,17 @@
       },
       "memorableLines": [
         {
-          "text": "Empty space can do work.",
-          "location": "breakdown.fastRead",
-          "why": "It flips idleness from waste into a useful mental condition."
+          "text": "Empty space can do work."
         },
         {
-          "text": "A phone break is not an idle mind.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the hardest distinction in one plain contrast."
+          "text": "A phone break is not an idle mind."
         },
         {
-          "text": "Useful wandering needs an uncaptured mind.",
-          "location": "breakdown.deepRead",
-          "why": "It states the practice and the guardrail without extra machinery."
+          "text": "Useful wandering needs an uncaptured mind."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "hyperfocus-ch07",
       "number": 7,
       "title": "Recharging Your Attention",
@@ -1858,8 +1756,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Directed attention tires from holding a goal and inhibiting rivals. Disliking the task is not required, so Lana should not read fatigue as proof the work is wrong.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1871,8 +1768,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Soft fascination is low-demand interest, not zero input. Leaves or water can engage Peyton gently, while blankness is not the only route to recovery.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1884,8 +1780,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Movement can help, but the theory also names the setting. Natural cues can pull attention softly, so the benefit is not only exercise.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1897,8 +1792,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A screen break can fail when alerts and feeds keep adding targets. Being off the job file is not enough if Brigitte still has to sort novelty.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1910,8 +1804,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Recovery can come from low-demand routines, not only stillness. The sketchbook helps if it loosens attention instead of becoming another demanding task.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1923,8 +1816,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Walking without the phone protects the gap from alerts and novelty. The walk is useful because it lowers input before attention is needed again.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1936,8 +1828,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Recharge supports later hyperfocus by restoring control resources. Breaks are not separate from productivity when their quality shapes the next focus block.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1949,8 +1840,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Intentional time-outs can be designed for recovery. If Lana drifts into the nearest app, the break may become cue-driven distraction.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1962,8 +1852,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Device-free idleness can include loose planning. The problem is not every future thought, but turning the break into another input-heavy control task.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2006,7 +1895,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Lower the Break Demand",
         "coreSkill": "Practice checking a break by the demand it puts on attention. Use Lower the Break Demand when a pause starts: remove one source of new targets, then choose a gentle activity or quiet setting. The goal is to return with more grip, not to perform rest perfectly.",
         "ifThenPlans": [
           {
@@ -2031,24 +1919,17 @@
       },
       "memorableLines": [
         {
-          "text": "Rest is only useful when it stops adding targets.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clean test for every break."
+          "text": "Rest is only useful when it stops adding targets."
         },
         {
-          "text": "Soft fascination gives attention a gentler job.",
-          "location": "breakdown.deepRead",
-          "why": "It makes Attention Restoration Theory easy to remember."
+          "text": "Soft fascination gives attention a gentler job."
         },
         {
-          "text": "A crowded break borrows from the next focus block.",
-          "location": "breakdown.deepRead",
-          "why": "It shows the cost of input-heavy rest in one line."
+          "text": "A crowded break borrows from the next focus block."
         }
       ]
     },
     {
-      "schemaVersion": "v21",
       "chapterId": "hyperfocus-ch08",
       "number": 8,
       "title": "Connecting Dots",
@@ -2149,8 +2030,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Incubation follows effort. Closing the file treats stepping away as abandonment, while more staring may keep the same frame locked in place.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2162,8 +2042,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Zeigarnik effect concerns unfinished material staying prominent. It is not a claim that completed tasks or recent items have the stronger pull.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -2175,8 +2054,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The puzzle turns on digit names: eight, five, four, nine, one, seven, six, three, two, zero. Numerical ascent or paired sums miss the frame.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2188,8 +2066,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The later cue works after prior effort has encoded the problem. Treating the shelf as random luck, or the title as a method manual, misses the sequence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2201,8 +2078,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Habitual, low-demand activity leaves spare attention. A demanding new tool may be useful later, but it crowds out the wandering this problem needs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2214,8 +2090,7 @@
             ],
             "correctIndex": 1,
             "explanation": "External cues can be indirect. The useful move is to test the resemblance, not require the cue to come from the same field or treat it as final proof.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2227,8 +2102,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The stories illustrate a pattern: a prepared problem meets a cue away from formal work. They are not used as proof of every historical detail.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2240,8 +2114,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Feynman's routine is not avoidance. The setting lowers demand enough for equations and ideas to keep moving, while the work remains present.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2253,8 +2126,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source of a trigger can be inside or outside. Reducing insight to sensory cues alone ignores the role of wandering memories and thoughts.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2297,7 +2169,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Leave One Problem Open",
         "coreSkill": "Practice loading one problem clearly, then releasing your grip for a short low-demand stretch. Use Leave One Problem Open by naming the stuck point in one sentence before you step away. The aim is to keep the problem available without letting it take over the whole day.",
         "ifThenPlans": [
           {
@@ -2322,24 +2193,17 @@
       },
       "memorableLines": [
         {
-          "text": "Prepared problems notice gifts that blank minds miss.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the preparation requirement short enough to remember."
+          "text": "Prepared problems notice gifts that blank minds miss."
         },
         {
-          "text": "A stuck problem can become a waiting receiver.",
-          "location": "breakdown.deepRead",
-          "why": "It gives incubation a concrete image without overselling it."
+          "text": "A stuck problem can become a waiting receiver."
         },
         {
-          "text": "Loose attention works only after honest contact.",
-          "location": "breakdown.fullRead",
-          "why": "It marks the boundary between useful wandering and avoidance."
+          "text": "Loose attention works only after honest contact."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "hyperfocus-ch09",
       "number": 9,
       "title": "Collecting Dots",
@@ -2440,8 +2304,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Creative connection needs prior material. A blank stretch may help ideas meet, but it cannot connect ideas the mind has not encoded.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2453,8 +2316,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The marks are not decoration. They help Tatum process and revisit useful parts, while a clean fast read can leave good material hard to find.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2466,8 +2328,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A second pass brings attention back to the highest-value material. Interest helps, but it does not guarantee later recall.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2479,8 +2340,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Explaining a bit forces retrieval and new wording. Copying or waiting can preserve the mark, but it may not deepen processing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2492,8 +2352,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Descriptions are pitches, not neutral labels. Finley can decide before consuming whether the input deserves the attention it asks for.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2505,8 +2364,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Consumed material can become part of the pool memory draws from later. Not saving a clip does not mean it leaves no trace.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2518,8 +2376,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Dot collection is selective. More input can clutter attention, while a richer source is easier to encode and use later.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2531,8 +2388,7 @@
             ],
             "correctIndex": 1,
             "explanation": "New surroundings can supply cues and observations that routine inputs miss. Books matter, but places and experiences also become material.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2544,8 +2400,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Input choice is part of attention management. What Finley consumes now shapes what attention and scatterfocus can draw on later.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2588,7 +2443,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Input Pitch Count",
         "coreSkill": "Practice treating each possible input as a bid for attention. Run the Input Pitch Count by comparing two options, counting the concrete dots each may add, and choosing the richer one. Then mark or save the best dot so it can be found later.",
         "ifThenPlans": [
           {
@@ -2613,24 +2467,17 @@
       },
       "memorableLines": [
         {
-          "text": "Marked pages travel farther.",
-          "location": "breakdown.fastRead",
-          "why": "It turns active reading into a compact image the reader can carry."
+          "text": "Marked pages travel farther."
         },
         {
-          "text": "A mind cannot connect what it never kept.",
-          "location": "breakdown.fastRead",
-          "why": "It states the dot-collection mechanism without extra jargon."
+          "text": "A mind cannot connect what it never kept."
         },
         {
-          "text": "Better dots beat more dots.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the hard edge into a short, useful contrast."
+          "text": "Better dots beat more dots."
         }
       ]
     },
     {
-      "schemaVersion": "chapter-v21",
       "chapterId": "hyperfocus-ch10",
       "number": 10,
       "title": "Working Together",
@@ -2719,7 +2566,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the Mode Shift",
         "coreSkill": "Practice naming the attention mode before a task handoff. Mark H when the next stretch needs hyperfocus, or S when it needs scatterfocus. The mark is small, but it forces the useful question: what is this moment for?",
         "ifThenPlans": [
           {
@@ -2754,8 +2600,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source treats hyperfocus and scatterfocus as complementary. Gabriel's mistake is treating the loose mode as waste when it restores, plans, and connects.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2767,8 +2612,7 @@
             ],
             "correctIndex": 0,
             "explanation": "GQ separates value from looking busy. Waiting messages may be real work, but consequence decides where deliberate attention belongs first.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2780,8 +2624,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Strategic multitasking is narrow. It pairs a low-demand activity with loose thought; it does not ask two hard tasks to split the same mind.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2793,8 +2636,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source separates necessity from consequence. Email can matter without outranking deeper work, so Georges needs a batch rather than an always-open inbox.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2806,8 +2648,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Novelty, pleasure, and threat can win attention before value is judged. The tempting error is treating pull as proof of meaning.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -2819,8 +2660,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Batching shallow work reduces repeated switches. Fast replies still fragment the day when each one interrupts the mode that was chosen.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2832,8 +2672,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Creative mode loosens attention so associations can form. It helps combine material; it does not erase the need for later focused revision.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -2845,8 +2684,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The final standard is deliberate attention. Removing distractions helps, but the larger job is choosing what this moment should serve.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2858,8 +2696,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The official overview names focused mode as the base for high productivity. Variety can feel fresh, but it often fragments the resources the draft needs.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2903,19 +2740,13 @@
       ],
       "memorableLines": [
         {
-          "text": "Focus ships; scatterfocus supplies.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the partnership between the two attention modes."
+          "text": "Focus ships; scatterfocus supplies."
         },
         {
-          "text": "A good rhythm spends attention on purpose.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the operating rule portable."
+          "text": "A good rhythm spends attention on purpose."
         },
         {
-          "text": "Busy is not the same as valuable.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the GQ contrast in a line the reader can reuse."
+          "text": "Busy is not the same as valuable."
         }
       ]
     }

@@ -24,7 +24,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "drive-ch01",
       "number": 1,
       "title": "The Rise and Fall of Motivation 2.0",
@@ -46,13 +45,6 @@
             "work design",
             "motivation"
           ],
-          "planSpec": {
-            "domain": "product wiki review",
-            "audience": "Rowan, a product lead deciding how much control a wiki needs",
-            "stakes": "The team must decide whether a public contribution space needs tighter approval or clearer invitation.",
-            "format": "decision_point",
-            "requiredBeat": "Show the choice between Encarta-style control and a Wikipedia-style contribution path."
-          },
           "scenario": "Rowan watches three useful wiki edits sit in review while support agents keep answering the same customer question by hand. The proposed fix is a stricter approval queue, but the real bottleneck is that contributors cannot see where their judgment is welcome.",
           "whatToDo": "At the product wiki review, classify the work type and remove one control that blocks contribution.",
           "whyItMatters": "The decision changes the operating system. A wiki that asks only for compliance will not get the voluntary care that makes shared knowledge useful."
@@ -64,13 +56,6 @@
             "team choice",
             "practice"
           ],
-          "planSpec": {
-            "domain": "factory training room",
-            "audience": "Imani, a trainer separating routine work from judgment work",
-            "stakes": "New supervisors are about to apply one factory-style rule to every task.",
-            "format": "dialogue",
-            "requiredBeat": "Use Taylor as a useful but limited model."
-          },
           "scenario": "Imani shows supervisors two tasks on the screen: a safety checklist and a customer complaint that does not fit the script. The checklist benefits from sequence and measurement; the complaint gets worse if the agent is punished for improvising.",
           "whatToDo": "In the factory training room, ask where factory-style supervision helps and where it dulls creative judgment.",
           "whyItMatters": "The same control habit can help repetition and harm judgment. Sorting the work prevents leaders from using an industrial tool on a modern problem."
@@ -82,13 +67,6 @@
             "ethics",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "pricing ethics seminar",
-            "audience": "Soren, an ethics instructor making fairness visible",
-            "stakes": "A class is tempted to explain every pricing choice as simple self-interest.",
-            "format": "audit",
-            "requiredBeat": "Use the fairness lesson to complicate a pure incentive story."
-          },
           "scenario": "Soren asks students whether they would accept a profitable contract that treats one partner as disposable. Several reject it even after calculating the gain, because the deal would make their own standards harder to defend.",
           "whatToDo": "Audit the pricing ethics seminar for the social meaning people would defend, not just the payout math.",
           "whyItMatters": "People protect dignity and fairness as well as money. A motivational model that misses that fact will misread real behavior."
@@ -100,13 +78,6 @@
             "autonomy",
             "decision"
           ],
-          "planSpec": {
-            "domain": "open-source release standup",
-            "audience": "Beatrice, a release lead opening work without losing standards",
-            "stakes": "An open-source team needs more contributors but cannot let quality collapse.",
-            "format": "planning_choice",
-            "requiredBeat": "Turn the Wikipedia lesson into a practical contribution design."
-          },
           "scenario": "Beatrice replaces a vague call for help with three labeled starter issues, a review rota, and a visible changelog credit. Contributors still meet the release standard, but they can now see a path from interest to useful work.",
           "whatToDo": "Use Wikipedia versus Microsoft Encarta to choose one contribution path for the open-source release standup that is easier to join.",
           "whyItMatters": "Self-direction does not mean an empty field. People contribute more seriously when the path is open and the purpose of the work is visible."
@@ -118,13 +89,6 @@
             "management",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "university lab debrief",
-            "audience": "Keisha, a lab manager reading a short-term productivity jump carefully",
-            "stakes": "A lab gets more logged output after adding check-ins, but curiosity is dropping.",
-            "format": "postmortem",
-            "requiredBeat": "Show how the wrong operating system can suppress the behavior it wants."
-          },
           "scenario": "Keisha's new dashboard shows more experiment notes and fewer original questions. Graduate students are optimizing for daily proof of activity, so the lab looks busier while the work becomes less exploratory.",
           "whatToDo": "In the university lab debrief, compare compliance metrics with curiosity signals before changing the lab design.",
           "whyItMatters": "The metric is not neutral. A control signal can increase visible motion while training people away from inquiry."
@@ -136,13 +100,6 @@
             "reflection",
             "repair"
           ],
-          "planSpec": {
-            "domain": "customer support redesign",
-            "audience": "Galen, a support manager redesigning scripts",
-            "stakes": "Agents need consistency without losing the ability to solve unusual customer problems.",
-            "format": "reflection",
-            "requiredBeat": "Apply the routine-versus-heuristic diagnosis to a service workflow."
-          },
           "scenario": "Galen keeps required language for refunds and privacy, then removes the rule that forces every complex case through the same five lines. Agents must record their reasoning, but they can now choose a response that fits the customer.",
           "whatToDo": "Write one support-script rule to loosen so agents can handle unusual problems with judgment.",
           "whyItMatters": "Structure protects baseline quality. Choice protects judgment. The redesign works because it separates the two."
@@ -161,8 +118,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The stronger diagnosis matches the motivational system to the work. A reward or tighter queue may increase activity while weakening the contribution the wiki needs.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch01-q02",
@@ -174,8 +130,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The key is the kind of motive Wikipedia activated. The wrong answers overcorrect by dismissing expertise or standards.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch01-q03",
@@ -187,8 +142,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Pink is narrowing the use of control, not denying pay or structure. The useful question is work type.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch01-q04",
@@ -200,8 +154,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The correct move makes contribution easier and meaningful. The distractors either close the work down or reward volume over judgment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch01-q05",
@@ -213,8 +166,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Taylor is a boundary marker. His model explains routine efficiency but not the whole of human effort.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "drive-ch01-q06",
@@ -226,8 +178,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A human-relations patch can leave the old operating system intact. The issue is not friendliness; it is whether agents have room for judgment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch01-q07",
@@ -239,8 +190,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A reversible test changes the condition and reads the result. The wrong moves either chase volume or avoid testing contribution.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "drive-ch01-q08",
@@ -252,8 +202,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A mismatched system can suppress the behavior it wants. The answer is better diagnosis, not blind measurement or no measurement.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch01-q09",
@@ -265,8 +214,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The work diagnosis comes first. Both distractors skip that diagnosis in opposite directions.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -303,7 +251,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Work-Type Fit Test",
         "coreSkill": "Use the Work-Type Fit Test before changing incentives: name the task, mark it as routine or judgment-heavy, identify the current control signal, and choose one condition that would make useful contribution easier.",
         "ifThenPlans": [
           {
@@ -324,24 +271,17 @@
       },
       "memorableLines": [
         {
-          "text": "In a late-1990s office, the safe bet would have been Microsoft Encarta.",
-          "location": "breakdown.fastRead",
-          "why": "It opens the lesson through a concrete source scene."
+          "text": "In a late-1990s office, the safe bet would have been Microsoft Encarta."
         },
         {
-          "text": "The failure starts when a workplace treats every human action as a response to a prize or a threat.",
-          "location": "breakdown.deepRead",
-          "why": "It names the mechanism before adding detail."
+          "text": "The failure starts when a workplace treats every human action as a response to a prize or a threat."
         },
         {
-          "text": "The limit is important: Drive is not asking leaders to toss pay, deadlines, or structure into the sea.",
-          "location": "breakdown.fullRead",
-          "why": "It frames the limit that protects the lesson from overreach."
+          "text": "The limit is important: Drive is not asking leaders to toss pay, deadlines, or structure into the sea."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "drive-ch02",
       "number": 2,
       "title": "Seven Reasons Carrots and Sticks Often Do Not Work",
@@ -363,13 +303,6 @@
             "work design",
             "motivation"
           ],
-          "planSpec": {
-            "domain": "museum education desk",
-            "audience": "Claudia, a museum educator deciding whether to prize every answer",
-            "stakes": "A children's desk needs energy without turning curiosity into a contest.",
-            "format": "decision_point",
-            "requiredBeat": "Show the reward crowding out the museum's learning motive."
-          },
           "scenario": "Claudia watches children linger over a fossil drawer until a donor suggests points for correct answers. The room gets louder, but the questions get thinner as kids start hunting for the fastest badge.",
           "whatToDo": "Before the museum education desk, name the motive a prize could crowd out and design around that risk.",
           "whyItMatters": "The reward may raise participation while making the exhibit feel like a quiz booth. The lost motive is curiosity."
@@ -381,13 +314,6 @@
             "team choice",
             "practice"
           ],
-          "planSpec": {
-            "domain": "design sprint room",
-            "audience": "Niko, a design lead protecting exploratory work",
-            "stakes": "A sprint team wants speed, but the problem needs a wider search.",
-            "format": "dialogue",
-            "requiredBeat": "Use the candle-problem warning in a design sprint."
-          },
           "scenario": "Niko's team is stuck on a checkout issue. A manager offers a bonus for the first solution by noon, and the group immediately narrows to small button changes instead of studying why customers abandon the page.",
           "whatToDo": "In the design sprint room, protect a block of exploratory time before discussing any bonus.",
           "whyItMatters": "For insight work, pressure can make the team faster at the wrong search. Exploration needs room before the prize appears."
@@ -399,13 +325,6 @@
             "ethics",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "preschool pickup counter",
-            "audience": "Yara, a preschool director reading a fee as a social signal",
-            "stakes": "A pickup policy could turn responsibility into a purchasable delay.",
-            "format": "audit",
-            "requiredBeat": "Show a social norm becoming a market bargain."
-          },
           "scenario": "Yara hears one parent say the late fee is cheaper than leaving a meeting early. The old norm was apology and repair; the new one sounds like paying for extra child care.",
           "whatToDo": "Audit the preschool pickup counter for the social norm a fee might convert into a market bargain.",
           "whyItMatters": "The fee changes what lateness means. A policy that prices a violation can make the violation easier to choose."
@@ -417,13 +336,6 @@
             "autonomy",
             "decision"
           ],
-          "planSpec": {
-            "domain": "sales compensation review",
-            "audience": "Hassan, a sales leader deciding whether a target invites gaming",
-            "stakes": "A compensation review has to distinguish healthy direction from a narrow scoreboard.",
-            "format": "planning_choice",
-            "requiredBeat": "Show a reward that improves numbers while corrupting judgment."
-          },
           "scenario": "Hassan sees reps pushing upgrades to customers who do not need them because the quarterly bonus pays for product count. Revenue is up, but trust tickets are rising behind it.",
           "whatToDo": "For the sales compensation review, check whether the target invites learning or encourages gaming the number.",
           "whyItMatters": "The incentive focuses effort, but it also teaches people which value to ignore. A good metric cannot make a bad motive harmless."
@@ -435,13 +347,6 @@
             "management",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "community volunteer table",
-            "audience": "Marta, a volunteer coordinator preserving choice",
-            "stakes": "A community table needs commitments without making service feel bought.",
-            "format": "postmortem",
-            "requiredBeat": "Show how autonomy protects volunteer motive."
-          },
           "scenario": "Marta considers gift cards for volunteers who take the least popular shifts. She instead asks people to choose between two useful roles and explains exactly who the evening shift helps.",
           "whatToDo": "At the community volunteer table, make the volunteer choice feel self-directed before offering a reward.",
           "whyItMatters": "The redesign keeps the act voluntary and meaningful. That matters more than a small prize when care is the resource."
@@ -453,13 +358,6 @@
             "reflection",
             "repair"
           ],
-          "planSpec": {
-            "domain": "software bug bounty meeting",
-            "audience": "Ellis, a security lead designing a bug bounty carefully",
-            "stakes": "A bounty should find flaws without training people to chase payout at any cost.",
-            "format": "reflection",
-            "requiredBeat": "Show reward design with guardrails."
-          },
           "scenario": "Ellis adds a bounty for a tedious bug sweep, but he caps duplicate payouts and requires a clear reproduction note. Hunters can earn money, but the rules reward usable fixes, not noisy submissions.",
           "whatToDo": "In the software bug bounty meeting, cap the bounty and add a quality review so attention does not narrow to payout.",
           "whyItMatters": "Some rewards can help routine work. The guardrail keeps attention on quality instead of pure payout."
@@ -478,8 +376,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Sawyer Effect asks what motive a reward may crowd out. A livelier contest can still make the learning thinner.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch02-q02",
@@ -491,8 +388,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Tom changes the frame of the work. The point is not payment or uselessness; it is the felt meaning of the activity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch02-q03",
@@ -504,8 +400,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The warning targets a specific danger. The wrong answers either ignore the danger or turn it into an absolute rule.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch02-q04",
@@ -517,8 +412,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The problem is not low effort. It is effort redirected by the reward.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch02-q05",
@@ -530,8 +424,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The candle-problem lesson is about attention. The prize may make people rush past the better search.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "drive-ch02-q06",
@@ -543,8 +436,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The point is not a feedback blackout. It is feedback and structure that do not turn exploration into threat.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch02-q07",
@@ -556,8 +448,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A reversible test reads the motive, not just the crowd size. The wrong moves are too blunt.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "drive-ch02-q08",
@@ -569,8 +460,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Short-term behavior can hide damage to the underlying motive. Return behavior matters.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch02-q09",
@@ -582,8 +472,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Good incentive design protects the motive first. Both distractors skip that protection.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -620,7 +509,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Reward Damage Scan",
         "coreSkill": "Use the Reward Damage Scan before adding an incentive: write the existing motive, the behavior you want, the kind of work involved, and the motive the reward might crowd out.",
         "ifThenPlans": [
           {
@@ -641,24 +529,17 @@
       },
       "memorableLines": [
         {
-          "text": "Tom Sawyer's fence begins as a chore and becomes desirable only because other boys are allowed to treat painting as play.",
-          "location": "breakdown.fastRead",
-          "why": "It opens the lesson through a concrete source scene."
+          "text": "Tom Sawyer's fence begins as a chore and becomes desirable only because other boys are allowed to treat painting as play."
         },
         {
-          "text": "The mechanism is crowding out: attention shifts from the work itself to the bargain attached to it.",
-          "location": "breakdown.deepRead",
-          "why": "It names the mechanism before adding detail."
+          "text": "The mechanism is crowding out: attention shifts from the work itself to the bargain attached to it."
         },
         {
-          "text": "The warning has a narrow target, and that narrowness makes it more useful.",
-          "location": "breakdown.fullRead",
-          "why": "It frames the limit that protects the lesson from overreach."
+          "text": "The warning has a narrow target, and that narrowness makes it more useful."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "drive-ch03",
       "number": 3,
       "title": "The Special Circumstances When Rewards Do Work",
@@ -680,13 +561,6 @@
             "work design",
             "motivation"
           ],
-          "planSpec": {
-            "domain": "warehouse closing checklist",
-            "audience": "Farah, an operations lead choosing a modest routine-task reward",
-            "stakes": "A warehouse checklist is late because the work is dull and easy to postpone.",
-            "format": "decision_point",
-            "requiredBeat": "Show a reward that fits because the task is routine and bounded."
-          },
           "scenario": "Farah reviews the closing checklist and sees no hidden creativity: lock cages, count scanners, file returns. She sets a small team reward for clean completion, then lets workers choose the order that fits their aisle.",
           "whatToDo": "For the warehouse closing checklist, confirm the task is routine and set a modest completion reward.",
           "whyItMatters": "The reward supports a routine finish without pretending the task is meaningful design work. Choice over method keeps the incentive from feeling like pure control."
@@ -698,13 +572,6 @@
             "team choice",
             "practice"
           ],
-          "planSpec": {
-            "domain": "hospital records cleanup",
-            "audience": "Luis, a records supervisor explaining necessary dull work",
-            "stakes": "A hospital cleanup has to happen, but staff resent the extra paperwork.",
-            "format": "dialogue",
-            "requiredBeat": "Pair a dull task with rationale and some choice."
-          },
           "scenario": "Luis opens the cleanup shift by showing how bad records delay patient transfers. He does not sell the work as exciting; he gives teams a sequence choice and a clear end point.",
           "whatToDo": "Explain why the hospital records cleanup matters, then let people choose their sequence of work.",
           "whyItMatters": "People tolerate dull work better when the reason is honest. Respect and autonomy make the reward less controlling."
@@ -716,13 +583,6 @@
             "ethics",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "tax office backlog",
-            "audience": "Anwen, a tax office manager repairing baseline fairness first",
-            "stakes": "A backlog bonus is being proposed while temporary staff are underpaid.",
-            "format": "audit",
-            "requiredBeat": "Show fair compensation preceding incentive design."
-          },
           "scenario": "Anwen pauses the bonus vote after learning the lowest-paid clerks handle the messiest files. She fixes the rate and workload split before discussing any backlog incentive.",
           "whatToDo": "In the tax office backlog, settle baseline fairness before using any backlog incentive.",
           "whyItMatters": "Rewards cannot compensate for unfairness. If baseline pay feels wrong, the motivational conversation starts in the wrong place."
@@ -734,13 +594,6 @@
             "autonomy",
             "decision"
           ],
-          "planSpec": {
-            "domain": "library shelving project",
-            "audience": "Gideon, a librarian acknowledging routine work without insulting it",
-            "stakes": "A shelving project needs speed and accuracy but offers little variety.",
-            "format": "planning_choice",
-            "requiredBeat": "Use acknowledgment and method choice with a routine task."
-          },
           "scenario": "Gideon tells volunteers that the shelving project will be repetitive and important. He gives each pair a section choice and posts a visible completion board without turning the shift into a race.",
           "whatToDo": "Acknowledge the dullness of the library shelving project and offer one choice over method.",
           "whyItMatters": "Admitting dullness builds trust. A narrow incentive works best when it does not erase respect."
@@ -752,13 +605,6 @@
             "management",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "field-service maintenance route",
-            "audience": "Rina, a field-service manager keeping incentives out of judgment work",
-            "stakes": "A maintenance route includes both routine checks and customer diagnosis.",
-            "format": "postmortem",
-            "requiredBeat": "Separate algorithmic tasks from judgment tasks."
-          },
           "scenario": "Rina pays a small completion bonus for documented safety checks, but she refuses to bonus technicians for closing customer cases fastest. The route has routine pieces; the customer diagnosis does not.",
           "whatToDo": "For the field-service maintenance route, tie the reward to completion without pretending the route is creative.",
           "whyItMatters": "The fit test prevents one reward from distorting mixed work. Speed is useful only where speed is safe."
@@ -770,13 +616,6 @@
             "reflection",
             "repair"
           ],
-          "planSpec": {
-            "domain": "subscription data migration",
-            "audience": "Sol, a data migration lead choosing appreciation after the fact",
-            "stakes": "A migration needs accuracy more than a race for prizes.",
-            "format": "reflection",
-            "requiredBeat": "Use a now-that reward as thanks, not a lever."
-          },
           "scenario": "Sol keeps the migration standard quiet and clear during the week. After the team finishes with almost no rework, he gives everyone Friday afternoon back and names the care that made the handoff clean.",
           "whatToDo": "Use an after-the-fact thank-you in the subscription data migration instead of an announced if-then bargain.",
           "whyItMatters": "The reward lands as appreciation because it did not steer the work in advance. Accuracy remained the standard."
@@ -795,8 +634,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Routine work is the narrow zone where rewards can help. The wrong answers make the reward controlling.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch03-q02",
@@ -808,8 +646,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Task type determines reward fit. The incentive should follow the diagnosis.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch03-q03",
@@ -821,8 +658,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Respect makes the routine-task exception usable. Pretending or withholding reasons weakens it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch03-q04",
@@ -834,8 +670,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pay fairness is the floor. Intrinsic language cannot repair exploitation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch03-q05",
@@ -847,8 +682,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A routine task has less intrinsic interest to crowd out. The others need broader motives.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "drive-ch03-q06",
@@ -860,8 +694,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A rationale is a sign of respect. It does not magically change the task or replace fair pay.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch03-q07",
@@ -873,8 +706,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A small test keeps the incentive humble. The wrong moves expand it beyond evidence.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "drive-ch03-q08",
@@ -886,8 +718,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The reward-fit test avoids both extremes. Incentives have a fit zone and boundaries.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch03-q09",
@@ -899,8 +730,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The reward exception works only with fair pay, honest diagnosis, and respect.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -937,7 +767,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Use the Reward Fit Checklist",
         "coreSkill": "Run the Reward Fit Checklist before offering an incentive: fair pay, routine path, low intrinsic interest, clear finish line, honest rationale, and room for method choice.",
         "ifThenPlans": [
           {
@@ -958,24 +787,17 @@
       },
       "memorableLines": [
         {
-          "text": "Algorithmic routine tasks are the exception that keeps the argument honest.",
-          "location": "breakdown.fastRead",
-          "why": "It opens the lesson through a concrete source scene."
+          "text": "Algorithmic routine tasks are the exception that keeps the argument honest."
         },
         {
-          "text": "The useful question is not whether a reward exists, but whether it behaves like support or control.",
-          "location": "breakdown.deepRead",
-          "why": "It names the mechanism before adding detail."
+          "text": "The useful question is not whether a reward exists, but whether it behaves like support or control."
         },
         {
-          "text": "The reward exception protects Pink's argument from becoming a slogan.",
-          "location": "breakdown.fullRead",
-          "why": "It frames the limit that protects the lesson from overreach."
+          "text": "The reward exception protects Pink's argument from becoming a slogan."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "drive-ch04",
       "number": 4,
       "title": "Type I and Type X",
@@ -997,13 +819,6 @@
             "work design",
             "motivation"
           ],
-          "planSpec": {
-            "domain": "performance review circle",
-            "audience": "Harper, a manager redesigning a performance conversation",
-            "stakes": "A review cycle may label employees before examining the conditions around them.",
-            "format": "decision_point",
-            "requiredBeat": "Show Type I and Type X as patterns shaped by environment."
-          },
           "scenario": "Harper hears a supervisor call the team lazy because no one volunteers ideas in review meetings. She notices that every suggestion has been scored against bonus risk, so silence is not a personality trait; it is a trained response.",
           "whatToDo": "In the performance review circle, change one condition before labeling the people as Type I or Type X.",
           "whyItMatters": "Changing the room may change the behavior. The label is less useful than the conditions producing it."
@@ -1015,13 +830,6 @@
             "team choice",
             "practice"
           ],
-          "planSpec": {
-            "domain": "graduate advising session",
-            "audience": "Quentin, an adviser helping a graduate student regain agency",
-            "stakes": "A student is doing the minimum after months of vague criticism.",
-            "format": "dialogue",
-            "requiredBeat": "Use autonomy, competence, and relatedness as repair handles."
-          },
           "scenario": "Quentin asks the student to choose between two research paths, then sets one visible skill target for the next meeting. He also pairs the student with a labmate who has solved a similar method problem.",
           "whatToDo": "Ask the graduate advising session participant which choice, skill signal, or relationship would support better effort.",
           "whyItMatters": "The fix supports all three needs. Effort becomes easier when choice, progress, and connection return."
@@ -1033,13 +841,6 @@
             "ethics",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "startup hiring panel",
-            "audience": "Bianca, a founder separating drive from status hunger",
-            "stakes": "A hiring panel is mistaking intensity for internal motivation.",
-            "format": "audit",
-            "requiredBeat": "Show the difference between Type I drive and Type X pressure."
-          },
           "scenario": "Bianca watches one candidate talk only about titles and exit valuation while another describes the customer problem she kept working on after hours. Both are ambitious, but their fuel is different.",
           "whatToDo": "At the startup hiring panel, look for internal drive instead of mistaking status hunger for motivation.",
           "whyItMatters": "Status hunger can produce motion, but it may need constant external feeding. The company is hiring a motivational pattern, not just a resume."
@@ -1051,13 +852,6 @@
             "autonomy",
             "decision"
           ],
-          "planSpec": {
-            "domain": "music conservatory practice wing",
-            "audience": "Darius, a conservatory coach reframing struggle",
-            "stakes": "A musician reads a difficult passage as proof of lacking talent.",
-            "format": "planning_choice",
-            "requiredBeat": "Use competence support without pretending the struggle is easy."
-          },
           "scenario": "Darius stops the run-through after the same bar falls apart. He marks one fingering change, slows the tempo, and tells the student the measure is a strategy problem, not a verdict.",
           "whatToDo": "Turn one struggle in the music conservatory practice wing into feedback about strategy, not talent.",
           "whyItMatters": "Competence grows through usable feedback. The student gets a path back into effort."
@@ -1069,13 +863,6 @@
             "management",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "regional sales reset",
-            "audience": "Iris, a sales director replacing pressure with need support",
-            "stakes": "A regional reset is pushing numbers up but burning people down.",
-            "format": "postmortem",
-            "requiredBeat": "Show Type X pressure being redesigned toward Type I conditions."
-          },
           "scenario": "Iris keeps the revenue target but changes the weekly meeting. Reps choose one account strategy to present, get coaching on a specific skill, and share what they learned from a difficult customer call.",
           "whatToDo": "For the regional sales reset, replace a pressure cue with a need-support cue.",
           "whyItMatters": "Standards remain, but the motivational climate changes. The team now has autonomy, competence, and relatedness inside the work."
@@ -1087,13 +874,6 @@
             "reflection",
             "repair"
           ],
-          "planSpec": {
-            "domain": "family business retreat",
-            "audience": "Rafael, a family-business successor naming an inherited reward habit",
-            "stakes": "A retreat has to separate family approval from good business judgment.",
-            "format": "reflection",
-            "requiredBeat": "Show Type X behavior as trained, not innate."
-          },
           "scenario": "Rafael notices cousins waiting for the founder to praise every proposal before they commit. He suggests testing one decision by customer value and learning, not by who earns approval at dinner.",
           "whatToDo": "In the family business retreat, identify the reward habit that trained external dependence.",
           "whyItMatters": "External dependence can be inherited. Naming the pattern makes a different design possible."
@@ -1112,8 +892,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Type I and Type X are patterns shaped by conditions. The label should send attention to the environment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch04-q02",
@@ -1125,8 +904,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The theory gives the concept structure. The wrong answers make it either weightless or fixed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch04-q03",
@@ -1138,8 +916,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The labels should guide design, not freeze people in place.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch04-q04",
@@ -1151,8 +928,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The distinction is practical and flexible. People are not reduced to one permanent motivational type.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch04-q05",
@@ -1164,8 +940,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The theory names three needs. Temporary output does not prove the climate is sound.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "drive-ch04-q06",
@@ -1177,8 +952,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Type X can produce results, but the fuel source matters. The wrong answers miss that distinction.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch04-q07",
@@ -1190,8 +964,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The test changes the motivational climate while keeping development visible.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "drive-ch04-q08",
@@ -1203,8 +976,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The distinction shifts the leader's attention to conditions. The distractors preserve the old control model.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch04-q09",
@@ -1216,8 +988,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A real shift changes the environment. Words alone do not supply the motivational nutrients.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1254,7 +1025,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Need-Support Shift",
         "coreSkill": "Use the Need-Support Shift on one low-motivation situation: name the pressure cue, then add one support for autonomy, competence, or relatedness.",
         "ifThenPlans": [
           {
@@ -1275,24 +1045,17 @@
       },
       "memorableLines": [
         {
-          "text": "Edward Deci and Richard Ryan's Self-Determination Theory gives Type I behavior its foundation.",
-          "location": "breakdown.fastRead",
-          "why": "It opens the lesson through a concrete source scene."
+          "text": "Edward Deci and Richard Ryan's Self-Determination Theory gives Type I behavior its foundation."
         },
         {
-          "text": "The mechanism is basic need support, not motivational flattery.",
-          "location": "breakdown.deepRead",
-          "why": "It names the mechanism before adding detail."
+          "text": "The mechanism is basic need support, not motivational flattery."
         },
         {
-          "text": "The useful guardrail is humility about labels.",
-          "location": "breakdown.fullRead",
-          "why": "It frames the limit that protects the lesson from overreach."
+          "text": "The useful guardrail is humility about labels."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "drive-ch05",
       "number": 5,
       "title": "Autonomy",
@@ -1314,13 +1077,6 @@
             "work design",
             "motivation"
           ],
-          "planSpec": {
-            "domain": "clinic scheduling board",
-            "audience": "Jun, a clinic coordinator giving staff bounded time choice",
-            "stakes": "A scheduling board must protect patient care while reducing needless control.",
-            "format": "decision_point",
-            "requiredBeat": "Show one of the four Ts changing under clear standards."
-          },
           "scenario": "Jun keeps the required coverage levels on the clinic board, then lets nurses trade two scheduling blocks without manager approval. The standard is fixed; the time choice moves closer to the people living with the schedule.",
           "whatToDo": "Give the clinic scheduling board team one bounded choice over time while keeping patient-care standards visible.",
           "whyItMatters": "Autonomy becomes concrete when one decision right changes hands. The patient-care goal keeps the freedom accountable."
@@ -1332,13 +1088,6 @@
             "team choice",
             "practice"
           ],
-          "planSpec": {
-            "domain": "engineering roadmap review",
-            "audience": "Calla, an engineering lead opening task choice",
-            "stakes": "A roadmap review needs ownership without abandoning commitments.",
-            "format": "dialogue",
-            "requiredBeat": "Use task autonomy within a shared roadmap."
-          },
           "scenario": "Calla marks three roadmap outcomes as nonnegotiable, then asks engineers to choose which technical debt slice they will own this cycle. The team cannot rewrite the strategy, but it can shape the route.",
           "whatToDo": "For the engineering roadmap review, let engineers choose one task slice while preserving the shared roadmap outcome.",
           "whyItMatters": "Choice over task can create ownership even inside constraints. The shared outcome prevents autonomy from becoming drift."
@@ -1350,13 +1099,6 @@
             "ethics",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "remote service team",
-            "audience": "Ronan, a service manager moving from presence to outcomes",
-            "stakes": "A remote team is being judged by green status dots instead of customer resolution.",
-            "format": "audit",
-            "requiredBeat": "Apply results-only thinking to a service environment."
-          },
           "scenario": "Ronan stops praising the agents who stay visibly online longest and starts reviewing solved cases, customer callbacks, and handoff quality. People can step away when coverage is protected, but the service result is visible.",
           "whatToDo": "Judge the remote service team by completed service outcomes, not visible online presence.",
           "whyItMatters": "Time autonomy works when results are clear. Presence is a weak substitute for value."
@@ -1368,13 +1110,6 @@
             "autonomy",
             "decision"
           ],
-          "planSpec": {
-            "domain": "school faculty planning day",
-            "audience": "Yvette, a faculty lead giving technique choice",
-            "stakes": "Teachers share a literacy goal but are being handed a script for every minute.",
-            "format": "planning_choice",
-            "requiredBeat": "Show technique autonomy under a common learning aim."
-          },
           "scenario": "Yvette keeps the district reading target and assessment window. Then she asks each teacher to choose one discussion routine that fits their class and explain how they will check comprehension.",
           "whatToDo": "Ask teachers in the school faculty planning day to choose one technique within the common goal.",
           "whyItMatters": "Technique choice respects professional judgment. The learning target keeps the work coordinated."
@@ -1386,13 +1121,6 @@
             "management",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "agency creative brief",
-            "audience": "Briar, a creative director leaving room in a brief",
-            "stakes": "An agency brief is so scripted that the team can only decorate the answer.",
-            "format": "postmortem",
-            "requiredBeat": "Show autonomy over technique in creative work."
-          },
           "scenario": "Briar removes three prescribed campaign executions from the brief and replaces them with the customer problem and brand constraints. The team must still solve the problem, but the creative route is open.",
           "whatToDo": "In the agency creative brief, leave one creative route open instead of scripting every move.",
           "whyItMatters": "Creative engagement needs room to choose the path. A script can produce compliance while killing originality."
@@ -1404,13 +1132,6 @@
             "reflection",
             "repair"
           ],
-          "planSpec": {
-            "domain": "manufacturing improvement huddle",
-            "audience": "Keaton, a plant manager giving team choice for one experiment",
-            "stakes": "An improvement huddle needs participation without losing safety rules.",
-            "format": "reflection",
-            "requiredBeat": "Use team autonomy in a bounded operational experiment."
-          },
           "scenario": "Keaton asks line workers to choose the three-person group that will test a new tool-storage layout. Safety requirements and output checks stay fixed, but the collaborators and trial design come from the floor.",
           "whatToDo": "Let the manufacturing improvement huddle team choose collaborators for one improvement experiment.",
           "whyItMatters": "Team autonomy can make improvement feel owned. Bounded experiments keep the plant from trading coordination for freedom."
@@ -1429,8 +1150,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Autonomy expands choice inside standards. The wrong answers either drop accountability or replace choice with control.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch05-q02",
@@ -1442,8 +1162,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The key is clearer results, not no management. Presence stops pretending to be the main proof.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch05-q03",
@@ -1455,8 +1174,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Accountable self-direction keeps choice and standards together.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch05-q04",
@@ -1468,8 +1186,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Interdependence does not cancel self-direction. Teams can coordinate and still distribute decision rights.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch05-q05",
@@ -1481,8 +1198,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The result may come from the design. Compliance is not the same as engagement.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "drive-ch05-q06",
@@ -1494,8 +1210,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Results-only thinking keeps accountability while removing a weak proxy.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch05-q07",
@@ -1507,8 +1222,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A bounded autonomy trial changes one decision right and checks outcomes.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "drive-ch05-q08",
@@ -1520,8 +1234,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The four Ts are design handles. They do not erase constraints or standards.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch05-q09",
@@ -1533,8 +1246,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Autonomy becomes real through a changed choice. The target still matters.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1571,7 +1283,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Four-T Autonomy Audit",
         "coreSkill": "Use the Four-T Autonomy Audit on one task: mark current choice over task, time, technique, and team, then choose one T where a bounded decision right can move closer to the worker.",
         "ifThenPlans": [
           {
@@ -1592,24 +1303,17 @@
       },
       "memorableLines": [
         {
-          "text": "Jeff Gunther's Meddius offers a concrete doorway into autonomy.",
-          "location": "breakdown.fastRead",
-          "why": "It opens the lesson through a concrete source scene."
+          "text": "Jeff Gunther's Meddius offers a concrete doorway into autonomy."
         },
         {
-          "text": "The mechanism is ownership: people invest more attention when some part of the work is genuinely theirs to shape.",
-          "location": "breakdown.deepRead",
-          "why": "It names the mechanism before adding detail."
+          "text": "The mechanism is ownership: people invest more attention when some part of the work is genuinely theirs to shape."
         },
         {
-          "text": "Autonomy has to be distinguished from everyone drifting in separate directions.",
-          "location": "breakdown.fullRead",
-          "why": "It frames the limit that protects the lesson from overreach."
+          "text": "Autonomy has to be distinguished from everyone drifting in separate directions."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "drive-ch06",
       "number": 6,
       "title": "Mastery",
@@ -1631,13 +1335,6 @@
             "work design",
             "motivation"
           ],
-          "planSpec": {
-            "domain": "piano lesson studio",
-            "audience": "Silas, a piano teacher setting a stretch target",
-            "stakes": "A student needs challenge without panic.",
-            "format": "decision_point",
-            "requiredBeat": "Show the edge between boredom and overwhelm."
-          },
           "scenario": "Silas hears the student rush through the easy opening and collapse in the left-hand run. He assigns only four measures at a slower tempo, with one fingering correction and a repeat before leaving the bench.",
           "whatToDo": "Set one stretch target for the piano lesson studio that is hard enough to focus attention.",
           "whyItMatters": "The target is narrow enough to practice and hard enough to matter. Mastery grows at the edge, not in vague effort."
@@ -1649,13 +1346,6 @@
             "team choice",
             "practice"
           ],
-          "planSpec": {
-            "domain": "coding dojo review",
-            "audience": "Ari, a coding coach turning weakness into practice",
-            "stakes": "A code review could shame a learner or create a useful drill.",
-            "format": "dialogue",
-            "requiredBeat": "Use deliberate practice on a concrete weakness."
-          },
           "scenario": "Ari spots that the apprentice keeps duplicating validation logic. Instead of rewriting the file for him, she creates a 20-minute refactor drill using one function and immediate tests.",
           "whatToDo": "In the coding dojo review, turn the next code weakness into a deliberate practice drill.",
           "whyItMatters": "The weakness becomes material for practice. Feedback arrives while the learner can still use it."
@@ -1667,13 +1357,6 @@
             "ethics",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "surgical simulation lab",
-            "audience": "Daphne, a simulation lead calibrating difficulty",
-            "stakes": "A surgical simulation is either too easy to teach or too hard to learn from.",
-            "format": "audit",
-            "requiredBeat": "Apply flow's challenge-skill balance."
-          },
           "scenario": "Daphne pauses the simulation when residents start guessing under stress. She removes one complication, keeps the bleeding timer, and asks them to repeat the handoff until attention returns.",
           "whatToDo": "Use the surgical simulation lab audit to adjust difficulty before it becomes panic or boredom.",
           "whyItMatters": "Challenge has to stretch skill without flooding it. Panic and boredom both weaken learning."
@@ -1685,13 +1368,6 @@
             "autonomy",
             "decision"
           ],
-          "planSpec": {
-            "domain": "language tutoring call",
-            "audience": "Hugo, a language tutor reframing errors",
-            "stakes": "A learner may treat mistakes as proof of lacking talent.",
-            "format": "planning_choice",
-            "requiredBeat": "Use growth mindset as a practical response."
-          },
           "scenario": "Hugo writes the learner's three recurring verb errors on a card and turns them into tomorrow's warm-up. He tells her the pattern is useful because it shows exactly where the next strategy belongs.",
           "whatToDo": "Ask the language tutoring call learner to treat one mistake as information for the next attempt.",
           "whyItMatters": "A growth mindset changes the meaning of the mistake. The learner gets a path rather than a verdict."
@@ -1703,13 +1379,6 @@
             "management",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "basketball film session",
-            "audience": "Cleo, a coach selecting one film clip",
-            "stakes": "An athlete needs one reachable improvement instead of a pile of criticism.",
-            "format": "postmortem",
-            "requiredBeat": "Turn feedback into the next stretch."
-          },
           "scenario": "Cleo skips the highlight reel and freezes one defensive possession where the player's feet stop early. The next practice begins with that footwork, not a speech about effort.",
           "whatToDo": "During the basketball film session, choose one film clip that shows the next reachable improvement.",
           "whyItMatters": "Useful feedback is specific enough to practice. Mastery is built by returning to the next correction."
@@ -1721,13 +1390,6 @@
             "reflection",
             "repair"
           ],
-          "planSpec": {
-            "domain": "public-speaking rehearsal",
-            "audience": "Ruth, a speaking coach scheduling a repeat",
-            "stakes": "A speaker needs feedback quickly enough to revise.",
-            "format": "reflection",
-            "requiredBeat": "Close the practice loop with immediate repetition."
-          },
           "scenario": "Ruth hears the speaker lose the room during the data slide. She gives one correction: state the decision before the chart. Then she has him deliver the same minute again.",
           "whatToDo": "For the public-speaking rehearsal, give one precise correction and schedule a repeat attempt.",
           "whyItMatters": "Feedback works when it changes the next attempt. Waiting a week would turn the lesson into a note, not practice."
@@ -1746,8 +1408,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The asymptote keeps progress meaningful without promising final completion.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch06-q02",
@@ -1759,8 +1420,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Flow lives near the edge of ability. Too easy and too hard both miss the state.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch06-q03",
@@ -1772,8 +1432,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Flow is part of mastery, not the whole discipline. The wrong answers treat discomfort too simply.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch06-q04",
@@ -1785,8 +1444,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The goal is calibrated challenge. Panic and boredom both block learning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch06-q05",
@@ -1798,8 +1456,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Growth mindset is active, not magical. It changes the response to difficulty.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "drive-ch06-q06",
@@ -1811,8 +1468,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Deliberate practice aims at the edge. That makes it useful and uncomfortable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch06-q07",
@@ -1824,8 +1480,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The experiment creates a short mastery loop: stretch, feedback, repeat.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "drive-ch06-q08",
@@ -1837,8 +1492,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Mastery is a continuing practice. Effort can signal the edge where growth is happening.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch06-q09",
@@ -1850,8 +1504,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A near stretch plus feedback makes improvement actionable.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1888,7 +1541,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Use the Edge-of-Mastery Loop",
         "coreSkill": "Run the Edge-of-Mastery Loop on one skill: choose a meaningful target, set the next stretch just beyond current ability, get fast feedback, repeat once, and record the adjustment.",
         "ifThenPlans": [
           {
@@ -1909,24 +1561,17 @@
       },
       "memorableLines": [
         {
-          "text": "Mihaly Csikszentmihalyi's flow research gives mastery its most recognizable feeling: challenge and ability meet closely enough that attention locks in.",
-          "location": "breakdown.fastRead",
-          "why": "It opens the lesson through a concrete source scene."
+          "text": "Mihaly Csikszentmihalyi's flow research gives mastery its most recognizable feeling: challenge and ability meet closely enough that attention locks in."
         },
         {
-          "text": "The mechanism is calibrated difficulty joined to usable feedback.",
-          "location": "breakdown.deepRead",
-          "why": "It names the mechanism before adding detail."
+          "text": "The mechanism is calibrated difficulty joined to usable feedback."
         },
         {
-          "text": "The seductive misread is to treat mastery as a permanent state of absorption.",
-          "location": "breakdown.fullRead",
-          "why": "It frames the limit that protects the lesson from overreach."
+          "text": "The seductive misread is to treat mastery as a permanent state of absorption."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "drive-ch07",
       "number": 7,
       "title": "Purpose",
@@ -1948,13 +1593,6 @@
             "work design",
             "motivation"
           ],
-          "planSpec": {
-            "domain": "nonprofit board meeting",
-            "audience": "Ilya, a board member deciding whether money follows the mission",
-            "stakes": "A nonprofit claims community health as its purpose while shifting money away from outreach.",
-            "format": "decision_point",
-            "requiredBeat": "Show purpose being tested by a budget tradeoff."
-          },
           "scenario": "Ilya watches the board approve a larger rebrand while cutting the mobile clinic that actually reaches uninsured families. The question in the room is not whether the mission sounds noble; it is whether the budget proves community health matters.",
           "whatToDo": "At the nonprofit board meeting, make one budget choice that proves the mission has tradeoff power.",
           "whyItMatters": "Purpose motivates when it has tradeoff power. If the money never follows the mission, the mission becomes decoration."
@@ -1966,13 +1604,6 @@
             "team choice",
             "practice"
           ],
-          "planSpec": {
-            "domain": "hospital shift huddle",
-            "audience": "Seren, a charge nurse connecting a huddle to patient purpose",
-            "stakes": "A hospital shift risks becoming only a throughput conversation.",
-            "format": "dialogue",
-            "requiredBeat": "Use the Mayo Clinic lesson as a daily decision rule."
-          },
           "scenario": "Seren has eight minutes before the ward fills. Instead of reading only bed counts, she names the two patients most likely to be confused by handoffs and asks who will own the first conversation.",
           "whatToDo": "In the hospital shift huddle, connect the next task to the patient or person it serves.",
           "whyItMatters": "A patient-first mission becomes real when it changes the next choice under pressure. The huddle turns purpose into behavior."
@@ -1984,13 +1615,6 @@
             "ethics",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "shoe company launch review",
-            "audience": "Bruno, a launch lead deciding whether contribution is built in",
-            "stakes": "A shoe company can add charity after the sale or design contribution into the model.",
-            "format": "audit",
-            "requiredBeat": "Show TOMS as an operating-logic lesson, not a marketing label."
-          },
           "scenario": "Bruno's launch deck has a donation slide at the end and no operational plan for delivering the promise. He moves the contribution metric into the production calendar, supplier review, and customer reporting.",
           "whatToDo": "For the shoe company launch review, build contribution into the operating plan instead of adding charity afterward.",
           "whyItMatters": "Contribution that lives only in the campaign can be dropped when pressure rises. Built-in purpose has a place to survive."
@@ -2002,13 +1626,6 @@
             "autonomy",
             "decision"
           ],
-          "planSpec": {
-            "domain": "career coaching session",
-            "audience": "Cassia, a coach helping a client define contribution",
-            "stakes": "A career plan is drifting toward status goals without a beneficiary.",
-            "format": "planning_choice",
-            "requiredBeat": "Use life-goal research to make purpose concrete."
-          },
           "scenario": "Cassia's client wants a more impressive title but cannot name whose life the work improves. Cassia asks her to rewrite the plan around one person, group, or problem the next role would genuinely serve.",
           "whatToDo": "Ask the career coaching session client who benefits beyond private achievement.",
           "whyItMatters": "Purpose is not a prettier ambition. It connects effort to contribution beyond private achievement."
@@ -2020,13 +1637,6 @@
             "management",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "benefits committee debate",
-            "audience": "Leif, a benefits-committee member testing whom the policy serves",
-            "stakes": "A benefits proposal protects the spreadsheet while claiming to support people.",
-            "format": "postmortem",
-            "requiredBeat": "Show purpose being checked against the people named by it."
-          },
           "scenario": "Leif reads a proposal that saves money by moving mental-health visits out of network. The committee still says employee well-being is central, so he asks where that purpose appears in the actual policy.",
           "whatToDo": "In the benefits committee debate, test the benefits proposal against the people it claims to serve.",
           "whyItMatters": "Purpose must discipline decisions when tradeoffs are uncomfortable. Otherwise people learn that the stated value has no teeth."
@@ -2038,13 +1648,6 @@
             "reflection",
             "repair"
           ],
-          "planSpec": {
-            "domain": "city service redesign",
-            "audience": "Noor, a civic designer making public contribution visible",
-            "stakes": "A city service redesign needs a purpose residents can see.",
-            "format": "reflection",
-            "requiredBeat": "Translate purpose into a public proof point."
-          },
           "scenario": "Noor's redesign team wants a cleaner website, but residents keep missing food-assistance deadlines. She changes the success measure from page views to completed applications before the cutoff.",
           "whatToDo": "For the city service redesign, name the public contribution the redesign should make visible.",
           "whyItMatters": "A public purpose becomes credible when the outcome reflects the people served. The receipt is behavior, not polish."
@@ -2063,8 +1666,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The key asks for proof in decisions. The tempting branding answers avoid the tradeoff that reveals whether purpose has power.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch07-q02",
@@ -2076,8 +1678,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The lesson is built-in contribution. The wrong choices turn purpose into a story without operational discipline.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch07-q03",
@@ -2089,8 +1690,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Proof is the guardrail. Purpose cannot compensate for unchanged control or unfair basics.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch07-q04",
@@ -2102,8 +1702,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Purpose does not deny ambition or money. It asks what the ambition serves.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch07-q05",
@@ -2115,8 +1714,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A mission motivates when it guides action under pressure. The poster alone is not proof.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "drive-ch07-q06",
@@ -2128,8 +1726,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The research is about goal content, not a ban on money or measurement.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch07-q07",
@@ -2141,8 +1738,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A purpose test needs a receipt. The wrong options stay in language and optics.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "drive-ch07-q08",
@@ -2154,8 +1750,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Purpose is learned from tradeoffs. A later slogan cannot fully erase a contrary decision.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch07-q09",
@@ -2167,8 +1762,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Purpose becomes credible through a visible decision. It does not require perfect conditions.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2205,7 +1799,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Purpose Receipt Check",
         "coreSkill": "Use the Purpose Receipt Check: Contribution - who benefits beyond us? Decision - what choice proves that benefit matters? Tradeoff - what would we give up to protect it? Autonomy - do people have room to act on it? Mastery - does the work help people improve at meaningful contribution? Proof - where is the receipt?",
         "ifThenPlans": [
           {
@@ -2226,24 +1819,17 @@
       },
       "memorableLines": [
         {
-          "text": "TOMS Shoes, the Mayo Clinic, and research by Tim Kasser and Richard Ryan make purpose more concrete than inspiration.",
-          "location": "breakdown.fastRead",
-          "why": "It opens the lesson through a concrete source scene."
+          "text": "TOMS Shoes, the Mayo Clinic, and research by Tim Kasser and Richard Ryan make purpose more concrete than inspiration."
         },
         {
-          "text": "The mechanism is direction: people can persist longer when effort belongs to a cause they recognize.",
-          "location": "breakdown.deepRead",
-          "why": "It names the mechanism before adding detail."
+          "text": "The mechanism is direction: people can persist longer when effort belongs to a cause they recognize."
         },
         {
-          "text": "Purpose becomes suspicious when it is used as packaging for the same old control system.",
-          "location": "breakdown.fullRead",
-          "why": "It frames the limit that protects the lesson from overreach."
+          "text": "Purpose becomes suspicious when it is used as packaging for the same old control system."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "drive-ch08",
       "number": 8,
       "title": "Type I for Individuals",
@@ -2265,13 +1851,6 @@
             "work design",
             "motivation"
           ],
-          "planSpec": {
-            "domain": "freelance planning desk",
-            "audience": "Greta, a freelancer collecting evidence before redesigning her day",
-            "stakes": "A workday feels busy but not alive.",
-            "format": "decision_point",
-            "requiredBeat": "Use the flow test as lived data."
-          },
           "scenario": "Greta marks her energy after every work block and notices that client strategy calls sharpen her attention while invoice cleanup drains it. She stops calling herself undisciplined and moves the cleanup to a protected low-energy slot.",
           "whatToDo": "At the freelance planning desk, record when work feels absorbing, draining, useful, or empty.",
           "whyItMatters": "The audit replaces self-blame with evidence. Motivation improves when the day is designed around real patterns."
@@ -2283,13 +1862,6 @@
             "team choice",
             "practice"
           ],
-          "planSpec": {
-            "domain": "design studio calendar audit",
-            "audience": "Jules, a design director protecting renewal before exhaustion",
-            "stakes": "A studio calendar is full of client delivery and empty of creative renewal.",
-            "format": "dialogue",
-            "requiredBeat": "Apply the sabbatical lesson at a smaller scale."
-          },
           "scenario": "Jules cannot close the studio for a year, but she can block one Friday morning a month for nonclient exploration. The slot goes on the calendar before new meetings can consume it.",
           "whatToDo": "In the design studio calendar audit, protect one renewal block before the calendar fills with client work.",
           "whyItMatters": "Renewal that waits for leftover time usually disappears. Protecting a small rhythm keeps creative energy from becoming accidental."
@@ -2301,13 +1873,6 @@
             "ethics",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "writing group check-in",
-            "audience": "Samir, a writer using a prompt to escape a stale draft",
-            "stakes": "A writing group is giving the same advice to the same stuck essay.",
-            "format": "audit",
-            "requiredBeat": "Use Oblique Strategies as a concrete pattern interrupt."
-          },
           "scenario": "Samir pulls a prompt that says to emphasize the flaw. Instead of polishing the introduction again, he rewrites the scene from the moment the argument fails.",
           "whatToDo": "Use an unexpected prompt in the writing group check-in to break a stale creative pattern.",
           "whyItMatters": "A prompt can loosen habitual thinking. The point is not magic; it is a deliberate interruption."
@@ -2319,13 +1884,6 @@
             "autonomy",
             "decision"
           ],
-          "planSpec": {
-            "domain": "graduate lab notebook",
-            "audience": "Blythe, a graduate student mapping flow and frustration",
-            "stakes": "A lab notebook contains data but no information about motivation.",
-            "format": "planning_choice",
-            "requiredBeat": "Turn daily work into a motivation map."
-          },
           "scenario": "Blythe adds two columns to her notebook: focus and friction. After two weeks, she sees that troubleshooting with a peer creates energy while isolated data cleaning drains it.",
           "whatToDo": "In the graduate lab notebook, log one flow moment and one frustration before redesigning the routine.",
           "whyItMatters": "The pattern suggests a redesign. She can pair the drain with support and protect the work that builds mastery."
@@ -2337,13 +1895,6 @@
             "management",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "home office reset",
-            "audience": "Kiran, a remote worker removing one avoidable drain",
-            "stakes": "A home office reset risks adding tools while ignoring the real leak.",
-            "format": "postmortem",
-            "requiredBeat": "Show a personal motivation audit leading to subtraction."
-          },
           "scenario": "Kiran almost buys another productivity app, then notices his worst energy dip follows a daily inbox spiral. He creates a single mail window and uses the recovered hour for a harder design task.",
           "whatToDo": "Remove one recurring drain from the home office reset before adding another productivity trick.",
           "whyItMatters": "Improvement is not always adding a system. Removing a drain can protect autonomy and focus."
@@ -2355,13 +1906,6 @@
             "reflection",
             "repair"
           ],
-          "planSpec": {
-            "domain": "creative agency lunch break",
-            "audience": "Opal, a creative lead reclaiming a break as recovery",
-            "stakes": "Lunch breaks are being swallowed by errands and status checks.",
-            "format": "reflection",
-            "requiredBeat": "Use renewal as part of the work system."
-          },
           "scenario": "Opal stops treating lunch as overflow time and walks outside with no phone twice a week. The afternoon concept review becomes less brittle because attention has actually reset.",
           "whatToDo": "Use the creative agency lunch break to reset attention instead of letting errands swallow it.",
           "whyItMatters": "Recovery supports the work rather than stealing from it. Renewal is a condition, not a reward."
@@ -2380,8 +1924,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The toolkit begins with observation. The wrong answers skip evidence.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch08-q02",
@@ -2393,8 +1936,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A flow test gives data, not a fantasy day. The tradeoffs still have to be made.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch08-q03",
@@ -2406,8 +1948,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The toolkit is connected to the larger model. It is neither random hacks nor a perfect-world plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch08-q04",
@@ -2419,8 +1960,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The flow test maps engagement directly. Status and inertia can hide the useful pattern.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch08-q05",
@@ -2432,8 +1972,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sentence is valuable because it is usable. Vague inspiration does not guide tradeoffs.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "drive-ch08-q06",
@@ -2445,8 +1984,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Small questions create feedback and continuity. They do not remove practice or larger aims.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch08-q07",
@@ -2458,8 +1996,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The experiment uses evidence and a small redesign. The wrong moves are too abstract or borrowed.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "drive-ch08-q08",
@@ -2471,8 +2008,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Personal practice offers partial agency without denying structural limits.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch08-q09",
@@ -2484,8 +2020,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Observation comes before redesign. Effort alone is not proof that a task is wrong.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2522,7 +2057,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Personal Motivation Audit",
         "coreSkill": "Use the Personal Motivation Audit for one week: record energy, focus, task, people, and purpose after three work blocks each day, then choose one drain to reduce and one source of flow to protect.",
         "ifThenPlans": [
           {
@@ -2543,24 +2077,17 @@
       },
       "memorableLines": [
         {
-          "text": "Mihaly Csikszentmihalyi's flow test begins with noticing.",
-          "location": "breakdown.fastRead",
-          "why": "It opens the lesson through a concrete source scene."
+          "text": "Mihaly Csikszentmihalyi's flow test begins with noticing."
         },
         {
-          "text": "The mechanism is self-observation followed by a small redesign.",
-          "location": "breakdown.deepRead",
-          "why": "It names the mechanism before adding detail."
+          "text": "The mechanism is self-observation followed by a small redesign."
         },
         {
-          "text": "The toolkit works only when it stays attached to the larger motivational nutrients.",
-          "location": "breakdown.fullRead",
-          "why": "It frames the limit that protects the lesson from overreach."
+          "text": "The toolkit works only when it stays attached to the larger motivational nutrients."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "drive-ch09",
       "number": 9,
       "title": "Type I for Organizations",
@@ -2582,13 +2109,6 @@
             "work design",
             "motivation"
           ],
-          "planSpec": {
-            "domain": "quarterly operations review",
-            "audience": "Cora, an operations director auditing autonomy before blaming morale",
-            "stakes": "A quarterly review is about to treat disengagement as an attitude problem.",
-            "format": "decision_point",
-            "requiredBeat": "Use an autonomy audit as an environmental diagnosis."
-          },
           "scenario": "Cora asks each team to mark task, time, technique, and team choice before discussing morale scores. The lowest scores are not in enthusiasm; they are in technique, where every local decision needs approval.",
           "whatToDo": "Run an autonomy audit in the quarterly operations review before blaming disengagement on attitude.",
           "whyItMatters": "The audit turns complaint into a design map. The system may be suppressing initiative."
@@ -2600,13 +2120,6 @@
             "team choice",
             "practice"
           ],
-          "planSpec": {
-            "domain": "product hack day kickoff",
-            "audience": "Desmond, a product lead designing a bounded hack day",
-            "stakes": "A hack day needs real autonomy and a real delivery moment.",
-            "format": "dialogue",
-            "requiredBeat": "Show FedEx Day freedom inside a container."
-          },
           "scenario": "Desmond gives teams one day to choose a product friction, build a working demo, and present it by 4 p.m. He removes normal roadmap approval for the day but keeps the delivery requirement.",
           "whatToDo": "For the product hack day kickoff, define the delivery moment before opening self-directed work time.",
           "whyItMatters": "The container makes autonomy safe to test. Freedom without delivery would be easy to dismiss."
@@ -2618,13 +2131,6 @@
             "ethics",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "peer recognition circle",
-            "audience": "Inez, a facilitator making recognition useful",
-            "stakes": "Peer recognition could become popularity theater or genuine feedback.",
-            "format": "audit",
-            "requiredBeat": "Show modest, specific, peer-delivered appreciation."
-          },
           "scenario": "Inez asks each person to name one colleague's specific helpful act and the work it improved. The notes are small, concrete, and given peer to peer rather than saved for a manager's speech.",
           "whatToDo": "Make one recognition note in the peer recognition circle specific, modest, and peer-delivered.",
           "whyItMatters": "Recognition supports motivation when it gives information and connection. Vague praise is cheaper and weaker."
@@ -2636,13 +2142,6 @@
             "autonomy",
             "decision"
           ],
-          "planSpec": {
-            "domain": "regional nonprofit retreat",
-            "audience": "Ravi, a nonprofit leader testing whose purpose is shared",
-            "stakes": "A retreat may reveal that the mission is executive language, not a common guide.",
-            "format": "planning_choice",
-            "requiredBeat": "Use the one-sentence purpose check."
-          },
           "scenario": "Ravi asks everyone to write the organization's purpose in one sentence. The board writes donor confidence, staff write tenant stability, and volunteers write emergency relief.",
           "whatToDo": "Ask the regional nonprofit retreat group whose purpose the mission currently serves.",
           "whyItMatters": "The mismatch is not a branding problem first. A purpose that is not shared cannot guide daily choices."
@@ -2654,13 +2153,6 @@
             "management",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "hybrid-work policy meeting",
-            "audience": "Selah, a people lead pairing flexibility with outcomes",
-            "stakes": "A hybrid-work policy needs trust and standards at the same time.",
-            "format": "postmortem",
-            "requiredBeat": "Show autonomy without abandoning accountability."
-          },
           "scenario": "Selah replaces a three-day attendance rule with team-level coverage promises, response windows, and outcome reviews. Managers can still see whether work is served, but the policy stops treating presence as the only proof.",
           "whatToDo": "Pair the hybrid-work policy meeting with clear outcomes so flexibility has trust and standards.",
           "whyItMatters": "Flexibility becomes credible when outcomes are clear. Trust and standards can reinforce each other."
@@ -2672,13 +2164,6 @@
             "reflection",
             "repair"
           ],
-          "planSpec": {
-            "domain": "customer success metrics workshop",
-            "audience": "Bram, a customer success manager revising a harmful metric",
-            "stakes": "A metric rewards visibility while punishing good judgment.",
-            "format": "reflection",
-            "requiredBeat": "Change one measure that teaches the wrong motive."
-          },
           "scenario": "Bram sees reps logging many shallow check-ins because the dashboard rewards touch count. He adds customer issue resolution and quality notes, so the measure starts valuing judgment over appearance.",
           "whatToDo": "In the customer success metrics workshop, revise one metric that rewards visibility over judgment.",
           "whyItMatters": "Metrics teach people what the organization respects. Changing the measure changes the climate."
@@ -2697,8 +2182,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Organizational motivation design treats the environment as the unit of change. A speech is not a redesign.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch09-q02",
@@ -2710,8 +2194,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The audit maps choice over the four Ts. It does not erase standards or differences.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch09-q03",
@@ -2723,8 +2206,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cosmetic adoption borrows Type I language without changing the system.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch09-q04",
@@ -2736,8 +2218,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The audit is specific. It locates decision rights.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch09-q05",
@@ -2749,8 +2230,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Good recognition gives connection and information. The wrong answers distort or delay it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "drive-ch09-q06",
@@ -2762,8 +2242,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The time box and delivery make the experiment usable. It is a trial of climate, not a vacation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch09-q07",
@@ -2775,8 +2254,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A real test changes the environment. Language alone is not enough.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "drive-ch09-q08",
@@ -2788,8 +2266,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The system is teaching the wrong behavior. The better move is a better measure, not no measure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch09-q09",
@@ -2801,8 +2278,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Environmental experiments reveal what slogans and blame avoid.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2839,7 +2315,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Use the Climate Redesign Board",
         "coreSkill": "Use the Climate Redesign Board with four columns: signal, current behavior, Type I nutrient affected, and one policy, ritual, or metric to test.",
         "ifThenPlans": [
           {
@@ -2860,24 +2335,17 @@
       },
       "memorableLines": [
         {
-          "text": "An autonomy audit makes organizational motivation design visible.",
-          "location": "breakdown.fastRead",
-          "why": "It opens the lesson through a concrete source scene."
+          "text": "An autonomy audit makes organizational motivation design visible."
         },
         {
-          "text": "The mechanism is climate: policies and rituals teach people what kind of motive is welcome.",
-          "location": "breakdown.deepRead",
-          "why": "It names the mechanism before adding detail."
+          "text": "The mechanism is climate: policies and rituals teach people what kind of motive is welcome."
         },
         {
-          "text": "The risk is cosmetic adoption, where Type I language sits on top of Type X habits.",
-          "location": "breakdown.fullRead",
-          "why": "It frames the limit that protects the lesson from overreach."
+          "text": "The risk is cosmetic adoption, where Type I language sits on top of Type X habits."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "drive-ch10",
       "number": 10,
       "title": "The Zen of Compensation",
@@ -2899,13 +2367,6 @@
             "work design",
             "motivation"
           ],
-          "planSpec": {
-            "domain": "salary calibration meeting",
-            "audience": "Lin, an HR lead finding the pay issue before the purpose issue",
-            "stakes": "A salary meeting risks discussing engagement while people are focused on fairness.",
-            "format": "decision_point",
-            "requiredBeat": "Show pay fairness as a precondition."
-          },
           "scenario": "Lin sees two project leads with similar scope separated by a large salary gap. The agenda says purpose and retention, but she moves equity calibration to the first item because no speech will survive that comparison.",
           "whatToDo": "In the salary calibration meeting, check internal and external fairness before discussing purpose.",
           "whyItMatters": "Unfair pay captures attention. Motivation work begins by removing the distraction leaders created."
@@ -2917,13 +2378,6 @@
             "team choice",
             "practice"
           ],
-          "planSpec": {
-            "domain": "startup offer negotiation",
-            "audience": "Gareth, a founder using pay as a trust signal",
-            "stakes": "A startup offer can invite commitment or teach bargain hunting.",
-            "format": "dialogue",
-            "requiredBeat": "Use gift exchange without turning it into manipulation."
-          },
           "scenario": "Gareth cannot match a giant company's salary, but he can offer a transparent range, meaningful equity terms, and no surprise clawbacks. The candidate hears a relationship signal, not a squeeze.",
           "whatToDo": "For the startup offer negotiation, make the offer signal trust without turning every result into a bargain.",
           "whyItMatters": "Compensation communicates how the organization sees the person. Trust is part of the offer."
@@ -2935,13 +2389,6 @@
             "ethics",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "department equity review",
-            "audience": "Uma, a department head spotting corrosive comparison",
-            "stakes": "An equity review reveals that people are tracking pay more than the work.",
-            "format": "audit",
-            "requiredBeat": "Show internal fairness drawing attention back to money."
-          },
           "scenario": "Uma learns that senior analysts are comparing old offer letters in a private chat. The work is still getting done, but every assignment is being read through the pay gap.",
           "whatToDo": "Use the department equity review to find one comparison that keeps people staring at pay.",
           "whyItMatters": "When comparison dominates attention, autonomy and purpose have little room. Internal fairness is motivational infrastructure."
@@ -2953,13 +2400,6 @@
             "autonomy",
             "decision"
           ],
-          "planSpec": {
-            "domain": "bonus redesign workshop",
-            "audience": "Cedric, a sales leader simplifying a bonus system",
-            "stakes": "A bonus design rewards narrow transactions at the expense of customer value.",
-            "format": "planning_choice",
-            "requiredBeat": "Show Red Gate's commission lesson in a redesign."
-          },
           "scenario": "Cedric removes a commission spike for add-on sales after seeing reps push features customers later cancel. He raises base pay and rewards retention quality at the team level.",
           "whatToDo": "In the bonus redesign workshop, remove one commission pressure that harms long-term customer value.",
           "whyItMatters": "The pay system stops making every customer a bounty. Money becomes less distracting and judgment improves."
@@ -2971,13 +2411,6 @@
             "management",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "employee retention interview",
-            "audience": "Anika, a manager hearing pay beneath a retention story",
-            "stakes": "An exit-risk conversation is being framed as lack of purpose.",
-            "format": "postmortem",
-            "requiredBeat": "Show a pay problem being named before purpose language."
-          },
           "scenario": "Anika asks why a strong employee is interviewing elsewhere and hears about rent, market offers, and a promotion delay. She does not answer with mission language; she starts with compensation reality.",
           "whatToDo": "Ask the employee retention interview whether compensation, not purpose, is driving the departure risk.",
           "whyItMatters": "Purpose cannot cover insecurity. Taking money off the table sometimes means admitting money is still on it."
@@ -2989,13 +2422,6 @@
             "reflection",
             "repair"
           ],
-          "planSpec": {
-            "domain": "board compensation committee",
-            "audience": "Rhea, a board member reducing incentive noise",
-            "stakes": "A compensation committee must decide whether another metric will help or distract.",
-            "format": "reflection",
-            "requiredBeat": "Show simpler pay supporting deeper motivation."
-          },
           "scenario": "Rhea reviews a plan with six overlapping executive bonuses and no clear connection to durable value. She pushes for a fair base, fewer triggers, and measures that do not reward short-term theater.",
           "whatToDo": "At the board compensation committee, simplify one incentive so money becomes less distracting.",
           "whyItMatters": "Complex incentives can keep everyone staring at money. Simpler fairness lets attention return to the work."
@@ -3014,8 +2440,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fairness is a motivational floor. Purpose language cannot erase a visible pay gap.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch10-q02",
@@ -3027,8 +2452,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Gift exchange adds social meaning to pay. It does not deny market realities.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch10-q03",
@@ -3040,8 +2464,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Money matters enough to settle. It should neither be ignored nor made the whole system.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch10-q04",
@@ -3053,8 +2476,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The compensation signal has to be credible. Trust cannot be faked by slogans or traps.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch10-q05",
@@ -3066,8 +2488,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Internal fairness is about comparison inside the organization. External fairness is the market check.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "drive-ch10-q06",
@@ -3079,8 +2500,7 @@
             ],
             "correctIndex": 2,
             "explanation": "External equity asks whether the organization is credible in the market for similar work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch10-q07",
@@ -3092,8 +2512,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The test aims at the distraction. The wrong choices leave money on the table.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "drive-ch10-q08",
@@ -3105,8 +2524,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A contingent plan can narrow judgment. Output alone is not the full motivational result.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch10-q09",
@@ -3118,8 +2536,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fairness comes first. The goal is to reduce money's mental noise, not amplify it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3156,7 +2573,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Pay Distraction Audit",
         "coreSkill": "Use the Pay Distraction Audit: check sufficiency, internal fairness, external fairness, incentive noise, and whether pay is pulling attention away from the work.",
         "ifThenPlans": [
           {
@@ -3177,24 +2593,17 @@
       },
       "memorableLines": [
         {
-          "text": "George Akerlof's gift-exchange idea points to a simple truth: pay carries social meaning.",
-          "location": "breakdown.fastRead",
-          "why": "It opens the lesson through a concrete source scene."
+          "text": "George Akerlof's gift-exchange idea points to a simple truth: pay carries social meaning."
         },
         {
-          "text": "The mechanism is attention: unfair pay colonizes the mind before autonomy or purpose can do much work.",
-          "location": "breakdown.deepRead",
-          "why": "It names the mechanism before adding detail."
+          "text": "The mechanism is attention: unfair pay colonizes the mind before autonomy or purpose can do much work."
         },
         {
-          "text": "This principle runs opposite to a lazy reading of Type I motivation.",
-          "location": "breakdown.fullRead",
-          "why": "It frames the limit that protects the lesson from overreach."
+          "text": "This principle runs opposite to a lazy reading of Type I motivation."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "drive-ch11",
       "number": 11,
       "title": "Type I for Parents and Educators",
@@ -3216,13 +2625,6 @@
             "work design",
             "motivation"
           ],
-          "planSpec": {
-            "domain": "middle-school homework review",
-            "audience": "Orla, a teacher redesigning homework without lowering standards",
-            "stakes": "A homework review has to separate meaningful practice from busywork.",
-            "format": "decision_point",
-            "requiredBeat": "Use the autonomy-mastery-purpose homework test."
-          },
           "scenario": "Orla looks at the worksheet she assigns every Thursday and realizes students make no choice, get no feedback until Monday, and cannot say why it matters. She keeps the skill target but lets students choose one problem set and adds a quick reflection.",
           "whatToDo": "Test the middle-school homework review assignment for one real choice, one mastery path, and one purpose connection.",
           "whyItMatters": "The assignment still has standards, but it now teaches agency and improvement instead of compliance alone."
@@ -3234,13 +2636,6 @@
             "team choice",
             "practice"
           ],
-          "planSpec": {
-            "domain": "kitchen allowance conversation",
-            "audience": "Bennett, a parent separating allowance from contribution",
-            "stakes": "A family conversation could turn every chore into a transaction.",
-            "format": "dialogue",
-            "requiredBeat": "Show family contribution without a simple pay-for-everything bargain."
-          },
           "scenario": "Bennett's child asks how much each dinner chore pays. He keeps allowance separate and explains that clearing the table is part of belonging to the household, then lets the child choose dishes or counters.",
           "whatToDo": "In the kitchen allowance conversation, separate family contribution from paid chores before discussing allowance.",
           "whyItMatters": "The choice supports autonomy while the reason protects contribution. Not every helpful act needs to become a purchase."
@@ -3252,13 +2647,6 @@
             "ethics",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "science fair planning table",
-            "audience": "Zara, a student choosing a science fair project",
-            "stakes": "A science fair can become trophy chasing or real inquiry.",
-            "format": "audit",
-            "requiredBeat": "Use FedEx Day-style bounded choice."
-          },
           "scenario": "Zara wants to copy a winning volcano project. Her teacher offers three broad questions and asks her to choose one, build a small test, and present what surprised her.",
           "whatToDo": "Give the science fair planning table student a bounded project choice and a clear sharing moment.",
           "whyItMatters": "Bounded choice keeps the work accountable while making the discovery hers."
@@ -3270,13 +2658,6 @@
             "autonomy",
             "decision"
           ],
-          "planSpec": {
-            "domain": "parent-teacher conference",
-            "audience": "Micah, a teacher changing praise in a conference",
-            "stakes": "A parent-teacher meeting could praise fixed smartness and make challenge risky.",
-            "format": "planning_choice",
-            "requiredBeat": "Apply Dweck's praise research to feedback."
-          },
           "scenario": "Micah almost says the student is naturally brilliant at math. Instead, he shows the parent the strategy she used after the first error and praises the revision, not the label.",
           "whatToDo": "During the parent-teacher conference, praise the strategy used, not fixed smartness.",
           "whyItMatters": "Strategy praise makes difficulty safer. The student learns what to repeat when work gets hard."
@@ -3288,13 +2669,6 @@
             "management",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "after-school project showcase",
-            "audience": "Liora, a program lead keeping a showcase from becoming prize chasing",
-            "stakes": "An after-school project event needs accountability without hollow competition.",
-            "format": "postmortem",
-            "requiredBeat": "Show a delivery moment that protects curiosity."
-          },
           "scenario": "Liora cancels the single grand prize and asks every student to show a prototype, a problem they solved, and one question they still have. Families still see the work, but the event no longer crowns only the flashiest project.",
           "whatToDo": "For the after-school project showcase, keep the showcase accountable without turning it into a prize chase.",
           "whyItMatters": "A showcase can support mastery when it values learning evidence. Competition alone can pull attention away from discovery."
@@ -3306,13 +2680,6 @@
             "reflection",
             "repair"
           ],
-          "planSpec": {
-            "domain": "classroom feedback conference",
-            "audience": "Hale, a teacher writing feedback that points to the next strategy",
-            "stakes": "A feedback conference can judge a child or teach the next move.",
-            "format": "reflection",
-            "requiredBeat": "Use strategy-focused feedback."
-          },
           "scenario": "Hale returns an essay with one margin note: the strongest paragraph uses a concrete example, so revise paragraph two the same way. The student leaves knowing what to try next.",
           "whatToDo": "In the classroom feedback conference, write feedback that points to the next learning strategy.",
           "whyItMatters": "Useful feedback protects mastery. It tells a learner how to improve rather than who they are."
@@ -3331,8 +2698,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Autonomy-supportive learning keeps standards while inspecting the motivational design of the work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch11-q02",
@@ -3344,8 +2710,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The test is a redesign tool, not a blanket ban. It asks what the assignment teaches about effort.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch11-q03",
@@ -3357,8 +2722,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Standards with agency are the guardrail. Both permissiveness and constant control miss the point.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch11-q04",
@@ -3370,8 +2734,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The test asks whether the work supports motivation. Busy repetition is not automatically rigor.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "drive-ch11-q05",
@@ -3383,8 +2746,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The delivery moment gives autonomy structure. Choice and accountability stay together.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "drive-ch11-q06",
@@ -3396,8 +2758,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The issue is the kind of praise. Strategy praise gives a child something usable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "drive-ch11-q07",
@@ -3409,8 +2770,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The experiment changes one motivational condition while preserving learning.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "drive-ch11-q08",
@@ -3422,8 +2782,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Visible output can improve while ownership declines. The goal is better showcase design, not no accountability.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "drive-ch11-q09",
@@ -3435,8 +2794,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Small supports make agency teachable. Rewards and unexplained control can teach the opposite lesson.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3473,7 +2831,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Agency Learning Check",
         "coreSkill": "Use the Agency Learning Check on one assignment, chore, or youth activity: choice, challenge, feedback, reason, contribution, and reward risk.",
         "ifThenPlans": [
           {
@@ -3494,19 +2851,13 @@
       },
       "memorableLines": [
         {
-          "text": "The homework test asks whether an assignment supports autonomy, mastery, and purpose or merely fills time.",
-          "location": "breakdown.fastRead",
-          "why": "It opens the lesson through a concrete source scene."
+          "text": "The homework test asks whether an assignment supports autonomy, mastery, and purpose or merely fills time."
         },
         {
-          "text": "The mechanism is interpretation: children read adult systems as lessons about why effort matters.",
-          "location": "breakdown.deepRead",
-          "why": "It names the mechanism before adding detail."
+          "text": "The mechanism is interpretation: children read adult systems as lessons about why effort matters."
         },
         {
-          "text": "The guardrail is standards with agency, not adult withdrawal.",
-          "location": "breakdown.fullRead",
-          "why": "It frames the limit that protects the lesson from overreach."
+          "text": "The guardrail is standards with agency, not adult withdrawal."
         }
       ]
     }

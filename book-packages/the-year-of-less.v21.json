@@ -125,8 +125,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The ban begins with evidence that hard habits can change over time. Sobriety and saving make the experiment a next layer of discipline, not a rescue from total chaos.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -138,8 +137,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The opening problem is hidden volume, not visible mess. Cabinets, closets, and boxes can absorb excess while the apartment still appears controlled.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -151,8 +149,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The missing tool matters because it turns clutter into a practical cost. The better response is to inspect the cabinet system before adding another duplicate.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -164,8 +161,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The 15 percent reality shifts the test from possibility to use. A garment can fit and still belong to an imagined life rather than the one being lived.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -177,8 +173,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The category is good, but ownership can still become avoidance. Buying faster than reading lets aspiration stand in for attention and action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -190,8 +185,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Duplicate essentials can be planning or emotional stockpiling. The useful question checks whether the purchase met a real need or relieved a passing fear.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -203,8 +197,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The bottle is not neutral decor. Keeping it nearby protects access to the old escape, so pouring it out strengthens the boundary sobriety needs.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -216,8 +209,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The first sweep can bring lightness while still leaving deeper attachments intact. The hard work is understanding the coping systems behind what remained.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -229,8 +221,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Storage asks where the object goes. Self-confrontation asks what emotional job the object performed and whether that job still deserves funding.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -273,7 +264,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run The Evidence Count",
         "coreSkill": "Practice Run the Evidence Count: count a category, name the story each item tells, and separate present use from backup emotion. The skill is not deprivation. It is noticing when an object has been acting as reassurance, identity proof, guilt storage, or an exit from discomfort.",
         "ifThenPlans": [
           {
@@ -298,24 +288,17 @@
       },
       "memorableLines": [
         {
-          "text": "Inventory begins when a count stops being neutral.",
-          "location": "breakdown.fastRead",
-          "why": "It turns a mundane count into the chapter's emotional diagnostic."
+          "text": "Inventory begins when a count stops being neutral."
         },
         {
-          "text": "A purge can create space without creating honesty.",
-          "location": "breakdown.fullRead",
-          "why": "It protects the lesson from becoming simple minimalism."
+          "text": "A purge can create space without creating honesty."
         },
         {
-          "text": "The object was not taking up space.",
-          "location": "breakdown.fullRead",
-          "why": "It reframes the rum bottle as permission, not clutter."
+          "text": "The object was not taking up space."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-year-of-less-ch02",
       "number": 2,
       "title": "August: Changing Daily Habits",
@@ -416,8 +399,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The origin matters because the first drink carried family confusion before peer pressure entered. Treating parties as the sole cause misses the earlier trigger.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-year-of-less-ch02-q02",
@@ -429,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The key mechanism is social self-protection. The drink seems to supply confidence and belonging, which is different from simple rebellion or harmless fun.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-year-of-less-ch02-q03",
@@ -442,8 +423,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Blackouts mark escalation because memory loss shows danger, not merely awkward bonding. Changing the setting would leave the same risky loop intact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-year-of-less-ch02-q04",
@@ -455,8 +435,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The blackout supplies evidence that rationalizing cannot soften. It starts sobriety, but it does not erase the need for daily trigger work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-year-of-less-ch02-q05",
@@ -468,8 +447,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Sobriety can teach observation without removing every comfort-seeking reflex. The lower-stakes object can still perform the old emotional job.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-year-of-less-ch02-q06",
@@ -481,8 +459,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Coffee works here as a lower-stakes loop, not an equal danger. Its smallness makes the repeated trigger easier to see.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-year-of-less-ch02-q07",
@@ -494,8 +471,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pause is diagnostic. It does not condemn every purchase or promise permanent ease; it lets Tate identify the sting before spending numbs it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-year-of-less-ch02-q08",
@@ -507,8 +483,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Triggers recur in recognizable contexts, while willpower must restart each time. Studying the cue gives Urbain a repeatable place to intervene.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-year-of-less-ch02-q09",
@@ -520,8 +495,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge is shared mechanism, not equal severity. Keeping that distinction protects addiction language while still exposing the comfort loop.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -564,7 +538,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Trigger Loop",
         "coreSkill": "Practice catching the feeling before the behavior. Name the Trigger Loop by writing the urge, the cue that set it off, and the comfort it promises. The skill is not self-punishment; it is replacing automatic relief with a response that actually meets the need.",
         "ifThenPlans": [
           {
@@ -589,24 +562,17 @@
       },
       "memorableLines": [
         {
-          "text": "The object changes; the loop does not.",
-          "location": "breakdown.deepRead",
-          "why": "It separates surface substitutions from the underlying emotional pattern."
+          "text": "The object changes; the loop does not."
         },
         {
-          "text": "A cleaner-looking habit can still keep the old loop employed.",
-          "location": "breakdown.fullRead",
-          "why": "It states the hard edge without flattening severity."
+          "text": "A cleaner-looking habit can still keep the old loop employed."
         },
         {
-          "text": "The ban matters because it creates a pause.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the shopping ban from deprivation into diagnostic space."
+          "text": "The ban matters because it creates a pause."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-year-of-less-ch03",
       "number": 3,
       "title": "September: Breaking Up with Retail Therapy",
@@ -707,8 +673,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cart is holding the feeling. When the desired item promises to make Laurent wanted, the useful move is to name the rejection before treating checkout as care.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -720,8 +685,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pattern is emotional use of money, not one retail category. Restaurants, bars, coffee, and travel can soften pain as surely as clothes can.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -733,8 +697,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Money and sobriety conversations bypass the surface. When that kind of safety disappears, the hurt can feel deep enough to trigger older buying habits.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -746,8 +709,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Refusing the purchase is only part of the work. The urge points toward a feeling, and ignoring that signal wastes the chance to care for the need directly.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -759,8 +721,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Current cravings can borrow force from older hurt. Separating the two stories helps Maeva see why the urge is loud without letting a purchase carry the repair.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -772,8 +733,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Withdrawal can trigger the old path toward buying. Office supplies promise order and control, but the real issue is insecurity after praise and closeness fade.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -785,8 +745,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The ban interrupts the numbing sequence. Its value is that Laurent can finally face the hurt instead of hiding it inside a purchase.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -798,8 +757,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The emotional change is the core win. Arjun is learning to stay with the trigger and seek support without turning the feeling into debt or clutter.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -811,8 +769,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The relationship begins near the start, so the experiment is tested while it is still new. That timing exposes the coping habit instead of waiting for calm.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -861,7 +818,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Cart Feeling",
         "coreSkill": "Practice reading a shopping urge before treating it as an instruction. Name the Cart Feeling by identifying the state the object promises, such as wanted, safe, productive, calm, or protected. Then choose one form of care that meets the feeling without checkout.",
         "ifThenPlans": [
           {
@@ -890,24 +846,17 @@
       },
       "memorableLines": [
         {
-          "text": "Retail therapy is useful as a flare, not a cure.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the shopping urge from becoming either a command or a moral failure."
+          "text": "Retail therapy is useful as a flare, not a cure."
         },
         {
-          "text": "The cart is a mood board for a self who would not have to hurt.",
-          "location": "breakdown.deepRead",
-          "why": "It names the fantasy identity hiding inside practical-looking purchases."
+          "text": "The cart is a mood board for a self who would not have to hurt."
         },
         {
-          "text": "Refusal matters only when it makes room for care.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the hard edge that restraint alone is not the healing move."
+          "text": "Refusal matters only when it makes room for care."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-year-of-less-ch04",
       "number": 4,
       "title": "October: Growing Up and Apart",
@@ -1008,8 +957,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Public accountability needs a usable room. Whitney protects the blog by separating honest questions from internet trolls, so comments offer signal instead of shame.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-year-of-less-ch04-q02",
@@ -1021,8 +969,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The vegetarian diet and sobriety parallels show that pushback often protects group norms. Jasper can notice the pressure without assuming immediate betrayal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-year-of-less-ch04-q03",
@@ -1034,8 +981,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Supportive friendship does not make the ban a spectacle. Philomene repairs the cue and offers belonging that does not depend on a purchase.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-year-of-less-ch04-q04",
@@ -1047,8 +993,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pressure may sit in the routine, not in a direct demand. Garrett learns more by testing which parts of friendship survive without spending.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-year-of-less-ch04-q05",
@@ -1060,8 +1005,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Comment moderation is not the same as avoiding feedback. Domenic keeps the space useful by answering real questions and removing bad-faith cruelty.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-year-of-less-ch04-q06",
@@ -1073,8 +1017,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The ban is not meant to make life smaller. Lorne's travel shows money and attention moving from possessions toward connection.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-year-of-less-ch04-q07",
@@ -1086,8 +1029,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The public space needs boundaries to remain useful. Whitney protects accountability by shaping the conversation before provocation becomes the norm.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "the-year-of-less-ch04-q08",
@@ -1099,8 +1041,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A social pressure audit prepares for relational friction before it derails the change. Domenic names likely cues and chooses grounded responses.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "the-year-of-less-ch04-q09",
@@ -1112,8 +1053,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge is discernment. Garrett should notice misalignment without turning every changed friendship into a betrayal verdict.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1156,7 +1096,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Invitation Audit",
         "coreSkill": "To Run the Invitation Audit, check where your social life still requires buying, drinking, browsing, or status performance. Before you blame people, sort the cue: sincere adjustment, habit inertia, or contempt. Use the sort to choose a warm alternative, a clear boundary, or comment moderation.",
         "ifThenPlans": [
           {
@@ -1181,24 +1120,17 @@
       },
       "memorableLines": [
         {
-          "text": "Visible change changes the room around it.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the private-to-public turn compact and memorable."
+          "text": "Visible change changes the room around it."
         },
         {
-          "text": "A joke can be a bridge, or it can be a small demand to stay the same.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the chapter's careful read of social pushback."
+          "text": "A joke can be a bridge, or it can be a small demand to stay the same."
         },
         {
-          "text": "Discomfort and harm are not the same thing, and confusing them is what the audit guards against.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the hard edge of discernment instead of withdrawal."
+          "text": "Discomfort and harm are not the same thing, and confusing them is what the audit guards against."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-year-of-less-ch05",
       "number": 5,
       "title": "November: Blacking Out and Coming To",
@@ -1299,8 +1231,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Aiden names a real risk, but the answer is not rule abandonment or denial. November points to repair after pressure breaks through: name the lapse, learn from it, and return.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-year-of-less-ch05-q02",
@@ -1312,8 +1243,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pressure is seasonal and designed, not a neutral background hum. Treating it as predictable lets Ines prepare instead of letting sale language define the day.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-year-of-less-ch05-q03",
@@ -1325,8 +1255,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The reset neither catastrophizes nor erases the breach. Treating the purchase as data lets Aurore locate the trigger and resume the rule with more self-knowledge.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-year-of-less-ch05-q04",
@@ -1338,8 +1267,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Honesty makes accountability concrete. A flawless image hides the useful learning, while public shaming keeps attention on character instead of repair.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-year-of-less-ch05-q05",
@@ -1351,8 +1279,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The amount matters less than the next story. If shame turns the lapse into an identity verdict, it can invite the numbing behavior the ban was meant to reveal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-year-of-less-ch05-q06",
@@ -1364,8 +1291,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Disclosure alone is incomplete. The transparent reset pairs honesty with recommitment; harsher guilt or impossible promises would make the rule more brittle.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-year-of-less-ch05-q07",
@@ -1377,8 +1303,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Trigger-heavy moments are easier before they become immersive. Adelaide reduces the number of live negotiations instead of asking raw willpower to win every alert.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-year-of-less-ch05-q08",
@@ -1390,8 +1315,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Commitment does not switch off ads, holidays, or social norms. Planning around ongoing pressure is stronger than reading temptation as personal failure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-year-of-less-ch05-q09",
@@ -1403,8 +1327,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The reset is not softness in place of standards. It is stricter than quitting because honesty, trigger work, and a renewed boundary still have to follow failure.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1441,7 +1364,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Breach Reset",
         "coreSkill": "Practice catching the moment after a lapse before secrecy claims it. Run the Breach Reset by naming what happened, identifying the trigger, choosing the next rule-honoring action, and refusing to turn shame into an identity verdict. The skill keeps a firm boundary from becoming brittle.",
         "ifThenPlans": [
           {
@@ -1470,29 +1392,20 @@
       },
       "memorableLines": [
         {
-          "text": "The month's growth is not purity.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses November's refusal of flawless minimalism into a line the reader can keep."
+          "text": "The month's growth is not purity."
         },
         {
-          "text": "Shame makes the mistake into an identity.",
-          "location": "breakdown.deepRead",
-          "why": "It names the exact mechanism that turns a lapse into a relapse risk."
+          "text": "Shame makes the mistake into an identity."
         },
         {
-          "text": "A transparent reset is not a loophole machine.",
-          "location": "breakdown.fullRead",
-          "why": "It protects compassionate repair from being misread as permission."
+          "text": "A transparent reset is not a loophole machine."
         },
         {
-          "text": "The dangerous part of a slip is not only the purchase.",
-          "location": "counterintuition",
-          "why": "It creates the central tension: the after-story can do more damage than the act."
+          "text": "The dangerous part of a slip is not only the purchase."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-year-of-less-ch06",
       "number": 6,
       "title": "December: Crafting New Traditions",
@@ -1593,8 +1506,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The 23-month marker shows practice, not immunity. Nikolai can protect connection by changing the social method rather than reviving the old drinking role.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1606,8 +1518,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The nearly 20-person size changes how context and closeness travel. Jack is registering a real culture shift, not simply a bad mood.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1619,8 +1530,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Buying for others can feel morally safer than buying for oneself. Aditya keeps generosity honest by separating care from automatic spending.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -1632,8 +1542,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Remote work can weaken informal context in a larger team. Seraphine does not need drama, but she does need a more deliberate route to belonging.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1645,8 +1554,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The redesign keeps the purpose and changes the method. Mabel is not rejecting family; she is protecting care from the spending script.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -1658,8 +1566,7 @@
             ],
             "correctIndex": 0,
             "explanation": "December records the mismatch before resolving it. Seraphine can respect the work signal without forcing a full career decision on the spot.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1671,8 +1578,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The 54 percent figure shows the purge is real. Roman still has to redesign social routines, since less stuff does not solve every holiday pressure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1684,8 +1590,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The party reveals fit, not weakness. Gage can preserve connection by changing the social path instead of pressing the coworker into the old script.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1697,8 +1602,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Age alone does not prove alignment. Aditya should test whether the practice still serves care, sobriety, simplicity, or belonging now.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1747,7 +1651,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Ritual Fit Check",
         "coreSkill": "Practice redesigning one repeated event without rejecting the people attached to it. Run the Ritual Fit Check by naming the ritual's purpose, naming the cost of its current script, and choosing one smaller form that keeps the care. The skill is useful when December pressure makes old habits sound like love.",
         "ifThenPlans": [
           {
@@ -1776,19 +1679,13 @@
       },
       "memorableLines": [
         {
-          "text": "The event kept its shape while he changed.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the sober Christmas party feel like a fit problem, not a personal failure."
+          "text": "The event kept its shape while he changed."
         },
         {
-          "text": "A ritual earns its place by serving the life now in front of it.",
-          "location": "breakdown.deepRead",
-          "why": "It states the chapter's test for keeping or changing traditions."
+          "text": "A ritual earns its place by serving the life now in front of it."
         },
         {
-          "text": "Less is not a blank wall.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the shopping ban from sounding cold or anti-celebration."
+          "text": "Less is not a blank wall."
         }
       ]
     },
@@ -1893,8 +1790,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The scene shows low-consumption pleasure, not withdrawal from life. Buying a better ritual or avoiding people would miss the point of chosen connection.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-year-of-less-ch07-q02",
@@ -1906,8 +1802,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The savings figure is evidence, not a prize. Ending the ban or dismissing the number both avoid the harder work of learning what changed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-year-of-less-ch07-q03",
@@ -1919,8 +1814,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Travel is the pressure test. Staying with friends and leaving the evening unfilled keeps novelty from becoming a sanctioned shopping excuse.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-year-of-less-ch07-q04",
@@ -1932,8 +1826,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The apartment complicates a simple anti-stuff verdict. Use matters; automatic condemnation and automatic approval are both too blunt.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-year-of-less-ch07-q05",
@@ -1945,8 +1838,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The memories matter because they model capability. Nostalgia alone would not justify a purchase; practice is the standard.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-year-of-less-ch07-q06",
@@ -1958,8 +1850,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The category does not resolve on its own. The purchase has to build capability or meet a necessity; cheapness and wholesome wording can still hide old habits.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-year-of-less-ch07-q07",
@@ -1971,8 +1862,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge is purpose plus practice. Total rejection is rigid, while buying the imagined hobby repeats the fantasy pattern.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-year-of-less-ch07-q08",
@@ -1984,8 +1874,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Strictness is not the problem by itself. The warning is obeying a rule as a badge when evidence says repair or replacement serves the original purpose.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-year-of-less-ch07-q09",
@@ -1997,13 +1886,11 @@
             ],
             "correctIndex": 1,
             "explanation": "Adaptive revision is loyal to purpose. Ease and attractive language can both camouflage a return to the habit the ban was meant to interrupt.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
       "implementationPlan": {
-        "title": "Run the Rule Receipt Test",
         "coreSkill": "Use the Rule Receipt Test before changing a boundary. Name the purpose the original rule protected, the practiced value the revision would support, and the behavior that will prove the purchase is useful soon. If the only proof is a nicer imagined self, keep the ban intact.",
         "ifThenPlans": [
           {
@@ -2076,24 +1963,17 @@
       ],
       "memorableLines": [
         {
-          "text": "A rule is useful when it protects purpose.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the rule-design standard into one sentence."
+          "text": "A rule is useful when it protects purpose."
         },
         {
-          "text": "Strong rules stay loyal to their reason.",
-          "location": "breakdown.deepRead",
-          "why": "It states the defense of revision without making discipline soft."
+          "text": "Strong rules stay loyal to their reason."
         },
         {
-          "text": "The harder case is the beautiful excuse.",
-          "location": "breakdown.fullRead",
-          "why": "It names the risk that makes adaptive rules demanding, not permissive."
+          "text": "The harder case is the beautiful excuse."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-year-of-less-ch08",
       "number": 8,
       "title": "February: Letting Go of the Future",
@@ -2194,8 +2074,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The trip works because saved resources support experience. The point is not deprivation or souvenir avoidance; the money no longer has to flow through shopping.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-year-of-less-ch08-q02",
@@ -2207,8 +2086,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Connection becomes part of the new reward system. The low-cost structure matters because it makes room for people and experience, not because it isolates her.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-year-of-less-ch08-q03",
@@ -2220,8 +2098,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The crisis enters through family communication, so the response should not turn it into a detached task. Care starts by naming the shared family shock.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-year-of-less-ch08-q04",
@@ -2233,8 +2110,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Paperwork turns an emotional possibility into logistics. The document does not settle grief; it makes the changed future harder to keep vague.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-year-of-less-ch08-q05",
@@ -2246,8 +2122,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The ban removes one escape route, but it does not make pain disappear. Grief and anxiety can still arrive with full force.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-year-of-less-ch08-q06",
@@ -2259,8 +2134,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The object carries an identity claim. It suggests worth will arrive with a later version of the self, not with present action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-year-of-less-ch08-q07",
@@ -2272,8 +2146,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The key test separates support from performance. A purchase belongs when it helps the current self act, not when it stages a future identity.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "the-year-of-less-ch08-q08",
@@ -2285,8 +2158,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Both tasks involve giving up a version of life that had offered security. The closet and the family paperwork touch the same imagined-future grief.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-year-of-less-ch08-q09",
@@ -2298,8 +2170,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The issue is not future orientation by itself. Growth stays healthy when it attaches to action; it becomes painful when the object mainly accuses the current self.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2342,7 +2213,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Present-Self Receipt",
         "coreSkill": "Practice separating useful preparation from self-rejection. Run the Present-Self Receipt by naming the imagined self an item serves, the present action it supports, and the cost of keeping the gap visible. Keep the item when it helps real practice; release it when it mainly preserves an accusation.",
         "ifThenPlans": [
           {
@@ -2367,24 +2237,17 @@
       },
       "memorableLines": [
         {
-          "text": "Keep the object only if it serves the person living now.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the whole purge into one plain test."
+          "text": "Keep the object only if it serves the person living now."
         },
         {
-          "text": "Aspirational clutter borrows the language of preparation, but it often functions as postponed self-acceptance.",
-          "location": "breakdown.deepRead",
-          "why": "It names the emotional trick inside useful-looking objects."
+          "text": "Aspirational clutter borrows the language of preparation, but it often functions as postponed self-acceptance."
         },
         {
-          "text": "Grief asks for room too, and sometimes the room is made by removing the objects that kept arguing for an unreal life.",
-          "location": "breakdown.fullRead",
-          "why": "It ties the family rupture and the object purge into one release."
+          "text": "Grief asks for room too, and sometimes the room is made by removing the objects that kept arguing for an unreal life."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-year-of-less-ch09",
       "number": 9,
       "title": "March: Lightening Up",
@@ -2485,8 +2348,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The lens widens from buying to the numbing job a behavior performs. Noa needs to ask what the new comforts do to attention, body, and connection.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2498,8 +2360,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The issue is the function of the screen. If television keeps sadness from surfacing, Emily is using passive input as anesthesia, not simple rest.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2511,8 +2372,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Body feedback extends the time window. Gail learns whether comfort is care by noticing the aftereffect, not by scoring the first hit of relief.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2524,8 +2384,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The support circle is narrow for a reason. Mireille does not need public disclosure; she needs truthful contact with people who can hold the pain.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -2537,8 +2396,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Stress can reactivate an old coping route. Ling protects sobriety by naming the pull and getting support, not by treating the urge as proof against her progress.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -2550,8 +2408,7 @@
             ],
             "correctIndex": 2,
             "explanation": "An approved category is not a blank check. Gail uses the list well when it slows impulse and ties buying to a present, specific need.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2563,8 +2420,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The distinction is between feeling better and feeling less. Salvatore's relief counts as care only if it returns presence rather than blunting awareness.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2576,8 +2432,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The ban matters because attention gets redirected. Reading, podcasts, and friendship give Ruby more presence than passive watching did.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q09",
@@ -2589,8 +2444,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Substitute consumption is defined by function. Food can become the next channel when it softens emotion without helping Noa face what hurts.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2633,7 +2487,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Relief Trace",
         "coreSkill": "Practice tracing a comfort from the hurt that came before it to the aftertaste it leaves behind. Run the Relief Trace by naming the trigger, the comfort, and the cost or care that follows. The point is not to outlaw comfort; it is to spot when relief has become another hiding place.",
         "ifThenPlans": [
           {
@@ -2662,24 +2515,17 @@
       },
       "memorableLines": [
         {
-          "text": "Pain will recruit the nearest channel.",
-          "location": "breakdown.fastRead",
-          "why": "It names why removing one habit can reveal the next one."
+          "text": "Pain will recruit the nearest channel."
         },
         {
-          "text": "A comfort can be legal, cheap, and still be avoidance.",
-          "location": "breakdown.fastRead",
-          "why": "It blocks the shallow moral reading and keeps the test on function."
+          "text": "A comfort can be legal, cheap, and still be avoidance."
         },
         {
-          "text": "Feeling less is not the same as feeling better.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's key distinction into a portable line."
+          "text": "Feeling less is not the same as feeling better."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-year-of-less-ch10",
       "number": 10,
       "title": "April: Planning My Exit",
@@ -2780,8 +2626,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The emergency fund matters because it is tied to a decision. Runway gives Nico time to leave thoughtfully, while a reward or status label hands the money back to old habits.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2793,8 +2638,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Dates turn desire into a schedule. September 1 anchors the plan, while July 1 can motivate Dina only if the savings and client evidence support it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2806,8 +2650,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The misfit is about work cost and values, not just compensation. Ibrahim needs to read burnout and structure as evidence before treating money as the whole issue.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2819,8 +2662,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Remote work can make proof of effort leak into the night. Roxane addresses the pressure itself, while praise or silent scheduling leaves the loyalty test alive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2832,8 +2674,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The ban changes feasibility by lowering required income. Tara still needs evidence, but the relevant test is client income against real costs, not the old salary.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2845,8 +2686,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Support confirms a choice already backed by preparation. Erin can trust the encouragement more when it strengthens the plan instead of replacing the numbers.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2858,8 +2698,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The practical effect is agency. Lower wants reduce the income required to move, while moral discipline or comfort denial misses the career leverage.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2871,8 +2710,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Self-employment needs feasibility evidence. Nico can still care about energy and support, but client income has to meet real expenses before the exit date earns trust.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -2884,8 +2722,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The instinct matters because it becomes action. Dina uses the feeling to prepare, not to dramatize the change or wait passively for certainty.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -2934,7 +2771,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Price the Exit Before Leaping",
         "coreSkill": "Practice turning unease into a priced path. Use Price the Exit Before Leaping by writing the savings runway, monthly baseline, possible client income, target date, and one trusted person to tell. The point is to make freedom visible before fear or fantasy takes over.",
         "ifThenPlans": [
           {
@@ -2963,24 +2799,17 @@
       },
       "memorableLines": [
         {
-          "text": "Savings become agency when the money has a job.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the emergency fund into the chapter's practical lever."
+          "text": "Savings become agency when the money has a job."
         },
         {
-          "text": "Runway does not remove fear; it gives fear a calendar.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the way dates convert anxiety into sequence."
+          "text": "Runway does not remove fear; it gives fear a calendar."
         },
         {
-          "text": "Enough is powerful because it lowers the price of freedom.",
-          "location": "breakdown.fullRead",
-          "why": "It states the chapter's central concept without glamorizing quitting."
+          "text": "Enough is powerful because it lowers the price of freedom."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-year-of-less-ch11",
       "number": 11,
       "title": "May: Finding Myself in Unusual Places",
@@ -3081,8 +2910,7 @@
             ],
             "correctIndex": 1,
             "explanation": "May shows triggers losing force through repeated nonresponse. Buying or saving the links keeps the loop warm; letting the cue pass redirects attention.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3094,8 +2922,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The dividend is not hoarding or display. It redirects freed resources into travel, rest, relationships, and opportunity that match real values.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -3107,8 +2934,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Victoria moment does not erase grief. It shows how mature acceptance can steady siblings enough to imagine a changed family structure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3120,8 +2946,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The road trip is not valuable as performance or souvenir fuel. Its value comes from shared memory, connection, and the resources restraint made available.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -3133,8 +2958,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The email matters because it meets the runway already built. Agency comes from preparation and opportunity together, not from impulse or certainty.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3146,8 +2970,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sharp claim is not travel over things. Travel can mimic consumption unless it serves values deeper than proof, display, or accumulation.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -3159,8 +2982,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The May return is lived experience: food, shared time, and memory. Filling the space with errands or a reward object misses the redirection.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -3172,8 +2994,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The lens asks what less makes possible. The dividend is not bare absence; it is saved money and attention becoming travel, steadiness, and choice.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -3185,8 +3006,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Giving notice follows preparation meeting a concrete opening. The lesson rejects both sudden impulse and waiting for risk to vanish.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3229,7 +3049,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Claim the Freed Room",
         "coreSkill": "Practice Claim the Freed Room by naming what a declined purchase releases, then assigning that space to a person, place, rest need, or work option. The skill keeps restraint from becoming bare denial. It asks what saved money and softer cravings are now able to support.",
         "ifThenPlans": [
           {
@@ -3254,24 +3073,17 @@
       },
       "memorableLines": [
         {
-          "text": "The gain was not emptiness; it was room.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the chapter's turn from subtraction to capacity."
+          "text": "The gain was not emptiness; it was room."
         },
         {
-          "text": "Less had begun to buy back a life.",
-          "location": "breakdown.fastRead",
-          "why": "It makes saved money and lighter wanting feel concrete."
+          "text": "Less had begun to buy back a life."
         },
         {
-          "text": "An experience dividend can also be wasted on display.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the hard edge against travel-as-performance."
+          "text": "An experience dividend can also be wasted on display."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-year-of-less-ch12",
       "number": 12,
       "title": "June: Packing Up and Moving On",
@@ -3372,8 +3184,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The final weeks do not offer pure confidence. They show a chosen path that feels right and still uncertain, so fear becomes part of the transition.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3385,8 +3196,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The boss is not a caricatured obstacle. The honest move keeps gratitude in view while the resignation and training replacement work proceed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3398,8 +3208,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Documenting duties and training replacement turn the resignation into a handoff. The point is care for the team, not a dramatic escape.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -3411,8 +3220,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Financial preparation lowers panic without erasing risk. The freelance move is steadier with runway, but variable work still asks for humility.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -3424,8 +3232,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hometown move is a values decision. Family, friends, community, and nature become stronger measures than the old big-city script.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3437,8 +3244,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Portable work changes the map. Once the old office no longer fixes location, place can be chosen for relationships, community, and nature.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3450,8 +3256,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The 30 percent figure matters because belongings, boxes, and moving make the inner change visible. It is evidence, not the whole cure.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q08",
@@ -3463,8 +3268,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The ban and decluttering reinforce each other. Not buying clarifies need, while letting go removes identity weight that can refill the space.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3476,8 +3280,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Enough is enabling, not punitive. It shows up as lower needs, clearer values, lighter belongings, and agency around work and place.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -3526,7 +3329,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Exit-Weight Check",
         "coreSkill": "Practice spotting what a life change would force you to carry. Run the Exit-Weight Check by naming one possession load, one money load, one relationship load, and one false need. Then lighten the load that most blocks the move you say you want.",
         "ifThenPlans": [
           {
@@ -3555,19 +3357,13 @@
       },
       "memorableLines": [
         {
-          "text": "A clean closet is not the finish.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the ending from shrinking into a decluttering success story."
+          "text": "A clean closet is not the finish."
         },
         {
-          "text": "Savings can steady a freelance leap without making it feel safe.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the chapter's honest view of preparation and fear."
+          "text": "Savings can steady a freelance leap without making it feel safe."
         },
         {
-          "text": "Enough is not a smaller cage; it is the room to walk toward the life that fits.",
-          "location": "breakdown.fullRead",
-          "why": "It turns enoughness into mobility rather than austerity."
+          "text": "Enough is not a smaller cage; it is the room to walk toward the life that fits."
         }
       ]
     }

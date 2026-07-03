@@ -25,7 +25,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-power-of-full-engagement-ch01",
       "number": 1,
       "title": "Fully Engaged: Energy, Not Time, Is Our Most Precious Resource",
@@ -126,8 +125,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Time cannot be expanded, so tighter scheduling leaves the depletion untouched. Energy quality and renewal can be deliberately trained, which is why energy management replaces time management as the foundation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -139,8 +137,7 @@
             ],
             "correctIndex": 0,
             "explanation": "External achievement does not reveal sleep debt, poor eating, or brittle attention. Output and status are trailing indicators that hold for a while as the underlying capacity thins, so steady deals cannot prove engagement.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -152,8 +149,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The four energies work as one system, so weakness in any layer compromises the whole. Motivation alone fades when sleep, food, and focus are underpowered at the foundation, so a single strong dimension cannot carry a depleted system.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -165,8 +161,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Calendar time measures duration, not the quality or continuity of energy available inside it. Adding hours can extend a depleted state instead of adding capacity, so the hour count hides the real constraint.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -178,8 +173,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Treating performance as energy management raises the standard rather than lowering it. The move is toward more exact training of capacity, so reading it as permission to ease off inverts the actual claim.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -191,8 +185,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stress is necessary for growth, but only when paired with renewal. It is the absent recovery between the reviews, not the stress itself, that suppresses adaptation and drives the fatigue.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -204,8 +197,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A technique built on incomplete diagnosis preserves the original leak instead of fixing it. Auditing where energy is spent, renewed, and wasted comes first, even when the performance goal is strong.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -217,8 +209,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Physical capacity is the literal foundation for attention, mood, and values-guided choice. Disorders of sleep, nutrition, and movement cascade upward, so neglecting the body weakens the layers that do the visible work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -230,8 +221,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The layers affect each other, so weakness in one does not stay isolated. A tense mood and underfed body drag on focus, which is why a single strong dimension cannot carry a system that is depleted elsewhere.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -274,7 +264,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Check the Energy Leak",
         "coreSkill": "Practice Check the Energy Leak before a demanding moment begins. Name the kind of energy the next demand needs, then choose one renewal step you can take before the demand starts. The check keeps the plan small enough to use under pressure without turning it into a display.",
         "ifThenPlans": [
           {
@@ -299,24 +288,17 @@
       },
       "memorableLines": [
         {
-          "text": "Hours are visible; usable energy is not.",
-          "location": "breakdown.fastRead",
-          "why": "It separates the obvious time measure from the chapter's hidden constraint."
+          "text": "Hours are visible; usable energy is not."
         },
         {
-          "text": "Stress without renewal is a leak, not a badge.",
-          "location": "breakdown.deepRead",
-          "why": "It preserves the hard edge without making pressure the enemy."
+          "text": "Stress without renewal is a leak, not a badge."
         },
         {
-          "text": "Purpose gives discomfort a reason to be chosen.",
-          "location": "breakdown.fullRead",
-          "why": "It makes spiritual energy practical and portable."
+          "text": "Purpose gives discomfort a reason to be chosen."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-power-of-full-engagement-ch02",
       "number": 2,
       "title": "The Disengaged Life of Roger B.",
@@ -417,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The first signal is emotional absence, not slipped output: vitality, patience, and connection can contract while Roger still meets every obligation. The other two wait for visible failure or reduced effort, which is exactly the late symptom.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -430,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Success creates obligations that crowd out recovery: greater visibility raises demands that eat the renewal time he had. Choice 0 is the 'more success means better balance' error; choice 1 ignores how added obligations spend his capacity.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -443,8 +423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Emotional and relational capacity deplete first, so impatience and reduced presence arrive well before output drops. Choices 1 and 2 expect the numbers to signal early, which is the error: disengagement hides in mood, not metrics.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -456,8 +435,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The gap between visible competence and internal depletion is disengagement's signature; a person can perform tasks well while vitality and presence shrink. Choice 0 assumes output must fall too; choice 1 reads strong targets as proof of engagement.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -469,8 +447,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Disengagement is competence without aliveness: Roger keeps achievement visible while no longer feeling present, so functioning is not evidence inner capacity is intact. Choices 0 and 2 both treat visible performance as the test, which the pattern denies.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -482,8 +459,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Recovery and presence are the voluntary choices sacrificed first when obligations multiply, so personal foundations erode while professional visibility stays. Choice 0 is the 'discipline keeps every domain' error; choice 1 inverts which part falls first.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -495,8 +471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "External success indicators stay visible while internal depletion stays private, so neither Reid nor those around him register the loss. Choices 0 and 2 both rely on others noticing first, which is the error: disengagement hides in mood and home life, not output.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -508,8 +483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Seeing depletion as a capacity issue rather than a character flaw opens the path to design recovery instead of shame and intensified effort. Choices 0 and 1 keep the character-flaw frame, which only adds shame and more strain.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -521,8 +495,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Continuous overextension forces triage, and the voluntary categories -- recovery, sleep, family connection, attention -- get cut first while professional visibility persists. Choice 0 is the 'discipline keeps every domain' error; choice 2 inverts the order by expecting work to crack first.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -565,7 +538,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Capacity Gap Check",
         "coreSkill": "Run the Capacity Gap Check before you accept more work. Name the layer that is weakest: physical, emotional, mental, or spiritual. Then write the smallest honest promise that protects recovery and still respects the people affected.",
         "ifThenPlans": [
           {
@@ -590,19 +562,13 @@
       },
       "memorableLines": [
         {
-          "text": "Capacity leaks before achievement fails.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the warning simple enough to remember before a crisis."
+          "text": "Capacity leaks before achievement fails."
         },
         {
-          "text": "Presence is a form of energy.",
-          "location": "breakdown.deepRead",
-          "why": "It turns engagement from a work metric into a lived signal."
+          "text": "Presence is a form of energy."
         },
         {
-          "text": "The body gets a vote in ambition.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the chapter's refusal to split performance from physical capacity."
+          "text": "The body gets a vote in ambition."
         }
       ]
     },
@@ -707,8 +673,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Stress only converts to capacity when it alternates with recovery; the body adapts during rest. Continuous pressure depletes Fabienne and blocks the very adaptation she wants.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -720,8 +685,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Bodies and attention decline in quality after about 90 to 120 minutes. Renewing on that rhythm preserves Gilles's baseline; waiting for exhaustion wastes performance and slows recovery.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -733,8 +697,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Quality of effort beats raw volume. The renewal lets clarity return so Brenda's second review is precise; tired straight-through effort is reactive and prone to mistakes.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -746,8 +709,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Pulsing effort triggers adaptation that flat effort cannot. Willpower does not rewrite the physiology James depends on, so steady-state output erodes his capacity instead of expanding it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -759,8 +721,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Breaks are not time lost; they are when adaptation happens. Without the reset Sadie's next block yields only fatigue, so skipping it as a discipline test backfires.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -772,8 +733,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The stressor merely loads the system; renewal afterward converts that load into strength. Without recovery Jonas's added stress accumulates as strain, so more is not more.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -785,8 +745,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Depletion signals that the system lacks built-in recovery, not a character flaw. A systems view gives Gilles concrete rhythms; shame just drives denial and more depletion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -798,8 +757,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Recovery does not magically make money. Sklar's renewal preserved decision quality and emotional stability during high-stakes work, which is what supported the earnings, not the breaks by themselves.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -811,8 +769,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Capacity grows from stress that alternates with recovery. Unbroken demand drains the new hire and prevents the adaptation Sadie is trying to build, so it teaches strain, not commitment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -855,7 +812,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build the Renewal Pulse",
         "coreSkill": "Practice placing recovery inside performance instead of after it. Build the Renewal Pulse by pairing a hard effort with a visible cue for renewal, then returning to the next demand with better state, not just more willpower.",
         "ifThenPlans": [
           {
@@ -880,19 +836,13 @@
       },
       "memorableLines": [
         {
-          "text": "Pressure trains only what recovery can rebuild.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the stress-recovery mechanism into one plain rule."
+          "text": "Pressure trains only what recovery can rebuild."
         },
         {
-          "text": "Breaks protect the quality of the next effort.",
-          "location": "breakdown.deepRead",
-          "why": "It makes recovery part of performance, not a reward after it."
+          "text": "Breaks protect the quality of the next effort."
         },
         {
-          "text": "Recovery is part of the swing.",
-          "location": "breakdown.fullRead",
-          "why": "It ties the chapter's pulse to the Jack Nicklaus case."
+          "text": "Recovery is part of the swing."
         }
       ]
     },
@@ -997,8 +947,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Sleep is a performance input, not a side benefit he can trade for grit. Sleep debt compounds across the day faster than willpower can overcome it, so resolve cannot cover the gap.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1010,8 +959,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Without concrete structure, recovery is postponed in favor of continuing the task, so exhaustion arrives all at once. Connor had to make recovery physical and scheduled with a 90-minute cue instead of relying on resolve.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1023,8 +971,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Eliminating friction time is what let Connor's evenings expand. If structural time like the commute is long, even scheduled recovery gets crowded out, so system design matters as much as what happens during a break.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1036,8 +983,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Emotional and cognitive control are embodied functions. Willpower and technique cannot substitute for the neurological resources poor fueling depletes, so a weak physical base, not weak character, drove the snap.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1049,8 +995,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Structured, repeated practice normalizes the skill so recovery no longer reads as a luxury. Learned through deliberate practice, renewal becomes as reliable as a professional skill and stops competing with work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1062,8 +1007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The payoff claimed is not broad health but usable capacity for decisions, relationships, and sustained effort. Treating it as generic fitness advice is the exact mistake the source warns against.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1075,8 +1019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Renewal restores the metabolic and neurological resources behind focus within hours, not weeks. Connor's recovery made better thinking and availability possible the same day, not as a slow fitness payoff.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1088,8 +1031,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The body is the base layer for attention and emotional regulation. A tired, underfueled person has less patience and poorer focus, so neglecting the physical layer directly degrades work output rather than staying separate from it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -1101,8 +1043,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Scheduled, time-based cues reduce negotiation and interrupt linear effort before depletion. Waiting for felt tiredness means recovery is postponed in favor of continuing the task, so exhaustion appears suddenly instead of being prevented.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1145,7 +1086,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the Renewal Loop",
         "coreSkill": "Practice spotting the first physical dip before you turn it into a character story. Mark the Renewal Loop asks for one visible check: what was spent, what input is missing, and what small refill comes next. The skill is not self-care talk; it is capacity training for the next decision.",
         "ifThenPlans": [
           {
@@ -1170,19 +1110,13 @@
       },
       "memorableLines": [
         {
-          "text": "Capacity has a body.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the base-layer claim into a line the reader can remember."
+          "text": "Capacity has a body."
         },
         {
-          "text": "Recovery is part of the work.",
-          "location": "breakdown.deepRead",
-          "why": "It challenges the false split between serious effort and renewal."
+          "text": "Recovery is part of the work."
         },
         {
-          "text": "You cannot train what you refuse to measure.",
-          "location": "breakdown.fullRead",
-          "why": "It turns physical honesty into the condition for useful practice."
+          "text": "You cannot train what you refuse to measure."
         }
       ]
     },
@@ -1287,8 +1221,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Positive emotional energy IS the challenge state, and it broadens attention and persistence, so it is what expands usable capacity. Fear is not a dependable source of capacity: it may spike intensity for a beat but narrows perception and drains recovery, so both fear-based options fail the claim.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1300,8 +1233,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Challenge framing keeps perception open through confidence and connection; threat narrows it around danger. Suppression looks composed but consumes energy and buries the signal, so it only mimics the open state instead of creating it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1313,8 +1245,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Emotional energy is about quality and direction, not the presence of feeling. Raw, unrenewed emotion depletes faster than purposeful emotion, so feeling strongly is not the same as performing on strong fuel.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1326,8 +1257,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ann's quitting tracked a valued purpose, not knowledge or shame. Shame-based pressure forces short-term compliance and collapses when the urgency fades, which is exactly why she relapsed once each pregnancy ended.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1339,8 +1269,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A threat signal can validly flag danger, but chronic threat restricts attention and burns the resources strategy and recovery require. Holding the alarm on indefinitely costs more than the danger it guards against.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1352,8 +1281,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Emotional alchemy rests on the same stimulus triggering either response. Treating the reaction as situation-determined removes the lever; training in framing lets the same pressure mobilize capacity instead of draining it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1365,8 +1293,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Depletion signals that recovery is needed or that the rhythm mismatches the task. Reading it as weakness fights the symptom and leaves the real leak in place; reading it as feedback lets him design recoverable performance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1378,8 +1305,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Emotional energy works like physical fitness: capacity grows when spending is paired with recovery. Framing it as a fixed trait abandons the training and renewal that would actually expand it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -1391,8 +1317,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Like Ann relapsing after each pregnancy, Eric's habit returns when the external pressure lifts. Shame buys short-term compliance but not persistence; values-based motivation lasts because it ties behavior to meaning rather than fear.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1435,7 +1360,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Challenge Reply Pause",
         "coreSkill": "Practice turning threat into challenge before your next response. The move is to count visible threat cues, stop one defensive behavior, and send the line that protects the work or relationship. Use it when pressure is real but immediate safety is not at stake.",
         "ifThenPlans": [
           {
@@ -1460,19 +1384,13 @@
       },
       "memorableLines": [
         {
-          "text": "Challenge keeps the room wider than threat.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's core contrast into one image."
+          "text": "Challenge keeps the room wider than threat."
         },
         {
-          "text": "Fear can start the engine; it cannot maintain the machine.",
-          "location": "breakdown.deepRead",
-          "why": "It distinguishes short bursts from durable performance fuel."
+          "text": "Fear can start the engine; it cannot maintain the machine."
         },
         {
-          "text": "Recovery is part of courage, not a retreat from it.",
-          "location": "breakdown.deepRead",
-          "why": "It makes renewal feel like disciplined action."
+          "text": "Recovery is part of courage, not a retreat from it."
         }
       ]
     },
@@ -1577,8 +1495,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Imagery is attention-rehearsal: a cognitively realistic dry-run that lets the nervous system pattern-match the platform sequence. The other two read it as mood-management or escape, which is the motivational-fantasy misreading.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1590,8 +1507,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fatigue degrades the quality of attention itself, so recovery is non-optional, not a luxury. Treating tiredness as a cue to push, or as something a sharp image can override, is exactly the error the case warns against.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1603,8 +1519,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Ritualized cues reduce the negotiation cost of attention-switching and embed the focus sequence as automated behavior. Calling them nerve-soothers or lucky habits misses that they decide attention in advance.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1616,8 +1531,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Appropriate focus needs accurate perception so attention targets the right levers. Both fear-driven intensity and blind positive belief fragment focus across anxiety or denial, which is the misconception both distractors repeat.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1629,8 +1543,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Trained attention selectively attends, drops sunk-cost loops, and resets. Gripping one thread to the end, or spreading attention across everything, both fail the flexible-focus standard that strong mental energy requires.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1642,8 +1555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Attention is a finite resource whose direction is shaped by conditions, not handed out at birth. Treating it as fixed talent, or measuring his against a coworker's, leaves focus where the misconception puts it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1655,8 +1567,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The nervous system rebuilds attention only when intense focus alternates with genuine renewal, which means redirecting attention elsewhere. Half-scrolling the deck is continuation, and never stopping ignores recovery entirely.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1668,8 +1579,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Effective visualization is attention-rehearsal of the cognitive and motor sequence, not positive thinking. Imagining the medal or the celebration is the motivational-fantasy version that does not train the dive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1681,8 +1591,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Realistic optimism reads the demand accurately before choosing a response, so attention targets the right move. Blind positivity (denial) and fear-amplified worry both distort perception, which the two distractors model.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1725,7 +1634,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write The Focus Cue",
         "coreSkill": "Practice turning scattered attention into a written target before pressure spends it for you. Use the Write the Focus Cue move: name the task, picture one concrete action, then release when the burst is done. The skill is not constant concentration; it is the trained return.",
         "ifThenPlans": [
           {
@@ -1750,19 +1658,13 @@
       },
       "memorableLines": [
         {
-          "text": "Focus spends energy. Release renews it.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the oscillation principle into a line the reader can use."
+          "text": "Focus spends energy. Release renews it."
         },
         {
-          "text": "Pressure narrows the mind; trained focus narrows it on purpose.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the chapter's mechanism into a clean contrast."
+          "text": "Pressure narrows the mind; trained focus narrows it on purpose."
         },
         {
-          "text": "Focus needs a finish line.",
-          "location": "breakdown.fullRead",
-          "why": "It names the cost of the practice in plain, portable language."
+          "text": "Focus needs a finish line."
         }
       ]
     },
@@ -1867,8 +1769,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Knowing a behavior is good for you rarely changes it; information loses to short-term relief. A valued reason shifts motivation from outside pressure to her own choice, so the discomfort becomes worthwhile.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1880,8 +1781,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Purpose supplies direction and emotional durability that comfort-based and fear-based motives lack. When the cost serves something the person has chosen, the discomfort registers as worth bearing rather than as arbitrary pain, so it holds up where fear of embarrassment leaks once the going gets hard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1893,8 +1793,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The error is assuming spiritual energy requires theological commitment. The mechanism is values-based choice, not doctrinal alignment, which is why Frankl's approach to purpose holds across worldviews.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1906,8 +1805,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Thinking purpose just makes goals feel more important is the near-miss. A chosen meaning does not only amplify effort. It changes what counts as tolerable, necessary, or worth protecting. That is why Tomas weighs the travel against what he wants to protect instead of simply pushing harder.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1919,8 +1817,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Treating fear or anger as the strongest fuel is the common error. Defensive motives create urgency but drain recovery; intrinsic values sustain effort through setback, which is why her fear-driven push collapsed.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1932,8 +1829,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The error is that purpose is only for easy circumstances. Frankl's survival under extreme deprivation, anchored in logotherapy, demonstrates a strong why provides direction and resilience precisely when easier motives are gone.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1945,8 +1841,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Assuming discomfort scales with summoned willpower is the near-miss. Willpower fades, but pain attached to a freely chosen purpose stays endurable because the person keeps judging it as worthwhile.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1958,8 +1853,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Believing that identifying purpose is the final step is the common error. Purpose energizes only when connected to specific operational decisions, so a named-but-unapplied purpose leaves the hard evening unchanged.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1971,8 +1865,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Purpose does not just make goals feel weightier; it reorders the decision calculus. The receipt forces a tradeoff, so a cost that serves approval instead of the value gets cut, not merely powered through.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2015,7 +1908,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Say the Purpose Receipt",
         "coreSkill": "Practice turning a vague why into a receipt you can test. Name the value, name the demand you will drop or keep, and say what energy the value deserves next. The skill is small on purpose: purpose has to change one handoff before it can change a life.",
         "ifThenPlans": [
           {
@@ -2040,19 +1932,13 @@
       },
       "memorableLines": [
         {
-          "text": "Purpose turns discomfort into chosen work.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's mechanism into a line the reader can test during a hard moment."
+          "text": "Purpose turns discomfort into chosen work."
         },
         {
-          "text": "Recovery keeps a why from becoming another drain.",
-          "location": "breakdown.deepRead",
-          "why": "It guards against using purpose as a prettier form of overwork."
+          "text": "Recovery keeps a why from becoming another drain."
         },
         {
-          "text": "Fear can start effort, but connection keeps it renewable.",
-          "location": "breakdown.fullRead",
-          "why": "It contrasts short-term fuel with durable energy in plain language."
+          "text": "Fear can start effort, but connection keeps it renewable."
         }
       ]
     },
@@ -2157,8 +2043,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A written statement does not change the day on its own. Purpose becomes reliable only when it governs a specific boundary, so the value needs a rule about where the call stops, not a nicer frame.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2170,8 +2055,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Bounded recovery time creates distance from work stress and lets him reconnect before the next demand. Waiting for calm treats presence as a luxury, but the stop turns family from exhausted obligation into renewal precisely when he is most worn out.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2183,8 +2067,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Default choices favor immediate pressure over the valued outcome, so clear priorities do not automatically reorder behavior. Only an explicit rule that changes the choice architecture shifts what feels automatic in the morning.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2196,8 +2079,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Even ten minutes of separation from the work context gives enough reset for genuine presence. A strategic micro-recovery at the transition point does what a distant full day off cannot, so waiting for hours off keeps him depleted.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2209,8 +2091,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Making one value explicit as a behavioral rule displaces lower-priority claims and gives that practice real resource allocation. Unranked values reproduce the same overwork pattern, so specificity, not breadth, is what makes enforcement possible.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2222,8 +2103,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Values change behavior only when they move from aspirational language into scheduled time and boundary choices. Purpose work read as a morale boost leaves the day untouched, because the working part is the rule that protects time from competing claims.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -2235,8 +2115,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stress reverts people to established patterns, and intention without architectural support gives way. A rule provides the friction that overrides reflexive overwork, so resolve alone is what fails her exactly when the value matters most.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2248,8 +2127,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A one-time decision does not create the automaticity that survives pressure. Stress pulls him back to old patterns unless the pause becomes a repeated choice, which is what makes purpose operational rather than a single resolve.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2261,8 +2139,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A rule that stays as open as \"whenever I can\" gives pressure room to negotiate it away every time. Specificity about the actual cue -- a named time, place, or trigger -- is what makes a rule enforceable, because a concrete threshold leaves nothing to bargain over.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2305,7 +2182,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Purpose Rule",
         "coreSkill": "Practice turning one value into one rule for a repeated moment. Write the Purpose Rule asks you to name what matters, find where it gets lost, and attach one visible behavior to that threshold.",
         "ifThenPlans": [
           {
@@ -2330,19 +2206,13 @@
       },
       "memorableLines": [
         {
-          "text": "Purpose needs a job in the room.",
-          "location": "breakdown.fastRead",
-          "why": "It names the difference between a value and a usable rule."
+          "text": "Purpose needs a job in the room."
         },
         {
-          "text": "Recovery is where purpose proves itself.",
-          "location": "breakdown.deepRead",
-          "why": "It links purpose to renewal rather than a slogan."
+          "text": "Recovery is where purpose proves itself."
         },
         {
-          "text": "A clean list cannot carry a tired person home.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the failure mode vivid and portable."
+          "text": "A clean list cannot carry a tired person home."
         }
       ]
     },
@@ -2447,8 +2317,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A truthful audit hunts the gap between stated values and where daily energy actually goes, because the costliest leaks hide in normal routines. A work-only review (choice 0) misses sleep, meals, and relationships, where the largest deficits accumulate.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2460,8 +2329,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A truthful energy audit measures where energy actually goes each day and exposes the gap between that lived pattern and stated values, yielding a concrete deficit to fix. Choice 1 audits the calendar instead of the energy; choice 2 scores intention, which is the vague goal the method replaces.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2473,8 +2341,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Calling exhaustion dedication, absence responsibility, or distraction busyness masks the true cost because aspirational language turns depletion into a virtue and blocks accounting. Choice 0 treats the deficit as unavoidable; choice 2 accepts the rationalization, both closing off diagnosis.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2486,8 +2353,7 @@
             ],
             "correctIndex": 2,
             "explanation": "An audit spans sleep, meals, movement, emotion, work boundaries, and family because capacity is whole-system: a deficit in one domain directly changes what is available in the others. Splitting the columns (choices 0 and 1) is the work-only error the whole-system claim corrects.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2499,8 +2365,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Facing reality without self-punishment is required because shame and guilt trigger the rationalization that blurs measurement. Choice 0 invites the spiral; choice 2 fudges the data. Only naming the gap as a fixable capacity problem keeps the read clear.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2512,8 +2377,7 @@
             ],
             "correctIndex": 0,
             "explanation": "An accurate audit creates a specific, measurable target, not a vague goal, because later rituals can only fix the right lever from a precise reading. Choice 1 is the motivation-is-enough error; choice 2 stops short of the diagnosed target that points the fix at the real leak.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2525,8 +2389,7 @@
             ],
             "correctIndex": 1,
             "explanation": "An audit distinguishes what a person says matters from where energy actually flows, because stated values and real allocation routinely diverge, and that gap is where change begins. Choice 0 assumes alignment and skips the diagnosis; choice 2 restates the value instead of measuring the flow.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2538,8 +2401,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reframing depletion as design turns the audit from a verdict into a measurable target to redesign, because reading it as a grade ends the process at self-criticism. Choice 0 takes the report-card reading; choice 1 abandons the finding, while the right move converts the same numbers into the starting point for change.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2551,8 +2413,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A truthful energy audit is clean measurement of where energy actually goes, ending in a concrete deficit to target rather than a flattering summary. Choice 1 softens the data the audit depends on; choice 2 stops at a list and never produces the measurable target that makes the audit useful.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2595,7 +2456,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run The Energy Truth Count",
         "coreSkill": "Practice Run the Energy Truth Count before you redesign anything. Count where your body, mood, focus, and purpose were actually spent in one real situation. The skill is not self-blame; it is clean measurement before change.",
         "ifThenPlans": [
           {
@@ -2620,19 +2480,13 @@
       },
       "memorableLines": [
         {
-          "text": "Truth beats drive when drive is hiding a leak.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the chapter's hard edge in one plain contrast."
+          "text": "Truth beats drive when drive is hiding a leak."
         },
         {
-          "text": "An audit is a mirror before it is a plan.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the order of diagnosis and action easy to remember."
+          "text": "An audit is a mirror before it is a plan."
         },
         {
-          "text": "Count the leak before you praise the push.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a portable test for overwork."
+          "text": "Count the leak before you praise the push."
         }
       ]
     },
@@ -2737,8 +2591,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A ritual fires through stable cues and automated sequence, not in-the-moment choice, so it spares the most willpower exactly when time and resolve are scarcest. Treating it as a calm-week tool drops it when it works hardest.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2750,8 +2603,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A vague intention leaves every repetition to willpower; only a specific cue and sequence let the ritual trigger without renegotiation. Strength of wanting cannot substitute for the defined trigger.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2763,8 +2615,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Repeated cues convert one-off intentional acts into a stable pattern that runs at low willpower cost. The ritual is not a decorative routine needing ongoing motivation; the cue, not enthusiasm, triggers it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2776,8 +2627,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A quiet space, a clarified outcome, and rehearsal before pressure cut the cognitive load when stakes rise and make confidence repeatable. The preparation is not optional or a distraction; it is what keeps pressure from leaking in.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2789,8 +2639,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Consistent timing and a stable environment strengthen the cue so the ritual triggers under stress. A lone intention without environmental support cannot survive competing cues; the ritual needs an anchor and protected space.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2802,8 +2651,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A stable sequence runs on habit pathways, not on motivation, so it survives low energy. Treating the ritual as mood-dependent makes it collapse the moment the feeling fades; the cue, not the mood, should start it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -2815,8 +2663,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Each new sequence demands cognitive and emotional investment; training many at once reproduces the original overextension and collapses. More rituals do not create redundant safety; they must be integrated one at a time.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2828,8 +2675,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Small, anchored rituals take less willpower to start, and each success builds the confidence to expand. An ambitious multi-leak design adds both complexity and novelty, which increase failure; compounding small wins is how durable habit architecture is built.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2841,8 +2687,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Visualizing the outcome before stakes rise reduces hesitation and the cognitive load at execution; it gives nerves a place to go, not zero. Judging the ritual by whether nerves vanished misreads what the calm rehearsal is for.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2885,7 +2730,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name The Start Line",
         "coreSkill": "Practice naming the cue that starts the conduct you want. Use Name The Start Line: choose the threshold, write the first action, and protect the renewal that keeps the ritual from becoming strain. The skill is precision under pressure, not adding more chores.",
         "ifThenPlans": [
           {
@@ -2910,24 +2754,17 @@
       },
       "memorableLines": [
         {
-          "text": "A ritual is a promise with a cue.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's cue-based mechanism into a portable sentence."
+          "text": "A ritual is a promise with a cue."
         },
         {
-          "text": "Willpower fades when pressure gets a vote.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the cost of vague intentions easy to remember."
+          "text": "Willpower fades when pressure gets a vote."
         },
         {
-          "text": "Too many rituals turn training into clutter.",
-          "location": "breakdown.fullRead",
-          "why": "It warns against the overcorrection without weakening the main practice."
+          "text": "Too many rituals turn training into clutter."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-power-of-full-engagement-ch11",
       "number": 11,
       "title": "The Reengaged Life of Roger B.",
@@ -3028,8 +2865,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Reengagement is an integrated pattern: a change in one dimension cascades into the others, making the system more stable than any single move. A lone breakthrough or a new personality is not what holds it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3041,8 +2877,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A leak in one dimension shows up as strain in the others, so depletion has to be redesigned across all four at once. Patching the one visible habit, or treating it as a willpower flaw, leaves the reinforcing leaks in place.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3054,8 +2889,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fatigue directly lowers emotional regulation; with adequate sleep and movement, frustration tolerance expands. Treating patience as pure mental discipline, independent of recovery, ignores the body that the feeling runs on.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3067,8 +2901,7 @@
             ],
             "correctIndex": 0,
             "explanation": "People embedded in relationships renew motivation through mutual presence and investment, which is why isolation accelerates erosion. Treating drive as a purely individual duty removes the relational reinforcement that sustained effort usually needs.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -3080,8 +2913,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Roger B.'s turnaround sticks because the physical, emotional, mental, and purpose dimensions reinforce one another as a single system, so a gain in any one cascades into the rest. A solo dimension fixed in isolation collapses, which is why his earlier single-fix attempts did not hold.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3093,8 +2925,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stressed people blame willpower when the root is sleep, or focus when the root is lost purpose, so durable reengagement needs honest whole-system diagnosis first. A bold goal or tidy schedule built on misdiagnosis maintains the original leak.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3106,8 +2937,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Recovery that serves the mission increases effective time on high-value work, so oscillation between effort and renewal is what makes full availability possible. The goal is reliable performance, not reduced ambition or comfort for its own sake.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3119,8 +2949,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Rituals are most valuable under pressure, when spontaneous decision-making fails and automation carries the conduct. Built into daily cues, they persist even as a crisis consumes the attention that deliberate choice would need.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3132,8 +2961,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Roger's endpoint is reliable renewal, not heroic intensity, and capacity lasts only through the interlocking system. A single insight fades without it, which is why the routines, not the memory of one breakthrough, keep him steady.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3176,7 +3004,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Link the Renewal Chain",
         "coreSkill": "Practice linking one energy move to the next demand. Before you add a routine, name the layer it renews and the next layer it should help. The move is not to do more self-care; it is to build a chain that makes performance recoverable.",
         "ifThenPlans": [
           {
@@ -3201,19 +3028,13 @@
       },
       "memorableLines": [
         {
-          "text": "A reengaged life is built in loops.",
-          "location": "breakdown.fastRead",
-          "why": "It makes integration feel like a repeatable pattern rather than a mood."
+          "text": "A reengaged life is built in loops."
         },
         {
-          "text": "Recovery gives effort a second life.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the chapter's training logic into one line."
+          "text": "Recovery gives effort a second life."
         },
         {
-          "text": "Rituals cannot repair a lie about where energy goes.",
-          "location": "breakdown.fullRead",
-          "why": "It names the current-reality precondition in plain language."
+          "text": "Rituals cannot repair a lie about where energy goes."
         }
       ]
     }

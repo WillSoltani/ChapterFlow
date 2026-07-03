@@ -47,13 +47,6 @@
             "discharge",
             "curiosity"
           ],
-          "planSpec": {
-            "domain": "hospital discharge instructions after a minor stroke",
-            "audience": "a nurse watching a patient insist he understands the medication schedule",
-            "stakes": "whether the patient leaves with unspoken confusion that could send him back to the emergency department",
-            "format": "scene",
-            "requiredBeat": "The nurse hears yes, I have it, but sees the patient smooth the discharge packet twice, keep his eyes on the pill grid, and pull his shoulders inward, so she asks him to walk her through tomorrow morning instead of accusing him of confusion."
-          },
           "scenario": "A stapled discharge packet lies open beside a plastic water pitcher at 3:40 p.m. Samira, the stroke-unit nurse, watches Mr. Dorsey nod from the visitor chair and say, \"Yes, I have it.\" He smooths the packet twice, keeps his eyes on the pill grid, and pulls his shoulders inward. Samira is about to sign the final line, but the body shift makes her pause.",
           "whatToDo": "Ask him to walk through tomorrow morning dose by dose. Keep your voice practical, and do not say he is confused unless he says it first.",
           "whyItMatters": "The spoken yes closes the visit, but the hands, eyes, and shoulders reopen it. A walk-through tests understanding without turning discomfort into an accusation."
@@ -66,13 +59,6 @@
             "public spaces",
             "hesitation"
           ],
-          "planSpec": {
-            "domain": "aquarium touch-tank volunteer briefing a nervous field-trip group",
-            "audience": "a volunteer who has been trained to keep children moving through the exhibit",
-            "stakes": "one rushed child could yank away, splash the ray, and make the whole group tense",
-            "format": "vignette",
-            "requiredBeat": "The volunteer hears the child say she wants a turn, but notices her wet fingers curl under her sleeve, her torso angle behind the acrylic corner, and her eyes track the exit mat, so he offers a dry-shell observation first."
-          },
           "scenario": "A gray ray glides under a row of dripping child-sized handprints at 10:12 a.m. Nico, the aquarium touch-tank volunteer, points the field-trip line toward the acrylic tank corner. A girl with a paper wristband says she wants a turn, yet her wet fingers curl under her sleeve, her torso angles behind the corner, and her eyes track the exit mat. Nico must decide whether to wave her forward or reach for the dry shell tray.",
           "whatToDo": "Offer a dry-shell observation first, then leave the touch as an option. Let the child step toward the tank rather than pulling her words ahead of her comfort.",
           "whyItMatters": "Her sentence shows interest, while her whole body shows hesitation. The slower option protects the child and the group without diagnosing fear from one flinch."
@@ -85,13 +71,6 @@
             "negotiation",
             "questions"
           ],
-          "planSpec": {
-            "domain": "small-claims mediation over a damaged catering deposit",
-            "audience": "a mediator trying to keep two business owners from hardening too early",
-            "stakes": "a settlement can still happen if the mediator notices the first sign that the public position is not the whole story",
-            "format": "dialogue",
-            "requiredBeat": "The caterer says the number is final while sliding the calculator away, flattening the invoice with both palms, and glancing at the signed delivery photo, so the mediator asks which part of the bill is hardest to move rather than treating final as final."
-          },
           "scenario": "A laminated delivery photo sits between two marked-up invoices in county court room 4B at 11:20 a.m. \"That number is final,\" the caterer says. Iona, the mediator, watches him slide the calculator away, flatten the invoice with both palms, and glance at the signed delivery photo. The settlement clipboard waits by her elbow. She must decide whether to treat final as final or ask, \"Which part is hardest to move?\"",
           "whatToDo": "Treat final as a pressure word, not a wall. Ask which part is hardest to move, and keep the question on the bill rather than on his motive.",
           "whyItMatters": "His public position may still be firm, but the cluster around the invoice points to where pressure sits. The question keeps settlement possible."
@@ -104,13 +83,6 @@
             "trust",
             "interest"
           ],
-          "planSpec": {
-            "domain": "independent camera shop helping a customer choose a used lens",
-            "audience": "a clerk who knows the buyer is trying not to look inexperienced",
-            "stakes": "a rushed sale could become a return, while a better question could preserve trust",
-            "format": "decision_point",
-            "requiredBeat": "The customer says the lens is perfect, but sets the rear cap down crooked, presses the price tag flat, and keeps his body angled toward the beginner shelf, so the clerk decides to ask what he plans to photograph first."
-          },
           "scenario": "A used 50mm lens rests on a black microfiber cloth under the counter light at Bay Street Cameras on Saturday afternoon. Bastien, the clerk, hears the customer say, \"Perfect, I'll take it,\" while setting the rear lens cap down crooked and pressing the price tag flat. The customer's body stays angled toward the beginner shelf. Bastien's thumb is on the register key, and he must decide whether to ring it up or ask what the first photograph will be.",
           "whatToDo": "Ask what he plans to photograph first, then match the lens advice to that use. Keep the sale available, but make space for inexperience to show up safely.",
           "whyItMatters": "The words say ready, while the body points toward guidance. A practical question preserves trust better than either pushing the sale or exposing him."
@@ -123,13 +95,6 @@
             "politeness",
             "comfort"
           ],
-          "planSpec": {
-            "domain": "community pottery sale where a buyer says a cracked bowl is fine",
-            "audience": "a volunteer cashier trying to keep the sale fair without embarrassing the artist",
-            "stakes": "whether politeness hides discomfort that should change the next move",
-            "format": "predict_reveal",
-            "requiredBeat": "Before asking again, the cashier predicts the buyer's body will answer first; the buyer smiles, but keeps one hand under the crack, lowers the bowl toward the return table, and stops meeting the artist's gaze, so the cashier offers to find the maker's seconds shelf."
-          },
           "scenario": "A celadon bowl with a hairline crack sits on tissue paper beside the cash box in the church basement sale at 1:05 p.m. Zuri, the volunteer cashier, hears the buyer say, \"It's fine,\" and predicts the body will answer before a second question does. The buyer smiles, keeps one hand under the crack, lowers the bowl toward the return table, and stops meeting the artist's gaze. Zuri must decide whether to ring it up or turn toward the seconds shelf.",
           "whatToDo": "Offer to find the maker's seconds shelf, using the crack as the practical reason. Give the buyer a way to change course without calling the smile false.",
           "whyItMatters": "Politeness can hide discomfort in plain sight. The hand, bowl height, and gaze shift give enough reason to offer an option, not enough to accuse."
@@ -142,13 +107,6 @@
             "visitor comfort",
             "direction"
           ],
-          "planSpec": {
-            "domain": "historic-house tour guide noticing a guest fall silent near a narrow staircase",
-            "audience": "a guide balancing the tour script with visitor comfort",
-            "stakes": "whether the guide keeps reciting facts or prevents a visitor from being trapped in a route that feels unsafe",
-            "format": "before_after",
-            "requiredBeat": "Before the stairs, the visitor asks detailed questions and leans toward display cases; at the staircase landing she gives short answers, grips the brochure, and turns her body toward the garden door, so the guide offers the ground-floor route without naming fear."
-          },
           "scenario": "A polished wooden handrail bends into a tight servant staircase near the back hall of Hale House at 11:05 a.m. Before the stairs, Keiko's guest asks detailed questions and leans toward each display case. At the landing, she gives short answers, grips the folded brochure, and turns her body toward the garden door. Keiko, the tour guide, must decide whether to keep reciting or offer the ground-floor path.",
           "whatToDo": "Offer the ground-floor route as a normal choice. Mention timing or access, not fear, and let the visitor accept without explaining her body shift.",
           "whyItMatters": "The change from interest to withdrawal appears at a specific place. Naming the route preserves comfort while avoiding an overreach about the reason."
@@ -167,8 +125,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The tapping and repeated gaze complicate the spoken yes without proving confusion. A walk-through checks the pressure point while the accusatory choice overclaims what the body shows.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch01-q02",
@@ -180,8 +137,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The thumb movement marks a possible pressure point, not a hidden emotion. Treating the smile as proof or naming secret anger both ask one cue to carry too much.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch01-q03",
@@ -193,8 +149,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The body angle and hand activity show hesitation around the task. A practice check-in responds to the visible split, while the nervousness label turns observation into exposure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch01-q04",
@@ -206,8 +161,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hand and gaze point toward schedule pressure. Asking about the tight spot keeps the claim bounded, while challenging his honesty moves too quickly from cue to motive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch01-q05",
@@ -219,8 +173,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The chair and jacket smoothing support a modest read of discomfort in that moment. Dislike and lying are stories added beyond the visible behavior.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch01-q06",
@@ -232,8 +185,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The gaze and foot direction suggest where support may be wanted. Asking for a quick demonstration checks the cue; declaring fear or walking away both miss the middle path.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch01-q07",
@@ -245,8 +197,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Rereading gives you a concrete place to ask about. The other choices jump from a visible regulation cue to intent or character, which this skill does not support.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch01-q08",
@@ -258,8 +209,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Weight toward the door and gripping the part show possible hesitation, not a specific financial story. A review question follows the signal without pretending to know the cause.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch01-q09",
@@ -271,8 +221,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Her orientation keeps returning to a specific chart, so the useful move is a focused question. Calling out false support treats mismatch as proof instead of timing information.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -333,19 +282,13 @@
       },
       "memorableLines": [
         {
-          "text": "Read the whole body before you write the story.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's guardrail into one sentence."
+          "text": "Read the whole body before you write the story."
         },
         {
-          "text": "The face may manage the message while the rest of the body shows the cost.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the whole-body frame visible without dismissing the face."
+          "text": "The face may manage the message while the rest of the body shows the cost."
         },
         {
-          "text": "A split is a reason to ask better, not a reason to accuse.",
-          "location": "breakdown.fastRead",
-          "why": "It turns observation into a concrete next move."
+          "text": "A split is a reason to ask better, not a reason to accuse."
         }
       ]
     },
@@ -372,13 +315,6 @@
             "healthcare",
             "clusters"
           ],
-          "planSpec": {
-            "domain": "veterinary oncology consult with a longtime dog owner",
-            "audience": "a veterinarian trying to discuss treatment options without overreading one visible reaction",
-            "stakes": "whether the owner hears the options or shuts down because the conversation outruns her capacity",
-            "format": "scene",
-            "requiredBeat": "The vet remembers that the owner normally talks with both hands on the exam table; when the word chemotherapy lands, her hands vanish into her coat pockets, her shoulders lift, and she stops looking at the treatment sheet, so the vet treats the cluster as discomfort about this topic."
-          },
           "scenario": "A laminated treatment estimate lies beside a stainless exam table at 4:25 p.m. Signe, the veterinary oncologist, remembers that Mrs. Alden usually tells twelve-year stories with both hands on the table. When Signe says chemotherapy, the owner's hands vanish into her coat pockets, her shoulders lift, and her eyes leave the treatment sheet. Signe must decide whether to keep explaining or pause on this topic.",
           "whatToDo": "Name the treatment step as a place to slow down, then ask what part she wants to hear first. Treat the hands, shoulders, and gaze as a cluster, not as proof of a decision.",
           "whyItMatters": "The pocketed hands matter because they differ from her baseline and arrive with other signals at one word. The read stays bounded to discomfort around the topic."
@@ -391,13 +327,6 @@
             "baseline",
             "games"
           ],
-          "planSpec": {
-            "domain": "chess tournament arbiter handling a clock dispute",
-            "audience": "an arbiter who knows one junior player is usually restless between moves",
-            "stakes": "whether the arbiter mistakes a normal fidget for deception or notices the actual change around the disputed move",
-            "format": "postmortem",
-            "requiredBeat": "On the scoresheet review, the arbiter ignores the player's usual knee bounce and instead marks the new stillness, the covered notation, and the glance at the captured rook that arrived only after move thirty-one."
-          },
           "scenario": "A black rook lies on its side beside a ticking digital chess clock in the hotel ballroom at 6:18 p.m. after round four. Rafi, the tournament arbiter, reviews the scoresheet and remembers the junior player's usual knee bounce between every move. He leaves that alone. After move thirty-one, the bounce stops, the notation gets covered, and the player's eyes keep cutting to the captured rook. Rafi writes a note about timing, not cheating.",
           "whatToDo": "Separate the normal fidget from the new cluster. Mark when the stillness, covered notation, and rook glance appeared, then ask neutral questions about the disputed move.",
           "whyItMatters": "A usual knee bounce is baseline noise. The new stillness and covered notation matter because they arrive together after the move under review."
@@ -410,13 +339,6 @@
             "clusters",
             "context"
           ],
-          "planSpec": {
-            "domain": "artisan bakery tasting panel judging a new sourdough",
-            "audience": "a head baker trying to read feedback from regular wholesale buyers",
-            "stakes": "whether the bakery changes the recipe based on polite words or on a shift tied to the crust sample",
-            "format": "predict_reveal",
-            "requiredBeat": "The baker first notes each buyer's relaxed baseline over the rye loaf; when the extra-sour sample arrives, two buyers stop tearing pieces, one turns the plate away, and all three reach for water before speaking."
-          },
           "scenario": "Three numbered bread slices sit on a butcher-paper tasting mat at 7:10 a.m. Maribel, the head baker, first notes the buyers' relaxed baseline over the rye loaf: easy talk, steady tearing, full water glasses, clean crumb tray. Then the extra-sour sample lands. Two buyers stop tearing pieces, one turns the plate away, and all three reach for water before speaking. Maribel must decide what feedback to trust.",
           "whatToDo": "Compare the sour sample with the rye baseline before changing the recipe. Ask about crust, finish, and acidity, using the water reach as a prompt rather than a verdict.",
           "whyItMatters": "The buyers' polite words come after a visible cluster tied to one numbered sample. That pattern is stronger than one grimace or one compliment."
@@ -429,13 +351,6 @@
             "donors",
             "context"
           ],
-          "planSpec": {
-            "domain": "planetarium presenter noticing a sponsor's reaction to a revised show script",
-            "audience": "a science educator balancing donor concerns with factual accuracy",
-            "stakes": "whether a funding conversation gets derailed by a misread expression",
-            "format": "decision_point",
-            "requiredBeat": "The presenter compares the sponsor's usual forward lean during telescope talk with the cluster that appears at the climate segment: chair pushes back, pen cap clicks shut, folder closes over the script, and the first question shifts to audience complaints."
-          },
           "scenario": "A draft planetarium script rests under a silver pen cap in the dome office at 2:05 p.m. Elian, the presenter, knows the sponsor usually leans forward during telescope talk. At the climate segment, the reclined chair pushes back, the pen cap clicks shut, the folded script disappears under a folder, and the first question shifts to audience complaints. Elian's hand hovers over the next page.",
           "whatToDo": "Tie the cluster to the climate segment, then ask which audience concern needs clearer framing. Do not turn the closed folder into a face-only disagreement read.",
           "whyItMatters": "The change is meaningful because it departs from the sponsor's usual telescope posture and arrives with several signals at one section of the script."
@@ -448,13 +363,6 @@
             "sentiment",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "jewelry repair counter estimating a grandmother's watch",
-            "audience": "a watchmaker explaining repair cost to a customer with sentimental attachment",
-            "stakes": "whether the customer feels trapped by a price or helped through a decision",
-            "format": "dialogue",
-            "requiredBeat": "The watchmaker notes the customer's baseline of touching the watch while telling its history; when the estimate appears, the touching stops, the receipt hand tightens, and her body turns toward the display cases rather than the exit, showing interest mixed with strain."
-          },
           "scenario": "A scratched gold watch sits open on a felt repair pad at Linnea's counter at 12:30 p.m. \"My grandmother wore it every Sunday,\" the customer says, touching the case as she talks. Linnea slides over the estimate slip. The touching stops, the receipt hand tightens, and the customer's body turns toward the display cases, not the exit. Linnea must decide whether to press for repair approval or say, \"We can price this in stages. Do you want both paths?\"",
           "whatToDo": "Offer staged repair options and a display-case comparison without assuming the reason for the strain. Keep the sentimental baseline and the estimate cluster in view.",
           "whyItMatters": "The customer does not withdraw from the shop; she turns toward options. The cluster suggests interest under pressure, not poverty, deception, or a simple no."
@@ -467,13 +375,6 @@
             "baseline",
             "timing"
           ],
-          "planSpec": {
-            "domain": "community theater costume fitting before a period drama",
-            "audience": "a costume designer trying to tell whether an actor objects to the jacket or the scene",
-            "stakes": "a bad read could lead to the wrong alteration and miss a comfort problem before rehearsal",
-            "format": "before_after",
-            "requiredBeat": "The actor jokes easily while pinning the sleeves, but when the director mentions the confrontation scene, his hands stop at the waistcoat buttons, his breathing shortens, and he steps behind the fitting screen without asking for a jacket change."
-          },
           "scenario": "A row of brass waistcoat buttons catches the fitting-room light beside Dario's pin cushion. Before rehearsal, the actor jokes easily while Dario pins the sleeves and the scene sides sit open on a chair. When the director mentions the confrontation scene, the actor's hands stop at the buttons, his breathing shortens, and he steps behind the fitting screen without asking for a jacket change. Dario must decide what to alter.",
           "whatToDo": "Ask whether the scene movement needs a slower fitting run before changing the jacket. Use the timing of the shift to separate clothing discomfort from scene discomfort.",
           "whyItMatters": "The cluster appears when the scene is named, not when the sleeves are pinned. Timing keeps Dario from fixing fabric when the pressure may be rehearsal."
@@ -492,8 +393,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful read compares her normal cart posture with the new hand, voice, and movement cluster. Hiding a mistake adds motive before context earns it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch02-q02",
@@ -505,8 +405,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A habitual bounce is baseline, not a fresh signal. The tempting anxious read turns normal movement into evidence before any cluster appears.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch02-q03",
@@ -518,8 +417,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cluster attaches to the diagram and driveway photo, so the next question should stay there. Pretending and canceling both outrun the visible evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch02-q04",
@@ -531,8 +429,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The cold room and preexisting posture explain the cue better than motive. No cluster changes when feedback arrives, so the dramatic reads are weak.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch02-q05",
@@ -544,8 +441,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The smile is baseline across proposals, while the pen, chair, and question shift together on one page. The chair alone would be too thin.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch02-q06",
@@ -557,8 +453,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The shift from his usual hand talk plus rereading and sink movement points to pressure around shellfish. A review checks the task without calling him unsafe.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch02-q07",
@@ -570,8 +465,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Baseline, cluster, and situation are missing. A visitor's feeling or one eye-contact moment cannot carry the interpretation by itself.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch02-q08",
@@ -583,8 +477,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The changed pacing, clipboard grip, and assistant call arrive with the safety topic. Dislike and wrongdoing are motive stories without enough support.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch02-q09",
@@ -596,8 +489,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cluster appears at the memorial topic and points to care, not a cue dictionary label. Naming grief may expose her; changing subjects misses the useful context.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -658,19 +550,13 @@
       },
       "memorableLines": [
         {
-          "text": "Baseline, cluster, context: keep the three together.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a compact order of operations."
+          "text": "Baseline, cluster, context: keep the three together."
         },
         {
-          "text": "Read behavior as a pattern inside a situation, not as a symbol floating by itself.",
-          "location": "breakdown.deepRead",
-          "why": "It blocks the cue-dictionary failure mode in plain language."
+          "text": "Read behavior as a pattern inside a situation, not as a symbol floating by itself."
         },
         {
-          "text": "A careful read does not make you certain faster.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the chapter's restraint memorable."
+          "text": "A careful read does not make you certain faster."
         }
       ]
     },
@@ -697,13 +583,6 @@
             "recovery",
             "timing"
           ],
-          "planSpec": {
-            "domain": "glassblowing studio safety correction during a beginner workshop",
-            "audience": "an instructor watching a student react to a sudden heat flare",
-            "stakes": "whether the instructor mistakes embarrassment for carelessness or catches the protective response before the next attempt",
-            "format": "scene",
-            "requiredBeat": "When the furnace door blooms orange, the student freezes with the pipe angled down, pulls his elbow tight to his ribs, and only then laughs too loudly, so the instructor waits for his grip to loosen before giving the next instruction."
-          },
           "scenario": "An orange furnace mouth opens around the end of a blowpipe at 6:35 p.m. in Yara's beginner workshop. The heat shield is up, but Milo freezes with the pipe angled down, pulls his elbow tight to his ribs, and only then laughs too loudly near the bench rail. Yara must decide whether to correct him at once or wait for his grip to loosen before the next instruction.",
           "whatToDo": "Wait for the grip to loosen, then give one safety instruction about pipe angle. Treat the laugh as later cover, not as proof that the heat flare did not land.",
           "whyItMatters": "The order matters: freeze, protect, laugh. Waiting for recovery keeps the correction from adding pressure while the protective response is still active."
@@ -716,13 +595,6 @@
             "orientation",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "passport renewal counter when a traveler hears her name mispronounced",
-            "audience": "a clerk trying to keep a paperwork correction calm",
-            "stakes": "whether a small administrative error turns into a defensive exchange",
-            "format": "dialogue",
-            "requiredBeat": "The traveler answers politely, but the first beat is a still face, a half-step back from the counter, and both hands closing over the appointment folder; the clerk gives the folder time to lower before asking how the name should appear."
-          },
           "scenario": "A navy passport folder rests under the glass slot at window B in the renewal office at 9:05 a.m. as the number display clicks to B42. Amal, the clerk, says the traveler's name wrong. \"That's me,\" the traveler answers, polite and flat. First comes a still face, then a half-step back, then both hands closing over the appointment folder. Amal must decide whether to rush an apology or wait until the folder lowers before asking, \"How should the name appear?\"",
           "whatToDo": "Let the protective hold pass before asking the correction question. Keep the exchange about spelling and appearance, not about whether the traveler is upset.",
           "whyItMatters": "The first stillness and folder cover show the error landed. Waiting for a small recovery cue helps the clerk repair the paperwork without escalating the moment."
@@ -735,13 +607,6 @@
             "recovery",
             "sequence"
           ],
-          "planSpec": {
-            "domain": "diving certification pool after a mask-flood drill",
-            "audience": "a dive instructor watching a student surface from a failed drill",
-            "stakes": "whether the instructor sends the student back underwater before recovery is visible",
-            "format": "before_after",
-            "requiredBeat": "Underwater, the student's knees lock and both hands clamp the mask; at the pool edge, her shoulders remain high until she presses her fins flat on the tile and exhales twice, giving the instructor the recovery cue."
-          },
           "scenario": "A fogged dive mask bobs beside the pool ladder during Nuala's 8:20 p.m. certification class. Underwater, Veda's knees lock and both hands clamp the mask strap after the flood drill fails. At the pool edge, her shoulders stay high above the yellow fins. Then she presses both fins flat on the tile and exhales twice. Nuala must decide whether the next drill can wait one more minute.",
           "whatToDo": "Use the flat fins and second exhale as the recovery cue. Review the mask step at the pool edge before sending her underwater again.",
           "whyItMatters": "The locked knees and mask clamp show protection. The lowered fins and breath show recovery, which is a better moment for instruction than the first surface gasp."
@@ -754,13 +619,6 @@
             "protective response",
             "restraint"
           ],
-          "planSpec": {
-            "domain": "auction preview room when a bidder discovers a repaired painting frame",
-            "audience": "an appraiser watching whether interest survives new information",
-            "stakes": "whether the appraiser overreads a quick recoil and loses a serious buyer",
-            "format": "predict_reveal",
-            "requiredBeat": "At the word repaired, the bidder's hand leaves the frame, her feet plant, and her chin pulls back; after three seconds she leans in again with the flashlight, so the appraiser treats the recoil as protective timing, not a final no."
-          },
           "scenario": "A small flashlight beam runs along the back of a gilt frame in Tobias's auction preview room at 5:15 p.m. He says the condition tag notes a repaired corner and predicts the first beat may be protective. The bidder's hand leaves the frame, her feet plant, and her chin pulls back. After three seconds, she leans in again with the flashlight. Tobias must decide whether to sell harder or stay quiet.",
           "whatToDo": "Stay quiet through the recoil and let the return to the frame speak. Then answer condition questions plainly, without treating the first pullback as a final no.",
           "whyItMatters": "The recoil shows the repair landed, but the later lean-in shows recovery and continued interest. The second beat revises the first."
@@ -773,13 +631,6 @@
             "reflection",
             "soothing"
           ],
-          "planSpec": {
-            "domain": "hospital cafeteria when a resident hears an overhead emergency page",
-            "audience": "a senior resident mentoring an intern after a hard shift",
-            "stakes": "whether the intern's reaction is treated as incompetence or as a fast protective response to a familiar stress cue",
-            "format": "reflection",
-            "requiredBeat": "The intern's fork stops halfway to the tray, her torso turns toward the speakers before the code is complete, and she rubs her thumb across the badge clip after realizing it is not her unit."
-          },
           "scenario": "A metal fork hovers over a cafeteria tray as the ceiling speaker crackles at 1:12 p.m. Rhea sees intern Imani stop mid-bite, turn her torso toward the speaker before the code is complete, then rub her thumb across the badge clip after realizing it is not her unit. Rhea thinks about the hard shift behind them and must decide whether to call it incompetence or treat it as a fast response to a familiar cue.",
           "whatToDo": "Name only the sequence if you discuss it: orient, check, soothe, recover. Ask whether she needs a minute before the next task instead of judging her readiness.",
           "whyItMatters": "The fork, torso turn, and badge rub show timing around a stress cue. They do not prove incompetence, and the recovery matters before any next demand."
@@ -792,13 +643,6 @@
             "freeze",
             "recovery"
           ],
-          "planSpec": {
-            "domain": "orchestra rehearsal when the conductor stops on a missed entrance",
-            "audience": "a section leader helping a substitute musician recover",
-            "stakes": "whether the substitute's first freeze hardens into the next mistake",
-            "format": "decision_point",
-            "requiredBeat": "At the cutoff, the substitute's bow hand locks above the string, then she tucks the hand under the music stand and rubs two fingers against the frog; the section leader waits until the bow returns to the string before quietly counting the entrance."
-          },
           "scenario": "A violin bow hangs motionless above an open part in rehearsal room C at 9:40 a.m. At the conductor's cutoff, Bryn sees the substitute's bow hand lock above the string, then tuck under the music stand and rub two fingers against the bow frog. The penciled entrance mark waits on the page. Bryn must decide whether to correct her immediately or wait until the bow returns to the string.",
           "whatToDo": "Wait for the bow to return, then quietly count the entrance beside the penciled mark. Do not turn the first freeze into a talent judgment.",
           "whyItMatters": "The locked bow is the first protective beat. The returned bow is recovery, and it gives the section leader a cleaner moment to help."
@@ -817,8 +661,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sequence is the evidence: freeze, protect, laugh, return to task. The laugh does not erase the startle, and the freeze alone does not support an unsafe label.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch03-q02",
@@ -830,8 +673,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The grip loosening is a recovery cue. Continuing calmly uses the timing; telling her not to tense or naming distrust overinterprets the first step back.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03-q03",
@@ -843,8 +685,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The body orients to the hazard before speech catches up. A short pause respects the protective timing; accusation and ignoring both skip the recovery step.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03-q04",
@@ -856,8 +697,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The stillness and fold show the clause hit a pressure point, not intent to break rules. Waiting for breath and staying with the clause keep the read bounded.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch03-q05",
@@ -869,8 +709,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The exit turn is orientation and the necklace touch may be soothing. Returning to the label shows attention has come back to the task.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch03-q06",
@@ -882,8 +721,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The early hands and knees mark protection from the spill. The later joke may be social recovery, but it should not erase the first reaction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03-q07",
@@ -895,8 +733,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The foot reset is the recovery sign. Coaching after it gives the next cue a better chance; judging readiness from one freeze is too large.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03-q08",
@@ -908,8 +745,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The turn is an orientation response to a known cue. The relaxation revises the moment once context arrives; anxiety and hidden knowledge go beyond the sequence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch03-q09",
@@ -921,8 +757,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The continued grip means the protective response may still be active. The useful question is timing for instruction, not fear, deception, or career fit.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -983,19 +818,13 @@
       },
       "memorableLines": [
         {
-          "text": "A first reaction is a clock, not a confession.",
-          "location": "breakdown.fastRead",
-          "why": "It blocks the truth-leak reading while preserving timing value."
+          "text": "A first reaction is a clock, not a confession."
         },
         {
-          "text": "The sequence matters more than the spark.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a compact rule for tracking tense moments."
+          "text": "The sequence matters more than the spark."
         },
         {
-          "text": "Wait for the recovery before you name the meaning.",
-          "location": "breakdown.fastRead",
-          "why": "It turns observation restraint into a practical habit."
+          "text": "Wait for the recovery before you name the meaning."
         }
       ]
     },
@@ -1022,13 +851,6 @@
             "crowds",
             "direction"
           ],
-          "planSpec": {
-            "domain": "ferry boarding office during a weather delay",
-            "audience": "a ticket agent deciding whether a passenger is accepting the delay or preparing to push past the rope",
-            "stakes": "a crowd can stay calm if the agent notices readiness before it becomes movement",
-            "format": "scene",
-            "requiredBeat": "The passenger says she understands the delay, but one boot stays planted past the brass rope, her suitcase wheel angles toward the ramp, and her rear foot keeps loading with weight, so the agent steps closer to explain the boarding order."
-          },
           "scenario": "A brass rope sags in front of a closed ferry ramp sign at 4:50 p.m. Oona, the ticket agent, hears a passenger say she understands the weather delay. One wet boot sole stays planted past the brass rope, the suitcase wheel angles toward the ramp, and the rear foot keeps loading with weight. Oona must decide whether to stay behind the counter or step closer to explain the boarding order.",
           "whatToDo": "Step closer and explain the boarding order before movement starts. Name the process, not the passenger's mood, and keep the rope line clear.",
           "whyItMatters": "The lower body shows readiness toward the ramp, not proof she will push through. Acting on direction early can calm the crowd without accusing her."
@@ -1041,13 +863,6 @@
             "constraint",
             "fitting"
           ],
-          "planSpec": {
-            "domain": "tailor fitting a groom with rented dress shoes",
-            "audience": "a tailor trying to tell whether the client dislikes the suit or is limited by painful footwear",
-            "stakes": "the wrong alteration would miss the real constraint and ruin the final fitting",
-            "format": "decision_point",
-            "requiredBeat": "The groom praises the jacket while shifting heel to heel, keeping his toes off the floor, and bracing one knee against the mirror stand; the tailor checks the shoes before touching the hem."
-          },
           "scenario": "Patent leather rental shoes pinch against the measuring platform at 12:10 p.m. Friday inside North Pier Formalwear. Cormac, the tailor fitting a groom in rented dress shoes, hears him praise the jacket while shifting heel to heel, keeping his toes off the floor, and bracing one knee against the mirror stand. Cormac's hem chalk is in his hand. He must decide whether to mark the trousers or check the shoes first.",
           "whatToDo": "Check the rented shoes before touching the hem. Ask him to stand once in comfortable shoes or loosen the pair, then judge the trouser fall.",
           "whyItMatters": "The legs show strain from footwear, not necessarily dislike of the suit. Reading the constraint first prevents a bad alteration."
@@ -1060,13 +875,6 @@
             "withdrawal",
             "compromise"
           ],
-          "planSpec": {
-            "domain": "food-truck permit hearing in a municipal chamber",
-            "audience": "a permit officer reading whether a vendor is settling in for discussion or ready to withdraw",
-            "stakes": "a rushed denial could miss a narrow compromise on hours and location",
-            "format": "dialogue",
-            "requiredBeat": "The vendor's words stay cooperative, but both feet slide back under the chair when late-night noise comes up; when the officer mentions a lunch-only permit, one foot returns forward and taps beside the floor microphone."
-          },
           "scenario": "A floor microphone cable curls under metal chair legs in the municipal chamber at 7:30 p.m. \"I'm open to conditions,\" the vendor tells Paloma, holding the permit folder. When late-night noise comes up, both feet slide back under the chair. Paloma must decide whether to close the hearing or try one narrow option. \"What about lunch-only service?\" she asks. One foot returns forward and taps beside the floor microphone.",
           "whatToDo": "Keep the discussion on the lunch-only option. Treat the forward foot and tap as renewed engagement, while leaving motive and final agreement unclaimed.",
           "whyItMatters": "The feet show movement away from one version and back toward another. That direction helps find a compromise without turning leg position into a verdict."
@@ -1079,13 +887,6 @@
             "constraints",
             "readiness"
           ],
-          "planSpec": {
-            "domain": "archive reading room orientation for rare-map researchers",
-            "audience": "an archivist deciding whether a visitor is engaged or physically constrained by the room rules",
-            "stakes": "misreading stillness as disinterest could make the archivist miss a visitor who needs procedural help",
-            "format": "before_after",
-            "requiredBeat": "During the rules, the visitor's legs are motionless because bags must stay under the table; when the map drawer opens, his knees angle toward the cart and his feet reset under him, showing readiness inside a constrained room."
-          },
           "scenario": "A linen-backed map drawer slides open under cotton weights in the archive at 10:10 a.m. During Mikkel's orientation, the visitor's legs stay motionless because the bag-under-table rule pins his knees near the chair. When the map cart rolls out, his knees angle toward it and his feet reset under him. Mikkel sees readiness inside the room rules, not boredom.",
           "whatToDo": "Offer the map-handling steps again at the cart. Treat earlier stillness as constrained by rules and furniture, not as lack of interest.",
           "whyItMatters": "The room limited movement during the rules. The reset toward the cart is the more useful lower-body signal because it appears when movement becomes available."
@@ -1098,13 +899,6 @@
             "lines",
             "readiness"
           ],
-          "planSpec": {
-            "domain": "winter coat check at a theater gala",
-            "audience": "a coat-check lead trying to notice when a polite guest is about to abandon the line",
-            "stakes": "one bad line movement can spill into a crowded lobby before curtain",
-            "format": "predict_reveal",
-            "requiredBeat": "The guest says no rush, yet his shoes pivot out of the stanchion lane, his knees point toward the staircase, and his ticket hand drops lower every time the line stalls."
-          },
           "scenario": "A numbered coat tag dangles from a black velvet stanchion at 7:42 p.m. Sorin, the coat-check lead, predicts the line will show trouble before the polite words do. A guest says, \"No rush,\" yet his shoes pivot out of the stanchion lane, his knees point toward the staircase landing, and his ticket hand drops lower every time the line stalls. Sorin must decide whether to open a second claim spot.",
           "whatToDo": "Open a second claim spot or redirect the lane before he steps out. Keep the move procedural, not personal, and preserve the crowded lobby flow.",
           "whyItMatters": "The lower body shows readiness to leave the lane. The read is about line movement, not impatience as a character claim."
@@ -1117,13 +911,6 @@
             "injury",
             "gait"
           ],
-          "planSpec": {
-            "domain": "physical therapy gait check after an ankle sprain",
-            "audience": "a therapist separating pain limits from motivation",
-            "stakes": "pushing too hard can reinjure the ankle, while backing off too soon can slow recovery",
-            "format": "postmortem",
-            "requiredBeat": "The therapist reviews the step marks and sees the patient smiled through the exercise, but the injured foot shortened every third step, the toes avoided the tape line, and the good leg did the turning work."
-          },
           "scenario": "Blue tape lines mark a short walking lane on the clinic floor after Iben's 3:15 p.m. gait check. The patient smiled through the exercise in an ankle brace, but the step marks show the injured foot shortened every third step, the toes avoided the tape line, and the good leg did the turning work. Iben reviews the lane before deciding the next drill.",
           "whatToDo": "Adjust the drill from the step marks, not from the smile. Shorten the load or practice turns separately before adding distance.",
           "whyItMatters": "The feet show pain limits that the face did not report. Reading the gait pattern protects recovery without calling the effort fake."
@@ -1142,8 +929,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The feet and loaded weight show readiness toward leaving, not a motive. A timing update responds to movement energy without accusing him.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch04-q02",
@@ -1155,8 +941,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The layout constrains the stance. Foot angle becomes more useful only if it changes when space opens or joins other withdrawal signals.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch04-q03",
@@ -1168,8 +953,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The lower body shows a constraint around load. Checking pain or setup fits the evidence; dishonesty and pushing harder overclaim from the cue.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch04-q04",
@@ -1181,8 +965,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A repeated foot tap may be habit. Without a new trigger or cluster, it should not become evidence of eagerness or nervousness.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch04-q05",
@@ -1194,8 +977,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sequence shows withdrawal from one term and renewed movement toward another. It supports a practical follow-up, not certainty about ability or intent.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch04-q06",
@@ -1207,8 +989,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Heat and new shoes are real constraints, and the movement predates pressure. A topic-linked change would carry more weight than the shift alone.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch04-q07",
@@ -1220,8 +1001,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The lower body is doing the work being tested. The smile matters socially, but the step pattern shows the actual load limit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch04-q08",
@@ -1233,8 +1013,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The knees show direction and possible readiness, not a full story. A route or timing option uses the cue without exposing or accusing her.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch04-q09",
@@ -1246,8 +1025,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The earlier stillness was shaped by rules and furniture. The foot reset at the cart is the useful change, tied to a new task.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1308,19 +1086,13 @@
       },
       "memorableLines": [
         {
-          "text": "Read the lower body as direction under constraint.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps feet-and-legs reading useful without turning it into motive certainty."
+          "text": "Read the lower body as direction under constraint."
         },
         {
-          "text": "The lower body gives early clues only when you let constraints speak.",
-          "location": "breakdown.fullRead",
-          "why": "It names the chapter's central guardrail in one sentence."
+          "text": "The lower body gives early clues only when you let constraints speak."
         },
         {
-          "text": "The best read is not, that foot proves a motive.",
-          "location": "breakdown.fullRead",
-          "why": "It directly blocks the common cue-dictionary failure."
+          "text": "The best read is not, that foot proves a motive."
         }
       ]
     },
@@ -1347,13 +1119,6 @@
             "shielding",
             "torso"
           ],
-          "planSpec": {
-            "domain": "kayak rental dock during a cold-water safety briefing",
-            "audience": "a dock guide checking whether renters are absorbing the capsize instructions",
-            "stakes": "a missed safety concern on the dock becomes dangerous once the group is on the lake",
-            "format": "scene",
-            "requiredBeat": "One renter says he is ready, but his life vest is pulled high, both forearms cross over the zipper, and his torso turns away from the open water each time capsize recovery is mentioned."
-          },
           "scenario": "A red life vest hangs half-zipped against a wet dock post at 9:20 a.m. Tamar, the kayak dock guide, points past the paddle rack toward open water and explains capsize recovery. One renter says he is ready, but his life vest is pulled high, both forearms cross over the life vest zipper, and his torso turns away from the lake each time recovery is mentioned. Tamar must decide whether to launch or repeat the drill.",
           "whatToDo": "Repeat the capsize recovery steps on the dock and adjust the vest fit. Keep the move practical, and do not call the renter cowardly or resistant.",
           "whyItMatters": "The torso and forearms show shielding around one safety topic. That is enough reason to slow the briefing before open water, not enough to name his motive."
@@ -1366,13 +1131,6 @@
             "family",
             "process"
           ],
-          "planSpec": {
-            "domain": "jewelry appraisal counter during an inheritance valuation",
-            "audience": "an appraiser watching a sibling group negotiate territory around the item",
-            "stakes": "the valuation can turn into a family fight if the appraiser misses protective and territorial shifts",
-            "format": "dialogue",
-            "requiredBeat": "When the necklace tray moves toward the oldest sister, her chest lifts and squares over the glass while the younger brother folds the appraisal envelope across his stomach, so the appraiser slows the handoff and names the process."
-          },
           "scenario": "A pearl necklace lies in a shallow black tray under counter lights at 2:45 p.m. Veda, the appraiser, slides it toward the oldest sister. Her chest lifts and squares over the glass counter. The younger brother folds the appraisal envelope across his stomach. Veda must decide whether to complete the handoff or pause it. \"Before anyone holds it,\" she says, \"I'll read the valuation steps.\"",
           "whatToDo": "Slow the handoff and name the process for handling the necklace. Treat the chest square and envelope shield as territory and protection, not a dominance verdict.",
           "whyItMatters": "The tray movement changed both torsos. A process pause protects the item and the siblings before territory turns into spoken conflict."
@@ -1385,13 +1143,6 @@
             "protection",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "radio studio interview with a city arborist after storm damage",
-            "audience": "a host trying to tell when a technical guest needs room rather than pressure",
-            "stakes": "a rushed challenge could make the guest protect herself instead of explaining tree-risk tradeoffs",
-            "format": "decision_point",
-            "requiredBeat": "The arborist leans toward the microphone while describing root plates, but when the host asks who failed, her shoulders rise, her torso retreats behind the pop filter, and the clipboard comes across her chest."
-          },
           "scenario": "A foam pop filter sits between a microphone and a clipboard of tree permits in the radio studio at 8:05 a.m. Jasper, the host, hears the arborist lean toward the microphone while describing root plates through her headphones. When he asks who failed, her shoulders rise, her torso retreats behind the pop filter, and the clipboard comes across her chest. Jasper must decide whether to press blame or give room.",
           "whatToDo": "Shift from blame to explanation: ask which tree-risk tradeoff is hardest for residents to understand. Give space so the clipboard can stop being a shield.",
           "whyItMatters": "The torso retreats when the question turns accusatory. The cue supports easing pressure, not treating protection as guilt."
@@ -1404,13 +1155,6 @@
             "territory",
             "limits"
           ],
-          "planSpec": {
-            "domain": "museum conservation lab discussing a loaned textile",
-            "audience": "a conservator negotiating display limits with a curator",
-            "stakes": "the textile could be damaged if territorial tension beats a careful agreement",
-            "format": "before_after",
-            "requiredBeat": "At first the curator leans over the table to admire the textile; when light exposure limits appear, she plants both hands near the acrylic cover and narrows her chest over the object as if guarding space."
-          },
           "scenario": "A faded silk banner rests beneath a clear acrylic cover in Maelle's conservation lab at 11:15 a.m. At first, the curator leans over the table to admire the textile while Maelle sets cotton gloves beside the light meter. When light exposure limits appear, the curator plants both hands near the acrylic cover and narrows her chest over the object as if guarding space. Maelle must decide how to keep the agreement careful.",
           "whatToDo": "Move the discussion to display hours and light readings before debating preference. Treat the narrowed chest over the cover as territorial tension around the textile.",
           "whyItMatters": "The torso changed when limits entered the room. Naming a shared process protects the textile better than pushing through the guarded posture."
@@ -1423,13 +1167,6 @@
             "strain",
             "reset"
           ],
-          "planSpec": {
-            "domain": "teen driver lesson after a near curb strike",
-            "audience": "a driving instructor deciding whether to keep correcting or let the student settle",
-            "stakes": "too much correction can narrow the student's body and attention right when recovery matters",
-            "format": "reflection",
-            "requiredBeat": "The student says okay, but his chest collapses toward the wheel, one shoulder climbs toward his ear, and his torso stays locked long after the car is straight, so the instructor gives one clear reset instead of a lecture."
-          },
           "scenario": "A learner permit card lies in the center console beside a parking receipt after the curb mirror flashes close. Harlan, the instructor, hears the student say okay. His chest collapses toward the steering wheel, one shoulder climbs toward his ear, and his torso stays locked long after the car is straight. Harlan thinks about the lecture forming in his mouth and must decide whether to keep correcting or give one reset.",
           "whatToDo": "Give one reset: park, breathe, check the curb mirror, restart. Let the torso unlock before adding more correction.",
           "whyItMatters": "The collapsed chest and raised shoulder show strain after the near strike. More correction may narrow attention when the student needs recovery."
@@ -1442,13 +1179,6 @@
             "territory",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "community garden plot allocation meeting",
-            "audience": "a coordinator trying to prevent territorial tension over the last sunny plot",
-            "stakes": "two gardeners can share tools and boundaries if the coordinator sees the body claim forming early",
-            "format": "postmortem",
-            "requiredBeat": "On the map review, one gardener's hips square to the sunny rectangle, her seed catalog covers her abdomen, and the other gardener leans over the map edge until their shoulders nearly touch, marking territory before anyone raises a voice."
-          },
           "scenario": "A laminated garden plot map is weighted by a packet of bean seeds after Selene's 6:10 p.m. allocation meeting. Reviewing her notes, she sees the moment she missed: one gardener's hips squared to the sunny rectangle, her seed catalog covered her abdomen, and the other leaned over the map edge until their shoulders nearly touched. The tool-shed key had not even been assigned yet.",
           "whatToDo": "Carry forward a rule: when torsos start claiming map space, pause and mark boundaries, shared tools, and decision order before voices rise.",
           "whyItMatters": "The body claim formed before the argument. Hips, shoulders, and the catalog show territory around the plot without proving ownership from one lean."
@@ -1467,8 +1197,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The torso and arms show shielding around the safety topic. Repeating the step fits the cue; bravery and refusal are motive stories.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q02",
@@ -1480,8 +1209,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The folder works as a shield, and the shoulder drop suggests the new structure eased pressure. It does not prove lying or finances.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch05-q03",
@@ -1493,8 +1221,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The torso retreat appears when blame enters, so pressure is the visible issue. A tradeoff question keeps the topic while reducing shielding.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q04",
@@ -1506,8 +1233,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The torso change shows protection or territory around the object, not a dominance verdict. Slowing the process and using concrete limits fit the visible shift.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch05-q05",
@@ -1519,8 +1245,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The chest and shoulder show strain that can narrow attention. A reset addresses the moment; confidence posture and a lecture miss the protective cue.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q06",
@@ -1532,8 +1257,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Hips, lean, and clipboard position show a body claim around the shelf. That supports process management, not deception or guaranteed hostility.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch05-q07",
@@ -1545,8 +1269,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pledge card becomes a shield at the billing topic. Offering choice follows the pressure point without turning the cue into a value judgment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q08",
@@ -1558,8 +1281,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Room layout may force the torso angle. The cue gains weight only if it changes with the topic or joins other protection signals.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch05-q09",
@@ -1571,8 +1293,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The form moves from shared object to shield at the risk section. That marks a decision pressure point, not rejection or hidden fear by itself.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1633,19 +1354,13 @@
       },
       "memorableLines": [
         {
-          "text": "Read torso change as space management: opening space, protecting space, narrowing space, or claiming space.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the chapter's main categories in a practical form."
+          "text": "Read torso change as space management: opening space, protecting space, narrowing space, or claiming space."
         },
         {
-          "text": "Do not turn shielding into guilt.",
-          "location": "breakdown.deepRead",
-          "why": "It blocks the most tempting overread of protective posture."
+          "text": "Do not turn shielding into guilt."
         },
         {
-          "text": "A turned torso is not a verdict; it is a sign that the room around the person just changed.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps orientation useful without making it too certain."
+          "text": "A turned torso is not a verdict; it is a sign that the room around the person just changed."
         }
       ]
     },
@@ -1672,13 +1387,6 @@
             "travel",
             "distance"
           ],
-          "planSpec": {
-            "domain": "airport lost-luggage counter during a delayed baggage claim",
-            "audience": "a baggage supervisor deciding whether to press for more forms or create space for a frustrated traveler",
-            "stakes": "the conversation can stay procedural if the supervisor reads the arm barrier before the traveler raises his voice",
-            "format": "scene",
-            "requiredBeat": "The traveler says he is fine filling out the claim, but hugs the garment bag across his chest, pins the baggage tag under one elbow, and keeps the other forearm on the counter edge like a gate."
-          },
           "scenario": "A torn baggage tag is trapped beneath a forearm on the claim counter at 11:45 p.m. Mirek, the baggage supervisor, hears the traveler say he is fine filling out the delayed-bag form. The traveler hugs the garment bag across his chest, pins the baggage tag under one elbow, and keeps the other forearm on the claim counter edge like a gate. Mirek must decide whether to press for more forms or create space.",
           "whatToDo": "Create space before asking for the next form. Slide the claim steps to his side of the counter and say which item is needed first.",
           "whyItMatters": "The arms are managing a boundary around the bag and tag. Reading the gate as distance, not hostility, keeps the exchange procedural."
@@ -1691,13 +1399,6 @@
             "restraint",
             "pace"
           ],
-          "planSpec": {
-            "domain": "blood donation intake after a first-time donor sees the needle tray",
-            "audience": "a phlebotomist watching whether the donor needs a slower explanation",
-            "stakes": "pushing too quickly could make the donor withdraw before the screening is complete",
-            "format": "dialogue",
-            "requiredBeat": "The donor keeps saying let's do it, but one arm clamps over the donation packet while the other hand reaches only halfway toward the consent pen, so the phlebotomist moves the needle tray out of the direct line of sight."
-          },
           "scenario": "A capped consent pen lies beside a sealed needle tray at the Tuesday morning donor intake table. \"Let's do it,\" the first-time donor tells Laleh, the phlebotomist on screening duty. One arm clamps over the donation packet while the other hand reaches only halfway toward the consent pen. Laleh must decide whether to keep the pen there or change the space. She moves the sealed needle tray out of the direct line of sight and says, \"Let's start with the screening page.\"",
           "whatToDo": "Move the tray out of direct view and begin with the screening page. Let the hand reach fully for the consent pen before advancing the pace.",
           "whyItMatters": "The donor's words move forward while the arms hold back. Changing the object in view adjusts distance without diagnosing fear."
@@ -1710,13 +1411,6 @@
             "reach",
             "objects"
           ],
-          "planSpec": {
-            "domain": "vinyl record store listening booth during a rare-album negotiation",
-            "audience": "a shop owner trying to tell whether a collector is protecting the item or inviting a deal",
-            "stakes": "the wrong read could turn a possible sale into a guarded standoff",
-            "format": "decision_point",
-            "requiredBeat": "When the price comes up, the collector pulls the sleeve tight under both forearms; when the owner mentions a store-credit option, one arm releases and slides the sleeve halfway across the counter."
-          },
           "scenario": "A rare blue-label record sleeve rests below a listening-booth speaker at Otis's shop at 4:30 p.m. When the price comes up, the collector pulls the sleeve tight under both forearms. Otis mentions a store-credit slip. One arm releases and slides the record sleeve halfway across the counter. Otis must decide whether to treat that as a deal or ask what mix of cash and credit is worth discussing.",
           "whatToDo": "Ask whether store credit belongs in the offer, and keep the album on the counter. Treat the half-slide as an invitation to discuss, not agreement.",
           "whyItMatters": "The sleeve moved from protected to partly available. The arm release changes distance, but it does not finish the negotiation."
@@ -1729,13 +1423,6 @@
             "handoff",
             "invitation"
           ],
-          "planSpec": {
-            "domain": "community swimming lesson where a parent hands off a toddler",
-            "audience": "a swim instructor judging whether to take the child yet or keep the parent involved",
-            "stakes": "a rushed handoff can make the child cling harder and sour the first lesson",
-            "format": "before_after",
-            "requiredBeat": "Before the handoff, the parent cradles the toddler with both arms locked high; after the instructor offers a floating toy, one arm lowers toward the water and leaves a clear path between child and pool."
-          },
           "scenario": "A yellow floating toy bumps against the tiled pool edge below a towel hook at 10:05 a.m. Before the handoff, the parent cradles the toddler with both arms locked high. Saskia, the swim instructor, offers the floating toy instead of reaching for the child. One parent arm lowers toward the water and leaves a clear path between child and pool. Saskia must decide whether to take the toddler or keep the parent in the first step.",
           "whatToDo": "Keep the parent involved for the first reach toward the toy. Let the lowered arm create a shared path rather than forcing a full handoff.",
           "whyItMatters": "The arm release shows a smaller opening, not full trust. Matching the size of the opening keeps the first lesson from becoming a tug."
@@ -1748,13 +1435,6 @@
             "teaching",
             "reach"
           ],
-          "planSpec": {
-            "domain": "bike repair co-op explaining a brake adjustment to a new rider",
-            "audience": "a volunteer mechanic deciding whether to keep demonstrating or hand over the tool",
-            "stakes": "the rider needs enough ownership to ride safely, but too much pressure will make him retreat",
-            "format": "predict_reveal",
-            "requiredBeat": "The mechanic predicts the rider is not ready while both arms stay tucked around the frame; when the rider reaches past the cable housing and rests one forearm on the work stand, the mechanic offers the hex key."
-          },
           "scenario": "A loose brake cable arcs above a silver work stand during Saturday open repair at the bike co-op. Neve, the volunteer mechanic assigned to new riders, predicts the rider is not ready while both arms stay tucked around the frame. She explains the brake adjustment once more. Then the rider reaches past the cable housing and rests one forearm on the work stand. Neve picks up the hex key and must decide whether to place it in his hand.",
           "whatToDo": "Offer the hex key with one guided step: hold here, turn a quarter, stop. Let the reach earn a smaller handoff, not the whole repair.",
           "whyItMatters": "The arms move from holding the frame close to approaching the work. That change supports a guided tool handoff without calling it confidence."
@@ -1767,13 +1447,6 @@
             "restraint",
             "makerspace"
           ],
-          "planSpec": {
-            "domain": "library makerspace soldering orientation before open lab",
-            "audience": "a librarian watching whether a patron is ready to handle equipment",
-            "stakes": "safety depends on noticing restraint before the iron is placed in someone's hand",
-            "format": "postmortem",
-            "requiredBeat": "On review, the librarian sees the patron kept both elbows pinned to her sides during the heat warning, then extended only one forearm toward the spool after the librarian placed the iron back in its stand."
-          },
           "scenario": "A soldering iron rests in a ceramic stand beside a coil of silver wire after Ansel's 6:20 p.m. library makerspace orientation. The safety placard is still on the table beside the sign-in sheet. On review, Ansel, the evening lab monitor, sees the patron kept both elbows pinned to her sides during the heat warning, then extended only one forearm toward the wire spool after he placed the iron back in its stand. He writes a note for the next open lab.",
           "whatToDo": "Keep the iron in the ceramic stand for the first practice and let her handle the wire spool first. Treat the pinned elbows as restraint around heat.",
           "whyItMatters": "Her arms held distance from the hazard, then approached the safer object. That sequence is useful safety information, not incompetence."
@@ -1792,8 +1465,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The bag and counter arm manage distance. A clear next step fits the barrier; hostility and refusal are stories beyond the visible arm placement.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q02",
@@ -1805,8 +1477,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The half-reach and packet hold show mixed distance around the task. Slowing pace adjusts the space without diagnosing fear or ending the process.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q03",
@@ -1818,8 +1489,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The object becomes partly available, which opens discussion. It does not complete the deal or prove anything about earlier protection.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch06-q04",
@@ -1831,8 +1501,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The timing ties the tucked elbows to heat and the later reach to a safer object. Incompetence and dishonesty overread arm restraint.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch06-q05",
@@ -1844,8 +1513,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The arm lowering opens a path, but only a small one. Keeping the parent involved matches the distance instead of forcing a full handoff.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q06",
@@ -1857,8 +1525,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cold room and later tool reach weaken the defensive read. Folded arms need context before they become meaningful.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch06-q07",
@@ -1870,8 +1537,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The arm release follows a safer object being offered. That supports a handoff read, not a claim about care or hidden damage.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch06-q08",
@@ -1883,8 +1549,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The forearm on the stand shows approach toward the work. One guided turn fits the partial reach better than total handoff or continued distance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q09",
@@ -1896,8 +1561,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The arm shift changes the report's availability. It supports shared review, not apathy or admission.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1958,19 +1622,13 @@
       },
       "memorableLines": [
         {
-          "text": "Arms manage distance.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the chapter's core move in three words."
+          "text": "Arms manage distance."
         },
         {
-          "text": "Arms are practical tools before they are emotional symbols.",
-          "location": "breakdown.deepRead",
-          "why": "It prevents broad attitude reads from taking over."
+          "text": "Arms are practical tools before they are emotional symbols."
         },
         {
-          "text": "Ask what the arms are doing with space before you decide what they mean.",
-          "location": "breakdown.fastRead",
-          "why": "It turns observation into a usable diagnostic question."
+          "text": "Ask what the arms are doing with space before you decide what they mean."
         }
       ]
     },
@@ -1997,13 +1655,6 @@
             "training",
             "regulation"
           ],
-          "planSpec": {
-            "domain": "sushi counter trainee preparing a first omakase plate",
-            "audience": "a head chef deciding whether silence means readiness or overload",
-            "stakes": "one rushed plate can damage expensive fish and the trainee's confidence",
-            "format": "scene",
-            "requiredBeat": "The trainee nods, but his fingertips press together under the cutting board lip, then rub against the towel before he reaches for the knife; when his hands flatten and begin placing garnish cleanly, the chef gives the next step."
-          },
           "scenario": "A damp white towel sits folded beside a tuna block at Renzo's counter during the 6:10 p.m. omakase prep. The trainee nods, but his fingertips press together under the cutting board lip, then rub against the towel before he reaches for the knife. Renzo watches the garnish tray. When the trainee's hands flatten and begin placing shiso cleanly, Renzo must decide whether to give the next step.",
           "whatToDo": "Give the next instruction after the hands settle into clean placement. Keep the cue small: settled hands plus task motion, not silence alone, earns the next step.",
           "whyItMatters": "The rubbing fingers show regulation around a hard task. The later flat, clean garnish placement gives Renzo a task-linked sign of readiness without calling the earlier tension incompetence."
@@ -2016,13 +1667,6 @@
             "mediation",
             "attachment"
           ],
-          "planSpec": {
-            "domain": "probate mediation over a piano left in a will",
-            "audience": "a mediator watching siblings discuss a sentimental object",
-            "stakes": "the settlement depends on distinguishing spoken flexibility from a hand-held attachment",
-            "format": "dialogue",
-            "requiredBeat": "The brother says either option is fine while his thumb keeps rubbing the piano key photo and his fingers interlace whenever moving costs are mentioned, so the mediator asks what part of the piano matters most."
-          },
           "scenario": "A glossy photo of ivory piano keys lies beside Sabela's mediation pad at 2:15 p.m. \"Either option is fine,\" the brother says. His thumb keeps rubbing the piano key photo. \"The moving estimate is high,\" his sister says, and his fingers interlace. Sabela looks from the estimate to the photo and must decide whether to treat his words as flexibility.",
           "whatToDo": "Ask what part of the piano matters most before discussing price again. Let the rubbing thumb point to attachment without turning it into a secret greed story.",
           "whyItMatters": "His hands change around the photo and moving costs, not around every topic. That pattern gives the mediator a precise question instead of a claim about motive."
@@ -2035,13 +1679,6 @@
             "broadcast",
             "emphasis"
           ],
-          "planSpec": {
-            "domain": "weather broadcast rehearsal before a severe-storm cut-in",
-            "audience": "a producer deciding whether the new meteorologist needs script support",
-            "stakes": "the alert must sound clear without turning the rehearsal into a confidence lecture",
-            "format": "before_after",
-            "requiredBeat": "Before rehearsal, the meteorologist's hands vanish behind the tablet; after the producer marks the first sentence, the hands come forward, palms down on the desk, and begin tapping the map counties in order."
-          },
           "scenario": "A tablet with storm polygons rests below studio lights before Carys runs the 8:00 p.m. rehearsal. Before the first take, the new meteorologist's hands vanish behind the tablet. After Carys marks the first sentence on the script, his hands come forward, palms down on the studio desk, and begin tapping the county map in order. Carys must choose whether to coach confidence or support the script.",
           "whatToDo": "Support the script, not the personality. Mark the opening sentence and let the hands use the county map to carry the sequence.",
           "whyItMatters": "Hidden hands may show cover or task load. When the hands move forward and organize the counties, they show a usable communication path, not a final verdict on confidence."
@@ -2054,13 +1691,6 @@
             "choices",
             "florist"
           ],
-          "planSpec": {
-            "domain": "florist designing a funeral arrangement with a grieving customer",
-            "audience": "a florist trying to pace choices without forcing a feeling label",
-            "stakes": "too many choices can overwhelm the customer, while one observed hand movement can guide the next question",
-            "format": "reflection",
-            "requiredBeat": "The customer answers softly while rolling the ribbon spool between both palms; when white lilies are shown, the rolling stops and one hand rests on the sample card, so the florist narrows the choice there."
-          },
           "scenario": "A satin ribbon spool turns slowly beside a white lily card on Ilaria's order counter at 10:30 a.m. The customer answers softly while rolling the spool between both palms. Ilaria almost opens the full catalog again. When she shows white lilies, the rolling stops and one hand rests on the sample card. Ilaria has to choose how much choice to offer next.",
           "whatToDo": "Narrow the choice around the white lilies and ask one concrete design question. Do not name grief or treat the hand stop as proof of a final preference.",
           "whyItMatters": "The hands shift from soothing motion to contact with one card. That change is enough to pace the order form around a smaller choice."
@@ -2073,13 +1703,6 @@
             "fit",
             "release"
           ],
-          "planSpec": {
-            "domain": "custom bootmaker fitting a rancher after a foot injury",
-            "audience": "a bootmaker watching whether the customer is minimizing discomfort",
-            "stakes": "a polite answer could lead to a boot that fails on the first long workday",
-            "format": "predict_reveal",
-            "requiredBeat": "The rancher says the fit is good, but his fingers grip the pull strap until the leather creases; when the bootmaker loosens the instep, the hand releases before the words change."
-          },
           "scenario": "A leather pull strap bends above a new brown boot on Edda's fitting bench at Red Mesa Bootworks at 12:05 p.m. Edda, the custom bootmaker, hears the rancher say the fit is good after his foot injury, but his fingers grip the pull strap until the leather creases. She predicts the instep is carrying the pressure and must decide whether to finish the order or check the boot last against the instep tape. When she loosens the instep, his hand releases before his words change.",
           "whatToDo": "Adjust the instep and check the release before accepting the polite answer. Use the hand grip to locate a fit test, not to tell a pain-bravado story.",
           "whyItMatters": "The grip is tied to the boot pressure, and the release follows the adjustment. That sequence gives Edda better evidence than the first polite sentence."
@@ -2092,13 +1715,6 @@
             "accessibility",
             "pacing"
           ],
-          "planSpec": {
-            "domain": "ceremony sign-language interpreter coordinating with a keynote speaker",
-            "audience": "an event coordinator watching communication readiness at a high-stakes public event",
-            "stakes": "a missed pacing issue can make the event inaccessible even if everyone is polite",
-            "format": "decision_point",
-            "requiredBeat": "The speaker says the pace is fine, but his hands clutch the page edges while the interpreter's signing hand pauses over the timing sheet; the coordinator asks for a thirty-second run-through instead of accepting the answer."
-          },
           "scenario": "A printed keynote page curls under two tightened thumbs at the civic hall lectern light at 7:25 p.m. The speaker tells Ziv, the event coordinator, that the ceremony pace is fine, but his hands clutch the page edges while the interpreter's signing hand pauses over the timing sheet. Everyone is polite. Ziv must decide whether to accept the answer or interrupt for one more check.",
           "whatToDo": "Ask for a thirty-second run-through with the timing sheet visible. Keep the request about access and pacing, not about nerves.",
           "whyItMatters": "Both sets of hands show restraint around timing. A brief run-through tests the real constraint before the public event starts."
@@ -2117,8 +1733,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The interlaced fingers appear around one task, so a small supported rim pass tests that pressure point. The other choices turn hand tension into motive or performance advice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q02",
@@ -2130,8 +1745,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The rubbing starts and stops with the budget topic. That makes the budget a useful place to ask a clearer question, but it does not prove deceit or knowledge elsewhere.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q03",
@@ -2143,8 +1757,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hands shift from cover to clear emphasis when the loom appears. That supports a task-linked read, while dislike and total confidence are broader stories than the cue can carry.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q04",
@@ -2156,8 +1769,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The grip and release track one verbal task. More practice with the sample sentence fits the hand cue; shaming the hands or canceling the skill overstates the evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q05",
@@ -2169,8 +1781,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hand change arrives with reading aloud, so the better question stays there. Palms do not prove honesty, and shame is a feeling label the cue has not earned.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q06",
@@ -2182,8 +1793,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The coat pockets have an obvious setting cause, and the hands communicate well during the consent task. The wrong choices ignore context or make a perfect-confidence claim.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch07-q07",
@@ -2195,8 +1805,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The tapping helps sequence the design, while the interlacing appears at cost. The senior can support that topic without treating tight fingers as dishonesty or bad manners.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q08",
@@ -2208,8 +1817,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hands change jobs from self-soothing to marking rhythm. That gives a practical starting point; it does not predict the performance or prove a full emotional state.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q09",
@@ -2221,8 +1829,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hands become useful when the checklist gives them a task. A walk-through tests readiness, while hidden-motive and honesty claims turn hand position into a false verdict.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2283,19 +1890,13 @@
       },
       "memorableLines": [
         {
-          "text": "Hands show pressure in motion.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the chapter's focus visible without turning hands into a code."
+          "text": "Hands show pressure in motion."
         },
         {
-          "text": "Read the hands as regulators first.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a short rule that prevents overclaiming."
+          "text": "Read the hands as regulators first."
         },
         {
-          "text": "Hands can guide your next move without pretending to expose the whole person.",
-          "location": "breakdown.fullRead",
-          "why": "It captures both the usefulness and the restraint of hand cues."
+          "text": "Hands can guide your next move without pretending to expose the whole person."
         }
       ]
     },
@@ -2322,13 +1923,6 @@
             "timing",
             "health"
           ],
-          "planSpec": {
-            "domain": "pediatric hearing-test booth with a parent watching through glass",
-            "audience": "an audiologist deciding whether a parent understands the next test step",
-            "stakes": "a parent's managed smile can hide confusion that affects consent and cooperation",
-            "format": "scene",
-            "requiredBeat": "The parent smiles at the child through the booth glass, but the smile arrives late, the eyelids stay tight, and one hand keeps rereading the test card, so the audiologist pauses to explain the next tone series."
-          },
           "scenario": "A child-sized headset hangs inside a quiet test booth at 9:35 a.m. Hessa, the audiologist, watches the parent smile at the child through the booth glass. The smile arrives late, the eyelids stay tight, and one hand keeps rereading the test card. Hessa must decide whether to start the next tone series or pause before consent gets thin.",
           "whatToDo": "Pause and explain the next tone series with the test card visible. Treat the late smile, tight eyelids, and rereading hand as possible confusion, not a face-only diagnosis.",
           "whyItMatters": "The smile is joined by timing and object use. The parent's hand keeps returning to the card, so the next useful move is clearer instruction before the test continues."
@@ -2341,13 +1935,6 @@
             "verification",
             "books"
           ],
-          "planSpec": {
-            "domain": "antique book fair dealer evaluating a restored first edition",
-            "audience": "a dealer weighing a seller's reaction without accusing anyone",
-            "stakes": "a valuable sale needs verification of restoration history, not a facial verdict",
-            "format": "predict_reveal",
-            "requiredBeat": "When the hinge repair is mentioned, the seller's eyebrows lift before the polite smile, her jaw sets while the receipt folder stays closed, and the dealer writes verify repair invoice instead of deciding she is hiding something."
-          },
           "scenario": "A marbled endpaper opens beside a folded repair receipt at the West Hall antique book fair at 1:20 p.m. Pavel, a dealer evaluating a restored first edition, mentions the hinge repair. The seller's eyebrows lift before the polite smile, her jaw sets while the receipt folder stays closed, and Pavel must decide whether to treat that as suspicion or write a bounded note.",
           "whatToDo": "Write verify repair invoice and ask for the paperwork. Do not decide she is hiding something from an eyebrow lift, a set jaw, and a closed folder.",
           "whyItMatters": "The facial timing points to the repair history, and the closed folder gives a concrete verification target. Accusation would outrun the evidence."
@@ -2360,13 +1947,6 @@
             "allergy",
             "safety"
           ],
-          "planSpec": {
-            "domain": "restaurant allergy conversation at a chef's counter",
-            "audience": "a server watching whether a guest's smile is social cover for concern",
-            "stakes": "a missed concern could create a safety risk, while an accusation would embarrass the guest",
-            "format": "dialogue",
-            "requiredBeat": "The guest smiles and says any sauce is fine, but the lips press flat after sesame is named, gaze drops to the allergy card, and the shoulders stay still, so the server asks the chef to confirm ingredients aloud."
-          },
           "scenario": "A laminated allergy card lies beside a small sesame dish at the chef's counter at 7:05 p.m. \"Any sauce is fine,\" the guest tells Soraya with a smile. \"This one has sesame,\" the chef says. The guest's lips press flat, his gaze drops to the allergy card, and his shoulders stay still. Soraya must decide whether to accept the smile or slow the handoff.",
           "whatToDo": "Ask the chef to confirm the ingredients aloud before serving. Keep the read at possible concern around sesame, not dishonesty or fear.",
           "whyItMatters": "The lip press, gaze drop, and still shoulders arrive together after sesame is named. That cluster points to a safety check without embarrassing the guest."
@@ -2379,13 +1959,6 @@
             "design",
             "mismatch"
           ],
-          "planSpec": {
-            "domain": "architect presenting a ramp redesign to a disability advisory board",
-            "audience": "an architect noticing strain before the board formalizes objections",
-            "stakes": "the design can improve if the architect reads mismatch as invitation to ask, not as rejection",
-            "format": "decision_point",
-            "requiredBeat": "Two board members nod politely, but one jaw tightens as the slope diagram appears and the nod stops exactly when the landing width is named; the architect asks for the concern before defending the drawing."
-          },
           "scenario": "A ramp slope diagram fills a portable projector screen in the civic annex at 3:00 p.m. Imre, the architect, clicks to the landing-width label with the projector remote. Two board members nod politely, but one jaw tightens as the slope diagram appears and the nod stops exactly when the landing width is named. Imre must decide whether to defend the drawing.",
           "whatToDo": "Ask for the concern before defending the design. Tie the question to the landing-width label instead of treating the polite nod as agreement or the jaw as rejection.",
           "whyItMatters": "The facial strain has timing and a design object attached to it. Asking there turns mismatch into usable feedback before the meeting hardens."
@@ -2398,13 +1971,6 @@
             "smile",
             "whole body"
           ],
-          "planSpec": {
-            "domain": "family-owned bakery filming a local news segment after a health inspection",
-            "audience": "a producer helping a nervous owner speak plainly on camera",
-            "stakes": "the owner needs to communicate without letting a managed broadcast smile erase visible strain",
-            "format": "before_after",
-            "requiredBeat": "Before the camera rolls, the owner's smile drops whenever the inspection grade is named and her eyelids narrow toward the posted notice; after the producer rehearses the first sentence, the smile arrives with her torso turning back toward the ovens."
-          },
           "scenario": "A posted inspection notice is taped beside trays of cooling rolls at the bakery at 6:40 a.m. Before the camera tally light turns red, Liora sees the owner's smile drop whenever the inspection grade is named and her eyelids narrow toward the notice. After Liora rehearses the first sentence, the smile arrives with the owner's torso turning back toward the ovens.",
           "whatToDo": "Rehearse the first sentence instead of coaching a brighter smile. Let the owner connect the inspection line to the ovens before the camera rolls.",
           "whyItMatters": "The smile improves only when the body turns back toward the work. That whole-body shift is more useful than polishing the face in isolation."
@@ -2417,13 +1983,6 @@
             "verification",
             "lab"
           ],
-          "planSpec": {
-            "domain": "university lab safety review after a chemical spill report",
-            "audience": "a lab manager listening to a graduate assistant describe what happened",
-            "stakes": "the report needs better reconstruction, but facial tension cannot become an accusation",
-            "format": "postmortem",
-            "requiredBeat": "In the timeline review, the assistant keeps steady eye contact, but his lips thin and jaw locks only at the waste-container step while his hands flatten the incident form, so the manager marks that step for verification."
-          },
           "scenario": "A yellow incident form sits beside a labeled waste container in the university lab office at 4:15 p.m. Kaspar, the lab manager, reviews the spill timeline while the graduate assistant keeps steady eye contact. His lips thin and jaw locks only at the waste-container step while his hands flatten the incident form. Kaspar must decide what to verify before closing the report.",
           "whatToDo": "Mark the waste-container step for verification and reconstruct that part of the timeline. Do not treat steady eye contact as honesty or facial tension as guilt.",
           "whyItMatters": "The tension appears at one timeline step and joins the flattened form. That makes the waste step a verification target, not a deception verdict."
@@ -2442,8 +2001,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The late smile and hand on the route map point to a specific information gap. A route question fits the cue, while fake-smile and acceptance claims overread the face.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q02",
@@ -2455,8 +2013,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The jaw change is tied to the permit date, so verification belongs there. Eye contact does not prove honesty, and causation is a story beyond the cue.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch08-q03",
@@ -2468,8 +2025,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The lip press and foot turn appear with the retake topic. Asking about the plan uses face and body timing; nervousness and motivation labels are too broad.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q04",
@@ -2481,8 +2037,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The face changes at the billing format, and the thumb stops at the amount field. Options address that pressure point without exposing him or judging intent.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q05",
@@ -2494,8 +2049,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Eyelid tension plus the glance toward the bowl gives a safety check target. Dislike and smiling are not the right claims when an ingredient may matter.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch08-q06",
@@ -2507,8 +2061,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The jaw set and tapping hand attach to spelling, so the useful action is verification. Anger about the event and photo coaching both miss the concrete trigger.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch08-q07",
@@ -2520,8 +2073,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The smile is less useful than the later tight-eyed rereading of one line. Clarifying the insurance wording fits the timing without assigning worry.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch08-q08",
@@ -2533,8 +2085,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The nod, lips, and notebook shift with the maintenance schedule. That points to a focused question, not a whole-project rejection or a claim about dishonest nodding.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch08-q09",
@@ -2546,8 +2097,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The gaze shift fits two different tasks: reading and explaining. The next move is to verify the dates, not turn eye contact into proof either way.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2608,19 +2158,13 @@
       },
       "memorableLines": [
         {
-          "text": "The face is managed evidence.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a short frame for using facial cues without overclaiming."
+          "text": "The face is managed evidence."
         },
         {
-          "text": "Use the face to locate the question, not to finish the story.",
-          "location": "breakdown.deepRead",
-          "why": "It turns facial observation into a bounded next move."
+          "text": "Use the face to locate the question, not to finish the story."
         },
         {
-          "text": "Read the face in sequence before you read it as meaning.",
-          "location": "breakdown.fullRead",
-          "why": "It makes timing and context the chapter's practical rule."
+          "text": "Read the face in sequence before you read it as meaning."
         }
       ]
     },
@@ -2647,13 +2191,6 @@
             "insurance",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "insurance adjuster reviewing a hail-damage roof claim",
-            "audience": "an adjuster trying to decide what needs documentation without accusing the homeowner",
-            "stakes": "a false accusation damages trust, but an unverified timeline can cost thousands",
-            "format": "scene",
-            "requiredBeat": "The homeowner's baseline stays loose while discussing shingles, but at the date of the first leak he grips the gutter photo, rubs his neck, and looks back at the contractor estimate, so the adjuster asks for weather records and repair invoices."
-          },
           "scenario": "A glossy gutter photo is clipped to a storm-damage estimate at Tove's claim table at 10:20 a.m. The homeowner's baseline stays loose while discussing shingles, but at the date of the first leak he grips the gutter photo, rubs his neck, and looks back at the contractor estimate. Tove must decide whether to challenge him or document the pressure point.",
           "whatToDo": "Ask for the weather record and repair invoices tied to the first-leak date. Keep the request factual and avoid naming fraud from neck rubbing or a tighter grip.",
           "whyItMatters": "The change clusters around one date, not the whole claim. That makes the leak timeline the verification target while preserving trust."
@@ -2666,13 +2203,6 @@
             "compliance",
             "baseline"
           ],
-          "planSpec": {
-            "domain": "research grant office reconciling a missing equipment receipt",
-            "audience": "a grant administrator checking a lab's expense explanation",
-            "stakes": "the office must protect compliance without treating discomfort as proof of misuse",
-            "format": "postmortem",
-            "requiredBeat": "The lab coordinator answers easily about the microscope, but when the shipping date and receipt number diverge, her fingers interlace, the chair shifts back, and her words get more precise than the documents, so the administrator flags the date gap for verification."
-          },
           "scenario": "A missing-receipt notice is stapled to a microscope purchase order in Alva's grant office after lunch. The lab coordinator answers easily about the microscope. When the shipping date and receipt number diverge, her fingers interlace, the chair shifts back, and her words get more precise than the documents. Alva writes the postmortem note she will carry into the next compliance check.",
           "whatToDo": "Flag the shipping-date gap for verification and request the vendor record. Do not treat interlaced fingers or precise wording as proof of misuse.",
           "whyItMatters": "The coordinator's easy baseline changes only when the dates diverge. The document mismatch, not the discomfort alone, tells Alva where compliance work belongs."
@@ -2685,13 +2215,6 @@
             "youth",
             "cluster"
           ],
-          "planSpec": {
-            "domain": "youth sailing club checking a damaged club boat log",
-            "audience": "a program director speaking with three teenagers after a cracked rudder is found",
-            "stakes": "the director needs a reliable sequence for safety and repair, not a shaming confession",
-            "format": "dialogue",
-            "requiredBeat": "All three teens fidget, but only when dock time is compared with the wind log does one stop swinging his foot, hide both hands under the flotation cushion, and correct the minute twice, so the director asks everyone to rebuild the timeline from launch to return."
-          },
           "scenario": "A cracked rudder rests beside a wet flotation cushion at the youth sailing shed at 4:50 p.m. \"Everyone's jumpy,\" Branko says, checking the launch roster. All three teens fidget. When dock time is compared with the wind log, one stops swinging his foot, hides both hands under the flotation cushion, and corrects the minute twice. Branko must choose his next question.",
           "whatToDo": "Ask everyone to rebuild the timeline from launch to return using the roster and wind log. Keep the focus on sequence, not confession.",
           "whyItMatters": "General fidgeting is weak evidence. The useful cluster appears only when dock time meets the wind log, so the timeline needs reconstruction."
@@ -2704,13 +2227,6 @@
             "service",
             "mismatch"
           ],
-          "planSpec": {
-            "domain": "theater box office investigating duplicate refund requests",
-            "audience": "a box office manager reviewing a confusing refund pattern with a season-ticket holder",
-            "stakes": "the manager must distinguish system error from possible misuse without humiliating a loyal patron",
-            "format": "decision_point",
-            "requiredBeat": "The patron stays animated about seat locations, but when the second refund email appears, the smile holds too long, the envelope folds tighter, and the body turns toward the lobby exit; the manager chooses a transaction audit rather than a confrontation."
-          },
           "scenario": "Two refund emails are printed beside a torn ticket envelope at Dunya's box office window at 1:35 p.m., twenty minutes before the matinee. Dunya, the box office manager, listens as the season-ticket holder stays animated about seat locations. When the second refund email appears, the smile holds too long, the envelope folds tighter, and the body turns toward the lobby exit. Dunya must decide whether to confront him across the glass.",
           "whatToDo": "Choose a transaction audit before any confrontation. Tell the patron you are checking the system trail and will follow up with exact dates.",
           "whyItMatters": "The body shift marks the second refund email as pressure, but it cannot separate system error from misuse. The audit can."
@@ -2723,13 +2239,6 @@
             "process",
             "restraint"
           ],
-          "planSpec": {
-            "domain": "food co-op inventory count after a case of saffron goes missing",
-            "audience": "a store manager checking process gaps with a trusted stock clerk",
-            "stakes": "a rushed accusation can destroy a relationship, while a careful read can locate the inventory break",
-            "format": "predict_reveal",
-            "requiredBeat": "The clerk's usual counting rhythm is steady until the locked spice cabinet is mentioned; then his hands leave the clipboard, his arms fold around the count sheet, and he asks whether cameras were checked before answering the delivery question."
-          },
           "scenario": "A blank saffron slot shows inside a locked spice cabinet during Oskar's 7:30 a.m. co-op count. The trusted stock clerk's usual counting rhythm is steady until the cabinet is mentioned. Then his hands leave the clipboard, his arms fold around the count sheet, and he asks whether cameras were checked before answering the delivery question. Oskar must decide whether to ask about blame or check the process near that cabinet.",
           "whatToDo": "Check delivery logs, cabinet access, and the count sheet sequence before talking about blame. Use the body change to locate the process break.",
           "whyItMatters": "The clerk changes at the locked cabinet and delivery question. That pressure point is useful for process verification, not a theft verdict."
@@ -2742,13 +2251,6 @@
             "verification",
             "baseline"
           ],
-          "planSpec": {
-            "domain": "art school portfolio review after an image-source concern",
-            "audience": "a faculty panel asking a student about a suspiciously familiar composition",
-            "stakes": "the panel needs to verify process without turning stress into plagiarism proof",
-            "format": "before_after",
-            "requiredBeat": "The student's voice shakes throughout the review, so that alone means little; the useful change comes when the reference-board question lands and she stops touching her own sketches, grips the tablet, and gives a timeline that conflicts with the file dates."
-          },
           "scenario": "A tablet file-date panel glows beside a charcoal sketch in Zelda's portfolio room at 3:10 p.m. The student's voice shakes throughout the review, so that alone means little. The useful change comes when the reference-board question lands: she stops touching her own sketches, grips the tablet, and gives a timeline that conflicts with the file dates. Zelda has to decide what the panel should verify.",
           "whatToDo": "Verify the reference-board process against the file-date panel. Keep the shake as baseline stress and focus on the timeline conflict.",
           "whyItMatters": "The voice shake is constant, but the tablet grip and timeline conflict appear at the source question. That narrows the verification work without turning stress into plagiarism."
@@ -2767,8 +2269,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The body change appears at one date and joins an invoice look. Verification belongs at the delivery record; calling it lying overreaches, while ignoring it wastes a useful pressure point.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch09-q02",
@@ -2780,8 +2281,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The constant shake is baseline for that stressful setting. The useful change is tied to the source list and a document conflict, so verification should focus there.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch09-q03",
@@ -2793,8 +2293,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Eye contact and folded paper cannot decide truth. The lot-number mismatch gives a concrete check, and the hand change marks that spot as worth slowing down.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch09-q04",
@@ -2806,8 +2305,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Tension throughout the exchange is weak. The shift at the fee date and camera question gives a verification target without proving theft.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch09-q05",
@@ -2819,8 +2317,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Leaning back and precise wording are not enough for a verdict. The mismatch between overtime and badge swipes is the part records can test.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch09-q06",
@@ -2832,8 +2329,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Group fidgeting is general stress. The hand change at the deposit-time comparison points to a timeline check, not a thief label.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch09-q07",
@@ -2845,8 +2341,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The smile and body turn are tied to the duplicate charge. An audit follows the pressure point; accusation overreaches and the cold-room story ignores timing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch09-q08",
@@ -2858,8 +2353,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stumbling across every answer may be baseline stress. The repeated minute correction at return time points to a specific sequence to rebuild.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch09-q09",
@@ -2871,8 +2365,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Face touching throughout the meeting is too broad. The grip and date conflict at the pet addendum create a bounded verification step without an accusation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2933,19 +2426,13 @@
       },
       "memorableLines": [
         {
-          "text": "Stress is not a confession.",
-          "location": "breakdown.fastRead",
-          "why": "It blocks the chapter's most dangerous shortcut in five words."
+          "text": "Stress is not a confession."
         },
         {
-          "text": "The body points to the question.",
-          "location": "breakdown.deepRead",
-          "why": "It turns nonverbal pressure into inquiry instead of accusation."
+          "text": "The body points to the question."
         },
         {
-          "text": "The evidence has to answer it.",
-          "location": "breakdown.deepRead",
-          "why": "It reminds the reader that records and timelines carry the final weight."
+          "text": "The evidence has to answer it."
         }
       ]
     },
@@ -2972,13 +2459,6 @@
             "conflict",
             "context"
           ],
-          "planSpec": {
-            "domain": "farmers market stall assignment dispute before opening bell",
-            "audience": "a market manager using the full method to slow a small conflict",
-            "stakes": "the morning can start with a workable stall swap or with two vendors hardening around territory",
-            "format": "scene",
-            "requiredBeat": "The manager sees feet angled toward the same corner stall, arms holding crate handles like barriers, and one vendor's smile arrive late, then checks the map and asks what each stall needs before deciding."
-          },
           "scenario": "A chalk stall map is pinned under a basket of early tomatoes at 6:45 a.m., ten minutes before the opening bell. Marni, the market manager, sees both vendors' feet angled toward the same corner stall, arms holding crate handles like barriers, and one vendor's smile arrive late. She must decide whether to assign the stall from memory or check what each setup needs.",
           "whatToDo": "Check the chalk stall map and ask what each stall needs before deciding. Keep the read at territory pressure and practical constraints.",
           "whyItMatters": "Feet, crate handles, and late smile all point to the same stall, but the map and needs decide the swap. Whole-body reading slows the conflict without making Marni a mind reader."
@@ -2991,13 +2471,6 @@
             "pacing",
             "whole body"
           ],
-          "planSpec": {
-            "domain": "music school parent conference after a recital stumble",
-            "audience": "a teacher practicing restrained observation with a student and parent",
-            "stakes": "the next practice plan depends on whether the family needs technique, pacing, or relief from pressure",
-            "format": "dialogue",
-            "requiredBeat": "The teacher notices the parent leaning in, the student pulling the music folder to her chest, and both sets of hands changing when recital video is mentioned, then asks which part they want to replay first."
-          },
           "scenario": "A recital program is folded inside a black music folder on Ysolde's studio table at 5:10 p.m. \"We can review the video,\" she says. The parent leans in, the student pulls the music folder to her chest, and both sets of hands change when recital video is mentioned. Ysolde must decide whether to start with correction or pace the replay. She looks at the practice log and asks, \"Which part do you want to replay first?\"",
           "whatToDo": "Let the family choose the first replay point. Use the lean, folder hold, and hand changes to pace the review rather than assign blame.",
           "whyItMatters": "The cues show pressure around the video, not the reason for it. A shared replay choice keeps the practice plan useful and less exposing."
@@ -3010,13 +2483,6 @@
             "restraint",
             "verification"
           ],
-          "planSpec": {
-            "domain": "rental car return after a scraped bumper is noticed",
-            "audience": "a desk agent using observation to keep a procedural conversation clean",
-            "stakes": "the agent needs the damage report completed without turning discomfort into accusation",
-            "format": "decision_point",
-            "requiredBeat": "The customer keeps steady eye contact, but his feet reset toward the parking lot, one hand protects the rental agreement, and his answer changes around the garage exit time, so the agent asks for the route and photos rather than naming blame."
-          },
           "scenario": "A scraped bumper photo loads on Soren's return tablet at the airport rental desk at 8:20 p.m. The customer keeps steady eye contact, but his feet reset toward the parking lot, one hand protects the rental agreement, and his answer changes around the garage exit time. Soren must decide whether to name blame or complete the damage path.",
           "whatToDo": "Ask for the route and any photos before completing the report. Do not let eye contact, guarded paper, or shifting time details become a blame verdict.",
           "whyItMatters": "The body points to the car, the agreement, and the exit time. Those are procedural checks, not proof of intent."
@@ -3029,13 +2495,6 @@
             "music",
             "space"
           ],
-          "planSpec": {
-            "domain": "community choir audition check-in with a first-time singer",
-            "audience": "a choir director trying to make the first interaction useful rather than evaluative",
-            "stakes": "one overread cue can make the singer feel judged before singing",
-            "format": "reflection",
-            "requiredBeat": "The director sees the singer's hands hide the sheet music, shoulders lift at the word audition, and feet stay planted near the piano bench, then names the process and offers a starting pitch instead of interpreting the nerves."
-          },
           "scenario": "A single sheet of music is curled beside an upright piano in Inara's choir room at 6:00 p.m. The first-time singer's hands hide the sheet music, shoulders lift at the word audition, and feet stay planted near the piano bench. Inara feels the nerves label rise, lets it pass, names the process, and offers a starting pitch.",
           "whatToDo": "Name the audition process and offer the starting pitch. Keep the cues at discomfort and readiness for a first step, not a label about the singer.",
           "whyItMatters": "The hands, shoulders, and feet are mixed. Interpreting nerves would expose him; a starting pitch gives structure without judgment."
@@ -3048,13 +2507,6 @@
             "measurement",
             "next move"
           ],
-          "planSpec": {
-            "domain": "public works sidewalk complaint walk-through after a trip hazard report",
-            "audience": "a field supervisor balancing a resident's frustration with repair constraints",
-            "stakes": "a restrained read can turn a complaint into a clearer repair priority without dismissing the resident",
-            "format": "before_after",
-            "requiredBeat": "Before the measurement, the resident points broadly and talks fast; when the supervisor kneels with the level, the resident's shoulders drop, hands stop chopping, and her body turns toward the raised slab rather than the supervisor."
-          },
           "scenario": "A carpenter's level rocks on a lifted sidewalk slab outside 214 Maple at 11:15 a.m. Before the measurement, the resident points broadly and talks fast. When Basma, the public works field supervisor, kneels with the level, the resident's shoulders drop, hands stop chopping, and her body turns toward the raised slab rather than Basma. The repair ticket is still blank.",
           "whatToDo": "Measure the raised slab and write the repair ticket around the concrete hazard. Do not treat the calmer posture as winning the exchange.",
           "whyItMatters": "The resident's body turns from argument toward the object when the level appears. The next move is a better record, not a personal read."
@@ -3067,13 +2519,6 @@
             "clinic",
             "context"
           ],
-          "planSpec": {
-            "domain": "clinic intake for a sleep study after months of fatigue",
-            "audience": "a clinician using self-observation and patient observation to choose a slower question",
-            "stakes": "the intake can become a checklist grind or a conversation that finds the pressure point",
-            "format": "postmortem",
-            "requiredBeat": "The clinician notices her own urge to rush the form, then sees the patient's gaze drop at the work schedule question, fingers rub the appointment card, and torso turn toward the child-care note, so she asks what makes the schedule hardest to change."
-          },
           "scenario": "A sleep-study intake form sits beside a child-care note in exam room 3 at 4:35 p.m. Nuria notices her own urge to rush the form. Then the patient's gaze drops at the work schedule question, fingers rub the appointment card, and torso turns toward the child-care note. In her postmortem note, Nuria writes the slower question she chose.",
           "whatToDo": "Ask what makes the schedule hardest to change. Use your own rush as a cue to slow down before the intake becomes a checklist grind.",
           "whyItMatters": "The patient's cues gather around work, appointment timing, and child care. Nuria's self-check helps her ask about the real constraint."
@@ -3092,8 +2537,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The cues show territory pressure, but the schedule and needs should guide the next move. The late smile and grip do not decide motive or priority.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch10-q02",
@@ -3105,8 +2549,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cue cluster gathers around the recording and log. Asking where to start turns the read into a usable step without naming tension or avoiding the work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch10-q03",
@@ -3118,8 +2561,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The useful details point to route, photos, and time. Eye contact and foot direction are clues to structure the report, not proof either way.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch10-q04",
@@ -3131,8 +2573,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Your own rush is part of the scene. The other cues gather around schedule and childcare, so a slower concrete question leaves more room.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch10-q05",
@@ -3144,8 +2585,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The body turns toward the raised slab when the tool appears. That does not judge the earlier complaint; it gives the repair ticket a clearer object.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch10-q06",
@@ -3157,8 +2597,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The mixed cues support structure, not a fear label. A starting pitch and process explanation make the first step easier without exposing the singer.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch10-q07",
@@ -3170,8 +2609,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Context does not erase cues, but it keeps the claim modest. Heavy folders and cold air matter before deciding what the body shift means.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch10-q08",
@@ -3183,8 +2621,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Self-observation keeps the read from becoming a performance. The next move should be testable, not a hidden-motive claim or passive waiting.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch10-q09",
@@ -3196,8 +2633,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The full method still ends in restraint. A cluster can guide a next move, but it does not become a score or a certainty claim.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3258,19 +2694,13 @@
       },
       "memorableLines": [
         {
-          "text": "The whole-body method ends in restraint.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the closing lesson into a clear practice standard."
+          "text": "The whole-body method ends in restraint."
         },
         {
-          "text": "Restraint is an active choice.",
-          "location": "breakdown.deepRead",
-          "why": "It prevents the reader from confusing modest claims with passivity."
+          "text": "Restraint is an active choice."
         },
         {
-          "text": "Check yourself before you check the other person.",
-          "location": "breakdown.fullRead",
-          "why": "It brings self-observation into the final practical move."
+          "text": "Check yourself before you check the other person."
         }
       ]
     }

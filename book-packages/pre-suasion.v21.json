@@ -41,13 +41,6 @@
             "forms",
             "scene"
           ],
-          "planSpec": {
-            "domain": "municipal permit counter redesign",
-            "audience": "a civic-services lead watching residents abandon applications",
-            "stakes": "whether the new fee schedule is accepted or treated as another city trick",
-            "format": "scene",
-            "requiredBeat": "the lead places the rejected form stack beside the revised one before asking staff to notice where people stopped reading"
-          },
           "scenario": "Two uneven piles of permit forms sit on the counter at 8:10 a.m. Thursday, one with red date stamps from last month and one revised packet under a clear plastic tray. Claire, the civic-services lead, is about to brief staff on the new fee sticker. Before she starts, she places the rejected stack beside the revised one and must decide whether to explain the fee first or ask the staff to find the exact line where residents quit.",
           "whatToDo": "Start with the two stacks. Ask staff to point to the stopping line on the abandoned forms before anyone discusses the new fee sticker or counter script.",
           "whyItMatters": "The abandoned forms make receptivity concrete. Staff see confusion before they hear a proposal, so the redesign is judged as repair instead of city spin."
@@ -60,13 +53,6 @@
             "pricing",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "specialty bakery wholesale pitch",
-            "audience": "a bakery owner meeting a hotel buyer before naming the rate",
-            "stakes": "whether a high per-pastry price feels premium or inflated",
-            "format": "vignette",
-            "requiredBeat": "the owner lets the buyer smell the morning batch beside a sealed grocery pastry before the quote appears"
-          },
           "scenario": "Steam lifts from a tray of almond rolls on a linen proofing cloth in Sophie’s bakery at 6:35 a.m. A sealed grocery pastry rests on the hotel tasting plate beside them. The buyer must decide by breakfast whether the room-service menu gets a local pastry line. Sophie is about to choose whether the quote appears first, or whether the smell and side-by-side comparison prepare the price to be heard as quality.",
           "whatToDo": "Let the buyer smell and compare the two pastries before the rate card appears. Keep the quote visible, but let quality become the first anchor.",
           "whyItMatters": "A high price heard cold sounds inflated. The same price heard after a real comparison has prepared ground because the buyer has already noticed the difference."
@@ -79,13 +65,6 @@
             "trust",
             "decision"
           ],
-          "planSpec": {
-            "domain": "independent fire-safety inspection",
-            "audience": "a safety consultant entering a plant where crews distrust outside vendors",
-            "stakes": "whether the plant manager grants access before the formal audit",
-            "format": "decision_point",
-            "requiredBeat": "the consultant asks to retrieve a left-behind clipboard, waits for escort approval, then begins only after being walked through the gate like a trusted guest"
-          },
           "scenario": "A clipboard is visible through the glass security booth, just beyond the chain-link gate at the plant. Daniel has a visitor badge in his hand and a manager who dislikes outside inspectors. He is about to begin the audit speech, but must decide whether to ask for an escort to retrieve the clipboard first, wait for approval, and start only after the manager has chosen to walk him through the gate.",
           "whatToDo": "Ask plainly for the escorted retrieval, then begin the audit only after permission is granted. Do not pretend trust was earned if the gesture feels staged.",
           "whyItMatters": "Being walked in changes the first impression, but it also raises the ethical test. Prepared receptivity is clean only when the cue is honest."
@@ -98,13 +77,6 @@
             "membership",
             "before-after"
           ],
-          "planSpec": {
-            "domain": "museum membership desk",
-            "audience": "a membership director preparing visitors for a donation ask",
-            "stakes": "whether the contribution feels like support for access or a ticket surcharge",
-            "format": "before_after",
-            "requiredBeat": "the director moves the conservation lab photo before the payment screen and watches the same ask land differently"
-          },
           "scenario": "A faded textile under a magnifying lamp fills the framed photo beside Amelia’s membership tablet. On Monday, the extra contribution prompt appeared only after payment and felt like a surcharge. By Friday, she has moved the conservation photo before the payment screen. Visitors now see the lab work first, then the same donation field. Her decision for the weekend is whether to keep the photo upstream or bury it after the ask.",
           "whatToDo": "Keep the conservation photo before the payment screen and label it plainly. Let the visitor see what access supports before the contribution field appears.",
           "whyItMatters": "The same ask changes meaning when conservation is already present. The first cue prepares support instead of making the donation feel like a surprise toll."
@@ -117,13 +89,6 @@
             "fit",
             "predict-reveal"
           ],
-          "planSpec": {
-            "domain": "custom bicycle fitting studio",
-            "audience": "a fitter explaining a premium saddle before stating cost",
-            "stakes": "whether the rider hears the price as comfort insurance or upsell",
-            "format": "predict_reveal",
-            "requiredBeat": "the fitter has the rider predict pressure points on a sensor map before showing the corrected fit"
-          },
           "scenario": "A pressure map glows red under a rider silhouette in Martin’s fitting studio, with a hex key lying beside the sensor mat. The rider must decide before Saturday’s century ride whether a premium saddle is worth the cost. Martin asks her to predict where the pressure sits, then reveals the corrected fit map before naming the saddle price. He is about to choose whether the map or the price comes first.",
           "whatToDo": "Ask for the pressure prediction, reveal the corrected map, and only then discuss the saddle. Make comfort visible before cost becomes the anchor.",
           "whyItMatters": "The map gives the price prepared ground. Without it, the saddle sounds like an upsell; with it, the rider sees the problem the cost would solve."
@@ -136,13 +101,6 @@
             "neighbors",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "community mediation intake",
-            "audience": "a mediator preparing neighbors for a settlement conversation",
-            "stakes": "whether both parties enter ready to solve or ready to win",
-            "format": "reflection",
-            "requiredBeat": "the mediator asks each person to mark one shared cost on a utility bill before the first demand is spoken"
-          },
           "scenario": "Two neighbors sit apart in Camille’s intake room, each holding the same utility bill copy with a blue sticky tab. At 2:15 p.m. in a city mediation office, Camille is the neighborhood mediator responsible for deciding whether to start with the shared bill or the separate complaints. The first demand has not been spoken. Camille asks each person to mark one shared cost from the dispute, then watches their pens pause over the same line. She is thinking about how different the room feels when the first action is shared arithmetic instead of accusation.",
           "whatToDo": "Have each neighbor mark the shared cost before either side states a demand. Begin with the bill they both pay, not the position each wants defended.",
           "whyItMatters": "The marked bill prepares a problem-solving frame. The settlement conversation starts on common cost, so the first impression is less combative."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The screenshot prepares the ground for the price by making the problem visible. A warmer tone may help delivery, and delay may create suspicion, but neither changes what is salient before the fee.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The returned forms let the board see the failure before hearing the staffing request. More legal detail repeats the old route, and asking for trust tries to collect receptivity after resistance has formed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The opening framed the call as something to escape quickly, so the later pledge had poor soil. A bigger anchor could be manipulative, and more story after the ask arrives too late.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The side-by-side tasting makes quality the first comparison, so the price has a truthful anchor. Ingredient inflation centers the chef’s problem, while a deadline pressures more than it prepares.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The anchor can change comparison, but the later complaint is evidence that the cue was not experienced as fair. Better humor will not fix a setup that leaves people feeling manipulated.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cracked swing mount makes the need concrete before the fee appears, while the exact sheet keeps the cost visible. Asking for a vote before the total hides the choice instead of preparing it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The correction keeps the focus on relevant receptivity, not charm. Luxury context is too narrow, and confidence plus timing turns the idea back into ordinary sales polish.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The marked bill creates prepared ground for joint problem-solving. It is not mere distraction, and neutrality matters less than the fact that both people act on the same shared cost first.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pressure map truthfully prepares the price by showing the discomfort it addresses. Naming price first may sound clean but leaves the problem abstract, while banning visuals confuses fair context with manipulation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -327,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "A request is the seed. Receptivity is the ground.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the prepared-ground idea into a concrete image that readers can carry into daily requests."
+          "text": "A request is the seed. Receptivity is the ground."
         },
         {
-          "text": "That was brilliant and ethically uneasy.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the Jim example from becoming a simple trick and foregrounds the chapter’s moral tension."
+          "text": "That was brilliant and ethically uneasy."
         },
         {
-          "text": "Prepared ground is not a trick.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the chapter a clean closing distinction between honest setup and manipulation."
+          "text": "Prepared ground is not a trick."
         }
       ]
     },
@@ -366,13 +309,6 @@
             "identity",
             "predict"
           ],
-          "planSpec": {
-            "domain": "blood-donor mobile clinic",
-            "audience": "a coordinator asking shoppers to register at the end of lunch hour",
-            "stakes": "whether people see themselves as helpers before hearing the time cost",
-            "format": "predict_reveal",
-            "requiredBeat": "the coordinator asks passersby to check a card naming a helpful act they did this week before showing the donation signup slot"
-          },
           "scenario": "Inez stands beside a folding table outside the grocery entrance, red appointment cards in one hand and a cooler labeled Type O behind her. She watches lunch shoppers glance away from the donor tent. Before she shows the 1:20 p.m. signup slot, she asks each passerby to check one box for a helpful act they did this week. She is about to decide whether to lead with the time cost or let the card wake up the helper first.",
           "whatToDo": "Ask for the checked helpful act before revealing the appointment slot. Keep the donation request plain, but let helper identity be active when the time cost appears.",
           "whyItMatters": "The checked card creates the receptive window. People hear the slot while remembering themselves as helpful, not while defending their lunch break."
@@ -385,13 +321,6 @@
             "adventure",
             "decision"
           ],
-          "planSpec": {
-            "domain": "outdoor gear rental desk",
-            "audience": "a clerk offering first-time hikers a harder route option",
-            "stakes": "whether caution or adventurous identity is active when choosing the trail",
-            "format": "decision_point",
-            "requiredBeat": "the clerk asks which past trip made them feel bold before unfolding the route map"
-          },
           "scenario": "Lukas spreads a damp trail map under the plexiglass counter while a weather advisory curls near the register. He has two route cards for first-time hikers, one safe loop and one ridge trail. Before unfolding either map, he asks which past trip made them feel bold. The couple must decide before noon shuttle departure, and Lukas has to choose whether adventurous identity should be awake before he names the harder option.",
           "whatToDo": "Ask the bold-trip question first, then show both routes with the weather advisory visible. Let adventure be present without hiding the risk.",
           "whyItMatters": "The question changes which self evaluates the map. The advisory keeps the moment honest because courage and caution are both in view."
@@ -404,13 +333,6 @@
             "volunteer",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "library volunteer drive",
-            "audience": "a librarian seeking weekend shelving help from regular patrons",
-            "stakes": "whether patrons answer as busy customers or as people who keep the library running",
-            "format": "dialogue",
-            "requiredBeat": "the librarian asks what shelf they always check first before pointing to the volunteer calendar for that section"
-          },
           "scenario": "Beatrice hears the return cart squeak behind her as a patron holds a mystery novel near a half-empty shelf. “Which shelf do you always check first?” she asks. “This one,” the patron says, tapping the M authors. Beatrice turns the volunteer calendar toward that section. Before Saturday slots fill, she must decide whether to ask as a busy librarian or invite the patron as someone who helps keep that shelf alive.",
           "whatToDo": "Ask about the shelf first, then point to the matching volunteer slot. Tie the request to care for a place the patron already uses.",
           "whyItMatters": "The patron answers from ownership, not obligation. The receptive window opens because the shelf has become part of the person’s own library habit."
@@ -423,13 +345,6 @@
             "beta",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "software beta invite",
-            "audience": "a product manager inviting users to test a risky feature",
-            "stakes": "whether users feel like careful critics before the beta request",
-            "format": "vignette",
-            "requiredBeat": "the invite begins with a one-click question about the last bug they caught, then reveals the beta slot"
-          },
           "scenario": "A release-notes panel shows one highlighted bug ID beside a beta toggle. James is drafting the invite to users who hate unstable features. The first screen asks one click: did you catch a bug in the last month? Only after the click does the beta slot appear. Users must decide whether to join, and James is choosing whether they enter as novelty seekers or careful critics.",
           "whatToDo": "Open with the bug-catcher question, then show the beta toggle. Make the testing role salient before the risky feature is offered.",
           "whyItMatters": "The invite works better when users recognize a critic identity. They are not being sold novelty; they are being asked to do a job they already value."
@@ -442,13 +357,6 @@
             "neighbors",
             "scene"
           ],
-          "planSpec": {
-            "domain": "neighborhood flood-prep canvass",
-            "audience": "a block captain asking residents to store sandbags",
-            "stakes": "whether residents see themselves as prepared neighbors before hearing the chore",
-            "format": "scene",
-            "requiredBeat": "the captain asks residents to name who checked on them during the last storm before offering the sandbag signup"
-          },
           "scenario": "A porch rail is wet from afternoon rain when Aanya unfolds the storm map beside a sandbag tag. The resident is already looking at the clouds over the alley. Before she offers the signup, Aanya asks who checked on them during the last storm. He names the couple across the street. She is about to decide whether to hand over the chore list or let neighborly readiness rise first.",
           "whatToDo": "Ask who checked on them last time, then offer the sandbag tag. Let the signup follow a remembered act of neighbor care.",
           "whyItMatters": "The request stops sounding like storage work. It arrives while the resident is remembering a real local bond and the practical help it carried."
@@ -461,13 +369,6 @@
             "mentoring",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "music-school audition day",
-            "audience": "a registrar asking families to join a mentor program",
-            "stakes": "whether parents answer as overbooked adults or guardians of beginners",
-            "format": "reflection",
-            "requiredBeat": "the registrar asks parents to write the first instrument someone helped them learn before handing over the mentor card"
-          },
           "scenario": "Ingrid moves past an open violin case on the hallway bench, rosin cloth tucked under the bow. She watches parents scroll through calendars while children wait for audition numbers. She asks each parent to write the first instrument someone helped them learn, then places the mentor card beside the answer. The room softens because the request now touches guardianship, not spare time.",
           "whatToDo": "Ask for the first-helped instrument before handing over the mentor card. Let parents remember being guided before they are asked to guide.",
           "whyItMatters": "The pre-question activates guardianship and gratitude. The mentor request then meets a self-image already connected to helping a beginner."
@@ -486,8 +387,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The helper question creates the privileged moment by making a true self-image salient. Distraction would be weaker, and public pressure would corrupt the request rather than prepare it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -499,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The brave-trip question wakes up adventurous identity while the advisory keeps the choice fair. The other options flatter or narrow attention by hiding the full decision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -512,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The shelf question activates ownership, which is the relevant receptive state. Convenience and placement help, but they do not explain why the request lands as stewardship.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -525,8 +423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The bug question calls up careful critic identity, which fits a beta that needs testing. Shiny features and early access wake up novelty or status, not the job the product manager needs done.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -538,8 +435,7 @@
             ],
             "correctIndex": 1,
             "explanation": "If the question does not connect to a real memory, it becomes a costume. The map and neighbor memory keep the request tied to actual preparedness instead of invented warmth.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -551,8 +447,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Guilt converts a receptive identity into pressure. The memory can prepare guardianship cleanly, but only if the later request stays voluntary and specific.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -564,8 +459,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Broad identity prompts can become empty. A privileged moment needs a self-image tied to the real choice, such as preserving a gallery or supporting access, not just a flattering label.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -577,8 +471,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The outage question activates prepared-neighbor identity, which fits alerts. Being first or tired of updates points toward status or irritation, neither as cleanly connected to the civic request.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -590,8 +483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Emotion alone is not enough. The receptive window is privileged because the right concern or self-image is salient at decision time, not because the room feels warm.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -652,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "A request that arrives ten seconds late enters a different room from the one the question opened.",
-          "location": "breakdown.deepRead",
-          "why": "It shows the reader the time-sensitivity of receptivity in a quotable image, not a slogan."
+          "text": "A request that arrives ten seconds late enters a different room from the one the question opened."
         },
         {
-          "text": "The request has not changed, but the person answering it has.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the mechanism of identity salience in plain language."
+          "text": "The request has not changed, but the person answering it has."
         },
         {
-          "text": "You are not hunting for any warm second.",
-          "location": "breakdown.fullRead",
-          "why": "It rejects the generic mood-reading misinterpretation."
+          "text": "You are not hunting for any warm second."
         }
       ]
     },
@@ -691,13 +577,6 @@
             "inspection",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "restaurant health inspection prep",
-            "audience": "a chef deciding which fix gets budget before inspection",
-            "stakes": "whether a vivid broken tile steals weight from a quieter refrigeration risk",
-            "format": "postmortem",
-            "requiredBeat": "the chef covers the cracked tile photo and watches the team finally notice the temperature log failures"
-          },
           "scenario": "A clipboard of cooler readings lies under a red grease-pencil line at Marco’s prep table. The repair quote for the cracked tile has been passed around for ten minutes, and everyone can picture the jagged floor. Marco covers the photo with his palm. Only then does the team notice three warm readings before last Friday’s seafood delivery. The postmortem is no longer about who missed the tile; it is about why the bright defect got the budget first.",
           "whatToDo": "Cover the vivid photo and put the temperature log on top. Make the quieter risk visible before deciding which repair gets inspection money.",
           "whyItMatters": "The tile felt important because it was easy to see. The log deserves weight because it changes food safety, and attention has to be moved there deliberately."
@@ -710,13 +589,6 @@
             "notice",
             "before-after"
           ],
-          "planSpec": {
-            "domain": "consumer banking overdraft notice",
-            "audience": "a bank designer choosing what customers see first",
-            "stakes": "whether a flashy fee waiver makes the due date feel less important",
-            "format": "before_after",
-            "requiredBeat": "the designer swaps the hero badge for the actual deadline and watches test users change what they remember"
-          },
           "scenario": "A phone prototype shows an overdraft notice with a large due date at the top. On Monday, Emma had placed a bright fee-waiver badge there, and testers remembered the waiver while missing the payment window. On Wednesday, she swaps the hero badge for the deadline and moves the badge below the amount. The same users now repeat the date first. Emma’s decision is whether the design should celebrate relief or foreground the action that prevents another fee.",
           "whatToDo": "Put the due date in the hero position and move the waiver below it. Let the most important customer action receive first attention.",
           "whyItMatters": "The badge did not become more important by being shiny. It became more memorable by being focal, and that stole weight from the deadline."
@@ -729,13 +601,6 @@
             "allergy",
             "scene"
           ],
-          "planSpec": {
-            "domain": "pediatric allergy intake",
-            "audience": "a nurse checking which symptom parents report as most serious",
-            "stakes": "whether a rash photo crowds out breathing details",
-            "format": "scene",
-            "requiredBeat": "the nurse turns the tablet face down and asks for the last difficult breath before discussing the rash"
-          },
           "scenario": "A parent scrolls to a bright rash photo in the exam room while an inhaler spacer sits unused near the sink. Saskia, the intake nurse, is about to decide which symptom gets recorded first. Before the parent can zoom again, she turns the tablet face down and asks, “When was the last hard breath?” The rash will be discussed, but the breathing detail has to enter the room before the photo sets the whole weight of the case.",
           "whatToDo": "Turn the tablet face down briefly and ask for the breathing timeline. Bring the rash back after the quieter symptom has been heard.",
           "whyItMatters": "A vivid photo can crowd out a less visible risk. The nurse gives the neglected factor enough attention to be judged on medical relevance."
@@ -748,13 +613,6 @@
             "purchase",
             "decision"
           ],
-          "planSpec": {
-            "domain": "used-car lot inspection",
-            "audience": "a buyer deciding whether to purchase a van",
-            "stakes": "whether shiny paint overweights the ignored maintenance record",
-            "format": "decision_point",
-            "requiredBeat": "the buyer makes the seller read the service gap aloud before stepping back to admire the repaint"
-          },
           "scenario": "Sunlight flashes on the newly painted cargo door while Robert holds a service folder and an odometer slip. The van looks cleaner than any he has seen this month. The seller keeps stepping toward the fresh paint. Robert must decide before the deposit window closes, so he asks the seller to read the 38,000-mile service gap aloud before either of them admires the repaint again.",
           "whatToDo": "Make the maintenance gap audible before judging the paint. Keep the folder open until the service history has received its proper weight.",
           "whyItMatters": "The repaint is salient by design. Reading the gap aloud pulls attention toward the factor that predicts ownership cost."
@@ -767,13 +625,6 @@
             "security",
             "decision"
           ],
-          "planSpec": {
-            "domain": "festival security planning",
-            "audience": "an organizer allocating guards after a loud complaint",
-            "stakes": "whether one angry vendor outweighs a quiet bottleneck at the west gate",
-            "format": "decision_point",
-            "requiredBeat": "the organizer pins foot-traffic counts over the complaint email before assigning the guards"
-          },
           "scenario": "A site map is taped to a folding barricade while Petra holds a vendor email printed in bold red. At 10:20 a.m. at a construction detour table, Petra is the site coordinator choosing whether the first visible cue should be the delay or the route around it. The complaint about the east gate is loud, but the clicker count from the west gate shows twice the crowding. She must decide guard placement before the evening shift. Petra pins the foot-traffic counts over the complaint email and asks the team to assign bodies from the map, not from the angriest paragraph.",
           "whatToDo": "Put the clicker counts on top of the complaint before assigning guards. Let crowd evidence, not emotional volume, take first place.",
           "whyItMatters": "The angry email feels important because it demands attention. The count matters because it shows where people will actually pile up."
@@ -786,13 +637,6 @@
             "review",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "scholarship review panel",
-            "audience": "a panel judging applicants with uneven essays",
-            "stakes": "whether a polished opening paragraph makes need feel smaller",
-            "format": "reflection",
-            "requiredBeat": "the chair has reviewers read the financial-aid line first, then return to the essay"
-          },
           "scenario": "Three application packets are clipped with colored tabs on Catarina’s table. One essay opens with a polished paragraph; another starts awkwardly but carries a severe aid line on the score sheet. Catarina asks reviewers to read the financial-aid line first, then return to the essays. She can feel the room rebalance as need receives attention before style begins deciding who feels most deserving.",
           "whatToDo": "Have reviewers read the aid line before the essay opening. Then score the writing with need already visible in the decision frame.",
           "whyItMatters": "A polished first paragraph can steal importance from financial need. Foregrounding the aid line keeps the panel from confusing fluency with priority."
@@ -811,8 +655,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The log needs foreground attention because it carries the larger risk. The tile is visible, but visibility alone should not set the budget; splitting money dodges the importance question.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -824,8 +667,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The due date deserves the first slot because it prevents the next fee. A brighter badge worsens the salience problem, and extra explanation arrives after attention has already been spent.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -837,8 +679,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The nurse does not discard the rash; she prevents the vivid photo from crowding out a quieter symptom. The wrong answers either surrender to salience or overcorrect.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -850,8 +691,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Reading the gap aloud gives the neglected evidence attention at the decision point. Paint may affect resale, but it should not swallow maintenance risk, and hiding the folder removes relevant weight.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -863,8 +703,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The counts are better evidence for crowd risk, and pinning them over the email gives them needed salience. Anger and recency are attention cues, not proof of importance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -876,8 +715,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Reading the aid line first gives need proper decision weight before style creates a halo. Hiding essays removes relevant evidence, and equal need scores erase real differences.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -889,8 +727,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The correction separates salience from importance. Ignoring discussion would throw away useful signals, while consensus can still be formed around a loud but minor cue.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -902,8 +739,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Equalizing vividness tests whether attention is inflating one risk. Public ease and meeting order are salience conditions, not measures of actual importance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -915,8 +751,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The risk appears when vivid attention distorts scale. A concrete story can help, and placement before numbers is not automatically wrong if the broader evidence stays visible.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -977,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "A factor in foreground earns extra credit at the decision table without ever showing its case.",
-          "location": "breakdown.deepRead",
-          "why": "It names the salience-to-importance laundering trick in a single sentence."
+          "text": "A factor in foreground earns extra credit at the decision table without ever showing its case."
         },
         {
-          "text": "The tile is visible. The cooler is dangerous.",
-          "location": "breakdown.fastRead",
-          "why": "The contrast shows how attention and importance can split."
+          "text": "The tile is visible. The cooler is dangerous."
         },
         {
-          "text": "When attention adds weight, your first duty is scale.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical responsibility created by the chapter idea."
+          "text": "When attention adds weight, your first duty is scale."
         }
       ]
     },
@@ -1016,13 +845,6 @@
             "postmortem",
             "causality"
           ],
-          "planSpec": {
-            "domain": "airport baggage claim delay",
-            "audience": "an operations manager reviewing a late-bag complaint",
-            "stakes": "whether the visible carousel jam is mistaken for the true staffing cause",
-            "format": "postmortem",
-            "requiredBeat": "the manager traces timestamps backward from the jam to the unstaffed transfer belt before assigning blame"
-          },
           "scenario": "A frozen baggage carousel holds one suitcase wedged sideways while complaint photos fill Julia’s inbox. The scan timestamps sit beside a transfer-belt roster that shows an empty slot at 2:10 p.m. In the postmortem, Julia traces backward from the jam before naming a cause. The bag remains visible, but the unstaffed transfer belt now explains why late luggage reached the carousel in a clump.",
           "whatToDo": "Start with the jam, then follow timestamps to the transfer-belt roster. Assign blame only after the hidden process is visible.",
           "whyItMatters": "The suitcase is the symptom everyone photographed. The roster shows the causal gap that produced the delay."
@@ -1035,13 +857,6 @@
             "dashboard",
             "decision"
           ],
-          "planSpec": {
-            "domain": "online fraud review queue",
-            "audience": "a risk analyst explaining a spike in declined payments",
-            "stakes": "whether the most obvious country flag becomes the false cause",
-            "format": "decision_point",
-            "requiredBeat": "the analyst hides the country column and shows device fingerprints first"
-          },
           "scenario": "A dashboard row of red declines fills Ryan’s monitor, with one country flag minimized after ten minutes of nervous comments. At 8:35 a.m. in the fraud operations room, Aanya is the analyst deciding whether to hide the country flag before the team names a cause. A chargeback note and device fingerprint column sit to the right. Ryan must decide before the risk call whether to let the flag drive the explanation or hide that column and sort by device fingerprint first. The cluster changes shape as soon as the flag disappears.",
           "whatToDo": "Hide the country flag column and sort by device fingerprint before proposing a cause. Bring the chargeback note back after the pattern is tested.",
           "whyItMatters": "The flag is visually easy and socially dangerous. Device fingerprints are less focal but more likely to explain the fraud spike."
@@ -1054,13 +869,6 @@
             "diagnosis",
             "scene"
           ],
-          "planSpec": {
-            "domain": "greenhouse crop failure",
-            "audience": "a grower diagnosing wilted basil trays",
-            "stakes": "whether the visible yellow leaves distract from a pump timer error",
-            "format": "scene",
-            "requiredBeat": "the grower points the apprentice to the dry irrigation line before they cut open another leaf"
-          },
           "scenario": "Rows of basil trays sag under greenhouse glass while Nora’s apprentice reaches for a knife to cut another yellow leaf. At 6:50 a.m. in greenhouse bay four, Nora is the grower deciding whether to inspect the irrigation timer before cutting another leaf. The pump timer blinks behind them, and the irrigation tube is dry. Nora is about to decide whether to keep inspecting leaves or point below the bench first. She taps the tube and has the apprentice read the timer before another leaf becomes the whole story.",
           "whatToDo": "Point to the dry irrigation tube and pump timer before cutting more leaves. Test the delivery system before treating leaf color as the explanation.",
           "whyItMatters": "The leaves announce the damage, not necessarily the cause. The hidden water path can explain the whole tray."
@@ -1073,13 +881,6 @@
             "analytics",
             "before-after"
           ],
-          "planSpec": {
-            "domain": "podcast audience drop",
-            "audience": "a producer reviewing why listeners quit mid-episode",
-            "stakes": "whether one awkward joke gets blamed instead of the ad break placement",
-            "format": "before_after",
-            "requiredBeat": "the producer plays the retention graph muted, then reveals the joke happened after the drop"
-          },
           "scenario": "A waveform is frozen at minute nineteen while Graham’s team quotes the awkward joke from memory. Before lunch, everyone blamed the line. After lunch, Graham plays the retention graph muted and shows the fall began at the ad marker three minutes earlier. The joke happened after the drop. His next decision is whether to cut the joke or change the break placement that listeners actually fled.",
           "whatToDo": "Mute the audio, inspect the retention graph, and reveal the timing before editing the joke. Let sequence test the causal claim.",
           "whyItMatters": "The remembered joke is focal because it is cringe-worthy. The graph shows whether it happened early enough to explain the audience loss."
@@ -1092,13 +893,6 @@
             "dialogue",
             "warranty"
           ],
-          "planSpec": {
-            "domain": "warranty repair bench",
-            "audience": "a technician investigating cracked appliance handles",
-            "stakes": "whether the cracked plastic gets blamed instead of packing pressure",
-            "format": "dialogue",
-            "requiredBeat": "the technician stacks shipping inserts by lot number until the focal crack no longer looks like the cause"
-          },
           "scenario": "Three cracked handles line the bench lamp while Marta peels a lot sticker from a foam insert. At 3:10 p.m. on the repair bench, Marta is the quality lead deciding whether to test the packing foam before blaming the handle material. “Bad plastic,” her supervisor says. “Maybe,” Marta answers, stacking inserts by lot number. “But every cracked handle came from this tight foam.” She must tell the warranty team whether to blame the molded part or the packing pressure, and the pile of inserts is changing the visible explanation.",
           "whatToDo": "Stack the foam inserts by lot number before blaming the handle material. Make the shipping pattern as visible as the crack.",
           "whyItMatters": "The crack draws the eye, but the lot pattern explains why this group failed. Focal damage needs a causal trail."
@@ -1111,13 +905,6 @@
             "donors",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "aquarium water-clouding complaint",
-            "audience": "a curator explaining cloudy tanks to donors",
-            "stakes": "whether the visible haze is mistaken for neglect instead of a filter-cycle change",
-            "format": "vignette",
-            "requiredBeat": "the curator shows the maintenance chart before letting donors stare through the clouded glass"
-          },
           "scenario": "Silver fish move through haze behind the viewing window while Antoine holds a maintenance chart and a new filter cartridge. Donors are about to decide whether the cloudy tank signals neglect. Before they stare through the glass, Antoine points to the filter-cycle change logged that morning. The haze remains visible, but the chart gives them an explanation to test before suspicion settles.",
           "whatToDo": "Show the maintenance chart and filter cartridge before the viewing window becomes the whole case. Let the process stand beside the symptom.",
           "whyItMatters": "Cloudy water is easy to blame on neglect. The chart makes a less visible cause available before donors complete that attribution."
@@ -1136,8 +923,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The wedged suitcase is focal, but timestamps and staffing records trace the causal chain. Photos show what people saw, not necessarily what produced the delay.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1149,8 +935,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Hiding the focal flag tests whether a less visible pattern explains the spike. Permanent removal or quick blocking both let the most obvious cue drive causality too soon.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1162,8 +947,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The leaves show damage, but the dry tube may explain it. The right move keeps the leaves as evidence while checking the hidden system that could have caused them.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1175,8 +959,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Sequence tests causality. If listeners left before the joke, the focal memory cannot explain the drop, while comments and host feelings may only repeat what is most memorable.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1188,8 +971,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The lot-matched inserts reveal a packing-pressure pattern outside the focal crack. Better photos and impressions only intensify attention to the visible damage.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1201,8 +983,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The chart makes a plausible hidden process visible before donors lock onto neglect. Apology concedes too soon, and hiding the tank removes evidence rather than balancing it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1214,8 +995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The correction keeps the useful clue while rejecting automatic causality. Crowds can notice real symptoms, and experts still need visible evidence, but attribution requires tracing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1227,8 +1007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The bus pattern could be causal even if it is less discussed. Staff complaints show salience; the records test whether the timing fits a hidden cause.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1240,8 +1019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The timeout comparison tests a hidden causal path. Reversing or surveying only the visible color lets focality write the explanation before evidence does.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1302,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "The flag was focal. It was not causal.",
-          "location": "breakdown.deepRead",
-          "why": "It states the central distinction in a compact pair of sentences."
+          "text": "The flag was focal. It was not causal."
         },
         {
-          "text": "Visible things invite quick stories.",
-          "location": "breakdown.fastRead",
-          "why": "It names the causal-attribution trap in plain words."
+          "text": "Visible things invite quick stories."
         },
         {
-          "text": "Let the photograph start the inquiry.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers an operational rule for visible evidence."
+          "text": "Let the photograph start the inquiry."
         }
       ]
     },
@@ -1341,13 +1113,6 @@
             "threat",
             "scene"
           ],
-          "planSpec": {
-            "domain": "rail-platform safety signs",
-            "audience": "a transit designer deciding how to stop track-edge crowding",
-            "stakes": "whether threat can be made visible without panic",
-            "format": "scene",
-            "requiredBeat": "the designer tests a sign that shows the actual train overhang at ankle height where commuters step"
-          },
           "scenario": "A yellow platform line runs beside a scuffed shoe mark while Eric holds a train overhang gauge at ankle height. At 7:15 a.m. on platform three, Eric is the transit safety designer deciding what riders should see before rush hour thickens. The safety poster proof shows a dramatic crash photo, but he is about to decide whether commuters need fear or exact space. He tests a platform stencil that marks where the train body passes, then watches riders step back without looking away from the track.",
           "whatToDo": "Show the real overhang at ankle height instead of using a fear poster. Make the threat precise enough to guide the step.",
           "whyItMatters": "Threat attracts attention cleanly when it names the actual danger. Panic may catch eyes, but precision changes where feet go."
@@ -1360,13 +1125,6 @@
             "allergen",
             "decision"
           ],
-          "planSpec": {
-            "domain": "food-allergen packaging line",
-            "audience": "a QA lead warning packers about a new sesame run",
-            "stakes": "whether difference from the normal label seizes attention before routine takes over",
-            "format": "decision_point",
-            "requiredBeat": "the lead swaps in a black tray for the sesame labels so packers stop on sight before loading rolls"
-          },
           "scenario": "Marie slides a black label tray onto a stainless packing table where every normal tray is gray. She has sesame labels in one hand and a barcode scanner in the other. Packers are about to load rolls by habit, and she must decide whether to give another verbal warning or make the tray itself different enough to stop routine. She slides the black tray into the line before the first scan.",
           "whatToDo": "Use the black tray only for sesame labels and require a barcode scan from that tray before rolls move.",
           "whyItMatters": "Difference interrupts habit at the exact point of risk. The cue is not color theater; it marks the run that needs special attention."
@@ -1379,13 +1137,6 @@
             "goal",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "marathon aid station",
-            "audience": "a race medic preventing heat collapse",
-            "stakes": "whether goal relevance can pull runners toward salt before cramps start",
-            "format": "vignette",
-            "requiredBeat": "the medic places pace-band examples beside salt packets at mile eighteen, tying the cue to finishing time"
-          },
           "scenario": "A wet pace band sticks to a paper cup at mile eighteen while Soren places salt packets beside examples of finish splits. At mile eighteen on the Sunday marathon course, Soren is the medic deciding how to make salt feel tied to finishing rather than fear. Runners must decide in seconds whether to grab water only or add salt before cramps start. The cue does not lecture about sodium. It ties the packet to the goal printed on the band, so finishing time pulls their eyes toward the small white square.",
           "whatToDo": "Place salt packets beside pace-band examples at the aid table. Let the finish goal make the packet relevant before the runner passes.",
           "whyItMatters": "Goal relevance attracts without drama. The packet matters because it is linked to the runner’s own finish, not because a medic shouted."
@@ -1398,13 +1149,6 @@
             "school",
             "before-after"
           ],
-          "planSpec": {
-            "domain": "pharmacy vaccination notice",
-            "audience": "a pharmacist trying to catch caregivers buying school supplies",
-            "stakes": "whether a deadline cue tied to the child goal gets noticed",
-            "format": "before_after",
-            "requiredBeat": "the pharmacist moves the vaccine notice from the wall to the checkout bin with school forms"
-          },
           "scenario": "A checkout bin full of sharpened pencils and health forms sits beside Rachel’s register. On Monday, the vaccine notice stayed on the pharmacy wall and caregivers missed it. On Thursday, she moves the notice into the school-form bin with an appointment sticker. Before the afternoon rush, she must decide whether the cue belongs with medicine signage or with the child-ready goal caregivers already carry.",
           "whatToDo": "Put the vaccine notice and appointment sticker in the school-form bin. Connect the deadline to the school-prep task already in progress.",
           "whyItMatters": "The notice becomes goal relevant when it sits with health forms. On the wall, it competes as background medical paper."
@@ -1417,13 +1161,6 @@
             "drill",
             "predict"
           ],
-          "planSpec": {
-            "domain": "data-center outage drill",
-            "audience": "an incident commander waking technicians to a real risk",
-            "stakes": "whether an unusual sound cue cuts through alert fatigue",
-            "format": "predict_reveal",
-            "requiredBeat": "the commander plays the backup-power chirp once before the drill and asks which rack everyone checks first"
-          },
           "scenario": "A server aisle glows under amber backup lights while Nathan stands by rack tag C-17. At 11:40 p.m. in the data-center aisle, Nathan is the commander deciding which alert should cut through the shift’s fatigue. Alert fatigue is thick after three false alarms this month. Before the drill starts, he plays the backup-power chirp once and asks which rack everyone checks first. Technicians must decide whether the sound is another nuisance or a real risk cue, and their fingers move toward C-17 before the checklist opens.",
           "whatToDo": "Play the actual backup-power chirp once, then ask for the first rack check. Use the real unusual sound, not a theatrical alarm.",
           "whyItMatters": "The chirp attracts attention because it is different and diagnostic. A louder sound would wake people up while teaching less about the risk."
@@ -1436,13 +1173,6 @@
             "recall",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "seafood market recall board",
-            "audience": "a fishmonger alerting staff to one dangerous lot",
-            "stakes": "whether threat plus difference prevents the lot number from blending into routine inventory",
-            "format": "dialogue",
-            "requiredBeat": "the manager places a red wax seal on only the recalled crate and asks each clerk to read the lot before opening ice"
-          },
           "scenario": "A sealed crate sweats on crushed ice while Luca presses a red wax seal beside the lot tag. At 5:30 a.m. behind the fish counter, Luca is the seafood manager deciding how clerks will spot the recalled lot before opening it. “Only this one?” a clerk asks, knife ready for the morning ice. “Read the lot first,” Luca says. The clerk must decide whether to treat the crate like routine inventory or stop because threat and difference are now in the same place. Each clerk reads the tag before any ice opens.",
           "whatToDo": "Place the red wax seal only on the recalled crate and have each clerk read the lot tag aloud before cutting ice.",
           "whyItMatters": "Threat plus difference prevents the lot number from blending into routine. The cue points to one real danger, not a general mood of alarm."
@@ -1461,8 +1191,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The stencil ties threat to the exact step commuters must change. The crash photo and vague warning attract fear, but they do not give precise guidance for the decision.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1474,8 +1203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The black tray creates relevant difference at the point of action. A verbal reminder fades into routine, and music changes mood without marking the allergen risk.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1487,8 +1215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pace band connects salt to the runner’s own finish goal. Shouting may overplay threat, and hiding water manipulates access rather than guiding attention.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1500,8 +1227,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The bin ties the deadline to the caregiver’s active school-prep goal. Accuracy did not change, and distance is less important than the cue’s fit with the task.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1513,8 +1239,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The real chirp is both different and diagnostic. A theatrical siren or random tone captures attention without connecting to the equipment risk.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1526,8 +1251,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The seal marks the specific dangerous lot, so attention lands where action is needed. Looking official is secondary, and the cue supports the lot check rather than replacing it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1539,8 +1263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Threat cues should match real threat. A fake warning may win the open and lose trust, while size cannot make a mismatched attractor honest.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1552,8 +1275,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Difference attracts because it breaks a pattern. If every item is marked the same way, the cue no longer signals a real distinction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1565,8 +1287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The sticker fits the parent’s current school-readiness goal. The photo overuses threat, and the prize wheel attracts attention without connecting to the health choice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1627,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "Attractors earn their pull when they belong to the choice the listener is about to make.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the chapter's fit-test quotable in one line."
+          "text": "Attractors earn their pull when they belong to the choice the listener is about to make."
         },
         {
-          "text": "Captured attention is only a doorway.",
-          "location": "breakdown.fullRead",
-          "why": "It prevents readers from mistaking attention capture for persuasion."
+          "text": "Captured attention is only a doorway."
         },
         {
-          "text": "Use attractors like flares, not fireworks.",
-          "location": "breakdown.fullRead",
-          "why": "It gives a vivid distinction between signal and spectacle."
+          "text": "Use attractors like flares, not fireworks."
         }
       ]
     },
@@ -1666,13 +1381,6 @@
             "self-relevance",
             "before-after"
           ],
-          "planSpec": {
-            "domain": "insurance renewal letter",
-            "audience": "a policy designer trying to keep homeowners reading",
-            "stakes": "whether self-relevance holds attention past the first paragraph",
-            "format": "before_after",
-            "requiredBeat": "the designer opens with the customer’s street flood-zone change, then reveals the premium options"
-          },
           "scenario": "A renewal letter begins with Maple Street in the first line, and Olivia keeps the flood-zone map above the premium table. Before the redesign, homeowners skimmed past the general risk paragraph. After the street name appears first, they read to the options. Olivia must decide whether personalization is justified only where the map actually changes the customer’s home risk.",
           "whatToDo": "Open with the customer’s street flood-zone change, then show the premium table. Use self-relevance only where the policy data truly applies.",
           "whyItMatters": "A real address holds attention because it changes the homeowner’s own decision. Generic personalization would look similar but carry less truth."
@@ -1685,13 +1393,6 @@
             "unfinished",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "architecture critique wall",
-            "audience": "a studio mentor keeping students engaged with unfinished designs",
-            "stakes": "whether an unresolved edge holds attention better than a completed rendering",
-            "format": "reflection",
-            "requiredBeat": "the mentor covers the final rendering and leaves the unresolved stair section visible while students predict the fix"
-          },
           "scenario": "Anders pins a half-finished floor plan to the studio wall, one corner curling, a vellum overlay hiding the final rendering. He leaves the stair section visible and asks students to predict the fix before the critique moves on. The room keeps looking at the gap. He is thinking about how much longer attention stays when the design is unfinished in exactly the place where judgment has to happen.",
           "whatToDo": "Cover the final rendering and leave the stair problem open. Ask for predictions before revealing the completed design.",
           "whyItMatters": "The unfinished stair holds attention because it asks for completion. Students stay with the problem instead of admiring a finished image."
@@ -1704,13 +1405,6 @@
             "mystery",
             "predict"
           ],
-          "planSpec": {
-            "domain": "mystery shopper training",
-            "audience": "a retail trainer teaching associates to notice greeting gaps",
-            "stakes": "whether a mystery queue keeps attention through a dull protocol",
-            "format": "predict_reveal",
-            "requiredBeat": "the trainer shows three anonymous receipts and asks which visit lost the shopper before revealing the greeting note"
-          },
           "scenario": "Three anonymous receipts are clipped to a cork strip as Megan begins a dull protocol refresher. At 9:05 a.m. in the training room, Megan is the service trainer deciding how long the receipt mystery should stay open. Each receipt has a time stamp, return total, and no names. She asks associates which visit lost the shopper before revealing the greeting note. They must decide from the receipts first, then watch the missing hello explain the loss better than another training slide.",
           "whatToDo": "Show the receipts, ask for predictions, then reveal the greeting note. Let the mystery close on the exact behavior the protocol requires.",
           "whyItMatters": "The unknown keeps attention through routine material. The reveal works because it answers the question with a concrete greeting gap."
@@ -1723,13 +1417,6 @@
             "intake",
             "scene"
           ],
-          "planSpec": {
-            "domain": "wildlife rescue intake",
-            "audience": "a volunteer coordinator explaining why incomplete records matter",
-            "stakes": "whether unfinished information keeps volunteers tracking the animal past intake",
-            "format": "scene",
-            "requiredBeat": "the coordinator leaves one field blank on a rescued hawk card and asks what treatment becomes impossible"
-          },
           "scenario": "Magnus leaves the last-food-seen field blank on a hawk intake card while new volunteers reach for towels. At 4:25 p.m. in the wildlife intake room, he is the volunteer lead deciding which missing fact the next instruction must answer. The carrier label is half peeled and the bird waits inside. He is about to decide whether to lecture about complete records or ask what treatment becomes impossible without that missing line. The blank field keeps every eye on the card and the bird inside the carrier.",
           "whatToDo": "Leave the key field blank and ask what treatment decision cannot be made. Fill it only after volunteers name the consequence.",
           "whyItMatters": "The unfinished card holds attention because the gap blocks care. Completion is not paperwork; it changes what the animal can receive."
@@ -1742,13 +1429,6 @@
             "timeline",
             "decision"
           ],
-          "planSpec": {
-            "domain": "courtroom exhibit sequence",
-            "audience": "a trial consultant helping jurors follow a timeline",
-            "stakes": "whether mystery should be opened only where evidence can close it",
-            "format": "decision_point",
-            "requiredBeat": "the consultant withholds the final timestamp until jurors have marked the unexplained gap themselves"
-          },
           "scenario": "A timeline board has one empty timestamp slot, and Diane keeps the final timestamp card inside an evidence binder. Jurors will have to decide whether the sequence makes sense. Before the exhibit order is locked, she asks the team to let jurors mark the unexplained gap themselves, then reveal the final card. She must decide whether the mystery is fair because the evidence can close it.",
           "whatToDo": "Withhold the timestamp long enough for jurors to mark the gap, then reveal the evidence card. Do not open a mystery the record cannot answer.",
           "whyItMatters": "The empty slot holds attention while preserving fairness. The question is legitimate because the evidence closes the loop."
@@ -1761,13 +1441,6 @@
             "ethics",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "subscription cancellation screen",
-            "audience": "a service designer trying to retain users ethically",
-            "stakes": "whether an unfinished setup checklist holds attention without trapping the user",
-            "format": "postmortem",
-            "requiredBeat": "the designer removes the false progress bar and keeps only the real unfinished data export task"
-          },
           "scenario": "Paul opens the cancellation screen postmortem with one unchecked export box beside the cancel button. He starts by describing the false progress bar he removed after users said they felt trapped. The only unfinished task left is the real data export. He can see why attention still holds, but now it points to a choice users may actually want before leaving.",
           "whatToDo": "Remove the false progress bar and keep only the real export checkbox near the cancel button. Let unfinished status reflect an actual user task.",
           "whyItMatters": "Held attention becomes manipulative when the unfinished item is fake. The export box is legitimate because it names a real consequence of leaving."
@@ -1786,8 +1459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The address holds attention because it changes the homeowner’s own situation. Formality is secondary, and the premium table still matters after the personal risk is clear.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1799,8 +1471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The unresolved stair keeps attention on the problem the critique must solve. A finished rendering closes the loop too soon, and prettiness pulls attention away from the design issue.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1812,8 +1483,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The mystery is fair because the greeting note closes the open question. Game feel is not the point, and withholding all evidence would make prediction pointless.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1825,8 +1495,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The blank field should hold attention on the consequence of incomplete records. Filling it too fast closes the loop, while rescue photos add emotion without teaching the intake need.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1838,8 +1507,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The empty slot creates attention and the evidence card closes it. An unanswered dramatic question is unfair, and showing everything at once may fail to hold attention on the gap.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1851,8 +1519,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The real export task is a legitimate open loop; the fake bar is a trap. Cheerful design or hidden controls still manipulate held attention.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1864,8 +1531,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Curiosity is being borrowed without a matching answer. Length is not the issue, and a discount may be relevant, but it does not close the promised secret.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1877,8 +1543,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The specific molar makes the plan personally relevant to that family. The generic opener does not magnetize, and regret language uses pressure rather than relevance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1890,8 +1555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mystery should hold attention for a real answer. Treating it as a universal style turns the cue into delay, and hiding data weakens judgment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1952,19 +1616,13 @@
       },
       "memorableLines": [
         {
-          "text": "Self-relevance has gravity. The reader stays because the message is about them, not about the topic.",
-          "location": "breakdown.deepRead",
-          "why": "It captures why personal relevance holds attention and what the cue actually does."
+          "text": "Self-relevance has gravity. The reader stays because the message is about them, not about the topic."
         },
         {
-          "text": "The strongest magnetizers do not yell.",
-          "location": "breakdown.fullRead",
-          "why": "It distinguishes holding attention from loud attraction."
+          "text": "The strongest magnetizers do not yell."
         },
         {
-          "text": "Leave people with a question only when you are prepared to answer it.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the ethical rule for mystery and open loops."
+          "text": "Leave people with a question only when you are prepared to answer it."
         }
       ]
     },
@@ -1991,13 +1649,6 @@
             "dignity",
             "scene"
           ],
-          "planSpec": {
-            "domain": "hospital handoff ritual",
-            "audience": "a charge nurse linking a new checklist to patient dignity",
-            "stakes": "whether the checklist borrows meaning from a value nurses already defend",
-            "format": "scene",
-            "requiredBeat": "the nurse places the checklist beside a family photo release form before the shift huddle"
-          },
           "scenario": "A laminated checklist lies next to a family photo consent form as Natalie gathers the night-shift nurses. The handoff sheet has felt like one more clipboard task. Before the huddle starts, she places both papers together and must decide whether to explain compliance or ask what a daughter should hear when she calls at 7:00 a.m. about her father’s night.",
           "whatToDo": "Put the handoff sheet beside the photo consent form and link it to what families deserve to know after a long night.",
           "whyItMatters": "The checklist borrows meaning from patient dignity. Nurses already care about that value, so the form is no longer just paperwork."
@@ -2010,13 +1661,6 @@
             "compost",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "farmers market compost booth",
-            "audience": "a vendor linking compost pickup to pride in local soil",
-            "stakes": "whether the service feels like waste disposal or care for the market’s own ground",
-            "format": "vignette",
-            "requiredBeat": "the vendor weighs a compost pail beside a crate labeled with the farm that will receive it"
-          },
           "scenario": "A hanging scale rocks above onion skins in a green pail while Ben sets the weight beside a crate labeled Harlan Farm. Shoppers must decide whether the compost pickup is just waste sorting or care for the soil that grows next week’s produce. Before he mentions the pickup fee, the farm crate gives the scraps a destination people at the market already respect.",
           "whatToDo": "Weigh the pail beside the farm-labeled crate before discussing pickup. Connect scraps to local soil, not to disposal guilt.",
           "whyItMatters": "The service becomes linked to market pride. The favorable association is already there in the farm name and the food people came to buy."
@@ -2029,13 +1673,6 @@
             "renewal",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "theater season renewal",
-            "audience": "a box-office manager tying renewal to preserving opening night energy",
-            "stakes": "whether the subscription links to belonging instead of price",
-            "format": "dialogue",
-            "requiredBeat": "the manager places the patron’s old ticket stub beside the renewal form before mentioning the seat hold"
-          },
           "scenario": "An old ticket stub rests under the box-office glass while Rose opens the seat map. “That was the night the balcony stood up,” the patron says. Rose places the renewal form beside the stub before mentioning the seat hold. She must decide whether the conversation starts with price or with preserving the opening-night energy the patron already remembers.",
           "whatToDo": "Place the old ticket stub beside the renewal form, then show the seat map. Let belonging enter before price.",
           "whyItMatters": "The subscription links to a remembered theater identity. The stub makes renewal feel like keeping a place in that energy, not merely buying dates."
@@ -2048,13 +1685,6 @@
             "trust",
             "decision"
           ],
-          "planSpec": {
-            "domain": "cybersecurity password rollout",
-            "audience": "an IT lead linking password changes to protecting client trust",
-            "stakes": "whether the rule borrows meaning from professional duty already valued",
-            "format": "decision_point",
-            "requiredBeat": "the lead opens with one redacted client thank-you note before showing the reset screen"
-          },
           "scenario": "A redacted thank-you note is projected over a login prompt while Kiran stands beside the reset screen. The team dislikes password changes, and the deadline is two days away. Before he shows the rule, he must decide whether to lead with breach fear or with the client note praising careful handling of sensitive files. The note is already making professional duty visible.",
           "whatToDo": "Open with the redacted client note, then show the reset screen. Link the password change to protecting trust clients already gave.",
           "whyItMatters": "The rule borrows meaning from professional duty, not fear. The client note is favorable because the team already wants to be worthy of it."
@@ -2067,13 +1697,6 @@
             "fundraiser",
             "before-after"
           ],
-          "planSpec": {
-            "domain": "youth swim-team fundraiser",
-            "audience": "a coach linking lane fees to early-morning discipline",
-            "stakes": "whether donations attach to effort already visible to parents",
-            "format": "before_after",
-            "requiredBeat": "the coach shows the 5:30 a.m. attendance sheet before passing the fundraiser envelope"
-          },
           "scenario": "A wet attendance sheet is clipped to the pool gate beside the lane invoice. Before practice, parents saw only another fundraiser envelope. After Heather points to the 5:30 a.m. signatures, the lane fee is linked to the discipline they watched in the dark parking lot. She must decide whether to pass envelopes cold or let the sheet carry the meaning first.",
           "whatToDo": "Show the 5:30 a.m. attendance sheet before passing the envelope. Tie lane fees to visible discipline, not booster enthusiasm.",
           "whyItMatters": "Parents already respect the effort. The attendance sheet connects the money to that effort before cost becomes the only association."
@@ -2086,13 +1709,6 @@
             "warranty",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "artisan tool warranty",
-            "audience": "a manufacturer linking repair registration to craft pride",
-            "stakes": "whether registration feels like bureaucracy or respect for a tool’s working life",
-            "format": "reflection",
-            "requiredBeat": "the maker asks owners to write the first project the tool will touch before the warranty checkbox"
-          },
           "scenario": "A chisel rests on a blank registration card while Leon tucks a sharpening slip into the box. He asks owners to write the first project the tool will touch before the warranty checkbox appears. The question changes the form in his mind. It is no longer a database request first; it is a promise to care for a working tool whose future the owner has just pictured.",
           "whatToDo": "Ask for the first project before the warranty checkbox. Link registration to the tool’s working life and future repair.",
           "whyItMatters": "Craft pride is already alive in the owner. The registration becomes attractive when it connects to caring for the tool, not collecting data."
@@ -2111,8 +1727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The form links handoff work to a value nurses already defend. Color and optionality miss the point: association changes meaning while the checklist still matters.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2124,8 +1739,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The farm label supplies a real favorable association. Design time is irrelevant, and making weight look larger would distort rather than connect.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2137,8 +1751,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Random nostalgia is a loose pleasant cue. The old stub works because it links renewal to a real memory and belonging the patron already has.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2150,8 +1763,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The client note connects the reset to professional trust. The breach warning may be threat, and the slogan is pleasant but too thin to carry meaning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2163,8 +1775,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The attendance sheet links money to visible effort. It need not distract or shame; the clean version uses a value parents already saw.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2176,8 +1787,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The association fails if craft pride is borrowed for unrelated data capture. Placement in the box is not the issue; the truth of the link is.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2189,8 +1799,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Association needs a truthful link, not generic positivity. Pleasant feeling alone may float free from the actual relief need, and volume only increases the mismatch.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2202,8 +1811,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The note links the form to a patient benefit already relevant to care. Candy and beach photos may feel pleasant, but they do not make the form’s meaning clearer.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2215,8 +1823,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The correction preserves association while requiring fit. Good mood can matter, but loose positivity without a real link does not teach why the request belongs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2277,19 +1884,13 @@
       },
       "memorableLines": [
         {
-          "text": "A request becomes easier to receive when it stands beside a meaning the listener already protects.",
-          "location": "breakdown.deepRead",
-          "why": "It states the mechanism of association in a quotable line, not a slogan."
+          "text": "A request becomes easier to receive when it stands beside a meaning the listener already protects."
         },
         {
-          "text": "Find the existing meaning and make the connection visible.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers the operational move instead of a curt prohibition."
+          "text": "Find the existing meaning and make the connection visible."
         },
         {
-          "text": "The handoff sheet is a cold object until it touches something warmer and truer.",
-          "location": "breakdown.fullRead",
-          "why": "It grounds the chapter’s idea in a concrete hospital object."
+          "text": "The handoff sheet is a cold object until it touches something warmer and truer."
         }
       ]
     },
@@ -2316,13 +1917,6 @@
             "savings",
             "scene"
           ],
-          "planSpec": {
-            "domain": "tax-aid clinic waiting area",
-            "audience": "a nonprofit placing refund-savings prompts where stress is lowest",
-            "stakes": "whether location changes a refund choice before the form is reviewed",
-            "format": "scene",
-            "requiredBeat": "the coordinator moves the savings split card from the exit desk to the calm document-check table"
-          },
           "scenario": "A numbered waiting-room ticket rests beside a savings split card while Melissa opens a client’s document folder. The exit desk is noisy, and last year people waved off the refund question there. She is about to decide whether to leave the prompt at checkout or move it to the calm document-check table. The card now sits where clients are already sorting facts, not guarding the door.",
           "whatToDo": "Place the split card at document check, before the return is finalized. Let planning, not exit fatigue, be the trace around the savings question.",
           "whyItMatters": "The prompt changes because the place changes. The document table supports careful choice; the exit desk adds hurry and defensiveness."
@@ -2335,13 +1929,6 @@
             "discharge",
             "before-after"
           ],
-          "planSpec": {
-            "domain": "hospital discharge pharmacy",
-            "audience": "a pharmacist placing medication questions at bedside rather than checkout",
-            "stakes": "whether the setting lowers resistance to asking for help",
-            "format": "before_after",
-            "requiredBeat": "the pharmacist asks adherence questions while the patient is still seated with discharge papers, not while a line forms behind them"
-          },
           "scenario": "Discharge papers sit on a rolling bedside table beside a pill schedule and a privacy curtain. Before the change, Ethan asked adherence questions at checkout while a line formed behind the patient. Afterward, he asks while the patient is still seated with papers open. The same question now receives a pause, a frown, and finally an honest “I do not know when to take the blue one.”",
           "whatToDo": "Ask the medication questions at bedside with the pill schedule open. Do not wait until checkout turns confusion into embarrassment.",
           "whyItMatters": "The bedside setting carries privacy and context. The checkout line carries speed and self-protection, which makes help harder to request."
@@ -2354,13 +1941,6 @@
             "intake",
             "decision"
           ],
-          "planSpec": {
-            "domain": "public defender intake hallway",
-            "audience": "an attorney reducing client shutdown before plea discussion",
-            "stakes": "whether a quieter place changes how legal options are heard",
-            "format": "decision_point",
-            "requiredBeat": "the attorney moves the first explanation from the crowded hallway to a small file room with chairs at the same level"
-          },
           "scenario": "A file room chair is pulled beside a metal cabinet while Laura holds a plea form near the door placard. The hallway outside is crowded and loud. Her client is about to decide whether to hear the first explanation or shut down. Laura must decide whether to start there or move into the small file room with chairs at the same level before discussing options.",
           "whatToDo": "Move the first explanation into the file room and sit level with the client. Let privacy and equal seating carry the opening.",
           "whyItMatters": "The hallway adds exposure and threat. The file room does not make the option better, but it lets the client hear it with less defensive noise."
@@ -2373,13 +1953,6 @@
             "financing",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "farm-equipment financing booth",
-            "audience": "a lender placing repair-cost comparisons near the service bay",
-            "stakes": "whether the offer is heard as uptime protection rather than debt",
-            "format": "vignette",
-            "requiredBeat": "the lender sets the financing sheet beside a worn bearing pulled from a combine, not beside balloons at the booth"
-          },
           "scenario": "A worn bearing sits on a service-bay counter beside Patrick’s financing sheet and a grease-smudged service ticket. Farmers must decide whether the plan is debt or uptime protection. Patrick leaves the balloons at the show booth and talks beside the part that stopped a combine last week. The counter carries repair, lost hours, and the cost of waiting.",
           "whatToDo": "Discuss the financing sheet beside the worn bearing and service ticket, not at the decorated booth. Put the offer near the repair trace.",
           "whyItMatters": "The service bay makes downtime concrete. The booth would add sales pressure, while the counter helps farmers judge the offer by the problem it addresses."
@@ -2392,13 +1965,6 @@
             "appeal",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "museum climate-control appeal",
-            "audience": "a development officer asking donors for HVAC funds",
-            "stakes": "whether the ask belongs near fragile artifacts rather than a banquet table",
-            "format": "reflection",
-            "requiredBeat": "the officer lets donors feel the cool storage-room air before showing the pledge card"
-          },
           "scenario": "A storage-room door opens onto wrapped frames while Celine watches the humidity gauge settle. The pledge card is still in her folder. At the banquet table, HVAC sounded like building maintenance. In the cool storage room, donors pull their sleeves down and look at paper labels on the frames. Celine lets them feel the air before showing the card, and the ask moves closer to preservation.",
           "whatToDo": "Let donors enter the storage room, notice the humidity gauge, and feel the cool air before the pledge card appears.",
           "whyItMatters": "The storage room carries preservation. The banquet table carries event warmth, which is pleasant but too far from the fragile artifacts."
@@ -2411,13 +1977,6 @@
             "support",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "online course refund policy",
-            "audience": "a platform designer placing support options near the confusion point",
-            "stakes": "whether psychological place matters more than page location",
-            "format": "postmortem",
-            "requiredBeat": "the designer maps refund clicks to the first confusing quiz screen and moves help there"
-          },
           "scenario": "A quiz results page shows one skipped item circled beside Simon’s refund log. The policy page was easy to find, but users clicked refund after this confusing screen. In the postmortem, Simon maps the clicks back to the first missed concept and moves a help link there. The psychological place was not the refund page; it was the moment confusion turned into exit.",
           "whatToDo": "Move the help link to the confusing quiz result, beside the skipped item. Treat confusion as the place where support has to appear.",
           "whyItMatters": "The relevant geography is mental. Support works better where the user feels stuck than where policy says support belongs."
@@ -2436,8 +1995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The document-check table carries a planning trace that fits the choice. The exit desk adds hurry, and the coffee poster is nearby but not tied to the decision.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2449,8 +2007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Bedside placement lowers embarrassment and keeps the schedule visible. Louder checkout questions intensify the bad setting, and a later survey misses the teachable place.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2462,8 +2019,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hallway’s trace changes reception before substance lands. Brighter paper or extra vocabulary does not address the defensive setting.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2475,8 +2031,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The service bay supplies the relevant repair trace. The booth risks making debt feel like a sales event, and pretending placement has no effect ignores the placement principle.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2488,8 +2043,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The storage room links the ask to preservation through place and trace. Stage volume and themed pastries decorate the appeal without moving it closer to the problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2501,8 +2055,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The quiz result is the psychological place where confusion becomes exit. Help belongs at the felt problem, not only where the site map stores policy.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2514,8 +2067,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful question links place to judgment. Scent and decoration may alter mood, but they do not prove the setting carries the right meaning.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2527,8 +2079,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The stair location carries the actual repair trace while the estimate keeps cost visible. Hidden ballots and mood music shape response without supporting fair judgment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2540,8 +2091,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Placement may be creating resistance before words are weighed. More detail might help later, but first the message needs a fair geography.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2602,19 +2152,13 @@
       },
       "memorableLines": [
         {
-          "text": "The room around the message decides which questions can be asked without performance.",
-          "location": "breakdown.deepRead",
-          "why": "It names how setting changes what an audience is willing to admit."
+          "text": "The room around the message decides which questions can be asked without performance."
         },
         {
-          "text": "The setting is not a backdrop.",
-          "location": "breakdown.fullRead",
-          "why": "It gives persuasive geography a concrete principle."
+          "text": "The setting is not a backdrop."
         },
         {
-          "text": "Choose the place that carries the right trace.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the chapter into an actionable rule."
+          "text": "Choose the place that carries the right trace."
         }
       ]
     },
@@ -2641,13 +2185,6 @@
             "script",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "emergency-room triage script",
-            "audience": "a nurse manager checking whether a pain-scale prompt readies the wrong concern",
-            "stakes": "whether a prepared concept helps or distorts the next answer",
-            "format": "postmortem",
-            "requiredBeat": "the manager compares responses when insurance questions come before versus after symptom sorting"
-          },
           "scenario": "A triage tablet pauses on the insurance screen while Erin lays a symptom card beside it. In the postmortem, she compares pain-scale responses from days when coverage questions came first with days when symptoms came first. The answers shift. Erin is not inventing a protocol; she is deciding whether the first screen readied money worries before patients described pain.",
           "whatToDo": "Move insurance questions after symptom sorting and compare response patterns. Keep the coverage screen from readying the wrong concern.",
           "whyItMatters": "A first concept can color the next answer. The sequence matters when money anxiety may distort clinical description."
@@ -2660,13 +2197,6 @@
             "questionnaire",
             "decision"
           ],
-          "planSpec": {
-            "domain": "jury questionnaire order",
-            "audience": "a court administrator testing whether early questions bias later fairness ratings",
-            "stakes": "whether readied concepts can be corrected by order changes",
-            "format": "decision_point",
-            "requiredBeat": "the administrator moves neighborhood questions after evidence instructions and tracks what changes"
-          },
           "scenario": "A questionnaire packet with reordered tabs sits beside an instruction sheet as Victoria reviews juror forms. At 1:10 p.m. in the courthouse form room, Victoria is the court administrator deciding which question order will be tested before summons packets print. Neighborhood questions used to appear before fairness ratings. She must decide before printing whether to keep the old order or move those tabs after the evidence instructions and track changes. The new order tests whether a readied place concept was leaking into judgments it should not touch.",
           "whatToDo": "Move neighborhood questions after evidence instructions and compare fairness ratings. Use order as a corrective, not as a hidden lever.",
           "whyItMatters": "The place concept may be relevant later, but early activation can spill into fairness ratings before evidence rules are clear."
@@ -2679,13 +2209,6 @@
             "hardship",
             "before-after"
           ],
-          "planSpec": {
-            "domain": "loan hardship call script",
-            "audience": "a bank compliance officer limiting priming by debt language",
-            "stakes": "whether callers are readied for shame before hearing options",
-            "format": "before_after",
-            "requiredBeat": "the officer replaces the opening balance recitation with a neutral identity check and compares take-up"
-          },
           "scenario": "A call script lies on Monica’s desk with the balance line struck through and a hardship option sheet underneath. Before the edit, callers heard the amount due first and often declined help. After the edit, the opening is a neutral identity check, then options. Monica compares take-up and listens for shame in the call notes. She is deciding whether the old first sentence readied the wrong self.",
           "whatToDo": "Replace the opening balance recitation with a neutral identity check, then present hardship options clearly.",
           "whyItMatters": "Debt language can ready shame before help appears. The correction lets callers hear options before the balance defines the conversation."
@@ -2698,13 +2221,6 @@
             "uncertainty",
             "scene"
           ],
-          "planSpec": {
-            "domain": "science museum exhibit labels",
-            "audience": "an exhibit designer showing uncertainty without making guesses feel like facts",
-            "stakes": "whether readied curiosity stays inside evidence limits",
-            "format": "scene",
-            "requiredBeat": "the designer adds a correction label beside the mystery prompt before visitors press the answer button"
-          },
           "scenario": "An exhibit button glows under a question panel while Jonas holds a correction label. At 2:45 p.m. on the museum floor, Jonas is the exhibit lead deciding how to keep the correction visible before visitors press the answer button. Visitors are about to decide whether the mystery answer is settled fact. Before the answer button opens, he adds a label that says what is known and what remains under test. Curiosity still pulls them in, but the correction sits beside the cue before the guess hardens.",
           "whatToDo": "Place the correction label beside the mystery prompt before visitors press the answer button. Let curiosity meet its evidence limits immediately.",
           "whyItMatters": "Mystery readies belief in an answer. The correction keeps curiosity from turning a provisional explanation into certainty."
@@ -2717,13 +2233,6 @@
             "nutrition",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "restaurant menu nutrition prompt",
-            "audience": "a menu owner testing if health icons crowd out taste decisions too strongly",
-            "stakes": "whether a cue’s reach exceeds the decision it should inform",
-            "format": "postmortem",
-            "requiredBeat": "the owner checks whether diners avoid balanced dishes with one red icon before changing the icon system"
-          },
           "scenario": "A menu proof shows red icons beside three entrees while Greta compares the sales tally. At 11:30 a.m. in the cafe office, Greta is the menu owner deciding whether the red icon makes diners think health or danger. In the postmortem, one balanced dish with a single red icon fell harder than richer dishes without icons. She checks whether diners avoided it as unhealthy before changing the system. The cue was meant to inform, not make one mark define the whole plate.",
           "whatToDo": "Compare sales by icon pattern before redesigning the menu. Keep health cues from reaching beyond the specific information they carry.",
           "whyItMatters": "A red icon can ready caution so strongly that taste and balance disappear. The tally tests whether the cue exceeded its useful limit."
@@ -2736,13 +2245,6 @@
             "feedback",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "employee feedback survey",
-            "audience": "an HR analyst preventing one word from contaminating all answers",
-            "stakes": "whether readied resentment spreads beyond the target issue",
-            "format": "reflection",
-            "requiredBeat": "the analyst removes the word complaint from the opener and adds a later corrective item"
-          },
           "scenario": "A survey preview shows the first prompt highlighted while Henrik studies a response heatmap from last quarter. The word complaint sat in the opener and seemed to pull resentment through unrelated answers. He removes it and adds a later corrective item asking what should be preserved. The survey still invites problems, but the first concept no longer contaminates the whole form.",
           "whatToDo": "Remove complaint from the opener and add a later preserve item. Let criticism appear where it belongs without readying resentment everywhere.",
           "whyItMatters": "One early word can activate a frame across the survey. The corrective restores range so every answer is not pulled toward grievance."
@@ -2761,8 +2263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The order may activate money anxiety before pain reporting. The point is not that coverage never matters, but that early activation can distort the next answer.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2774,8 +2275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Reordering tests whether the early concept was contaminating fairness ratings. Deletion may lose useful information, and a warning alone may not change activation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2787,8 +2287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A neutral opener reduces shame activation before help appears. Repeating the balance may deepen the problem, while hiding it removes relevant information.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2800,8 +2299,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The correction keeps curiosity inside evidence limits. Removing curiosity wastes a useful magnetizer, and a larger button would intensify the same problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2813,8 +2311,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The issue is cue reach. The icon may ready caution beyond its intended scope; insulting diners or hiding all information misses the corrective test.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2826,8 +2323,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The neutral opener prevents broad resentment activation, and the preserve item corrects range. Cheerful images and instructions do not address the readied concept.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2839,8 +2335,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The answer keeps the mechanism and the limits together. The other choices deny the effect or exaggerate it into permanent control.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2852,8 +2347,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The early warning may activate suspicion beyond its proper target. The corrective is to test placement and scope, not dismiss ratings altogether.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2865,8 +2359,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The responsible plan pairs activation with an immediate corrective. Fear and withholding both exploit the opened loop rather than helping people judge.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2927,19 +2420,13 @@
       },
       "memorableLines": [
         {
-          "text": "Readied is not the same as controlled.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the mechanism bounded and credible."
+          "text": "Readied is not the same as controlled."
         },
         {
-          "text": "Mechanics keep the practice honest.",
-          "location": "breakdown.fullRead",
-          "why": "It frames the chapter as disciplined testing rather than mystique."
+          "text": "Mechanics keep the practice honest."
         },
         {
-          "text": "You ready one relevant concept, watch for spillover, and build a correction where fairness requires it.",
-          "location": "breakdown.fullRead",
-          "why": "It summarizes cause, constraint, and corrective in one actionable line."
+          "text": "You ready one relevant concept, watch for spillover, and build a correction where fairness requires it."
         }
       ]
     },
@@ -2966,13 +2453,6 @@
             "tools",
             "scene"
           ],
-          "planSpec": {
-            "domain": "community tool library launch",
-            "audience": "a coordinator choosing reciprocity before a membership ask",
-            "stakes": "whether a small useful loan should come before the fee request",
-            "format": "scene",
-            "requiredBeat": "the coordinator hands residents a free blade-sharpening voucher before showing the annual membership card"
-          },
           "scenario": "A sharpening voucher lies beside a row of loaner drills while Anna greets residents at the tool-library launch. The annual membership card is still under the table. She is about to decide whether to lead with the fee or give a useful blade-sharpening voucher first. The voucher is real, limited to one service, and tied to the tools residents came to borrow.",
           "whatToDo": "Give the useful sharpening voucher before showing the membership card. Let reciprocity arise from actual value, not from a trinket.",
           "whyItMatters": "Reciprocity fits because residents receive help connected to the library’s purpose before they are asked to join."
@@ -2985,13 +2465,6 @@
             "medicine",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "medical conference speaker intro",
-            "audience": "an organizer choosing authority before a clinical guideline session",
-            "stakes": "whether credentials must be salient before the recommendation",
-            "format": "vignette",
-            "requiredBeat": "the organizer places the speaker’s trial role on the badge slide before the protocol ask appears"
-          },
           "scenario": "A badge slide shows one credential line highlighted while Drake places a protocol card on each chair. Attendees must decide whether to trust a new clinical guideline session. Before the protocol ask appears, the speaker’s role in the relevant trial is visible on the screen. The authority cue is not a prestige parade; it names why this person can speak to this recommendation.",
           "whatToDo": "Highlight the trial role on the badge slide before showing the protocol card. Use authority only where expertise directly supports the ask.",
           "whyItMatters": "Authority works when the credential answers the audience’s evidence question. Unrelated status would only decorate the recommendation."
@@ -3004,13 +2477,6 @@
             "farm",
             "decision"
           ],
-          "planSpec": {
-            "domain": "farm-share renewal window",
-            "audience": "a CSA manager choosing scarcity before late-season renewals",
-            "stakes": "whether limited beds are real and should be named before signup",
-            "format": "decision_point",
-            "requiredBeat": "the manager shows the actual field map with only twelve winter beds left before opening renewals"
-          },
           "scenario": "A laminated field map has twelve winter beds circled while Sigrid stacks renewal envelopes beside it. At 6:00 p.m. in the farm-share pickup barn, Sigrid is the manager deciding how to show the winter-bed limit before renewals are signed. Members are about to decide whether to renew late-season shares. She must choose whether to send a deadline email or show the actual bed map before opening renewals. The scarcity is visible, countable, and tied to soil, not to a made-up timer.",
           "whatToDo": "Show the field map with twelve beds before handing out renewal envelopes. Let real capacity define scarcity.",
           "whyItMatters": "Scarcity is clean when the limit exists outside the message. A false deadline would create pressure without truth."
@@ -3023,13 +2489,6 @@
             "choir",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "choir attendance pledge",
-            "audience": "a director choosing consistency before asking for rehearsals",
-            "stakes": "whether members should recall their own standard before committing",
-            "format": "reflection",
-            "requiredBeat": "the director asks singers to mark the performance they promised not to miss before handing out the rehearsal calendar"
-          },
           "scenario": "A rehearsal calendar sits under a pencil-written performance date while Peter watches singers gather their folders. He asks them to mark the performance they promised not to miss before he hands out the attendance pledge. The room does not feel scolded. It feels reminded. The rehearsal commitment now connects to a standard the singers had already named for themselves.",
           "whatToDo": "Ask singers to mark the promised performance before the rehearsal calendar appears. Let consistency point to their own standard.",
           "whyItMatters": "Consistency works without guilt when people see the commitment they already made, then choose the rehearsal behavior that supports it."
@@ -3042,13 +2501,6 @@
             "solar",
             "before-after"
           ],
-          "planSpec": {
-            "domain": "neighborhood solar co-op",
-            "audience": "an organizer choosing social proof before home assessments",
-            "stakes": "whether visible neighbor participation lowers uncertainty",
-            "format": "before_after",
-            "requiredBeat": "the organizer places a map of signed-up roofs beside the assessment form before mentioning rebates"
-          },
           "scenario": "A neighborhood map dotted with roof stickers sits beside Isabel’s assessment form. At 9:20 a.m. on a neighborhood assessment route, Isabel is the organizer deciding whether roof stickers are useful proof or pressure. Before the map, homeowners asked whether they would be the only house trying solar. After the map, they ask which installer slots remain. Isabel still mentions rebates, but only after real neighbor participation has lowered uncertainty. Her decision is whether to let social proof speak before incentives.",
           "whatToDo": "Place the signed-up roof map beside the assessment form before discussing rebates. Let actual neighbor participation reduce uncertainty.",
           "whyItMatters": "Social proof fits when the map is true. The stickers show people like them already taking the same step."
@@ -3061,13 +2513,6 @@
             "craft",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "craft fair vendor selection",
-            "audience": "a curator choosing liking before compliance with booth rules",
-            "stakes": "whether shared taste should be visible before a hard constraint",
-            "format": "dialogue",
-            "requiredBeat": "the curator comments on one maker’s material choice from the application before explaining the strict booth footprint"
-          },
           "scenario": "A sample swatch lies beside a booth-layout card as Mathieu meets a ceramics maker. At 4:00 p.m. beside the trade-show booth plan, Mathieu is the sales lead deciding whether the swatch should support liking or distract from fit. “The linen backing in your application made the glaze read softer,” he says. Then he turns to the strict booth footprint. The maker must decide whether the rule is a cold constraint or a constraint explained by someone who has actually seen the work. Mathieu chooses shared taste before compliance.",
           "whatToDo": "Comment specifically on the material choice from the application, then explain the booth footprint. Keep liking grounded in observed taste.",
           "whyItMatters": "Liking fits when it comes from genuine attention to the maker’s work. Flattery would make the hard rule feel slippery."
@@ -3086,8 +2531,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The voucher creates a genuine give-before-ask sequence, so reciprocity fits. Tool limits and coordinator role may exist, but they are not the main cue.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3099,8 +2543,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Authority fits because the trial role answers why this speaker should discuss the protocol. General impressiveness or silencing questions would misuse the shortcut.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3112,8 +2555,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Real scarcity rests on an actual constraint. Lamination and stronger wording only change presentation, not whether the shortage is true.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3125,8 +2567,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The marked performance activates consistency with a standard singers already chose. The room’s size and the director’s warmth are not the active principle.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3138,8 +2579,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Social proof is clean when participation is real. Inflated maps or hidden rebate details pressure decisions by distorting evidence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -3151,8 +2591,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Specific observed taste makes liking credible. A smile can be empty, and changing the rule is not what makes the principle honest.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3164,8 +2603,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Principle stacking feels like pressure when the cues do not all belong. The skill is choosing the one honest route, not loading the request with every possible lever.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3177,8 +2615,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Authority fits if expert review is the true reason. Popularity and scarcity would be mismatched shortcuts if they do not explain the rule.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3190,8 +2627,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The right first question is fit. Speed and stealth turn the principles into tricks, while a truthful match keeps the setup defensible.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3252,19 +2688,13 @@
       },
       "memorableLines": [
         {
-          "text": "Stacking principles makes a setup feel engineered, not optimized.",
-          "location": "breakdown.deepRead",
-          "why": "It names the failure mode of principle stacking in a quotable line."
+          "text": "Stacking principles makes a setup feel engineered, not optimized."
         },
         {
-          "text": "A shortcut is smart only when it shortens the right path.",
-          "location": "breakdown.fullRead",
-          "why": "It distinguishes ethical fit from manipulation."
+          "text": "A shortcut is smart only when it shortens the right path."
         },
         {
-          "text": "The fit between principle and decision is what makes the shortcut honest, not the cleverness of the setup.",
-          "location": "breakdown.deepRead",
-          "why": "It states fit as the working standard for choosing one principle over another."
+          "text": "The fit between principle and decision is what makes the shortcut honest, not the cleverness of the setup."
         }
       ]
     },
@@ -3291,13 +2721,6 @@
             "identity",
             "scene"
           ],
-          "planSpec": {
-            "domain": "diaspora archive project",
-            "audience": "an archivist asking families to loan fragile letters",
-            "stakes": "whether shared origin is brought forward before the trust request",
-            "format": "scene",
-            "requiredBeat": "the archivist opens with the street name both families left behind before presenting the loan agreement"
-          },
           "scenario": "A yellowed envelope with an old neighborhood postmark rests beside Lea’s loan agreement. At 3:30 p.m. in the archive reading room, Lea is the archivist deciding whether the shared street belongs before the loan agreement. The family is about to decide whether fragile letters can leave the apartment. Before she presents the form, Lea names the street both families left behind decades ago. The room changes because the request now begins inside shared origin, not institutional custody.",
           "whatToDo": "Name the shared street from the postmark before showing the loan agreement. Let real origin carry the trust request.",
           "whyItMatters": "The place cue creates a legitimate We. The family is not handing letters to a stranger first; they are speaking with someone tied to the same lost street."
@@ -3310,13 +2733,6 @@
             "place",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "rural clinic recruitment",
-            "audience": "a doctor asking nurses to return to their home county",
-            "stakes": "whether place identity makes the request feel like serving one’s own",
-            "format": "vignette",
-            "requiredBeat": "the doctor points to the county birth registry where three applicants’ families appear before discussing shifts"
-          },
           "scenario": "A county registry lies open under a clinic lamp while Thomas points to three family names before sliding over the shift roster. Nurses must decide whether returning home is a staffing sacrifice or service to their own county. The registry does not make night shifts easier. It makes place identity present before the roster becomes the whole conversation.",
           "whatToDo": "Show the birth-registry names before the shift roster. Let place identity appear before the hard staffing ask.",
           "whyItMatters": "The request is heard through belonging to the county, not through vacancy pressure alone. That is unity, not a staffing pitch."
@@ -3329,13 +2745,6 @@
             "fishery",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "family-owned fishery succession",
-            "audience": "an adviser mediating siblings on boat investment",
-            "stakes": "whether family unity is active before the capital decision",
-            "format": "dialogue",
-            "requiredBeat": "the adviser has each sibling identify the net-mending mark taught by their grandfather before opening the budget"
-          },
           "scenario": "A repaired net lies across a dock crate while Helena keeps the budget sheet closed. At 6:45 a.m. on the harbor dock, Helena is the family mediator deciding whether the repaired net should be named before the engine budget. “Who made this mark?” she asks. “Granddad,” one sibling says. “He showed all of us,” says another. They must decide whether to fund the boat engine, but Amelia has them identify the net repair mark before any number appears. The budget now enters a room where family unity is active.",
           "whatToDo": "Ask each sibling to identify the shared net-mending mark before opening the budget sheet. Bring family identity forward first.",
           "whyItMatters": "The investment becomes a decision by people who share a working inheritance. That does not settle the budget, but it changes the ground for cooperation."
@@ -3348,13 +2757,6 @@
             "elders",
             "decision"
           ],
-          "planSpec": {
-            "domain": "tribal language app rollout",
-            "audience": "a developer asking elders to record pronunciations",
-            "stakes": "whether shared identity precedes technology concerns",
-            "format": "decision_point",
-            "requiredBeat": "the developer plays a child saying the clan greeting before showing the recording consent form"
-          },
           "scenario": "A small recorder sits beside a handwritten greeting card as Ruth prepares the consent form. The elders are about to decide whether the language app feels useful or extractive. Before the form appears, she plays a child saying the clan greeting. Ruth must decide whether shared identity should be present before technology concerns take the first seat.",
           "whatToDo": "Play the child’s clan greeting before showing the consent form. Then explain the recording terms plainly.",
           "whyItMatters": "The greeting belongs to the elders’ We before it belongs to the app. It makes the request about continuity, not just technology."
@@ -3367,13 +2769,6 @@
             "place",
             "before-after"
           ],
-          "planSpec": {
-            "domain": "alumni disaster fund",
-            "audience": "a college officer asking graduates to support flood repairs",
-            "stakes": "whether campus place cues create We before the donation page",
-            "format": "before_after",
-            "requiredBeat": "the officer shows the flooded doorway everyone used as freshmen before the gift field"
-          },
           "scenario": "A photo shows a stone campus doorway under floodwater beside David’s gift field and freshman directory. Before the photo, graduates treated the repair appeal like another annual fund email. After he shows the doorway everyone used as freshmen, the gift field changes. The ask still costs money, but the place cue creates a We around a shared threshold.",
           "whatToDo": "Show the flooded freshman doorway before the gift field. Let the campus place cue create legitimate shared concern.",
           "whyItMatters": "The doorway is common memory, not generic alumni pride. It makes the repair about a place that once held all of them."
@@ -3386,13 +2781,6 @@
             "immigration",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "immigrant legal workshop",
-            "audience": "a coordinator asking attendees to share sensitive documents",
-            "stakes": "whether a shared journey cue makes trust legitimate before intake",
-            "format": "reflection",
-            "requiredBeat": "the coordinator starts with a map pin exercise of first arrival cities before the document checklist"
-          },
           "scenario": "A paper map dotted with colored pins rests beside Eva’s document checklist at the immigrant legal-aid intake. Before intake begins, attendees mark first arrival cities and see how many routes led to the same room. Eva knows sensitive documents are next. The map pin exercise does not erase risk, but it makes shared journey visible before people decide what to place on the table. The pin exercise takes ninety seconds and changes which conversation the room has agreed to start.",
           "whatToDo": "Begin with the arrival-city map pins before distributing the document checklist. Name the shared journey carefully and briefly.",
           "whyItMatters": "The cue builds legitimate trust because the group can see a real pattern of arrival. It must support intake, not exploit vulnerability."
@@ -3411,8 +2799,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The street creates a We relationship based on shared place. Warmth and fragility may matter, but they are not the central mechanism.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3424,8 +2811,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The place cue frames the ask as service to one’s own county. It does not remove hard shifts or solve logistics.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3437,8 +2823,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The mark brings shared inheritance to consciousness. It does not answer affordability, and distraction would avoid the decision rather than prepare it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3450,8 +2835,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Unity is clean when the identity cue is real and the request remains transparent. Device size and praise do not protect consent.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -3463,8 +2847,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The doorway raises shared place identity. It does not establish ability to give, and repair details still have to be clear.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3476,8 +2859,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Shared journey can create unity, but sensitive intake requires care. Hiding the map or skipping documents misses the ethical issue.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3489,8 +2871,7 @@
             ],
             "correctIndex": 2,
             "explanation": "False We language exploits unity. Family cues can be legitimate in some contexts, but not when used to cover a one-sided demand.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3502,8 +2883,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The shared block is a legitimate place cue. Friendliness is not unity, and prizes use a different principle.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3515,8 +2895,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The distinction is shared identity. Unity may include liking, but it goes deeper than warmth and is not automatically unethical.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3577,19 +2956,13 @@
       },
       "memorableLines": [
         {
-          "text": "It names a bond that already exists, not one being negotiated in the moment.",
-          "location": "breakdown.deepRead",
-          "why": "It names what unity actually is, instead of leaving We as a slogan."
+          "text": "It names a bond that already exists, not one being negotiated in the moment."
         },
         {
-          "text": "Unity can make a request feel like care for a shared body.",
-          "location": "breakdown.fullRead",
-          "why": "It captures unity's distinctive effect in a quotable image."
+          "text": "Unity can make a request feel like care for a shared body."
         },
         {
-          "text": "Use unity only where the bond can survive being named aloud by the people inside it.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the chapter’s standard for legitimate shared identity."
+          "text": "Use unity only where the bond can survive being named aloud by the people inside it."
         }
       ]
     },
@@ -3616,13 +2989,6 @@
             "synchrony",
             "scene"
           ],
-          "planSpec": {
-            "domain": "rowing-club safety vote",
-            "audience": "a coach asking members to adopt stricter launch rules",
-            "stakes": "whether synchronized warmups make support easier before the vote",
-            "format": "scene",
-            "requiredBeat": "the coach has mixed crews row a short cadence together before opening the rule vote"
-          },
           "scenario": "Oars rise at the same count before dawn practice while Henry holds the rule ballot on the dock. The club is about to decide whether stricter launch rules are worth the hassle. Before opening the vote, he mixes crews and has them row a short cadence together. The stroke count is still in their bodies when the ballots come out.",
           "whatToDo": "Have mixed crews row one short cadence together before the rule ballot. Let synchronized safety come before the vote.",
           "whyItMatters": "The warmup creates a practical We tied to launch behavior. The rule feels less like control and more like protecting a shared rhythm."
@@ -3635,13 +3001,6 @@
             "handoff",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "factory shift handoff",
-            "audience": "a supervisor building cooperation between rival shifts",
-            "stakes": "whether collaborative inspection creates We before the overtime request",
-            "format": "dialogue",
-            "requiredBeat": "the supervisor pairs one day worker and one night worker to sign the same machine check before asking for shared overtime"
-          },
           "scenario": "Two signatures are missing from a machine-check tag when Linda brings the overtime sheet to the press. At 2:05 p.m. beside press three, Linda is the supervisor deciding whether a joint inspection should come before the overtime ask. “Day shift says night leaves the guards loose,” one worker mutters. Linda pairs him with a night worker and says, “Sign this check together first.” They must decide whether overtime is another rival-shift burden or a shared repair after both names are on the same tag.",
           "whatToDo": "Pair one day worker and one night worker to complete and sign the same machine check before showing the overtime sheet.",
           "whyItMatters": "Collaborative inspection creates a small We around the machine. The overtime request follows shared evidence instead of rivalry."
@@ -3654,13 +3013,6 @@
             "children",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "children’s clinic breathing class",
-            "audience": "a therapist helping anxious children support one another",
-            "stakes": "whether synchronized breathing changes how they respond to a group task",
-            "format": "vignette",
-            "requiredBeat": "the therapist has children breathe with the same pinwheel before asking them to practice in pairs"
-          },
           "scenario": "Pinwheels spin together on a low table while Kate kneels beside the pair cards. The children must decide whether practicing with another child feels scary or manageable. Before pairing them, she has everyone breathe into the same pinwheel rhythm. The room quiets into one pace, and the pair cards no longer feel like being singled out.",
           "whatToDo": "Use the shared pinwheel breath before pair practice. Let synchronized breathing create togetherness first.",
           "whyItMatters": "The children experience the same rhythm before the task. Pairing follows a shared body cue, not a cold instruction."
@@ -3673,13 +3025,6 @@
             "cleanup",
             "before-after"
           ],
-          "planSpec": {
-            "domain": "student lab cleanup",
-            "audience": "a professor asking students to maintain shared equipment",
-            "stakes": "whether doing the first cleanup together precedes rule acceptance",
-            "format": "before_after",
-            "requiredBeat": "the professor cleans one microscope station alongside students before assigning the rotation"
-          },
           "scenario": "A microscope lens cloth lies beside a sign-up strip while Lucia stands at station four. Before the change, students treated the cleanup rotation as punishment. Afterward, she cleans one microscope alongside them before assigning names. The rotation strip appears only after everyone has wiped a lens, checked a slide tray, and seen the equipment as something they maintain together.",
           "whatToDo": "Clean one microscope station with the students before assigning the rotation. Make the first act shared.",
           "whyItMatters": "The rule follows joint care for the equipment. Students are less likely to hear it as discipline when they have already done the work together."
@@ -3692,13 +3037,6 @@
             "repair",
             "decision"
           ],
-          "planSpec": {
-            "domain": "brand repair workshop",
-            "audience": "a company asking angry customers to help redesign packaging",
-            "stakes": "whether collaborative action changes the relationship before feedback",
-            "format": "decision_point",
-            "requiredBeat": "the facilitator has customers sort failed package tabs with staff before the survey opens"
-          },
           "scenario": "A table is covered with torn package tabs while Connor sets a sorting tray beside a survey tablet. Angry customers are about to decide whether feedback will matter. Before the survey opens, he has customers and staff sort the failed tabs by tear point. The tablet waits. For once, both sides are handling the same broken evidence before opinions are collected.",
           "whatToDo": "Sort failed tabs with customers and staff before opening the survey tablet. Let repair work precede feedback.",
           "whyItMatters": "The relationship changes when both sides handle the same problem. The survey follows collaboration instead of complaint intake."
@@ -3711,13 +3049,6 @@
             "permit",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "neighborhood mural permit",
-            "audience": "an organizer asking business owners to back a public art plan",
-            "stakes": "whether shared painting creates support before a permit signature",
-            "format": "reflection",
-            "requiredBeat": "the organizer has owners paint one test tile together before handing over the permit letter"
-          },
           "scenario": "A wet ceramic tile sits on a newspaper-covered table while Gina keeps the permit letter in her folder. Business owners each add one brushstroke to the test tile before anyone signs. She watches them lean over the same color edge and talk about the wall as if it is already partly theirs. Only then does the permit letter come out.",
           "whatToDo": "Have owners paint one test tile together before handing over the permit letter. Make the first support visible in paint.",
           "whyItMatters": "The shared action turns the mural from someone’s proposal into a small joint act. The signature follows participation."
@@ -3736,8 +3067,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cadence creates togetherness around the same action the rule protects. Fatigue and rule softness are not the mechanism.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3749,8 +3079,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The shared inspection creates We before the overtime ask. Scarcity and authority may be present, but the active move is acting together.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3762,8 +3091,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The breathing action relates to the support needed in pair practice. Color and pressure would miss the unity mechanism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3775,8 +3103,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The shared first cleanup creates practical togetherness around the equipment. Blame and elimination of maintenance are not the point.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3788,8 +3115,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Sorting creates a joint repair frame before feedback. The goal is not forgetting anger or controlling answers; it is changing the relationship honestly.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3801,8 +3127,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Shared action prepares support, but it cannot replace clear terms. Seeing color and multiple participants are part of the legitimate action.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -3814,8 +3139,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Unitary activity needs fit. A chant may create motion together, but if it does not mirror the needed support, it feels like theater.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3827,8 +3151,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Doing one piece of cleanup together creates a We tied to the ask. Speeches name unity without making it, and discounts use a different road.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3840,8 +3163,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fit to the later cooperation is the test. Humor or duration can help or hurt, but neither defines acting-together unity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3902,19 +3224,13 @@
       },
       "memorableLines": [
         {
-          "text": "People discover the body they share when they have just done one small thing inside it.",
-          "location": "breakdown.deepRead",
-          "why": "It names what shared action actually does, instead of leaving it as a slogan."
+          "text": "People discover the body they share when they have just done one small thing inside it."
         },
         {
-          "text": "The right action lets them notice they were already capable of it.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the working theory behind acting before asking."
+          "text": "The right action lets them notice they were already capable of it."
         },
         {
-          "text": "The act must fit, or it becomes noise pretending to be glue.",
-          "location": "breakdown.fastRead",
-          "why": "It distinguishes useful unitary activity from icebreaker filler in one sentence."
+          "text": "The act must fit, or it becomes noise pretending to be glue."
         }
       ]
     },
@@ -3941,13 +3257,6 @@
             "ethics",
             "decision"
           ],
-          "planSpec": {
-            "domain": "subscription-pricing review",
-            "audience": "a growth lead deciding whether to hide cancellation terms",
-            "stakes": "whether profit pressure is checked before the attention tactic is built",
-            "format": "decision_point",
-            "requiredBeat": "the lead circles the hidden-fee revenue line, then writes the likely trust cost beside it before approving copy"
-          },
           "scenario": "A pricing mockup sits beside a revenue forecast while Paige studies a cancellation link buried under account settings. At 10:00 a.m. in the growth review room, Paige is the product lead deciding whether the cancellation mockup passes the ethics check before revenue math. The hidden-fee revenue line looks strong. Before approving copy, she circles the line and writes likely trust cost beside it. She must decide whether the attention tactic should exist before the team improves the page that would hide cancellation terms.",
           "whatToDo": "Write the trust cost beside the revenue line before approving copy. Decide whether the hidden-link tactic deserves to exist.",
           "whyItMatters": "Profit pressure can corrupt pre-suasion before design begins. Naming trust cost makes ethics part of the first decision, not cleanup."
@@ -3960,13 +3269,6 @@
             "campaign",
             "decision"
           ],
-          "planSpec": {
-            "domain": "pharmaceutical reminder campaign",
-            "audience": "a marketing manager weighing fear-based refill messages",
-            "stakes": "whether a health cue informs or exploits patient anxiety",
-            "format": "decision_point",
-            "requiredBeat": "the manager reads the message aloud beside the patient opt-out list before sending it"
-          },
           "scenario": "A campaign screen shows the opt-out count while Danielle reads the refill message aloud. The line about missing a dose feels sharp enough to move people. It may also exploit anxiety. Before sending, she must decide whether the health cue informs patients or pressures them. The opt-out list stays visible so the cost of fear is in the room.",
           "whatToDo": "Read the refill message aloud with the opt-out list visible. Rewrite any line that uses fear beyond what patients need to know.",
           "whyItMatters": "A health cue can help or exploit. The opt-out list reminds the team that anxious attention has a relationship cost."
@@ -3979,13 +3281,6 @@
             "purchase",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "children’s game purchase flow",
-            "audience": "a designer reviewing pre-purchase animations",
-            "stakes": "whether the cue targets the parent’s decision or bypasses the child’s restraint",
-            "format": "postmortem",
-            "requiredBeat": "the designer removes the countdown sparkle after watching a child press buy before reading the price"
-          },
           "scenario": "A tablet screen is frozen on a sparkling countdown while Ian reviews a session replay. The price label is technically present, and the parent gate appears after one more tap. In the postmortem, he watches a child press buy before reading the price. He removes the countdown sparkle and moves the parent gate forward because the cue bypassed restraint instead of informing a decision.",
           "whatToDo": "Remove the countdown sparkle and put the parent gate before the purchase animation. Do not aim the cue at the child’s impulse.",
           "whyItMatters": "The animation won attention from the wrong person at the wrong moment. Ethical use requires informed choice, not bypassed restraint."
@@ -3998,13 +3293,6 @@
             "consent",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "charity disaster appeal",
-            "audience": "a fundraising director choosing images for relief donations",
-            "stakes": "whether attention honors the people pictured or turns suffering into a lever",
-            "format": "reflection",
-            "requiredBeat": "the director rejects the most shocking image after checking consent notes and need specificity"
-          },
           "scenario": "A contact sheet lies beside a consent log while Miriam holds the need statement for flood repairs. The most shocking image would stop donors cold, but the consent note is unclear and the need it suggests is vague. She rejects it before testing headlines. The appeal will use a less dramatic photo with clear consent and a specific repair need.",
           "whatToDo": "Check consent and need specificity before choosing the image. Reject the photo if shock outruns permission or clarity.",
           "whyItMatters": "Attention should honor the people pictured. Suffering becomes exploitation when it is used as a lever without consent or a precise need."
@@ -4017,13 +3305,6 @@
             "agency",
             "scene"
           ],
-          "planSpec": {
-            "domain": "workplace wellness enrollment",
-            "audience": "an HR manager deciding whether to prefill employee goals",
-            "stakes": "whether the design supports agency or manufactures agreement",
-            "format": "scene",
-            "requiredBeat": "the manager watches a tester erase a prefilled goal and marks the coercion risk before launch"
-          },
           "scenario": "A wellness form has a prefilled goal highlighted while Vivian watches a tester hover over the erase icon. The launch checklist says completion will rise. The tester deletes the goal and says it felt like the company had already chosen for her. Vivian is about to decide whether the cue supports agency or manufactures agreement, and she marks coercion risk in the test note before launch.",
           "whatToDo": "Remove prefilled goals and let employees choose or skip the field. Use prompts that support agency instead of manufacturing agreement.",
           "whyItMatters": "A prefilled goal can make compliance look like choice. The erase moment shows the design is steering identity, not helping employees decide."
@@ -4036,13 +3317,6 @@
             "finance",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "auto-loan dealership script",
-            "audience": "a finance director auditing add-on warranty prompts",
-            "stakes": "whether the pre-suasive frame creates informed choice or confusion",
-            "format": "dialogue",
-            "requiredBeat": "the director has a clerk explain the warranty with the total payment visible and stops the script when the cost is hidden"
-          },
           "scenario": "A payment worksheet with add-on rows exposed lies between Greg and a finance clerk. At 1:25 p.m. in the dealership finance office, Greg is the buyer deciding whether the exposed add-on rows leave him a real choice. “Explain the warranty,” he says. The clerk covers the total payment and starts with peace of mind. Greg stops him. The customer would have to decide without the cost in view. He has the clerk restart with the warranty row and total payment visible before any comfort language appears.",
           "whatToDo": "Keep the warranty row and total payment visible while explaining the add-on. Stop any script that hides cost before comfort language.",
           "whyItMatters": "The frame should create informed choice, not confusion. Peace-of-mind language becomes unethical when the price disappears."
@@ -4061,8 +3335,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The ethical decision belongs before copy optimization. Legal visibility may matter, but trust cost asks whether the tactic should exist at all.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4074,8 +3347,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The ethical check asks what the fear cue does to patients and trust. Clicks and competitor behavior can reward exploitation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4087,8 +3359,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The problem is who the cue targets and when. Polish and color are secondary if the design captures child impulse before informed choice.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -4100,8 +3371,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Consent and need specificity control ethical use. Shock alone can turn suffering into a lever, and cropping may not fix missing permission or vague purpose.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4113,8 +3383,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The tester’s reaction shows a coercion risk. Hiding the erase icon would deepen the problem, and one test does not condemn every program.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -4126,8 +3395,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The frame pushes comfort while removing cost from view, so the choice is not informed. Optional status does not fix hidden payment information.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -4139,8 +3407,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The challenge goes beyond minimum compliance without rejecting profit itself. Ethical pre-suasion asks whether the setup can survive daylight.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -4152,8 +3419,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Urgency is defensible when it accurately reflects the need and use. Speed alone is not an ethical standard.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -4165,8 +3431,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The audit puts ethics before optimization. Design and process details matter later, but they do not answer whether the cue should be used.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -4227,19 +3492,13 @@
       },
       "memorableLines": [
         {
-          "text": "A method that wins attention can still owe people more than it returned.",
-          "location": "breakdown.deepRead",
-          "why": "It states the ethics-debt thought in a quotable image."
+          "text": "A method that wins attention can still owe people more than it returned."
         },
         {
-          "text": "A clean cue can survive daylight.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the ethical standard in a memorable line."
+          "text": "A clean cue can survive daylight."
         },
         {
-          "text": "Ethics has to be upstream because pre-suasion is upstream.",
-          "location": "breakdown.fullRead",
-          "why": "It states why ethics must precede tactic design."
+          "text": "Ethics has to be upstream because pre-suasion is upstream."
         }
       ]
     },
@@ -4266,13 +3525,6 @@
             "follow-through",
             "scene"
           ],
-          "planSpec": {
-            "domain": "home energy audit follow-through",
-            "audience": "an auditor trying to make a conservation yes last past the visit",
-            "stakes": "whether the next action is locked in while attention is still warm",
-            "format": "scene",
-            "requiredBeat": "the auditor schedules the insulation quote before leaving the attic hatch, not three days later by email"
-          },
           "scenario": "A pull-down attic ladder hangs under a work light while Emily holds a thermal photo beside the quote calendar. The homeowner has just seen heat leaking through the roofline. Claire is about to decide whether to send a quote email later or schedule before leaving the hatch. The reason for saying yes is still glowing in blue and orange on the photo.",
           "whatToDo": "Open the quote calendar at the attic hatch and schedule the insulation visit before the ladder folds away.",
           "whyItMatters": "The next action attaches while the reason is visible. Waiting for email lets ordinary attention erase the urgency."
@@ -4285,13 +3537,6 @@
             "procedure",
             "before-after"
           ],
-          "planSpec": {
-            "domain": "diabetes nutrition consult",
-            "audience": "a dietitian helping a patient preserve a fresh decision",
-            "stakes": "whether the first durable procedure happens before the patient exits",
-            "format": "before_after",
-            "requiredBeat": "the dietitian has the patient place one usual breakfast item on a swap card before checkout"
-          },
           "scenario": "A breakfast swap card sits beside a glucose meter case while Mark reaches for his checkout slip. At 8:50 a.m. in the diabetes clinic checkout line, Mark is the patient deciding how the breakfast swap will survive tomorrow morning. Before the consult, he nodded at general advice and forgot it by the parking lot. Afterward, the dietitian has him write his usual sweet roll on the card and choose tomorrow’s swap before checkout. The decision now has a first breakfast attached to it.",
           "whatToDo": "Have the patient write one usual breakfast item and one swap on the card before checkout. Make the first change procedural.",
           "whyItMatters": "Agreement becomes more durable when it is tied to tomorrow’s specific meal before the patient leaves the setting that created the yes."
@@ -4304,13 +3549,6 @@
             "pledge",
             "decision"
           ],
-          "planSpec": {
-            "domain": "museum donor pledge conversion",
-            "audience": "a development officer making a verbal pledge take root",
-            "stakes": "whether the commitment gets an immediate public or procedural anchor",
-            "format": "decision_point",
-            "requiredBeat": "the officer asks the donor to choose the exhibit label wording before the pledge card goes into a folder"
-          },
           "scenario": "A draft exhibit label on cream stock rests beside Fiona’s pledge card and label proof. The donor has just said yes to supporting the case. Before the pledge card goes into a folder, Rose must decide whether to simply thank him or ask him to choose the label wording. The commitment can become a future public line while the exhibit is still in his mind.",
           "whatToDo": "Ask the donor to choose the exhibit label wording before filing the pledge card. Give the verbal yes an immediate anchor.",
           "whyItMatters": "The label choice makes the pledge concrete. The donor leaves with a commitment attached to a visible future artifact."
@@ -4323,13 +3561,6 @@
             "practice",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "coding bootcamp practice plan",
-            "audience": "an instructor turning a burst of motivation into weekly practice",
-            "stakes": "whether the next session is placed on the student’s actual calendar",
-            "format": "dialogue",
-            "requiredBeat": "the instructor watches the student block Tuesday’s practice while the solved bug is still on screen"
-          },
           "scenario": "Andrew watches his student close the fixed-test window beside an open calendar invite. “I finally get it,” the student says. Andrew points to Tuesday. “Put the next practice there before you close the test output.” The student must decide whether the win stays a feeling or becomes a calendar block. Andrew watches the invite land while the green check is still on screen.",
           "whatToDo": "Have the student block Tuesday practice before closing the solved test. Tie the next session to the visible win.",
           "whyItMatters": "Motivation fades after the screen closes. The calendar invite gives the burst of confidence a place to return."
@@ -4342,13 +3573,6 @@
             "reset",
             "vignette"
           ],
-          "planSpec": {
-            "domain": "tenant recycling reset",
-            "audience": "a building manager making a corrected sorting choice stick",
-            "stakes": "whether the first correct behavior is repeated and marked immediately",
-            "format": "vignette",
-            "requiredBeat": "the manager has residents sort one real item at the mailroom station and take a printed bin guide"
-          },
           "scenario": "A mailroom table holds three labeled sample items while Nina stands beside the bin guide. Residents must decide whether the reset is another sign or a corrected habit. Before anyone leaves, each person sorts one real item at the mailroom station and takes the printed guide. The first correct repetition happens in the same place where the old mistake kept happening.",
           "whatToDo": "Have residents sort one real item at the station and take the bin guide immediately. Turn the corrected choice into a first repetition.",
           "whyItMatters": "The behavior starts before the explanation fades. The guide leaves with a memory of doing the action correctly."
@@ -4361,13 +3585,6 @@
             "practice",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "youth orchestra practice pledge",
-            "audience": "a conductor turning recital excitement into durable practice",
-            "stakes": "whether the child leaves with a named cue and first repetition",
-            "format": "reflection",
-            "requiredBeat": "the conductor has the student play the opening four bars once more and attach practice to tuning the stand light"
-          },
           "scenario": "Sheet music rests under a small stand light while Oliver writes a practice card. The student is flushed from recital excitement and ready to promise anything. Oliver has her play the opening four bars once more, then attach tomorrow’s practice to turning on the stand light. The pledge becomes a cue and a first repetition instead of a warm feeling in the hallway.",
           "whatToDo": "Have the student play the opening four bars again and write the stand-light cue on the practice card.",
           "whyItMatters": "The excitement gets a concrete trigger. Tomorrow’s practice begins with a light switch, not a vague memory of wanting to improve."
@@ -4386,8 +3603,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The quote calendar turns the fresh yes into a next action while the reason is visible. Later email and general reflection let the attention shift cool.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4399,8 +3615,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The swap card creates an immediate procedure for tomorrow. A brochure and motivation comment do not attach the decision to a specific first behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4412,8 +3627,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Choosing label wording anchors the pledge in a visible future artifact. Warm thanks are good manners, but they do not create the same follow-through procedure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4425,8 +3639,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The calendar block attaches practice to the fresh win. Praise alone fades, and a large plan without a real slot may never happen.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4438,8 +3651,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The first correct repetition makes the new behavior physical before people leave. Larger signs and later reminders rely on attention returning by itself.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -4451,8 +3663,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The repeat plus stand-light cue converts excitement into a trigger and action. Pride and equipment may help, but they do not create the first procedure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -4464,8 +3675,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The yes is fragile without a next action. Celebration is not the problem by itself; the missing procedure is.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -4477,8 +3687,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Scheduling the first shift while enthusiasm is present protects the aftereffect. Later links and verbal confidence depend on motivation lasting unaided.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -4490,8 +3699,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The procedure should support the person’s fresh decision, not trap or mislead them. Durability built on concealment is another ethical problem.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4552,19 +3760,13 @@
       },
       "memorableLines": [
         {
-          "text": "Without a procedure attached while the reason is still alive, agreement evaporates between the chair and the parking lot.",
-          "location": "breakdown.deepRead",
-          "why": "It names the failure mode of post-suasion in a single quotable line."
+          "text": "Without a procedure attached while the reason is still alive, agreement evaporates between the chair and the parking lot."
         },
         {
-          "text": "Agreement is not the finish. It is the moment to plant the follow-through.",
-          "location": "breakdown.fastRead",
-          "why": "It states both the correction and the action it implies."
+          "text": "Agreement is not the finish. It is the moment to plant the follow-through."
         },
         {
-          "text": "Hold the door open for the decision while it is still walking through.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the book’s planning arc with a concrete image of follow-through."
+          "text": "Hold the door open for the decision while it is still walking through."
         }
       ]
     }

@@ -41,13 +41,6 @@
             "hospital",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "hospital handoff training",
-            "audience": "new charge nurse Claire watching a senior nurse model calm correction",
-            "stakes": "a medication near-miss could become blame instead of inherited standard",
-            "format": "scene",
-            "requiredBeat": "Claire copies the senior nurse's exact two-question handoff after seeing it prevent a dosage error."
-          },
           "scenario": "The label printer spits out a crooked wristband beside the meds cart at 6:42 a.m., and Claire sees the dosage mismatch before the locked medication drawer opens. Last week, Maren caught the same kind of error with two quiet questions and no blame. Claire's hand rests on the shift-change sheet: public correction, or the exact handoff that protected the patient. The night nurse is waiting for the handoff, and the crooked wristband has to be corrected before anyone admires her speed.",
           "whatToDo": "Ask the two questions Maren used, verify the wristband against the order, and correct the handoff without turning the mistake into a public trial.",
           "whyItMatters": "The inherited standard is calm correction under pressure. If Claire only admires it after the fact, the near-miss becomes blame. If she repeats it, the trait survives in the room."
@@ -60,13 +53,6 @@
             "bakery",
             "succession"
           ],
-          "planSpec": {
-            "domain": "family business succession",
-            "audience": "Thomas taking over a bakery after his aunt retires",
-            "stakes": "staff expect him to announce his own style by discarding hers",
-            "format": "retrospective",
-            "requiredBeat": "Thomas keeps the aunt's quiet closing checklist and adds his own initials only after the ovens are clean."
-          },
           "scenario": "It took Thomas three Fridays to understand why the old laminated checklist began with the floor drain. The cooling racks looked more impressive, and the till envelope felt more like ownership. By the fourth close, with staff watching for his new style, the pen pauses over a new list while the drain still waits. The mop bucket is already out, and the old drain rule will decide whether tomorrow morning starts clean.",
           "whatToDo": "Keep the closing order intact, clean the unseen drain first, then add his initials after the inherited standard has been honored in work.",
           "whyItMatters": "The aunt's checklist carries a judgment about what matters when nobody is looking. Keeping it is not nostalgia. It is accepting the discipline hidden in the order of tasks."
@@ -79,13 +65,6 @@
             "seminar",
             "reading"
           ],
-          "planSpec": {
-            "domain": "graduate seminar conduct",
-            "audience": "Emily moderating a tense philosophy seminar",
-            "stakes": "students are rewarding clever interruption over careful reading",
-            "format": "dialogue",
-            "requiredBeat": "Emily quotes no theory, pauses the room, and asks each student to name the strongest line in the text before objecting."
-          },
           "scenario": "\"Before we answer him, what did he actually say?\" Emily asks, with a marked paperback open on the seminar table and the attendance sheet sliding toward the edge. Two students are ready to interrupt each other for the third time. Emily can win the argument with her own theory, or make the room practice the careful reading her old tutor demanded. The marked paragraph sits under her finger, and the students have to return to the actual sentence before winning the exchange.",
           "whatToDo": "Pause the debate, ask each student to name the strongest line in the passage, and allow objections only after the text has been read fairly.",
           "whyItMatters": "Careful reading is a standard, not a taste. Emily proves she inherited it only when she makes the room submit to the page before anyone performs intelligence."
@@ -98,13 +77,6 @@
             "municipal",
             "fairness"
           ],
-          "planSpec": {
-            "domain": "municipal budget review",
-            "audience": "Daniel inheriting a predecessor's fair but unpopular review method",
-            "stakes": "a loud department head wants special treatment",
-            "format": "decision_point",
-            "requiredBeat": "Daniel opens the prior year's scoring grid and applies it to the loudest request first."
-          },
           "scenario": "The council chamber clock clicks louder than the projector fan while the parks director leans over Daniel's nameplate and asks for an exception. In the capital request binder, the prior year's scoring grid waits behind a yellow tab. Daniel's next sentence will either flatter the room or apply the old method to the loudest request first. The exception would make the room easier for five minutes, but the old grid is still the fairest instrument on the table.",
           "whatToDo": "Open the prior grid, score the parks request by the same criteria as the quiet departments, and explain the decision through the method rather than personality.",
           "whyItMatters": "Fairness becomes real when it costs social ease. The predecessor's method is not honored by praise, but by using it on the request most likely to punish Daniel for using it."
@@ -117,13 +89,6 @@
             "coaching",
             "restraint"
           ],
-          "planSpec": {
-            "domain": "youth sports coaching",
-            "audience": "Sophie coaching after the founder leaves",
-            "stakes": "parents want quick wins over the club's old restraint standards",
-            "format": "before_after",
-            "requiredBeat": "What do you keep when everyone asks for your own brand?"
-          },
           "scenario": "Which matters more on a muddy sideline, the next goal or the code taped inside the kit box? Sophie hears parents cheer the striker who mocked a teammate after scoring. The substitution card is in her sleeve. Before the second half starts, the easy win pulls one way and the founder's twenty-year restraint pulls the other. The mud on the sideline makes the taped code look almost silly until Sophie has to enforce it.",
           "whatToDo": "Bench the striker for the next ten minutes, point to the club code, and make the team see that skill does not cancel the inherited rule.",
           "whyItMatters": "A standard survives a founder only when someone risks short-term approval to keep it. Sophie's choice turns memory into a rule the players can feel."
@@ -136,13 +101,6 @@
             "architecture",
             "inspection"
           ],
-          "planSpec": {
-            "domain": "architecture apprenticeship",
-            "audience": "Jack learning site inspection from a retiring architect",
-            "stakes": "a cosmetic fix would hide structural sloppiness",
-            "format": "vignette",
-            "requiredBeat": "You see Jack circle the same hairline crack his mentor always checked before admiring the facade."
-          },
           "scenario": "You are standing under scaffolding while dust falls from a limestone joint and Jack holds the inspection clipboard his retiring mentor left behind. The scaffold tag says final facade review. Before anyone praises the cleaned stone, Jack's chalk hovers between the handsome surface and the hairline crack his mentor always checked first. The developer is pointing at the polished stone, while the hairline crack waits for Jack to choose the mentor's standard.",
           "whatToDo": "Mark the crack in chalk, photograph it, and delay the cosmetic signoff until the structural question has been answered.",
           "whyItMatters": "The mentor's habit taught Jack where truth hides on a site. Copying it keeps the inheritance practical, while admiring the facade would turn the lesson into memory."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The failure is not that she corrected the analyst. It is that she abandoned the inherited standard of correction when it mattered. Private correction may help, but the deeper test is whether gratitude governs conduct.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The standard matters because it protects unseen cleanliness, not because it is old or familial. A redesign may come later, and appeal to the aunt's authority alone turns discipline into nostalgia.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Inherited fairness has to operate under pressure. Delay may be tactical, but it can also dodge the test. Praising the predecessor does nothing unless the method still governs the decision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The inherited trait is careful reading, so the live move is to make the room practice it before cleverness takes over. Waiting passively does not teach the standard, and interrupting violates the trait.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The standard has to cost something to become real. A later reminder preserves the win more than the rule, and polling parents hands the inherited discipline to the crowd.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The issue is not publicity or intentional teaching. The ledger becomes practical only when each remembered person yields a standard for present conduct.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The trait has been converted into status. The useful inheritance would make her steadier and more helpful in the room. Avoiding all comparison is too broad, and speed is not the relevant standard.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A real inheritance governs action. A font may preserve style, but user testing preserves the founder's discipline. Calling both equal blurs the difference between symbol and standard.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The plaque remembers the teacher, but the records review practices the trait. The point is not privacy. It is whether the inherited standard changes what happens to students now.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -303,7 +252,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Convert Debt Into Conduct",
         "coreSkill": "You practice turning remembered people into living standards. The skill is to name the trait you received, locate the next moment that tests it, and act before nostalgia replaces duty.",
         "ifThenPlans": [
           {
@@ -328,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "Character begins as a debt with work attached.",
-          "location": "breakdown.fastRead",
-          "why": "It turns gratitude into obligation in one plain sentence."
+          "text": "Character begins as a debt with work attached."
         },
         {
-          "text": "A gratitude ledger can sound harmless until it starts naming demands.",
-          "location": "breakdown.deepRead",
-          "why": "The line gives the opening list tension instead of sentiment."
+          "text": "A gratitude ledger can sound harmless until it starts naming demands."
         },
         {
-          "text": "The inheritance is not proven by reverence.",
-          "location": "breakdown.fullRead",
-          "why": "It separates honoring a teacher from practicing the teacher's standard."
+          "text": "The inheritance is not proven by reverence."
         }
       ]
     },
@@ -367,13 +309,6 @@
             "airport",
             "queue"
           ],
-          "planSpec": {
-            "domain": "airport gate operations",
-            "audience": "Laura handling passengers after a cancellation",
-            "stakes": "one abusive traveler could set the tone for the whole queue",
-            "format": "scene",
-            "requiredBeat": "Laura writes three likely behaviors on the back of the gate sheet before opening the microphone."
-          },
           "scenario": "At 6:12 a.m., Laura flips the delayed sign while the line at gate B18 hardens and a voucher stack slides against the gate microphone. On the back of the delay sheet, she writes: shouting, blame, impossible exceptions. The first angry traveler steps up, and her voice can follow the list or catch his heat. The boarding screen is flashing red behind her, so the next announcement has to serve the line, not her wounded pride.",
           "whatToDo": "Read the list once, open the microphone, state the next concrete step, and answer the first abusive traveler through policy, not wounded pride.",
           "whyItMatters": "Naming predictable behavior removes the shock that usually starts resentment. Laura can cooperate with the queue's real needs without letting one passenger govern her."
@@ -386,13 +321,6 @@
             "restaurant",
             "service"
           ],
-          "planSpec": {
-            "domain": "restaurant expo line",
-            "audience": "Lukas managing a slammed dinner service",
-            "stakes": "a rude chef and a late table threaten to make him punish the servers",
-            "format": "dialogue",
-            "requiredBeat": "Lukas names the missing order, not the chef's character, and keeps the pass moving."
-          },
           "scenario": "\"We are missing table twelve, not missing our minds,\" Lukas says as the ticket rail curls under the heat lamp. The chef snaps that the servers are useless, sauce spoon raised like a pointer. Lukas can spend the next sentence on the insult, or call for the late plate, the garnish, and the runner who can still save the table. The missing table is still hungry, and the plate in the window will get colder if the argument becomes the work.",
           "whatToDo": "Name the missing order, assign the next handoff, and leave the chef's character out of the sentence until dinner service is stable.",
           "whyItMatters": "The useful fact is table twelve. Attacking the chef's character would spend the ruling part on heat while the actual work sits under the lamp."
@@ -405,13 +333,6 @@
             "library",
             "policy"
           ],
-          "planSpec": {
-            "domain": "public library desk",
-            "audience": "Camille dealing with a patron who returns damaged books angrily",
-            "stakes": "policy has to hold without contempt",
-            "format": "decision_point",
-            "requiredBeat": "Camille slides the policy card forward and asks which repair option he wants, without answering the insult."
-          },
           "scenario": "Rain taps the library windows while the damaged book spine sheds glue on the counter. The patron calls the fee ridiculous and asks if Camille enjoys punishing people. The policy card and repair envelope are beside her keyboard. Her fingers move toward either self-defense or the two repair options. The repair envelope is already open, which lets Camille keep the fee factual instead of personal.",
           "whatToDo": "Move the policy card into view, offer the repair envelope or replacement fee, and keep the patron's insult separate from the rule that has to hold.",
           "whyItMatters": "Policy can stay firm without contempt. Camille loses ground only if she lets the insult become the center instead of the damaged book and the next repair choice."
@@ -424,13 +345,6 @@
             "software",
             "outage"
           ],
-          "planSpec": {
-            "domain": "software incident channel",
-            "audience": "Andrew leading a production outage bridge",
-            "stakes": "a blame-heavy executive joins and starts naming people",
-            "format": "vignette",
-            "requiredBeat": "You watch Andrew restate the shared objective and assign the next diagnostic action without defending anyone's ego."
-          },
           "scenario": "You hear the incident chime for the seventh time in four minutes as Andrew watches the status page turn red. An executive enters the incident bridge and starts naming the engineer who approved the rollback button. Andrew has to choose between defending a teammate's ego and restating the shared objective: restore checkout, isolate the bad deploy, update customers. The incident bridge has twelve silent listeners, and blame would steal the first minute from restoration.",
           "whatToDo": "State the shared objective, assign one diagnostic owner, and move blame discussion outside the recovery bridge until customers can check out again.",
           "whyItMatters": "The outage needs sequence, not ego defense. Andrew protects the team better by keeping the ruling purpose clear than by matching blame with counterblame."
@@ -443,13 +357,6 @@
             "shelter",
             "intake"
           ],
-          "planSpec": {
-            "domain": "youth shelter intake",
-            "audience": "Juliette meeting a hostile teenager at midnight",
-            "stakes": "her first answer decides whether safety or pride governs the room",
-            "format": "postmortem",
-            "requiredBeat": "Juliette notices her jaw tightening, leaves the insult where it lands, and asks the required safety question."
-          },
           "scenario": "The intake room smells of wet wool and vending-machine soup. Juliette remembers the moment because her jaw tightened before she looked down at the clipboard. The teenager in the plastic chair had insulted her twice, intake bracelet still loose on his wrist. Her review note asks what rule she will carry next time: answer pride, or ask the safety question first. The intake form has one safety question left, and Juliette has to keep the question cleaner than the insult.",
           "whatToDo": "Notice the jaw, leave the insult unanswered, and ask the required safety question before deciding what correction, if any, is needed.",
           "whyItMatters": "Safety is the live duty. If Juliette lets pride take the first turn, the room becomes about her injury instead of the teenager's risk."
@@ -462,13 +369,6 @@
             "permit",
             "counter"
           ],
-          "planSpec": {
-            "domain": "construction permit counter",
-            "audience": "Ben processing a contractor who has been sent back twice",
-            "stakes": "resentment could turn a fixable form into a feud",
-            "format": "before_after",
-            "requiredBeat": "What changes when you expected the anger before the contractor arrived?"
-          },
           "scenario": "What changes when the anger was already expected? Ben sees the contractor's number flash on the queue screen and places the rubber stamp beside the permit form. The man arrives loud, saying he was sent back twice for nothing. Ben must choose whether to mention the raised voice or point to the missing stamp and the exact desk that can fix it. The missing stamp is visible in the blank square, giving Ben a fact to point toward before anger sets the room.",
           "whatToDo": "Point to the missing stamp, give the desk number, and keep the contractor's volume out of the instruction unless it blocks the work.",
           "whyItMatters": "The anger is predictable, but the form is fixable. Ben keeps control by serving the repairable fact instead of making a second problem out of tone."
@@ -487,8 +387,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Expectation removes the shock that feeds resentment. It does not erase passenger needs or pre-judge each person; it helps her keep the useful act available.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -500,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The live duty is getting the order moving without becoming the chef's anger. Delayed correction may be useful later, but the first move is to serve the fact that needs action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -513,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "She keeps policy and self-command together by moving to the repair choice. Waiving the fee surrenders the rule, and scolding the insult makes the exchange about her injury.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -526,8 +423,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The objective is recovery. Defending the engineer may still keep the bridge centered on ego, while muting skips judgment. The governed move is to return everyone to the next useful act.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -539,8 +435,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Safety is the present duty, and the insult does not deserve first command. A respect rule may matter later, and a handoff may be needed only if she cannot keep the work governed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -552,8 +447,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Preparation should keep cooperation available, not cancel it. Waiting to notice patterns is not required, and avoidance would dodge the work instead of governing it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -565,8 +459,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The clerk acts on the repairable fact while refusing to be recruited by the volume. Ignoring anger entirely may miss a safety issue, and hoping for calm is not an action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -578,8 +471,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Flesh and breath can react before choice. The ruling part enters where judgment and action begin. Denying the body is false, and excusing every response gives away the inner government.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -591,8 +483,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second manager uses expectation to keep the right act ready. The first is already enslaved by the client's vice before the call begins, and the two preparations are not morally equivalent.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -629,7 +520,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Expect Friction, Keep Rule",
         "coreSkill": "You practice anticipating difficult behavior without becoming hostile in advance. The skill is to name the likely friction, then name the useful act that still belongs to you.",
         "ifThenPlans": [
           {
@@ -654,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "The first victory is not being surprised into becoming worse.",
-          "location": "breakdown.fastRead",
-          "why": "It names the chapter's practical threshold in one compact sentence."
+          "text": "The first victory is not being surprised into becoming worse."
         },
         {
-          "text": "That second is the hinge where preparation becomes freedom.",
-          "location": "breakdown.deepRead",
-          "why": "The short line makes the first response feel decisive."
+          "text": "That second is the hinge where preparation becomes freedom."
         },
         {
-          "text": "Expect the friction. Refuse the fever.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses anticipation and self-command into a phrase readers can carry."
+          "text": "Expect the friction. Refuse the fever."
         }
       ]
     },
@@ -693,13 +577,6 @@
             "film",
             "deadline"
           ],
-          "planSpec": {
-            "domain": "film editing deadline",
-            "audience": "Rachel cutting a documentary before the festival lock",
-            "stakes": "another week of polishing could hide fear of final judgment",
-            "format": "decision_point",
-            "requiredBeat": "Rachel deletes three beautiful but evasive shots and exports the cut before fatigue blurs the decision."
-          },
           "scenario": "The edit bay is dark except for the timeline bar blinking at 01:47:22 and the festival upload portal counting down from the corner monitor. Rachel still has her headphones on, listening to three beautiful shots that soften the ending. Her cursor rests on the trim tool, between another polish pass and the export button. The export queue is already open, and the extra transition would protect her pride more than the story.",
           "whatToDo": "Delete the three evasive shots, export the cut, and let the clear judgment made before exhaustion outrank the wish for one more week of polish.",
           "whyItMatters": "The danger is not laziness but delay dressed as refinement. Rachel's clearest mind already knows what the ending needs, and waiting will only blur that judgment."
@@ -712,13 +589,6 @@
             "eldercare",
             "planning"
           ],
-          "planSpec": {
-            "domain": "eldercare appointment",
-            "audience": "Mathieu taking his father to a memory clinic",
-            "stakes": "delay could cost the family the last clear planning window",
-            "format": "scene",
-            "requiredBeat": "Mathieu stops explaining away missed bills and books the assessment while his father can still choose."
-          },
           "scenario": "A stack of unopened envelopes leans against the sugar bowl, and Mathieu sees the same utility bill paid twice from his father's account. The memory clinic form sits beside his phone calendar. He wants to call it stress and wait another month, while the family's last clear planning window is still open. His father is still alert enough to answer, which makes the form more urgent than another family theory.",
           "whatToDo": "Stop explaining away the bills, open the clinic form, and book the assessment while his father can still join the decision.",
           "whyItMatters": "Delay may feel gentle, but it can spend the very faculty the family needs. Mathieu acts while his father's judgment can still participate."
@@ -731,13 +601,6 @@
             "orchard",
             "perception"
           ],
-          "planSpec": {
-            "domain": "orchard apprenticeship",
-            "audience": "Grace learning when to harvest bruised fruit",
-            "stakes": "she mistakes unblemished appearance for real readiness",
-            "format": "vignette",
-            "requiredBeat": "The grower has Grace cut open a speckled pear and a glossy hard one, then choose by the flesh."
-          },
           "scenario": "\"Pretty skin is not ripeness,\" Mr. Lowell says, handing Grace the paring knife beside a wooden crate. A speckled pear gives under her thumb; a glossy one shines like a catalog photo. The knife waits over both fruits, and the lesson turns on surface charm against the flesh where readiness shows. The crate smells of leaves and sugar, and the knife shows ripeness more honestly than the glossy skin.",
           "whatToDo": "Cut the speckled pear and the glossy pear, look at the flesh, and let readiness outrank the surface that first pleased her eye.",
           "whyItMatters": "Disciplined perception learns to see consequence, not just polish. Grace cannot judge the harvest until she stops treating blemish as failure."
@@ -750,13 +613,6 @@
             "law",
             "filing"
           ],
-          "planSpec": {
-            "domain": "law school clinic",
-            "audience": "Derek preparing an asylum brief",
-            "stakes": "reading one more article has become avoidance of the actual filing",
-            "format": "before_after",
-            "requiredBeat": "At 9:05 p.m., Derek closes the last browser tab and drafts the client declaration while the facts are still clear."
-          },
           "scenario": "At 9:05 in the evening, Derek watches the cursor blink under Statement of Facts while the case file lies open and six browser tabs promise better background. The filing deadline is tomorrow noon. Before the client's details fade into research fog, one more article competes with closing the last tab and drafting the declaration. The filing clock keeps moving while the last tab offers Derek the feeling of research without the declaration.",
           "whatToDo": "Close the background tabs, pull the case file beside the keyboard, and draft the client declaration while the facts are still clear.",
           "whyItMatters": "Research has become an honorable hiding place. Derek protects judgment by acting before more material weakens the facts already in front of him."
@@ -769,13 +625,6 @@
             "rescue",
             "weather"
           ],
-          "planSpec": {
-            "domain": "mountain rescue training",
-            "audience": "Nicolas deciding whether to turn around a practice climb",
-            "stakes": "ambition makes worsening weather look negotiable",
-            "format": "predict_reveal",
-            "requiredBeat": "You watch Nicolas call the turn before the ridge, then see the fog erase the route ten minutes later."
-          },
           "scenario": "You can smell wet rope before the ridge disappears, and Nicolas is reading the weather radio beside the route card. The team wants one more push to the practice marker. Ambition makes the worsening weather look negotiable. Ten minutes after he calls the turn, fog erases the route behind them. The rope team is watching the cloud line, so the early turn has to outrank the practice marker.",
           "whatToDo": "Call the turn before the ridge, coil the rope, and treat the early clear reading as more trustworthy than the ambition that wants proof later.",
           "whyItMatters": "The mountain will not reward delayed judgment. Nicolas acts while visibility is still enough to choose, not after the route has already removed the choice."
@@ -788,13 +637,6 @@
             "choir",
             "correction"
           ],
-          "planSpec": {
-            "domain": "choir rehearsal",
-            "audience": "Laura correcting a section before performance week",
-            "stakes": "kindness has become avoidance of the hard note work",
-            "format": "reflection",
-            "requiredBeat": "It took Laura two rehearsals to see that postponing correction was using up the choir's last good hour."
-          },
           "scenario": "It took Laura two rehearsals to hear the same flat entrance as a clock. The marked score is open on the piano bench, and the section list shows one more rehearsal before performance week. Kindness offers silence; the choir's last good hour asks for the hard note work. The alto section is waiting at the piano, and the last good hour will disappear whether Laura feels ready or not.",
           "whatToDo": "Name the flat entrance, rehearse the section slowly, and spend the remaining clear hour on correction instead of protecting everyone from discomfort.",
           "whyItMatters": "Avoidance can borrow the language of kindness. Laura serves the choir by using the hour while correction can still change the performance."
@@ -813,8 +655,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The haste is clear judgment now, not more motion. Extra tasks and artificial pressure can both hide the same delay under a louder schedule.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -826,8 +667,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The shots are serving avoidance, not the film. Waiting gives fear more time to dress itself as polish, while outsourcing the decision avoids the judgment she already has.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -839,8 +679,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Delay may cost the family's planning window. The clean act is not panic; it is using present clarity before it weakens. Waiting for certainty can be another form of avoidance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -852,8 +691,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The lesson is disciplined perception: consequence and ripeness can appear under an imperfect surface. Rejecting all marks or outsourcing to appearance repeats the error.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -865,8 +703,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Research has turned into avoidance. Drafting now protects the clear facts and the client's need. Feeling fully prepared may never arrive, and peer reassurance can delay the same act.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -878,8 +715,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The strong act uses the last reliable window for judgment. Avoiding all risk is too broad, and proving humility would make reputation the compass again.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -891,8 +727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Her kindness has become avoidance. The cost is not confidence or imperfect beauty; it is losing the remaining time when clear correction can still change the result.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -904,8 +739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ready principle plus live risk calls for action. Perfect wording can hide fear, but unformed urgency is panic. The key is clear correction before usefulness expires.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -917,8 +751,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second student preserves judgment without worshiping speed. Rushing can be another escape, while automatic delay ignores the possibility that clarity already exists.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -955,7 +788,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Use Clear Judgment Now",
         "coreSkill": "You practice distinguishing timely action from frantic motion. The skill is to notice when clarity already exists, then act before fatigue, praise, curiosity, or fear can make the choice worse.",
         "ifThenPlans": [
           {
@@ -980,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "A mind can run out before the clock does.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the chapter's special deadline without melodrama."
+          "text": "A mind can run out before the clock does."
         },
         {
-          "text": "Perception is a moral skill before it is a mood.",
-          "location": "breakdown.deepRead",
-          "why": "The short line turns seeing clearly into ethical practice."
+          "text": "Perception is a moral skill before it is a mood."
         },
         {
-          "text": "The counterfeits are easy to name after the fact.",
-          "location": "breakdown.fullRead",
-          "why": "It warns readers that panic, perfection, and curiosity are easiest to detect too late."
+          "text": "The counterfeits are easy to name after the fact."
         }
       ]
     },
@@ -1019,13 +845,6 @@
             "rail",
             "dispatch"
           ],
-          "planSpec": {
-            "domain": "rail maintenance dispatch",
-            "audience": "Megan rerouting crews after a track washout",
-            "stakes": "complaint could consume the hour needed for a safe detour",
-            "format": "scene",
-            "requiredBeat": "Megan circles the closed segment and turns the stranded crew into a bridge-inspection team."
-          },
           "scenario": "The dispatch wall shows one red line cutting the route in half, and the crew radio keeps asking where to go next. Megan has an inspection list open beside the route board. The closed track can become an hour of complaint, or she can circle the segment, reroute freight, and send the stranded crew to inspect the bridge access. The crew lead is still on the radio, so the reroute has to become visible before the next mile marker.",
           "whatToDo": "Circle the closed segment, reroute the live traffic, and assign the stranded crew to the bridge inspection that the washout has made newly urgent.",
           "whyItMatters": "The washout is still a loss, but it also reveals the next possible work. Megan keeps purpose alive by turning blocked motion into useful inspection."
@@ -1038,13 +857,6 @@
             "theatre",
             "lighting"
           ],
-          "planSpec": {
-            "domain": "community theatre lighting",
-            "audience": "Olivier losing the main dimmer before opening night",
-            "stakes": "panic could make the production smaller than necessary",
-            "format": "decision_point",
-            "requiredBeat": "Olivier rewrites the lighting cues around handheld lamps and makes the failure part of the staging."
-          },
           "scenario": "The booth smells of hot dust when the dimmer rack goes black, and Olivier's cue sheet loses half its meaning. Handheld lamps sit in a storage bin with gaffer tape wrapped around their handles. Opening night starts in four hours. His pencil hovers over the cue sheet, with panic on one side and a rough new lighting language on the other. The stage manager is calling cues from the aisle, and the audience doors will open whether the rack recovers or not.",
           "whatToDo": "Rewrite the cues around the handheld lamps, tape the marks onstage, and make the dimmer failure serve the story instead of shrinking the production.",
           "whyItMatters": "The broken rack cannot run the old design. Olivier preserves the purpose of the scene by adapting the means while there is still time."
@@ -1057,13 +869,6 @@
             "clinic",
             "filing"
           ],
-          "planSpec": {
-            "domain": "immigration clinic intake",
-            "audience": "Aanya facing a missing document on filing day",
-            "stakes": "the missing paper could become blame instead of a new path",
-            "format": "postmortem",
-            "requiredBeat": "Aanya uses the missing certificate to build a sworn timeline and assign retrieval tasks before the client leaves."
-          },
           "scenario": "\"We do not have the certificate,\" Aanya says, \"so we start with the timeline.\" The scanner is warm, the document checklist has one empty box, and the client is staring at the chair legs. In her case note later, Aanya marks the turning point: blame would have used the missing paper; the sworn statement used the hour. The filing window closes at four, so the missing page has to become a sworn sequence before the client leaves.",
           "whatToDo": "Build the sworn timeline, scan the documents already present, and assign the certificate retrieval task before the client leaves.",
           "whyItMatters": "The missing certificate can halt the clinic or redirect it. Aanya keeps the filing alive by turning absence into the structure of the next proof."
@@ -1076,13 +881,6 @@
             "fieldwork",
             "tide"
           ],
-          "planSpec": {
-            "domain": "marine biology fieldwork",
-            "audience": "Henrik losing a sensor in rough water",
-            "stakes": "the ruined instrument can still produce a usable observation window",
-            "format": "predict_reveal",
-            "requiredBeat": "What can a broken sensor still tell you if you stop asking it for the old data?"
-          },
           "scenario": "What remains in the log after the sensor dies? Henrik lifts the cracked housing from rough water and checks the tide table with a wet notebook under his elbow. The instrument will not record salinity again, but the failure time lines up with a current shift he has been trying to catch. The sample cooler is already labeled, which means the failed sensor still has to leave a usable record.",
           "whatToDo": "Log the failure time against the tide movement, mark the current shift, and salvage the observation the broken sensor still made possible.",
           "whyItMatters": "Henrik cannot recover the old dataset. He can still use the failure as a timestamp that reveals water movement the original plan might have missed."
@@ -1095,13 +893,6 @@
             "mediation",
             "pattern"
           ],
-          "planSpec": {
-            "domain": "small claims mediation",
-            "audience": "Paula handling a party who refuses every proposal",
-            "stakes": "opposition may reveal the only acceptable term",
-            "format": "dialogue",
-            "requiredBeat": "You watch Paula write down each refusal until the pattern shows the one nonnegotiable issue."
-          },
           "scenario": "You see the mediator turn the word no into a map. At the folding table, Paula writes each refusal on a legal pad while the settlement draft gathers arrows in the margin. \"No to Tuesday, no to installments, no to private apology,\" she reads back. The next line on the pad is not another offer but the one term every refusal has circled. The settlement clock is running, and each refusal points to a pressure the draft had hidden.",
           "whatToDo": "Write each refusal as data, read the pattern aloud, and move the next proposal toward the one term the refusals keep protecting.",
           "whyItMatters": "Opposition can reveal structure when Paula stops treating it as insult. The repeated no points toward the issue that must be addressed."
@@ -1114,13 +905,6 @@
             "warehouse",
             "safety"
           ],
-          "planSpec": {
-            "domain": "warehouse safety audit",
-            "audience": "James discovering a blocked fire exit during a supplier visit",
-            "stakes": "embarrassment could lead to concealment instead of correction",
-            "format": "before_after",
-            "requiredBeat": "At 2:18 p.m., James stops the tour, moves the pallets, and turns the failed inspection into the first corrected standard."
-          },
           "scenario": "At 2:18 in the afternoon, James sees the exit sign glowing over stacked pallets while a supplier waits with a clipboard and the audit tablet is still recording. Embarrassment reaches for the route around the aisle. Instead, he stops the tour, calls for the pallet jack, and makes the blocked exit the first corrected standard. The supplier is waiting under the exit sign, where delay would turn embarrassment into a safety choice.",
           "whatToDo": "Stop the tour, move the pallets from the exit, record the failure on the audit tablet, and treat the correction as part of the visit.",
           "whyItMatters": "Concealment would protect appearance and leave the hazard. James turns embarrassment into correction by making the failed audit useful immediately."
@@ -1139,8 +923,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The washout remains a loss, but it also creates useful inspection work. Complaint and waiting may have later roles, but neither uses the hour in front of the dispatcher.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1152,8 +935,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The rewrite serves the same purpose with different means. Calling the failure authentic is empty comfort, while canceling may skip the possible work still available.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1165,8 +947,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The missing paper becomes the shape of the next proof. Blame uses the hour poorly, and waiting for perfection abandons the material already available.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1178,8 +959,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The old dataset is gone, but the failure still contains timing information. Discarding or hiding the loss keeps the team attached to the ruined plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1191,8 +971,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pattern of no can reveal the real issue. Threats or concessions may miss that structure by treating refusal only as hostility.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1204,8 +983,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The point is the corrected exit, not reputation for transparency. Making the supplier responsible dodges ownership of the hazard.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1217,8 +995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Retreat is a reset, not disappearance. Avoiding all inner retreat misses its use, and handing off every damaged project ignores the duty still present.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1230,8 +1007,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Adaptation does not require false cheer. It names the loss accurately, then asks what possible work remains. More complaint or frozen planning keeps the team stuck.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1243,8 +1019,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fire image is about purpose using resistance as material. Blame may have a later place, but it is not the fuel unless it produces the next useful act.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1281,7 +1056,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Using the Obstruction as Material",
         "coreSkill": "You practice separating the loss from the added complaint. The skill is to retreat inward long enough to recover purpose, then turn changed facts into the next useful act.",
         "ifThenPlans": [
           {
@@ -1306,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "Complaint burns time without giving heat.",
-          "location": "breakdown.fastRead",
-          "why": "It makes useless complaint vivid without explaining it at length."
+          "text": "Complaint burns time without giving heat."
         },
         {
-          "text": "Then the retreat has to come back to the work.",
-          "location": "breakdown.deepRead",
-          "why": "The short sentence prevents inward retreat from becoming withdrawal."
+          "text": "Then the retreat has to come back to the work."
         },
         {
-          "text": "The obstacle has no duty to flatter you.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter's hard edge in plain language."
+          "text": "The obstacle has no duty to flatter you."
         }
       ]
     },
@@ -1345,13 +1113,6 @@
             "plowing",
             "duty"
           ],
-          "planSpec": {
-            "domain": "winter road plowing",
-            "audience": "David deciding whether to start the depot early",
-            "stakes": "a school route depends on his crew moving before sunrise",
-            "format": "scene",
-            "requiredBeat": "At 4:36 a.m., David sits up, calls the first driver, and treats the route map as the reason to leave the warm room."
-          },
           "scenario": "At 4:36 before dawn, David hears sleet ticking against the bedroom window while his thermal socks sit beside the route map. The salt log is still blank for the school hill. One more warm half hour reaches for him, but the depot phone is on the nightstand and the first driver needs the call before sunrise. The first driver is already warming the plow, and the uncleared hill will decide another person's commute.",
           "whatToDo": "Sit up, call the first driver, check the route map, and let the school hill decide the morning before comfort gets another vote.",
           "whyItMatters": "The duty is already named by the route. David is not chasing status; he is letting the role's first useful act outrank the warm room."
@@ -1364,13 +1125,6 @@
             "NICU",
             "rounds"
           ],
-          "planSpec": {
-            "domain": "newborn ICU rounds",
-            "audience": "Sofia arriving after a sleepless night",
-            "stakes": "fatigue is real but the babies still need the first check",
-            "format": "vignette",
-            "requiredBeat": "Sofia accepts the coffee, then checks the incubator alarms before discussing how tired she is."
-          },
           "scenario": "Blue monitor light trembles on the plastic incubator walls as Sofia steps into rounds after a sleepless night. A resident hands her a coffee cup, and the rounding sheet is already curling at the corner. She takes the cup, hears an incubator alarm chirp twice, and puts the first check before the story of her fatigue. The rounding sheet is open at the incubator number, and fatigue cannot answer the alarm for her.",
           "whatToDo": "Accept the coffee, check the incubator alarms, and begin the rounding sheet before turning fatigue into the center of the room.",
           "whyItMatters": "Fatigue is real, but it is not the first patient. Sofia keeps the work in order by serving the babies before narrating her own condition."
@@ -1383,13 +1137,6 @@
             "court",
             "interpreter"
           ],
-          "planSpec": {
-            "domain": "court interpreter shift",
-            "audience": "Chiara tempted to call in sick after a hard week",
-            "stakes": "one missed interpreter can delay a protective order",
-            "format": "decision_point",
-            "requiredBeat": "You watch Chiara put on the headset and start with the frightened witness rather than her own resentment."
-          },
           "scenario": "You feel the foam court headset warm against one ear as Chiara looks at the protective order file and the bench clock. A hard week has made the shift feel unfair, and the witness keeps twisting a tissue in both hands. Chiara's thumb rests on her phone, between a sick call and the first interpreted question. The witness is twisting a tissue in both hands, and the hearing clock gives Chiara no spare ceremony.",
           "whatToDo": "Put on the headset, open the protective order file, and begin with the witness's first question before giving resentment the lead.",
           "whyItMatters": "The role exists because the witness needs language now. Chiara does not deny exhaustion; she refuses to let exhaustion delay the protection hearing."
@@ -1402,13 +1149,6 @@
             "bakery",
             "opening"
           ],
-          "planSpec": {
-            "domain": "bakery opening routine",
-            "audience": "Luke responsible for the first bake after a staff shortage",
-            "stakes": "the neighborhood orders fail if he negotiates with comfort",
-            "format": "before_after",
-            "requiredBeat": "Luke turns on the deck oven before checking messages, so the work begins before excuses assemble."
-          },
           "scenario": "The proofing racks stand in the dark like a quiet accusation, and Luke's phone is already lighting with staff-shortage messages. The flour scoop is still in the bin. Before the first excuse can gather friends, he turns on the deck oven. Only after the heat begins does he check who has called out. The first batch will miss the school order if Luke lets the staff messages become the work.",
           "whatToDo": "Start the deck oven, set the first trays, and let the bake begin before messages turn the morning into negotiation.",
           "whyItMatters": "The oven creates momentum for the actual work. Luke handles the shortage better after he has served the first duty instead of arguing with it in advance."
@@ -1421,13 +1161,6 @@
             "pharmacy",
             "snow"
           ],
-          "planSpec": {
-            "domain": "rural pharmacy snow day",
-            "audience": "Manon opening when roads are bad",
-            "stakes": "patients need prescriptions more than she needs a perfect mood",
-            "format": "dialogue",
-            "requiredBeat": "\"Open at nine,\" Manon tells the delivery driver, then shovels the door clear herself."
-          },
           "scenario": "\"Open at nine,\" Manon tells the delivery driver while snow packs against the pharmacy door. The prescription bins are full, the delivery crate is half buried, and her gloves are still wet from the walk in. She could spend ten minutes proving the roads are bad, but the shovel is beside the mat and the first patient will arrive cold. The prescription bins are sorted behind the door, and the snow shovel is the only path between them and the street.",
           "whatToDo": "Tell the driver the opening time, shovel the door clear, and sort the first prescription bins before mood becomes the morning's manager.",
           "whyItMatters": "The patients need access more than Manon needs ideal conditions. Clearing the door is the role made visible in snow."
@@ -1440,13 +1173,6 @@
             "orchestra",
             "setup"
           ],
-          "planSpec": {
-            "domain": "orchestra rehearsal logistics",
-            "audience": "Peter resetting chairs after a cancellation",
-            "stakes": "the unglamorous setup is the social work that lets music happen",
-            "format": "reflection",
-            "requiredBeat": "It took Peter one cancelled rehearsal to see that chair rows were not beneath the music."
-          },
           "scenario": "It took Peter one cancelled rehearsal to stop calling setup invisible work. The chair cart squeaks beside the stage tape, and the conductor stand waits under the work light. He had wanted a musical task, something closer to art. Now he sees the rows themselves are the condition that lets the orchestra become one body. The conductor's marked score is still on the stand, and the first player through the door will need a row.",
           "whatToDo": "Reset the rows, align the conductor stand, and treat the unglamorous setup as the social work that lets rehearsal exist.",
           "whyItMatters": "Some human work looks beneath the main event because it makes the main event possible. Peter honors the function by doing the support cleanly."
@@ -1465,8 +1191,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The route names the duty. The value is not early rising by itself or admiration for hardship; it is serving the human work attached to his role.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1478,8 +1203,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The alarm is the first duty. Fatigue can be addressed, but it cannot become the room's center before the babies are checked. Skipping coffee is irrelevant theater.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1491,8 +1215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hearing names the role's work. Rest may matter later, but resentment alone cannot govern the moment. Explaining the week delays the person waiting for language.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1504,8 +1227,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Starting the oven anchors the day in the bake rather than in negotiation with reluctance. He still checks messages, but after the work has begun.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1517,8 +1239,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The action serves access without making hardship the story. Opening late or seeking appreciation lets mood and display crowd out the role.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1530,8 +1251,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The chair rows are not glamorous, but they enable the common work. Rotation may be fair in some settings, but the mental move is seeing the function.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1543,8 +1263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The discipline distinguishes maintenance from evasion. Denying the body and accepting every request both distort human work into self-erasure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1556,8 +1275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Return matters. Self-disgust can become another delay, and a stricter tomorrow avoids the next available act. The clean move is to resume proportion now.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1569,8 +1287,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The issue is function. Rest can serve the work, or comfort can take command. Sunrise and public notice are secondary to that governing distinction.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1607,7 +1324,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Rise For Human Work",
         "coreSkill": "You practice answering reluctance with function. The skill is to distinguish real maintenance from comfort's demand for command, then do the first duty your role already names.",
         "ifThenPlans": [
           {
@@ -1632,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "The bed is warm. That is not an argument.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the plain rebuke with a concrete image."
+          "text": "The bed is warm. That is not an argument."
         },
         {
-          "text": "The rebuke is aimed at clever delay.",
-          "location": "breakdown.deepRead",
-          "why": "It separates the lesson from crude anti-rest rhetoric."
+          "text": "The rebuke is aimed at clever delay."
         },
         {
-          "text": "Rest restores the worker for the work.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the humane limit while keeping the duty sharp."
+          "text": "Rest restores the worker for the work."
         }
       ]
     },
@@ -1671,13 +1381,6 @@
             "hospital",
             "procurement"
           ],
-          "planSpec": {
-            "domain": "hospital procurement committee",
-            "audience": "Julien reviewing a cheaper supplier bid",
-            "stakes": "savings could shift hidden risk to nurses and patients",
-            "format": "decision_point",
-            "requiredBeat": "Julien asks the nurse lead to test the cheaper tubing before the committee votes."
-          },
           "scenario": "The sample box sits unopened beside a bid spreadsheet showing six figures in savings, and the committee agenda is already behind. Julien can move the cheaper tubing to a quick vote, or he can open the box and ask the nurse lead to test the line before anyone praises the savings. The nurse lead is still outside the room, which is exactly why the spreadsheet cannot be the whole test.",
           "whatToDo": "Open the sample box, ask the nurse lead to test the tubing, and delay the vote until the people who will use it have handled it.",
           "whyItMatters": "The savings are not isolated. If the tubing shifts risk onto nurses or patients, the committee has made the hive pay for one clean line on a spreadsheet."
@@ -1690,13 +1393,6 @@
             "parks",
             "safety"
           ],
-          "planSpec": {
-            "domain": "city parks maintenance",
-            "audience": "Anna choosing a shortcut before a public holiday",
-            "stakes": "looking efficient could leave hazards for families",
-            "format": "scene",
-            "requiredBeat": "Anna delays the photo-op planting and fixes the loose playground bolt first."
-          },
           "scenario": "A swing chain clicks wrong in the empty park while Anna unloads a planting tray for the holiday photo. The socket wrench is in the cart, and the inspection tag still hangs from the gate. Cameras arrive in forty minutes. Her next task can make the park look finished or make the playground safer for the first family through. The photographer is unpacking a tripod, and the loose chain is clicking in the wind behind the flower trays.",
           "whatToDo": "Delay the planting, tighten the loose bolt with the socket wrench, update the inspection tag, and let safety outrank the photo.",
           "whyItMatters": "Efficiency for the camera is not the same as service to the park. Anna's duty belongs to the families who will use the swing, not to the image of readiness."
@@ -1709,13 +1405,6 @@
             "audit",
             "truth"
           ],
-          "planSpec": {
-            "domain": "financial audit team",
-            "audience": "Kiran under pressure to soften a finding",
-            "stakes": "praise from partners conflicts with the larger trust of the report",
-            "format": "dialogue",
-            "requiredBeat": "Kiran reads the control failure aloud in plain words and leaves it in the report."
-          },
           "scenario": "\"If we remove that sentence, the report stops being ours,\" Kiran says into the conference phone. The audit memo is open, and the redline file has softened control failure into process note. A partner praises the gentler wording. Kiran's cursor rests on accept change, with the report's larger trust on the other side. The junior auditor is listening silently, knowing the softened sentence will become tomorrow's precedent.",
           "whatToDo": "Read the control failure aloud in plain words, reject the softening redline, and leave the finding where the report needs it.",
           "whyItMatters": "The report serves more than the partner's comfort. Kiran protects the shared trust by refusing to make public truth smaller for private ease."
@@ -1728,13 +1417,6 @@
             "lab",
             "allocation"
           ],
-          "planSpec": {
-            "domain": "university lab allocation",
-            "audience": "Astrid deciding who gets scarce microscope time",
-            "stakes": "favoring her own project would injure the shared lab",
-            "format": "before_after",
-            "requiredBeat": "What is the bee owed when the swarm owns the microscope?"
-          },
           "scenario": "Who owns a shared microscope at midnight? Astrid looks at the microscope calendar, the keycard log, and a sample tray from her own project. Before she posts the rotation, she traces every reserved hour. Her lab can trust the schedule only if she takes the inconvenient midnight slot herself. The frozen samples in the hallway cooler belong to three teams, not only to her midnight result.",
           "whatToDo": "Post the transparent rotation, move her project to the midnight slot, and make the keycard log match the schedule everyone can inspect.",
           "whyItMatters": "A shared lab fails when private advantage hides inside allocation. Astrid protects the swarm by taking the inconvenient cost her authority could have avoided."
@@ -1747,13 +1429,6 @@
             "firehouse",
             "training"
           ],
-          "planSpec": {
-            "domain": "fire station training",
-            "audience": "Michael training in cold rain",
-            "stakes": "weather becomes an excuse to relax a life-saving drill",
-            "format": "vignette",
-            "requiredBeat": "At 7:40 p.m., Michael runs the hose-pack drill again because cold fingers are part of the real call."
-          },
           "scenario": "At 7:40 in the evening, rain beads on the engine bay floor while Michael checks the drill timer. The hose pack is slick, and turnout gloves make everyone's fingers clumsy. The crew has already run it once indoors. Michael resets the timer outside because the real call will not wait for warm hands. The drill timer is wet, and the next emergency will not ask whether the indoor version felt sufficient.",
           "whatToDo": "Run the hose-pack drill again in the rain, keep the turnout gloves on, and train the movement under the conditions that a call may actually bring.",
           "whyItMatters": "Cold and wet do not cancel the duty. Michael is not performing toughness; he is making the drill answer to the conditions where lives depend on it."
@@ -1766,13 +1441,6 @@
             "co-op",
             "wages"
           ],
-          "planSpec": {
-            "domain": "cooperative grocery board",
-            "audience": "Isabel voting on member discounts",
-            "stakes": "a popular discount would undercut staff wages",
-            "format": "postmortem",
-            "requiredBeat": "You see Isabel trace the discount through payroll before voting against applause."
-          },
           "scenario": "You see the vote tally before anyone sees the payroll gap. Isabel keeps the member ballot beside the payroll sheet and the chalkboard sign promising five percent off. In her notes after the meeting, the turning point is the line where applause for members became fewer paid hours for staff. The applause for the discount is loudest before the payroll sheet shows who pays for it.",
           "whatToDo": "Trace the discount through payroll, show the wage gap to the board, and vote against the popular cut when it injures the staff side of the co-op.",
           "whyItMatters": "Generosity that quietly underpays workers is not common good. Isabel follows the benefit through the whole system before giving it her vote."
@@ -1791,8 +1459,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The duty is to the system that will use the tubing, not the appearance of savings. Contract details matter later, but the risk must be tested first.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1804,8 +1471,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Families carry the consequence of the loose chain. Public confidence built on an unfixed hazard is image, not duty. Removing it later delays the present safety act.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1817,8 +1483,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The report serves trust beyond the client relationship. Private notes or soft wording protect comfort while weakening the public function of the audit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1830,8 +1495,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The transparent rotation keeps the shared resource trustworthy. Asking only loud members or staying informal lets private advantage hide inside process.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1843,8 +1507,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The rain matters because real duty may arrive in rain. Toughness and memory are side issues; the point is matching training to the conditions of service.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1856,8 +1519,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The discount has to be judged through the whole system. Rejecting all discounts is too broad, and separating payroll hides the consequence that needs judgment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1869,8 +1531,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Praise may accompany good work, but it cannot prove it. The effects on the people who live with the decision must be examined.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1882,8 +1543,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The duty is truthful and social correction without imitation of vice. Waiting for universal comfort or keeping it private forever lets image overrule responsibility.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1895,8 +1555,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The bee image tests private advantage against the whole. Calm alone is not enough, and immediate benefit is suspect when another part of the system pays hidden costs.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1933,7 +1592,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Testing the Swarm of Impressions",
         "coreSkill": "You practice judging public choices by their system effects. The skill is to strip away praise, convenience, and image, then ask who carries the consequence.",
         "ifThenPlans": [
           {
@@ -1958,19 +1616,13 @@
       },
       "memorableLines": [
         {
-          "text": "The bee cannot win against the hive.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the swarm image into a plain operational test."
+          "text": "The bee cannot win against the hive."
         },
         {
-          "text": "Antoninus becomes the model when public work tempts the soul to dress itself as power.",
-          "location": "breakdown.deepRead",
-          "why": "It lands the named source anchor without turning into citation."
+          "text": "Antoninus becomes the model when public work tempts the soul to dress itself as power."
         },
         {
-          "text": "Strip the appearance bare before the system pays for your comfort.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a compact action for judging public choices."
+          "text": "Strip the appearance bare before the system pays for your comfort."
         }
       ]
     },
@@ -1997,13 +1649,6 @@
             "train",
             "irritation"
           ],
-          "planSpec": {
-            "domain": "train platform crowding",
-            "audience": "Olivia facing the same commuter shove every Monday",
-            "stakes": "familiar rudeness keeps feeling like a fresh moral emergency",
-            "format": "scene",
-            "requiredBeat": "Olivia notices the shove, names it as old material, and steps aside without constructing a whole grievance."
-          },
           "scenario": "The platform loudspeaker crackles before the crowd surges, and Olivia feels the same shove against her canvas tote while the delay screen flashes orange. The grievance arrives faster than the train. Her foot is already set for a sharp reply, then she names it old material and steps aside without building a case against the morning. The turnstile alarm is still beeping while he chooses the first inward sentence. The train doors are open.",
           "whatToDo": "Name the shove as familiar pressure, move the tote, and step aside before the first irritation becomes a full grievance.",
           "whyItMatters": "The shove may be rude, but surprise would give it extra power. Olivia keeps the old principle alive by acting before the familiar pressure becomes drama."
@@ -2016,13 +1661,6 @@
             "grant",
             "criteria"
           ],
-          "planSpec": {
-            "domain": "grant review panel",
-            "audience": "Etienne seeing the same flashy proposal bias",
-            "stakes": "the panel keeps forgetting its own criteria",
-            "format": "decision_point",
-            "requiredBeat": "Etienne reads the criteria aloud before anyone discusses reputation or charisma."
-          },
           "scenario": "\"Before we admire the pitch, let us read the rubric,\" Etienne says as name cards tilt around the proposal stack. The famous applicant's slides are cleaner than everyone else's. The panel is leaning toward reputation before scoring begins, and Etienne's finger rests on the grant rubric's first criterion. The grant packets stay open on the table while the room waits for a standard. The rubric is highlighted.",
           "whatToDo": "Read the criteria aloud, score the proposal against the rubric first, and delay discussion of reputation until the shared standard has been used.",
           "whyItMatters": "The panel already knows its principle, but it is going dark under charisma. Etienne keeps it alive by making the room think the matching thought again."
@@ -2035,13 +1673,6 @@
             "audition",
             "fairness"
           ],
-          "planSpec": {
-            "domain": "youth orchestra audition",
-            "audience": "Maja judging a nervous student",
-            "stakes": "her principle of fairness weakens under the room's impatience",
-            "format": "vignette",
-            "requiredBeat": "Maja resets the score sheet after the cracked first note and listens through the full excerpt."
-          },
           "scenario": "Rosin dust shines on the edge of the audition table when the first violin note cracks behind the screen curtain. Maja sees the score sheet dip in her hand as the room grows impatient. Before the student's full excerpt is gone, she draws a fresh line on the form and listens past the cracked entrance. The audition clock is visible above the screen, and the next candidate is already tuning. The score sheet is blank.",
           "whatToDo": "Reset the score sheet, hear the full excerpt, and judge the performance by the whole passage instead of the room's impatience.",
           "whyItMatters": "Fairness dies quickly when a first impression gets treated as the whole case. Maja renews the principle while the nervous note is still in the air."
@@ -2054,13 +1685,6 @@
             "rental",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "rental inspection",
-            "audience": "Chris finding another tenant dispute over noise",
-            "stakes": "future dread wants to rehearse the whole argument before it begins",
-            "format": "predict_reveal",
-            "requiredBeat": "You watch Chris write only the observed decibel reading before calling either tenant."
-          },
           "scenario": "You hear the bass through the hallway before you hear either story, and Chris holds the decibel meter beside the inspection form. He can already predict the upstairs tenant's denial and the downstairs tenant's anger. Before making either call, he writes only the observed reading and the apartment hallway time. The complaint form is still blank, so the measured fact has to come before prophecy. The meter is in his hand.",
           "whatToDo": "Record the decibel reading and time first, then call each tenant from the observed facts rather than from the argument he expects.",
           "whyItMatters": "Future dread wants to draft both speeches before evidence is complete. Chris keeps present reason alive by writing the measurement before imagination adds the rest."
@@ -2073,13 +1697,6 @@
             "research",
             "review"
           ],
-          "planSpec": {
-            "domain": "research peer review",
-            "audience": "Nina reading a hostile reviewer note",
-            "stakes": "the first sting could become a day of imagined contempt",
-            "format": "reflection",
-            "requiredBeat": "It took Nina one paragraph to see she was answering a tone instead of the methodological point."
-          },
           "scenario": "It took Nina one paragraph to notice the heat in her face. The review comments are open beside tracked changes and a lab notebook full of assay dates. She had already drafted a reply to the reviewer's contempt. Then she underlines the actual methodological point and sees that the tone had stolen the whole morning. Her reply box stays closed until the method issue is copied into a separate note. The margin note is circled.",
           "whatToDo": "Underline the methodological point, draft the answer to that point only, and leave the reviewer's tone outside the response.",
           "whyItMatters": "The hostile tone is a first impression with extra heat. Nina keeps the principle alive by answering the real claim before imagined contempt consumes the day."
@@ -2092,13 +1709,6 @@
             "referee",
             "video"
           ],
-          "planSpec": {
-            "domain": "soccer referee assessment",
-            "audience": "Tomas reviewing a controversial call",
-            "stakes": "crowd anger tries to replace the actual rule",
-            "format": "postmortem",
-            "requiredBeat": "What remains after the noise leaves the clip?"
-          },
           "scenario": "What remains when the stadium noise leaves the clip? Tomas pauses the video at the contact point, referee badge still clipped to his jacket, and opens the assessment form. In the review note, he grades only position, timing, and law. The crowd's anger gets no column of its own. The replay bar is paused at the contact point, with the crowd noise muted for the second viewing. The clip is paused again.",
           "whatToDo": "Pause the clip at contact, grade position, timing, and law, and keep crowd anger out of the assessment form.",
           "whyItMatters": "The noise is not evidence. Tomas renews the rule by making the clip answer to the law instead of letting outrage replace the actual call."
@@ -2117,8 +1727,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Memory alone is dead if it arrives too late. The principle must reappear during pressure, before the first irritation becomes a whole grievance.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2130,8 +1739,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The room already has a principle; it needs reanimation. Discussing charisma first gives the bias more room, while asking the applicant shifts away from shared criteria.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2143,8 +1751,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fairness requires the whole performance, not the room's impatience. A restart may help in another context, but here it lets the first impression distort the judging frame.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2156,8 +1763,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The measurement belongs to the present. Imagined future arguments and prior complaints may bias the call before the current fact is recorded.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2169,8 +1775,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The valid claim is the work. Answering tone lets the first sting rule the day, while appealing immediately may avoid the repairable methodological point.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2182,8 +1787,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The assessment belongs to the rule and the visible action. Crowd anger and protests are first appearances that can replace judgment if they are given evidentiary weight.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2195,8 +1799,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Practice appears in action under pressure. Quotation and recognition may show memory, but they do not prove the matching thought is alive.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2208,8 +1811,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Future fear can consume present reason before the event exists. Preparation is useful only when it supports action; rehearsal of collapse spends the tool too early.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2221,8 +1823,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second person preserves judgment without denying wrongdoing. Fresh outrage can feed the disturbance, while repetition never makes the conduct harmless.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2259,7 +1860,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Relighting the Principle When It Fades",
         "coreSkill": "You practice bringing the right thought back while pressure is still active. The skill is to name the familiar pattern, separate first appearance from added judgment, and act from the principle once.",
         "ifThenPlans": [
           {
@@ -2284,19 +1884,13 @@
       },
       "memorableLines": [
         {
-          "text": "Old trouble does not deserve fresh astonishment.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the familiar-badness anchor memorable and practical."
+          "text": "Old trouble does not deserve fresh astonishment."
         },
         {
-          "text": "That is dead knowledge before pressure gives it a body.",
-          "location": "breakdown.deepRead",
-          "why": "The short line draws a hard distinction between memory and use."
+          "text": "That is dead knowledge before pressure gives it a body."
         },
         {
-          "text": "Keep the principle near the pressure.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a compact rule for maxims under stress."
+          "text": "Keep the principle near the pressure."
         }
       ]
     },
@@ -2323,13 +1917,6 @@
             "housing",
             "heat"
           ],
-          "planSpec": {
-            "domain": "apartment building heat complaint",
-            "audience": "Claire dealing with recurring boiler calls",
-            "stakes": "residents need heat, not another group chat speech",
-            "format": "scene",
-            "requiredBeat": "Claire stops writing the complaint post and tapes the technician's access notice to every door."
-          },
           "scenario": "Cold air sits under the lobby doors like water while Claire types another group chat post about the boiler. The access notice is on the desk, the boiler key is in the lockbox, and the thermal camera still shows three cold risers. Her thumb pauses over send, then she prints the notice and starts taping doors. The technician text is already on her phone, so the missing notice is the only thing still between complaint and heat.",
           "whatToDo": "Stop the complaint post, print the technician's access notice, tape it to every door, and make the repair visit possible.",
           "whyItMatters": "Residents need heat more than another proof of frustration. Claire serves the correctable cause by moving access from intention to doors."
@@ -2342,13 +1929,6 @@
             "college",
             "process"
           ],
-          "planSpec": {
-            "domain": "college advising office",
-            "audience": "Marco facing a broken appointment system",
-            "stakes": "staff keep blaming students for missed slots",
-            "format": "before_after",
-            "requiredBeat": "Marco replaces the confusing sign-up sheet with a numbered queue before the next rush."
-          },
           "scenario": "The advising hallway fills before the office lights finish warming up, and Marco sees three students pointing at the same appointment binder. By the wall clock, the old sign-up sheet has arrows from last week. Before the next rush, he puts numbered queue slips on the counter and removes the sheet everyone keeps misreading. The first student in line is holding a lab schedule, and the numbered slips can prevent the same argument tomorrow.",
           "whatToDo": "Replace the sign-up sheet with numbered queue slips, update the binder, and make the line readable before blaming another student.",
           "whyItMatters": "The students are repeating a mistake the system invites. Marco corrects the cause, so staff no longer need a daily speech about responsibility."
@@ -2361,13 +1941,6 @@
             "restaurant",
             "allergen"
           ],
-          "planSpec": {
-            "domain": "restaurant allergen process",
-            "audience": "Beatrice seeing kitchen errors repeat",
-            "stakes": "another angry recap will not fix the missing label step",
-            "format": "decision_point",
-            "requiredBeat": "\"No lecture today,\" Beatrice says, then puts red allergen clips on the pass and rehearses the handoff."
-          },
           "scenario": "\"No lecture today,\" Beatrice says as order tickets curl beside the allergen chart. A missed dairy note has reached the pass again, and the cooks are bracing for the usual recap. The red clips are still in the drawer. Her next move can be another speech or the missing label step everyone can touch. The red allergen clips are sitting unopened by the rail while the next dairy-free ticket prints.",
           "whatToDo": "Put the red allergen clips on the pass, rehearse the handoff once, and let the visible step replace the angry recap.",
           "whyItMatters": "The error keeps returning because the process lacks a physical cue. Beatrice fixes the cause instead of proving, again, that she can name it."
@@ -2380,13 +1953,6 @@
             "museum",
             "form"
           ],
-          "planSpec": {
-            "domain": "museum membership desk",
-            "audience": "Hugo handling a confusing renewal form",
-            "stakes": "visitors keep making the same mistake because the form invites it",
-            "format": "vignette",
-            "requiredBeat": "You watch Hugo cross out one misleading line on the sample form before blaming the next visitor."
-          },
           "scenario": "You see the same question mark penciled beside the same line on the sample form while Hugo stacks membership cards at the desk. Another visitor has filled the renewal wrong. Hugo looks at the pencil marks, crosses out the misleading line on the sample, and only then calls the next person forward. The membership cards are stacked beside the bad sample line, so the correction can happen before another visitor arrives.",
           "whatToDo": "Cross out the misleading sample line, rewrite the instruction in plain words, and test the next renewal before blaming visitors again.",
           "whyItMatters": "The form is teaching the mistake. Hugo's correction changes the visitor's first contact with the process instead of scolding the visitor at the end."
@@ -2399,13 +1965,6 @@
             "dental",
             "delivery"
           ],
-          "planSpec": {
-            "domain": "dental lab delivery",
-            "audience": "Ada correcting late crown pickups",
-            "stakes": "drivers are blamed for a pickup shelf nobody can read",
-            "format": "postmortem",
-            "requiredBeat": "It took Ada four late crowns to label the shelf instead of accusing the courier."
-          },
           "scenario": "It took Ada four late crowns to notice the shelf had no morning side. The pickup shelf held lab slips in one gray row, and the courier scanner kept catching glare from the plastic sleeves. In the postmortem, she writes the uncomfortable line: the couriers were late because the shelf made every pickup a guess. The morning courier is due in twelve minutes, which makes the label more useful than one more complaint email.",
           "whatToDo": "Label the shelf by morning and afternoon pickup, separate similar lab slips, and test the courier scanner before accusing another driver.",
           "whyItMatters": "The late crowns were not only a people problem. Ada corrects the visible cause, so the next courier can succeed without a lecture."
@@ -2418,13 +1977,6 @@
             "bookstore",
             "returns"
           ],
-          "planSpec": {
-            "domain": "independent bookstore returns",
-            "audience": "Ryan discovering damaged returns from one display",
-            "stakes": "fault-finding at staff would hide the bad shelf angle",
-            "format": "predict_reveal",
-            "requiredBeat": "What if the complaint is pointing to carpentry, not character?"
-          },
           "scenario": "What if the returns box is blaming the wrong thing? Ryan counts six bent paperbacks from the same display shelf and sees the stack leaning into the aisle. Staff have been warning customers all week. He moves the shelf six inches, changes the angle, and waits. For seven days, the damaged returns stop. The returns bin is under the tilted shelf, and the next paperback is already sliding toward the aisle.",
           "whatToDo": "Move the display shelf, change the paperback angle, and watch the returns before faulting staff or customers again.",
           "whyItMatters": "The damaged books were evidence about the setup. Ryan lets the complaint point to carpentry, not character, and the pattern changes."
@@ -2443,8 +1995,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The notice touches the cause. Another message may describe the problem well, but residents need the condition that lets repair happen.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2456,8 +2007,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The process is producing the mistake. Patience and reminders may help later, but the first correction is to make the queue readable.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2469,8 +2019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The missing step needs a physical cue and practiced handoff. More anger may prove concern, but it does not change the process that keeps failing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2482,8 +2031,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The sample form is teaching the error. Verbal explanations leave the cause in place, and hiding forms does not clarify the renewal process.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2495,8 +2043,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The shelf structure is a touchable cause. Tracking or asking for earlier arrivals treats people as the problem before fixing the process they use.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2508,8 +2055,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pattern turns fault-finding toward a correctable cause. Surveillance and refusal punish symptoms while leaving the bad angle untouched.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2521,8 +2067,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Planning future goodness can preserve present delay. Explanation has a role when it supports correction, but here it replaces the available act.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2534,8 +2079,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Seeming calm has no value if it protects delay. Appreciation and more waiting only deepen the gap between appearance and useful action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2547,8 +2091,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Accuracy alone does not make complaint useful. When a small correction can prevent recurrence, it outranks another polished description of the problem.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2585,7 +2128,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Correcting the Cause Not the Symptom",
         "coreSkill": "You practice replacing repeated complaint with direct correction. The skill is to notice when explanation has done its job, then change the smallest cause within reach.",
         "ifThenPlans": [
           {
@@ -2610,19 +2152,13 @@
       },
       "memorableLines": [
         {
-          "text": "Good tomorrow is often delay wearing clean clothes.",
-          "location": "breakdown.fastRead",
-          "why": "It gives procrastinated goodness a memorable shape."
+          "text": "Good tomorrow is often delay wearing clean clothes."
         },
         {
-          "text": "The useful act is usually less eloquent.",
-          "location": "breakdown.deepRead",
-          "why": "It contrasts polished complaint with practical correction."
+          "text": "The useful act is usually less eloquent."
         },
         {
-          "text": "A cold lobby does not care how elegant the complaint sounded.",
-          "location": "breakdown.fullRead",
-          "why": "The clipped ending makes usefulness outrank drama."
+          "text": "A cold lobby does not care how elegant the complaint sounded."
         }
       ]
     },
@@ -2649,13 +2185,6 @@
             "research",
             "consent"
           ],
-          "planSpec": {
-            "domain": "medical research consent audit",
-            "audience": "Nathan discovering a missing consent form",
-            "stakes": "concealment would protect the lab image and injure trust",
-            "format": "decision_point",
-            "requiredBeat": "Nathan stops enrollment for the day and reports the missing consent before discussing blame."
-          },
           "scenario": "The consent binder has a clean empty sleeve where page six should be, and Nathan sees the enrollment log already prepared for the afternoon. The audit email is open in a draft window. One more participant would keep the lab on pace, but the missing form has made the next honest action visible. The clinic hallway is full, and the next signature line will affect a real participant.",
           "whatToDo": "Stop enrollment for the day, report the missing consent in the audit email, and discuss blame only after the truth is recorded.",
           "whyItMatters": "Concealment would protect the lab image by injuring shared trust. Nathan keeps justice clean by correcting the fact before hunting for a culprit."
@@ -2668,13 +2197,6 @@
             "school",
             "plagiarism"
           ],
-          "planSpec": {
-            "domain": "school plagiarism meeting",
-            "audience": "Chloe confronting copied essays",
-            "stakes": "anger could make correction feel like humiliation",
-            "format": "dialogue",
-            "requiredBeat": "\"We are going to tell the truth without making a spectacle,\" Chloe says before showing the matching paragraphs."
-          },
           "scenario": "Chloe says, \"The evidence is enough,\" at the conference table. The printed essays sit beside the similarity report, with three matching paragraphs highlighted. The student is staring at the table edge. Chloe's next sentence can humiliate him or show the copied passages and the repair path without spectacle. The essays sit side by side on the desk, with the similarity report clipped to the folder.",
           "whatToDo": "Show the matching paragraphs, name the plagiarism plainly, and explain the repair consequence without turning the meeting into a public shaming.",
           "whyItMatters": "Truth does not need humiliation to become clear. Chloe corrects the wrong while refusing to add a second injury for the sake of anger."
@@ -2687,13 +2209,6 @@
             "housing",
             "minutes"
           ],
-          "planSpec": {
-            "domain": "housing cooperative vote",
-            "audience": "Mateusz hearing a board member hide repair costs",
-            "stakes": "truth affects every resident's future fees",
-            "format": "scene",
-            "requiredBeat": "At 7:03 p.m., Mateusz asks the treasurer to read the full repair estimate into the minutes."
-          },
           "scenario": "At 7:03 in the evening, Mateusz sees the treasurer fold the repair estimate under her notebook while the reserve fund sheet passes down the table. Mateusz sees the meeting minutes still open. Residents will vote on fees next month, and the hidden number changes every future bill. He asks for the full estimate to be read aloud. The reserve spreadsheet is projected in the room, and every future fee depends on the number.",
           "whatToDo": "Ask the treasurer to read the full repair estimate into the minutes and attach it to the reserve fund sheet before any vote proceeds.",
           "whyItMatters": "The cost is not private board discomfort. It belongs to residents' future fees, so the shared record has to carry the whole truth."
@@ -2706,13 +2221,6 @@
             "inspection",
             "food"
           ],
-          "planSpec": {
-            "domain": "food safety inspection",
-            "audience": "Rebecca watching a manager stage-clean for the inspector",
-            "stakes": "false appearance could put customers at risk",
-            "format": "postmortem",
-            "requiredBeat": "Rebecca photographs the prep fridge before the staged trays replace the real ones."
-          },
           "scenario": "The prep fridge smells faintly sour behind the new parsley garnish. Rebecca remembers the manager reaching for staged trays while the temperature log sat unsigned. In her report, the decisive moment is the camera roll: she photographed the real fridge before the cleaner version replaced it. The thermometer is still on the shelf when the garnish tray slides into view.",
           "whatToDo": "Photograph the prep fridge, record the unsigned temperature log, and preserve the real condition before the staged trays hide it.",
           "whyItMatters": "A staged appearance would make customers live inside a false safety picture. Rebecca's evidence protects the truth before it can be dressed up."
@@ -2725,13 +2233,6 @@
             "open-source",
             "attribution"
           ],
-          "planSpec": {
-            "domain": "open-source maintainer dispute",
-            "audience": "Akira handling a contributor who copied code without attribution",
-            "stakes": "public shaming might become another form of injustice",
-            "format": "before_after",
-            "requiredBeat": "You watch Akira open a private issue with exact diff links and a repair path before posting any accusation."
-          },
           "scenario": "Akira sees the copied function line up in two browser panes, with the license file open behind the diff links. Akira has a draft public post ready, sharp enough to win the room. Instead, he opens a private issue first, lists the exact lines, and gives the contributor a repair path before any accusation goes public. The license file is open in one pane and the copied function is highlighted in another.",
           "whatToDo": "Open the private issue, include exact diff links and the license file, and offer a repair path before making a public accusation.",
           "whyItMatters": "The copying needs correction, but public shaming can become another injustice. Akira keeps truth exact and gives repair a chance before heat takes over."
@@ -2744,13 +2245,6 @@
             "neighborhood",
             "truth"
           ],
-          "planSpec": {
-            "domain": "neighborhood safety committee",
-            "audience": "Lea correcting false rumors after a break-in",
-            "stakes": "fear is turning one family into suspects without evidence",
-            "format": "vignette",
-            "requiredBeat": "How do you defend safety without feeding a lie?"
-          },
           "scenario": "Lea asks, \"How do you defend safety without feeding a lie?\" Lea stands between community hall chairs with the police timeline in one hand and a printed flyer in the other. A family's name appears under suspicious activity with no evidence beside it. She reads the timeline aloud, crosses out the name, and rewrites the warning around confirmed facts. The flyer draft is one click from print, and the family has not been contacted. The flyer stack is still warm from the printer.",
           "whatToDo": "Read the police timeline aloud, remove the family's name from the flyer, and replace suspicion with confirmed safety information.",
           "whyItMatters": "Fear wants a target, but a false target injures the shared world. Lea protects safety by refusing to let rumor borrow the voice of truth."
@@ -2769,8 +2263,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Truth has to enter the record before blame. Continuing enrollment asks participants and staff to live inside a false picture of consent.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2782,8 +2275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The wrong needs truth and consequence, not humiliation or vagueness. Public shame adds heat that can become its own injustice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2795,8 +2287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fees affect everyone, so the shared record needs the whole number. Private warning leaves the formal decision inside a partial truth.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2808,8 +2299,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The true condition is the fact customers depend on. Motive and reaction may matter later, but the first duty is to preserve reality before staging replaces it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2821,8 +2311,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The copying needs correction, but exact private repair keeps truth sharp without adding needless public injury. Ignoring it abandons attribution.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2834,8 +2323,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The unverified name gives fear a target and damages shared truth. Effectiveness and image are secondary to the false accusation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2847,8 +2335,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Anger may notice wrong, but it does not prove justice. The test is whether truth and correction happen without added contempt or exaggeration.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2860,8 +2347,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A lie injures common reality. Reputation and paperwork are smaller effects; the deeper harm is that others act inside a false map.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2873,8 +2359,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second option keeps truth and correction while refusing private fever. Leaving wrongdoing alone fails justice, and humiliation confuses heat with strength.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2911,7 +2396,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Correcting Without the Fever of Anger",
         "coreSkill": "You practice separating truthful correction from the anger that wants to ride with it. The skill is to record the truth, choose the repair path, and leave out contempt.",
         "ifThenPlans": [
           {
@@ -2936,19 +2420,13 @@
       },
       "memorableLines": [
         {
-          "text": "Justice begins by refusing to lie about the fact in front of you.",
-          "location": "breakdown.fastRead",
-          "why": "It makes justice concrete before blame starts."
+          "text": "Justice begins by refusing to lie about the fact in front of you."
         },
         {
-          "text": "Mildness is active strength, not weakness.",
-          "location": "breakdown.deepRead",
-          "why": "The short line protects firmness from becoming rage."
+          "text": "Mildness is active strength, not weakness."
         },
         {
-          "text": "What does anger add after the truth is already clear?",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a direct diagnostic question for righteous anger."
+          "text": "What does anger add after the truth is already clear?"
         }
       ]
     },
@@ -2975,13 +2453,6 @@
             "clinic",
             "character"
           ],
-          "planSpec": {
-            "domain": "remote arctic clinic rotation",
-            "audience": "Simon wanting a better posting before he acts well",
-            "stakes": "location becomes his excuse for thin care",
-            "format": "reflection",
-            "requiredBeat": "Simon writes \"careful\" on the top of the patient board and handles the next chart as if the posting were permanent."
-          },
           "scenario": "Snow presses against the clinic windows before the first chart opens, and Simon's parka hangs beside the satellite phone. He has been calling the rotation temporary for three weeks. On the patient board, above the day's names, he writes careful, then opens the next chart as if the posting were permanent. The waiting room list is short, but the next chart still belongs to someone who will not know he felt temporary.",
           "whatToDo": "Write careful on the patient board, take the next chart seriously, and let the name govern the work instead of the posting.",
           "whyItMatters": "Location has been renaming Simon's standards. The board makes the claimed character name answer to the patient in front of him."
@@ -2994,13 +2465,6 @@
             "fashion",
             "quality"
           ],
-          "planSpec": {
-            "domain": "fashion production floor",
-            "audience": "Julia measuring a rushed sample",
-            "stakes": "style pressure could rename dishonesty as speed",
-            "format": "scene",
-            "requiredBeat": "Julia rejects the sample under her own quality name before anyone else sees the defect."
-          },
           "scenario": "Loose black thread curls from the jacket cuff while Julia lays the measuring tape across the rushed sample. The quality tag is already printed, and the showroom team wants speed. The defect is small enough to hide in motion, but the sample will carry her signoff. She marks reject before anyone else sees the cuff. The showroom rack is ready, and the loose thread is asking whether true quality can survive pressure.",
           "whatToDo": "Reject the sample, note the cuff defect on the quality tag, and let her name mean the same thing before and after anyone notices.",
           "whyItMatters": "Speed is trying to rename dishonesty as practicality. Julia keeps the quality name real by refusing a hidden defect while it is still easy to pass."
@@ -3013,13 +2477,6 @@
             "newsroom",
             "truth"
           ],
-          "planSpec": {
-            "domain": "local newspaper correction desk",
-            "audience": "Patrick deciding whether to bury a correction",
-            "stakes": "public embarrassment tests the name true",
-            "format": "decision_point",
-            "requiredBeat": "\"Put the correction above the fold online,\" Patrick says, before checking social reaction."
-          },
           "scenario": "\"Put the correction where readers will see it,\" Patrick says, with the correction note open in the CMS draft and the analytics screen already showing the original story's traffic. Burying it would be easy. His hand is near refresh, but true has to speak before social reaction gets a vote. The homepage slot is still open, so honest has to appear where the first error traveled.",
           "whatToDo": "Publish the correction high on the story page before checking reactions, and let the correction note match the size of the error.",
           "whyItMatters": "Public embarrassment tests whether true is a working name or only a private preference. Patrick keeps the name by correcting where readers were misled."
@@ -3032,13 +2489,6 @@
             "planning",
             "praise"
           ],
-          "planSpec": {
-            "domain": "urban planning review",
-            "audience": "Nora facing a developer's praise",
-            "stakes": "flattery could pull her from modest and rational into approval-seeking",
-            "format": "vignette",
-            "requiredBeat": "You watch Nora compare the plan to the flood map, not to the compliment she just received."
-          },
           "scenario": "You see the flood map cover the glossy rendering while Nora keeps one finger on the zoning table. The developer has just praised her practical judgment in front of the room. She nods once, then compares the drainage plan to the flood line instead of to the compliment still hanging in the air. The developer keeps smiling at the rendering, and the flood line quietly asks which name Nora will keep.",
           "whatToDo": "Put the flood map over the rendering, check the zoning table, and let the plan answer to water and law, not praise.",
           "whyItMatters": "Flattery tries to rename approval-seeking as judgment. Nora stays rational by making the physical map outrank the compliment."
@@ -3051,13 +2501,6 @@
             "debate",
             "fairness"
           ],
-          "planSpec": {
-            "domain": "high school debate judging",
-            "audience": "Matthew tempted to reward confidence over truth",
-            "stakes": "the room's applause pressures the score sheet",
-            "format": "postmortem",
-            "requiredBeat": "Which name survives the applause: fair, or impressed?"
-          },
           "scenario": "Which name survives the applause: fair, or impressed? Matthew looks at the score sheet after the timer light goes dark. The winning speaker had the room, but the evidence cards do not support two central claims. In his postmortem notes, he lowers the speaker score after checking each unsupported line. The trophy table is being reset behind him, and the evidence cards are less charming than the applause.",
           "whatToDo": "Check the evidence cards against the claims, lower the speaker score, and let fair survive the room's applause.",
           "whyItMatters": "Confidence can make impressed feel like fair. Matthew protects the judging name by returning to evidence after the room has already chosen its favorite."
@@ -3070,13 +2513,6 @@
             "craft",
             "repair"
           ],
-          "planSpec": {
-            "domain": "artisan furniture delivery",
-            "audience": "Anke finding a small crack before client pickup",
-            "stakes": "pride wants the sale, character wants the repair",
-            "format": "before_after",
-            "requiredBeat": "It took Anke one thumbnail across the crack to know the table was not ready to carry her name."
-          },
           "scenario": "It took Anke one thumbnail to hear the crack catch. The walnut table glowed under the wax cloth, and the delivery straps were already laid out for client pickup. Pride wanted the sale to go through. The catch under her nail told her the table was not ready to carry her name. The client pickup text is already sent, which makes the repair a test of craft instead of mood.",
           "whatToDo": "Delay pickup, mark the crack, and repair the walnut table before letting her name travel with it.",
           "whyItMatters": "The crack is small, but the name is not. Anke keeps character from becoming branding by stopping the sale that would make her standard false."
@@ -3095,8 +2531,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The name must survive the condition. Asking whether the posting deserves care lets location rename him, and comparing others avoids the present chart.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3108,8 +2543,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hidden defect tests the name precisely because nobody else sees it yet. Asking about speed hands character to pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3121,8 +2555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "True has to match the reach of the error. Quiet posting or waiting protects embarrassment while leaving readers misled.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3134,8 +2567,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The flood map and zoning table return judgment to the object. Praise may be sincere, but it cannot become the standard of review.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3147,8 +2579,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fair cannot be renamed by applause. Confidence matters only within the rules of evidence, so unsupported claims must affect the score.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3160,8 +2591,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The crack tests the maker's standard, not only the client's eye. Some flaws may be minor, but a hidden one still asks whether her name means anything.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3173,8 +2603,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A character name is tested by conditions. Quantity and privacy are secondary; the core failure is that the names do not govern action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3186,8 +2615,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Plato-inflected reminder is that condition does not get to shrink character. Better settings may help, but they cannot be required before goodness begins.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3199,8 +2627,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source pressure allows return. Self-drama can become another claw, while one lapse does not end the work if the next act restores the standard.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3237,7 +2664,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Keeping the Name That Conduct Earns",
         "coreSkill": "You practice treating character words as standards, not self-descriptions. The skill is to identify the condition that usually changes your conduct and make the next act answer to the name anyway.",
         "ifThenPlans": [
           {
@@ -3262,19 +2688,13 @@
       },
       "memorableLines": [
         {
-          "text": "Do not wait for a cleaner life to be clean.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the condition-independent standard into a memorable sentence."
+          "text": "Do not wait for a cleaner life to be clean."
         },
         {
-          "text": "The wounded arena fighter is the image of a life that keeps choosing the same claws.",
-          "location": "breakdown.deepRead",
-          "why": "It lands the Bestiarii anchor with force."
+          "text": "The wounded arena fighter is the image of a life that keeps choosing the same claws."
         },
         {
-          "text": "Which condition most often changes your name?",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a direct diagnostic question."
+          "text": "Which condition most often changes your name?"
         }
       ]
     },
@@ -3299,13 +2719,6 @@
             "emergency",
             "anger"
           ],
-          "planSpec": {
-            "domain": "emergency department triage",
-            "audience": "Fiona facing a furious family member",
-            "stakes": "anger could sever her from the next correct triage act",
-            "format": "scene",
-            "requiredBeat": "Fiona names the wait, checks the chart, and gives the next update without matching the shout."
-          },
           "scenario": "The triage printer jams while a man pounds the counter beside a strip of waiting-room wristbands. Fiona must decide whether to answer the shout or finish the next care act. She names the delay, checks the chart screen, and gives the family the next honest update in the same low voice. The medication cart is blocking the corridor, so the next clear update matters more than winning the counter.",
           "whatToDo": "Name the delay, check the chart, and give the next accurate update without matching the shout.",
           "whyItMatters": "The social act is not passive. Fiona still gives information, but she refuses to let another person's volume choose her manner."
@@ -3318,13 +2731,6 @@
             "software",
             "pride"
           ],
-          "planSpec": {
-            "domain": "software code review",
-            "audience": "Luca receiving a dismissive review comment",
-            "stakes": "pride could turn a fixable bug into a feud",
-            "format": "dialogue",
-            "requiredBeat": "\"The bug is real even if the sentence is ugly,\" Luca says, then patches the null case."
-          },
           "scenario": "\"Did you even test the null case?\" the review thread asks above a red test output. Luca's cursor rests over a defensive reply, then moves to the fixture instead. He patches the null case, adds the failing test, and writes that the bug was valid while the tone made review harder. The failing test is still red, and the null fixture will remain broken after any clever reply.",
           "whatToDo": "Patch the valid bug first, then answer the tone without turning the thread into a feud.",
           "whyItMatters": "He separates the useful correction from the insult, so pride does not turn a fixable defect into a feud."
@@ -3337,13 +2743,6 @@
             "neighborhood",
             "justice"
           ],
-          "planSpec": {
-            "domain": "neighborhood tree dispute",
-            "audience": "Margaux mediating branches over a fence",
-            "stakes": "two homeowners want victory more than shade or safety",
-            "format": "decision_point",
-            "requiredBeat": "Margaux draws the property line and the diseased limb separately before either neighbor speaks again."
-          },
           "scenario": "Sawdust dots the snow under the leaning maple before either neighbor stops talking. Margaux can let the loudest grievance set the agenda, or she can split the problem. She draws the property line from the survey, circles the diseased limb from the arborist note, and puts orange tape only where safety requires action. The saw crew is waiting by the curb, so the line between safety and pride has to be drawn now.",
           "whatToDo": "Separate the property line, the diseased limb, and the pride dispute before choosing the next action.",
           "whyItMatters": "Anger wants one winner. The social move distinguishes property, safety, and pride before anyone is made an enemy."
@@ -3356,13 +2755,6 @@
             "rowing",
             "team"
           ],
-          "planSpec": {
-            "domain": "college rowing crew",
-            "audience": "Brennan coaching after a lost race",
-            "stakes": "blame would cut one athlete from the crew's common work",
-            "format": "postmortem",
-            "requiredBeat": "You watch Brennan replay the missed stroke, then ask each rower for the next synchronized correction."
-          },
           "scenario": "You hear eight oarlocks click out of time on the race video while Brennan stands in the erg room with the lineup card. He has to choose between naming one rower as the loss and restoring synchronized work. He replays the missed stroke, asks each rower for one correction, and writes the next drill beside each seat. The whiteboard still lists tomorrow's practice pieces, and the lineup card needs a repair plan.",
           "whatToDo": "Replay the mistake, name the synchronized correction, and give every seat a next drill.",
           "whyItMatters": "A postmortem can correct failure without cutting one person out of the crew's common labor."
@@ -3375,13 +2767,6 @@
             "volunteer",
             "benevolence"
           ],
-          "planSpec": {
-            "domain": "charity kitchen volunteer shift",
-            "audience": "Mina working beside a volunteer who keeps grandstanding",
-            "stakes": "resentment at vanity could become another unsocial act",
-            "format": "vignette",
-            "requiredBeat": "What if the vain helper is still helping?"
-          },
           "scenario": "What if the loud helper is still moving the line? Mina watches the volunteer drift toward the donors while the hairnet box sits unopened. She must decide whether to stew over his performance or use the remaining good in it. She gives him the serving ladle, points him at meal tickets, and keeps the food line moving. The meal tickets are stacking near the warmer, so resentment has to become an assignment or get out of the line.",
           "whatToDo": "Assign the vain helper a visible, useful task with clear limits instead of feeding resentment.",
           "whyItMatters": "Benevolence can be practical. She corrects vanity by assigning useful work instead of making resentment her own vanity."
@@ -3394,13 +2779,6 @@
             "family",
             "decision"
           ],
-          "planSpec": {
-            "domain": "family estate meeting",
-            "audience": "Robert hearing an old sibling insult revived",
-            "stakes": "history wants to finish the argument for him",
-            "format": "reflection",
-            "requiredBeat": "It took Robert one breath to see that answering the insult would abandon the actual estate decision."
-          },
           "scenario": "It took Robert one breath to leave the old sentence on the table. The estate folder was open, the photocopied will was marked, and his sibling had revived the insult perfectly. He could answer history with history; instead he pointed to the unpaid tax bill and brought the meeting back to the decision. The tax bill deadline is circled in blue, and the old insult cannot pay it.",
           "whatToDo": "Let the insult sit and return the meeting to the live estate decision.",
           "whyItMatters": "Not every insult deserves the steering wheel. Robert keeps the shared obligation from being swallowed by an old wound."
@@ -3419,8 +2797,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second choice keeps care moving and preserves benevolence. Matching volume lets anger choose the act; ignoring him makes pride more important than the needed update.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3432,8 +2809,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The bug is the useful social work. A plain boundary about tone can follow, but retaliation would make ego the center and delay the repair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3445,8 +2821,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The third choice turns one angry mass into distinct decisions. Venting may heat the conflict, and seniority does not answer the arborist or survey facts.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3458,8 +2833,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The coach corrects the error while preserving the crew as a common body. Blame cuts one branch away; silence avoids the useful correction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3471,8 +2845,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The third choice uses the remaining help while limiting the vanity. Dismissing him may waste service, while flattery feeds the exact disorder.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3484,8 +2857,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first choice keeps the shared obligation from being captured by history. The insult may need attention later, but answering it now abandons the active duty.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3497,8 +2869,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Phocion-like mildness has to be real, not a mask for point-scoring. A quiet voice can still be unsocial if it aims at humiliation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3510,8 +2881,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Correction is allowed; contempt is the extra injury. Silence is not required, but the correction should serve truth and order rather than revenge.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3523,8 +2893,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second answer combines realism and action. Expecting flawed people never to err is impossible; dropping the boundary would confuse benevolence with surrender.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3561,7 +2930,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Keep The Social Act",
         "coreSkill": "You practice keeping correction, boundary, and benevolence joined. The skill is to complete the act that serves the whole without letting anger turn another person into an enemy.",
         "ifThenPlans": [
           {
@@ -3588,21 +2956,15 @@
       "memorableLines": [
         {
           "text": "Anger cuts the branch before the saw arrives.",
-          "whyItMatters": "It makes anger visible as self-separation, not strength.",
-          "location": "breakdown.deepRead",
-          "why": "It makes anger visible as self-separation, not strength."
+          "whyItMatters": "It makes anger visible as self-separation, not strength."
         },
         {
           "text": "A truth used to repair can stay simple.",
-          "whyItMatters": "It distinguishes correction from humiliation.",
-          "location": "breakdown.deepRead",
-          "why": "It distinguishes correction from humiliation."
+          "whyItMatters": "It distinguishes correction from humiliation."
         },
         {
           "text": "There is no victory in becoming the exact shape of the interruption.",
-          "whyItMatters": "It keeps attention on the reader's own next act.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps attention on the reader's own next act."
+          "whyItMatters": "It keeps attention on the reader's own next act."
         }
       ],
       "readingTimeMinutes": 12
@@ -3628,13 +2990,6 @@
             "legal",
             "death"
           ],
-          "planSpec": {
-            "domain": "end-of-life legal planning",
-            "audience": "Monica signing medical directives with her partner",
-            "stakes": "fear of death could delay the truthful present act",
-            "format": "scene",
-            "requiredBeat": "Monica reads the directive aloud, signs it, and asks the witness for the next page instead of changing the subject."
-          },
           "scenario": "The notary stamp waits beside two untouched glasses of water while the blue pen lies across the medical directive. Monica has to choose between making a joke about later and making the page true now. She reads the directive aloud, signs it, and asks the witness for the next page. Her partner watches the witness line, and the next page will not become easier by being avoided. The notary clears his throat once, and Monica keeps her eyes on the line she can complete.",
           "whatToDo": "Read the directive, sign the true page, and move to the next required sheet without turning away.",
           "whyItMatters": "Death reflection becomes useful only when it starts the present act instead of becoming a mood."
@@ -3647,13 +3002,6 @@
             "apprentice",
             "practice"
           ],
-          "planSpec": {
-            "domain": "apprentice farrier training",
-            "audience": "Jonas practicing with his weak hand",
-            "stakes": "awkwardness feels like proof he cannot learn",
-            "format": "vignette",
-            "requiredBeat": "Jonas uses his left hand for the rasp until the motion steadies enough to hold the hoof safely."
-          },
           "scenario": "Metal filings cling to the sweat on Jonas's wrist as the rasp chatters against the hoof stand. His leather apron twists when he shifts, and he must decide whether awkward means impossible. He keeps the rasp in his left hand until the motion steadies enough to hold the hoof safely. The horse shifts once against the hoof stand, so the safer practiced stroke matters now. The trainer does not praise the stroke yet, but the hoof is safer than it was one minute earlier.",
           "whatToDo": "Practice the weak motion under supervision until it becomes safe enough for the next stroke.",
           "whyItMatters": "The weak faculty should be trained before it is trusted or condemned. Despair is often early evidence, not final evidence."
@@ -3666,13 +3014,6 @@
             "airport",
             "present"
           ],
-          "planSpec": {
-            "domain": "airport lost luggage desk",
-            "audience": "Bridget handling a final flight before quitting",
-            "stakes": "past frustration and future resignation threaten the present customer",
-            "format": "decision_point",
-            "requiredBeat": "\"Bag tag first,\" Bridget says, and completes the trace before indulging the story of how done she is."
-          },
           "scenario": "Bridget hears, \"My bag was on the app ten minutes ago,\" as the passenger waves a boarding pass over the claim screen. Bridget's resignation letter is printed in her locker, and she can feel the quitting speech rising. She says, \"Bag tag first,\" enters the number, and finishes the trace before touching the story of being done. The baggage belt has stopped moving, and the passenger can still be helped before the quitting story returns. The claim number appears on the screen, which gives Bridget a present fact stronger than her resignation story.",
           "whatToDo": "Put the bag tag before the quitting story and complete the trace in the present customer case.",
           "whyItMatters": "The final day still contains a duty. Future departure does not excuse a thin present act."
@@ -3685,13 +3026,6 @@
             "sterilization",
             "attention"
           ],
-          "planSpec": {
-            "domain": "surgical instrument sterilization",
-            "audience": "Hadiya preparing trays after an error report",
-            "stakes": "self-reproach could overpower the clean next procedure",
-            "format": "before_after",
-            "requiredBeat": "You watch Hadiya divide the tray into instrument, wrapper, indicator, and log until the next set is clean."
-          },
           "scenario": "Hadiya checks the indicator strip before the mistake report clipped to the sterilizer log. Hadiya does not need another loop of self-accusation; she needs a clean tray. She divides the next set into instrument, wrapper, indicator, and log until the procedure cart is ready. The next surgery tray is due before noon, so clean sequence has to replace clean feelings. The sterilizer door is still warm, and the next tray needs sequence more than self-punishment.",
           "whatToDo": "Break the next tray into inspectable parts and clean each part instead of rehearsing guilt.",
           "whyItMatters": "Separating the present object restores agency. Reproach can look moral while it weakens the next procedure."
@@ -3704,13 +3038,6 @@
             "retirement",
             "completion"
           ],
-          "planSpec": {
-            "domain": "retirement workshop",
-            "audience": "Pierre closing his workshop after forty years",
-            "stakes": "identity grief tries to make ending look like failure",
-            "format": "reflection",
-            "requiredBeat": "It took Pierre one final sweep to see that a completed series of work is not harmed by ending."
-          },
           "scenario": "It took Pierre one final sweep to hear the shop become quiet. The broom leaned against the workbench, the ledger book lay closed, and the key pressed into his palm. He could treat ending as failure; instead he swept the last strip of dust, locked the drawer, and left the workbench key for the next owner. The shop lights are already off in the back room, and the ledger still needs its final mark. The key ring sounds final on the bench, but the last sweep still belongs to Pierre.",
           "whatToDo": "Complete the closing tasks and treat the finished series as finished, not ruined.",
           "whyItMatters": "An activity that ends at its proper time is not made false by ending."
@@ -3723,13 +3050,6 @@
             "housing",
             "truth"
           ],
-          "planSpec": {
-            "domain": "tenant emergency repair",
-            "audience": "Alice choosing truth with an angry landlord",
-            "stakes": "a false reassurance would buy peace and lose justice",
-            "format": "postmortem",
-            "requiredBeat": "What must be said if this were the last clean hour of the work?"
-          },
           "scenario": "Alice asks what word would stay true if this were the last clean hour of the work. Alice looks at the ceiling stain, the leak photos, and the inspection form while the landlord asks for softer language. She can buy peace or protect the tenant. She writes uninhabitable, documents the leak, and lists the legal next step. The tenant is waiting in the hallway, where the softer word would become an unsafe night. The inspection form will outlast the argument, so Alice chooses the word a tenant can rely on.",
           "whatToDo": "Use the accurate condition word, attach the evidence, and state the legal next step.",
           "whyItMatters": "The present demand for truth matters more than the temporary peace a false reassurance would buy."
@@ -3748,8 +3068,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first choice lets death reflection start a truthful present act. Waiting and spiraling both give fear more authority than the page in front of her.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3761,8 +3080,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The left-hand image teaches practice before despair. The strong hand may hide the gap, while waiting for confidence skips the training that creates it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3774,8 +3092,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The present customer still has a claim to Bridget's act. Her resignation is real, but using it first would let the future thin the current duty.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3787,8 +3104,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first choice turns guilt into inspectable present action. Punishment loops feel serious but do not clean the next tray; avoidance abandons the faculty that needs practice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3800,8 +3116,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The third answer treats completion as completion, not failure. The other choices let identity grief rewrite the value of the acts already done.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3813,8 +3128,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Truth and justice are the live duties. Softer wording buys temporary peace by losing accuracy, and delay lets fear govern the present hour.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3826,8 +3140,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The present is not impulse; it is the only point where a just act can be made. Past defense and future blame are impressions crowding the faculty.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3839,8 +3152,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The lamp keeps shining until it is extinguished. Delaying truth because the week is uncomfortable makes convenience, not character, set the limit.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3852,8 +3164,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The bay appears when opinion is released, not when the world becomes easy. Pretending positivity is another opinion; factual inspection restores action.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3890,7 +3201,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Make The Present Clean",
         "coreSkill": "You practice compressing fear, regret, and reputation into one present act that can be done truthfully and justly.",
         "ifThenPlans": [
           {
@@ -3917,21 +3227,15 @@
       "memorableLines": [
         {
           "text": "The present is the only room where justice can stand.",
-          "whyItMatters": "It turns mortality reflection into immediate ethical action.",
-          "location": "breakdown.fastRead",
-          "why": "It turns mortality reflection into immediate ethical action."
+          "whyItMatters": "It turns mortality reflection into immediate ethical action."
         },
         {
           "text": "The left hand on the bridle proves that practice can answer despair.",
-          "whyItMatters": "It keeps weakness from becoming a premature identity.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps weakness from becoming a premature identity."
+          "whyItMatters": "It keeps weakness from becoming a premature identity."
         },
         {
           "text": "The mariner and waveless bay image means calm is opinion released after the turn.",
-          "whyItMatters": "It names calm as a changed judgment, not a changed world.",
-          "location": "breakdown.fullRead",
-          "why": "It names calm as a changed judgment, not a changed world."
+          "whyItMatters": "It names calm as a changed judgment, not a changed world."
         }
       ],
       "readingTimeMinutes": 12

@@ -41,13 +41,6 @@
             "operations",
             "significance"
           ],
-          "planSpec": {
-            "domain": "airport operations during weather diversion",
-            "audience": "ops lead at a gate cluster",
-            "stakes": "admit the terminal needs a story larger than schedule control",
-            "format": "scene",
-            "requiredBeat": "Claire stops refreshing the delay board and walks the concourse to hear which passengers are trying to matter through anger or command"
-          },
           "scenario": "Blue glare from the delay board spreads across the polished floor at Gate C18 while Claire, the operations lead, refreshes the weather feed for the tenth time. A gate PA microphone sits unused beside a stack of cot vouchers. Two passengers demand a supervisor before the next update. Claire is about to post another neutral delay notice, but she has to decide whether to stay with the board or walk the concourse and hear what each angry person needs to have counted.",
           "whatToDo": "Leave the screen and listen for the claim underneath the complaint. Name the missed funeral, the frightened child, or the lost status before giving the next operational answer.",
           "whyItMatters": "The schedule explains the delay, but it does not answer the need to matter inside it. When Claire hears the symbolic injury, the practical update stops feeling like erasure."
@@ -60,13 +53,6 @@
             "succession",
             "recognition"
           ],
-          "planSpec": {
-            "domain": "family hardware store succession meeting",
-            "audience": "sibling asked to justify invisible labor",
-            "stakes": "name the need for significance without turning it into a power grab",
-            "format": "dialogue",
-            "requiredBeat": "James says he wants the family to stop treating twenty years of repairs as errands"
-          },
           "scenario": "\"So you want more shares?\" James hears his sister ask in the hardware store office, tapping the ledger binder beside the old service bell. A cracked brass key lies between them while their father studies the revenue column. James must choose whether to keep arguing about ownership or name the twenty years of repairs he needs the family to see. The register drawer is open.",
           "whatToDo": "Say the real claim plainly: the work needs recognition before the ownership split can be fair. Keep the request tied to service, not to wounded pride.",
           "whyItMatters": "The meeting will misread James as greedy unless he names the significance issue. The key is not only property. It is a symbol of a life spent holding the store together."
@@ -79,13 +65,6 @@
             "awards",
             "service"
           ],
-          "planSpec": {
-            "domain": "volunteer fire brigade awards night",
-            "audience": "captain choosing who gets honored",
-            "stakes": "separate real heroism from applause hunger",
-            "format": "vignette",
-            "requiredBeat": "Camille rewrites the award order so the smoke-alarm volunteer is named before the dramatic rescue"
-          },
           "scenario": "At 8:10 a.m. in the town station hall, Camille stands as ceremony coordinator while polish and coffee hang in the air before the families arrive. Folding chairs face a banner, the brass plaque waits near the call sheet, and the winter smoke-alarm checks sit near the end. She must decide before the ceremony starts whether heroism means the loudest story or the service that kept the call from happening.",
           "whatToDo": "Move the smoke-alarm volunteer to the first award and explain the choice through lives protected, not applause denied. Give quiet prevention a public symbol.",
           "whyItMatters": "A community learns what counts by what it honors first. If only dramatic rescue gets a stage, steady protection becomes invisible even when it saves more lives."
@@ -98,13 +77,6 @@
             "credit",
             "identity"
           ],
-          "planSpec": {
-            "domain": "university lab authorship negotiation",
-            "audience": "postdoc facing a credit fight",
-            "stakes": "show why a name line feels existential",
-            "format": "decision_point",
-            "requiredBeat": "Lukas points to the author order and asks what each person needs the line to prove"
-          },
           "scenario": "Which part of a manuscript can make three smart adults sound like children? Lukas studies an author draft with six highlighted names, a lab notebook open to failed trials, and a review deadline two days away. The room keeps arguing fairness. His finger hovers over the first-author line. He has to decide whether to keep trading evidence or ask what each person needs that line to prove about their place in the field.",
           "whatToDo": "Pause the evidence duel and ask each person what the name order is being asked to secure. Then separate real contribution from the hunger to be seen.",
           "whyItMatters": "The byline carries more than credit. It carries entry, memory, and rank. Until that symbolic load is visible, every technical argument will feel like a threat."
@@ -117,13 +89,6 @@
             "budget",
             "symbols"
           ],
-          "planSpec": {
-            "domain": "youth sports club budget meeting",
-            "audience": "treasurer resisting trophy culture",
-            "stakes": "protect recognition without feeding every parent status hunger",
-            "format": "before_after",
-            "requiredBeat": "Sofia compares the trophy budget with the empty scholarship fund and makes the board choose what meaning it rewards"
-          },
           "scenario": "It took Sofia two seasons to notice that the cardboard box of unused medals was heavier than the scholarship envelope. At the Thursday budget meeting, the plastic trophies sit beside her budget sheet while three parents argue that children need recognition. Before the vote, she must choose between another medal order and asking what kind of meaning the club wants to reward.",
           "whatToDo": "Put the medal line and the empty scholarship line side by side. Keep recognition, but redirect some money toward access so the symbol serves children instead of adult status.",
           "whyItMatters": "Medals can honor effort, but they can also become proof that parents mattered through their children. The budget reveals which need the club is feeding."
@@ -136,13 +101,6 @@
             "memory",
             "town"
           ],
-          "planSpec": {
-            "domain": "local newspaper final issue",
-            "audience": "editor choosing what the last front page preserves",
-            "stakes": "give the town an honest symbolic container without lying about decline",
-            "format": "reflection",
-            "requiredBeat": "Daniel replaces a farewell editorial with ordinary names and places the town used to feel real"
-          },
           "scenario": "You are beside Daniel at the paste-up board, where a front page proof leaves too much white space and photo sleeves cover half the desk. The deadline clock says 9:17 p.m. His farewell editorial sounds noble and false. He can print one last speech about civic legacy, or he can replace it with the ordinary names, storefronts, and school notices that once gave the town a shared shape.",
           "whatToDo": "Cut the noble farewell and build the page from names and places the town actually used. Let the final issue carry memory without pretending decline is triumph.",
           "whyItMatters": "A symbolic container has to stay truthful or it becomes theater. The town needs proof that its life was seen, not a polished sentence asking everyone to feel better."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The urgency around a small symbol shows a need to matter. Praise may soften the room, but it misses the symbolic load, and ignoring the order treats a real identity pressure as trivia.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The accurate contribution line answers the need to be seen without inflating it. The teamwork lecture shames the need, and extra credit dodges the symbolic wound.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The bio is being asked to secure symbolic importance. Redirecting that need into traction gives it a real container. More polish keeps feeding the same insecurity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The response tests the symbol instead of mocking it. Accuracy alone does not answer the erasure concern, while universal initials inflate the symbol without clarifying its purpose.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Specific symbols can honor real effort without becoming a status buffet. Eliminating awards denies the need, while identical medals can make recognition feel hollow.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The naming choice teaches what significance means in that community. Funding risk may be real, but the deeper question is which hero system the room will display.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The title may be carrying a need to feel durable while illness exposes fragility. The other options either condemn too quickly or attack the symbol without reading the need.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The display is a symbolic system, so the board has to test the story it teaches. Instant removal or automatic loyalty may both dodge the harder meaning question.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The useful test is what a hero system trains people to value. Entertainment and numbers may matter, but neither alone tests whether the symbol tells the right truth.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -303,7 +252,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Read the Hidden Hero System",
         "coreSkill": "The skill is to see the need for significance inside ordinary conflict. Instead of dismissing credit, status, or recognition as vanity, ask what role or symbol is being asked to make a finite life feel meaningful.",
         "ifThenPlans": [
           {
@@ -328,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "The danger is narcissism wearing practical clothes.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the chapter's warning about ordinary significance into a concrete social image."
+          "text": "The danger is narcissism wearing practical clothes."
         },
         {
-          "text": "A life needs symbols strong enough to hold effort and humble enough not to become idols.",
-          "location": "breakdown.fullRead",
-          "why": "It states the constructive test for hero systems without becoming sentimental."
+          "text": "A life needs symbols strong enough to hold effort and humble enough not to become idols."
         },
         {
-          "text": "When a conflict seems out of scale, do not ask only what people want.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a portable diagnostic question for disproportionate behavior."
+          "text": "When a conflict seems out of scale, do not ask only what people want."
         }
       ]
     },
@@ -367,13 +309,6 @@
             "family",
             "control"
           ],
-          "planSpec": {
-            "domain": "hospital night shift handoff",
-            "audience": "resident with a panicked family",
-            "stakes": "move control back into one real choice",
-            "format": "scene",
-            "requiredBeat": "Emily moves the medication-time argument into a quiet room and names the one decision the family can make"
-          },
           "scenario": "The vending machine outside ICU hums while Emily scans the handoff sheet at 2:13 a.m. Visitor stickers curl on three relatives arguing over the medication schedule taped to the wall. The father asks for another explanation before rounds. Emily is about to repeat the dosage plan. The real decision is whether the timing fight needs another answer or a quiet room with one choice they still control.",
           "whatToDo": "Move the family out of the hallway and give fear one truthful handle: who will sit with the patient for the next hour, and what update will come next.",
           "whyItMatters": "The medication fight is partly a fight against helplessness. A real choice lowers the pressure better than another technical explanation of a schedule they cannot control."
@@ -386,13 +321,6 @@
             "fire",
             "paperwork"
           ],
-          "planSpec": {
-            "domain": "insurance claims after a house fire",
-            "audience": "adjuster hearing receipt obsession",
-            "stakes": "read paperwork control as displaced terror",
-            "format": "dialogue",
-            "requiredBeat": "Thomas stops correcting totals and asks which missing object makes the loss feel real"
-          },
           "scenario": "\"The toaster cost eighty-nine dollars,\" the homeowner says at the airport hotel desk after the fire, pushing the claim form toward Thomas. Smoke still clings to the plastic document tub. A charred photo envelope sits beside the hotel keycard. Thomas must choose between another corrected total and the harder question of which missing thing makes the fire feel real. Thomas is the night adjuster on duty, and the lobby clock says 11:20 p.m.",
           "whatToDo": "Pause the receipt audit and ask about the unopened photo envelope. Let the form wait while the loss underneath the paperwork gets a sentence.",
           "whyItMatters": "The receipts give the terror a job, but they cannot hold the whole loss. Naming the object restores contact with reality before the form becomes a shield."
@@ -405,13 +333,6 @@
             "training",
             "helplessness"
           ],
-          "planSpec": {
-            "domain": "mountain rescue training debrief",
-            "audience": "trainee who froze on a rope",
-            "stakes": "separate cowardice from helplessness under death pressure",
-            "format": "vignette",
-            "requiredBeat": "Margaux replays the rope clip and has the trainee mark the second control disappeared"
-          },
           "scenario": "The debrief room goes still when the carabiner clicks on the helmet camera clip. Margaux sits beside the rope bag and training log while the trainee calls himself useless for freezing. She must decide before signing the log whether to accept that story or rewind to the second his boot skidded and control disappeared. Margaux is the training lead, and the next safety run starts in ten minutes.",
           "whatToDo": "Replay the clip and have him mark the moment helplessness hit. Train from that point instead of letting him turn bodily terror into a verdict on character.",
           "whyItMatters": "A freeze can be a body meeting danger before pride can explain it. Finding the second control vanished creates a better training target than shame."
@@ -424,13 +345,6 @@
             "parents",
             "decision"
           ],
-          "planSpec": {
-            "domain": "estate planning seminar for young parents",
-            "audience": "lawyer watching jokes cover dread",
-            "stakes": "turn denial into one concrete guardian decision",
-            "format": "decision_point",
-            "requiredBeat": "Henrik asks who would pick up the child tomorrow if both parents could not"
-          },
           "scenario": "Who would pick up your child tomorrow if both parents could not? Henrik looks over unsigned guardian forms, blue pens, a pickup list, and a nursery photo one couple keeps turning face down. The room has been joking about paperwork for ten minutes. Before the seminar moves on, he needs to decide if the jokes get another pass or if dread becomes a guardian choice. Henrik is reviewing the packet in a legal clinic waiting room before the appointment begins.",
           "whatToDo": "Ask the pickup question and keep the group on one name, one phone number, and one signed form. Do not let nervous jokes replace the decision.",
           "whyItMatters": "The form is useful only when it converts terror into care. A concrete guardian choice gives fear a responsible path instead of leaving it as avoidance."
@@ -443,13 +357,6 @@
             "drill",
             "routine"
           ],
-          "planSpec": {
-            "domain": "subway emergency drill",
-            "audience": "transit supervisor reviewing panic",
-            "stakes": "show routine as a rail for fear, not proof of fearlessness",
-            "format": "before_after",
-            "requiredBeat": "Anya notes that the checklist worked because it gave terror a track to follow"
-          },
           "scenario": "It took Anya until the second replay to notice the tunnel map under fluorescent light. During the drill, a trainee's hands shook on the radio handset and the orange vest sat crooked over his coat. Afterward, the evacuation placard showed every step completed. In the review, she must choose between praising fearlessness and naming the checklist as the rail that carried fear. Anya is the transit safety trainer, and the platform clock is counting down to the next drill.",
           "whatToDo": "Tell the team the routine worked because it gave fear a sequence. Keep the checklist, but stop pretending the best operators feel nothing.",
           "whyItMatters": "A good procedure does not erase terror. It gives terror a path that still serves reality, which is why training should honor steadiness instead of false calm."
@@ -462,13 +369,6 @@
             "outage",
             "ritual"
           ],
-          "planSpec": {
-            "domain": "solo founder after server outage",
-            "audience": "founder refreshing dashboards at midnight",
-            "stakes": "replace control ritual with the one honest call",
-            "format": "reflection",
-            "requiredBeat": "Jack closes the third dashboard and phones the customer whose trust is actually at risk"
-          },
           "scenario": "You are in the dark office with Jack at 12:41 a.m., watching three monitors flash the same status page while the incident timeline fills in. A pizza box has gone cold beside the keyboard. The customer call sits unsent in his draft folder. He can refresh graphs for another hour, or he can close the third dashboard and call the person whose trust is actually at risk. Jack is the overnight systems engineer, and the incident bridge opens in six minutes.",
           "whatToDo": "Close the duplicate dashboard and make the customer call. Use the incident timeline for facts, not as a ritual that delays contact with the person harmed.",
           "whyItMatters": "Refreshing gives helplessness a motion that feels like control. The call returns him to the real relationship where repair can begin."
@@ -487,8 +387,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Repeated checking can be displaced terror when the real wound is helplessness. Making the ritual official may deepen it, and calling it detail orientation misses the pressure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -500,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The contact plan turns fear into one real action. More review reading feeds the ritual, while reassurance skips the helplessness that separation has exposed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -513,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The spouse needs a real handle, not another fight over paper. Removing the forms may increase helplessness, and repeating process details keeps the fear displaced.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -526,8 +423,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The user notice restores contact with reality. The labels may help later, but right now they are safer than facing harmed users, so speeding them up protects the avoidance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -539,8 +435,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The line normalizes fear while tying it to procedure. Shaming fear creates concealment, and hiding the plan removes the structure that can carry action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -552,8 +447,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The chart is concrete enough for grief to grip. Calling it planning failure is shallow, and ignoring details can erase one of the few controllable tasks available.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -565,8 +459,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The key test is contact with reality. If checking no longer changes safety, it may be a ritual against helplessness. Social normality and gauge quality miss that line.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -578,8 +471,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The schedule and appointment serve reality. Endless symptom checking seeks impossible certainty, while refusing routines throws away tools that can carry fear responsibly.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -591,8 +483,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The best plan joins honesty with structure. Fear without steps can sprawl, while steps without honesty can become false calm that collapses under pressure.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -629,7 +520,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Convert Control Into Contact",
         "coreSkill": "The skill is to notice when control has become a shelter against helplessness. Keep the part of the routine that serves reality, then move toward one real decision, conversation, or repair.",
         "ifThenPlans": [
           {
@@ -654,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "Death terror often hides inside control.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the invisible mechanism easy to remember in ordinary situations."
+          "text": "Death terror often hides inside control."
         },
         {
-          "text": "Control is fear with a task attached.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a compact diagnostic for rigid checking and procedural fights."
+          "text": "Control is fear with a task attached."
         },
         {
-          "text": "A good routine turns terror into contact with reality.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the value of structure while separating it from avoidance."
+          "text": "A good routine turns terror into contact with reality."
         }
       ]
     },
@@ -693,13 +577,6 @@
             "injury",
             "identity"
           ],
-          "planSpec": {
-            "domain": "dance studio after injury",
-            "audience": "principal dancer returning from surgery",
-            "stakes": "integrate bodily limit into stage identity",
-            "format": "scene",
-            "requiredBeat": "Claire touches the scar before rehearsal and changes the comeback plan from proof to capacity"
-          },
           "scenario": "Rosin dust shows every footprint on the black studio floor when Claire tightens her ankle brace before Friday rehearsal. The casting email glows on her phone beside the mirror: prove full readiness by noon. Her scar catches the light as she reaches for the barre. She is about to dance the hardest variation, but the real decision is whether the comeback must prove she is untouched or show what her body can safely carry.",
           "whatToDo": "Touch the scar, name the limit, and change the rehearsal from a proof of old identity into a capacity test for the body she actually has today.",
           "whyItMatters": "The scar threatens the symbolic self called principal dancer. Treating it as data keeps her identity connected to reality instead of making the body an enemy."
@@ -712,13 +589,6 @@
             "sanitation",
             "craft"
           ],
-          "planSpec": {
-            "domain": "professional kitchen inspection",
-            "audience": "chef offended by creaturely facts",
-            "stakes": "stop treating sanitation as beneath artistry",
-            "format": "dialogue",
-            "requiredBeat": "David admits the cooler log is the bodily base his reputation rests on"
-          },
           "scenario": "\"The sauce is flawless,\" David says, while the thermometer blinks in the walk-in. The inspector taps the cooler log with her clipboard and adjusts her hair net. Raw chicken sits too close to the garnish tray. David must choose between defending artistry and admitting the cold, bodily fact beneath the restaurant's reputation.",
           "whatToDo": "Sign the cooler log, move the tray, and say aloud that sanitation is not beneath the craft. It is the body-level condition that lets the craft mean anything.",
           "whyItMatters": "Taste is symbolic, but food is still animal reality. When David treats temperature as an insult, he splits reputation from the body that can be harmed."
@@ -731,13 +601,6 @@
             "systems",
             "dependence"
           ],
-          "planSpec": {
-            "domain": "space mission simulation",
-            "audience": "engineer designing confinement systems",
-            "stakes": "include bodily dependence inside heroic ambition",
-            "format": "vignette",
-            "requiredBeat": "Juliette crosses out fantasy language and adds the body systems that make the mission possible"
-          },
           "scenario": "Inside the Mars simulation bay at 6:40 a.m., Juliette reviews the mission brief while Velcro straps, sealed lockers, and careful silence surround the crew. The summary calls them pioneers, but the CO2 checklist, sleep schedule, and waste diagram are missing from the executive packet. Before signoff, she must decide whether heroic language can stay honest without the body's systems beside it.",
           "whatToDo": "Add the CO2, sleep, and waste systems to the signoff brief. Keep the ambition, but make bodily dependence visible inside the mission instead of hidden under rhetoric.",
           "whyItMatters": "A heroic project still breathes, sleeps, and excretes. Naming those systems prevents the symbolic self from floating above the animal body that keeps it alive."
@@ -750,13 +613,6 @@
             "archive",
             "grandeur"
           ],
-          "planSpec": {
-            "domain": "museum costume archive",
-            "audience": "curator displaying royal garments",
-            "stakes": "let grandeur and creatureliness share one case",
-            "format": "decision_point",
-            "requiredBeat": "Anders places sweat-stained lining beside the ceremonial portrait instead of hiding it"
-          },
           "scenario": "Can a velvet coat honor rank and still show sweat? In the costume archive, Anders holds white cotton gloves over the garment tray while the conservation tag notes staining on the linen lining. The portrait label is already polished. Before the exhibit case closes, Anders has to choose between hiding the lining and placing it beside the ceremonial portrait where grandeur and creatureliness meet.",
           "whatToDo": "Display the lining near the portrait with plain language. Let visitors see the rank and the body together instead of protecting grandeur from evidence.",
           "whyItMatters": "The hidden lining is the whole tension in cloth. If the exhibit erases sweat, it teaches that symbolic elevation requires denial of bodily fact."
@@ -769,13 +625,6 @@
             "body",
             "timeline"
           ],
-          "planSpec": {
-            "domain": "fertility clinic waiting room",
-            "audience": "patient facing body uncertainty",
-            "stakes": "separate symbolic timeline from animal contingency",
-            "format": "before_after",
-            "requiredBeat": "Luca stops making the test result a verdict on the self and names the limit the plan excluded"
-          },
           "scenario": "It took Luca until the pager buzzed on the vinyl chair to see what the calendar app had hidden. The lab envelope lay beside a folded paper gown, and the planned sequence of career, apartment, savings, child suddenly looked less like destiny than a draft. Before the nurse returns, Luca must choose between treating the result as a verdict on the self and naming the bodily uncertainty the plan never included.",
           "whatToDo": "Name the result as bodily uncertainty, not personal failure. Keep the timeline as a wish, but stop making the body guilty for not obeying it.",
           "whyItMatters": "The symbolic plan promised order. The body introduced contingency. Separating those prevents shame from turning a medical fact into an identity sentence."
@@ -788,13 +637,6 @@
             "voice",
             "shame"
           ],
-          "planSpec": {
-            "domain": "high school theater dressing room",
-            "audience": "teen actor ashamed by a voice crack",
-            "stakes": "make the body part of the role instead of enemy of the self",
-            "format": "reflection",
-            "requiredBeat": "Aanya moves the actor from a stall to practicing the cracked line until it belongs"
-          },
           "scenario": "You are in the high school dressing room with Aanya, where greasepaint streaks a script page and a throat lozenge sticks to its wrapper. The boy in the costume jacket has locked himself in a stall after his voice cracked on the first line. Before the curtain call rehearsal, Aanya can promise nobody noticed, or she can bring him back out and practice the cracked line until the body belongs inside the role. Aanya is directing the sophomore cast, and the house manager has just called ten minutes to places.",
           "whatToDo": "Bring him to the mirror and rehearse the line with the crack included. Make room for the body in the performance instead of treating it as a betrayal.",
           "whyItMatters": "The shame comes from a symbolic role fighting a changing body. Practicing the line lets the actor keep meaning without pretending the body vanished."
@@ -813,8 +655,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The migraine threatens an identity built on control and stamina. Scheduling may matter later, but the shame comes from body need puncturing the symbolic self.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -826,8 +667,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Naming the cane integrates bodily limit with the teaching role. Canceling or hiding preserves the fantasy that authority requires a body without visible need.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -839,8 +679,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The checklist links symbolic craft to creaturely reality. Fines may force compliance, and delegation keeps the split intact by making body facts beneath the artist.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -852,8 +691,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The body has to enter the identity instead of being treated as treason. Praise feeds the split, while permanent withdrawal turns a capacity question into total defeat.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -865,8 +703,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Showing both pieces resists the split between symbolic elevation and creatureliness. Hiding the lining protects fantasy, while removing the uniform erases meaning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -878,8 +715,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Overwork turns the body into evidence for the old identity. Commitment may be real, but the compulsion suggests shame about embodied finitude.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -891,8 +727,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The crack wounds the public self because the body enters the scene. Confidence drills may help later, but they do not name the symbolic-body split.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -904,8 +739,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first plan integrates body need with symbolic role. Secrecy keeps shame in charge, and resignation treats bodily limits as total identity failure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -917,8 +751,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Rehearsing includes the body in the role instead of treating it as a contaminant. Cutting may deepen shame, and false reassurance leaves the split untouched.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -955,7 +788,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Including the Body in the Self",
         "coreSkill": "The skill is to notice when shame comes from treating the body as a threat to identity. Instead of hiding the bodily fact, bring it into the role, plan, or symbol truthfully.",
         "ifThenPlans": [
           {
@@ -980,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "Grandeur has plumbing, fatigue, and waste inside it.",
-          "location": "breakdown.deepRead",
-          "why": "It lands the symbolic-body split in a short, visual sentence."
+          "text": "Grandeur has plumbing, fatigue, and waste inside it."
         },
         {
-          "text": "The body keeps the self honest.",
-          "location": "breakdown.fullRead",
-          "why": "It reframes the body from enemy to truth-teller."
+          "text": "The body keeps the self honest."
         },
         {
-          "text": "You can feel the split when a bodily fact seems to insult a whole identity.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a direct recognition test for creatureliness and shame."
+          "text": "You can feel the split when a bodily fact seems to insult a whole identity."
         }
       ]
     },
@@ -1019,13 +845,6 @@
             "avoidance",
             "self-story"
           ],
-          "planSpec": {
-            "domain": "tax audit preparation",
-            "audience": "freelancer with a tidy self-story",
-            "stakes": "show the vital lie protecting avoidance",
-            "format": "scene",
-            "requiredBeat": "Marta labels three piles paid, guessed, and avoided, then calls the accountant"
-          },
           "scenario": "At 7:05 p.m. in her dining room, Marta sorts 1099 forms with rubber bands and calculator tape while shoeboxes scrape under the table. Her tidy-freelancer story has survived for years because every receipt eventually found a pile. The audit letter is open by her elbow. Instead of making one neater stack, she writes paid, guessed, and avoided on three index cards, then reaches for the accountant's number before she can re-sort. Marta is preparing the tax file for a morning accountant call, so the sorted piles have to become a truthful ledger tonight.",
           "whatToDo": "Name the avoided pile and make the call while the label is still visible. Keep the useful order, but stop letting order hide fear.",
           "whyItMatters": "Her character as the careful one steadies her work and protects avoidance. The honest labels let the useful trait remain while the lie loses cover."
@@ -1038,13 +857,6 @@
             "status",
             "craft"
           ],
-          "planSpec": {
-            "domain": "orchestra seating dispute",
-            "audience": "violinist fearing replacement",
-            "stakes": "loosen character defense without losing craft",
-            "format": "dialogue",
-            "requiredBeat": "Michael asks for the rotation chart and names what second chair would expose"
-          },
           "scenario": "\"This is not about ego,\" Michael says, closing his bow case under the rehearsal lights. The metronome still clicks on the piano. The conductor points to the seating chart. Michael asks to see the rotation record, then stops. Before the next rehearsal notice goes out, he must say whether second chair would harm the music or expose the identity he built around being irreplaceable. Paula is the case lead at the clinic, and the patient will arrive before the hallway lights switch off.",
           "whatToDo": "Ask for the chart, then name the fear directly. Protect the standard of the music without pretending his place in the section is the same as his worth.",
           "whyItMatters": "Excellence is real, but the irreplaceable story narrows reality. Once that defense is visible, Michael can keep craft without making rank carry his whole self."
@@ -1057,13 +869,6 @@
             "safety",
             "style"
           ],
-          "planSpec": {
-            "domain": "architecture firm design review",
-            "audience": "partner hiding behind aesthetic purity",
-            "stakes": "separate principle from character armor",
-            "format": "vignette",
-            "requiredBeat": "Chloe marks the stair detail in red and keeps the safety issue visible while taste arguments start"
-          },
           "scenario": "Red pencil dust sits on the tracing paper beside a model knife and an open code tab. Chloe circles the stair section in red while the partner says the handrail ruins the line. The room is about to follow the taste argument. Chloe leaves the red mark in the center of the drawing, so the safety issue stays visible while the minimalist self-story starts to defend itself. Marco is presenting to the code board, and the revised stair drawing has to leave the studio by noon.",
           "whatToDo": "Keep the red mark visible and ask whether the objection is beauty, code, or character armor. Do not let aesthetic identity erase a safety fact.",
           "whyItMatters": "A principle can become a defense when it excludes inconvenient reality. The red mark forces the design identity to answer the body-risk it wants to hide."
@@ -1076,13 +881,6 @@
             "composure",
             "truth"
           ],
-          "planSpec": {
-            "domain": "divorce mediation intake",
-            "audience": "client whose calm story blocks hurt",
-            "stakes": "show composure as narrowed reality",
-            "format": "decision_point",
-            "requiredBeat": "Nicolas asks what the calm version of the story is not allowed to say and waits through silence"
-          },
           "scenario": "What does perfect calm keep outside the room? In the mediation suite, Nicolas looks at the untouched water glass, the custody calendar, the tissue box, and the agreement draft. His client has narrated the separation without one hard word. While the intake clock runs, Nicolas has to choose between praising her composure and asking what the calm version of the story is not allowed to say. Nicolas is mediating the agreement, and the next appointment is already waiting outside the door.",
           "whatToDo": "Ask the forbidden-sentence question and stay quiet. Let composure remain useful, but do not let it censor anger, grief, or fear.",
           "whyItMatters": "Calm can be a strength or a narrowed reality. The silence tests whether it is serving clarity or protecting the client from truths she needs to include."
@@ -1095,13 +893,6 @@
             "helping",
             "control"
           ],
-          "planSpec": {
-            "domain": "search committee reference call",
-            "audience": "candidate with rescuer identity",
-            "stakes": "hear virtue becoming defense",
-            "format": "before_after",
-            "requiredBeat": "Ingrid circles every reference where help became takeover before voting"
-          },
           "scenario": "It took Ingrid three reference calls in the search committee room to distrust the word indispensable. The blue folder of letters praises a candidate who rescues every project. Coffee stains mark her speakerphone notes, and the score rubric is nearly complete. Before the vote, Ingrid circles each place where help became takeover and asks whether the virtue is also a defense. Ingrid is chairing the search vote, and the dean expects a written rationale after the meeting.",
           "whatToDo": "Separate service from control before scoring the candidate. Keep the evidence of help, but mark every case where others became smaller after being helped.",
           "whyItMatters": "A rescuer identity can hide a need to be necessary. The pattern matters only when both sides are seen: real contribution and the dependency it creates."
@@ -1114,13 +905,6 @@
             "discipline",
             "limits"
           ],
-          "planSpec": {
-            "domain": "marathon training group",
-            "audience": "runner performing toughness through injury",
-            "stakes": "preserve discipline while dropping the lie that limits are weakness",
-            "format": "reflection",
-            "requiredBeat": "Pavel writes the injury on the board instead of running another interval"
-          },
           "scenario": "You are by the wet track lanes as Pavel checks his pace watch and hides the ice pack behind his bag. The training board lists six repeats, and the group expects him to lead the last two. Toughness has been his cleanest self-story. Before the next whistle, he writes knee pain on the board instead of stepping back onto the lane. Daniel is coaching beside the track, and the next training block depends on what he writes now.",
           "whatToDo": "Put the injury where the group can see it and change the session. Preserve discipline by training honestly, not by making limits disappear.",
           "whyItMatters": "The toughness story once built consistency. Now it hides a fact that could damage the body. Naming the injury lets discipline serve reality again."
@@ -1139,8 +923,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The calm may be useful, but it becomes defensive when it censors anger or fear. A script may help later; first, test what the self-story excludes.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1152,8 +935,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The list keeps real service visible while exposing the defensive need to be necessary. Praise feeds the lie, and removal skips the repair of the pattern.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1165,8 +947,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The independence story may protect against dependence shame. Reframing help tests the defense without humiliating the student, while force may harden it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1178,8 +959,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The question separates principle from defense. Taste may still matter, but it cannot be allowed to erase a fact the identity finds inconvenient.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1191,8 +971,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The recovery plan keeps discipline while dropping the lie that limits are disgrace. Quitting makes the defense total, and pushing through keeps reality excluded.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1204,8 +983,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The vital lie is partly true, which is why it works. Calling it only weakness or fixed type misses the protective and distorting functions together.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1217,8 +995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Decisiveness can be real and still defensive when it blocks uncertainty. More data is not enough if the character style refuses to admit it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1230,8 +1007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sentence preserves the strength while adding the excluded truth. The other options either attack identity or reverse the distortion without integrating both sides.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1243,8 +1019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The balanced evaluation reads character as strength and defense together. Automatic reward feeds dependency, while automatic rejection ignores genuine contribution.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1281,7 +1056,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Widen the Self Story",
         "coreSkill": "The skill is to treat character as both support and defense. Keep the trait that helps you function, but test which truth it has been keeping outside the room.",
         "ifThenPlans": [
           {
@@ -1306,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "The lie works because it is partly true.",
-          "location": "breakdown.deepRead",
-          "why": "It captures why defensive character can feel so convincing from the inside."
+          "text": "The lie works because it is partly true."
         },
         {
-          "text": "Calm can be real. It can also be a locked door.",
-          "location": "breakdown.fullRead",
-          "why": "It shows how a valued trait can narrow reality without becoming fake."
+          "text": "Calm can be real. It can also be a locked door."
         },
         {
-          "text": "A self-story earns trust only when it can survive one honest exception.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a sharp test for whether character is flexible or defensive."
+          "text": "A self-story earns trust only when it can survive one honest exception."
         }
       ]
     },
@@ -1345,13 +1113,6 @@
             "anxiety",
             "selfhood"
           ],
-          "planSpec": {
-            "domain": "chaplaincy training practicum",
-            "audience": "trainee rushing to comfort despair",
-            "stakes": "let anxiety reveal selfhood before solving it",
-            "format": "scene",
-            "requiredBeat": "Rachel repeats the patient question back instead of answering it"
-          },
           "scenario": "The plastic chair beside the privacy curtain creaks when Rachel sits down, visitor badge turned backward on her sweater. Her pocket notebook holds three lines about hope. The patient asks, \"What am I now if I cannot go home?\" Rachel is about to offer comfort, then the question stops her. Before the nurse returns, Rachel has to choose between answering the despair and repeating it back so the self-question can stay in the room.",
           "whatToDo": "Repeat the patient's question in plain words and stay present. Let the anxiety reveal the threatened self before offering support or next steps.",
           "whyItMatters": "Fast comfort can protect the listener from despair. Repeating the question lets the person hear the real issue: identity under dependence and loss."
@@ -1364,13 +1125,6 @@
             "judgment",
             "practice"
           ],
-          "planSpec": {
-            "domain": "law school oral argument prep",
-            "audience": "student panicking under judgment",
-            "stakes": "face dependence on judgment without hiding in more notes",
-            "format": "dialogue",
-            "requiredBeat": "Andrew closes the extra casebook and practices one answer while a classmate listens"
-          },
           "scenario": "\"I just need one more case,\" Andrew says in the law library, brushing highlighter dust from the casebook stack. The moot timer is set for eight minutes, and index cards cover the table near the reserve desk. His classmate waits with a pencil. Andrew has to tell her whether he is researching law or hiding from being judged while he speaks.",
           "whatToDo": "Close the extra casebook and practice one answer out loud while the timer runs. Let another person hear the imperfect answer.",
           "whyItMatters": "The panic is tied to dependence on judgment, not missing notes. Speaking before he feels complete puts the self where the anxiety already is."
@@ -1383,13 +1137,6 @@
             "identity",
             "transition"
           ],
-          "planSpec": {
-            "domain": "immigrant language exam office",
-            "audience": "applicant between old and new identity",
-            "stakes": "treat despair as a self standing between worlds",
-            "format": "vignette",
-            "requiredBeat": "Manon leaves one untranslated sentence and names what fluency will cost and give"
-          },
           "scenario": "Rain runs down the consulate window while Manon holds her passport folder and exam ticket. The practice recording on her phone sounds almost fluent, except for one sentence she keeps translating badly. She pauses it there. Before the exam clerk calls her number, she must choose whether to erase the sentence or name what fluency will give her and what it will take from the old self.",
           "whatToDo": "Leave the hard sentence visible and name both sides of fluency. Treat the ache as a self standing between worlds, not as simple failure.",
           "whyItMatters": "Language is not only a tool. It carries belonging and loss. Naming both keeps despair from shrinking into a score on an exam ticket."
@@ -1402,13 +1149,6 @@
             "retirement",
             "limits"
           ],
-          "planSpec": {
-            "domain": "retired surgeon volunteer clinic",
-            "audience": "former expert needed less",
-            "stakes": "see anxiety as the self losing old ground",
-            "format": "decision_point",
-            "requiredBeat": "Mikkel reviews the sharp correction and writes the dependence he refused to feel"
-          },
           "scenario": "What is a surgeon when nobody needs his permission? In the volunteer clinic supply room, Mikkel finds his retired ID badge in a drawer after correcting a nurse too sharply over a blood pressure cuff. The rota gives him two afternoons. An apology note waits beside the sink. Before lunch ends, Mikkel has to choose between offering more expertise and writing the dependence he refused to feel.",
           "whatToDo": "Write the apology and the sentence underneath it: I was afraid of being less needed. Then return to the clinic as a helper, not the center.",
           "whyItMatters": "The anxiety is the self losing old ground. Naming dependence turns a status wound into a truthful act instead of another performance of mastery."
@@ -1421,13 +1161,6 @@
             "parent",
             "truth"
           ],
-          "planSpec": {
-            "domain": "parent teacher conference after suspension",
-            "audience": "parent defending identity through a child",
-            "stakes": "keep the conversation on truth instead of self-protection",
-            "format": "before_after",
-            "requiredBeat": "Chiara asks whether the story protects the child or the parent, then names one avoided fact"
-          },
           "scenario": "It took Chiara ten minutes on the small chair beside the teacher desk to hear the pattern. The behavior report, school lanyard, and crumpled homework told one story; the parent told another where every adult misunderstood her son. Before the meeting ends, Chiara asks who the explanation is sheltering, then says the avoided fact: he shoved another student after being laughed at.",
           "whatToDo": "Keep the parent with the avoided fact long enough to see the child clearly. Do not let a defended identity replace responsibility.",
           "whyItMatters": "The parent's anxiety is about selfhood as much as discipline. Truth gives the child a path forward; protection of image leaves him trapped."
@@ -1440,13 +1173,6 @@
             "resignation",
             "inwardness"
           ],
-          "planSpec": {
-            "domain": "startup board resignation",
-            "audience": "founder admitting the company outgrew him",
-            "stakes": "choose inward truth over heroic self-inflation",
-            "format": "reflection",
-            "requiredBeat": "Yusuf removes his name from the transition slide and says the avoided sentence"
-          },
           "scenario": "You are in the glass boardroom with Yusuf, listening to the projector fan buzz over the transition deck. The equity schedule is final, the resignation letter is unsigned, and his name still sits on the last leadership slide. He can call staying courage, or he can remove his name and say what everyone already knows: the company needs a different person in that seat.",
           "whatToDo": "Remove the name from the slide and say the sentence cleanly. Let the role end without using heroic language to avoid inward truth.",
           "whyItMatters": "The anxiety comes from selfhood meeting a limit. Speaking the limit keeps the transition honest and prevents inflation from pretending to be courage."
@@ -1465,8 +1191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The despairing question may be the self meeting dependence and finitude. Reframing too fast can protect the helper from hearing the truth.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1478,8 +1203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The panic is tied to dependence on judgment. Speaking to a listener meets that limit directly, while more notes may keep postponing it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1491,8 +1215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The corrections may hide anxiety about losing old ground. A title may feed the defense, and ignoring the pattern leaves the inward problem untouched.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1504,8 +1227,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The avoided fact keeps the conversation tied to truth. Policy alone may be needed later, but it can miss the defended selfhood steering the story.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1517,8 +1239,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The anxiety is about selfhood at a limit, not deck quality. Delay and revision keep him near control without answering the role-loss question.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1530,8 +1251,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The balanced read respects treatment needs while asking what truth despair carries. The other options either romanticize distress or erase meaning entirely.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1543,8 +1263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fluency changes more than vocabulary; it alters belonging and self-presentation. Extra practice may help skill, but it will not by itself answer the loss.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1556,8 +1275,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Listening plus action keeps anxiety from being either worshiped or erased. It becomes information about a limit, not a command center.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1569,8 +1287,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The condition is safety. If the client can tolerate it, the hard question may reveal the real conflict. Immediate comfort can prematurely close the inquiry.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1607,7 +1324,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Stay With the Limit",
         "coreSkill": "The skill is to hear anxiety as a possible signal of selfhood meeting a limit. Relief still matters, but it should not arrive so fast that it silences the truth trying to surface.",
         "ifThenPlans": [
           {
@@ -1632,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "Some questions should not be sedated too quickly.",
-          "location": "breakdown.deepRead",
-          "why": "It warns against premature relief while staying plain and memorable."
+          "text": "Some questions should not be sedated too quickly."
         },
         {
-          "text": "The self stops hiding behind scale, role, or applause and stands before a limit.",
-          "location": "breakdown.fullRead",
-          "why": "It makes inward truth concrete by tying it to role, scale, and applause."
+          "text": "The self stops hiding behind scale, role, or applause and stands before a limit."
         },
         {
-          "text": "Anxiety becomes useful when it is allowed to reveal the exact limit the self is standing before.",
-          "location": "breakdown.fullRead",
-          "why": "It states the practical skill in a sentence the reader can carry."
+          "text": "Anxiety becomes useful when it is allowed to reveal the exact limit the self is standing before."
         }
       ]
     },
@@ -1671,13 +1381,6 @@
             "Freud",
             "critique"
           ],
-          "planSpec": {
-            "domain": "biography seminar on scientific founders",
-            "audience": "student balancing genius and blind spots",
-            "stakes": "critique greatness without needing to destroy it",
-            "format": "scene",
-            "requiredBeat": "Laura draws two columns for Freud: what the method opened and what the character narrowed"
-          },
           "scenario": "Laura stands in the biography seminar at 3:15 p.m. while chalk dust gathers under the board and she holds a photocopied essay beside the debate signup sheet. The room wants Freud sorted into genius or fraud. Before discussion hardens, Laura must decide whether to join the verdict game or draw two columns: what the method opened, and what the character narrowed.",
           "whatToDo": "Keep both columns active. Name the genuine opening first, then ask which limits came from the same defended intellectual style.",
           "whyItMatters": "A major figure can be both enabling and narrowing. Two columns prevent tribute and takedown from becoming easier than understanding."
@@ -1690,13 +1393,6 @@
             "review",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "hospital morbidity review",
-            "audience": "senior doctor with decisive style",
-            "stakes": "show one structure producing saves and misses",
-            "format": "dialogue",
-            "requiredBeat": "Ben marks where speed saved the patient and where the same speed skipped a nurse warning"
-          },
           "scenario": "Ben hears, \"He saved the patient,\" in the morbidity conference room as someone points at the curled waveform printout. He opens the binder to the case timeline and the nurse note. The room is ready to defend or blame the senior doctor. Before the review closes, Ben must decide whether to choose a side or show where speed saved a life and where the same speed skipped a warning.",
           "whatToDo": "Mark both points on the timeline. Treat decisiveness as the source of the save and the miss, then redesign the handoff around that double truth.",
           "whyItMatters": "One character structure can produce excellence and error. Seeing only the save flatters the style; seeing only the miss wastes the strength."
@@ -1709,13 +1405,6 @@
             "editing",
             "complexity"
           ],
-          "planSpec": {
-            "domain": "documentary edit suite",
-            "audience": "director cutting a complicated subject",
-            "stakes": "hold admiration and critique in the same edit",
-            "format": "vignette",
-            "requiredBeat": "Etienne keeps the brave scene and the harmful scene in the same cut"
-          },
           "scenario": "Audio monitors carry dialogue under the blue glow of timeline markers in the edit suite. Etienne has a release form, a hard drive of footage, and a subject who risked everything in one scene and harmed an ally in the next. The final cut is due Friday. He must decide whether the film can hold courage and damage without making one erase the other. Etienne is cutting the festival submission, and the producer needs a decision before the evening export.",
           "whatToDo": "Keep both scenes and let the structure show their connection. Do not protect admiration by cutting harm, and do not make harm erase courage.",
           "whyItMatters": "A severe style can create brave action and collateral damage. The honest edit teaches the viewer to see a whole character, not a sanitized role."
@@ -1728,13 +1417,6 @@
             "founder",
             "diligence"
           ],
-          "planSpec": {
-            "domain": "venture capital partner memo",
-            "audience": "investor judging a brilliant defensive founder",
-            "stakes": "separate useful obsession from blind reduction",
-            "format": "decision_point",
-            "requiredBeat": "Anke writes the memo in two truths and tests both in diligence calls"
-          },
           "scenario": "Can the same obsession build the product and block the company from learning? Anke writes beside a term sheet covered in margin notes, a reference grid, and the demo link. The founder's focus is extraordinary. His customer dismissals are also real. Before the Monday partner meeting, she must decide whether the memo will choose one verdict or test both truths in diligence calls.",
           "whatToDo": "Write the memo around two claims: useful obsession and dangerous reduction. Test each with references before turning brilliance into a simple yes or no.",
           "whyItMatters": "The founder's character is part of the asset and the risk. If Anke separates them too neatly, she will misprice both the product and the learning problem."
@@ -1747,13 +1429,6 @@
             "craft",
             "dependence"
           ],
-          "planSpec": {
-            "domain": "restoration workshop",
-            "audience": "craft master hiding fear of dependence",
-            "stakes": "see excellence and isolation from the same defended style",
-            "format": "before_after",
-            "requiredBeat": "Diego watches an apprentice repair the joint correctly and does not retake the tool"
-          },
           "scenario": "At 4:30 p.m. in the restoration workshop, Diego watches the apprentice fit the chair leg while wood shavings ring the clamp and the glue pot stays warm. It took him forty years to build standards nobody questioned. The checklist is correct. Diego's fingers move toward the tool out of habit. Before he reaches it, he has to face whether exactness still serves the chair or only protects him from dependence.",
           "whatToDo": "Leave the tool down and inspect the finished joint with the apprentice. Let the standard remain, but stop using it to make everyone else unnecessary.",
           "whyItMatters": "The same defended style built mastery and isolation. Not retaking the tool lets excellence survive while dependence becomes tolerable."
@@ -1766,13 +1441,6 @@
             "model",
             "reduction"
           ],
-          "planSpec": {
-            "domain": "public policy field visit",
-            "audience": "analyst whose model explains too much",
-            "stakes": "notice reduction as a character-shaped method",
-            "format": "reflection",
-            "requiredBeat": "Hadiya adds a field visit to the model that made messy people disappear"
-          },
           "scenario": "Hadiya sits on the train across from a model output beside her field notebook, regression table, and bus pass. The numbers explain displacement neatly, too neatly. Before the housing hearing, Hadiya has to choose between trusting the clean model alone and adding the field visit that will make messy people visible again.",
           "whatToDo": "Keep the model, then add the field visit. Let the numbers show structure while the notebook restores the people the reduction has thinned out.",
           "whyItMatters": "Reduction can be a strength when it finds pattern and a defense when it removes discomfort. The visit checks what the method made too easy to miss."
@@ -1791,8 +1459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The skill is double vision: insight and blindness can come from one structure. Picking a side too early makes judgment cleaner than the person.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1804,8 +1471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Mapping both effects preserves the strength while naming the blind spot. Blanket slowing or praise treats the style as only problem or only virtue.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1817,8 +1483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Keeping both allows character to be read as a whole structure. The other edits protect a single verdict by hiding evidence that complicates it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1830,8 +1495,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The same character trait may power the product and block adaptation. A sound memo prices both, instead of converting complexity into a simple verdict.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1843,8 +1507,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Inspection preserves the standard while interrupting the isolation. Removal or submission misses how the same exactness can protect craft and hide dependence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1856,8 +1519,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The model can be useful and narrowing at once. Rejecting it entirely or trusting it alone misses the double effect of the method.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1869,8 +1531,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The corrective to loyalty is not reverse simplification. Honest critique names limitation while preserving any real insight the thinker opened.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1882,8 +1543,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sentence joins insight and blindness in one structure. The other choices either cancel the work or detach achievement from the person who produced it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1895,8 +1555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The evaluation should test whether the strength and damage can be separated in practice. Simple tradeoff language may miss their shared source.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1933,7 +1592,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Hold the Double View",
         "coreSkill": "The skill is to judge a powerful mind or style without simplifying it. Name what the character made possible, then name what the same character made hard to see.",
         "ifThenPlans": [
           {
@@ -1958,19 +1616,13 @@
       },
       "memorableLines": [
         {
-          "text": "Strength can become a lens with a blind spot.",
-          "location": "breakdown.deepRead",
-          "why": "It states the double view in a compact image."
+          "text": "Strength can become a lens with a blind spot."
         },
         {
-          "text": "A person does not simply have a method. Over time, a person becomes a method.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the link between character and theory memorable."
+          "text": "A person does not simply have a method. Over time, a person becomes a method."
         },
         {
-          "text": "Admiration becomes more useful when it can survive a flaw.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the balanced critique into a practical standard."
+          "text": "Admiration becomes more useful when it can survive a flaw."
         }
       ]
     },
@@ -1997,13 +1649,6 @@
             "mentor",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "elite music mentorship",
-            "audience": "pianist surrendering judgment",
-            "stakes": "reverse the order of borrowed certainty",
-            "format": "scene",
-            "requiredBeat": "Sophie plays the phrase her own way once before asking the famous teacher"
-          },
           "scenario": "Piano hammers rest under the open lid while Sophie studies the annotated score in a rented practice room. The famous teacher is late, but his penciled marks already feel like law. Her recording phone waits on the bench beside the practice key. Before he arrives, Sophie has to choose between playing the phrase her own way once and letting his absent approval choose before she has listened. Sophie is the conservatory student on the schedule, and the hallway clock gives her four minutes alone.",
           "whatToDo": "Play the phrase once from her own hearing, record it, and only then ask the teacher. Reverse the order so instruction meets judgment instead of replacing it.",
           "whyItMatters": "The teacher can guide craft, but borrowed certainty steals the first act of perception. Playing first keeps her ear in the room."
@@ -2016,13 +1661,6 @@
             "leader",
             "reality"
           ],
-          "planSpec": {
-            "domain": "political campaign office",
-            "audience": "organizer under a charismatic candidate",
-            "stakes": "recover judgment before loyalty becomes submission",
-            "format": "dialogue",
-            "requiredBeat": "Chris reads contradictory canvass numbers aloud while the room wants optimism"
-          },
           "scenario": "\"She said the district is turning,\" a volunteer says, tapping a campaign button beside the pizza boxes. Chris holds the canvass sheets and the polling memo. The voter lists do not match the speech. Before the field plan locks, he has to say whether loyalty means repeating optimism or reading the bad numbers aloud. Chris is the field director for the night shift, and the first phone bank starts in twelve minutes.",
           "whatToDo": "Read the canvass numbers clearly and ask the room to plan from them. Respect the candidate without letting charisma replace reality-testing.",
           "whyItMatters": "The candidate's confidence feels protective because uncertainty is frightening. The numbers return judgment to the team before loyalty becomes submission."
@@ -2035,13 +1673,6 @@
             "learning",
             "approval"
           ],
-          "planSpec": {
-            "domain": "therapy supervision room",
-            "audience": "intern seeking total approval",
-            "stakes": "separate learning from making a supervisor an oracle",
-            "format": "vignette",
-            "requiredBeat": "Mathieu writes his own case formulation first and brings it as a thought instead of a plea"
-          },
           "scenario": "Two clocks tick out of sync in the supervision room while Mathieu rereads his case notes. The recorder is off, the supervision form asks for a formulation, and the supervisor will arrive in five minutes. He starts to leave the box blank, then must decide whether to wait for certainty or write his own view first so the meeting begins with a thought instead of a plea. Mathieu is the intern on rotation, and the supervisor will grade the formulation after the session.",
           "whatToDo": "Write the formulation before asking for supervision. Bring it as a revisable judgment, not as a request for the supervisor to supply reality.",
           "whyItMatters": "Learning needs authority, but transference turns authority into an oracle. A first formulation keeps Mathieu's mind active inside the dependence."
@@ -2054,13 +1685,6 @@
             "relocation",
             "love"
           ],
-          "planSpec": {
-            "domain": "relationship after relocation",
-            "audience": "partner whose world shrank around love",
-            "stakes": "notice love becoming borrowed reality",
-            "format": "decision_point",
-            "requiredBeat": "Lars compares the calendar before and after the move and adds one independent commitment back"
-          },
           "scenario": "Whose calendar tells Lars whether the city exists? The empty bike hook in the hallway has stayed empty since the move, his cycling jersey is still boxed, and the shared calendar holds every plan. His unused train pass is in his coat. Tonight he must decide whether love is still a bond or has become the only map he trusts. Lars is new to the city, and the evening train he has avoided leaves from platform two.",
           "whatToDo": "Compare the calendar before and after the move, then add one independent ride or class this week. Keep love, but return one piece of reality to himself.",
           "whyItMatters": "A partner cannot carry a whole world without the bond becoming too heavy. One independent commitment gives the relationship room to be love instead of borrowed ground."
@@ -2073,13 +1697,6 @@
             "vision",
             "audit"
           ],
-          "planSpec": {
-            "domain": "founder cult audit meeting",
-            "audience": "employee trusting a visionary CEO",
-            "stakes": "name the shelter provided by borrowed future-certainty",
-            "format": "before_after",
-            "requiredBeat": "Giulia prints missed revenue promises and brings them to the audit meeting"
-          },
           "scenario": "It took Giulia three missed quarters to see the glass wall with roadmap stickers as shelter. The CEO's vision had made uncertainty feel solved. On audit morning, she prints the revenue memo, circles every missed promise, and places it under the agenda. Before the meeting starts, she has to decide whether future-certainty still outranks present numbers. Giulia is the finance lead, and the audit committee expects a recommendation before the board packet closes.",
           "whatToDo": "Bring the printed misses into the audit and name why the vision felt protective. Let revenue test the story without pretending she was foolish for needing shelter.",
           "whyItMatters": "Borrowed certainty works because it calms fear. The memo returns reality to the room while preserving the lesson about why the spell was attractive."
@@ -2092,13 +1709,6 @@
             "critique",
             "approval"
           ],
-          "planSpec": {
-            "domain": "art academy critique",
-            "audience": "student copying a professor taste",
-            "stakes": "risk one independent mark instead of borrowed approval",
-            "format": "reflection",
-            "requiredBeat": "Akira leaves the strange red line after the professor frowns and explains why it belongs"
-          },
           "scenario": "You are at the art school critique stool with Akira, charcoal dust on his sleeve and a red pastel rolling beneath the portfolio board. The professor frowns at the strange red line, and the room waits for Akira to erase it. Before the next student pins work to the wall, Akira has to choose between borrowing the professor's eye again and leaving the mark with an explanation of why it belongs. Akira is presenting second, and the critique timer is already running.",
           "whatToDo": "Leave the red line and give one reason from the work itself. Let the professor's reaction inform the drawing without becoming the drawing's reality.",
           "whyItMatters": "Approval can train taste, but it can also replace seeing. Keeping one chosen mark returns perception to the student."
@@ -2117,8 +1727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Humility still leaves room for thought. When approval supplies reality itself, learning has crossed into dependency.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2130,8 +1739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Reading the data returns reality-testing to the team. Waiting lets charisma keep the floor, while quitting may skip the needed act of judgment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2143,8 +1751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Playing first preserves her own hearing inside the mentorship. Asking first lets the teacher's authority replace the first act of perception.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2156,8 +1763,7 @@
             ],
             "correctIndex": 1,
             "explanation": "An independent commitment returns one piece of reality to the person. More reassurance deepens the load on the partner, while detachment fakes freedom.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2169,8 +1775,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The printed comparison brings reality-testing back into the room. Avoidance or more vision leaves the borrowed certainty intact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2182,8 +1787,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Feedback helps when it meets existing perception. If every frown replaces sight, approval has become reality instead of instruction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2195,8 +1799,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The relief is real, which is why the bond grips. The cost is that judgment is stored in the mentor instead of practiced by the person.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2208,8 +1811,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Respect can coexist with freedom. The danger appears when reality waits for the other person's reaction before becoming usable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2221,8 +1823,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A first judgment keeps the employee's reality-testing active. Direct answers may deepen dependency, while avoidance denies legitimate guidance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2259,7 +1860,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Taking Reality Back From the Spell",
         "coreSkill": "The skill is to notice when another person has become the holder of reality, worth, or safety. Keep guidance and love, but reclaim one act of judgment before checking for approval.",
         "ifThenPlans": [
           {
@@ -2284,19 +1884,13 @@
       },
       "memorableLines": [
         {
-          "text": "Freedom returns one small judgment at a time.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the abstract problem of dependency into a practical repair."
+          "text": "Freedom returns one small judgment at a time."
         },
         {
-          "text": "Borrowed certainty has interest payments.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the early relief and later cost of dependency memorable."
+          "text": "Borrowed certainty has interest payments."
         },
         {
-          "text": "A person can guide you without becoming your ground.",
-          "location": "breakdown.fullRead",
-          "why": "It gives a concise standard for healthy authority and love."
+          "text": "A person can guide you without becoming your ground."
         }
       ]
     },
@@ -2323,13 +1917,6 @@
             "grief",
             "love"
           ],
-          "planSpec": {
-            "domain": "wedding planning after bereavement",
-            "audience": "fiancee loading a ceremony with grief",
-            "stakes": "honor love without making it salvation",
-            "format": "scene",
-            "requiredBeat": "Grace removes one memorial ritual after admitting the marriage cannot resurrect her father"
-          },
           "scenario": "Black ribbon pins the seating chart while Grace checks the vendor timeline beside an unlit memorial candle. Four separate tributes to her father now crowd the ceremony. Her fiance waits by the doorway. Before the final call with the planner, Grace has to say whether the wedding is honoring grief or being asked to resurrect what love cannot restore. Grace is coordinating the ceremony, and the vendor captain needs a final ritual count before setup.",
           "whatToDo": "Remove one ritual and keep the one that tells the truth cleanly. Let the wedding honor her father without making marriage carry resurrection.",
           "whyItMatters": "Love can hold grief, but it cannot reverse death. Reducing the ritual load lets the ceremony stay human instead of becoming a rescue demand."
@@ -2342,13 +1929,6 @@
             "creativity",
             "redemption"
           ],
-          "planSpec": {
-            "domain": "novelist fellowship residency",
-            "audience": "writer expecting publication to redeem a decade",
-            "stakes": "keep creativity meaningful without making it completion",
-            "format": "dialogue",
-            "requiredBeat": "Marco mails the chapter and deletes the sentence that says the book must save his life"
-          },
           "scenario": "\"If this fails, the whole decade is wasted,\" Marco says inside the snowed-in writing studio while manuscript pages sit beside the fellowship key and rejection folder. The email is ready. Before sending, he must choose whether the work can matter without being forced to redeem every year that came before it. Marco is the novelist in residence, and the fellowship director expects the manuscript by morning.",
           "whatToDo": "Send the pages, then delete the saving sentence from the journal. Let the work carry meaning without making publication responsible for total repair.",
           "whyItMatters": "Creativity can answer the hunger for meaning, but it breaks when asked to settle a whole life. Sending the work without that demand protects the work."
@@ -2361,13 +1941,6 @@
             "service",
             "certainty"
           ],
-          "planSpec": {
-            "domain": "interfaith community kitchen",
-            "audience": "organizer between service and certainty",
-            "stakes": "treat religion as serious answer and fragile container",
-            "format": "vignette",
-            "requiredBeat": "Olivier asks what the meal is for before turning the kitchen into proof that one group is right"
-          },
           "scenario": "Steam rolls from industrial pots while folding tables open across the community hall. Olivier checks the donation ledger, then lifts the serving ladle as volunteers argue over which tradition the meal represents best. Before guests arrive, he needs to decide whether the kitchen will serve hunger or become evidence that one group owns the answer. Olivier is the meal coordinator, and the guests outside are waiting for the first tray.",
           "whatToDo": "Ask what the meal is for and bring the room back to service. Let faith shape the work without turning dinner into proof that uncertainty has ended.",
           "whyItMatters": "Religion can hold transcendence hunger, but certainty can overload the container. Service keeps the form serious and bounded."
@@ -2380,13 +1953,6 @@
             "love",
             "meaning"
           ],
-          "planSpec": {
-            "domain": "breakup in graduate housing",
-            "audience": "student who made one lover carry all meaning",
-            "stakes": "separate care from rescue fantasy",
-            "format": "decision_point",
-            "requiredBeat": "Frida lists the classes, friends, and work she abandoned, then returns meaning to each"
-          },
           "scenario": "What happens when one person has been carrying the whole world? Frida stands above the laundry machines with a key fob in one hand and the shared bookshelf half empty. The course catalog lies open on the floor. Before she texts her ex again, she must list the classes, friends, and work she abandoned and return one piece of meaning to each. Frida is the laundry-room neighbor, and the moving van is due before the next load finishes.",
           "whatToDo": "Make the list before sending the text. Give classes, friendship, and work back their own meaning so love no longer has to be the only container.",
           "whyItMatters": "The beloved became a rescue system instead of a person. Distributing meaning again lets grief remain real without making one relationship carry total completion."
@@ -2399,13 +1965,6 @@
             "memorial",
             "grief"
           ],
-          "planSpec": {
-            "domain": "ceramics studio commission",
-            "audience": "artist making a memorial urn",
-            "stakes": "let an object hold grief without pretending to defeat death",
-            "format": "before_after",
-            "requiredBeat": "Tomas asks which imperfection should remain visible before glazing the urn"
-          },
           "scenario": "It took Tomas until the wet clay slipped under his thumb in the ceramics studio to distrust perfect smoothness. The kiln schedule hangs near glaze tiles, and the family photo watches from the shelf. Before glazing the memorial urn, he asks which small imperfection should remain visible. The object can hold grief, but it should not pretend death left no mark. Tomas is the commissioned artist, and the family will arrive for the glaze review at noon.",
           "whatToDo": "Leave one chosen imperfection and name it with the family. Let the urn carry memory honestly instead of becoming a flawless denial of loss.",
           "whyItMatters": "A memorial object has dignity when it holds grief without claiming to beat mortality. The visible mark keeps the form truthful."
@@ -2418,13 +1977,6 @@
             "applause",
             "aging"
           ],
-          "planSpec": {
-            "domain": "community theater revival",
-            "audience": "director using applause to outrun aging",
-            "stakes": "keep performance as expression instead of immortality proof",
-            "format": "reflection",
-            "requiredBeat": "Kiran reads reviews once, closes the browser, and schedules ensemble rehearsal"
-          },
           "scenario": "You are under the footlights with Kiran after rehearsal, dusty stage tape at your shoes and a prop trunk open behind the curtain. The review printout calls the revival radiant. The browser is still open to comments, and the call sheet waits. Kiran can refresh praise all afternoon, or close the review after one reading and schedule the ensemble rehearsal. Kiran is the director, and the stage manager is waiting for the rehearsal call.",
           "whatToDo": "Read the review once, close the browser, and return to rehearsal. Let applause warm the work without asking it to prove age has been defeated.",
           "whyItMatters": "Performance can express vitality, but it cannot make the performer permanent. Rehearsal returns art to practice instead of immortality proof."
@@ -2443,8 +1995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pressure exceeds what any finite relationship can carry. Communication may help, but the core issue is the rescue demand placed on love.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2456,8 +2007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The work can carry meaning without carrying total repair. More pressure overloads creativity, while stopping treats the burden as proof the work is false.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2469,8 +2019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "One bounded ritual honors grief without asking the wedding to defeat death. Adding endlessly overloads the form, while removal denies the real loss.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2482,8 +2031,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Service keeps the religious form serious and bounded. Debate may matter elsewhere, but here it turns the meal into proof instead of care.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2495,8 +2043,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The imperfection lets the object hold grief truthfully. Flawlessness risks denial, while refusal ignores the real help a bounded form can give.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2508,8 +2055,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Repeated praise-checking shows applause carrying immortality pressure. Enjoyment would not require the same proof loop, and the art form is not the issue.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2521,8 +2067,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The collapse across domains shows love had been overloaded. The repair is to return meaning to other forms, not to condemn love itself.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2534,8 +2079,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The balanced sentence preserves dignity and boundary. The other choices either demand impossible rescue or reject forms for being finite.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2547,8 +2091,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The practice may be valuable if bounded. Avoidance rejects a real form too quickly, while total return repeats the mistake of asking one form to solve everything.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2585,7 +2128,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Bound the Saving Form",
         "coreSkill": "The skill is to honor transcendence hunger without overloading finite forms. Love, art, faith, and ritual can matter deeply while still needing boundaries.",
         "ifThenPlans": [
           {
@@ -2610,19 +2152,13 @@
       },
       "memorableLines": [
         {
-          "text": "The finite form cracks under infinite demand.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the chapter's central warning into one image."
+          "text": "The finite form cracks under infinite demand."
         },
         {
-          "text": "A bridge that cannot reach heaven may still carry people across a river.",
-          "location": "breakdown.deepRead",
-          "why": "It preserves respect for partial answers without overstating them."
+          "text": "A bridge that cannot reach heaven may still carry people across a river."
         },
         {
-          "text": "Wisdom begins when the forms are loved without being forced to become gods.",
-          "location": "breakdown.fullRead",
-          "why": "It gives a memorable closing standard for love, art, faith, and ritual."
+          "text": "Wisdom begins when the forms are loved without being forced to become gods."
         }
       ]
     },
@@ -2649,13 +2185,6 @@
             "insight",
             "duty"
           ],
-          "planSpec": {
-            "domain": "probation reentry program",
-            "audience": "counselor after a clear insight",
-            "stakes": "show why analysis alone can leave a client stranded",
-            "format": "scene",
-            "requiredBeat": "Olivia names the pattern, then asks what community and obligation can hold the truth tomorrow"
-          },
           "scenario": "The intake chair under fluorescent light squeaks while Olivia reads the intake form beside a bus voucher and job roster. Her client can finally name the pattern: insult, bravado, violation, return. He nods as if the explanation should be enough. Before he leaves, Olivia must decide whether to stop at insight or ask what community and obligation will hold the truth tomorrow. Olivia is the counselor on intake, and the last bus leaves in twenty minutes.",
           "whatToDo": "Name the pattern, then attach it to one obligation and one place to show up tomorrow. Do not leave clear insight floating without a world.",
           "whyItMatters": "The explanation exposes the failed heroism, but the bus ride home needs a structure. A truth with nowhere to live can turn into another speech."
@@ -2668,13 +2197,6 @@
             "workshop",
             "purpose"
           ],
-          "planSpec": {
-            "domain": "corporate burnout workshop",
-            "audience": "facilitator exposing defenses without purpose",
-            "stakes": "avoid turning insight into thin performance",
-            "format": "dialogue",
-            "requiredBeat": "Ryan tears up the clever slide and builds around one real obligation people can return to"
-          },
           "scenario": "\"This slide will make them squirm,\" Ryan says, holding the remote toward a blank projector wall. The burnout survey is damning, and the team charter is still folded in his bag. His clever slide exposes overwork as status. Before the workshop starts, he has to decide whether to perform exposure or build the hour around one obligation the team can return to. Ryan is facilitating the workshop, and the team will choose next week's schedule before leaving.",
           "whatToDo": "Drop the clever exposure slide and start from the team charter. Turn the insight into one duty the group can practice this week.",
           "whyItMatters": "Exposing defenses can become another performance. A shared obligation gives the exposed truth somewhere to go after the room nods."
@@ -2687,13 +2209,6 @@
             "respect",
             "practice"
           ],
-          "planSpec": {
-            "domain": "prison philosophy group",
-            "audience": "teacher seeing failed heroism under bravado",
-            "stakes": "connect self-insight to a livable world inside constraints",
-            "format": "vignette",
-            "requiredBeat": "Vincent asks each man what respect can be earned this week instead of what story explains the past"
-          },
           "scenario": "At Thursday reentry group in the prison education room, bolted metal chairs face the library cart while a pencil stub rolls toward the visitation schedule. Vincent, the facilitator, listens as three men explain the old bravado with sharp accuracy. The room can name failed heroism now. Before the officer collects weekly goals at the door, Vincent must decide whether to stop at the explanation or ask each man what respect can be earned this week inside the constraints they actually have.",
           "whatToDo": "Move from explanation to earned respect. Ask for one concrete act this week that creates dignity without needing the old bravado.",
           "whyItMatters": "Insight into the past does not create a livable present by itself. A bounded act of respect gives the exposed self a real path."
@@ -2706,13 +2221,6 @@
             "role",
             "meaning"
           ],
-          "planSpec": {
-            "domain": "post-layoff clinic",
-            "audience": "engineer with insight and no role",
-            "stakes": "make the missing world-picture visible",
-            "format": "decision_point",
-            "requiredBeat": "Maja asks which role would still be worth serving if status did not return for a year"
-          },
           "scenario": "Which role would still be worth serving if status did not return for a year? Maja places the question beside a cut badge lanyard, severance packet, skills grid, and childcare bill. The engineer already understands why the title mattered. Now he has to decide whether insight ends at loss or becomes a search for service without the old proof. Maja is coaching the engineer, and the severance clinic closes at five.",
           "whatToDo": "Ask the service question and write three possible roles that do not depend on restored status. Let insight become a usable horizon.",
           "whyItMatters": "The old title was a hero system. Seeing that does not create a replacement. The service question starts building a world-picture after the defense falls."
@@ -2725,13 +2233,6 @@
             "repair",
             "action"
           ],
-          "planSpec": {
-            "domain": "recovery house meeting",
-            "audience": "resident fluent in explanations",
-            "stakes": "distinguish insight from shelter against action",
-            "format": "before_after",
-            "requiredBeat": "Kasia lets the explanation stand, then asks for the repair he will make before dinner"
-          },
           "scenario": "It took Kasia two meetings to notice how polished the explanations had become. Folding chairs ring the basement, the coffee urn sputters, and the phone list hangs beside an apology card. A resident names exactly why he hurt his brother. Kasia lets the explanation stand, then asks what repair he will make before dinner. Kasia is leading the house meeting, and dinner starts after the phone list is updated.",
           "whatToDo": "Accept the explanation, then require a repair plan with a time and recipient. Keep insight from becoming a shelter against action.",
           "whyItMatters": "The explanation may be true and still incomplete. Repair tests whether the truth has entered obligation or stayed as a protected self-description."
@@ -2744,13 +2245,6 @@
             "data",
             "trust"
           ],
-          "planSpec": {
-            "domain": "urban planning hearing",
-            "audience": "analyst with facts but no trust",
-            "stakes": "show that data exposes conflict but cannot supply belonging",
-            "format": "reflection",
-            "requiredBeat": "Chidi adds a listening session after the displacement map proves the wound without creating trust"
-          },
           "scenario": "You are beside Chidi at the hearing, where the zoning map stands on an easel and the microphone queue reaches the aisle. A translation headset crackles in the back row. His displacement data proves the wound. It has not created trust. Before the vote packet closes, he adds a listening session so the facts have a civic place to land. Chidi is the planner on record, and the council clerk is waiting for the amended packet.",
           "whatToDo": "Add the listening session and bring translators into the plan. Let the map expose the wound, then build a setting where people can test whether they are heard.",
           "whyItMatters": "Data can reveal conflict, but belonging needs a social form. Without one, correct facts may leave people stranded in the same distrust."
@@ -2769,8 +2263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The insight exposes the defense, but tomorrow needs a structure of obligation, community, or practice. More explanation may deepen the same gap.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2782,8 +2275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The insight needs a practice to inhabit. Sharper exposure may impress the room, but it can still leave people without a usable form.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2795,8 +2287,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The respect question turns insight into a livable practice. Repetition can make explanation into shelter, and avoiding respect ignores the failed heroism.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2808,8 +2299,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The service question begins building a new world-picture. Returning to the old title may rebuild the defense, while emotion naming may stop at exposure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2821,8 +2311,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Repair shows whether truth has entered obligation. Praise and deeper explanation may be useful later, but both can let insight avoid action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2834,8 +2323,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Correct data can reveal conflict without creating a social world to hold it. Cleaner charts may help clarity, but they will not create trust by themselves.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2847,8 +2335,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The explanation now protects against action. More analysis may deepen the shelter unless it is tied to obligation, practice, or community.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2860,8 +2347,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sentence preserves the value of exposure while naming its insufficiency. The other choices either dismiss insight or demand the wrong proof.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2873,8 +2359,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The practice keeps insight from evaporating or becoming performance. Emotional force alone may fade, while procedure without insight misses the defense.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2911,7 +2396,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Give Insight a World",
         "coreSkill": "The skill is to follow exposure with a livable structure. After a defense is named, ask what practice, obligation, community, or role can carry the truth tomorrow.",
         "ifThenPlans": [
           {
@@ -2936,19 +2420,13 @@
       },
       "memorableLines": [
         {
-          "text": "Exposure is not shelter. It only opens the door to the work that must hold the self afterward.",
-          "location": "breakdown.deepRead",
-          "why": "It states the gap between insight and a livable world in four words."
+          "text": "Exposure is not shelter. It only opens the door to the work that must hold the self afterward."
         },
         {
-          "text": "Where does the truth go after it is discovered?",
-          "location": "breakdown.fullRead",
-          "why": "It asks the central transfer question in direct reader-facing form."
+          "text": "Where does the truth go after it is discovered?"
         },
         {
-          "text": "A defense can be named in an hour. A world has to be inhabited.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a durable distinction between diagnosis and cure."
+          "text": "A defense can be named in an hour. A world has to be inhabited."
         }
       ]
     },
@@ -2974,13 +2452,6 @@
             "protection",
             "boundary"
           ],
-          "planSpec": {
-            "domain": "crisis shelter intake desk",
-            "audience": "worker meeting extreme breakdown",
-            "stakes": "hold continuity of need and extremity of damage",
-            "format": "scene",
-            "requiredBeat": "Anna lowers the clipboard and asks what protection the repeated rule is trying to build"
-          },
           "scenario": "At midnight at the crisis shelter intake window, Anna sees her clipboard, a paper wristband, and one bus token reflected in scratched glass. A man repeats that nobody may stand behind him, even when the hallway is empty. Anna must decide whether to dismiss the rule as nonsense or ask what kind of protection it is trying to build before she sets the next boundary. The night manager is waiting behind the safety glass, and the next cot cannot be assigned until Anna names the boundary.",
           "whatToDo": "Lower the clipboard long enough to ask what protection the rule is chasing, then set the limit the room still needs.",
           "whyItMatters": "The repeated rule is not reliable reality, but it may reveal the danger the person is trying to master."
@@ -2993,13 +2464,6 @@
             "legacy",
             "identity"
           ],
-          "planSpec": {
-            "domain": "family farm succession collapse",
-            "audience": "son losing the heroic role",
-            "stakes": "see distorted transcendence inside practical ruin",
-            "format": "dialogue",
-            "requiredBeat": "Matthew marks where legacy, debt, and identity fused into one impossible demand"
-          },
           "scenario": "\"If I sell, I'm not my father's son,\" Matthew says while frost hangs on the sagging fence outside. A debt notice, tractor key, and soil map sit between him and his sister. Before he signs anything, he has to choose whether to see the crisis as only money or mark where legacy, debt, and identity fused into one impossible demand. Matthew is the middle son in the farm office, and the lender will call before the morning auction.",
           "whatToDo": "Separate the sale decision from the heroic burden attached to the role of son and heir.",
           "whyItMatters": "When identity fuses with debt, a spreadsheet can start to feel like a verdict on existence."
@@ -3012,13 +2476,6 @@
             "accountability",
             "significance"
           ],
-          "planSpec": {
-            "domain": "university conduct office",
-            "audience": "student with protective false story",
-            "stakes": "preserve accountability without mocking the defense",
-            "format": "vignette",
-            "requiredBeat": "Julien separates the harm done from the need to be more than discarded and records the sanction"
-          },
           "scenario": "The recorder light blinks red in the conduct office before Julien opens the file. The student has invented a story that hurt two classmates, and the campus map is marked with places he now avoids. Julien must decide how to record the sanction while also naming the student's need to be more than discarded. Julien is the conduct officer, and the sanction letter must be sent before the student leaves campus.",
           "whatToDo": "Record the sanction plainly and name the student's hunger for significance without letting it erase the harm.",
           "whyItMatters": "A response can be firm and still understand the defense it is refusing."
@@ -3031,13 +2488,6 @@
             "order",
             "reality"
           ],
-          "planSpec": {
-            "domain": "post-disaster housing gym",
-            "audience": "planner watching control rituals spread",
-            "stakes": "notice order-making as protection and when it breaks reality",
-            "format": "decision_point",
-            "requiredBeat": "Marit compares helpful supply tags with an impossible forbidden-path map and changes support"
-          },
           "scenario": "When does order become a private law? Marit stands among numbered cots, supply tags, and the generator schedule while a resident blocks volunteers from routes drawn on his own forbidden-path map. The next move is to decide what shared order to keep and what dangerous control to remove. Marit is the planner on duty, and the generator crew needs a route that everyone can share safely.",
           "whatToDo": "Keep the shared tags that help people function and remove the private map that starts controlling everyone else.",
           "whyItMatters": "The same hunger for order can protect a group or break reality, depending on whether it remains shared."
@@ -3050,13 +2500,6 @@
             "fraud",
             "heroism"
           ],
-          "planSpec": {
-            "domain": "bank fraud investigation",
-            "audience": "auditor reading heroic necessity in theft",
-            "stakes": "show ordinary defense becoming reality-breaking entitlement",
-            "format": "before_after",
-            "requiredBeat": "Catarina pins the forged transfer to the timeline and asks when saving the branch became permission"
-          },
           "scenario": "It took Catarina one audit timeline to see how loyalty had become permission. The red stamp sits beside a wire form, and the locked drawer contains notes about saving the branch. She pins the forged transfer to the week it happened, then asks when ordinary defense of reputation became entitlement. Catarina is the regional auditor, and the branch manager is waiting outside the locked file room.",
           "whatToDo": "Put the forged act on the timeline and identify the point where loyalty became a right to falsify reality.",
           "whyItMatters": "Heroic language can disguise the moment when protection becomes entitlement."
@@ -3069,13 +2512,6 @@
             "belonging",
             "safety"
           ],
-          "planSpec": {
-            "domain": "community choir after outburst",
-            "audience": "director protecting group and person",
-            "stakes": "name boundary and belonging at once",
-            "format": "reflection",
-            "requiredBeat": "Hiroshi moves rehearsal to safety, then writes a note naming both the boundary and the wish to belong"
-          },
           "scenario": "You are beside Hiroshi in the community hall after rehearsal, looking at empty risers, a choir folder, an exit plan, and a half-written note. The outburst frightened the alto section, but exile would also erase a real wish to belong. Hiroshi must choose a safer rehearsal plan, then write a boundary that still speaks to membership. Hiroshi is the choir director, and the section leaders need the note before Sunday practice.",
           "whatToDo": "Change the rehearsal conditions for safety and write the note so it names both the limit and the wish to belong.",
           "whyItMatters": "Safety without contempt is possible only when the boundary and the human need are both explicit."
@@ -3093,8 +2529,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The answer holds continuity and danger together. Ignoring the rule misses the protection it seeks; treating it as pure choice loses the breakdown.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3106,8 +2541,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful response sees the heroic pressure inside the practical problem. The first answer is too thin, and the third lets the heroic story break reality.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3119,8 +2553,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The correct choice keeps both facts visible. Motive does not erase harm, but a bare record can miss why the defense became so forceful.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3132,8 +2565,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The issue is not order itself. Shared tags protect; the private forbidden map crosses into distorted control.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -3145,8 +2577,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The question locates the turn from ordinary defense to entitlement. Size and loyalty matter, but they do not expose the heroic permission structure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3158,8 +2589,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Safety and continuity both matter. Normal return denies the danger; silent removal denies the human wish to belong.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3171,8 +2601,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Continuity does not erase extremity. The tempting summary sounds compassionate, but it blurs the actual breakdown.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3184,8 +2613,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The correction does not accept the ritual as reality. It asks what need is being exaggerated so the boundary can be better aimed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3197,8 +2625,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The right sentence keeps the human need and the broken proof apart. Forgiveness alone excuses harm; refusal alone can miss the motive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3230,7 +2657,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Hold Continuity and Breakdown",
         "coreSkill": "Practice double vision: name the human protection being sought, then name the specific way reality, safety, or responsibility has been broken.",
         "ifThenPlans": [
           {
@@ -3255,19 +2681,13 @@
       },
       "memorableLines": [
         {
-          "text": "Continuity is not excuse. It shows what kind of help, limit, or response the moment requires.",
-          "why": "It prevents compassion from collapsing into permission.",
-          "location": "fastRead"
+          "text": "Continuity is not excuse. It shows what kind of help, limit, or response the moment requires."
         },
         {
-          "text": "The rule may be false, but the need under it is human.",
-          "why": "It captures the distinction between the broken form and the recognizable need.",
-          "location": "deepRead"
+          "text": "The rule may be false, but the need under it is human."
         },
         {
-          "text": "A General View of Mental Illness has to keep the wound visible without making it ordinary.",
-          "why": "It keeps the extremity of breakdown and the continuity of human need in balance.",
-          "location": "fullRead"
+          "text": "A General View of Mental Illness has to keep the wound visible without making it ordinary."
         }
       ],
       "readingTimeMinutes": 12
@@ -3294,13 +2714,6 @@
             "limits",
             "service"
           ],
-          "planSpec": {
-            "domain": "palliative care ethics round",
-            "audience": "doctor tempted by rescue fantasy",
-            "stakes": "act without pretending medicine defeats finitude",
-            "format": "scene",
-            "requiredBeat": "Megan changes the question from what else can we do to what care still serves this person"
-          },
           "scenario": "Megan opens the care plan beside a muted monitor and a family photo while the ethics pager buzzes again. A colleague asks what else they can do, and the room wants rescue. Megan is the attending physician, and the family conference starts when the pager stops. She must choose between another proof of mastery and the question of what care still serves the person in the bed.",
           "whatToDo": "Shift the question from more action to better service under a real limit.",
           "whyItMatters": "Care becomes cleaner when it stops serving the team's wish to defeat finitude."
@@ -3313,13 +2726,6 @@
             "courage",
             "ordinary"
           ],
-          "planSpec": {
-            "domain": "civil rights archive exhibit",
-            "audience": "curator resisting martyr simplification",
-            "stakes": "honor heroic action at human size",
-            "format": "dialogue",
-            "requiredBeat": "Luke places a grocery receipt beside the arrest record so courage keeps its ordinary body"
-          },
           "scenario": "Luke lifts a grocery receipt with cotton gloves at 10:15 a.m. in the civil rights archive while the donor says, \"Make the arrest record the whole wall.\" The display label is still blank. Before the exhibit locks and the opening label goes to print, Luke is about to decide between bodiless courage and a receipt beside the record that keeps the brave act human-sized.",
           "whatToDo": "Pair the heroic artifact with an ordinary one that keeps the actor embodied.",
           "whyItMatters": "Martyr simplification can turn courage into another escape from ordinary creaturely life."
@@ -3332,13 +2738,6 @@
             "discipline",
             "humility"
           ],
-          "planSpec": {
-            "domain": "monastery guesthouse weekend",
-            "audience": "executive hoping retreat will erase dread",
-            "stakes": "hear religious practice as discipline instead of cure",
-            "format": "vignette",
-            "requiredBeat": "Hugo admits he wants silence to make him invulnerable, then follows the bell anyway"
-          },
           "scenario": "Hugo hears the monastery bell vibrate in cold air at 6:00 a.m. above the guesthouse path while he holds the room key and stares at a plain bowl. He came wanting silence to make him untouchable. At breakfast, with the novice master waiting by the refectory door, Hugo has to choose between using the retreat as escape and admitting the fantasy before following the bell as discipline.",
           "whatToDo": "Name the wish to become invulnerable, then practice the discipline without granting it magical power.",
           "whyItMatters": "Religious practice becomes more honest when it forms courage instead of promising immunity."
@@ -3351,13 +2750,6 @@
             "public duty",
             "limits"
           ],
-          "planSpec": {
-            "domain": "climate adaptation council",
-            "audience": "mayor facing limits without heroic denial",
-            "stakes": "choose finite responsibility without total control",
-            "format": "decision_point",
-            "requiredBeat": "Astrid approves the managed retreat map and speaks the loss plainly before naming the next duty"
-          },
           "scenario": "What does courage sound like when the flood map covers two tables? Astrid reads the property list and comment cards while cameras wait in the aisle. The council vote is minutes away, and Astrid is about to decide between promising victory and approving the retreat map, naming the loss, and assigning the next duty. Astrid is the mayor, and the relocation office needs an answer before the evening news.",
           "whatToDo": "Speak the loss before the action plan, so responsibility is not disguised as conquest.",
           "whyItMatters": "Finite duty is more trustworthy than heroic denial when total control is impossible."
@@ -3370,13 +2762,6 @@
             "love",
             "limitation"
           ],
-          "planSpec": {
-            "domain": "birthday letter after diagnosis",
-            "audience": "father refusing despair and false permanence",
-            "stakes": "give love without becoming immortal through the child",
-            "format": "before_after",
-            "requiredBeat": "Javier removes the line asking his daughter to remember him always and writes one concrete blessing"
-          },
           "scenario": "It took Javier three drafts at the bedroom desk to hear the burden in the birthday card. The fountain pen lies beside the medicine box and photo sleeve. Before sealing the envelope, Javier has to choose between asking his daughter to remember him always and writing one concrete blessing for next year instead. Javier is writing after a diagnosis, and the birthday card will go into the photo sleeve before his next appointment.",
           "whatToDo": "Replace the demand for permanent remembrance with a blessing attached to a real future day.",
           "whyItMatters": "Love becomes freer when it stops asking another person to make the self immortal."
@@ -3389,13 +2774,6 @@
             "service",
             "humility"
           ],
-          "planSpec": {
-            "domain": "community college graduation speech",
-            "audience": "speaker choosing humble heroism",
-            "stakes": "offer transcendence as service and limitation instead of escape",
-            "format": "reflection",
-            "requiredBeat": "Adaeze cuts the triumphant ending and closes with the next ordinary duty each graduate can carry"
-          },
           "scenario": "You stand beside Adaeze as the lectern light falls on her marked speech, the program stack, and the borrowed gown. Her first ending promises conquest over every limit. She cuts the triumph and closes with one ordinary duty each graduate can carry into Monday. Adaeze is the commencement speaker, and the graduates will walk from the auditorium into work shifts, care duties, and loan forms. The lectern clock shows nine minutes before she is introduced.",
           "whatToDo": "Trade inflated promise for a finite duty that can actually be performed.",
           "whyItMatters": "Humble heroism gives people something to do without lying about what life will cost."
@@ -3413,8 +2791,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The right question serves the person instead of the rescue fantasy. The other choices make action or language carry an impossible victory.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3426,8 +2803,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The receipt does not shrink courage; it keeps courage human. The first choice inflates the person, while the third hides the risk.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3439,8 +2815,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The correct response keeps practice and humility together. Leaving rejects formation; doubling down turns practice into another escape.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3452,8 +2827,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first answer joins truth and responsibility. Victory language denies the limit, while bureaucracy without grief avoids the human cost.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3465,8 +2839,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The blessing keeps love concrete and finite. The tempting memory demand asks the child to serve his immortality project.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3478,8 +2851,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A finite duty offers hope without inflation. Total victory lies about limits; bleakness removes the possibility of service.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3491,8 +2863,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The correction preserves courage without promising fearlessness. Achievement and certainty can both become new escape attempts.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3504,8 +2875,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Insight is not the endpoint. Without a duty, explanation can become another way to float above limitation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3517,8 +2887,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The answer accepts limitation without surrendering action. Legacy and avoidance both try to escape the finite duty in front of the person.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3550,7 +2919,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Practicing Heroism Without Cosmic Inflation",
         "coreSkill": "Choose the duty that remains after escape fantasies are removed: a finite act done with courage, humility, and no guarantee of permanence.",
         "ifThenPlans": [
           {
@@ -3575,19 +2943,13 @@
       },
       "memorableLines": [
         {
-          "text": "Heroism gets smaller when it gets honest.",
-          "why": "It names the closing move from grand escape to finite service.",
-          "location": "fastRead"
+          "text": "Heroism gets smaller when it gets honest."
         },
         {
-          "text": "The heroic individual is not someone who has escaped finitude, but someone who can act without pretending the escape has been found.",
-          "why": "It carries the source anchor and the final standard of courage.",
-          "location": "deepRead"
+          "text": "The heroic individual is not someone who has escaped finitude, but someone who can act without pretending the escape has been found."
         },
         {
-          "text": "The final courage is service without a guarantee.",
-          "why": "It compresses the ending into a usable rule.",
-          "location": "fullRead"
+          "text": "The final courage is service without a guarantee."
         }
       ],
       "readingTimeMinutes": 12

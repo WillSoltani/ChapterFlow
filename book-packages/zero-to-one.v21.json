@@ -41,13 +41,6 @@
             "healthcare",
             "workflow"
           ],
-          "planSpec": {
-            "domain": "medical device triage workflow",
-            "audience": "a hospital innovation lead deciding whether to clone a rival dashboard or solve one unowned intake bottleneck",
-            "stakes": "whether nurses keep losing fifteen minutes per patient in duplicate screening",
-            "format": "decision_point",
-            "requiredBeat": "Claire erases the comparison column and circles the one task no vendor owns yet"
-          },
           "scenario": "At 6:45 a.m., Claire stands beside the triage cart under fluorescent light with two competing vendor decks open and the shift-change clock ticking above her. Both decks copy the same dashboard layout. The laminated intake sheet shows the real pain: nurses ask the same screening questions twice. Her marker hovers over the comparison column. She has to choose whether to score another copy or erase the column and circle the one task no vendor owns yet.",
           "whatToDo": "Erase the comparison column and name the unowned workflow. Judge the project by whether it removes duplicate intake, not by whether it matches a rival screen.",
           "whyItMatters": "The rival dashboards only move the hospital from one known display to another. The duplicate screening bottleneck points to a new capability, which is the only path with 0-to-1 force."
@@ -60,13 +53,6 @@
             "transit",
             "access"
           ],
-          "planSpec": {
-            "domain": "municipal transit planning",
-            "audience": "a city mobility analyst choosing between another bus-route copy and a new on-demand transfer model",
-            "stakes": "whether an underserved suburb gets real access or another cosmetic route extension",
-            "format": "before_after",
-            "requiredBeat": "Julien separates copied route coverage from a genuinely new transfer pattern on the wall map"
-          },
           "scenario": "\"Can we just mirror the east-side loop?\" the deputy mayor asks while Julien faces the wall map. Before lunch, the plan showed a neat copied route and a ridership printout that made coverage look even. After Julien moves the green pushpins, the empty transfer hub becomes obvious. The suburb does not need another line that photographs well. It needs a new on-demand transfer pattern, and Julien separates the two options before the vote. Julien's hand hovers over wall map while municipal transit planning waits for the next step: Julien separates copied route coverage from a genuinely new transfer pattern on the wall map.",
           "whatToDo": "Separate coverage that copies a known route from access that changes the rider's actual path. Put the new transfer pattern on the map before anyone scores the easy route.",
           "whyItMatters": "A copied line can satisfy a political picture while leaving the same missed connection in place. The new transfer model changes what riders can actually do."
@@ -79,13 +65,6 @@
             "research",
             "grant"
           ],
-          "planSpec": {
-            "domain": "university lab commercialization",
-            "audience": "a postdoc weighing a safer replication study against a new assay platform",
-            "stakes": "whether the lab spends grant money extending known work or opening a new research tool",
-            "format": "reflection",
-            "requiredBeat": "Esme writes origin, not spread in the margin before choosing the assay prototype"
-          },
           "scenario": "The grant draft has one sentence boxed in red pencil, and the prototype tray is still cold from the storage room. Esme's bench notebook lists a safe replication study first because reviewers will recognize every step. The assay platform is harder to explain, but it would measure a signal the lab currently treats as invisible. She writes origin, not spread in the margin before choosing which proposal gets the final budget line. Esme must choose from the evidence in prototype tray and make grant draft decide the next step: Esme writes origin, not spread in the margin before choosing the assay prototype.",
           "whatToDo": "Name the safe study as extension and the assay platform as possible origin. Fund the prototype only if it creates a measurement the lab cannot already make.",
           "whyItMatters": "The replication study may be useful, but it extends known work. The assay platform deserves a different test because it claims to add a new research capability."
@@ -98,13 +77,6 @@
             "retail",
             "behavior"
           ],
-          "planSpec": {
-            "domain": "independent bookstore operations",
-            "audience": "an owner deciding between copying a chain loyalty app and inventing a local preorder club",
-            "stakes": "whether the shop becomes a weaker version of a chain or creates a behavior the chain cannot copy easily",
-            "format": "dialogue",
-            "requiredBeat": "Marco asks which option makes customers do something unavailable yesterday"
-          },
           "scenario": "You hear rain tapping the front window while Marco stacks unsigned preorder cards beside the old barcode scanner. \"The chain has points,\" his assistant says. \"We can copy that by June.\" Marco looks from the app mockup to the cards for next month's local-author night. He must decide before the budget call, then asks, \"Which option makes customers do something they could not do here yesterday?\" At his desk behind the register, the founder has to decide before the Friday buying meeting closes.",
           "whatToDo": "Treat the loyalty app as 1-to-n copying and test the preorder club as a new behavior. Choose only after naming which path creates something customers cannot already do.",
           "whyItMatters": "The app borrows a habit from a stronger chain. The preorder club may create a local action the chain cannot reproduce from its template."
@@ -117,13 +89,6 @@
             "agriculture",
             "sensor"
           ],
-          "planSpec": {
-            "domain": "agricultural sensor startup",
-            "audience": "a farm-tech founder comparing a standard moisture dashboard with a sensor that predicts frost pockets",
-            "stakes": "whether growers get another graph or a new warning they can act on before dawn",
-            "format": "predict_reveal",
-            "requiredBeat": "Maja hides the dashboard mockup and tests whether the frost alert changes the grower call"
-          },
           "scenario": "It took Maja one cold week to see why the vineyard row mattered more than the dashboard. Before sunrise, blue frost gathers around a sensor stake while her team prepares a standard moisture graph for the grower call. Maja predicts the polished mockup will win praise, then hides it and sends a frost-pocket phone alert instead. She has to decide whether the grower's response proves a new warning or just a cleaner graph. As the founder in the vineyard control room, Maja has to decide before dawn whether the alert is a new tool or a prettier graph.",
           "whatToDo": "Hide the familiar dashboard and test the alert that changes the grower's action before dawn. Let the grower's call tell you whether the product creates a new capability.",
           "whyItMatters": "A better graph organizes old information. A frost-pocket warning gives the grower a decision they could not make before, which is the difference creation requires."
@@ -136,13 +101,6 @@
             "museum",
             "access"
           ],
-          "planSpec": {
-            "domain": "museum accessibility design",
-            "audience": "a curator deciding between copying audio guides and building tactile route planning for blind visitors",
-            "stakes": "whether access means another version of the same tour or a new way to navigate the building",
-            "format": "second_person",
-            "requiredBeat": "You watch Saskia move the tactile floor plan from side feature to core product decision"
-          },
           "scenario": "Which changes access more: another audio guide or a route a blind visitor can plan by touch? You watch Saskia run a finger over raised lines on a black tactile map while a braille labeler clicks beside the gallery bench. The audio-guide proposal is familiar and easy to price. The tactile route plan is harder. Before the exhibit budget closes, Saskia must decide whether to keep the map as a side feature or move it to the core product decision.",
           "whatToDo": "Move the tactile floor plan into the main decision and score the audio guide as a copy. Ask which option gives visitors a new way to navigate, not just another version of narration.",
           "whyItMatters": "An audio guide can widen an existing tour format. A tactile route plan changes the visitor's control over the building, so it has a different kind of future in it."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The handoff tool may create a new workflow. Speed and effort do not decide the category; a fast dashboard copy still spreads a known answer.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The key test is creation versus spread. Demographics may matter later, but they do not answer whether the plan is 0 to 1 or 1 to n.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A useful contrarian truth must be underbelieved, not merely phrased loudly. If competitors already agree, she needs a sharper hidden fact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The tutoring app extends a known method. The early misunderstanding signal may create a new teaching capability. Training cost is real, but it does not erase the distinction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The copied app flow makes the company legible, not original. The pickup-window issue points to a possible new capability customers lack.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A new casing does not create a new answer if the sensor changes no decision. Cost and speed may matter, but the category error is cosmetic novelty.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The move can be useful and still be replication. This distinction does not insult spread; it prevents spread from borrowing invention's label.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The contrarian test is not theater. A lonely claim matters only if evidence can carry it; otherwise disagreement is just performance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The strongest evaluation keeps both categories honest. Spread can help, and creation can fail, so Team B earns a harder capability test.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -327,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "Globalization moves a working method across places. Technology creates a new method in the first place.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses Ch1's central distinction into a single quotable sentence pair."
+          "text": "Globalization moves a working method across places. Technology creates a new method in the first place."
         },
         {
-          "text": "What would have to be true for your current plan to deserve the harder label?",
-          "location": "breakdown.fullRead",
-          "why": "It turns the 0-to-1 idea into a test the reader can apply immediately."
+          "text": "What would have to be true for your current plan to deserve the harder label?"
         },
         {
-          "text": "Name the new answer, or admit you are spreading an old one.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the pressure of creation versus copying in a compact final instruction."
+          "text": "Name the new answer, or admit you are spreading an old one."
         }
       ]
     },
@@ -366,13 +309,6 @@
             "biotech",
             "dot-com-crash"
           ],
-          "planSpec": {
-            "domain": "biotech incubator portfolio review",
-            "audience": "a program director reviewing teams that learned caution from failed hype cycles",
-            "stakes": "whether a promising therapy platform gets reduced to minor line extensions",
-            "format": "postmortem",
-            "requiredBeat": "David crosses out the rule stay flexible after it blocks the only test that could prove the platform"
-          },
           "scenario": "David proposes a sharper plan. Her cofounder treats commitment itself as a warning sign, as if refusing to choose were automatically smarter. red investor comments now carries the biotech incubator portfolio review tradeoff: whether a promising therapy platform gets reduced to minor line extensions. David is about to decide at the biotech incubator portfolio review table, with lab-access calendar showing the cost: David crosses out the rule stay flexible after it blocks the only test that could prove the platform.",
           "whatToDo": "Separate risk management from fear management. A plan can be wrong without commitment itself being the error.",
           "whyItMatters": "This is the first pair in action: flexibility becomes a status signal instead of a tool."
@@ -385,13 +321,6 @@
             "architecture",
             "dot-com-crash"
           ],
-          "planSpec": {
-            "domain": "architecture studio bids",
-            "audience": "a studio partner deciding whether post-recession caution has made every proposal timid",
-            "stakes": "whether the firm keeps winning small safe renovations while losing its design edge",
-            "format": "decision_point",
-            "requiredBeat": "Ingrid puts the safe bid and the risky civic concept side by side and asks which fear wrote"
-          },
           "scenario": "Ingrid can choose an incremental improvement everyone will call sensible, or he can back a more differentiated project that requires stronger conviction. foam models and trace paper put the architecture studio bid choice on the table. Ingrid has to choose beside the bid binder before the budget locks: Ingrid puts the safe bid and the risky civic concept side by side and asks which fear wrote.",
           "whatToDo": "Do not confuse legibility with quality. Ask which project is actually building a stronger company shape.",
           "whyItMatters": "This is overcorrection at the decision level: incrementalism gains prestige beyond its actual strategic value."
@@ -404,13 +333,6 @@
             "regional",
             "dot-com-crash"
           ],
-          "planSpec": {
-            "domain": "regional newspaper digital strategy",
-            "audience": "an editor whose staff treats failed paywall experiments as proof all bold digital bets are foolish",
-            "stakes": "whether the paper keeps patching the website or commits to a distinctive membership model",
-            "format": "dialogue",
-            "requiredBeat": "Ben asks the room which rule came from evidence and which came from embarrassment"
-          },
           "scenario": "Ben realizes her caution has a social component. She is not just managing risk. She is managing how foolish she might look if a stronger wager fails. The regional newspaper digital strategy setting is concrete: traffic dashboard, print deadline board, membership mockup are all in reach. Ben must decide with traffic dashboard in view: Ben asks the room which rule came from evidence and which came from embarrassment. In the boardroom after lunch, the analyst has to decide whether the matched price hides the missing manufacturing edge.",
           "whatToDo": "Separate strategic caution from reputation management. The two often travel together but should not rule together.",
           "whyItMatters": "Ben's situation shows how crash-shaped caution can survive as self-protection even outside explicit startup history."
@@ -423,13 +345,6 @@
             "specialty",
             "dot-com-crash"
           ],
-          "planSpec": {
-            "domain": "specialty coffee roaster expansion",
-            "audience": "a founder deciding whether lean flexibility has become refusal to choose a wholesale channel",
-            "stakes": "whether the roaster stays charming and tiny or builds a deliberate route to restaurants",
-            "format": "vignette",
-            "requiredBeat": "Sofia writes the four inherited rules on kraft paper and tears off the one hiding from sales"
-          },
           "scenario": "Sofia is using product purity to postpone the commercial problem. The sentence sounds disciplined, but it may just be covering distribution weakness. The role is founder deciding whether lean flexibility has become refusal to choose a wholesale channel, and the scene turns on kraft paper. Sofia is about to decide at the specialty coffee roaster expansion table, with restaurant list showing the cost: Sofia writes the four inherited rules on kraft paper and tears off the one hiding from sales.",
           "whatToDo": "Treat distribution as part of the company, not as contamination of the company's virtue.",
           "whyItMatters": "This is the fourth rule turning into a blind spot rather than a principle."
@@ -442,13 +357,6 @@
             "renewable",
             "dot-com-crash"
           ],
-          "planSpec": {
-            "domain": "renewable battery pilot",
-            "audience": "a project lead whose investors remember a failed pilot and now demand only tiny improvements",
-            "stakes": "whether the team proves the hard storage claim or performs incremental safety",
-            "format": "predict_reveal",
-            "requiredBeat": "Thomas asks the investors to name the actual risk before shrinking the pilot"
-          },
           "scenario": "Thomas sees flexibility being rewarded socially while commitment looks riskier even before the strategic merits are fully tested. pilot budget sheet now carries the renewable battery pilot tradeoff: whether the team proves the hard storage claim or performs incremental safety. Thomas faces the choice around pilot budget sheet before renewable battery pilot commits the budget: Thomas asks the investors to name the actual risk before shrinking the pilot. At her desk beside the materials report, the director must decide before the supplier call whether the cost drop is real learning or a temporary discount.",
           "whatToDo": "Score the strategies by strength, not just by how hard they are to criticize in public.",
           "whyItMatters": "This contrast makes The idea’s status argument visible: fear can change what the room praises first."
@@ -461,13 +369,6 @@
             "childrens",
             "dot-com-crash"
           ],
-          "planSpec": {
-            "domain": "children’s language app",
-            "audience": "a product manager deciding whether product purity is hiding an unwillingness to build school distribution",
-            "stakes": "whether a useful app dies because nobody will sell it into districts",
-            "format": "before_after",
-            "requiredBeat": "Aanya contrasts the beautiful unused prototype with one rough district-sales call that changes adoption"
-          },
           "scenario": "Aanya notices that his smartest-sounding rules may be carrying more memory and self-protection than actual strategy. tablet cart sits next to headset bin, so the children’s language app choice stays concrete. Aanya must decide with tablet cart in view: Aanya contrasts the beautiful unused prototype with one rough district-sales call that changes adoption. In the studio conference room, the founder has to decide which decay curve belongs on the investor slide.",
           "whatToDo": "Trace one startup principle back to the failure it was designed to prevent, then ask whether it still fits your actual context.",
           "whyItMatters": "Overcorrection survives because people stop examining the fear structures inside their most respectable rules."
@@ -486,7 +387,6 @@
             ],
             "explanation": "The slide labels caution as virtue without naming a risk. David's job in the room is to separate the inherited dot-com warning from the real platform question and let the pilot size reflect what the company actually needs to learn.",
             "bloomsLevel": "understand",
-            "depthLevel": "simple",
             "correctIndex": 0
           },
           {
@@ -499,7 +399,6 @@
             ],
             "explanation": "Ingrid's task at the whiteboard is to drag the inherited word 'lean' onto a real ledger. Listing what each plan avoids forces the partner to defend the safe bid against the actual constraint, not against the social cost of looking reckless.",
             "bloomsLevel": "apply",
-            "depthLevel": "simple",
             "correctIndex": 0
           },
           {
@@ -512,7 +411,6 @@
             ],
             "explanation": "On the call, Ben has to convert the four inherited rules into one visible bet. A signed subscriber turns the membership concept from vocabulary into evidence, while another quarter of dashboard tuning just postpones the question the publisher does not want to ask.",
             "bloomsLevel": "apply",
-            "depthLevel": "standard",
             "correctIndex": 0
           },
           {
@@ -525,8 +423,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Sofia's loudest rule is hiding a decision she does not want to make. Forcing her to map each rule to the refusal it shields drags the inherited vocabulary onto a real ledger, which is the move that converts disciplined-sounding caution into an actionable wholesale commitment instead of another month of polished avoidance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -538,8 +435,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A pilot sized to soothe reputational anxiety produces clean data on a question nobody buys against. Holding the full scope forces the board to defend their fear in its real shape, while a partial trim quietly converts the company's actual technical question into a survey of investor comfort.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -551,8 +447,7 @@
             ],
             "correctIndex": 2,
             "explanation": "One pilot is not victory; it is the first piece of evidence that the inherited voice has been lying to Aanya for years. Keeping both engineers on sales lets the experiment run long enough to produce a real verdict, while splitting them honors the voice the data has just begun to contradict.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -564,8 +459,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Asking which advances survive the integration decision exposes whether Rina's roadmap is sequencing or hiding. Discipline-flavored language can disguise a refusal, and a director who only approves or pads the doc loses the chance to separate genuine sequencing from a quarterly habit of avoiding the one bet that actually defines the product.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -577,8 +471,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Flat burn can be virtue or camouflage, and the deck offers no wedge evidence either way. The investor's first read has to separate sequencing from refusal, because writing a check against eighteen months of unspecified discipline funds a posture rather than a company, and the wedge question is the only signal that breaks the tie.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -590,8 +483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A team that only ships against rivals has outsourced its roadmap and called it improvement. Asking for one ticket grounded in a customer question the rivals have not touched tests whether the team can author work, which is the smallest experiment that separates competitive reading from a market writing the company's roadmap.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -652,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "David looks at a pilot plan after the dot-com crash has become the room's favorite warning.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "David looks at a pilot plan after the dot-com crash has become the room's favorite warning."
         },
         {
-          "text": "The team wants small steps, loose goals, rival checks, and no sales work yet.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "The team wants small steps, loose goals, rival checks, and no sales work yet."
         },
         {
-          "text": "Each rule sounds sane by itself.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Each rule sounds sane by itself."
         }
       ]
     },
@@ -691,13 +577,6 @@
             "regional",
             "monopoly"
           ],
-          "planSpec": {
-            "domain": "regional airline route strategy",
-            "audience": "an operations VP comparing another price war route with an underserved medical travel corridor",
-            "stakes": "whether the airline bleeds margin or owns a route others cannot easily compare",
-            "format": "decision_point",
-            "requiredBeat": "James removes the competitor fare column and marks the corridor where comparison breaks"
-          },
           "scenario": "James can join a loud competitive market or build around a narrow problem competitors keep treating as secondary. route map sits next to airport slot memo, so the regional airline route strategy choice stays concrete. James's hand hovers over route map while regional airline route strategy waits for the next step: James removes the competitor fare column and marks the corridor where comparison breaks.",
           "whatToDo": "Score the options by substitutability. Which path relaxes direct rivalry instead of joining it?",
           "whyItMatters": "If James chooses the crowd because the crowd looks legitimate, she may inherit thin profits and reactive strategy."
@@ -710,13 +589,6 @@
             "enterprise",
             "monopoly"
           ],
-          "planSpec": {
-            "domain": "enterprise cybersecurity tool",
-            "audience": "a product lead deciding whether to chase every rival feature or own one compliance workflow completely",
-            "stakes": "whether the company becomes a checklist clone with thin margins",
-            "format": "dialogue",
-            "requiredBeat": "Camille asks which feature would make procurement stop comparing line items"
-          },
           "scenario": "Camille studies a procurement matrix projected too large on the wall in enterprise cybersecurity tool. The demo board is crowded with copycat apps, while one team is building for a narrower need nobody else chose. The enterprise cybersecurity tool setting is concrete: procurement matrix, audit checklist, security console are all in reach. Camille must choose from the evidence in security console and make procurement matrix decide the next step: Camille asks which feature would make procurement stop comparing line items. At the partner meeting, the director has to decide whether rivalry metrics are pulling the firm away from the uncrowded buyer.",
           "whatToDo": "Ask which pitch creates separation instead of borrowing legitimacy from a crowded lane.",
           "whyItMatters": "A classroom crowd can hide the same weakness a real market crowd hides: everyone is too replaceable."
@@ -729,13 +601,6 @@
             "urban",
             "monopoly"
           ],
-          "planSpec": {
-            "domain": "urban greenhouse cooperative",
-            "audience": "a founder choosing between commodity lettuce and rare winter herbs for restaurants",
-            "stakes": "whether the co-op competes on price or creates a small monopoly around supply reliability",
-            "format": "vignette",
-            "requiredBeat": "Michael watches chefs ignore the lettuce sample and fight for the winter basil tray"
-          },
           "scenario": "Michael can choose the crowded prestige track or the narrower path where she may become difficult to replace. The role is founder choosing between commodity lettuce and rare winter herbs for restaurants, and the scene turns on basil tray. Michael has to choose beside chef order slips before urban greenhouse cooperative funds the safe option: Michael watches chefs ignore the lettuce sample and fight for the winter basil tray.",
           "whatToDo": "Choose by future substitutability, not by how socially validated the contest feels today.",
           "whyItMatters": "Michael is choosing between direct rivalry and a position that may create more room."
@@ -748,13 +613,6 @@
             "medical",
             "monopoly"
           ],
-          "planSpec": {
-            "domain": "medical billing service",
-            "audience": "a founder deciding whether to serve every clinic or specialize in one painful oncology billing code set",
-            "stakes": "whether specialization creates uniqueness or general service traps the firm in price comparison",
-            "format": "reflection",
-            "requiredBeat": "Chloe circles the oncology denial queue and writes different enough to matter"
-          },
           "scenario": "Chloe studies a denial queue printed across six pages in medical billing service. One slide shows a crowd fight. The other shows a business with more pricing room because buyers have fewer true substitutes. highlighter now carries the medical billing service tradeoff: whether specialization creates uniqueness or general service traps the firm in price comparison. Chloe's hand hovers over denial queue while medical billing service waits for the next step: Chloe circles the oncology denial queue and writes different enough to matter.",
           "whatToDo": "Map the difference in substitutability, not just current revenue size.",
           "whyItMatters": "Pricing power here reflects differentiated position, which is exactly what The idea means by stronger business shape."
@@ -767,13 +625,6 @@
             "independent",
             "monopoly"
           ],
-          "planSpec": {
-            "domain": "independent game studio",
-            "audience": "a creative director choosing between a trend clone and a strange mechanic only their team can execute",
-            "stakes": "whether the studio gets compared into oblivion or earns its own category",
-            "format": "predict_reveal",
-            "requiredBeat": "Niklas cuts the familiar combat demo and lets testers play only the odd mechanic"
-          },
           "scenario": "Niklas tries to separate strategic analysis from moral absolution, and the room resists the distinction. playtest form sits next to whiteboard timer, so the independent game studio choice stays concrete. Niklas must choose from the evidence in whiteboard timer and make playtest form decide the next step: Niklas cuts the familiar combat demo and lets testers play only the odd mechanic. At his desk with the ticket spreadsheet open, the producer must decide whether the empty club night is a market gap or a warning.",
           "whatToDo": "Refuse the false choice between praising power and refusing to analyze differentiated strength.",
           "whyItMatters": "This distinction is what keeps the monopoly argument precise instead of careless."
@@ -786,13 +637,6 @@
             "specialty",
             "monopoly"
           ],
-          "planSpec": {
-            "domain": "specialty legal practice",
-            "audience": "a partner deciding whether to join a crowded contract market or own cross-border art restitution work",
-            "stakes": "whether the firm keeps billable hours but loses strategic distinction",
-            "format": "postmortem",
-            "requiredBeat": "Paula reviews last year’s crowded RFP losses and moves the team toward the one rare case type"
-          },
           "scenario": "Paula realizes he has been using rivals as the starting point for nearly every idea. The specialty legal practice setting is concrete: RFP folder, archival photos, case chronology are all in reach. Paula has to choose beside archival photos before specialty legal practice funds the safe option: Paula reviews last year’s crowded RFP losses and moves the team toward the one rare case type. In the clinic waiting room, the doctor has to decide whether the new workflow creates a protected service or just another queue.",
           "whatToDo": "Move from comparative thinking to position thinking: what could be owned rather than merely answered?",
           "whyItMatters": "Paula is discovering the behavioral side of competition before This idea names it directly as ideology."
@@ -811,7 +655,6 @@
             ],
             "explanation": "The board meeting is treating sameness as evidence of a market. James's move is to refuse the comparison and seed a position where rivalry compresses no margin yet, because the eight crowded lanes will keep narrowing as long as the firm stays inside the shared frame.",
             "bloomsLevel": "understand",
-            "depthLevel": "simple",
             "correctIndex": 0
           },
           {
@@ -824,7 +667,6 @@
             ],
             "explanation": "The printout shows the firm is paying for sameness in CPM compression. Chloe's job is to break the comparison her producer is trying to win, because a show that resembles the leader is a substitute, and substitutes get priced by the advertiser pool, not by the show.",
             "bloomsLevel": "apply",
-            "depthLevel": "simple",
             "correctIndex": 0
           },
           {
@@ -837,7 +679,6 @@
             ],
             "explanation": "Once the rival grid opens the deck, every quarter that follows will be spent answering the grid. Paula's edit is to refuse the comparison invitation so the partner meeting evaluates her on what she can own, not on how she ranks against firms she should not belong with.",
             "bloomsLevel": "apply",
-            "depthLevel": "standard",
             "correctIndex": 0
           },
           {
@@ -850,8 +691,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The four crowded banks are dying more slowly than they used to die. The specialist's underwriting expertise cannot be matched without rebuilding capability, which is exactly what makes its margin durable. Buying on price keeps the holding company inside the same compressed comparison; buying on specialty exits it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -863,8 +703,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Once the parity chart anchors the review, every quarter is spent answering rivals on their terms. Leading with the workflow research forces the CEO to evaluate Rohit's team on what it can own rather than how it ranks, which is the only framing that lets the company stop being one of five.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -876,8 +715,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Slightly-better crowded margins are still crowded margins, and adding lanes adds rivals who will eventually compress them. Reinvesting in the corridor where no comparable rival exists compounds enterprise value; splitting capital evenly hedges into the very compression Camille's client has spent eleven years losing money inside.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -889,8 +727,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Naming three adjacent companies invites Petra into a comparison her business does not belong in. Mapping substitute behaviors honors the VC's instinct that customers solve problems somehow today while refusing to manufacture rivals, which is the framing a founder needs when the market the company belongs in does not yet have peers.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -902,8 +739,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A decade of compressing ROE is the diagnosis: the rivalry is the problem, not the contest. Predicting a winner inside the same frame keeps the analyst's thesis trapped in the same compression. The honest report exits the comparison entirely and proposes the only position where margin can still exist.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -915,8 +751,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The CPM lift is a downstream symptom of access nobody else has. Cloning the format hands rivals a blueprint while diluting the only asset that makes the format work in the first place. Refusing protects the position; piloting and approving both surrender the differentiation in pursuit of scale that erases its source.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -977,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "James studies a route map with one red string across the coast.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "James studies a route map with one red string across the coast."
         },
         {
-          "text": "The crowded routes look busy and safe, but every airline on them fights over the same fares.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "The crowded routes look busy and safe, but every airline on them fights over the same fares."
         },
         {
-          "text": "The empty medical corridor looks small, yet no rival can compare it neatly.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "The empty medical corridor looks small, yet no rival can compare it neatly."
         }
       ]
     },
@@ -1016,13 +845,6 @@
             "restaurant",
             "rivalry"
           ],
-          "planSpec": {
-            "domain": "restaurant group menu planning",
-            "audience": "a chef-owner realizing the rival bistro is now deciding every menu choice for him",
-            "stakes": "whether the restaurant becomes a mirror with smaller margins",
-            "format": "scene",
-            "requiredBeat": "Rachel closes the competitor menu and plates the dish regulars actually cross town for"
-          },
           "scenario": "Rachel notices that competitor alerts are deciding urgency before his team does. The restaurant group menu planning setting is concrete: competitor menu, tasting spoon, reservation notes are all in reach. Rachel faces the choice around tasting spoon before restaurant group menu planning commits the budget: Rachel closes the competitor menu and plates the dish regulars actually cross town for. In the draft review, the founder must decide before the term-sheet call whether ownership design beats friendly ambiguity.",
           "whatToDo": "Separate field awareness from agenda-setting. Which items matter independent of the rival launch?",
           "whyItMatters": "Rachel is seeing the attentional mechanism in real time: the field is becoming the agenda."
@@ -1035,13 +857,6 @@
             "school",
             "rivalry"
           ],
-          "planSpec": {
-            "domain": "school robotics team",
-            "audience": "a coach watching students copy the reigning champion robot instead of solving this year’s field",
-            "stakes": "whether the team spends six weeks building last year’s answer",
-            "format": "dialogue",
-            "requiredBeat": "Lukas turns the old champion video off and makes the team score the new field from scratch"
-          },
           "scenario": "Lukas studies metal parts sorted beside a silent laptop in school robotics team. One team performs competitive legibility, while the other team tries to author a different frame. The role is coach watching students copy the reigning champion robot instead of solving this year’s field, and the scene turns on field diagram. Lukas must decide with field diagram in view: Lukas turns the old champion video off and makes the team score the new field from scratch.",
           "whatToDo": "Ask which team is borrowing legitimacy from the field and which one is defining relevance for itself.",
           "whyItMatters": "This is the prestige problem in miniature: copied contest language can sound more serious than independent strategy."
@@ -1054,13 +869,6 @@
             "boutique",
             "rivalry"
           ],
-          "planSpec": {
-            "domain": "boutique hotel renovation",
-            "audience": "an owner deciding whether chasing a rival hotel’s lobby design has replaced guest insight",
-            "stakes": "whether the renovation buys sameness at luxury prices",
-            "format": "before_after",
-            "requiredBeat": "Anna pulls guest complaint cards from under the marble sample and changes the design brief"
-          },
           "scenario": "Anna notices that comparison has become the filter through which she judges her own direction. guest complaint cards now carries the boutique hotel renovation tradeoff: whether the renovation buys sameness at luxury prices. Anna is about to decide at the boutique hotel renovation table, with floor-plan roll showing the cost: Anna pulls guest complaint cards from under the marble sample and changes the design brief.",
           "whatToDo": "Separate awareness from obedience. Which priorities are actually yours once the scoreboards lose authority?",
           "whyItMatters": "Anna is discovering the ideological part of competition, where prestige and comparison start governing judgment from inside."
@@ -1073,13 +881,6 @@
             "opensource",
             "rivalry"
           ],
-          "planSpec": {
-            "domain": "open-source developer tool",
-            "audience": "a maintainer whose roadmap is full of rival-announcement reactions",
-            "stakes": "whether the project loses its original reason to exist",
-            "format": "postmortem",
-            "requiredBeat": "Hugo labels each backlog item with user pain or rival envy and deletes the second pile"
-          },
           "scenario": "Hugo can either answer the rivals immediately or deepen a position that does not fit their roadmap. issue cards and the stale pull request pull the open-source roadmap out of rival-envy talk. Hugo must decide from the release notes before the maintainer call ends: Hugo labels each backlog item with user pain or rival envy and deletes the second pile. At the boardroom table, the partner has to decide whether the handshake note is enough before the first invoice goes out.",
           "whatToDo": "Score the options by authorship. Which plan defines a position rather than just answering noise?",
           "whyItMatters": "Hugo is at the line between awareness and captivity, which is The idea’s core distinction."
@@ -1092,13 +893,6 @@
             "independent",
             "rivalry"
           ],
-          "planSpec": {
-            "domain": "independent pharmacy services",
-            "audience": "a pharmacist considering whether chain-store rivalry has hidden a home-medication niche",
-            "stakes": "whether the pharmacy competes on discounts or builds a service the chain ignores",
-            "format": "decision_point",
-            "requiredBeat": "Kasia stops matching coupons and schedules the first in-home pillbox review"
-          },
           "scenario": "Kasia studies orange prescription bags lined near a delivery tote in independent pharmacy services. The judging room is rewarding rivalry theater as if it were strategic depth. The independent pharmacy services setting is concrete: prescription bags, delivery tote, coupon flyer are all in reach. Kasia must decide with prescription bags in view: Kasia stops matching coupons and schedules the first in-home pillbox review. In the studio hallway after rehearsal, the producer must decide whether rights language belongs in the contract before trust gets tested.",
           "whatToDo": "Separate strategic clarity from competitive pageantry before treating the scores as proof of quality.",
           "whyItMatters": "This scenario shows the status mechanism directly: admired intensity can outrank independent strategy."
@@ -1111,13 +905,6 @@
             "regional",
             "rivalry"
           ],
-          "planSpec": {
-            "domain": "regional theater season selection",
-            "audience": "an artistic director realizing another company’s acclaim is steering the season",
-            "stakes": "whether the theater borrows prestige instead of serving its own audience",
-            "format": "reflection",
-            "requiredBeat": "Daniel removes the rival awards list from the table and rereads subscriber letters"
-          },
           "scenario": "Daniel is trying to loosen fixation without slipping into denial, and the pushback is immediate. The role is artistic director realizing another company’s acclaim is steering the season, and the scene turns on subscriber letters. Daniel is about to decide at the regional theater season selection table, with script stack showing the cost: Daniel removes the rival awards list from the table and rereads subscriber letters.",
           "whatToDo": "Explain that awareness can remain intact while competitor motion loses its right to author the plan.",
           "whyItMatters": "Daniel is testing The idea’s hardest tension, which is exactly what sets up the move into durable advantage."
@@ -1136,7 +923,6 @@
             ],
             "explanation": "The phone call has handed twenty-eight minutes of Hugo's strategy to a company he does not work for. Compressing the readout and routing time toward live accounts pulls the agenda back inside the room, which is exactly where falling win rates have to be solved.",
             "bloomsLevel": "understand",
-            "depthLevel": "simple",
             "correctIndex": 0
           },
           {
@@ -1149,7 +935,6 @@
             ],
             "explanation": "At the whiteboard, the ratio of rival-driven to thesis-driven work is the diagnosis. Kasia is not refusing to track competitors; she is refusing to let competitors author the roadmap, which is the difference between rivalry as input and rivalry as identity.",
             "bloomsLevel": "apply",
-            "depthLevel": "simple",
             "correctIndex": 0
           },
           {
@@ -1162,7 +947,6 @@
             ],
             "explanation": "The minute of silence inside the meeting is the data. Daniel's intervention forces the grant cycle to filter for original questions rather than reactive ones, because a department that has rented its identity from a rival will keep producing motion the funders mistake for productivity.",
             "bloomsLevel": "apply",
-            "depthLevel": "standard",
             "correctIndex": 0
           },
           {
@@ -1175,8 +959,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hesitation is exactly the data Anna needs the director to feel. Letting him recover or rescheduling lets the rival keep authoring the chain's identity. Holding silence and demanding three rival-independent bets converts the diagnostic moment into the first piece of work the chain has done on its own behalf in two years.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1188,8 +971,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The agenda is the company's true strategy document. Letting the rival hold items one through three ensures the team does the rival's job for ninety minutes again. Putting the customer question first reclaims the room's attention for the company's own thesis, which is where falling win rates have to be solved.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1201,8 +983,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A founder who needs a full minute to answer a rival-vanishes question has not been authoring his company; he has been responding to two others. The investor's silence exposes the absence of a thesis the round is supposed to fund. Recognizing this is the first step before any amount of fresh capital becomes useful.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1214,8 +995,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Citation counts have become motion the funders mistake for productivity. Hannah's policy needs to filter for original programs, not reactive ones. A rival-vanishes test forces each proposal to justify itself on its own terms, which is the only policy lever that pulls academic identity back inside the labs that own the grants.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1227,8 +1007,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Press anxiety is the exact pressure that turns rivalry from input into ideology. The ratio Kasia drew was the policy decision; departing from it under press heat surrenders the policy the moment it is tested. Holding the line teaches the team that strategy survives news cycles, which is the only condition under which it works.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1240,8 +1019,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Eighty-two percent of tickets referencing rivals is not rigor; it is a backlog the rivals are filling. The aged-out customer requests are the cost of that capture. Bram's honest read names the displacement directly, because the alternative explanations preserve the pattern that produced the plateau in the first place.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1302,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "Rachel sets a rival menu on the prep table and sees the trap.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Rachel sets a rival menu on the prep table and sees the trap."
         },
         {
-          "text": "Her restaurant has spent three months answering the bistro down the street.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Her restaurant has spent three months answering the bistro down the street."
         },
         {
-          "text": "The specials, prices, and even the music now begin with someone else's move.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "The specials, prices, and even the music now begin with someone else's move."
         }
       ]
     },
@@ -1341,13 +1113,6 @@
             "industrial",
             "durability"
           ],
-          "planSpec": {
-            "domain": "industrial parts marketplace",
-            "audience": "a founder evaluating whether a fast launch has any defensible ten-year economics",
-            "stakes": "whether early volume hides a business that cannot keep value",
-            "format": "decision_point",
-            "requiredBeat": "Megan traces the revenue line past launch month and marks where switching costs must appear"
-          },
           "scenario": "Megan studies a parts catalog open beside a cash-flow sheet in industrial parts marketplace. One curve wins the opening story. The other owns more of the future. The role is founder evaluating whether a fast launch has any defensible ten-year economics, and the scene turns on parts catalog. Megan must choose from the evidence in supplier contract and make parts catalog decide the next step: Megan traces the revenue line past launch month and marks where switching costs must appear.",
           "whatToDo": "Judge the curves by durability of economics, not by noise at the moment of entry.",
           "whyItMatters": "This is the future-value lens in concrete form: the later economics matter more than the early drama."
@@ -1360,13 +1125,6 @@
             "specialist",
             "durability"
           ],
-          "planSpec": {
-            "domain": "specialist veterinary clinic",
-            "audience": "a clinic director deciding whether a first-in-town scanner creates lasting advantage or just temporary attention",
-            "stakes": "whether the clinic can build referrals and expertise around the equipment",
-            "format": "predict_reveal",
-            "requiredBeat": "Antoine compares the ribbon-cutting bookings with the five-year referral flywheel"
-          },
           "scenario": "Antoine has to decide whether firstness or endurance should carry more weight in the ranking. The new MRI scanner arrived at the specialist veterinary clinic six weeks ago, and the ribbon-cutting bookings still fill the schedule through November. The referral map pinned beside the reception desk now carries the specialist veterinary clinic tradeoff: whether the clinic can build referrals and expertise around the equipment, or only ride the opening attention. Before the next staffing review, Antoine has to score the five-year flywheel against the launch-month calendar.",
           "whatToDo": "Rank by durable future value, not by opening visibility.",
           "whyItMatters": "Antoine is testing the core question of The idea: who still owns the value later?"
@@ -1379,13 +1137,6 @@
             "languagelearning",
             "durability"
           ],
-          "planSpec": {
-            "domain": "language-learning platform for refugees",
-            "audience": "a nonprofit product lead testing whether impact survives grant-cycle novelty",
-            "stakes": "whether the tool becomes durable infrastructure or a pilot that fades",
-            "format": "before_after",
-            "requiredBeat": "Grace maps who will still use the platform after the launch grant ends"
-          },
           "scenario": "Grace is deciding whether she wants early recognition or stronger long-term leverage. grant calendar sits next to volunteer roster, so the language-learning platform for refugees choice stays concrete. Grace's hand hovers over grant calendar while language-learning platform for refugees waits for the next step: Grace maps who will still use the platform after the launch grant ends.",
           "whatToDo": "Choose by future leverage rather than by opening attention.",
           "whyItMatters": "Grace is testing whether firstness in status is stronger than endurance in position."
@@ -1398,13 +1149,6 @@
             "machinetool",
             "durability"
           ],
-          "planSpec": {
-            "domain": "machine-tool leasing",
-            "audience": "a finance manager deciding whether attractive first-year demand masks weak retention",
-            "stakes": "whether lease economics compound or collapse after repairs and churn",
-            "format": "postmortem",
-            "requiredBeat": "Henrik moves the model from first sale to year-seven service margin"
-          },
           "scenario": "Henrik studies oil stains on a maintenance invoice in machine-tool leasing. The room is split between launch speed and durable position. The machine-tool leasing setting is concrete: maintenance invoice, lease model, spare-parts shelf are all in reach. Henrik must choose from the evidence in spare-parts shelf and make maintenance invoice decide the next step: Henrik moves the model from first sale to year-seven service margin.",
           "whatToDo": "Ask which plan creates durable control rather than just a flattering debut.",
           "whyItMatters": "This debate is The idea in miniature: launch vanity versus future value."
@@ -1417,13 +1161,6 @@
             "craft",
             "durability"
           ],
-          "planSpec": {
-            "domain": "craft brewery distribution",
-            "audience": "a founder weighing taproom hype against shelf-space durability",
-            "stakes": "whether early buzz turns into a position competitors cannot quickly copy",
-            "format": "vignette",
-            "requiredBeat": "Laura ignores the festival line and asks which accounts will still reorder next winter"
-          },
           "scenario": "Laura has to choose between present heat and long-horizon control at the craft brewery distribution table. The festival line outside the taproom is fifty-three deep on a Saturday afternoon, and the latest shipment manifest sits next to the distributor map showing which accounts will reorder next winter. The role is founder weighing taproom hype against shelf-space durability, and the scene turns on the distributor map. Before the spring reorder cycle closes, Laura has to mark which accounts the brewery can still own once the festival line has moved on to whoever is new.",
           "whatToDo": "Decide by durability under maturity, not by launch intensity.",
           "whyItMatters": "Laura is applying the last-mover test directly."
@@ -1436,13 +1173,6 @@
             "special",
             "durability"
           ],
-          "planSpec": {
-            "domain": "special education assessment software",
-            "audience": "a district consultant deciding whether first adoption means anything without data migration and renewal strength",
-            "stakes": "whether the product keeps value after the pilot year",
-            "format": "second_person",
-            "requiredBeat": "You watch Andrew move the sales deck aside and test the renewal path before celebrating"
-          },
           "scenario": "Andrew notices he has been judging beginnings more carefully than endings. student file box now carries the special education assessment software tradeoff: whether the product keeps value after the pilot year. Andrew's hand hovers over renewal calendar while special education assessment software waits for the next step: You watch Andrew move the sales deck aside and test the renewal path before celebrating.",
           "whatToDo": "Re-evaluate choices by the durability of the position rather than by the intensity of the debut.",
           "whyItMatters": "Andrew is discovering why firstness flatters judgment and why future value is a harsher test."
@@ -1461,7 +1191,6 @@
             ],
             "explanation": "The deck is the only place this trade-off gets resolved before Monday. Putting Model B on the cover forces the board to price durability rather than novelty, which is the only number the year-ten market will actually pay.",
             "bloomsLevel": "understand",
-            "depthLevel": "simple",
             "correctIndex": 0
           },
           {
@@ -1474,7 +1203,6 @@
             ],
             "explanation": "The printout shows where the cash actually came from once novelty wore off. Underlining the farm relationships moves the next decision toward the moat the family has been earning on for forty years, rather than the first-mover footnote his cousin keeps mistaking for the asset.",
             "bloomsLevel": "apply",
-            "depthLevel": "simple",
             "correctIndex": 0
           },
           {
@@ -1487,7 +1215,6 @@
             ],
             "explanation": "At the whiteboard, Antoine can keep painting the launch line or build the position that pays in year ten. Funding the unsexy work converts the chart from a press release into a business, because durability is the only thing that compounds after the press cycle ends.",
             "bloomsLevel": "apply",
-            "depthLevel": "standard",
             "correctIndex": 0
           },
           {
@@ -1500,8 +1227,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The eighteen-month lead has already become a memory; pitching it now is selling a story the chart no longer supports. Grace's only honest raise is one that funds a position the rival cannot undo, because durability is the only thing that compounds and the year-ten investor will not pay for novelty that has already faded.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1513,8 +1239,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Henrik's evidence is that the chart of returns remembers who is still earning at year ten, not who entered first. Order of entry is footnote material. The actual question Soren has to answer is whether his position will keep paying after rivals copy the visible parts, which is a question first-mover thinking never asks.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -1526,8 +1251,7 @@
             ],
             "correctIndex": 1,
             "explanation": "First-to-launch wins this quarter's headlines and erodes the position those headlines should protect. Making the broker relationship legible is harder, but it teaches the market to value what actually pays in year ten. Mixing narratives quietly keeps the team optimizing for the easier story, which is the one that ages worst.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1539,8 +1263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Tripling spend on novelty extends the press cycle and not the business. Vivek's read is that profitability without a moat is borrowed time. Redirecting capital to build a position uses the award's attention as cover for the unsexy work, which is exactly the trade Antoine made when he stopped pitching the first-month line.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1552,8 +1275,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The partnership is the launch-curve thinking dressed up as PR. The contract work is what converts the chart from a press release into a business. Stretching the contract to twelve months risks losing the legal window. Antoine has to spend his bandwidth on the position that keeps paying, not on the announcement that ages out in a quarter.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1565,8 +1287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Andrew's analysis already shows the cash has come from sourcing for nearly fifty years. Repeating the foot-traffic instinct honors a footnote that stopped being load-bearing in 1978. Deferring the decision concedes both candidate spaces. Choosing on sourcing proximity is the only move that aligns the next lease with the moat the family has actually been earning on.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1627,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "Megan watches first-month sales rise on the parts marketplace.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Megan watches first-month sales rise on the parts marketplace."
         },
         {
-          "text": "The line looks good until she extends it past the launch.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "The line looks good until she extends it past the launch."
         },
         {
-          "text": "Repairs, churn, and weak contracts begin to eat the gain.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Repairs, churn, and weak contracts begin to eat the gain."
         }
       ]
     },
@@ -1666,13 +1381,6 @@
             "surgical",
             "planning"
           ],
-          "planSpec": {
-            "domain": "surgical scheduling reform",
-            "audience": "an operations chief rejecting the claim that delays are just random hospital life",
-            "stakes": "whether planning can reduce canceled surgeries without pretending emergencies vanish",
-            "format": "scene",
-            "requiredBeat": "Matthew pins the cancellation reasons on the board and separates noise from designable bottlenecks"
-          },
           "scenario": "Matthew studies colored cancellation slips clipped to a metal board in surgical scheduling reform. He called the quarter unlucky before admitting the plan was vague. OR schedule now carries the surgical scheduling reform tradeoff: whether planning can reduce canceled surgeries without pretending emergencies vanish. Matthew must decide with cancellation slips in view: Matthew pins the cancellation reasons on the board and separates noise from designable bottlenecks.",
           "whatToDo": "Audit where uncertainty was real and where weak planning made the outcome softer than it had to be.",
           "whyItMatters": "This is the anti-fatalism move in practice: uncertainty did not erase agency."
@@ -1685,13 +1393,6 @@
             "independent",
             "planning"
           ],
-          "planSpec": {
-            "domain": "independent film financing",
-            "audience": "a producer deciding whether uncertainty justifies no plan for festival, sales, or audience",
-            "stakes": "whether the film survives beyond hope and a rough cut",
-            "format": "dialogue",
-            "requiredBeat": "Juliette asks which uncertainty remains after the team designs the distribution path"
-          },
           "scenario": "Juliette studies a rough-cut timeline glowing in a dark edit suite in independent film financing. Both teams face uncertainty, but only one treats uncertainty as a reason to plan better. rough-cut timeline sits next to sales-agent list, so the independent film financing choice stays concrete. Juliette is about to decide at the independent film financing table, with sales-agent list showing the cost: Juliette asks which uncertainty remains after the team designs the distribution path.",
           "whatToDo": "Notice that planning quality matters even when guarantees are unavailable to everyone.",
           "whyItMatters": "This example shows probability-shaping agency instead of passive luck-talk."
@@ -1704,13 +1405,6 @@
             "coastal",
             "planning"
           ],
-          "planSpec": {
-            "domain": "coastal flood insurance startup",
-            "audience": "a founder moving from luck talk to a definite underwriting wedge",
-            "stakes": "whether climate uncertainty becomes an excuse for vague exposure",
-            "format": "decision_point",
-            "requiredBeat": "Ryan draws the first insurable neighborhood boundary instead of pitching total-market chaos"
-          },
           "scenario": "Ryan studies blue flood maps spread across a conference table in coastal flood insurance startup. Her mistake is treating uncertainty as proof that planning has no value. The coastal flood insurance startup setting is concrete: flood maps, actuarial notes, county permit records are all in reach. Ryan faces the choice around actuarial notes before coastal flood insurance startup commits the budget: Ryan draws the first insurable neighborhood boundary instead of pitching total-market chaos. Before the county meeting starts, Ryan must decide whether the first boundary is better than a total-market story.",
           "whatToDo": "Plan around probability shifts instead of waiting for guarantees that will not arrive.",
           "whyItMatters": "Agency survives because Ryan can still shape exposure and preparation."
@@ -1723,13 +1417,6 @@
             "apprenticeship",
             "planning"
           ],
-          "planSpec": {
-            "domain": "apprenticeship placement program",
-            "audience": "a workforce director refusing to call every placement outcome random",
-            "stakes": "whether the program builds better employer matching instead of shrugging at retention",
-            "format": "before_after",
-            "requiredBeat": "Manon compares random intake placement with one deliberate employer-fit interview"
-          },
           "scenario": "Manon studies work boots under a folding registration table in apprenticeship placement program. He can hear luck-talk turning into excuse-talk in real time. The role is workforce director refusing to call every placement outcome random, and the scene turns on registration table. Manon must decide with registration table in view: Manon compares random intake placement with one deliberate employer-fit interview.",
           "whatToDo": "Separate external noise from the internal refusal to choose clearly enough.",
           "whyItMatters": "This is The idea’s anti-drift mechanism made personal."
@@ -1742,13 +1429,6 @@
             "specialty",
             "planning"
           ],
-          "planSpec": {
-            "domain": "specialty insurance claims unit",
-            "audience": "a manager whose team says difficult claims are pure luck",
-            "stakes": "whether a pre-mortem checklist can shape outcomes without guaranteeing them",
-            "format": "postmortem",
-            "requiredBeat": "Pavel sorts last quarter’s losses by preventable missing facts versus true surprises"
-          },
           "scenario": "Pavel studies claim folders rubber-banded in three piles in specialty insurance claims unit. The debate is not luck versus certainty. It is bounded agency versus passive fatalism. pre-mortem checklist now carries the specialty insurance claims unit tradeoff: whether a pre-mortem checklist can shape outcomes without guaranteeing them. Pavel is about to decide at the specialty insurance claims unit table, with phone log showing the cost: Pavel sorts last quarter’s losses by preventable missing facts versus true surprises.",
           "whatToDo": "Explain that uncertainty makes probability-shaping strategy more necessary, not less.",
           "whyItMatters": "This dialogue captures the exact tension The idea wants to preserve."
@@ -1761,13 +1441,6 @@
             "rural",
             "planning"
           ],
-          "planSpec": {
-            "domain": "rural broadband rollout",
-            "audience": "a project lead deciding whether weather uncertainty excuses an undefined build sequence",
-            "stakes": "whether crews lose months because nobody chose the hard first route",
-            "format": "reflection",
-            "requiredBeat": "Olivia puts the worst-weather corridor first on the schedule because waiting will not make it clearer"
-          },
           "scenario": "Olivia studies fiber spools beside a muddy road permit in rural broadband rollout. The choice is not between certainty and uncertainty. It is between drift and shaped uncertainty. fiber spools and the weather window chart make the rural broadband sequence visible. Olivia is about to decide with the muddy permit packet in hand: Olivia puts the worst-weather corridor first on the schedule because waiting will not make it clearer.",
           "whatToDo": "Prefer the option that gives deliberate structure to an uncertain future.",
           "whyItMatters": "This is The idea’s probability-shaping logic in a personal decision."
@@ -1786,7 +1459,6 @@
             ],
             "explanation": "The meeting is where the word 'luck' gets contested or absorbed. Owning the lab call converts thirty-one of the forty-eight slips from random noise into a fixable handoff, which is the whole difference between fatalism and a definite plan.",
             "bloomsLevel": "understand",
-            "depthLevel": "simple",
             "correctIndex": 0
           },
           {
@@ -1799,7 +1471,6 @@
             ],
             "explanation": "On the phone, the manager has the broker's pattern in front of her and Pavel's authority on the line. Rewriting the BOM converts a year of 'unpredictable' shipping into a paperwork problem with an owner, which is what unowned process turns into when someone refuses to call it luck.",
             "bloomsLevel": "apply",
-            "depthLevel": "simple",
             "correctIndex": 0
           },
           {
@@ -1812,7 +1483,6 @@
             ],
             "explanation": "The printout shows the randomness is a property of skipped behavior, not the market. Making the checklist mandatory takes a chunk of the pipeline back from the world's noise budget, while attitude coaching leaves the structure that generates the variance untouched.",
             "bloomsLevel": "apply",
-            "depthLevel": "standard",
             "correctIndex": 0
           },
           {
@@ -1825,8 +1495,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Manon's earlier win came from refusing to call queue variance random and mapping it instead. Adding a buffer staffer without mapping the new variance buys soft cover that hides the structure. A week with the clipboard converts unowned process into a fixable handoff, which is the move that produced the sixty-percent gain the first time.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1838,8 +1507,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fifteen meetings is enough signal to treat deck order as a controllable variable rather than fate. Olivia's job is to take back the part of fundraising her own behavior has been giving to the noise budget. Trust and hybrid framings hand the variance back to the world; opening on market opportunity is the planner's move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1851,8 +1519,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The phrase 'Monday-morning phenomenon' is the team's way of refusing to look. Karthik has an hour and the data exists. Trusting the manager preserves the fatalism; absorbing the spike treats a symptom. Pulling the tickets honors uncertainty without granting it the part of the field a structural review could still recover before the executive meeting.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1864,8 +1531,7 @@
             ],
             "correctIndex": 0,
             "explanation": "An eight-week buffer is the BOM situation in new clothing. The manager's job is exactly to challenge reflexive slack before it becomes another year of accepted chaos. Waiting until the retrospective concedes the lesson she already taught; reframing the product avoids the discipline she was hired to bring. Mapping the buffer is the cleaner intervention.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1877,8 +1543,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The checklist worked because Ryan mapped a specific behavior gap in pipeline conversion. Pasting it onto support assumes the structure of the variance is the same, which is the lazy version of the discipline that produced the original win. Mapping support on its own terms is the only honest extension of the lesson.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1890,8 +1555,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The clipboard is not a methodology; it is a refusal to call variance random. Outside consultants tend to sell the methodology and miss the refusal. Declining the budget entirely loses momentum and political capital. Routing the budget to internal staff who repeat the actual exercise preserves the lesson that did the work in the first place.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1952,19 +1616,13 @@
       },
       "memorableLines": [
         {
-          "text": "Matthew pins canceled surgery slips to a board.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Matthew pins canceled surgery slips to a board."
         },
         {
-          "text": "Some delays came from true emergencies.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Some delays came from true emergencies."
         },
         {
-          "text": "Others came from the same missing lab call and the same unclear handoff.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Others came from the same missing lab call and the same unclear handoff."
         }
       ]
     },
@@ -1991,13 +1649,6 @@
             "angel",
             "power-law"
           ],
-          "planSpec": {
-            "domain": "angel investment committee",
-            "audience": "a small fund partner realizing equal attention to every deal is hiding the one possible fund-returner",
-            "stakes": "whether polite diversification makes the portfolio blind to its actual economics",
-            "format": "decision_point",
-            "requiredBeat": "Sophie weights the memo by possible return rather than calendar order"
-          },
           "scenario": "Sophie studies twelve pitch memos fanned across a glass table in angel investment committee. Many accounts are present, but one account is doing most of the economic work. pitch memos sits next to red sticky note, so the angel investment committee choice stays concrete. Sophie has to choose beside return model before angel investment committee funds the safe option: Sophie weights the memo by possible return rather than calendar order.",
           "whatToDo": "Follow the money instead of assuming each account matters in similar proportion.",
           "whyItMatters": "This is the power-law lens in concrete form: one outlier can dominate many smaller cases."
@@ -2010,13 +1661,6 @@
             "pharmaceutical",
             "power-law"
           ],
-          "planSpec": {
-            "domain": "pharmaceutical research pipeline",
-            "audience": "a research director seeing that one molecule could outweigh ten minor reformulations",
-            "stakes": "whether budget allocation follows average progress or asymmetric upside",
-            "format": "predict_reveal",
-            "requiredBeat": "Nicolas asks the team to rank projects by total possible company impact, not probability comfort"
-          },
           "scenario": "Nicolas is arguing that averages smooth away the real driver. The pharmaceutical research pipeline setting is concrete: lab refrigerator, pipeline grid, trial-cost estimate are all in reach. Nicolas's hand hovers over lab refrigerator while pharmaceutical research pipeline waits for the next step: Nicolas asks the team to rank projects by total possible company impact, not probability comfort.",
           "whatToDo": "Prefer the return model that explains why one winner can dominate the economics.",
           "whyItMatters": "This is The idea’s distribution-shape argument in a classroom setting."
@@ -2029,13 +1673,6 @@
             "music",
             "power-law"
           ],
-          "planSpec": {
-            "domain": "music label artist roster",
-            "audience": "an A&R lead deciding whether evenly supporting every act ignores where returns concentrate",
-            "stakes": "whether one unusual artist gets the resources needed to break through",
-            "format": "vignette",
-            "requiredBeat": "Frida moves the tour budget from equal slices to the artist with rare audience pull"
-          },
           "scenario": "Frida studies a rehearsal room floor covered in set lists in music label artist roster. Her decision is shaped by whether she understands asymmetry or only comfort. The role is A&R lead deciding whether evenly supporting every act ignores where returns concentrate, and the scene turns on set lists. Frida must choose from the evidence in tour budget and make set lists decide the next step: Frida moves the tour budget from equal slices to the artist with rare audience pull.",
           "whatToDo": "Ask what kind of upside concentration each path makes possible.",
           "whyItMatters": "This is the strategic implication of concentrated returns made personal."
@@ -2048,13 +1685,6 @@
             "specialty",
             "power-law"
           ],
-          "planSpec": {
-            "domain": "specialty export business",
-            "audience": "an owner discovering that one product line carries almost all profit despite many busy SKUs",
-            "stakes": "whether activity volume keeps hiding profit concentration",
-            "format": "postmortem",
-            "requiredBeat": "Chris marks every low-margin SKU gray until the outlier product is impossible to ignore"
-          },
           "scenario": "Chris studies warehouse labels curling on stacked cartons in specialty export business. The memo looks tidy because it hides the concentration. margin report now carries the specialty export business tradeoff: whether activity volume keeps hiding profit concentration. Chris has to choose beside margin report before specialty export business funds the safe option: Chris marks every low-margin SKU gray until the outlier product is impossible to ignore. At the review meeting, the analyst has to decide whether one rare win should change the whole portfolio map.",
           "whatToDo": "Replace the smooth summary with the concentrated economic story.",
           "whyItMatters": "This shows how average-case reporting can distort strategic understanding."
@@ -2067,13 +1697,6 @@
             "scholarship",
             "power-law"
           ],
-          "planSpec": {
-            "domain": "scholarship foundation allocation",
-            "audience": "a director deciding whether equal grant sizes blunt the one program with transformative outcomes",
-            "stakes": "whether fairness optics suppress concentrated impact",
-            "format": "dialogue",
-            "requiredBeat": "Isabel asks the board to separate equal treatment from equal contribution"
-          },
           "scenario": "Isabel studies grant folders arranged in identical blue binders in scholarship foundation allocation. The real question is which model matches The idea’s world. grant folders sits next to board placards, so the scholarship foundation allocation choice stays concrete. Isabel's hand hovers over grant folders while scholarship foundation allocation waits for the next step: Isabel asks the board to separate equal treatment from equal contribution.",
           "whatToDo": "Select the framework that treats concentration as structural rather than accidental.",
           "whyItMatters": "This is The idea’s model-choice consequence in a classroom setting."
@@ -2086,13 +1709,6 @@
             "urban",
             "power-law"
           ],
-          "planSpec": {
-            "domain": "urban logistics routing software",
-            "audience": "a product analyst noticing that three enterprise customers drive nearly all retention learning",
-            "stakes": "whether roadmap votes get averaged into mediocrity",
-            "format": "second_person",
-            "requiredBeat": "You watch Jack stop counting customers and start weighing which accounts teach the decisive pattern"
-          },
           "scenario": "Jack studies delivery routes pulsing on a dispatch monitor in urban logistics routing software. He is discovering that equal presentation can hide unequal economics. The urban logistics routing software setting is concrete: dispatch monitor, customer cohort sheet, route exceptions are all in reach. Jack must choose from the evidence in route exceptions and make dispatch monitor decide the next step: You watch Jack stop counting customers and start weighing which accounts teach the decisive pattern. In the lab conference room, the director must decide before the funding vote which experiment has power-law upside.",
           "whatToDo": "Shift from list-thinking to asymmetry-thinking before choosing.",
           "whyItMatters": "This is The idea’s asymmetry lens turning into a personal judgment tool."
@@ -2111,7 +1727,6 @@
             ],
             "explanation": "On the whiteboard, the hundred-million test sorts memos by where the fund's returns actually come from. Equal-weight diligence smooths the concentration that determines whether the fund survives, while the upside filter forces each memo to justify itself as a portfolio item rather than overhead.",
             "bloomsLevel": "understand",
-            "depthLevel": "simple",
             "correctIndex": 0
           },
           {
@@ -2124,7 +1739,6 @@
             ],
             "explanation": "The slide order tells the executive team what the label actually is. Opening with concentration shows the imprint is one artist plus a search, not a sixty-artist portfolio, which is the only honest basis on which A&R money should be allocated.",
             "bloomsLevel": "apply",
-            "depthLevel": "simple",
             "correctIndex": 0
           },
           {
@@ -2137,7 +1751,6 @@
             ],
             "explanation": "In the meeting, fairness and accuracy are pulling opposite directions. Sizing each program to its upside rather than its sponsor's seniority preserves the lab, because a research budget spread evenly across eight programs is camouflage for the one or two that actually carry the field.",
             "bloomsLevel": "apply",
-            "depthLevel": "standard",
             "correctIndex": 0
           },
           {
@@ -2150,8 +1763,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The imprint is a search for two books wrapped in forty-three failed attempts. Equal marketing spend confuses fairness with accuracy. Outsourcing the call hands the most important decision to people without context. Concentrating spend where the upside could be enormous is the only allocation that matches how the imprint actually earns its money.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -2163,8 +1775,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Partner attention is the fund's actual currency, and the power law has already told Chris where it should go. Courtesy calls are evenness wearing professional clothing. A second diligence round on rejected memos undoes the discipline the test was meant to install. Spending the quarter on the survivors is the only allocation consistent with the fund's economics.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2176,8 +1787,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Halvorsen's request is exactly the pressure that erodes power-law discipline back into evenness. Restoring funding signals the rule is negotiable when relationships ask. Promising a revisit is the same compromise on a timer. Declining clearly preserves the structure that keeps the lab solvent, which is the harder kindness but the honest one.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2189,8 +1799,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Three generalist scouts assume artists arrive from breadth, but Frida's actual data says one deep relationship network produced the entire label. A single specialist concentrates resources where the power-law winner came from. Freezing hiring abandons the search entirely, which only works if Frida believes the seventy-percent artist will carry the label forever.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2202,8 +1811,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ninety-two percent of returns from eleven percent of capital is the power law speaking clearly. Calling it anomaly preserves the prior manager's habit; indexing surrenders the active premium the LP is paying for. Concentrating into conviction bets matches the fund's actual economics, even though most individual checks will continue to fail.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2215,8 +1823,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A founder's time is the company's most concentrated resource and obeys the power law most ruthlessly. The balanced review and the rotation both spread Stellan's attention against the math. Concentrating his hours on the three initiatives that actually matter to the business is the only allocation that respects what the past quarters have already told him.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2277,19 +1884,13 @@
       },
       "memorableLines": [
         {
-          "text": "Sophie lays twelve pitch memos on a table.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Sophie lays twelve pitch memos on a table."
         },
         {
-          "text": "One looks odd, but it could return more than the rest combined.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "One looks odd, but it could return more than the rest combined."
         },
         {
-          "text": "If she gives each memo equal time, the neat average will hide the one heavy bet.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "If she gives each memo equal time, the neat average will hide the one heavy bet."
         }
       ]
     },
@@ -2316,13 +1917,6 @@
             "geriatric",
             "secrets"
           ],
-          "planSpec": {
-            "domain": "geriatric home-care coordination",
-            "audience": "a founder looking for the hidden truth in missed family handoffs that everyone treats as normal",
-            "stakes": "whether an unglamorous coordination gap becomes the company insight",
-            "format": "scene",
-            "requiredBeat": "Emily follows one discharge folder through three phone calls until the secret is visible"
-          },
           "scenario": "Emily studies a discharge folder left beside a hospital phone in geriatric home-care coordination. The obvious story says everything is fine. The hidden pattern says there is a truth the team has not absorbed yet. The geriatric home-care coordination setting is concrete: discharge folder, family voicemail list, medication chart are all in reach. Emily is about to decide at the geriatric home-care coordination table, with medication chart showing the cost: Emily follows one discharge folder through three phone calls until the secret is visible.",
           "whatToDo": "Treat the hidden signal as a candidate truth and check whether it can support action.",
           "whyItMatters": "This is discovery advantage in early form: hidden truth before shared recognition."
@@ -2335,13 +1929,6 @@
             "construction",
             "secrets"
           ],
-          "planSpec": {
-            "domain": "construction materials waste",
-            "audience": "a site manager noticing that discarded offcuts follow a pattern no estimator wants to discuss",
-            "stakes": "whether the ignored waste pile points to a new procurement model",
-            "format": "sensory_first",
-            "requiredBeat": "Dust rises as Lars measures the offcut pile instead of arguing about waste percentages"
-          },
           "scenario": "Lars studies sawdust on a loading bay floor in construction materials waste. One team is inheriting crowded logic. The other is testing whether a secret might be real. The role is site manager noticing that discarded offcuts follow a pattern no estimator wants to discuss, and the scene turns on offcut pile. Lars faces the choice around measuring tape before construction materials waste commits the budget: Dust rises as Lars measures the offcut pile instead of arguing about waste percentages. Before the council meeting starts, Jonas must decide whether the boring maintenance log contains the hidden truth everyone missed.",
           "whatToDo": "Judge the projects by truth-testing, not by familiarity.",
           "whyItMatters": "This example separates discovery from posture."
@@ -2354,13 +1941,6 @@
             "academic",
             "secrets"
           ],
-          "planSpec": {
-            "domain": "academic advising software",
-            "audience": "a student-services analyst seeing that course failure starts with schedule friction nobody tracks",
-            "stakes": "whether a hidden administrative truth becomes product focus",
-            "format": "retrospective",
-            "requiredBeat": "It takes Marta three weeks of late-drop forms to see the same timetable conflict behind them"
-          },
           "scenario": "Marta studies late-drop forms clipped under a cracked plastic tray in academic advising software. Her dilemma is not whether she is unique. It is whether the hidden pattern is true. timetable printout now carries the academic advising software tradeoff: whether a hidden administrative truth becomes product focus. Marta must decide with late-drop forms in view: It takes Marta three weeks of late-drop forms to see the same timetable conflict behind them. At the lab bench with the microscope slide ready, the engineer has to decide which anomaly deserves a real test.",
           "whatToDo": "Push beyond private conviction and ask whether the pattern can survive evidence.",
           "whyItMatters": "This is the anti-posture limit made personal."
@@ -2373,13 +1953,6 @@
             "specialty",
             "secrets"
           ],
-          "planSpec": {
-            "domain": "specialty food importing",
-            "audience": "an importer discovering that chefs care more about delivery predictability than rare ingredients",
-            "stakes": "whether the obvious prestige story hides the real buying truth",
-            "format": "dialogue",
-            "requiredBeat": "Luca stops pitching rarity and asks why chefs reorder the plain staple"
-          },
           "scenario": "Luca studies olive tins stacked beside a restaurant back door in specialty food importing. The conversation separates anti-consensus attitude from truth-testing. olive tins sits next to chef texts, so the specialty food importing choice stays concrete. Luca is about to decide at the specialty food importing table, with chef texts showing the cost: Luca stops pitching rarity and asks why chefs reorder the plain staple.",
           "whatToDo": "Demand a truth standard before rewarding contrarian language.",
           "whyItMatters": "This dialogue captures the difference between a real secret and empty contrarian posture."
@@ -2392,13 +1965,6 @@
             "public",
             "secrets"
           ],
-          "planSpec": {
-            "domain": "public library digital access",
-            "audience": "a systems librarian noticing patrons fail at login recovery, not content discovery",
-            "stakes": "whether the boring bottleneck becomes the real secret",
-            "format": "predict_reveal",
-            "requiredBeat": "Astrid predicts demand from catalog searches, then watches password-reset slips dominate the desk"
-          },
           "scenario": "Astrid studies password-reset slips in a clear acrylic holder in public library digital access. The choice is between crowded certainty and testable hidden truth. The public library digital access setting is concrete: reset slips, catalog terminal, library card stack are all in reach. Astrid faces the choice around catalog terminal before public library digital access commits the budget: Astrid predicts demand from catalog searches, then watches password-reset slips dominate the desk. Before the product review, Astrid must decide whether the support inbox is revealing a secret or only a complaint cluster.",
           "whatToDo": "Prefer the option where evidence could reveal a truth the consensus has underweighted.",
           "whyItMatters": "This is discovery advantage in a classroom decision."
@@ -2411,13 +1977,6 @@
             "industrial",
             "secrets"
           ],
-          "planSpec": {
-            "domain": "industrial safety training",
-            "audience": "a trainer seeing that near misses cluster around tool handoffs nobody names",
-            "stakes": "whether an overlooked ritual becomes the safer process",
-            "format": "decision_point",
-            "requiredBeat": "Yusuf pauses the incident review and has workers reenact the handoff everyone skipped in the report"
-          },
           "scenario": "Yusuf studies gloves laid palm-up on a steel workbench in industrial safety training. He is beginning to separate consensus repetition from reality itself. The role is trainer seeing that near misses cluster around tool handoffs nobody names, and the scene turns on gloves. Yusuf must decide with gloves in view: Yusuf pauses the incident review and has workers reenact the handoff everyone skipped in the report.",
           "whatToDo": "Probe the consensus for blind spots instead of equating repetition with truth.",
           "whyItMatters": "This is the closed-world mistake becoming visible from the inside."
@@ -2436,7 +1995,6 @@
             ],
             "explanation": "The printout shows the secret was sitting in the templates, not in the patient. Redirecting the budget acts on what reality has been confirming, while expanding patient education keeps spending against a story the data has already stopped supporting.",
             "bloomsLevel": "understand",
-            "depthLevel": "simple",
             "correctIndex": 0
           },
           {
@@ -2449,7 +2007,6 @@
             ],
             "explanation": "Over the phone, the secret is unspeakable because the head chef set the standard. Naming the trim variance turns a fact reality keeps confirming into a one-week test, which is exactly the kind of action that closes the window between observation and proof.",
             "bloomsLevel": "apply",
-            "depthLevel": "simple",
             "correctIndex": 0
           },
           {
@@ -2462,7 +2019,6 @@
             ],
             "explanation": "The meeting is competing on the wrong dimension. Tripling the price with the May call attached tests the underbelieved truth Yusuf has heard from farmers, while another discount keeps the company fighting on the axis the competitors have already chosen.",
             "bloomsLevel": "apply",
-            "depthLevel": "standard",
             "correctIndex": 0
           },
           {
@@ -2475,8 +2031,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The truth has been unspeakable rather than hidden. Soft framing preserves the room's agreement not to look. Returning to dispatcher-driver analysis is the same agreement in different clothing. Naming the software as the root cause is the only move that converts a three-year-old fact reality keeps confirming into action somebody now has to take.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -2488,8 +2043,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A secret produces value because the market has not yet caught up. Publishing closes the window. A softened version still teaches competitors what to look for. Keeping the insight private and continuing to underwrite against it is the only choice that protects the structural advantage Astrid's firm spent three years building before anyone else noticed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2501,8 +2055,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Yusuf's experiment confirmed that follow-up, not price, was the underbelieved truth. Returning to per-acre pricing re-enters the competitors' frame and forfeits the asymmetry that produced his renewals. A hybrid quietly hands the market the option to ignore the call again. Holding the bundle extends the secret before consensus arrives.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2514,8 +2067,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cost of operating ahead of consensus is being called naive by people who carry the prevailing story. A six-month survey buys time the secret may not survive. Deferring to industry experience preserves the agreement Bjorn just contradicted. Treating his interviews as plausible evidence of a useful secret is the move the field rewards in hindsight.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2527,8 +2079,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Standard audit targets miss the point of how secrets hide. Lars's first win came from watching the prep station nobody questioned. Wine programs and books are where competent consultants look; the unspeakable cost is wherever authority has discouraged questioning. The shape of the previous secret tells Lars exactly where the next one is sitting.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2540,8 +2091,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Market timing is the room's agreement not to look at the decision somebody senior made. Deferring the review buys six months of the same agreement. Accepting the timing story funds the next launch on the same blind spot. Naming the launch decision in the agenda is the only move that turns the reluctance from camouflage into discussable data.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2602,19 +2152,13 @@
       },
       "memorableLines": [
         {
-          "text": "Emily follows one discharge folder through three phone calls.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Emily follows one discharge folder through three phone calls."
         },
         {
-          "text": "Everyone says home care fails because families forget.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Everyone says home care fails because families forget."
         },
         {
-          "text": "The folder tells a duller truth: the handoff list changes each time, and no one owns the gap.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "The folder tells a duller truth: the handoff list changes each time, and no one owns the gap."
         }
       ]
     },
@@ -2641,13 +2185,6 @@
             "cofounder",
             "foundations"
           ],
-          "planSpec": {
-            "domain": "co-founder equity split",
-            "audience": "a startup lawyer forcing founders to settle control, vesting, and decision rights before the first hire",
-            "stakes": "whether early ambiguity becomes permanent resentment",
-            "format": "dialogue",
-            "requiredBeat": "Sarah stops the friendly handshake and makes each founder write what happens if one leaves"
-          },
           "scenario": "Sarah studies unsigned equity papers beside two untouched coffees in co-founder equity split. The company has a real idea, but the structure around it is still vague enough to create repeated friction. The role is startup lawyer forcing founders to settle control, vesting, and decision rights before the first hire, and the scene turns on equity papers. Sarah's hand hovers over equity papers while co-founder equity split waits for the next step: Sarah stops the friendly handshake and makes each founder write what happens if one leaves.",
           "whatToDo": "Treat role definition as a foundational design choice rather than as cleanup work for later.",
           "whyItMatters": "This is lock-in at the level of responsibility and execution."
@@ -2660,13 +2197,6 @@
             "community",
             "foundations"
           ],
-          "planSpec": {
-            "domain": "community clinic launch",
-            "audience": "a director deciding roles before grant money arrives",
-            "stakes": "whether mission clarity survives the first operational conflict",
-            "format": "decision_point",
-            "requiredBeat": "Etienne assigns clinical authority before the donor announcement locks in confusion"
-          },
           "scenario": "Etienne studies folding chairs around a clinic floor plan in community clinic launch. What began as improvisation is becoming the project's real governance model. grant letter now carries the community clinic launch tradeoff: whether mission clarity survives the first operational conflict. Etienne must choose from the evidence in role chart and make floor plan decide the next step: Etienne assigns clinical authority before the donor announcement locks in confusion. At the clinic boardroom table, the director has to decide before the donor call whether authority belongs on the chart now.",
           "whatToDo": "Intervene at the level of roles, decisions, and expectations rather than waiting for conflict to get louder.",
           "whyItMatters": "Lock-in starts with repeated routines, not just formal documents."
@@ -2679,13 +2209,6 @@
             "restaurant",
             "foundations"
           ],
-          "planSpec": {
-            "domain": "restaurant partnership agreement",
-            "audience": "two chefs opening a tasting room without deciding who controls menu, hiring, and debt",
-            "stakes": "whether friendship hides a structural fault line",
-            "format": "postmortem",
-            "requiredBeat": "Giulia rereads the first vague agreement after the second payroll fight"
-          },
           "scenario": "Giulia studies a prep table dusted with flour and invoices in restaurant partnership agreement. The relationship feels strong, but the structure is still undefined where future strain is most likely to hit. partnership agreement sits next to prep list, so the restaurant partnership agreement choice stays concrete. Giulia has to choose beside payroll envelope before restaurant partnership agreement funds the safe option: Giulia rereads the first vague agreement after the second payroll fight.",
           "whatToDo": "Treat ownership and commitment as part of the design, not as awkward details to postpone.",
           "whyItMatters": "Strong intent still needs clear incentives and commitments."
@@ -2698,13 +2221,6 @@
             "robotics",
             "foundations"
           ],
-          "planSpec": {
-            "domain": "robotics hardware startup",
-            "audience": "an engineer-founder defining decision rights between hardware, software, and sales early",
-            "stakes": "whether blurred ownership slows every prototype decision later",
-            "format": "before_after",
-            "requiredBeat": "Jonas labels each prototype decision with a single owner before hiring accelerates"
-          },
           "scenario": "Jonas studies prototype arms mounted beside a torque chart in robotics hardware startup. The upfront structure looks slower for a week and smarter for the next six months. The robotics hardware startup setting is concrete: torque chart, owner matrix, prototype arm are all in reach. Jonas's hand hovers over torque chart while robotics hardware startup waits for the next step: Jonas labels each prototype decision with a single owner before hiring accelerates.",
           "whatToDo": "Use the beginning to remove avoidable ambiguity from execution.",
           "whyItMatters": "A strong setup can preserve speed by preventing recurring structural waste."
@@ -2717,13 +2233,6 @@
             "familyrun",
             "foundations"
           ],
-          "planSpec": {
-            "domain": "family-run manufacturing succession",
-            "audience": "a second-generation manager formalizing authority before expansion",
-            "stakes": "whether unspoken family roles distort company incentives",
-            "format": "reflection",
-            "requiredBeat": "Nina writes the org chart nobody wants to discuss and places it next to the loan documents"
-          },
           "scenario": "Nina studies loan documents weighted by a brass nameplate in family-run manufacturing succession. Both teams have energy, but only one is designing for durable clarity. The role is second-generation manager formalizing authority before expansion, and the scene turns on loan documents. Nina must choose from the evidence in brass nameplate and make loan documents decide the next step: Nina writes the org chart nobody wants to discuss and places it next to the loan documents.",
           "whatToDo": "Judge the setups by whether they create coherent execution, not by whether they avoid hard conversations.",
           "whyItMatters": "Structure matters because the beginning becomes the system later work depends on."
@@ -2736,13 +2245,6 @@
             "research",
             "foundations"
           ],
-          "planSpec": {
-            "domain": "research consortium governance",
-            "audience": "a coordinator setting data ownership terms before labs contribute samples",
-            "stakes": "whether a shared scientific aim breaks under unclear ownership",
-            "format": "scene",
-            "requiredBeat": "Kiran refuses to accept the first tissue shipment until data rights are signed"
-          },
           "scenario": "Kiran studies dry ice fog curling around a sample box in research consortium governance. They are debating whether structure limits the future or protects it. data-use agreement now carries the research consortium governance tradeoff: whether a shared scientific aim breaks under unclear ownership. Kiran has to choose beside data-use agreement before research consortium governance funds the safe option: Kiran refuses to accept the first tissue shipment until data rights are signed. In the lab conference room, the research lead must decide before the courier leaves whether signed data rights are a launch condition.",
           "whatToDo": "Separate durable setup choices from false demands for total prediction.",
           "whyItMatters": "This captures The idea’s balance between durable design and bounded uncertainty."
@@ -2794,8 +2296,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Structural debt accrued in week three compounds for years. Vesting and decision rights cost almost nothing to write while the friendship is intact and almost everything to renegotiate once power has accumulated through ad hoc precedent. The window for cheap design closes the first time the team performs a real decision through absence of rules.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2807,8 +2308,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Equity without vesting becomes a permanent liability the moment one cofounder exits. The lawyer formalized what was asked, not what was needed. A seed without a buyback or vesting clause leaves a third of the company stranded with someone no longer building, and the cost surfaces in the worst possible quarter.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deeper"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2820,8 +2320,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Indecision is not a neutral state. Employees and clients read it as instability and route around it. The conversation that should have run for two weeks during founding now runs for six months inside a live disagreement, and the bill arrives in lost staff and lost revenue. Coaching and splitting treat symptoms, not the missing operating system.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deeper"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2833,8 +2332,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The second-time founder has already watched companies pay the structural debt accrued at the kitchen table. Two weeks of formality before code is not bureaucracy; it is the only window when conflict resolution clauses can be designed without the conflict already shaping the negotiation. The investor's lawyer will draft what is asked, not what is missing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2846,8 +2344,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Three years of agreement is not the same as three years of structure. The lab performed decisions through consensus because consensus was easy, which let the founders avoid writing rules that only matter when consensus fails. The cost was not the paperwork they skipped; it was the candidate they lost while inventing a resolution mechanism mid-conflict.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deeper"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2859,8 +2356,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The math is not subtle. A founding meeting that should run two weeks instead runs two days, and the company spends the next five years quietly paying for the missing twelve. Runway saved on documents is runway spent on board meetings, cofounder buyouts, and renegotiated decision rights, usually at higher hourly rates and worse leverage.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2921,19 +2417,13 @@
       },
       "memorableLines": [
         {
-          "text": "Sarah stops a friendly handshake over equity papers.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Sarah stops a friendly handshake over equity papers."
         },
         {
-          "text": "The founders trust each other, but no one has written what happens if one leaves, who owns which call, or how vesting works.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "The founders trust each other, but no one has written what happens if one leaves, who owns which call, or how vesting works."
         },
         {
-          "text": "Warmth is hiding a future fight.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Warmth is hiding a future fight."
         }
       ]
     },
@@ -2960,13 +2450,6 @@
             "emergency",
             "culture"
           ],
-          "planSpec": {
-            "domain": "emergency veterinary hospital team",
-            "audience": "a medical director hiring for mission fit under overnight pressure",
-            "stakes": "whether skill without shared purpose fractures the shift",
-            "format": "scene",
-            "requiredBeat": "Patrick watches a brilliant surgeon dismiss the triage nurse and removes him from the shortlist"
-          },
           "scenario": "Patrick studies a red emergency light over a treatment bay in emergency veterinary hospital team. The company has skill, but weak mission fit is keeping the skill from compounding. interview notes now carries the emergency veterinary hospital team tradeoff: whether skill without shared purpose fractures the shift. Patrick faces the choice around interview notes before emergency veterinary hospital team commits the budget: Patrick watches a brilliant surgeon dismiss the triage nurse and removes him from the shortlist. Before the second interview starts, Patrick must decide whether the surgeon strengthens the overnight mission or breaks the team.",
           "whatToDo": "Treat mission fit as a structural issue instead of a personality issue.",
           "whyItMatters": "This is the mission-fit mechanism in early form."
@@ -2979,13 +2462,6 @@
             "polar",
             "culture"
           ],
-          "planSpec": {
-            "domain": "polar research expedition logistics",
-            "audience": "a field lead choosing teammates who can live the mission in cramped conditions",
-            "stakes": "whether competence without fit becomes dangerous isolation",
-            "format": "vignette",
-            "requiredBeat": "Marit chooses the quieter mechanic who repairs everyone’s kit without being asked"
-          },
           "scenario": "Marit studies frost on a supply crate latch in polar research expedition logistics. The choice is between visible status and tighter internal coherence. supply crate sits next to repair kit, so the polar research expedition logistics choice stays concrete. Marit must decide with supply crate in view: Marit chooses the quieter mechanic who repairs everyone’s kit without being asked. Inside the supply tent before the radio check, the expedition lead has to decide whether prestige matters less than repair discipline.",
           "whatToDo": "Treat selection as a design decision about future execution quality.",
           "whyItMatters": "This example ties selection to internal coherence rather than prestige signaling."
@@ -2998,13 +2474,6 @@
             "enterprise",
             "culture"
           ],
-          "planSpec": {
-            "domain": "enterprise migration war room",
-            "audience": "a CTO testing whether contractors and employees can operate as one dense team",
-            "stakes": "whether handoffs break during the live migration weekend",
-            "format": "dialogue",
-            "requiredBeat": "Tomas asks each person to name the mission in operational terms before assigning access"
-          },
           "scenario": "Tomas studies server-status lights reflected in a dark window in enterprise migration war room. She is choosing between status and alignment. The enterprise migration war room setting is concrete: access badges, migration checklist, status lights are all in reach. Tomas is about to decide at the enterprise migration war room table, with status lights showing the cost: Tomas asks each person to name the mission in operational terms before assigning access.",
           "whatToDo": "Use mission fit and role clarity as the test, not just status or résumé value.",
           "whyItMatters": "Strong culture is a work advantage, not just a social preference."
@@ -3017,13 +2486,6 @@
             "artisan",
             "culture"
           ],
-          "planSpec": {
-            "domain": "artisan ceramics studio scaling",
-            "audience": "a founder deciding whether a talented hire respects the studio’s demanding production rhythm",
-            "stakes": "whether output quality survives growth",
-            "format": "before_after",
-            "requiredBeat": "Mikkel compares the candidate’s portfolio with how she handles the kiln failure at 6 a.m."
-          },
           "scenario": "Mikkel studies kiln heat shimmering near stacked clay boards in artisan ceramics studio scaling. One team markets its culture. The other team uses culture to work better. The role is founder deciding whether a talented hire respects the studio’s demanding production rhythm, and the scene turns on kiln log. Mikkel faces the choice around clay boards before artisan ceramics studio scaling commits the budget: Mikkel compares the candidate’s portfolio with how she handles the kiln failure at 6 a.m.",
           "whatToDo": "Look for lower drag, cleaner trust, and stronger role fit instead of decorative signals.",
           "whyItMatters": "Real culture improves execution while fake culture mostly improves appearances."
@@ -3036,13 +2498,6 @@
             "youth",
             "culture"
           ],
-          "planSpec": {
-            "domain": "youth mental health hotline",
-            "audience": "an operations lead building trust among volunteers who handle high-stakes calls",
-            "stakes": "whether scripts alone can carry the emotional load",
-            "format": "reflection",
-            "requiredBeat": "Layla notices the best volunteer asks for debrief discipline, not praise"
-          },
           "scenario": "Layla studies headsets lined up beneath a muted call monitor in youth mental health hotline. Role fit turns a polite group into a more coherent working team. debrief sheet now carries the youth mental health hotline tradeoff: whether scripts alone can carry the emotional load. Layla must decide with headsets in view: Layla notices the best volunteer asks for debrief discipline, not praise. In the call room after midnight, the operations lead must decide whether debrief discipline is the real sign of fit.",
           "whatToDo": "Use mission-linked role fit to strengthen coordination.",
           "whyItMatters": "This is productive alignment in a concrete form."
@@ -3055,13 +2510,6 @@
             "precision",
             "culture"
           ],
-          "planSpec": {
-            "domain": "precision machining shop",
-            "audience": "a shop owner deciding whether a new foreman strengthens or weakens shop-floor loyalty",
-            "stakes": "whether speed gains cost the dense cooperation that keeps defects low",
-            "format": "postmortem",
-            "requiredBeat": "Matteo traces a defect spike to one foreman who broke informal handoffs"
-          },
           "scenario": "Matteo studies metal shavings collected around a micrometer case in precision machining shop. The decision is between broad likability and deeper fit for the actual work. micrometer case sits next to shift handoff board, so the precision machining shop choice stays concrete. Matteo is about to decide at the precision machining shop table, with shift handoff board showing the cost: Matteo traces a defect spike to one foreman who broke informal handoffs.",
           "whatToDo": "Treat compatibility in the work itself as the deciding factor, not surface chemistry alone.",
           "whyItMatters": "This captures The idea’s distinction between productive trust and vague warmth."
@@ -3113,8 +2561,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Credentials are visible. Mission fit is not, but it determines whether a hire routes around the work to chase prestige or runs toward the unglamorous problems. Six months of unpaid letters is a stronger signal of conviction than two exits at companies whose missions Bjorn may never have cared about. The wrong hire is a slow-acting cost.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deeper"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -3126,8 +2573,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Errors propagate when staff cannot interrupt without social cost. The decorated surgeon is not technically worse; he is operating inside a degraded loop because his behavior trained the staff out of saving him. Culture is not perks or mission statements. It is what the team performs when there is no time to be polite, and a team afraid of one member moves slower under stress.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deeper"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3139,8 +2585,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The director was building for prestige inside a company that needed builders for a specific customer who would never appear in a Forbes profile. No technical capability could bridge that values mismatch. Talented hires whose working sense of what matters diverges from the company's will route around the real work, quietly and confidently, until someone catches them or they leave.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -3152,8 +2597,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Technical excellence that refuses to risk being wrong in public stops being useful in a client-facing system. The five were doing the actual work because they could absorb correction in real time. The three optimized for not being seen as fallible, and clients read the rigidity as distance. Culture sorts who can perform under social pressure, not who knows the most.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deeper"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3165,8 +2609,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A team is a system, not a collection. When ten people each carry a different sense of what is being built, the company performs seven products badly instead of one well. The credentialed hires leave because the mission they assumed never existed, and the survivors are the ones whose internal compass already pointed at the founders' problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3178,8 +2621,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fit is hard to interview for because credentials are visible and behavior is not. A candidate who answers from a script has prepared the surface but not lived the substance. The brilliant hire who cannot tolerate correction from a junior teammate is not a hire; they are a slow-acting cost that surfaces in the worst hour of the worst week, well after the offer letter is signed.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deeper"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3240,19 +2682,13 @@
       },
       "memorableLines": [
         {
-          "text": "Patrick watches a brilliant surgeon dismiss the triage nurse during an interview.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Patrick watches a brilliant surgeon dismiss the triage nurse during an interview."
         },
         {
-          "text": "The signal is worse: under pressure, this hire would break the trust the night team needs to move fast.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "The signal is worse: under pressure, this hire would break the trust the night team needs to move fast."
         },
         {
-          "text": "Culture is more than perks or charm.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Culture is more than perks or charm."
         }
       ]
     },
@@ -3279,13 +2715,6 @@
             "radiology",
             "distribution"
           ],
-          "planSpec": {
-            "domain": "radiology AI procurement",
-            "audience": "a founder realizing hospital sales require workflow adoption, not demo applause",
-            "stakes": "whether a strong model dies outside the pilot room",
-            "format": "decision_point",
-            "requiredBeat": "Robert maps the path from demo to procurement committee before adding another feature"
-          },
           "scenario": "Robert studies a demo laptop beside a hospital badge printer in radiology AI procurement. One product is better, but the weaker competitor owns the path to the market. demo laptop sits next to badge printer, so the radiology AI procurement choice stays concrete. Robert must choose from the evidence in badge printer and make demo laptop decide the next step: Robert maps the path from demo to procurement committee before adding another feature.",
           "whatToDo": "Treat the channel problem as real instead of assuming the product should speak for itself.",
           "whyItMatters": "This example shows that product strength and go-to-market strength can diverge sharply."
@@ -3298,13 +2727,6 @@
             "craft",
             "distribution"
           ],
-          "planSpec": {
-            "domain": "craft furniture marketplace",
-            "audience": "an owner with beautiful supply and no repeatable customer channel",
-            "stakes": "whether inventory sits because nobody built reach",
-            "format": "before_after",
-            "requiredBeat": "Catarina compares the glowing product photos with the empty order queue"
-          },
           "scenario": "Catarina studies oak chairs wrapped in moving blankets in craft furniture marketplace. The team has to choose between more internal refinement and real external access. The craft furniture marketplace setting is concrete: moving blankets, order queue, dealer list are all in reach. At the boardroom table before lunch, the founder has to decide whether the sales motion is hidden work or the main constraint.",
           "whatToDo": "Treat reach as part of the project rather than as a separate publicity chore.",
           "whyItMatters": "This decision tests whether the team understands distribution as part of success."
@@ -3317,13 +2739,6 @@
             "specialist",
             "distribution"
           ],
-          "planSpec": {
-            "domain": "specialist tax software",
-            "audience": "a product lead treating CPA partnerships as product work, not a later sales chore",
-            "stakes": "whether the software reaches the few firms that need it urgently",
-            "format": "dialogue",
-            "requiredBeat": "Mathieu adds partner onboarding to the release checklist before polishing another calculator"
-          },
           "scenario": "Mathieu studies tax forms stacked beside a half-finished onboarding deck in specialist tax software. She built something strong but never built a believable path to an audience. The role is product lead treating CPA partnerships as product work, not a later sales chore, and the scene turns on tax forms. Mathieu's hand hovers over tax forms while specialist tax software waits for the next step: Mathieu adds partner onboarding to the release checklist before polishing another calculator.",
           "whatToDo": "Treat audience access as its own task instead of assuming quality will generate it automatically.",
           "whyItMatters": "This vignette turns the abstract reach problem into a small personal case."
@@ -3336,13 +2751,6 @@
             "local",
             "distribution"
           ],
-          "planSpec": {
-            "domain": "local food delivery co-op",
-            "audience": "a founder designing neighborhood pickup captains instead of assuming the app will spread",
-            "stakes": "whether great logistics remain invisible to households",
-            "format": "vignette",
-            "requiredBeat": "Adaeze watches the app stall until one block captain moves thirty orders in a night"
-          },
           "scenario": "Adaeze studies paper grocery labels stuck to insulated totes in local food delivery co-op. She forces the room to confront the gap between pride in the product and the absence of a route to customers. block map now carries the local food delivery co-op tradeoff: whether great logistics remain invisible to households. Adaeze must choose from the evidence in pickup roster and make insulated totes decide the next step: Adaeze watches the app stall until one block captain moves thirty orders in a night.",
           "whatToDo": "Treat sales and channels as strategic design questions, not as status threats to the product team.",
           "whyItMatters": "This example captures The idea’s attack on the self-selling-product fantasy."
@@ -3355,13 +2763,6 @@
             "industrial",
             "distribution"
           ],
-          "planSpec": {
-            "domain": "industrial water sensor sales",
-            "audience": "an engineer learning that municipal trust and installation channels matter as much as sensor accuracy",
-            "stakes": "whether a technically superior device ever reaches plant operators",
-            "format": "predict_reveal",
-            "requiredBeat": "Olivier predicts the accuracy demo will close the deal, then watches the operator ask who installs it at midnight"
-          },
           "scenario": "Olivier studies a sensor probe dripping over a utility sink in industrial water sensor sales. He sees that the missing capability is not more building but deliberate reach. sensor probe sits next to operator schedule, so the industrial water sensor sales choice stays concrete. Olivier has to choose beside installation manual before industrial water sensor sales funds the safe option: Olivier predicts the accuracy demo will close the deal, then watches the operator ask who installs it at midnight. On the dashboard in the warehouse office, the analyst must decide before the renewal call whether adoption needs a different route to the buyer.",
           "whatToDo": "Shift some attention from internal polish toward channel design and contact with likely users.",
           "whyItMatters": "This is the moment when the team starts treating distribution as a competence."
@@ -3374,13 +2775,6 @@
             "independent",
             "distribution"
           ],
-          "planSpec": {
-            "domain": "independent podcast network",
-            "audience": "a producer deciding whether audience acquisition is a designed channel or a hope after recording",
-            "stakes": "whether excellent episodes remain invisible",
-            "format": "second_person",
-            "requiredBeat": "You watch Vera move distribution planning into the recording calendar before the first interview"
-          },
           "scenario": "Vera studies a microphone stand beside a blank launch calendar in independent podcast network. The choice is between extra product work and first real customer access. The independent podcast network setting is concrete: microphone stand, launch calendar, guest tracker are all in reach. Vera's hand hovers over microphone stand while independent podcast network waits for the next step: You watch Vera move distribution planning into the recording calendar before the first interview.",
           "whatToDo": "Test a basic route to users instead of assuming additional quality will fix an access problem.",
           "whyItMatters": "This dilemma turns The idea’s mechanism into a concrete next move."
@@ -3432,8 +2826,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The bottleneck is not product. It is that the farmer who would buy cannot evaluate without a peer who already uses it, and that peer does not know a peer is waiting. More features cannot fix that. A referral mechanism reshapes the path the customer travels, which is the actual constraint. Six quarters later, adoption jumps because distribution changed, not because the irrigation module shipped.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3445,8 +2838,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Procurement offices do not read product comparisons. They return calls from people they already know. A great product is one input into a sales pipeline; channel, trust, and prior relationship are the others. Investing more in technical superiority improves the dimensions that do not decide the sale, while the dimension that does decide it remains untouched. The path is the business.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deeper"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3458,8 +2850,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The marginal hour of engineering has zero effect on a twelve-month sales cycle that is bottlenecked by what happens on the factory floor. The marginal hour spent training sales engineers to walk a plant and name three replacements cuts the cycle by a month. Resources poured into product polish for two years did nothing the customer noticed. The bottleneck was always the side the founder preferred not to touch.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3471,8 +2862,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Founders are usually builders. Builders return to the part of the company they know how to build because optimizing the familiar feels productive. The familiar is rarely the bottleneck. Onboarding gets A/B tested six times while the saturated channel sits untouched for a year, because channel diversification looks like a discipline the founder does not yet own. The bottleneck waits where the founder will not go.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deeper"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3484,8 +2874,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The new journal can keep improving the product forever. The bottleneck is the tenure committee, which decides what counts as a credible publication and has not heard of the new venue. A peer-review tier is a feature; it does not reach the committee. Build the path or the product never gets there. Reach is governed by who the audience already trusts, not by who is technically better.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -3497,8 +2886,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Distribution must match deal size. A thirty-dollar plan dies the moment you add a phone call, let alone three. A four-hundred-thousand-dollar contract pays for a seller and a steakhouse; a thirty-dollar one barely pays for the email reply. The CEO is performing an enterprise motion on consumer economics, and the math will close the company before the trust compounds.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deeper"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3559,19 +2947,13 @@
       },
       "memorableLines": [
         {
-          "text": "Robert finishes a hospital demo and looks at the badge printer by the door.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Robert finishes a hospital demo and looks at the badge printer by the door."
         },
         {
-          "text": "The next question is harder: who trusts it, who buys it, who installs it, and how it reaches the ward after the pilot ends?",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "The next question is harder: who trusts it, who buys it, who installs it, and how it reaches the ward after the pilot ends?"
         },
         {
-          "text": "A product does not sell itself by being good.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "A product does not sell itself by being good."
         }
       ]
     },
@@ -3598,13 +2980,6 @@
             "fraud",
             "computer"
           ],
-          "planSpec": {
-            "domain": "fraud review operations",
-            "audience": "a bank manager splitting machine scoring from human judgment on edge cases",
-            "stakes": "whether automation increases accuracy or hides brittle calls",
-            "format": "scene",
-            "requiredBeat": "Min routes the easy cases to the model and reserves ambiguous family transfers for reviewers"
-          },
           "scenario": "The software handles the scan load while Min handles the meaning-heavy decisions. The fraud review operations setting is concrete: alert queue, review rubric, model score are all in reach. Min must decide with alert queue in view: Min routes the easy cases to the model and reserves ambiguous family transfers for reviewers. In the hospital control room, the nurse has to decide whether the software should replace judgment or surface the next risk.",
           "whatToDo": "Design the workflow so each side handles the type of work it is strongest at doing.",
           "whyItMatters": "This example shows complementarity as a concrete workflow split."
@@ -3617,13 +2992,6 @@
             "forestry",
             "computer"
           ],
-          "planSpec": {
-            "domain": "forestry fire detection",
-            "audience": "a field coordinator pairing satellite scans with ranger interpretation",
-            "stakes": "whether smoke signatures become useful decisions before crews deploy",
-            "format": "predict_reveal",
-            "requiredBeat": "Anders lets the software flag heat anomalies, then asks rangers to interpret wind and access roads"
-          },
           "scenario": "Anders studies satellite tiles beside a paper topo map in forestry fire detection. The team is choosing between replacement rhetoric and complementarity design. The role is field coordinator pairing satellite scans with ranger interpretation, and the scene turns on topo map. Anders is about to decide at the forestry fire detection table, with radio log showing the cost: Anders lets the software flag heat anomalies, then asks rangers to interpret wind and access roads.",
           "whatToDo": "Treat task categories as different instead of assuming one move handles the whole process.",
           "whyItMatters": "This dilemma turns complementarity into a design decision rather than a slogan."
@@ -3636,13 +3004,6 @@
             "legal",
             "computer"
           ],
-          "planSpec": {
-            "domain": "legal discovery review",
-            "audience": "a litigation partner using software to cluster documents while lawyers judge privileged context",
-            "stakes": "whether speed sacrifices judgment or multiplies it",
-            "format": "dialogue",
-            "requiredBeat": "Chidi rejects the all-automation pitch and assigns humans to the consequence-heavy clusters"
-          },
           "scenario": "Chidi studies banker boxes stacked around a glowing review screen in legal discovery review. One setup treats the tool as a partner. The other treats it like a fantasy substitute. privilege log now carries the legal discovery review tradeoff: whether speed sacrifices judgment or multiplies it. Chidi faces the choice around privilege log before legal discovery review commits the budget: Chidi rejects the all-automation pitch and assigns humans to the consequence-heavy clusters. Before the design review, the engineer must decide which task belongs to the model and which belongs to the field team.",
           "whatToDo": "Redesign the workflow around divided strengths rather than around the hope that the tool will own the entire task.",
           "whyItMatters": "This contrast shows the difference between augmentation and misassigned automation."
@@ -3655,13 +3016,6 @@
             "oncology",
             "computer"
           ],
-          "planSpec": {
-            "domain": "oncology trial matching",
-            "audience": "a coordinator combining algorithmic eligibility with doctor judgment about patient burden",
-            "stakes": "whether eligible on paper means suitable in life",
-            "format": "reflection",
-            "requiredBeat": "Anke watches the match score clear, then calls the nurse who knows the patient’s bus route"
-          },
           "scenario": "Anke studies trial criteria printed beside a bus timetable in oncology trial matching. The tool works best when it removes one burden and sharpens the judgment work that remains. trial criteria sits next to nurse notes, so the oncology trial matching choice stays concrete. Anke must decide with trial criteria in view: Anke watches the match score clear, then calls the nurse who knows the patient’s bus route.",
           "whatToDo": "Judge the system by whether it improves the work split inside the workflow.",
           "whyItMatters": "This is the moment where complementarity becomes a system insight instead of an abstract idea."
@@ -3674,13 +3028,6 @@
             "warehouse",
             "computer"
           ],
-          "planSpec": {
-            "domain": "warehouse picking optimization",
-            "audience": "a floor supervisor dividing route calculation from exception handling during a holiday surge",
-            "stakes": "whether the software speeds work without breaking judgment at the dock",
-            "format": "before_after",
-            "requiredBeat": "Akira lets the system reorder picks but keeps damaged-item calls with the dock lead"
-          },
           "scenario": "Akira studies shipping labels curling near a conveyor scanner in warehouse picking optimization. The conversation shifts from abstract automation rhetoric to the actual kinds of work people and machines do differently. The warehouse picking optimization setting is concrete: conveyor scanner, exception bin, route tablet are all in reach. Akira is about to decide at the warehouse picking optimization table, with route tablet showing the cost: Akira lets the system reorder picks but keeps damaged-item calls with the dock lead.",
           "whatToDo": "Ask what type of work is being discussed before arguing about who should do it.",
           "whyItMatters": "This dialogue keeps complementarity tied to mechanism instead of sentiment."
@@ -3693,13 +3040,6 @@
             "newsroom",
             "computer"
           ],
-          "planSpec": {
-            "domain": "newsroom verification desk",
-            "audience": "an editor using image-matching tools while reporters verify context and source intent",
-            "stakes": "whether faster scans produce trustworthy publication decisions",
-            "format": "decision_point",
-            "requiredBeat": "Lea stops the team from publishing until the reporter confirms where the image came from"
-          },
           "scenario": "Lea studies a reverse-image search grid on a newsroom screen in newsroom verification desk. The choice is between a fuzzy automation fantasy and a clearer complementary workflow. The role is editor using image-matching tools while reporters verify context and source intent, and the scene turns on image grid. Lea faces the choice around source log before newsroom verification desk commits the budget: Lea stops the team from publishing until the reporter confirms where the image came from. At the boardroom screen, the director has to decide whether automation makes the human role sharper or merely cheaper.",
           "whatToDo": "Redesign the process around divided strengths instead of one vague promise of automation.",
           "whyItMatters": "This decision turns complementarity into a practical next move."
@@ -3751,8 +3091,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A chatbot that speaks directly to customers fails on hard tickets and humiliates the brand. More agents fail because they start every ticket from scratch. The third design assigns scale to the machine and judgment to the agent, with a structured handoff. Productivity rises three hundred percent because each side does what it is genuinely better at, and nobody is replaced.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3764,8 +3103,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The competing hospital used the model as a substitute decision-maker, which degraded the radiologist's role into rubber-stamping. The first hospital used the model to order what the radiologist sees, leaving judgment intact. Critical cases reach the top of the queue faster, but every scan is still read. The machine handled scale. The human kept meaning. The split made the difference, not the model.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deeper"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3777,8 +3115,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Quoting was the visible work. The customers were paying for the relationship that surrounded the quotes, which the account managers performed without writing it on any process diagram. The system replaced the visible task and stripped out the invisible value. Twenty percent revenue loss is the size of the invisible work, which the CEO could not see because the system did the part that showed up on a process map.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deeper"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -3790,8 +3127,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Tools that pretend to be oracles get switched off. Teachers renew when they feel the system makes their judgment sharper, not when it bypasses them. Surfacing uncertainty invites teachers into the loop on the exact cases where the machine cannot decide alone, which converts the AI from a substitute into an instrument. Hiding doubt removes the teacher's reason to keep the tool.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -3803,8 +3139,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The model is trying to catch fraud, which is a judgment job. The analyst is trying to review every flag, which is a scale job. Neither system is bad. The split between them is bad. Rebuilding so the model filters at machine speed and the analyst makes judgment calls in context lifts catches sixty percent without new headcount. The slogan is replacement; the work is allocation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -3816,8 +3151,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The framing that pits humans against machines is a category mistake. They do different things well. Companies that answer the specific questions, which tasks should the machine own and which should the human own and what the handoff looks like, run circles around companies still arguing about whether AI takes over. The interesting work is the split, not the substitution narrative.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deeper"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3878,19 +3212,13 @@
       },
       "memorableLines": [
         {
-          "text": "Min watches fraud alerts stack across a blue monitor.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Min watches fraud alerts stack across a blue monitor."
         },
         {
-          "text": "The model can sort easy cases faster than any team.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "The model can sort easy cases faster than any team."
         },
         {
-          "text": "It cannot know why a family transfer looks strange before a holiday or who should call the customer first.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "It cannot know why a family transfer looks strange before a holiday or who should call the customer first."
         }
       ]
     },
@@ -3917,13 +3245,6 @@
             "solar",
             "clean-tech"
           ],
-          "planSpec": {
-            "domain": "solar microgrid startup",
-            "audience": "a founder diagnosing whether the pilot failed from technology, timing, channel, or financing design",
-            "stakes": "whether the next version fixes the business problem rather than blaming the mission",
-            "format": "postmortem",
-            "requiredBeat": "Nathan labels every failed pilot assumption before touching the panel design"
-          },
           "scenario": "Nathan studies dust on a boxed inverter in a warehouse aisle in solar microgrid startup. The technology looks meaningful, but the launch timing may still be wrong. The role is founder diagnosing whether the pilot failed from technology, timing, channel, or financing design, and the scene turns on boxed inverter. Nathan has to choose beside pilot contract before solar microgrid startup funds the safe option: Nathan labels every failed pilot assumption before touching the panel design.",
           "whatToDo": "Treat timing as part of the business case instead of as a detail to solve later.",
           "whyItMatters": "This example shows that ambition does not erase the launch-window problem."
@@ -3936,13 +3257,6 @@
             "electric",
             "clean-tech"
           ],
-          "planSpec": {
-            "domain": "electric ferry retrofit",
-            "audience": "a port planner testing scale and timing before celebrating a green headline",
-            "stakes": "whether the harbor buys a promise it cannot maintain",
-            "format": "decision_point",
-            "requiredBeat": "Julia asks where the charging window fits into the tide schedule before approving the grant"
-          },
           "scenario": "Julia studies a tide chart taped beside a charging schematic in electric ferry retrofit. The debate is between impressive technology rhetoric and the structure of the bet itself. charging schematic now carries the electric ferry retrofit tradeoff: whether the harbor buys a promise it cannot maintain. Julia's hand hovers over tide chart while electric ferry retrofit waits for the next step: Julia asks where the charging window fits into the tide schedule before approving the grant.",
           "whatToDo": "Separate technology promise from the specific business structure being reviewed.",
           "whyItMatters": "This dialogue turns disciplined diagnosis into a practical evaluation habit."
@@ -3955,13 +3269,6 @@
             "compostable",
             "clean-tech"
           ],
-          "planSpec": {
-            "domain": "compostable packaging manufacturer",
-            "audience": "an operations director discovering that factory throughput, not material science, breaks the business",
-            "stakes": "whether a worthy product fails at industrial scale",
-            "format": "before_after",
-            "requiredBeat": "George moves the argument from biodegradability slides to the jammed forming line"
-          },
           "scenario": "George studies pulp trays stuck inside a steel forming machine in compostable packaging manufacturer. She has to choose between exciting rhetoric and a more disciplined reading of the conditions. forming machine sits next to retailer forecast, so the compostable packaging manufacturer choice stays concrete. In the investor conference room, the founder has to decide whether scale timing belongs in the launch plan before the next check clears.",
           "whatToDo": "Use feasibility as a test of the bet instead of letting the narrative carry the whole decision.",
           "whyItMatters": "This dilemma captures the difference between technical appeal and viable structure."
@@ -3974,13 +3281,6 @@
             "heatpump",
             "clean-tech"
           ],
-          "planSpec": {
-            "domain": "heat-pump installer network",
-            "audience": "a founder realizing customer acquisition and trained installers matter as much as hardware efficiency",
-            "stakes": "whether demand exists but cannot be served profitably",
-            "format": "dialogue",
-            "requiredBeat": "Chiara asks who installs unit four hundred before ordering unit four hundred"
-          },
           "scenario": "Chiara studies copper tubing coiled beside a training calendar in heat-pump installer network. He sees that the bet broke at the level of timing and structure rather than at the level of technical aspiration. The heat-pump installer network setting is concrete: training calendar, copper tubing, rebate form are all in reach. Chiara has to choose beside copper tubing before heat-pump installer network funds the safe option: Chiara asks who installs unit four hundred before ordering unit four hundred.",
           "whatToDo": "Treat failure as a structural diagnosis problem instead of as automatic proof that the field is worthless.",
           "whyItMatters": "This example shows why disciplined postmortem analysis matters."
@@ -3993,13 +3293,6 @@
             "urban",
             "clean-tech"
           ],
-          "planSpec": {
-            "domain": "urban battery recycling plant",
-            "audience": "a CFO testing whether permitting, feedstock, and buyer contracts align before expansion",
-            "stakes": "whether scale exposes missing business design",
-            "format": "predict_reveal",
-            "requiredBeat": "Devon predicts capacity wins, then watches the permit date break the whole model"
-          },
           "scenario": "Devon studies shredded battery casings in a sealed sample jar in urban battery recycling plant. One analysis is disciplined. The other is generic hindsight. The role is CFO testing whether permitting, feedstock, and buyer contracts align before expansion, and the scene turns on sample jar. Devon's hand hovers over sample jar while urban battery recycling plant waits for the next step: Devon predicts capacity wins, then watches the permit date break the whole model.",
           "whatToDo": "Prefer structural diagnosis over broad retrospective cynicism.",
           "whyItMatters": "This contrast keeps The idea analytical instead of smug."
@@ -4012,13 +3305,6 @@
             "green",
             "clean-tech"
           ],
-          "planSpec": {
-            "domain": "green cement procurement",
-            "audience": "a city engineer deciding whether lower-carbon material can meet code, supply, and contractor timing",
-            "stakes": "whether ambition survives contact with procurement constraints",
-            "format": "second_person",
-            "requiredBeat": "You watch Petra place the code sheet over the glossy sustainability brochure"
-          },
           "scenario": "Petra studies a concrete core sample beside a city code binder in green cement procurement. She learns that technological promise still needs business conditions that can carry it. code binder now carries the green cement procurement tradeoff: whether ambition survives contact with procurement constraints. Petra must choose from the evidence in supplier lead-time chart and make core sample decide the next step: You watch Petra place the code sheet over the glossy sustainability brochure.",
           "whatToDo": "Treat timing, scale, and business design as part of the bet itself.",
           "whyItMatters": "This vignette turns the failure analysis into a usable evaluation rule."
@@ -4070,8 +3356,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Five failures, five shapes, one pattern. Each founder was emotionally invested in the romantic problem and treated the unromantic dimensions as obstacles the mission would overcome. The dimensions they underinvested in killed them: procurement, regulatory windows, cost engineering, channel partners. Mission adds a sixth axis without removing any of the five a normal business has to win on. The boring failure is more common.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deeper"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -4083,8 +3368,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The lab assumed a customer who would sign a five-year anything. A single conversation with procurement in week one of design would have revealed the customer's authority caps. Nobody asked because the team was emotionally invested in the technology and treated the customer as an obstacle the product would overcome. Good enough is not a procurement strategy. The romantic problem crowded out the boring conversation that would have saved the company.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -4096,8 +3380,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Most clean-tech founders let mission shield the dimensions they did not want to confront. The kill criteria functioned as a circuit breaker against that protection. When two milestones missed, the team killed product lines instead of redefining the milestone or extending the timeline on faith. The discipline kept mission from quietly protecting the parts of the business the team would rather not think about, which is where most clean-tech dies.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deeper"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -4109,8 +3392,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The technology is real. The business is dying because the gap between when the technology will be ready and when the cap table needs revenue is too wide to close by willpower. Pushing eight-year chemistry into a one-year milestone produces a worse product and the same dead company. The technology can be right and the business can still be dead, which is the harder lesson clean-tech keeps relearning.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -4122,8 +3404,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The product is not the problem. The business is. Eighteen-month permits cannot be shortened by better thermal management, and a modular form factor that bypasses permits invites enforcement risk that ends the company faster. The mission helps with morale and hiring; it does not pay the bills. The bills are paid by a business that survives the gap between when the technology is ready and when the customer is.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -4135,8 +3416,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Mission is the reason to start. Math is the reason the company survives. A founder who opens with a six-failure-mode map has already done the work of confronting the dimensions mission usually shields. Conviction without that discipline produces a romantic dead company, which is the most common outcome in clean-tech. Hedging by backing both repeats the mistake of letting the romantic problem absorb the diligence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deeper"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4197,19 +3477,13 @@
       },
       "memorableLines": [
         {
-          "text": "Nathan finds a boxed inverter gathering dust after a solar microgrid pilot.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Nathan finds a boxed inverter gathering dust after a solar microgrid pilot."
         },
         {
-          "text": "The permit date slipped, the buyer contract lagged, and the service model could not carry the wait.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "The permit date slipped, the buyer contract lagged, and the service model could not carry the wait."
         },
         {
-          "text": "The mission was not the whole business.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "The mission was not the whole business."
         }
       ]
     },
@@ -4236,13 +3510,6 @@
             "founderled",
             "founder-paradox"
           ],
-          "planSpec": {
-            "domain": "founder-led medical startup",
-            "audience": "a board member weighing a founder’s rare urgency against the way he shuts down correction",
-            "stakes": "whether intensity gives the company speed while making judgment brittle",
-            "format": "dialogue",
-            "requiredBeat": "Rebecca praises the breakthrough and still insists the safety review stay independent"
-          },
           "scenario": "The room is split between seeing Rebecca's intensity as mission protection and as a growing coordination problem. safety memo now carries the founder-led medical startup tradeoff: whether intensity gives the company speed while making judgment brittle. Rebecca is about to decide at the founder-led medical startup table, with board agenda showing the cost: Rebecca praises the breakthrough and still insists the safety review stay independent.",
           "whatToDo": "Evaluate the founder's contribution and the founder's strain in the same discussion instead of picking one myth.",
           "whyItMatters": "This dialogue turns the paradox into a practical company question."
@@ -4255,13 +3522,6 @@
             "fashion",
             "founder-paradox"
           ],
-          "planSpec": {
-            "domain": "fashion marketplace turnaround",
-            "audience": "a COO managing a charismatic founder whose taste built the brand and now destabilizes operations",
-            "stakes": "whether creative force keeps creating or starts whipsawing the team",
-            "format": "postmortem",
-            "requiredBeat": "Vincent charts the week’s reversals next to the sales lift only the founder saw first"
-          },
           "scenario": "Vincent studies fabric swatches scattered across a finance printout in fashion marketplace turnaround. The team is deciding whether founder force needs more support and limits rather than more admiration or resentment. fabric swatches and the launch calendar expose the fashion marketplace swing between taste and chaos. Vincent has to choose from the finance printout before approving the next launch: Vincent charts the week’s reversals next to the sales lift only the founder saw first.",
           "whatToDo": "Design around the paradox instead of reacting with either founder worship or founder backlash.",
           "whyItMatters": "This decision point shows that the real question is organizational absorption, not founder mythmaking."
@@ -4274,13 +3534,6 @@
             "scientific",
             "founder-paradox"
           ],
-          "planSpec": {
-            "domain": "scientific instrument company",
-            "audience": "a lead engineer protecting the founder’s impossible standard without accepting midnight redesign chaos",
-            "stakes": "whether exacting vision becomes execution volatility",
-            "format": "scene",
-            "requiredBeat": "Hanna freezes the design change log until the founder chooses one nonnegotiable"
-          },
           "scenario": "Hanna studies a precision lens under a dust cover in scientific instrument company. He compares intensity that sharpens the work with intensity that begins to distort the team around it. The scientific instrument company setting is concrete: precision lens, change log, calibration bench are all in reach. Hanna must decide with precision lens in view: Hanna freezes the design change log until the founder chooses one nonnegotiable.",
           "whatToDo": "Separate productive founder force from the point where that force begins to corrode the organization.",
           "whyItMatters": "This contrast keeps the paradox concrete instead of abstract."
@@ -4293,13 +3546,6 @@
             "neighborhood",
             "founder-paradox"
           ],
-          "planSpec": {
-            "domain": "neighborhood grocery chain",
-            "audience": "a successor deciding how much founder instinct to preserve after a brilliant but volatile expansion",
-            "stakes": "whether inherited intensity becomes discipline or family myth",
-            "format": "reflection",
-            "requiredBeat": "Aman separates the founder’s true customer insight from the habits that exhausted every manager"
-          },
           "scenario": "Aman studies old store-opening photos in a metal archive box in neighborhood grocery chain. The venture is benefiting from founder urgency while also carrying more internal strain because of it. The role is successor deciding how much founder instinct to preserve after a brilliant but volatile expansion, and the scene turns on archive box. Aman is about to decide at the neighborhood grocery chain table, with store map showing the cost: Aman separates the founder’s true customer insight from the habits that exhausted every manager.",
           "whatToDo": "Judge the founder's impact through its total organizational effect, not through admiration alone.",
           "whyItMatters": "This vignette shows why paradox is more accurate than myth."
@@ -4312,13 +3558,6 @@
             "climate",
             "founder-paradox"
           ],
-          "planSpec": {
-            "domain": "climate analytics firm",
-            "audience": "an investor evaluating a founder who sees the market early but treats dissent as betrayal",
-            "stakes": "whether the same conviction that found the secret now blocks learning",
-            "format": "decision_point",
-            "requiredBeat": "Margaux asks for the dissent memo before approving the next funding tranche"
-          },
           "scenario": "Margaux studies a dissent memo folded under a term sheet in climate analytics firm. The dilemma is whether intense founder force should be embraced, constrained, or evaluated through a harder paradox standard. dissent memo now carries the climate analytics firm tradeoff: whether the same conviction that found the secret now blocks learning. Margaux faces the choice around dissent memo before climate analytics firm commits the budget: Margaux asks for the dissent memo before approving the next funding tranche. Before the board meeting starts, Margaux must decide whether the founder’s force needs a guardrail or another round of applause.",
           "whatToDo": "Refuse both worship and backlash, then ask what the company can actually absorb.",
           "whyItMatters": "This dilemma turns the paradox into an evaluation standard."
@@ -4331,13 +3570,6 @@
             "restaurant",
             "founder-paradox"
           ],
-          "planSpec": {
-            "domain": "restaurant technology company",
-            "audience": "a chief of staff creating operating guardrails around a founder’s brilliant product instincts",
-            "stakes": "whether sharp product taste can scale without burning the organization",
-            "format": "before_after",
-            "requiredBeat": "Pablo turns the founder’s late-night voice notes into a weekly decision forum with limits"
-          },
           "scenario": "Pablo studies voice-note transcripts taped beside a sprint board in restaurant technology company. She notices that intensity is powering her work and narrowing her judgment at the same time. voice-note transcripts sits next to decision log, so the restaurant technology company choice stays concrete. Pablo must decide with voice-note transcripts in view: Pablo turns the founder’s late-night voice notes into a weekly decision forum with limits.",
           "whatToDo": "Treat intensity as something to evaluate structurally instead of praising or fearing it in the abstract.",
           "whyItMatters": "This inner monologue brings the paradox close enough to feel before the conclusion widens the lens again."
@@ -4389,8 +3621,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The trait that built the company in year two is breaking it in year seven. Asking the founder to be less intense is asking her to be a different person. The trade is more structure around the intensity, not less intensity. A second-in-command who can say no, an operating cadence she does not override, a board that disagrees. These capture the upside while protecting the company from the downside.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4402,8 +3633,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The intensity does not change; the company does. Founders who lasted built decision structures, hired counterweights, and stopped requiring personal input on every important call. They did not become less intense. They got better at routing intensity through structures that could absorb it. Founders who could not make the routing transition mostly broke their companies in year five or six, when delegation was no longer optional.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deeper"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -4415,8 +3645,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The founder trained the team. The training worked. Now the wrong decisions compound because the only people who could have caught them have learned the cost of catching them. Replacing the team imports the same dynamic with new faces. The slowdown is the founder's own training surfacing as a structural drag. The paradox cannot be solved by hiring; it has to be acknowledged in the founder's own meetings.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deeper"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -4428,8 +3657,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The opposite of founder distortion is not founder balance. It is founder absence, and absence kills more companies than excess. A roadmap adjusted every quarter to incoming feedback never matures into a vision because no one in the room insists on holding direction past the first contradicting signal. Reasonable people running a startup look healthy on the outside and produce nothing memorable on the inside.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deeper"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -4441,8 +3669,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Founders who paid that cost are mostly the ones whose companies still exist. The trade is not less intensity; it is structure around the intensity that lets the same person keep showing up without breaking the company. Control in year two was load-bearing. Control in year seven is load-breaking. Giving up some control is the price of getting to keep being a founder past the year the paradox normally collects its bill.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -4454,8 +3681,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Founder force is real and dangerous in the same person at different stages. Replacing the founder removes the upside that built the prototype. Deferring removes the safety review the company needs. A committee with override authority captures both truths: it keeps the founder's intensity inside the company while creating a structure that absorbs the specific decision he can no longer make well alone.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deeper"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4516,19 +3742,13 @@
       },
       "memorableLines": [
         {
-          "text": "Rebecca looks at a prototype locked in a glass cabinet.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "Rebecca looks at a prototype locked in a glass cabinet."
         },
         {
-          "text": "The founder's urgency helped make it real.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "The founder's urgency helped make it real."
         },
         {
-          "text": "The same urgency now pushes safety review aside and makes dissent feel like betrayal.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear sentence to retrieve the chapter move."
+          "text": "The same urgency now pushes safety review aside and makes dissent feel like betrayal."
         }
       ]
     }

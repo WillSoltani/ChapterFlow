@@ -42,13 +42,6 @@
             "procurement",
             "comparison"
           ],
-          "planSpec": {
-            "domain": "municipal transit procurement comparing two bus operators across fifteen winter seasons",
-            "audience": "Clara, a city procurement analyst defending a renewal recommendation",
-            "stakes": "a ten-year contract could go to the familiar incumbent because everyone remembers one heroic storm response",
-            "format": "decision_point",
-            "requiredBeat": "Clara lays two maintenance logs beside the bid sheets and circles the years after each founding director left, forcing the committee to judge system survival over lore"
-          },
           "scenario": "Salt-streaked maintenance binders spread across the council table while the procurement chair retells the blizzard rescue from 2014. Clara has the renewal form open beside two bid sheets. She circles the winters after each founding director left, then must choose between letting the famous rescue decide the contract and making the committee read fifteen seasons of pullout records. A mechanic from the challenger has left a note about salt-corrosion checks, giving Clara one ordinary routine to set against the rescue story.",
           "whatToDo": "Put the two maintenance logs beside the bids and force the comparison across time. Circle the leadership changes so the room judges the system, not the story.",
           "whyItMatters": "A heroic storm response can be true and still be misleading. The winter logs show whether the operator built habits that survived ordinary pressure and director turnover."
@@ -61,13 +54,6 @@
             "vendor",
             "continuity"
           ],
-          "planSpec": {
-            "domain": "regional hospital selecting a sterile-processing vendor after a famous salesperson dazzles the executive team",
-            "audience": "James, the operations chief who has to slow the room down",
-            "stakes": "one missed sterilization cycle could shut down an operating list",
-            "format": "predict_reveal",
-            "requiredBeat": "James asks each vendor to show defect rates before and after manager changes, then lets the favored vendor fall behind on continuity"
-          },
           "scenario": "James waits until the hospital vendor demo ends. \"Show me the years after your plant manager left,\" he says. The executive team expects the polished presenter to win, but James adds a manager-change column to the defect-rate chart and has to choose the vendor that protects operating lists when the salesperson is gone. The sterile-processing nurse beside him has already postponed one case this month, which makes the continuity column feel like operating-room evidence.",
           "whatToDo": "Ask for defect rates before and after manager changes, then treat the continuity column as evidence. Do not let a dazzling presentation outrank clean cycles.",
           "whyItMatters": "Sterile processing fails in routines, not in sales meetings. The manager-change view shows whether quality belongs to the vendor system or to one impressive operator."
@@ -80,13 +66,6 @@
             "expansion",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "independent bookstore chain deciding whether a beloved flagship should define the whole company",
-            "audience": "Camille, a second-generation owner comparing three shops",
-            "stakes": "expansion money may be spent copying the prettiest store instead of the strongest operating pattern",
-            "format": "before_after",
-            "requiredBeat": "Camille compares staff-retention ledgers and customer returns from the plain branch against the beautiful flagship, then changes what the expansion plan copies"
-          },
           "scenario": "Cedar shelves and new paper make the flagship feel like the obvious model. Camille thought so too until the staff-retention ledger from the plain branch stayed green for four years and customer-return slips told the same story. By Friday, the expansion memo copies the plain branch desk routine, not the prettiest room. The plain branch manager has written the desk routine on a clipboard, so Camille can copy the operating habit without copying the room.",
           "whatToDo": "Compare the branches by retention and repeat customers before copying the visible style. Build the expansion around the pattern that keeps working.",
           "whyItMatters": "Atmosphere can hide weak machinery. The plain branch proves which routines travel, while the flagship only proves what people like to photograph."
@@ -99,13 +78,6 @@
             "postmortem",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "software security team evaluating two incident-response groups after both had one public save",
-            "audience": "Lukas, a director asked which team should become the template",
-            "stakes": "a future breach will test the repeatability of the process, not the memory of one engineer",
-            "format": "postmortem",
-            "requiredBeat": "Lukas removes the hero engineer from both timelines and checks which checklist still produced clean handoffs"
-          },
           "scenario": "What remains after the famous engineer is erased from the incident timeline? Lukas prints both breach postmortems, blacks out the hero names, and studies the handoff checklist. One group still has clean ownership at every hour. The other has three gaps covered only by the engineer everyone keeps praising. The blackout marks make the hero story less flattering and reveal which response group had a handoff that could survive the next outage.",
           "whatToDo": "Remove the hero from both timelines and compare the handoffs that remain. Choose the response pattern that still works when the famous responder is unavailable.",
           "whyItMatters": "A future breach will not wait for the same person. The blackout test shows which team built repeatable response and which one merely remembers a save."
@@ -118,13 +90,6 @@
             "grants",
             "matched"
           ],
-          "planSpec": {
-            "domain": "public library system choosing a literacy partner by matched neighborhood outcomes",
-            "audience": "Sofia, a grants officer under pressure to pick the recognizable nonprofit",
-            "stakes": "three low-income branches could lose a program that actually compounds over years",
-            "format": "vignette",
-            "requiredBeat": "It took Sofia two grant cycles to see that the lesser-known partner kept outcomes after its founder retired, while the famous one dropped when media attention moved on"
-          },
           "scenario": "Two grant folders with identical stickers sit on Sofia's desk after the second cycle closes. The famous nonprofit still has better photos. The lesser-known partner has steadier attendance at matched branches, including the year after its founder retired. Sofia marks the second-year line because the renewal panel is about to ask for a recommendation. The renewal panel has matching neighborhood data in front of it, which lets Sofia defend the less photogenic partner without sounding sentimental.",
           "whatToDo": "Use matched branches and second-year attendance as the test. Let founder retirement count as evidence for whether the program compounds without its public face.",
           "whyItMatters": "Recognition can buy a first look, but it cannot prove durability. The second-year line shows whether the literacy work survives after attention and founder energy move on."
@@ -137,13 +102,6 @@
             "supplier",
             "process"
           ],
-          "planSpec": {
-            "domain": "craft manufacturing cooperative comparing two tool suppliers after a production surge",
-            "audience": "Andrew, a cooperative board member choosing a supplier contract",
-            "stakes": "the cooperative could lock itself to a supplier whose quality depends on one veteran machinist",
-            "format": "reflection",
-            "requiredBeat": "You watch Andrew test whether the supplier can explain its tolerances without the veteran machinist in the room, then mark the weaker system despite the better sample part"
-          },
           "scenario": "Inside the supplier's toolroom at 2 p.m., Andrew stands beside a caliper, two sample parts, and one empty chair. The cleaner part came from the supplier whose veteran machinist is home sick. Nobody else can explain the tolerances without phoning him, so Andrew has to choose between the better sample and the supplier whose process the whole floor can describe. The cooperative has a production surge due in six weeks, so Andrew treats explainable tolerances as a capacity test, not a courtesy question.",
           "whatToDo": "Ask the floor to explain the tolerances without the veteran machinist. Favor the supplier whose ordinary process can reproduce quality after a production surge.",
           "whyItMatters": "A perfect sample can come from one pair of hands. The cooperative needs a supplier whose quality survives absence, scale, and pressure."
@@ -162,8 +120,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The right test starts with matched comparison over time. Founder habits and store design may matter later, but both can preserve admiration without proving durability.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -175,8 +132,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Records across ordinary pressure and leadership change test the system. A video or trust survey may deepen the old story without checking whether the pattern repeats.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -188,8 +144,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The blackout test checks whether response quality belongs to the institution. Training may help, and complaints may be useful, but neither separates system from hero.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -201,8 +156,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Founder retirement is a useful stress test. Recognition can help outreach, but steady outcomes after leadership change are stronger evidence of institutional strength.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -214,8 +168,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The stable vendor shows system continuity. The polished meeting is only surface evidence, and splitting the contract avoids the central comparison already visible in the data.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -227,8 +180,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The durable pattern is in the operating routine. Beauty may support the brand, but the evidence points to what keeps people and customers returning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -240,8 +192,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A strong rival and a post-CEO period test durability. Inspiration and strategy names may explain energy, but they do not prove the company built something that lasts.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -253,8 +204,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The buyer needs quality that survives absence and scale. A training guide may reduce risk, but the rival has already shown the stronger institutional pattern.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -266,8 +216,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Matched evidence keeps the manager from mistaking admiration for instruction. Employee preference and low cost can still copy surface traits with no proof they matter.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -324,24 +273,17 @@
           }
         ],
         "twentyFourHourChallenge": "Choose one organization you admire by tomorrow morning. Write its closest rival, a ten-year performance measure, one leadership-change moment, and the surface trait you will not copy yet.",
-        "weeklyPractice": "Each Friday, review one admired organization, vendor, or team. Add a comparison company and one continuity question. Keep only the lesson that survives both.",
-        "title": "Building comparisons before copying"
+        "weeklyPractice": "Each Friday, review one admired organization, vendor, or team. Add a comparison company and one continuity question. Keep only the lesson that survives both."
       },
       "memorableLines": [
         {
-          "text": "Fame is a weak filter for durable lessons.",
-          "location": "breakdown.fastRead",
-          "why": "The sentence compresses the warning against brand glow into one plain rule."
+          "text": "Fame is a weak filter for durable lessons."
         },
         {
-          "text": "A company earns attention only when it is set beside a rival and still looks unusual after decades.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a concrete standard for when admiration becomes evidence."
+          "text": "A company earns attention only when it is set beside a rival and still looks unusual after decades."
         },
         {
-          "text": "A durable lesson begins where the applause stops.",
-          "location": "breakdown.fullRead",
-          "why": "The line lands the contrast between public admiration and institutional evidence."
+          "text": "A durable lesson begins where the applause stops."
         }
       ]
     },
@@ -368,13 +310,6 @@
             "allergy",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "restaurant allergy station converting the head chef's memory into a shift-proof service system",
-            "audience": "Grace, a sous-chef taking over a busy Saturday service",
-            "stakes": "one nut allergy mistake could send a guest to hospital",
-            "format": "scene",
-            "requiredBeat": "Grace replaces the head chef's verbal reminders with colored ticket clips, a prep-bin layout, and a second-person handoff check that a new line cook can run without her"
-          },
           "scenario": "Almond flour dust is still on the stainless prep table when Grace lines up red allergy clips beside the ticket rail. The head chef can recite every hidden nut risk, but he is off tonight. Grace moves sauces into labeled bins and faces a choice: answer every call herself, or make the new line cook run the handoff check before the first table is fired. The expeditor has three allergy tickets clipped to her sleeve, so Grace can see whether the system works before the chef returns.",
           "whatToDo": "Build the allergy rail before service: colored clips, safer bin order, and a spoken handoff check the new cook must repeat back.",
           "whyItMatters": "Memory protects guests only while the expert is present. The rail and handoff move safety into the station, where the next cook can see and use it."
@@ -387,13 +322,6 @@
             "triage",
             "volunteers"
           ],
-          "planSpec": {
-            "domain": "community legal clinic turning one senior lawyer's intake instincts into a triage clock",
-            "audience": "Thomas, clinic director facing a Monday queue",
-            "stakes": "tenants could miss filing deadlines if only the senior lawyer can spot urgency",
-            "format": "decision_point",
-            "requiredBeat": "At 8:10 a.m., Thomas tests whether volunteers can route three sample files correctly using the new triage card before the senior lawyer arrives"
-          },
           "scenario": "At 8:10 a.m., Thomas clips three eviction notices to a blue triage card while the Monday queue gathers outside the clinic. The senior lawyer has not arrived. Two volunteers stand ready with clipboards. Thomas must choose between routing the files from memory and letting the card prove whether anyone else can spot the filing deadline in time. A tenant with a backpack is first in line outside, making the handoff test more than a training exercise.",
           "whatToDo": "Run the sample files through the triage card before the expert arrives. Fix the card where volunteers stall, then use it on the queue.",
           "whyItMatters": "A tenant cannot wait for one lawyer's instinct. The card turns urgency into visible criteria, so the clinic can act before the expert appears."
@@ -406,13 +334,6 @@
             "samples",
             "barcode"
           ],
-          "planSpec": {
-            "domain": "university lab replacing a star technician's freezer map with a barcoded sample system",
-            "audience": "Anke, a lab manager after a near-loss of samples",
-            "stakes": "five years of tissue samples can vanish if only one technician knows the freezer logic",
-            "format": "postmortem",
-            "requiredBeat": "Anke locks the freezer for one hour and asks two graduate students to retrieve blind samples from the barcode map, exposing what the old memory system hid"
-          },
           "scenario": "Frost fog rolls out of the minus-eighty freezer, then Anke shuts the door and tapes a one-hour lockout sign above the handle. The star technician is at a conference. Two graduate students use the new barcode map to pull blind samples, and the first failed search exposes how much of the old freezer order lived in one person's head. One sample belongs to a grant deadline, so Anke treats the failed search as a threat to the lab, not a student mistake.",
           "whatToDo": "Lock out the expert for a short test and make newer staff retrieve blind samples from the barcode map. Repair the map where the search fails.",
           "whyItMatters": "A freezer map that only one person understands is not a system. The blind pull shows whether five years of samples can be found by the lab, not by a legend."
@@ -425,13 +346,6 @@
             "auditions",
             "rubric"
           ],
-          "planSpec": {
-            "domain": "youth orchestra making auditions fair without the retiring conductor's ear",
-            "audience": "David, board chair handling succession",
-            "stakes": "families will lose trust if selection changes with the conductor",
-            "format": "predict_reveal",
-            "requiredBeat": "David predicts the retiring conductor's ranking, then watches a blind rubric produce nearly the same list without naming the students"
-          },
           "scenario": "Inside the rehearsal hall before Saturday auditions, David writes the retiring conductor's likely ranking on a folded sheet. He gives the panel numbered recordings and a blind rubric. When the lists nearly match, David must decide: keep the conductor's ear as private judgment or turn it into a scoring clock before auditions reopen. A parent observer waits near the back row, which reminds David that fairness has to be visible after the beloved conductor leaves.",
           "whatToDo": "Compare the conductor's predicted ranking with the blind rubric result. Keep the rubric where it reproduces judgment without naming students.",
           "whyItMatters": "Families trust a selection process they can understand. The blind rubric preserves the conductor's standard without making fairness depend on his private ear."
@@ -444,13 +358,6 @@
             "returns",
             "sorting"
           ],
-          "planSpec": {
-            "domain": "warehouse returns desk replacing one clerk's knack with a defect-category wall",
-            "audience": "Hanna, operations supervisor covering vacation week",
-            "stakes": "returns pile up and suppliers get wrong chargebacks when the expert clerk is out",
-            "format": "before_after",
-            "requiredBeat": "It took Hanna one vacation week to build a defect wall where any temp could sort returns into supplier action bins by visible cues"
-          },
           "scenario": "A rolling cart of torn packages sat under fluorescent lights on Monday, and by Wednesday Hanna knew the problem was not volume. The expert clerk was on vacation, so every temp guessed at supplier chargebacks. By Friday she had a defect wall with photos and action bins. The next temp sorted the cart without calling anyone. A temp worker is due at noon, so Hanna tests the photo bins before the returns cart doubles after lunch.",
           "whatToDo": "Turn the clerk's knack into a defect wall: visible categories, sample photos, and supplier action bins that a temp can use during vacation week.",
           "whyItMatters": "Returns need consistent sorting more than expert rescue. The wall lets ordinary staff make the same first cut before chargebacks go wrong."
@@ -463,13 +370,6 @@
             "donors",
             "renewal"
           ],
-          "planSpec": {
-            "domain": "museum membership desk converting a rainmaker's donor calls into a renewal cadence",
-            "audience": "Julien, development manager after the rainmaker announces retirement",
-            "stakes": "a donor base could collapse when relationships are only in one person's phone",
-            "format": "dialogue",
-            "requiredBeat": "\"Who calls them after the private tour?\" Julien asks, then builds a renewal calendar with triggers, scripts, and ownership that three coordinators can use"
-          },
           "scenario": "\"Who calls them after the private tour?\" Julien asks in the museum membership office, holding a donor phone list printed from one private contact file. \"Marianne usually remembers,\" a coordinator says. Julien points to the blank ownership column on the renewal calendar and has to choose praise for the rainmaker or shared ownership before the retirement lunch. The fall gala invitations are already printed, making the renewal owner column urgent before donor attention scatters.",
           "whatToDo": "Build the renewal calendar around triggers, scripts, and ownership. Give three coordinators named moments to call instead of inheriting a private phone list.",
           "whyItMatters": "Donor trust collapses when it lives only in one person's memory. A cadence lets relationships continue after the rainmaker leaves."
@@ -488,8 +388,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The test is whether judgment transfers. Warmth and volume may show effort, but they can leave the organization more dependent on the founder.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -501,8 +400,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The triage card captures the judgment and tests whether it travels. Extra hours postpone the weakness, and vague advice gives staff no working clock.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -514,8 +412,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Running past files through the rubric turns private judgment into a tested mechanism. Bonuses or cleaner notes still leave the decision centered on one person.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -527,8 +424,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A great program can still be time telling if the organization cannot repeat it. The issue is not program versus fundraising, but dependence versus capacity.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -540,8 +436,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The blind retrieval test is the proof. A signed manual may look orderly, but the lab remains dependent if staff cannot use it under real conditions.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -553,8 +448,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The clips, bins, and handoff place judgment into the work flow. Speeches and memory drills still make safety depend on recall under pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -566,8 +460,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cadence turns relationships into shared work. A tribute or replacement may help emotionally, but neither fixes the private-memory problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -579,8 +472,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A clock has to run without the builder touching it. Explanation can help, but only a silent handoff test shows whether the team can use the mechanism.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -592,8 +484,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The blind rubric converts judgment into a repeatable process. Parent feelings and successor choice may matter politically, but they do not build the selection clock.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -650,24 +541,17 @@
           }
         ],
         "twentyFourHourChallenge": "Tomorrow, pick one recurring decision people bring to you. Build a one-page handoff test and have someone else use it while you watch without correcting.",
-        "weeklyPractice": "Each week, choose one expert-dependent task. Convert one hidden distinction into a visible rule, run a handoff test, and revise the mechanism from the failure.",
-        "title": "Transferring judgment into systems"
+        "weeklyPractice": "Each week, choose one expert-dependent task. Convert one hidden distinction into a visible rule, run a handoff test, and revise the mechanism from the failure."
       },
       "memorableLines": [
         {
-          "text": "A brilliant answer can still deepen dependence.",
-          "location": "breakdown.fastRead",
-          "why": "It sharply names why expertise alone can make an institution weaker."
+          "text": "A brilliant answer can still deepen dependence."
         },
         {
-          "text": "That is not paperwork. It is transferred judgment.",
-          "location": "breakdown.deepRead",
-          "why": "The line reframes process as a carrier of skill rather than bureaucracy."
+          "text": "That is not paperwork. It is transferred judgment."
         },
         {
-          "text": "A clock is alive only while it keeps teaching time.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the chapter's mechanism a memorable test for whether it still works."
+          "text": "A clock is alive only while it keeps teaching time."
         }
       ]
     },
@@ -694,13 +578,6 @@
             "purpose",
             "safety"
           ],
-          "planSpec": {
-            "domain": "medical-device startup choosing whether to rush a profitable hospital pilot before usability fixes",
-            "audience": "Rachel, product lead facing a signed purchase order",
-            "stakes": "early revenue could arrive before nurses can safely operate the device at night",
-            "format": "decision_point",
-            "requiredBeat": "Rachel places the night-shift usability notes beside the purchase order and delays the pilot until the core promise of safe use is met"
-          },
           "scenario": "Rachel sets a signed hospital purchase order under sticky notes from night nurses on her desk. The pilot revenue would fund two hires, but the notes flag icons that vanish under dim lights. Rachel slides the usability fix list beside the signature page and must choose between booking the pilot now and delaying until safe bedside use is real. The night-shift charge nurse has circled the same icon twice, which makes the safety promise concrete enough to outrank the easy revenue date.",
           "whatToDo": "Delay only when the people who will absorb the risk cannot yet confirm safe use under real conditions. Name the pass test in advance: the night-shift users must complete the critical tasks without workarounds before revenue can move the date.",
           "whyItMatters": "Revenue that weakens the central promise teaches the company to sell around risk. The delay protects the institution's reason for being paid."
@@ -713,13 +590,6 @@
             "repair",
             "margin"
           ],
-          "planSpec": {
-            "domain": "outdoor gear retailer rejecting a high-margin private-label jacket after a repair test fails",
-            "audience": "Claire, merchandising director with quarterly pressure",
-            "stakes": "the jacket could lift margins while teaching customers the repair promise is fake",
-            "format": "predict_reveal",
-            "requiredBeat": "Claire asks the repair bench to patch the sample in front of the buying team, then cancels the order when the seam tears again"
-          },
           "scenario": "At 9:40 a.m. in the Portland flagship repair bay, wet nylon bunches under the needle while Claire's buying team waits beside a quarterly margin sheet. Everyone expects the private-label jacket to pass. The technician patches the sample, pulls once, and the seam opens again. Claire has to choose between the quarter's best margin and the repair promise printed on every receipt. The repair lead leaves the torn sample on the table during the whole meeting, so the margin sheet has to compete with evidence everyone can touch.",
           "whatToDo": "Run the repair test in front of the buying team and cancel the order when the sample fails. Let the repair promise outrank the margin sheet.",
           "whyItMatters": "A repairable-gear promise is only real when bad samples lose. Selling the jacket would turn the core value into packaging copy."
@@ -732,13 +602,6 @@
             "fees",
             "members"
           ],
-          "planSpec": {
-            "domain": "credit union deciding whether to add overdraft fees that competitors use heavily",
-            "audience": "Mathieu, finance chair balancing the budget",
-            "stakes": "a budget gap could be closed by charging the members the credit union was built to protect",
-            "format": "dialogue",
-            "requiredBeat": "\"Show me the members who would pay it,\" Mathieu says, then uses account data to reject revenue that violates the member-protection core"
-          },
           "scenario": "In the credit union boardroom, Mathieu taps the fee projection spreadsheet and says, \"Show me the members who would pay it.\" The budget gap is real. The anonymized accounts are real too: low balances, late paychecks, two missed rent notes. The room must choose between copying competitors' overdraft fees and protecting the members the credit union was created to serve. The branch manager has printed two account histories for the board packet, making the member-protection promise visible before anyone votes.",
           "whatToDo": "Place the fee projection beside the member sample. If the revenue comes from the people the institution exists to protect, reject it or redesign the budget.",
           "whyItMatters": "The issue is not whether fees are common. The issue is whether this fee makes the credit union profit by violating its own member-protection core."
@@ -751,13 +614,6 @@
             "sponsor",
             "skills"
           ],
-          "planSpec": {
-            "domain": "vocational school accepting a flashy sponsor whose equipment cannot be maintained by students",
-            "audience": "Michael, program dean writing the sponsorship memo",
-            "stakes": "the school could gain press while weakening its promise of practical skill",
-            "format": "postmortem",
-            "requiredBeat": "It took Michael one lab walk to see students watching a vendor technician touch equipment they were supposed to learn, so he rewrites the sponsor terms"
-          },
           "scenario": "It took Michael one lab walk to see the cost of the sponsor deal. Students stood behind a velvet rope while a vendor technician adjusted equipment they were supposed to learn. The press photos would look excellent. The sponsorship memo changed that afternoon: no student maintenance access, no deal. A student in safety goggles is waiting outside the lab, and Michael uses that waiting student as the test for whether the sponsor serves learning or publicity.",
           "whatToDo": "Rewrite the sponsor terms so students can maintain the equipment themselves. Accept the gift only if it serves the school's practical-skill promise.",
           "whyItMatters": "A shiny donation can weaken the institution if it turns learners into spectators. The core promise is skill, not press coverage."
@@ -770,13 +626,6 @@
             "trust",
             "sponsored"
           ],
-          "planSpec": {
-            "domain": "regional newspaper weighing sponsored content that looks like reporting",
-            "audience": "Manon, editor under subscription pressure",
-            "stakes": "a needed revenue line could make readers doubt the paper's civic role",
-            "format": "before_after",
-            "requiredBeat": "At 6:35 p.m., Manon marks the mock page with a red pencil until every paid item is unmistakably labeled or killed"
-          },
           "scenario": "At 6:35 p.m., Manon studies a mock front page glowing on a newsroom monitor while the subscription report sits open behind it. The sponsored content could fund two reporters. She takes a red pencil to every paid block until each one is unmistakably labeled, then kills the pieces that still look like reporting. The city desk has a school-board story ready for that same page, which makes the trust cost of the sponsored format impossible to hide.",
           "whatToDo": "Mark the mock page until readers can tell paid work from reporting at a glance. Keep only the revenue that does not blur the civic promise.",
           "whyItMatters": "Reader trust is the newspaper's working asset. Sponsored content that imitates reporting spends that asset to patch this quarter's budget."
@@ -789,13 +638,6 @@
             "ratio",
             "cooperative"
           ],
-          "planSpec": {
-            "domain": "childcare cooperative deciding whether to increase enrollment beyond the ratio families were promised",
-            "audience": "Nina, parent-board treasurer with a rent increase due",
-            "stakes": "extra tuition could pay rent while breaking the care standard that makes the cooperative worth joining",
-            "format": "reflection",
-            "requiredBeat": "You watch Nina count mats on the nap-room floor, then strike the enrollment increase and propose a dues vote instead"
-          },
           "scenario": "You watch Nina count small blue nap mats laid inches closer than usual on the cooperative's floor. The rent notice is in her tote, and the enrollment increase would cover it. Then she rereads the ratio promise families signed. Nina has to choose between easier tuition money and asking parents for a dues vote. A parent volunteer has already measured the nap-room aisle, and Nina writes that number beside the rent increase before opening the budget vote.",
           "whatToDo": "Count the mats against the ratio promise before counting the tuition. Strike the enrollment increase and bring the real rent problem to a dues vote.",
           "whyItMatters": "The cooperative exists because families trust the care standard. Solving rent by quietly weakening that standard spends the reason they joined."
@@ -814,8 +656,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The right question is whether revenue violates the promise. Cash and competitor behavior matter, but neither defines the organization's core.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -827,8 +668,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The decision has to name what the shorter visit bends. Copying others or asking for speed avoids the core question about patient safety.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -840,8 +680,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The repair promise is the constraint. A narrower warranty may be honest, but selling against the stated promise teaches customers not to trust it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -853,8 +692,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The issue is fit with purpose, not a blanket rule about food or profit. Profit can help the mission unless it contradicts the mission in practice.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -866,8 +704,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The member sample reveals the bend in the core. Competitor norms and clearer labels do not change who carries the cost.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -879,8 +716,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The school is not rejecting business as such. It is using practical skill as the constraint and inviting a version of the deal that serves it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -892,8 +728,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A purpose veto needs visible reasoning. Without the harmed party and bent promise, values can become a cover for taste or control.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -905,8 +740,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Clear labeling protects the trust that lets reporting work. Blanket rejection may be unnecessary, while unlabeled revenue spends the core asset.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -918,8 +752,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The dues vote keeps the core visible and deals honestly with rent. It does not remove tradeoffs or create a permanent rule against growth.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -976,24 +809,17 @@
           }
         ],
         "twentyFourHourChallenge": "Before tomorrow ends, pick one tempting yes. Write the revenue, speed, or attention it offers, then write the core promise it might bend and one redesign that would make it acceptable.",
-        "weeklyPractice": "Once a week, review one accepted and one rejected opportunity. Note whether each decision strengthened the core, bent it, or never touched it.",
-        "title": "Filtering revenue through purpose"
+        "weeklyPractice": "Once a week, review one accepted and one rejected opportunity. Note whether each decision strengthened the core, bent it, or never touched it."
       },
       "memorableLines": [
         {
-          "text": "A value becomes real when it blocks a tempting yes.",
-          "location": "breakdown.fastRead",
-          "why": "It makes purpose concrete by tying it to costly choice."
+          "text": "A value becomes real when it blocks a tempting yes."
         },
         {
-          "text": "Purpose is a constraint, not a mood.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence rejects sentimental purpose language and gives the reader an operating definition."
+          "text": "Purpose is a constraint, not a mood."
         },
         {
-          "text": "The core is the thing a profitable shortcut is not allowed to spend.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the chapter's economic tension in one memorable rule."
+          "text": "The core is the thing a profitable shortcut is not allowed to spend."
         }
       ]
     },
@@ -1020,13 +846,6 @@
             "software",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "emergency dispatch center replacing handwritten call cards while preserving caller-first judgment",
-            "audience": "Olivia, dispatch supervisor managing a system rollout",
-            "stakes": "a software rollout could speed calls while flattening the judgment that saves lives",
-            "format": "scene",
-            "requiredBeat": "Olivia labels the nonnegotiable caller-first questions before approving new screens, then removes old card rituals that no longer protect them"
-          },
           "scenario": "Olivia stands at 11:30 a.m. in the county 911 dispatch center, with laminated call cards stacked beside two glowing monitors. Olivia marks the caller-first questions that must survive: location, breathing, immediate danger. The vendor wants approval by noon. Olivia has to choose between defending every old card ritual and approving only screens that protect the judgment the cards once taught. The training officer is standing behind her with a headset in hand, ready to teach the next class from whatever screen Olivia approves.",
           "whatToDo": "Name the caller-first questions before approving the screen. Keep the prompts that protect judgment and remove card rituals that no longer serve them.",
           "whyItMatters": "The lifesaving core is not lamination or handwriting. It is the caller-first judgment, and the new tool has to carry that forward."
@@ -1039,13 +858,6 @@
             "sensor",
             "standard"
           ],
-          "planSpec": {
-            "domain": "heritage bakery moving overnight proofing data from memory to sensors without changing bread standards",
-            "audience": "Marco, production manager trusted by older bakers",
-            "stakes": "quality could drift if the team confuses hand feel with the core promise",
-            "format": "before_after",
-            "requiredBeat": "Marco has bakers press dough by hand, match that feel to humidity readings, and retire the notebook only after the standard becomes measurable"
-          },
           "scenario": "Marco checks the bakery proofing room at 3:15 a.m., where flour sticks to a humidity sensor clipped above the rack. Marco first had the older bakers press the dough by hand, then wrote the matching readings in the old notebook for three weeks. Only after the readings matched the hand feel did he retire the notebook and let the overnight crew use the sensor. One older baker keeps a palm print in flour beside the sensor reading, giving Marco a bridge between inherited craft and the new overnight process.",
           "whatToDo": "Translate the hand-feel standard into humidity readings before retiring the notebook. Let the old craft define what the new tool must preserve.",
           "whyItMatters": "The bakery's core is bread quality, not the notebook itself. Measurement protects the craft only when it is tied to the standard bakers already trust."
@@ -1058,13 +870,6 @@
             "chat",
             "presence"
           ],
-          "planSpec": {
-            "domain": "nonprofit crisis hotline adding text chat while preserving immediate human presence",
-            "audience": "Sophie, program director reviewing midnight transcripts",
-            "stakes": "young callers may never phone, but chat scripts can become cold triage",
-            "format": "decision_point",
-            "requiredBeat": "At 12:42 a.m., Sophie compares chat transcripts to the hotline's presence standard and rewrites escalation prompts without defending the phone as sacred"
-          },
           "scenario": "At 12:42 a.m., Sophie spreads chat transcripts across the table, time stamps dark in the margins. The phone line has history, but the youngest callers are typing. Sophie compares each response with the presence standard, then must choose between defending the phone as sacred and rewriting escalation prompts so text chat can carry the same human attention. The midnight supervisor has highlighted one exchange where a young caller kept typing after a pause, which tells Sophie the new channel can carry presence if the prompt is rewritten.",
           "whatToDo": "Use the presence standard to edit the chat prompts. Add text service where it carries human attention, and stop treating the phone itself as the core.",
           "whyItMatters": "Immediate presence can travel into a new channel if it is named clearly. Phone nostalgia would protect a method while losing the people it was meant to reach."
@@ -1077,13 +882,6 @@
             "online",
             "service"
           ],
-          "planSpec": {
-            "domain": "rural hardware store adding online inventory while preserving neighborly problem-solving",
-            "audience": "Ben, store owner whose father kept everything in his head",
-            "stakes": "online orders can grow revenue but turn staff into pickers instead of problem-solvers",
-            "format": "dialogue",
-            "requiredBeat": "\"What problem is the customer trying to solve?\" Ben adds that field to every online order before expanding curbside pickup"
-          },
           "scenario": "\"What problem is the customer trying to solve?\" Ben asks at the rural hardware pickup shelf, clipping a paper note beside three returned fittings. The new online inventory field is still blank. A clerk says customers already chose the parts. Ben has to choose between fast picking and preserving the store's problem-solving habit. A customer has returned twice for the same pipe repair, so Ben turns the blank field into a guardrail before pickup volume grows.",
           "whatToDo": "Add the problem-solving field to every online order before expanding pickup. Make staff check the job, not just the item number.",
           "whyItMatters": "The store's core is helping neighbors solve repairs. Online inventory can serve that core only if it keeps the question that made the counter useful."
@@ -1096,13 +894,6 @@
             "software",
             "critique"
           ],
-          "planSpec": {
-            "domain": "architecture firm moving from hand sketches to parametric software while preserving critique discipline",
-            "audience": "Kasia, studio principal training junior designers",
-            "stakes": "speed could replace the slow critique that catches bad buildings early",
-            "format": "postmortem",
-            "requiredBeat": "Kasia reviews a failed design sprint and reinstates red-pencil critique gates inside the new software workflow"
-          },
           "scenario": "What did the software speed past that the red pencil used to catch? Kasia reviews the failed design sprint with a parametric model on one screen and old critique notes on the table. The juniors moved faster, but nobody challenged the weak entrance sequence. She reinstates critique gates inside the new workflow. The client presentation is the next morning, and Kasia uses the failed entrance sequence to show why speed without critique only makes weak ideas travel faster.",
           "whatToDo": "Put red-pencil critique gates into the digital workflow. Keep the speed of the model, but force ideas through the same pressure that improved sketches.",
           "whyItMatters": "The pencil was only a tool. The core was disciplined critique, and progress fails when speed removes the pressure that made the work better."
@@ -1115,13 +906,6 @@
             "livestream",
             "participation"
           ],
-          "planSpec": {
-            "domain": "community choir livestreaming services while preserving congregational participation",
-            "audience": "Daniel, music director after attendance splits online and in-person",
-            "stakes": "production quality could turn a participatory choir into a passive broadcast",
-            "format": "reflection",
-            "requiredBeat": "You watch Daniel move the camera angle, lyric timing, and rehearsal plan so remote members sing rather than spectate"
-          },
           "scenario": "You watch Daniel stand under a small camera taped to the choir loft rail while remote members type that they feel like viewers. He shifts the angle toward the singers, changes lyric timing, and adds a Thursday remote rehearsal. Daniel has to choose between a cleaner broadcast and a messier setup that helps people sing. Two remote singers have emailed that they muted themselves last week, so Daniel treats the camera choice as a participation decision, not a production detail.",
           "whatToDo": "Move the camera, lyrics, and rehearsal plan toward participation. Let production quality serve the choir's core instead of replacing it.",
           "whyItMatters": "The choir's core is shared singing. A beautiful broadcast can betray that core if remote members become an audience instead of participants."
@@ -1140,8 +924,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The principle tells you what must survive. Age and origin may explain loyalty, but they do not separate core from practice.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1153,8 +936,7 @@
             ],
             "correctIndex": 1,
             "explanation": "This preserves the safety core while allowing progress. Keeping paper may protect a method, and switching first risks losing the hidden judgment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1166,8 +948,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hand-feel standard defines the core quality. Matching readings to it lets the method change without treating craft as obsolete.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1179,8 +960,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The identity question separates method from principle. Cost and user preference matter, but they do not reveal what must be preserved.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1192,8 +972,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The new field carries the old problem-solving habit into the new channel. Canceling may freeze a method, and speed does not fix wrong-fit orders.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1205,8 +984,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The critique discipline is the core. The tool can stay if it carries the pressure that once happened around sketches.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1218,8 +996,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The core-promise question exposes whether preservation is real. Adjustment time and naming may matter later, but they can hide comfort.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1231,8 +1008,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The change protects participation while keeping the new channel. Better production alone may deepen the passive broadcast problem.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1244,8 +1020,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The standard is the core, and the ritual is a method. The right move is to keep what protects the standard best now.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1302,24 +1077,17 @@
           }
         ],
         "twentyFourHourChallenge": "Pick one defended practice before tomorrow. Write the core it protects, one sign it no longer protects that core, and one experiment that could protect it better.",
-        "weeklyPractice": "Each week, choose one routine and run a core/practice review. Keep the principle in one column and possible new carriers in another.",
-        "title": "Separating principles from practices"
+        "weeklyPractice": "Each week, choose one routine and run a core/practice review. Keep the principle in one column and possible new carriers in another."
       },
       "memorableLines": [
         {
-          "text": "The old practice is only a container. What it once protected is the thing worth keeping.",
-          "location": "breakdown.fastRead",
-          "why": "It separates durable principle from inherited practice."
+          "text": "The old practice is only a container. What it once protected is the thing worth keeping."
         },
         {
-          "text": "You can only change cleanly after you name what must not change.",
-          "location": "breakdown.deepRead",
-          "why": "The line makes progress depend on clarity rather than novelty."
+          "text": "You can only change cleanly after you name what must not change."
         },
         {
-          "text": "Progress earns trust when people can see what it is preserving.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the emotional and operational requirement for legitimate change."
+          "text": "Progress earns trust when people can see what it is preserving."
         }
       ]
     },
@@ -1346,13 +1114,6 @@
             "logistics",
             "target"
           ],
-          "planSpec": {
-            "domain": "regional blood bank committing to same-day emergency supply across remote hospitals",
-            "audience": "Megan, logistics director facing scattered improvement projects",
-            "stakes": "trauma teams keep improvising because no single target forces the system to change",
-            "format": "decision_point",
-            "requiredBeat": "At 5:55 a.m., Megan writes the same-day target on the route board, then cancels three vanity projects that do not shorten emergency delivery"
-          },
           "scenario": "At 5:55 a.m., Megan writes same-day emergency supply across the route board, red magnets marking remote hospitals. Three improvement projects are already on the agenda, and none shortens delivery. She has to choose between preserving the comfortable list and canceling vanity work so the target can reorganize routes. The night dispatcher points to a helicopter-transfer delay from last week, and Megan moves that delay to the top of the redesign board instead of letting the old agenda survive under the new headline.",
           "whatToDo": "Write the same-day target on the route board and cut projects that do not shorten emergency delivery. Make every route decision answer the target.",
           "whyItMatters": "A big goal earns its size when it changes priorities. If the target does not cancel weaker work, it becomes decoration above the old agenda."
@@ -1365,13 +1126,6 @@
             "access",
             "budget"
           ],
-          "planSpec": {
-            "domain": "regional theatre pledging every youth ticket under ten dollars within three seasons",
-            "audience": "Etienne, executive director balancing access and solvency",
-            "stakes": "audience renewal will fail if access remains a donation slogan",
-            "format": "vignette",
-            "requiredBeat": "Etienne pins the ten-dollar target above the season budget and makes programming, fundraising, and seating decisions answer to it"
-          },
           "scenario": "On the regional theatre's budgeting table, colored seat maps spread below Etienne's handwritten ten-dollar note. The three-season horizon is circled twice. Fundraising, programming, and balcony pricing all carry new pencil marks. Etienne must decide whether the youth-access pledge becomes a donor phrase or the number every season decision must answer. The education director has three school matinees circled in blue, and the finance chair has one sponsor call boxed in red. Etienne makes both marks part of the same access system.",
           "whatToDo": "Pin the ten-dollar target above the budget and make each programming, seating, and fundraising choice show how it serves the access goal.",
           "whyItMatters": "Access becomes real only when it governs operating choices. The target turns a charitable sentiment into a three-season design problem."
@@ -1384,13 +1138,6 @@
             "quality",
             "linens"
           ],
-          "planSpec": {
-            "domain": "industrial laundry aiming for zero rewash loads for hospital linens in one year",
-            "audience": "Paula, quality supervisor whose team is tired of minor fixes",
-            "stakes": "rewash delays can leave wards short and hide infection-control risk",
-            "format": "predict_reveal",
-            "requiredBeat": "Paula asks which machines, shifts, and inspection steps would have to change if zero rewash were real, then turns answers into the year plan"
-          },
           "scenario": "Inside the hospital laundry plant, Paula stands beside damp linens and a one-year target taped to the washer panel. \"What would break first if the rewash cart had to stay empty?\" she asks. The team predicts the night shift will fail. The reveal is worse: inspection catches stains after packing. Paula must decide whether zero rewash is scolding or a system plan. A charge nurse has already called about a linen shortage, so the target moves from morale language to wards, carts, washer settings, and inspection timing.",
           "whatToDo": "Ask what must change for the rewash cart to stay empty, then turn machine settings, shift checks, and inspection timing into the year plan.",
           "whyItMatters": "Zero works only when it exposes the system. Used well, the target finds late defects before hospital wards pay for them."
@@ -1403,13 +1150,6 @@
             "clinics",
             "floods"
           ],
-          "planSpec": {
-            "domain": "open-source mapping nonprofit setting a goal to map every rural clinic in a province before flood season",
-            "audience": "Chris, volunteer coordinator with scattered contributors",
-            "stakes": "emergency crews may lack accurate clinic locations during floods",
-            "format": "scene",
-            "requiredBeat": "Chris draws the flood-season deadline across the map wall and assigns volunteers by unmapped clinic clusters, not by enthusiasm alone"
-          },
           "scenario": "Pushpins are missing from a damp paper map of river towns when Chris draws the flood-season deadline across the wall. Volunteers keep choosing familiar roads. Chris assigns the next week by unmapped clinic clusters instead, then has to choose between pleasing contributors and making the target direct the work. A county emergency planner has asked for the map before the first flood briefing, which turns the pushpins from volunteer preference into public safety evidence.",
           "whatToDo": "Mark the flood-season deadline and assign volunteers by missing clinic clusters. Let the target, not enthusiasm, decide the next mapping route.",
           "whyItMatters": "Emergency crews need complete maps, not volunteer preference. The audacious goal turns scattered goodwill into coverage before floods arrive."
@@ -1422,13 +1162,6 @@
             "service",
             "deadline"
           ],
-          "planSpec": {
-            "domain": "hotel group promising every room ready by 3 p.m. for a peak-season month",
-            "audience": "Isabel, housekeeping director confronting chronic late check-ins",
-            "stakes": "guest trust and staff morale collapse when the promise is always almost met",
-            "format": "before_after",
-            "requiredBeat": "It took Isabel three Saturdays to see that the 3 p.m. promise forced laundry timing, inspection routes, and front-desk holds into one system"
-          },
           "scenario": "Key cards lined in rows beside a 2:47 p.m. lobby clock looked harmless until the third Saturday. Isabel saw laundry timing, inspection routes, and front-desk holds all breaking the 3 p.m. promise in different ways. By Monday, the goal was no longer housekeeping hustle. It was one shared system. The front desk keeps apologizing to families with suitcases at 3:12 p.m., and Isabel traces those apologies back through carts, elevators, and room-inspection batches.",
           "whatToDo": "Trace every late room back through laundry, inspection, and front-desk holds. Use the 3 p.m. promise to redesign the whole handoff.",
           "whyItMatters": "A service goal works when it crosses department boundaries. Otherwise one team is blamed for a promise the system was never built to keep."
@@ -1441,13 +1174,6 @@
             "nursery",
             "capacity"
           ],
-          "planSpec": {
-            "domain": "urban tree nursery targeting enough native saplings for every heat-island block in five years",
-            "audience": "Aman, nursery planner coordinating city crews and schools",
-            "stakes": "a climate pledge stays symbolic unless the nursery capacity changes now",
-            "format": "reflection",
-            "requiredBeat": "You watch Aman count seed trays backward from the five-year block map, then reject a prettier campaign that would not grow enough roots"
-          },
           "scenario": "You watch Aman number seed trays against a wall map of red heat blocks. The five-year target says every block gets native saplings, but the prettier campaign would spend money on posters and school assemblies. Aman has to choose between visible enthusiasm and the nursery capacity that will actually grow enough roots. A nursery shelf labeled spring starts is already half empty, so Aman converts the map into tray counts, grafting dates, school workdays, and crew hours.",
           "whatToDo": "Count backward from the five-year block map to seed trays, crews, and nursery space. Reject campaigns that do not increase rooted capacity.",
           "whyItMatters": "A climate pledge becomes real through saplings that exist. The target forces capacity math that a prettier campaign can avoid."
@@ -1466,8 +1192,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A real audacious goal rearranges work. If nothing stops, starts, or changes ownership, the goal is not yet organizing progress.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1479,8 +1204,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Credibility appears when the target governs operations. Posters and praise can create attention without changing emergency delivery.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1492,8 +1216,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The target has to touch programming, seating, and fundraising. A name or event may support it, but neither proves access will change.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1505,8 +1228,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The goal should expose system changes. Public blame turns it into fear, while lowering it may avoid the learning pressure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1518,8 +1240,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The target should organize the work by missing coverage. Volunteer preference and easy roads may feel efficient while leaving emergency gaps.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1531,8 +1252,7 @@
             ],
             "correctIndex": 2,
             "explanation": "An audacious goal has failed if it rewards hiding the truth. The issue is not size alone, but whether the target serves the core honestly.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1544,8 +1264,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The goal exposes a cross-functional system. Blaming one team or moving the promise may skip the operational learning it creates.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1557,8 +1276,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The promise requires rooted capacity. Posters may help later, but they do not produce saplings or crews for the heat blocks.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1570,8 +1288,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Investor applause is not enough. A useful target connects to the core and forces concrete tradeoffs in capacity and priorities.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1628,24 +1345,17 @@
           }
         ],
         "twentyFourHourChallenge": "Draft one large target in the next day. Add three stopped projects, two capacity builds, and one core promise it serves. Delete it if those lines stay blank.",
-        "weeklyPractice": "Each week, review one goal on your board. Mark whether it has changed priorities, capacity, and ownership. If not, rewrite or remove it.",
-        "title": "Setting goals that focus work"
+        "weeklyPractice": "Each week, review one goal on your board. Mark whether it has changed priorities, capacity, and ownership. If not, rewrite or remove it."
       },
       "memorableLines": [
         {
-          "text": "Audacity has to rearrange the work.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a practical test for whether a big goal is real."
+          "text": "Audacity has to rearrange the work."
         },
         {
-          "text": "The goal becomes a sorting machine.",
-          "location": "breakdown.deepRead",
-          "why": "The line shows how a BHAG focuses decisions rather than merely raising energy."
+          "text": "The goal becomes a sorting machine."
         },
         {
-          "text": "The right big goal does not inflate ambition. It disciplines it.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter's distinction between spectacle and organized progress."
+          "text": "The right big goal does not inflate ambition. It disciplines it."
         }
       ]
     },
@@ -1672,13 +1382,6 @@
             "safety",
             "standards"
           ],
-          "planSpec": {
-            "domain": "aviation maintenance shop deciding whether to keep its fastest mechanic after skipped signoffs",
-            "audience": "Laura, maintenance chief protecting a safety culture",
-            "stakes": "one skipped signoff can ground aircraft or hide a defect",
-            "format": "decision_point",
-            "requiredBeat": "Laura places the mechanic's speed metrics beside unsigned inspection cards and removes him from lead rotation until the standard is lived"
-          },
           "scenario": "Unsigned inspection cards are clipped to a propeller cart while Laura reviews the mechanic's speed metrics. He cleared more work than anyone this month. Three cards still have blank signoff boxes. Laura must choose between rewarding the output and pulling him from lead rotation until the safety standard shows up on every card. The apprentice standing beside Laura can see both documents, which is why the consequence matters more than another safety reminder posted near the tool cage.",
           "whatToDo": "Treat speed and signoff quality as one paired score for lead roles. Restore the mechanic only after a supervisor observes a clean run of consecutive signed cards across routine and rushed jobs, so fast output cannot outrank the safety standard.",
           "whyItMatters": "A safety culture collapses when high performers get exceptions. The shop learns the real value from what Laura withholds, not from what the wall says."
@@ -1691,13 +1394,6 @@
             "hiring",
             "callbacks"
           ],
-          "planSpec": {
-            "domain": "software support team hiring a brilliant engineer who mocks customer callbacks",
-            "audience": "Jack, support director filling a painful vacancy",
-            "stakes": "one toxic expert could teach the team that customer patience is optional",
-            "format": "dialogue",
-            "requiredBeat": "\"I do not call users back,\" the candidate says, and Jack ends the interview despite the perfect technical score"
-          },
           "scenario": "Jack hears the candidate say, \"I do not call users back,\" while smiling at the technical scorecard. Jack has one line crossed out in black ink: callback norm. The role has been vacant for seven weeks. Jack has to choose between hiring the brilliant engineer and ending the interview before the team learns patience is optional. Two team leads are waiting outside the interview room with weekend escalations open, and Jack knows the first hire after a vacancy will reset what the callback rule means.",
           "whatToDo": "End the interview despite the score. Treat the callback norm as a membership standard, not a preference for later coaching.",
           "whyItMatters": "One expert can teach the team which values are negotiable. Refusing the hire protects the service promise before the violation becomes normal."
@@ -1710,13 +1406,6 @@
             "probation",
             "gear"
           ],
-          "planSpec": {
-            "domain": "fire station probation process testing whether recruits reset gear for the next crew",
-            "audience": "Lars, captain evaluating a high-performing recruit",
-            "stakes": "individual bravery means little if the next crew inherits missing gear",
-            "format": "vignette",
-            "requiredBeat": "Lars watches the recruit walk past an empty oxygen slot after a perfect drill and uses that visible miss as the membership test"
-          },
           "scenario": "Lars smells rubber masks drying beside an empty oxygen slot after the recruit's perfect drill. He writes the drill time in the probation log, then watches the recruit walk past the missing gear. The next crew will inherit the slot, so Lars must decide whether the miss is a cleanup note or the membership test. The stopwatch says promise; the empty bracket says culture.",
           "whatToDo": "Use the empty oxygen slot as the test. Praise the drill separately, then require reset behavior before the recruit earns full trust.",
           "whyItMatters": "Bravery is incomplete if it leaves danger for the next crew. The culture has to select for the unseen standard after performance."
@@ -1729,13 +1418,6 @@
             "recovery",
             "service"
           ],
-          "planSpec": {
-            "domain": "boutique hotel front desk enforcing guest-recovery rituals for senior hires",
-            "audience": "Juliette, general manager onboarding an industry veteran",
-            "stakes": "a veteran's polish can mask refusal to practice the hotel's recovery standard",
-            "format": "before_after",
-            "requiredBeat": "It took Juliette two complaint cards to see the veteran was charming guests but skipping the handwritten recovery note, so she makes the ritual nonnegotiable"
-          },
           "scenario": "Two complaint cards tucked under a brass desk bell changed Juliette's view of the senior hire. Guests praised his polish, then noted that no recovery note arrived after service failures. By the second card, Juliette saw charm masking a skipped standard. The handwritten note became nonnegotiable on the next shift. Juliette reads the cards during the night audit, when the lobby is quiet enough to separate guest praise from the missing recovery behavior.",
           "whatToDo": "Separate charm from recovery. Require the handwritten note after service failures, including from senior hires who already look polished.",
           "whyItMatters": "Guests experience culture through repeated recovery behavior. If polish excuses the ritual, the hotel teaches staff that standards are optional for veterans."
@@ -1748,13 +1430,6 @@
             "volunteer",
             "dignity"
           ],
-          "planSpec": {
-            "domain": "mutual-aid kitchen deciding whether a popular volunteer can ignore cleanup duty",
-            "audience": "Nora, shift lead with a line outside",
-            "stakes": "the kitchen's dignity standard frays if celebrity volunteers avoid ordinary work",
-            "format": "postmortem",
-            "requiredBeat": "Nora reviews the shift after the volunteer left greasy trays, then changes the roster so service and cleanup are paired for everyone"
-          },
           "scenario": "Nora reviews the mutual-aid kitchen shift after a popular volunteer serves two hundred meals and leaves greasy trays stacked beside the wash basin. The line outside loved him. The cleanup crew did not. Nora changes the roster so service and cleanup are paired for everyone. The next signup sheet makes applause and sink duty part of the same membership rule.",
           "whatToDo": "Pair public service with cleanup until every volunteer has completed both roles in the same shift cycle. Restore preferred serving slots only after the person finishes the unseen work without prompting, because belonging has to include the work no one applauds.",
           "whyItMatters": "A mutual-aid kitchen loses its standard when admired volunteers skip ordinary work. Pairing duties makes belonging visible after applause."
@@ -1767,13 +1442,6 @@
             "apprentice",
             "critique"
           ],
-          "planSpec": {
-            "domain": "design apprenticeship requiring critique participation before portfolio praise",
-            "audience": "Catarina, studio founder choosing the next apprentice cohort",
-            "stakes": "beautiful portfolios can hide people who cannot accept or give exacting critique",
-            "format": "reflection",
-            "requiredBeat": "You watch Catarina ignore the prettiest portfolio until the applicant marks up another student's draft with care and precision"
-          },
           "scenario": "You watch Catarina leave the prettiest portfolio board leaning against the wall while red critique stickers sit beside another student's draft. The applicant wants praise first. Catarina waits. His membership test is simple: mark the draft with care, or defend his own work before joining a studio built on exacting critique. The critique table is silent for thirty seconds, long enough for Catarina to see whether the applicant can serve another person's work before protecting his own reputation.",
           "whatToDo": "Make critique participation the gate before portfolio praise. Watch whether the applicant can give careful marks and receive them without posturing.",
           "whyItMatters": "Beautiful work does not prove membership in a critique culture. The studio needs people who can live the standard that makes the work improve."
@@ -1792,8 +1460,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Culture is taught by consequences for behavior. If skipped checks cost nothing for a star, the real rule is output first.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1805,8 +1472,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Hiring him would teach the team that the service norm is optional for talent. The standard has to select before the person enters.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1818,8 +1484,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The station's standard includes care for the next crew. Private reminders may hide the real test, and bravery alone is too narrow.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1831,8 +1496,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Values-based selection should target behavior tied to the core. Sameness of style or background is a misuse of culture language.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1844,8 +1508,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The standard has to apply to senior talent. Letting others compensate teaches that polish can outrank recovery.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1857,8 +1520,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The roster makes the standard visible. The issue is not popularity or task ranking, but whether admired people share ordinary obligations.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1870,8 +1532,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Critique behavior is the cultural standard. School filters and lower standards dodge the behavior that predicts membership.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1883,8 +1544,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Strong culture selects for lived values, not obedience to a leader's preferences. Silencing principled dissent is control.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1896,8 +1556,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Exceptions for stars rewrite the membership rule. The cultural damage comes from what everyone sees the institution tolerate.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1954,24 +1613,17 @@
           }
         ],
         "twentyFourHourChallenge": "Within the next day, pick one claimed value and write a three-line standard: proves it, violates it, consequence. Use a real behavior, not an adjective.",
-        "weeklyPractice": "Each week, review one decision involving a talented person. Check whether the consequence strengthened or weakened the core standard.",
-        "title": "Turning values into membership standards"
+        "weeklyPractice": "Each week, review one decision involving a talented person. Check whether the consequence strengthened or weakened the core standard."
       },
       "memorableLines": [
         {
-          "text": "Belonging is proven in behavior.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the membership test into a clear rule."
+          "text": "Belonging is proven in behavior."
         },
         {
-          "text": "The standard selects the culture before the culture selects people.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence makes culture active rather than decorative."
+          "text": "The standard selects the culture before the culture selects people."
         },
         {
-          "text": "A culture is only as serious as the behavior it refuses to overlook.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter's hard edge without turning it into conformity."
+          "text": "A culture is only as serious as the behavior it refuses to overlook."
         }
       ]
     },
@@ -1998,13 +1650,6 @@
             "testing",
             "vendors"
           ],
-          "planSpec": {
-            "domain": "urban farmers market testing stall layouts while preserving local-producer standards",
-            "audience": "Emily, market manager with declining Wednesday traffic",
-            "stakes": "vendors need footfall, but the market cannot become a flea market to chase crowds",
-            "format": "predict_reveal",
-            "requiredBeat": "Emily chalks three stall patterns over three Wednesdays, counts dwell time and vendor sales, then keeps the layout that helps local produce without adding reseller booths"
-          },
           "scenario": "Chalk arrows dry on wet pavement before vendors arrive for the first of three Wednesdays. Emily predicts the widest aisle will win. She counts dwell time and sales without adding reseller booths. By week three, the diagonal layout keeps shoppers near local produce longest, and Emily has to choose evidence over the layout she expected to love. A cheese vendor has marked slow sales on a receipt, so Emily treats the chalk arrows as a producer test, not a crowd-control exercise.",
           "whatToDo": "Test three stall patterns, count dwell time and vendor sales, and keep the layout that helps local producers without changing the market's standard.",
           "whyItMatters": "The market needs variation inside its identity. A crowd boost that weakens local-producer standards would be drift, not learning."
@@ -2017,13 +1662,6 @@
             "adherence",
             "patients"
           ],
-          "planSpec": {
-            "domain": "physical therapy clinic testing discharge instructions for knee patients",
-            "audience": "Nicolas, clinic owner frustrated by recurring setbacks",
-            "stakes": "patients keep returning with avoidable flare-ups after unclear home routines",
-            "format": "before_after",
-            "requiredBeat": "At 4:20 p.m., Nicolas compares three instruction formats by follow-up adherence, then keeps the photo card that patients actually use"
-          },
           "scenario": "At 4:20 p.m., Nicolas lines three discharge packets along a treatment table: dense notes, a checklist, and a photo card. He expected clinicians to prefer the detailed packet. Follow-up adherence says knee patients use the photo card. By the next staff meeting, the favorite packet is gone for routine cases. One patient has returned with swelling after losing the old packet, which makes the adherence result feel like care evidence.",
           "whatToDo": "Compare the three instruction formats by patient adherence, not clinician preference. Keep the photo card where it reduces avoidable flare-ups.",
           "whyItMatters": "Instructions work only when patients use them at home. Feedback from adherence beats the format that feels most complete in the clinic."
@@ -2036,13 +1674,6 @@
             "public-service",
             "pilots"
           ],
-          "planSpec": {
-            "domain": "public radio station experimenting with local news formats without abandoning public-service reporting",
-            "audience": "Anna, program director watching younger listeners leave",
-            "stakes": "chasing attention could dilute the station's civic role",
-            "format": "decision_point",
-            "requiredBeat": "\"Which pilot made people show up at the council meeting?\" Anna asks, then cancels the most popular segment because it did not serve the core"
-          },
           "scenario": "Anna points to the council agenda on the public radio conference table and asks which pilot actually moved listeners into the room. Three pilots ran all month. The funniest segment won downloads but produced no civic turnout. Anna must decide whether popularity wins or the quieter public-service format stays. A reporter has left a council agenda on the table, making Anna compare downloads with civic action before renewing any format.",
           "whatToDo": "Judge the pilots by the public-service test, not downloads alone. Cancel the popular segment if it does not move listeners toward civic action.",
           "whyItMatters": "Experimentation needs a core measure. Popularity can be useful, but it cannot define success for a station built around public service."
@@ -2055,13 +1686,6 @@
             "maintenance",
             "routing"
           ],
-          "planSpec": {
-            "domain": "bike-share maintenance crew testing repair-routing cards across neighborhoods",
-            "audience": "Diego, field operations lead with uneven bike availability",
-            "stakes": "commuters lose trust when docks are full of broken bikes in the same areas",
-            "format": "scene",
-            "requiredBeat": "Diego tapes different routing cards to mechanic vans for two weeks, then keeps the route that reduces repeat broken-bike pickups"
-          },
           "scenario": "Rainwater beads on a laminated van route card while Diego tapes the second version to a mechanic's dashboard. For two weeks, each neighborhood gets a different routing card. The crews prefer the shortest loop. Diego has to choose the route that reduces repeat broken-bike pickups, even though it feels less tidy. A commuter complaint from the same dock is taped near the van keys, so Diego follows repeat failure instead of route neatness.",
           "whatToDo": "Run the route cards for two weeks and keep the one that lowers repeat pickups at the same docks. Let commuter reliability decide.",
           "whyItMatters": "A neat route is not the core outcome. The useful test is whether riders stop finding the same broken bikes in the same places."
@@ -2074,13 +1698,6 @@
             "placement",
             "confidence"
           ],
-          "planSpec": {
-            "domain": "language school trying placement interviews, written tests, and trial classes for adult learners",
-            "audience": "Ingrid, academic coordinator defending student confidence",
-            "stakes": "wrong placement makes adults quit before learning begins",
-            "format": "postmortem",
-            "requiredBeat": "It took Ingrid one refund report to keep the trial class method and drop the faster written test for borderline students"
-          },
           "scenario": "Ingrid opens the language school refund report beside three placement rubrics in her office. Interviews, written exams, and trial classes all ran for the same intake month. The written test was fastest, but borderline adults placed by trial class quit less often, so Ingrid has to choose the slower method where confidence is most fragile. A refund email from a borderline student sits beside the rubrics, turning the slower trial class into confidence protection.",
           "whatToDo": "Use refund and placement data to split the methods. Keep trial classes for borderline students and drop the faster written test where it damages confidence.",
           "whyItMatters": "The school is testing for fit that adults can survive. Speed is useful only when it does not place learners into early failure."
@@ -2093,13 +1710,6 @@
             "refills",
             "adherence"
           ],
-          "planSpec": {
-            "domain": "specialty pharmacy testing refill reminders for transplant patients under strict adherence rules",
-            "audience": "Lin, pharmacist responsible for missed-dose risk",
-            "stakes": "missed immunosuppressant doses can threaten a transplant",
-            "format": "reflection",
-            "requiredBeat": "You watch Lin test phone, postcard, and app reminders on separate refill cohorts, then keep the low-tech call script because it reduces missed pickups"
-          },
           "scenario": "You watch Lin sort refill labels in the specialty pharmacy at 7:30 a.m., using three colored trays for transplant patients: phone, postcard, app. The missed pickup log sits beside the labels. Everyone expects the app to win, but Lin has to choose the low-tech call script after it reduces missed immunosuppressant pickups in the cohort that needed the most help. A transplant nurse has circled two missed pickups on the log, so Lin keeps the call script where risk is highest.",
           "whatToDo": "Test phone, postcard, and app reminders in separate cohorts, then keep the reminder that lowers missed pickups for transplant patients.",
           "whyItMatters": "The core outcome is adherence, not modernity. The method that protects transplant patients stays, even when it looks less impressive."
@@ -2118,8 +1728,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Variation needs a judge. Without a core measure, excitement or politics can decide what survives.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2131,8 +1740,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The test must preserve the local-producer core. Visitor count alone could reward drift away from the market's purpose.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2144,8 +1752,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The useful feedback is patient adherence at home. Completeness in the clinic matters less if patients do not use the packet.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2157,8 +1764,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The right measure depends on the purpose. If civic action is the core, raw downloads cannot be the sole test.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2170,8 +1776,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The core outcome is rider trust through reliable docks. Crew preference matters, but it does not outrank the measured pickup problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2183,8 +1788,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Experiments need gratitude and endings. Without a kill date, weak variations become permanent clutter.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2196,8 +1800,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Adherence is the core measure. The less modern method wins if it better protects transplant patients from missed doses.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2209,8 +1812,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A tactic can work on one number while harming the purpose. The core measure has to veto that false success.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2222,8 +1824,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Bounded variation with a core measure lets methods change while identity holds. Avoiding experiments or scattering them both miss that discipline.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2280,24 +1881,17 @@
           }
         ],
         "twentyFourHourChallenge": "Before tomorrow, choose one method and draft three bounded variations. Add one core measure and the date when two variations will be retired.",
-        "weeklyPractice": "Each week, review one active experiment. Decide what evidence would make you keep it, change it, or kill it, then record the decision.",
-        "title": "Testing experiments with retention rules"
+        "weeklyPractice": "Each week, review one active experiment. Decide what evidence would make you keep it, change it, or kill it, then record the decision."
       },
       "memorableLines": [
         {
-          "text": "Variation needs a judge before novelty becomes drift.",
-          "location": "breakdown.fastRead",
-          "why": "It captures why experimentation needs a core measure."
+          "text": "Variation needs a judge before novelty becomes drift."
         },
         {
-          "text": "Keep what works means define works first.",
-          "location": "breakdown.deepRead",
-          "why": "The line turns the chapter title into an operational rule."
+          "text": "Keep what works means define works first."
         },
         {
-          "text": "Learning organizations are not lucky because they guess better.",
-          "location": "breakdown.fullRead",
-          "why": "It reframes experimentation as disciplined retention instead of prediction."
+          "text": "Learning organizations are not lucky because they guess better."
         }
       ]
     },
@@ -2324,13 +1918,6 @@
             "succession",
             "clinics"
           ],
-          "planSpec": {
-            "domain": "regional dialysis network preparing clinic managers before a retirement wave",
-            "audience": "Ryan, operations director with six senior nurses nearing retirement",
-            "stakes": "patients need consistent care standards across clinics after experienced managers leave",
-            "format": "before_after",
-            "requiredBeat": "Ryan maps which charge nurses have run budget, staffing, and values-pressure drills, then starts rotations before the retirements become emergencies"
-          },
           "scenario": "Six retirement dates marked on a clinic coverage map made Ryan stop treating succession as a future problem. He listed which charge nurses had run a budget drill, a staffing call, and a values-pressure decision. By Friday, rotations had started. Seniority no longer counted as readiness by itself. The medical director has written patient-continuity risk beside two names, so Ryan turns the map into assignments rather than a retirement forecast.",
           "whatToDo": "Map the missing experiences for each charge nurse and start rotations before retirement creates emergencies. Test budget, staffing, and values pressure.",
           "whyItMatters": "Patients need continuity after experienced managers leave. A pipeline protects care only when future leaders practice the pressures they will inherit."
@@ -2343,13 +1930,6 @@
             "depot",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "family-owned logistics firm choosing a depot manager after an outside candidate impresses investors",
-            "audience": "Pavel, COO balancing investor pressure and route knowledge",
-            "stakes": "a depot can hit metrics while destroying the dispatch trust that keeps drivers honest",
-            "format": "decision_point",
-            "requiredBeat": "\"Who has handled a storm closure at 3 a.m.?\" Pavel asks, then evaluates internal candidates on tested judgment rather than tenure alone"
-          },
           "scenario": "\"Who has handled a storm closure at three in the morning?\" Pavel asks, with route maps and closure logs on the depot table. Investors prefer the outside candidate. Two internal candidates have tenure. Pavel must choose whether to follow the clean pitch or test every candidate against dispatch judgment under weather pressure. A driver supervisor has left a snow-route voicemail on speaker, making the storm question feel less like an interview trick and more like tomorrow morning's work.",
           "whatToDo": "Evaluate candidates by storm-closure judgment, route trust, and pressure history. Do not let investor polish or tenure substitute for tested authority.",
           "whyItMatters": "A depot manager carries more than metrics. Drivers need someone whose judgment has already protected trust when routes and weather break."
@@ -2362,13 +1942,6 @@
             "chairs",
             "parents"
           ],
-          "planSpec": {
-            "domain": "independent school building department chairs through observed parent-conference practice",
-            "audience": "Margaux, head of school after two failed external hires",
-            "stakes": "academic standards and parent trust suffer when chairs learn the culture after appointment",
-            "format": "scene",
-            "requiredBeat": "Margaux watches teacher candidates handle a simulated angry parent conference before naming a chair, making cultural judgment visible"
-          },
           "scenario": "Empty parent chairs sit under student art while Margaux watches three department-chair candidates handle a simulated angry conference. The most popular teacher softens the grading standard too quickly. Another stays cold. Margaux has to choose the candidate who can hold parent trust and academic rigor in the same room. The assistant head has the chair contract ready in a folder, but Margaux waits until the simulation shows who can protect standards under heat.",
           "whatToDo": "Observe candidates in the parent-conference simulation before naming a chair. Promote the one who can carry standards and trust under pressure.",
           "whyItMatters": "A chair learns too late if culture is tested only after appointment. Simulated pressure makes judgment visible before authority is granted."
@@ -2381,13 +1954,6 @@
             "incident",
             "command"
           ],
-          "planSpec": {
-            "domain": "cybersecurity firm creating incident commanders from inside rotating response cells",
-            "audience": "Akira, practice lead whose founder still gets every crisis call",
-            "stakes": "clients wait during incidents because command authority has not been grown",
-            "format": "predict_reveal",
-            "requiredBeat": "Akira predicts who can command without the founder, then runs a live-fire drill that gives authority to the internal cell lead"
-          },
           "scenario": "Who gives the order when the founder's phone is off? Akira writes his prediction before the live-fire drill, then gives command to the internal response-cell lead. The best technician hesitates. The quieter cell lead assigns client updates, containment, and logs in six minutes. Akira has to choose command readiness over technical fame. The founder watches from another room with his phone off, which lets Akira see whether authority has actually moved into the response cell.",
           "whatToDo": "Run the live-fire drill with the founder unavailable and give real authority to the cell lead. Promote command behavior, not just technical brilliance.",
           "whyItMatters": "Clients cannot wait for a founder in every crisis. The drill shows whether authority has been grown inside the response system."
@@ -2400,13 +1966,6 @@
             "warehouse",
             "rotation"
           ],
-          "planSpec": {
-            "domain": "regional food bank developing warehouse leads through donor, safety, and volunteer rotations",
-            "audience": "Marit, executive director facing growth in demand",
-            "stakes": "a new warehouse head must protect dignity with donors, volunteers, and clients at once",
-            "format": "postmortem",
-            "requiredBeat": "It took Marit one chaotic distribution day to see that the best forklift operator had never been tested with donor pressure, so she builds rotations before promotion"
-          },
           "scenario": "Pallet tags curled on the warehouse door after a long distribution shift, and Marit finally saw the gap. The best forklift operator had kept lanes moving, then froze when a donor demanded photos near the client line. It took that day to add donor, safety, and volunteer rotations before any warehouse lead promotion. The donor had asked for a staged photo beside the client line, and Marit uses that pressure to test whether operational skill carries dignity too.",
           "whatToDo": "Sequence the rotation from donor pressure to safety judgment to volunteer conflict, then review one dignity breach from each stage. Promote only when the candidate can say what they protected, who was at risk, and what tradeoff they refused.",
           "whyItMatters": "The next warehouse head inherits the whole promise, not one task. Rotations reveal whether operational skill carries values under pressure."
@@ -2419,13 +1978,6 @@
             "supervisors",
             "range"
           ],
-          "planSpec": {
-            "domain": "city parks department grooming district supervisors through winter, festival, and budget assignments",
-            "audience": "Olivier, deputy commissioner replacing three retiring supervisors",
-            "stakes": "parks can look fine in summer while leadership gaps appear in storms and budget cuts",
-            "format": "reflection",
-            "requiredBeat": "You watch Olivier move promising crew leads through winter storm duty and festival cleanup before promotion, so continuity includes tested range"
-          },
           "scenario": "You watch Olivier place snowplow keys, festival permits, and a budget binder on one desk. Three supervisors retire soon. The strongest crew lead shines in July mowing season, but has never handled winter storm duty or festival cleanup. Olivier's decision is promotion on summer comfort or a full-range test first. The budget binder includes a storm-overtime page from last winter, so Olivier treats seasonal range as evidence rather than a nice extra.",
           "whatToDo": "Move promising crew leads through winter, festival, and budget assignments before promotion. Make continuity include tested range, not seasonal familiarity.",
           "whyItMatters": "Parks leadership fails in storms and constraints, not only in summer routine. Range tests whether memory and judgment can travel across the year."
@@ -2444,8 +1996,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Home-grown leadership requires formed judgment, not tenure alone. Loyalty may matter, but it cannot prove readiness.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2457,8 +2008,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The rotations grow and test internal capacity before the vacancy. Waiting or importing under pressure leaves continuity to luck.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2470,8 +2020,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The depot needs judgment that preserves dispatch trust. Tenure and polish are weaker than a real storm-closure record.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2483,8 +2032,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The simulation reveals the needed judgment. Popularity and tenure may hide weakness under the exact pressure chairs face.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2496,8 +2044,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Command has to be practiced with real authority. Technical tests and praise for the founder do not prove the system can lead without him.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2509,8 +2056,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The warehouse head inherits values across groups. Rotations test whether operational skill carries the full promise.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2522,8 +2068,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Outside talent is not the enemy. Dependence on rescue is the problem, especially when the organization cannot name its own pipeline gaps.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2535,8 +2080,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Summer performance is too narrow. The role needs judgment across storms, public events, and constraints.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2548,8 +2092,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pipeline requires time. Once the vacancy opens, it is often too late to grow the missing judgment inside.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2606,24 +2149,17 @@
           }
         ],
         "twentyFourHourChallenge": "Within twenty-four hours, choose one vulnerable role and write the three experiences a future holder must complete before promotion.",
-        "weeklyPractice": "Each week, move one promising person through a small pressure assignment and record what judgment it did or did not reveal.",
-        "title": "Growing authority before vacancies"
+        "weeklyPractice": "Each week, move one promising person through a small pressure assignment and record what judgment it did or did not reveal."
       },
       "memorableLines": [
         {
-          "text": "Continuity needs rehearsal before the title is open.",
-          "location": "breakdown.fastRead",
-          "why": "It makes succession active and practical."
+          "text": "Continuity needs rehearsal before the title is open."
         },
         {
-          "text": "A pipeline is a promise made early.",
-          "location": "breakdown.deepRead",
-          "why": "The line captures why leadership development must precede vacancies."
+          "text": "A pipeline is a promise made early."
         },
         {
-          "text": "Grow people before you need them, then test them before you trust them.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the chapter's whole discipline in one directive."
+          "text": "Grow people before you need them, then test them before you trust them."
         }
       ]
     },
@@ -2650,13 +2186,6 @@
             "couriers",
             "quality"
           ],
-          "planSpec": {
-            "domain": "blood-test courier network catching small temperature deviations before samples fail",
-            "audience": "Marta, quality lead reviewing route coolers",
-            "stakes": "slight warming can ruin tests while every courier claims the route is basically fine",
-            "format": "scene",
-            "requiredBeat": "Marta places the temperature strips from three almost-fine routes on the dispatch board and changes cooler loading before a failure appears"
-          },
           "scenario": "Marta pins pale blue temperature strips beside a cooler latch at 6:15 a.m. in the courier depot, marking three almost-fine routes on the board. No sample has failed. Every courier says the route held well enough. Marta has to choose between waiting for a ruined test and changing cooler loading while the evidence is still quiet. The strips make the promise visible before the lab calls in anger.",
           "whatToDo": "Place the temperature strips on the dispatch board and change cooler loading before failures appear. Treat the drift as process evidence, not blame.",
           "whyItMatters": "Samples fail after small warming becomes normal. Catching the drift early protects patients without turning one route into a personal trial."
@@ -2669,13 +2198,6 @@
             "facts",
             "checklist"
           ],
-          "planSpec": {
-            "domain": "local newspaper copy desk catching headline corrections that readers never complain about",
-            "audience": "Matthew, managing editor after a clean-looking week",
-            "stakes": "small corrections can teach the newsroom to accept fuzziness in public facts",
-            "format": "postmortem",
-            "requiredBeat": "Matthew stacks silent corrections by type, then makes the desk fix the upstream checklist instead of celebrating no complaints"
-          },
           "scenario": "Matthew finds a neat pile of correction slips under the newsroom clock after a week with no reader complaints. Matthew sorts them by type and finds the same headline-number weakness three times. The clean-looking week could pass as success. He changes the upstream checklist before the desk learns to accept fuzzy public facts. He puts the slips next to tomorrow's page budget, so the fix becomes a desk habit instead of a scolding note after publication.",
           "whatToDo": "Sort silent corrections by type and fix the upstream checklist. Do not let the absence of reader complaints count as proof of standard.",
           "whyItMatters": "Readers should not have to catch drift for the newsroom. Silent corrections reveal where the fact system is already weakening."
@@ -2688,13 +2210,6 @@
             "packaging",
             "trust"
           ],
-          "planSpec": {
-            "domain": "craft brewery refusing small packaging scuffs before distributors normalize them",
-            "audience": "Giulia, packaging manager under a holiday shipment deadline",
-            "stakes": "brand trust erodes when small scuffs become the accepted look",
-            "format": "decision_point",
-            "requiredBeat": "At 11:18 p.m., Giulia stops the labeler for a three-millimeter drift and logs the fix as standard protection, not personal fussiness"
-          },
           "scenario": "Giulia stops at the brewery packaging line at 11:18 p.m. when a label edge sits three millimeters low under inspection light and the holiday shipment waits. The cases would probably pass. The drift would probably repeat. Giulia must decide whether to stop the labeler before small scuffs become the accepted look. The distributor deadline stays on the wall, but so does the brand standard.",
           "whatToDo": "Stop the labeler, log the three-millimeter drift, and fix it as standard protection. Keep the deadline from quietly moving the customer's expectation.",
           "whyItMatters": "Packaging trust erodes through tolerated details. Naming the drift protects the brand promise without turning the moment into personal fussiness."
@@ -2707,13 +2222,6 @@
             "access",
             "standard"
           ],
-          "planSpec": {
-            "domain": "municipal snow-removal team reviewing blocks that were technically cleared but unsafe for wheelchairs",
-            "audience": "Devon, accessibility coordinator after a mild storm",
-            "stakes": "residents can be trapped by snow lips everyone calls acceptable",
-            "format": "before_after",
-            "requiredBeat": "What counts as cleared if a wheelchair cannot cross? Devon uses curb photos to update the route signoff standard"
-          },
           "scenario": "Devon spreads curb-cut photos across the route desk and asks what cleared means when a wheelchair still cannot cross. Snow ridges cast thin shadows in every frame. The blocks were technically marked done after the mild storm. By afternoon, the signoff standard changes: cleared now includes wheelchair access at the curb. A resident advisory email sits beside the photos, and Devon uses it to make the route crew define cleared from the curb, not from the truck window.",
           "whatToDo": "Use curb photos to update route signoff. Make wheelchair crossing part of the cleared standard, not an optional follow-up.",
           "whyItMatters": "A route can be technically cleared and still fail residents. The standard has to match the public promise of access."
@@ -2726,13 +2234,6 @@
             "trust",
             "procurement"
           ],
-          "planSpec": {
-            "domain": "meal-kit company tracking recipe substitutions that technically work but weaken trust",
-            "audience": "Chloe, culinary operations lead reading customer notes",
-            "stakes": "small swaps can make the promise of reliable cooking feel arbitrary",
-            "format": "predict_reveal",
-            "requiredBeat": "\"Would you cook from us again after the third substitution?\" Chloe asks, then changes procurement triggers before churn shows up"
-          },
           "scenario": "Chloe circles three recipe cards in the meal-kit test kitchen and asks whether customers would cook from the service again after the third substitution. The replacements technically work. Customer notes sound tired, not angry. Chloe has to choose between waiting for churn and changing procurement triggers while trust is only beginning to fray. A procurement assistant has logged each swap as harmless, but Chloe reads the notes as a pattern of customers losing faith before they cancel.",
           "whatToDo": "Track substitution patterns and change procurement triggers before churn appears. Treat repeated workable swaps as trust drift, not harmless flexibility.",
           "whyItMatters": "Reliable cooking is the promise. Customers can tolerate one swap, but repeated surprises teach them that the kit is arbitrary."
@@ -2745,13 +2246,6 @@
             "cleaning",
             "audit"
           ],
-          "planSpec": {
-            "domain": "airport cleaning contractor refusing invisible restroom drift during overnight audits",
-            "audience": "Henrik, contract manager whose metrics all show green",
-            "stakes": "a contract can be lost when passengers sense decline before metrics catch it",
-            "format": "reflection",
-            "requiredBeat": "You watch Henrik run a white-glove audit under stall hinges and change supervisor walks even though the dashboard is green"
-          },
           "scenario": "You watch Henrik hold a white cotton glove under fluorescent restroom light in the airport's overnight audit. The fingertip is gray from a stall hinge. The dashboard is green and complaints are flat, so Henrik has to choose between trusting the metric and changing supervisor walks before travelers sense decline. He photographs the glove beside the green report, then adds hinge checks to the next supervisor walk instead of waiting for passenger complaints.",
           "whatToDo": "Use the white-glove audit to revise supervisor walks, even with a green dashboard. Check the places passengers sense before metrics catch up.",
           "whyItMatters": "A contract can decay before complaints arrive. The gray glove shows drift in the cared-for promise that the dashboard misses."
@@ -2770,8 +2264,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The point is to catch drift early. Blame and confidence do not show whether the work is moving away from the promise.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2783,8 +2276,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The strips make drift visible early. Waiting risks patients, and punishment can make people hide weak evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2796,8 +2288,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The repeated silent correction is system evidence. A checklist fix is stronger than celebration or vague caution.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2809,8 +2300,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The standard is tied to the promise, not the manager's taste. Lack of notice is exactly how drift becomes normal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2822,8 +2312,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The public promise is access. Photos make the gap visible before complaints become the only feedback.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2835,8 +2324,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pressure tied to ego makes truth dangerous. The best standards make small misses easier to surface and fix.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2848,8 +2336,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Repeated workable swaps can still erode reliability. Tracking patterns catches trust drift before cancellations show it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2861,8 +2348,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The glove reveals drift the dashboard misses. Changing walks protects the promise before complaints become the measure.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2874,8 +2360,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A stable visible standard separates excellence from mood. Moving definitions create anxiety instead of improvement.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2932,24 +2417,17 @@
           }
         ],
         "twentyFourHourChallenge": "Within one day, find one basically fine area. Write the standard, the smallest unacceptable drift, and the next check that will make the drift visible.",
-        "weeklyPractice": "Each week, review one quiet miss before it becomes a failure. Record the system adjustment and whether the standard got clearer.",
-        "title": "Catching drift while small"
+        "weeklyPractice": "Each week, review one quiet miss before it becomes a failure. Record the system adjustment and whether the standard got clearer."
       },
       "memorableLines": [
         {
-          "text": "Drift should be caught while it is still quiet.",
-          "location": "breakdown.fastRead",
-          "why": "It turns anti-complacency into an early-warning rule."
+          "text": "Drift should be caught while it is still quiet."
         },
         {
-          "text": "The work gets corrected before the identity gets threatened.",
-          "location": "breakdown.deepRead",
-          "why": "It separates useful standards from shame-based pressure."
+          "text": "The work gets corrected before the identity gets threatened."
         },
         {
-          "text": "The institution weakens when fine becomes a hiding place.",
-          "location": "breakdown.fullRead",
-          "why": "The line makes tolerated adequacy feel concrete and risky."
+          "text": "The institution weakens when fine becomes a hiding place."
         }
       ]
     },
@@ -2976,13 +2454,6 @@
             "architecture",
             "founder"
           ],
-          "planSpec": {
-            "domain": "regional home-care agency turning scattered quality fixes into a durable operating architecture",
-            "audience": "Aanya, founder preparing for her first non-founder director",
-            "stakes": "vulnerable clients could receive uneven care once the founder stops personally checking everything",
-            "format": "decision_point",
-            "requiredBeat": "Aanya sorts every initiative into core promise, progress target, culture standard, experiment, leadership owner, or drift check, then kills the rest"
-          },
           "scenario": "Color-coded care-visit cards cover Aanya's conference table before the first non-founder director arrives. Each card is a fix someone likes. She sorts them into core promise, progress target, culture standard, experiment, leadership owner, or drift check. Aanya must decide whether each leftover proves its place or dies. The incoming director has asked for a first-month dashboard, so Aanya turns the piles into decisions that can outlive her personal checking.",
           "whatToDo": "Sort every initiative into the six architecture piles and cut the rest. Make the agency inheritable before the founder stops checking everything.",
           "whyItMatters": "Clients need a system, not the founder's private attention. The six piles turn scattered fixes into machinery another director can run."
@@ -2995,13 +2466,6 @@
             "expansion",
             "core"
           ],
-          "planSpec": {
-            "domain": "specialty manufacturing firm preparing a second plant without cloning the founder's habits",
-            "audience": "Peter, plant president before signing the lease",
-            "stakes": "a second plant could copy rituals while missing the architecture that made quality travel",
-            "format": "before_after",
-            "requiredBeat": "It took Peter one failed pilot cell to map which practices preserved the core and which only copied the old building's habits"
-          },
           "scenario": "A lease packet sat beside a failed pilot-cell inspection sheet when Peter stopped celebrating expansion. The second plant had copied morning rituals and missed the quality architecture. It took the failed cell to build a practice map: which habits preserved the core, which only copied the old building. The new site supervisor has a hiring list ready, and Peter uses the map to decide which training routines belong in the second plant.",
           "whatToDo": "Map practices by the core they preserve before signing the lease. Let only transferable quality mechanisms travel to the second plant.",
           "whyItMatters": "Expansion can clone habits while losing the system. The practice map separates architecture from nostalgia before scale multiplies the mistake."
@@ -3014,13 +2478,6 @@
             "governance",
             "systems"
           ],
-          "planSpec": {
-            "domain": "civic technology nonprofit rebuilding after founder burnout",
-            "audience": "Adaeze, board chair deciding whether to hire another charismatic director",
-            "stakes": "public tools could decay if the board replaces a person instead of building a system",
-            "format": "postmortem",
-            "requiredBeat": "\"What did only she know?\" Adaeze asks, then converts the answer into governance, documentation, leadership rotation, and service standards"
-          },
           "scenario": "\"What did only she know?\" Adaeze asks, pointing to the empty executive-director page in the board packet. The founder is burned out, and a charismatic replacement would calm donors. Adaeze turns the answer into governance, documentation, leadership rotation, and service standards before the next hire begins. A donor update is due Friday, but Adaeze refuses to promise renewal until the private knowledge has owners outside one exhausted founder.",
           "whatToDo": "Convert founder-only knowledge into governance, documentation, rotations, and standards before hiring the next director.",
           "whyItMatters": "Replacing a person without building the system repeats the dependency. Public tools need architecture that survives charisma."
@@ -3033,13 +2490,6 @@
             "scale",
             "checklist"
           ],
-          "planSpec": {
-            "domain": "regional apprenticeship program moving from pilot success to a repeatable multi-city model",
-            "audience": "Tomas, program designer praised for one flagship cohort",
-            "stakes": "students in new cities will get a weaker program if the pilot cannot be inherited",
-            "format": "predict_reveal",
-            "requiredBeat": "What survives when the flagship instructor cannot travel? Tomas tests the model in a second city using the architecture checklist before scaling"
-          },
           "scenario": "What survives when the flagship instructor cannot travel? Tomas lays train tickets, instructor notes, and a blank city rollout checklist on the table. The first cohort was praised everywhere. The second-city test reveals which parts are teachable, and Tomas has to choose the checklist over celebration before scaling. The partner employer in the second city has already reserved workshop space, which makes the checklist a student-protection tool.",
           "whatToDo": "Treat any element that fails without the original instructor as unscalable evidence. Redesign it into a teachable routine with an owner, materials, and pass criteria; if it still depends on personal flair, drop it before adding another location.",
           "whyItMatters": "A pilot is not a system until another city can inherit it. The checklist protects students from a weaker copy of the celebrated cohort."
@@ -3052,13 +2502,6 @@
             "dashboard",
             "learning"
           ],
-          "planSpec": {
-            "domain": "community health clinic integrating values, improvement goals, hiring filters, experiments, and standards into one board dashboard",
-            "audience": "Mikkel, clinic administrator after a messy accreditation review",
-            "stakes": "the clinic can pass reviews while failing to compound its own learning",
-            "format": "scene",
-            "requiredBeat": "Mikkel replaces a dashboard of isolated metrics with one row for core, progress, culture, experiments, pipeline, and standard checks at each board meeting"
-          },
           "scenario": "Accreditation tabs jut from a binder with coffee rings on the cover while Mikkel rebuilds the board dashboard. The clinic passed enough metrics and still failed to learn. He adds six rows: core, progress, culture, experiments, pipeline, standards. The next board meeting has to choose between isolated numbers and architecture. The medical director asks which row changes next month's staffing choice, and Mikkel deletes two metrics that cannot answer.",
           "whatToDo": "For each metric, ask which durability function it changes: core, progress, culture, experiments, pipeline, or standards. If it maps nowhere, discard it or mark it as a missing mechanism; revisit the map quarterly and the row metrics each board cycle.",
           "whyItMatters": "A clinic can pass reviews without compounding learning. The six rows make durability visible as a system rather than a stack of scores."
@@ -3071,13 +2514,6 @@
             "grant",
             "succession"
           ],
-          "planSpec": {
-            "domain": "digital archive project deciding how to survive grant cycles and founder departure",
-            "audience": "Frida, archive lead with one year of funding left",
-            "stakes": "rare community records may disappear again if the project is only a heroic sprint",
-            "format": "reflection",
-            "requiredBeat": "You watch Frida move from rescue sprint to institution design: custody rules, volunteer standards, experiments for access, successor training, and quality checks"
-          },
           "scenario": "You watch Frida stack acid-free folders beside a one-year grant calendar. The archive has survived through rescue sprints and personal memory. Rare records will not survive another heroic year alone. Frida has to choose custody rules, volunteer standards, access experiments, successor training, and quality checks over one more sprint. The volunteer coordinator has a box of unlabeled scans, so Frida starts with custody rules before asking for more heroic digitizing hours.",
           "whatToDo": "Build custody first, because access tests are reckless when ownership and care rules are unclear. Then add volunteer standards, successor training, access experiments, and quality checks. The test is simple: will this still work after the rescue leader is gone?",
           "whyItMatters": "Community records need more than passion. The archive lasts only when care becomes rules, people, tests, and checks others can inherit."
@@ -3096,8 +2532,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The system has to guide decisions without the founder. Personal understanding is fragile until it becomes shared mechanisms.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3109,8 +2544,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The six-part sort turns fixes into architecture. Keeping everything or waiting for the next director preserves clutter and dependence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3122,8 +2556,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Scale needs transferable mechanisms, not cloned nostalgia. The practice map reveals what should actually travel.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3135,8 +2568,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The weakness is dependency. Systems that carry knowledge reduce the need for another savior figure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -3148,8 +2580,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second-city test shows what can be inherited. Praise and marketing can celebrate a pilot without proving repeatability.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3161,8 +2592,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Durability depends on interaction among mechanisms. More isolated metrics can deepen the fragmentation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3174,8 +2604,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Blank boxes reveal where no mechanism exists. The issue is not word count or owner seniority, but missing architecture.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3187,8 +2616,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The archive needs inheritable care. Celebration and speed can help, but survival requires rules, people, tests, and checks.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3200,8 +2628,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Understanding matters only when it becomes a mechanism that acts without the leader. Retreat language and admiration research can still leave decisions person-dependent.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3258,24 +2685,17 @@
           }
         ],
         "twentyFourHourChallenge": "Draw six boxes within the next day: core, progress, culture, experiments, leadership, standards. Put one mechanism in each and mark any blank as a dependency risk.",
-        "weeklyPractice": "Each week, choose one blank or weak box and build one mechanism: a rule, target, behavior, test, rotation, or drift check with an owner.",
-        "title": "Building durable operating architecture"
+        "weeklyPractice": "Each week, choose one blank or weak box and build one mechanism: a rule, target, behavior, test, rotation, or drift check with an owner."
       },
       "memorableLines": [
         {
-          "text": "Endings do not build. Architecture does.",
-          "location": "breakdown.fastRead",
-          "why": "It refuses a motivational close and redirects the reader to construction."
+          "text": "Endings do not build. Architecture does."
         },
         {
-          "text": "Private integration has to become public architecture.",
-          "location": "breakdown.deepRead",
-          "why": "The line names the final shift from leader-held judgment to institution-held systems."
+          "text": "Private integration has to become public architecture."
         },
         {
-          "text": "Admiration ends when the machinery is named.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the final conversion from praise to operating design."
+          "text": "Admiration ends when the machinery is named."
         }
       ]
     }
