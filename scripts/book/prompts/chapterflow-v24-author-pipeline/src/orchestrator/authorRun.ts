@@ -363,11 +363,20 @@ export async function authorWriteOneChapter(
       // transfer ratio, memorable lines) are as binding as the ship gate in
       // the author arch — a FAIL feeds the retry card like a gate blocker.
       const rubric = await deps.runVerb(["rubric-metrics", bookId]);
-      const rubricLine = [rubric.stdout, rubric.stderr].join("\n").split("\n").find((l) => l.trim().startsWith(`ch${nn}:`)) ?? "";
-      if (rubricLine.includes("FAIL")) {
-        lastReason = `ch${nn}: rubric preflight FAIL — ${rubricLine.trim()}`;
+      // Capture THIS chapter's `chNN:` verdict line AND its follow-on
+      // `chNN fix: …` reason lines. formatRubricMetrics emits the W2 card-quality
+      // repair instructions (length-tell / practice-floor) as indented `chNN fix:`
+      // lines beneath the verdict line; grabbing only the single `chNN:` line
+      // would drop those concrete repairs, leaving the writer with an opaque
+      // `lenTell=5✗` and no instruction on how to clear it.
+      const rubricAll = [rubric.stdout, rubric.stderr].join("\n").split("\n");
+      const rubricVerdictLine = rubricAll.find((l) => l.trim().startsWith(`ch${nn}:`)) ?? "";
+      const rubricFixLines = rubricAll.filter((l) => l.trim().startsWith(`ch${nn} fix:`));
+      const rubricBlock = [rubricVerdictLine.trim(), ...rubricFixLines.map((l) => l.trim())].filter(Boolean).join("\n");
+      if (rubricVerdictLine.includes("FAIL")) {
+        lastReason = `ch${nn}: rubric preflight FAIL — ${rubricBlock}`;
         deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
-        card = `${baseCard}\n\nRUBRIC PREFLIGHT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but FAILED the deterministic reader-metrics preflight. Rewrite the chapter so ALL of these clear:\n${rubricLine.trim()}\nHow to read it: ease must land in 72-84 (write plainer, shorter sentences); tell must be <= 0.2 (the keyed answer must NOT be the longest/most-hedged choice — balance distractor lengths); transfer must be >= 0.7 (most quiz questions test a NEW scenario, not recall); memClean >= 2 (short portable memorable lines).`;
+        card = `${baseCard}\n\nRUBRIC PREFLIGHT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but FAILED the deterministic reader-metrics preflight. Rewrite the chapter so ALL of these clear:\n${rubricBlock}\nHow to read it: ease must land in 72-84 (write plainer, shorter sentences); tell must be <= 0.2 (the keyed answer must NOT be the longest/most-hedged choice — balance distractor lengths); transfer must be >= 0.7 (most quiz questions test a NEW scenario, not recall); memClean >= 2 (short portable memorable lines); lenTell — the keyed answer must NOT be the uniquely shortest choice (nor uniquely longest); give each key a middle length; practice — tryThisNow or the 24-hour challenge must be imperative-led with a concrete number/timebox; echo (advisory) — paraphrase any key that reuses 5+ consecutive words from the chapter.`;
         continue;
       }
       // Success: bind author provenance to the authored content (create-once per

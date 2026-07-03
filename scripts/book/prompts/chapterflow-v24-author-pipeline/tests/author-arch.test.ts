@@ -781,6 +781,42 @@ test("authorWriteOneChapter: a rubric-preflight FAIL feeds the retry card like a
   assert.ok(spawns[1].task.includes("balance distractor lengths"), "the how-to-read guidance is attached");
 });
 
+test("authorWriteOneChapter: a W2 card-quality FAIL carries its `chNN fix:` repair line VERBATIM into the retry card", async () => {
+  // Verifier fix (2026-07-03): the retry grep must capture the follow-on
+  // `chNN fix:` lines formatRubricMetrics emits beneath the verdict line, or the
+  // W2 length-tell / practice-floor repair instruction never reaches the writer.
+  let rubricCalls = 0;
+  const { deps, spawns } = mkDeps(
+    () => ({}),
+    (args) => {
+      if (args[0] === "rubric-metrics") {
+        rubricCalls++;
+        return rubricCalls === 1
+          ? {
+              code: 1,
+              // The real formatRubricMetrics block: a verdict line + an indented
+              // `chNN fix:` reason line (length-tell shortest-side).
+              stdout:
+                "  ch01: FAIL ease=80 fk=5~ tell=0 transfer=1 memClean=3 echo=0 lenTell=5✗ practice=2 — FAIL: lengthTell\n" +
+                "    ch01 fix: length-tell: key is the uniquely-SHORTEST choice in 5/9 questions (max 4) — lengthen keys / balance distractors",
+              stderr: "",
+            }
+          : { code: 0, stdout: "  ch01: PASS ease=80 fk=5~ tell=0 transfer=1 memClean=3 echo=0 lenTell=2 practice=2", stderr: "" };
+      }
+      return { code: 0, stdout: "PASS", stderr: "" };
+    },
+  );
+  const r = await authorWriteOneChapter("zz", 1, deps, { io: mkIo() });
+  assert.ok(r.ok, "retry converged after the card-quality complaint");
+  assert.equal(spawns.length, 2, "the length-tell FAIL consumed the single retry");
+  assert.ok(spawns[1].task.includes("FAIL: lengthTell"), "the verdict line reaches the writer");
+  assert.ok(
+    spawns[1].task.includes("ch01 fix: length-tell: key is the uniquely-SHORTEST choice in 5/9"),
+    "the concrete `chNN fix:` repair line is carried VERBATIM into the retry card",
+  );
+  assert.ok(spawns[1].task.includes("uniquely shortest choice"), "the how-to-read guidance now decodes lenTell for the writer");
+});
+
 // ── Book-acceptance bar calibration (owner decision 2026-07-03) ───────────────
 
 test("book acceptance: composite 80.3 with gate PASS passes the calibrated bar 80; 79 rejects; beat-shipped binds when set", async () => {
