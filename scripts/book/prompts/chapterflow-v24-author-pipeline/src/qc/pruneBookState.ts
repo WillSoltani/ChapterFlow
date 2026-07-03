@@ -23,7 +23,7 @@ import { execFileSync } from "child_process";
 import { existsSync, readdirSync, rmSync, statSync } from "fs";
 import { dirname, relative, resolve } from "path";
 
-import { CANONICAL_STATE, REPO_ROOT, normSlug } from "../lib/chapterPaths.js";
+import { CANONICAL_STATE, MONOREPO_ANCESTOR, REPO_ROOT, normSlug } from "../lib/chapterPaths.js";
 import { sourceVerifyRecordPath } from "../critics/sourceVerify.js";
 
 const BOOK_PACKAGES_DIR = resolve(REPO_ROOT, "book-packages");
@@ -133,13 +133,33 @@ function gitTracked(absPaths: string[]): Set<string> {
   return new Set(out.split("\0").filter(Boolean).map((p) => resolve(REPO_ROOT, p)));
 }
 
+/** Is the OUTER-root live package for the book git-committed? The publish-final flow
+ *  copies + commits the package into the OUTER checkout (<outer>/book-packages/<book>.v21.json),
+ *  NOT the sandbox nested copy — so the sandbox-only published-gate (gitTracked([sandboxPkg]))
+ *  would wrongly report "not-published" for a book that IS live. This accepts an
+ *  outer-root committed package as equally valid proof of publication. Best-effort:
+ *  a git failure / non-repo outer root returns false (falls back to the sandbox gate). */
+export function outerPackageCommitted(bookId: string, outerRoot: string = MONOREPO_ANCESTOR): boolean {
+  const rel = `book-packages/${normSlug(bookId)}.v21.json`;
+  const outerPkg = resolve(outerRoot, rel);
+  if (!existsSync(outerPkg)) return false;
+  try {
+    const out = execFileSync("git", ["ls-files", "-z", "--", rel], { cwd: outerRoot, encoding: "utf8" });
+    return out.split("\0").filter(Boolean).length > 0;
+  } catch {
+    return false;
+  }
+}
+
 export function pruneBookStatePlan(bookId: string, scope: PruneScope = "all"): PruneBookStatePlan {
   const pkg = resolve(BOOK_PACKAGES_DIR, `${bookId}.v21.json`);
   let published: boolean;
   let candidates: string[];
   let tracked: Set<string>;
   try {
-    published = gitTracked([pkg]).size > 0; // published == the package is COMMITTED
+    // published == the package is COMMITTED, in EITHER the sandbox nested copy
+    // (publish-after-qc flow) OR the OUTER-root live catalog (publish-final flow).
+    published = gitTracked([pkg]).size > 0 || outerPackageCommitted(bookId);
     candidates = published ? candidateFiles(bookId, scope) : [];
     tracked = published ? gitTracked(candidates) : new Set();
   } catch (e) {
@@ -158,7 +178,7 @@ export function pruneBookStatePlan(bookId: string, scope: PruneScope = "all"): P
       bookId,
       scope,
       status: "not-published",
-      message: `${bookId} is not published: book-packages/${bookId}.v21.json is not committed. prune-book-state only runs on published books (so it never deletes an in-progress book's evidence).`,
+      message: `${bookId} is not published: neither the sandbox nor the outer-root book-packages/${bookId}.v21.json is committed. prune-book-state only runs on published books (so it never deletes an in-progress book's evidence).`,
       remove: [],
       keep: [],
       bytes: 0,

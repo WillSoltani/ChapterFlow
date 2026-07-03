@@ -9,11 +9,14 @@
 
 import assert from "node:assert/strict";
 
+import { spawnSync } from "node:child_process";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
 import { CANONICAL_STATE } from "../src/lib/chapterPaths.js";
-import { applyPruneBookState, belongsToBook, formatPruneBookState, pruneBookStatePlan } from "../src/qc/pruneBookState.js";
+import { applyPruneBookState, belongsToBook, formatPruneBookState, outerPackageCommitted, pruneBookStatePlan } from "../src/qc/pruneBookState.js";
 
 const NOT_A_BOOK = "zz-fixture-prune-not-a-real-book";
 
@@ -82,4 +85,36 @@ test("prune bugfix: a book's HELD autopilot lock is structurally excluded (never
   assert.equal(belongsToBook(S("autopilot-locks/willpower.lock"), "some-other-book"), false);
   // Sanity: autopilot-LOGS (a different dir) still belong to the book — logs are debris, locks are not.
   assert.equal(belongsToBook(S("autopilot-logs/willpower/sessions.jsonl"), "willpower"), true);
+});
+
+test("published-gate extension (v24 F2): an OUTER-root committed package counts as published", () => {
+  // A THROWAWAY fixture outer repo tracking book-packages/<book>.v21.json — this is the
+  // publish-final shape (the outer live catalog holds the committed package; the sandbox
+  // nested copy is never committed). outerPackageCommitted must recognize it as published.
+  const root = mkdtempSync(resolve(tmpdir(), "cf-v24-prune-outer-"));
+  const BOOK = "zz-fixture-outer-published";
+  const git = (args: string[]) => {
+    const r = spawnSync("git", args, { cwd: root, encoding: "utf8" });
+    assert.equal(r.status, 0, `git ${args.join(" ")}: ${r.stderr}`);
+  };
+  try {
+    git(["init", "-q"]);
+    git(["config", "user.name", "fx"]);
+    git(["config", "user.email", "fx@t"]);
+    mkdirSync(resolve(root, "book-packages"), { recursive: true });
+    const pkg = resolve(root, "book-packages", `${BOOK}.v21.json`);
+    // Uncommitted (present but not tracked) → NOT published.
+    writeFileSync(pkg, "{}");
+    assert.equal(outerPackageCommitted(BOOK, root), false, "an untracked outer package is not proof of publication");
+    // Commit it → published.
+    git(["add", "--", `book-packages/${BOOK}.v21.json`]);
+    git(["commit", "-q", "-m", "publish outer package"]);
+    assert.equal(outerPackageCommitted(BOOK, root), true, "a committed outer package IS proof of publication");
+    // A sibling book is never matched.
+    assert.equal(outerPackageCommitted("the-" + BOOK + "-x", root), false, "a sibling book's absence is not published");
+    // A non-repo outer root is a safe false (falls back to the sandbox gate).
+    assert.equal(outerPackageCommitted(BOOK, resolve(root, "does-not-exist")), false);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
 });

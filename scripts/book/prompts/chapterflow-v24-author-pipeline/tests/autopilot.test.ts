@@ -26,6 +26,7 @@ import {
   summarizeRoundDrivers,
   WRITER_SELF_VERIFY,
   buildSourcePrewriteRepairTask,
+  readyPublishCommand,
   type AutopilotDeps,
   type BrokerResult,
 } from "../src/orchestrator/autopilot.js";
@@ -1520,4 +1521,17 @@ test("WRITER_SELF_VERIFY wires the WT-F semantic levers into the autopilot write
   // focusing its judgment budget on the gate-invisible semantic axes.
   assert.ok(/SEAM/.test(v) && /EW1/.test(v) && /NE1/.test(v) && /GN1/.test(v), "self-verify should point the writer at the gate-proven structural tells (EW1/SEAM/NE1/GN1)");
   assert.ok(/cannot see/i.test(v) && /not re-derive/i.test(v), "self-verify should focus judgment on what the deterministic gate cannot see");
+});
+
+// ── v24 WS2: handleReady publish wiring (author → publish-final; compiler/legacy → publish-after-qc) ──
+test("v24 handleReady wiring: the AUTHOR arch READY command is publish-final; compiler/legacy stay on publish-after-qc/publish", () => {
+  // author arch — one-verb publish-final (no round id needed in the command).
+  assert.equal(readyPublishCommand("execution", "r20260703000000-abcdef", "author"), 'npx tsx src/cli.ts publish-final "execution"');
+  assert.equal(readyPublishCommand("execution", undefined, "author"), 'npx tsx src/cli.ts publish-final "execution"', "author never falls back to publish-after-qc/publish");
+  // compiler + legacy — publish-after-qc with the round, or bare publish when no round id.
+  assert.equal(readyPublishCommand("zz", "r20260703000000-abcdef", "compiler"), 'npx tsx src/cli.ts publish-after-qc "zz" --round r20260703000000-abcdef --commit --push');
+  assert.equal(readyPublishCommand("zz", "r20260703000000-abcdef", "legacy"), 'npx tsx src/cli.ts publish-after-qc "zz" --round r20260703000000-abcdef --commit --push');
+  assert.equal(readyPublishCommand("zz", undefined, "legacy"), 'npx tsx src/cli.ts publish "zz"', "no round id → the plain publish verb (unchanged)");
+  // the author command must NOT commit sandbox-nested paths (it names no round / no publish-after-qc).
+  assert.ok(!readyPublishCommand("execution", "r1", "author").includes("publish-after-qc"), "author must not route through publish-after-qc (the sandbox-nested-commit source)");
 });

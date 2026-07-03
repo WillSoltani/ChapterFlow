@@ -24,7 +24,7 @@ import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 
 import { test } from "./harness.js";
-import { publishToLive } from "../src/publish/publishToLive.js";
+import { publishToLive, probeRegistration } from "../src/publish/publishToLive.js";
 
 const BOOK = "zz-fixture-publish-to-live";
 const PKG_CONTENT = JSON.stringify({ formatVersion: "v21", bookId: BOOK, chapters: [{ number: 1 }] }, null, 2);
@@ -48,8 +48,8 @@ function makeFixture(label: string, opts?: { registry?: string | null; git?: boo
   const localPkg = resolve(sandbox, `${BOOK}.v21.json`);
   writeFileSync(localPkg, PKG_CONTENT);
   if (opts?.registry !== null) {
-    mkdirSync(resolve(outerRoot, "lib"), { recursive: true });
-    writeFileSync(resolve(outerRoot, "lib", "bookPackages.ts"), opts?.registry ?? `import pkg from "../book-packages/${BOOK}.v21.json";\n`);
+    mkdirSync(resolve(outerRoot, "app", "book", "data"), { recursive: true });
+    writeFileSync(resolve(outerRoot, "app", "book", "data", "bookPackages.ts"), opts?.registry ?? `import pkg from "@/book-packages/${BOOK}.v21.json";\n`);
   }
   if (opts?.git) {
     git(outerRoot, ["init", "-q"]);
@@ -132,7 +132,7 @@ test("registration probe: NOT FOUND emits the manual-steps line; missing registr
     const notFound = await publishToLive(BOOK, { localPackagePath: fxNotFound.localPkg, outerRoot: fxNotFound.outerRoot, verify: () => true });
     assert.equal(notFound.ok, true, notFound.error);
     assert.ok(
-      notFound.steps.some((s) => s === "registration: NOT FOUND — manual steps: add import in lib/bookPackages.ts + run generate-catalog-metadata + commit"),
+      notFound.steps.some((s) => s === "registration: NOT FOUND — manual steps: add import in app/book/data/bookPackages.ts + run generate-catalog-metadata + commit"),
       `steps: ${notFound.steps.join(" | ")}`,
     );
     const unknown = await publishToLive(BOOK, { localPackagePath: fxUnknown.localPkg, outerRoot: fxUnknown.outerRoot, verify: () => true });
@@ -252,6 +252,42 @@ test("--commit against a non-git outerRoot fails closed (before any copy)", asyn
     assert.equal(result.ok, false);
     assert.match(result.error ?? "", /not a git work tree|not the git toplevel/);
     assert.equal(existsSync(fx.destPkg), false, "commit-mode preflight failure must abort before the copy");
+  } finally {
+    fx.cleanup();
+  }
+});
+
+test("probe-path FIX (v24 F1): the registry is app/book/data/bookPackages.ts — a lib/bookPackages.ts is IGNORED", async () => {
+  // No app/ registry (registry:null) but a legacy lib/bookPackages.ts that DOES name the book.
+  // The old probe checked lib/ and would have printed FOUND; the fixed probe checks app/book/data
+  // and must print UNKNOWN (app registry absent), never reading the lib file.
+  const fx = makeFixture("probe-fix", { registry: null });
+  try {
+    mkdirSync(resolve(fx.outerRoot, "lib"), { recursive: true });
+    writeFileSync(resolve(fx.outerRoot, "lib", "bookPackages.ts"), `import pkg from "@/book-packages/${BOOK}.v21.json";\n`);
+    const res = await publishToLive(BOOK, { localPackagePath: fx.localPkg, outerRoot: fx.outerRoot, verify: () => true });
+    assert.equal(res.ok, true, res.error);
+    assert.ok(res.steps.some((s) => s.startsWith("registration: UNKNOWN")), `a lib/ registry must be ignored; app/book/data/ is the real registry\nsteps: ${res.steps.join(" | ")}`);
+    assert.ok(!res.steps.some((s) => s === "registration: FOUND"), "the legacy lib/ registry must not satisfy the probe");
+  } finally {
+    fx.cleanup();
+  }
+});
+
+test("probe is boundary-safe: a book id that is a SUBSTRING of a registered id is NOT-FOUND (not a false FOUND)", () => {
+  // The registry names full slugs (start-with-why, the-daily-stoic). Probing a book whose id
+  // is a bare substring of a registered id must report NOT-FOUND — otherwise publishFinal would
+  // skip append-register and the book would ship a committed-but-unregistered package.
+  const fx = makeFixture("probe-boundary", {
+    registry: `import a from "@/book-packages/start-with-why.v21.json";\nimport b from "@/book-packages/the-daily-stoic.v21.json";\n`,
+  });
+  try {
+    for (const substr of ["why", "stoic", "daily", "start-with"]) {
+      assert.equal(probeRegistration(fx.outerRoot, substr).state, "not-found", `"${substr}" is only a substring of a registered id — must be NOT-FOUND`);
+    }
+    // the exact registered ids ARE found.
+    assert.equal(probeRegistration(fx.outerRoot, "start-with-why").state, "found");
+    assert.equal(probeRegistration(fx.outerRoot, "the-daily-stoic").state, "found");
   } finally {
     fx.cleanup();
   }
