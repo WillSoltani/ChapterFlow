@@ -139,6 +139,9 @@ export type CostReport = {
   byPhase: Record<string, number>;
   retriesByCause: Record<string, number>;
   carry: CarryTally;
+  /** C5 (S-tier): per-chapter REVIEW-carry tally (E2 ledger hits vs fresh reads) —
+   *  distinct from `carry`, which records the once-per-run durable-ACCEPTANCE decision. */
+  reviewCarry: CarryTally;
   wallClockMsByPhase: Record<string, number>;
   totalWallClockMs: number;
   /** Honest-accounting invariant: spawn ids that minted but never logged (the hidden
@@ -156,6 +159,7 @@ export class SessionLedger {
   private phase: AutopilotPhase = "research";
   private mintedCount = 0;
   private readonly carry: CarryTally = { hits: 0, misses: 0 };
+  private readonly reviewCarry: CarryTally = { hits: 0, misses: 0 };
   // Wall-clock per phase: accumulate each logged session's durationMs into the phase
   // it was minted in (a robust, spawn-cost-weighted proxy that needs no wall timer and
   // survives interleaved parallelism).
@@ -218,6 +222,8 @@ export class SessionLedger {
 
   carryHit(): void { this.carry.hits += 1; }
   carryMiss(): void { this.carry.misses += 1; }
+  reviewCarryHit(): void { this.reviewCarry.hits += 1; }
+  reviewCarryMiss(): void { this.reviewCarry.misses += 1; }
 
   /** The mkSessionId counter value the invariant reconciles against. */
   get mintedIds(): number { return this.mintedCount; }
@@ -251,6 +257,7 @@ export class SessionLedger {
       byPhase,
       retriesByCause,
       carry: { ...this.carry },
+      reviewCarry: { ...this.reviewCarry },
       wallClockMsByPhase: { ...this.phaseWallMs },
       totalWallClockMs: totalWall,
       unloggedSpawnIds: unlogged,
@@ -271,7 +278,7 @@ export function formatCostReport(rep: CostReport): string {
   if (phaseRows.length) lines.push(`  by phase: ${phaseRows.map(([k, v]) => `${k}:${v}`).join("  ")}`);
   const causeRows = Object.entries(rep.retriesByCause).sort((a, b) => b[1] - a[1]);
   if (causeRows.length) lines.push(`  retries by cause: ${causeRows.map(([k, v]) => `${k}:${v}`).join("  ")}`);
-  lines.push(`  carry: ${rep.carry.hits} hit / ${rep.carry.misses} miss`);
+  lines.push(`  carry: acceptance ${rep.carry.hits} hit / ${rep.carry.misses} miss · reviews ${rep.reviewCarry?.hits ?? 0} hit / ${rep.reviewCarry?.misses ?? 0} miss`);
   const wallRows = Object.entries(rep.wallClockMsByPhase).sort((a, b) => b[1] - a[1]);
   if (wallRows.length) lines.push(`  wall (spawn ms) by phase: ${wallRows.map(([k, v]) => `${k}:${Math.round(v)}`).join("  ")}  total:${Math.round(rep.totalWallClockMs)}`);
   if (!rep.invariantOk) {

@@ -36,6 +36,7 @@ import { loadNameBank } from "../librarian/namePlan.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { loadAuthorProvenance, recordAuthorProvenance } from "../qc/sessionProvenance.js";
+import { RegenLedgerError, migrateLegacyRegenCounts } from "./authorRegenLedger.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -492,6 +493,19 @@ export async function doAuthorWrite(
 ): Promise<AutopilotOutcome | null> {
   const io = resolveAuthorIo(opts.io);
   const heartbeat = opts.heartbeat ?? (() => true);
+
+  // C1 (#7): stamp v1 legacy regen counts onto their design lineages NOW — while
+  // the briefs/packets on disk are still the design those writes were consumed
+  // against. The compile verbs below may re-deal the briefs (new rotation
+  // schema), which legitimately re-keys budgets; migrating first keeps the old
+  // counts bound to the old design instead of leaking onto the new one.
+  // Idempotent; a book with no v1 ledger is a no-op.
+  try {
+    migrateLegacyRegenCounts(bookId, undefined, deps.log);
+  } catch (err) {
+    if (err instanceof RegenLedgerError) return halt(bookId, "infra", `author write regen ledger: ${err.message}`);
+    throw err;
+  }
 
   for (const [args, label] of AUTHOR_WRITE_VERBS) {
     if (!heartbeat()) return halt(bookId, "infra", `lost the run lock for ${bookId} during author ${label} — halting to avoid two conductors on the same book.`);

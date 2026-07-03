@@ -41,9 +41,15 @@ const READER_CONCURRENCY = 4;
 /** score.py's exact chapter selection: seed = md5(bookId) as a big integer,
  *  then walk (seed + i * 2654435761) % N collecting unique indices. BigInt
  *  arithmetic — the seed is a 128-bit number. Parity is test-pinned against
- *  values computed by the python original. */
-export function selectSeededIdxs(bookId: string, chapterCount: number, n = 4): number[] {
-  const seed = BigInt("0x" + createHash("md5").update(bookId).digest("hex"));
+ *  values computed by the python original.
+ *
+ *  `salt` (C4, S-tier plan): default "" keeps the seed = md5(bookId) — BYTE-
+ *  IDENTICAL to the python original (parity-pinned; the shipped-control read
+ *  and acceptance round 1 stay on this path). A non-empty salt (acceptance
+ *  round 2 passes its raw roundLabel) rotates the sample so a second round
+ *  reads different chapters instead of re-judging the identical four. */
+export function selectSeededIdxs(bookId: string, chapterCount: number, n = 4, salt = ""): number[] {
+  const seed = BigInt("0x" + createHash("md5").update(bookId + salt).digest("hex"));
   // BigInt() constructor calls, not literals: the OUTER repo's tsconfig sweeps
   // this dir with a pre-ES2020 target where 123n is a syntax-level error.
   const step = BigInt("2654435761");
@@ -57,8 +63,36 @@ export function selectSeededIdxs(bookId: string, chapterCount: number, n = 4): n
   return [...idxs].sort((a, b) => a - b);
 }
 
-export function selectSeededChapters(bookId: string, chapters: ChapterV21[], n = 4): ChapterV21[] {
-  return selectSeededIdxs(bookId, chapters.length, n).map((i) => chapters[i]);
+export function selectSeededChapters(bookId: string, chapters: ChapterV21[], n = 4, salt = ""): ChapterV21[] {
+  return selectSeededIdxs(bookId, chapters.length, n, salt).map((i) => chapters[i]);
+}
+
+/** C4/#5: compose an acceptance sample with FORCE-INCLUDED chapters (the round-1
+ *  regen targets — round 2 must always re-read the repaired bytes) topped up to
+ *  `n` by the salted rotation. Deterministic; result sorted by chapter number. */
+export function selectAcceptanceSample(
+  bookId: string,
+  chapters: ChapterV21[],
+  n: number,
+  salt: string,
+  forceInclude: number[] = [],
+): ChapterV21[] {
+  const byNumber = new Map(chapters.map((c) => [c.number, c]));
+  const picked = new Map<number, ChapterV21>();
+  for (const num of forceInclude) {
+    const ch = byNumber.get(num);
+    if (ch && picked.size < n) picked.set(num, ch);
+  }
+  for (const ch of selectSeededChapters(bookId, chapters, Math.min(n + forceInclude.length, chapters.length), salt)) {
+    if (picked.size >= n) break;
+    if (!picked.has(ch.number)) picked.set(ch.number, ch);
+  }
+  // Degenerate fill (tiny books / heavy overlap): walk remaining chapters in order.
+  for (const ch of chapters) {
+    if (picked.size >= Math.min(n, chapters.length)) break;
+    if (!picked.has(ch.number)) picked.set(ch.number, ch);
+  }
+  return [...picked.values()].sort((a, b) => a.number - b.number);
 }
 
 // ── Combined book-sample document ─────────────────────────────────────────────

@@ -80,10 +80,11 @@ import {
   DocIntegrityError,
   parseBookReview,
   renderBookSampleDoc,
-  selectSeededChapters,
+  selectAcceptanceSample,
   type BookReaderResult,
   type BookVerdict,
 } from "../review/evalBookProxy.js";
+import { buildChurnEvidenceReport, rankSaturationContributors } from "../critics/readerBudgets.js";
 import { chapterContentHash, writeAttestation, type QcAttestation } from "../critics/qcAttestation.js";
 import { AXIS_WEIGHTS, computeVerdict, type AxisId, type AxisScore } from "../critics/semantic/publishableBar.js";
 import { writeBarReadArtifact, writeConfirmReadArtifact } from "../qc/orchestrator/artifacts.js";
@@ -103,11 +104,16 @@ import {
 } from "./authorRun.js";
 import {
   appendReviewHistory,
+  appendTiebreakNote,
   carryReviewFor,
+  loadTiebreakNotes,
   writeReviewClearsLedger,
 } from "./authorReviewLedger.js";
 import {
+  RegenLedgerError,
+  computeRegenLineage,
   loadAuthorRegenLedger,
+  migrateLegacyRegenCounts,
   recordRegenConsumed,
   regenConsumedFor,
 } from "./authorRegenLedger.js";
@@ -185,14 +191,33 @@ export type AuthorReviewIo = AuthorIo & {
    *  spawn a real reader or shell out to git. */
   resolveBeatShipped: (bookId: string, deps: AutopilotDeps, io: AuthorReviewIo) => Promise<BeatShippedResult>;
   /** E2 regen-cap persistence — how many REGENERATIONS a chapter has consumed
-   *  across prior conductor entries (durable). Injectable so tests exercise the
+   *  across prior conductor entries AGAINST ITS CURRENT DESIGN LINEAGE (v2,
+   *  durable). Throws RegenLedgerError when the lineage is uncomputable —
+   *  an infra halt, never a fail-open cap. Injectable so tests exercise the
    *  GLOBAL cap without leaking into real state/. Default reads the on-disk
    *  ledger. */
   regenConsumedFor: (bookId: string, chapterNumber: number) => number;
-  /** Record ONE more consumed regeneration for a chapter (durable). Injectable;
+  /** Record ONE more consumed regeneration for a chapter's current lineage
+   *  (durable). Throws RegenLedgerError on uncomputable lineage. Injectable;
    *  default appends to the on-disk ledger. */
   recordRegenConsumed: (bookId: string, chapterNumber: number) => void;
+  /** Stamp v1 legacy counts onto their on-disk design lineages (idempotent;
+   *  see migrateLegacyRegenCounts). Called at phase entry BEFORE any regen
+   *  decision. Throws RegenLedgerError when legacy counts exist but a lineage
+   *  is uncomputable. */
+  migrateRegenLedger: (bookId: string, log?: (m: string) => void) => void;
 };
+
+/** Default io lineage resolution: uncomputable lineage = infra, never no-cap. */
+function requireLineage(bookId: string, chapterNumber: number): string {
+  const lineage = computeRegenLineage(bookId, chapterNumber);
+  if (!lineage) {
+    throw new RegenLedgerError(
+      `regen lineage uncomputable for ch${String(chapterNumber).padStart(2, "0")} of ${bookId} (brief or source packet unreadable) — cannot honor the regen cap honestly`,
+    );
+  }
+  return lineage;
+}
 
 /** Thrown when the AUTO control-read is required (a shipped package exists, no
  *  env override) but cannot be produced — a fail-closed infra halt, never a
@@ -253,8 +278,9 @@ export function resolveAuthorReviewIo(over?: Partial<AuthorReviewIo>): AuthorRev
       runSweep: runSweepEvidence,
     },
     resolveBeatShipped: over?.resolveBeatShipped ?? ((bookId, deps, io) => resolveBeatShippedBar(bookId, deps, io)),
-    regenConsumedFor: over?.regenConsumedFor ?? ((bookId, n) => regenConsumedFor(loadAuthorRegenLedger(bookId), n)),
-    recordRegenConsumed: over?.recordRegenConsumed ?? ((bookId, n) => { recordRegenConsumed(bookId, n); }),
+    regenConsumedFor: over?.regenConsumedFor ?? ((bookId, n) => regenConsumedFor(loadAuthorRegenLedger(bookId), n, requireLineage(bookId, n))),
+    recordRegenConsumed: over?.recordRegenConsumed ?? ((bookId, n) => { recordRegenConsumed(bookId, n, requireLineage(bookId, n)); }),
+    migrateRegenLedger: over?.migrateRegenLedger ?? ((bookId, log) => { migrateLegacyRegenCounts(bookId, undefined, log); }),
   };
 }
 
@@ -380,6 +406,46 @@ export function mapBookComplaintsToChapters(
   return new Map(capped);
 }
 
+/** C2/#21: ONLY the complaints that explicitly NAME a chapter ("ch3 Q2…",
+ *  "chapter 5's examples…") — no fallback. Used by the churn-driven repair
+ *  router so reader-named defects outrank measured-saturation targets. Same
+ *  Q7 valid-reader guard as mapBookComplaintsToChapters. */
+export function mapNamedBookComplaints(
+  readers: Array<Pick<BookReaderResult, "keyCheck" | "oneParagraphVerdict" | "gateVerdict" | "churn"> & { valid?: boolean }>,
+  sampledNumbers: number[],
+): Map<number, string[]> {
+  const readersValid = readers.filter((r) => r.valid !== false);
+  const sampledSet = new Set(sampledNumbers);
+  const byChapter = new Map<number, string[]>();
+  const add = (n: number, line: string): void => {
+    if (!sampledSet.has(n)) return;
+    const list = byChapter.get(n) ?? [];
+    if (!list.includes(line)) list.push(line);
+    byChapter.set(n, list);
+  };
+  for (const reader of readersValid) {
+    for (const line of reader.keyCheck?.disagreements ?? []) {
+      const m = line.match(/\bch(?:apter)?\s*0*(\d+)\b/i);
+      if (m) add(Number(m[1]), `book reader key check: ${line}`);
+    }
+    const verdict = reader.oneParagraphVerdict ?? "";
+    for (const m of verdict.matchAll(/\bch(?:apter)?\s*0*(\d+)\b/gi)) {
+      add(Number(m[1]), `book reader verdict: ${verdict.slice(0, 500)}`);
+    }
+  }
+  return byChapter;
+}
+
+/** C2/#21: the three divergence assignments dealt (deterministically, by target
+ *  index) to churn-round regen writers — three writers handed ONE identical
+ *  churn pack converge on identical avoidance moves; distinct lanes prevent
+ *  the repaired chapters from matching each other instead of the book. */
+export const CHURN_DIVERGENCE_ASSIGNMENTS = [
+  "YOUR DIVERGENCE LANE — VOCABULARY: rewrite the teaching through your own cases' concrete referents (names, artifacts, numbers). Respect the framework-vocabulary budget ruthlessly; where the old draft leaned on the framework nouns, this one names the person, the document, the number.",
+  "YOUR DIVERGENCE LANE — SCENE ARCHITECTURE: recast your examples into your dealt lenses. No more than ONE person-handling-a-document tableau in the whole chapter; lead with ledgers, postmortems, walkthroughs, dialogue, or counterfactual reasoning instead.",
+  "YOUR DIVERGENCE LANE — QUIZ SEMANTICS: rebuild every distractor from the packet's commonError material (defensible operational alternatives); kill every tone-giveaway option; every explanation names why the tempting wrong answer fails, in varied phrasing.",
+] as const;
+
 // ── One blinded chapter review ───────────────────────────────────────────────
 
 async function reviewOneChapter(
@@ -389,6 +455,11 @@ async function reviewOneChapter(
   io: AuthorReviewIo,
   bar: number,
   labelSuffix = "",
+  // C3 (#1): tiebreak reads are adjudicated WITHOUT persistence — the deciding
+  // read is persisted LAST by the tiebreak composer, so a lone PASS completing
+  // after a majority FAIL can never own the latest-pointer or mint a carryable
+  // clear. Default true preserves every existing call site.
+  persist = true,
 ): Promise<ChapterReviewV1> {
   const nn = String(chapter.number).padStart(2, "0");
   // docText carries the trailing newline the reader's FILE has (writeReviewDoc
@@ -425,15 +496,97 @@ async function reviewOneChapter(
     }
     const review = adjudicateReview(parsed, docText, chapter, { bar, reviewerSessionId: sessionId });
     if (review.valid || attempt === 2) {
-      io.persistReview(bookId, review);
-      deps.log(`[autopilot] author review ch${nn}: composite ${review.composite} ship=${review.ship84} keys ${review.keyCheck.matches}/${review.keyCheck.of} → ${review.pass ? "PASS" : "FAIL"}${review.valid ? "" : " (INVALID quotes)"}`);
+      if (persist) io.persistReview(bookId, review);
+      deps.log(`[autopilot] author review ch${nn}${labelSuffix}: composite ${review.composite} ship=${review.ship84} keys ${review.keyCheck.matches}/${review.keyCheck.of} → ${review.pass ? "PASS" : "FAIL"}${review.valid ? "" : " (INVALID quotes)"}`);
       return review;
     }
-    deps.log(`[autopilot] author review ch${nn}: attempt ${attempt} failed quote verification — respawning once`);
+    deps.log(`[autopilot] author review ch${nn}${labelSuffix}: attempt ${attempt} failed quote verification — respawning once`);
   }
   const review = unparseableReview(chapter, lastSessionId);
-  io.persistReview(bookId, review);
+  if (persist) io.persistReview(bookId, review);
   return review;
+}
+
+// ── C3: the in-pipeline near-bar tiebreak (the owner-approved ch07 protocol) ──
+//
+// A single-reader FAIL with the FLIP SIGNATURE — valid, composite ≥ bar, keys
+// 9/9, ship=false — is a proven coin-flip surface (POM forensics: 3/12 verdicts
+// flipped on byte-identical bytes; this run: ch01/ch03/ch05/ch07). Before any
+// regen budget is consumed, spawn TWO more independent readers over the SAME
+// bytes; the chapter converts to PASS iff BOTH ship clean (2/3 majority with
+// the original FAIL). Strictly MORE scrutiny than the status quo (a regen's
+// PASS rests on ONE fresh read; conversion here needs two). A keyCheck
+// disagreement is NOT a flip (#2) — a real key defect must regen, not vote.
+//
+// Persistence discipline (#1): the extra reads never self-persist. On majority-
+// SHIP the deciding PASS is persisted LAST (latest-pointer + history + clears);
+// on fail-stands the losing PASS is persisted NOWHERE (a persisted PASS at the
+// current content hash would mint a carryable clear). The overridden read's
+// complaints are preserved in a tiebreak note either way (#4).
+
+export function isFlipSignature(review: ChapterReviewV1, bar: number): boolean {
+  return review.valid === true
+    && review.pass === false
+    && review.ship84 === false
+    && review.composite >= bar
+    && review.keyCheck.matches === review.keyCheck.of;
+}
+
+async function tiebreakFlipVerdict(
+  bookId: string,
+  chapter: ChapterV21,
+  original: ChapterReviewV1,
+  deps: AutopilotDeps,
+  io: AuthorReviewIo,
+  bar: number,
+): Promise<{ review: ChapterReviewV1; extraComplaints: string[] }> {
+  const nn = String(chapter.number).padStart(2, "0");
+  deps.log(`[autopilot] author review ch${nn}: FAIL carries the flip signature (composite ${original.composite} ≥ bar ${bar}, keys ${original.keyCheck.matches}/${original.keyCheck.of}, ship=false) — spawning 2 tiebreak readers (majority-of-3, no cap consumed)`);
+  const extras: ChapterReviewV1[] = [];
+  for (const suffix of ["-tiebreak-r2", "-tiebreak-r3"]) {
+    extras.push(await reviewOneChapter(bookId, chapter, deps, io, bar, suffix, /* persist */ false));
+  }
+  const cleanShips = extras.filter((r) => r.valid && r.ship84 && r.keyCheck.matches === r.keyCheck.of && r.composite >= bar);
+  const converted = cleanShips.length === 2; // both fresh reads must ship clean → 2/3 with the original FAIL
+  const reads = [original, ...extras].map((r) => ({
+    reviewerSessionId: r.reviewerSessionId, composite: r.composite, ship: r.ship84, valid: r.valid,
+  }));
+  if (converted) {
+    const deciding = [...cleanShips].sort((a, b) => b.composite - a.composite)[0];
+    // Deciding PASS persists LAST — it owns the latest-pointer and the history
+    // slot for this content hash; the clears ledger rebuild sees the PASS.
+    io.persistReview(bookId, deciding);
+    try {
+      appendTiebreakNote(bookId, {
+        chapterNumber: chapter.number,
+        contentHash: original.contentHash,
+        at: new Date().toISOString(),
+        outcome: "converted-to-pass",
+        overriddenComplaints: complaintsOf(original),
+        reads,
+      });
+    } catch { /* forensic note; never fail a decided review on it */ }
+    deps.log(`[autopilot] author review ch${nn}: tiebreak 2/3 SHIP (${extras.map((r) => r.composite).join(", ")}) — deciding PASS ${deciding.composite} persisted; original FAIL's complaints preserved in tiebreak notes`);
+    return { review: deciding, extraComplaints: [] };
+  }
+  // Fail stands. Never persist a losing PASS (it would mint a clear at this
+  // content hash), and extra FAILs share the one history slot anyway — the
+  // original FAIL persists LAST as the canonical latest-pointer, and the extra
+  // valid FAILs' complaints ride to the regen via extraComplaints.
+  const extraComplaints = extras.filter((r) => r.valid && !r.ship84).flatMap((r) => complaintsOf(r));
+  io.persistReview(bookId, original);
+  try {
+    appendTiebreakNote(bookId, {
+      chapterNumber: chapter.number,
+      contentHash: original.contentHash,
+      at: new Date().toISOString(),
+      outcome: "fail-stands",
+      overriddenComplaints: extraComplaints,
+      reads,
+    });
+  } catch { /* forensic note */ }
+  deps.log(`[autopilot] author review ch${nn}: tiebreak upheld the FAIL (${extras.map((r) => `${r.composite}${r.ship84 ? " ship" : ""}${r.valid ? "" : " invalid"}`).join(", ")}) — regen proceeds with merged complaints`);
+  return { review: original, extraComplaints };
 }
 
 // ── Book acceptance ───────────────────────────────────────────────────────────
@@ -465,6 +618,12 @@ async function runBookAcceptance(
   io: AuthorReviewIo,
   bar: number,
   roundLabel: string,
+  // C4: round 2 salts the sample with its raw roundLabel and FORCE-INCLUDES the
+  // regen targets, so the re-accept always re-reads the repaired bytes and never
+  // re-judges only the identical round-1 four. Round 1 passes nothing — its
+  // sample stays byte-identical to the score.py-parity path (and to the
+  // shipped-control read, which never salts).
+  sampleOpts?: { salt?: string; forceInclude?: number[] },
 ): Promise<BookAcceptanceResult> {
   // AUTO control-read: resolve the beat-shipped bar BEFORE spawning any reader,
   // so a regen's acceptance is judged against the book it replaces on the same
@@ -476,7 +635,7 @@ async function runBookAcceptance(
   const beat = await io.resolveBeatShipped(bookId, deps, io);
   if (!beat.ok) throw new ControlReadError(beat.reason);
   const shipped = beat.composite;
-  const sampled = selectSeededChapters(bookId, chapters, 4);
+  const sampled = selectAcceptanceSample(bookId, chapters, 4, sampleOpts?.salt ?? "", sampleOpts?.forceInclude ?? []);
   const docText = renderBookSampleDoc(sampled);
   // Q2 — doc-integrity postcondition: certify the rendered bytes BEFORE any
   // reader spawns. Per sampled chapter, question-line count === quiz question
@@ -691,6 +850,10 @@ export async function doAuthorReview(
     // A required AUTO control-read that cannot be produced is a fail-closed infra
     // halt — never a silent drop of the beat-shipped protection.
     if (err instanceof ControlReadError) return halt(bookId, "infra", `author acceptance beat-shipped control read: ${err.message}`);
+    // A regen cap that cannot be honored honestly (unreadable ledger, or a
+    // chapter whose design lineage is uncomputable) is an infra halt — never a
+    // fail-open cap and never a faked content cap-exhaustion (#8).
+    if (err instanceof RegenLedgerError) return halt(bookId, "infra", `author review regen ledger: ${err.message}`);
     throw err;
   }
 }
@@ -712,6 +875,12 @@ async function doAuthorReviewInner(
   }
   if (chapters.length === 0) return halt(bookId, "infra", `author review: no chapters on disk for ${bookId}`);
 
+  // C1 (#7): stamp any v1 legacy regen counts onto their on-disk design lineages
+  // BEFORE any regen decision reads the ledger. Idempotent; throws RegenLedgerError
+  // (→ infra halt via the doAuthorReview wrapper) when a legacy count's lineage is
+  // uncomputable. The write phase migrates too — first one in wins.
+  io.migrateRegenLedger(bookId, deps.log);
+
   // ── 1. One blinded reader per chapter — UNLESS a durable review can be
   //       CARRIED for the current bytes (E2). A carry hits only when a persisted
   //       PASS+valid review binds to this chapter's CURRENT content AND the exact
@@ -726,11 +895,13 @@ async function doAuthorReviewInner(
     const carry = carryReviewFor(bookId, chapter, bar, io.authorSessionOf(chapter.chapterId));
     if (carry.hit) {
       carryHits++;
+      deps.noteReviewCarry?.(true); // C5: the cost report's review-carry tally
       const nn = String(chapter.number).padStart(2, "0");
       deps.log(`[autopilot] author review ch${nn}: CARRIED durable review (composite ${carry.review.composite}, reviewer ${carry.review.reviewerSessionId}) — no reader spawned`);
       reviews.set(chapter.number, carry.review);
       return;
     }
+    deps.noteReviewCarry?.(false);
     reviews.set(chapter.number, await reviewOneChapter(bookId, chapter, deps, io, bar));
   });
   if (carryHits > 0) deps.log(`[autopilot] author review: carried ${carryHits}/${chapters.length} chapter review(s) unchanged — spawned ${chapters.length - carryHits} fresh reader(s)`);
@@ -745,6 +916,26 @@ async function doAuthorReviewInner(
   // as exhausted, so the GLOBAL cap survives re-entry. A carried PASS is not a
   // regen and never touches the ledger.
   const regenExhausted = (n: number): boolean => io.regenConsumedFor(bookId, n) >= (AUTHOR_REGEN_CAP - 1);
+
+  // ── C3: near-bar tiebreak BEFORE any regen decision. A flip-signature FAIL
+  //    (valid, composite ≥ bar, keys 9/9, ship=false) gets two more independent
+  //    reads; 2/3 SHIP converts it — a ~1-minute answer to a proven coin-flip
+  //    surface, instead of a ~14-minute regen + a consumed durable cap. ────────
+  const tiebreakExtraComplaints = new Map<number, string[]>();
+  {
+    const flips = chapters.filter((chapter) => {
+      const r = reviews.get(chapter.number)!;
+      return !r.pass && isFlipSignature(r, bar);
+    });
+    await mapPool(flips, opts.maxParallel, async (chapter) => {
+      heartbeat();
+      const outcome = await tiebreakFlipVerdict(bookId, chapter, reviews.get(chapter.number)!, deps, io, bar);
+      reviews.set(chapter.number, outcome.review);
+      if (outcome.extraComplaints.length > 0) tiebreakExtraComplaints.set(chapter.number, outcome.extraComplaints);
+    });
+  }
+  if (!heartbeat()) return halt(bookId, "infra", `lost the run lock for ${bookId} during the review tiebreak — halting to avoid two conductors on the same book.`);
+
   const failing = chapters.filter((chapter) => !reviews.get(chapter.number)!.pass);
   const regenerated = new Set<number>(); // chapters that consumed their single regen THIS entry (unioned with the durable ledger for the GLOBAL cap)
   if (failing.length > 0) {
@@ -763,7 +954,12 @@ async function doAuthorReviewInner(
     await mapPool(failing, opts.maxParallel, async (chapter) => {
       heartbeat();
       const nn = String(chapter.number).padStart(2, "0");
-      const complaints = complaintsOf(reviews.get(chapter.number)!);
+      // C3 (#4): a tiebreak that UPHELD the fail contributes its corroborating
+      // reads' complaints — the regen writer sees every independent objection.
+      const complaints = [...new Set([
+        ...complaintsOf(reviews.get(chapter.number)!),
+        ...(tiebreakExtraComplaints.get(chapter.number) ?? []),
+      ])];
       regenerated.add(chapter.number);
       io.recordRegenConsumed(bookId, chapter.number); // durable: this write attempt counts across re-entries
       const regen = await authorWriteOneChapter(bookId, chapter.number, deps, { complaints, io: opts.io });
@@ -776,7 +972,12 @@ async function doAuthorReviewInner(
         stillFailing.push({ chapterNumber: chapter.number, summary: `ch${nn}: regenerated file missing after write` });
         return;
       }
-      const review = await reviewOneChapter(bookId, fresh, deps, io, bar, "-regen");
+      let review = await reviewOneChapter(bookId, fresh, deps, io, bar, "-regen");
+      // C3 on the post-regen read too: with the cap now consumed, a flip here
+      // would otherwise halt the book on a coin toss (the exact ch07 scenario).
+      if (!review.pass && isFlipSignature(review, bar)) {
+        review = (await tiebreakFlipVerdict(bookId, fresh, review, deps, io, bar)).review;
+      }
       reviews.set(chapter.number, review);
       if (!review.pass) stillFailing.push({ chapterNumber: chapter.number, summary: complaintsOf(review).join("; ").slice(0, 400) });
     });
@@ -802,9 +1003,45 @@ async function doAuthorReviewInner(
     throw err;
   }
   if (!acceptance.accepted) {
-    // ONE targeted regen round: the book readers' complaints mapped to their
-    // chapters (cap 3), re-review, then re-run acceptance ONCE.
-    const allTargets = mapBookComplaintsToChapters(acceptance.readers, acceptance.sampledNumbers);
+    // ONE targeted regen round, then re-run acceptance ONCE.
+    //
+    // C2: when the rejection is CHURN-DRIVEN (book-wide sameness), the old
+    // ch-ref router degraded to "first three sampled chapters" and the writers
+    // got no cross-chapter evidence — the halted execution run regened ch03 by
+    // lowest-number fallback and the composite DROPPED. Churn routing instead:
+    // reader-NAMED chapters first, measured saturation contributors fill to the
+    // cap, and every target gets the deterministic churn-evidence report + a
+    // DISTINCT divergence lane (+ any tiebreak-overridden complaints for that
+    // chapter). Non-churn rejections keep the existing complaint mapping.
+    const churnDriven = acceptance.verdict.churn === "HIGH";
+    let allTargets: Map<number, string[]>;
+    if (churnDriven) {
+      const named = mapNamedBookComplaints(acceptance.readers, acceptance.sampledNumbers);
+      const report = buildChurnEvidenceReport(chapters);
+      const contributors = rankSaturationContributors(chapters).filter((n) => acceptance.sampledNumbers.includes(n));
+      const targetNums = [...named.keys()].sort((a, b) => a - b).slice(0, AUTHOR_BOOK_REGEN_CHAPTER_CAP);
+      for (const n of contributors) {
+        if (targetNums.length >= AUTHOR_BOOK_REGEN_CHAPTER_CAP) break;
+        if (!targetNums.includes(n)) targetNums.push(n);
+      }
+      const verdictLines = acceptance.readers
+        .filter((r) => r.valid !== false)
+        .map((r) => `book reader verdict: ${(r.oneParagraphVerdict ?? "").slice(0, 350)}`);
+      const notes = loadTiebreakNotes(bookId);
+      allTargets = new Map(targetNums.map((n, i) => [n, [
+        "book acceptance REJECTED with churn HIGH — the book reads as one template stamped repeatedly. Your rewrite must DIVERGE from the book-wide patterns below; improving the chapter in place while keeping the shared machine will fail again.",
+        ...(named.get(n) ?? []),
+        ...verdictLines,
+        ...report,
+        CHURN_DIVERGENCE_ASSIGNMENTS[i % CHURN_DIVERGENCE_ASSIGNMENTS.length],
+        ...notes
+          .filter((t) => t.chapterNumber === n && t.overriddenComplaints.length > 0)
+          .flatMap((t) => t.overriddenComplaints.map((c) => `earlier independent-review complaint (tiebreak-preserved): ${c}`)),
+      ]]));
+      deps.log(`[autopilot] author acceptance: churn-driven repair routing — targets ${targetNums.map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")} (named: ${[...named.keys()].join(",") || "none"}; saturation-ranked fill), churn pack ${report.length} measured line(s)`);
+    } else {
+      allTargets = mapBookComplaintsToChapters(acceptance.readers, acceptance.sampledNumbers);
+    }
     // A chapter is skipped when it consumed its regen THIS entry (in-memory set)
     // OR across a prior entry (durable ledger) — the GLOBAL cap survives re-entry.
     const consumedGlobally = (n: number): boolean => regenerated.has(n) || regenExhausted(n);
@@ -836,7 +1073,12 @@ async function doAuthorReviewInner(
         regenFailures.push(`ch${nn}: regenerated file missing after write`);
         return;
       }
-      const review = await reviewOneChapter(bookId, fresh, deps, io, bar, "-bookregen");
+      let review = await reviewOneChapter(bookId, fresh, deps, io, bar, "-bookregen");
+      // C3 applies here too: this chapter's budget is now consumed — a flip on
+      // this read would otherwise halt the whole book on a coin toss.
+      if (!review.pass && isFlipSignature(review, bar)) {
+        review = (await tiebreakFlipVerdict(bookId, fresh, review, deps, io, bar)).review;
+      }
       reviews.set(chapterNumber, review);
       if (!review.pass) regenFailures.push(`ch${nn}: ${complaintsOf(review).join("; ").slice(0, 400)}`);
     });
@@ -845,7 +1087,12 @@ async function doAuthorReviewInner(
     }
     chapters = [...io.loadChapters(bookId)].sort((a, b) => a.number - b.number);
     try {
-      acceptance = await runBookAcceptance(bookId, chapters, deps, io, bar, "-round2");
+      // C4: salt = the raw round label; regen targets force-included so the
+      // re-accept provably re-reads the repaired bytes (#5/#6).
+      acceptance = await runBookAcceptance(bookId, chapters, deps, io, bar, "-round2", {
+        salt: "-round2",
+        forceInclude: [...targets.keys()],
+      });
     } catch (err) {
       if (err instanceof DocIntegrityError) return halt(bookId, "infra", `author acceptance (round2): ${err.message}`);
       throw err;

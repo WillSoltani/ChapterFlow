@@ -61,6 +61,11 @@
 import { fnv1a } from "../lib/fnv1a.js";
 import { normSlug } from "../lib/chapterPaths.js";
 
+/** Bumped whenever the SET of dealt rotation fields changes — part of the regen-cap
+ *  lineage hash, so a rotation redesign re-keys chapters' write budgets honestly.
+ *  v2 = the S-tier deal (exampleLenses + practiceVerb + requireFrictionExample). */
+export const ROTATION_SCHEMA_VERSION = "brief-rotation-v2";
+
 export const OPENER_TYPES = ["question", "scene", "claim", "statistic"] as const;
 export type OpenerType = (typeof OPENER_TYPES)[number];
 

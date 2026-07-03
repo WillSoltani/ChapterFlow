@@ -1415,6 +1415,56 @@ function checkPracticeVerbFamily(chapters: ChapterV21[]): BudgetFinding[] {
   return findings;
 }
 
+/** C2: the deterministic churn-evidence report the acceptance-reject repair
+ *  round hands to targeted writers — the CHB10–13 measurements over the CURRENT
+ *  bytes, formatted as complaint lines. Cross-chapter context is deliberately
+ *  allowed HERE (and only here): this is the post-acceptance repair round, and
+ *  the leak IS the repair signal (plan §Round-2 #22). */
+export function buildChurnEvidenceReport(chapters: ChapterV21[]): string[] {
+  const ordered = [...chapters].sort((a, b) => a.number - b.number);
+  const findings = [
+    ...checkLexicalSaturation(ordered),
+    ...checkSceneClassSpread(ordered),
+    ...checkStrawmanRate(ordered),
+    ...checkPracticeVerbFamily(ordered),
+  ];
+  if (findings.length === 0) return ["measured churn evidence: none of the deterministic cross-chapter meters fire — the sameness the readers named is in surfaces the meters cannot see; diverge on rhetoric, scene texture, and sentence rhythm."];
+  return findings.map((f) => `measured (${f.checkId}): ${f.message}`);
+}
+
+/** C2/#21: rank chapters by their contribution to the book's lexical saturation
+ *  (per-chapter usage of the book's band words; ties → lower chapter number).
+ *  Used to pick evidence-driven regen targets among the sampled chapters. */
+export function rankSaturationContributors(chapters: ChapterV21[]): number[] {
+  const ordered = [...chapters].sort((a, b) => a.number - b.number);
+  const N = ordered.length;
+  if (N === 0) return [];
+  const freq = new Map<string, number>();
+  const spread = new Map<string, Set<number>>();
+  const perChapterTokens = new Map<number, string[]>();
+  for (const chapter of ordered) {
+    const tokens = saturationTokens(fullReaderSurface(chapter));
+    perChapterTokens.set(chapter.number, tokens);
+    for (const w of tokens) {
+      freq.set(w, (freq.get(w) ?? 0) + 1);
+      if (!spread.has(w)) spread.set(w, new Set());
+      spread.get(w)!.add(chapter.number);
+    }
+  }
+  const band = new Set(
+    [...freq.entries()]
+      .filter(([w, n]) => n / N >= CHB10_BAND_DENSITY && (spread.get(w)?.size ?? 0) >= CHB10_BAND_SPREAD * N)
+      .map(([w]) => w),
+  );
+  const score = new Map<number, number>();
+  for (const chapter of ordered) {
+    score.set(chapter.number, (perChapterTokens.get(chapter.number) ?? []).filter((w) => band.has(w)).length);
+  }
+  return ordered
+    .map((c) => c.number)
+    .sort((a, b) => (score.get(b)! - score.get(a)!) || (a - b));
+}
+
 // ── entry point ──────────────────────────────────────────────────────────────
 
 export function checkReaderBudgets(chapters: ChapterV21[], opts?: ReaderBudgetOptions): BudgetFinding[] {
