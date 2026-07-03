@@ -28,7 +28,7 @@
  */
 
 import { spawn } from "child_process";
-import { randomBytes } from "crypto";
+import { createHash, randomBytes } from "crypto";
 import { existsSync, readdirSync, readFileSync, mkdirSync, writeFileSync, unlinkSync, appendFileSync, renameSync, copyFileSync, rmSync } from "fs";
 import { hostname, tmpdir } from "os";
 import { dirname, resolve, relative } from "path";
@@ -67,8 +67,9 @@ import { spawnCodexAgent, type CodexAgentResult, type CodexSandbox } from "./cod
 import { researchFreshnessViolation } from "./researchFreshness.js";
 import { doCompilerWrite } from "./compilerRun.js";
 import { doAuthorWrite } from "./authorRun.js";
-import { doAuthorReview, type AuthorReviewIo } from "./authorReview.js";
-import { deriveDurableAcceptance } from "./authorAcceptanceState.js";
+import { doAuthorReview, AUTHOR_BOOK_READERS, type AuthorReviewIo } from "./authorReview.js";
+import { deriveDurableAcceptance, loadNewestAcceptanceRecord } from "./authorAcceptanceState.js";
+import { SessionLedger, newRunManifest, writeCostReport, formatCostReport, writeRunManifest, type RunManifest } from "./sessionLedger.js";
 import { runRoutedRedeals, runArtifactSync } from "./repairRouting.js";
 import { bookRiskPath } from "../artifacts/artifactStore.js";
 import { RISK_SCORE_SCHEMA_VERSION, type BookRiskScoreV1, type ChapterRiskScoreV1 } from "../artifacts/artifactTypes.js";
@@ -951,8 +952,106 @@ const MAX_LOOP_ITERS = 40; // safety backstop; real phases advance well under th
 // round budget; the outer loop + noProgress halt are the global anti-spin backstop.
 const REGRESSION_REDISPATCH_CAP = 2;
 
+/** WS6 T1/T2 — map a terminal AutopilotOutcome to a short terminal tag for the cost report
+ *  + run manifest. */
+function terminalTag(o: AutopilotOutcome): string {
+  return o.status === "halt" ? `halt:${o.category}` : o.status;
+}
+
 export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOutcome> {
-  const deps = resolveDeps(opts.deps);
+  // WS6 — one per-run session ledger + run manifest. The ledger observes EVERY minted
+  // session id (mkSessionId) and every spawned session's outcome (logSession) by wrapping
+  // those two deps choke points, so both are captured no matter which module spawned. At
+  // every terminal we write cost-report.json + finalize run-manifest.json and print a
+  // compact table. Telemetry is best-effort: it never converts into a halt.
+  const ledger = new SessionLedger(opts.bookId);
+  const runManifest = newRunManifest({
+    bookId: opts.bookId,
+    arch: opts.architecture,
+    flags: {
+      autoPublish: opts.autoPublish ?? false,
+      regen: opts.regen ?? false,
+      plan: opts.plan ?? false,
+      maxRepairRounds: opts.maxRepairRounds ?? 4,
+      maxParallel: opts.maxParallel ?? 6,
+    },
+    readerCount: opts.architecture === "author" ? AUTHOR_BOOK_READERS : null,
+  });
+  const base = resolveDeps(opts.deps);
+  // Wrap the two telemetry choke points without changing their behavior. mkSessionId still
+  // returns the base id (unchanged), we just observe it; logSession still runs the base
+  // sink, we just also record the outcome. Both wrappers are self-guarded so a ledger bug
+  // can never brick a run.
+  const deps: AutopilotDeps = {
+    ...base,
+    mkSessionId: (label: string) => {
+      const id = base.mkSessionId(label);
+      try { ledger.mint(label, id); } catch { /* telemetry never halts a run */ }
+      return id;
+    },
+    logSession: (bookId: string, label: string, r: CodexAgentResult) => {
+      try { ledger.record(r); } catch { /* telemetry never halts a run */ }
+      base.logSession(bookId, label, r);
+    },
+  };
+  let outcome: AutopilotOutcome;
+  try {
+    outcome = await runAutopilotCore(opts, deps, ledger);
+  } catch (err) {
+    // runAutopilotCore already converts in-run throws to structured halts; this is a
+    // last-resort guard so a telemetry-wrapper or setup throw still yields a structured
+    // outcome (and still finalizes telemetry below).
+    outcome = mkHalt(opts.bookId, "research", "infra", `unexpected failure before/around the conductor loop: ${(err as Error)?.message ?? String(err)}`);
+  }
+  // WS6 — finalize telemetry at the single terminal, for EVERY outcome (ready / published /
+  // shipped / halt / error). Best-effort throughout.
+  try {
+    const terminal = terminalTag(outcome);
+    const report = ledger.build(terminal);
+    writeCostReport(PIPELINE_DIR, opts.bookId, report);
+    base.log(formatCostReport(report));
+    if (!report.invariantOk) {
+      // A loud ERROR line into the durable log too (never a halt — telemetry must not brick
+      // a run). This is the backstop that would have surfaced the first run's 2 hidden
+      // deterministic gate-repair spawns at READY instead of via counter archaeology.
+      base.log(`[autopilot] ERROR cost-report honest-accounting invariant TRIPPED for ${opts.bookId}: ${report.unloggedSpawnIds.length} spawn id(s) minted but never logged (${report.unloggedSpawnIds.slice(0, 8).join(", ")}) — a spawn site is not routing through logSession.`);
+    }
+    runManifest.finishedAt = new Date().toISOString();
+    runManifest.terminal = terminal;
+    finalizeManifestBeatShipped(opts.bookId, opts.architecture, runManifest);
+    finalizeManifestPackage(opts.bookId, outcome, runManifest);
+    writeRunManifest(PIPELINE_DIR, runManifest);
+  } catch { /* telemetry is best-effort: never let it change the outcome */ }
+  return outcome;
+}
+
+/** Best-effort: read the newest durable acceptance record's bar + beat-shipped composite
+ *  into the manifest (author arch only). The control-read git pin is not persisted on the
+ *  acceptance record (only its composite floor is), so `pin` stays null. Never throws. */
+function finalizeManifestBeatShipped(bookId: string, arch: string, m: RunManifest): void {
+  if (arch !== "author") return;
+  try {
+    const record = loadNewestAcceptanceRecord(bookId);
+    if (record) {
+      m.bar = record.bar ?? m.bar;
+      m.beatShipped = { pin: null, composite: record.beatShipped ?? null };
+    }
+  } catch { /* best-effort */ }
+}
+
+/** Best-effort: when the outcome is a real ship, stamp the promoted package's sha + size. */
+function finalizeManifestPackage(bookId: string, outcome: AutopilotOutcome, m: RunManifest): void {
+  if (outcome.status !== "published" && outcome.status !== "shipped") return;
+  try {
+    const pkgPath = resolve(REPO_ROOT, "book-packages", `${bookId}.v21.json`);
+    if (!existsSync(pkgPath)) return;
+    const bytes = readFileSync(pkgPath);
+    m.packageSize = bytes.length;
+    m.packageSha = createHash("sha256").update(bytes).digest("hex");
+  } catch { /* best-effort */ }
+}
+
+async function runAutopilotCore(opts: AutopilotOptions, deps: AutopilotDeps, ledger: SessionLedger): Promise<AutopilotOutcome> {
   const bookId = opts.bookId;
   // Validate the bookId BEFORE it touches any path (lock / state / blind-workspace / broker-temp
   // dirs) or a spawned CLI argv. It arrives as a raw CLI positional and flows into resolve()-based
@@ -1025,6 +1124,12 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
     // flag for deps.sweepConfirmed at the decidePhase CALL SITE below (compiler/legacy call sites
     // untouched). It flips true ONLY after the book acceptance (at valid-reader quorum) has passed.
     let authorBookAccepted = false;
+    // WS6 carry telemetry: record the durable-acceptance carry decision ONCE per run, at the
+    // first author-arch iteration — a HIT means the book entered ALREADY durably-accepted (a
+    // whole re-review/acceptance cycle avoided), a MISS means it did not and this run runs the
+    // acceptance phase. (Per-iteration recording would falsely count a normal first-pass run's
+    // pre-acceptance iterations as carry misses.)
+    let carryRecorded = false;
     for (let iter = 0; iter < MAX_LOOP_ITERS; iter++) {
       // Heartbeat: keep our lock fresh AND detect a steal. If refresh() reports we no
       // longer own it (a successor took over after our heartbeat went stale), HALT rather
@@ -1039,10 +1144,24 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
       // bookAcceptance attestations on every chapter + a quorum-met acceptance
       // record). A fully-accepted book RE-ENTERING the conductor over unchanged
       // content now routes straight to READY (0 sessions) instead of back to "qc".
+      // The author arch's biggest efficiency lever is durable acceptance carry — a
+      // fully-accepted book re-entering the conductor over unchanged bytes routes straight to
+      // READY (0 re-review sessions). Preserve the original lazy short-circuit: authorAccepted
+      // is consulted only when this run hasn't already accepted in-memory.
+      let authorDurable = false;
+      if (architecture === "author" && !authorBookAccepted) {
+        authorDurable = deps.authorAccepted(bookId);
+        // WS6: record the carry decision ONCE per run (first author iteration).
+        if (!carryRecorded) {
+          carryRecorded = true;
+          try { if (authorDurable) ledger.carryHit(); else ledger.carryMiss(); } catch { /* telemetry never halts */ }
+        }
+      }
       const sweepConfirmed = architecture === "author"
-        ? (authorBookAccepted || deps.authorAccepted(bookId))
+        ? (authorBookAccepted || authorDurable)
         : deps.sweepConfirmed(bookId);
       const phase = decidePhase(status, sweepConfirmed, regen);
+      try { ledger.setPhase(phase); } catch { /* telemetry never halts a run */ }
       // sweepConfirmed is in the signature so a confirming round (which leaves the chapter counts
       // unchanged but flips confirmation) counts as PROGRESS, not a no-progress halt.
       const sig = `${phase}:${status.writtenChapters}/${status.expectedChapters ?? "?"}:${status.gatedChapters}:${status.qcdChapters}:${sweepConfirmed ? "c" : "u"}`;
