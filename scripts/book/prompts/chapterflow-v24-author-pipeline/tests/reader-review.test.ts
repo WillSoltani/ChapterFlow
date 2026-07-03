@@ -188,7 +188,12 @@ test("renderChapterReaderDoc: every reader-facing section header is present, in 
   assert.ok(doc.includes("Weekly practice: "));
   assert.ok(doc.includes("- Showing up is the vote that compounds into an identity."));
   assert.ok(doc.includes("   a) The starting effort"));
-  assert.ok(doc.includes("   Explanation: It caps the start of the habit"));
+  // 2026-07-03 explanation-leak fix: explanations must NOT appear before the
+  // ANSWER KEY (they disclosed the intended key under the choices); they now
+  // render inside the key rows instead.
+  const keyHeaderAt = doc.indexOf("## ANSWER KEY");
+  assert.ok(!doc.slice(0, keyHeaderAt).includes("Explanation:"), "no explanation text above the ANSWER KEY");
+  assert.ok(/^Q\d+: [abc] — It caps the start of the habit/m.test(doc.slice(keyHeaderAt)), "explanation rides its key row");
 });
 
 test("renderChapterReaderDoc: answer key at the bottom maps correctIndex 0/1/2 to a/b/c", () => {
@@ -197,9 +202,10 @@ test("renderChapterReaderDoc: answer key at the bottom maps correctIndex 0/1/2 t
   assert.ok(keyAt > 0);
   const keyBlock = doc.slice(keyAt);
   const lines = keyBlock.split("\n").slice(1);
-  assert.deepEqual(lines, ["Q1: a", "Q2: b", "Q3: c"]);
-  // Nothing after the key: the document ENDS with the mapped keys.
-  assert.ok(doc.endsWith("Q1: a\nQ2: b\nQ3: c"));
+  // Rows carry the letter mapping first; explanations ride after " — " (2026-07-03 leak fix).
+  assert.deepEqual(lines.map((l) => l.split(" — ")[0]), ["Q1: a", "Q2: b", "Q3: c"]);
+  // Nothing after the key: the document ENDS with the mapped key rows.
+  assert.ok(/\nQ3: c( — [^\n]*)?$/.test(doc));
 });
 
 // ── Task template ───────────────────────────────────────────────────────────
@@ -399,7 +405,7 @@ test("Q2 chapter integrity passes on a complete doc and THROWS on truncation / m
   const doc = ensureTrailingNewline(renderChapterReaderDoc(ch));
   assert.doesNotThrow(() => assertChapterReaderDocIntegrity(doc, ch));
 
-  const truncated = doc.replace(/\nQ3: c\n$/, "\n"); // drop the last answer-key row
+  const truncated = doc.replace(/\nQ3: c[^\n]*\n$/, "\n"); // drop the last answer-key row
   assert.throws(() => assertChapterReaderDocIntegrity(truncated, ch), (e: unknown) => {
     assert.ok(e instanceof DocIntegrityError);
     assert.match((e as Error).message, /2 answer-key row\(s\) vs 3/);
@@ -433,7 +439,7 @@ test("Q3 chapter: a no-ship reader's disproven 'key omits Q3' claim invalidates 
 
 test("Q3 chapter: a CONFIRMED claim (Q genuinely unkeyed) throws DocIntegrityError", () => {
   const ch = fixtureChapter();
-  const doc = ensureTrailingNewline(renderChapterReaderDoc(ch)).replace(/\nQ3: c\n$/, "\n");
+  const doc = ensureTrailingNewline(renderChapterReaderDoc(ch)).replace(/\nQ3: c[^\n]*\n$/, "\n");
   const parsed = goodParsed({ ship84: false, quizDerivation: { answers: ["a", "b", "c"], keyDisagreements: ["The answer key omits Q3."], tells: [] } });
   assert.throws(() => adjudicateReview(parsed, doc, ch, { bar: 84 }), (e: unknown) => {
     assert.ok(e instanceof DocIntegrityError);

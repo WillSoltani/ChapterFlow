@@ -259,7 +259,8 @@ function normalizeAnswer(raw: string): string {
 
 const CHAPTER_ANSWER_KEY_HEADER = "## ANSWER KEY";
 
-/** 1-indexed doc line numbers of the chapter answer-key rows (`Q<i>: <letter>`),
+/** 1-indexed doc line numbers of the chapter answer-key rows (`Q<i>: <letter>`
+ *  or, since the 2026-07-03 explanation-leak fix, `Q<i>: <letter> — <expl>`),
  *  keyed by question number — only rows BELOW the ANSWER KEY header count. */
 export function chapterDocKeyRowLines(docText: string): Map<number, number> {
   const lines = docText.split("\n");
@@ -268,7 +269,7 @@ export function chapterDocKeyRowLines(docText: string): Map<number, number> {
   lines.forEach((line, i) => {
     if (line.startsWith(CHAPTER_ANSWER_KEY_HEADER)) { inKey = true; return; }
     if (!inKey) return;
-    const m = line.match(/^Q(\d+): [abc?]$/);
+    const m = line.match(/^Q(\d+): [abc?](?: — .*)?$/);
     if (m) out.set(Number(m[1]), i + 1);
   });
   return out;

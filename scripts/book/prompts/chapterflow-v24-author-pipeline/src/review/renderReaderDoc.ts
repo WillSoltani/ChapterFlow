@@ -12,6 +12,13 @@
  * The document ends with an ANSWER KEY section on purpose: the reader is
  * instructed to derive their own quiz answers from the prose FIRST and only
  * then compare against the key (key-soundness checking).
+ *
+ * DELIBERATE FORMAT CHANGE (2026-07-03, instrument hardening — NOT cleanup):
+ * per-question explanations moved from under the choices into the ANSWER KEY
+ * rows. An execution ch01 reviewer caught that an explanation printed below
+ * the choices discloses the intended key BEFORE the key section, defeating
+ * derive-first. Review carry-forward binds docHash, so no pre-change review
+ * can be reused across this change.
  */
 
 import type { ChapterV21 } from "../types.js";
@@ -36,7 +43,7 @@ export function renderChapterReaderDoc(ch: ChapterV21): string {
   (ch.quiz?.questions ?? []).forEach((q, i) => {
     L.push('Q' + (i + 1) + '. ' + q.prompt);
     (q.choices ?? []).forEach((c, ci) => L.push('   ' + "abc"[ci] + ') ' + c));
-    L.push('   Explanation: ' + q.explanation, "");
+    L.push("");
   });
   L.push("## Review cards");
   (ch.reviewCards ?? []).forEach((c, i) => L.push('Card ' + (i + 1) + ' — Front: ' + c.front, '          Back: ' + c.back, ""));
@@ -49,6 +56,7 @@ export function renderChapterReaderDoc(ch: ChapterV21): string {
   L.push("## Memorable lines");
   (ch.memorableLines ?? []).forEach((m) => L.push('- ' + m.text));
   L.push("", "## ANSWER KEY (for key-soundness checking — derive your own answers from the prose FIRST)");
-  (ch.quiz?.questions ?? []).forEach((q, i) => L.push('Q' + (i + 1) + ': ' + ("abc"[q.correctIndex] ?? "?")));
+  (ch.quiz?.questions ?? []).forEach((q, i) =>
+    L.push('Q' + (i + 1) + ': ' + ("abc"[q.correctIndex] ?? "?") + (q.explanation ? ' — ' + q.explanation : '')));
   return L.join("\n");
 }
