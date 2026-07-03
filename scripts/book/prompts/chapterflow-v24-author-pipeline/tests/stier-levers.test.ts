@@ -117,9 +117,12 @@ function mkPacket(n: number, claims: string[]): SourcePacketV1 {
     bookId: BOOK,
     chapterId: `${BOOK}-ch${String(n).padStart(2, "0")}`,
     chapterNumber: n,
-    facts: claims.map((claim, i) => ({ id: `ch${n}.fact.${i}`, claim })),
+    facts: claims.map((claim, i) => ({ id: `ch${n}.fact.${i}`, claim, groundedEntities: [], groundedNumbers: [], groundedPlaces: [] })),
     namedCases: [],
     allowedAnchors: [],
+    allowedEntities: [],
+    allowedNumbers: [],
+    allowedPlaces: [],
   } as unknown as SourcePacketV1;
 }
 
@@ -434,6 +437,7 @@ test("C3 integration #1: a flip-FAIL converts on 2/3 SHIP with NO regen consumed
     }) as unknown as AutopilotDeps["spawn"],
     mkSessionId: (label: string) => `${label}#${++n}`,
     logSession: () => {},
+    expectedChapterNumbers: () => chapters.map((c) => c.number),
     log: () => {},
   } as unknown as AutopilotDeps;
 
@@ -518,6 +522,7 @@ test("C3 integration: a tiebreak SPLIT (1 ship / 1 no-ship) upholds the FAIL —
     }) as unknown as AutopilotDeps["spawn"],
     mkSessionId: (label: string) => `${label}#${++n}`,
     logSession: () => {},
+    expectedChapterNumbers: () => chapters.map((c) => c.number),
     log: () => {},
     runVerb: async () => ({ code: 0, stdout: "gate ok", stderr: "" }),
   } as unknown as AutopilotDeps;

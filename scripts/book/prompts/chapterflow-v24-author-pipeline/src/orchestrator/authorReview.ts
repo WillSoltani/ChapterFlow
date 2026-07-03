@@ -99,6 +99,7 @@ import {
 } from "./authorEvidence.js";
 import {
   authorWriteOneChapter,
+  ensureReaderBudgetsClean,
   resolveAuthorIo,
   type AuthorIo,
 } from "./authorRun.js";
@@ -880,6 +881,27 @@ async function doAuthorReviewInner(
   // (→ infra halt via the doAuthorReview wrapper) when a legacy count's lineage is
   // uncomputable. The write phase migrates too — first one in wins.
   io.migrateRegenLedger(bookId, deps.log);
+
+  // Reader budgets hold at THIS entry too (live-caught 2026-07-03): a budgets
+  // BLOCK halts the write phase, but a re-entry conductor routes gate→qc past
+  // the write phase entirely — without this check the flagged bytes would reach
+  // reviewers with the block never re-run. Deterministic and instant when clean;
+  // on a block it runs the same ONE bounded repair round, then re-checks.
+  const budgetOutcome = await ensureReaderBudgetsClean(bookId, deps, io, {
+    maxParallel: opts.maxParallel,
+    heartbeat,
+    haltPhase: "qc",
+    label: "author review budgets",
+    io: opts.io,
+  });
+  if (budgetOutcome) return budgetOutcome;
+  // The repair round may have rewritten chapters — reload so reviews score the
+  // repaired bytes (carries for rewritten chapters correctly miss on contentHash).
+  try {
+    chapters = [...io.loadChapters(bookId)].sort((a, b) => a.number - b.number);
+  } catch (err) {
+    return halt(bookId, "infra", `author review: could not reload chapters after the budget check: ${(err as Error).message}`);
+  }
 
   // ── 1. One blinded reader per chapter — UNLESS a durable review can be
   //       CARRIED for the current bytes (E2). A carry hits only when a persisted

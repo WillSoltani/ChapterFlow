@@ -225,8 +225,22 @@ export function makeChapter(bookId: string, n: number, opts: MakeChapterOpts = {
         { context: `starting a ${words[3]} shift`, plan: `If I open the ${words[4]} log, then I compare the last entry with the prior day before adding a new one.` },
         { context: `finding a mismatch`, plan: `If the ${words[5]} totals disagree, then I stop new entries and trace the earliest divergent record.` },
       ],
-      twentyFourHourChallenge: `Once today, before starting a task, write down which ${words[6]} record you expect to be wrong and check that one first.`,
-      weeklyPractice: `Each week, pick one ${words[7]} log and audit three days of entries against their source notes.`,
+      // Opener clauses rotate by chapter number: a fixed opener across a 2-chapter
+      // fixture book trips CHB7's scaffold-family cap (ceil(N/3)=1 at N=2) now that
+      // the reader budgets also run at doAuthorReview entry (live fix 2026-07-03).
+      // The fixture must be family-clean by construction, like a real book.
+      twentyFourHourChallenge: `${[
+        "Once today, before starting a task,",
+        `Before your next ${words[8]} handoff,`,
+        `Right after the first ${words[3]} check,`,
+        `During today's ${words[9]} window,`,
+      ][(n - 1) % 4]} write down which ${words[6]} record you expect to be wrong and check that one first.`,
+      weeklyPractice: `${[
+        "Each week, pick one",
+        "Every Friday, audit one",
+        "Once a week, pull one",
+        "At the week's close, open one",
+      ][(n - 1) % 4]} ${words[7]} log and check three days of entries against their source notes.`,
     },
     memorableLines: [
       { text: `Nobody checks the ${words[1]} until the ${words[2]} is already gone.`, location: "hook", why: "It names the failure everyone recognizes after the fact." },

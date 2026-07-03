@@ -28,7 +28,13 @@ import { CANONICAL_STATE } from "../src/lib/chapterPaths.js";
 // (post-refactor): the pure extraction of the family ids / normalizer / severity rules into
 // sweepSpec did NOT move a single byte of the rendered sweep pack. `createdAt` (the only
 // nondeterministic field) is stripped before hashing.
-const SWEEP_PACK_GOLDEN_SHA256 = "315b212db3a967d8774764d9a144d357a363f1b660460c6608bbb0aecb77fe6a";
+//
+// REBASED 2026-07-03 (S-tier campaign): makeChapter's practice-opener clauses now rotate
+// by chapter number (helpers.ts — the fixed openers tripped CHB7's scaffold-family cap once
+// the reader budgets started running at doAuthorReview entry). The hash moved through the
+// FIXTURE INPUT, not the sweep-pack rendering (no sweep/keyPack code changed in the campaign
+// — verified by diffing the pack fields against the fixture delta before rebasing).
+const SWEEP_PACK_GOLDEN_SHA256 = "078d4c15052275151681e9eebbdcf87391a2a33a14a7f6ea8677b6503a409e51";
 const PACK_BOOK = "zz-fixture-packsnap";
 const PACK_ROUND = "r-packsnap";
 

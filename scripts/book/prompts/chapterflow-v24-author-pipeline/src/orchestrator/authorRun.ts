@@ -536,16 +536,51 @@ export async function doAuthorWrite(
     return halt(bookId, "content", `author write: ${failures.length} chapter(s) failed to author within the retry budget:\n${failures.join("\n\n").slice(0, 3000)}`);
   }
 
-  // ── Reader budgets: a BLOCKING author-arch step (write-time defects the
-  //    writer must not ship). Fail-closed on the CHB3 name-bank infra condition.
+  return ensureReaderBudgetsClean(bookId, deps, io, {
+    maxParallel: opts.maxParallel,
+    heartbeat,
+    haltPhase: "write",
+    label: "author write",
+    io: opts.io,
+  });
+}
+
+/**
+ * Reader budgets: a BLOCKING author-arch step with ONE bounded repair round.
+ *
+ * Called from BOTH doAuthorWrite (after authoring) AND doAuthorReview (at
+ * entry): the first S-tier run halted at the write-phase block, and the
+ * RE-ENTRY conductor routed gate→qc past the write phase entirely — the
+ * flagged bytes would have reached reviewers without the budgets ever
+ * re-checking (live-caught 2026-07-03). The check is deterministic and
+ * costs milliseconds on the happy path; enforcement at every downstream
+ * entry is a pure strengthen.
+ */
+export async function ensureReaderBudgetsClean(
+  bookId: string,
+  deps: AutopilotDeps,
+  io: AuthorIo,
+  opts: {
+    maxParallel: number;
+    heartbeat: () => boolean;
+    haltPhase: "write" | "qc";
+    label: string;
+    io?: Partial<AuthorIo>;
+  },
+): Promise<AutopilotOutcome | null> {
+  const haltHere = (category: HaltCategory, reason: string): AutopilotOutcome =>
+    ({ status: "halt", bookId, phase: opts.haltPhase, category, reason });
+  const heartbeat = opts.heartbeat;
+  const expected = deps.expectedChapterNumbers(bookId);
+
   if (!io.nameBankOk()) {
-    return halt(bookId, "infra", "author write: config/name-bank.json is missing/corrupt/empty — readerBudgets would silently no-op CHB3 (cast disjointness). Fix the name bank; refusing to skip the check.");
+    return haltHere("infra", `${opts.label}: config/name-bank.json is missing/corrupt/empty — readerBudgets would silently no-op CHB3 (cast disjointness). Fix the name bank; refusing to skip the check.`);
   }
   let chapters: ChapterV21[];
   try {
     chapters = io.loadChapters(bookId);
   } catch (err) {
-    return halt(bookId, "infra", `author write: could not load chapters for the reader-budget check: ${(err as Error).message}`);
+    return haltHere("infra", `${opts.label}: could not load chapters for the reader-budget check: ${(err as Error).message}`);
   }
   const packets = new Map<number, SourcePacketV1>();
   for (const n of expected) {
@@ -557,7 +592,7 @@ export async function doAuthorWrite(
 
   let { findings, nameBankWarn } = runBudgetsCapturingWarn(chapters, packets, lengthBudget);
   if (nameBankWarn) {
-    return halt(bookId, "infra", `author write: readerBudgets reported the name bank unavailable (CHB3 silently disabled): ${nameBankWarn}. Fix config/name-bank.json; refusing to skip the check.`);
+    return haltHere("infra", `${opts.label}: readerBudgets reported the name bank unavailable (CHB3 silently disabled): ${nameBankWarn}. Fix config/name-bank.json; refusing to skip the check.`);
   }
   let blockers = findings.filter((f) => f.severity === "blocker");
   if (blockers.length > 0) {
@@ -571,9 +606,9 @@ export async function doAuthorWrite(
     const targets = buildBudgetRepairComplaints(chapters, blockers);
     const lines = blockers.map((f) => `  [${f.checkId}] ch${String(f.chapterNumber).padStart(2, "0")}: ${f.message}`);
     if (targets.size === 0) {
-      return halt(bookId, "content", `author write: reader budgets BLOCK (${blockers.length} finding(s)) with no repair-routable chapter evidence:\n${lines.join("\n").slice(0, 3000)}`);
+      return haltHere("content", `${opts.label}: reader budgets BLOCK (${blockers.length} finding(s)) with no repair-routable chapter evidence:\n${lines.join("\n").slice(0, 3000)}`);
     }
-    deps.log(`[autopilot] author write: reader budgets BLOCK (${blockers.length} finding(s)) — ONE bounded budget-repair round over ${targets.size} chapter(s): ${[...targets.keys()].sort((a, b) => a - b).map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}`);
+    deps.log(`[autopilot] ${opts.label}: reader budgets BLOCK (${blockers.length} finding(s)) — ONE bounded budget-repair round over ${targets.size} chapter(s): ${[...targets.keys()].sort((a, b) => a - b).map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}`);
     const repairFailures: string[] = [];
     await mapPool([...targets.entries()], opts.maxParallel, async ([n, complaints]) => {
       heartbeat();
@@ -581,25 +616,25 @@ export async function doAuthorWrite(
       if (!r.ok) repairFailures.push(r.reason);
     });
     if (repairFailures.length > 0) {
-      return halt(bookId, "content", `author write: budget-repair round failed for ${repairFailures.length} chapter(s):\n${repairFailures.join("\n\n").slice(0, 3000)}`);
+      return haltHere("content", `${opts.label}: budget-repair round failed for ${repairFailures.length} chapter(s):\n${repairFailures.join("\n\n").slice(0, 3000)}`);
     }
     try {
       chapters = io.loadChapters(bookId);
     } catch (err) {
-      return halt(bookId, "infra", `author write: could not reload chapters after the budget-repair round: ${(err as Error).message}`);
+      return haltHere("infra", `${opts.label}: could not reload chapters after the budget-repair round: ${(err as Error).message}`);
     }
     ({ findings, nameBankWarn } = runBudgetsCapturingWarn(chapters, packets, lengthBudget));
     if (nameBankWarn) {
-      return halt(bookId, "infra", `author write: readerBudgets reported the name bank unavailable after repair: ${nameBankWarn}.`);
+      return haltHere("infra", `${opts.label}: readerBudgets reported the name bank unavailable after repair: ${nameBankWarn}.`);
     }
     blockers = findings.filter((f) => f.severity === "blocker");
     if (blockers.length > 0) {
       const stillLines = blockers.map((f) => `  [${f.checkId}] ch${String(f.chapterNumber).padStart(2, "0")}: ${f.message}`);
-      return halt(bookId, "content", `author write: reader budgets STILL BLOCK after the one bounded repair round (${blockers.length} finding(s)):\n${stillLines.join("\n").slice(0, 3000)}`);
+      return haltHere("content", `${opts.label}: reader budgets STILL BLOCK after the one bounded repair round (${blockers.length} finding(s)):\n${stillLines.join("\n").slice(0, 3000)}`);
     }
-    deps.log(`[autopilot] author write: budget-repair round converged — blockers clear`);
+    deps.log(`[autopilot] ${opts.label}: budget-repair round converged — blockers clear`);
   }
   const advisories = findings.filter((f) => f.severity === "advisory").length;
-  deps.log(`[autopilot] author write: reader budgets clean (${advisories} advisory finding(s)) — advancing to deterministic gates`);
+  deps.log(`[autopilot] ${opts.label}: reader budgets clean (${advisories} advisory finding(s)) — advancing`);
   return null;
 }

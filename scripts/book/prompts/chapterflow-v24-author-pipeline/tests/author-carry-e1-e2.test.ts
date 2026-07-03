@@ -349,6 +349,7 @@ function mkReviewDeps(bookReplyFor: (chapters: ChapterV21[]) => string, chapters
     }) as unknown as AutopilotDeps["spawn"],
     mkSessionId: (label: string) => `${label}#${++n}`,
     logSession: () => {},
+    expectedChapterNumbers: () => chapters.map((c) => c.number),
     log: () => {},
   } as unknown as AutopilotDeps;
   return { deps, spawns };
@@ -368,6 +369,12 @@ function bookAcceptReply(chapters: ChapterV21[]): string {
 
 test("E2 integration: doAuthorReview CARRIES a durable per-chapter review — spawns ZERO chapter readers (only the book-acceptance panel)", async () => {
   const chapters = [makeChapter(BOOK, 1), makeChapter(BOOK, 2)];
+  // The 2-chapter fixture shares practice-opener families (fixture-intrinsic;
+  // CHB7's cap is ceil(N/3)=1 at N=2) — diversify so the review-entry budget
+  // check (live-added 2026-07-03) exercises the carry path, not the fixture.
+  chapters[1].implementationPlan.twentyFourHourChallenge = "Before your next standup, write the one blocker sentence in your notes app.";
+  chapters[1].implementationPlan.weeklyPractice = "Every Friday, count the open loops in your tracker and close exactly one.";
+  chapters[1].tryThisNow = "When the next email lands, say the two-sentence triage script out loud.";
   // Pre-seed a fresh PASS+valid review for BOTH chapters into REAL state/reviews
   // (default stateRoot — the carry predicate reads there), reviewer ≠ author.
   rmSync(reviewDir(BOOK), { recursive: true, force: true });
