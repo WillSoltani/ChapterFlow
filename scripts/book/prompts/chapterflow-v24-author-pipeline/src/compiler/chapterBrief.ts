@@ -189,6 +189,17 @@ function fallbackRotation(n: number): BriefRotation {
  * for determinism. Top 6. Pure.
  */
 const FRAMEWORK_NOUN_STOP = new Set([
+  // ≥4-char FUNCTION words (the tokenizer only drops ≤3-char words, so these must be
+  // listed explicitly — live sanity check caught "that"/"because"/"into" ranking as
+  // "framework nouns", which would have made the vocabulary budget a laughingstock).
+  "that", "this", "these", "those", "with", "from", "into", "onto", "over", "under",
+  "when", "then", "than", "they", "them", "their", "there", "here", "what", "whether",
+  "where", "which", "while", "would", "could", "should", "must", "might", "shall",
+  "about", "after", "before", "during", "between", "through", "against", "because",
+  "every", "each", "some", "other", "another", "same", "such", "only", "even", "still",
+  "also", "just", "very", "much", "many", "more", "most", "less", "least", "have",
+  "does", "done", "been", "being", "will", "your", "yours", "ours", "theirs", "itself",
+  "again", "once", "never", "always", "often", "cannot", "does", "gets", "goes",
   // structural words that recur in any packet regardless of the book's framework
   "chapter", "book", "reader", "people", "person", "work", "make", "makes", "making",
   "time", "thing", "things", "way", "ways", "place", "good", "better", "best", "real",
