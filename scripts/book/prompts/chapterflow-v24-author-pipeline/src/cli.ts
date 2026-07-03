@@ -1657,6 +1657,8 @@ async function runVerifyProductionPackage(args: string[], flags: Record<string, 
     packagePath,
     stateRoot: typeof flags["state-root"] === "string" ? resolve(process.cwd(), flags["state-root"] as string) : undefined,
     runsRoot: typeof flags["runs-root"] === "string" ? resolve(process.cwd(), flags["runs-root"] as string) : undefined,
+    // K1: explicit manifest-sidecar path override (default derives from state-root + bookId).
+    manifestPath: typeof flags["manifest-path"] === "string" ? resolve(process.cwd(), flags["manifest-path"] as string) : undefined,
     // v2: read-location overrides for the source-reality record/exemption registry
     // (keeps automated verification sandboxable without polluting the real pipeline dir).
     recordPath: typeof flags["record-path"] === "string" ? resolve(process.cwd(), flags["record-path"] as string) : undefined,

@@ -110,6 +110,9 @@ type Fixture = {
   stateRoot: string;
   runsRoot: string;
   packagePath: string;
+  /** WS1/K1: the manifest ships in a state-side sidecar, not embedded. */
+  sidecarPath: string;
+  sidecar: ProductionManifestSidecar;
   recordPath: string;
   exemptionsFile: string;
   pkg: BookPackageV21;
@@ -118,6 +121,45 @@ type Fixture = {
   sourcePath: string;
   qcPath: string;
 };
+
+/** Mirror of promoteBook.ProductionManifestSidecar for the fixtures. */
+type ProductionManifestSidecar = {
+  schemaVersion: "chapterflow-production-manifest-sidecar-v1";
+  bookId: string;
+  packageId: string;
+  createdAt: string;
+  manifest: import("../src/productionManifest.js").ProductionPackageManifest;
+};
+const SIDECAR_SCHEMA = "chapterflow-production-manifest-sidecar-v1" as const;
+
+/** The K1 sidecar path a verifier derives from stateRoot + bookId. */
+function sidecarPathFor(stateRoot: string): string {
+  return resolve(stateRoot, "books", `${BOOK}.production-manifest.json`);
+}
+
+/** Build the classic-shape slim package (no embedded manifest) + write its
+ *  manifest sidecar next to the gate report. Human-readable packageId. */
+function writeSlimPackageAndSidecar(
+  packagePath: string,
+  sidecarPath: string,
+  createdAt: string,
+  manifest: import("../src/productionManifest.js").ProductionPackageManifest,
+  shipped: ChapterV21[],
+): { pkg: BookPackageV21; sidecar: ProductionManifestSidecar } {
+  const packageId = `${BOOK}-v21-${Date.parse(createdAt)}`;
+  const pkg: BookPackageV21 = {
+    schemaVersion: V21_SCHEMA_VERSION,
+    packageId,
+    createdAt,
+    contentOwner: "chapterflow",
+    book: { bookId: BOOK, title: TITLE, author: AUTHOR, categories: ["Self-Help"], tags: ["fixture"] },
+    chapters: shipped,
+  };
+  const sidecar: ProductionManifestSidecar = { schemaVersion: SIDECAR_SCHEMA, bookId: BOOK, packageId, createdAt, manifest };
+  writeJson(packagePath, pkg);
+  writeJson(sidecarPath, sidecar);
+  return { pkg, sidecar };
+}
 
 /** A genuinely VERIFIED source-verify record covering every verifiable item in
  *  the fixture's sidecars, with distinct per-item sources/notes. Written to the
@@ -211,21 +253,15 @@ function makeFixture(
   });
   assert.equal(manifestResult.ok, true, manifestResult.ok ? "" : manifestResult.findings.map((f) => f.message).join("\n"));
   if (!manifestResult.ok) throw new Error("manifest build failed");
-  const pkg: BookPackageV21 = {
-    schemaVersion: V21_SCHEMA_VERSION,
-    packageId: manifestResult.manifest.contentId,
-    createdAt,
-    contentOwner: "chapterflow",
-    book: { bookId: BOOK, title: TITLE, author: AUTHOR, categories: ["Self-Help"], tags: ["fixture"] },
-    productionManifest: manifestResult.manifest,
-    chapters: shipped,
-  };
-  writeJson(packagePath, pkg);
+  const sidecarPath = sidecarPathFor(stateRoot);
+  const { pkg, sidecar } = writeSlimPackageAndSidecar(packagePath, sidecarPath, createdAt, manifestResult.manifest, shipped);
   return {
     root,
     stateRoot,
     runsRoot,
     packagePath,
+    sidecarPath,
+    sidecar,
     recordPath,
     exemptionsFile,
     pkg,
@@ -239,6 +275,7 @@ function makeFixture(
 function verifyFixture(f: Fixture, fingerprintRoots?: FingerprintRoots) {
   return verifyProductionPackage({
     packagePath: f.packagePath,
+    manifestPath: f.sidecarPath,
     stateRoot: f.stateRoot,
     runsRoot: f.runsRoot,
     recordPath: f.recordPath,
@@ -307,12 +344,12 @@ test("verifyProductionPackage accepts a valid v2 package, binds source-reality e
   try {
     const result = verifyFixture(f);
     assert.equal(result.ok, true, result.findings.map((finding) => finding.message).join("\n"));
-    assert.equal(result.contentId, f.pkg.productionManifest.contentId);
+    assert.equal(result.contentId, f.sidecar.manifest.contentId);
     assert.equal(result.manifestSchemaVersion, "v2");
-    assert.equal(f.pkg.productionManifest.schemaVersion, PRODUCTION_MANIFEST_SCHEMA_VERSION_V2);
+    assert.equal(f.sidecar.manifest.schemaVersion, PRODUCTION_MANIFEST_SCHEMA_VERSION_V2);
 
     // Source-reality evidence is bound and well-formed.
-    const payload = f.pkg.productionManifest.payload as ProductionManifestPayloadV2;
+    const payload = f.sidecar.manifest.payload as ProductionManifestPayloadV2;
     assert.equal(payload.sourceRealityEvidence.policyResult, "required-and-verified");
     assert.equal(payload.sourceRealityEvidence.bookId, BOOK);
     assert.ok(payload.sourceRealityEvidence.record);
@@ -388,9 +425,9 @@ test("verifyProductionPackage rejects package/index/source/QC/manifest tampering
       name: "manifest-hash",
       check: /PPKG\.manifest_hash_mismatch/,
       mutate: (f) => {
-        const pkg = readJson<BookPackageV21>(f.packagePath);
-        pkg.productionManifest.payloadHash = canonicalJsonSha256({ not: "the payload" });
-        writeJson(f.packagePath, pkg);
+        const sidecar = readJson<ProductionManifestSidecar>(f.sidecarPath);
+        sidecar.manifest.payloadHash = canonicalJsonSha256({ not: "the payload" });
+        writeJson(f.sidecarPath, sidecar);
       },
     },
     {
@@ -612,8 +649,8 @@ test("re-promoting the same logical content at a different time/path yields the 
     });
     assert.equal(again.ok, true);
     if (!again.ok) throw new Error("manifest build failed");
-    assert.equal(again.manifest.contentId, f.pkg.productionManifest.contentId);
-    assert.notEqual(again.manifest.metadata.createdAt, f.pkg.productionManifest.metadata.createdAt);
+    assert.equal(again.manifest.contentId, f.sidecar.manifest.contentId);
+    assert.notEqual(again.manifest.metadata.createdAt, f.sidecar.manifest.metadata.createdAt);
   } finally {
     rmSync(f.root, { recursive: true, force: true });
   }
@@ -673,9 +710,10 @@ function buildExemptPackage(f: Fixture): void {
   });
   assert.equal(r.ok, true, r.ok ? "" : r.findings.map((x) => x.message).join("\n"));
   if (!r.ok) throw new Error("exemption manifest build failed");
-  const pkg = { ...f.pkg, packageId: r.manifest.contentId, productionManifest: r.manifest };
-  writeJson(f.packagePath, pkg);
+  // Re-emit the slim package + sidecar with the exemption-bound manifest.
+  const { pkg, sidecar } = writeSlimPackageAndSidecar(f.packagePath, f.sidecarPath, f.pkg.createdAt, r.manifest, shipped);
   f.pkg = pkg;
+  f.sidecar = sidecar;
 }
 
 test("a content-bound legacy exemption verifies; a later-expired exemption fails on re-verification", () => {
@@ -692,7 +730,7 @@ test("a content-bound legacy exemption verifies; a later-expired exemption fails
       compareLooseState: true,
     });
     assert.equal(ok.ok, true, ok.findings.map((x) => x.message).join("\n"));
-    const payload = f.pkg.productionManifest.payload as ProductionManifestPayloadV2;
+    const payload = f.sidecar.manifest.payload as ProductionManifestPayloadV2;
     assert.equal(payload.sourceRealityEvidence.policyResult, "legacy-exempt");
     assert.ok(payload.sourceRealityEvidence.exemption);
 
@@ -724,18 +762,18 @@ test("an existing v1 package verifies under v1 rules and is not treated as v2 ev
     const result = verifyFixture(f);
     assert.equal(result.ok, true, result.findings.map((x) => x.message).join("\n"));
     assert.equal(result.manifestSchemaVersion, "v1");
-    assert.equal(f.pkg.productionManifest.schemaVersion, PRODUCTION_MANIFEST_SCHEMA_VERSION_V1);
+    assert.equal(f.sidecar.manifest.schemaVersion, PRODUCTION_MANIFEST_SCHEMA_VERSION_V1);
 
     // A v1 payload carries the legacy static labels, NOT v2 source-reality / fingerprint evidence.
-    const payload = f.pkg.productionManifest.payload as any;
+    const payload = f.sidecar.manifest.payload as any;
     assert.equal(payload.sourceRealityEvidence, undefined, "v1 payload must not carry sourceRealityEvidence");
     assert.equal(payload.versions.promptSet, "chapterflow-v21-authored-prompts-v1");
     assert.equal(payload.versions.promptBundle, undefined, "v1 must not carry build-input fingerprints");
 
     // Relabeling a v1 manifest as v2 must FAIL — a v1 payload cannot masquerade as v2 evidence (req 2).
-    const pkg = readJson<BookPackageV21>(f.packagePath);
-    pkg.productionManifest.schemaVersion = PRODUCTION_MANIFEST_SCHEMA_VERSION_V2 as any;
-    writeJson(f.packagePath, pkg);
+    const sidecar = readJson<ProductionManifestSidecar>(f.sidecarPath);
+    sidecar.manifest.schemaVersion = PRODUCTION_MANIFEST_SCHEMA_VERSION_V2 as any;
+    writeJson(f.sidecarPath, sidecar);
     const masquerade = verifyFixture(f);
     assert.equal(masquerade.ok, false, "a v1 payload relabeled as v2 must fail verification");
     const ids = masquerade.findings.map((x) => x.checkId).join("\n");
@@ -748,10 +786,10 @@ test("an existing v1 package verifies under v1 rules and is not treated as v2 ev
 test("a v2 package missing its build-input fingerprints fails closed (never throws)", () => {
   const f = makeFixture("v2-missing-fingerprints");
   try {
-    const pkg = readJson<BookPackageV21>(f.packagePath);
+    const sidecar = readJson<ProductionManifestSidecar>(f.sidecarPath);
     // Strip the fingerprint bundles a forged/corrupted v2 payload might omit.
-    delete (pkg.productionManifest.payload as any).versions;
-    writeJson(f.packagePath, pkg);
+    delete (sidecar.manifest.payload as any).versions;
+    writeJson(f.sidecarPath, sidecar);
     let result: ReturnType<typeof verifyFixture>;
     assert.doesNotThrow(() => {
       result = verifyFixture(f);

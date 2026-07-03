@@ -31,11 +31,111 @@ import { parseSourceVerifyRecord, sourceVerifyRecordPath } from "./critics/sourc
 const BOOK_PACKAGES_DIR = resolve(REPO_ROOT, "book-packages");
 const DEFAULT_RUNS_ROOT = resolve(REPO_ROOT, ".chapterflow", "runs");
 
+/** WS1/K1: the production manifest ships as a state-side sidecar, not embedded.
+ *  Must stay in lockstep with promoteBook.PRODUCTION_MANIFEST_SIDECAR_SCHEMA and
+ *  productionManifestSidecarPath. Defined here (not imported from promoteBook) to
+ *  avoid a promoteBook⇄verifier import cycle. */
+const PRODUCTION_MANIFEST_SIDECAR_SCHEMA = "chapterflow-production-manifest-sidecar-v1" as const;
+
+/** Human-readable packageId shape stamped by promoteBook: `<bookId>-v21-<epochMs>`.
+ *  A sha256 is a hash the owner asked to remove; identity is human-readable and the
+ *  tamper-evidence lives in the sidecar's manifest.contentId. */
+function isHumanReadablePackageId(bookId: string, packageId: unknown): boolean {
+  return typeof packageId === "string" && new RegExp(`^${bookId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}-v21-\\d+$`).test(packageId);
+}
+
+/** Default sidecar location, derived from stateRoot (default CANONICAL_STATE) +
+ *  bookId, mirroring promoteBook.productionManifestSidecarPath. */
+function defaultSidecarPath(stateRoot: string, bookId: string): string {
+  return resolve(stateRoot, "books", `${normSlug(bookId)}.production-manifest.json`);
+}
+
+type SidecarShape = { schemaVersion?: unknown; bookId?: unknown; packageId?: unknown; createdAt?: unknown; manifest?: unknown };
+
+/** Load + shape-validate the manifest sidecar (manifestData > manifestPath >
+ *  derived path). Fail-closed with a structured finding — never throws — so a
+ *  missing/unreadable/malformed sidecar blocks promotion instead of crashing. */
+function loadSidecar(
+  options: VerifyProductionPackageOptions,
+  stateRoot: string,
+  bookId: string | null,
+  packagePath: string | null,
+): { ok: true; manifest: unknown; sidecar: SidecarShape } | { ok: false; findings: ProductionPackageVerificationFinding[] } {
+  let sidecar: unknown;
+  let sourcePath: string | null = null;
+  if (options.manifestData !== undefined) {
+    sidecar = options.manifestData;
+  } else {
+    sourcePath = options.manifestPath ? resolve(options.manifestPath) : (bookId ? defaultSidecarPath(stateRoot, bookId) : null);
+    if (!sourcePath) {
+      return { ok: false, findings: [blocker({ checkId: "PPKG.sidecar_path_unresolvable", message: "Cannot resolve the production-manifest sidecar path (no bookId and no manifestPath)." })] };
+    }
+    if (!existsSync(sourcePath)) {
+      return { ok: false, findings: [blocker({ checkId: "PPKG.sidecar_missing", path: sourcePath, message: `Production-manifest sidecar is missing at ${sourcePath}. Re-promote to (re)generate it.` })] };
+    }
+    try {
+      sidecar = JSON.parse(readFileSync(sourcePath, "utf8")) as unknown;
+    } catch (err) {
+      return { ok: false, findings: [blocker({ checkId: "PPKG.sidecar_unreadable", path: sourcePath, message: `Production-manifest sidecar is not valid JSON: ${(err as Error).message}` })] };
+    }
+  }
+  if (!isObject(sidecar)) {
+    return { ok: false, findings: [blocker({ checkId: "PPKG.sidecar_malformed", path: sourcePath ?? undefined, message: "Production-manifest sidecar must be a JSON object." })] };
+  }
+  const s = sidecar as SidecarShape;
+  if (s.schemaVersion !== PRODUCTION_MANIFEST_SIDECAR_SCHEMA) {
+    return { ok: false, findings: [blocker({ checkId: "PPKG.sidecar_schema_mismatch", path: sourcePath ?? undefined, message: `Production-manifest sidecar schemaVersion is ${JSON.stringify(s.schemaVersion)}, expected ${PRODUCTION_MANIFEST_SIDECAR_SCHEMA}.`, expected: PRODUCTION_MANIFEST_SIDECAR_SCHEMA, actual: s.schemaVersion })] };
+  }
+  return { ok: true, manifest: s.manifest, sidecar: s };
+}
+
+/** Deep keys/paths that must NEVER reach the shipped distribution package (K3
+ *  PPKG.forbidden_field). Names too generic for blanket deep removal
+ *  (schemaVersion/title/location/why) are handled path-aware by
+ *  containsAuthoringInternalField per chapter; this set is the deep-name layer
+ *  for the whole package object. */
+const FORBIDDEN_DEEP_KEYS = new Set([
+  "productionManifest",
+  "authoring",
+  "planSpec",
+  "namedCaseIds",
+  "sourceFactIds",
+  "depthLevel",
+]);
+const FORBIDDEN_SOURCE_ANCHOR_RE = /SourceAnchorIds?$/;
+
+/** First forbidden deep key found anywhere in `value`, or null. */
+function firstForbiddenDeepKey(value: unknown): string | null {
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      const hit = firstForbiddenDeepKey(item);
+      if (hit) return hit;
+    }
+    return null;
+  }
+  if (value && typeof value === "object") {
+    for (const [key, child] of Object.entries(value as Record<string, unknown>)) {
+      if (FORBIDDEN_DEEP_KEYS.has(key)) return key;
+      if (FORBIDDEN_SOURCE_ANCHOR_RE.test(key)) return key;
+      const hit = firstForbiddenDeepKey(child);
+      if (hit) return hit;
+    }
+  }
+  return null;
+}
+
 export type ProductionPackageVerificationFinding = ProductionManifestFinding;
 
 export type VerifyProductionPackageOptions = {
   packagePath?: string;
   packageData?: unknown;
+  /** Explicit manifest-sidecar path override (staging verify / tests). When
+   *  omitted the sidecar path is derived from packagePath + bookId. */
+  manifestPath?: string;
+  /** In-memory manifest sidecar (promote's pre-publish self-verify). Mirrors
+   *  packageData: neither is trusted until validated. Takes precedence over
+   *  manifestPath/derived path. */
+  manifestData?: unknown;
   stateRoot?: string;
   runsRoot?: string;
   compareLooseState?: boolean;
@@ -331,11 +431,35 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
     findings.push(blocker({ checkId: "PPKG.chapters_missing", message: "Package chapters must be a non-empty array." }));
   }
 
+  // K3: a package that STILL embeds a productionManifest is the pre-v24 shape.
+  // Single fail-closed code path — no legacy branch that verifies it in place;
+  // the operator must re-promote through the sidecar promote.
+  if ("productionManifest" in (pkg as Record<string, unknown>)) {
+    findings.push(blocker({
+      checkId: "PPKG.embedded_manifest_forbidden",
+      message: "Package embeds a productionManifest (pre-v24 shape). The manifest now ships as a state-side sidecar; re-promote the book to emit the slim package + sidecar.",
+    }));
+  }
+
+  // K3 PPKG.forbidden_field: the shipped package must carry reader content only.
+  // Deep-name layer over the WHOLE package (productionManifest/authoring/planSpec/
+  // *SourceAnchorIds/namedCaseIds/sourceFactIds/depthLevel) …
+  const forbiddenDeep = firstForbiddenDeepKey(pkg);
+  if (forbiddenDeep) {
+    findings.push(blocker({
+      checkId: "PPKG.forbidden_field",
+      message: `Package contains forbidden non-reader field "${forbiddenDeep}" — the distribution package must carry reader content only.`,
+      actual: forbiddenDeep,
+    }));
+  }
+  // … plus the path-aware per-chapter internals (per-chapter schemaVersion,
+  // implementationPlan.title, memorableLines[].location/why) via the strip's own
+  // detector, so PPKG.forbidden_field and the reader-content strip stay in lockstep.
   for (const chapter of Array.isArray(pkg.chapters) ? pkg.chapters : []) {
     const internal = containsAuthoringInternalField(chapter);
     if (internal) {
       findings.push(blocker({
-        checkId: "PPKG.internal_field_present",
+        checkId: "PPKG.forbidden_field",
         chapterNumber: typeof chapter?.number === "number" ? chapter.number : undefined,
         message: `Package chapter ${chapter?.chapterId ?? "(unknown)"} contains authoring-only field "${internal}".`,
         actual: internal,
@@ -343,27 +467,58 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
     }
   }
 
-  const manifestCheck = validateProductionManifest((pkg as any).productionManifest);
-  if (!manifestCheck.ok) findings.push(...manifestCheck.findings);
-  if (findings.length > 0 || !manifestCheck.ok) {
+  // The manifest now comes from the SIDECAR, not an embedded field (K1/K3).
+  const sidecarLoad = loadSidecar(options, stateRoot, bookId, loaded.packagePath);
+  if (!sidecarLoad.ok) findings.push(...sidecarLoad.findings);
+  const manifestCheck = sidecarLoad.ok ? validateProductionManifest(sidecarLoad.manifest) : { ok: false as const, findings: [] };
+  if (sidecarLoad.ok && !manifestCheck.ok) findings.push(...manifestCheck.findings);
+  if (findings.length > 0 || !sidecarLoad.ok || !manifestCheck.ok) {
     return { ok: false, bookId, packagePath: loaded.packagePath, contentId: null, manifestSchemaVersion: manifestCheck.ok ? manifestCheck.version : null, findings };
   }
 
   const manifest = manifestCheck.manifest;
   const version = manifestCheck.version;
-  if (pkg.packageId !== manifest.contentId) {
+  const sidecar = sidecarLoad.sidecar;
+
+  // Identity (K1): packageId is human-readable `<bookId>-v21-<epochMs>` (NOT a
+  // hash) and must match the sidecar's packageId. The manifest's contentId stays
+  // the tamper-evidence anchor (verified below), but is no longer the packageId.
+  if (bookId && !isHumanReadablePackageId(bookId, pkg.packageId)) {
     findings.push(blocker({
-      checkId: "PPKG.package_id_mismatch",
-      message: "Package packageId must equal productionManifest.contentId.",
-      expected: manifest.contentId,
+      checkId: "PPKG.package_id_shape",
+      message: `Package packageId ${JSON.stringify(pkg.packageId)} must be human-readable "${bookId}-v21-<epochMs>" (no sha256).`,
       actual: pkg.packageId,
+    }));
+  }
+  if (typeof sidecar.packageId === "string" && pkg.packageId !== sidecar.packageId) {
+    findings.push(blocker({
+      checkId: "PPKG.package_id_sidecar_mismatch",
+      message: "Package packageId must match the manifest sidecar's packageId.",
+      expected: sidecar.packageId,
+      actual: pkg.packageId,
+    }));
+  }
+  if (typeof sidecar.bookId === "string" && bookId && normSlug(sidecar.bookId) !== bookId) {
+    findings.push(blocker({
+      checkId: "PPKG.sidecar_bookid_mismatch",
+      message: "Manifest sidecar bookId does not match the package book id.",
+      expected: bookId,
+      actual: sidecar.bookId,
     }));
   }
   if (pkg.createdAt !== manifest.metadata.createdAt) {
     findings.push(blocker({
       checkId: "PPKG.created_at_mismatch",
-      message: "Package createdAt must match productionManifest.metadata.createdAt.",
+      message: "Package createdAt must match the sidecar manifest.metadata.createdAt.",
       expected: manifest.metadata.createdAt,
+      actual: pkg.createdAt,
+    }));
+  }
+  if (typeof sidecar.createdAt === "string" && pkg.createdAt !== sidecar.createdAt) {
+    findings.push(blocker({
+      checkId: "PPKG.sidecar_created_at_mismatch",
+      message: "Package createdAt must match the manifest sidecar's createdAt.",
+      expected: sidecar.createdAt,
       actual: pkg.createdAt,
     }));
   }
