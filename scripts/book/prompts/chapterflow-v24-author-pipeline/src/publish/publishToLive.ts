@@ -47,24 +47,46 @@ export type PublishToLiveOptions = {
 
 export type PublishToLiveResult = { ok: boolean; steps: string[]; error?: string };
 
-const COMMIT_TRAILER = "Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>";
+export const COMMIT_TRAILER = "Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>";
 
-function sha256File(path: string): string {
+/** The REAL live-app registry the reader bundles. NOTE (v24 F1 fix): the probe used
+ *  to check <outer>/lib/bookPackages.ts, which never exists in a real ChapterFlow
+ *  checkout — so every registration probe printed UNKNOWN. The actual registry is
+ *  app/book/data/bookPackages.ts (imported into the client bundle). */
+export const OUTER_REGISTRY_REL = "app/book/data/bookPackages.ts";
+export const OUTER_CATALOG_METADATA_REL = "app/book/data/booksCatalog.metadata.json";
+
+export function sha256File(path: string): string {
   return createHash("sha256").update(readFileSync(path)).digest("hex");
 }
 
-function git(cwd: string, args: string[]): { status: number; stdout: string; stderr: string } {
+/** A thin git wrapper (never throws): {status, stdout, stderr}, trimmed. Shared by
+ *  publishToLive and publishFinal so both speak the same git dialect. */
+export function gitOutcome(cwd: string, args: string[]): { status: number; stdout: string; stderr: string } {
   const r = spawnSync("git", args, { cwd, encoding: "utf8" });
   return { status: r.status ?? 1, stdout: (r.stdout ?? "").trim(), stderr: (r.stderr ?? "").trim() };
 }
 
+const git = gitOutcome;
+
 /** realpath both sides so macOS /tmp→/private/tmp symlinks can't fake a mismatch. */
-function samePath(a: string, b: string): boolean {
+export function samePath(a: string, b: string): boolean {
   try {
     return realpathSync(a) === realpathSync(b);
   } catch {
     return resolve(a) === resolve(b);
   }
+}
+
+/** The registration probe for a book against the OUTER live registry. Read-only.
+ *  Returns a structured verdict; publishToLive maps it to a step line and
+ *  publishFinal uses it to decide whether to append-register. */
+export type RegistrationProbe = { state: "found" | "not-found" | "unknown"; registryPath: string };
+
+export function probeRegistration(outerRoot: string, bookId: string): RegistrationProbe {
+  const registryPath = resolve(outerRoot, OUTER_REGISTRY_REL);
+  if (!existsSync(registryPath)) return { state: "unknown", registryPath };
+  return { state: readFileSync(registryPath, "utf8").includes(bookId) ? "found" : "not-found", registryPath };
 }
 
 async function defaultVerify(pkgPath: string): Promise<boolean> {
@@ -152,15 +174,16 @@ export async function publishToLive(bookId: string, opts?: PublishToLiveOptions)
   steps.push(`hash: MATCH (sha256 ${srcHash.slice(0, 12)}…)`);
 
   // (d) registration probe — read-only; the live app only bundles packages
-  // imported by <outer>/lib/bookPackages.ts.
-  const registryPath = resolve(outerRoot, "lib", "bookPackages.ts");
-  if (!existsSync(registryPath)) {
-    steps.push(`registration: UNKNOWN — ${registryPath} not found (outer root may not be a ChapterFlow checkout)`);
-  } else if (readFileSync(registryPath, "utf8").includes(id)) {
+  // imported by <outer>/app/book/data/bookPackages.ts (the REAL registry — the old
+  // lib/bookPackages.ts probe never existed in a real checkout, so it always UNKNOWN'd).
+  const probe = probeRegistration(outerRoot, id);
+  if (probe.state === "unknown") {
+    steps.push(`registration: UNKNOWN — ${probe.registryPath} not found (outer root may not be a ChapterFlow checkout)`);
+  } else if (probe.state === "found") {
     steps.push("registration: FOUND");
   } else {
     steps.push(
-      "registration: NOT FOUND — manual steps: add import in lib/bookPackages.ts + run generate-catalog-metadata + commit",
+      "registration: NOT FOUND — manual steps: add import in app/book/data/bookPackages.ts + run generate-catalog-metadata + commit",
     );
   }
 
@@ -198,4 +221,50 @@ export async function publishToLive(bookId: string, opts?: PublishToLiveOptions)
   const head = git(outerRoot, ["rev-parse", "--short", "HEAD"]);
   steps.push(`commit: ${head.status === 0 ? head.stdout : "HEAD"} ${relPath} (NOT pushed — push is manual)`);
   return { ok: true, steps };
+}
+
+export type BridgeResult =
+  | { ok: true; srcHash: string; destHash: string; relPath: string; destPath: string; bytes: number }
+  | { ok: false; error: string };
+
+/**
+ * The sandbox→outer package bridge, factored out so publish-final can reuse the
+ * exact copy + INDEPENDENT sha256 byte-compare publishToLive performs (no
+ * duplication). Copies <localPath> to <outerRoot>/book-packages/<id>.v21.json and
+ * proves the two files are byte-identical by hashing each side separately. Does NOT
+ * commit, push, register, or probe. Refuses BEFORE copying if the dest is already
+ * staged/dirty in the outer tree (so an in-flight edit is never clobbered).
+ */
+export function bridgePackage(bookId: string, localPath: string, outerRoot: string): BridgeResult {
+  const id = normSlug(bookId);
+  if (!id) return { ok: false, error: `invalid bookId: "${bookId}"` };
+  const relPath = `book-packages/${id}.v21.json`;
+  if (!existsSync(localPath)) return { ok: false, error: `local package missing: ${localPath}` };
+
+  const destPath = resolve(outerRoot, "book-packages", `${id}.v21.json`);
+
+  // Refuse BEFORE copying if the dest is already staged/dirty from other work.
+  const inside = gitOutcome(outerRoot, ["rev-parse", "--is-inside-work-tree"]);
+  if (inside.status === 0 && inside.stdout === "true") {
+    const dirty = gitOutcome(outerRoot, ["status", "--porcelain", "--", relPath]);
+    if (dirty.status !== 0) return { ok: false, error: `git status failed in ${outerRoot}: ${dirty.stderr || dirty.stdout}` };
+    if (dirty.stdout !== "") {
+      return { ok: false, error: `refusing to overwrite: ${relPath} is already staged/dirty in the outer tree (${dirty.stdout.split("\n")[0]}) — reconcile that change first` };
+    }
+  }
+
+  try {
+    mkdirSync(dirname(destPath), { recursive: true });
+    copyFileSync(localPath, destPath);
+  } catch (err) {
+    return { ok: false, error: `copy failed: ${(err as Error).message}` };
+  }
+  const srcHash = sha256File(localPath);
+  const destHash = sha256File(destPath);
+  if (srcHash !== destHash) {
+    return { ok: false, error: `hash mismatch after copy: src sha256 ${srcHash} != dest sha256 ${destHash} — do NOT ship ${destPath}` };
+  }
+  let bytes = 0;
+  try { bytes = readFileSync(destPath).length; } catch { /* ignore */ }
+  return { ok: true, srcHash, destHash, relPath, destPath, bytes };
 }

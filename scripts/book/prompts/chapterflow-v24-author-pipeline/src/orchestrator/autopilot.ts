@@ -1021,7 +1021,7 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
       deps.log(`[autopilot] phase=${phase} written=${status.writtenChapters}/${status.expectedChapters ?? "?"} gated=${status.gatedChapters} qcd=${status.qcdChapters}`);
 
       if (phase === "shipped") return { status: "shipped", bookId };
-      if (phase === "ready") return handleReady(bookId, status, autoPublish, deps);
+      if (phase === "ready") return handleReady(bookId, status, autoPublish, deps, architecture);
 
       // No-progress guard: if the same (phase, counts) recur after we acted, the
       // phase isn't advancing — escalate instead of looping forever.
@@ -2623,13 +2623,24 @@ export async function spawnReviewers(bookId: string, roundId: string, cards: str
 
 // ── Phase: ready-to-publish (gated) ──────────────────────────────────────────
 
-async function handleReady(bookId: string, status: BookStatus, autoPublish: boolean, deps: AutopilotDeps): Promise<AutopilotOutcome> {
+/** The exact manual ship command printed at a --no-publish READY halt. v24 author arch
+ *  ships via the ONE-VERB publish-final (bridge → commit → push → origin-sync 0/0 → debris
+ *  cleanup — it commits the OUTER-root live package, NOT the sandbox-nested paths
+ *  publish-after-qc commits, the repo-pollution source). compiler/legacy keep
+ *  publish-after-qc. Exported for the wiring test. */
+export function readyPublishCommand(bookId: string, roundId: string | undefined, architecture: "compiler" | "legacy" | "author"): string {
+  if (architecture === "author") return `npx tsx src/cli.ts publish-final "${bookId}"`;
+  return roundId
+    ? `npx tsx src/cli.ts publish-after-qc "${bookId}" --round ${roundId} --commit --push`
+    : `npx tsx src/cli.ts publish "${bookId}"`;
+}
+
+async function handleReady(bookId: string, status: BookStatus, autoPublish: boolean, deps: AutopilotDeps, architecture: "compiler" | "legacy" | "author"): Promise<AutopilotOutcome> {
   // Find the round that produced the PUBLISHABLE attestations (most recent matrix).
   const roundId = deps.latestRoundId(bookId) ?? undefined;
+  const isAuthor = architecture === "author";
   if (!autoPublish) {
-    const cmd = roundId
-      ? `npx tsx src/cli.ts publish-after-qc "${bookId}" --round ${roundId} --commit --push`
-      : `npx tsx src/cli.ts publish "${bookId}"`;
+    const cmd = readyPublishCommand(bookId, roundId, architecture);
     return {
       status: "ready",
       bookId,
@@ -2637,6 +2648,19 @@ async function handleReady(bookId: string, status: BookStatus, autoPublish: bool
       message: `READY TO PUBLISH — all ${status.writtenChapters} chapters gated + QC PUBLISHABLE. Review, then ship:\n  ${cmd}`,
     };
   }
+
+  // ── AUTHOR arch: publish-final (commit → push → sync → cleanup) ──
+  if (isAuthor) {
+    const pf = await deps.runVerb(["publish-final", bookId]);
+    if (pf.code !== 0) return mkHalt(bookId, "ready", "infra", `publish-final failed (exit ${pf.code}): ${(pf.stderr || pf.stdout).slice(0, 300)}`);
+    return {
+      status: "published",
+      bookId,
+      roundId: roundId ?? "",
+      message: `PUBLISHED — publish-final shipped ${bookId}: package committed + pushed, origin synced 0/0, per-book debris cleaned. NOT live until the separate manual deploy.`,
+    };
+  }
+
   if (!roundId) return mkHalt(bookId, "ready", "infra", "auto-publish requested but no passed round id found; publish manually");
   // Auto-publish = the FULL deterministic promote gate (all 11 checks inside
   // publish-after-qc) + commit + push to main. The gate still BLOCKS: any failing check

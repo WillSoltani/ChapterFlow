@@ -164,10 +164,19 @@ Commands:
                                      Sandbox→live bridge. Verifies the LOCAL book-packages/<id>.v21.json
                                      (production verifier), copies it to the OUTER checkout root's
                                      git-tracked book-packages/ (what the live app bundles), byte-hash
-                                     verifies the copy, and probes lib/bookPackages.ts registration.
+                                     verifies the copy, and probes app/book/data/bookPackages.ts registration.
                                      Report-only by default; --commit stages+commits ONLY that file in
                                      the outer repo (never pushes; refuses if it is already staged/dirty
                                      there from other work).
+  publish-final <bookId> [--dry-run] [--keep-debris] [--outer-root <path>]
+                                     ONE-VERB ship (v24 author arch). Preflight (verify + no fresh
+                                     conductor lock + outer git toplevel + fetch) → bridge (copy +
+                                     byte-compare) → register (probe/append the real registry + regen
+                                     catalog) → COMMIT → PUSH (merge loop, never rebase/force) → SYNC
+                                     (ff-only pull + assert origin==0/0) → CLEANUP all per-book debris
+                                     (gated on the push+sync proof). --dry-run prints the full plan +
+                                     cleanup manifest with zero mutations; --keep-debris skips cleanup.
+                                     NO S3/AWS — content ships via the repo push + a separate deploy.
   qc-stamp-author <bookId> [--chapters 1,2] [--session <id>]
                                      Record the authoring session (state/provenance/) so a later FRESH QC
                                      session can't grade its own work when
@@ -1745,6 +1754,25 @@ async function runPublishToLive(args: string[], flags: Record<string, string | b
   }
   console.log(`publish-to-live: OK (${bookId})`);
   return 0;
+}
+
+/** `publish-final <bookId> [--dry-run] [--keep-debris] [--outer-root <path>]` — the
+ *  v24 one-verb ship: bridge → commit → push (merge loop) → origin sync 0/0 →
+ *  debris cleanup. No S3/AWS. See src/publish/publishFinal.ts. */
+async function runPublishFinal(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: publish-final <bookId> [--dry-run] [--keep-debris] [--outer-root <path>]");
+    return 2;
+  }
+  const { publishFinal, formatPublishFinalResult } = await import("./publish/publishFinal.js");
+  const result = await publishFinal(bookId, {
+    dryRun: flags["dry-run"] === true,
+    keepDebris: flags["keep-debris"] === true,
+    outerRoot: typeof flags["outer-root"] === "string" ? resolve(process.cwd(), flags["outer-root"] as string) : undefined,
+  });
+  console.log(formatPublishFinalResult(result));
+  return result.ok ? 0 : 1;
 }
 
 /** `qc-stamp-author <bookId> [--chapters 1,2] [--session <id>]` — record the
@@ -5593,6 +5621,8 @@ async function main() {
       return runPublish(args, flags);
     case "publish-to-live":
       return runPublishToLive(args, flags);
+    case "publish-final":
+      return runPublishFinal(args, flags);
     case "qc-stamp-author":
       return runStampAuthor(args, flags);
     case "book-status":
