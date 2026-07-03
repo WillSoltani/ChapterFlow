@@ -10,12 +10,15 @@
  * field, from the packet. Nothing is spread or cloned wholesale, so any field added
  * to SourcePacketV1 in the future is dropped here by default (a new field must be
  * deliberately added to the allowlist to reach the writer). Dropped on purpose:
- * ranking/dealing metadata (teachingPriority, coreMoveFactId, bookWideDuplicate),
- * grounding inventories (allowedNumbers/Entities/Places, groundedNumbers/Entities/
+ * ranking/dealing metadata (teachingPriority, coreMoveFactId), grounding
+ * inventories (allowedNumbers/Entities/Places, groundedNumbers/Entities/
  * Places, allowedClaimTypes, verificationRefs), case linkage internals (allowedUses,
  * forbiddenUses, doNotRestamp, naturalSetting), frameworks, forbiddenClaims/
  * forbiddenLeakage, source provenance (sourceSidecarPath, sourceHash, chapterTitle),
  * anchor bodies (only anchor IDS survive), and sourceQuality.risks.
+ * bookWideDuplicate is projected as `sharedSpine` (S-tier P6, 2026-07-03) — the one
+ * ranking-metadata field the writer needs, because "this fact is every chapter's
+ * fact" changes how a chapter should teach it.
  *
  * Pure function: no fs, no clock, no mutation of the input; returned arrays are
  * fresh (mutating the projection never touches the packet).
@@ -31,6 +34,12 @@ export type WriterPacketProjectionFact = {
   mechanism?: string;
   commonError?: string;
   whyWrong?: string;
+  /** S-tier P6 (2026-07-03, deliberate allowlist addition): true when research tagged this
+   *  fact bookWideDuplicate — the shared framework spine every chapter's packet carries.
+   *  The card instructs writers to reference spine facts briefly through their own angle
+   *  instead of re-deriving them (the halted `execution` run's nine writers each re-taught
+   *  the full framework at full strength — the saturation seed). */
+  sharedSpine?: true;
 };
 
 export type WriterPacketProjectionCase = {
@@ -75,6 +84,10 @@ export function writerPacketProjection(packet: SourcePacketV1): WriterPacketProj
       if (commonError !== undefined) projected.commonError = commonError;
       const whyWrong = textOrUndefined(fact.whyWrong);
       if (whyWrong !== undefined) projected.whyWrong = whyWrong;
+      // #19 (adversarial round 2): the chapter's OWN core move is never spine-marked,
+      // even when research tagged it bookWideDuplicate — a writer told to "reference
+      // briefly" the fact their whole chapter teaches would under-teach the chapter.
+      if (fact.bookWideDuplicate === true && fact.id !== packet.coreMoveFactId) projected.sharedSpine = true;
       return projected;
     }),
     namedCases: (packet.namedCases ?? []).map((namedCase) => {

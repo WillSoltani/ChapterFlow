@@ -188,11 +188,46 @@ export type ChapterBriefV1 = {
   /** HARD reservation (v24 W4): the tryThisNow STRUCTURE dealt to this chapter, so the "Pick one …"
    *  menu opener cannot dominate (CHB9 backstop). */
   practiceShape: BriefPracticeShape;
+  /** HARD reservation (v24 S-tier P2; optional — briefs compiled before 2026-07-03 lack it):
+   *  the three example DRAMATURGY lenses this chapter's 6 examples must cover, dealt under the
+   *  two-thirds book cap so one scene class cannot own the book (CHB11 backstop). */
+  exampleLenses?: BriefExampleLens[];
+  /** HARD reservation (v24 S-tier P4; optional): the practice-item physical-action VERB register,
+   *  dealt no-repeat so a "touch the …"-style tic cannot saturate book-wide. */
+  practiceVerb?: BriefPracticeVerb;
+  /** Dealt requirement (v24 S-tier P2 #14; optional): when true, this chapter's examples must
+   *  include one failed/partial outcome. Dealt to ~2/3 of chapters — every 4-chapter acceptance
+   *  sample sees at least one, without the every-chapter ritual. */
+  requireFrictionExample?: boolean;
+  /** Guidance (v24 S-tier P1; optional): the book's hot framework nouns computed from the source
+   *  packets — the writer gets a per-chapter usage budget and overflow goes to case-concrete
+   *  referents (CHB10 backstop). */
+  frameworkNouns?: string[];
 };
 
 /** v24 W4 rotation vocabularies — mirrored from src/compiler/briefRotation.ts (kept here as string
  *  literal unions so artifactTypes has no runtime dependency on the compiler module). */
 export type BriefOpenerType = "question" | "scene" | "claim" | "statistic";
+export type BriefExampleLens =
+  | "prop-tableau"
+  | "dialogue-beat"
+  | "before-after-ledger"
+  | "postmortem"
+  | "walkthrough"
+  | "counterfactual"
+  | "outsider-witness"
+  | "numbers-detective";
+export type BriefPracticeVerb =
+  | "write"
+  | "say"
+  | "mark"
+  | "count"
+  | "ask"
+  | "circle"
+  | "schedule"
+  | "read-aloud"
+  | "cross-out"
+  | "move";
 export type BriefChallengeFrame =
   | "before-your-next-X"
   | "replace-one-Y"
