@@ -18,12 +18,18 @@ import { REVIEW_FACTORS, type ReviewFactor } from "../src/artifacts/artifactType
 import { renderChapterReaderDoc } from "../src/review/renderReaderDoc.js";
 import {
   REVIEW_WEIGHTS,
+  DocIntegrityError,
   adjudicateReview,
+  assertChapterReaderDocIntegrity,
   buildReaderReviewTask,
+  chapterDocKeyRowLines,
+  chapterDocQuestionLineCount,
   parseReaderReview,
+  screenChapterStructuralClaims,
   writeChapterReview,
   type ParsedReaderReview,
 } from "../src/review/readerReview.js";
+import { ensureTrailingNewline } from "../src/lib/atomicWrite.js";
 
 // ── Fixture ─────────────────────────────────────────────────────────────────
 
@@ -364,4 +370,86 @@ test("writeChapterReview: writes state/reviews/<bookId>/chNN.review.json under a
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
+});
+
+// ── Q1: reader-facing doc trailing newline (via the write choke point) ────────
+
+test("Q1 ensureTrailingNewline is idempotent and quote-safe on a chapter doc", () => {
+  const raw = renderChapterReaderDoc(fixtureChapter());
+  assert.ok(!raw.endsWith("\n"), "the raw renderer ends on the last key row (no newline)");
+  const withNl = ensureTrailingNewline(raw);
+  assert.ok(withNl.endsWith("\n"));
+  assert.equal(ensureTrailingNewline(withNl), withNl, "idempotent");
+  // A quote of interior content still byte-verifies against the newline-terminated doc.
+  assert.ok(withNl.includes("The rule caps the START, not the goal."));
+});
+
+// ── Q2 (chapter analog): assertChapterReaderDocIntegrity ──────────────────────
+
+test("Q2 chapter recount counts question lines above + key rows below the ANSWER KEY header", () => {
+  const doc = ensureTrailingNewline(renderChapterReaderDoc(fixtureChapter()));
+  assert.equal(chapterDocQuestionLineCount(doc), 3);
+  const rows = chapterDocKeyRowLines(doc);
+  assert.deepEqual([...rows.keys()].sort((a, b) => a - b), [1, 2, 3]);
+  assert.ok(rows.get(3)! > 0);
+});
+
+test("Q2 chapter integrity passes on a complete doc and THROWS on truncation / missing newline", () => {
+  const ch = fixtureChapter();
+  const doc = ensureTrailingNewline(renderChapterReaderDoc(ch));
+  assert.doesNotThrow(() => assertChapterReaderDocIntegrity(doc, ch));
+
+  const truncated = doc.replace(/\nQ3: c\n$/, "\n"); // drop the last answer-key row
+  assert.throws(() => assertChapterReaderDocIntegrity(truncated, ch), (e: unknown) => {
+    assert.ok(e instanceof DocIntegrityError);
+    assert.match((e as Error).message, /2 answer-key row\(s\) vs 3/);
+    return true;
+  });
+
+  const noNewline = doc.replace(/\n$/, "");
+  assert.throws(() => assertChapterReaderDocIntegrity(noNewline, ch), (e: unknown) => {
+    assert.ok(e instanceof DocIntegrityError);
+    assert.match((e as Error).message, /trailing newline/);
+    return true;
+  });
+});
+
+// ── Q3 (chapter analog): screenChapterStructuralClaims + adjudicateReview ─────
+
+test("Q3 chapter: a no-ship reader's disproven 'key omits Q3' claim invalidates the vote", () => {
+  const ch = fixtureChapter();
+  const doc = ensureTrailingNewline(renderChapterReaderDoc(ch));
+  const parsed = goodParsed({
+    ship84: false,
+    quizDerivation: { answers: ["a", "b", "c"], keyDisagreements: ["The answer key omits Q3."], tells: [] },
+  });
+  const review = adjudicateReview(parsed, doc, ch, { bar: 84, reviewerSessionId: "s-fail" });
+  assert.equal(review.valid, false, "disproven structural claim invalidates → respawn-eligible");
+  assert.ok(review.structuralScreen);
+  assert.equal(review.structuralScreen!.decisions[0].verdict, "disproven");
+  assert.equal(review.structuralScreen!.decisions[0].q, 3);
+  assert.match(review.structuralScreen!.invalidatedBy!, /Q3 key row present/);
+});
+
+test("Q3 chapter: a CONFIRMED claim (Q genuinely unkeyed) throws DocIntegrityError", () => {
+  const ch = fixtureChapter();
+  const doc = ensureTrailingNewline(renderChapterReaderDoc(ch)).replace(/\nQ3: c\n$/, "\n");
+  const parsed = goodParsed({ ship84: false, quizDerivation: { answers: ["a", "b", "c"], keyDisagreements: ["The answer key omits Q3."], tells: [] } });
+  assert.throws(() => adjudicateReview(parsed, doc, ch, { bar: 84 }), (e: unknown) => {
+    assert.ok(e instanceof DocIntegrityError);
+    assert.match((e as Error).message, /CONFIRMED by recount: Q3/);
+    return true;
+  });
+});
+
+test("Q3 chapter: fuzzy claim, a ship-yes reader, and an honest no-ship are NO-OPs", () => {
+  const ch = fixtureChapter();
+  const doc = ensureTrailingNewline(renderChapterReaderDoc(ch));
+  // ship84 true → never screened (no structural veto raised).
+  const shipYes = screenChapterStructuralClaims(goodParsed({ ship84: true, quizDerivation: { answers: ["a"], keyDisagreements: ["the key omits Q3"], tells: [] } }), doc);
+  assert.equal(shipYes.claimsScanned, 0);
+  // No-ship but no specific question number → NO-OP.
+  const fuzzy = adjudicateReview(goodParsed({ ship84: false, quizDerivation: { answers: ["a", "b", "c"], keyDisagreements: ["the answer key feels incomplete"], tells: [] } }), doc, ch, { bar: 84 });
+  assert.equal(fuzzy.valid, true, "byte-verified quotes + fuzzy claim → still a valid (no-ship) vote");
+  assert.equal(fuzzy.structuralScreen!.claimsScanned, 0);
 });

@@ -31,7 +31,7 @@ import { spawn } from "child_process";
 import { randomBytes } from "crypto";
 import { existsSync, readdirSync, readFileSync, mkdirSync, writeFileSync, unlinkSync, appendFileSync, renameSync, copyFileSync, rmSync } from "fs";
 import { hostname, tmpdir } from "os";
-import { dirname, resolve } from "path";
+import { dirname, resolve, relative } from "path";
 import { fileURLToPath } from "url";
 
 import { computeBookStatus, type BookStatus } from "../lifecycle/bookStatus.js";
@@ -634,16 +634,45 @@ function submissionPresentOnDisk(bookId: string, roundId: string, card: string):
   return existsSync(dir) && readdirSync(dir).some((f) => f.endsWith(".json"));
 }
 
+/** Q6/T3 — the meaningful head to record in sessions.jsonl. The old field was
+ *  `r.finalMessage.slice(0,500)`, but finalMessage = lastNonEmptyLine(stdout)
+ *  (codexAgent.ts): for a reader whose output ends with a fenced JSON block the
+ *  last non-empty line is the closing "```", so the jsonl captured literally
+ *  "```" and forensics had to fall back to ~/.codex rollouts. This returns the
+ *  reader's actual final json block when present (the verdict forensics need),
+ *  else the finalMessage, capped at 2000 chars. The COMPLETE output is written
+ *  to a per-session sidecar (see below). */
+export function sessionFinalHead(r: CodexAgentResult, cap = 2000): string {
+  const stdout = r.stdout ?? "";
+  const blocks = [...stdout.matchAll(/```(?:json)?\s*[\s\S]*?```/g)].map((m) => m[0]);
+  const head = blocks.length > 0 ? blocks[blocks.length - 1] : (r.finalMessage ?? "");
+  return head.slice(0, cap);
+}
+
 function logSessionToDisk(bookId: string, label: string, r: CodexAgentResult): void {
   // Durable per-agent log for walk-away forensics. Best-effort: never break a run
   // on a log-write failure.
   try {
     const dir = resolve(PIPELINE_DIR, "state", "autopilot-logs", bookId);
     mkdirSync(dir, { recursive: true });
+    // Q6/T3: persist the COMPLETE final output to a per-session sidecar so
+    // forensics no longer depend on ~/.codex rollouts the repo can't control.
+    const fullMessage = ((r.stdout ?? "").length > (r.finalMessage ?? "").length) ? (r.stdout ?? "") : (r.finalMessage ?? "");
+    let finalPath: string | null = null;
+    try {
+      const finalDir = resolve(dir, "final");
+      mkdirSync(finalDir, { recursive: true });
+      const safeId = String(r.sessionId ?? "session").replace(/[^A-Za-z0-9._-]/g, "_");
+      finalPath = resolve(finalDir, `${safeId}.txt`);
+      writeFileSync(finalPath, fullMessage, "utf8");
+    } catch { /* best-effort: the jsonl head below still carries the verdict */ }
     const line = JSON.stringify({
       at: new Date().toISOString(), label, sessionId: r.sessionId, ok: r.ok,
       exitCode: r.exitCode, durationMs: r.durationMs,
-      finalMessage: (r.finalMessage ?? "").slice(0, 500), stderr: (r.stderr ?? "").slice(0, 1000),
+      // A MEANINGFUL head (the reader's final json block, not the closing fence),
+      // plus a pointer to the complete-output sidecar.
+      finalMessage: sessionFinalHead(r), finalMessagePath: finalPath ? relative(PIPELINE_DIR, finalPath) : null,
+      stderr: (r.stderr ?? "").slice(0, 1000),
     });
     appendFileSync(resolve(dir, "sessions.jsonl"), line + "\n", "utf8");
   } catch { /* best-effort */ }
@@ -971,10 +1000,10 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
     // When gate is SKIPPED (allGated fresh book → "qc") or a resume enters QC directly, this stays
     // false and doQcWithRepair runs the scouts itself before the first round.
     let preQcScoutsConverged = false;
-    // v24 author arch: the confirming function is doAuthorReview's TWO independent book-level
-    // readers, not the sweep — so the author branch substitutes this flag for deps.sweepConfirmed
-    // at the decidePhase CALL SITE below (compiler/legacy call sites untouched). It flips true
-    // ONLY after the two-reader book acceptance has passed.
+    // v24 author arch: the confirming function is doAuthorReview's independent book-level
+    // readers (AUTHOR_BOOK_READERS=3, Q5), not the sweep — so the author branch substitutes this
+    // flag for deps.sweepConfirmed at the decidePhase CALL SITE below (compiler/legacy call sites
+    // untouched). It flips true ONLY after the book acceptance (at valid-reader quorum) has passed.
     let authorBookAccepted = false;
     for (let iter = 0; iter < MAX_LOOP_ITERS; iter++) {
       // Heartbeat: keep our lock fresh AND detect a steal. If refresh() reports we no

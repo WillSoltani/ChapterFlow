@@ -26,10 +26,12 @@ import { dirname, resolve } from "path";
 import type { BookPackageV21, ChapterV21 } from "../types.js";
 import { REVIEW_FACTORS, type ReviewFactor } from "../artifacts/artifactTypes.js";
 import { REPO_ROOT, FORBIDDEN_STATE } from "../lib/chapterPaths.js";
-import { writeFileAtomic } from "../lib/atomicWrite.js";
+import { writeFileAtomic, ensureTrailingNewline } from "../lib/atomicWrite.js";
 import { spawnCodexAgent, codexAvailable } from "../orchestrator/codexAgent.js";
-import { REVIEW_WEIGHTS } from "./readerReview.js";
+import { REVIEW_WEIGHTS, DocIntegrityError } from "./readerReview.js";
 import { renderChapterReaderDoc } from "./renderReaderDoc.js";
+
+export { DocIntegrityError } from "./readerReview.js";
 
 const OUTER_CHECKOUT_ROOT = resolve(FORBIDDEN_STATE, "..");
 const READER_CONCURRENCY = 4;
@@ -80,7 +82,186 @@ export function renderBookSampleDoc(chapters: ChapterV21[]): string {
   }
   parts.push(ANSWER_KEY_HEADER + " (for key-soundness checking — derive your own answers from the prose FIRST)");
   parts.push(...keyLines);
-  return parts.join("\n");
+  // TRAILING NEWLINE (Q1 / S0b root-cause fix): the doc MUST end with "\n".
+  // Without it `wc -l` under-counts the file (756 for a 757-line doc) and a
+  // reader that chunks with `sed -n 'A,Bp'` off that count silently never sees
+  // the final line — which is systematically this doc's LAST combined-key row
+  // (`CHAPTER <n> Q<k>: <letter>`). That trap produced the false "ch05 Q9 is
+  // missing from the key" acceptance FAIL in 3 of 4 POM rounds. The newline is
+  // interior to no quote (readers quote content, not the terminal byte), so
+  // quote byte-verification (`docText.includes(q.quote)`) is unaffected.
+  return parts.join("\n") + "\n";
+}
+
+// ── Doc-structure recount (Q2 postcondition + Q3 structural-claim screen) ──────
+//
+// The single source of truth for the doc's line formats is renderBookSampleDoc
+// above + renderChapterReaderDoc. These recounters are DERIVED from that render
+// code, not guessed:
+//   - a chapter section opens with `==== CHAPTER <n>: <title> ====`;
+//   - inside it, a quiz question renders (renderReaderDoc.ts:37) as `Q<i>. <prompt>`
+//     at the START of a line — matched by /^Q\d+\. /m;
+//   - the combined key at the bottom renders one row per question (line 78) as
+//     `CHAPTER <n> Q<i>: <letter>` — matched by /^CHAPTER <n> Q(\d+): [abc?]$/m.
+// The recount reads the EXACT doc bytes readers receive, so a "key omits Q<k>"
+// claim can be machine-checked against ground truth.
+
+/** A line that opens a chapter section header in the book-sample doc. */
+const CHAPTER_MARKER_RE = /^==== CHAPTER (\d+): /;
+
+/** Question lines (`Q<i>. …`) inside a specific chapter's section of the doc.
+ *  Bounded by that chapter's `==== CHAPTER n: … ====` marker and the next
+ *  chapter marker (or the ANSWER KEY / end of doc). */
+export function chapterQuestionLineIndexes(docText: string, chapterNumber: number): number[] {
+  const lines = docText.split("\n");
+  let inSection = false;
+  const found: number[] = [];
+  for (const line of lines) {
+    const marker = line.match(CHAPTER_MARKER_RE);
+    if (marker) { inSection = Number(marker[1]) === chapterNumber; continue; }
+    if (line.startsWith(ANSWER_KEY_HEADER)) { inSection = false; continue; }
+    if (!inSection) continue;
+    const q = line.match(/^Q(\d+)\. /);
+    if (q) found.push(Number(q[1]));
+  }
+  return found;
+}
+
+/** 1-indexed doc line numbers of the combined-key rows for a chapter
+ *  (`CHAPTER <n> Q<i>: <letter>`), keyed by question number. */
+export function chapterKeyRowLines(docText: string, chapterNumber: number): Map<number, number> {
+  const lines = docText.split("\n");
+  const rowRe = new RegExp(`^CHAPTER ${chapterNumber} Q(\\d+): [abc?]$`);
+  const out = new Map<number, number>();
+  lines.forEach((line, i) => {
+    const m = line.match(rowRe);
+    if (m) out.set(Number(m[1]), i + 1); // 1-indexed for human-legible line refs
+  });
+  return out;
+}
+
+/** Ground-truth recount for one chapter, straight off the doc bytes. */
+export function recountChapterInDoc(docText: string, chapterNumber: number): { questionLines: number; keyRows: number; keyRowByQ: Map<number, number> } {
+  const keyRowByQ = chapterKeyRowLines(docText, chapterNumber);
+  return {
+    questionLines: chapterQuestionLineIndexes(docText, chapterNumber).length,
+    keyRows: keyRowByQ.size,
+    keyRowByQ,
+  };
+}
+
+/** Q2 — doc-integrity postcondition. Machine-assert over the EXACT doc bytes,
+ *  before any reader spawns, that for every sampled chapter:
+ *    question-line count === chapter.quiz.questions.length === key-row count,
+ *  and that the doc ends with a trailing newline. On any mismatch this THROWS a
+ *  precise, halt-worthy infra error — the caller must fail-closed (never spawn
+ *  readers). This makes any later "the key omits chapter N Q<k>" reader claim
+ *  provably a reader error (Q3), and catches a real render truncation that no
+ *  reader panel would reliably notice. */
+export function assertBookSampleDocIntegrity(docText: string, chapters: ChapterV21[]): void {
+  const problems: string[] = [];
+  if (!docText.endsWith("\n")) problems.push("doc does not end with a trailing newline (the wc-l/sed under-read trap — see renderBookSampleDoc)");
+  for (const ch of chapters) {
+    const expected = (ch.quiz?.questions ?? []).length;
+    const { questionLines, keyRows } = recountChapterInDoc(docText, ch.number);
+    if (questionLines !== expected) problems.push(`chapter ${ch.number}: ${questionLines} question line(s) in the doc vs ${expected} quiz question(s) in the chapter`);
+    if (keyRows !== expected) problems.push(`chapter ${ch.number}: ${keyRows} combined-key row(s) in the doc vs ${expected} quiz question(s) in the chapter`);
+  }
+  if (problems.length > 0) {
+    throw new DocIntegrityError(`book-sample doc integrity check FAILED — the rendered doc does not match the chapters, so no reader may score it:\n  ${problems.join("\n  ")}`);
+  }
+}
+
+// ── Q3 — structural key-coverage claim screen ─────────────────────────────────
+//
+// A gate-FAIL reader sometimes asserts a MECHANICAL/structural defect —
+// "chapter 5's Q9 is missing from the combined answer key" — that is provably
+// false against the doc bytes (the POM incident: the row was the doc's last
+// line, dropped by a chunked `sed` read off a wc-l miscount). Such a claim is
+// a byte-checkable statement about the doc, so — exactly like quote fabrication
+// — the machine cross-checks it. This screen ONLY fires on a POSITIVE byte-level
+// disproof of a SPECIFICALLY NAMED chapter+question key row; fuzzy or
+// unparseable claims are a strict NO-OP (never invalidate on regex guesswork).
+
+/** A structural key-coverage claim family: "the answer key … omits/misses/
+ *  stops/absent/unkeyed/does not include/lacks …". Kept deliberately narrow so
+ *  a semantic gate reason (prose contradicts the key) never matches. */
+const KEY_COVERAGE_CLAIM_RE = /(answer\s*key|the\s+key|combined\s+key|key\s+row)/i;
+const OMISSION_VERB_RE = /(omit|miss|stops?\b|absent|unkey|does\s+not\s+(include|cover|list|contain)|lacks?|leaves?\s+\w+\s+unkeyed|no\s+(key|entry|row)\s+for)/i;
+const CHAPTER_REF_RE = /\bch(?:apter)?\s*0*(\d+)\b/i;
+const QUESTION_REF_RE = /\bq\s*0*(\d+)\b/i;
+
+export type StructuralClaimDecision = {
+  claim: string;
+  chapter: number;
+  q: number;
+  verdict: "disproven" | "confirmed";
+  keyRowLine?: number;
+};
+
+export type StructuralScreen = {
+  claimsScanned: number;
+  decisions: StructuralClaimDecision[];
+  /** The disproof line that flipped this reader valid→false, when it did. */
+  invalidatedBy?: string;
+};
+
+/** Extract the free-text rationale fields a structural claim can live in. */
+function rationaleFields(parsed: ParsedBookReview): string[] {
+  const out: string[] = [];
+  if (parsed.oneParagraphVerdict) out.push(parsed.oneParagraphVerdict);
+  for (const entry of Object.values(parsed.quizDerivation ?? {})) {
+    for (const d of entry?.keyDisagreements ?? []) if (typeof d === "string") out.push(d);
+  }
+  for (const q of parsed.quotes ?? []) if (typeof q?.why === "string" && q.why.length > 0) out.push(q.why);
+  return out;
+}
+
+/** Split a rationale field into candidate CLAIMS: sentence-ish fragments, so a
+ *  chapter/question named in ONE sentence isn't spuriously paired with an
+ *  omission verb from a different sentence. */
+function claimFragments(text: string): string[] {
+  return text.split(/(?<=[.!?;])\s+|\n+/).map((s) => s.trim()).filter((s) => s.length > 0);
+}
+
+/** Screen a gate-FAIL reader's structural key-coverage claims against the doc.
+ *  Returns the screen record; on a positive byte-level disproof it sets a
+ *  `.invalidatedBy` disproof line. Throws DocIntegrityError if the recount
+ *  CONFIRMS a named key row is genuinely absent (machine truth, not a vote).
+ *  A NO-OP (empty decisions, no invalidation) for PASS readers and for
+ *  fuzzy/unparseable claims. `chapters` scopes recounts to the sampled set. */
+export function screenStructuralClaims(
+  parsed: ParsedBookReview,
+  docText: string,
+  chapters: ChapterV21[],
+): StructuralScreen {
+  const screen: StructuralScreen = { claimsScanned: 0, decisions: [] };
+  if (parsed.gate_verdict !== "FAIL") return screen; // only a FAIL veto can be screened away
+  const sampled = new Set(chapters.map((c) => c.number));
+  for (const field of rationaleFields(parsed)) {
+    for (const fragment of claimFragments(field)) {
+      if (!KEY_COVERAGE_CLAIM_RE.test(fragment) || !OMISSION_VERB_RE.test(fragment)) continue;
+      const chMatch = fragment.match(CHAPTER_REF_RE);
+      const qMatch = fragment.match(QUESTION_REF_RE);
+      if (!chMatch || !qMatch) continue; // fuzzy: no specific chapter+question → NO-OP
+      const chapter = Number(chMatch[1]);
+      const q = Number(qMatch[1]);
+      if (!sampled.has(chapter)) continue; // a chapter not in this doc — cannot recount → NO-OP
+      screen.claimsScanned += 1;
+      const keyRowLine = chapterKeyRowLines(docText, chapter).get(q);
+      if (keyRowLine !== undefined) {
+        // POSITIVE DISPROOF: the specifically-named key row IS present in the doc.
+        screen.decisions.push({ claim: fragment.slice(0, 200), chapter, q, verdict: "disproven", keyRowLine });
+        if (!screen.invalidatedBy) screen.invalidatedBy = `structural claim disproven: ch${chapter} Q${q} key row present (doc line ${keyRowLine})`;
+      } else {
+        // The recount CONFIRMS the claim — machine truth. Never leave this to a
+        // vote; halt(infra). (Unreachable once Q2 certifies the doc first.)
+        screen.decisions.push({ claim: fragment.slice(0, 200), chapter, q, verdict: "confirmed" });
+        throw new DocIntegrityError(`structural claim CONFIRMED by recount: ch${chapter} Q${q} key row genuinely absent from the book-sample doc — this is a real render defect, not a reader error; halting instead of voting. Claim: "${fragment.slice(0, 200)}"`);
+      }
+    }
+  }
+  return screen;
 }
 
 // ── Reader prompt (RUBRIC.md factor definitions, tier bands, gate + churn) ────
@@ -167,11 +348,19 @@ export type BookReaderResult = {
   quotesVerified: number;
   quotesTotal: number;
   oneParagraphVerdict: string;
+  /** Q3 structural key-coverage screen record (what was scanned, what each named
+   *  claim recounted to, and the disproof line if it flipped valid→false).
+   *  Present on every adjudicated result so Q6 can persist it. */
+  structuralScreen: StructuralScreen;
 };
 
 /** Byte-verify quotes against the combined doc + check per-chapter key
  *  derivations. A reader with any fabricated quote (or zero quotes) is invalid
- *  and excluded from composition. */
+ *  and excluded from composition. Additionally (Q3): on a gate FAIL, screen the
+ *  reader's structural key-coverage claims against the doc bytes — a claim
+ *  disproven at the byte level (a specifically-named key row that IS present)
+ *  invalidates the vote (respawn a replacement, exactly like quote fabrication);
+ *  a confirmed claim throws DocIntegrityError (machine truth, halt not vote). */
 export function adjudicateBookReview(
   parsed: ParsedBookReview,
   docText: string,
@@ -193,11 +382,17 @@ export function adjudicateBookReview(
     });
   }
   const composite = Math.round(REVIEW_FACTORS.reduce((acc, f) => acc + REVIEW_WEIGHTS[f] * parsed.scores[f], 0) / 100 * 10) / 10;
-  const invalidReason = quotesTotal === 0
+  // Q3 structural screen (may throw DocIntegrityError on a confirmed claim).
+  const structuralScreen = screenStructuralClaims(parsed, docText, chapters);
+  // Quote fabrication is the first invalidation reason; a disproven structural
+  // claim is the second. Either one invalidates → excluded from composition and
+  // respawned by the acceptance attempt loop.
+  const quoteInvalidReason = quotesTotal === 0
     ? "zero quotes — nothing to byte-verify"
     : quotesVerified < quotesTotal
       ? `${quotesTotal - quotesVerified}/${quotesTotal} quotes failed byte-verification`
       : undefined;
+  const invalidReason = quoteInvalidReason ?? structuralScreen.invalidatedBy;
   return {
     reviewerSessionId,
     valid: invalidReason === undefined,
@@ -210,6 +405,7 @@ export function adjudicateBookReview(
     quotesVerified,
     quotesTotal,
     oneParagraphVerdict: parsed.oneParagraphVerdict ?? "",
+    structuralScreen,
   };
 }
 
@@ -322,7 +518,9 @@ export async function runEvalBookProxy(args: string[], flags: Record<string, str
     const docRelPath = `scratch/eval-proxy/${id}/book-sample.txt`;
     const docAbs = resolve(REPO_ROOT, docRelPath);
     mkdirSync(dirname(docAbs), { recursive: true });
-    writeFileAtomic(docAbs, docText);
+    // Q1: reader-facing doc always ends with a newline (renderBookSampleDoc
+    // already appends it; ensureTrailingNewline keeps this write-site robust).
+    writeFileAtomic(docAbs, ensureTrailingNewline(docText));
     log(`[eval-book] ${id}: sampled ch ${sampled.map((c) => c.number).join(", ")} → ${docText.length} chars; spawning ${readerCount} readers`);
 
     const task = buildBookReviewTask(docRelPath);

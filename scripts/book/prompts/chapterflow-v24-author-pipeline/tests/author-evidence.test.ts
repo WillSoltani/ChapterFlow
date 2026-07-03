@@ -171,6 +171,10 @@ function mkEvIo(over: Partial<AuthorReviewIo> = {}): AuthorReviewIo {
       return { absPath: abs, relPath: abs };
     },
     persistReview: () => "/tmp/review.json",
+    // Keep the E2E hermetic: don't write the Q6 acceptance record into the real
+    // CANONICAL_STATE (its default target). The record's own unit coverage lives
+    // in author-arch.test.ts.
+    persistAcceptance: (bookId, record) => join(dir, `${bookId}-acceptance.${record.roundLabel || "round1"}.json`),
     ...over,
   });
 }
@@ -541,9 +545,9 @@ test("doAuthorReview E2E: acceptance produces keyA/keyB + sweep + attestation re
     const result = await doAuthorReview(BOOK, deps, { maxParallel: 2, io });
     assert.equal(result, null, "review phase completes — the book is READY only after the evidence step");
 
-    // Session budget: 2 chapter readers + 2 book readers + 2 key readers + 1 sweep reader.
+    // Session budget: 2 chapter readers + 3 book readers (Q5) + 2 key readers + 1 sweep reader.
     assert.equal(spawns.filter((s) => s.sessionId.includes("author-review-ch")).length, 2);
-    assert.equal(spawns.filter((s) => s.sessionId.includes("author-book-reader")).length, 2);
+    assert.equal(spawns.filter((s) => s.sessionId.includes("author-book-reader")).length, 3);
     assert.equal(spawns.filter((s) => s.sessionId.includes("author-key-")).length, 2, "TWO key readers per book — never per chapter");
     assert.equal(spawns.filter((s) => s.sessionId.includes("author-sweep")).length, 1, "ONE sweep reader");
 

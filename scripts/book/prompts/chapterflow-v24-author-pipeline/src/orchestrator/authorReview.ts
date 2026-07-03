@@ -12,11 +12,12 @@
  *      patching), then re-reviewed. CAP: 2 total write attempts per chapter
  *      (the original + one regen). Still failing → halt content.
  *   3. Book acceptance: the owner's book-score instrument shape — a seeded
- *      4-chapter sample doc read by TWO independent book readers, composed by
- *      composeBookVerdict. ACCEPT when gate === "PASS" AND churn !== "HIGH"
- *      AND medianComposite >= bar. The two book readers are the author arch's
- *      CONFIRMING function (the sweep-confirmation analog — runAutopilot's
- *      author branch substitutes this acceptance for deps.sweepConfirmed).
+ *      4-chapter sample doc read by AUTHOR_BOOK_READERS (=3, Q5) independent
+ *      book readers, composed by composeBookVerdict. ACCEPT when gate === "PASS"
+ *      AND churn !== "HIGH" AND medianComposite >= bar AND validCount >= quorum
+ *      (Q4). The book readers are the author arch's CONFIRMING function (the
+ *      sweep-confirmation analog — runAutopilot's author branch substitutes this
+ *      acceptance for deps.sweepConfirmed).
  *   4. On acceptance: FIRST produce the independent publish evidence the
  *      no-API promote gate additionally enforces (component B5,
  *      authorEvidence.ts) — the per-chapter manual key-judge records (blind
@@ -52,7 +53,9 @@
 import { mkdirSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
+import { createHash } from "crypto";
 
+import { CANONICAL_STATE } from "../lib/chapterPaths.js";
 import type { AutopilotDeps, AutopilotOutcome } from "./autopilot.js";
 import type { ChapterV21 } from "../types.js";
 import {
@@ -63,6 +66,7 @@ import {
 } from "../artifacts/artifactTypes.js";
 import {
   adjudicateReview,
+  assertChapterReaderDocIntegrity,
   buildReaderReviewTask,
   parseReaderReview,
   writeChapterReview,
@@ -70,8 +74,10 @@ import {
 import { renderChapterReaderDoc } from "../review/renderReaderDoc.js";
 import {
   adjudicateBookReview,
+  assertBookSampleDocIntegrity,
   buildBookReviewTask,
   composeBookVerdict,
+  DocIntegrityError,
   parseBookReview,
   renderBookSampleDoc,
   selectSeededChapters,
@@ -83,7 +89,7 @@ import { AXIS_WEIGHTS, computeVerdict, type AxisId, type AxisScore } from "../cr
 import { writeBarReadArtifact, writeConfirmReadArtifact } from "../qc/orchestrator/artifacts.js";
 import type { ValidatedBarReadSubmission, ValidatedConfirmReadSubmission } from "../qc/orchestrator/schemas.js";
 import { openQcRound, type QcRoundRole } from "../qc/qcRound.js";
-import { writeFileAtomic } from "../lib/atomicWrite.js";
+import { writeFileAtomic, ensureTrailingNewline } from "../lib/atomicWrite.js";
 import {
   runKeyJudgeEvidence,
   runSweepEvidence,
@@ -104,8 +110,15 @@ const PIPELINE_DIR = resolve(__dirname, "../..");
 export const AUTHOR_REGEN_CAP = 2;
 /** Book-acceptance rejection: at most this many chapters get the targeted regen. */
 export const AUTHOR_BOOK_REGEN_CHAPTER_CAP = 3;
-/** Independent book-level readers per acceptance round. */
-export const AUTHOR_BOOK_READERS = 2;
+/** Independent book-level readers per acceptance round. THREE (Q5, owner
+ *  decision 2026-07-03) restores parity with the owner-instrument replica (whose
+ *  CLI default is 3) and compose.py's median/majority-of-odd-panel semantics:
+ *  median-of-3 clips a single outlier composite (a lone hallucinating reader no
+ *  longer drags the mean), the gate becomes a true majority (2P/1F PASS, 1P/2F
+ *  FAIL — FAIL no longer needs unanimity), and churn resolves by real majority
+ *  (the only remaining tie is a LOW/MEDIUM/HIGH one-each split, still decided by
+ *  first-inserted). Was 2. */
+export const AUTHOR_BOOK_READERS = 3;
 
 // ── Injectable IO (extends the write phase's AuthorIo) ────────────────────────
 
@@ -127,11 +140,33 @@ export type EvidenceRunners = {
   runSweep: (bookId: string, chapters: ChapterV21[], deps: AutopilotDeps, io: AuthorReviewIo, round: AuthorEvidenceRound) => Promise<AuthorEvidenceResult>;
 };
 
+/** Q6 — the durable per-round acceptance record. Every adjudicated reader result
+ *  (scores, gate, churn, quotes tally, keyCheck, structuralScreen, invalidReason)
+ *  + the composed verdict + the bar it was judged at + the beat-shipped floor +
+ *  the sampled chapter numbers + a sha256 of the EXACT docText the readers scored
+ *  + an ISO timestamp. Written to state/reviews/<bookId>/acceptance.<roundLabel>.json
+ *  so forensics no longer depend on ~/.codex rollouts outside the repo. */
+export type AuthorAcceptanceRecord = {
+  schemaVersion: "author-acceptance-v1";
+  bookId: string;
+  roundLabel: string;
+  at: string;
+  bar: number;
+  beatShipped: number | null;
+  accepted: boolean;
+  sampledChapters: number[];
+  docSha256: string;
+  verdict: BookVerdict;
+  readers: BookReaderResult[];
+};
+
 export type AuthorReviewIo = AuthorIo & {
   /** Persist a review input doc under scratch/review/<book>/; returns both paths. */
   writeReviewDoc: (bookId: string, fileName: string, text: string) => { absPath: string; relPath: string };
   /** Persist a chapter's ChapterReviewV1 artifact. */
   persistReview: (bookId: string, review: ChapterReviewV1) => string;
+  /** Q6 — persist a durable acceptance-round record; returns the path written. */
+  persistAcceptance: (bookId: string, record: AuthorAcceptanceRecord) => string;
   acceptance: AcceptanceWriters;
   evidence: EvidenceRunners;
 };
@@ -144,10 +179,19 @@ export function resolveAuthorReviewIo(over?: Partial<AuthorReviewIo>): AuthorRev
       const relPath = `scratch/review/${bookId}/${fileName}`;
       const absPath = resolve(PIPELINE_DIR, relPath);
       mkdirSync(dirname(absPath), { recursive: true });
-      writeFileAtomic(absPath, text);
+      // Q1 central choke point: EVERY reader-facing doc written here (per-chapter
+      // reader doc, book-sample doc, key-judge doc, sweep-submission/answers JSON)
+      // is guaranteed to end with a trailing newline. See ensureTrailingNewline.
+      writeFileAtomic(absPath, ensureTrailingNewline(text));
       return { absPath, relPath };
     }),
     persistReview: over?.persistReview ?? ((bookId, review) => writeChapterReview(bookId, review)),
+    persistAcceptance: over?.persistAcceptance ?? ((bookId, record) => {
+      const path = acceptanceRecordPath(bookId, record.roundLabel);
+      mkdirSync(dirname(path), { recursive: true });
+      writeFileAtomic(path, JSON.stringify(record, null, 2) + "\n");
+      return path;
+    }),
     acceptance: over?.acceptance ?? {
       openRound: (bookId) => {
         const opened = openQcRound(bookId);
@@ -168,6 +212,19 @@ export function resolveAuthorReviewIo(over?: Partial<AuthorReviewIo>): AuthorRev
 
 function halt(bookId: string, category: "infra" | "content" | "progress", reason: string): AutopilotOutcome {
   return { status: "halt", bookId, phase: "qc", category, reason };
+}
+
+/** Normalize an acceptance round label ("" → "round1"; "-round2" → "round2") to
+ *  a filesystem-safe segment. Exported for the durable-record test. */
+export function acceptanceRoundSegment(roundLabel: string): string {
+  const seg = (roundLabel || "").replace(/^-/, "").trim() || "round1";
+  return seg.replace(/[^A-Za-z0-9._-]/g, "_");
+}
+
+/** Path of a durable acceptance record under `stateRoot` (default: canonical
+ *  pipeline state dir). Injectable root so tests write to a tmp dir. */
+export function acceptanceRecordPath(bookId: string, roundLabel: string, stateRoot: string = CANONICAL_STATE): string {
+  return resolve(stateRoot, "reviews", bookId, `acceptance.${acceptanceRoundSegment(roundLabel)}.json`);
 }
 
 async function mapPool<T, R>(items: T[], limit: number, fn: (item: T, i: number) => Promise<R>): Promise<R[]> {
@@ -226,10 +283,20 @@ function unparseableReview(chapter: ChapterV21, reviewerSessionId: string): Chap
  *  "chNN". Falls back to the first `cap` sampled chapters carrying the
  *  readers' verdict prose when nothing chapter-specific was named. */
 export function mapBookComplaintsToChapters(
-  readers: Array<Pick<BookReaderResult, "keyCheck" | "oneParagraphVerdict" | "gateVerdict" | "churn">>,
+  readers: Array<Pick<BookReaderResult, "keyCheck" | "oneParagraphVerdict" | "gateVerdict" | "churn"> & { valid?: boolean }>,
   sampledNumbers: number[],
   cap: number = AUTHOR_BOOK_REGEN_CHAPTER_CAP,
 ): Map<number, string[]> {
+  // Q7 — complaint-targeting guard: only a still-VALID reader (post-Q3 screen)
+  // may steer a targeted regen. A disproven structural claim invalidated its
+  // reader (adjudicateBookReview), and that reader's complaints must NOT burn an
+  // innocent chapter's regen budget (the POM round-1 ch05 waste). A reader
+  // missing `valid` (older Pick call sites in tests) is treated as valid.
+  const readersValid = readers.filter((r) => r.valid !== false);
+  // No valid reader left → no VALID complaint to target; return no targets so the
+  // caller halts on "nothing actionable" rather than burning an innocent chapter
+  // on a disproven claim (Q7). Quorum (Q4) already blocks accepting such a round.
+  if (readersValid.length === 0) return new Map();
   const sampledSet = new Set(sampledNumbers);
   const byChapter = new Map<number, string[]>();
   const add = (n: number, line: string): void => {
@@ -238,7 +305,7 @@ export function mapBookComplaintsToChapters(
     if (!list.includes(line)) list.push(line);
     byChapter.set(n, list);
   };
-  for (const reader of readers) {
+  for (const reader of readersValid) {
     for (const line of reader.keyCheck?.disagreements ?? []) {
       const m = line.match(/\bch(?:apter)?\s*0*(\d+)\b/i);
       if (m) add(Number(m[1]), `book reader key check: ${line}`);
@@ -249,13 +316,13 @@ export function mapBookComplaintsToChapters(
     }
   }
   if (byChapter.size === 0) {
-    const generic = readers
+    const generic = readersValid
       .map((r) => r.oneParagraphVerdict?.trim())
       .filter((v): v is string => !!v && v.length > 0)
       .map((v) => `book reader verdict: ${v.slice(0, 500)}`);
     const lines = generic.length
       ? generic
-      : [`book acceptance rejected (gate ${readers.map((r) => r.gateVerdict).join("/")}, churn ${readers.map((r) => r.churn).join("/")})`];
+      : [`book acceptance rejected (gate ${readersValid.map((r) => r.gateVerdict).join("/")}, churn ${readersValid.map((r) => r.churn).join("/")})`];
     for (const n of sampledNumbers.slice(0, cap)) byChapter.set(n, [...lines]);
   }
   // Deterministic cap: keep the lowest-numbered chapters first.
@@ -274,7 +341,13 @@ async function reviewOneChapter(
   labelSuffix = "",
 ): Promise<ChapterReviewV1> {
   const nn = String(chapter.number).padStart(2, "0");
-  const docText = renderChapterReaderDoc(chapter);
+  // docText carries the trailing newline the reader's FILE has (writeReviewDoc
+  // adds it centrally) so adjudication + the Q2/Q3 recount see the exact reader
+  // bytes; quotes are interior substrings, so byte-verification is unaffected.
+  const docText = ensureTrailingNewline(renderChapterReaderDoc(chapter));
+  // Q2 (chapter analog): certify the doc BEFORE spawning — a truncated/
+  // mis-rendered chapter doc is an infra halt, never a reader verdict.
+  assertChapterReaderDocIntegrity(docText, chapter);
   const { relPath } = io.writeReviewDoc(bookId, `ch${nn}.txt`, docText);
   const authorSid = io.authorSessionOf(chapter.chapterId);
   const task = buildReaderReviewTask(relPath, bar);
@@ -352,6 +425,13 @@ async function runBookAcceptance(
 ): Promise<BookAcceptanceResult> {
   const sampled = selectSeededChapters(bookId, chapters, 4);
   const docText = renderBookSampleDoc(sampled);
+  // Q2 — doc-integrity postcondition: certify the rendered bytes BEFORE any
+  // reader spawns. Per sampled chapter, question-line count === quiz question
+  // count === combined-key-row count, and the doc ends with a newline. A
+  // mismatch throws DocIntegrityError (caught by doAuthorReview → halt infra),
+  // so no reader ever scores a truncated/mis-rendered doc and any later "key
+  // omits chapter N Q<k>" claim is provably a reader error (Q3).
+  assertBookSampleDocIntegrity(docText, sampled);
   const { relPath } = io.writeReviewDoc(bookId, "book-sample.txt", docText);
   const task = buildBookReviewTask(relPath);
   deps.log(`[autopilot] author acceptance${roundLabel}: sampled ch ${sampled.map((c) => c.number).join(", ")} → ${docText.length} chars; spawning ${AUTHOR_BOOK_READERS} independent book readers`);
@@ -407,10 +487,42 @@ async function runBookAcceptance(
   const verdict = composeBookVerdict(bookId, sampled.map((c) => c.number), readers);
   const shipped = beatShippedComposite();
   const comp = verdict.medianComposite ?? 0;
-  const accepted = verdict.gate === "PASS" && verdict.churn !== "HIGH"
+  // Q4 — valid-count QUORUM (fail-closed): a book is NEVER accepted below full
+  // panel. composeBookVerdict happily composes over even ONE valid reader, so
+  // without this floor a Q3 invalidation (or unparseable-after-retry readers)
+  // could shrink the panel and let a single voice carry acceptance. Requiring
+  // validCount >= AUTHOR_BOOK_READERS is a pure strengthen AND the guarantee
+  // that makes Q3's invalidation weaken-proof.
+  const quorumMet = verdict.validCount >= AUTHOR_BOOK_READERS;
+  const accepted = quorumMet
+    && verdict.gate === "PASS" && verdict.churn !== "HIGH"
     && comp >= AUTHOR_BOOK_ACCEPT_BAR
     && (shipped === null || comp >= shipped);
-  deps.log(`[autopilot] author acceptance${roundLabel}: composite ${verdict.medianComposite ?? "n/a"} gate ${verdict.gate ?? "?"} (${verdict.gateVotes}) churn ${verdict.churn} vs bar ${AUTHOR_BOOK_ACCEPT_BAR}${shipped === null ? "" : ` + beat-shipped ${shipped}`} → ${accepted ? "ACCEPT" : "REJECT"}`);
+  deps.log(`[autopilot] author acceptance${roundLabel}: composite ${verdict.medianComposite ?? "n/a"} gate ${verdict.gate ?? "?"} (${verdict.gateVotes}) churn ${verdict.churn} valid ${verdict.validCount}/${AUTHOR_BOOK_READERS} vs bar ${AUTHOR_BOOK_ACCEPT_BAR}${shipped === null ? "" : ` + beat-shipped ${shipped}`} → ${accepted ? "ACCEPT" : `REJECT${quorumMet ? "" : " (below valid-reader quorum)"}`}`);
+
+  // Q6 — durable acceptance record over the EXACT bytes readers scored. Best-
+  // effort (a record-write failure never converts a valid acceptance into a
+  // halt), but attempted for every round so forensics have a repo-local trail.
+  try {
+    const record: AuthorAcceptanceRecord = {
+      schemaVersion: "author-acceptance-v1",
+      bookId,
+      roundLabel,
+      at: new Date().toISOString(),
+      bar: AUTHOR_BOOK_ACCEPT_BAR,
+      beatShipped: shipped,
+      accepted,
+      sampledChapters: sampled.map((c) => c.number),
+      docSha256: createHash("sha256").update(docText).digest("hex"),
+      verdict,
+      readers,
+    };
+    const path = io.persistAcceptance(bookId, record);
+    deps.log(`[autopilot] author acceptance${roundLabel}: durable record → ${path}`);
+  } catch (err) {
+    deps.log(`[autopilot] author acceptance${roundLabel}: WARNING durable record write failed: ${(err as Error).message}`);
+  }
+
   return { accepted, verdict, readers, readerSessionIds, sampledNumbers: sampled.map((c) => c.number) };
 }
 
@@ -511,7 +623,24 @@ export type AuthorReviewOptions = {
   io?: Partial<AuthorReviewIo>;
 };
 
+/** Public entry: run the review phase, converting any DocIntegrityError (Q2 doc
+ *  postcondition or a Q3 CONFIRMED structural claim, from either the chapter or
+ *  book path) into a fail-closed infra halt — machine truth about a broken doc
+ *  must halt the run, never surface as a content verdict or an unhandled throw. */
 export async function doAuthorReview(
+  bookId: string,
+  deps: AutopilotDeps,
+  opts: AuthorReviewOptions,
+): Promise<AutopilotOutcome | null> {
+  try {
+    return await doAuthorReviewInner(bookId, deps, opts);
+  } catch (err) {
+    if (err instanceof DocIntegrityError) return halt(bookId, "infra", `author review: ${err.message}`);
+    throw err;
+  }
+}
+
+async function doAuthorReviewInner(
   bookId: string,
   deps: AutopilotDeps,
   opts: AuthorReviewOptions,
@@ -574,7 +703,16 @@ export async function doAuthorReview(
   }
 
   // ── 3. Book acceptance (the author arch's confirming function). ────────────
-  let acceptance = await runBookAcceptance(bookId, chapters, deps, io, bar, "");
+  //   A DocIntegrityError from the Q2 postcondition or a Q3 CONFIRMED structural
+  //   claim is machine truth about a broken doc, never a content verdict — halt
+  //   infra so the operator repairs the render, don't spawn/compose readers.
+  let acceptance: BookAcceptanceResult;
+  try {
+    acceptance = await runBookAcceptance(bookId, chapters, deps, io, bar, "");
+  } catch (err) {
+    if (err instanceof DocIntegrityError) return halt(bookId, "infra", `author acceptance: ${err.message}`);
+    throw err;
+  }
   if (!acceptance.accepted) {
     // ONE targeted regen round: the book readers' complaints mapped to their
     // chapters (cap 3), re-review, then re-run acceptance ONCE.
@@ -613,7 +751,12 @@ export async function doAuthorReview(
       return halt(bookId, "content", `author acceptance: targeted regen round failed:\n${regenFailures.map((f) => `  ${f}`).join("\n")}`);
     }
     chapters = [...io.loadChapters(bookId)].sort((a, b) => a.number - b.number);
-    acceptance = await runBookAcceptance(bookId, chapters, deps, io, bar, "-round2");
+    try {
+      acceptance = await runBookAcceptance(bookId, chapters, deps, io, bar, "-round2");
+    } catch (err) {
+      if (err instanceof DocIntegrityError) return halt(bookId, "infra", `author acceptance (round2): ${err.message}`);
+      throw err;
+    }
     if (!acceptance.accepted) {
       const readerLines = acceptance.readers
         .map((r) => `  reader ${r.reviewerSessionId}: comp=${r.composite} gate=${r.gateVerdict} churn=${r.churn} valid=${r.valid ? "yes" : `NO (${r.invalidReason})`} — ${r.oneParagraphVerdict.slice(0, 300)}`)
