@@ -1465,6 +1465,77 @@ export function rankSaturationContributors(chapters: ChapterV21[]): number[] {
     .sort((a, b) => (score.get(b)! - score.get(a)!) || (a - b));
 }
 
+/** Budget-repair complaint builder (live-added 2026-07-03 after the first S-tier
+ *  run BLOCKED at the write-phase budgets): per-chapter, evidence-specific
+ *  complaints for the ONE bounded repair round. Only the two blocking checks
+ *  route repairs — advisories never spend writers. Each complaint names the
+ *  chapter's OWN offenders (its band-word counts, its strawman hits verbatim)
+ *  so nine parallel repair writers don't get one identical pack (C2's #21). */
+export function buildBudgetRepairComplaints(chapters: ChapterV21[], blockers: BudgetFinding[]): Map<number, string[]> {
+  const ordered = [...chapters].sort((a, b) => a.number - b.number);
+  const N = ordered.length;
+  const out = new Map<number, string[]>();
+  const add = (n: number, line: string): void => {
+    const list = out.get(n) ?? [];
+    list.push(line);
+    out.set(n, list);
+  };
+  const blocked = (id: string): boolean => blockers.some((f) => f.checkId === id);
+
+  if (blocked("CHB10.lexical_saturation") && N >= 4) {
+    const freq = new Map<string, number>();
+    const spread = new Map<string, Set<number>>();
+    const perChapter = new Map<number, Map<string, number>>();
+    for (const chapter of ordered) {
+      const pc = new Map<string, number>();
+      for (const w of saturationTokens(fullReaderSurface(chapter))) {
+        freq.set(w, (freq.get(w) ?? 0) + 1);
+        if (!spread.has(w)) spread.set(w, new Set());
+        spread.get(w)!.add(chapter.number);
+        pc.set(w, (pc.get(w) ?? 0) + 1);
+      }
+      perChapter.set(chapter.number, pc);
+    }
+    const band = [...freq.entries()]
+      .filter(([w, n]) => n / N >= CHB10_BAND_DENSITY && (spread.get(w)?.size ?? 0) >= CHB10_BAND_SPREAD * N)
+      .map(([w]) => w);
+    for (const chapter of ordered) {
+      const counts = band
+        .map((w): [string, number] => [w, perChapter.get(chapter.number)?.get(w) ?? 0])
+        .filter(([, c]) => c >= CHB10_BAND_DENSITY)
+        .sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1));
+      if (counts.length === 0) continue;
+      add(chapter.number,
+        `budget repair (CHB10.lexical_saturation): the BOOK is blocked because the same words saturate every chapter. ` +
+        `YOUR chapter uses ${counts.map(([w, c]) => `'${w}' ${c}×`).join(", ")}. Rewrite with a HARD ceiling of 8 uses for each listed word — ` +
+        `replace the overflow with this chapter's case-concrete referents (the named person, the named artifact, the number), never a stilted synonym. ` +
+        `Keep the teaching identical; change only the telling.`);
+    }
+  }
+
+  if (blocked("CHB12.strawman_rate")) {
+    for (const chapter of ordered) {
+      const hits: string[] = [];
+      for (const q of chapter.quiz?.questions ?? []) {
+        const choices = (q.choices ?? []).map((c) => asText(c));
+        const k = q.correctIndex;
+        const keyShares = typeof k === "number" && choices[k] ? STRAWMAN_LEXICON.test(choices[k]) : false;
+        choices.forEach((c, i) => {
+          if (i === k || !c || keyShares) return;
+          if (STRAWMAN_LEXICON.test(c)) hits.push(c.slice(0, 90));
+        });
+      }
+      if (hits.length === 0) continue;
+      add(chapter.number,
+        `budget repair (CHB12.strawman_rate): the BOOK is blocked because too many distractors are tone-giveaway strawmen. ` +
+        `These are YOURS — rebuild each from the source packet's commonError material into an operational alternative a practitioner would defend: ` +
+        `${hits.slice(0, 4).map((h) => `"${h}"`).join("; ")}${hits.length > 4 ? ` (+${hits.length - 4} more — scan all 18 distractors)` : ""}.`);
+    }
+  }
+
+  return out;
+}
+
 // ── entry point ──────────────────────────────────────────────────────────────
 
 export function checkReaderBudgets(chapters: ChapterV21[], opts?: ReaderBudgetOptions): BudgetFinding[] {

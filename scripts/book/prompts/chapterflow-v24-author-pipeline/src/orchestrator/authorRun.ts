@@ -31,7 +31,7 @@ import { writerPacketProjection } from "../compiler/sourcePacketProjection.js";
 import { DEFAULT_LENGTH_BUDGET_CHARS, LENGTH_BUDGET_TOLERANCE, briefVarietyInstructionLines } from "../compiler/chapterBrief.js";
 import { voiceCard, voiceRegisterLine } from "../lib/voiceCard.js";
 import { chapterFileName, normSlug, CHAPTERS_DIR } from "../lib/chapterPaths.js";
-import { checkReaderBudgets, type BudgetFinding } from "../critics/readerBudgets.js";
+import { buildBudgetRepairComplaints, checkReaderBudgets, type BudgetFinding } from "../critics/readerBudgets.js";
 import { loadNameBank } from "../librarian/namePlan.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
@@ -176,7 +176,7 @@ export const AUTHOR_QUALITY_BAR =
   "2. KEY PARAPHRASE. The keyed answer must PARAPHRASE the idea in fresh words — never reuse 5 or more consecutive content words from anywhere in the chapter, INCLUDING the review cards and the implementation plan. If a key echoes a sentence you already wrote, reword the key.\n" +
   "3. PRACTICE CONCRETENESS. Each tryThisNow and each 24-hour challenge names ONE action with a number or a timebox AND the exact sentence to say or the exact object to touch. No \"a, b, or c\" option menus — give the single concrete move, not a menu of categories.\n" +
   "4. PLAIN LANGUAGE FROM SENTENCE ONE. Target whole-chapter Flesch ease 72-84: short sentences, common words, one idea per sentence. Open plain — no throat-clearing abstraction before the first concrete beat.\n" +
-  "5. DISTRACTOR CRAFT. Build wrong answers from the source packet's commonError material first — real misconceptions a competent practitioner would defend out loud. Every distractor must be wrong for a specific reason YOUR prose settles, and each explanation must name why the most tempting wrong answer fails — in your own varied words each time; NEVER a fixed stem like \"If you chose (b):\" repeated across questions (162 identical stems is its own template). Never a tone giveaway: no distractor a reader could reject WITHOUT reading the chapter (polish the deck, announce it louder, wait and see, boost morale) — unless the chapter explicitly teaches against that named move.";
+  "5. DISTRACTOR CRAFT. Build wrong answers from the source packet's commonError material first — real misconceptions a competent practitioner would defend out loud. Every distractor must be wrong for a specific reason YOUR prose settles, and each explanation must name why the most tempting wrong answer fails — in your own varied words each time; NEVER a fixed stem like \"If you chose (b):\" repeated across questions (162 identical stems is its own template). Never a tone giveaway: no distractor a reader could reject WITHOUT reading the chapter — unless the chapter explicitly teaches against that named move. Before you declare done: scan ALL 18 distractors for polish/polished/announce/announcement/slides/deck/briefing/morale/optics/louder/inspire/motivate words — every hit gets REBUILT from a commonError (a deterministic gate counts these book-wide and blocks the whole book above 7%).";
 
 /**
  * S-tier P5 (plan §C, fixes B10) — the acceptance rubric's demands, stated to the
@@ -555,16 +555,51 @@ export async function doAuthorWrite(
   const firstBrief = expected.map((n) => io.readBrief(bookId, n)).find((b) => b?.lengthBudget?.renderedChars);
   const lengthBudget = firstBrief?.lengthBudget ?? { renderedChars: DEFAULT_LENGTH_BUDGET_CHARS, tolerance: LENGTH_BUDGET_TOLERANCE };
 
-  const { findings, nameBankWarn } = runBudgetsCapturingWarn(chapters, packets, lengthBudget);
+  let { findings, nameBankWarn } = runBudgetsCapturingWarn(chapters, packets, lengthBudget);
   if (nameBankWarn) {
     return halt(bookId, "infra", `author write: readerBudgets reported the name bank unavailable (CHB3 silently disabled): ${nameBankWarn}. Fix config/name-bank.json; refusing to skip the check.`);
   }
-  const blockers = findings.filter((f) => f.severity === "blocker");
+  let blockers = findings.filter((f) => f.severity === "blocker");
   if (blockers.length > 0) {
+    // ONE bounded budget-repair round (live-added 2026-07-03: the first S-tier run
+    // halted here with CHB10+CHB12 while the evidence for a targeted repair was
+    // sitting in the findings). Each offending chapter gets ITS OWN measured
+    // complaints (band-word counts, verbatim strawman hits) and rewrites under the
+    // byte-identical guard; then the budgets re-run ONCE. Still blocking → the
+    // same fail-closed halt as before. The block is never weakened — this only
+    // spends bounded writers where the halt previously spent the operator.
+    const targets = buildBudgetRepairComplaints(chapters, blockers);
     const lines = blockers.map((f) => `  [${f.checkId}] ch${String(f.chapterNumber).padStart(2, "0")}: ${f.message}`);
-    return halt(bookId, "content", `author write: reader budgets BLOCK (${blockers.length} finding(s)) — these are write-time defects the writer must not ship:\n${lines.join("\n").slice(0, 3000)}`);
+    if (targets.size === 0) {
+      return halt(bookId, "content", `author write: reader budgets BLOCK (${blockers.length} finding(s)) with no repair-routable chapter evidence:\n${lines.join("\n").slice(0, 3000)}`);
+    }
+    deps.log(`[autopilot] author write: reader budgets BLOCK (${blockers.length} finding(s)) — ONE bounded budget-repair round over ${targets.size} chapter(s): ${[...targets.keys()].sort((a, b) => a - b).map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}`);
+    const repairFailures: string[] = [];
+    await mapPool([...targets.entries()], opts.maxParallel, async ([n, complaints]) => {
+      heartbeat();
+      const r = await authorWriteOneChapter(bookId, n, deps, { complaints, io: opts.io });
+      if (!r.ok) repairFailures.push(r.reason);
+    });
+    if (repairFailures.length > 0) {
+      return halt(bookId, "content", `author write: budget-repair round failed for ${repairFailures.length} chapter(s):\n${repairFailures.join("\n\n").slice(0, 3000)}`);
+    }
+    try {
+      chapters = io.loadChapters(bookId);
+    } catch (err) {
+      return halt(bookId, "infra", `author write: could not reload chapters after the budget-repair round: ${(err as Error).message}`);
+    }
+    ({ findings, nameBankWarn } = runBudgetsCapturingWarn(chapters, packets, lengthBudget));
+    if (nameBankWarn) {
+      return halt(bookId, "infra", `author write: readerBudgets reported the name bank unavailable after repair: ${nameBankWarn}.`);
+    }
+    blockers = findings.filter((f) => f.severity === "blocker");
+    if (blockers.length > 0) {
+      const stillLines = blockers.map((f) => `  [${f.checkId}] ch${String(f.chapterNumber).padStart(2, "0")}: ${f.message}`);
+      return halt(bookId, "content", `author write: reader budgets STILL BLOCK after the one bounded repair round (${blockers.length} finding(s)):\n${stillLines.join("\n").slice(0, 3000)}`);
+    }
+    deps.log(`[autopilot] author write: budget-repair round converged — blockers clear`);
   }
-  const advisories = findings.length - blockers.length;
+  const advisories = findings.filter((f) => f.severity === "advisory").length;
   deps.log(`[autopilot] author write: reader budgets clean (${advisories} advisory finding(s)) — advancing to deterministic gates`);
   return null;
 }

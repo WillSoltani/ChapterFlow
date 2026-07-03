@@ -404,6 +404,12 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
   if (brief.frameworkNouns && brief.frameworkNouns.length > 0) {
     lines.push(
       `- FRAMEWORK VOCABULARY BUDGET: the book's framework nouns are: ${brief.frameworkNouns.join(", ")}. Every chapter leans on them, so they saturate book-wide. Your budget: the single noun you need most ≤15 uses in this chapter; every other listed noun ≤10. The same budget applies to any generic role-noun you find yourself repeating (owner, leader, manager) even if unlisted — name people by their case names and titles instead. When the budget is spent, use YOUR cases' concrete referents — the person's name, the artifact, the number — never an invented formal synonym ("the accountable party" is worse than the budget).`,
+      // P1b (live-calibrated 2026-07-03): the first S-tier run proved the budget works
+      // exactly on the words it names — the packet-derived nouns all cleared — while the
+      // UNLISTED business-scene furniture saturated instead ('review' 26.1/ch, 'work'
+      // 25.8, 'room' 16.1 across 9/9 chapters). These words are book-independent (they
+      // come from the writing process, not the source), so they are budgeted statically.
+      `- SCENE-FURNITURE BUDGET (same rule, fixed list): review, meeting, room, plan, work, check, test, date, news, next — each ≤10 uses in this chapter. Every chapter of every business book reaches for these; at 20+ uses each they make nine chapters read as one. When you feel the next "the review meeting" or "the room goes quiet" coming, write the specific thing instead: the named meeting, the artifact on the table, the person who speaks.`,
     );
   }
   return lines;

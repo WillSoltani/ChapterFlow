@@ -6,7 +6,7 @@
  * blueprint name deal (disjoint across chapters, real source-person names excluded book-wide);
  * answerIndexPattern reuse of the BP14-safe quiz-key deal; the avoid list (sibling openers on
  * regen, bounded at 6); design-pool flavor; the BR1–BR5 gate blockers firing on crafted bad
- * briefs and staying silent on good ones; and the rendered md staying compact (≤ 3900 chars)
+ * briefs and staying silent on good ones; and the rendered md staying compact (≤ 4300 chars)
  * with every section present.
  */
 import assert from "node:assert/strict";
@@ -444,7 +444,7 @@ test("B1 gate: BR5 fires on empty coreMove/thesis; BR0 on a missing brief", () =
 });
 
 // ── rendered md ─────────────────────────────────────────────────────────────────────
-test("B1: rendered md contains every section and stays ≤ 3900 chars on the fixture (design pools + regen avoid active)", () => {
+test("B1: rendered md contains every section and stays ≤ 4300 chars on the fixture (design pools + regen avoid active)", () => {
   withBook("md", (roots, packets, chapters) => {
     // Worst realistic case: design flavor present + sibling openers on disk.
     writeJsonFile(bookDesignPath(BOOK, roots), deriveBookDesign(BOOK, { roots, genre: "business-decision", packets, chapters: chapters.length }));
@@ -465,7 +465,7 @@ test("B1: rendered md contains every section and stays ≤ 3900 chars on the fix
       // gained the dealt example-lens triple (3 instruction lines), the practice-verb
       // register, and the framework-vocabulary budget (~+900-1100 chars). The author
       // card's overall ≤25k budget absorbs it with wide margin.
-      assert.ok(md.length <= 3900, `ch${brief.chapterNumber} md is ${md.length} chars (cap 3900)`);
+      assert.ok(md.length <= 4300, `ch${brief.chapterNumber} md is ${md.length} chars (cap 4300)`); // +400 for the P1b scene-furniture budget line (live-calibrated 2026-07-03)
     }
   });
 });

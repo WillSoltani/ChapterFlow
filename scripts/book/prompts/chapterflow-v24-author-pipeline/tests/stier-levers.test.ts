@@ -35,6 +35,7 @@ import {
 } from "../src/orchestrator/authorRun.js";
 import {
   CHB10_BAND_BLOCKER,
+  buildBudgetRepairComplaints,
   buildChurnEvidenceReport,
   checkReaderBudgets,
   rankSaturationContributors,
@@ -567,4 +568,45 @@ test("C3 integration: a tiebreak SPLIT (1 ship / 1 no-ship) upholds the FAIL —
     rmSync(tmpDoc, { recursive: true, force: true });
     rmSync(reviewDir(BOOK), { recursive: true, force: true });
   }
+});
+
+// ── Budget-repair round (live-added after the first S-tier run blocked here) ──
+
+test("budget repair: per-chapter complaints name each chapter's OWN band words and strawman hits; advisories route nothing", () => {
+  const varied = Array.from({ length: 9 }, (_, i) => makeChapter(BOOK, i + 1));
+  const words = ["cadence", "ledger", "signal", "vector", "tempo", "quorum", "beacon"];
+  const saturated = varied.map((ch) => words.reduce((acc, w) => saturate(acc, w, 30), ch));
+  saturated[2] = {
+    ...saturated[2],
+    quiz: {
+      ...saturated[2].quiz,
+      questions: saturated[2].quiz.questions.map((q) => ({
+        ...q,
+        choices: q.choices.map((c, ci) => (ci === q.correctIndex ? c : `Polish the deck ${c}`)),
+      })),
+    },
+  };
+  const blockers = checkReaderBudgets(saturated).filter((f) => f.severity === "blocker");
+  assert.ok(blockers.some((f) => f.checkId === "CHB10.lexical_saturation"), "saturation blocks");
+  assert.ok(blockers.some((f) => f.checkId === "CHB12.strawman_rate"), "strawman blocks");
+  const targets = buildBudgetRepairComplaints(saturated, blockers);
+  assert.ok(targets.size >= 8, `saturation routes to (nearly) every chapter: ${targets.size}`);
+  const ch3 = targets.get(3) ?? [];
+  assert.ok(ch3.some((l: string) => l.includes("CHB10") && l.includes("'cadence'")), "ch3 sees its own band counts");
+  assert.ok(ch3.some((l: string) => l.includes("CHB12") && l.includes("Polish the deck")), "ch3 sees its own strawman hits verbatim");
+  assert.ok((targets.get(1) ?? []).every((l: string) => !l.includes("CHB12")), "chapters without hits get no strawman complaint");
+  // Advisory-only findings route nothing.
+  assert.equal(buildBudgetRepairComplaints(varied, []).size, 0, "no blockers → no targets");
+});
+
+test("P1b/P3b: scene-furniture budget rides the brief; rule 5 carries the mechanical distractor scan", () => {
+  const lines = briefVarietyInstructionLines({
+    openerType: "scene", challengeFrame: "audit-one-artifact", practiceShape: "two-step-sequence",
+    exampleLenses: ["dialogue-beat", "postmortem", "before-after-ledger"],
+    practiceVerb: "circle", requireFrictionExample: true, frameworkNouns: ["cadence"],
+  } as ChapterBriefV1).join("\n");
+  assert.ok(lines.includes("SCENE-FURNITURE BUDGET"), "furniture budget present");
+  assert.ok(lines.includes("review, meeting, room, plan, work"), "static furniture list present");
+  assert.ok(AUTHOR_QUALITY_BAR.includes("scan ALL 18 distractors"), "rule 5 mechanical scan protocol");
+  assert.ok(AUTHOR_QUALITY_BAR.includes("blocks the whole book above 7%"), "rule 5 names the deterministic stake");
 });
