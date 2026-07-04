@@ -455,7 +455,7 @@ export function mapNamedBookComplaints(
  *  the repaired chapters from matching each other instead of the book. */
 export const CHURN_DIVERGENCE_ASSIGNMENTS = [
   "YOUR DIVERGENCE LANE — VOCABULARY: rewrite the teaching through your own cases' concrete referents (names, artifacts, numbers). Respect the framework-vocabulary budget ruthlessly; where the old draft leaned on the framework nouns, this one names the person, the document, the number.",
-  "YOUR DIVERGENCE LANE — SCENE ARCHITECTURE: recast your examples into your dealt lenses. No more than ONE person-handling-a-document tableau in the whole chapter; lead with ledgers, postmortems, walkthroughs, dialogue, or counterfactual reasoning instead.",
+  "YOUR DIVERGENCE LANE — SCENE ARCHITECTURE: recast your examples into your dealt lenses. No more than ONE person-handling-a-document tableau in the whole chapter — deliberately TIGHTER than your brief's cap of two; this lane overrides the brief on that one number. Lead with ledgers, postmortems, walkthroughs, dialogue, or counterfactual reasoning instead.",
   "YOUR DIVERGENCE LANE — QUIZ SEMANTICS: rebuild every distractor from the packet's commonError material (defensible operational alternatives); kill every tone-giveaway option; every explanation names why the tempting wrong answer fails, in varied phrasing.",
 ] as const;
 

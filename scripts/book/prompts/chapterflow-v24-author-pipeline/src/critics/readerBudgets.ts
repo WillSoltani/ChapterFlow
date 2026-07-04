@@ -189,8 +189,11 @@
  *      verbatim-identical stamped text (see above), kept as true positives.
  */
 
+import { readFileSync } from "fs";
 import type { ChapterV21 } from "../types.js";
 import { resolveDirect } from "../types.js";
+import { parseChapterId } from "../lib/chapterPaths.js";
+import { chapterBriefPath } from "../artifacts/artifactStore.js";
 import type { SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import { extractNamesFromText } from "../librarian/libraryState.js";
 import { loadNameBank } from "../librarian/namePlan.js";
@@ -704,13 +707,16 @@ function contentTokens(text: string): string[] {
 
 // ── CHB6: opener-class budget ────────────────────────────────────────────────
 
-export const OPENER_CLASSES = ["question", "scene", "statistic", "claim"] as const;
+export const OPENER_CLASSES = ["question", "scene", "statistic", "claim", "tension-thesis"] as const;
 export type OpenerClass = (typeof OPENER_CLASSES)[number];
 
-/** Classify an opening sentence into {question, scene, statistic, claim} — the same four classes
- *  the W4 brief rotation deals. Book-level heuristic (the calibration note is explicit that these
- *  regexes are safe as aggregate budgets, noisy as per-item gates). Order matters: question →
- *  statistic → scene → claim (default). */
+/** Classify an opening sentence into {question, scene, statistic, claim} lexically. The v4
+ *  rotation also deals "tension-thesis", which is lexically a claim — the budget check below
+ *  re-buckets a claim-classified chapter into "tension-thesis" when its BRIEF dealt that mode
+ *  (deal-aware, same precedent as finalGate.dealtExampleFloor), so a deal-compliant book cannot
+ *  overflow the claim budget by obeying its deal. Book-level heuristic (the calibration note is
+ *  explicit that these regexes are safe as aggregate budgets, noisy as per-item gates). Order
+ *  matters: question → statistic → scene → claim (default). */
 export function classifyOpener(text: string): OpenerClass {
   const first = (text.match(/[^.!?]*[.!?]?/)?.[0] ?? text).trim();
   if (!first) return "claim";
@@ -734,6 +740,22 @@ export function classifyOpener(text: string): OpenerClass {
 /** CHB6: over the whole book, the hook opening class AND the fastRead opening class each get a
  *  budget of ceil(2/3·N) chapters — no single class may open more than two-thirds of chapters
  *  (readers named the claim-opener monoculture directly). Dual-shape via asText. */
+/** Dealt opener mode from the chapter's brief, or null when no valid v-rotation brief exists
+ *  (legacy books, missing briefs — fail-open to pure lexical classification). */
+function dealtOpenerType(chapter: ChapterV21): string | null {
+  try {
+    const parsed = parseChapterId(chapter.chapterId ?? "");
+    if (!parsed) return null;
+    const raw = readFileSync(chapterBriefPath(parsed.bookId, parsed.num), "utf8");
+    const brief = JSON.parse(raw) as { rotationSchemaVersion?: unknown; openerType?: unknown };
+    if (typeof brief?.rotationSchemaVersion === "string" && brief.rotationSchemaVersion.length > 0 &&
+        typeof brief?.openerType === "string" && brief.openerType.length > 0) {
+      return brief.openerType;
+    }
+  } catch { /* no readable brief → lexical class stands */ }
+  return null;
+}
+
 function checkOpenerClassBudget(chapters: ChapterV21[]): BudgetFinding[] {
   const n = chapters.length;
   if (n === 0) return [];
@@ -748,7 +770,10 @@ function checkOpenerClassBudget(chapters: ChapterV21[]): BudgetFinding[] {
     for (const chapter of chapters) {
       const text = surface.get(chapter);
       if (!text.trim()) continue;
-      const cls = classifyOpener(text);
+      let cls: OpenerClass = classifyOpener(text);
+      // v4 deal-aware re-bucket: a dealt tension-thesis hook is lexically a claim; obeying
+      // the deal must not overflow the claim budget (D8, FINAL-HARDENING-PLAN 2026-07-04).
+      if (cls === "claim" && dealtOpenerType(chapter) === "tension-thesis") cls = "tension-thesis";
       const list = byClass.get(cls) ?? [];
       list.push(chapter.number);
       byClass.set(cls, list);
@@ -766,7 +791,7 @@ function checkOpenerClassBudget(chapters: ChapterV21[]): BudgetFinding[] {
           message:
             `${surface.label} opener class "${cls}" appears in ${nums.length} of ${n} chapters ` +
             `(${nums.map((x) => `ch${String(x).padStart(2, "0")}`).join(", ")}) — over the ceil(2/3·N)=${cap} ` +
-            `opener-class budget; rotate ${surface.label} openers across question/scene/statistic/claim.`,
+            `opener-class budget; rotate ${surface.label} openers across question/scene/statistic/claim/tension-thesis.`,
         });
       }
     }
@@ -1682,7 +1707,7 @@ export function buildBudgetRepairComplaints(chapters: ChapterV21[], blockers: Bu
       if (counts.length === 0) continue;
       add(chapter.number,
         `budget repair (CHB10.lexical_saturation): the BOOK is blocked because the same words saturate every chapter. ` +
-        `YOUR chapter uses ${counts.map(([w, c]) => `'${w}' ${c}×`).join(", ")}. Rewrite with a HARD ceiling of 8 uses for each listed word — ` +
+        `YOUR chapter uses ${counts.map(([w, c]) => `'${w}' ${c}×`).join(", ")}. Rewrite with a HARD ceiling of 8 uses for each listed word — this repair ceiling OVERRIDES your brief's vocabulary budget for the listed words only (the book is saturated; the brief's per-chapter allowance no longer applies to them) — ` +
         `replace the overflow with this chapter's case-concrete referents (the named person, the named artifact, the number), never a stilted synonym. ` +
         `Keep the teaching identical; change only the telling.`);
     }

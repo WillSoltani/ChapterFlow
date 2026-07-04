@@ -1,7 +1,9 @@
 /**
  * cardQualityGates — W2 deterministic PRE-FLIGHT quality gates for the v24 author
- * architecture (plan §WS5). Three BLOCKING, per-chapter checks that run in the
- * SAME author preflight that gates tellRate today, so a FAIL feeds the existing
+ * architecture (plan §WS5). Two BLOCKING per-chapter checks plus one ADVISORY
+ * (echo-tell warns but never fails — a blocking echo gate would fail 4 of the 5
+ * books the spec requires to pass; see bookRubricMetrics). They run in the SAME
+ * author preflight that gates tellRate today, so a FAIL feeds the existing
  * retry card verbatim (authorRun.ts reads the `chNN: … FAIL …` line):
  *
  *   (a) ECHO-TELL          — the KEY lifts a ≥5-contiguous-content-token verbatim
@@ -361,7 +363,10 @@ export function cardQualityChapter(chapter: ChapterV21, opts: CardQualityGateOpt
     echo,
     length,
     practice,
-    fail: echo.fail || length.fail || practice.fail,
+    // Echo is ADVISORY (see header) — it must not flip the combined blocking flag,
+    // which is embedded verbatim in the rubric-metrics artifact and would otherwise
+    // invite a future consumer to block on it.
+    fail: length.fail || practice.fail,
     reasons,
   };
 }

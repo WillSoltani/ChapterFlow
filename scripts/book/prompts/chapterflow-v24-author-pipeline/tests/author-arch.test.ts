@@ -373,8 +373,12 @@ test("author card: W1 QUALITY BAR (all four house rules) rides the ALWAYS-SENT c
   // a compliant first draft clears the W2 preflight without the ~19-min retry.
   const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
   assert.ok(card.includes(AUTHOR_QUALITY_BAR), "the QUALITY BAR block is embedded verbatim on the first attempt");
-  // Rule 1 — distractor parity (symmetric: neither longest nor shortest).
-  assert.match(card, /NEITHER the longest NOR the shortest/i, "rule 1 distractor parity is symmetric");
+  // Rule 1 — distractor parity states the REAL symmetric caps (FINAL-HARDENING-PLAN
+  // 2026-07-04 D1/D5 rebase: the old "NEITHER longest NOR shortest / aim middle" text
+  // contradicted the 1-longest/4-shortest gates and CHB8's 20% shortest floor).
+  assert.match(card, /uniquely LONGEST choice in AT MOST ONE/i, "rule 1 states the longest cap");
+  assert.match(card, /uniquely SHORTEST in AT MOST FOUR/i, "rule 1 states the shortest cap");
+  assert.match(card, /up to 4 of 9.*never make shortest the rule/i, "rule 1 reconciles the CHB8 shortest floor");
   // Rule 2 — key paraphrase incl. review cards + implementation plan.
   assert.match(card, /never reuse 5 or more consecutive content words/i, "rule 2 key-paraphrase 5-word rule");
   assert.match(card, /review cards and the implementation plan/i, "rule 2 names review cards + implementation plan explicitly");
@@ -844,7 +848,10 @@ test("authorWriteOneChapter: a W2 card-quality FAIL carries its `chNN fix:` repa
     spawns[1].task.includes("ch01 fix: length-tell: key is the uniquely-SHORTEST choice in 5/9"),
     "the concrete `chNN fix:` repair line is carried VERBATIM into the retry card",
   );
-  assert.ok(spawns[1].task.includes("uniquely shortest choice"), "the how-to-read guidance now decodes lenTell for the writer");
+  // FINAL-HARDENING-PLAN 2026-07-04 D1 rebase: the retry guidance states the real
+  // caps (4-shortest/1-longest) instead of the old zero-extremes overreach.
+  assert.ok(spawns[1].task.includes("uniquely SHORTEST choice in at most 4 of 9"), "the how-to-read guidance decodes lenTell with the REAL caps");
+  assert.ok(spawns[1].task.includes("do NOT purge every length extreme"), "the retry guidance carries the anti-pendulum instruction");
 });
 
 // ── Book-acceptance bar calibration (owner decision 2026-07-03) ───────────────

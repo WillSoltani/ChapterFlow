@@ -44,6 +44,7 @@
     "node_modules",
     "infra/**",
     "cdk.out/**",
+    "scripts/book/prompts/*/scratch/**",
     ".next-chapterflow/**",
     ".next-cf-dev/**"
   ]
