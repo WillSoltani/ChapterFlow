@@ -2808,11 +2808,14 @@ async function handleReady(bookId: string, status: BookStatus, autoPublish: bool
   if (isAuthor) {
     const pf = await deps.runVerb(["publish-final", bookId]);
     if (pf.code !== 0) return mkHalt(bookId, "ready", "infra", `publish-final failed (exit ${pf.code}): ${(pf.stderr || pf.stdout).slice(0, 300)}`);
+    // publish-final prints its own DEPLOY REQUIRED block; echo the one-line
+    // pointer here so the conductor's own outcome names the owed deploy + the
+    // machine-checkable clear command (FINAL-HARDENING-PLAN 2026-07-04).
     return {
       status: "published",
       bookId,
       roundId: roundId ?? "",
-      message: `PUBLISHED — publish-final shipped ${bookId}: package committed + pushed, origin synced 0/0, per-book debris cleaned. NOT live until the separate manual deploy.`,
+      message: `PUBLISHED — publish-final shipped ${bookId}: package committed + pushed, origin synced 0/0, per-book debris cleaned. ⚠ NOT live until the separate manual deploy — run the 3 steps printed above (upload-book-packages-to-s3 → gh workflow run deploy.yml → npm run verify:live); ${bookId} stays tracked in book-packages/.pending-deploy.json until verify:live confirms parity.`,
     };
   }
 

@@ -25,7 +25,7 @@ import { hostname, tmpdir } from "node:os";
 import { resolve } from "node:path";
 
 import { test } from "./harness.js";
-import { publishFinal, pushWithMerge, hasFreshLock } from "../src/publish/publishFinal.js";
+import { publishFinal, pushWithMerge, hasFreshLock, mergePendingDeploy, PENDING_DEPLOY_REL } from "../src/publish/publishFinal.js";
 
 const BOOK = "zz-fixture-publish-final";
 const PKG = JSON.stringify({ schemaVersion: "v21", packageId: `${BOOK}-v21-1`, book: { bookId: BOOK }, chapters: [{ number: 1, title: "One" }] }, null, 2) + "\n";
@@ -137,7 +137,52 @@ test("happy E2E: bridge → register → commit → push → 0/0 sync → cleanu
     const originHead = git(fx.outer, ["rev-parse", `origin/${fx.branch}`]);
     const localHead = git(fx.outer, ["rev-parse", "HEAD"]);
     assert.equal(originHead, localHead, "origin and local must be in sync");
+    // Deploy sentinel (FINAL-HARDENING-PLAN 2026-07-04): written, tracked in the
+    // publish commit, records this book with the same sha the byte-compare used.
+    assert.ok(res.steps.find((s) => s.step === "deploy-sentinel")?.ok, "the deploy-sentinel step ran");
+    const sentinelAbs = resolve(fx.outer, PENDING_DEPLOY_REL);
+    assert.ok(existsSync(sentinelAbs), "the sentinel file exists in the outer checkout");
+    const sentinel = JSON.parse(readFileSync(sentinelAbs, "utf8"));
+    assert.equal(sentinel.schemaVersion, "pending-deploy-v1");
+    const entry = sentinel.pending.find((e: { bookId: string }) => e.bookId === BOOK);
+    assert.ok(entry, "the published book is recorded as pending deploy");
+    assert.equal(entry.packageSha256, res.packageSha, "the sentinel sha matches the published package sha");
+    // It rode the publish commit (tracked, not left dirty).
+    const tracked = git(fx.outer, ["ls-files", "--", PENDING_DEPLOY_REL]);
+    assert.equal(tracked, PENDING_DEPLOY_REL, "the sentinel is committed, not an untracked leftover");
+    // The success report carries the loud DEPLOY REQUIRED hint.
+    assert.ok((res.deployRequired ?? []).some((l) => /DEPLOY REQUIRED/.test(l)), "the result exposes the deploy-required hint");
+    assert.ok((res.deployRequired ?? []).some((l) => /verify:live/.test(l)), "the hint names the verify command");
   } finally { fx.cleanup(); }
+});
+
+test("deploy sentinel: mergePendingDeploy replaces same-book, preserves others, tolerates torn JSON, is stable+newline-terminated", () => {
+  // Fresh file.
+  const first = mergePendingDeploy(null, { bookId: "b-two", packageSha256: "aaa", publishedAt: "t1", steps: ["x"] });
+  assert.ok(first.endsWith("\n"), "newline-terminated");
+  const p1 = JSON.parse(first);
+  assert.equal(p1.schemaVersion, "pending-deploy-v1");
+  assert.deepEqual(p1.pending.map((e: { bookId: string }) => e.bookId), ["b-two"]);
+  // Preserve others + sort by bookId.
+  const second = mergePendingDeploy(first, { bookId: "a-one", packageSha256: "bbb", publishedAt: "t2", steps: ["y"] });
+  assert.deepEqual(JSON.parse(second).pending.map((e: { bookId: string }) => e.bookId), ["a-one", "b-two"], "other entries preserved, sorted by bookId");
+  // Replace same book (new sha), keep the other.
+  const third = mergePendingDeploy(second, { bookId: "b-two", packageSha256: "ccc", publishedAt: "t3", steps: ["z"] });
+  const p3 = JSON.parse(third);
+  assert.equal(p3.pending.length, 2, "same-book entry replaced, not duplicated");
+  assert.equal(p3.pending.find((e: { bookId: string }) => e.bookId === "b-two").packageSha256, "ccc", "replaced with the new sha");
+  assert.equal(p3.pending.find((e: { bookId: string }) => e.bookId === "a-one").packageSha256, "bbb", "the other entry is untouched");
+  // IDEMPOTENT: re-merging the SAME book+sha keeps the prior entry verbatim
+  // (publishedAt not refreshed) → byte-identical output → publish-final's
+  // commit-skip idempotency holds.
+  const reMerged = mergePendingDeploy(third, { bookId: "b-two", packageSha256: "ccc", publishedAt: "t3-DIFFERENT", steps: ["z"] });
+  assert.equal(reMerged, third, "same book+sha re-merge is byte-identical (publishedAt preserved)");
+  // Torn/foreign existing blob → start fresh with just the new entry (never throws).
+  const fromTorn = mergePendingDeploy("{ this is not json", { bookId: "c", packageSha256: "d", publishedAt: "t", steps: [] });
+  assert.deepEqual(JSON.parse(fromTorn).pending.map((e: { bookId: string }) => e.bookId), ["c"]);
+  // A well-formed blob with an unexpected shape keeps only valid entries.
+  const mixed = mergePendingDeploy(JSON.stringify({ pending: [{ bookId: "keep", packageSha256: "k", publishedAt: "t", steps: [] }, { junk: 1 }] }), { bookId: "new", packageSha256: "n", publishedAt: "t", steps: [] });
+  assert.deepEqual(JSON.parse(mixed).pending.map((e: { bookId: string }) => e.bookId).sort(), ["keep", "new"], "invalid entries dropped, valid ones preserved");
 });
 
 test("push MERGE loop: origin advances between commit and push → merges (merge commit, NO rebase/force) → push → 0/0", async () => {
