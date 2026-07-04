@@ -1,7 +1,7 @@
 /**
  * evalReaderProxy — the standalone `eval-reader-proxy` CLI verb (component A1).
  *
- *   eval-reader-proxy <bookId> [<bookId2> ...] [--chapters N] [--bar 84] [--json]
+ *   eval-reader-proxy <bookId> [<bookId2> ...] [--chapters N] [--bar 80] [--json]
  *
  * For each book: load its production package (pipeline-local book-packages/
  * first, else the outer checkout's book-packages/), deterministically sample N
@@ -27,7 +27,7 @@ import { REPO_ROOT, FORBIDDEN_STATE } from "../lib/chapterPaths.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { spawnCodexAgent, codexAvailable } from "../orchestrator/codexAgent.js";
 import { renderChapterReaderDoc } from "./renderReaderDoc.js";
-import { adjudicateReview, buildReaderReviewTask, parseReaderReview, writeChapterReview } from "./readerReview.js";
+import { adjudicateReview, AUTHOR_CHAPTER_BAR, buildReaderReviewTask, parseReaderReview, writeChapterReview } from "./readerReview.js";
 
 /** The outer checkout root (the repo this pipeline package is nested inside).
  *  Derived from chapterPaths' exported outer-shadow constant: FORBIDDEN_STATE
@@ -167,7 +167,7 @@ async function reviewOneChapter(
 export async function runEvalReaderProxy(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookIds = args.filter(Boolean);
   if (bookIds.length === 0) {
-    console.error("Usage: eval-reader-proxy <bookId> [<bookId2> ...] [--chapters N] [--bar 84] [--json]");
+    console.error("Usage: eval-reader-proxy <bookId> [<bookId2> ...] [--chapters N] [--bar 80] [--json]");
     return 2;
   }
   const chaptersN = typeof flags.chapters === "string" ? parseInt(flags.chapters, 10) : 3;
@@ -175,7 +175,7 @@ export async function runEvalReaderProxy(args: string[], flags: Record<string, s
     console.error("eval-reader-proxy: --chapters must be a positive integer");
     return 2;
   }
-  const bar = typeof flags.bar === "string" ? parseFloat(flags.bar) : 84;
+  const bar = typeof flags.bar === "string" ? parseFloat(flags.bar) : AUTHOR_CHAPTER_BAR;
   if (!Number.isFinite(bar) || bar < 0 || bar > 100) {
     console.error("eval-reader-proxy: --bar must be a number in 0..100");
     return 2;

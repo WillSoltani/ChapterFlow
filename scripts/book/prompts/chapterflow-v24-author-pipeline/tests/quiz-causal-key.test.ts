@@ -8,9 +8,15 @@
  * shape (causal stem + imperative-led key); the semantic judgment stays with the
  * blinded readers (instrument line added) and the key-judge.
  *
- * Calibration (2026-07-04, measured): 136 shipped packages, 50 causal stems,
- * ZERO BP33 hits — zero-FP corpus-wide, including the owner top-5. ADVISORY
- * (minor) by the standing rule; these tests pin both halves.
+ * BROADENED 2026-07-04 (gold-run Phase 4): the narrow imperative-led detector
+ * missed start-with-why ch02/ch05 Q2, whose remedy/outcome keys did NOT open
+ * with an imperative verb. BP33 now flags three mechanical shapes — imperative
+ * remedy, generic moral/advice lead, and outcome-restatement (key ≥70% a subset
+ * of the stem's own words). Distractor-family soundness stays with the reader.
+ *
+ * Calibration (2026-07-04, RE-measured after broadening): 136 shipped packages,
+ * 50 causal stems, ZERO BP33 hits — zero-FP corpus-wide, including the owner
+ * top-5. ADVISORY (minor) by the standing rule; these tests pin all shapes.
  */
 
 import assert from "node:assert/strict";
@@ -51,6 +57,54 @@ test("BP33 catches the live incident shape: causal stem keyed to an imperative r
   assert.equal(findings.length, 1, "the remedy-shaped key on a causal stem is flagged");
   assert.equal(findings[0].severity, "minor", "ADVISORY — key quality is semantic; only the mechanical shape flags");
   assert.match(findings[0].message, /remedy cannot be the cause/i);
+});
+
+test("BP33 (broadened) catches a NON-imperative remedy/moral key — the ch02/ch05 gold-run miss", () => {
+  // The key is a remedy but does NOT open with an imperative verb (the narrow
+  // detector missed exactly this): a generic moral/advice aphorism.
+  const moral = quizOf({
+    prompt: "Why did the reorganization fail to change how the team worked?",
+    choices: [
+      "The lesson is that culture always beats strategy in the end.",
+      "The new chart moved people but left every old reporting line intact.",
+      "Two managers kept parallel approval paths the memo never mentioned.",
+    ],
+    correctIndex: 0,
+  });
+  const mf = checkQuizCausalKeyShape(moral);
+  assert.equal(mf.length, 1, "a moral-lead key on a causal stem is flagged");
+  assert.match(mf[0].message, /moral\/advice aphorism/i);
+  assert.equal(mf[0].severity, "minor");
+});
+
+test("BP33 (broadened) catches outcome-restatement — the key just repeats the stem's own outcome", () => {
+  const restate = quizOf({
+    prompt: "What led to the pilot program losing momentum after launch?",
+    choices: [
+      "The pilot program lost momentum after the launch.",
+      "The launch team disbanded, so no one owned the weekly follow-through.",
+      "The success metric shifted mid-quarter and stopped showing progress.",
+    ],
+    correctIndex: 0,
+  });
+  const rf = checkQuizCausalKeyShape(restate);
+  assert.equal(rf.length, 1, "an outcome-restatement key on a causal stem is flagged");
+  assert.match(rf[0].message, /restates the stem's own outcome/i);
+});
+
+test("BP33 does NOT over-flag a real cause that happens to reuse ONE stem noun", () => {
+  // A genuine mechanism that shares "pilot" with the stem but introduces new
+  // cause-words (owner, follow-through) → below the 70% overlap → no flag.
+  const good = quizOf({
+    prompt: "What led to the pilot losing momentum after launch?",
+    choices: [
+      "The launch team disbanded, so no owner drove the weekly follow-through.",
+      "The pilot lost momentum after launch.",
+      "The budget was frozen the week the pilot began.",
+    ],
+    correctIndex: 0,
+  });
+  assert.equal(checkQuizCausalKeyShape(good).length, 0, "a real cause with new mechanism words is not restatement");
 });
 
 test("BP33 passes the GOOD pattern: causal stem keyed to a prose-anchored cause with sibling-cause distractors", () => {

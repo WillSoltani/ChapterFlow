@@ -35,10 +35,15 @@ export function reviewRepairEnabled(): boolean {
 /** Surgical edits are smaller than authoring — 30 min is generous at xhigh. */
 export const REPAIR_TIMEOUT_MS = 1_800_000;
 
-/** Median composite floor for the lane. The chapter bar is 84 and the book bar
- *  is 80; tiebreak-upholding reads routinely score 83.x on repair-worthy
- *  chapters (ch05 live: 83.7/83.8), so 84 would veto the lane's own
- *  population. 82 = comfortably above the book bar, below reader noise. */
+/** Median composite floor for the lane. Both the chapter soft bar and the book
+ *  bar are now 80 (owner decision 2026-07-04, was chapter 84). The lane's job is
+ *  the SHIP-BLOCK-despite-good-score case: after the near-bar median tiebreak
+ *  CONVERTS anything with median ≥80 + ship-majority, an upheld FAIL that still
+ *  scores ≥82 means the readers withheld ship on specific, scope-convergent
+ *  defects — exactly what a surgical field patch fixes. Below 82 the score
+ *  itself is short (not just a ship-block), so a scoped edit can't reliably lift
+ *  the whole composite → regen instead. 82 sits above the bar (80) and below
+ *  reader noise. */
 export const REPAIR_COMPOSITE_FLOOR = 82;
 
 export type RepairScope =

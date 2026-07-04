@@ -18,6 +18,7 @@ import { REVIEW_FACTORS, type ReviewFactor } from "../src/artifacts/artifactType
 import { renderChapterReaderDoc } from "../src/review/renderReaderDoc.js";
 import {
   REVIEW_WEIGHTS,
+  AUTHOR_CHAPTER_BAR,
   DocIntegrityError,
   adjudicateReview,
   assertChapterReaderDocIntegrity,
@@ -29,6 +30,7 @@ import {
   writeChapterReview,
   type ParsedReaderReview,
 } from "../src/review/readerReview.js";
+import { resolveChapterBar, resolveChapterNoiseBand, CHAPTER_NOISE_BAND_DEFAULT } from "../src/orchestrator/authorReview.js";
 import { ensureTrailingNewline } from "../src/lib/atomicWrite.js";
 
 // ── Fixture ─────────────────────────────────────────────────────────────────
@@ -321,6 +323,86 @@ test("adjudicateReview: composite boundary — 83.9 fails bar 84, 84.0 passes", 
   const at = adjudicateReview(goodParsed({ scores: allScores(84) }), doc, ch, { bar: 84 });
   assert.equal(at.composite, 84);
   assert.equal(at.pass, true, "84.0 with ship84 + clean keys + verified quotes must pass");
+});
+
+// ── Phase 2 — the chapter soft bar is 80 (production default), true blockers strict ──
+
+test("AUTHOR_CHAPTER_BAR is 80 and is the resolved production default", () => {
+  assert.equal(AUTHOR_CHAPTER_BAR, 80, "the chapter soft bar is 80 (lowered from 84 by owner decision)");
+  const saved = process.env.CHAPTERFLOW_CHAPTER_BAR;
+  delete process.env.CHAPTERFLOW_CHAPTER_BAR;
+  try {
+    assert.equal(resolveChapterBar(), 80, "unset env → 80");
+    process.env.CHAPTERFLOW_CHAPTER_BAR = "82";
+    assert.equal(resolveChapterBar(), 82, "env override is honored");
+    process.env.CHAPTERFLOW_CHAPTER_BAR = "not-a-number";
+    assert.throws(() => resolveChapterBar(), /CHAPTERFLOW_CHAPTER_BAR is set but not a finite/, "garbage env fails closed");
+    process.env.CHAPTERFLOW_CHAPTER_BAR = "150";
+    assert.throws(() => resolveChapterBar(), /0-100/, "out-of-range env fails closed");
+  } finally {
+    if (saved === undefined) delete process.env.CHAPTERFLOW_CHAPTER_BAR;
+    else process.env.CHAPTERFLOW_CHAPTER_BAR = saved;
+  }
+});
+
+test("buildReaderReviewTask defaults the GATE line to the 80 bar", () => {
+  const task = buildReaderReviewTask("doc.txt"); // no explicit bar → production default
+  assert.ok(task.includes("professional >=80/100 bar? true/false"), "default GATE line reads 80");
+});
+
+test("chapter bar 80: 79.9 fails, 80.0 passes, 83 passes — all with clean keys + verified quotes + ship", () => {
+  const ch = fixtureChapter();
+  const doc = renderChapterReaderDoc(ch);
+
+  // All factors 80 except tone (weight 10) at 79 → 80 - 10*1/100 = 79.9 exactly.
+  const under = adjudicateReview(goodParsed({ scores: { ...allScores(80), tone: 79 } }), doc, ch, { bar: AUTHOR_CHAPTER_BAR });
+  assert.equal(under.composite, 79.9);
+  assert.equal(under.valid, true);
+  assert.equal(under.ship84, true);
+  assert.equal(under.keyCheck.matches, under.keyCheck.of);
+  assert.equal(under.pass, false, "79.9 must fail the 80 bar (→ repair/regen)");
+
+  const at = adjudicateReview(goodParsed({ scores: allScores(80) }), doc, ch, { bar: AUTHOR_CHAPTER_BAR });
+  assert.equal(at.composite, 80);
+  assert.equal(at.pass, true, "80.0 with no true blocker must pass the 80 bar");
+
+  const mid = adjudicateReview(goodParsed({ scores: allScores(83) }), doc, ch, { bar: AUTHOR_CHAPTER_BAR });
+  assert.equal(mid.composite, 83);
+  assert.equal(mid.pass, true, "83 with no true blocker must pass the 80 bar");
+});
+
+test("chapter bar 80: a true blocker (key mismatch) fails even at composite 85 — lowered bar does NOT relax blockers", () => {
+  const ch = fixtureChapter();
+  const doc = renderChapterReaderDoc(ch);
+  // Composite 85 (well over the 80 bar) but Q2 keyed wrong → a deterministic
+  // true blocker that the soft-bar change must NOT wave through.
+  const parsed = goodParsed({ scores: allScores(85), quizDerivation: { answers: ["a", "c", "c"], keyDisagreements: [], tells: [] } });
+  const review = adjudicateReview(parsed, doc, ch, { bar: AUTHOR_CHAPTER_BAR });
+  assert.equal(review.composite, 85);
+  assert.equal(review.keyCheck.matches !== review.keyCheck.of, true, "key mismatch present");
+  assert.equal(review.pass, false, "a key-soundness blocker fails regardless of a passing composite");
+
+  // A fabricated quote is likewise a hard blocker at composite 85.
+  const badQuote = goodParsed({ scores: allScores(85), quotes: [{ quote: "not in the doc at all", why: "fabricated" }] });
+  const r2 = adjudicateReview(badQuote, doc, ch, { bar: AUTHOR_CHAPTER_BAR });
+  assert.equal(r2.valid, false);
+  assert.equal(r2.pass, false, "quote fabrication blocks pass even above the bar");
+});
+
+test("resolveChapterNoiseBand defaults to the measured panel band and fails closed on garbage", () => {
+  assert.equal(CHAPTER_NOISE_BAND_DEFAULT, 3.7);
+  const saved = process.env.CHAPTERFLOW_CHAPTER_NOISE_BAND;
+  delete process.env.CHAPTERFLOW_CHAPTER_NOISE_BAND;
+  try {
+    assert.equal(resolveChapterNoiseBand(), 3.7, "unset → default band");
+    process.env.CHAPTERFLOW_CHAPTER_NOISE_BAND = "2.5";
+    assert.equal(resolveChapterNoiseBand(), 2.5);
+    process.env.CHAPTERFLOW_CHAPTER_NOISE_BAND = "-1";
+    assert.throws(() => resolveChapterNoiseBand(), /not a finite non-negative/);
+  } finally {
+    if (saved === undefined) delete process.env.CHAPTERFLOW_CHAPTER_NOISE_BAND;
+    else process.env.CHAPTERFLOW_CHAPTER_NOISE_BAND = saved;
+  }
 });
 
 test("adjudicateReview: complaints pass through verbatim and default to empty", () => {

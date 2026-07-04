@@ -47,6 +47,7 @@ import { checkBreakdownCrossTierVerbatim, checkCrossTierContentOverlap } from ".
 import { checkExampleSourceGrounding, checkChapterProvenance, loadChapterSidecar } from "./sourceGrounding.js";
 import { checkTestimonialEvidence, checkQuizKeyTestimonial } from "./evidenceIntegrity.js";
 import { checkSceneConcreteness } from "./sceneConcreteness.js";
+import { checkExampleCraft } from "./exampleCraft.js";
 import { checkOutcomeVariety } from "./outcomeVariety.js";
 import { checkGroundedNumbers } from "./groundedNumbers.js";
 import { checkInventedWitness } from "./evidenceWitness.js";
@@ -219,6 +220,16 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // keeps the gold corpus clean — its scenarios are saturated with friction
   // vocabulary. See critics/outcomeVariety.ts + tests/outcome-variety.test.ts.
   "C28.uniform_success": "major",
+  // C29 — example thinness (advisory, Phase 5). An example scenario with BOTH no
+  // concrete specificity (no proper noun / number / clock-time) AND no cause→
+  // effect movement connective — a slot-filler placeholder rather than a lived
+  // decision-and-consequence (the start-with-why gold-run thin-example defect).
+  // MINOR/SHADOW: example craft is semantic and gates on the example_coherence
+  // bar axis + the blinded reader; C29 surfaces the mechanical floor as
+  // repair-routable QC debt and never blocks. Calibrated ZERO-FP on the gold
+  // corpus (the both-absent guard). See critics/exampleCraft.ts +
+  // tests/example-craft.test.ts.
+  "C29.example_thinness": "minor",
   E4: "major",
   A11: "blocker",
   A12: "blocker",
@@ -945,6 +956,11 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // clean instant success, with no friction-bearing scene anywhere in its slate.
   for (const f of checkOutcomeVariety(chapter)) {
     push(f.checkId as string, "outcome-variety", f.message, f.evidence);
+  }
+  // C29 — example thinness (advisory). A scenario with no named/number anchor AND
+  // no cause→effect movement — a slot-filler placeholder, not a lived decision.
+  for (const f of checkExampleCraft(chapter)) {
+    push(f.checkId as string, "example-craft", f.message, f.evidence);
   }
   // GN1 — ungrounded statistical figures (fabricated percentages/multipliers/
   // magnitudes) in reader prose. v2-gated (returns [] on a v1 chapter → skip);

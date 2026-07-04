@@ -70,6 +70,7 @@ import {
 import {
   adjudicateReview,
   assertChapterReaderDocIntegrity,
+  AUTHOR_CHAPTER_BAR,
   buildReaderReviewTask,
   parseReaderReview,
   writeChapterReview,
@@ -431,6 +432,41 @@ export function resolvePanelNoiseBand(): number {
   return n;
 }
 
+/** CHAPTERFLOW_CHAPTER_BAR: unset/empty → AUTHOR_CHAPTER_BAR (80); a
+ *  set-but-non-finite or out-of-range (not 0-100) value throws (fail closed —
+ *  same discipline as the panel band; a typo must halt, never silently ship at
+ *  a bogus bar). Resolved ONCE at the review entry and threaded explicitly. */
+export function resolveChapterBar(): number {
+  const raw = process.env.CHAPTERFLOW_CHAPTER_BAR;
+  if (raw === undefined || raw.trim() === "") return AUTHOR_CHAPTER_BAR;
+  const n = Number(raw);
+  if (!Number.isFinite(n) || n < 0 || n > 100) {
+    throw new AcceptanceConfigError(
+      `CHAPTERFLOW_CHAPTER_BAR is set but not a finite 0-100 number ("${raw}") — unset it or export a real bar (default ${AUTHOR_CHAPTER_BAR}).`,
+    );
+  }
+  return n;
+}
+
+/** The chapter-gate near-bar noise band (Phase 3). Reuses the measured
+ *  same-bytes panel noise (±3.7) as the default: a chapter whose composite sits
+ *  within ±band of the bar is in the flap zone and earns bounded extra reads
+ *  before a regen is spent. CHAPTERFLOW_CHAPTER_NOISE_BAND overrides; 0 disables
+ *  the chapter-gate tiebreak entirely (every FAIL goes straight to regen). */
+export const CHAPTER_NOISE_BAND_DEFAULT = PANEL_NOISE_BAND_DEFAULT;
+
+export function resolveChapterNoiseBand(): number {
+  const raw = process.env.CHAPTERFLOW_CHAPTER_NOISE_BAND;
+  if (raw === undefined || raw.trim() === "") return CHAPTER_NOISE_BAND_DEFAULT;
+  const n = Number(raw);
+  if (!Number.isFinite(n) || n < 0) {
+    throw new AcceptanceConfigError(
+      `CHAPTERFLOW_CHAPTER_NOISE_BAND is set but not a finite non-negative number ("${raw}") — unset it or export a real band (default ${CHAPTER_NOISE_BAND_DEFAULT}).`,
+    );
+  }
+  return n;
+}
+
 async function mapPool<T, R>(items: T[], limit: number, fn: (item: T, i: number) => Promise<R>): Promise<R[]> {
   const out: R[] = new Array(items.length);
   let next = 0;
@@ -660,7 +696,26 @@ export function isFlipSignature(review: ChapterReviewV1, bar: number): boolean {
     && review.keyCheck.matches === review.keyCheck.of;
 }
 
-async function tiebreakFlipVerdict(
+/** Phase 3 — the GENERALIZED near-bar trigger for the chapter-gate noise
+ *  tolerance. A FAIL is "near the bar" (noise, not a settled defect) when it is
+ *  valid, has NO key defect (a key mismatch is a deterministic true blocker that
+ *  must regen, never vote), and its composite sits within `band` BELOW the bar
+ *  OR at/above it. This strictly SUPERSETS isFlipSignature (which is the
+ *  composite ≥ bar, ship=false special case): it additionally rescues a chapter
+ *  a hair UNDER the bar (e.g. 79.x at bar 80, or the shipped-reader whose
+ *  composite fell just short) from a needless regen. A composite far below the
+ *  band is a clear FAIL → one read, straight to regen. The DECISION is still
+ *  median-of-3 + ship-majority (see tiebreakNearBarVerdict); this predicate only
+ *  decides WHO earns the extra reads. band=0 disables it (flip case still fires
+ *  via the composite ≥ bar arm). */
+export function isNearBar(review: ChapterReviewV1, bar: number, band: number): boolean {
+  return review.valid === true
+    && review.pass === false
+    && review.keyCheck.matches === review.keyCheck.of
+    && review.composite >= bar - band;
+}
+
+async function tiebreakNearBarVerdict(
   bookId: string,
   chapter: ChapterV21,
   original: ChapterReviewV1,
@@ -669,18 +724,30 @@ async function tiebreakFlipVerdict(
   bar: number,
 ): Promise<{ review: ChapterReviewV1; extraComplaints: string[]; upheldReadSets?: string[][]; upheldComposites?: number[] }> {
   const nn = String(chapter.number).padStart(2, "0");
-  deps.log(`[autopilot] author review ch${nn}: FAIL carries the flip signature (composite ${original.composite} ≥ bar ${bar}, keys ${original.keyCheck.matches}/${original.keyCheck.of}, ship=false) — spawning 2 tiebreak readers (majority-of-3, no cap consumed)`);
+  deps.log(`[autopilot] author review ch${nn}: FAIL is near the bar (composite ${original.composite}, bar ${bar}, keys ${original.keyCheck.matches}/${original.keyCheck.of}, ship=${original.ship84}) — spawning 2 tiebreak readers (median-of-3, no cap consumed)`);
   const extras: ChapterReviewV1[] = [];
   for (const suffix of ["-tiebreak-r2", "-tiebreak-r3"]) {
     extras.push(await reviewOneChapter(bookId, chapter, deps, io, bar, suffix, /* persist */ false));
   }
-  const cleanShips = extras.filter((r) => r.valid && r.ship84 && r.keyCheck.matches === r.keyCheck.of && r.composite >= bar);
-  const converted = cleanShips.length === 2; // both fresh reads must ship clean → 2/3 with the original FAIL
-  const reads = [original, ...extras].map((r) => ({
+  // Decide by MEDIAN composite + ship-MAJORITY over the VALID reads (mirrors the
+  // book-level multi-read median). True blockers STICK: a key defect on ANY
+  // valid read is deterministic (never noise) and blocks conversion; an invalid
+  // read is excluded from the vote, and conversion needs a ≥2 valid-read quorum
+  // — so the median can never manufacture a PASS from a single lucky read.
+  const allReads = [original, ...extras];
+  const validReads = allReads.filter((r) => r.valid);
+  const anyKeyDefect = validReads.some((r) => r.keyCheck.matches !== r.keyCheck.of);
+  const medianComposite = validReads.length > 0 ? trueMedian(validReads.map((r) => r.composite)) : 0;
+  const shipCount = validReads.filter((r) => r.ship84).length;
+  const shipMajority = shipCount * 2 > validReads.length; // strict majority of the valid reads
+  const converted = validReads.length >= 2 && !anyKeyDefect && medianComposite >= bar && shipMajority;
+  const reads = allReads.map((r) => ({
     reviewerSessionId: r.reviewerSessionId, composite: r.composite, ship: r.ship84, valid: r.valid,
   }));
   if (converted) {
-    const deciding = [...cleanShips].sort((a, b) => b.composite - a.composite)[0];
+    const deciding = [...validReads]
+      .filter((r) => r.ship84 && r.keyCheck.matches === r.keyCheck.of)
+      .sort((a, b) => b.composite - a.composite)[0];
     // Deciding PASS persists LAST — it owns the latest-pointer and the history
     // slot for this content hash; the clears ledger rebuild sees the PASS.
     io.persistReview(bookId, deciding);
@@ -694,7 +761,7 @@ async function tiebreakFlipVerdict(
         reads,
       });
     } catch { /* forensic note; never fail a decided review on it */ }
-    deps.log(`[autopilot] author review ch${nn}: tiebreak 2/3 SHIP (${extras.map((r) => r.composite).join(", ")}) — deciding PASS ${deciding.composite} persisted; original FAIL's complaints preserved in tiebreak notes`);
+    deps.log(`[autopilot] author review ch${nn}: tiebreak median ${medianComposite} ≥ bar ${bar} with ship-majority ${shipCount}/${validReads.length} (reads ${allReads.map((r) => r.composite).join(", ")}) — deciding PASS ${deciding.composite} persisted; original FAIL's complaints preserved in tiebreak notes`);
     return { review: deciding, extraComplaints: [] };
   }
   // Fail stands. Never persist a losing PASS (it would mint a clear at this
@@ -713,10 +780,10 @@ async function tiebreakFlipVerdict(
       reads,
     });
   } catch { /* forensic note */ }
-  deps.log(`[autopilot] author review ch${nn}: tiebreak upheld the FAIL (${extras.map((r) => `${r.composite}${r.ship84 ? " ship" : ""}${r.valid ? "" : " invalid"}`).join(", ")}) — regen proceeds with merged complaints`);
+  deps.log(`[autopilot] author review ch${nn}: tiebreak upheld the FAIL (median ${medianComposite}${anyKeyDefect ? " KEY-DEFECT sticks" : ""}, reads ${extras.map((r) => `${r.composite}${r.ship84 ? " ship" : ""}${r.valid ? "" : " invalid"}`).join(", ")}) — regen proceeds with merged complaints`);
   // Repair-lane inputs (plan R1): per-read must-fix sets and composites of the
-  // valid reads, so the caller can test scope-level complaint convergence.
-  const validReads = [original, ...extras.filter((r) => r.valid)];
+  // valid reads (`validReads` = [original, ...valid extras]), so the caller can
+  // test scope-level complaint convergence.
   return {
     review: original,
     extraComplaints,
@@ -735,8 +802,8 @@ export type BookAcceptanceResult = {
   sampledNumbers: number[];
 };
 
-/** Book-acceptance bar, CALIBRATED separately from the 84 chapter-review bar
- *  (owner decision 2026-07-03): the book-level instrument reads ~4-5 points
+/** Book-acceptance bar, CALIBRATED separately from the chapter-review bar
+ *  (AUTHOR_CHAPTER_BAR, now 80): the book-level instrument reads ~4-5 points
  *  harsher than the owner's own scores — Phase-0: atomic-habits (owner 85.3,
  *  #1 of 131) scores 80.2; the LIVE shipped POM scores 80.0 with a unanimous
  *  correctness-gate FAIL; no real book has ever scored >=84 on this read. 80
@@ -1110,7 +1177,11 @@ async function doAuthorReviewInner(
 ): Promise<AutopilotOutcome | null> {
   const io = resolveAuthorReviewIo(opts.io);
   const heartbeat = opts.heartbeat ?? (() => true);
-  const bar = opts.bar ?? 84;
+  // Phase 2: the chapter soft bar (default AUTHOR_CHAPTER_BAR=80, CHAPTERFLOW_CHAPTER_BAR
+  // override). Phase 3: the near-bar noise band that earns bounded extra reads.
+  // Both fail closed on a set-but-garbage env (AcceptanceConfigError → infra halt).
+  const bar = opts.bar ?? resolveChapterBar();
+  const noiseBand = resolveChapterNoiseBand();
 
   let chapters: ChapterV21[];
   try {
@@ -1222,11 +1293,11 @@ async function doAuthorReviewInner(
   {
     const flips = chapters.filter((chapter) => {
       const r = reviews.get(chapter.number)!;
-      return !r.pass && isFlipSignature(r, bar);
+      return !r.pass && isNearBar(r, bar, noiseBand);
     });
     await mapPool(flips, opts.maxParallel, async (chapter) => {
       heartbeat();
-      const outcome = await tiebreakFlipVerdict(bookId, chapter, reviews.get(chapter.number)!, deps, io, bar);
+      const outcome = await tiebreakNearBarVerdict(bookId, chapter, reviews.get(chapter.number)!, deps, io, bar);
       reviews.set(chapter.number, outcome.review);
       if (outcome.extraComplaints.length > 0) tiebreakExtraComplaints.set(chapter.number, outcome.extraComplaints);
       if (outcome.upheldReadSets) tiebreakReadEvidence.set(chapter.number, { readSets: outcome.upheldReadSets, composites: outcome.upheldComposites ?? [] });
@@ -1283,8 +1354,8 @@ async function doAuthorReviewInner(
             const repaired = io.loadChapters(bookId).find((c) => c.number === chapter.number);
             if (repaired) {
               let confirm = await reviewOneChapter(bookId, repaired, deps, io, bar, "-repair");
-              if (!confirm.pass && isFlipSignature(confirm, bar)) {
-                const tb = await tiebreakFlipVerdict(bookId, repaired, confirm, deps, io, bar);
+              if (!confirm.pass && isNearBar(confirm, bar, noiseBand)) {
+                const tb = await tiebreakNearBarVerdict(bookId, repaired, confirm, deps, io, bar);
                 confirm = tb.review;
                 tiebreakExtraComplaints.set(chapter.number, tb.extraComplaints);
               }
@@ -1332,10 +1403,10 @@ async function doAuthorReviewInner(
         return;
       }
       let review = await reviewOneChapter(bookId, fresh, deps, io, bar, "-regen");
-      // C3 on the post-regen read too: with the cap now consumed, a flip here
-      // would otherwise halt the book on a coin toss (the exact ch07 scenario).
-      if (!review.pass && isFlipSignature(review, bar)) {
-        review = (await tiebreakFlipVerdict(bookId, fresh, review, deps, io, bar)).review;
+      // C3 on the post-regen read too: with the cap now consumed, a near-bar
+      // flap here would otherwise halt the book on a coin toss (the ch07 scenario).
+      if (!review.pass && isNearBar(review, bar, noiseBand)) {
+        review = (await tiebreakNearBarVerdict(bookId, fresh, review, deps, io, bar)).review;
       }
       reviews.set(chapter.number, review);
       if (!review.pass) stillFailing.push({ chapterNumber: chapter.number, summary: complaintsOf(review).join("; ").slice(0, 400) });
@@ -1443,10 +1514,10 @@ async function doAuthorReviewInner(
         return;
       }
       let review = await reviewOneChapter(bookId, fresh, deps, io, bar, "-bookregen");
-      // C3 applies here too: this chapter's budget is now consumed — a flip on
-      // this read would otherwise halt the whole book on a coin toss.
-      if (!review.pass && isFlipSignature(review, bar)) {
-        review = (await tiebreakFlipVerdict(bookId, fresh, review, deps, io, bar)).review;
+      // C3 applies here too: this chapter's budget is now consumed — a near-bar
+      // flap on this read would otherwise halt the whole book on a coin toss.
+      if (!review.pass && isNearBar(review, bar, noiseBand)) {
+        review = (await tiebreakNearBarVerdict(bookId, fresh, review, deps, io, bar)).review;
       }
       reviews.set(chapterNumber, review);
       if (!review.pass) regenFailures.push(`ch${nn}: ${complaintsOf(review).join("; ").slice(0, 400)}`);

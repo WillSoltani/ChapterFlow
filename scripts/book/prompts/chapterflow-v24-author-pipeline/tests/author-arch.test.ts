@@ -402,11 +402,16 @@ test("author card: W1 QUALITY BAR (all four house rules) rides the ALWAYS-SENT c
   assert.match(card, /No "a, b, or c" option menus/i, "rule 3 bans option menus");
   // Rule 4 — plain language / ease band from sentence one.
   assert.match(card, /Flesch ease 72-84/i, "rule 4 names the ease band");
+  // Rule 7 — example craft (Phase 5): the thin/manufactured-example write-time
+  // standard that shifts C29 + the reader's slot-filler judgment left.
+  assert.match(card, /EXAMPLE CRAFT/i, "rule 7 names the example-craft standard");
+  assert.match(card, /no name, no number, AND no movement/i, "rule 7 states the thin-example reject condition");
 
-  // Length budget: the WHOLE card stays <= 15,000 chars (W1 spec). The variable
-  // parts (brief md + packet projection) are represented by the golden fixture.
-  assert.ok(card.length <= 16000, `W1 card length budget: card must be <= 16,000 chars, got ${card.length}`);
-  console.log(`  [measure] W1 card with QUALITY BAR: ${card.length} chars (budget 15,000)`);
+  // Length budget: the WHOLE card stays <= 16,700 chars (W1 spec, bumped from
+  // 16,000 for the Phase-5 example-craft rule). The variable parts (brief md +
+  // packet projection) are represented by the golden fixture.
+  assert.ok(card.length <= 16700, `W1 card length budget: card must be <= 16,700 chars, got ${card.length}`);
+  console.log(`  [measure] W1 card with QUALITY BAR: ${card.length} chars (budget 16,700)`);
 });
 
 test("author card: renders the W4 brief-derived VARIETY instructions (opener / 24h-frame / practice) when the machine brief is passed", () => {

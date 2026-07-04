@@ -390,7 +390,7 @@ Commands:
   quarantine-book <bookId>           Pull a shipped-but-corrupt package; promote/register refuse until released
   unquarantine-book <bookId>         Release a quarantine tombstone (book must then re-pass the full gate)
 
-  eval-reader-proxy <bookId> [<bookId2> ...] [--chapters N] [--bar 84] [--json]
+  eval-reader-proxy <bookId> [<bookId2> ...] [--chapters N] [--bar 80] [--json]
                                      v24 reader-proxy instrument: deterministically sample N chapters (default 3)
                                      of each shipped package, render each as a blinded reader doc under
                                      scratch/eval-proxy/, spawn one independent read-only codex reader per

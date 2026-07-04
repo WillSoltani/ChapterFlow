@@ -253,21 +253,46 @@ export function checkQuizPromptOpenerMonotony(quiz: QuizV21): CriticFinding[] {
 }
 
 /**
- * BP33 — causal-attribution key shape (W3, FINAL-HARDENING-PLAN 2026-07-04).
- * Two LIVE incidents (execution ch01 + ch09 Q1): a stem asked for a CAUSE while
- * the keyed choice stated a REMEDY / sibling framing — both split the dual-blind
- * key derivators and cost a repair each. Deterministic scope is deliberately
- * narrow: STEM detection is lexical-structural (allowed); key QUALITY is
- * semantic and stays with the blinded readers + the key-judge (the standing
- * CHB14/15/17 rule: lexical quiz-QUALITY gates measured INVERTED on the owner
- * top-5 — never re-propose). We flag ONLY the mechanical shape of incident 1:
- * a causal stem whose keyed choice opens as an imperative prescription (a
- * remedy cannot be the cause of a past outcome). ADVISORY (minor) — calibrated
- * over all shipped packages before landing; promotion to blocker requires
- * zero-FP on the owner top-5.
+ * BP33 — causal-attribution key shape (W3, FINAL-HARDENING-PLAN 2026-07-04;
+ * BROADENED 2026-07-04 after the start-with-why gold run: ch02/ch05 Q2 keyed a
+ * remedy/outcome that did NOT open with an imperative verb, so the narrow
+ * incident-1 check missed them while the blinded reader caught them).
+ *
+ * A causal stem ("why did X", "what caused X", "what led to X", …) demands a
+ * key that names the specific CAUSE the prose shows. This critic flags THREE
+ * mechanically-detectable bad key shapes — each a shape, never a semantic
+ * judgement (key QUALITY stays with the blinded readers + the key-judge; the
+ * standing CHB14/15/17 rule: lexical quiz-QUALITY gates measured INVERTED on
+ * the owner top-5 → BP33 is ADVISORY (minor), never a blocker):
+ *   (a) remedy shape   — the key opens as an imperative prescription
+ *                        ("Schedule a weekly review"); a fix isn't a past cause.
+ *   (b) moral shape    — the key opens as a generic aphorism / advice
+ *                        ("Always start with why", "The lesson is …"); a moral
+ *                        isn't a cause.
+ *   (c) outcome-restatement — the key's content words are ≥70% a subset of the
+ *                        stem's own words and it introduces NO new causal noun;
+ *                        it just repeats what happened instead of why.
+ * Distractor-family soundness and "multiple arguably-correct" are semantic and
+ * remain with the reader instrument (readerReview PROCESS step 1). Calibrated
+ * zero-FP over the shipped corpus before landing.
  */
 export const CAUSAL_STEM_RX = /\b(why did|why was|why were|why had|what caused|what was causing|what led to|what explains|what accounts for|(?:the|a) (?:main|primary|root|real|underlying) (?:reason|cause|driver))\b/i;
 const IMPERATIVE_LEAD_RX = /^\s*(?:schedule|set|assign|create|run|hold|write|start|stop|build|book|block|put|make|give|send|ask|meet|review|track|plan|pick|choose|add|remove|cut|define|establish|institute|adopt|implement|introduce|launch|require|commit|rotate|pair|split|shorten|lengthen|replace|swap|delegate|escalate|document|standardize|automate)\b/i;
+/** Generic moral / advice lead — an aphorism, not a cause of a past outcome. */
+const MORAL_ADVICE_LEAD_RX = /^\s*(?:always|never|you (?:should|must|need to|have to)|it'?s (?:important|essential|crucial|vital|key|best)|the (?:key|lesson|takeaway|point|goal|trick|secret|answer|moral) (?:is|was)|focus on|remember (?:to|that)|make sure|be sure to|prioriti[sz]e|don'?t forget|strive to|aim to)\b/i;
+
+/** Stopwords stripped before the outcome-restatement content-word overlap. */
+const CAUSAL_STOPWORDS = new Set([
+  "the", "a", "an", "and", "or", "but", "of", "to", "in", "on", "for", "with", "by", "as",
+  "at", "from", "into", "that", "this", "these", "those", "it", "its", "was", "were", "is",
+  "are", "be", "been", "being", "did", "does", "do", "had", "has", "have", "why", "what",
+  "how", "when", "who", "which", "them", "they", "their", "his", "her", "our", "your",
+  "would", "could", "should", "will", "than", "then", "so", "because", "about", "over",
+]);
+
+function causalContentWords(text: string): string[] {
+  return (text.toLowerCase().match(/[a-z][a-z'-]{2,}/g) ?? []).filter((w) => !CAUSAL_STOPWORDS.has(w));
+}
 
 export function checkQuizCausalKeyShape(quiz: QuizV21): CriticFinding[] {
   const findings: CriticFinding[] = [];
@@ -278,12 +303,31 @@ export function checkQuizCausalKeyShape(quiz: QuizV21): CriticFinding[] {
     if (correct == null) continue;
     const correctText = q.choices?.[correct];
     if (typeof correctText !== "string") continue;
+
+    let shape: string | null = null;
     if (IMPERATIVE_LEAD_RX.test(correctText)) {
+      shape = "opens as an imperative prescription — a remedy cannot be the cause of a past outcome";
+    } else if (MORAL_ADVICE_LEAD_RX.test(correctText)) {
+      shape = "opens as a generic moral/advice aphorism — a lesson is not the cause the stem asks for";
+    } else {
+      // (c) outcome-restatement: the key adds no cause-word the stem didn't
+      // already have. Guard on a minimum key length so terse legitimate keys
+      // ("Loss aversion.") aren't judged on a 1-word overlap.
+      const keyWords = causalContentWords(correctText);
+      const stemWords = new Set(causalContentWords(prompt));
+      if (keyWords.length >= 3) {
+        const shared = keyWords.filter((w) => stemWords.has(w)).length;
+        if (shared / keyWords.length >= 0.7) {
+          shape = "restates the stem's own outcome words and introduces no new cause — key the specific mechanism the prose shows, not a paraphrase of what happened";
+        }
+      }
+    }
+    if (shape) {
       findings.push(
         finding(
           "BP33.causal_key_remedy_shape" as any,
           "minor",
-          `${q.questionId} stem asks for a CAUSE ("${truncate(prompt, 80)}") but the keyed choice opens as an imperative prescription — a remedy cannot be the cause of a past outcome; key the specific cause the prose shows and keep the prescription for the explanation`,
+          `${q.questionId} stem asks for a CAUSE ("${truncate(prompt, 80)}") but the keyed choice ${shape}`,
           correctText,
         ),
       );

@@ -105,13 +105,36 @@ export const REVIEW_WEIGHTS: Record<ReviewFactor, number> = {
   if (keys !== factors) throw new Error(`REVIEW_WEIGHTS keys (${keys}) must equal REVIEW_FACTORS (${factors})`);
 }
 
+// ── The chapter soft-acceptance bar ─────────────────────────────────────────
+
+/** The chapter-review SOFT acceptance bar — the single source of truth for the
+ *  numeric quality threshold a blinded reader ships a chapter against.
+ *
+ *  Owner decision 2026-07-04: lowered 84 → 80. The 84 bar was too brittle for
+ *  production — chapters in the demonstrated 84–87 same-bytes noise band
+ *  (±3.7, execution campaign) flapped: some converted via the near-bar tiebreak
+ *  while equally-good siblings fell to a consumed regen. 80 is a soft QUALITY
+ *  threshold ONLY; it does NOT relax any true blocker. Schema, factuality,
+ *  safety, source fidelity, rendering, quote-integrity, and key-soundness are
+ *  enforced independently (gate-chapter, finalGate, the quote byte-verify + the
+ *  Q3 structural recount here) and a chapter scoring 80+ still fails if any of
+ *  those trip. A chapter below 80 (outside the noise band) repairs/regenerates
+ *  through the normal bounded process.
+ *
+ *  The JSON contract field stays `ship84` (a fixed schema name) regardless of
+ *  the bar value; only the GATE line's number moves. The orchestrator resolves
+ *  an optional CHAPTERFLOW_CHAPTER_BAR override (authorReview.resolveChapterBar)
+ *  and threads it explicitly; this constant is the production default the pure
+ *  helpers fall back to. */
+export const AUTHOR_CHAPTER_BAR = 80;
+
 // ── The blinded reader task ─────────────────────────────────────────────────
 
 /** Build the blinded single-doc reader prompt for the chapter document at
  *  `docRelPath` (relative to the reader session's cwd, i.e. the pipeline dir).
  *  `bar` is substituted into the GATE line; the JSON field stays `ship84`
  *  (fixed contract name) regardless of the bar value. */
-export function buildReaderReviewTask(docRelPath: string, bar = 84): string {
+export function buildReaderReviewTask(docRelPath: string, bar = AUTHOR_CHAPTER_BAR): string {
   return `BLINDED CHAPTER REVIEW — you are an independent reader. You do not know how this chapter was produced; judge only what is on the page.
 
 One chapter of a book-learning product is at: ${docRelPath}
@@ -122,7 +145,7 @@ PROCESS (strict order):
 2. Score the chapter 0-100 on each factor: retention, quizzes, transfer, practical, summaries, tone, limits, insight, density, beginner.
    - retention: will a reader remember the core move in a week (memorable lines, concrete images, echoes)
    - quizzes: fair, derivable from prose, sound keys, no tells, distractors that teach
-   - transfer: applies beyond the book's own examples (if-then quality, challenge quality)
+   - transfer: applies beyond the book's own examples (if-then quality, challenge quality). Flag any example that reads as a slot-filler — names no one and no place/number, shows no before→after (a decision and its consequence), only restates the lesson, or would fit any chapter; a manufactured example that fails the chapter's learning promise is a mustFix.
    - practical: a real person would actually DO these actions (low-friction, concrete, not theater)
    - summaries: fast/deep/full reads layered, accurate, each standalone
    - tone: plain confident register; no corporate filler; no template/scaffold smell
@@ -366,7 +389,7 @@ export function adjudicateReview(
   chapter: ChapterV21,
   opts: AdjudicateOpts = {},
 ): ChapterReviewV1 {
-  const bar = opts.bar ?? 84;
+  const bar = opts.bar ?? AUTHOR_CHAPTER_BAR;
 
   // (a) quote byte-verification.
   const quotes = parsed.quotes.map((q) => ({
