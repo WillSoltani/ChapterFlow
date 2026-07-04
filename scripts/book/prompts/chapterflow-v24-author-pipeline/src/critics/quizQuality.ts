@@ -253,6 +253,46 @@ export function checkQuizPromptOpenerMonotony(quiz: QuizV21): CriticFinding[] {
 }
 
 /**
+ * BP33 — causal-attribution key shape (W3, FINAL-HARDENING-PLAN 2026-07-04).
+ * Two LIVE incidents (execution ch01 + ch09 Q1): a stem asked for a CAUSE while
+ * the keyed choice stated a REMEDY / sibling framing — both split the dual-blind
+ * key derivators and cost a repair each. Deterministic scope is deliberately
+ * narrow: STEM detection is lexical-structural (allowed); key QUALITY is
+ * semantic and stays with the blinded readers + the key-judge (the standing
+ * CHB14/15/17 rule: lexical quiz-QUALITY gates measured INVERTED on the owner
+ * top-5 — never re-propose). We flag ONLY the mechanical shape of incident 1:
+ * a causal stem whose keyed choice opens as an imperative prescription (a
+ * remedy cannot be the cause of a past outcome). ADVISORY (minor) — calibrated
+ * over all shipped packages before landing; promotion to blocker requires
+ * zero-FP on the owner top-5.
+ */
+export const CAUSAL_STEM_RX = /\b(why did|why was|why were|why had|what caused|what was causing|what led to|what explains|what accounts for|(?:the|a) (?:main|primary|root|real|underlying) (?:reason|cause|driver))\b/i;
+const IMPERATIVE_LEAD_RX = /^\s*(?:schedule|set|assign|create|run|hold|write|start|stop|build|book|block|put|make|give|send|ask|meet|review|track|plan|pick|choose|add|remove|cut|define|establish|institute|adopt|implement|introduce|launch|require|commit|rotate|pair|split|shorten|lengthen|replace|swap|delegate|escalate|document|standardize|automate)\b/i;
+
+export function checkQuizCausalKeyShape(quiz: QuizV21): CriticFinding[] {
+  const findings: CriticFinding[] = [];
+  for (const q of quiz.questions ?? []) {
+    const prompt = typeof q.prompt === "string" ? q.prompt : "";
+    if (!CAUSAL_STEM_RX.test(prompt)) continue;
+    const correct = pickCorrectIndex(q);
+    if (correct == null) continue;
+    const correctText = q.choices?.[correct];
+    if (typeof correctText !== "string") continue;
+    if (IMPERATIVE_LEAD_RX.test(correctText)) {
+      findings.push(
+        finding(
+          "BP33.causal_key_remedy_shape" as any,
+          "minor",
+          `${q.questionId} stem asks for a CAUSE ("${truncate(prompt, 80)}") but the keyed choice opens as an imperative prescription — a remedy cannot be the cause of a past outcome; key the specific cause the prose shows and keep the prescription for the explanation`,
+          correctText,
+        ),
+      );
+    }
+  }
+  return findings;
+}
+
+/**
  * BP18 — label-shaped correct answer. A correct answer of ≤6 words with no
  * verb reads as a label ("Cut charting time.") rather than a complete
  * action ("Cut charting time during the day shift."). Severity: MINOR.

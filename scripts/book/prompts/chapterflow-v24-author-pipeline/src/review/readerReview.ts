@@ -118,7 +118,7 @@ One chapter of a book-learning product is at: ${docRelPath}
 Read ONLY this file. Do not write any files.
 
 PROCESS (strict order):
-1. Read the chapter top to bottom. Answer its quiz YOURSELF from the prose BEFORE looking at the ANSWER KEY at the document bottom. Record your answers, any disagreement with the key (key-soundness), and any tell that would let someone guess keys without reading (uniquely longest choice, hedging, giveaway phrasing).
+1. Read the chapter top to bottom. Answer its quiz YOURSELF from the prose BEFORE looking at the ANSWER KEY at the document bottom. Record your answers, any disagreement with the key (key-soundness), and any tell that would let someone guess keys without reading (uniquely longest choice, hedging, giveaway phrasing). For any stem asking WHY something happened (what caused / led to / explains): the key must name the ONE cause the prose actually shows — a key that restates the outcome, states a remedy, or has a sibling cause the prose supports equally is a key-soundness disagreement; say so.
 2. Score the chapter 0-100 on each factor: retention, quizzes, transfer, practical, summaries, tone, limits, insight, density, beginner.
    - retention: will a reader remember the core move in a week (memorable lines, concrete images, echoes)
    - quizzes: fair, derivable from prose, sound keys, no tells, distractors that teach

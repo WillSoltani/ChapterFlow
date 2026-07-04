@@ -25,6 +25,7 @@ import { checkAnswerPositionBalance, checkEnumValidity } from "./schema.js";
 import {
   checkQuizAnswerLabelLeak,
   checkQuizAnswerLengthRatio,
+  checkQuizCausalKeyShape,
   checkQuizChoiceLabelUniform,
   checkQuizPronounReferent,
   checkQuizCorrectLongestRate,
@@ -311,6 +312,10 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "BP16.quiz_answer_length_major": "major",
   "BP17.quiz_opener_monotony": "major",
   "BP18.quiz_label_shape_correct": "minor",
+  // BP33 (W3) — causal stem keyed to a remedy-shaped choice. Two live incidents
+  // (execution ch01/ch09 Q1). ADVISORY: key QUALITY stays with the blinded
+  // readers + key-judge; only the mechanical remedy-shape is flagged here.
+  "BP33.causal_key_remedy_shape": "minor",
   // BP27 — answer-label leak: the key is identifiable from its choice label
   // alone (e.g. key "…move", every distractor "…misconception"). Lets a reader
   // ace the quiz without reading. Conservative detector (fires only when a
@@ -1068,6 +1073,9 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     push(f.checkId as string, "quiz", f.message, f.evidence);
   }
   for (const f of checkQuizLabelShapedCorrect(chapter.quiz)) {
+    push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
+  for (const f of checkQuizCausalKeyShape(chapter.quiz)) {
     push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
   }
   for (const f of checkQuizAnswerLabelLeak(chapter.quiz)) {
