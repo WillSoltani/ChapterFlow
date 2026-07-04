@@ -181,6 +181,10 @@ export async function resolveBeatShippedBar(
 ): Promise<BeatShippedResult> {
   // 1. Env override — pinned on purpose; skip everything.
   const env = envOverride();
+  // Red-team BREAK-1 (publish calibration): a SET but non-numeric override must
+  // FAIL CLOSED — silently returning null would judge a regen floor-only,
+  // exactly the "never below the book it replaces" case the margin exists for.
+  if (env === null) return { ok: false, reason: `CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE is set but not a finite number: "${process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE}"` };
   if (env !== undefined) return { ok: true, composite: env, source: "env" };
 
   // 2. No tracked shipped package → bar-80-only as today.

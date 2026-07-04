@@ -14,7 +14,9 @@
  *   3. Book acceptance: the owner's book-score instrument shape — a seeded
  *      4-chapter sample doc read by AUTHOR_BOOK_READERS (=3, Q5) independent
  *      book readers, composed by composeBookVerdict. ACCEPT when gate === "PASS"
- *      AND churn !== "HIGH" AND medianComposite >= bar AND validCount >= quorum
+ *      AND medianComposite >= FLOOR(74) AND >= beatShipped+MARGIN(5) AND validCount
+ *      >= quorum (churn = telemetry + repair routing, never an accept veto —
+ *      publish calibration 2026-07-04)
  *      (Q4). The book readers are the author arch's CONFIRMING function (the
  *      sweep-confirmation analog — runAutopilot's author branch substitutes this
  *      acceptance for deps.sweepConfirmed).
@@ -50,6 +52,7 @@
  * identically. Compiler/legacy QC behavior is byte-untouched.
  */
 
+import { readFileSync } from "fs";
 import { mkdirSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
@@ -732,6 +735,32 @@ async function runBookAcceptance(
   // validCount >= AUTHOR_BOOK_READERS is a pure strengthen AND the guarantee
   // that makes Q3's invalidation weaken-proof.
   const quorumMet = verdict.validCount >= AUTHOR_BOOK_READERS;
+  // Red-team BREAK-2 (publish calibration): REJECT had no memory — identical
+  // bytes could re-roll a fresh panel every conductor entry until noise (±3.7)
+  // cleared the floor, while one ACCEPT persisted forever. Pool the on-disk
+  // acceptance records for the SAME docSha256: the decision composite is the
+  // MEDIAN across all same-doc reads, and a gate FAIL recorded on these exact
+  // bytes sticks (fail-closed) until the bytes change.
+  const docSha = createHash("sha256").update(docText).digest("hex");
+  let compPooled = comp;
+  let gatePooled = verdict.gate;
+  try {
+    const priors: Array<{ c: number | null; gate: string | null }> = [];
+    for (const label of ["", "-round2"]) {
+      try {
+        const rec = JSON.parse(readFileSync(acceptanceRecordPath(bookId, label), "utf8")) as AuthorAcceptanceRecord;
+        if (rec && rec.docSha256 === docSha && typeof rec.verdict?.medianComposite === "number") {
+          priors.push({ c: rec.verdict.medianComposite, gate: rec.verdict.gate ?? null });
+        }
+      } catch { /* no prior record for this label */ }
+    }
+    if (priors.length > 0) {
+      const reads = [...priors.map((p) => p.c as number), comp].sort((a, b) => a - b);
+      compPooled = reads[Math.floor(reads.length / 2)];
+      if (priors.some((p) => p.gate === "FAIL")) gatePooled = "FAIL";
+      deps.log(`[autopilot] author acceptance${roundLabel}: pooled ${priors.length + 1} same-doc read(s) → composite ${compPooled}, gate ${gatePooled} (re-roll guard)`);
+    }
+  } catch { /* pooling is best-effort; the single-read decision stands */ }
   // Publish calibration (owner decision 2026-07-04, plan docs/v24/
   // PUBLISH-CALIBRATION-PLAN-2026-07-04.md): the single bar-80 demanded
   // corpus-#1 quality (atomic-habits reads 80.2 on this instrument; panel noise
@@ -744,9 +773,9 @@ async function runBookAcceptance(
   // repair routing, never an accept-time veto. AUTHOR_BOOK_ACCEPT_BAR (80)
   // remains in the record as the premium telemetry target.
   const accepted = quorumMet
-    && verdict.gate === "PASS"
-    && comp >= AUTHOR_BOOK_ACCEPT_FLOOR
-    && (shipped === null || comp >= shipped + BEAT_SHIPPED_MARGIN);
+    && gatePooled === "PASS"
+    && compPooled >= AUTHOR_BOOK_ACCEPT_FLOOR
+    && (shipped === null || compPooled >= shipped + BEAT_SHIPPED_MARGIN);
   deps.log(`[autopilot] author acceptance${roundLabel}: composite ${verdict.medianComposite ?? "n/a"} gate ${verdict.gate ?? "?"} (${verdict.gateVotes}) churn ${verdict.churn} valid ${verdict.validCount}/${AUTHOR_BOOK_READERS} vs floor ${AUTHOR_BOOK_ACCEPT_FLOOR}${shipped === null ? "" : ` + beat-shipped ${shipped}+${BEAT_SHIPPED_MARGIN}`} (premium target ${AUTHOR_BOOK_ACCEPT_BAR}) → ${accepted ? "ACCEPT" : `REJECT${quorumMet ? "" : " (below valid-reader quorum)"}`}`);
 
   // Q6 — durable acceptance record over the EXACT bytes readers scored. Best-
@@ -1226,7 +1255,7 @@ async function doAuthorReviewInner(
       const readerLines = acceptance.readers
         .map((r) => `  reader ${r.reviewerSessionId}: comp=${r.composite} gate=${r.gateVerdict} churn=${r.churn} valid=${r.valid ? "yes" : `NO (${r.invalidReason})`} — ${r.oneParagraphVerdict.slice(0, 300)}`)
         .join("\n");
-      return halt(bookId, "content", `author acceptance still REJECTED after the one targeted regen round (composite ${acceptance.verdict.medianComposite ?? "n/a"}, gate ${acceptance.verdict.gate ?? "?"}, churn ${acceptance.verdict.churn}, bar ${AUTHOR_BOOK_ACCEPT_BAR}):\n${readerLines}`);
+      return halt(bookId, "content", `author acceptance still REJECTED after the one targeted regen round (composite ${acceptance.verdict.medianComposite ?? "n/a"}, gate ${acceptance.verdict.gate ?? "?"}, churn ${acceptance.verdict.churn}, floor ${AUTHOR_BOOK_ACCEPT_FLOOR}):\n${readerLines}`);
     }
   }
 

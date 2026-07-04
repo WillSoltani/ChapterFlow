@@ -480,7 +480,7 @@ function checkLengthBudget(
     if (estimated >= lo && estimated <= hi) continue;
     const direction = estimated > hi ? "over" : "under";
     const pct = Math.round(Math.abs(estimated / budget.renderedChars - 1) * 100);
-    const severe = estimated > hardHi || estimated < hardLo;
+    const severe = estimated >= hardHi || estimated <= hardLo;
     findings.push({
       checkId: "CHB2.length_budget",
       severity: severe ? "blocker" : "advisory",

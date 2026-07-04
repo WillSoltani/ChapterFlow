@@ -879,7 +879,11 @@ export async function ensureReaderBudgetsClean(
     }
     deps.log(`[autopilot] ${opts.label}: budget-repair round converged — blockers clear`);
   }
-  const advisories = findings.filter((f) => f.severity === "advisory").length;
-  deps.log(`[autopilot] ${opts.label}: reader budgets clean (${advisories} advisory finding(s)) — advancing`);
+  // Red-team LEAK-2 (publish calibration): advisories must be LISTED, not
+  // collapsed to a count — a 29%-over chapter is polish debt the operator
+  // should see in the log even though it never halts.
+  const advisories = findings.filter((f) => f.severity === "advisory");
+  deps.log(`[autopilot] ${opts.label}: reader budgets clean (${advisories.length} advisory finding(s)) — advancing`);
+  for (const f of advisories) deps.log(`[autopilot] ${opts.label}: advisory [${f.checkId}] ${f.message.slice(0, 220)}`);
   return null;
 }
