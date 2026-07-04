@@ -467,6 +467,24 @@ test("authorWriteOneChapter: ONE retry appends the gate blockers to the card, th
   assert.ok(spawns[1].task.includes("[BLOCKER A12]"), "retry card carries the verbatim blocker");
 });
 
+test("authorWriteOneChapter: a DIED writer spawn is logged (honest-accounting invariant — start-with-why gold-run bug)", async () => {
+  // The cost-report honest-accounting invariant tripped on the gold run: a
+  // timed-out ch04 writer spawn was minted (mkSessionId) but the throw skipped
+  // the success-path logSession. The catch must now record a synthetic failed
+  // session so no minted spawn goes unlogged.
+  const logged: Array<{ label: string; ok: boolean }> = [];
+  let spawnCall = 0;
+  const { deps } = mkDeps(() => {
+    if (++spawnCall === 1) throw new Error("timeout SIGKILL");
+    return {};
+  });
+  deps.logSession = ((_b: string, label: string, r: { ok: boolean }) => { logged.push({ label, ok: r.ok }); }) as never;
+  const r = await authorWriteOneChapter("zz", 1, deps, { io: mkIo() });
+  assert.ok(r.ok, "recovers on the retry after the first spawn dies");
+  assert.ok(logged.some((l) => l.label === "author-ch01" && l.ok === false), "the DIED initial spawn was logged as a failed session (no minted-but-unlogged id)");
+  assert.ok(logged.some((l) => l.label === "author-ch01-retry1"), "the successful retry was logged too");
+});
+
 test("authorWriteOneChapter: fails after the retry budget when gate-chapter keeps blocking", async () => {
   const { deps, spawns } = mkDeps(
     () => ({}),

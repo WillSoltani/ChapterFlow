@@ -568,6 +568,18 @@ export async function authorWriteOneChapter(
     } catch (err) {
       lastReason = `ch${nn}: writer session ${sessionId} died before completing (${(err as Error).message})`;
       deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
+      // Honest-accounting: the spawn id was MINTED (mkSessionId above) but the
+      // throw skips the success-path logSession, so the cost-report invariant
+      // trips ("minted but never logged"). Record a synthetic failed session —
+      // the same drain-then-record pattern as spawnAndLog (autopilot.ts) — so a
+      // died/timed-out writer still leaves a durable trace (live-caught on the
+      // start-with-why gold run: ch04's retry spawn was unlogged).
+      try {
+        deps.logSession(bookId, label, {
+          ok: false, exitCode: -1, finalMessage: "", stdout: "",
+          stderr: (err as Error)?.message ?? String(err), durationMs: 0, sessionId,
+        });
+      } catch { /* best-effort: never convert a spawn error into a log error */ }
       card = `${baseCard}\n\nPREVIOUS ATTEMPT DID NOT COMPLETE\nYour previous session was cut off before finishing. Write the complete chapter file this time.`;
       continue;
     }

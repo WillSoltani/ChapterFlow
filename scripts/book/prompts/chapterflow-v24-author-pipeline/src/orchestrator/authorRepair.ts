@@ -298,6 +298,15 @@ export async function doRepairOneChapter(
     if (r.exitCode !== 0) { restore(); return { ok: false, reason: `ch${nn}: repair session exited ${r.exitCode}`, sessionId, restoreFailed }; }
   } catch (err) {
     restore();
+    // Honest-accounting: a died repair spawn was minted but not logged on the
+    // success path — record a synthetic failed session so the cost-report
+    // invariant stays honest (same fix as the writer spawn in authorRun).
+    try {
+      deps.logSession(bookId, `author-repair-ch${nn}`, {
+        ok: false, exitCode: -1, finalMessage: "", stdout: "",
+        stderr: (err as Error)?.message ?? String(err), durationMs: 0, sessionId,
+      });
+    } catch { /* best-effort */ }
     return { ok: false, reason: `ch${nn}: repair session died (${(err as Error).message.slice(0, 200)})`, sessionId, restoreFailed };
   }
   // Patch-apply: splice allowed scopes from the session's file into the original.
