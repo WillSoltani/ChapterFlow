@@ -53,7 +53,7 @@
  */
 
 import { readFileSync } from "fs";
-import { mkdirSync } from "fs";
+import { mkdirSync, existsSync, readdirSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { createHash } from "crypto";
@@ -111,6 +111,7 @@ import {
   appendTiebreakNote,
   carryReviewFor,
   loadTiebreakNotes,
+  reviewHistoryPath,
   writeReviewClearsLedger,
 } from "./authorReviewLedger.js";
 import {
@@ -123,7 +124,7 @@ import {
   regenConsumedFor,
   repairConsumedFor,
 } from "./authorRegenLedger.js";
-import { classifyRepairEligibility, doRepairOneChapter, reviewRepairEnabled } from "./authorRepair.js";
+import { classifyRepairEligibility, doRepairOneChapter, RepairRestoreError, reviewRepairEnabled } from "./authorRepair.js";
 import { resolveBeatShippedBar, type BeatShippedResult } from "./shippedControl.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -182,6 +183,19 @@ export type AuthorAcceptanceRecord = {
   docSha256: string;
   verdict: BookVerdict;
   readers: BookReaderResult[];
+  /** Multi-read median (FINAL-HARDENING-PLAN 2026-07-04, additive to v1): the
+   *  pooled state at the moment this read was persisted — how many same-docSha
+   *  quorum-met reads pooled, the TRUE-median composite, the sticky gate, the
+   *  noise band in force, and whether the per-doc panel cap was reached. The
+   *  record-level `accepted` above IS the pooled decision, which is what
+   *  deriveDurableAcceptance corroborates. */
+  pooled?: {
+    reads: number;
+    composite: number;
+    gate: "PASS" | "FAIL";
+    noiseBand: number;
+    capped: boolean;
+  };
 };
 
 export type AuthorReviewIo = AuthorIo & {
@@ -189,8 +203,13 @@ export type AuthorReviewIo = AuthorIo & {
   writeReviewDoc: (bookId: string, fileName: string, text: string) => { absPath: string; relPath: string };
   /** Persist a chapter's ChapterReviewV1 artifact. */
   persistReview: (bookId: string, review: ChapterReviewV1) => string;
-  /** Q6 — persist a durable acceptance-round record; returns the path written. */
+  /** Q6 — persist a durable acceptance-round record; returns the path written.
+   *  APPEND-ONLY (F1): the default impl writes one file per read and never
+   *  overwrites a prior read of the same label. */
   persistAcceptance: (bookId: string, record: AuthorAcceptanceRecord) => string;
+  /** Multi-read pool (F1/F3): every durable quorum-met read of these exact
+   *  bytes. Injectable so unit tests pool from an in-memory set. */
+  listAcceptanceReads: (bookId: string, docSha256: string) => AuthorAcceptanceRecord[];
   acceptance: AcceptanceWriters;
   evidence: EvidenceRunners;
   /** AUTO control-read: resolve the beat-shipped bar (env override / git-pinned
@@ -270,11 +289,19 @@ export function resolveAuthorReviewIo(over?: Partial<AuthorReviewIo>): AuthorRev
       return path;
     }),
     persistAcceptance: over?.persistAcceptance ?? ((bookId, record) => {
-      const path = acceptanceRecordPath(bookId, record.roundLabel);
+      // F1: append-only — find the first free read index for this (label, docSha)
+      // instead of overwriting the per-label slot. A prior read is a durable vote.
+      let path = "";
+      for (let k = 1; k <= 99; k++) {
+        const candidate = acceptanceReadRecordPath(bookId, record.roundLabel, record.docSha256, k);
+        if (!existsSync(candidate)) { path = candidate; break; }
+      }
+      if (!path) throw new Error(`persistAcceptance: 99 read records already exist for ${bookId} ${record.roundLabel} ${record.docSha256.slice(0, 8)} — refusing to overwrite`);
       mkdirSync(dirname(path), { recursive: true });
       writeFileAtomic(path, JSON.stringify(record, null, 2) + "\n");
       return path;
     }),
+    listAcceptanceReads: over?.listAcceptanceReads ?? ((bookId, docSha256) => listAcceptanceReads(bookId, docSha256)),
     acceptance: over?.acceptance ?? {
       openRound: (bookId) => {
         const opened = openQcRound(bookId);
@@ -311,9 +338,97 @@ export function acceptanceRoundSegment(roundLabel: string): string {
 }
 
 /** Path of a durable acceptance record under `stateRoot` (default: canonical
- *  pipeline state dir). Injectable root so tests write to a tmp dir. */
+ *  pipeline state dir). Injectable root so tests write to a tmp dir.
+ *  LEGACY single-slot path — kept for fixtures/back-compat reads; production
+ *  writes go through acceptanceReadRecordPath (append-only, F1 fix). */
 export function acceptanceRecordPath(bookId: string, roundLabel: string, stateRoot: string = CANONICAL_STATE): string {
   return resolve(stateRoot, "reviews", bookId, `acceptance.${acceptanceRoundSegment(roundLabel)}.json`);
+}
+
+/** Append-only per-read acceptance record path (F1, FINAL-HARDENING-PLAN
+ *  2026-07-04): the old per-label single slot meant every re-entry OVERWROTE the
+ *  prior read, so gate-FAIL stickiness decayed after exactly one re-entry and the
+ *  pool never saw more than one prior. One file per panel read, keyed by round
+ *  segment + docSha prefix + read index — nothing ever overwrites a prior read. */
+export function acceptanceReadRecordPath(
+  bookId: string,
+  roundLabel: string,
+  docSha256: string,
+  readIndex: number,
+  stateRoot: string = CANONICAL_STATE,
+): string {
+  const seg = acceptanceRoundSegment(roundLabel);
+  return resolve(stateRoot, "reviews", bookId, `acceptance.${seg}.${docSha256.slice(0, 8)}.r${readIndex}.json`);
+}
+
+/** Every durable QUORUM-MET acceptance read of these EXACT bytes, oldest first.
+ *  Scans acceptance.*.json (legacy single-slot records pool too — their docSha
+ *  keys them honestly). Quorum-failed reads are infra noise, not votes: their
+ *  composites are composed over a shrunken panel, so they join neither the
+ *  median nor the sticky-gate set. Torn/foreign files are skipped. */
+export function listAcceptanceReads(
+  bookId: string,
+  docSha256: string,
+  stateRoot: string = CANONICAL_STATE,
+): AuthorAcceptanceRecord[] {
+  const dir = resolve(stateRoot, "reviews", bookId);
+  if (!existsSync(dir)) return [];
+  const out: AuthorAcceptanceRecord[] = [];
+  for (const f of readdirSync(dir)) {
+    if (!/^acceptance\..+\.json$/.test(f)) continue;
+    try {
+      const rec = JSON.parse(readFileSync(resolve(dir, f), "utf8")) as AuthorAcceptanceRecord;
+      if (!rec || rec.schemaVersion !== "author-acceptance-v1" || rec.bookId !== bookId) continue;
+      if (rec.docSha256 !== docSha256) continue;
+      if ((rec.verdict?.validCount ?? 0) < AUTHOR_BOOK_READERS) continue;
+      if (typeof rec.verdict?.medianComposite !== "number" || !Number.isFinite(rec.verdict.medianComposite)) continue;
+      out.push(rec);
+    } catch { /* torn/foreign record — skip */ }
+  }
+  return out.sort((a, b) => String(a.at).localeCompare(String(b.at)));
+}
+
+/** TRUE median (F2 fix): the old pooled decision used the UPPER median, which on
+ *  the typical two reads is max(prev, cur) — a bias TOWARD acceptance, inverting
+ *  the re-roll guard. Even count → mean of the two middle values. */
+export function trueMedian(values: number[]): number {
+  const s = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(s.length / 2);
+  return s.length % 2 === 1 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
+}
+
+/** Panel reads per docSha256, TOTAL and durable across conductor re-entries (F3):
+ *  read 1 always runs on unseen bytes; extra reads run only while the pooled
+ *  decision sits inside the noise band; at the cap the pooled decision FREEZES
+ *  for those bytes — further entries reuse it and spawn nothing. */
+export const PANEL_READS_PER_DOC_CAP = 3;
+
+/** Measured same-bytes acceptance-panel noise (execution campaign 2026-07-04:
+ *  a fixed 9-chapter board read 75.0–78.7 across 5 panels — ±3.7). */
+export const PANEL_NOISE_BAND_DEFAULT = 3.7;
+
+/** Multi-read config error — set-but-invalid env must halt, never silently fall
+ *  back (the BREAK-1 lesson from the beat-shipped override). */
+export class AcceptanceConfigError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "AcceptanceConfigError";
+  }
+}
+
+/** CHAPTERFLOW_PANEL_NOISE_BAND: unset/empty → the measured default; a
+ *  set-but-non-finite or negative value throws (fail closed). 0 disables the
+ *  multi-read trigger (every decision counts as clear). */
+export function resolvePanelNoiseBand(): number {
+  const raw = process.env.CHAPTERFLOW_PANEL_NOISE_BAND;
+  if (raw === undefined || raw.trim() === "") return PANEL_NOISE_BAND_DEFAULT;
+  const n = Number(raw);
+  if (!Number.isFinite(n) || n < 0) {
+    throw new AcceptanceConfigError(
+      `CHAPTERFLOW_PANEL_NOISE_BAND is set but not a finite non-negative number ("${raw}") — unset it or export a real band (default ${PANEL_NOISE_BAND_DEFAULT}).`,
+    );
+  }
+  return n;
 }
 
 async function mapPool<T, R>(items: T[], limit: number, fn: (item: T, i: number) => Promise<R>): Promise<R[]> {
@@ -676,131 +791,178 @@ async function runBookAcceptance(
   assertBookSampleDocIntegrity(docText, sampled);
   const { relPath } = io.writeReviewDoc(bookId, "book-sample.txt", docText);
   const task = buildBookReviewTask(relPath);
-  deps.log(`[autopilot] author acceptance${roundLabel}: sampled ch ${sampled.map((c) => c.number).join(", ")} → ${docText.length} chars; spawning ${AUTHOR_BOOK_READERS} independent book readers`);
 
-  const readerSessionIds: string[] = [];
-  const readers = await mapPool(
-    Array.from({ length: AUTHOR_BOOK_READERS }, (_, i) => i + 1),
-    AUTHOR_BOOK_READERS,
-    async (readerNo) => {
-      let lastSessionId = `author-book-reader-${readerNo}-invalid`;
-      for (let attempt = 1; attempt <= 2; attempt++) {
-        const sessionId = deps.mkSessionId(`author-book-reader-${readerNo}${roundLabel}${attempt > 1 ? "-r2" : ""}`);
-        lastSessionId = sessionId;
-        const r = await deps.spawn({
-          task,
-          sessionId,
-          cwd: PIPELINE_DIR,
-          sandbox: "read-only",
-          skipGitRepoCheck: true,
-          reasoningEffort: "high",
-        });
-        try { deps.logSession(bookId, `author-book-reader-${readerNo}${roundLabel}`, r); } catch { /* best-effort */ }
-        const parsed = parseBookReview(r.finalMessage) ?? parseBookReview(r.stdout);
-        if (!parsed) {
-          deps.log(`[autopilot] author acceptance${roundLabel} r${readerNo}: attempt ${attempt} unparseable (exit ${r.exitCode})`);
-          continue;
+  /** One full independent 3-reader panel over the SAME doc bytes. `panelSuffix`
+   *  disambiguates session ids for multi-read panels (-p2, -p3). */
+  const spawnPanel = async (panelSuffix: string): Promise<{ readers: BookReaderResult[]; sessionIds: string[] }> => {
+    deps.log(`[autopilot] author acceptance${roundLabel}${panelSuffix}: sampled ch ${sampled.map((c) => c.number).join(", ")} → ${docText.length} chars; spawning ${AUTHOR_BOOK_READERS} independent book readers`);
+    const sessionIds: string[] = [];
+    const readers = await mapPool(
+      Array.from({ length: AUTHOR_BOOK_READERS }, (_, i) => i + 1),
+      AUTHOR_BOOK_READERS,
+      async (readerNo) => {
+        let lastSessionId = `author-book-reader-${readerNo}-invalid`;
+        for (let attempt = 1; attempt <= 2; attempt++) {
+          const sessionId = deps.mkSessionId(`author-book-reader-${readerNo}${roundLabel}${panelSuffix}${attempt > 1 ? "-r2" : ""}`);
+          lastSessionId = sessionId;
+          const r = await deps.spawn({
+            task,
+            sessionId,
+            cwd: PIPELINE_DIR,
+            sandbox: "read-only",
+            skipGitRepoCheck: true,
+            reasoningEffort: "high",
+          });
+          try { deps.logSession(bookId, `author-book-reader-${readerNo}${roundLabel}${panelSuffix}`, r); } catch { /* best-effort */ }
+          const parsed = parseBookReview(r.finalMessage) ?? parseBookReview(r.stdout);
+          if (!parsed) {
+            deps.log(`[autopilot] author acceptance${roundLabel}${panelSuffix} r${readerNo}: attempt ${attempt} unparseable (exit ${r.exitCode})`);
+            continue;
+          }
+          const adjudicated = adjudicateBookReview(parsed, docText, sampled, sessionId);
+          if (adjudicated.valid || attempt === 2) {
+            if (!adjudicated.valid) deps.log(`[autopilot] author acceptance${roundLabel}${panelSuffix} r${readerNo}: INVALID — ${adjudicated.invalidReason}`);
+            sessionIds.push(sessionId);
+            return adjudicated;
+          }
+          deps.log(`[autopilot] author acceptance${roundLabel}${panelSuffix} r${readerNo}: attempt ${attempt} failed verification (${adjudicated.invalidReason}) — respawning once`);
         }
-        const adjudicated = adjudicateBookReview(parsed, docText, sampled, sessionId);
-        if (adjudicated.valid || attempt === 2) {
-          if (!adjudicated.valid) deps.log(`[autopilot] author acceptance${roundLabel} r${readerNo}: INVALID — ${adjudicated.invalidReason}`);
-          readerSessionIds.push(sessionId);
-          return adjudicated;
-        }
-        deps.log(`[autopilot] author acceptance${roundLabel} r${readerNo}: attempt ${attempt} failed verification (${adjudicated.invalidReason}) — respawning once`);
-      }
-      readerSessionIds.push(lastSessionId);
-      return adjudicateBookReview(
-        {
-          gate_verdict: "FAIL",
-          book3_churn: "HIGH",
-          quizDerivation: {},
-          scores: Object.fromEntries(REVIEW_FACTORS.map((f) => [f, 0])) as Record<ReviewFactor, number>,
-          quotes: [],
-          oneParagraphVerdict: "INVALID: unparseable after retry",
-        },
-        docText,
-        sampled,
-        lastSessionId,
-      );
-    },
-  );
+        sessionIds.push(lastSessionId);
+        return adjudicateBookReview(
+          {
+            gate_verdict: "FAIL",
+            book3_churn: "HIGH",
+            quizDerivation: {},
+            scores: Object.fromEntries(REVIEW_FACTORS.map((f) => [f, 0])) as Record<ReviewFactor, number>,
+            quotes: [],
+            oneParagraphVerdict: "INVALID: unparseable after retry",
+          },
+          docText,
+          sampled,
+          lastSessionId,
+        );
+      },
+    );
+    return { readers, sessionIds };
+  };
 
-  const verdict = composeBookVerdict(bookId, sampled.map((c) => c.number), readers);
-  const comp = verdict.medianComposite ?? 0;
-  // Q4 — valid-count QUORUM (fail-closed): a book is NEVER accepted below full
-  // panel. composeBookVerdict happily composes over even ONE valid reader, so
-  // without this floor a Q3 invalidation (or unparseable-after-retry readers)
-  // could shrink the panel and let a single voice carry acceptance. Requiring
-  // validCount >= AUTHOR_BOOK_READERS is a pure strengthen AND the guarantee
-  // that makes Q3's invalidation weaken-proof.
-  const quorumMet = verdict.validCount >= AUTHOR_BOOK_READERS;
-  // Red-team BREAK-2 (publish calibration): REJECT had no memory — identical
-  // bytes could re-roll a fresh panel every conductor entry until noise (±3.7)
-  // cleared the floor, while one ACCEPT persisted forever. Pool the on-disk
-  // acceptance records for the SAME docSha256: the decision composite is the
-  // MEDIAN across all same-doc reads, and a gate FAIL recorded on these exact
-  // bytes sticks (fail-closed) until the bytes change.
+  // ── Multi-read median (FINAL-HARDENING-PLAN 2026-07-04; replaces the BREAK-2
+  //    pooling guard, which a boundedness audit broke two ways: per-label records
+  //    OVERWROTE — gate-FAIL stickiness decayed after one re-entry — and the
+  //    even-count "median" was the UPPER median, i.e. max(prev,cur) on the typical
+  //    two reads, a bias TOWARD acceptance). Semantics now: every quorum-met panel
+  //    read of these EXACT bytes is a durable append-only vote; read 1 always runs
+  //    on unseen bytes; extra reads run ONLY while the pooled TRUE-median sits
+  //    within the noise band of the binding boundary AND the per-doc cap (3) has
+  //    room; a gate FAIL on any read sticks for these bytes (never outvoted); at
+  //    the cap the pooled decision FREEZES — re-entries reuse it and spawn
+  //    NOTHING (the ±3.7 re-roll casino is closed in both directions). ──────────
   const docSha = createHash("sha256").update(docText).digest("hex");
-  let compPooled = comp;
-  let gatePooled = verdict.gate;
-  try {
-    const priors: Array<{ c: number | null; gate: string | null }> = [];
-    for (const label of ["", "-round2"]) {
-      try {
-        const rec = JSON.parse(readFileSync(acceptanceRecordPath(bookId, label), "utf8")) as AuthorAcceptanceRecord;
-        if (rec && rec.docSha256 === docSha && typeof rec.verdict?.medianComposite === "number") {
-          priors.push({ c: rec.verdict.medianComposite, gate: rec.verdict.gate ?? null });
-        }
-      } catch { /* no prior record for this label */ }
+  const noiseBand = resolvePanelNoiseBand();
+  // The binding composite boundary: the floor, or the shipped control + margin
+  // when that is higher. Distance from it decides whether a decision is "clear".
+  const binding = shipped === null ? AUTHOR_BOOK_ACCEPT_FLOOR : Math.max(AUTHOR_BOOK_ACCEPT_FLOOR, shipped + BEAT_SHIPPED_MARGIN);
+
+  const pool = io.listAcceptanceReads(bookId, docSha); // durable quorum-met reads of these bytes, oldest first
+  const readComposites: number[] = pool.map((r) => r.verdict.medianComposite as number);
+  let gateFailStuck = pool.some((r) => r.verdict.gate === "FAIL");
+  let totalReads = pool.length;
+  let verdict: BookVerdict | null = pool.length > 0 ? pool[pool.length - 1].verdict : null;
+  let readers: BookReaderResult[] = pool.length > 0 ? pool[pool.length - 1].readers : [];
+  let readerSessionIds: string[] = [];
+  // Q4 — valid-count QUORUM (fail-closed): a book is NEVER accepted below full
+  // panel. Pooled reads met quorum by construction (listAcceptanceReads filters);
+  // a fresh panel below quorum rejects this entry and is never a pooled vote.
+  let quorumMet = totalReads > 0;
+  let spawnedThisEntry = 0;
+
+  while (true) {
+    const pooledNow = readComposites.length > 0 ? trueMedian(readComposites) : null;
+    const needRead =
+      totalReads === 0 ||
+      (!gateFailStuck &&
+        pooledNow !== null &&
+        Math.abs(pooledNow - binding) <= noiseBand &&
+        totalReads < PANEL_READS_PER_DOC_CAP);
+    if (!needRead) {
+      if (spawnedThisEntry === 0 && totalReads > 0) {
+        deps.log(`[autopilot] author acceptance${roundLabel}: REUSING ${totalReads} durable same-doc read(s) (${gateFailStuck ? "gate-FAIL stuck" : totalReads >= PANEL_READS_PER_DOC_CAP ? "panel cap reached — decision FROZEN for these bytes" : "pooled decision clear of the noise band"}) — no panel spawned`);
+      }
+      break;
     }
-    if (priors.length > 0) {
-      const reads = [...priors.map((p) => p.c as number), comp].sort((a, b) => a - b);
-      compPooled = reads[Math.floor(reads.length / 2)];
-      if (priors.some((p) => p.gate === "FAIL")) gatePooled = "FAIL";
-      deps.log(`[autopilot] author acceptance${roundLabel}: pooled ${priors.length + 1} same-doc read(s) → composite ${compPooled}, gate ${gatePooled} (re-roll guard)`);
+    const readNo = totalReads + 1;
+    if (readNo > 1) {
+      deps.log(`[autopilot] author acceptance${roundLabel}: pooled composite ${pooledNow} is within ±${noiseBand} of the binding boundary ${binding} — spawning independent panel read ${readNo}/${PANEL_READS_PER_DOC_CAP}`);
     }
-  } catch { /* pooling is best-effort; the single-read decision stands */ }
+    const panel = await spawnPanel(readNo > 1 ? `-p${readNo}` : "");
+    spawnedThisEntry++;
+    verdict = composeBookVerdict(bookId, sampled.map((c) => c.number), panel.readers);
+    readers = panel.readers;
+    readerSessionIds = panel.sessionIds;
+    quorumMet = verdict.validCount >= AUTHOR_BOOK_READERS;
+    const comp = verdict.medianComposite ?? 0;
+    if (quorumMet) {
+      readComposites.push(comp);
+      totalReads++;
+      if (verdict.gate === "FAIL") gateFailStuck = true;
+    }
+    // Q6 — durable per-read record over the EXACT bytes scored (append-only).
+    // Best-effort: a record-write failure never converts a valid read into a
+    // halt, but an unpersisted read also cannot vote in future pools.
+    try {
+      const pooledComp = readComposites.length > 0 ? trueMedian(readComposites) : comp;
+      const gatePooledNow: "PASS" | "FAIL" = gateFailStuck ? "FAIL" : "PASS";
+      const record: AuthorAcceptanceRecord = {
+        schemaVersion: "author-acceptance-v1",
+        bookId,
+        roundLabel,
+        at: new Date().toISOString(),
+        bar: AUTHOR_BOOK_ACCEPT_BAR,
+        beatShipped: shipped,
+        accepted: quorumMet
+          && gatePooledNow === "PASS"
+          && pooledComp >= AUTHOR_BOOK_ACCEPT_FLOOR
+          && (shipped === null || pooledComp >= shipped + BEAT_SHIPPED_MARGIN),
+        sampledChapters: sampled.map((c) => c.number),
+        docSha256: docSha,
+        verdict,
+        readers,
+        pooled: {
+          reads: totalReads,
+          composite: pooledComp,
+          gate: gatePooledNow,
+          noiseBand,
+          capped: totalReads >= PANEL_READS_PER_DOC_CAP,
+        },
+      };
+      const path = io.persistAcceptance(bookId, record);
+      deps.log(`[autopilot] author acceptance${roundLabel}: durable read record → ${path}`);
+    } catch (err) {
+      deps.log(`[autopilot] author acceptance${roundLabel}: WARNING durable record write failed: ${(err as Error).message}`);
+    }
+    if (!quorumMet) break; // infra-degraded panel: reject this entry; not a vote
+  }
+
   // Publish calibration (owner decision 2026-07-04, plan docs/v24/
-  // PUBLISH-CALIBRATION-PLAN-2026-07-04.md): the single bar-80 demanded
-  // corpus-#1 quality (atomic-habits reads 80.2 on this instrument; panel noise
-  // is ±3.7 on identical bytes; no real book has read ≥84) and churn-HIGH as a
-  // binary veto fired on genre-inherent framework repetition through every
-  // texture lever. ACCEPT is now multi-signal: correctness gate PASS stays a
-  // HARD blocker (stricter than the shipped corpus's own history — POM shipped
-  // at 80.0 with a unanimous gate FAIL), composite must clear the absolute
+  // PUBLISH-CALIBRATION-PLAN-2026-07-04.md): ACCEPT is multi-signal — the
+  // correctness gate stays a HARD blocker (now sticky per docSha across all
+  // pooled reads), the TRUE-median pooled composite must clear the absolute
   // FLOOR and beat the shipped control by a real MARGIN. Churn is telemetry +
   // repair routing, never an accept-time veto. AUTHOR_BOOK_ACCEPT_BAR (80)
   // remains in the record as the premium telemetry target.
+  const compPooled = readComposites.length > 0 ? trueMedian(readComposites) : (verdict?.medianComposite ?? 0);
+  const gatePooled: "PASS" | "FAIL" = gateFailStuck ? "FAIL" : "PASS";
   const accepted = quorumMet
     && gatePooled === "PASS"
     && compPooled >= AUTHOR_BOOK_ACCEPT_FLOOR
     && (shipped === null || compPooled >= shipped + BEAT_SHIPPED_MARGIN);
-  deps.log(`[autopilot] author acceptance${roundLabel}: composite ${verdict.medianComposite ?? "n/a"} gate ${verdict.gate ?? "?"} (${verdict.gateVotes}) churn ${verdict.churn} valid ${verdict.validCount}/${AUTHOR_BOOK_READERS} vs floor ${AUTHOR_BOOK_ACCEPT_FLOOR}${shipped === null ? "" : ` + beat-shipped ${shipped}+${BEAT_SHIPPED_MARGIN}`} (premium target ${AUTHOR_BOOK_ACCEPT_BAR}) → ${accepted ? "ACCEPT" : `REJECT${quorumMet ? "" : " (below valid-reader quorum)"}`}`);
+  deps.log(`[autopilot] author acceptance${roundLabel}: pooled composite ${compPooled} over ${totalReads} read(s) (band ±${noiseBand}) gate ${gatePooled} churn ${verdict?.churn ?? "?"} valid ${verdict?.validCount ?? 0}/${AUTHOR_BOOK_READERS} vs floor ${AUTHOR_BOOK_ACCEPT_FLOOR}${shipped === null ? "" : ` + beat-shipped ${shipped}+${BEAT_SHIPPED_MARGIN}`} (premium target ${AUTHOR_BOOK_ACCEPT_BAR}) → ${accepted ? "ACCEPT" : `REJECT${quorumMet ? "" : " (below valid-reader quorum)"}`}`);
 
-  // Q6 — durable acceptance record over the EXACT bytes readers scored. Best-
-  // effort (a record-write failure never converts a valid acceptance into a
-  // halt), but attempted for every round so forensics have a repo-local trail.
-  try {
-    const record: AuthorAcceptanceRecord = {
-      schemaVersion: "author-acceptance-v1",
-      bookId,
-      roundLabel,
-      at: new Date().toISOString(),
-      bar: AUTHOR_BOOK_ACCEPT_BAR,
-      beatShipped: shipped,
-      accepted,
-      sampledChapters: sampled.map((c) => c.number),
-      docSha256: createHash("sha256").update(docText).digest("hex"),
-      verdict,
-      readers,
-    };
-    const path = io.persistAcceptance(bookId, record);
-    deps.log(`[autopilot] author acceptance${roundLabel}: durable record → ${path}`);
-  } catch (err) {
-    deps.log(`[autopilot] author acceptance${roundLabel}: WARNING durable record write failed: ${(err as Error).message}`);
+  if (!verdict) {
+    // Unreachable by construction (read 1 always runs when the pool is empty),
+    // but fail closed rather than fabricate a verdict.
+    throw new DocIntegrityError(`author acceptance${roundLabel}: no panel verdict and no pooled reads for ${bookId} — refusing to decide`);
   }
-
   return { accepted, verdict, readers, readerSessionIds, sampledNumbers: sampled.map((c) => c.number) };
 }
 
@@ -917,6 +1079,12 @@ export async function doAuthorReview(
     // A required AUTO control-read that cannot be produced is a fail-closed infra
     // halt — never a silent drop of the beat-shipped protection.
     if (err instanceof ControlReadError) return halt(bookId, "infra", `author acceptance beat-shipped control read: ${err.message}`);
+    // Multi-read config: a set-but-invalid noise band halts, never a silent
+    // fallback (BREAK-1 lesson).
+    if (err instanceof AcceptanceConfigError) return halt(bookId, "infra", `author acceptance multi-read config: ${err.message}`);
+    // F6: a rejected repair whose byte restore ALSO failed — disk diverges from
+    // the persisted review pointers; halt infra before any further routing.
+    if (err instanceof RepairRestoreError) return halt(bookId, "infra", `author review repair lane: ${err.message}`);
     // A regen cap that cannot be honored honestly (unreadable ledger, or a
     // chapter whose design lineage is uncomputable) is an infra halt — never a
     // fail-open cap and never a faked content cap-exhaustion (#8).
@@ -967,6 +1135,36 @@ async function doAuthorReviewInner(
     chapters = [...io.loadChapters(bookId)].sort((a, b) => a.number - b.number);
   } catch (err) {
     return halt(bookId, "infra", `author review: could not reload chapters after the budget check: ${(err as Error).message}`);
+  }
+
+  // ── F5 (FINAL-HARDENING-PLAN 2026-07-04): dead-end pre-check BEFORE any
+  //    reader spawns. The exhaustion halt below (regen budget) used to fire only
+  //    AFTER fresh reviews + tiebreaks ran, so every re-entry of a capped-out
+  //    book re-burned up to N×2 reads + 2 tiebreak reads on bytes that already
+  //    failed — pure noise re-rolls (a FAIL is never carryable by design). A
+  //    chapter whose EXACT current bytes hold a persisted FAILing review, with
+  //    the regen budget exhausted AND the repair lane spent (or disabled),
+  //    cannot progress without a byte change — halt before spending reads. ─────
+  {
+    const deadEnds: Array<{ n: number; composite: number }> = [];
+    for (const chapter of chapters) {
+      if (io.regenConsumedFor(bookId, chapter.number) < (AUTHOR_REGEN_CAP - 1)) continue;
+      let repairSpent = !reviewRepairEnabled();
+      if (!repairSpent) {
+        try { repairSpent = io.repairConsumedFor(bookId, chapter.number) >= 1; } catch { repairSpent = true; } // unreadable ledger → fail closed
+      }
+      if (!repairSpent) continue;
+      try {
+        const p = reviewHistoryPath(bookId, chapter.number, chapterContentHash(chapter));
+        if (!existsSync(p)) continue;
+        const rec = JSON.parse(readFileSync(p, "utf8")) as ChapterReviewV1;
+        if (rec && rec.valid !== false && rec.pass === false) deadEnds.push({ n: chapter.number, composite: rec.composite ?? 0 });
+      } catch { /* unreadable history — a fresh read is legitimate */ }
+    }
+    if (deadEnds.length > 0) {
+      const table = deadEnds.map((d) => `  ch${String(d.n).padStart(2, "0")} — persisted review FAIL (composite ${d.composite}) on the exact current bytes; regen + repair budgets exhausted`).join("\n");
+      return halt(bookId, "content", `author review: ${deadEnds.length} chapter(s) are DEAD-ENDED — their current bytes already failed a durable review and every write budget is spent; spawning fresh readers would only re-roll noise (F5):\n${table}`);
+    }
   }
 
   // ── 1. One blinded reader per chapter — UNLESS a durable review can be
@@ -1092,6 +1290,13 @@ async function doAuthorReviewInner(
               ])];
             }
           } else {
+            if (rep.restoreFailed) {
+              // F6: disk holds unreviewed repair bytes and the original could not
+              // be restored — routing on as if bytes matched the persisted review
+              // would let a regen-exhausted book halt "content" over divergent
+              // state. Infra halt; the operator restores from git/state history.
+              throw new RepairRestoreError(`ch${nn}: repair rejected (${rep.reason ?? "unknown"}) AND the original bytes could not be restored — disk no longer matches the persisted review; halting before any further routing`);
+            }
             deps.log(`[autopilot] author review ch${nn}: repair rejected (${rep.reason ?? "unknown"}) — regen proceeds`);
           }
         } else {

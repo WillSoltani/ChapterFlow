@@ -156,6 +156,23 @@ test("ledger: repair cap is lineage-keyed, independent of the regen counter, abs
   }
 });
 
+test("F4: budget-repair writes consume a lineage-keyed durable counter, independent of regen and repair", async () => {
+  const { budgetRepairConsumedFor, recordBudgetRepairConsumed } = await import("../src/orchestrator/authorRegenLedger.js");
+  const root = mkdtempSync(join(tmpdir(), "budget-repair-ledger-"));
+  try {
+    const lineage = "abc123def456";
+    assert.equal(budgetRepairConsumedFor(loadAuthorRegenLedger(BOOK, root), 4, lineage), 0, "pre-F4 ledgers read as 0 (additive schema)");
+    recordBudgetRepairConsumed(BOOK, 4, lineage, root);
+    const after = loadAuthorRegenLedger(BOOK, root);
+    assert.equal(budgetRepairConsumedFor(after, 4, lineage), 1);
+    assert.equal(regenConsumedFor(after, 4, lineage), 0, "budget repair does not touch the regen budget");
+    assert.equal(repairConsumedFor(after, 4, lineage), 0, "…nor the surgical-repair budget");
+    assert.equal(budgetRepairConsumedFor(after, 4, "otherlineage1"), 0, "a re-dealt lineage reads fresh (C1 contract)");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("W1: duplicated field labels complain at write time (the ch08 0-3 class)", async () => {
   const { authorWriteContractFindings } = await import("../src/orchestrator/authorRun.js");
   const chapter = makeChapter(BOOK, 2);

@@ -72,6 +72,9 @@ export type AuthorRegenLedger = {
    *  design (cap 1; rejected/failed/no-op repairs count too). Optional so v2
    *  ledgers written before the lane load unchanged (absent = 0). */
   repairConsumed?: Record<string, number>;
+  /** F4: reader-budget repair writes consumed, keyed `${chapter}@${lineage}` —
+   *  additive to v2 (absent = 0 everywhere). */
+  budgetRepairConsumed?: Record<string, number>;
 };
 
 type AuthorRegenLedgerV1 = {
@@ -271,6 +274,34 @@ export function recordRepairConsumed(
   const ledger = loadAuthorRegenLedger(bookId, stateRoot);
   const key = `${chapterNumber}@${lineage}`;
   const map = ledger.repairConsumed ?? (ledger.repairConsumed = {});
+  map[key] = (Number.isInteger(map[key]) && map[key] > 0 ? map[key] : 0) + 1;
+  ledger.updatedAt = new Date().toISOString();
+  persist(ledger, stateRoot);
+  return ledger;
+}
+
+/** F4 (FINAL-HARDENING-PLAN 2026-07-04): reader-budget repair writes consumed
+ *  against the chapter's current lineage. ensureReaderBudgetsClean spawns FULL
+ *  whole-chapter rewrites outside the regen ledger, and it runs at BOTH the
+ *  write and review entries — without a durable count, every conductor re-entry
+ *  of a still-blocking book could re-spend up to 4 chapters × 2 writer spawns,
+ *  forever. Absent map = 0 (the counter postdates the v2 ledger). */
+export function budgetRepairConsumedFor(ledger: AuthorRegenLedger, chapterNumber: number, lineage: string): number {
+  const keyed = ledger.budgetRepairConsumed?.[`${chapterNumber}@${lineage}`];
+  return Number.isInteger(keyed) && (keyed as number) > 0 ? (keyed as number) : 0;
+}
+
+/** Record ONE consumed budget-repair write for a chapter's current lineage and
+ *  persist. Counts only ever grow; failed repair writes count too. */
+export function recordBudgetRepairConsumed(
+  bookId: string,
+  chapterNumber: number,
+  lineage: string,
+  stateRoot: string = CANONICAL_STATE,
+): AuthorRegenLedger {
+  const ledger = loadAuthorRegenLedger(bookId, stateRoot);
+  const key = `${chapterNumber}@${lineage}`;
+  const map = ledger.budgetRepairConsumed ?? (ledger.budgetRepairConsumed = {});
   map[key] = (Number.isInteger(map[key]) && map[key] > 0 ? map[key] : 0) + 1;
   ledger.updatedAt = new Date().toISOString();
   persist(ledger, stateRoot);

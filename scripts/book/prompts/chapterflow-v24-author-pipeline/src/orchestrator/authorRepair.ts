@@ -221,7 +221,27 @@ export function spliceRepairScopes(original: ChapterV21, repaired: ChapterV21, s
   return out;
 }
 
-export type RepairResult = { ok: boolean; reason?: string; sessionId?: string };
+/** F6: thrown by the review caller when a rejected repair could not restore the
+ *  original bytes — the conductor must halt infra (disk no longer matches the
+ *  persisted review pointers). */
+export class RepairRestoreError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "RepairRestoreError";
+  }
+}
+
+export type RepairResult = {
+  ok: boolean;
+  reason?: string;
+  sessionId?: string;
+  /** F6 (FINAL-HARDENING-PLAN 2026-07-04): a rejected repair whose byte RESTORE
+   *  also failed — disk now holds unreviewed repair-session bytes while the
+   *  latest persisted review points at the pre-repair hash. The caller must
+   *  treat this as an INFRA HALT, never continue routing (a regen-exhausted
+   *  book would otherwise halt "content" with silently divergent bytes). */
+  restoreFailed?: boolean;
+};
 
 /** Run one surgical repair end-to-end. On ANY failure the ORIGINAL bytes are
  *  restored (the persisted review's contentHash must keep matching the disk)
@@ -252,7 +272,18 @@ export async function doRepairOneChapter(
   const card = buildRepairCard({ bookId, chapter: original, brief, complaints: opts.complaints, scopes: opts.scopes, relPath });
   const sessionId = `auto-author-repair-${bookId}-ch${nn}-${Date.now().toString(36)}`;
   deps.log(`[autopilot] author repair ch${nn}: surgical editor working (scopes ${opts.scopes.join(",")}, card ${card.length} chars, ${AUTHOR_WRITER_MODEL} @ ${AUTHOR_WRITER_EFFORT}, timeout ${Math.round(REPAIR_TIMEOUT_MS / 60000)}min)`);
-  const restore = () => { try { writeFileSync(absPath, originalBytes); } catch { /* restore is best-effort */ } };
+  let restoreFailed = false;
+  const restore = () => {
+    try {
+      writeFileSync(absPath, originalBytes);
+    } catch (err) {
+      // F6: a failed restore leaves unreviewed repair bytes on disk while the
+      // persisted review still points at the pre-repair hash — surfaced to the
+      // caller as an infra halt, never a silent divergence.
+      restoreFailed = true;
+      deps.log(`[autopilot] author repair ch${nn}: RESTORE FAILED — ${(err as Error).message}; disk holds unreviewed repair-session bytes`);
+    }
+  };
   try {
     const r = await deps.spawn({
       task: card,
@@ -264,10 +295,10 @@ export async function doRepairOneChapter(
       timeoutMs: REPAIR_TIMEOUT_MS,
     });
     try { deps.logSession(bookId, `author-repair-ch${nn}`, r); } catch { /* best-effort */ }
-    if (r.exitCode !== 0) { restore(); return { ok: false, reason: `ch${nn}: repair session exited ${r.exitCode}`, sessionId }; }
+    if (r.exitCode !== 0) { restore(); return { ok: false, reason: `ch${nn}: repair session exited ${r.exitCode}`, sessionId, restoreFailed }; }
   } catch (err) {
     restore();
-    return { ok: false, reason: `ch${nn}: repair session died (${(err as Error).message.slice(0, 200)})`, sessionId };
+    return { ok: false, reason: `ch${nn}: repair session died (${(err as Error).message.slice(0, 200)})`, sessionId, restoreFailed };
   }
   // Patch-apply: splice allowed scopes from the session's file into the original.
   let spliced: ChapterV21;
@@ -276,12 +307,12 @@ export async function doRepairOneChapter(
     spliced = spliceRepairScopes(original, written, opts.scopes);
   } catch (err) {
     restore();
-    return { ok: false, reason: `ch${nn}: repair output rejected at splice (${(err as Error).message})`, sessionId };
+    return { ok: false, reason: `ch${nn}: repair output rejected at splice (${(err as Error).message})`, sessionId, restoreFailed };
   }
   const splicedBytes = JSON.stringify(spliced, null, 2) + "\n";
   if (JSON.stringify(spliced) === JSON.stringify(original)) {
     restore();
-    return { ok: false, reason: `ch${nn}: repair was a no-op inside its scope`, sessionId };
+    return { ok: false, reason: `ch${nn}: repair was a no-op inside its scope`, sessionId, restoreFailed };
   }
   writeFileSync(absPath, splicedBytes);
   // Full deterministic stack on the SPLICED bytes (plan R4) — any FAIL restores.
@@ -289,19 +320,19 @@ export async function doRepairOneChapter(
   const gateOut = [gate.stdout, gate.stderr].join("\n");
   if (!/Gate verdict: PASS/.test(gateOut)) {
     restore();
-    return { ok: false, reason: `ch${nn}: spliced repair fails the gate`, sessionId };
+    return { ok: false, reason: `ch${nn}: spliced repair fails the gate`, sessionId, restoreFailed };
   }
   const rubric = await deps.runVerb(["rubric-metrics", bookId]);
   const verdictLine = [rubric.stdout, rubric.stderr].join("\n").split("\n").find((l) => l.trim().startsWith(`ch${nn}:`)) ?? "";
   if (verdictLine.includes("FAIL")) {
     restore();
-    return { ok: false, reason: `ch${nn}: spliced repair fails the rubric preflight — ${verdictLine.trim()}`, sessionId };
+    return { ok: false, reason: `ch${nn}: spliced repair fails the rubric preflight — ${verdictLine.trim()}`, sessionId, restoreFailed };
   }
   if (brief && packet) {
     const contract = authorWriteContractFindings(spliced, brief, packet);
     if (contract.length > 0) {
       restore();
-      return { ok: false, reason: `ch${nn}: spliced repair breaks the write contract — ${contract.join(" | ").slice(0, 300)}`, sessionId };
+      return { ok: false, reason: `ch${nn}: spliced repair breaks the write contract — ${contract.join(" | ").slice(0, 300)}`, sessionId, restoreFailed };
     }
   }
   return { ok: true, sessionId };

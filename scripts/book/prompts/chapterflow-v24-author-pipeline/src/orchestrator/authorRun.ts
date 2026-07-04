@@ -36,7 +36,14 @@ import { loadNameBank } from "../librarian/namePlan.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { loadAuthorProvenance, recordAuthorProvenance } from "../qc/sessionProvenance.js";
-import { RegenLedgerError, migrateLegacyRegenCounts } from "./authorRegenLedger.js";
+import {
+  RegenLedgerError,
+  budgetRepairConsumedFor,
+  computeRegenLineage,
+  loadAuthorRegenLedger,
+  migrateLegacyRegenCounts,
+  recordBudgetRepairConsumed,
+} from "./authorRegenLedger.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -855,6 +862,35 @@ export async function ensureReaderBudgetsClean(
         .slice(0, REPAIR_TARGET_CAP);
       targets = new Map(ranked);
       deps.log(`[autopilot] ${opts.label}: repair evidence spans ${allTargets.size} chapters — capping the round to the top ${REPAIR_TARGET_CAP} contributors (${ranked.map(([n]) => `ch${String(n).padStart(2, "0")}`).join(", ")}); the re-check still runs book-wide`);
+    }
+    // F4 (FINAL-HARDENING-PLAN 2026-07-04): the budget-repair round is bounded
+    // WITHIN an entry, but it runs at BOTH the write and review entries and its
+    // writer spawns never touched a durable ledger — a persistently blocking
+    // book could re-spend the full round on every conductor re-entry, forever.
+    // One budget-repair write per chapter LINEAGE, consumed durably BEFORE the
+    // spawn (failed rounds count too). A chapter with no computable lineage
+    // (pre-brief fixtures; real v24 books always compile briefs before writes)
+    // runs uncounted rather than converting a safety net into an infra halt.
+    {
+      const skipped: number[] = [];
+      const runnable = new Map<number, string[]>();
+      for (const [n, complaints] of targets) {
+        let lineage: string | null = null;
+        try { lineage = computeRegenLineage(bookId, n); } catch { lineage = null; }
+        if (!lineage) { runnable.set(n, complaints); continue; }
+        let consumed = 1;
+        try { consumed = budgetRepairConsumedFor(loadAuthorRegenLedger(bookId), n, lineage); } catch { consumed = 1; } // unreadable ledger → fail closed
+        if (consumed >= 1) { skipped.push(n); continue; }
+        recordBudgetRepairConsumed(bookId, n, lineage);
+        runnable.set(n, complaints);
+      }
+      if (skipped.length > 0) {
+        deps.log(`[autopilot] ${opts.label}: ${skipped.length} chapter(s) already consumed their durable budget-repair write for this lineage (${skipped.sort((a, b) => a - b).map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}) — not re-spending`);
+      }
+      if (runnable.size === 0) {
+        return haltHere("content", `${opts.label}: reader budgets BLOCK and every routable chapter has already consumed its one durable budget-repair write for its current lineage (F4) — a byte/design change is required:\n${lines.join("\n").slice(0, 3000)}`);
+      }
+      targets = runnable;
     }
     deps.log(`[autopilot] ${opts.label}: reader budgets BLOCK (${blockers.length} finding(s)) — ONE bounded budget-repair round over ${targets.size} chapter(s): ${[...targets.keys()].sort((a, b) => a - b).map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}`);
     const repairFailures: string[] = [];

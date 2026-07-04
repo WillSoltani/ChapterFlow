@@ -13,7 +13,7 @@
  * targeted regen then halting; and compiler/legacy defaults unchanged.
  */
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -42,11 +42,13 @@ import {
   complaintsOf,
   doAuthorReview,
   mapBookComplaintsToChapters,
+  trueMedian,
   type AcceptanceWriters,
   type AuthorAcceptanceRecord,
   type AuthorReviewIo,
 } from "../src/orchestrator/authorReview.js";
 import { renderBriefMd } from "../src/compiler/chapterBrief.js";
+import { reviewHistoryPath } from "../src/orchestrator/authorReviewLedger.js";
 import { estimatedRenderedChars } from "../src/critics/readerBudgets.js";
 import {
   chapterContentHash,
@@ -278,6 +280,15 @@ function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { a
     },
     persistReview: () => "/tmp/review.json",
     persistAcceptance: (bookId, record) => { acceptanceRecords.push(record); return `/tmp/acceptance.${record.roundLabel || "round1"}.json`; },
+    // Multi-read pool (F1/F3): mirror the in-memory persisted records with the
+    // same quorum filter the real listAcceptanceReads applies, so cross-read and
+    // cross-entry pooling is exercised without touching real state/.
+    listAcceptanceReads: (_b, docSha256) =>
+      acceptanceRecords.filter(
+        (r) => r.docSha256 === docSha256
+          && (r.verdict?.validCount ?? 0) >= 3
+          && typeof r.verdict?.medianComposite === "number",
+      ),
     acceptance,
     // B5 publish evidence is stubbed OK in these unit tests (its real
     // implementations are pinned by tests/author-evidence.test.ts against
@@ -960,6 +971,149 @@ test("Q6 acceptance writes a durable record: verdict, readers, bar, sampled, doc
     assert.ok(r.structuralScreen, "each reader carries its Q3 structural-screen record");
   }
   assert.ok(rec.verdict.medianComposite !== null, "composed verdict captured");
+});
+
+// ── Multi-read acceptance median (FINAL-HARDENING-PLAN 2026-07-04) ────────────
+
+const bookReaderSpawns = (spawns: SpawnRec[]) => spawns.filter((s) => s.sessionId.includes("author-book-reader")).length;
+
+test("multi-read: a CLEAR pass spends exactly one panel; a CLEAR fail spends exactly one panel", async () => {
+  // 90 is far above the floor-74 boundary → no extra reads.
+  const pass = mkDeps(happyScript);
+  const passIo = mkIo();
+  assert.equal(await doAuthorReview("zz", pass.deps, { maxParallel: 3, io: passIo }), null, "clear pass accepted");
+  assert.equal(bookReaderSpawns(pass.spawns), 3, "ONE 3-reader panel — no multi-read on an obvious accept");
+  assert.equal(passIo.acceptanceRecords.length, 1, "one durable read record");
+  assert.equal(passIo.acceptanceRecords[0].pooled?.reads, 1);
+
+  // 60 is far below → one panel, reject.
+  const fail = mkDeps((o) => {
+    if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS, { score: 60 }) };
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? CH1 : CH2) };
+    return {};
+  });
+  const failIo = mkIo();
+  const rejected = await doAuthorReview("zz", fail.deps, { maxParallel: 3, io: failIo });
+  assert.ok(rejected && rejected.status === "halt", "clear fail rejected");
+  assert.equal(bookReaderSpawns(fail.spawns), 3, "ONE 3-reader panel — no multi-read on an obvious reject");
+});
+
+test("multi-read: a borderline composite triggers extra panels; the TRUE median of 3 decides at the cap", async () => {
+  // Panel scores 76 → 71 → 74: the old upper-median-of-2 pooling would have
+  // decided max(76,71)=76; the true median of all three is 74 (accept at floor).
+  const panelScores = [76, 71, 74];
+  let bookSpawnCount = 0;
+  const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.includes("author-book-reader")) {
+      const panelIdx = Math.min(Math.floor(bookSpawnCount / 3), panelScores.length - 1);
+      bookSpawnCount++;
+      return { finalMessage: bookReply(FIXTURE_CHAPTERS, { score: panelScores[panelIdx] }) };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? CH1 : CH2) };
+    return {};
+  });
+  const io = mkIo();
+  assert.equal(await doAuthorReview("zz", deps, { maxParallel: 3, io }), null, "median 74 >= floor 74 → accepted");
+  assert.equal(bookReaderSpawns(spawns), 9, "three panels spawned (borderline stayed inside the ±3.7 band)");
+  assert.equal(io.acceptanceRecords.length, 3, "every panel read persisted append-only");
+  const last = io.acceptanceRecords[2];
+  assert.equal(last.pooled?.reads, 3);
+  assert.equal(last.pooled?.composite, 74, "TRUE median of [71, 74, 76]");
+  assert.equal(last.pooled?.capped, true, "per-doc panel cap reached");
+  assert.equal(last.accepted, true, "the pooled decision rides the record deriveDurableAcceptance corroborates");
+});
+
+test("multi-read: trueMedian is the standard median (even count averages the middle pair — never max)", () => {
+  assert.equal(trueMedian([72, 75]), 73.5, "the BREAK-2 exploit case: two reads pool to their mean, not their max");
+  assert.equal(trueMedian([71, 74, 76]), 74);
+  assert.equal(trueMedian([80]), 80);
+  assert.equal(trueMedian([1, 2, 3, 100]), 2.5, "outlier-resistant on even counts");
+});
+
+test("multi-read: a gate FAIL sticks for the docSha — no further reads, and a re-entry on identical bytes spawns NOTHING", async () => {
+  const script = (o: { sessionId: string }) => {
+    if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS, { score: 76, gate: "FAIL" }) };
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? CH1 : CH2) };
+    return {};
+  };
+  const io = mkIo();
+  const entry1 = mkDeps(script);
+  const r1 = await doAuthorReview("zz", entry1.deps, { maxParallel: 3, io });
+  assert.ok(r1 && r1.status === "halt", "gate FAIL rejects despite composite 76 >= floor");
+  assert.equal(bookReaderSpawns(entry1.spawns), 3, "76 is within the band of 74, but a stuck gate FAIL makes more reads pointless — one panel only");
+  // Re-entry on the SAME bytes: the durable FAIL read is reused; zero panels spawn.
+  const entry2 = mkDeps(script);
+  const r2 = await doAuthorReview("zz", entry2.deps, { maxParallel: 3, io });
+  assert.ok(r2 && r2.status === "halt", "still rejected");
+  assert.equal(bookReaderSpawns(entry2.spawns), 0, "gate-FAIL stickiness survives re-entry (the old per-label overwrite decayed after one)");
+});
+
+test("multi-read: at the per-doc cap the decision FREEZES — a later entry on identical bytes reuses it without spawning", async () => {
+  const script = (o: { sessionId: string }) => {
+    if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS, { score: 75 }) };
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? CH1 : CH2) };
+    return {};
+  };
+  const io = mkIo();
+  const entry1 = mkDeps(script);
+  assert.equal(await doAuthorReview("zz", entry1.deps, { maxParallel: 3, io }), null, "borderline 75 accepted on the pooled median");
+  assert.equal(bookReaderSpawns(entry1.spawns), 9, "cap of 3 panels consumed inside entry 1");
+  const entry2 = mkDeps(script);
+  assert.equal(await doAuthorReview("zz", entry2.deps, { maxParallel: 3, io }), null, "frozen pooled ACCEPT reused");
+  assert.equal(bookReaderSpawns(entry2.spawns), 0, "no panel re-roll after the cap — the ±3.7 casino is closed");
+  assert.equal(io.acceptanceRecords.length, 3, "no new records after the cap either");
+});
+
+test("multi-read: CHAPTERFLOW_PANEL_NOISE_BAND is fail-closed on garbage and honored at 0", async () => {
+  process.env.CHAPTERFLOW_PANEL_NOISE_BAND = "abc";
+  try {
+    const { deps } = mkDeps(happyScript);
+    const r = await doAuthorReview("zz", deps, { maxParallel: 3, io: mkIo() });
+    assert.ok(r && r.status === "halt" && r.category === "infra", "set-but-invalid band halts infra (BREAK-1 lesson)");
+    assert.match(r.reason, /CHAPTERFLOW_PANEL_NOISE_BAND/);
+  } finally {
+    delete process.env.CHAPTERFLOW_PANEL_NOISE_BAND;
+  }
+  // Band 0: even a knife-edge 75 is "clear" — exactly one panel.
+  process.env.CHAPTERFLOW_PANEL_NOISE_BAND = "0";
+  try {
+    const { deps, spawns } = mkDeps((o) => {
+      if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS, { score: 75 }) };
+      const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+      if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? CH1 : CH2) };
+      return {};
+    });
+    assert.equal(await doAuthorReview("zz", deps, { maxParallel: 3, io: mkIo() }), null);
+    assert.equal(bookReaderSpawns(spawns), 3, "band 0 disables the multi-read trigger");
+  } finally {
+    delete process.env.CHAPTERFLOW_PANEL_NOISE_BAND;
+  }
+});
+
+test("F5: a dead-ended chapter (exact bytes already FAILed, regen+repair spent) halts BEFORE any reader spawns", async () => {
+  const hash = chapterContentHash(CH1);
+  const p = reviewHistoryPath("zz", 1, hash);
+  mkdirSync(dirname(p), { recursive: true });
+  writeFileSync(p, JSON.stringify({ chapterNumber: 1, contentHash: hash, valid: true, pass: false, composite: 81 }), "utf8");
+  try {
+    const { deps, spawns } = mkDeps(happyScript);
+    const io = mkIo({
+      regenConsumedFor: () => 1, // >= AUTHOR_REGEN_CAP - 1
+      repairConsumedFor: () => 1,
+      recordRepairConsumed: () => {},
+    });
+    const r = await doAuthorReview("zz", deps, { maxParallel: 3, io });
+    assert.ok(r && r.status === "halt" && r.category === "content", "dead end halts as content");
+    assert.match(r.reason, /DEAD-ENDED/);
+    assert.equal(spawns.filter((s) => s.sessionId.includes("author-review-ch")).length, 0, "no chapter readers spawned");
+    assert.equal(bookReaderSpawns(spawns), 0, "no acceptance panel spawned");
+  } finally {
+    rmSync(p, { force: true });
+  }
 });
 
 test("Q6 acceptanceRoundSegment + path: '' → round1, '-round2' → round2, fs-safe", () => {

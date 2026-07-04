@@ -240,7 +240,12 @@ export async function resolveBeatShippedBar(
     const p = io.controlRecordPath(bookId);
     mkdirSync(dirname(p), { recursive: true });
     writeFileAtomic(p, JSON.stringify(record, null, 2) + "\n");
-  } catch { /* the record is a cache; a write failure must not fail the read */ }
+  } catch (err) {
+    // The record is a cache; a write failure must not fail the read — but it
+    // must be LOUD (F7): a persistently unwritable cache re-runs this 3-reader
+    // control panel on every conductor entry.
+    deps.log(`[autopilot] shipped-control ${bookId}: WARNING cache write failed (${(err as Error).message}) — the 3-reader control read will RE-RUN next entry; fix the state dir to stop re-spending readers`);
+  }
 
   return { ok: true, composite: verdict.medianComposite, source: "control", pin };
 }
