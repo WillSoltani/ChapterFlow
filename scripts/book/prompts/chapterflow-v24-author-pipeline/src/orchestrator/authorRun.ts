@@ -28,7 +28,7 @@ import type { ChapterV21 } from "../types.js";
 import type { ChapterBriefV1, SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import { chapterBriefMdPath, chapterBriefPath, readJsonFile, sourcePacketPath } from "../artifacts/artifactStore.js";
 import { writerPacketProjection } from "../compiler/sourcePacketProjection.js";
-import { DEFAULT_LENGTH_BUDGET_CHARS, LENGTH_BUDGET_TOLERANCE, briefVarietyInstructionLines } from "../compiler/chapterBrief.js";
+import { DEFAULT_LENGTH_BUDGET_CHARS, LENGTH_BUDGET_TOLERANCE, ROUND_TIMER_MINUTES_LIST, briefVarietyInstructionLines } from "../compiler/chapterBrief.js";
 import { voiceCard, voiceRegisterLine } from "../lib/voiceCard.js";
 import { chapterFileName, normSlug, CHAPTERS_DIR } from "../lib/chapterPaths.js";
 import { buildBudgetRepairComplaints, checkReaderBudgets, type BudgetFinding } from "../critics/readerBudgets.js";
@@ -253,7 +253,7 @@ Then run: npx tsx src/cli.ts gate-chapter ${relPath} — 0 blockers required; fi
  *  minutes; packet-attested numbers exempt), and two practice surfaces that restate
  *  the same action verbatim (shared 6-gram) must agree on the minutes — the halted
  *  run shipped a "19-minute challenge" and a 12-vs-10-minute discrepancy. */
-export const ROUND_TIMER_MINUTES = new Set([5, 10, 15, 20, 25, 30, 45, 60]);
+export const ROUND_TIMER_MINUTES = new Set<number>(ROUND_TIMER_MINUTES_LIST);
 
 /** STIER-2 M-lane (owner-directed): the author WRITE/REGEN sessions are pinned to an
  *  explicit model + reasoning effort instead of inheriting whatever the operator's

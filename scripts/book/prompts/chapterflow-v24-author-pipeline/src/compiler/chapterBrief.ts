@@ -89,6 +89,13 @@ export const DEFAULT_LENGTH_BUDGET_CHARS = 16000;
 export const LENGTH_BUDGET_TOLERANCE = 0.2;
 export const LENGTH_BUDGET_MIN = 8000;
 export const LENGTH_BUDGET_MAX = 30000;
+/** Canonical round-timer minutes for writer-invented practice timers (D9). Single
+ *  source (P6, FINAL-HARDENING-PLAN 2026-07-04): the brief renders this list into
+ *  its PRACTICE SLOT SHAPES line and authorRun's D9 timer contract builds its
+ *  membership Set from it — the two were independent literal copies. Lives here
+ *  (the compiler owns brief-shape constants); authorRun already imports this file,
+ *  so no new import edge / no cycle. */
+export const ROUND_TIMER_MINUTES_LIST = [5, 10, 15, 20, 25, 30, 45, 60] as const;
 const NOT_YOURS_CAP = 20;
 const AVOID_CAP = 6;
 const FLAVOR_CAP = 5;
@@ -534,7 +541,7 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
   // one-shape-everywhere minted the "read aloud" ×4 chant).
   if (brief.practiceSlotShapes && brief.practiceSlotShapes.length >= 4) {
     lines.push(
-      `- PRACTICE SLOT SHAPES: the four practice surfaces must NOT share one skeleton — tryThisNow: dealt above; weekly practice: "${brief.practiceSlotShapes[2]}" structure; if-then contexts: "${brief.practiceSlotShapes[3]}" structure. Never repeat one prompt style (read-aloud, touch-the-object) across surfaces, and keep any timers round (5/10/15/20/25/30/45/60) and consistent wherever the same action is restated.`,
+      `- PRACTICE SLOT SHAPES: the four practice surfaces must NOT share one skeleton — tryThisNow: dealt above; weekly practice: "${brief.practiceSlotShapes[2]}" structure; if-then contexts: "${brief.practiceSlotShapes[3]}" structure. Never repeat one prompt style (read-aloud, touch-the-object) across surfaces, and keep any timers round (${ROUND_TIMER_MINUTES_LIST.join("/")}) and consistent wherever the same action is restated.`,
     );
   }
   // STIER-2 P14 — dealt memorable-line shapes (27/27 halted lines shared one mold).

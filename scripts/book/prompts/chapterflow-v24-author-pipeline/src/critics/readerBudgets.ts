@@ -194,6 +194,7 @@ import type { ChapterV21 } from "../types.js";
 import { resolveDirect } from "../types.js";
 import { parseChapterId } from "../lib/chapterPaths.js";
 import { chapterBriefPath } from "../artifacts/artifactStore.js";
+import { DEFAULT_LENGTH_BUDGET_CHARS, LENGTH_BUDGET_TOLERANCE } from "../compiler/chapterBrief.js";
 import type { SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import { extractNamesFromText } from "../librarian/libraryState.js";
 import { loadNameBank } from "../librarian/namePlan.js";
@@ -217,7 +218,12 @@ export type ReaderBudgetOptions = {
 };
 
 export const DEFAULT_REP_CAP = 6;
-export const DEFAULT_LENGTH_BUDGET = { renderedChars: 16000, tolerance: 0.2 } as const;
+/** Single-sourced from the compiler's canonical constants (P6, FINAL-HARDENING-
+ *  PLAN 2026-07-04): the brief STAMPS lengthBudget from DEFAULT_LENGTH_BUDGET_CHARS
+ *  / LENGTH_BUDGET_TOLERANCE, so CHB2's default must be the SAME literals — two
+ *  independent copies were a drift surface. No cycle: no compiler module imports
+ *  this file. */
+export const DEFAULT_LENGTH_BUDGET = { renderedChars: DEFAULT_LENGTH_BUDGET_CHARS, tolerance: LENGTH_BUDGET_TOLERANCE } as const;
 
 /** CHB2 calibration constant: renderedChars ≈ k * proseChars.
  *
