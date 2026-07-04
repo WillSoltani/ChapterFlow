@@ -128,14 +128,18 @@ test("CHB1 skips concept-cases whose label has no capitalized anchor token (pack
 
 // ── CHB2: length budget ─────────────────────────────────────────────────────
 
-test("CHB2 fires when estimated rendered length is inflated past +tolerance, and names the direction", () => {
+test("CHB2 severity bands: 20-30% out is advisory, beyond 30% blocks (publish calibration 2026-07-04)", () => {
   const [ch1, ch2] = cleanPair();
   const est = estimatedRenderedChars(ch1);
-  const budget = { renderedChars: Math.round(est / 1.3), tolerance: 0.2 };
-  const findings = only(checkReaderBudgets([ch1, ch2], { lengthBudget: budget }), "CHB2.length_budget");
-  assert.ok(findings.length >= 1);
-  assert.equal(findings[0].severity, "blocker");
-  assert.match(findings[0].message, /over/);
+  // Publish calibration (2026-07-04): severity BANDS — 20-30% out = ADVISORY
+  // (a 1.6% overflow once halted a 9x85+ book), beyond 30% = BLOCKER.
+  const advisory = only(checkReaderBudgets([ch1, ch2], { lengthBudget: { renderedChars: Math.round(est / 1.25), tolerance: 0.2 } }), "CHB2.length_budget");
+  assert.ok(advisory.length >= 1);
+  assert.equal(advisory[0].severity, "advisory", "25% over = advisory band");
+  const blocker = only(checkReaderBudgets([ch1, ch2], { lengthBudget: { renderedChars: Math.round(est / 1.45), tolerance: 0.2 } }), "CHB2.length_budget");
+  assert.ok(blocker.length >= 1);
+  assert.equal(blocker[0].severity, "blocker", "45% over = blocker");
+  assert.match(blocker[0].message, /over/);
 });
 
 test("CHB2 passes when every chapter sits inside budget*(1±tolerance)", () => {

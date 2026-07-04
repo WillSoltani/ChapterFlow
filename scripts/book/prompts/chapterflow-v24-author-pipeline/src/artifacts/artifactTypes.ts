@@ -247,7 +247,7 @@ export type ChapterBriefV1 = {
 
 /** v24 W4 rotation vocabularies — mirrored from src/compiler/briefRotation.ts (kept here as string
  *  literal unions so artifactTypes has no runtime dependency on the compiler module). */
-export type BriefOpenerType = "question" | "scene" | "claim" | "statistic";
+export type BriefOpenerType = "question" | "scene" | "claim" | "statistic" | "tension-thesis";
 export type BriefExampleEntryPoint =
   | "at-the-demand"
   | "mid-behavior"

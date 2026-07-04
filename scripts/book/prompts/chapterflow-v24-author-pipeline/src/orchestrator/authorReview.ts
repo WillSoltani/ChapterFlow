@@ -629,6 +629,15 @@ export type BookAcceptanceResult = {
  *  never be accepted below the book it replaces. */
 export const AUTHOR_BOOK_ACCEPT_BAR = 80;
 
+/** Publish calibration (2026-07-04): the ACCEPT floor. 74 sits below the
+ *  demonstrated good-book noise band (a 9×85.7-88.9 chapter board read 75.0-78.7
+ *  across 5 panels, ±3.7 on identical bytes) and above every correctness-broken
+ *  era reading. The 80 bar above remains the premium telemetry target. */
+export const AUTHOR_BOOK_ACCEPT_FLOOR = 74;
+
+/** A regen must beat its shipped control by a REAL margin, not by noise. */
+export const BEAT_SHIPPED_MARGIN = 5;
+
 async function runBookAcceptance(
   bookId: string,
   chapters: ChapterV21[],
@@ -723,11 +732,22 @@ async function runBookAcceptance(
   // validCount >= AUTHOR_BOOK_READERS is a pure strengthen AND the guarantee
   // that makes Q3's invalidation weaken-proof.
   const quorumMet = verdict.validCount >= AUTHOR_BOOK_READERS;
+  // Publish calibration (owner decision 2026-07-04, plan docs/v24/
+  // PUBLISH-CALIBRATION-PLAN-2026-07-04.md): the single bar-80 demanded
+  // corpus-#1 quality (atomic-habits reads 80.2 on this instrument; panel noise
+  // is ±3.7 on identical bytes; no real book has read ≥84) and churn-HIGH as a
+  // binary veto fired on genre-inherent framework repetition through every
+  // texture lever. ACCEPT is now multi-signal: correctness gate PASS stays a
+  // HARD blocker (stricter than the shipped corpus's own history — POM shipped
+  // at 80.0 with a unanimous gate FAIL), composite must clear the absolute
+  // FLOOR and beat the shipped control by a real MARGIN. Churn is telemetry +
+  // repair routing, never an accept-time veto. AUTHOR_BOOK_ACCEPT_BAR (80)
+  // remains in the record as the premium telemetry target.
   const accepted = quorumMet
-    && verdict.gate === "PASS" && verdict.churn !== "HIGH"
-    && comp >= AUTHOR_BOOK_ACCEPT_BAR
-    && (shipped === null || comp >= shipped);
-  deps.log(`[autopilot] author acceptance${roundLabel}: composite ${verdict.medianComposite ?? "n/a"} gate ${verdict.gate ?? "?"} (${verdict.gateVotes}) churn ${verdict.churn} valid ${verdict.validCount}/${AUTHOR_BOOK_READERS} vs bar ${AUTHOR_BOOK_ACCEPT_BAR}${shipped === null ? "" : ` + beat-shipped ${shipped}`} → ${accepted ? "ACCEPT" : `REJECT${quorumMet ? "" : " (below valid-reader quorum)"}`}`);
+    && verdict.gate === "PASS"
+    && comp >= AUTHOR_BOOK_ACCEPT_FLOOR
+    && (shipped === null || comp >= shipped + BEAT_SHIPPED_MARGIN);
+  deps.log(`[autopilot] author acceptance${roundLabel}: composite ${verdict.medianComposite ?? "n/a"} gate ${verdict.gate ?? "?"} (${verdict.gateVotes}) churn ${verdict.churn} valid ${verdict.validCount}/${AUTHOR_BOOK_READERS} vs floor ${AUTHOR_BOOK_ACCEPT_FLOOR}${shipped === null ? "" : ` + beat-shipped ${shipped}+${BEAT_SHIPPED_MARGIN}`} (premium target ${AUTHOR_BOOK_ACCEPT_BAR}) → ${accepted ? "ACCEPT" : `REJECT${quorumMet ? "" : " (below valid-reader quorum)"}`}`);
 
   // Q6 — durable acceptance record over the EXACT bytes readers scored. Best-
   // effort (a record-write failure never converts a valid acceptance into a

@@ -118,7 +118,7 @@ export const SHELL_INSTRUCTION: Record<ShellRegister, string> = {
   "question-first": "open on the question the reader should ask ('Who owns the return?')",
 };
 
-export const OPENER_TYPES = ["question", "scene", "claim", "statistic"] as const;
+export const OPENER_TYPES = ["question", "scene", "claim", "statistic", "tension-thesis"] as const;
 export type OpenerType = (typeof OPENER_TYPES)[number];
 
 export const CHALLENGE_FRAMES = [
@@ -203,6 +203,7 @@ export const OPENER_INSTRUCTION: Record<OpenerType, string> = {
   scene: "Open the hook with a SCENE — a specific person mid-moment, no thesis first.",
   claim: "Open the hook with a flat CLAIM that sounds wrong until the chapter proves it.",
   statistic: "Open the hook with a concrete NUMBER or measured result, then the stakes.",
+  "tension-thesis": "Open the hook with the chapter's core tension stated flat in two short sentences — no named person, no scene furniture; the second sentence carries the friction ('Everyone agreed. No one knew who would bring back proof.').",
 };
 
 export const PRACTICE_INSTRUCTION: Record<PracticeShape, string> = {

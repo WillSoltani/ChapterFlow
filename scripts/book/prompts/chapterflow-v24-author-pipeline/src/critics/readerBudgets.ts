@@ -467,19 +467,28 @@ function checkLengthBudget(
   const findings: BudgetFinding[] = [];
   const lo = budget.renderedChars * (1 - budget.tolerance);
   const hi = budget.renderedChars * (1 + budget.tolerance);
+  // Publish calibration (2026-07-04, plan §B): severity BANDS instead of a hard
+  // edge — a 1.6% overflow halted a 9×85+ book and cost 3 sessions to trim 309
+  // chars. Within tolerance: pass. Out by <=10 percentage points beyond
+  // tolerance (i.e. 20-30% off a 16k budget): ADVISORY — scored, listed, never
+  // halts. Beyond that: BLOCKER with the existing repair routing ("readers
+  // rejected ~40% inflation" stays comfortably protected at the 30% edge).
+  const hardLo = budget.renderedChars * (1 - budget.tolerance - 0.1);
+  const hardHi = budget.renderedChars * (1 + budget.tolerance + 0.1);
   for (const chapter of chapters) {
     const estimated = estimatedRenderedChars(chapter);
     if (estimated >= lo && estimated <= hi) continue;
     const direction = estimated > hi ? "over" : "under";
     const pct = Math.round(Math.abs(estimated / budget.renderedChars - 1) * 100);
+    const severe = estimated > hardHi || estimated < hardLo;
     findings.push({
       checkId: "CHB2.length_budget",
-      severity: "blocker",
+      severity: severe ? "blocker" : "advisory",
       chapterNumber: chapter.number,
       message:
         `ch${String(chapter.number).padStart(2, "0")} estimated rendered length ${estimated} chars is ` +
         `${pct}% ${direction} the ${budget.renderedChars}-char budget (allowed window ` +
-        `${Math.round(lo)}–${Math.round(hi)}); readers rejected ~40% inflation.`,
+        `${Math.round(lo)}–${Math.round(hi)}${severe ? "" : "; within the advisory band — polish, not a halt"}); readers rejected ~40% inflation.`,
     });
   }
   return findings;
