@@ -236,15 +236,40 @@ function fallbackRotation(n: number): BriefRotation {
  *  only when the chapter owns a case whose label carries a distinctive capitalized
  *  anchor token (≥4 chars — what the write-time thread check keys on); invented
  *  cast[0] otherwise. Pure. */
+/** Capitalized proper-noun words in a case label, minus sentence-frame stopwords. */
+const LEAD_CAP_STOP = new Set(["The", "This", "That", "When", "What", "From", "Into", "With", "And", "Or", "Of", "A", "An", "For", "To", "In", "On"]);
+function leadLabelHasToken(label: string): boolean {
+  return (label ?? "").split(/\s+/).some((w) => /^[A-Z][A-Za-z-]{3,}/.test(w) && !LEAD_CAP_STOP.has(w));
+}
+/** A label names a real PERSON or STUDY the writer can thread (real actors/dates),
+ *  as opposed to a bare framework CONCEPT ("Neocortex", "Limbic system"). Signal: a
+ *  "/" attribution ("Antonio Damasio / Descartes' Error") or >=2 proper nouns
+ *  (first+last name). Single-token concepts have neither. */
+function leadLabelIsNamedCase(label: string): boolean {
+  if ((label ?? "").includes("/")) return true;
+  const proper = (label.match(/\b[A-Z][A-Za-z'-]+/g) ?? []).filter((w) => !LEAD_CAP_STOP.has(w));
+  return proper.length >= 2;
+}
+
 export function resolveLeadThread(
   preferCase: boolean,
   ownedCases: Array<{ id: string; label: string }>,
   cast: string[],
 ): { kind: "invented" | "owned-case"; name: string } | undefined {
   if (preferCase) {
+    // Prefer a real NAMED case (person/study) over a bare framework-concept label:
+    // the D7 lead-thread contract needs a case with real actors/dates to run the
+    // fastRead + >=2 examples, and a single-concept owned-case ("Neocortex") cannot
+    // carry it — start-with-why ch04 ("This Is Not Opinion, This Is Biology") failed
+    // the contract twice when the dealer picked the concept "Neocortex" over the real
+    // case "Antonio Damasio / Descartes' Error" that sat later in the same list.
+    // Regression-safe: falls back to the original first-with-token pick, so a
+    // single-name real case (a company, a one-name person) is unchanged — behavior
+    // shifts ONLY when a concept label precedes a named case (the mis-deal class).
+    const named = ownedCases.find((c) => leadLabelHasToken(c.label) && leadLabelIsNamedCase(c.label));
+    if (named) return { kind: "owned-case", name: named.label };
     for (const c of ownedCases) {
-      const token = (c.label ?? "").split(/\s+/).find((w) => /^[A-Z][A-Za-z-]{3,}/.test(w) && !/^(The|This|That|When|What|From|Into|With)$/.test(w));
-      if (token) return { kind: "owned-case", name: c.label };
+      if (leadLabelHasToken(c.label)) return { kind: "owned-case", name: c.label };
     }
   }
   if (cast.length > 0) return { kind: "invented", name: cast[0] };

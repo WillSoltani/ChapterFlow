@@ -151,6 +151,36 @@ test("P11: resolveLeadThread — case-led when preferred and anchored, invented 
   assert.ok(trueCount >= 4 && trueCount <= 5, `~half the chapters prefer case-led (${trueCount}/9)`);
 });
 
+test("resolveLeadThread prefers a real NAMED case over a framework CONCEPT (start-with-why ch04 mis-deal)", () => {
+  // The live failure: the dealer picked the concept "Neocortex" (first with a
+  // capitalized token) over the real study case that sat later in the list, and
+  // the D7 lead-thread contract cannot thread a brain region through a fastRead.
+  const ch04Cases = [
+    { id: "ch04.ex.neocortex", label: "Neocortex" },
+    { id: "ch04.ex.limbic-system", label: "Limbic system" },
+    { id: "ch04.ex.antonio-damasio-descartes-error", label: "Antonio Damasio / Descartes' Error" },
+  ];
+  assert.deepEqual(
+    resolveLeadThread(true, ch04Cases, ["Zane"]),
+    { kind: "owned-case", name: "Antonio Damasio / Descartes' Error" },
+    "a named person/study (>=2 proper nouns or a '/' attribution) is preferred over a bare concept",
+  );
+  // Regression-safe: a single-name real case still wins when it is the first with a
+  // token (behavior unchanged for companies / one-name people).
+  assert.deepEqual(
+    resolveLeadThread(true, [{ id: "c1", label: "Apple retail signals" }, { id: "c2", label: "Harley identity" }], ["Mara"]),
+    { kind: "owned-case", name: "Apple retail signals" },
+    "no named-case signal anywhere → the original first-with-token pick stands",
+  );
+  // Concepts everywhere, no named case → falls back to the first concept (unchanged),
+  // never crashes.
+  assert.deepEqual(
+    resolveLeadThread(true, [{ id: "c1", label: "Neocortex" }, { id: "c2", label: "Limbic system" }], ["Mara"]),
+    { kind: "owned-case", name: "Neocortex" },
+    "all-concept list keeps the prior first-token behavior",
+  );
+});
+
 // ── v3 rotation + VARIETY render ───────────────────────────────────────────────
 
 test("v3: dealBriefRotations carries every STIER-2 field; practice slots are 4 distinct with slot0 == legacy practiceShape", () => {
