@@ -153,6 +153,18 @@ claim is variance + token reduction on that stratum (~16k xhigh output per regen
 approval. Baseline mining decides the final shape before code.
 
 ## F. Status
-- 2026-07-04: plan grilled (2 agents), all findings folded. NOT implemented. Next: mine
-  the regen baseline (R7), then owner GO for build. Current runs use regen-only and are
-  the cost baseline.
+- 2026-07-04: plan grilled (2 agents), all findings folded.
+- 2026-07-04 (owner GO): IMPLEMENTED — commit `81a589bb2`. Deltas from this plan, per the
+  owner's "a little compromise is allowed":
+  - convergence binds at SCOPE level (three readers naming Q2/Q5/"quiz overall" all
+    derive to `quiz` and agree — the live ch05 texture is eligible);
+  - composite floor 82 (84 would veto the lane's own population — tiebreak reads on
+    repair-worthy chapters run 83.x);
+  - field match precedes the prose veto in the classifier (quiz-echo complaints cite
+    "the prose" while being quiz-fixable);
+  - baseline mining deferred to post-build (the lane's telemetry accumulates it);
+  - confirmation = the NEXT normal hash-keyed review round (no special mode needed —
+    blindness and tiebreak rules come free); R4 budget attribution deferred (budgets
+    re-check at the next review entry);
+  - no-defect-verdict no-op path deferred: any inside-scope no-op consumes the attempt.
+- Live from the next conductor entry (kill switch CHAPTERFLOW_REVIEW_REPAIR, default on).
