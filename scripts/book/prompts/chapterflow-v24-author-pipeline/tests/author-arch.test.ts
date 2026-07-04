@@ -1094,6 +1094,16 @@ test("multi-read: CHAPTERFLOW_PANEL_NOISE_BAND is fail-closed on garbage and hon
   }
 });
 
+test("multi-read: a quorum-met read whose durable record cannot be persisted FAILS CLOSED (cap can't be laundered)", async () => {
+  // red-team #1: the per-doc cap survives re-entry ONLY through durable records;
+  // without them the next entry re-seeds totalReads=0 and re-rolls the panel.
+  const io = mkIo({ persistAcceptance: () => { throw new Error("disk full"); } });
+  const { deps } = mkDeps(happyScript);
+  const r = await doAuthorReview("zz", deps, { maxParallel: 3, io });
+  assert.ok(r && r.status === "halt" && r.category === "infra", "unpersistable quorum-met read → infra halt");
+  assert.match(r.reason, /per-doc read cap cannot be enforced/);
+});
+
 test("F5: a dead-ended chapter (exact bytes already FAILed, regen+repair spent) halts BEFORE any reader spawns", async () => {
   const hash = chapterContentHash(CH1);
   const p = reviewHistoryPath("zz", 1, hash);

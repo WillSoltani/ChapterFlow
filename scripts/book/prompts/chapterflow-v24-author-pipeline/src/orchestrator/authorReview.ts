@@ -907,8 +907,13 @@ async function runBookAcceptance(
       if (verdict.gate === "FAIL") gateFailStuck = true;
     }
     // Q6 — durable per-read record over the EXACT bytes scored (append-only).
-    // Best-effort: a record-write failure never converts a valid read into a
-    // halt, but an unpersisted read also cannot vote in future pools.
+    // The per-doc read CAP survives re-entry ONLY through these durable records
+    // (a fresh entry seeds totalReads from listAcceptanceReads). So a quorum-met
+    // read that cannot be persisted must FAIL CLOSED (red-team #1, FINAL-
+    // HARDENING-PLAN 2026-07-04): silently continuing would let the next entry
+    // re-seed totalReads=0 and re-spawn up to CAP panels, laundering the cap and
+    // reopening the ±3.7 re-roll across entries. A quorum-FAILED read is not a
+    // vote and never counts toward the cap, so its write failure only warns.
     try {
       const pooledComp = readComposites.length > 0 ? trueMedian(readComposites) : comp;
       const gatePooledNow: "PASS" | "FAIL" = gateFailStuck ? "FAIL" : "PASS";
@@ -938,7 +943,12 @@ async function runBookAcceptance(
       const path = io.persistAcceptance(bookId, record);
       deps.log(`[autopilot] author acceptance${roundLabel}: durable read record → ${path}`);
     } catch (err) {
-      deps.log(`[autopilot] author acceptance${roundLabel}: WARNING durable record write failed: ${(err as Error).message}`);
+      if (quorumMet) {
+        throw new AcceptanceConfigError(
+          `could not persist a quorum-met acceptance read for ${bookId}${roundLabel} (${(err as Error).message}) — the per-doc read cap cannot be enforced across re-entries without it; halting rather than re-rolling the panel next entry.`,
+        );
+      }
+      deps.log(`[autopilot] author acceptance${roundLabel}: WARNING durable record write failed for a sub-quorum read (not a vote): ${(err as Error).message}`);
     }
     if (!quorumMet) break; // infra-degraded panel: reject this entry; not a vote
   }
