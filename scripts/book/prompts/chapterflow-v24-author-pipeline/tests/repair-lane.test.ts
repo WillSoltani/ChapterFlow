@@ -208,3 +208,18 @@ test("CHB2 routing: an over-ceiling length blocker routes a targeted trim compla
   assert.ok(lines[0].includes("never touch the quiz keys"), "trim guardrails present");
   assert.equal((routed.get(2) ?? []).length + (routed.get(3) ?? []).length, 0, "no bleed to other chapters");
 });
+
+test("CHB1 routing: anchor-hammering blockers route a per-chapter cut complaint (start-with-why live halt)", async () => {
+  const { buildBudgetRepairComplaints } = await import("../src/critics/readerBudgets.js");
+  const chapters = [1, 4, 6].map((n) => makeChapter(BOOK, n));
+  const findings = [
+    { checkId: "CHB1.anchor_repetition", severity: "blocker", chapterNumber: 1, message: 'ch01 reading surface mentions "detroit" (distinctive token of case "Detroit automakers") 9 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.' },
+    { checkId: "CHB1.anchor_repetition", severity: "blocker", chapterNumber: 4, message: 'ch04 reading surface mentions "neocortex" (distinctive token of case "Neocortex") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.' },
+  ] as never[];
+  const routed = buildBudgetRepairComplaints(chapters, findings);
+  assert.deepEqual([...routed.keys()].sort((a, b) => a - b), [1, 4], "routes each flagged chapter, no bleed");
+  const ch1 = (routed.get(1) ?? [])[0] ?? "";
+  assert.ok(ch1.includes('"detroit"') && ch1.includes("AT MOST 6"), `names the exact token + the cap: ${ch1}`);
+  assert.ok(ch1.includes("Keep every fact") && ch1.includes("do not touch the quiz keys".replace("do", "Do")), "substance + structure guardrails present");
+  assert.equal((routed.get(6) ?? []).length, 0, "an un-flagged chapter gets no complaint");
+});

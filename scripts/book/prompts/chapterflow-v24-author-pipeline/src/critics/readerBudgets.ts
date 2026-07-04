@@ -1688,6 +1688,24 @@ export function buildBudgetRepairComplaints(chapters: ChapterV21[], blockers: Bu
     }
   }
 
+  // CHB1 anchor-hammering (FINAL-HARDENING-PLAN 2026-07-04): a case's distinctive
+  // token repeated over the per-chapter cap. Fully routable — the finding carries
+  // the chapter, the exact token, its count, and the cap. Without this the block
+  // hard-halts with "no repair-routable evidence" and no automated recovery (the
+  // gap start-with-why hit: 9 CHB1 blockers across 5 chapters). Per-chapter,
+  // evidence-first (the proven repair pattern), and mechanically checkable.
+  for (const f of blockers) {
+    if (f.checkId !== "CHB1.anchor_repetition" || !Number.isInteger(f.chapterNumber)) continue;
+    const m = /mentions "([^"]+)" \(distinctive token of case "([^"]+)"\) (\d+) times — over the per-chapter cap of (\d+)/.exec(f.message);
+    if (!m) continue;
+    const [, token, label, countStr, capStr] = m;
+    const count = parseInt(countStr, 10);
+    const cap = parseInt(capStr, 10);
+    if (!Number.isInteger(count) || !Number.isInteger(cap)) continue;
+    add(f.chapterNumber as number,
+      `anchor hammering (CHB1): the reading surface (counterintuition, tryThisNow, keyTakeaway, breakdown tiers) names "${token}" ${count} times for the case "${label}" — the per-chapter ceiling is ${cap} and a re-check above it halts the whole book. Cut it to AT MOST ${cap}: after the first full naming, refer to it with a pronoun, its role, or a shorter alias, and delete mentions that merely repeat what a sentence already established. Keep every fact, actor, number, and the case's substance — change only how often you REPEAT the distinctive word. Do not touch the quiz keys or the dealt structure.`);
+  }
+
   if (blocked("CHB10.lexical_saturation") && N >= 4) {
     const freq = new Map<string, number>();
     const spread = new Map<string, Set<number>>();
