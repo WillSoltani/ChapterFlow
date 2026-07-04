@@ -1634,7 +1634,10 @@ export function buildBudgetRepairComplaints(chapters: ChapterV21[], blockers: Bu
     const hi = parseInt(win[2], 10);
     if (![estimated, lo, hi].every(Number.isInteger)) continue;
     if (estimated > hi) {
-      add(f.chapterNumber as number, `length budget: this chapter renders ~${estimated} chars against a hard ceiling of ${hi} — cut ~${estimated - hi + 200} chars. Delete whole sentences that restate a point already made (start with the longest breakdown tier); never compress into fragments, never touch the quiz keys or the dealt structure.`);
+      // Live-tuned (B18 round 2): "cut ~N" got minimal compliance — a 509-char ask
+      // returned a 199-char cut and the re-check halted 110 over. State the LANDING
+      // ZONE, not the delta, and demand overshoot.
+      add(f.chapterNumber as number, `length budget: this chapter renders ~${estimated} chars; the HARD ceiling is ${hi} and a re-check above it halts the whole book. Land the chapter at ${hi - 800}–${hi - 300} chars (overshoot the cut — cutting only the minimum has already failed once). Delete whole sentences that restate a point already made, starting with the longest breakdown tier; never compress into fragments, never touch the quiz keys or the dealt structure.`);
     } else if (estimated < lo) {
       add(f.chapterNumber as number, `length budget: this chapter renders ~${estimated} chars against a floor of ${lo} — add ~${lo - estimated + 200} chars of TEACHING (a concrete beat inside an existing example or breakdown tier), never filler or restatement.`);
     }

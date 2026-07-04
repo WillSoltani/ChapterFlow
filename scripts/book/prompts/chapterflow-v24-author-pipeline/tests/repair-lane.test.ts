@@ -187,7 +187,7 @@ test("CHB2 routing: an over-ceiling length blocker routes a targeted trim compla
   const routed = buildBudgetRepairComplaints(chapters, [finding]);
   const lines = routed.get(1) ?? [];
   assert.equal(lines.length, 1, "routes to ch01");
-  assert.ok(lines[0].includes("cut ~509 chars"), `trim size computed from the window: ${lines[0]}`);
+  assert.ok(lines[0].includes("Land the chapter at 18400\u201318900 chars"), `landing zone computed from the window: ${lines[0]}`);
   assert.ok(lines[0].includes("never touch the quiz keys"), "trim guardrails present");
   assert.equal((routed.get(2) ?? []).length + (routed.get(3) ?? []).length, 0, "no bleed to other chapters");
 });
