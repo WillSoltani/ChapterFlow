@@ -79,7 +79,7 @@ test("checkSweep (publish gate): an all-advisory/minor REVISE does NOT block; a 
   // the advisory-vs-blocker parity this test exercises.
   const writeFindings = (file: string, severity: "minor" | "blocker") => writeFileSync(file, JSON.stringify({
     checkedFamilies: FAMILIES,
-    findings: [{ family: "repeated_unit", severity, chapters: [1], unitId: "u", quote: "she sees the error halfway through the meeting", problem: "p", expectedFix: "f" }],
+    findings: [{ family: "persona_drift", severity, chapters: [1], unitId: "u", quote: "she sees the error halfway through the meeting", problem: "p", expectedFix: "f" }] // publish calibration: texture families are gate-advisory; this pin uses a COHERENCE family,
   }, null, 2), "utf8");
   try {
     // An all-advisory/minor REVISE must NOT block publish — the publish gate agrees with the

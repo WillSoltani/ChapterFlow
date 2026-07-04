@@ -216,11 +216,11 @@ function sweepReply(over: { verdict?: string; findings?: unknown[]; checkedFamil
 
 function blockingSweepFinding(chapters: ChapterV21[]): Record<string, unknown> {
   return {
-    family: "scene_skeleton",
+    family: "persona_drift", // publish calibration: texture families are gate-advisory; blocking pins use a coherence family
     severity: "blocker",
     chapters: chapters.map((c) => c.number),
     unitId: "hook",
-    repairClass: "scene_skeleton",
+    repairClass: "persona_drift",
     quote: chapters[0].hook,
     problem: "both chapters open on the same drifting-record hook shell with only the nouns swapped",
     expectedFix: "rewrite chapter 2's hook on its own scene instead of the shared shell",

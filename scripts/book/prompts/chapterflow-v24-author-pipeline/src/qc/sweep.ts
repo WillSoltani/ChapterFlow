@@ -764,6 +764,11 @@ export function sweepChapterStatus(rec: SweepRecord | null, chapterNumber: numbe
   return "FAIL";
 }
 
+/** Publish calibration (2026-07-04): sweep families that describe cross-book
+ *  TEXTURE (style sameness) — scored by the acceptance panel, advisory at the
+ *  publish gate. Coherence/correctness families are deliberately absent. */
+export const SWEEP_TEXTURE_FAMILIES = new Set(["scene_skeleton", "repeated_unit", "location_stamping"]);
+
 export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFinding[] {
   const sev: "blocker" | "advisory" = enforce ? "blocker" : "advisory";
   const parsed = chapters[0]?.chapterId ? parseChapterId(chapters[0].chapterId) : null;
@@ -779,7 +784,25 @@ export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFindi
   if (rec.verdict !== "PASS") {
     const findings = rec.findings ?? [];
     const currentHashes = Object.fromEntries(chapters.map((ch) => [String(ch.number), chapterContentHash(ch)]));
-    const effective = effectiveSweepFindings(rec, currentHashes);
+    // Publish calibration (owner decision 2026-07-04, plan docs/v24/
+    // PUBLISH-CALIBRATION-PLAN-2026-07-04.md): TEXTURE families are SCORED,
+    // not blocking, at the publish gate — repetition/style sameness reduces
+    // quality signals (the acceptance panel already prices it via churn +
+    // composite) but must not hard-veto a book whose chapter reviews, panel,
+    // gate votes, and key evidence all pass. A single-framework book's 45
+    // examples share a teaching skeleton at SOME abstraction; three
+    // instruments pricing it is calibration, a fourth hard-vetoing it is the
+    // treadmill. Correctness/coherence families (persona_drift, key/factual
+    // classes) keep blocking, as do uncited non-PASS and CORRUPTION verdicts.
+    // The on-disk record is NEVER mutated — the downgrade is gate-local.
+    const recForGate = {
+      ...rec,
+      findings: findings.map((f) => {
+        const fam = String((f as { family?: unknown; repairClass?: unknown }).family ?? (f as { repairClass?: unknown }).repairClass ?? "");
+        return f.severity === "blocker" && SWEEP_TEXTURE_FAMILIES.has(fam) ? { ...f, severity: "advisory" as const } : f;
+      }),
+    };
+    const effective = effectiveSweepFindings(recForGate, currentHashes);
     if (effective.blockingChapters.size > 0 || rec.verdict === "CORRUPTION" || findings.length === 0) {
       return [{ checkId: "QC3.sweep_not_pass", severity: sev, message: `Sweep verdict is ${rec.verdict} with ${effective.blockingChapters.size} blocking chapter(s).` }];
     }
