@@ -193,7 +193,7 @@ export const AUTHOR_QUALITY_BAR =
   "2. KEY PARAPHRASE. The keyed answer must PARAPHRASE the idea in fresh words — never reuse 5 or more consecutive content words from anywhere in the chapter, INCLUDING the review cards and the implementation plan. If a key echoes a sentence you already wrote, reword the key.\n" +
   "3. PRACTICE CONCRETENESS. Each tryThisNow and each 24-hour challenge names ONE action with a number or a timebox, concrete enough to start within a minute. The action's FORM comes from your dealt practice shapes — never default to a touch-this-object or say-this-aloud ritual (the same staging in every chapter reads as theater). No \"a, b, or c\" option menus — one move, not a menu.\n" +
   "4. PLAIN LANGUAGE FROM SENTENCE ONE. Target whole-chapter Flesch ease 72-84: short sentences, common words, one idea per sentence. Open plain — no throat-clearing abstraction before the first concrete beat.\n" +
-  "5. DISTRACTOR TRANSFORM. Write the KEY first, then TRANSFORM it: every wrong answer is the key warped by ONE of your brief's dealt failure modes — a smart half-reader would defend it out loud; a reader of YOUR prose can settle exactly why it fails. Never a generic bad practice; never rejectable without reading the chapter (unless the chapter explicitly teaches against that named move). ECHO SYMMETRY: if the key uses the chapter's signature vocabulary, at least two distractors must too — the key is never the only choice that sounds like the chapter. Every explanation names why one tempting wrong answer fails, in varied wording each time — NEVER a fixed stem like \"If you chose (b):\" (identical stems ×81 is its own template). A deterministic gate still counts mechanical-distractor words (polish/announce/slides/deck/briefing/morale/optics/louder/inspire/motivate) book-wide and blocks above 7% — build from your dealt failure modes and these never appear.";
+  "5. DISTRACTOR TRANSFORM. Write the KEY first, then TRANSFORM it: every wrong answer is the key warped by ONE of your brief's dealt failure modes — a smart half-reader would defend it out loud; a reader of YOUR prose can settle exactly why it fails. Never a generic bad practice; never rejectable without reading the chapter (unless the chapter explicitly teaches against that named move). KEY SUPPORT: every key must be defensible by pointing at a specific breakdown sentence that teaches it — a key the chapter never actually taught reads as arbitrary to the reader who did the work. ECHO SYMMETRY: if the key uses the chapter's signature vocabulary, at least two distractors must too — the key is never the only choice that sounds like the chapter. Every explanation names why one tempting wrong answer fails, in varied wording each time — NEVER a fixed stem like \"If you chose (b):\" (identical stems ×81 is its own template). A deterministic gate still counts mechanical-distractor words (polish/announce/slides/deck/briefing/morale/optics/louder/inspire/motivate) book-wide and blocks above 7% — build from your dealt failure modes and these never appear.";
 
 /**
  * S-tier P5 (plan §C, fixes B10) — the acceptance rubric's demands, stated to the
@@ -346,6 +346,19 @@ export function authorWriteContractFindings(
       }
     }
   }
+
+  // W1 (repair-lane plan, live-caught): duplicated field labels — ch08 shipped
+  // examples whose whyItMatters text BEGAN with "Why it matters:" (all 3 blinded
+  // readers converged on it; the UI renders the label, so the text doubles it).
+  // Regex-cheap at write time; a review round on it costs three reader sessions.
+  (chapter.examples ?? []).forEach((ex, i) => {
+    for (const [field, label] of [["whyItMatters", "why it matters"], ["whatToDo", "what to do"]] as const) {
+      const v = (ex as unknown as Record<string, unknown>)[field];
+      if (typeof v === "string" && new RegExp(`^\\s*${label}\\s*[:\\-]`, "i").test(v)) {
+        complaints.push(`duplicated label: examples[${i + 1}].${field} begins with its own label ("${v.slice(0, 50)}...") — the app renders the label; strip it from the text.`);
+      }
+    }
+  });
   return complaints;
 }
 

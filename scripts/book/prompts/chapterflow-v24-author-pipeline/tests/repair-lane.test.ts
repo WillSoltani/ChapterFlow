@@ -1,0 +1,170 @@
+/**
+ * Repair lane (plan docs/v24/REPAIR-LANE-PLAN-2026-07-04.md, grilled r1) —
+ * scope-level complaint convergence, fail-closed vetoes, remedy stripping,
+ * patch-apply splicing, repair card pins, and the lineage-keyed repair cap.
+ * Complaint fixtures are the REAL must-fix texts from the 2026-07-04 run.
+ */
+import assert from "node:assert/strict";
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+
+import { test } from "./harness.js";
+import { makeChapter } from "./helpers.js";
+import {
+  REPAIR_COMPOSITE_FLOOR,
+  buildRepairCard,
+  classifyRepairEligibility,
+  deriveComplaintScope,
+  reviewRepairEnabled,
+  spliceRepairScopes,
+  stripRemedyClauses,
+} from "../src/orchestrator/authorRepair.js";
+import {
+  loadAuthorRegenLedger,
+  recordRegenConsumed,
+  recordRepairConsumed,
+  regenConsumedFor,
+  repairConsumedFor,
+} from "../src/orchestrator/authorRegenLedger.js";
+
+const BOOK = "zz-fixture-repair";
+
+// Real complaint texts from the 2026-07-04 execution run.
+const Q2_SOUTHWEST = "quiz Q2: The correct answer repeats the exact Southwest list from the prose, while the other options are shorter and vaguer.";
+const DISTRACTORS_PLAIN = "quiz overall: Several distractors are too plainly wrong or unethical, making the correct option guessable without reading the chapter closely.";
+const HOOK_PROSE = "The hook is under-explained; the cast friction in the opening reads abrupt.";
+const SCAFFOLD = "The invented names in the examples feel like scaffold — generic stand-ins rather than people.";
+
+test("classifier: leaf-divergent but scope-convergent quiz complaints are ELIGIBLE (the ch05 texture)", () => {
+  const r = classifyRepairEligibility(
+    [[Q2_SOUTHWEST], [DISTRACTORS_PLAIN], ["quiz Q6: two distractors are near-duplicates of each other."]],
+    [84.9, 83.7, 83.8],
+  );
+  assert.equal(r.eligible, true, r.reason);
+  assert.deepEqual(r.scopes, ["quiz"]);
+});
+
+test("classifier: fail-closed vetoes — prose, quality adjectives, count changes, unclassifiable, diffuse", () => {
+  // Prose target (the ch09 texture) → regen.
+  assert.equal(classifyRepairEligibility([[Q2_SOUTHWEST], [HOOK_PROSE]], [85, 86]).eligible, false);
+  // Quality adjective on a field = prose symptom in field clothing → regen.
+  assert.equal(classifyRepairEligibility([[SCAFFOLD], [SCAFFOLD]], [85, 86]).eligible, false);
+  // Count change violates the dealt-count contract → regen.
+  assert.equal(classifyRepairEligibility([["cut example 5 and merge it into example 2"], ["remove one example"]], [85, 86]).eligible, false);
+  // Unclassifiable → regen.
+  assert.equal(classifyRepairEligibility([["the chapter felt off to me"], [Q2_SOUTHWEST]], [85, 86]).eligible, false);
+  // Only one read carries complaints → no convergence evidence → regen.
+  assert.equal(classifyRepairEligibility([[Q2_SOUTHWEST], []], [85, 86]).eligible, false);
+  // Divergent scopes with no >=2 agreement → regen.
+  assert.equal(classifyRepairEligibility([[Q2_SOUTHWEST], ["the memorable lines overlap each other"]], [85, 86]).eligible, false);
+  // Outlier scope beyond the convergent set → regen (a repair would skip a named defect).
+  assert.equal(classifyRepairEligibility([[Q2_SOUTHWEST, "example 3's whatToDo is vague on the first step"], [DISTRACTORS_PLAIN]], [85, 86]).eligible, false);
+  // Median below the floor → regen.
+  assert.equal(classifyRepairEligibility([[Q2_SOUTHWEST], [DISTRACTORS_PLAIN]], [REPAIR_COMPOSITE_FLOOR - 1, REPAIR_COMPOSITE_FLOOR - 2]).eligible, false);
+});
+
+test("classifier: scope derivation — indexed examples repairable, unindexed veto; kill switch env", () => {
+  assert.equal(deriveComplaintScope("example 3's whyItMatters restates the scenario"), "examples[2]");
+  assert.equal(deriveComplaintScope("the examples all feel similar"), "VETO", "unindexed example surface is too wide");
+  assert.equal(deriveComplaintScope("quiz Q4: key echoes the prose"), "quiz");
+  assert.equal(deriveComplaintScope("the 24-hour challenge lacks a concrete number"), "practice");
+  const prev = process.env.CHAPTERFLOW_REVIEW_REPAIR;
+  try {
+    process.env.CHAPTERFLOW_REVIEW_REPAIR = "0";
+    assert.equal(reviewRepairEnabled(), false);
+    delete process.env.CHAPTERFLOW_REVIEW_REPAIR;
+    assert.equal(reviewRepairEnabled(), true);
+  } finally {
+    if (prev === undefined) delete process.env.CHAPTERFLOW_REVIEW_REPAIR; else process.env.CHAPTERFLOW_REVIEW_REPAIR = prev;
+  }
+});
+
+test("stripRemedyClauses: prescriptions drop, defect statements and enumerations survive", () => {
+  const stripped = stripRemedyClauses("The key is the only option naming a return date. Fix it by shortening the key.");
+  assert.ok(stripped.includes("only option naming a return date"), "defect kept");
+  assert.ok(!/shortening the key/i.test(stripped), "prescription dropped");
+  const enumKept = stripRemedyClauses("Q1 is not derivable: the chapter teaches cadence, owners, and follow-up, but the key asserts a quota rule.");
+  assert.ok(enumKept.includes("teaches cadence, owners, and follow-up"), "evidence enumeration kept");
+});
+
+test("splice: only allowed scopes cross; out-of-scope drift is discarded by construction; count changes throw", () => {
+  const original = makeChapter(BOOK, 3);
+  const repaired: typeof original = JSON.parse(JSON.stringify(original));
+  repaired.quiz.questions[1].choices = repaired.quiz.questions[1].choices.map((c, i) => (i === 0 ? c : `${c} (rebalanced)`));
+  repaired.hook = "A COMPLETELY REWRITTEN HOOK THE EDITOR HAD NO BUSINESS TOUCHING";
+  repaired.breakdown.fastRead = "drive-by prose edit";
+  const spliced = spliceRepairScopes(original, repaired, ["quiz"]);
+  assert.equal(spliced.hook, original.hook, "out-of-scope hook edit discarded");
+  assert.equal(spliced.breakdown.fastRead, original.breakdown.fastRead, "out-of-scope prose edit discarded");
+  assert.ok(spliced.quiz.questions[1].choices[1].endsWith("(rebalanced)"), "in-scope quiz edit applied");
+  // Count change inside scope → structural throw.
+  const shrunk: typeof original = JSON.parse(JSON.stringify(repaired));
+  shrunk.quiz.questions = shrunk.quiz.questions.slice(0, 8);
+  assert.throws(() => spliceRepairScopes(original, shrunk, ["quiz"]), /question count/);
+  const fewerExamples: typeof original = JSON.parse(JSON.stringify(original));
+  fewerExamples.examples = fewerExamples.examples.slice(0, fewerExamples.examples.length - 1);
+  assert.throws(() => spliceRepairScopes(original, fewerExamples, ["examples[0]"]), /example count/);
+  // examples[i] scope carries exactly that example.
+  const exEdit: typeof original = JSON.parse(JSON.stringify(original));
+  exEdit.examples[2] = { ...exEdit.examples[2], whyItMatters: "Because the miss shows up on the board before it shows up in the numbers." };
+  exEdit.examples[0] = { ...exEdit.examples[0], whyItMatters: "OUT OF SCOPE EDIT" };
+  const exSpliced = spliceRepairScopes(original, exEdit, ["examples[2]"]);
+  assert.equal(exSpliced.examples[2].whyItMatters, exEdit.examples[2].whyItMatters, "scoped example applied");
+  assert.equal(exSpliced.examples[0].whyItMatters, original.examples[0].whyItMatters, "unscoped example untouched");
+});
+
+test("repair card: surgical role, scope contract, anti-echo, dealt quiz caps, measured evidence", () => {
+  const chapter = makeChapter(BOOK, 5);
+  const card = buildRepairCard({
+    bookId: BOOK,
+    chapter,
+    brief: {
+      quizStemShapes: ["spot-the-violation", "best-explanation-why", "ordering-priority", "transfer-new-domain"],
+      quizFailureModes: ["half-measure", "over-correction", "right-move-wrong-trigger", "borrowed-authority"],
+      questionFactOrder: [9, 5, 4, 8, 3, 6, 7, 2, 1],
+    } as never,
+    complaints: [Q2_SOUTHWEST, DISTRACTORS_PLAIN],
+    scopes: ["quiz"],
+    relPath: "state/chapters/zz-fixture-repair-ch05.v21-native.chapter.json",
+  });
+  assert.ok(card.includes("surgical editor, NOT an author"), "role framed as editor");
+  assert.ok(card.includes("ALLOWED SCOPE"), "scope contract present");
+  assert.ok(card.includes("Never reuse a reviewer's phrasing"), "anti-echo rule");
+  assert.ok(card.includes("at most ONE of the 9 questions and uniquely SHORTEST in at most FOUR"), "hard length caps stated");
+  assert.ok(card.includes("MEASURED QUIZ EVIDENCE"), "char-count evidence attached");
+  assert.ok(card.includes("Never change the NUMBER"), "count preservation rule");
+  assert.ok(!/gate weakening|confirm the fix/i.test(card), "sanity");
+});
+
+test("ledger: repair cap is lineage-keyed, independent of the regen counter, absent-map tolerant", () => {
+  const root = mkdtempSync(join(tmpdir(), "repair-ledger-"));
+  try {
+    const lineage = "abc123def456";
+    assert.equal(repairConsumedFor(loadAuthorRegenLedger(BOOK, root), 4, lineage), 0, "pre-lane ledgers read as 0");
+    recordRepairConsumed(BOOK, 4, lineage, root);
+    const after = loadAuthorRegenLedger(BOOK, root);
+    assert.equal(repairConsumedFor(after, 4, lineage), 1);
+    assert.equal(regenConsumedFor(after, 4, lineage), 0, "repair does not touch the regen budget");
+    recordRegenConsumed(BOOK, 4, lineage, root);
+    const both = loadAuthorRegenLedger(BOOK, root);
+    assert.equal(repairConsumedFor(both, 4, lineage), 1);
+    assert.equal(regenConsumedFor(both, 4, lineage), 1);
+    assert.equal(repairConsumedFor(both, 4, "otherlineage1"), 0, "a re-dealt lineage reads fresh (C1 contract)");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("W1: duplicated field labels complain at write time (the ch08 0-3 class)", async () => {
+  const { authorWriteContractFindings } = await import("../src/orchestrator/authorRun.js");
+  const chapter = makeChapter(BOOK, 2);
+  chapter.examples[4] = { ...chapter.examples[4], whyItMatters: "Why it matters: the promise decays without a return point." };
+  const brief = { rotationSchemaVersion: "brief-rotation-v3", exampleCount: chapter.examples.length } as never;
+  const packet = { facts: [], allowedNumbers: [] } as never;
+  const found = authorWriteContractFindings(chapter, brief, packet).filter((c) => c.startsWith("duplicated label"));
+  assert.equal(found.length, 1, "label duplication caught");
+  assert.ok(found[0].includes("examples[5].whyItMatters"));
+  chapter.examples[4] = { ...chapter.examples[4], whyItMatters: "The promise decays without a return point." };
+  assert.equal(authorWriteContractFindings(chapter, brief, packet).filter((c) => c.startsWith("duplicated label")).length, 0, "clean text passes");
+});

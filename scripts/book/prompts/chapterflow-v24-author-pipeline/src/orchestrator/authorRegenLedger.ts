@@ -67,6 +67,11 @@ export type AuthorRegenLedger = {
   legacyMigratedAt?: string;
   /** chapterNumber → the lineage its legacy count was migrated onto (forensics). */
   legacyMigratedTo?: Record<string, string>;
+  /** Repair lane (plan docs/v24/REPAIR-LANE-PLAN-2026-07-04.md R6):
+   *  `<chapterNumber>@<lineage12>` → surgical repairs consumed against that
+   *  design (cap 1; rejected/failed/no-op repairs count too). Optional so v2
+   *  ledgers written before the lane load unchanged (absent = 0). */
+  repairConsumed?: Record<string, number>;
 };
 
 type AuthorRegenLedgerV1 = {
@@ -243,6 +248,30 @@ export function recordRegenConsumed(
   const ledger = loadAuthorRegenLedger(bookId, stateRoot);
   const key = `${chapterNumber}@${lineage}`;
   ledger.consumed[key] = (Number.isInteger(ledger.consumed[key]) && ledger.consumed[key] > 0 ? ledger.consumed[key] : 0) + 1;
+  ledger.updatedAt = new Date().toISOString();
+  persist(ledger, stateRoot);
+  return ledger;
+}
+
+/** Repair lane (R6): repairs consumed against the chapter's current lineage.
+ *  No legacy dimension — the lane postdates the v2 ledger; absent map = 0. */
+export function repairConsumedFor(ledger: AuthorRegenLedger, chapterNumber: number, lineage: string): number {
+  const keyed = ledger.repairConsumed?.[`${chapterNumber}@${lineage}`];
+  return Number.isInteger(keyed) && (keyed as number) > 0 ? (keyed as number) : 0;
+}
+
+/** Record ONE consumed surgical repair for a chapter's current lineage and
+ *  persist. Counts only ever grow; rejected/failed/no-op repairs count too. */
+export function recordRepairConsumed(
+  bookId: string,
+  chapterNumber: number,
+  lineage: string,
+  stateRoot: string = CANONICAL_STATE,
+): AuthorRegenLedger {
+  const ledger = loadAuthorRegenLedger(bookId, stateRoot);
+  const key = `${chapterNumber}@${lineage}`;
+  const map = ledger.repairConsumed ?? (ledger.repairConsumed = {});
+  map[key] = (Number.isInteger(map[key]) && map[key] > 0 ? map[key] : 0) + 1;
   ledger.updatedAt = new Date().toISOString();
   persist(ledger, stateRoot);
   return ledger;

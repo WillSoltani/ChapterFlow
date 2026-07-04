@@ -116,8 +116,11 @@ import {
   loadAuthorRegenLedger,
   migrateLegacyRegenCounts,
   recordRegenConsumed,
+  recordRepairConsumed,
   regenConsumedFor,
+  repairConsumedFor,
 } from "./authorRegenLedger.js";
+import { classifyRepairEligibility, doRepairOneChapter, reviewRepairEnabled } from "./authorRepair.js";
 import { resolveBeatShippedBar, type BeatShippedResult } from "./shippedControl.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -207,6 +210,10 @@ export type AuthorReviewIo = AuthorIo & {
    *  decision. Throws RegenLedgerError when legacy counts exist but a lineage
    *  is uncomputable. */
   migrateRegenLedger: (bookId: string, log?: (m: string) => void) => void;
+  /** Repair lane (plan R6): repairs consumed against the chapter's CURRENT
+   *  design lineage (durable; cap 1). Injectable like the regen pair. */
+  repairConsumedFor: (bookId: string, chapterNumber: number) => number;
+  recordRepairConsumed: (bookId: string, chapterNumber: number) => void;
 };
 
 /** Default io lineage resolution: uncomputable lineage = infra, never no-cap. */
@@ -282,6 +289,8 @@ export function resolveAuthorReviewIo(over?: Partial<AuthorReviewIo>): AuthorRev
     regenConsumedFor: over?.regenConsumedFor ?? ((bookId, n) => regenConsumedFor(loadAuthorRegenLedger(bookId), n, requireLineage(bookId, n))),
     recordRegenConsumed: over?.recordRegenConsumed ?? ((bookId, n) => { recordRegenConsumed(bookId, n, requireLineage(bookId, n)); }),
     migrateRegenLedger: over?.migrateRegenLedger ?? ((bookId, log) => { migrateLegacyRegenCounts(bookId, undefined, log); }),
+    repairConsumedFor: over?.repairConsumedFor ?? ((bookId, n) => repairConsumedFor(loadAuthorRegenLedger(bookId), n, requireLineage(bookId, n))),
+    recordRepairConsumed: over?.recordRepairConsumed ?? ((bookId, n) => { recordRepairConsumed(bookId, n, requireLineage(bookId, n)); }),
   };
 }
 
@@ -540,7 +549,7 @@ async function tiebreakFlipVerdict(
   deps: AutopilotDeps,
   io: AuthorReviewIo,
   bar: number,
-): Promise<{ review: ChapterReviewV1; extraComplaints: string[] }> {
+): Promise<{ review: ChapterReviewV1; extraComplaints: string[]; upheldReadSets?: string[][]; upheldComposites?: number[] }> {
   const nn = String(chapter.number).padStart(2, "0");
   deps.log(`[autopilot] author review ch${nn}: FAIL carries the flip signature (composite ${original.composite} ≥ bar ${bar}, keys ${original.keyCheck.matches}/${original.keyCheck.of}, ship=false) — spawning 2 tiebreak readers (majority-of-3, no cap consumed)`);
   const extras: ChapterReviewV1[] = [];
@@ -587,7 +596,15 @@ async function tiebreakFlipVerdict(
     });
   } catch { /* forensic note */ }
   deps.log(`[autopilot] author review ch${nn}: tiebreak upheld the FAIL (${extras.map((r) => `${r.composite}${r.ship84 ? " ship" : ""}${r.valid ? "" : " invalid"}`).join(", ")}) — regen proceeds with merged complaints`);
-  return { review: original, extraComplaints };
+  // Repair-lane inputs (plan R1): per-read must-fix sets and composites of the
+  // valid reads, so the caller can test scope-level complaint convergence.
+  const validReads = [original, ...extras.filter((r) => r.valid)];
+  return {
+    review: original,
+    extraComplaints,
+    upheldReadSets: validReads.filter((r) => !r.ship84).map((r) => complaintsOf(r)),
+    upheldComposites: validReads.map((r) => r.composite),
+  };
 }
 
 // ── Book acceptance ───────────────────────────────────────────────────────────
@@ -944,6 +961,7 @@ async function doAuthorReviewInner(
   //    reads; 2/3 SHIP converts it — a ~1-minute answer to a proven coin-flip
   //    surface, instead of a ~14-minute regen + a consumed durable cap. ────────
   const tiebreakExtraComplaints = new Map<number, string[]>();
+  const tiebreakReadEvidence = new Map<number, { readSets: string[][]; composites: number[] }>();
   {
     const flips = chapters.filter((chapter) => {
       const r = reviews.get(chapter.number)!;
@@ -954,6 +972,7 @@ async function doAuthorReviewInner(
       const outcome = await tiebreakFlipVerdict(bookId, chapter, reviews.get(chapter.number)!, deps, io, bar);
       reviews.set(chapter.number, outcome.review);
       if (outcome.extraComplaints.length > 0) tiebreakExtraComplaints.set(chapter.number, outcome.extraComplaints);
+      if (outcome.upheldReadSets) tiebreakReadEvidence.set(chapter.number, { readSets: outcome.upheldReadSets, composites: outcome.upheldComposites ?? [] });
     });
   }
   if (!heartbeat()) return halt(bookId, "infra", `lost the run lock for ${bookId} during the review tiebreak — halting to avoid two conductors on the same book.`);
@@ -978,10 +997,64 @@ async function doAuthorReviewInner(
       const nn = String(chapter.number).padStart(2, "0");
       // C3 (#4): a tiebreak that UPHELD the fail contributes its corroborating
       // reads' complaints — the regen writer sees every independent objection.
-      const complaints = [...new Set([
+      let complaints = [...new Set([
         ...complaintsOf(reviews.get(chapter.number)!),
         ...(tiebreakExtraComplaints.get(chapter.number) ?? []),
       ])];
+      // ── Repair lane (plan docs/v24/REPAIR-LANE-PLAN-2026-07-04.md): when the
+      //    upheld tiebreak's must-fixes CONVERGE on field scopes, try ONE
+      //    surgical repair before spending the regen. The confirming read is
+      //    the normal repair-unaware review of the new content hash; a
+      //    withheld confirm falls through to regen with the CONFIRM round's
+      //    complaints (hash-scoped — pre-repair complaints about fixed
+      //    defects never reach the regen writer). ─────────────────────────────
+      const evidence = tiebreakReadEvidence.get(chapter.number);
+      // Classify FIRST (pure); consult the durable cap only for eligible
+      // chapters, and treat an uncomputable lineage as "lane unavailable" —
+      // the regen path owns the infra-halt semantics for that case.
+      let repairCapFree = false;
+      const cls = reviewRepairEnabled() && evidence ? classifyRepairEligibility(evidence.readSets, evidence.composites) : undefined;
+      if (cls?.eligible) {
+        try { repairCapFree = io.repairConsumedFor(bookId, chapter.number) === 0; } catch { repairCapFree = false; }
+      }
+      if (cls && evidence) {
+        if (cls.eligible && repairCapFree) {
+          deps.log(`[autopilot] author review ch${nn}: repair lane ENGAGED (${cls.reason}) — one surgical repair before any regen`);
+          io.recordRepairConsumed(bookId, chapter.number);
+          const rep = await doRepairOneChapter(bookId, chapter.number, deps, { io, scopes: cls.scopes, complaints });
+          if (rep.ok) {
+            const repaired = io.loadChapters(bookId).find((c) => c.number === chapter.number);
+            if (repaired) {
+              let confirm = await reviewOneChapter(bookId, repaired, deps, io, bar, "-repair");
+              if (!confirm.pass && isFlipSignature(confirm, bar)) {
+                const tb = await tiebreakFlipVerdict(bookId, repaired, confirm, deps, io, bar);
+                confirm = tb.review;
+                tiebreakExtraComplaints.set(chapter.number, tb.extraComplaints);
+              }
+              reviews.set(chapter.number, confirm);
+              if (confirm.pass) {
+                deps.log(`[autopilot] author review ch${nn}: repair CONFIRMED by a fresh read (${confirm.composite}) — no regen spent`);
+                return;
+              }
+              deps.log(`[autopilot] author review ch${nn}: repair confirm withheld (${confirm.composite}) — escalating to regen with the confirm round's complaints`);
+              complaints = [...new Set([
+                ...complaintsOf(confirm),
+                ...(tiebreakExtraComplaints.get(chapter.number) ?? []),
+              ])];
+            }
+          } else {
+            deps.log(`[autopilot] author review ch${nn}: repair rejected (${rep.reason ?? "unknown"}) — regen proceeds`);
+          }
+        } else {
+          deps.log(`[autopilot] author review ch${nn}: repair lane not eligible (${cls.reason}) — regen proceeds`);
+        }
+      }
+      if (regenExhausted(chapter.number)) {
+        // The repair path consumed wall-clock; re-check the durable budget
+        // before spending a regen (another conductor could have moved it).
+        stillFailing.push({ chapterNumber: chapter.number, summary: `ch${nn}: regen budget exhausted after repair path` });
+        return;
+      }
       regenerated.add(chapter.number);
       io.recordRegenConsumed(bookId, chapter.number); // durable: this write attempt counts across re-entries
       const regen = await authorWriteOneChapter(bookId, chapter.number, deps, { complaints, io: opts.io });
