@@ -3,7 +3,7 @@ import { mkdirSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
-import { checkSweep, sweepRecordPath, writeSweepAttestation } from "../src/qc/sweep.js";
+import { checkSweep, sweepRecordPath, sweepTextureAdvisories, writeSweepAttestation } from "../src/qc/sweep.js";
 import { QC_ORCHESTRATOR_DIR } from "../src/qc/orchestrator/artifacts.js";
 import { keyPackDir } from "../src/qc/manualKeyJudge.js";
 import { test } from "./harness.js";
@@ -93,6 +93,27 @@ test("checkSweep (publish gate): an all-advisory/minor REVISE does NOT block; a 
     writeFindings(s.findingsFile, "blocker");
     assert.ok(writeSweepAttestation(BOOK, ROUND, s.token, "REVISE", "codex-qc:sweep-test", s.findingsFile).path);
     assert.equal(checkSweep(chapters(), true)[0]?.checkId, "QC3.sweep_not_pass", "a blocker REVISE still blocks publish");
+  } finally {
+    cleanup();
+  }
+});
+
+test("P5: sweepTextureAdvisories surfaces demoted texture families WITHOUT feeding the gate", () => {
+  const chapters = () => [makeChapter(BOOK, 1), makeChapter(BOOK, 2)];
+  try {
+    const s = setup();
+    // A scene_skeleton (texture) blocker: demoted at the gate, but must be VISIBLE.
+    writeFileSync(s.findingsFile, JSON.stringify({
+      checkedFamilies: ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"],
+      findings: [{ family: "scene_skeleton", severity: "blocker", chapters: [1, 2], unitId: "u", quote: "after the review ends, the lead traces backward through the numbers", problem: "every example opens on the same retrospective skeleton", expectedFix: "f" }],
+    }, null, 2), "utf8");
+    assert.ok(writeSweepAttestation(BOOK, ROUND, s.token, "REVISE", "codex-qc:sweep-test", s.findingsFile).path);
+    // The gate CLEARS (texture demoted) — proving visibility is a separate channel.
+    assert.deepEqual(checkSweep(chapters(), true), [], "texture family is demoted at the gate");
+    const advisories = sweepTextureAdvisories(BOOK);
+    assert.equal(advisories.length, 1, "the demoted texture finding is surfaced for the log");
+    assert.match(advisories[0], /texture\[scene_skeleton\] ch 1, 2/);
+    assert.match(advisories[0], /not blocked/);
   } finally {
     cleanup();
   }
