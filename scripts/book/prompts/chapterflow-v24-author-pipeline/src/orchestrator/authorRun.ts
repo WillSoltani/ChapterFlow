@@ -347,15 +347,17 @@ export function authorWriteContractFindings(
     }
   }
 
-  // W1 (repair-lane plan, live-caught): duplicated field labels — ch08 shipped
-  // examples whose whyItMatters text BEGAN with "Why it matters:" (all 3 blinded
-  // readers converged on it; the UI renders the label, so the text doubles it).
-  // Regex-cheap at write time; a review round on it costs three reader sessions.
+  // W1 (repair-lane plan, live-caught twice): label text leaking into example
+  // fields — ch08 shipped whyItMatters BEGINNING "Why it matters:" (own label)
+  // and ch07 shipped whatToDo beginning "Why it works:" (CROSS-label), which
+  // alone flipped the book-acceptance gate 0P/3F. Any label-family prefix on
+  // either field is scaffold in reader-facing prose; the app renders the label.
+  const LABEL_FAMILY = /^\s*(why it matters|what to do(?: instead)?|why it works|try this)\s*[:\-—]/i;
   (chapter.examples ?? []).forEach((ex, i) => {
-    for (const [field, label] of [["whyItMatters", "why it matters"], ["whatToDo", "what to do"]] as const) {
+    for (const field of ["whyItMatters", "whatToDo"] as const) {
       const v = (ex as unknown as Record<string, unknown>)[field];
-      if (typeof v === "string" && new RegExp(`^\\s*${label}\\s*[:\\-]`, "i").test(v)) {
-        complaints.push(`duplicated label: examples[${i + 1}].${field} begins with its own label ("${v.slice(0, 50)}...") — the app renders the label; strip it from the text.`);
+      if (typeof v === "string" && LABEL_FAMILY.test(v)) {
+        complaints.push(`duplicated label: examples[${i + 1}].${field} begins with a label ("${v.slice(0, 50)}...") — the app renders field labels; strip it from the text.`);
       }
     }
   });

@@ -167,4 +167,10 @@ test("W1: duplicated field labels complain at write time (the ch08 0-3 class)", 
   assert.ok(found[0].includes("examples[5].whyItMatters"));
   chapter.examples[4] = { ...chapter.examples[4], whyItMatters: "The promise decays without a return point." };
   assert.equal(authorWriteContractFindings(chapter, brief, packet).filter((c) => c.startsWith("duplicated label")).length, 0, "clean text passes");
+  // CROSS-label collision (the live ch07 artifact that flipped the book gate
+  // 0P/3F): "Why it works:" leaking into whatToDo.
+  chapter.examples[1] = { ...chapter.examples[1], whatToDo: "Why it works: the customer pain forces the inside model into view." };
+  const cross = authorWriteContractFindings(chapter, brief, packet).filter((c) => c.startsWith("duplicated label"));
+  assert.equal(cross.length, 1, "cross-label leak caught");
+  assert.ok(cross[0].includes("examples[2].whatToDo"));
 });
