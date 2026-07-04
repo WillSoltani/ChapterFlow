@@ -1113,7 +1113,17 @@ async function doAuthorReviewInner(
     if (churnDriven) {
       const named = mapNamedBookComplaints(acceptance.readers, acceptance.sampledNumbers);
       const report = buildChurnEvidenceReport(chapters);
-      const contributors = rankSaturationContributors(chapters).filter((n) => acceptance.sampledNumbers.includes(n));
+      // B19 (live, twice-proven negative): SATURATION-FILL never re-rolls a
+      // strong-pass chapter (latest review ships at >= 87) — ch03's 87.5 v4
+      // bytes re-rolled to an 0-3 upheld 84.7 and halted the round. Reader-NAMED
+      // chapters stay routable at any score (a named defect is evidence; a
+      // saturation rank is a coin flip). The honest lever for strong old
+      // chapters is an owner-decided refresh round, not churn-routed variance.
+      const strongPass = (n: number): boolean => {
+        const r = reviews.get(n);
+        return !!r && r.pass && r.composite >= 87;
+      };
+      const contributors = rankSaturationContributors(chapters).filter((n) => acceptance.sampledNumbers.includes(n) && !strongPass(n));
       const targetNums = [...named.keys()].sort((a, b) => a - b).slice(0, AUTHOR_BOOK_REGEN_CHAPTER_CAP);
       for (const n of contributors) {
         if (targetNums.length >= AUTHOR_BOOK_REGEN_CHAPTER_CAP) break;
