@@ -174,3 +174,20 @@ test("W1: duplicated field labels complain at write time (the ch08 0-3 class)", 
   assert.equal(cross.length, 1, "cross-label leak caught");
   assert.ok(cross[0].includes("examples[2].whatToDo"));
 });
+
+test("CHB2 routing: an over-ceiling length blocker routes a targeted trim complaint to ITS chapter (STIER-3 live halt)", async () => {
+  const { buildBudgetRepairComplaints } = await import("../src/critics/readerBudgets.js");
+  const chapters = [1, 2, 3].map((n) => makeChapter(BOOK, n));
+  const finding = {
+    checkId: "CHB2.length_budget",
+    severity: "blocker",
+    chapterNumber: 1,
+    message: "ch01 estimated rendered length 19509 chars is 22% over the 16000-char budget (allowed window 12800–19200); readers rejected ~40% inflation.",
+  } as never;
+  const routed = buildBudgetRepairComplaints(chapters, [finding]);
+  const lines = routed.get(1) ?? [];
+  assert.equal(lines.length, 1, "routes to ch01");
+  assert.ok(lines[0].includes("cut ~509 chars"), `trim size computed from the window: ${lines[0]}`);
+  assert.ok(lines[0].includes("never touch the quiz keys"), "trim guardrails present");
+  assert.equal((routed.get(2) ?? []).length + (routed.get(3) ?? []).length, 0, "no bleed to other chapters");
+});

@@ -501,7 +501,10 @@ test("doAuthorWrite: a reader-budget BLOCKER halts content, naming the findings"
   const io = mkIo({ readBrief: (_b, ch) => mkBrief(ch, { lengthBudget: { renderedChars: 30000, tolerance: 0.2 } }) });
   const halt = await doAuthorWrite("zz", deps, { maxParallel: 2, io });
   assert.ok(halt && halt.status === "halt" && halt.category === "content", "budget blockers are write-time content defects");
-  if (halt && halt.status === "halt") assert.match(halt.reason, /CHB2\.length_budget/, "the halt names the failing check");
+  // STIER-3 rebase (documented): CHB2 findings are now REPAIR-ROUTABLE — the
+  // round runs first (these no-op writers fail it), and the halt names either
+  // the failed round or the still-blocking check. Fail-closed either way.
+  if (halt && halt.status === "halt") assert.match(halt.reason, /CHB2\.length_budget|budget-repair round failed/, "the halt names the failing check or the failed repair round");
 });
 
 test("doAuthorWrite: a missing/corrupt name bank halts INFRA (never a silent CHB3 skip)", async () => {

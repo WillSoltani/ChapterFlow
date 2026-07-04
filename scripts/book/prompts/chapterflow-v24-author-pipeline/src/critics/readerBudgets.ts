@@ -1619,6 +1619,27 @@ export function buildBudgetRepairComplaints(chapters: ChapterV21[], blockers: Bu
   };
   const blocked = (id: string): boolean => blockers.some((f) => f.checkId === id);
 
+  // CHB2 length findings carry a structured chapterNumber and the exact window —
+  // route them as targeted trim/expand complaints (STIER-3 live-caught: a chapter
+  // regenned in the REVIEW phase skips the write-exit length check until the NEXT
+  // conductor entry, which then halted "no repair-routable evidence" over a 1.6%
+  // overflow on an 87-scoring chapter).
+  for (const f of blockers) {
+    if (f.checkId !== "CHB2.length_budget" || !Number.isInteger(f.chapterNumber)) continue;
+    const est = /length (\d+) chars/.exec(f.message);
+    const win = /allowed window (\d+)[–-](\d+)/.exec(f.message);
+    if (!est || !win) continue;
+    const estimated = parseInt(est[1], 10);
+    const lo = parseInt(win[1], 10);
+    const hi = parseInt(win[2], 10);
+    if (![estimated, lo, hi].every(Number.isInteger)) continue;
+    if (estimated > hi) {
+      add(f.chapterNumber as number, `length budget: this chapter renders ~${estimated} chars against a hard ceiling of ${hi} — cut ~${estimated - hi + 200} chars. Delete whole sentences that restate a point already made (start with the longest breakdown tier); never compress into fragments, never touch the quiz keys or the dealt structure.`);
+    } else if (estimated < lo) {
+      add(f.chapterNumber as number, `length budget: this chapter renders ~${estimated} chars against a floor of ${lo} — add ~${lo - estimated + 200} chars of TEACHING (a concrete beat inside an existing example or breakdown tier), never filler or restatement.`);
+    }
+  }
+
   if (blocked("CHB10.lexical_saturation") && N >= 4) {
     const freq = new Map<string, number>();
     const spread = new Map<string, Set<number>>();
