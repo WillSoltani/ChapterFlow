@@ -1637,7 +1637,12 @@ export function buildBudgetRepairComplaints(chapters: ChapterV21[], blockers: Bu
       // Live-tuned (B18 round 2): "cut ~N" got minimal compliance — a 509-char ask
       // returned a 199-char cut and the re-check halted 110 over. State the LANDING
       // ZONE, not the delta, and demand overshoot.
-      add(f.chapterNumber as number, `length budget: this chapter renders ~${estimated} chars; the HARD ceiling is ${hi} and a re-check above it halts the whole book. Land the chapter at ${hi - 800}–${hi - 300} chars (overshoot the cut — cutting only the minimum has already failed once). Delete whole sentences that restate a point already made, starting with the longest breakdown tier; never compress into fragments, never touch the quiz keys or the dealt structure.`);
+      // B18c: the writer has NO local instrument for length (gate + preflight both
+      // pass), so a session can believe it is done without editing — one left the
+      // chapter byte-identical. Ship the measurement command IN the complaint.
+      const chapterId = ordered.find((c) => c.number === f.chapterNumber)?.chapterId ?? "";
+      const relPath = `state/chapters/${chapterId}.v21-native.chapter.json`;
+      add(f.chapterNumber as number, `length budget: this chapter renders ~${estimated} chars; the HARD ceiling is ${hi} and a re-check above it halts the whole book. You MUST edit the file — returning it unchanged fails the round. Land the chapter at ${hi - 800}–${hi - 300} chars: delete whole sentences that restate a point already made, starting with the longest breakdown tier; never compress into fragments, never touch the quiz keys or the dealt structure. VERIFY before you finish (the number must print between ${hi - 800} and ${hi - 300}): npx tsx -e "const{estimatedRenderedChars}=require('./src/critics/readerBudgets.ts');console.log(estimatedRenderedChars(JSON.parse(require('fs').readFileSync('${relPath}','utf8'))))"`);
     } else if (estimated < lo) {
       add(f.chapterNumber as number, `length budget: this chapter renders ~${estimated} chars against a floor of ${lo} — add ~${lo - estimated + 200} chars of TEACHING (a concrete beat inside an existing example or breakdown tier), never filler or restatement.`);
     }
