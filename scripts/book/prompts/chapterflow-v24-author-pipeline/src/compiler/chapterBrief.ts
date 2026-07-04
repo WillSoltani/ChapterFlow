@@ -46,6 +46,8 @@ import {
   FIELD_STYLE_INSTRUCTION,
   GROUNDING_FORMS,
   GROUNDING_INSTRUCTION,
+  IDIOM_FAMILIES,
+  IDIOM_INSTRUCTION,
   LENS_INSTRUCTION,
   LIMITS_INSTRUCTION,
   LIMITS_PLACEMENTS,
@@ -58,6 +60,8 @@ import {
   PRACTICE_SHAPES,
   PRACTICE_VERBS,
   QUIZ_FAILURE_MODES,
+  SHELL_INSTRUCTION,
+  SHELL_REGISTERS,
   QUIZ_STEM_SHAPES,
   ROTATION_SCHEMA_VERSION,
   STEM_SHAPE_INSTRUCTION,
@@ -216,6 +220,8 @@ function fallbackRotation(n: number): BriefRotation {
     limitsPlacement: LIMITS_PLACEMENTS[i % LIMITS_PLACEMENTS.length],
     groundingForm: GROUNDING_FORMS[i % GROUNDING_FORMS.length],
     leadPreferReal: i % 2 === 0,
+    idiomFamilies: [IDIOM_FAMILIES[i % IDIOM_FAMILIES.length], IDIOM_FAMILIES[(i + 3) % IDIOM_FAMILIES.length]],
+    shellRegister: SHELL_REGISTERS[i % SHELL_REGISTERS.length],
   };
 }
 
@@ -442,6 +448,8 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
       memorableShapes: (rotations.get(n) ?? fallbackRotation(n)).memorableShapes,
       limitsPlacement: (rotations.get(n) ?? fallbackRotation(n)).limitsPlacement,
       groundingForm: (rotations.get(n) ?? fallbackRotation(n)).groundingForm,
+      idiomFamilies: (rotations.get(n) ?? fallbackRotation(n)).idiomFamilies,
+      shellRegister: (rotations.get(n) ?? fallbackRotation(n)).shellRegister,
       leadThread: resolveLeadThread(
         (rotations.get(n) ?? fallbackRotation(n)).leadPreferReal,
         packet.namedCases.map((c) => ({ id: c.id, label: c.label })),
@@ -548,6 +556,19 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
   }
   if (brief.practiceVerb) {
     lines.push(`- PRACTICE VERB: build the physical actions in tryThisNow and the 24-hour challenge around "${brief.practiceVerb}" — not "touch" or "open" (other chapters own other verbs; a shared verb becomes a book-wide tic).`);
+  }
+  if (brief.idiomFamilies && brief.idiomFamilies.length > 0) {
+    const idiomHints = brief.idiomFamilies
+      .map((f) => `${f} (${IDIOM_INSTRUCTION[f as keyof typeof IDIOM_INSTRUCTION] ?? f})`)
+      .join("; ");
+    lines.push(
+      `- FRAMEWORK IDIOM: every chapter of this book teaches the same framework, and a book-level reader FAILED the last draft because all chapters verbalized it identically. When the framework recurs beyond your noun budget, speak it through YOUR dealt idiom families — ${idiomHints} — other chapters own other registers. Never invent a formal synonym; re-ground in your cases instead.`,
+    );
+  }
+  if (brief.shellRegister) {
+    lines.push(
+      `- EXAMPLE SHELL REGISTER: open your examples' whatToDo/whyItMatters fields in the "${brief.shellRegister}" register — ${SHELL_INSTRUCTION[brief.shellRegister as keyof typeof SHELL_INSTRUCTION] ?? brief.shellRegister}. No two of your examples may open BOTH fields the same way, and never reuse another chapter's fixed formula (book readers see all chapters side by side).`,
+    );
   }
   if (brief.frameworkNouns && brief.frameworkNouns.length > 0) {
     lines.push(
@@ -767,6 +788,8 @@ export function validateChapterBriefs(bookId: string, roots: CompilerStoreRoots 
       brief.practiceSlotShapes,
       brief.leadThread,
       brief.exampleCount,
+      brief.idiomFamilies,
+      brief.shellRegister,
     ];
     if (v3Markers.some((m) => m !== undefined && m !== null)) {
       const missing: string[] = [];
@@ -812,8 +835,15 @@ export function validateChapterBriefs(bookId: string, roots: CompilerStoreRoots 
       } else if (brief.leadThread.kind === "invented" && !(brief.cast ?? []).includes(brief.leadThread.name)) {
         missing.push(`leadThread.name(${brief.leadThread.name}) not in cast`);
       }
+      // STIER-3 (v4): the idiom pair rides the same all-or-none contract — briefs
+      // recompile at every conductor entry, so any stamped brief must be complete.
+      if (!Array.isArray(brief.idiomFamilies) || brief.idiomFamilies.length !== 2 ||
+          !brief.idiomFamilies.every((f) => (IDIOM_FAMILIES as readonly string[]).includes(f))) {
+        missing.push("idiomFamilies");
+      }
+      if (!brief.shellRegister || !(SHELL_REGISTERS as readonly string[]).includes(brief.shellRegister)) missing.push("shellRegister");
       if (missing.length > 0) {
-        push("BR6.v3_partial", `chapter ${n} brief carries STIER-2 (v3) markers but is incomplete/invalid: ${missing.join(", ")} — the v3 deal is all-or-none`);
+        push("BR6.v3_partial", `chapter ${n} brief carries STIER-2/3 rotation markers but is incomplete/invalid: ${missing.join(", ")} — the deal is all-or-none`);
       }
     }
   }

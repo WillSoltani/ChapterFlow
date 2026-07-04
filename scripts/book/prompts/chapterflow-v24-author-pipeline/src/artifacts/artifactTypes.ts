@@ -238,6 +238,11 @@ export type ChapterBriefV1 = {
    *  own ownedCases[0] real case (threading fastRead + ≥2 examples through the case's real
    *  actors; de-stamps the universal invented-proxy device). */
   leadThread?: { kind: "invented" | "owned-case"; name: string };
+  /** STIER-3 P17 (v4): the 2 idiom families this chapter verbalizes the shared framework
+   *  through (the round-2 book panel churned on identical framework idiom book-wide). */
+  idiomFamilies?: string[];
+  /** STIER-3 P18 (v4): the chapter's whatToDo/whyItMatters opener register. */
+  shellRegister?: string;
 };
 
 /** v24 W4 rotation vocabularies — mirrored from src/compiler/briefRotation.ts (kept here as string

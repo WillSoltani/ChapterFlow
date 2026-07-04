@@ -444,7 +444,7 @@ test("B1 gate: BR5 fires on empty coreMove/thesis; BR0 on a missing brief", () =
 });
 
 // ── rendered md ─────────────────────────────────────────────────────────────────────
-test("B1: rendered md contains every section and stays ≤ 8200 chars on the fixture (design pools + regen avoid active)", () => {
+test("B1: rendered md contains every section and stays ≤ 9200 chars on the fixture (design pools + regen avoid active)", () => {
   withBook("md", (roots, packets, chapters) => {
     // Worst realistic case: design flavor present + sibling openers on disk.
     writeJsonFile(bookDesignPath(BOOK, roots), deriveBookDesign(BOOK, { roots, genre: "business-decision", packets, chapters: chapters.length }));
@@ -468,7 +468,7 @@ test("B1: rendered md contains every section and stays ≤ 8200 chars on the fix
       // (fixture measures ~7.8k). The CARD no longer pays this twice — B0 strips the
       // md's VARIETY section when the machine brief renders the explicit block, so the
       // card's ≤25k budget holds (real-size pin lives in stier2-levers.test.ts).
-      assert.ok(md.length <= 8200, `ch${brief.chapterNumber} md is ${md.length} chars (cap 8200)`);
+      assert.ok(md.length <= 9200, `ch${brief.chapterNumber} md is ${md.length} chars (cap 9200)`); // 8200 → 9200: STIER-3 v4 idiom + shell lines (fixture measures ~8.7k)
     }
   });
 });
@@ -607,7 +607,7 @@ test("STIER-2 gate: compiled v3 briefs pass whole; stripping ONE v3 field fires 
     // A brief with NO v3 markers at all is a legacy v2 brief and passes untouched.
     corruptBrief(roots, 3, (b) => {
       const rec = b as Record<string, unknown>;
-      for (const k of ["rotationSchemaVersion", "exampleCount", "exampleArcs", "practiceSlotShapes", "quizStemShapes", "quizFailureModes", "questionFactOrder", "memorableShapes", "limitsPlacement", "groundingForm", "leadThread"]) delete rec[k];
+      for (const k of ["rotationSchemaVersion", "exampleCount", "exampleArcs", "practiceSlotShapes", "quizStemShapes", "quizFailureModes", "questionFactOrder", "memorableShapes", "limitsPlacement", "groundingForm", "leadThread", "idiomFamilies", "shellRegister"]) delete rec[k];
     });
     const mixed = validateChapterBriefs(BOOK, roots);
     assert.ok(!mixed.findings.some((f) => f.checkId === "BR6.v3_partial" && /chapter 3 /.test(f.message)), "a clean v2 brief never trips the v3 gate");

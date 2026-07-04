@@ -67,7 +67,56 @@ import { normSlug } from "../lib/chapterPaths.js";
  *  v3 = the STIER-2 deal (example arcs + lead thread + quiz stem/failure-mode/order
  *  deals + per-slot practice shapes + memorable shapes + limits placement +
  *  grounding form — plan docs/v24/STIER2-PLAN-2026-07-03.md §B). */
-export const ROTATION_SCHEMA_VERSION = "brief-rotation-v3";
+export const ROTATION_SCHEMA_VERSION = "brief-rotation-v4";
+
+/** STIER-3 P17 (plan docs/v24/STIER3-XCHAPTER-IDIOM-PLAN-2026-07-04.md): idiom
+ *  families for verbalizing the book's shared framework — the round-2 book panel
+ *  failed churn on every chapter speaking the framework in the SAME register. */
+export const IDIOM_FAMILIES = [
+  "mechanism-speak",
+  "people-speak",
+  "artifact-speak",
+  "cost-speak",
+  "question-speak",
+  "contrast-speak",
+  "motion-speak",
+  "ledger-speak",
+  "sensory-speak",
+] as const;
+export type IdiomFamily = (typeof IDIOM_FAMILIES)[number];
+
+/** STIER-3 P18: chapter-level opener register for whatToDo/whyItMatters shells —
+ *  the book-level complement to the per-slot arc fieldStyle. */
+export const SHELL_REGISTERS = [
+  "verb-first",
+  "condition-first",
+  "actor-first",
+  "artifact-first",
+  "cost-first",
+  "question-first",
+] as const;
+export type ShellRegister = (typeof SHELL_REGISTERS)[number];
+
+export const IDIOM_INSTRUCTION: Record<IdiomFamily, string> = {
+  "mechanism-speak": "name what the move DOES — 'the loop that closes', 'the check that fires before the miss'",
+  "people-speak": "name who owes whom what by when — 'Elena owes Marcus the count on Friday'",
+  "artifact-speak": "point at the physical thing — 'the date written where the team reads it'",
+  "cost-speak": "price the default — 'every unowned promise costs a week of pretending'",
+  "question-speak": "carry it as the question someone asks — 'who checks, and when?'",
+  "contrast-speak": "set it against its counterfeit — 'agreement nods; commitment signs'",
+  "motion-speak": "verbs of travel — 'the promise comes back on a date, or it drifts'",
+  "ledger-speak": "counts and balances — 'three promises out, one return date set'",
+  "sensory-speak": "what a bystander would see or hear in the room when it works",
+};
+
+export const SHELL_INSTRUCTION: Record<ShellRegister, string> = {
+  "verb-first": "open on the imperative verb ('Trace the promise…')",
+  "condition-first": "open on the trigger ('When the date slips…')",
+  "actor-first": "open on the named person ('Priya starts by…')",
+  "artifact-first": "open on the object ('The board shows…')",
+  "cost-first": "open on what skipping costs ('Skip this and…')",
+  "question-first": "open on the question the reader should ask ('Who owns the return?')",
+};
 
 export const OPENER_TYPES = ["question", "scene", "claim", "statistic"] as const;
 export type OpenerType = (typeof OPENER_TYPES)[number];
@@ -659,6 +708,10 @@ export type BriefRotation = {
   /** STIER-2 P11: prefer a REAL packet-attested person as the section-thread lead
    *  (compile resolves availability; invented cast[0] otherwise). */
   leadPreferReal: boolean;
+  /** STIER-3 P17: the 2 idiom families this chapter verbalizes the framework through. */
+  idiomFamilies: IdiomFamily[];
+  /** STIER-3 P18: the chapter's whatToDo/whyItMatters opener register. */
+  shellRegister: ShellRegister;
 };
 
 /** Deal all three rotations for a book and return them keyed by 1-based chapter
@@ -696,6 +749,12 @@ export function dealBriefRotations(bookId: string, totalChapters: number): Map<n
   const groundings = dealRotation(bookId, "brief-grounding-form", GROUNDING_FORMS, n, twoThirdsCap(n));
   const leadPrefs = dealLeadPreference(bookId, n);
 
+  // STIER-3 (v4) deals — cross-chapter idiom texture. Shell registers rotate
+  // no-repeat until the pool wraps (same policy as challengeFrame/verbs).
+  const idioms = dealDistinctSet(bookId, "brief-idiom-family", IDIOM_FAMILIES, n, 2, 3);
+  const shellCap = n <= SHELL_REGISTERS.length ? 1 : Math.max(1, oneThirdCap(n));
+  const shells = dealRotation(bookId, "brief-shell-register", SHELL_REGISTERS, n, shellCap);
+
   const out = new Map<number, BriefRotation>();
   for (let i = 0; i < n; i++) {
     // The four practice surfaces get DISTINCT shapes; slot 0 stays the legacy
@@ -722,6 +781,8 @@ export function dealBriefRotations(bookId: string, totalChapters: number): Map<n
       limitsPlacement: limits[i],
       groundingForm: groundings[i],
       leadPreferReal: leadPrefs[i],
+      idiomFamilies: idioms[i],
+      shellRegister: shells[i],
     });
   }
   return out;

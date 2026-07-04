@@ -24,12 +24,14 @@ import {
   EXAMPLE_OUTCOMES,
   FIELD_STYLES,
   GROUNDING_FORMS,
+  IDIOM_FAMILIES,
   LIMITS_PLACEMENTS,
   MEMORABLE_SHAPES,
   PRACTICE_SHAPES,
   QUIZ_FAILURE_MODES,
   QUIZ_STEM_SHAPES,
   ROTATION_SCHEMA_VERSION,
+  SHELL_REGISTERS,
   dealBriefRotations,
   dealDistinctSet,
   dealEntryFloor,
@@ -153,7 +155,8 @@ test("P11: resolveLeadThread — case-led when preferred and anchored, invented 
 
 test("v3: dealBriefRotations carries every STIER-2 field; practice slots are 4 distinct with slot0 == legacy practiceShape", () => {
   const rotations = dealBriefRotations(BOOK, 9);
-  assert.equal(ROTATION_SCHEMA_VERSION, "brief-rotation-v3");
+  assert.equal(ROTATION_SCHEMA_VERSION, "brief-rotation-v4");
+    // STIER-3 (v4): the idiom pair rides every rotation.
   for (const [n, r] of rotations) {
     assert.equal(r.practiceSlotShapes.length, 4, `ch${n} four practice slots`);
     assert.equal(new Set(r.practiceSlotShapes).size, 4, `ch${n} distinct slots (the read-aloud ×4 chant is structurally impossible)`);
@@ -164,6 +167,9 @@ test("v3: dealBriefRotations carries every STIER-2 field; practice slots are 4 d
     assert.equal(r.memorableShapes.length, 3);
     assert.ok((LIMITS_PLACEMENTS as readonly string[]).includes(r.limitsPlacement));
     assert.ok((GROUNDING_FORMS as readonly string[]).includes(r.groundingForm));
+    assert.equal(new Set(r.idiomFamilies).size, 2, `ch${n} two DISTINCT idiom families`);
+    for (const f of r.idiomFamilies) assert.ok((IDIOM_FAMILIES as readonly string[]).includes(f));
+    assert.ok((SHELL_REGISTERS as readonly string[]).includes(r.shellRegister));
   }
 });
 
@@ -203,6 +209,8 @@ function mkV3Brief(n: number): ChapterBriefV1 {
     limitsPlacement: r.limitsPlacement,
     groundingForm: r.groundingForm,
     leadThread: resolveLeadThread(r.leadPreferReal, [{ id: "c1", label: "Honeywell 1999 integration" }], cast),
+    idiomFamilies: r.idiomFamilies,
+    shellRegister: r.shellRegister,
   } as ChapterBriefV1;
 }
 
@@ -219,6 +227,8 @@ test("v3 VARIETY render: every dealt lever line present; v2 briefs render untouc
   assert.ok(lines.includes("MEMORABLE LINES"), "memorable shapes present");
   assert.ok(lines.includes("LIMITS PLACEMENT"), "limits placement present");
   assert.ok(lines.includes("FIRST-MENTION GROUNDING"), "grounding form present");
+  assert.ok(lines.includes("FRAMEWORK IDIOM"), "STIER-3 idiom line present");
+  assert.ok(lines.includes("EXAMPLE SHELL REGISTER"), "STIER-3 shell line present");
   // The arc table is the single source of the failure slot — no duplicate friction
   // prose even when the flag is set (forced TRUE so the assertion can't pass vacuously).
   const frictionLines = briefVarietyInstructionLines({ ...brief, requireFrictionExample: true } as ChapterBriefV1).join("\n");
@@ -227,10 +237,11 @@ test("v3 VARIETY render: every dealt lever line present; v2 briefs render untouc
   // Force the friction flag TRUE — whether ch5 is friction-dealt is the dealer's
   // business; this assertion is about the v2 RENDER path, not the deal.
   const v2 = { ...brief } as Record<string, unknown>;
-  for (const k of ["rotationSchemaVersion", "exampleCount", "exampleArcs", "practiceSlotShapes", "quizStemShapes", "quizFailureModes", "questionFactOrder", "memorableShapes", "limitsPlacement", "groundingForm", "leadThread"]) delete v2[k];
+  for (const k of ["rotationSchemaVersion", "exampleCount", "exampleArcs", "practiceSlotShapes", "quizStemShapes", "quizFailureModes", "questionFactOrder", "memorableShapes", "limitsPlacement", "groundingForm", "leadThread", "idiomFamilies", "shellRegister"]) delete v2[k];
   v2.requireFrictionExample = true;
   const v2lines = briefVarietyInstructionLines(v2 as ChapterBriefV1).join("\n");
   assert.ok(!v2lines.includes("EXAMPLE PLAN"), "no v3 lines on a v2 brief");
+  assert.ok(!v2lines.includes("FRAMEWORK IDIOM") && !v2lines.includes("EXAMPLE SHELL REGISTER"), "no v4 lines on a v2 brief");
   assert.ok(v2lines.includes("At least ONE of your examples must show the move failing"), "v2 friction sentence still renders on v2 briefs");
 });
 
