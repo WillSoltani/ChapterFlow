@@ -26,7 +26,7 @@ function chapterWith(...scenarios: string[]): ChapterV21 {
       title: "t",
       scenario,
     })) as unknown as Example[],
-  } as ChapterV21;
+  } as unknown as ChapterV21;
 }
 
 test("C29 fires on a thin blob — no name, no number, no movement, only the lesson restated", () => {

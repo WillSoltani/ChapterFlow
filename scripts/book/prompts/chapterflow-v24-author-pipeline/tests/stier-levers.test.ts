@@ -753,6 +753,60 @@ test("Phase 3 integration: a KEY DEFECT surfaced by a tiebreak read STICKS — t
   }
 });
 
+test("Phase 3 (mustFix refinement): a ≥bar near-bar FAIL with ZERO mustFix across 3 reads converts even without ship-majority; a single mustFix keeps it failed", async () => {
+  // Shared harness builder: original + 2 tiebreak reads all ship=false at 82,
+  // parameterized by whether any read carries a mustFix complaint.
+  const run = async (withMustFix: boolean) => {
+    const chapters = [makeChapter(BOOK, 1)];
+    rmSync(reviewDir(BOOK), { recursive: true, force: true });
+    let n = 0; const persisted: ChapterReviewV1[] = []; let regens = 0;
+    const spawns: string[] = [];
+    const deps = {
+      spawn: (async (o: { sessionId: string }) => {
+        spawns.push(o.sessionId);
+        let msg: string;
+        // All reads: ship=false, composite 82 (≥ bar 80), keys clean. The
+        // complaint (mustFix) is present only in the withMustFix arm.
+        if (o.sessionId.includes("tiebreak") || o.sessionId.includes("author-review-ch")) {
+          msg = readerReply(chapters[0], { ship: false, score: 82, complaint: withMustFix ? "a thin example fails the learning promise" : undefined });
+        } else if (o.sessionId.includes("author-book-reader")) msg = bookAcceptReply(chapters);
+        else { msg = "done"; }
+        return { ok: true, exitCode: 0, finalMessage: msg, stdout: msg, stderr: "", durationMs: 1, sessionId: o.sessionId };
+      }) as unknown as AutopilotDeps["spawn"],
+      mkSessionId: (label: string) => `${label}#${++n}`,
+      logSession: () => {}, expectedChapterNumbers: () => chapters.map((c) => c.number), log: () => {},
+      runVerb: async () => ({ code: 0, stdout: "gate ok", stderr: "" }),
+    } as unknown as AutopilotDeps;
+    const tmpDoc = mkdtempSync(join(tmpdir(), "p3-mf-"));
+    const io: Partial<AuthorReviewIo> = {
+      loadChapters: () => chapters, authorSessionOf: () => "the-author", chapterExists: () => true,
+      readBriefMd: () => "# Chapter 1\nbrief body", readPacket: () => mkPacket(1, ["a cadence claim"]), readBrief: () => null,
+      writeReviewDoc: (bookId, fileName, text) => { const abs = join(tmpDoc, `${bookId}-${fileName}`); writeFileSync(abs, text, "utf8"); return { absPath: abs, relPath: abs }; },
+      persistReview: (bookId, review) => { persisted.push(review); return "/tmp/r.json"; },
+      persistAcceptance: () => "/tmp/a.json",
+      acceptance: { openRound: () => ({ roundId: "r", tokens: {} }), writeBar: () => "/tmp/b.json", writeConfirm: () => "/tmp/c.json", writeAttestation: () => "/tmp/att.json" },
+      evidence: { runKeyJudge: async () => ({ ok: true }), runSweep: async () => ({ ok: true }) },
+      resolveBeatShipped: async () => ({ ok: true, composite: null, source: "none" }),
+      regenConsumedFor: () => 0, recordRegenConsumed: () => { regens++; }, migrateRegenLedger: () => {},
+    };
+    try {
+      const result = await doAuthorReview(BOOK, deps, { maxParallel: 2, bar: 80, io });
+      return { result, persisted, regens, spawns };
+    } finally { rmSync(tmpDoc, { recursive: true, force: true }); rmSync(reviewDir(BOOK), { recursive: true, force: true }); rmSync(join(dirname(reviewDir(BOOK)), `${BOOK}.review-clears.json`), { force: true }); }
+  };
+
+  // No mustFix anywhere → no true blocker → converts on the ≥bar median despite ship=false.
+  const clean = await run(false);
+  assert.equal(clean.result, null, `no-mustFix book completes: ${JSON.stringify(clean.result)}`);
+  assert.equal(clean.regens, 0, "no-mustFix conversion consumes no regen");
+  assert.equal(clean.persisted.filter((r) => r.chapterNumber === 1).at(-1)!.pass, true, "≥bar + zero mustFix converts to PASS");
+
+  // A single mustFix (a real thin-example blocker) → stays failed → regen path (fail-closed halt here).
+  const blocked = await run(true);
+  assert.ok(blocked.persisted.every((r) => r.chapterNumber !== 1 || r.pass === false), "a mustFix true blocker is never converted by the no-mustFix path");
+  assert.ok(blocked.result !== null && blocked.result.status === "halt", "the mustFix blocker escalates (no false pass)");
+});
+
 // ── Budget-repair round (live-added after the first S-tier run blocked here) ──
 
 test("budget repair: per-chapter complaints name each chapter's OWN band words and strawman hits; advisories route nothing", () => {

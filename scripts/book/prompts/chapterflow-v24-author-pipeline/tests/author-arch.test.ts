@@ -405,7 +405,8 @@ test("author card: W1 QUALITY BAR (all four house rules) rides the ALWAYS-SENT c
   // Rule 7 — example craft (Phase 5): the thin/manufactured-example write-time
   // standard that shifts C29 + the reader's slot-filler judgment left.
   assert.match(card, /EXAMPLE CRAFT/i, "rule 7 names the example-craft standard");
-  assert.match(card, /no name, no number, AND no movement/i, "rule 7 states the thin-example reject condition");
+  assert.match(card, /DECISION and its COMPLETED CONSEQUENCE/i, "rule 7 demands the decision→consequence arc");
+  assert.match(card, /FAILED example/i, "rule 7 states the thin-example reject condition");
 
   // Length budget: the WHOLE card stays <= 16,700 chars (W1 spec, bumped from
   // 16,000 for the Phase-5 example-craft rule). The variable parts (brief md +

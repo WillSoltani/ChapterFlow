@@ -740,14 +740,32 @@ async function tiebreakNearBarVerdict(
   const medianComposite = validReads.length > 0 ? trueMedian(validReads.map((r) => r.composite)) : 0;
   const shipCount = validReads.filter((r) => r.ship84).length;
   const shipMajority = shipCount * 2 > validReads.length; // strict majority of the valid reads
-  const converted = validReads.length >= 2 && !anyKeyDefect && medianComposite >= bar && shipMajority;
+  // The directive's pass condition is "median ≥ bar with NO TRUE BLOCKER." The
+  // reader's OWN mustFix flag is the true-blocker signal — a manufactured example
+  // that fails the learning promise, an unsound key, a missing section all get
+  // marked mustFix ("whether you would block shipping on it"). So a chapter that
+  // clears the bar with clean keys/quotes and NO mustFix across THREE independent
+  // reads has, by the directive's definition, no true blocker — even if the
+  // holistic ship84 gestalt stayed false. Convert on ship-majority OR a
+  // unanimous no-mustFix; the ship84 boolean alone no longer blocks a ≥bar,
+  // blocker-free chapter (that residual brittleness is exactly what the bar drop
+  // targeted). ANY mustFix on ANY read keeps the FAIL → true blockers stay strict.
+  const noMustFix = validReads.length > 0 && validReads.every((r) => !r.complaints.some((c) => c.mustFix));
+  const convertReason = shipMajority ? "ship-majority" : noMustFix ? "no-mustFix (no true blocker)" : "";
+  const converted = validReads.length >= 2 && !anyKeyDefect && medianComposite >= bar && (shipMajority || noMustFix);
   const reads = allReads.map((r) => ({
     reviewerSessionId: r.reviewerSessionId, composite: r.composite, ship: r.ship84, valid: r.valid,
   }));
   if (converted) {
-    const deciding = [...validReads]
-      .filter((r) => r.ship84 && r.keyCheck.matches === r.keyCheck.of)
-      .sort((a, b) => b.composite - a.composite)[0];
+    // Prefer a ship+clean read as the persisted decider; fall back to the highest
+    // clean-keys read for the no-mustFix path (no reader shipped, but none named a
+    // blocker). Force pass=true — the tiebreak is the collective decision that
+    // overrides the individual ship gestalt when no true blocker exists.
+    const cleanKeyed = (r: ChapterReviewV1) => r.keyCheck.matches === r.keyCheck.of;
+    const shipCandidates = validReads.filter((r) => r.ship84 && cleanKeyed(r));
+    const pool = shipCandidates.length > 0 ? shipCandidates : validReads.filter(cleanKeyed);
+    const base = [...pool].sort((a, b) => b.composite - a.composite)[0];
+    const deciding: ChapterReviewV1 = base.pass ? base : { ...base, pass: true };
     // Deciding PASS persists LAST — it owns the latest-pointer and the history
     // slot for this content hash; the clears ledger rebuild sees the PASS.
     io.persistReview(bookId, deciding);
@@ -761,7 +779,7 @@ async function tiebreakNearBarVerdict(
         reads,
       });
     } catch { /* forensic note; never fail a decided review on it */ }
-    deps.log(`[autopilot] author review ch${nn}: tiebreak median ${medianComposite} ≥ bar ${bar} with ship-majority ${shipCount}/${validReads.length} (reads ${allReads.map((r) => r.composite).join(", ")}) — deciding PASS ${deciding.composite} persisted; original FAIL's complaints preserved in tiebreak notes`);
+    deps.log(`[autopilot] author review ch${nn}: tiebreak median ${medianComposite} ≥ bar ${bar} via ${convertReason} (ship ${shipCount}/${validReads.length}, reads ${allReads.map((r) => r.composite).join(", ")}) — deciding PASS ${deciding.composite} persisted; original FAIL's complaints preserved in tiebreak notes`);
     return { review: deciding, extraComplaints: [] };
   }
   // Fail stands. Never persist a losing PASS (it would mint a clear at this
