@@ -373,6 +373,34 @@ export function screenChapterStructuralClaims(
   return screen;
 }
 
+/** Formatting normalization for quote verification: NFC unicode, curly quotes →
+ *  straight, en/em dashes → hyphen, non-breaking → normal space, all whitespace
+ *  runs (incl. newlines) → one space, lowercased, trimmed. Deliberately narrow —
+ *  it forgives ONLY presentation (case, quote glyphs, whitespace), never word
+ *  choice, so a fabricated quote still fails the substring test. */
+function normalizeForQuoteMatch(s: string): string {
+  return s
+    .normalize("NFC")
+    .replace(/[‘’‛′]/g, "'")
+    .replace(/[“”‟″]/g, '"')
+    .replace(/[–—−]/g, "-")
+    .replace(/ /g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+/** A quote is verified if it is an exact substring of the doc, OR — after the
+ *  narrow formatting normalization above — a normalized substring. Fabrication
+ *  (words not in the chapter) is still rejected; only formatting flakes pass. */
+export function quoteVerified(docText: string, quote: string): boolean {
+  if (typeof quote !== "string" || quote.length === 0) return false;
+  if (docText.includes(quote)) return true;
+  const nq = normalizeForQuoteMatch(quote);
+  if (nq.length === 0) return false;
+  return normalizeForQuoteMatch(docText).includes(nq);
+}
+
 export type AdjudicateOpts = { bar?: number; reviewerSessionId?: string };
 
 /** Deterministically adjudicate a parsed reader review against the rendered
@@ -391,11 +419,18 @@ export function adjudicateReview(
 ): ChapterReviewV1 {
   const bar = opts.bar ?? AUTHOR_CHAPTER_BAR;
 
-  // (a) quote byte-verification.
+  // (a) quote verification — exact substring first, then a FORMATTING-normalized
+  // fallback (quoteVerified). The anti-fabrication guarantee is preserved: the
+  // fallback only forgives case, smart-quotes/dashes, and whitespace/newline
+  // runs — a reader who invents words the chapter never wrote still fails. It
+  // rescues the common flake where a reader quotes a mid-sentence fragment as a
+  // standalone (capitalizing the leading letter) or normalizes a curly quote —
+  // 9 such false-invalid respawns in one gold run, twice failing a shippable
+  // chapter (ch06: "The return is set and not yet met." vs the doc's lowercase).
   const quotes = parsed.quotes.map((q) => ({
     quote: q.quote,
     why: q.why,
-    verified: docText.includes(q.quote),
+    verified: quoteVerified(docText, q.quote),
   }));
   const quotesValid = quotes.length > 0 && quotes.every((q) => q.verified);
 

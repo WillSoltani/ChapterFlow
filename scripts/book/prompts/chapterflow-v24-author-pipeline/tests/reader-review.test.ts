@@ -26,6 +26,7 @@ import {
   chapterDocKeyRowLines,
   chapterDocQuestionLineCount,
   parseReaderReview,
+  quoteVerified,
   screenChapterStructuralClaims,
   writeChapterReview,
   type ParsedReaderReview,
@@ -222,6 +223,31 @@ test("buildReaderReviewTask substitutes the doc path and the bar into the GATE l
   assert.ok(task90.includes("professional >=90/100 bar? true/false"));
   // The JSON contract field name stays ship84 regardless of the bar.
   assert.ok(task90.includes('"ship84"'));
+});
+
+// ── quoteVerified — formatting-normalized quote match (anti-fabrication intact) ──
+
+test("quoteVerified: exact substring verifies", () => {
+  const doc = "Showing up is the vote that compounds into an identity.";
+  assert.equal(quoteVerified(doc, "the vote that compounds"), true);
+});
+
+test("quoteVerified: the ch06 flake — a mid-sentence fragment quoted with a capitalized leading letter verifies", () => {
+  const doc = 'she stakes the trust claim alone; the return is set and not yet met. Who carries it?';
+  // Reader capitalized "The" (quoting it as a standalone sentence) — verbatim otherwise.
+  assert.equal(quoteVerified(doc, "The return is set and not yet met."), true);
+});
+
+test("quoteVerified: curly quotes, dashes, and newline/whitespace runs are forgiven", () => {
+  const doc = "He said, “start with why”—then\n   demand proof.";
+  assert.equal(quoteVerified(doc, 'He said, "start with why"-then demand proof.'), true);
+});
+
+test("quoteVerified: FABRICATION still fails — invented words are never verified", () => {
+  const doc = "Showing up is the vote that compounds into an identity.";
+  assert.equal(quoteVerified(doc, "Showing up is the vote that guarantees success."), false, "a different word is fabrication");
+  assert.equal(quoteVerified(doc, "This sentence is nowhere in the document."), false);
+  assert.equal(quoteVerified(doc, ""), false, "empty quote never verifies");
 });
 
 // ── parseReaderReview ───────────────────────────────────────────────────────
