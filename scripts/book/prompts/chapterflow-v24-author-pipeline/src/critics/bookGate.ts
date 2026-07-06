@@ -18,6 +18,7 @@ import {
 } from "./quizQuality.js";
 import { checkKeyedChoiceDuplication } from "./quizCorrectness.js";
 import { checkBookQuizPromptTemplates } from "./antiSalting.js";
+import { checkArchitectureMonoculture } from "./architectureMonoculture.js";
 import { loadBannedPhrases } from "./shared.js";
 import { normalizeConvergenceKey } from "./experiencePlan.js";
 import {
@@ -555,6 +556,23 @@ export function runBookGate(bookId: string, chapters: ChapterV21[], options: Boo
     findings.push({
       catalogId: f.checkId,
       severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+      chapters: f.chapters,
+    });
+  }
+
+  // ── ARCH0-4 — book-level STRUCTURAL-SKELETON monoculture (2026-07-05). ────
+  // The surface critics above (BP26-31, AS4) vary the dressing; this catches a
+  // book where every chapter runs the SAME delivery skeleton (practice shell,
+  // reversal device, lead anchor, compound takeaway) — the "churn HIGH" the
+  // book-acceptance panel rejects. Advisory (major, surfaced): the semantic panel
+  // is the true gate; this makes the sameness deterministically visible + names
+  // the chapters the book-sameness repair lane should diversify. Never blocks.
+  for (const f of checkArchitectureMonoculture(chapters)) {
+    findings.push({
+      catalogId: f.catalogId,
+      severity: f.severity,
       message: f.message,
       evidence: f.evidence,
       chapters: f.chapters,

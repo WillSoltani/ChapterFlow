@@ -20,6 +20,7 @@ import { join } from "node:path";
 import { test } from "./harness.js";
 import { makeChapter } from "./helpers.js";
 import {
+  ARCHITECTURE_FAMILIES,
   EXAMPLE_ENTRY_POINTS,
   EXAMPLE_OUTCOMES,
   FIELD_STYLES,
@@ -185,9 +186,11 @@ test("resolveLeadThread prefers a real NAMED case over a framework CONCEPT (star
 
 test("v3: dealBriefRotations carries every STIER-2 field; practice slots are 4 distinct with slot0 == legacy practiceShape", () => {
   const rotations = dealBriefRotations(BOOK, 9);
-  assert.equal(ROTATION_SCHEMA_VERSION, "brief-rotation-v4");
+  assert.equal(ROTATION_SCHEMA_VERSION, "brief-rotation-v5");
     // STIER-3 (v4): the idiom pair rides every rotation.
   for (const [n, r] of rotations) {
+    // v5 (2026-07-05): every rotation carries a whole-skeleton architecture family.
+    assert.ok((ARCHITECTURE_FAMILIES as readonly string[]).includes(r.architectureFamily), `ch${n} has a valid architecture family`);
     assert.equal(r.practiceSlotShapes.length, 4, `ch${n} four practice slots`);
     assert.equal(new Set(r.practiceSlotShapes).size, 4, `ch${n} distinct slots (the read-aloud ×4 chant is structurally impossible)`);
     assert.equal(r.practiceSlotShapes[0], r.practiceShape, `ch${n} slot0 stays the legacy dealt shape`);

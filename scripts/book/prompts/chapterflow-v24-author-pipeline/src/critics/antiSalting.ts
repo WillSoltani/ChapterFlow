@@ -364,7 +364,7 @@ export function checkBookQuizPromptTemplates(chapters: ChapterV21[]): CriticFind
  * Tokenize a string into lowercase word tokens, stripping punctuation. Used
  * for similarity scoring.
  */
-function tokenize(s: string): string[] {
+export function tokenize(s: string): string[] {
   return s.toLowerCase().split(/[^a-z0-9']+/).filter(Boolean);
 }
 
@@ -379,13 +379,13 @@ function tokenize(s: string): string[] {
  *   Jaccard:      14 / 18 = 0.778
  * Both fire above the 0.7 threshold; word-overlap is more intuitive to read.
  */
-function wordOverlapSimilarity(a: string[], b: string[]): number {
+export function wordOverlapSimilarity(a: string[], b: string[]): number {
   if (a.length === 0 || b.length === 0) return 0;
   return sharedWordCount(a, b) / Math.max(a.length, b.length);
 }
 
 /** Multiset intersection size: how many word occurrences a and b share. */
-function sharedWordCount(a: string[], b: string[]): number {
+export function sharedWordCount(a: string[], b: string[]): number {
   const counterA = new Map<string, number>();
   for (const w of a) counterA.set(w, (counterA.get(w) ?? 0) + 1);
   const counterB = new Map<string, number>();

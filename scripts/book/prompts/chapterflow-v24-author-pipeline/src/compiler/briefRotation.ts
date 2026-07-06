@@ -67,7 +67,7 @@ import { normSlug } from "../lib/chapterPaths.js";
  *  v3 = the STIER-2 deal (example arcs + lead thread + quiz stem/failure-mode/order
  *  deals + per-slot practice shapes + memorable shapes + limits placement +
  *  grounding form — plan docs/v24/STIER2-PLAN-2026-07-03.md §B). */
-export const ROTATION_SCHEMA_VERSION = "brief-rotation-v4";
+export const ROTATION_SCHEMA_VERSION = "brief-rotation-v5";
 
 /** STIER-3 P17 (plan docs/v24/STIER3-XCHAPTER-IDIOM-PLAN-2026-07-04.md): idiom
  *  families for verbalizing the book's shared framework — the round-2 book panel
@@ -120,6 +120,29 @@ export const SHELL_INSTRUCTION: Record<ShellRegister, string> = {
 
 export const OPENER_TYPES = ["question", "scene", "claim", "statistic", "tension-thesis"] as const;
 export type OpenerType = (typeof OPENER_TYPES)[number];
+
+/**
+ * ARCHITECTURE FAMILY (2026-07-05) — the chapter's whole-SKELETON shape, dealt
+ * ABOVE the opener/practice/lead rotations. The surface deals vary the dressing;
+ * the book-acceptance panel rejected start-with-why "churn HIGH" because every
+ * chapter still ran ONE skeleton (3 named anchors → proxy cast → return-point
+ * device → Friday drill), which no existing deal controlled. This deal assigns
+ * each chapter a DISTINCT structural skeleton and — critically — PROHIBITS the
+ * default 3-anchor+proxy+return machinery where the family calls for a different
+ * shape. Rotated with a two-thirds cap so no single skeleton dominates the book.
+ * Keeps the thesis/app-structure constant; varies only the delivery architecture.
+ */
+export const ARCHITECTURE_FAMILIES = [
+  "single-deep-case",       // ONE anchor developed end to end; no second/third case, no proxy chorus.
+  "two-way-contrast",       // exactly TWO cases held in tension; the contrast IS the lesson.
+  "research-lead",          // open on a study/mechanism/data; named cases are secondary, cast minimal.
+  "failure-autopsy",        // dissect ONE failure and what it cost; no frictionless win, no return-drill close.
+  "everyday-first-person",  // the reader's own moment/decision, no famous brand anchor; second person.
+  "misconception-reversal", // open on the belief the reader holds, then overturn it; argument-driven, no 3-anchor.
+  "historical-narrative",   // one case told as a chronological story with real stakes; no proxy stand-ins.
+  "direct-conceptual",      // frame the idea directly with one worked illustration; examples support, not lead.
+] as const;
+export type ArchitectureFamily = (typeof ARCHITECTURE_FAMILIES)[number];
 
 export const CHALLENGE_FRAMES = [
   "before-your-next-X",
@@ -204,6 +227,22 @@ export const OPENER_INSTRUCTION: Record<OpenerType, string> = {
   claim: "Open the hook with a flat CLAIM that sounds wrong until the chapter proves it.",
   statistic: "Open the hook with a concrete NUMBER or measured result, then the stakes.",
   "tension-thesis": "Open the hook with the chapter's core tension stated flat in two short sentences — no named person, no scene furniture; the second sentence carries the friction ('Everyone agreed. No one knew who would bring back proof.').",
+};
+
+/** The whole-skeleton directive for each architecture family — rendered as the
+ *  FIRST, top-level structural instruction in the brief so the writer chooses the
+ *  chapter's SHAPE before anything else. Each one names what to do AND what NOT to
+ *  do, because the default (3 named anchors → proxy chorus → return-point drill)
+ *  is the writer's fallback and the source of the book-level monoculture. */
+export const ARCHITECTURE_INSTRUCTION: Record<ArchitectureFamily, string> = {
+  "single-deep-case": "Build the WHOLE chapter on ONE case, developed end to end. Do NOT add a 'second setting proves it travels' case or a third 'edge' case, and do NOT staff it with a chorus of invented role+name proxies — one real situation, followed all the way through.",
+  "two-way-contrast": "Structure the chapter as exactly TWO cases held in tension — the contrast itself is the lesson. No third edge case, no proxy chorus; let the two do all the work.",
+  "research-lead": "Open on a study, mechanism, or measured finding and let the IDEA drive; named company cases are secondary and sparse. Do NOT open on a famous founder/brand, and keep invented cast to at most one.",
+  "failure-autopsy": "Dissect ONE failure and exactly what it cost, step by step. No frictionless-win second case, and do NOT close on the 'proof must come back / return point' reversal drill — end on the lesson the failure teaches.",
+  "everyday-first-person": "Ground the chapter in the READER's own moment — write to 'you', a decision they actually face. No famous brand/founder anchor and no invented proxy cast; the reader is the protagonist.",
+  "misconception-reversal": "Open on the specific belief the reader already holds, then overturn it with argument and one clean illustration. Argument-driven — do NOT run the 3-anchor 'concrete → travels → edge' sequence.",
+  "historical-narrative": "Tell ONE case as a chronological story with real dates, actors, and stakes. No invented stand-in characters and no second/third mirror case — the single narrative carries it.",
+  "direct-conceptual": "Frame the idea directly and unfold it with ONE worked illustration. Examples SUPPORT the concept rather than lead it; skip the named-anchor parade and the return-point drill.",
 };
 
 export const PRACTICE_INSTRUCTION: Record<PracticeShape, string> = {
@@ -676,6 +715,10 @@ export function dealLeadPreference(bookId: string, totalChapters: number): boole
 }
 
 export type BriefRotation = {
+  /** v5 (2026-07-05): the whole-skeleton architecture family — dealt ABOVE the
+   *  surface rotations so each chapter's overall SHAPE differs, not just its
+   *  dressing. The anti-monoculture lever. */
+  architectureFamily: ArchitectureFamily;
   openerType: OpenerType;
   challengeFrame: ChallengeFrame;
   practiceShape: PracticeShape;
@@ -756,6 +799,10 @@ export function dealBriefRotations(bookId: string, totalChapters: number): Map<n
   const shellCap = n <= SHELL_REGISTERS.length ? 1 : Math.max(1, oneThirdCap(n));
   const shells = dealRotation(bookId, "brief-shell-register", SHELL_REGISTERS, n, shellCap);
 
+  // v5 (2026-07-05) — the whole-skeleton architecture family, two-thirds cap so no
+  // single delivery mold dominates the book (the churn-HIGH monoculture fix).
+  const architectures = dealRotation(bookId, "brief-architecture-family", ARCHITECTURE_FAMILIES, n, twoThirdsCap(n));
+
   const out = new Map<number, BriefRotation>();
   for (let i = 0; i < n; i++) {
     // The four practice surfaces get DISTINCT shapes; slot 0 stays the legacy
@@ -766,6 +813,7 @@ export function dealBriefRotations(bookId: string, totalChapters: number): Map<n
       if (!slots.includes(s)) slots.push(s);
     }
     out.set(i + 1, {
+      architectureFamily: architectures[i],
       openerType: openers[i],
       challengeFrame: frames[i],
       practiceShape: shapes[i],

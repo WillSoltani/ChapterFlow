@@ -50,6 +50,9 @@ import {
   IDIOM_INSTRUCTION,
   LENS_INSTRUCTION,
   LIMITS_INSTRUCTION,
+  ARCHITECTURE_FAMILIES,
+  ARCHITECTURE_INSTRUCTION,
+  type ArchitectureFamily,
   LIMITS_PLACEMENTS,
   MEMORABLE_SHAPES,
   MEMORABLE_SHAPE_INSTRUCTION,
@@ -211,6 +214,7 @@ function fallbackRotation(n: number): BriefRotation {
   };
   const perm = Array.from({ length: 9 }, (_, k) => ((i + k) % 9) + 1);
   return {
+    architectureFamily: ARCHITECTURE_FAMILIES[i % ARCHITECTURE_FAMILIES.length],
     openerType: OPENER_TYPES[i % OPENER_TYPES.length],
     challengeFrame: CHALLENGE_FRAMES[i % CHALLENGE_FRAMES.length],
     practiceShape: PRACTICE_SHAPES[i % PRACTICE_SHAPES.length],
@@ -462,6 +466,7 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
       avoid: [...new Set(avoid)].slice(0, AVOID_CAP),
       lengthBudget: { renderedChars: opts.lengthBudget ?? DEFAULT_LENGTH_BUDGET_CHARS, tolerance: LENGTH_BUDGET_TOLERANCE },
       flavor: flavorByChapter.get(n) ?? [],
+      architectureFamily: (rotations.get(n) ?? fallbackRotation(n)).architectureFamily,
       openerType: (rotations.get(n) ?? fallbackRotation(n)).openerType,
       challengeFrame: (rotations.get(n) ?? fallbackRotation(n)).challengeFrame,
       practiceShape: (rotations.get(n) ?? fallbackRotation(n)).practiceShape,
@@ -501,11 +506,18 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
   const opener = OPENER_INSTRUCTION[brief.openerType] ?? `Open the hook in "${brief.openerType}" mode.`;
   const frame = CHALLENGE_INSTRUCTION[brief.challengeFrame] ?? `frame it as "${brief.challengeFrame}"`;
   const practice = PRACTICE_INSTRUCTION[brief.practiceShape] ?? `Shape tryThisNow as "${brief.practiceShape}".`;
-  const lines = [
+  const lines: string[] = [];
+  // v5 (2026-07-05): the whole-SKELETON directive leads — the writer picks the
+  // chapter's SHAPE before the opener/practice dressing. The anti-monoculture lever.
+  if (brief.architectureFamily) {
+    const arch = ARCHITECTURE_INSTRUCTION[brief.architectureFamily as ArchitectureFamily];
+    if (arch) lines.push(`- CHAPTER ARCHITECTURE (${brief.architectureFamily}): ${arch} This is the chapter's overall SHAPE — the sections below dress it; they do not override it.`);
+  }
+  lines.push(
     `- OPENER: ${opener} Carry the SAME mode into the fastRead opening sentence.`,
     `- 24-HOUR CHALLENGE: Frame it as ${brief.challengeFrame} — ${frame} Do NOT use the "In the next 24 hours," stem.`,
     `- PRACTICE: ${practice}`,
-  ];
+  );
   // v24 S-tier P2/P4/P1 — optional fields; briefs compiled before 2026-07-03 render the
   // original three lines unchanged.
   const exCount = brief.exampleCount ?? 6;

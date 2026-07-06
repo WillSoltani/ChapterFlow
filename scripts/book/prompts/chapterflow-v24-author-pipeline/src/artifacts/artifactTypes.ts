@@ -178,6 +178,13 @@ export type ChapterBriefV1 = {
   /** Non-binding venue/frame suggestions from the book design pools (empty without a design
    *  artifact). Use, adapt, or ignore. */
   flavor: string[];
+  /** v5 (2026-07-05): the whole-SKELETON architecture family dealt to this chapter
+   *  (single-deep-case / two-way-contrast / research-lead / failure-autopsy /
+   *  everyday-first-person / misconception-reversal / historical-narrative /
+   *  direct-conceptual). Dealt ABOVE the surface rotations and rendered as the
+   *  FIRST structural writer instruction — the anti-monoculture lever. Optional so
+   *  briefs compiled before v5 render without it. */
+  architectureFamily?: string;
   /** HARD reservation (v24 W4): the hook/fastRead opening MODE dealt to this chapter, rotated
    *  across {question, scene, claim, statistic} so no one mode dominates the book (CHB6 backstop).
    *  Rendered as an explicit writer instruction. */
