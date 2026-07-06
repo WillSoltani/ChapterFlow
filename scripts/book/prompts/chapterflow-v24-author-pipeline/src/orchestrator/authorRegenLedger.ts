@@ -323,6 +323,24 @@ export function samenessRepairConsumedFor(ledger: AuthorRegenLedger, chapterNumb
   return Number.isInteger(keyed) && (keyed as number) > 0 ? (keyed as number) : 0;
 }
 
+/** CONTROLLED reset of a chapter's book-sameness-repair grant for its lineage —
+ *  the ONLY lane that can be reset, and ONLY for the sameness repair (a deliberate
+ *  operator retry of a specific chapter). Bounded: it grants at most one fresh
+ *  attempt (the next record re-consumes it). Never touches the regen/repair/budget
+ *  evidence. Returns the persisted ledger. */
+export function resetSamenessRepairConsumed(
+  bookId: string,
+  chapterNumber: number,
+  lineage: string,
+  stateRoot: string = CANONICAL_STATE,
+): AuthorRegenLedger {
+  const ledger = loadAuthorRegenLedger(bookId, stateRoot);
+  if (ledger.samenessRepairConsumed) delete ledger.samenessRepairConsumed[`${chapterNumber}@${lineage}`];
+  ledger.updatedAt = new Date().toISOString();
+  persist(ledger, stateRoot);
+  return ledger;
+}
+
 /** Record ONE consumed book-sameness-repair write for a chapter's lineage and
  *  persist, tagged with the repair reason for audit. Counts only ever grow (a
  *  failed diversification still counts — no unlimited retries). Never mutates the

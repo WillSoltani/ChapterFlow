@@ -648,12 +648,15 @@ export async function runDiversify(args: string[], flags: Flags): Promise<number
   const preserveChapters = typeof flags["preserve"] === "string"
     ? flags["preserve"].split(",").map((s) => parseInt(s.trim(), 10)).filter((n) => Number.isInteger(n))
     : undefined;
+  const onlyChapters = typeof flags["only"] === "string"
+    ? flags["only"].split(",").map((s) => parseInt(s.trim(), 10)).filter((n) => Number.isInteger(n))
+    : undefined;
 
   console.log(bold(`\n🎛  Diversify (book-sameness repair) — ${bookId}`));
   console.log(dim(`   codex=${process.env.CHAPTERFLOW_CODEX_BIN ?? "(PATH)"}${logFile ? ` · log=${logFile}` : ""} · re-authors ONLY selected chapters; preserves the rest; no publish, no push.`));
   const started = Date.now();
   const deps = resolveDeps({ log: (m) => emit(bookId, m) });
-  const result = await doBookSamenessRepair(bookId, deps, { maxParallel, preserveChapters, targetCap });
+  const result = await doBookSamenessRepair(bookId, deps, { maxParallel, preserveChapters, targetCap, onlyChapters });
   const mins = Math.round((Date.now() - started) / 60000);
 
   if (!result.fired) {

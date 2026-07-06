@@ -52,6 +52,11 @@ export type SamenessRepairOptions = {
   avoidFamilies?: ArchitectureFamily[];
   /** Chapters known to be already-distinct — force-preserved even if an axis grazes them. */
   preserveChapters?: number[];
+  /** Operator override: force EXACTLY these chapters as targets (in order), firing
+   *  even when the ARCH0 aggregate no longer trips — used to RETRY specific chapters
+   *  (reverts, or a chapter a fresh review newly flagged) after an earlier round has
+   *  already cleared the aggregate signal. */
+  forceChapters?: number[];
 };
 
 const DEFAULT_TARGET_CAP = 6;
@@ -65,8 +70,9 @@ export function planBookSamenessRepair(
   totalChapters: number,
   opts: SamenessRepairOptions = {},
 ): SamenessRepairPlan {
+  const forced = opts.forceChapters && opts.forceChapters.length > 0 ? opts.forceChapters : null;
   const aggregate = findings.find((f) => f.catalogId === "ARCH0.architecture_monoculture");
-  if (!aggregate) return { fired: false, targets: [], preserved: [] };
+  if (!aggregate && !forced) return { fired: false, targets: [], preserved: [] };
 
   const targetCap = opts.targetCap ?? DEFAULT_TARGET_CAP;
   const preserveSet = new Set(opts.preserveChapters ?? []);
@@ -81,10 +87,13 @@ export function planBookSamenessRepair(
     }
   }
 
-  // Rank: most-implicated first, then lowest chapter number (deterministic).
-  const ranked = [...hits.entries()]
-    .sort((a, b) => (b[1] - a[1]) || (a[0] - b[0]))
-    .slice(0, targetCap);
+  // Force mode: target EXACTLY the requested chapters (in order). Otherwise rank
+  // by axis-hits, most-implicated first, then lowest chapter number (deterministic).
+  const ranked: Array<[number, number]> = forced
+    ? forced.map((n) => [n, hits.get(n) ?? 0] as [number, number])
+    : [...hits.entries()]
+        .sort((a, b) => (b[1] - a[1]) || (a[0] - b[0]))
+        .slice(0, targetCap);
 
   // Assign DISTINCT families, skipping any the book already over-uses. Round-robin
   // so the diversified chapters do not themselves collapse into one new mold.
@@ -106,7 +115,11 @@ export function planBookSamenessRepair(
         `source-supported facts, its quiz keys, and its required sections intact — vary only the SHAPE ` +
         `(opening, scene machinery, practice framing, and the return-point device). Do NOT invent facts, ` +
         `do NOT reuse the default named-anchor → second-setting → proxy-cast → return-drill skeleton, and ` +
-        `do NOT lift the same practice shell or reversal line other chapters use.`,
+        `do NOT lift the same practice shell or reversal line other chapters use. EXAMPLE GROUNDING: every ` +
+        `example must be EITHER a source-attested real case OR explicitly framed as hypothetical ("Imagine…", ` +
+        `"Suppose a team…") — never present an invented person, title, or specific (a named "product lead", a ` +
+        `"blue launch tag") as if it were a concrete sourced fact; an invented specific stated as fact is a ` +
+        `fabricated/misleading example and will fail review.`,
     };
   });
 

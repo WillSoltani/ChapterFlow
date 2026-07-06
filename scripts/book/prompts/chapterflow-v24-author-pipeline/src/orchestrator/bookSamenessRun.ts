@@ -48,6 +48,7 @@ import {
   loadAuthorRegenLedger,
   samenessRepairConsumedFor,
   recordSamenessRepairConsumed,
+  resetSamenessRepairConsumed,
 } from "./authorRegenLedger.js";
 
 /** The already-distinct chapters that must be preserved (from the 2026-07-05
@@ -83,6 +84,10 @@ export type BookSamenessOptions = {
   preserveChapters?: number[];
   targetCap?: number;
   io?: Partial<AuthorIo>;
+  /** Operator retry: force EXACTLY these chapters (fires even if the aggregate
+   *  cleared), and RESET each one's bounded sameness-repair grant first so the
+   *  controlled retry gets one fresh attempt. */
+  onlyChapters?: number[];
 };
 
 /**
@@ -106,7 +111,21 @@ export async function doBookSamenessRepair(
   const plan = planBookSamenessRepair(findings, chapters.length, {
     preserveChapters: preserve,
     targetCap: opts.targetCap,
+    forceChapters: opts.onlyChapters,
   });
+  // Controlled retry: reset the bounded sameness grant for each forced chapter so
+  // the deliberate retry gets ONE fresh attempt (logged). Only ever touches the
+  // sameness lane, never the regen evidence.
+  if (opts.onlyChapters && opts.onlyChapters.length > 0) {
+    for (const n of opts.onlyChapters) {
+      let lineage: string | null = null;
+      try { lineage = computeRegenLineage(bookId, n); } catch { lineage = null; }
+      if (lineage) {
+        resetSamenessRepairConsumed(bookId, n, lineage);
+        deps.log(`[sameness] ch${String(n).padStart(2, "0")}: reset book-sameness-repair grant for a controlled retry.`);
+      }
+    }
+  }
   if (!plan.fired) {
     deps.log(`[sameness] ${bookId}: architecture-monoculture critic did not fire — nothing to diversify.`);
     return { fired: false, targets: [], preserved: plan.preserved, outcomes: [], preservedViolations: [] };
