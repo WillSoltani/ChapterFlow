@@ -225,6 +225,21 @@ test("buildReaderReviewTask substitutes the doc path and the bar into the GATE l
   assert.ok(task90.includes('"ship84"'));
 });
 
+test("QC calibration (2026-07-05): the reviewer prompt narrows mustFix to reserved-category harm and splits fabricated vs thin examples", () => {
+  const task = buildReaderReviewTask("doc.txt", 80);
+  // mustFix is a SEVERITY judgment gated on a reserved reader-harming category.
+  assert.match(task, /mustFix = a SEVERITY judgment/i, "mustFix is defined as severity, not preference");
+  assert.match(task, /RESERVED categories/i, "the reserved-category rubric is present");
+  for (const cat of ["UNSAFE", "FACTUALLY WRONG", "STRUCTURALLY INVALID", "SOURCE-CONTRADICTORY", "SCHEMA / APP-BREAKING", "UNUSABLE"]) {
+    assert.ok(task.includes(cat), `reserved category listed: ${cat}`);
+  }
+  assert.match(task, /mustFix is FALSE for everything else/i, "everything else is NOT a mustFix");
+  assert.match(task, /thin-but-usable examples, weak or uneven distractors, generic phrasing, mild repetition/i, "subjective defects are explicitly non-blocking");
+  // The transfer criterion splits fabricated (mustFix) from thin (non-mustFix).
+  assert.match(task, /FABRICATED \/ MISLEADING \/ SOURCE-CONTRADICTORY example[\s\S]*IS a mustFix/i, "a fabricated example stays a mustFix");
+  assert.match(task, /THIN-but-usable example[\s\S]*NOT a mustFix/i, "a thin-but-usable example is not a mustFix");
+});
+
 // ── quoteVerified — formatting-normalized quote match (anti-fabrication intact) ──
 
 test("quoteVerified: exact substring verifies", () => {

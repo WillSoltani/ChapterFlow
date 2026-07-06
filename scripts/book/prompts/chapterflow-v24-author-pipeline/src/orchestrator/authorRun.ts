@@ -44,6 +44,7 @@ import {
   migrateLegacyRegenCounts,
   recordBudgetRepairConsumed,
 } from "./authorRegenLedger.js";
+import { appendReopenNote, holdsDurablePass } from "./authorReviewLedger.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -810,6 +811,40 @@ export async function doAuthorWrite(
  * costs milliseconds on the happy path; enforcement at every downstream
  * entry is a pure strengthen.
  */
+/**
+ * CONVERGENCE-SAFE PASS (2026-07-05): split book-wide budget blockers into the
+ * set to ROUTE into the repair round and the set to DOWNGRADE to advisory.
+ *
+ * A finding's CARRIER SET is exactly the chapters `buildBudgetRepairComplaints`
+ * would fan its evidence out to (the same routing the round already uses — no new
+ * detector). A finding carried ONLY by chapters holding a durable PASS is
+ * downgraded: re-authoring a passing chapter to satisfy a book-wide budget that a
+ * SIBLING's edit shifted is the carry-churn that regressed ch04 85.6→73.4, and the
+ * durable PASS (an independent reviewer accepted these exact bytes at this bar) is
+ * the evidence the block is not reader-harming. A finding with NO routable carrier
+ * stays in `route` so the existing "no repair-routable evidence" halt still fires —
+ * we never silently swallow a blocker we cannot attribute. Running the SAME
+ * partition at the initial scan and the post-round re-check makes them agree, so a
+ * band sustained purely by PASS-locked bytes can never deadlock the halt.
+ */
+export function partitionBudgetBlockers(
+  chapters: ChapterV21[],
+  blockers: BudgetFinding[],
+  isPassLocked: (chapterNumber: number) => boolean,
+): { route: BudgetFinding[]; downgraded: BudgetFinding[]; carriersOf: Map<BudgetFinding, number[]> } {
+  const route: BudgetFinding[] = [];
+  const downgraded: BudgetFinding[] = [];
+  const carriersOf = new Map<BudgetFinding, number[]>();
+  for (const f of blockers) {
+    const carriers = [...buildBudgetRepairComplaints(chapters, [f]).keys()];
+    carriersOf.set(f, carriers);
+    const hasUnlocked = carriers.some((n) => !isPassLocked(n));
+    if (carriers.length > 0 && !hasUnlocked) downgraded.push(f);
+    else route.push(f);
+  }
+  return { route, downgraded, carriersOf };
+}
+
 export async function ensureReaderBudgetsClean(
   bookId: string,
   deps: AutopilotDeps,
@@ -820,6 +855,11 @@ export async function ensureReaderBudgetsClean(
     haltPhase: "write" | "qc";
     label: string;
     io?: Partial<AuthorIo>;
+    /** CONVERGENCE-SAFE PASS (2026-07-05): the current review bar. When present
+     *  (review re-entry), a chapter holding a durable PASS at this bar is never
+     *  full-re-authored by the budget-repair round. Omitted at the WRITE entry
+     *  (no reviews exist yet) → the carry-aware path is entirely inert. */
+    bar?: number;
   },
 ): Promise<AutopilotOutcome | null> {
   const haltHere = (category: HaltCategory, reason: string): AutopilotOutcome =>
@@ -844,11 +884,55 @@ export async function ensureReaderBudgetsClean(
   const firstBrief = expected.map((n) => io.readBrief(bookId, n)).find((b) => b?.lengthBudget?.renderedChars);
   const lengthBudget = firstBrief?.lengthBudget ?? { renderedChars: DEFAULT_LENGTH_BUDGET_CHARS, tolerance: LENGTH_BUDGET_TOLERANCE };
 
+  // CONVERGENCE-SAFE PASS (2026-07-05): compute the PASS-lock set for this bar.
+  // A chapter is PASS-locked iff an INDEPENDENT reviewer PASSed its EXACT current
+  // content+doc bytes at opts.bar (fail-closed via holdsDurablePass — any doubt →
+  // not locked, so the guard can only ever protect, never hide a blocker). At the
+  // WRITE entry opts.bar is undefined → the set is empty → every step below is
+  // inert (byte-identical to the pre-fix behavior; regression only ever occurs on
+  // a REVIEW re-entry). Snapshot each locked chapter's content hash up front so the
+  // post-round regression guard can prove none was modified.
+  const passLocked = new Set<number>();
+  const passLockedHashBefore = new Map<number, string>();
+  for (const ch of chapters) {
+    if (holdsDurablePass(bookId, ch, opts.bar, io.authorSessionOf(ch.chapterId))) {
+      passLocked.add(ch.number);
+      try { passLockedHashBefore.set(ch.number, chapterContentHash(ch)); } catch { /* leave unset — guard skips it */ }
+    }
+  }
+  const isPassLocked = (n: number): boolean => passLocked.has(n);
+  if (passLocked.size > 0) {
+    deps.log(`[autopilot] ${opts.label}: ${passLocked.size} chapter(s) hold a durable PASS at bar ${opts.bar} — protected from full re-author (${[...passLocked].sort((a, b) => a - b).map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")})`);
+  }
+
   let { findings, nameBankWarn } = runBudgetsCapturingWarn(chapters, packets, lengthBudget);
   if (nameBankWarn) {
     return haltHere("infra", `${opts.label}: readerBudgets reported the name bank unavailable (CHB3 silently disabled): ${nameBankWarn}. Fix config/name-bank.json; refusing to skip the check.`);
   }
   let blockers = findings.filter((f) => f.severity === "blocker");
+  // CONVERGENCE-SAFE PASS: downgrade any blocker carried ONLY by PASS-locked
+  // chapters to advisory — never re-author a passing chapter for a book-wide
+  // budget a sibling's edit shifted. Records a forensic protection note per
+  // protected carrier (best-effort). No-op when nothing is PASS-locked.
+  if (passLocked.size > 0 && blockers.length > 0) {
+    const part = partitionBudgetBlockers(chapters, blockers, isPassLocked);
+    for (const f of part.downgraded) {
+      deps.log(`[autopilot] ${opts.label}: [${f.checkId}] ch${String(f.chapterNumber).padStart(2, "0")} carried ONLY by PASS-locked chapter(s) — downgraded to advisory, no re-author (convergence-safe; deadlock avoided)`);
+      for (const n of part.carriersOf.get(f) ?? []) {
+        try {
+          appendReopenNote(bookId, {
+            chapterNumber: n,
+            contentHash: passLockedHashBefore.get(n) ?? "",
+            at: new Date().toISOString(),
+            decision: "protected-downgrade",
+            trigger: f.checkId,
+            detail: "book-wide budget blocker carried only by PASS-locked chapters; not reopened",
+          });
+        } catch { /* forensic note is best-effort; never converts a decision into a halt */ }
+      }
+    }
+    blockers = part.route;
+  }
   if (blockers.length > 0) {
     // ONE bounded budget-repair round (live-added 2026-07-03: the first S-tier run
     // halted here with CHB10+CHB12 while the evidence for a targeted repair was
@@ -857,7 +941,15 @@ export async function ensureReaderBudgetsClean(
     // byte-identical guard; then the budgets re-run ONCE. Still blocking → the
     // same fail-closed halt as before. The block is never weakened — this only
     // spends bounded writers where the halt previously spent the operator.
-    const allTargets = buildBudgetRepairComplaints(chapters, blockers);
+    // CONVERGENCE-SAFE PASS: never route a PASS-locked chapter into a full
+    // re-author, even when it co-carries a routed book-wide finding — trim it from
+    // the target set (its UNLOCKED siblings carry the reduction). A routed finding
+    // has ≥1 unlocked carrier by construction, so this can only shrink the set to a
+    // still-non-empty one (a finding with no routable carrier stays a blocker and
+    // hits the size===0 halt below). A locked chapter thus never consumes F4 cap.
+    const allTargets = new Map(
+      [...buildBudgetRepairComplaints(chapters, blockers)].filter(([n]) => !isPassLocked(n)),
+    );
     const lines = blockers.map((f) => `  [${f.checkId}] ch${String(f.chapterNumber).padStart(2, "0")}: ${f.message}`);
     if (allTargets.size === 0) {
       return haltHere("content", `${opts.label}: reader budgets BLOCK (${blockers.length} finding(s)) with no repair-routable chapter evidence:\n${lines.join("\n").slice(0, 3000)}`);
@@ -920,11 +1012,41 @@ export async function ensureReaderBudgetsClean(
     } catch (err) {
       return haltHere("infra", `${opts.label}: could not reload chapters after the budget-repair round: ${(err as Error).message}`);
     }
+    // A4 REGRESSION GUARD (CONVERGENCE-SAFE PASS): no PASS-locked chapter may have
+    // changed bytes across the round — the target filter guarantees it, so this is
+    // a loud invariant assertion. If it EVER fires, a passing chapter was modified
+    // (a bug) and its durable PASS may have regressed; refuse to advance rather
+    // than ship a possibly-regressed PASS.
+    for (const n of passLocked) {
+      const before = passLockedHashBefore.get(n);
+      if (!before) continue;
+      const ch = chapters.find((c) => c.number === n);
+      const after = ch ? chapterContentHash(ch) : undefined;
+      if (after && after !== before) {
+        try {
+          appendReopenNote(bookId, {
+            chapterNumber: n,
+            contentHash: after,
+            at: new Date().toISOString(),
+            decision: "reopened-anomaly",
+            trigger: "budget-repair-round",
+            detail: `content hash ${before}→${after} despite PASS-lock`,
+          });
+        } catch { /* best-effort */ }
+        return haltHere("infra", `${opts.label}: REGRESSION GUARD — ch${String(n).padStart(2, "0")} held a durable PASS at bar ${opts.bar} but its content hash CHANGED (${before}→${after}) across the budget-repair round. A passing chapter was modified; refusing to advance a possibly-regressed PASS.`);
+      }
+    }
     ({ findings, nameBankWarn } = runBudgetsCapturingWarn(chapters, packets, lengthBudget));
     if (nameBankWarn) {
       return haltHere("infra", `${opts.label}: readerBudgets reported the name bank unavailable after repair: ${nameBankWarn}.`);
     }
     blockers = findings.filter((f) => f.severity === "blocker");
+    // Re-partition with the SAME pass-lock set (locked chapters are byte-unchanged,
+    // proven by the guard above, so they still hold their PASS): a book-wide band
+    // now sustained purely by PASS-locked bytes downgrades identically → no halt.
+    if (passLocked.size > 0 && blockers.length > 0) {
+      blockers = partitionBudgetBlockers(chapters, blockers, isPassLocked).route;
+    }
     if (blockers.length > 0) {
       const stillLines = blockers.map((f) => `  [${f.checkId}] ch${String(f.chapterNumber).padStart(2, "0")}: ${f.message}`);
       return haltHere("content", `${opts.label}: reader budgets STILL BLOCK after the one bounded repair round (${blockers.length} finding(s)):\n${stillLines.join("\n").slice(0, 3000)}`);

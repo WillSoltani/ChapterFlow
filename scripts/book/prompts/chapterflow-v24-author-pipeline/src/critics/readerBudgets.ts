@@ -218,6 +218,15 @@ export type ReaderBudgetOptions = {
 };
 
 export const DEFAULT_REP_CAP = 6;
+/** CHB1 calibration (CONVERGENCE-SAFE PASS, 2026-07-05): a packet-anchored case
+ *  token repeated just over the cap on the linear reading surface is "minor
+ *  repetition" (owner rubric → scored/advisory), not a reader-harming blocker.
+ *  Only EGREGIOUS hammering — count ≥ repCap * this multiple (≥12 at cap 6),
+ *  the band where SEAM2 and the blinded reader panel co-fire — stays a blocker.
+ *  This stops CHB1 from routing an otherwise-passing chapter into a FULL
+ *  re-author (the carry-churn root cause). The blinded reader panel remains the
+ *  backstop for true hammering below the hard band. */
+export const CHB1_HARD_ANCHOR_MULT = 2;
 /** Single-sourced from the compiler's canonical constants (P6, FINAL-HARDENING-
  *  PLAN 2026-07-04): the brief STAMPS lengthBudget from DEFAULT_LENGTH_BUDGET_CHARS
  *  / LENGTH_BUDGET_TOLERANCE, so CHB2's default must be the SAME literals — two
@@ -432,9 +441,10 @@ function checkAnchorRepetition(
   chapters.forEach((chapter, idx) => {
     const packet = packets?.get(chapter.number);
     // Calibration decision #3: packet namedCases labels are real source
-    // anchors → blocker; title-derived labels are the chapter's own concept
-    // vocabulary → advisory only.
-    const severity: BudgetFinding["severity"] = packet ? "blocker" : "advisory";
+    // anchors; title-derived labels are the chapter's own concept vocabulary
+    // (always advisory). Severity for a packet anchor is banded by COUNT below
+    // (CHB1_HARD_ANCHOR_MULT) — a small overflow is advisory, egregious
+    // hammering is a blocker.
     const labels = packet
       ? packet.namedCases.map((c) => c.label)
       : (chapter.examples ?? []).map((ex) => ex.title ?? "").filter(Boolean);
@@ -447,6 +457,12 @@ function checkAnchorRepetition(
       const count = countTokenMentions(token, surface);
       if (count > repCap) {
         flagged.add(token);
+        // Banded: a packet anchor is a blocker ONLY at egregious hammering
+        // (count ≥ repCap * CHB1_HARD_ANCHOR_MULT); a small overflow, and any
+        // title-derived label, is advisory. Prevents CHB1 from full-re-authoring
+        // an otherwise-passing chapter over minor repetition.
+        const severity: BudgetFinding["severity"] =
+          packet && count >= repCap * CHB1_HARD_ANCHOR_MULT ? "blocker" : "advisory";
         findings.push({
           checkId: "CHB1.anchor_repetition",
           severity,

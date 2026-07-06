@@ -65,6 +65,7 @@ import {
   CHAPTER_REVIEW_SCHEMA_VERSION,
   REVIEW_FACTORS,
   type ChapterReviewV1,
+  type ChapterReviewComplaint,
   type ReviewFactor,
 } from "../artifacts/artifactTypes.js";
 import {
@@ -480,6 +481,38 @@ async function mapPool<T, R>(items: T[], limit: number, fn: (item: T, i: number)
   return out;
 }
 
+/**
+ * QC CALIBRATION BACKSTOP (CONVERGENCE-SAFE PASS, 2026-07-05): does a mustFix
+ * complaint name a CONCRETE reader-harming defect in a RESERVED category, or is
+ * it subjective taste dressed as a blocker?
+ *
+ * The reviewer prompt now defines mustFix as reserved-category harm only, but
+ * reader classification still drifts run-to-run — the single biggest churn lever
+ * is a reviewer stamping mustFix on a thin example / weak distractor / prose
+ * polish, which alone blocks near-bar conversion and forces a full regen. This
+ * code-side check makes the narrowing DURABLE regardless of reader drift, while
+ * defaulting to TRUST so it can never HIDE a real blocker:
+ *   - names a reserved harm (wrong/unsafe/contradicts/missing/broken/invalid/
+ *     unusable/fabricated/misleading/unsupported/key/answer…) → TRUE (blocks).
+ *   - clearly subjective-only (generic/richer/polish/prefer/rhythm/thin/
+ *     slot-filler…) with NO reserved-harm signal → FALSE (downgraded).
+ *   - ambiguous (neither signal) → TRUE (default trust — never hide a blocker).
+ * A downgraded complaint is still EMITTED by complaintsOf and still rides to the
+ * repair/regen lane; downgrading changes ONLY whether it blocks the near-bar
+ * conversion. Keys (matches===of / anyKeyDefect) and quotes (valid) are wholly
+ * independent paths this never touches, and medianComposite ≥ bar is still
+ * required — so this can only relax a SUBJECTIVE block, never a structural one.
+ */
+const RESERVED_HARM_RX = /\b(unsafe|safety|danger|hazard|injur|harm|wrong|incorrect|false|inaccurate|error|mislead|contradict|missing|absent|omit|broken|duplicat|invalid|malformed|render|crash|unusable|unreadable|illegible|incoheren|nonsense|fabricat|invent|made[- ]?up|unsupported|no support|not supported|key|answer|correctindex|two (?:correct|answers)|multiple correct)\b/i;
+const SUBJECTIVE_ONLY_RX = /\b(generic|richer|polish|prefer|feels?|smooth|flow|rhythm|repetit|uneven|monoton|could be|would be nicer|a bit|somewhat|slightly|thin|slot[- ]?filler|placeholder|padding|filler|bland|dry|pacing|tone|engag|stylish|style)\b/i;
+
+export function complaintNamesReservedHarm(c: ChapterReviewComplaint): boolean {
+  const t = `${c.unit ?? ""} ${c.problem ?? ""}`.toLowerCase();
+  if (RESERVED_HARM_RX.test(t)) return true;   // plausibly names reserved harm → TRUST
+  if (SUBJECTIVE_ONLY_RX.test(t)) return false; // clearly subjective-only → downgrade
+  return true;                                  // ambiguous → DEFAULT TRUST (never hide a blocker)
+}
+
 /** Actionable complaint lines for a failed review: the reader's explicit
  *  complaints, else quote whys + key disagreements, else a generic line. */
 export function complaintsOf(review: ChapterReviewV1): string[] {
@@ -750,7 +783,11 @@ async function tiebreakNearBarVerdict(
   // unanimous no-mustFix; the ship84 boolean alone no longer blocks a ≥bar,
   // blocker-free chapter (that residual brittleness is exactly what the bar drop
   // targeted). ANY mustFix on ANY read keeps the FAIL → true blockers stay strict.
-  const noMustFix = validReads.length > 0 && validReads.every((r) => !r.complaints.some((c) => c.mustFix));
+  // A mustFix blocks conversion ONLY if it names a concrete reserved-category
+  // harm (complaintNamesReservedHarm — default-trust, so a real blocker is never
+  // hidden); a subjective-only mustFix (thin example, weak distractor, polish)
+  // is downgraded and cannot block a ≥bar, clean-keyed chapter alone.
+  const noMustFix = validReads.length > 0 && validReads.every((r) => !r.complaints.some((c) => c.mustFix && complaintNamesReservedHarm(c)));
   const convertReason = shipMajority ? "ship-majority" : noMustFix ? "no-mustFix (no true blocker)" : "";
   const converted = validReads.length >= 2 && !anyKeyDefect && medianComposite >= bar && (shipMajority || noMustFix);
   const reads = allReads.map((r) => ({
@@ -1226,6 +1263,10 @@ async function doAuthorReviewInner(
     haltPhase: "qc",
     label: "author review budgets",
     io: opts.io,
+    // CONVERGENCE-SAFE PASS (2026-07-05): pass the live review bar so the budget
+    // round is carry-aware — a chapter holding a durable PASS at this bar is never
+    // full-re-authored to satisfy a book-wide budget a sibling shifted.
+    bar,
   });
   if (budgetOutcome) return budgetOutcome;
   // The repair round may have rewritten chapters — reload so reviews score the

@@ -53,6 +53,7 @@ import {
 import { selectAcceptanceSample, selectSeededIdxs } from "../src/review/evalBookProxy.js";
 import {
   AUTHOR_BOOK_READERS,
+  complaintNamesReservedHarm,
   doAuthorReview,
   isFlipSignature,
   isNearBar,
@@ -753,10 +754,31 @@ test("Phase 3 integration: a KEY DEFECT surfaced by a tiebreak read STICKS — t
   }
 });
 
-test("Phase 3 (mustFix refinement): a ≥bar near-bar FAIL with ZERO mustFix across 3 reads converts even without ship-majority; a single mustFix keeps it failed", async () => {
-  // Shared harness builder: original + 2 tiebreak reads all ship=false at 82,
-  // parameterized by whether any read carries a mustFix complaint.
-  const run = async (withMustFix: boolean) => {
+test("QC calibration: complaintNamesReservedHarm TRUSTS reserved harm + ambiguous, DOWNGRADES subjective-only (never hides a blocker)", () => {
+  const c = (unit: string, problem: string) => ({ unit, problem, mustFix: true });
+  // Reserved-category harms → TRUE (blocks conversion).
+  assert.equal(complaintNamesReservedHarm(c("quiz Q2", "the answer key is wrong — two choices are correct")), true);
+  assert.equal(complaintNamesReservedHarm(c("deep read", "this fact is factually incorrect")), true);
+  assert.equal(complaintNamesReservedHarm(c("example 3", "the scenario is fabricated — no such study exists")), true);
+  assert.equal(complaintNamesReservedHarm(c("fast read", "contradicts the chapter's own claim in the hook")), true);
+  assert.equal(complaintNamesReservedHarm(c("structure", "the summaries section is missing")), true);
+  // Subjective-only, no reserved-harm signal → FALSE (downgraded, cannot block alone).
+  assert.equal(complaintNamesReservedHarm(c("example 2", "reads as a slot-filler and could be richer")), false);
+  assert.equal(complaintNamesReservedHarm(c("deep read", "the phrasing is a bit generic")), false);
+  assert.equal(complaintNamesReservedHarm(c("quiz Q1", "the distractors are slightly weak")), false);
+  assert.equal(complaintNamesReservedHarm(c("tone", "the rhythm is uneven and the pacing drags")), false);
+  // Ambiguous (neither signal) → DEFAULT TRUST (never hide a possible blocker).
+  assert.equal(complaintNamesReservedHarm(c("quiz Q3", "something is off here")), true);
+  // Red-team: a REAL harm co-occurring with a subjective word STILL blocks —
+  // reserved vocabulary is checked first and wins over the subjective marker.
+  assert.equal(complaintNamesReservedHarm(c("tryThisNow", "the pacing makes the safety warning unreadable")), true);
+  assert.equal(complaintNamesReservedHarm(c("example 1", "the generic phrasing states a factually wrong date")), true);
+});
+
+test("Phase 3 + QC calibration (2026-07-05): near-bar conversion is blocked ONLY by a mustFix that names a reserved-category harm — a subjective-only mustFix is downgraded and converts", async () => {
+  // Shared harness: original + 2 tiebreak reads all ship=false at 82 (≥ bar 80),
+  // keys clean, parameterized by the complaint text carried as a mustFix.
+  const run = async (complaint: string | undefined) => {
     const chapters = [makeChapter(BOOK, 1)];
     rmSync(reviewDir(BOOK), { recursive: true, force: true });
     let n = 0; const persisted: ChapterReviewV1[] = []; let regens = 0;
@@ -765,10 +787,8 @@ test("Phase 3 (mustFix refinement): a ≥bar near-bar FAIL with ZERO mustFix acr
       spawn: (async (o: { sessionId: string }) => {
         spawns.push(o.sessionId);
         let msg: string;
-        // All reads: ship=false, composite 82 (≥ bar 80), keys clean. The
-        // complaint (mustFix) is present only in the withMustFix arm.
         if (o.sessionId.includes("tiebreak") || o.sessionId.includes("author-review-ch")) {
-          msg = readerReply(chapters[0], { ship: false, score: 82, complaint: withMustFix ? "a thin example fails the learning promise" : undefined });
+          msg = readerReply(chapters[0], { ship: false, score: 82, complaint });
         } else if (o.sessionId.includes("author-book-reader")) msg = bookAcceptReply(chapters);
         else { msg = "done"; }
         return { ok: true, exitCode: 0, finalMessage: msg, stdout: msg, stderr: "", durationMs: 1, sessionId: o.sessionId };
@@ -795,16 +815,25 @@ test("Phase 3 (mustFix refinement): a ≥bar near-bar FAIL with ZERO mustFix acr
     } finally { rmSync(tmpDoc, { recursive: true, force: true }); rmSync(reviewDir(BOOK), { recursive: true, force: true }); rmSync(join(dirname(reviewDir(BOOK)), `${BOOK}.review-clears.json`), { force: true }); }
   };
 
-  // No mustFix anywhere → no true blocker → converts on the ≥bar median despite ship=false.
-  const clean = await run(false);
+  // (1) No mustFix → no true blocker → converts on the ≥bar median despite ship=false.
+  const clean = await run(undefined);
   assert.equal(clean.result, null, `no-mustFix book completes: ${JSON.stringify(clean.result)}`);
   assert.equal(clean.regens, 0, "no-mustFix conversion consumes no regen");
   assert.equal(clean.persisted.filter((r) => r.chapterNumber === 1).at(-1)!.pass, true, "≥bar + zero mustFix converts to PASS");
 
-  // A single mustFix (a real thin-example blocker) → stays failed → regen path (fail-closed halt here).
-  const blocked = await run(true);
-  assert.ok(blocked.persisted.every((r) => r.chapterNumber !== 1 || r.pass === false), "a mustFix true blocker is never converted by the no-mustFix path");
-  assert.ok(blocked.result !== null && blocked.result.status === "halt", "the mustFix blocker escalates (no false pass)");
+  // (2) A SUBJECTIVE-only mustFix (a thin example — "could be richer") is downgraded
+  //     by complaintNamesReservedHarm → it CANNOT block a ≥bar clean chapter alone →
+  //     converts, no regen. This is the calibration: production editor, not perfectionist.
+  const subjective = await run("a thin example reads as a slot-filler and could be richer");
+  assert.equal(subjective.result, null, `subjective-only mustFix still completes: ${JSON.stringify(subjective.result)}`);
+  assert.equal(subjective.regens, 0, "a downgraded subjective mustFix consumes no regen");
+  assert.equal(subjective.persisted.filter((r) => r.chapterNumber === 1).at(-1)!.pass, true, "subjective-only mustFix downgraded → converts");
+
+  // (3) A RESERVED-category mustFix (a wrong quiz answer key) is a TRUE blocker →
+  //     never converted → escalates (fail-closed halt here). Blockers stay strict.
+  const blocked = await run("quiz Q2: the answer key is wrong — two choices are correct");
+  assert.ok(blocked.persisted.every((r) => r.chapterNumber !== 1 || r.pass === false), "a reserved-harm mustFix is never converted by the no-mustFix path");
+  assert.ok(blocked.result !== null && blocked.result.status === "halt", "the reserved-harm blocker escalates (no false pass)");
 });
 
 // ── Budget-repair round (live-added after the first S-tier run blocked here) ──
