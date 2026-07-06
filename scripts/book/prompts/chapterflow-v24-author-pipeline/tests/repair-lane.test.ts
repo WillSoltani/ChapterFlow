@@ -173,6 +173,27 @@ test("F4: budget-repair writes consume a lineage-keyed durable counter, independ
   }
 });
 
+test("book-sameness repair: writes consume a SEPARATE bounded lineage-keyed lane, never touching regen/repair/budget", async () => {
+  const { samenessRepairConsumedFor, recordSamenessRepairConsumed, budgetRepairConsumedFor } = await import("../src/orchestrator/authorRegenLedger.js");
+  const root = mkdtempSync(join(tmpdir(), "sameness-repair-ledger-"));
+  try {
+    const lineage = "abc123def456";
+    assert.equal(samenessRepairConsumedFor(loadAuthorRegenLedger(BOOK, root), 3, lineage), 0, "pre-lane ledgers read as 0 (additive)");
+    recordSamenessRepairConsumed(BOOK, 3, lineage, root);
+    const after = loadAuthorRegenLedger(BOOK, root);
+    assert.equal(samenessRepairConsumedFor(after, 3, lineage), 1, "one grant recorded");
+    // Bounded + independent: never touches the other three lanes.
+    assert.equal(regenConsumedFor(after, 3, lineage), 0, "sameness repair does not touch the regen budget (prior evidence preserved)");
+    assert.equal(repairConsumedFor(after, 3, lineage), 0, "…nor the surgical-repair budget");
+    assert.equal(budgetRepairConsumedFor(after, 3, lineage), 0, "…nor the budget-repair budget");
+    // A different lineage (re-deal) reads fresh; another chapter is independent.
+    assert.equal(samenessRepairConsumedFor(after, 3, "otherlineage1"), 0, "a re-dealt lineage reads fresh");
+    assert.equal(samenessRepairConsumedFor(after, 9, lineage), 0, "another chapter is independent");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("W1: duplicated field labels complain at write time (the ch08 0-3 class)", async () => {
   const { authorWriteContractFindings } = await import("../src/orchestrator/authorRun.js");
   const chapter = makeChapter(BOOK, 2);

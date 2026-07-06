@@ -645,7 +645,7 @@ export const CHURN_DIVERGENCE_ASSIGNMENTS = [
 
 // ── One blinded chapter review ───────────────────────────────────────────────
 
-async function reviewOneChapter(
+export async function reviewOneChapter(
   bookId: string,
   chapter: ChapterV21,
   deps: AutopilotDeps,

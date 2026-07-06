@@ -441,6 +441,26 @@ test("author card: complaints section appears ONLY on regeneration, with the rev
   assert.ok(!empty.includes("PRIOR-ATTEMPT COMPLAINTS"), "an EMPTY complaints list adds no section");
 });
 
+test("book-sameness directive reaches the writer card for a MANUAL-brief re-author (injected as a complaint)", async () => {
+  const { planBookSamenessRepair } = await import("../src/critics/bookSamenessRepair.js");
+  // A firing set implicating ch03 by 3 axes → a real per-chapter directive.
+  const findings = [
+    { catalogId: "ARCH1.practice_shell_monoculture", severity: "minor" as const, message: "", chapters: [3, 6, 8, 9, 11, 12] },
+    { catalogId: "ARCH4.lead_anchor_overreuse", severity: "minor" as const, message: "", chapters: [3, 9, 12] },
+    { catalogId: "ARCH0.architecture_monoculture", severity: "major" as const, message: "", chapters: [3, 6, 8, 9, 11, 12] },
+  ];
+  const plan = planBookSamenessRepair(findings, 14, { preserveChapters: [1, 4, 7, 10], targetCap: 6 });
+  const target = plan.targets.find((t) => t.chapterNumber === 3)!;
+  const briefMd = renderBriefMd(mkBrief(3));
+  const card = buildAuthorCard({ bookId: "zz", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null, complaints: [target.directive] });
+  // The directive is visible in the actual writer payload, with the assigned family
+  // + the preserve-facts + prohibit-the-default-mold instructions.
+  assert.ok(card.includes("BOOK-SAMENESS REPAIR"), "the sameness directive reaches the card");
+  assert.ok(card.includes(target.assignedFamily), `the assigned architecture family is in the card: ${target.assignedFamily}`);
+  assert.match(card, /Keep the chapter's WHY\/thesis, its source-supported facts/, "fact/schema preservation instruction present");
+  assert.match(card, /do NOT reuse the default named-anchor/, "prohibits the default 3-anchor mold");
+});
+
 // ── authorWriteOneChapter ────────────────────────────────────────────────────
 
 test("authorWriteOneChapter: spawns one workspace-write writer, verifies file + gate, records content-bound provenance", async () => {

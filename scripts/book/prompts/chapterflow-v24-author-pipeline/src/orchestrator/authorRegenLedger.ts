@@ -75,6 +75,12 @@ export type AuthorRegenLedger = {
   /** F4: reader-budget repair writes consumed, keyed `${chapter}@${lineage}` —
    *  additive to v2 (absent = 0 everywhere). */
   budgetRepairConsumed?: Record<string, number>;
+  /** Book-sameness repair lane (2026-07-06): a SEPARATE, bounded lane for the
+   *  book-level architecture-diversification re-author. Keyed `${chapter}@${lineage}`,
+   *  cap 1 per lineage. Deliberately independent of the regen `consumed` lane so a
+   *  diversification grant NEVER erases or resets prior regen evidence and can never
+   *  hand a chapter unlimited attempts. Absent = 0 everywhere (additive). */
+  samenessRepairConsumed?: Record<string, number>;
 };
 
 type AuthorRegenLedgerV1 = {
@@ -302,6 +308,34 @@ export function recordBudgetRepairConsumed(
   const ledger = loadAuthorRegenLedger(bookId, stateRoot);
   const key = `${chapterNumber}@${lineage}`;
   const map = ledger.budgetRepairConsumed ?? (ledger.budgetRepairConsumed = {});
+  map[key] = (Number.isInteger(map[key]) && map[key] > 0 ? map[key] : 0) + 1;
+  ledger.updatedAt = new Date().toISOString();
+  persist(ledger, stateRoot);
+  return ledger;
+}
+
+/** Book-sameness repair lane (2026-07-06): how many diversification re-authors a
+ *  chapter has consumed against its current lineage (cap 1). Absent = 0. Separate
+ *  from every other lane, so a diversification grant is bounded and never touches
+ *  the regen `consumed` evidence. */
+export function samenessRepairConsumedFor(ledger: AuthorRegenLedger, chapterNumber: number, lineage: string): number {
+  const keyed = ledger.samenessRepairConsumed?.[`${chapterNumber}@${lineage}`];
+  return Number.isInteger(keyed) && (keyed as number) > 0 ? (keyed as number) : 0;
+}
+
+/** Record ONE consumed book-sameness-repair write for a chapter's lineage and
+ *  persist, tagged with the repair reason for audit. Counts only ever grow (a
+ *  failed diversification still counts — no unlimited retries). Never mutates the
+ *  regen/repair/budgetRepair lanes. */
+export function recordSamenessRepairConsumed(
+  bookId: string,
+  chapterNumber: number,
+  lineage: string,
+  stateRoot: string = CANONICAL_STATE,
+): AuthorRegenLedger {
+  const ledger = loadAuthorRegenLedger(bookId, stateRoot);
+  const key = `${chapterNumber}@${lineage}`;
+  const map = ledger.samenessRepairConsumed ?? (ledger.samenessRepairConsumed = {});
   map[key] = (Number.isInteger(map[key]) && map[key] > 0 ? map[key] : 0) + 1;
   ledger.updatedAt = new Date().toISOString();
   persist(ledger, stateRoot);

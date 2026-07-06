@@ -5689,6 +5689,8 @@ async function main() {
       return runBookAutopilot(args, flags);
     case "book-run":
       return (await import("./orchestrator/liveRun.js")).runLive(args, flags);
+    case "diversify-book":
+      return (await import("./orchestrator/liveRun.js")).runDiversify(args, flags);
     case "compile-source-packets":
       return runCompileSourcePackets(args);
     case "source-packet-gate":
