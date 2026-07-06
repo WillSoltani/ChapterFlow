@@ -19,6 +19,7 @@ import {
 import { checkKeyedChoiceDuplication } from "./quizCorrectness.js";
 import { checkBookQuizPromptTemplates } from "./antiSalting.js";
 import { checkArchitectureMonoculture } from "./architectureMonoculture.js";
+import { checkContentMachinery } from "./contentMachinery.js";
 import { loadBannedPhrases } from "./shared.js";
 import { normalizeConvergenceKey } from "./experiencePlan.js";
 import {
@@ -570,6 +571,24 @@ export function runBookGate(bookId: string, chapters: ChapterV21[], options: Boo
   // is the true gate; this makes the sameness deterministically visible + names
   // the chapters the book-sameness repair lane should diversify. Never blocks.
   for (const f of checkArchitectureMonoculture(chapters)) {
+    findings.push({
+      catalogId: f.catalogId,
+      severity: f.severity,
+      message: f.message,
+      evidence: f.evidence,
+      chapters: f.chapters,
+    });
+  }
+
+  // ── CM0 — book-level CONTENT-MACHINERY monoculture (2026-07-06). ──────────
+  // Deeper than the ARCH openings above: catches the repeated BODY devices
+  // (return-proof, proxy-cast, second-setting, hard-detail boundary…) that recur
+  // across every chapter's examples/quiz/cards — the "one template filled with
+  // different nouns" the acceptance panel named as the real churn cause. Advisory
+  // (major, surfaced): the content-device deal prevents it at write time; this
+  // makes residual saturation visible + names the chapters the content-deal repair
+  // lane should fix. Never blocks — the semantic panel is the true gate.
+  for (const f of checkContentMachinery(chapters)) {
     findings.push({
       catalogId: f.catalogId,
       severity: f.severity,

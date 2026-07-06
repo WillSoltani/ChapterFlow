@@ -29,7 +29,9 @@ import type { AutopilotDeps, AutopilotOutcome } from "./autopilot.js";
 import { CHAPTERS_DIR, chapterFileName } from "../lib/chapterPaths.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { checkArchitectureMonoculture } from "../critics/architectureMonoculture.js";
-import { planBookSamenessRepair, type SamenessRepairTarget } from "../critics/bookSamenessRepair.js";
+import { planBookSamenessRepair } from "../critics/bookSamenessRepair.js";
+import { planContentDeviceRepair } from "../critics/contentDeviceRepair.js";
+import { reportContentMachinery } from "../critics/contentMachinery.js";
 import {
   authorChapterId,
   authorWriteOneChapter,
@@ -88,6 +90,11 @@ export type BookSamenessOptions = {
    *  cleared), and RESET each one's bounded sameness-repair grant first so the
    *  controlled retry gets one fresh attempt. */
   onlyChapters?: number[];
+  /** Content-deal repair only: override the ubiquity cap the planner targets. A
+   *  value BELOW the critic's default (0.6) makes the planner flip MORE chapters so
+   *  the dominant devices land comfortably below cap (margin against a reverted
+   *  chapter) instead of exactly at it. */
+  deviceCapFrac?: number;
 };
 
 /**
@@ -147,7 +154,7 @@ export async function doBookSamenessRepair(
   const outcomes: SamenessChapterOutcome[] = [];
   for (const target of plan.targets) {
     heartbeat();
-    outcomes.push(await diversifyOne(bookId, target, deps, io, reviewIo, bar));
+    outcomes.push(await diversifyOne(bookId, { chapterNumber: target.chapterNumber, directive: target.directive, label: target.assignedFamily }, deps, io, reviewIo, bar));
   }
 
   // Verify preserved chapters are byte-identical.
@@ -164,9 +171,13 @@ export async function doBookSamenessRepair(
   return { fired: true, targets: plan.targets.map((t) => t.chapterNumber), preserved: plan.preserved, outcomes, preservedViolations };
 }
 
+/** A generic diversification target: the chapter, the writer directive to inject, and
+ *  a short label for logs/outcomes (an architecture family or "content-deal"). */
+type DiversifyTarget = { chapterNumber: number; directive: string; label: string };
+
 async function diversifyOne(
   bookId: string,
-  target: SamenessRepairTarget,
+  target: DiversifyTarget,
   deps: AutopilotDeps,
   io: AuthorIo,
   reviewIo: ReturnType<typeof resolveAuthorReviewIo>,
@@ -174,7 +185,7 @@ async function diversifyOne(
 ): Promise<SamenessChapterOutcome> {
   const n = target.chapterNumber;
   const nn = String(n).padStart(2, "0");
-  const base = { chapterNumber: n, assignedFamily: target.assignedFamily };
+  const base = { chapterNumber: n, assignedFamily: target.label };
   const path = chapterPath(bookId, n);
   const priorBytes = existsSync(path) ? readFileSync(path, "utf8") : null;
 
@@ -225,6 +236,111 @@ async function diversifyOne(
     return { ...base, status: "reverted", newComposite: review.composite, detail: `diversified draft below bar-band / invalid / key-defect / true-blocker; restored prior passing version` };
   }
   const near = review.pass ? "" : " (near-bar; conductor tiebreak will formalize)";
-  deps.log(`[sameness] ch${nn}: diversified to "${target.assignedFamily}" — composite ${review.composite}, ship=${review.ship84}, keys ${review.keyCheck.matches}/${review.keyCheck.of}${near}.`);
-  return { ...base, status: "diversified", newComposite: review.composite, detail: `diversified to ${target.assignedFamily}; composite ${review.composite}${near}` };
+  deps.log(`[sameness] ch${nn}: diversified to "${target.label}" — composite ${review.composite}, ship=${review.ship84}, keys ${review.keyCheck.matches}/${review.keyCheck.of}${near}.`);
+  return { ...base, status: "diversified", newComposite: review.composite, detail: `diversified to ${target.label}; composite ${review.composite}${near}` };
+}
+
+// ── Content-deal repair (2026-07-06) ──────────────────────────────────────────
+// The DEEPER lane: re-authors the chapters whose BODY machinery (return-proof,
+// proxy-cast, second-setting, …) saturates the book, using the content-deal-sameness
+// directive. Reuses the SAME bounded ledger, self-check, restore-on-regress, and
+// preserved-byte-stable guarantees as doBookSamenessRepair.
+
+export type ContentRepairResult = BookSamenessResult & {
+  /** Devices over cap before the round (the churn drivers). */
+  overCapDevices: string[];
+  /** Devices still over cap after the plan's targets (projected) — empty = fully relieved. */
+  residualOverCap: string[];
+};
+
+export async function doContentDeviceRepair(
+  bookId: string,
+  deps: AutopilotDeps,
+  opts: BookSamenessOptions = {},
+): Promise<ContentRepairResult> {
+  const io = resolveAuthorIo(opts.io);
+  const reviewIo = resolveAuthorReviewIo(opts.io);
+  const bar = resolveChapterBar();
+  const heartbeat = opts.heartbeat ?? (() => true);
+
+  const chapters = io.loadChapters(bookId);
+  const before = reportContentMachinery(chapters);
+  deps.log(
+    `[content-deal] ${bookId}: device ubiquity — ` +
+    before.usage.map((u) => `${u.id} ${Math.round(u.frac * 100)}%${u.overCap ? "⚠" : ""}`).join(", "),
+  );
+
+  // Controlled retry: reset the bounded sameness grant for each forced chapter.
+  if (opts.onlyChapters && opts.onlyChapters.length > 0) {
+    for (const n of opts.onlyChapters) {
+      let lineage: string | null = null;
+      try { lineage = computeRegenLineage(bookId, n); } catch { lineage = null; }
+      if (lineage) {
+        resetSamenessRepairConsumed(bookId, n, lineage);
+        deps.log(`[content-deal] ch${String(n).padStart(2, "0")}: reset content-deal-repair grant for a controlled retry.`);
+      }
+    }
+  }
+
+  const plan = planContentDeviceRepair(chapters, {
+    targetCap: opts.targetCap,
+    forceChapters: opts.onlyChapters,
+    preserveChapters: opts.preserveChapters,
+    thresholds: opts.deviceCapFrac != null
+      ? { deviceUbiquityFrac: opts.deviceCapFrac, axesWarn: 2, axesBlock: 4 }
+      : undefined,
+  });
+  if (!plan.fired) {
+    deps.log(`[content-deal] ${bookId}: no device over the ubiquity cap — nothing to repair.`);
+    return { fired: false, targets: [], preserved: plan.preserved, outcomes: [], preservedViolations: [], overCapDevices: [], residualOverCap: [] };
+  }
+  if (plan.residualOverCap.length > 0) {
+    deps.log(`[content-deal] ${bookId}: NOTE — targetCap (${opts.targetCap ?? 8}) cannot bring ${plan.residualOverCap.join(", ")} under cap this round; re-run after review to finish.`);
+  }
+
+  // Snapshot preserved bytes to prove byte-stability.
+  const preservedBefore = new Map<number, string>();
+  for (const n of plan.preserved) {
+    const p = chapterPath(bookId, n);
+    if (existsSync(p)) preservedBefore.set(n, readFileSync(p, "utf8"));
+  }
+
+  deps.log(
+    `[content-deal] ${bookId}: repairing ${plan.targets.length} chapter(s) ` +
+    `(${plan.targets.map((t) => `ch${String(t.chapterNumber).padStart(2, "0")}[drop ${t.usedOverCap.join("+") || "mold"}]`).join(", ")}); ` +
+    `preserving ${plan.preserved.map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}.`,
+  );
+
+  const outcomes: SamenessChapterOutcome[] = [];
+  for (const target of plan.targets) {
+    heartbeat();
+    outcomes.push(await diversifyOne(bookId, { chapterNumber: target.chapterNumber, directive: target.directive, label: "content-deal" }, deps, io, reviewIo, bar));
+  }
+
+  const preservedViolations: number[] = [];
+  for (const [n, prevBytes] of preservedBefore) {
+    const p = chapterPath(bookId, n);
+    const after = existsSync(p) ? readFileSync(p, "utf8") : "";
+    if (after !== prevBytes) preservedViolations.push(n);
+  }
+  if (preservedViolations.length > 0) {
+    deps.log(`[content-deal] ${bookId}: PRESERVED-CHAPTER VIOLATION — bytes changed on ${preservedViolations.map((n) => `ch${n}`).join(", ")} (bug).`);
+  }
+
+  // Report post-repair device ubiquity for the same-session before/after.
+  const after = reportContentMachinery(io.loadChapters(bookId));
+  deps.log(
+    `[content-deal] ${bookId}: AFTER — ` +
+    after.usage.map((u) => `${u.id} ${Math.round(u.frac * 100)}%${u.overCap ? "⚠" : ""}`).join(", "),
+  );
+
+  return {
+    fired: true,
+    targets: plan.targets.map((t) => t.chapterNumber),
+    preserved: plan.preserved,
+    outcomes,
+    preservedViolations,
+    overCapDevices: plan.overCapDevices,
+    residualOverCap: after.overCapDevices,
+  };
 }

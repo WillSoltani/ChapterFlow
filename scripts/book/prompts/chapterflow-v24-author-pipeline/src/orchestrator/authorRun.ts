@@ -29,6 +29,7 @@ import type { ChapterBriefV1, SourcePacketV1 } from "../artifacts/artifactTypes.
 import { chapterBriefMdPath, chapterBriefPath, readJsonFile, sourcePacketPath } from "../artifacts/artifactStore.js";
 import { writerPacketProjection } from "../compiler/sourcePacketProjection.js";
 import { DEFAULT_LENGTH_BUDGET_CHARS, LENGTH_BUDGET_TOLERANCE, ROUND_TIMER_MINUTES_LIST, briefVarietyInstructionLines } from "../compiler/chapterBrief.js";
+import { contentDeviceDealLines } from "../compiler/contentDeviceDeal.js";
 import { voiceCard, voiceRegisterLine } from "../lib/voiceCard.js";
 import { chapterFileName, normSlug, CHAPTERS_DIR } from "../lib/chapterPaths.js";
 import { buildBudgetRepairComplaints, checkReaderBudgets, type BudgetFinding } from "../critics/readerBudgets.js";
@@ -197,6 +198,12 @@ export const AUTHOR_HOUSE_RULES =
  * blanket enforcement claim (D-audit: only rules 1/3-floor/4 + the strawman rate are
  * deterministic); D1/D2/D3/D5/D9 wording reconciled to the gates; W3 causal-stem clause.
  * Verbatim; do not reword outside a documented plan change.
+ * 2026-07-06 CONTENT-DEAL CAMPAIGN: rule 6 drops the "who owns it, what proof returns,
+ * when it comes back" close and rule 7 drops the "specific actor" invented-proxy default —
+ * both hard-mandated the return-proof + proxy-cast devices in EVERY chapter (measured 93%
+ * ubiquity), which the book-acceptance panel rejected as "one template, different nouns".
+ * They now point to the per-chapter CONTENT DEVICES deal (contentDeviceDeal.ts); the
+ * anti-thin-example + anti-fabrication protections are preserved verbatim.
  */
 export const AUTHOR_QUALITY_BAR =
   "QUALITY BAR — hit these on the FIRST draft. Caps marked [GATED] are enforced by a deterministic preflight (missing one forces a full rewrite); [SCORED] rules are scored by the blinded reviewers who decide ship:\n" +
@@ -205,8 +212,8 @@ export const AUTHOR_QUALITY_BAR =
   "3. PRACTICE CONCRETENESS [GATED floor: at least ONE of tryThisNow / the 24-hour challenge must be imperative-led with a number or timebox]. Write BOTH concrete [SCORED]: each names ONE action with a number or a timebox, concrete enough to start within a minute. The action's FORM comes from your dealt practice shapes — never default to a touch-this-object or say-this-aloud ritual (the same staging in every chapter reads as theater). No \"a, b, or c\" option menus — one move, not a menu.\n" +
   "4. PLAIN LANGUAGE FROM SENTENCE ONE [GATED]. The gate measures Flesch ease 72-84 on the BREAKDOWN prose (fastRead+deepRead+fullRead) — land the band there; keep the rest of the chapter just as plain. Short sentences, common words, one idea per sentence. Open plain — no throat-clearing abstraction before the first concrete beat.\n" +
   "5. DISTRACTOR TRANSFORM [SCORED; strawman-rate gate]. Write the KEY first, then TRANSFORM it: every wrong answer is the key warped by ONE of your brief's dealt failure modes — a smart half-reader would defend it out loud; a reader of YOUR prose can settle exactly why it fails. Never a generic bad practice; never rejectable without reading the chapter (unless the chapter explicitly teaches against that named move). KEY SUPPORT: every key must be defensible by pointing at a specific breakdown sentence that teaches it — a key the chapter never actually taught reads as arbitrary to the reader who did the work. CAUSAL STEMS: when a stem asks WHY something happened (what caused / what led to / what explains / the main reason), the key names the ONE specific cause your prose shows — never the outcome restated, never a remedy or lesson — and the distractors are plausible SIBLING causes a specific sentence of yours refutes. ECHO SYMMETRY: if the key uses the chapter's signature vocabulary, at least two distractors must too — the key is never the only choice that sounds like the chapter. Every explanation names why one tempting wrong answer fails, in varied wording each time — NEVER a fixed stem like \"If you chose (b):\" (identical stems ×81 is its own template). A deterministic gate still counts mechanical-distractor words (polish/announce/slides/deck/morale/optics/louder/inspire/motivate) book-wide and blocks above 7% — build from your dealt failure modes and these never appear.\n" +
-  "6. SURFACES THAT TRANSFER [SCORED]. Review cards drill the reusable TOOL, not source trivia — at most 2 cards may hinge on a named source case; every other card must be answerable by a reader applying the move in their own life. Practice prompts must be actions a person would actually do unprompted at a desk — if a prompt reads as a ritual or a meta-exercise (counting behaviors, scoring yourself), write the plain version instead: who owns it, what proof returns, when it comes back. Each example teaches a DIFFERENT facet or failure-mode of the move — if two examples teach the same lesson, merge them and spend the freed slot on a facet you have not shown.\n" +
-  "7. EXAMPLE CRAFT [SCORED — readers block ship on thin examples]. Every example must dramatize a DECISION and its COMPLETED CONSEQUENCE — not relay the lesson. Each scenario shows three things: a specific actor with a real stake, the concrete action they take, and what MEASURABLY CHANGED after (a result, a number, a visible before→after). A named person whose arc never lands (an example that is 'set, not met', no result shown) is a FAILED example — finish it: show what happened. Never use invented people as thin handles for the lesson or let a scenario merely restate the move. If the research gives no case with a concrete consequence, pick a different case that does — never invent facts to manufacture one.";
+  "6. SURFACES THAT TRANSFER [SCORED]. Review cards drill the reusable TOOL, not source trivia — at most 2 cards may hinge on a named source case; every other must be answerable by a reader applying the move in their own life. Practice prompts must be actions a person would do unprompted at a desk — if a prompt reads as a ritual or meta-exercise, write the plain version: a concrete action the reader can check they did (its FORM is dealt per chapter — do NOT reuse one 'return-proof' close everywhere). Each example teaches a DIFFERENT facet or failure-mode — if two teach the same lesson, merge them and spend the freed slot on a facet you have not shown.\n" +
+  "7. EXAMPLE CRAFT [SCORED — readers block ship on thin examples]. Every example must dramatize a DECISION and its COMPLETED CONSEQUENCE — not relay the lesson. Show three things: an actor with a real stake, the concrete action they take, and what MEASURABLY CHANGED after (a result, a number, a visible before→after). Vary WHO carries it per this chapter's CONTENT DEVICES deal — the reader ('you'), a real source case, or an explicit hypothetical, not a default invented proxy. An arc that never lands ('set, not met', no result) is a FAILED example — finish it. Never use invented people as thin handles or let a scenario restate the move. If the research gives no case with a concrete consequence, pick one that does — never invent facts to manufacture one.";
 
 /**
  * S-tier P5 (plan §C, fixes B10) — the acceptance rubric's demands, stated to the
@@ -382,6 +389,10 @@ export function authorWriteContractFindings(
 export type AuthorCardArgs = {
   bookId: string;
   chapterNumber: number;
+  /** Total chapters in the book — gates the book-scale content-device deal (>=4) and
+   *  is authoritative even before all chapters exist on disk. Omitted by single-chapter
+   *  tools → no content-device deal rendered (exactly as before this field existed). */
+  totalChapters?: number;
   /** The rendered chNN.brief.md, embedded verbatim. */
   briefMd: string;
   packet: SourcePacketV1;
@@ -440,6 +451,17 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
     );
   }
 
+  // v24 (2026-07-06): the CONTENT-DEVICE deal — rotating per-chapter bans on the body
+  // machinery (return-proof, proxy-cast, second-setting, hard-detail boundary, …) so no
+  // device saturates the book. ALWAYS rendered (independent of the machine brief) — this
+  // is the per-chapter variety manual-brief books otherwise never receive, and the fix
+  // for the book-acceptance "one template, different nouns" churn. args.totalChapters
+  // omitted (single-chapter tools) → no deal, exactly as before.
+  if (args.totalChapters && args.totalChapters >= 4) {
+    const dealLines = contentDeviceDealLines(chapterNumber, args.totalChapters);
+    if (dealLines.length > 0) sections.push("", ...dealLines);
+  }
+
   const styleLines = ["", "HOUSE STYLE"];
   if (voice) {
     styleLines.push(voice.trim());
@@ -494,6 +516,9 @@ export type AuthorWriteOneResult =
 export type AuthorWriteOneOpts = {
   complaints?: string[];
   io?: Partial<AuthorIo>;
+  /** Override the book's total-chapter count (gates the content-device deal). When
+   *  omitted, resolved authoritatively from deps.expectedChapterNumbers. */
+  totalChapters?: number;
 };
 
 /**
@@ -521,9 +546,17 @@ export async function authorWriteOneChapter(
   if (!packet) return { ok: false, reason: `ch${nn}: no source packet — run compile-source-packets first` };
 
   const machineBrief = io.readBrief(bookId, chapterNumber);
+  // Authoritative total-chapter count (works before all chapters exist on disk) —
+  // gates the book-scale content-device deal. Explicit opt override wins.
+  let totalChapters = opts.totalChapters;
+  if (totalChapters === undefined) {
+    try { totalChapters = deps.expectedChapterNumbers(bookId).length; }
+    catch { try { totalChapters = io.loadChapters(bookId).length; } catch { totalChapters = 0; } }
+  }
   const baseCard = buildAuthorCard({
     bookId,
     chapterNumber,
+    totalChapters,
     briefMd,
     packet,
     voice: io.voiceCard(bookId),

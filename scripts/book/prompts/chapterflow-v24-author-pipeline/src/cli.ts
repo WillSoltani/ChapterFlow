@@ -5691,6 +5691,8 @@ async function main() {
       return (await import("./orchestrator/liveRun.js")).runLive(args, flags);
     case "diversify-book":
       return (await import("./orchestrator/liveRun.js")).runDiversify(args, flags);
+    case "content-repair-book":
+      return (await import("./orchestrator/liveRun.js")).runContentRepair(args, flags);
     case "compile-source-packets":
       return runCompileSourcePackets(args);
     case "source-packet-gate":

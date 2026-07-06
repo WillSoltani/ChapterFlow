@@ -42,7 +42,7 @@ import {
   runAutopilot,
   type AutopilotOutcome,
 } from "./autopilot.js";
-import { doBookSamenessRepair } from "./bookSamenessRun.js";
+import { doBookSamenessRepair, doContentDeviceRepair } from "./bookSamenessRun.js";
 import { evidenceMatrixPath } from "../qc/orchestrator/artifacts.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { loadSweepRecord, sweepFindingBlocks } from "../qc/sweep.js";
@@ -678,5 +678,63 @@ export async function runDiversify(args: string[], flags: Flags): Promise<number
   }
   console.log(green(`   ✓ preserved chapters byte-stable.`));
   console.log(dim(`   Next: run \`book-run ${bookId} --author --no-publish\` to re-review the diversified chapters and re-run book acceptance.`));
+  return 0;
+}
+
+/** content-repair-book — the DEEPER lane: re-author the chapters whose BODY machinery
+ *  (return-proof, proxy-cast, second-setting, …) saturates the book, dropping each
+ *  over-cap device below the ubiquity cap. Same byte-stable / restore-on-regress /
+ *  bounded-ledger guarantees as diversify-book; no publish, no push. */
+export async function runContentRepair(args: string[], flags: Flags): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: content-repair-book <bookId> [--max-parallel N] [--preserve 1,2] [--target-cap N] [--only 3,6,8] [--log <file>]");
+    return 2;
+  }
+  Object.assign(process.env, STRICT_PIPELINE_ENV);
+  if (!process.env.CHAPTERFLOW_CODEX_BIN) {
+    const appBin = "/Applications/Codex.app/Contents/Resources/codex";
+    if (existsSync(appBin)) process.env.CHAPTERFLOW_CODEX_BIN = appBin;
+  }
+  notifyEnabled = flags["no-notify"] !== true;
+  logFile = typeof flags["log"] === "string" ? resolve(flags["log"]) : null;
+  const maxParallel = typeof flags["max-parallel"] === "string" ? parseInt(flags["max-parallel"], 10) : undefined;
+  const targetCap = typeof flags["target-cap"] === "string" ? parseInt(flags["target-cap"], 10) : undefined;
+  const preserveChapters = typeof flags["preserve"] === "string"
+    ? flags["preserve"].split(",").map((s) => parseInt(s.trim(), 10)).filter((n) => Number.isInteger(n))
+    : undefined;
+  const onlyChapters = typeof flags["only"] === "string"
+    ? flags["only"].split(",").map((s) => parseInt(s.trim(), 10)).filter((n) => Number.isInteger(n))
+    : undefined;
+
+  console.log(bold(`\n🧬  Content-deal repair (body-device de-saturation) — ${bookId}`));
+  console.log(dim(`   codex=${process.env.CHAPTERFLOW_CODEX_BIN ?? "(PATH)"}${logFile ? ` · log=${logFile}` : ""} · re-authors ONLY over-cap chapters; preserves the rest; no publish, no push.`));
+  const deviceCapFrac = typeof flags["device-cap"] === "string" ? parseFloat(flags["device-cap"]) : undefined;
+  const started = Date.now();
+  const deps = resolveDeps({ log: (m) => emit(bookId, m) });
+  const result = await doContentDeviceRepair(bookId, deps, { maxParallel, preserveChapters, targetCap, onlyChapters, deviceCapFrac });
+  const mins = Math.round((Date.now() - started) / 60000);
+
+  if (!result.fired) {
+    console.log(green(`\n✓ No body device over the ubiquity cap — nothing to repair.`) + dim(`   (${mins} min)`));
+    return 0;
+  }
+  console.log(dim(`\n   over-cap before: ${result.overCapDevices.join(", ") || "none"}`));
+  const diversified = result.outcomes.filter((o) => o.status === "diversified");
+  const reverted = result.outcomes.filter((o) => o.status === "reverted" || o.status === "write-failed");
+  const skipped = result.outcomes.filter((o) => o.status === "skipped-cap");
+  console.log("");
+  for (const o of result.outcomes) {
+    const tag = o.status === "diversified" ? green("repaired") : o.status === "skipped-cap" ? yellow("skipped-cap") : red(o.status);
+    console.log(`   ch${String(o.chapterNumber).padStart(2, "0")}: ${tag}${o.newComposite != null ? ` (composite ${o.newComposite})` : ""} — ${o.detail}`);
+  }
+  console.log(dim(`\n   repaired ${diversified.length} · reverted/failed ${reverted.length} · skipped(cap) ${skipped.length} · (${mins} min)`));
+  console.log(dim(`   over-cap after: ${result.residualOverCap.join(", ") || "none — all devices under cap ✓"}`));
+  if (result.preservedViolations.length > 0) {
+    console.log(red(`   ✗ PRESERVED-CHAPTER VIOLATION on ${result.preservedViolations.map((n) => `ch${n}`).join(", ")} — the passing base was disturbed (bug).`));
+    return 1;
+  }
+  console.log(green(`   ✓ preserved chapters byte-stable.`));
+  console.log(dim(`   Next: run \`book-run ${bookId} --author --no-publish\` to re-review the repaired chapters and re-run book acceptance.`));
   return 0;
 }
