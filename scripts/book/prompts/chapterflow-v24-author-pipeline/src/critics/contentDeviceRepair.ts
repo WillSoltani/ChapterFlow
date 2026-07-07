@@ -76,8 +76,12 @@ function buildDirective(usedOverCap: ContentDeviceId[], banned: ContentDeviceId[
     `staged, how the quiz tests the idea, how cards reinforce it, how the chapter closes) — not what it teaches. ` +
     `EXAMPLE GROUNDING: every example must be EITHER a source-attested real case OR explicitly framed as ` +
     `hypothetical ("Imagine…", "Suppose a team…") — never present an invented person, title, or specific as if ` +
-    `it were a sourced fact (that is a fabricated example and will fail review). Do NOT invent facts, do NOT add ` +
-    `fake variety, do NOT swap one repeated device for a new repeated device.`
+    `it were a sourced fact (that is a fabricated example and will fail review). INVISIBLE VARIETY: the ` +
+    `variety must be felt, never NARRATED — do NOT describe your own teaching machinery in the prose ("this is ` +
+    `the second setting", "a different token", "keep the detail with its source") and NEVER call a company, ` +
+    `case, or fact a "source", "token", "material", or "anchor" in reader text (that scaffold vocabulary reads ` +
+    `as corrupted residue). Just teach the idea through the case. Do NOT invent facts, do NOT add fake variety, ` +
+    `do NOT swap one repeated device for a new repeated device.`
   );
 }
 
