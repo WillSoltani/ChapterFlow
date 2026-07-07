@@ -194,6 +194,32 @@ test("book-sameness repair: writes consume a SEPARATE bounded lineage-keyed lane
   }
 });
 
+test("content-deal repair: consumes its OWN lane, independent of the architecture sameness lane", async () => {
+  const {
+    contentRepairConsumedFor, recordContentRepairConsumed, resetContentRepairConsumed,
+    samenessRepairConsumedFor, recordSamenessRepairConsumed,
+  } = await import("../src/orchestrator/authorRegenLedger.js");
+  const root = mkdtempSync(join(tmpdir(), "content-repair-ledger-"));
+  try {
+    const lineage = "c0ntent1a2b3c";
+    // A chapter that ALREADY spent its architecture-diversification grant…
+    recordSamenessRepairConsumed(BOOK, 3, lineage, root);
+    // …can still receive ONE content-deal repair (the collision this lane fixes).
+    assert.equal(contentRepairConsumedFor(loadAuthorRegenLedger(BOOK, root), 3, lineage), 0, "content lane starts fresh even after a sameness grant");
+    recordContentRepairConsumed(BOOK, 3, lineage, root);
+    const after = loadAuthorRegenLedger(BOOK, root);
+    assert.equal(contentRepairConsumedFor(after, 3, lineage), 1, "content grant recorded");
+    assert.equal(samenessRepairConsumedFor(after, 3, lineage), 1, "the architecture grant is untouched (both lanes coexist)");
+    assert.equal(regenConsumedFor(after, 3, lineage), 0, "content repair never touches regen evidence");
+    // Controlled reset grants exactly one fresh attempt.
+    resetContentRepairConsumed(BOOK, 3, lineage, root);
+    assert.equal(contentRepairConsumedFor(loadAuthorRegenLedger(BOOK, root), 3, lineage), 0, "reset clears the content grant for one controlled retry");
+    assert.equal(samenessRepairConsumedFor(loadAuthorRegenLedger(BOOK, root), 3, lineage), 1, "resetting content never touches the sameness lane");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("W1: duplicated field labels complain at write time (the ch08 0-3 class)", async () => {
   const { authorWriteContractFindings } = await import("../src/orchestrator/authorRun.js");
   const chapter = makeChapter(BOOK, 2);

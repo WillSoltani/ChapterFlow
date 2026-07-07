@@ -81,6 +81,13 @@ export type AuthorRegenLedger = {
    *  diversification grant NEVER erases or resets prior regen evidence and can never
    *  hand a chapter unlimited attempts. Absent = 0 everywhere (additive). */
   samenessRepairConsumed?: Record<string, number>;
+  /** Content-deal repair lane (2026-07-07): a SEPARATE, bounded lane for the
+   *  book-level CONTENT-machinery de-saturation re-author — distinct from the
+   *  architecture `samenessRepairConsumed` lane so a chapter that already spent its
+   *  architecture-diversification grant can still receive ONE content-deal repair
+   *  (and vice-versa) without a manual reset. Keyed `${chapter}@${lineage}`, cap 1
+   *  per lineage. Never touches regen evidence. Absent = 0 everywhere (additive). */
+  contentRepairConsumed?: Record<string, number>;
 };
 
 type AuthorRegenLedgerV1 = {
@@ -354,6 +361,49 @@ export function recordSamenessRepairConsumed(
   const ledger = loadAuthorRegenLedger(bookId, stateRoot);
   const key = `${chapterNumber}@${lineage}`;
   const map = ledger.samenessRepairConsumed ?? (ledger.samenessRepairConsumed = {});
+  map[key] = (Number.isInteger(map[key]) && map[key] > 0 ? map[key] : 0) + 1;
+  ledger.updatedAt = new Date().toISOString();
+  persist(ledger, stateRoot);
+  return ledger;
+}
+
+// ── Content-deal repair lane (2026-07-07) — mirrors the sameness lane, separate map ──
+
+/** How many content-deal de-saturation re-authors a chapter has consumed against its
+ *  current lineage (cap 1). Absent = 0. Independent of the architecture sameness lane. */
+export function contentRepairConsumedFor(ledger: AuthorRegenLedger, chapterNumber: number, lineage: string): number {
+  const keyed = ledger.contentRepairConsumed?.[`${chapterNumber}@${lineage}`];
+  return Number.isInteger(keyed) && (keyed as number) > 0 ? (keyed as number) : 0;
+}
+
+/** CONTROLLED reset of a chapter's content-deal-repair grant for its lineage — a
+ *  deliberate operator retry (`--only`). Grants at most one fresh attempt. Never
+ *  touches regen/repair/budget/sameness evidence. Returns the persisted ledger. */
+export function resetContentRepairConsumed(
+  bookId: string,
+  chapterNumber: number,
+  lineage: string,
+  stateRoot: string = CANONICAL_STATE,
+): AuthorRegenLedger {
+  const ledger = loadAuthorRegenLedger(bookId, stateRoot);
+  if (ledger.contentRepairConsumed) delete ledger.contentRepairConsumed[`${chapterNumber}@${lineage}`];
+  ledger.updatedAt = new Date().toISOString();
+  persist(ledger, stateRoot);
+  return ledger;
+}
+
+/** Record ONE consumed content-deal-repair write for a chapter's lineage and persist.
+ *  Counts only grow (a failed repair still counts — no unlimited retries). Never
+ *  mutates the regen/repair/budgetRepair/sameness lanes. */
+export function recordContentRepairConsumed(
+  bookId: string,
+  chapterNumber: number,
+  lineage: string,
+  stateRoot: string = CANONICAL_STATE,
+): AuthorRegenLedger {
+  const ledger = loadAuthorRegenLedger(bookId, stateRoot);
+  const key = `${chapterNumber}@${lineage}`;
+  const map = ledger.contentRepairConsumed ?? (ledger.contentRepairConsumed = {});
   map[key] = (Number.isInteger(map[key]) && map[key] > 0 ? map[key] : 0) + 1;
   ledger.updatedAt = new Date().toISOString();
   persist(ledger, stateRoot);

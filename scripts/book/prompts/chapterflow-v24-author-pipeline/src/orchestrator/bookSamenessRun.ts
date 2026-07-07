@@ -51,6 +51,9 @@ import {
   samenessRepairConsumedFor,
   recordSamenessRepairConsumed,
   resetSamenessRepairConsumed,
+  contentRepairConsumedFor,
+  recordContentRepairConsumed,
+  resetContentRepairConsumed,
 } from "./authorRegenLedger.js";
 
 /** The already-distinct chapters that must be preserved (from the 2026-07-05
@@ -154,7 +157,7 @@ export async function doBookSamenessRepair(
   const outcomes: SamenessChapterOutcome[] = [];
   for (const target of plan.targets) {
     heartbeat();
-    outcomes.push(await diversifyOne(bookId, { chapterNumber: target.chapterNumber, directive: target.directive, label: target.assignedFamily }, deps, io, reviewIo, bar));
+    outcomes.push(await diversifyOne(bookId, { chapterNumber: target.chapterNumber, directive: target.directive, label: target.assignedFamily }, deps, io, reviewIo, bar, "sameness"));
   }
 
   // Verify preserved chapters are byte-identical.
@@ -175,6 +178,10 @@ export async function doBookSamenessRepair(
  *  a short label for logs/outcomes (an architecture family or "content-deal"). */
 type DiversifyTarget = { chapterNumber: number; directive: string; label: string };
 
+/** Which bounded ledger lane a diversification round consumes — architecture and
+ *  content-deal repair are SEPARATE lanes (a chapter can spend one of each). */
+type RepairLane = "sameness" | "content";
+
 async function diversifyOne(
   bookId: string,
   target: DiversifyTarget,
@@ -182,25 +189,29 @@ async function diversifyOne(
   io: AuthorIo,
   reviewIo: ReturnType<typeof resolveAuthorReviewIo>,
   bar: number,
+  lane: RepairLane = "sameness",
 ): Promise<SamenessChapterOutcome> {
   const n = target.chapterNumber;
   const nn = String(n).padStart(2, "0");
   const base = { chapterNumber: n, assignedFamily: target.label };
   const path = chapterPath(bookId, n);
   const priorBytes = existsSync(path) ? readFileSync(path, "utf8") : null;
+  const consumedFor = lane === "content" ? contentRepairConsumedFor : samenessRepairConsumedFor;
+  const recordConsumed = lane === "content" ? recordContentRepairConsumed : recordSamenessRepairConsumed;
+  const laneLabel = lane === "content" ? "content-deal-repair" : "book-sameness-repair";
 
-  // Bounded: one sameness-repair grant per lineage. A lineage we cannot compute
+  // Bounded: one repair grant per lineage in this lane. A lineage we cannot compute
   // (pre-brief fixture) runs uncounted rather than converting a safety net into a halt.
   let lineage: string | null = null;
   try { lineage = computeRegenLineage(bookId, n); } catch { lineage = null; }
   if (lineage) {
     let consumed = 1;
-    try { consumed = samenessRepairConsumedFor(loadAuthorRegenLedger(bookId), n, lineage); } catch { consumed = 1; }
+    try { consumed = consumedFor(loadAuthorRegenLedger(bookId), n, lineage); } catch { consumed = 1; }
     if (consumed >= 1) {
-      deps.log(`[sameness] ch${nn}: already consumed its book-sameness-repair grant for this lineage — skipping (bounded).`);
-      return { ...base, status: "skipped-cap", detail: "sameness-repair cap (1/lineage) already consumed" };
+      deps.log(`[sameness] ch${nn}: already consumed its ${laneLabel} grant for this lineage — skipping (bounded).`);
+      return { ...base, status: "skipped-cap", detail: `${laneLabel} cap (1/lineage) already consumed` };
     }
-    recordSamenessRepairConsumed(bookId, n, lineage); // logged reason: book-sameness-repair; counts before the spawn
+    recordConsumed(bookId, n, lineage); // counts before the spawn
   }
 
   // Re-author with the diversification directive injected as a writer complaint.
@@ -276,7 +287,7 @@ export async function doContentDeviceRepair(
       let lineage: string | null = null;
       try { lineage = computeRegenLineage(bookId, n); } catch { lineage = null; }
       if (lineage) {
-        resetSamenessRepairConsumed(bookId, n, lineage);
+        resetContentRepairConsumed(bookId, n, lineage);
         deps.log(`[content-deal] ch${String(n).padStart(2, "0")}: reset content-deal-repair grant for a controlled retry.`);
       }
     }
@@ -314,7 +325,7 @@ export async function doContentDeviceRepair(
   const outcomes: SamenessChapterOutcome[] = [];
   for (const target of plan.targets) {
     heartbeat();
-    outcomes.push(await diversifyOne(bookId, { chapterNumber: target.chapterNumber, directive: target.directive, label: "content-deal" }, deps, io, reviewIo, bar));
+    outcomes.push(await diversifyOne(bookId, { chapterNumber: target.chapterNumber, directive: target.directive, label: "content-deal" }, deps, io, reviewIo, bar, "content"));
   }
 
   const preservedViolations: number[] = [];
