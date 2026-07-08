@@ -1883,6 +1883,17 @@ async function runBookStatus(args: string[], flags: Record<string, string | bool
     console.log(`  could not read status: ${(err as Error).message}`);
     console.log(`  run: npx tsx src/cli.ts doctor ${bookId}`);
   }
+  // F-11: if this book still owes a cross-repo deploy, print the remaining steps
+  // verbatim. Read-only, best-effort — never fails the status read (and silent for
+  // a book with no pending debt). Suppressed under --json (the machine caller reads
+  // the sentinel directly).
+  if (flags["json"] !== true) {
+    try {
+      const { readPendingDeploy, formatBookPendingDeploy } = await import("./publish/publishFinal.js");
+      const block = formatBookPendingDeploy(bookId, readPendingDeploy());
+      if (block) console.log("\n" + block);
+    } catch { /* visibility is best-effort; never crash the status view */ }
+  }
   return 0;
 }
 

@@ -115,6 +115,89 @@ export function mergePendingDeploy(existingRaw: string | null, entry: PendingDep
   return JSON.stringify({ schemaVersion: PENDING_DEPLOY_SCHEMA, pending: next }, null, 2) + "\n";
 }
 
+// ── Deploy sentinel READER (F-11 visibility) ─────────────────────────────────
+// publishFinal WRITES the sentinel; nothing until now READ it back, so the
+// "deploy owed" debt became invisible the moment the publish print scrolled away
+// (F-11). These pure readers/formatters surface it in `doctor` / `book-status`.
+// Strictly read-only — they never write, clear, or deploy anything.
+
+export type PendingDeployReport =
+  | { outcome: "clean"; sentinelPath: string; entries: [] }
+  | { outcome: "pending"; sentinelPath: string; entries: PendingDeployEntry[] }
+  | { outcome: "outer-root-missing"; sentinelPath: string; entries: []; warning: string }
+  | { outcome: "malformed"; sentinelPath: string; entries: []; warning: string };
+
+function isPendingEntry(e: unknown): e is PendingDeployEntry {
+  return (
+    !!e &&
+    typeof (e as PendingDeployEntry).bookId === "string" &&
+    typeof (e as PendingDeployEntry).packageSha256 === "string"
+  );
+}
+
+/**
+ * Pure reader for the pending-deploy sentinel. NEVER throws.
+ *  - outer root dir absent            → "outer-root-missing" (a WARNING, never a
+ *                                        false "all clear" — deploy status UNKNOWN)
+ *  - sentinel file absent             → "clean" (no debt recorded)
+ *  - unreadable / non-JSON / no pending[] array → "malformed" (loud parse warning)
+ *  - parses but 0 valid entries       → "clean"
+ *  - ≥1 valid entry                   → "pending" with the entries verbatim
+ */
+export function readPendingDeploy(outerRoot: string = MONOREPO_ANCESTOR): PendingDeployReport {
+  const sentinelPath = resolve(outerRoot, PENDING_DEPLOY_REL);
+  if (!existsSync(outerRoot)) {
+    return {
+      outcome: "outer-root-missing",
+      sentinelPath,
+      entries: [],
+      warning: `outer checkout not found at ${outerRoot} — cannot verify pending-deploy debt (deploy status UNKNOWN, not clean)`,
+    };
+  }
+  if (!existsSync(sentinelPath)) {
+    return { outcome: "clean", sentinelPath, entries: [] };
+  }
+  let raw: string;
+  try {
+    raw = readFileSync(sentinelPath, "utf8");
+  } catch (err) {
+    return { outcome: "malformed", sentinelPath, entries: [], warning: `could not read ${PENDING_DEPLOY_REL}: ${(err as Error).message}` };
+  }
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (err) {
+    return { outcome: "malformed", sentinelPath, entries: [], warning: `${PENDING_DEPLOY_REL} is not valid JSON (hand-edited?): ${(err as Error).message}` };
+  }
+  const pendingRaw = (parsed as { pending?: unknown })?.pending;
+  if (!Array.isArray(pendingRaw)) {
+    return { outcome: "malformed", sentinelPath, entries: [], warning: `${PENDING_DEPLOY_REL} has no pending[] array (hand-edited?)` };
+  }
+  const entries = pendingRaw.filter(isPendingEntry);
+  if (entries.length === 0) return { outcome: "clean", sentinelPath, entries: [] };
+  return { outcome: "pending", sentinelPath, entries };
+}
+
+/** Age of a pending entry in whole hours, or null if publishedAt is unparseable. */
+export function pendingDeployAgeHours(publishedAt: string, now: number): number | null {
+  const t = Date.parse(publishedAt);
+  if (!Number.isFinite(t)) return null;
+  return Math.max(0, Math.floor((now - t) / 3_600_000));
+}
+
+/** book-status helper: the remaining-steps block for ONE book, or null if that
+ *  book has no pending-deploy debt. Steps are printed verbatim from the sentinel. */
+export function formatBookPendingDeploy(bookId: string, report: PendingDeployReport): string | null {
+  if (report.outcome !== "pending") return null;
+  const entry = report.entries.find((e) => e.bookId === bookId);
+  if (!entry) return null;
+  return [
+    `⚠ DEPLOY PENDING — ${bookId} is committed to the repo but NOT yet served by the app.`,
+    `  steps remaining: ${entry.steps.join(" → ")}`,
+    `  runbook: docs/v24/DEPLOY-RUNBOOK.md (clear with: npm run verify:live)`,
+  ].join("\n");
+}
+
 /** The three commands a pending deploy still owes, for the loud report. */
 export function deployRequiredHint(bookId: string): string[] {
   return [

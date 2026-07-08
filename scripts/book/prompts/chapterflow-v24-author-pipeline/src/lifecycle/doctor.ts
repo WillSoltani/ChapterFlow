@@ -10,10 +10,12 @@
 
 import { spawnSync } from "child_process";
 import { existsSync, readFileSync, readdirSync } from "fs";
+import { hostname } from "os";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { assertNoShadowStateDir } from "../lib/chapterPaths.js";
+import { pendingDeployAgeHours, readPendingDeploy } from "../publish/publishFinal.js";
 import { compareChapterSetToCanonical, formatChapterSetBlockers, readCanonicalChapterIndex } from "../lib/chapterSet.js";
 import { findRunArtifact } from "../lib/runDirs.js";
 import { formatTocIssues, parseTocFile } from "../lib/tocContract.js";
@@ -147,8 +149,96 @@ function checkUntrackedImports(): DoctorFinding {
   return { level: "warn", check: "untracked-imports", message: `${untracked.length} untracked src/*.ts (not yet imported by tracked code)` };
 }
 
+/** Advisory lock record shape shared by autopilot-locks (autopilot run lock +
+ *  compiler-run lock both write `{ pid, host, at, owner }`). */
+type LockRecord = { pid?: number; host?: string; at?: string; owner?: string };
+
+/**
+ * Inspect one `state/autopilot-locks/*.lock`. DETECTION ONLY — it never signals,
+ * kills, or removes anything; the pid probe is `kill(pid, 0)` (ESRCH = dead) and
+ * the report carries the exact `rm` an operator can run by hand.
+ *
+ *  - foreign-host lock → liveness is UNVERIFIABLE from here (warn, no auto-claim).
+ *  - same-host + dead pid (ESRCH) → STALE (warn + rm command).
+ *  - same-host + live pid (or EPERM = alive under another user) → OK.
+ *  - torn/malformed → warn (an operator should confirm no run is active, then rm).
+ */
+export function inspectAutopilotLock(path: string): DoctorFinding {
+  const name = path.split(/[/\\]+/).pop() ?? path;
+  const rm = `rm ${path}`;
+  let rec: LockRecord;
+  try {
+    const parsed = JSON.parse(readFileSync(path, "utf8"));
+    if (!parsed || typeof parsed !== "object") throw new Error("not an object");
+    rec = parsed as LockRecord;
+  } catch {
+    return { level: "warn", check: "autopilot-locks", message: `${name}: unreadable/torn lock — if no run is active, clear with: ${rm}` };
+  }
+  if (rec.host && rec.host !== hostname()) {
+    return { level: "warn", check: "autopilot-locks", message: `${name}: held by pid ${rec.pid}@${rec.host} (foreign host) since ${rec.at ?? "?"} — liveness UNVERIFIABLE from this host; if that host/run is gone, clear with: ${rm}` };
+  }
+  if (typeof rec.pid !== "number") {
+    return { level: "warn", check: "autopilot-locks", message: `${name}: malformed lock (no pid) — if no run is active, clear with: ${rm}` };
+  }
+  // Same host: kill -0 liveness probe (ESRCH = dead, EPERM = alive under another user).
+  let dead = false;
+  try {
+    process.kill(rec.pid, 0);
+  } catch (err) {
+    dead = (err as NodeJS.ErrnoException)?.code === "ESRCH";
+  }
+  if (dead) {
+    return { level: "warn", check: "autopilot-locks", message: `${name}: STALE — owner pid ${rec.pid} is not alive (held since ${rec.at ?? "?"}); clear with: ${rm}` };
+  }
+  return { level: "ok", check: "autopilot-locks", message: `${name}: held by live pid ${rec.pid}` };
+}
+
+/** Report any lock under `state/autopilot-locks/` whose owner is provably dead
+ *  (same host) or unverifiable (foreign host). Detection only — never removes. */
+export function checkStaleLocks(lockDir = resolve(STATE_DIR, "autopilot-locks")): DoctorFinding[] {
+  let names: string[];
+  try {
+    names = readdirSync(lockDir).filter((n) => n.endsWith(".lock"));
+  } catch {
+    return [{ level: "ok", check: "autopilot-locks", message: "no autopilot-locks dir" }];
+  }
+  if (names.length === 0) return [{ level: "ok", check: "autopilot-locks", message: "no held autopilot locks" }];
+  return names.sort().map((n) => inspectAutopilotLock(resolve(lockDir, n)));
+}
+
+/**
+ * PENDING DEPLOY — surface any un-served publish debt recorded in the outer
+ * checkout's `.pending-deploy.json` (F-11). publish-final ends at `git push` by
+ * design; the app only serves content after a separate S3 upload + web deploy,
+ * so a "PUBLISHED" book can sit stale in prod indefinitely with only a JSON file
+ * recording the debt. This makes it loud and aging. Strictly read-only — it never
+ * writes, clears, or triggers a deploy. WARN at any age (never fatal: visibility,
+ * not a block); escalated wording past 24h. A missing outer root reports UNKNOWN
+ * (a warning), never a false "all clear"; a hand-mangled sentinel warns loudly
+ * instead of crashing doctor. `now` is injectable for deterministic tests.
+ */
+export function checkPendingDeploy(outerRoot?: string, now: number = Date.now()): DoctorFinding[] {
+  const report = readPendingDeploy(outerRoot);
+  if (report.outcome === "outer-root-missing" || report.outcome === "malformed") {
+    return [{ level: "warn", check: "pending-deploy", message: report.warning }];
+  }
+  if (report.outcome === "clean") {
+    return [{ level: "ok", check: "pending-deploy", message: "no pending deploy debt (outer app is serving the published catalog)" }];
+  }
+  return report.entries.map((e) => {
+    const ageH = pendingDeployAgeHours(e.publishedAt, now);
+    const age = ageH == null ? `unknown age (publishedAt="${e.publishedAt}")` : `${ageH}h ago`;
+    const steps = e.steps.length ? e.steps.join(" → ") : "(no steps recorded)";
+    const stale = ageH != null && ageH >= 24;
+    const message = stale
+      ? `STALE >24h — ${e.bookId} has owed a deploy since ${age}; the app is serving OLD content. Deploy now: ${steps} (docs/v24/DEPLOY-RUNBOOK.md)`
+      : `DEPLOY PENDING — ${e.bookId} published ${age}, not yet served by the app; ${e.steps.length} step(s) remaining: ${steps} (docs/v24/DEPLOY-RUNBOOK.md)`;
+    return { level: "warn", check: "pending-deploy", message };
+  });
+}
+
 export function runDoctorChecks(bookId?: string): DoctorFinding[] {
-  const findings: DoctorFinding[] = [checkShadowStateDir(), checkUntrackedImports()];
+  const findings: DoctorFinding[] = [checkShadowStateDir(), checkUntrackedImports(), ...checkStaleLocks(), ...checkPendingDeploy()];
   if (bookId) {
     findings.push(checkDualBrief(bookId), checkChapterNumbers(bookId), checkCanonicalChapterSet(bookId), checkTocContract(bookId), checkSweepHistory(bookId));
   } else {
