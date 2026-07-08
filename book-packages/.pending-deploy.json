@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "pending-deploy-v1",
+  "pending": [
+    {
+      "bookId": "high-output-management",
+      "packageSha256": "57d0fc10f5306dc763ffaf34a906ee7db50720eb228377baabb9c135a98ec79b",
+      "publishedAt": "2026-07-08T19:27:36.376Z",
+      "steps": [
+        "upload-book-packages-to-s3",
+        "deploy-workflow",
+        "verify-live-sync"
+      ]
+    }
+  ]
+}

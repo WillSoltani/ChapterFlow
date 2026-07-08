@@ -130,6 +130,7 @@ import auto_the_first_90_days_Json from "@/book-packages/the-first-90-days.v21.j
 import auto_the_effective_executive_Json from "@/book-packages/the-effective-executive.v21.json";
 import auto_the_power_of_moments_Json from "@/book-packages/the-power-of-moments.v21.json";
 import auto_the_intelligent_investor_Json from "@/book-packages/the-intelligent-investor.v21.json";
+import auto_high_output_management_Json from "@/book-packages/high-output-management.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -2049,4 +2050,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_the_intelligent_investor_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["the-intelligent-investor"] = (tone) => normalizeAnyPackage(auto_the_intelligent_investor_Json, tone);
+}
+
+// --- auto-registered by `publish-final` for "high-output-management" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_high_output_management_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["high-output-management"] = (tone) => normalizeAnyPackage(auto_high_output_management_Json, tone);
 }
