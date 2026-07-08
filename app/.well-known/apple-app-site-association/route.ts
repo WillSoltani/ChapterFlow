@@ -7,7 +7,40 @@ import {
 export const runtime = "nodejs";
 // Read the Team ID from Lambda env at request time (see docs/ENVIRONMENT.md);
 // keep it out of the build so rotating IOS_APP_TEAM_ID needs no rebuild.
+// Resolution goes through getServerEnv (dynamically imported below), so the value
+// can live in SSM (`${SSM_PARAMETER_PREFIX}/IOS_APP_TEAM_ID`) and rotate with no
+// redeploy — not just as a baked Lambda env var.
 export const dynamic = "force-dynamic";
+
+/**
+ * Resolve the Apple identifiers from the environment.
+ *
+ * In the server runtime this goes through `getServerEnv`, which reads `process.env`
+ * first and falls back to SSM (`${SSM_PARAMETER_PREFIX}/<KEY>`) at request time.
+ * `getServerEnv` lives in a `server-only` module, which throws when imported from a
+ * non-server runtime (e.g. the `tsx --test` unit runner). It is therefore imported
+ * dynamically and, if unavailable, we fall back to reading `process.env` directly —
+ * identical behaviour to `resolveAppleAppId()`'s default, and what the route tests
+ * exercise.
+ */
+async function resolveAppleIdentifiers(): Promise<{
+  teamId?: string;
+  bundleId?: string;
+}> {
+  try {
+    const { getServerEnv } = await import("@/app/app/api/_lib/server-env");
+    const [teamId, bundleId] = await Promise.all([
+      getServerEnv("IOS_APP_TEAM_ID"),
+      getServerEnv("IOS_APP_BUNDLE_ID"),
+    ]);
+    return { teamId, bundleId };
+  } catch {
+    return {
+      teamId: process.env.IOS_APP_TEAM_ID,
+      bundleId: process.env.IOS_APP_BUNDLE_ID,
+    };
+  }
+}
 
 /**
  * `GET /.well-known/apple-app-site-association`
@@ -25,7 +58,14 @@ export const dynamic = "force-dynamic";
  * only resolves the app id from env and serializes.
  */
 export async function GET(): Promise<NextResponse> {
-  const body = buildAppleAppSiteAssociation(resolveAppleAppId());
+  const { teamId, bundleId } = await resolveAppleIdentifiers();
+  // resolveAppleAppId keeps its documented placeholder/default fallbacks when
+  // either value is unset.
+  const appId = resolveAppleAppId({
+    IOS_APP_TEAM_ID: teamId,
+    IOS_APP_BUNDLE_ID: bundleId,
+  });
+  const body = buildAppleAppSiteAssociation(appId);
 
   return NextResponse.json(body, {
     status: 200,
