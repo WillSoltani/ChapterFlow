@@ -9,12 +9,12 @@
  * in the same change. This is how Phase-1 work items stay pinned to code.
  */
 
-export type TestStatus = "pass" | "fail" | "xfail" | "xpass" | "skip";
+export type TestStatus = "pass" | "fail" | "xfail" | "xpass" | "skip" | "xenv";
 
 export type TestResult = {
   name: string;
   status: TestStatus;
-  reason?: string;   // xfail reason or skip reason
+  reason?: string;   // xfail reason, skip reason, or xenv (env-absent) reason
   error?: string;    // failure detail
 };
 
@@ -23,6 +23,8 @@ type RegisteredTest = {
   fn: () => void | Promise<void>;
   xfailReason?: string;
   skipReason?: string;
+  /** expected-env-failure marker (see xenv()). */
+  xenv?: { reason: string; precondition: () => boolean };
 };
 
 const registry: RegisteredTest[] = [];
@@ -59,6 +61,25 @@ export function skip(name: string, reason: string): void {
   registry.push({ name, fn: () => {}, skipReason: reason });
 }
 
+/**
+ * Expected ENVIRONMENT failure — a test that can only run where a required
+ * environment precondition holds (e.g. the real, tracked gold corpus is on
+ * disk). Semantics:
+ *   - precondition() FALSE  → the test reports `xenv` (env-absent, machine-
+ *     checked), never a silent pass and never a red FAIL. This is what a bare
+ *     checkout without the corpus sees.
+ *   - precondition() TRUE   → the test RUNS normally (a throw is a real FAIL).
+ *     A corpus-complete checkout executes every assertion.
+ *
+ * The precondition MUST be a real check (typically file existence), NOT a name
+ * allowlist — otherwise `xenv` could be used to hide a genuine regression. Unlike
+ * `skip()` (unconditional, forgotten-forever), the precondition is re-evaluated
+ * every run, so the test switches itself back on the moment its corpus appears.
+ */
+export function xenv(name: string, reason: string, precondition: () => boolean, fn: () => void | Promise<void>): void {
+  registry.push({ name, fn, xenv: { reason, precondition } });
+}
+
 function describeError(e: unknown): string {
   if (e instanceof Error) return e.message.split("\n").slice(0, 6).join("\n");
   return String(e);
@@ -72,6 +93,18 @@ export async function runRegistered(): Promise<TestResult[]> {
     if (t.skipReason) {
       results.push({ name: t.name, status: "skip", reason: t.skipReason });
       continue;
+    }
+    if (t.xenv) {
+      // Env-absent → xenv (machine-checked skip-with-reason). Precondition PRESENT
+      // → fall through and run the test normally, so a real regression on a
+      // corpus-complete checkout still fails. A precondition that itself throws is
+      // treated as absent (fail closed to xenv, never a false green).
+      let present = false;
+      try { present = t.xenv.precondition(); } catch { present = false; }
+      if (!present) {
+        results.push({ name: t.name, status: "xenv", reason: t.xenv.reason });
+        continue;
+      }
     }
     let threw: unknown = null;
     let failed = false;

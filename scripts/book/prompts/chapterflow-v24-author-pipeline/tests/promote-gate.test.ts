@@ -17,7 +17,7 @@ import { loadChapterIndex } from "../src/generateBook.js";
 import { verifyProductionPackage } from "../src/verifyProductionPackage.js";
 import { hostname as osHostname } from "os";
 import { test } from "./harness.js";
-import { makeChapter, makeSourceV2SidecarFixture, PIPELINE_DIR, runCli, STATE_CHAPTERS, writeFixtureBook, writeResearchRunManifestFixture, writeVerifiedSourceVerifyRecord } from "./helpers.js";
+import { makeChapter, makeGateCleanChapter, makeSourceV2SidecarFixture, PIPELINE_DIR, runCli, STATE_CHAPTERS, writeFixtureBook, writeResearchRunManifestFixture, writeVerifiedSourceVerifyRecord } from "./helpers.js";
 import {
   currentMajorFindings,
   MAJOR_WAIVER_FILE_SCHEMA_VERSION,
@@ -25,9 +25,11 @@ import {
   waiverPath,
 } from "../src/qc/majorDisposition.js";
 import { sourceVerifyRecordPath } from "../src/critics/sourceVerify.js";
+import type { ChapterV21 } from "../src/types.js";
 
 const BOOK = "zz-fixture-promote";
 const MAJOR_BOOK = "zz-fixture-promote-major-clean";
+const SUBSET_BOOK = "zz-fixture-promote-subset";
 
 function cleanupFixture(): void {
   for (const f of readdirSync(STATE_CHAPTERS)) {
@@ -44,7 +46,12 @@ function cleanupFixture(): void {
   rmSync(productionManifestSidecarPath(MAJOR_BOOK), { force: true });
   rmSync(sourceVerifyRecordPath(BOOK), { force: true });
   rmSync(sourceVerifyRecordPath(MAJOR_BOOK), { force: true });
-  rmSync(sourceRunDir(MAJOR_BOOK, "zz-test-major-clean"), { recursive: true, force: true });
+  // Remove the WHOLE fixture research-run dir, not just the one runId subdir — the
+  // synthetic fixtures create `.chapterflow/runs/<fixtureBook>/` from scratch (unlike
+  // the old `drive` clone, whose parent dir pre-existed), so leaving the empty parent
+  // behind is a fixture leak.
+  rmSync(resolve(PIPELINE_DIR, ".chapterflow/runs", MAJOR_BOOK), { recursive: true, force: true });
+  rmSync(resolve(PIPELINE_DIR, ".chapterflow/runs", BOOK), { recursive: true, force: true });
   rmSync(resolve(PIPELINE_DIR, "state", "books", "_transactions"), { recursive: true, force: true });
   for (const n of Array.from({ length: 20 }, (_, i) => i + 1)) {
     rmSync(attestationPath(MAJOR_BOOK, n), { force: true });
@@ -263,19 +270,32 @@ function writeSourceSidecars(bookId: string, chapters: Array<{ chapterNumber: nu
   }
 }
 
+/** Plant ONE deterministic, NON-ADVISORY major into a chapter: an ISBN in reader
+ *  prose trips SL5.publication_detail (a "major" in SEVERITY_FROM_CATALOG that is
+ *  NOT in majorPolicy's ADVISORY_MAJOR_PREFIXES), so `majorPolicy.unresolved` is
+ *  non-empty and CHAPTERFLOW_ENFORCE_MAJORS=1 has a real major to block on. Chosen
+ *  because SL5_ISBN_RE is literally /\bISBN\b/ over reader fields — a single,
+ *  side-effect-free string the "clean" variant simply omits. Planted in
+ *  breakdown.fullRead so the content edit in the waiver-staleness test (which
+ *  rewrites tryThisNow) leaves the major FIRING while staling its waiver hash. */
+function plantEnforceableMajor(chapter: ChapterV21): void {
+  chapter.breakdown.fullRead += " The team even logged the reference ISBN so the record stayed traceable.";
+}
+
 function setupMajorCleanFixture(): ReturnType<typeof loadChapterIndex> {
   cleanupFixture();
-  const sourceBook = "drive";
-  const sourceIndex = loadChapterIndex(sourceBook).slice(0, 8);
-  const chapters = sourceIndex.map((spec) => {
-    const source = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, `${spec.chapterId}.v21-native.chapter.json`), "utf8"));
-    const nn = String(spec.chapterNumber).padStart(2, "0");
-    return {
-      ...source,
-      chapterId: `${MAJOR_BOOK}-ch${nn}`,
-      number: spec.chapterNumber,
-    };
-  });
+  // Hermetic synthetic book. This used to clone the first 8 chapters of the `drive`
+  // gold corpus, which is ABSENT on a bare checkout — the F-12 inertness. A single
+  // gate-clean synthetic chapter promotes GREEN through the full ship/book/intra-book/
+  // source-reality/QC stack (validated); a MULTI-chapter synthetic book instead trips
+  // the intra-book AS5–AS12 template-collision detectors, because makeGateCleanChapter
+  // shares position-indexed skeletons across chapters where real distinct prose does
+  // not. So one chapter is the hermetic promotable unit — it exercises the identical
+  // promotion transaction machinery these tests target. One enforceable major is
+  // planted so the advisory-vs-enforced and content-bound-waiver tests have a real
+  // non-advisory major.
+  const chapters: ChapterV21[] = [makeGateCleanChapter(MAJOR_BOOK, 1)];
+  plantEnforceableMajor(chapters[0]);
   writeFixtureBook(STATE_CHAPTERS, chapters);
   const index = chapters.map((ch) => ({ chapterId: ch.chapterId, chapterNumber: ch.number, chapterTitle: ch.title }));
   writeFixtureIndex(MAJOR_BOOK, chapters.map((ch) => ({ chapterId: ch.chapterId, number: ch.number, title: ch.title })));
@@ -396,27 +416,32 @@ function withMajorsEnforced<T>(fn: () => T): T {
 }
 
 test("promoteBook rejects a caller-provided one-chapter subset of a canonical book and leaves production bytes unchanged", () => {
-  const bookId = "drive";
-  const chapterNumber = 6;
-  const chapterPath = resolve(STATE_CHAPTERS, `${bookId}-ch${String(chapterNumber).padStart(2, "0")}.v21-native.chapter.json`);
+  // Hermetic: a 2-chapter synthetic canonical index; the caller promotes only ch01.
+  // The subset is rejected at the canonical-chapter-set proof (Step 0.5), BEFORE any
+  // ship/book gate or production write — so the chapter content need not be gate-clean
+  // (was: cloned from the `drive` gold corpus, absent on a bare checkout — F-12).
+  const bookId = SUBSET_BOOK;
+  const chapters = [makeChapter(bookId, 1), makeChapter(bookId, 2)];
+  const chapterNumber = 6; // an unrelated attested chapter number — irrelevant to the subset rejection
   const packagePath = productionPackagePath(bookId);
   const reportPath = gateReportPath(bookId);
   const qcPath = attestationPath(bookId, chapterNumber);
-  const seededPackage = ensureFixtureProductionPackage(bookId, "Drive", "Daniel H. Pink");
+  const seededPackage = ensureFixtureProductionPackage(bookId, "Subset Fixture", "Nobody");
   const packageBefore = readFileSync(packagePath, "utf8");
   const reportBefore = snapshotFile(reportPath);
   const qcBefore = snapshotFile(qcPath);
 
   try {
     withPromotionEnvCleared(() => {
-      const chapter = JSON.parse(readFileSync(chapterPath, "utf8"));
+      writeFixtureBook(STATE_CHAPTERS, chapters);
+      writeFixtureIndex(bookId, chapters.map((ch) => ({ chapterId: ch.chapterId, number: ch.number, title: ch.title })));
       writeAttestation({
         schemaVersion: "qc-attest-v1",
         bookId,
         chapterNumber,
-        chapterId: chapter.chapterId,
+        chapterId: `${bookId}-ch${String(chapterNumber).padStart(2, "0")}`,
         verdict: "PUBLISHABLE",
-        contentHash: chapterContentHash(chapter),
+        contentHash: chapterContentHash(chapters[0]),
         hashVersion: "v2",
         reviewer: "claude-qc:canonical-subset-regression",
         reviewedAt: "2026-06-23T00:00:00.000Z",
@@ -424,9 +449,9 @@ test("promoteBook rejects a caller-provided one-chapter subset of a canonical bo
 
       const result = promoteBook({
         bookId,
-        title: "Drive",
-        author: "Daniel H. Pink",
-        chapters: [{ chapterId: chapter.chapterId, chapterNumber, chapterTitle: chapter.title }],
+        title: "Subset Fixture",
+        author: "Nobody",
+        chapters: [{ chapterId: chapters[0].chapterId, chapterNumber: 1, chapterTitle: chapters[0].title }],
         categories: ["Business"],
         tags: ["motivation"],
       });
@@ -436,6 +461,8 @@ test("promoteBook rejects a caller-provided one-chapter subset of a canonical bo
       assert.equal(readFileSync(packagePath, "utf8"), packageBefore, "rejected subset promotion must leave the existing production package byte-identical");
     });
   } finally {
+    for (const ch of chapters) rmSync(chapterStatePath(ch.chapterId), { force: true });
+    rmSync(resolve(PIPELINE_DIR, "state", "indexes", `${bookId}.json`), { force: true });
     restoreFile(qcPath, qcBefore);
     restoreFile(reportPath, reportBefore);
     if (seededPackage) rmSync(packagePath, { force: true });
@@ -484,122 +511,39 @@ test("promoteBook fails closed when the canonical index is missing or malformed 
 });
 
 test("promoteBook still promotes a complete correctly ordered canonical book", () => {
-  const bookId = "drive";
-  const runId = `zz-test-promote-manifest-${process.pid}`;
-  const index = loadChapterIndex(bookId);
-  const packagePath = productionPackagePath(bookId);
-  const reportPath = gateReportPath(bookId);
-  const seededPackage = ensureFixtureProductionPackage(bookId, "Drive", "Daniel H. Pink");
-  const packageBefore = readFileSync(packagePath, "utf8");
-  const reportBefore = snapshotFile(reportPath);
-  const waiverBefore = snapshotFile(waiverPath(bookId));
-  const qcBefore = new Map(index.map((spec) => [spec.chapterNumber, snapshotFile(attestationPath(bookId, spec.chapterNumber))]));
-  const chapterBefore = new Map(index.map((spec) => [spec.chapterId, snapshotFile(chapterStatePath(spec.chapterId))]));
-  const sourceRecordBefore = snapshotFile(sourceVerifyRecordPath(bookId));
-
+  // Hermetic: promote the full synthetic fixture book (was: the `drive` gold corpus,
+  // absent on a bare checkout — F-12). The fixture carries an advisory major, exactly
+  // like a real clean-corpus book (majors are advisory by default), so this exercises
+  // the real "promotes GREEN with advisory majors present" production path.
+  const oldWarn = console.warn;
   try {
+    console.warn = () => {};
     withPromotionEnvCleared(() => {
-      cleanupTestSourceRuns(bookId); // clear any leaked zz-test run dir from a prior interrupted run
-      writeSourceSidecars(bookId, index, runId);
-      // Source-reality invariant: a source-v2 book promotes only with a valid VERIFIED record.
-      writeVerifiedSourceVerifyRecord(bookId);
-      for (const spec of index) {
-        const chapter = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, `${spec.chapterId}.v21-native.chapter.json`), "utf8"));
-        writeAttestation({
-          schemaVersion: "qc-attest-v1",
-          bookId,
-          chapterNumber: spec.chapterNumber,
-          chapterId: spec.chapterId,
-          verdict: "PUBLISHABLE",
-          contentHash: chapterContentHash(chapter),
-          hashVersion: "v2",
-          reviewer: "claude-qc:canonical-full-regression",
-          reviewedAt: "2026-06-23T00:00:00.000Z",
-          roundId: "canonical-full-regression-round",
-          roundRole: "attest",
-        });
-      }
-      writeContentBoundMajorWaivers(bookId, index.map((spec) =>
-        JSON.parse(readFileSync(resolve(STATE_CHAPTERS, `${spec.chapterId}.v21-native.chapter.json`), "utf8")),
-      ), "human:canonical-full-regression", "canonical-full-regression-round");
-
-      const result = promoteBook({
-        bookId,
-        title: "Drive",
-        author: "Daniel H. Pink",
-        chapters: index,
-        categories: ["Psychology", "Self-Help", "Productivity", "Behavioral Economics"],
-        tags: ["motivation", "autonomy", "mastery", "purpose", "incentives", "behavior-change"],
-      });
+      const index = setupMajorCleanFixture();
+      const result = promoteMajorFixture(index);
 
       assert.equal(result.promoted, true, result.reason);
-      const pkg = JSON.parse(readFileSync(packagePath, "utf8"));
+      const pkg = JSON.parse(readFileSync(productionPackagePath(MAJOR_BOOK), "utf8"));
       assert.deepEqual(pkg.chapters.map((ch: any) => ch.chapterId), index.map((spec) => spec.chapterId));
     });
   } finally {
-    for (const spec of index) restoreFile(chapterStatePath(spec.chapterId), chapterBefore.get(spec.chapterId) ?? null);
-    for (const spec of index) restoreFile(attestationPath(bookId, spec.chapterNumber), qcBefore.get(spec.chapterNumber) ?? null);
-    cleanupTestSourceRuns(bookId);
-    restoreFile(sourceVerifyRecordPath(bookId), sourceRecordBefore);
-    restoreFile(waiverPath(bookId), waiverBefore);
-    restoreFile(reportPath, reportBefore);
-    rmSync(productionManifestSidecarPath(bookId), { force: true });
-    if (seededPackage) rmSync(packagePath, { force: true });
-    else restoreFile(packagePath, packageBefore);
+    console.warn = oldWarn;
+    cleanupFixture();
   }
 });
 
 test("promoteBook writes a slim package (no embedded manifest, human-readable packageId) plus a state-side manifest sidecar", () => {
-  const bookId = "drive";
-  const runId = `zz-test-promote-manifest-identity-${process.pid}`;
-  const index = loadChapterIndex(bookId);
-  const packagePath = productionPackagePath(bookId);
-  const reportPath = gateReportPath(bookId);
-  const seededPackage = ensureFixtureProductionPackage(bookId, "Drive", "Daniel H. Pink");
-  const packageBefore = readFileSync(packagePath, "utf8");
-  const reportBefore = snapshotFile(reportPath);
-  const waiverBefore = snapshotFile(waiverPath(bookId));
-  const qcBefore = new Map(index.map((spec) => [spec.chapterNumber, snapshotFile(attestationPath(bookId, spec.chapterNumber))]));
-  const chapterBefore = new Map(index.map((spec) => [spec.chapterId, snapshotFile(chapterStatePath(spec.chapterId))]));
-  const sourceRecordBefore = snapshotFile(sourceVerifyRecordPath(bookId));
-
+  // Hermetic: promote the synthetic fixture book (was: `drive`, absent — F-12).
+  const bookId = MAJOR_BOOK;
+  const oldWarn = console.warn;
   try {
+    console.warn = () => {};
     withPromotionEnvCleared(() => {
-      cleanupTestSourceRuns(bookId); // clear any leaked zz-test run dir from a prior interrupted run
-      writeSourceSidecars(bookId, index, runId);
-      // Source-reality invariant: a source-v2 book promotes only with a valid VERIFIED record.
-      writeVerifiedSourceVerifyRecord(bookId);
-      for (const spec of index) {
-        const chapter = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, `${spec.chapterId}.v21-native.chapter.json`), "utf8"));
-        writeAttestation({
-          schemaVersion: "qc-attest-v1",
-          bookId,
-          chapterNumber: spec.chapterNumber,
-          chapterId: spec.chapterId,
-          verdict: "PUBLISHABLE",
-          contentHash: chapterContentHash(chapter),
-          hashVersion: "v2",
-          reviewer: "claude-qc:manifest-regression",
-          reviewedAt: "2026-06-23T00:00:00.000Z",
-          roundId: "manifest-regression-round",
-          roundRole: "attest",
-        });
-      }
-      writeContentBoundMajorWaivers(bookId, index.map((spec) =>
-        JSON.parse(readFileSync(resolve(STATE_CHAPTERS, `${spec.chapterId}.v21-native.chapter.json`), "utf8")),
-      ), "human:manifest-regression", "manifest-regression-round");
-
-      const result = promoteBook({
-        bookId,
-        title: "Drive",
-        author: "Daniel H. Pink",
-        chapters: index,
-        categories: ["Psychology", "Self-Help", "Productivity", "Behavioral Economics"],
-        tags: ["motivation", "autonomy", "mastery", "purpose", "incentives", "behavior-change"],
-      });
+      const index = setupMajorCleanFixture();
+      const result = promoteMajorFixture(index);
 
       assert.equal(result.promoted, true, result.reason);
-      const pkg = JSON.parse(readFileSync(packagePath, "utf8"));
+      const pkg = JSON.parse(readFileSync(productionPackagePath(bookId), "utf8"));
       // K1: the shipped package carries reader content only — no embedded manifest.
       assert.equal(pkg.productionManifest, undefined, "the shipped package must NOT embed a production manifest (it moved to the sidecar)");
       assert.match(pkg.packageId, new RegExp(`^${bookId}-v21-\\d+$`), "packageId must be human-readable <bookId>-v21-<epochMs>, not a sha256");
@@ -613,15 +557,8 @@ test("promoteBook writes a slim package (no embedded manifest, human-readable pa
       assert.equal(typeof sidecar.manifest.payloadHash, "string", "manifest must carry a recomputable canonical payload hash");
     });
   } finally {
-    for (const spec of index) restoreFile(chapterStatePath(spec.chapterId), chapterBefore.get(spec.chapterId) ?? null);
-    for (const spec of index) restoreFile(attestationPath(bookId, spec.chapterNumber), qcBefore.get(spec.chapterNumber) ?? null);
-    cleanupTestSourceRuns(bookId);
-    restoreFile(sourceVerifyRecordPath(bookId), sourceRecordBefore);
-    restoreFile(waiverPath(bookId), waiverBefore);
-    restoreFile(reportPath, reportBefore);
-    rmSync(productionManifestSidecarPath(bookId), { force: true });
-    if (seededPackage) rmSync(packagePath, { force: true });
-    else restoreFile(packagePath, packageBefore);
+    console.warn = oldWarn;
+    cleanupFixture();
   }
 });
 
