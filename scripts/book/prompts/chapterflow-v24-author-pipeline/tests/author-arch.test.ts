@@ -60,6 +60,7 @@ import {
   type ReopenNote,
 } from "../src/orchestrator/authorReviewLedger.js";
 import { authorChapterId } from "../src/orchestrator/authorRun.js";
+import { loadAuthorProvenance, provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
 import {
   contentRepairConsumedFor,
   loadAuthorRegenLedger,
@@ -840,21 +841,35 @@ async function driveRealFileAcceptanceRegen(opts: {
   return { result, io, ch1Bytes: readFileSync(p1, "utf8"), originalBytes };
 }
 
-test("doAuthorReview (real files): an acceptance regen whose review FAILs restores the prior bytes BYTE-FOR-BYTE", async () => {
+test("doAuthorReview (real files): an acceptance regen whose review FAILs restores the prior bytes BYTE-FOR-BYTE + rolls provenance back (R2)", async () => {
   const bookId = "zz-fixture-regen-fail";
   const p1 = realChapterPath(bookId, 1), p2 = realChapterPath(bookId, 2);
+  const chapterId = authorChapterId(bookId, 1);
   try {
+    // Seed the STALE record the acceptance regen leaves behind: content bound to the
+    // discarded regen draft (regen-B), with the true prior author (author-A) recorded.
+    const regressedCh1 = { ...CH1, hook: `${CH1.hook} (regressed regen draft that fails review)` };
+    const hashPrior = chapterContentHash(CH1);
+    const hashDiscarded = chapterContentHash(regressedCh1);
+    recordAuthorProvenance(chapterId, "author-A", hashPrior);
+    recordAuthorProvenance(chapterId, "regen-B", hashDiscarded);
+    assert.equal(loadAuthorProvenance(chapterId)?.authorSessionId, "regen-B", "precondition: record points at the discarded regen draft");
+
     const { result, io, ch1Bytes, originalBytes } = await driveRealFileAcceptanceRegen({
       bookId,
       initialCh1Score: 90,
       regenScore: 55, // < bar 80 → the regen review FAILs
-      regressedCh1: { ...CH1, hook: `${CH1.hook} (regressed regen draft that fails review)` },
+      regressedCh1,
     });
     assert.ok(result && result.status === "halt" && result.category === "content", "a still-failing regen halts content");
     assert.equal(ch1Bytes, originalBytes, "the failing regen was restored to the prior passing bytes, byte-for-byte");
     assert.ok(io.reopenNotes.some((n) => n.chapterNumber === 1 && n.trigger === "acceptance-regen"), "the reopen was attributed");
+    const rec = loadAuthorProvenance(chapterId);
+    assert.equal(rec?.contentHash, hashPrior, "provenance content hash rolled back to the restored bytes");
+    assert.equal(rec?.authorSessionId, "author-A", "provenance author rolled back to the true prior author");
   } finally {
     rmSync(p1, { force: true }); rmSync(p2, { force: true }); rmSync(reviewDir(bookId), { recursive: true, force: true });
+    rmSync(provenancePath(chapterId), { force: true });
   }
 });
 

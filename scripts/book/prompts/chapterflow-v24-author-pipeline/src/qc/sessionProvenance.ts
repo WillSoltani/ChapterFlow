@@ -272,6 +272,86 @@ export function recordAuthorProvenance(
 }
 
 
+/**
+ * Roll an author-provenance record back to the attribution it held BEFORE a
+ * re-authoring, after that re-authored draft was DISCARDED and the prior bytes
+ * were put back on disk (the sameness/acceptance/repair revert lanes).
+ *
+ * The failure this repairs: a re-author stamps `contentHash=B` / `author=S2` and,
+ * because the content changed, records `previousContentHash=A` /
+ * `previousAuthorSessionId=S1`. When the caller then reverts content A back onto
+ * disk, the record still attributes the on-disk bytes (content A, authored by S1)
+ * to the discarded draft (B, session S2). Session-independence gates then flag the
+ * wrong reviewer and clear the true author. This rewrites the record back to A/S1
+ * so `loadAuthorProvenance` again attributes the on-disk bytes to their true author.
+ *
+ * Pass the RESTORED bytes' `chapterContentHash` as `expectedCurrentContentHash`.
+ * Guarded and absence-safe — a no-op (never a fabrication or delete) unless it is
+ * provably the right rollback:
+ *   - record missing / corrupt (unreadable)                     → no-op + log
+ *   - record already attributes `expectedCurrentContentHash`    → no-op (out-of-order
+ *     safe: a later successful write already re-stamped — do NOT clobber it)
+ *   - previous fields absent (v1/legacy)                        → leave + log (never
+ *     fabricate a session id)
+ *   - `previousContentHash` present but ≠ the restored bytes    → leave + log
+ * Bypasses the create-once/conflict check ONLY for this explicitly-guarded rollback;
+ * normal `recordAuthorProvenance` writes are untouched.
+ */
+export function restoreAuthorProvenance(
+  chapterId: string,
+  expectedCurrentContentHash: string,
+  log: (msg: string) => void = (m) => console.error(m),
+): string | null {
+  const existing = loadAuthorProvenance(chapterId);
+  if (!existing) {
+    // No record, or an unreadable/corrupt one (loadAuthorProvenance swallows parse
+    // errors to null). Nothing to roll back — never create a record here.
+    log(`[provenance] restore ch=${chapterId}: no readable author-provenance record — leaving as-is (no fabrication).`);
+    return null;
+  }
+  if (existing.contentHash === expectedCurrentContentHash) {
+    // Already attributes the on-disk bytes: either it was never re-authored, or a
+    // later successful write re-stamped it correctly. Do not clobber that record.
+    return provenancePath(chapterId);
+  }
+  if (existing.previousContentHash == null || existing.previousAuthorSessionId == null) {
+    // v1/legacy or a create-once record with no prior attribution recorded — we
+    // cannot know the true prior author, so we refuse to invent one.
+    log(
+      `[provenance] restore ch=${chapterId}: record attributes ${existing.contentHash ?? "(v1/no-hash)"} but the restored ` +
+        `bytes are ${expectedCurrentContentHash}, and no previous author/content is recorded to roll back to. ` +
+        `Leaving the record untouched — will not fabricate an author.`,
+    );
+    return null;
+  }
+  if (existing.previousContentHash !== expectedCurrentContentHash) {
+    // The recorded rollback target is not the bytes we restored — refuse to guess.
+    log(
+      `[provenance] restore ch=${chapterId}: restored bytes ${expectedCurrentContentHash} do not match the recorded ` +
+        `previousContentHash ${existing.previousContentHash} — cannot safely roll back; leaving the record untouched.`,
+    );
+    return null;
+  }
+  // Proven rollback: the on-disk bytes are the PRIOR content, authored by the PRIOR
+  // session. Rewrite directly (bypassing the create-once/conflict guard, which exists
+  // to stop a NON-author overwrite — this is the author being restored).
+  mkdirSync(PROVENANCE_DIR, { recursive: true });
+  const rec: AuthorProvenance = {
+    schemaVersion: "author-provenance-v2",
+    chapterId,
+    authorSessionId: existing.previousAuthorSessionId,
+    stampedAt: new Date().toISOString(),
+    contentHash: existing.previousContentHash,
+  };
+  const p = provenancePath(chapterId);
+  writeFileAtomic(p, JSON.stringify(rec, null, 2) + "\n");
+  log(
+    `[provenance] restore ch=${chapterId}: rolled author back to session "${existing.previousAuthorSessionId}" / content ` +
+      `${existing.previousContentHash} after a discarded re-author (was "${existing.authorSessionId}" / ${existing.contentHash ?? "?"}).`,
+  );
+  return p;
+}
+
 /** Record the deterministic v23 compiler assembler as the content producer for the
  *  final ChapterV21 file while retaining the contributing section-writer session ids
  *  for audit. This is intentionally a chapter-level author provenance record because

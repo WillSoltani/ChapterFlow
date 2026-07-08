@@ -92,6 +92,7 @@ import {
 import { buildChurnEvidenceReport, rankSaturationContributors } from "../critics/readerBudgets.js";
 import { structuralSamenessSnapshot, type StructuralSamenessSnapshot } from "../critics/structuralSamenessSnapshot.js";
 import { chapterContentHash, writeAttestation, type QcAttestation } from "../critics/qcAttestation.js";
+import { restoreAuthorProvenance } from "../qc/sessionProvenance.js";
 import { AXIS_WEIGHTS, computeVerdict, type AxisId, type AxisScore } from "../critics/semantic/publishableBar.js";
 import { writeBarReadArtifact, writeConfirmReadArtifact } from "../qc/orchestrator/artifacts.js";
 import type { ValidatedBarReadSubmission, ValidatedConfirmReadSubmission } from "../qc/orchestrator/schemas.js";
@@ -1964,7 +1965,16 @@ async function doAuthorReviewInner(
       // on the next entry — no re-review spawn for bytes we put back. The grant is
       // NOT refunded (consumed at spawn, below): a restore spends the attempt.
       const restore = (logWhy: string, failLine: string): void => {
-        if (priorBytes !== null) writeFileSync(path, priorBytes);
+        if (priorBytes !== null) {
+          writeFileSync(path, priorBytes);
+          // The discarded regen re-stamped author provenance with its OWN session/hash;
+          // roll it back to the restored bytes' true author so the independence gate
+          // does not flag the wrong reviewer. Best-effort — never fail a restore on it.
+          try {
+            const priorChapter = JSON.parse(priorBytes) as ChapterV21;
+            restoreAuthorProvenance(authorChapterId(bookId, chapterNumber), chapterContentHash(priorChapter), deps.log);
+          } catch { /* unparseable prior bytes / provenance write — non-fatal */ }
+        }
         if (priorReview) {
           io.persistReview(bookId, priorReview);
           reviews.set(chapterNumber, priorReview);

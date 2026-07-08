@@ -16,6 +16,7 @@ import {
   recordAuthorProvenance,
   recordCacheAcceptance,
   recordCompilerAssemblyProvenance,
+  restoreAuthorProvenance,
   violatesSessionIndependence,
 } from "../src/qc/sessionProvenance.js";
 
@@ -257,6 +258,124 @@ test("a hash-less re-stamp from a different session cannot clobber a content-bou
     recordAuthorProvenance(LC_CH, "session-A", hashA);
     assert.throws(() => recordAuthorProvenance(LC_CH, "session-B"), AuthorProvenanceConflictError);
     assert.equal(loadAuthorProvenance(LC_CH)?.authorSessionId, "session-A");
+  } finally {
+    cleanLifecycle();
+  }
+});
+
+// ── restoreAuthorProvenance: roll a discarded re-author's record back to the true
+//    on-disk author (R2). The four record states the helper must handle, plus the
+//    out-of-order and conflict-bypass red-team cases. Logs are swallowed so a no-op
+//    branch never spams the test output.
+const SILENT = (): void => {};
+
+test("restore (v2-with-previous): rolls the record back to the prior author + content", () => {
+  try {
+    cleanLifecycle();
+    const hashA = chapterContentHash(makeChapter(LC_BOOK, 1)); // the restored (prior) bytes
+    const hashB = reauthoredHash();                            // the discarded re-author
+    recordAuthorProvenance(LC_CH, "session-A", hashA);
+    recordAuthorProvenance(LC_CH, "session-B", hashB); // content-changed transition (records previous A/session-A)
+    assert.equal(loadAuthorProvenance(LC_CH)?.authorSessionId, "session-B", "precondition: record points at the discarded draft");
+
+    restoreAuthorProvenance(LC_CH, hashA, SILENT);
+
+    const rec = loadAuthorProvenance(LC_CH);
+    assert.equal(rec?.authorSessionId, "session-A", "author rolled back to the true prior author");
+    assert.equal(rec?.contentHash, hashA, "content hash rolled back to the restored bytes");
+    assert.equal(rec?.schemaVersion, "author-provenance-v2");
+    assert.equal(rec?.previousContentHash, undefined, "the rolled-back record carries no stale transition");
+  } finally {
+    cleanLifecycle();
+  }
+});
+
+test("restore (v2-without-previous): a create-once record with no prior attribution is left untouched", () => {
+  try {
+    cleanLifecycle();
+    const hashB = reauthoredHash();
+    recordAuthorProvenance(LC_CH, "session-B", hashB); // create-once: no previous* fields
+    const before = loadAuthorProvenance(LC_CH);
+
+    // Restoring to some OTHER (prior) hash cannot roll back — there is no recorded
+    // prior author, and the helper must never fabricate one.
+    const hashA = chapterContentHash(makeChapter(LC_BOOK, 1));
+    restoreAuthorProvenance(LC_CH, hashA, SILENT);
+
+    assert.deepEqual(loadAuthorProvenance(LC_CH), before, "record unchanged; no author fabricated");
+  } finally {
+    cleanLifecycle();
+  }
+});
+
+test("restore (v1/legacy no content hash): left untouched, never fabricated", () => {
+  try {
+    cleanLifecycle();
+    mkdirSync(dirname(provenancePath(LC_CH)), { recursive: true });
+    writeFileSync(
+      provenancePath(LC_CH),
+      JSON.stringify({ schemaVersion: "author-provenance-v1", chapterId: LC_CH, authorSessionId: "legacy-A", stampedAt: "2020-01-01T00:00:00.000Z" }, null, 2) + "\n",
+    );
+    const before = loadAuthorProvenance(LC_CH);
+
+    restoreAuthorProvenance(LC_CH, "any-hash", SILENT);
+
+    assert.deepEqual(loadAuthorProvenance(LC_CH), before, "v1 legacy record is left exactly as-is");
+  } finally {
+    cleanLifecycle();
+  }
+});
+
+test("restore (missing/corrupt): a no-op that never creates a record", () => {
+  try {
+    cleanLifecycle();
+    // Missing.
+    assert.equal(restoreAuthorProvenance(LC_CH, "any-hash", SILENT), null, "missing record → no-op returns null");
+    assert.equal(loadAuthorProvenance(LC_CH), null, "no record fabricated for a missing file");
+
+    // Corrupt (unreadable JSON).
+    mkdirSync(dirname(provenancePath(LC_CH)), { recursive: true });
+    writeFileSync(provenancePath(LC_CH), "{ this is not json");
+    assert.equal(restoreAuthorProvenance(LC_CH, "any-hash", SILENT), null, "corrupt record → no-op returns null");
+    assert.equal(loadAuthorProvenance(LC_CH), null, "a corrupt file is left as-is (loads as null), not overwritten");
+  } finally {
+    cleanLifecycle();
+  }
+});
+
+test("restore is a no-op when the record already attributes the on-disk bytes (out-of-order safe)", () => {
+  // Red-team: a restore fired AFTER a subsequent successful re-stamp must NOT clobber
+  // the newer record. The expectedCurrentContentHash guard makes it a no-op.
+  try {
+    cleanLifecycle();
+    const hashA = chapterContentHash(makeChapter(LC_BOOK, 1));
+    const hashB = reauthoredHash();
+    recordAuthorProvenance(LC_CH, "session-A", hashA);
+    recordAuthorProvenance(LC_CH, "session-B", hashB);
+    const current = loadAuthorProvenance(LC_CH); // points at B/session-B, the correct on-disk bytes
+
+    // Restore called with the CURRENT (B) hash — the record already matches; leave it.
+    restoreAuthorProvenance(LC_CH, hashB, SILENT);
+
+    assert.deepEqual(loadAuthorProvenance(LC_CH), current, "record for the current bytes is not clobbered");
+  } finally {
+    cleanLifecycle();
+  }
+});
+
+test("restore does NOT roll back when previousContentHash names different bytes than were restored", () => {
+  try {
+    cleanLifecycle();
+    const hashA = chapterContentHash(makeChapter(LC_BOOK, 1));
+    const hashB = reauthoredHash();
+    recordAuthorProvenance(LC_CH, "session-A", hashA);
+    recordAuthorProvenance(LC_CH, "session-B", hashB); // previousContentHash === hashA
+    const before = loadAuthorProvenance(LC_CH);
+
+    // Ask to restore to some THIRD hash the record never transitioned from.
+    restoreAuthorProvenance(LC_CH, "deadbeefdeadbeef", SILENT);
+
+    assert.deepEqual(loadAuthorProvenance(LC_CH), before, "unrecognized rollback target → no change, no guess");
   } finally {
     cleanLifecycle();
   }

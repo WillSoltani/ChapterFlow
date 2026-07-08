@@ -24,6 +24,8 @@ import type { ChapterBriefV1, SourcePacketV1 } from "../artifacts/artifactTypes.
 import type { AutopilotDeps } from "./autopilot.js";
 import type { AuthorIo } from "./authorRun.js";
 import { AUTHOR_WRITER_EFFORT, AUTHOR_WRITER_MODEL, authorWriteContractFindings } from "./authorRun.js";
+import { chapterContentHash } from "../critics/qcAttestation.js";
+import { restoreAuthorProvenance } from "../qc/sessionProvenance.js";
 
 const PIPELINE_DIR = resolve(__dirname, "../..");
 
@@ -281,6 +283,11 @@ export async function doRepairOneChapter(
   const restore = () => {
     try {
       writeFileSync(absPath, originalBytes);
+      // A repair session that changed the chapter moved author provenance to the
+      // repair session; putting the ORIGINAL bytes back must move it back to the
+      // original author, or the independence gate reads the wrong author. Best-effort.
+      try { restoreAuthorProvenance(chapterId, chapterContentHash(original), deps.log); }
+      catch { /* provenance rollback is non-fatal; the byte restore is what matters */ }
     } catch (err) {
       // F6: a failed restore leaves unreviewed repair bytes on disk while the
       // persisted review still points at the pre-repair hash — surfaced to the

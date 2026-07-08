@@ -29,6 +29,7 @@ import type { ChapterReviewV1 } from "../artifacts/artifactTypes.js";
 import type { AutopilotDeps, AutopilotOutcome } from "./autopilot.js";
 import { CANONICAL_STATE, CHAPTERS_DIR, chapterFileName } from "../lib/chapterPaths.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
+import { restoreAuthorProvenance } from "../qc/sessionProvenance.js";
 import { checkArchitectureMonoculture } from "../critics/architectureMonoculture.js";
 import { planBookSamenessRepair } from "../critics/bookSamenessRepair.js";
 import { planContentDeviceRepair } from "../critics/contentDeviceRepair.js";
@@ -277,6 +278,17 @@ export async function diversifyOne(
   const priorChapter = io.loadChapters(bookId).find((c) => c.number === n) ?? null;
   const devicesBefore = priorChapter ? detectChapterDevices(priorChapter) : new Set<ContentDeviceId>();
   const beforeField = [...devicesBefore];
+  // Put the prior passing bytes back AND roll author provenance back to them: the
+  // re-author stamped the DISCARDED draft's session/hash, so a bare byte-restore
+  // would leave provenance attributing content A to the throwaway draft's author.
+  const revertPriorBytes = (): void => {
+    if (priorBytes === null) return;
+    writeFileSync(path, priorBytes);
+    if (priorChapter) {
+      try { restoreAuthorProvenance(authorChapterId(bookId, n), chapterContentHash(priorChapter), deps.log); }
+      catch { /* provenance rollback is best-effort; never fail a revert on it */ }
+    }
+  };
   const consumedFor = lane === "content" ? contentRepairConsumedFor : samenessRepairConsumedFor;
   const recordConsumed = lane === "content" ? recordContentRepairConsumed : recordSamenessRepairConsumed;
   const laneLabel = lane === "content" ? "content-deal-repair" : "book-sameness-repair";
@@ -299,7 +311,7 @@ export async function diversifyOne(
   // Re-author with the diversification directive injected as a writer complaint.
   const r = await writeChapter(bookId, n, deps, { complaints: [target.directive], io });
   if (!r.ok) {
-    if (priorBytes !== null) writeFileSync(path, priorBytes);
+    revertPriorBytes();
     deps.log(`[sameness] ch${nn}: re-author FAILED (${r.reason.slice(0, 160)}) — restored prior passing bytes.`);
     return { ...base, status: "write-failed", devicesBefore: beforeField, detail: `re-author failed; restored prior bytes: ${r.reason.slice(0, 200)}` };
   }
@@ -309,7 +321,7 @@ export async function diversifyOne(
   // afterward). A FAIL/invalid → roll back to the prior passing bytes.
   const fresh = io.loadChapters(bookId).find((c) => c.number === n);
   if (!fresh) {
-    if (priorBytes !== null) writeFileSync(path, priorBytes);
+    revertPriorBytes();
     return { ...base, status: "write-failed", devicesBefore: beforeField, detail: "re-authored chapter did not load; restored prior bytes" };
   }
   // Device diff on the fresh bytes — surfaced on EVERY fresh-loaded outcome for
@@ -336,7 +348,7 @@ export async function diversifyOne(
   const noReservedHarm = !review.complaints.some((c) => c.mustFix && complaintNamesReservedHarm(c));
   const keep = review.valid && keysClean && noReservedHarm && review.composite >= bar - band;
   if (!keep) {
-    if (priorBytes !== null) writeFileSync(path, priorBytes);
+    revertPriorBytes();
     deps.log(`[sameness] ch${nn}: diversified draft did not clear the near-bar band (composite ${review.composite}, ship=${review.ship84}, keys ${review.keyCheck.matches}/${review.keyCheck.of}, valid=${review.valid}) — restored prior passing bytes.`);
     return { ...base, status: "reverted", newComposite: review.composite, ...deviceFields, detail: `diversified draft below bar-band / invalid / key-defect / true-blocker; restored prior passing version` };
   }
@@ -345,7 +357,7 @@ export async function diversifyOne(
   // means the re-author did not comply. Revert to the prior passing bytes and report a
   // DISTINCT, loud status — never a fake "diversified" success. The grant stays spent.
   if (diff.persisted.length > 0) {
-    if (priorBytes !== null) writeFileSync(path, priorBytes);
+    revertPriorBytes();
     const evidence = detectChapterDeviceMatches(fresh)
       .filter((m) => diff.persisted.includes(m.id))
       .map((m) => `${m.id}: "${m.snippet}"`)

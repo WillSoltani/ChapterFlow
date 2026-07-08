@@ -33,6 +33,8 @@ import { authorChapterId, resolveAuthorIo, type AuthorWriteOneResult } from "../
 import { resolveAuthorReviewIo } from "../src/orchestrator/authorReview.js";
 import { chapterFileName } from "../src/lib/chapterPaths.js";
 import { chapterBriefPath, sourcePacketPath } from "../src/artifacts/artifactStore.js";
+import { chapterContentHash } from "../src/critics/qcAttestation.js";
+import { loadAuthorProvenance, provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
 import {
   loadAuthorRegenLedger,
   contentRepairConsumedFor,
@@ -127,6 +129,41 @@ test("diversifyOne: a draft that clears review but KEEPS a banned device → dev
     // Grant consumed EXACTLY once — the revert does not refund it.
     assert.equal(contentRepairConsumedFor(loadAuthorRegenLedger(BOOK, h.root), 3, lineage), 1, "grant spent once");
   } finally { h.cleanup(); }
+});
+
+test("diversifyOne (R2): a devices-persisted revert rolls author provenance back to the restored bytes' true author", async () => {
+  const h = makeHarness([3]);
+  const chapterId = authorChapterId(BOOK, 3);
+  try {
+    const priorObj = chJson(3);                       // the restored (prior passing) bytes
+    const discardedObj = chJson(3, RETURN_PROOF);     // the discarded re-author (keeps the banned device)
+    const hashPrior = chapterContentHash(priorObj as unknown as ChapterV21);
+    const hashDiscarded = chapterContentHash(discardedObj as unknown as ChapterV21);
+    assert.notEqual(hashPrior, hashDiscarded, "fixture sanity: the two drafts hash differently");
+
+    h.writeChapterFile(3, JSON.stringify(priorObj));
+    // Seed the STALE record the re-author would leave behind: content bound to the
+    // DISCARDED draft (session-B), with the prior author (session-A) recorded in the
+    // transition. This is exactly what recordAuthorProvenance stamps on a re-author.
+    recordAuthorProvenance(chapterId, "author-session-A", hashPrior);
+    recordAuthorProvenance(chapterId, "reauthor-session-B", hashDiscarded);
+    assert.equal(loadAuthorProvenance(chapterId)?.authorSessionId, "reauthor-session-B", "precondition: record points at the discarded draft");
+
+    const outcome = await diversifyOne(
+      BOOK,
+      { chapterNumber: 3, directive: "drop the return-proof device", label: "content-deal", bannedDevices: ["return-proof"] },
+      DEPS,
+      h.ctx({ writeChapter: stubWriter(h.pathFor, () => discardedObj) }), // writer does NOT comply → devices-persisted revert
+    );
+
+    assert.equal(outcome.status, "devices-persisted", "the persisted banned device reverts");
+    const rec = loadAuthorProvenance(chapterId);
+    assert.equal(rec?.contentHash, hashPrior, "provenance content hash rolled back to the restored bytes");
+    assert.equal(rec?.authorSessionId, "author-session-A", "provenance author rolled back to the true prior author");
+  } finally {
+    rmSync(provenancePath(chapterId), { force: true });
+    h.cleanup();
+  }
 });
 
 test("diversifyOne: a draft that sheds the banned device but adds a NEW non-banned device → kept, substitution recorded (no revert)", async () => {

@@ -385,6 +385,9 @@ Commands:
                                      every book whose QC is complete. Re-run as books progress.
 
   Phase-0 maintenance (see MASTER-PLAN.md):
+  calibration-scan <bookId> [--json] Run the cast/name calibration detectors (C23/C24/C25/C27) against a book's
+                                     on-disk chapters and PRINT findings. Advisory, NON-gating, always exits 0 —
+                                     the opt-in live-book twin of the shipped-reference-only zero-FP suite pins.
   state-status                       Per-book: chapters on disk, untracked-in-git, chapterId mismatches, promoted.
   migrate-state [--apply]            Reconcile the repo-root shadow state/chapters into the canonical dir.
                                      [--prefer-canonical|--prefer-shadow] to resolve divergent files.
@@ -2004,6 +2007,78 @@ async function runAuthorCheck(args: string[]): Promise<number> {
   const balance = checkChapterAnswerBalance(chapter, loadAnswerKeyPlan(bookId));
   for (const f of balance) console.log(`  [${f.checkId}] ${f.message}`);
   return findings.length === 0 ? 0 : 1;
+}
+
+/** `calibration-scan <bookId>` — R4. Runs the reference-quality CAST/NAME
+ *  calibration detectors (C23 example-protagonist reuse, C24 cast-overflow,
+ *  C25 example↔quiz name shuffle, C27 off-standard name density) against a book's
+ *  on-disk chapters and PRINTS the findings. This is the opt-in, NON-GATING twin
+ *  of the zero-FP calibration pins in cast-discipline.test.ts / name-commonality.
+ *  test.ts: those pins now precondition on a SHIPPED reference package (P11), so
+ *  they no longer run — and never failed — on the ACTIVE campaign book. This verb
+ *  restores that live FP signal on demand for ANY on-disk book without
+ *  reintroducing always-fails-on-active-book suite noise: it opens no QC round,
+ *  touches no ledger, and ALWAYS exits 0 (advisory). */
+async function runCalibrationScan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: calibration-scan <bookId> [--json]");
+    return 2;
+  }
+  const chaptersDir = resolve(__dirname, "../state/chapters");
+  const files = existsSyncFs(chaptersDir)
+    ? readdirSync(chaptersDir)
+        .filter((f) => f.startsWith(`${bookId}-ch`) && f.endsWith(".v21-native.chapter.json"))
+        .sort()
+    : [];
+  const {
+    checkCastSize,
+    checkExampleQuizNameConsistency,
+    checkExampleProtagonistReuse,
+    checkNameCommonality,
+  } = await import("./critics/narrative.js");
+
+  type ScanHit = { chapterId: string; checkId: string; severity: string; message: string };
+  const hits: ScanHit[] = [];
+  for (const f of files) {
+    let ch: ChapterV21;
+    try {
+      ch = JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21;
+    } catch (err) {
+      console.error(`  (skipped ${f}: ${(err as Error).message})`);
+      continue;
+    }
+    const chId = ch.chapterId ?? f.replace(/\.v21-native\.chapter\.json$/, "");
+    const findings = [
+      ...checkCastSize(ch),
+      ...checkExampleQuizNameConsistency(ch),
+      ...checkExampleProtagonistReuse(ch.examples ?? []),
+      ...checkNameCommonality(ch),
+    ];
+    for (const hit of findings) hits.push({ chapterId: chId, checkId: hit.checkId, severity: hit.severity, message: hit.message });
+  }
+
+  if (flags["json"] === true) {
+    console.log(JSON.stringify({ bookId, chaptersScanned: files.length, findings: hits }, null, 2));
+    return 0;
+  }
+
+  console.log(`calibration-scan ${bookId}: cast/name detectors (C23/C24/C25/C27) — ADVISORY, non-gating.`);
+  if (files.length === 0) {
+    console.log(`  No on-disk chapters at state/chapters/${bookId}-ch*.v21-native.chapter.json — nothing to scan.`);
+    return 0;
+  }
+  console.log(`  Scanned ${files.length} chapter(s).`);
+  if (hits.length === 0) {
+    console.log("  ✓ Clean — 0 cast/name calibration findings.");
+    return 0;
+  }
+  console.log(`  ${hits.length} finding(s):`);
+  for (const h of hits) console.log(`    [${h.severity}] ${h.checkId} — ${h.chapterId}: ${h.message}`);
+  console.log("  (Advisory only — this scan never blocks and never fails the suite.)");
+  return 0;
 }
 
 /** `quarantine-book <bookId> [--reason "..."]` — Phase 0. Moves a shipped-but-bad
@@ -5821,6 +5896,8 @@ async function main() {
       return runBatch(args, flags);
     case "author-check":
       return runAuthorCheck(args);
+    case "calibration-scan":
+      return runCalibrationScan(args, flags);
     case "fix-chapter-ids":
       return runFixChapterIds(args, flags);
     case "migrate-chapter-identity":
