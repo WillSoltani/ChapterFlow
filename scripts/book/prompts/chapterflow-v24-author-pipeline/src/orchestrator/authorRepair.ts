@@ -23,7 +23,8 @@ import { chapterBriefPath, sourcePacketPath } from "../artifacts/artifactStore.j
 import type { ChapterBriefV1, SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import type { AutopilotDeps } from "./autopilot.js";
 import type { AuthorIo } from "./authorRun.js";
-import { AUTHOR_WRITER_EFFORT, AUTHOR_WRITER_MODEL, authorWriteContractFindings } from "./authorRun.js";
+import { AUTHOR_WRITER_EFFORT, AUTHOR_WRITER_MODEL, authorWriteContractFindings, readLeadOverrideFromDisk } from "./authorRun.js";
+import { applyLeadThreadOverride } from "../compiler/chapterBrief.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { restoreAuthorProvenance } from "../qc/sessionProvenance.js";
 
@@ -275,6 +276,11 @@ export async function doRepairOneChapter(
   let packet: SourcePacketV1 | undefined;
   try { brief = JSON.parse(readFileSync(chapterBriefPath(bookId, chapterNumber), "utf8")); } catch { /* brief optional */ }
   try { packet = JSON.parse(readFileSync(sourcePacketPath(bookId, chapterNumber), "utf8")); } catch { /* packet optional */ }
+  // F-1: a chapter written under a DEGRADED lead legitimately carries a different
+  // lead than the compiled brief deals — the contract re-check below must verify
+  // the chapter's ACTUAL lead, or every repair of such a chapter reverts on a
+  // false lead-thread complaint.
+  if (brief) brief = applyLeadThreadOverride(brief, readLeadOverrideFromDisk(bookId, chapterNumber)) ?? brief;
 
   const card = buildRepairCard({ bookId, chapter: original, brief, complaints: opts.complaints, scopes: opts.scopes, relPath });
   const sessionId = `auto-author-repair-${bookId}-ch${nn}-${Date.now().toString(36)}`;

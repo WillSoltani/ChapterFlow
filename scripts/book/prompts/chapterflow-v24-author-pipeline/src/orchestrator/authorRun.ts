@@ -19,17 +19,26 @@
  * tests drive the whole phase against fixtures/tmp state, never real state.
  */
 
-import { existsSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import type { AutopilotDeps, AutopilotOutcome, HaltCategory, VerbResult } from "./autopilot.js";
 import type { ChapterV21 } from "../types.js";
 import type { ChapterBriefV1, SourcePacketV1 } from "../artifacts/artifactTypes.js";
-import { chapterBriefMdPath, chapterBriefPath, readJsonFile, sourcePacketPath } from "../artifacts/artifactStore.js";
+import { chapterBriefMdPath, chapterBriefPath, leadOverridePath, readJsonFile, sourcePacketPath } from "../artifacts/artifactStore.js";
 import { writerPacketProjection } from "../compiler/sourcePacketProjection.js";
-import { DEFAULT_LENGTH_BUDGET_CHARS, LENGTH_BUDGET_TOLERANCE, ROUND_TIMER_MINUTES_LIST, briefVarietyInstructionLines } from "../compiler/chapterBrief.js";
-import { contentDeviceDealLines } from "../compiler/contentDeviceDeal.js";
+import {
+  DEFAULT_LENGTH_BUDGET_CHARS,
+  LENGTH_BUDGET_TOLERANCE,
+  ROUND_TIMER_MINUTES_LIST,
+  applyLeadThreadOverride,
+  briefVarietyInstructionLines,
+  degradedLeadCandidates,
+  renderBriefMd,
+  type LeadThreadOverrideV1,
+} from "../compiler/chapterBrief.js";
+import { contentDeviceDealLines, dealContentDeviceBans } from "../compiler/contentDeviceDeal.js";
 import { manualBriefRotationLines } from "../compiler/briefRotation.js";
 import { voiceCard, voiceRegisterLine } from "../lib/voiceCard.js";
 import { chapterFileName, normSlug, CHAPTERS_DIR } from "../lib/chapterPaths.js";
@@ -59,6 +68,13 @@ export const AUTHOR_CARD_MAX_CHARS = 25000;
  *  blockers appended. (The review phase's regen budget is separate — see
  *  authorReview.ts AUTHOR_REGEN_CAP.) */
 export const AUTHOR_WRITE_GATE_RETRIES = 1;
+
+/** F-1: at most ONE extra attempt per call with a DEGRADED lead, taken only when
+ *  EVERY configured attempt failed the write contract on lead-thread findings
+ *  ALONE (a gate/rubric/spawn failure never triggers degradation — the writer, not
+ *  the lead, is the problem there). Max writer spawns per call is therefore
+ *  1 + AUTHOR_WRITE_GATE_RETRIES + AUTHOR_WRITE_LEAD_DEGRADE_RETRIES. */
+export const AUTHOR_WRITE_LEAD_DEGRADE_RETRIES = 1;
 
 // ── Injectable IO ─────────────────────────────────────────────────────────────
 
@@ -95,7 +111,29 @@ export type AuthorIo = {
   readChapterFile: (bookId: string, chapterNumber: number) => string | null;
   writeChapterFile: (bookId: string, chapterNumber: number, bytes: string) => void;
   removeChapterFile: (bookId: string, chapterNumber: number) => void;
+  /** F-1 lead-degradation sidecar (chNN.lead-override.json beside the compiled
+   *  briefs) — read on every write call to resolve the EFFECTIVE brief; written
+   *  only when a degraded attempt lands a passing chapter. */
+  readLeadOverride: (bookId: string, chapterNumber: number) => LeadThreadOverrideV1 | null;
+  writeLeadOverride: (bookId: string, chapterNumber: number, override: LeadThreadOverrideV1) => void;
 };
+
+/** Disk implementations of the F-1 sidecar, exported so the repair lane
+ *  (authorRepair) resolves the same EFFECTIVE brief its contract re-check needs. */
+export function readLeadOverrideFromDisk(bookId: string, chapterNumber: number): LeadThreadOverrideV1 | null {
+  try {
+    const p = leadOverridePath(normSlug(bookId), chapterNumber);
+    if (!existsSync(p)) return null;
+    const rec = readJsonFile<LeadThreadOverrideV1>(p);
+    return rec?.schemaVersion === "lead-thread-override-v1" ? rec : null;
+  } catch { return null; }
+}
+
+export function writeLeadOverrideToDisk(bookId: string, chapterNumber: number, override: LeadThreadOverrideV1): void {
+  const p = leadOverridePath(normSlug(bookId), chapterNumber);
+  mkdirSync(dirname(p), { recursive: true });
+  writeFileSync(p, JSON.stringify(override, null, 2) + "\n");
+}
 
 export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
   return {
@@ -135,6 +173,8 @@ export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
     authorSessionOf: over?.authorSessionOf ?? ((chapterId) => loadAuthorProvenance(chapterId)?.authorSessionId ?? undefined),
     recordProvenance: over?.recordProvenance
       ?? ((chapterId, sessionId, contentHash) => { recordAuthorProvenance(chapterId, sessionId, contentHash); }),
+    readLeadOverride: over?.readLeadOverride ?? readLeadOverrideFromDisk,
+    writeLeadOverride: over?.writeLeadOverride ?? writeLeadOverrideToDisk,
   };
 }
 
@@ -592,16 +632,26 @@ export async function authorWriteOneChapter(
     try { totalChapters = deps.expectedChapterNumbers(bookId).length; }
     catch { try { totalChapters = io.loadChapters(bookId).length; } catch { totalChapters = 0; } }
   }
-  const baseCard = buildAuthorCard({
-    bookId,
-    chapterNumber,
-    totalChapters,
-    briefMd,
-    packet,
-    voice: io.voiceCard(bookId),
-    complaints: opts.complaints,
-    brief: machineBrief,
+  // F-1: resolve the EFFECTIVE brief under a persisted lead override (a prior
+  // entry's degraded lead that landed a passing chapter). The compiled brief on
+  // disk still deals the failed lead — compile-chapter-briefs re-deals it every
+  // entry — so the sidecar is what keeps write/regen/repair consistent with the
+  // chapter's ACTUAL lead. Stale overrides (brief re-dealt) are ignored inside
+  // applyLeadThreadOverride.
+  const leadOverride = io.readLeadOverride(bookId, chapterNumber);
+  const effectiveBrief = applyLeadThreadOverride(machineBrief, leadOverride);
+  if (effectiveBrief !== machineBrief) {
+    deps.log(`[autopilot] author ch${nn}: persisted lead override active — writing to lead "${effectiveBrief?.leadThread?.name}" (the dealt lead "${leadOverride?.failedLead}" repeatedly failed the lead-thread write contract; override recorded ${leadOverride?.at}).`);
+  }
+  // The rendered md is a pure render of the machine brief — under an override (or a
+  // degraded attempt below) it must be re-rendered from the EFFECTIVE brief, or the
+  // card would carry two disagreeing LEAD THREAD/cast signals.
+  const voice = io.voiceCard(bookId);
+  const mkCard = (brief: ChapterBriefV1 | null, md: string): string => buildAuthorCard({
+    bookId, chapterNumber, totalChapters, briefMd: md, packet, voice, complaints: opts.complaints, brief,
   });
+  const briefMdEffective = effectiveBrief !== machineBrief && effectiveBrief ? renderBriefMd(effectiveBrief) : briefMd;
+  const baseCard = mkCard(effectiveBrief, briefMdEffective);
   if (baseCard.length > AUTHOR_CARD_MAX_CHARS) {
     deps.log(`[autopilot] author ch${nn}: card is ${baseCard.length} chars (> ${AUTHOR_CARD_MAX_CHARS} target) — proceeding, but the packet/brief deserve a diet`);
   }
@@ -621,8 +671,40 @@ export async function authorWriteOneChapter(
 
   let card = baseCard;
   let lastReason = "";
-  for (let attempt = 1; attempt <= 1 + AUTHOR_WRITE_GATE_RETRIES; attempt++) {
-    const label = attempt === 1 ? `author-ch${nn}` : `author-ch${nn}-retry${attempt - 1}`;
+  // F-1 failure classification: the degraded extra slot opens ONLY when every
+  // configured attempt failed at the write contract with lead-thread findings
+  // alone. Any other failure (spawn death, no file, gate, rubric, mixed contract
+  // findings) marks the call non-lead — the lead is not proven uncarriable there.
+  const baseAttempts = 1 + AUTHOR_WRITE_GATE_RETRIES;
+  let leadOnlyContractFails = 0;
+  let nonLeadFailure = false;
+  let activeBrief = effectiveBrief;
+  let degraded: { from: string; to: { kind: "invented" | "owned-case"; name: string }; castEmptied: boolean } | null = null;
+  for (let attempt = 1; attempt <= baseAttempts + AUTHOR_WRITE_LEAD_DEGRADE_RETRIES; attempt++) {
+    if (attempt > baseAttempts) {
+      // The extra slot exists ONLY for bounded lead degradation (F-1).
+      if (nonLeadFailure || leadOnlyContractFails !== baseAttempts) break;
+      const failedLead = activeBrief?.leadThread?.name;
+      if (!failedLead) break;
+      const proxyBanned = !!totalChapters && totalChapters >= 4
+        && dealContentDeviceBans(chapterNumber, totalChapters).includes("proxy-cast");
+      // Exclude every lead already proven uncarriable: this call's failed lead and
+      // (when an override was active) the ORIGINAL dealt lead it replaced.
+      const alreadyFailed = [...new Set([failedLead, ...(leadOverride ? [leadOverride.failedLead] : [])])];
+      const candidates = degradedLeadCandidates(activeBrief?.ownedCases ?? [], activeBrief?.cast ?? [], proxyBanned, alreadyFailed);
+      if (candidates.length === 0) {
+        lastReason = `ch${nn}: the dealt lead "${failedLead}" failed the lead-thread write contract on every attempt, and NO degradation candidate remains (exhausted: ${alreadyFailed.map((x) => `"${x}"`).join(", ")}; ${proxyBanned ? "invented lead unavailable — this chapter's content-device deal bans proxy-cast" : "no invented cast remains"}) — honest halt, nothing carriable exists.`;
+        deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
+        break;
+      }
+      const to = candidates[0];
+      const castEmptied = proxyBanned && to.kind === "owned-case";
+      degraded = { from: failedLead, to, castEmptied };
+      activeBrief = activeBrief ? { ...activeBrief, leadThread: to, cast: castEmptied ? [] : activeBrief.cast } : activeBrief;
+      deps.log(`[autopilot] author ch${nn}: lead degraded: "${failedLead}" → "${to.name}" after ${leadOnlyContractFails} contract failures (bounded +${AUTHOR_WRITE_LEAD_DEGRADE_RETRIES} attempt; the lead-thread contract enforces the NEW lead at full strength).`);
+      card = `${mkCard(activeBrief, activeBrief ? renderBriefMd(activeBrief) : briefMdEffective)}\n\nLEAD CHANGE\nThe previously dealt lead ("${failedLead}") could not carry the fastRead + 2 examples across ${leadOnlyContractFails} attempts. The LEAD THREAD above now deals "${to.name}" — the same contract applies to it at full strength.`;
+    }
+    const label = attempt === 1 ? `author-ch${nn}` : attempt > baseAttempts ? `author-ch${nn}-degraded` : `author-ch${nn}-retry${attempt - 1}`;
     const sessionId = deps.mkSessionId(label);
     deps.log(`[autopilot] author ch${nn}: whole-chapter writer working (attempt ${attempt}, card ${card.length} chars, ${AUTHOR_WRITER_MODEL} @ ${AUTHOR_WRITER_EFFORT}, timeout ${Math.round(AUTHOR_WRITE_TIMEOUT_MS / 60000)}min)`);
     // M-lane: pinned model/effort/timeout. The runner REJECTS on timeout (SIGKILL) —
@@ -655,6 +737,7 @@ export async function authorWriteOneChapter(
         });
       } catch { /* best-effort: never convert a spawn error into a log error */ }
       card = `${baseCard}\n\nPREVIOUS ATTEMPT DID NOT COMPLETE\nYour previous session was cut off before finishing. Write the complete chapter file this time.`;
+      nonLeadFailure = true;
       continue;
     }
     try { deps.logSession(bookId, label, r); } catch { /* best-effort */ }
@@ -663,6 +746,7 @@ export async function authorWriteOneChapter(
     if (!io.chapterExists(bookId, chapterNumber)) {
       lastReason = `ch${nn}: writer session ${sessionId} exited ${r.exitCode} without writing ${relPath}`;
       card = `${baseCard}\n\nPREVIOUS ATTEMPT WROTE NO FILE\nYour previous session ended without creating ${relPath}. Write the complete chapter file this time.`;
+      nonLeadFailure = true;
       continue;
     }
 
@@ -731,6 +815,7 @@ export async function authorWriteOneChapter(
           } catch { /* best-effort evidence — the metric block still stands */ }
         }
         card = `${baseCard}\n\nRUBRIC PREFLIGHT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but FAILED the deterministic reader-metrics preflight. Rewrite the chapter so ALL of these clear:\n${rubricBlock}${tellEvidence}\nHow to read it: ease must land in 72-84 (write plainer, shorter sentences); tell must be <= 0.2 (at most ONE of the 9 keys may be the uniquely longest choice — fix the listed questions); transfer must be >= 0.7 (most quiz questions test a NEW scenario, not recall); memClean >= 2 (short portable memorable lines); lenTell — the key may be the uniquely SHORTEST choice in at most 4 of 9 questions and the uniquely LONGEST in at most 1 of 9 (the same caps as your quality bar — fix only the questions over a cap; do NOT purge every length extreme, that mints the opposite tell); practice — tryThisNow or the 24-hour challenge must be imperative-led with a concrete number/timebox; echo (advisory) — paraphrase any key that reuses 5+ consecutive words from the chapter.`;
+        nonLeadFailure = true;
         continue;
       }
       // STIER-2 D7/D9 — the write-time contract (lead thread + timer sanity) runs with
@@ -741,12 +826,39 @@ export async function authorWriteOneChapter(
         writtenChapter = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
       } catch { /* unreadable → skip the contract check; the gate already passed */ }
       if (writtenChapter) {
-        const contract = authorWriteContractFindings(writtenChapter, machineBrief, packet);
+        // F-1: the contract runs against the ACTIVE brief — the effective (override-
+        // resolved) brief normally, the degraded-lead brief on the extra attempt —
+        // so a degraded lead is verified at exactly the same strength.
+        const contract = authorWriteContractFindings(writtenChapter, activeBrief, packet);
         if (contract.length > 0) {
+          if (contract.every((c) => c.startsWith("lead thread"))) leadOnlyContractFails++;
+          else nonLeadFailure = true;
           lastReason = `ch${nn}: STIER-2 write contract FAIL — ${contract.join(" | ")}`;
           deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
           card = `${baseCard}\n\nWRITE-CONTRACT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but broke the dealt write contract. Rewrite the chapter so ALL of these clear:\n${contract.map((c) => `- ${c}`).join("\n")}`;
           continue;
+        }
+      }
+      // F-1: a degraded lead that LANDED is persisted to the sidecar so every future
+      // entry (write, review-regen, repair contract re-check) resolves the chapter's
+      // ACTUAL lead instead of re-dealing the proven-uncarriable one. Keyed on the
+      // COMPILED brief's dealt lead (the staleness guard); best-effort but LOUD —
+      // a persist failure means the next entry re-degrades from scratch.
+      if (degraded) {
+        try {
+          io.writeLeadOverride(bookId, chapterNumber, {
+            schemaVersion: "lead-thread-override-v1",
+            bookId: normSlug(bookId),
+            chapterNumber,
+            failedLead: machineBrief?.leadThread?.name ?? degraded.from,
+            lead: degraded.to,
+            cast: degraded.castEmptied ? [] : (activeBrief?.cast ?? []),
+            reason: `lead-thread contract failed ${leadOnlyContractFails}× on "${degraded.from}"; degraded per F-1 (bounded write-time recovery)`,
+            at: new Date().toISOString(),
+          });
+          deps.log(`[autopilot] author ch${nn}: lead override persisted (chNN.lead-override.json) — future regens/repairs enforce the contract against "${degraded.to.name}".`);
+        } catch (err) {
+          deps.log(`[autopilot] author ch${nn}: degraded lead LANDED but the lead-override sidecar could not be persisted (${(err as Error).message.split("\n")[0]}) — the next entry will re-fail on the dealt lead and re-degrade; fix the briefs dir permissions.`);
         }
       }
       // Success: bind author provenance to the authored content (create-once per
@@ -763,6 +875,7 @@ export async function authorWriteOneChapter(
     const report = reportOf(gate);
     lastReason = `ch${nn}: gate-chapter still blocks after attempt ${attempt}:\n${report.slice(0, 1500)}`;
     card = `${baseCard}\n\nGATE BLOCKERS FROM YOUR PREVIOUS ATTEMPT\nYour previous draft of ${relPath} failed the deterministic gate. Rewrite the chapter (regenerate — do not minimally patch) so every blocker below is cleared, then re-run gate-chapter until clean:\n${report.slice(0, 2000)}`;
+    nonLeadFailure = true;
   }
   // All attempts failed — never leave the last (unreviewed, self-check-failing)
   // draft on disk. Restore the pre-write bytes, or remove the orphan draft when
@@ -779,6 +892,12 @@ export async function authorWriteOneChapter(
     }
   } catch (err) {
     deps.log(`[autopilot] author ch${nn}: write-failure cleanup itself failed (${(err as Error).message.split("\n")[0]}) — disk may hold an unreviewed failed draft.`);
+  }
+  // F-1 honesty: when the bounded degradation also failed, the halt names BOTH
+  // leads — the operator must see that the fallback was tried, not just the last
+  // attempt's complaint.
+  if (degraded) {
+    return { ok: false, reason: `ch${nn}: lead degradation did not converge — dealt lead "${degraded.from}" failed ${baseAttempts} lead-only contract attempts and the degraded lead "${degraded.to.name}" also failed: ${lastReason || "no reason recorded"}` };
   }
   return { ok: false, reason: lastReason || `ch${nn}: writer failed` };
 }

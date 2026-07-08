@@ -892,6 +892,57 @@ test("doAuthorReview (real files): a regen that PASSES but scores a band+ below 
   }
 });
 
+test("doAuthorReview (real files): a REVIEW-LANE regen whose WRITE fails restores prior bytes + rolls provenance back (F-2 case c — the ch14 loss)", async () => {
+  // The live loss this pins: a failing chapter's regen writer landed a draft that
+  // then failed its own write self-checks (gate/contract); the unreviewed draft
+  // replaced the reviewed original on disk (high-output-management ch14 — the
+  // 87-composite original was lost). The review-lane call-site must restore the
+  // prior bytes AND re-bind provenance to them.
+  const bookId = "zz-fixture-reviewregen-fail";
+  const p1 = realChapterPath(bookId, 1), p2 = realChapterPath(bookId, 2);
+  const chapterId = authorChapterId(bookId, 1);
+  try {
+    const originalBytes = CH_BYTES(CH1);
+    rmSync(reviewDir(bookId), { recursive: true, force: true });
+    mkdirSync(dirname(p1), { recursive: true });
+    writeFileSync(p1, originalBytes, "utf8");
+    writeFileSync(p2, CH_BYTES(CH2), "utf8");
+    const readDisk = (): ChapterV21[] => [JSON.parse(readFileSync(p1, "utf8")), JSON.parse(readFileSync(p2, "utf8"))];
+    const regressed = { ...CH1, hook: `${CH1.hook} (regen draft that will fail its own write gate)` };
+    // Seed a STALE provenance record (bound to the draft that will be discarded)
+    // over the true prior author — the rollback must land on author-A@prior.
+    const hashPrior = chapterContentHash(CH1);
+    recordAuthorProvenance(chapterId, "author-A", hashPrior);
+    recordAuthorProvenance(chapterId, "regen-B", chapterContentHash(regressed));
+    const logs: string[] = [];
+    const { deps } = mkDeps(
+      (o) => {
+        if (o.sessionId.startsWith("author-ch01")) {
+          writeFileSync(p1, CH_BYTES(regressed), "utf8"); // the writer LANDS its draft pre-check
+          return {};
+        }
+        const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+        if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? readDisk()[0] : readDisk()[1], { score: Number(m[1]) === 1 ? 55 : 90, ship84: Number(m[1]) !== 1 }) };
+        return {};
+      },
+      // The regen writer's own gate blocks every attempt → total write failure.
+      (args) => args[0] === "gate-chapter" ? { code: 1, stdout: "[BLOCKER A12] ch01: fixture gate block", stderr: "" } : { code: 0, stdout: "", stderr: "" },
+    );
+    deps.log = ((m: string) => { logs.push(m); }) as never;
+    const io = mkIo({ loadChapters: readDisk, chapterExists: () => true });
+    const result = await doAuthorReview(bookId, deps, { maxParallel: 2, io });
+    assert.ok(result && result.status === "halt" && result.category === "content", "the failed regen halts content — review/PASS state is NOT advanced");
+    assert.equal(readFileSync(p1, "utf8"), originalBytes, "prior reviewed bytes restored byte-for-byte");
+    assert.ok(logs.some((l) => l.includes("regen write failed") && l.includes("restored prior reviewed bytes")), "the review-lane restore is loudly logged");
+    const rec = loadAuthorProvenance(chapterId);
+    assert.equal(rec?.contentHash, hashPrior, "provenance content hash re-bound to the restored bytes");
+    assert.equal(rec?.authorSessionId, "author-A", "provenance author rolled back to the true prior author");
+  } finally {
+    rmSync(p1, { force: true }); rmSync(p2, { force: true }); rmSync(reviewDir(bookId), { recursive: true, force: true });
+    rmSync(provenancePath(chapterId), { force: true });
+  }
+});
+
 test("acceptance-regen carry invariant: restored bytes (== prior) still CARRY their durable PASS — no re-review needed", () => {
   const bookId = "zz-fixture-regen-carry";
   const scores = Object.fromEntries(REVIEW_FACTORS.map((f) => [f, 88]));

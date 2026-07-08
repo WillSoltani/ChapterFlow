@@ -291,6 +291,90 @@ export function resolveLeadThread(
   return undefined;
 }
 
+/** F-1 (fresh-gold blocker, 2026-07-08): DEGRADATION candidates for a lead that
+ *  repeatedly failed the write-time lead-thread contract. Live evidence: a bare
+ *  concept-label owned case ("Task-focused interview questions", packet with zero
+ *  named actors) failed the contract 5/6 drafts across three conductor entries —
+ *  an unbreakable honest-halt cycle, because re-entry re-deals the identical lead.
+ *  Labels are NOT lexically separable from carriable concept leads (seven similar
+ *  ones carried fine in the same book), so the reliable signal is the writer's own
+ *  repeated contract failure; this function only ORDERS the fallbacks.
+ *
+ *  Order (deterministic): (a) packet-order owned cases that still carry a contract-
+ *  enforceable anchor token — a token-less label would pass the contract VACUOUSLY,
+ *  which is gate-dodging, so those are never candidates; (b) the invented cast[0],
+ *  ONLY when the chapter's content-device deal does not ban proxy-cast. Names in
+ *  `failedLeadNames` (already failed in this or a prior call) are excluded. Pure. */
+export function degradedLeadCandidates(
+  ownedCases: Array<{ id: string; label: string }>,
+  cast: string[],
+  proxyBanned: boolean,
+  failedLeadNames: string[],
+): Array<{ kind: "invented" | "owned-case"; name: string }> {
+  const failed = new Set(failedLeadNames);
+  const out: Array<{ kind: "invented" | "owned-case"; name: string }> = [];
+  for (const c of ownedCases) {
+    if (failed.has(c.label)) continue;
+    if (!leadLabelHasToken(c.label)) continue;
+    out.push({ kind: "owned-case", name: c.label });
+  }
+  if (!proxyBanned) {
+    for (const name of cast) {
+      if (failed.has(name)) continue;
+      out.push({ kind: "invented", name });
+      break; // cast[0] semantics: exactly one invented fallback
+    }
+  }
+  return out;
+}
+
+/** F-1 persistence (requirement-4 decision, documented here): the degraded lead is
+ *  persisted as a SIDECAR next to the compiled briefs (chNN.lead-override.json),
+ *  written only after a degraded attempt actually LANDS a passing chapter.
+ *
+ *  Why a sidecar and not the brief json: doAuthorWrite re-runs compile-chapter-briefs
+ *  on EVERY entry, so an edit to the compiled brief is clobbered within one entry —
+ *  the recompile would silently resurrect the uncarriable lead for every future regen
+ *  of the chapter. The sidecar lives in the same runs/<runId>/briefs/ dir (a NEW
+ *  research run mints a new runId and naturally orphans it) and writeChapterBriefs
+ *  never cleans the dir, so it survives recompiles.
+ *
+ *  Why not a pure in-memory overlay: the write contract is re-checked OUTSIDE the
+ *  write call (authorRepair verifies spliced repairs against the brief) — a chapter
+ *  legitimately carrying lead B while the brief deals lead A would fail every future
+ *  repair. Every contract consumer resolves the EFFECTIVE brief via
+ *  applyLeadThreadOverride.
+ *
+ *  Lineage/budgets: computeRegenLineage reads the compiled brief only, NEVER the
+ *  sidecar — a degradation is a bounded write-time recovery, not a re-deal, so it
+ *  must not re-key lineage and mint fresh regen budgets (F-1 requirement 5). */
+export type LeadThreadOverrideV1 = {
+  schemaVersion: "lead-thread-override-v1";
+  bookId: string;
+  chapterNumber: number;
+  /** The dealt lead that repeatedly failed the write contract — the STALENESS key:
+   *  the override applies ONLY while the compiled brief still deals this exact lead.
+   *  A re-deal (new packet cases / rotation bump) supersedes the override. */
+  failedLead: string;
+  lead: { kind: "invented" | "owned-case"; name: string };
+  /** The cast the degraded card ran with (emptied for a proxy-banned owned-case
+   *  lead — the ch13 supporting-cast-licence rule, kept consistent here). */
+  cast: string[];
+  reason: string;
+  at: string;
+};
+
+/** Resolve the EFFECTIVE brief under a persisted lead override. Null-safe; stale
+ *  overrides (the brief no longer deals the recorded failed lead) are ignored. */
+export function applyLeadThreadOverride(
+  brief: ChapterBriefV1 | null,
+  override: LeadThreadOverrideV1 | null | undefined,
+): ChapterBriefV1 | null {
+  if (!brief || !override) return brief;
+  if (brief.leadThread?.name !== override.failedLead) return brief;
+  return { ...brief, leadThread: override.lead, cast: override.cast };
+}
+
 /**
  * v24 S-tier P1 — the book's hot FRAMEWORK NOUNS, computed deterministically from the
  * source packets (available before any chapter exists; stable across regens). The halted

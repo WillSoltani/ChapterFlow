@@ -228,6 +228,16 @@ export function chapterBriefMdPath(bookId: string, chapterNumber: number, roots:
   return resolve(artifactDir(bookId, "briefs", roots), `ch${String(chapterNumber).padStart(2, "0")}.brief.md`);
 }
 
+/** F-1 lead-degradation SIDECAR (see LeadThreadOverrideV1 in chapterBrief.ts for the
+ *  persistence rationale). Same briefs/ dir as the compiled brief: writeChapterBriefs
+ *  never cleans the dir (survives recompiles) and a new research run's new runId
+ *  naturally orphans it. DELIBERATELY side-effect-free (no artifactDir/mkdir): the
+ *  override is READ on every write call, including fixture book ids in tests — a
+ *  read must never mint state/books/<book>/runs/ dirs. Writers mkdir themselves. */
+export function leadOverridePath(bookId: string, chapterNumber: number, roots: CompilerStoreRoots = {}): string {
+  return resolve(compilerRunRoot(normSlug(bookId), roots), "briefs", `ch${String(chapterNumber).padStart(2, "0")}.lead-override.json`);
+}
+
 export function sectionDir(bookId: string, chapterNumber: number, roots: CompilerStoreRoots = {}): string {
   const dir = resolve(artifactDir(bookId, "sections", roots), `ch${String(chapterNumber).padStart(2, "0")}`);
   mkdirSync(dir, { recursive: true });
