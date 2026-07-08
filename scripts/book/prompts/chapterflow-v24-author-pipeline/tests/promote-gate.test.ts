@@ -783,6 +783,20 @@ test("reader-content-strip-v3 removes planSpec/sourceAnchorId AND the v3 interna
   assert.ok((ch.examples[0] as any).planSpec, "strip works on a copy — state chapters are not mutated");
 });
 
+test("strip removes writer-INVENTED *SourceAnchorIds variants — strip ⊇ verifier suffix rule (live: high-output-management ch10 breakdownSourceAnchorIds)", () => {
+  // The verifier (verifyProductionPackage FORBIDDEN_SOURCE_ANCHOR_RE) rejects ANY
+  // key ending in SourceAnchorId(s); the strip used to remove only an enumerated
+  // list, so a variant name passed the strip and fail-closed the promote.
+  const ch = makeChapter(BOOK, 9) as any;
+  ch.breakdownSourceAnchorIds = { fastRead: ["a1"] };            // live variant
+  ch.breakdown.summarySourceAnchorIds = ["a1"];                  // nested variant
+  ch.examples[0].storySourceAnchorId = "a1";                     // singular variant
+  const shipped = stripInternalFields(ch) as any;
+  const json = JSON.stringify(shipped);
+  assert.doesNotMatch(json, /SourceAnchorIds?"/, "every *SourceAnchorId(s) key is stripped, whatever the prefix");
+  assert.equal(shipped.breakdown.fastRead, ch.breakdown.fastRead, "reader content survives");
+});
+
 // ── Safe canonical chapter-file loader (CHSET.chapter_file_unreadable) ────────
 // promoteBook used to `JSON.parse(readFileSync(...))` each canonical chapter file
 // inline; one corrupt file threw before promotion could return a structured

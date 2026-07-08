@@ -47,12 +47,24 @@ const AUTHORING_INTERNAL_KEYS = new Set([
   "depthLevel",
 ]);
 
+/** Any key ending in SourceAnchorId(s) is authoring provenance, whatever prefix the
+ *  writer chose. The verifier (verifyProductionPackage.ts FORBIDDEN_SOURCE_ANCHOR_RE)
+ *  has always rejected by this SUFFIX, but the strip only removed the enumerated
+ *  names above — a writer-invented variant ("breakdownSourceAnchorIds", live:
+ *  high-output-management ch10) passed the strip and fail-closed the promote. The
+ *  strip must remove a superset of what the verifier rejects. */
+const AUTHORING_INTERNAL_KEY_RE = /SourceAnchorIds?$/;
+
+function isAuthoringInternalKey(key: string): boolean {
+  return AUTHORING_INTERNAL_KEYS.has(key) || AUTHORING_INTERNAL_KEY_RE.test(key);
+}
+
 function stripAuthoringKeysDeep<T>(value: T): T {
   if (Array.isArray(value)) return value.map((v) => stripAuthoringKeysDeep(v)) as unknown as T;
   if (value && typeof value === "object") {
     const out: Record<string, unknown> = {};
     for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
-      if (AUTHORING_INTERNAL_KEYS.has(k)) continue;
+      if (isAuthoringInternalKey(k)) continue;
       out[k] = stripAuthoringKeysDeep(v);
     }
     return out as T;
@@ -125,7 +137,7 @@ function containsDeepAuthoringInternalField(value: unknown): string | null {
   }
   if (value && typeof value === "object") {
     for (const [key, child] of Object.entries(value as Record<string, unknown>)) {
-      if (AUTHORING_INTERNAL_KEYS.has(key)) return key;
+      if (isAuthoringInternalKey(key)) return key;
       const hit = containsDeepAuthoringInternalField(child);
       if (hit) return hit;
     }
