@@ -5,6 +5,7 @@ import { resolve } from "path";
 import { generateChapter, type BookMeta, type ChapterSpec } from "../src/generateChapter.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import { promoteBook } from "../src/promoteBook.js";
+import { blockedReportsForBook, listBlockedReports } from "../src/publish/blockedReportRetention.js";
 import { checkSourceV2Gate, checkSourceV2PrewriteGate, formatSourceV2GateReport, sourceHashFor } from "../src/qc/sourceV2Gate.js";
 import { loadPlanningSourceEvidence, renderChapterSourceForPlanner } from "../src/source/sourceEvidence.js";
 import { stripMetaReferences } from "../src/source-loader.js";
@@ -387,6 +388,9 @@ test("authoring and promotion block the same STRUCTURAL source-integrity defect 
     );
     assert.equal(editorCalls, 0, "authoring must stop before editor planning");
 
+    const blockedDir = resolve(PIPELINE_DIR, "state", "books", "_blocked");
+    const beforeTotal = listBlockedReports(blockedDir).length;
+
     writePromotionFixture(PROMOTION_BOOK, bad);
     const result = promoteBook({
       bookId: PROMOTION_BOOK,
@@ -398,6 +402,14 @@ test("authoring and promotion block the same STRUCTURAL source-integrity defect 
     assert.ok(result.reportPath && existsSync(result.reportPath), "promotion should write a blocker report");
     const report = JSON.parse(readFileSync(result.reportPath, "utf8"));
     assert.match(JSON.stringify(report), new RegExp(expectedCheck), "promotion report should carry the same source-integrity check id");
+
+    // F-14 no-leak proof: cleaning the fixture's blocked report restores _blocked/
+    // exactly as found — a passing run adds nothing durable to the state corpus.
+    cleanupPromotionFixture(PROMOTION_BOOK);
+    assert.equal(blockedReportsForBook(blockedDir, PROMOTION_BOOK).length, 0,
+      "source-integrity test must leave no blocked report for its fixture book");
+    assert.equal(listBlockedReports(blockedDir).length, beforeTotal,
+      "source-integrity test must leave state/books/_blocked count unchanged");
   } finally {
     if (priorAllow === undefined) delete process.env.CHAPTERFLOW_ALLOW_MODEL_GEN;
     else process.env.CHAPTERFLOW_ALLOW_MODEL_GEN = priorAllow;
@@ -435,4 +447,9 @@ function cleanupPromotionFixture(bookId: string): void {
   rmSync(resolve(PIPELINE_DIR, "state", "books", `${bookId}.gate.json`), { force: true });
   rmSync(resolve(REPO_ROOT, ".chapterflow", "runs", bookId), { recursive: true, force: true });
   rmSync(resolve(REPO_ROOT, "book-packages", `${bookId}.v21.json`), { force: true });
+  // Promotion of this fixture is expected to BLOCK, which writes a timestamped
+  // _blocked/<bookId>.<epoch>.report.json — clean it so a passing test never leaks
+  // a blocked report into the tracked state corpus (F-14).
+  const blockedDir = resolve(PIPELINE_DIR, "state", "books", "_blocked");
+  for (const f of blockedReportsForBook(blockedDir, bookId)) rmSync(f.path, { force: true });
 }
