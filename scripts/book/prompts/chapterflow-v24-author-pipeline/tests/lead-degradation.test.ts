@@ -212,6 +212,7 @@ test("applyLeadThreadOverride: applies while the brief still deals the failed le
   assert.equal(applyLeadThreadOverride(redealt, override), redealt, "stale override ignored — the re-deal supersedes it");
   assert.equal(applyLeadThreadOverride(null, override), null);
   assert.equal(applyLeadThreadOverride(brief, null), brief);
+  assert.equal(applyLeadThreadOverride(brief, { ...override, lead: null }), brief, "pure failure MEMORY applies no overlay");
 });
 
 // ── integration: the degraded attempt ────────────────────────────────────────
@@ -286,7 +287,7 @@ test("F-1: proxy-banned chapter whose ONLY owned case failed → honest halt nam
   assert.equal(rig.overrides.length, 0);
 });
 
-test("F-1: the degraded attempt ALSO failing → bounded halt naming BOTH leads; max spawns = 1 + gate retries + 1; orphan removed", async () => {
+test("F-1: the degraded attempt ALSO failing → bounded halt naming BOTH leads; max spawns = 1 + gate retries + 1; orphan removed; failure MEMORY persisted", async () => {
   const n = CH_PROXY_ALLOWED;
   const rig = mkRig({ n, brief: mkBrief(n), drafts: [mkDraft(n, "Zephyr")] }); // carries neither lead
   const r = await authorWriteOneChapter("zz-lead-degrade", n, rig.deps, { io: rig.io, totalChapters: TOTAL });
@@ -298,7 +299,32 @@ test("F-1: the degraded attempt ALSO failing → bounded halt naming BOTH leads;
     assert.match(r.reason, new RegExp(`"${LEAD_B}"`), "names the degraded lead");
   }
   assert.deepEqual(rig.removed, [n], "restore block fires after the degraded attempt too");
-  assert.equal(rig.overrides.length, 0, "a FAILED degradation is never persisted");
+  // Cross-entry convergence (live: the 2026-07-08 resume replayed the identical
+  // dealt→degraded cycle): a FAILED degradation persists pure failure MEMORY —
+  // no overlay (lead null), but every proven-uncarriable name recorded.
+  assert.equal(rig.overrides.length, 1, "failure memory persisted");
+  assert.equal(rig.overrides[0].lead, null, "no landed overlay");
+  assert.deepEqual([...(rig.overrides[0].failedLeads ?? [])].sort(), [LEAD_B, LEAD_A].sort(), "BOTH proven-uncarriable leads recorded");
+});
+
+test("F-1: the NEXT entry advances PAST the persisted failure memory to the invented candidate (the cross-entry cycle terminates)", async () => {
+  const n = CH_PROXY_ALLOWED;
+  const memory: LeadThreadOverrideV1 = {
+    schemaVersion: "lead-thread-override-v1", bookId: "zz-lead-degrade", chapterNumber: n,
+    failedLead: LEAD_A, lead: null, cast: ["Willow"],
+    failedLeads: [LEAD_A, LEAD_B],
+    reason: "fixture: prior entry's failed degradation", at: "2026-07-08T00:00:00.000Z",
+  };
+  // The writer's drafts carry the invented "Willow" only: the dealt LEAD_A fails
+  // 2×, degradation excludes {LEAD_A, LEAD_B} from memory → invented "Willow".
+  const rig = mkRig({ n, brief: mkBrief(n), drafts: [mkDraft(n, "Willow")], storedOverride: memory });
+  const r = await authorWriteOneChapter("zz-lead-degrade", n, rig.deps, { io: rig.io, totalChapters: TOTAL });
+  assert.ok(r.ok, `advances to the invented lead and converges: ${!r.ok ? r.reason : ""}`);
+  assert.equal(rig.spawns.length, BASE_ATTEMPTS + 1);
+  assert.ok(rig.logs.some((l) => l.includes(`lead degraded: "${LEAD_A}" → "Willow"`)), "degraded PAST the remembered candidate to the invented one");
+  assert.equal(rig.overrides.length, 1, "the landed override replaces the memory record");
+  assert.deepEqual(rig.overrides[0].lead, { kind: "invented", name: "Willow" });
+  assert.ok((rig.overrides[0].failedLeads ?? []).includes(LEAD_B), "history is carried forward");
 });
 
 test("F-1: a persisted override is honored on the next entry — the card deals the degraded lead directly, first attempt passes", async () => {

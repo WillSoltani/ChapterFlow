@@ -639,6 +639,10 @@ export async function authorWriteOneChapter(
   // chapter's ACTUAL lead. Stale overrides (brief re-dealt) are ignored inside
   // applyLeadThreadOverride.
   const leadOverride = io.readLeadOverride(bookId, chapterNumber);
+  // Failure MEMORY is honored under the same staleness rule as the overlay: only
+  // while the compiled brief still deals the recorded failed lead (a re-deal
+  // supersedes everything the memory proved).
+  const leadMemory = leadOverride && leadOverride.failedLead === machineBrief?.leadThread?.name ? leadOverride : null;
   const effectiveBrief = applyLeadThreadOverride(machineBrief, leadOverride);
   if (effectiveBrief !== machineBrief) {
     deps.log(`[autopilot] author ch${nn}: persisted lead override active — writing to lead "${effectiveBrief?.leadThread?.name}" (the dealt lead "${leadOverride?.failedLead}" repeatedly failed the lead-thread write contract; override recorded ${leadOverride?.at}).`);
@@ -680,6 +684,7 @@ export async function authorWriteOneChapter(
   let nonLeadFailure = false;
   let activeBrief = effectiveBrief;
   let degraded: { from: string; to: { kind: "invented" | "owned-case"; name: string }; castEmptied: boolean } | null = null;
+  let degradedFailedOnLead = false;
   for (let attempt = 1; attempt <= baseAttempts + AUTHOR_WRITE_LEAD_DEGRADE_RETRIES; attempt++) {
     if (attempt > baseAttempts) {
       // The extra slot exists ONLY for bounded lead degradation (F-1).
@@ -688,9 +693,15 @@ export async function authorWriteOneChapter(
       if (!failedLead) break;
       const proxyBanned = !!totalChapters && totalChapters >= 4
         && dealContentDeviceBans(chapterNumber, totalChapters).includes("proxy-cast");
-      // Exclude every lead already proven uncarriable: this call's failed lead and
-      // (when an override was active) the ORIGINAL dealt lead it replaced.
-      const alreadyFailed = [...new Set([failedLead, ...(leadOverride ? [leadOverride.failedLead] : [])])];
+      // Exclude every lead already proven uncarriable: this call's failed lead,
+      // (when an override was active) the ORIGINAL dealt lead it replaced, and the
+      // persisted cross-entry failure memory — candidates strictly shrink across
+      // entries, so the halt cycle terminates instead of replaying forever.
+      const alreadyFailed = [...new Set([
+        failedLead,
+        ...(leadMemory ? [leadMemory.failedLead] : []),
+        ...(leadMemory?.failedLeads ?? []),
+      ])];
       const candidates = degradedLeadCandidates(activeBrief?.ownedCases ?? [], activeBrief?.cast ?? [], proxyBanned, alreadyFailed);
       if (candidates.length === 0) {
         lastReason = `ch${nn}: the dealt lead "${failedLead}" failed the lead-thread write contract on every attempt, and NO degradation candidate remains (exhausted: ${alreadyFailed.map((x) => `"${x}"`).join(", ")}; ${proxyBanned ? "invented lead unavailable — this chapter's content-device deal bans proxy-cast" : "no invented cast remains"}) — honest halt, nothing carriable exists.`;
@@ -831,8 +842,10 @@ export async function authorWriteOneChapter(
         // so a degraded lead is verified at exactly the same strength.
         const contract = authorWriteContractFindings(writtenChapter, activeBrief, packet);
         if (contract.length > 0) {
-          if (contract.every((c) => c.startsWith("lead thread"))) leadOnlyContractFails++;
-          else nonLeadFailure = true;
+          if (contract.every((c) => c.startsWith("lead thread"))) {
+            leadOnlyContractFails++;
+            if (attempt > baseAttempts) degradedFailedOnLead = true; // the DEGRADED lead is now proven uncarriable too
+          } else nonLeadFailure = true;
           lastReason = `ch${nn}: STIER-2 write contract FAIL — ${contract.join(" | ")}`;
           deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
           card = `${baseCard}\n\nWRITE-CONTRACT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but broke the dealt write contract. Rewrite the chapter so ALL of these clear:\n${contract.map((c) => `- ${c}`).join("\n")}`;
@@ -853,6 +866,7 @@ export async function authorWriteOneChapter(
             failedLead: machineBrief?.leadThread?.name ?? degraded.from,
             lead: degraded.to,
             cast: degraded.castEmptied ? [] : (activeBrief?.cast ?? []),
+            failedLeads: [...new Set([degraded.from, ...(leadMemory?.failedLeads ?? [])])],
             reason: `lead-thread contract failed ${leadOnlyContractFails}× on "${degraded.from}"; degraded per F-1 (bounded write-time recovery)`,
             at: new Date().toISOString(),
           });
@@ -895,8 +909,33 @@ export async function authorWriteOneChapter(
   }
   // F-1 honesty: when the bounded degradation also failed, the halt names BOTH
   // leads — the operator must see that the fallback was tried, not just the last
-  // attempt's complaint.
+  // attempt's complaint. Failure MEMORY persists so the NEXT entry's degradation
+  // advances to the next candidate instead of replaying this exact cycle (live:
+  // the 2026-07-08 resume replayed dealt→"Corrective" identically until this).
   if (degraded) {
+    const provenFailed = [...new Set([
+      degraded.from,
+      ...(degradedFailedOnLead ? [degraded.to.name] : []),
+      ...(leadMemory?.failedLeads ?? []),
+    ])];
+    try {
+      io.writeLeadOverride(bookId, chapterNumber, {
+        schemaVersion: "lead-thread-override-v1",
+        bookId: normSlug(bookId),
+        chapterNumber,
+        failedLead: machineBrief?.leadThread?.name ?? degraded.from,
+        // Preserve a previously LANDED overlay (the on-disk chapter still carries
+        // it after the byte restore above); null when nothing ever landed.
+        lead: leadMemory?.lead ?? null,
+        cast: leadMemory?.cast ?? machineBrief?.cast ?? [],
+        failedLeads: provenFailed,
+        reason: `degradation failed: dealt "${degraded.from}" ${baseAttempts}× lead-only; degraded "${degraded.to.name}" ${degradedFailedOnLead ? "also failed the lead contract" : "failed (non-lead)"} — memory so the next entry advances`,
+        at: new Date().toISOString(),
+      });
+      deps.log(`[autopilot] author ch${nn}: lead-failure memory persisted (${provenFailed.map((x) => `"${x}"`).join(", ")}) — the next entry degrades PAST these instead of replaying them.`);
+    } catch (err) {
+      deps.log(`[autopilot] author ch${nn}: lead-failure memory could not be persisted (${(err as Error).message.split("\n")[0]}) — the next entry will replay this degradation cycle.`);
+    }
     return { ok: false, reason: `ch${nn}: lead degradation did not converge — dealt lead "${degraded.from}" failed ${baseAttempts} lead-only contract attempts and the degraded lead "${degraded.to.name}" also failed: ${lastReason || "no reason recorded"}` };
   }
   return { ok: false, reason: lastReason || `ch${nn}: writer failed` };

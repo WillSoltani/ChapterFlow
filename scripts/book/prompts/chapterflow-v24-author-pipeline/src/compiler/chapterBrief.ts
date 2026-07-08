@@ -356,10 +356,20 @@ export type LeadThreadOverrideV1 = {
    *  the override applies ONLY while the compiled brief still deals this exact lead.
    *  A re-deal (new packet cases / rotation bump) supersedes the override. */
   failedLead: string;
-  lead: { kind: "invented" | "owned-case"; name: string };
+  /** The degraded lead a chapter actually LANDED with — null when the record is
+   *  pure failure MEMORY (a degradation was tried and failed; nothing landed).
+   *  Live necessity (high-output-management ch14, 2026-07-08 resume): without
+   *  failure memory, every conductor entry deterministically replays the same
+   *  dealt lead + first candidate and never advances to the next one — the exact
+   *  cross-entry halt cycle F-1 exists to break. */
+  lead: { kind: "invented" | "owned-case"; name: string } | null;
   /** The cast the degraded card ran with (emptied for a proxy-banned owned-case
    *  lead — the ch13 supporting-cast-licence rule, kept consistent here). */
   cast: string[];
+  /** Every lead name PROVEN uncarriable for this dealt-lead lineage (lead-only
+   *  contract failures across all attempts) — the next entry's degradation
+   *  excludes these, so candidates strictly shrink and the cycle terminates. */
+  failedLeads?: string[];
   reason: string;
   at: string;
 };
@@ -370,7 +380,7 @@ export function applyLeadThreadOverride(
   brief: ChapterBriefV1 | null,
   override: LeadThreadOverrideV1 | null | undefined,
 ): ChapterBriefV1 | null {
-  if (!brief || !override) return brief;
+  if (!brief || !override || !override.lead) return brief; // pure failure memory → no overlay
   if (brief.leadThread?.name !== override.failedLead) return brief;
   return { ...brief, leadThread: override.lead, cast: override.cast };
 }
