@@ -119,11 +119,14 @@ Commands:
                                      (key-packs, blind submissions, authoring cards, prior QC rounds, the source-
                                      sidecar cache; ~7 MB/book) so the worktree stays lean. Keeps every git-tracked
                                      artifact + the source-verify record. Dry-run by default; --apply deletes. [--json]
-  derive-artifacts <bookId>          Inline-operator helper: derives the book-pattern-audit
+  derive-artifacts <bookId> [--force-voice]
+                                     Inline-operator helper: derives the book-pattern-audit
                                      prerequisites (state/briefs/<bookId>.manual-brief.json +
                                      state/plans/<chapterId>.manual-plan.json per chapter) from
                                      the bibliography + cached chapters. Run after writing all
-                                     chapters, before generate-book.
+                                     chapters, before generate-book. Preserves a reviewed/diverged
+                                     voiceCharter by default (other fields re-derive); --force-voice
+                                     re-derives the voiceCharter from the TOC.
   research "<title>" "<author>" [--book-id <slug>] [--concurrency N] [--force-refresh]
                                      SUBPROCESS MODE: run the researcher via claude -p subprocess
                                      calls. Counts against your Max subscription quota.
@@ -945,12 +948,17 @@ async function runGenerateBook(args: string[], flags: Record<string, string | bo
  *  Without these, generate-book's book gate fails closed on BP7. The inline
  *  playbooks instruct the operator to run this between writing every chapter
  *  and running finalization. */
-async function runDeriveArtifacts(args: string[]): Promise<number> {
+async function runDeriveArtifacts(args: string[], flags: Record<string, string | boolean> = {}): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: derive-artifacts <bookId>");
+    console.error("Usage: derive-artifacts <bookId> [--force-voice]");
     return 2;
   }
+  // P1 (F-01): by default, derivation PRESERVES a reviewed/diverged voiceCharter
+  // instead of clobbering it from the TOC. --force-voice re-derives it. The
+  // auto-run callers (book-gate, QC entry) pass no flags → preserve, which is what
+  // stops those hooks from silently reverting a hand-edited charter.
+  const forceVoice = flags["force-voice"] === true;
   const REPO = resolve(__dirname, "..");
   const RUNS_DIR = resolve(REPO, ".chapterflow/runs");
   const STATE_DIR = resolve(__dirname, "../state");
@@ -981,7 +989,7 @@ async function runDeriveArtifacts(args: string[]): Promise<number> {
   const briefDir = resolve(STATE_DIR, "briefs");
   mkdirSync(briefDir, { recursive: true });
   const briefPath = resolve(briefDir, `${bookId}.manual-brief.json`);
-  const brief = {
+  const derivedBrief = {
     bookId,
     title: toc.title,
     author: toc.author,
@@ -1000,8 +1008,31 @@ async function runDeriveArtifacts(args: string[]): Promise<number> {
     derivedFromInlineMode: true,
     derivedAt: new Date().toISOString(),
   };
+  // P1 (F-01): non-clobbering derivation — preserve a reviewed/diverged voiceCharter
+  // unless --force-voice. Every other field re-derives. This stops the book-gate/QC
+  // auto-derive hooks from silently reverting a hand-edited charter.
+  const { reconcileDerivedBrief } = await import("./lib/manualBriefReconcile.js");
+  const { sanitizeVoiceMoves } = await import("./lib/voiceBible.js");
+  let existingBrief: unknown = null;
+  if (existsSyncFs(briefPath)) {
+    try { existingBrief = JSON.parse(readFileSync(briefPath, "utf8")); } catch { existingBrief = null; }
+  }
+  const { brief, preservedVoice, forcedVoice } = reconcileDerivedBrief({ existing: existingBrief, derived: derivedBrief, forceVoice });
   writeFileSync(briefPath, JSON.stringify(brief, null, 2), "utf8");
   console.log(`Wrote ${briefPath}`);
+  if (preservedVoice) {
+    console.log("  preserved the existing voiceCharter (diverged from the TOC-derived one); other fields re-derived. Pass --force-voice to overwrite it from the TOC.");
+  } else if (forcedVoice) {
+    console.log("  --force-voice: overwrote the existing voiceCharter with the TOC-derived one.");
+  }
+  // Gate-time explainability (F-01): surface which signatureMoves the voice-move
+  // sanitizer will filter out of writer prompts, so book-gate diffs are legible.
+  const finalMoves = ((brief.voiceCharter as { signatureMoves?: string[] } | undefined)?.signatureMoves) ?? [];
+  const strippedMoves = sanitizeVoiceMoves(finalMoves).stripped;
+  if (strippedMoves.length > 0) {
+    const preview = strippedMoves.map((m) => `"${m.length > 60 ? `${m.slice(0, 60)}…` : m}"`).join("; ");
+    console.log(`  note: ${strippedMoves.length} content-device mandate(s) in voiceCharter.signatureMoves will be filtered from writer prompts by the voice-move sanitizer: ${preview}`);
+  }
 
   // ── Per-chapter plan stubs ──────────────────────────────────────────────
   const plansDir = resolve(STATE_DIR, "plans");
@@ -5612,7 +5643,7 @@ async function main() {
     case "prune-book-state":
       return runPruneBookState(args, flags);
     case "derive-artifacts":
-      return runDeriveArtifacts(args);
+      return runDeriveArtifacts(args, flags);
     case "research":
       return runResearch(args, flags);
     case "generate":

@@ -14,6 +14,7 @@ import { resolve } from "path";
 import { test } from "./harness.js";
 import { PIPELINE_DIR } from "./helpers.js";
 import { voiceCard, VOICE_CARD_GUARD_LINE } from "../src/lib/voiceCard.js";
+import { formatVoiceBible } from "../src/lib/voiceBible.js";
 import { buildSectionTaskMarkdown } from "../src/sections/sectionTasks.js";
 import { SECTION_KINDS, type ChapterBlueprintV1, type SectionKind, type SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
 
@@ -142,6 +143,69 @@ test("section task markdown wires the card in the right shape per kind", () => {
     assert.match(task(BRIEF_BOOK, "action-pack"), /VOICE CARD — register note/, "action writers get the register note");
   } finally {
     rmSync(briefPath(BRIEF_BOOK), { force: true });
+  }
+});
+
+// ── P1 / Finding F-01: device-mandate signature moves never reach the card ──────
+
+/** Write a brief with arbitrary signatureMoves (and optional avoidMoves) so we can
+ *  exercise the sanitizer through the real formatVoiceBible → voiceCard path. */
+function writeBriefWithMoves(bookId: string, signatureMoves: string[], avoidMoves: string[] = []): void {
+  mkdirSync(resolve(PIPELINE_DIR, "state", "briefs"), { recursive: true });
+  writeFileSync(
+    briefPath(bookId),
+    JSON.stringify({
+      bookId,
+      voiceCharter: { register: "plainspoken", person: "third", cadence: "medium", signatureMoves, avoidMoves },
+    }),
+    "utf8",
+  );
+}
+
+test("P1/F-01: the start-with-why card carries no device-mandate text from the reverted brief", () => {
+  // Reads the REAL state/briefs/start-with-why.manual-brief.json (the reverted
+  // re-derivation whose signatureMoves re-mandate the mold). The sanitizer must
+  // strip those before they reach the card.
+  const card = voiceCard("start-with-why");
+  if (!card) return; // brief absent on this checkout — nothing to assert
+  assert.doesNotMatch(card, /opens with recognizable/i, "no opens-on-a-famous-case mandate reaches the card");
+  assert.doesNotMatch(card, /three-part distinction/i, "no WHY/HOW/WHAT three-part mandate reaches the card");
+  assert.doesNotMatch(card, /returns to Apple/i, "no recurring-named-anchor mandate reaches the card");
+  // Sanitized, not nulled: the genuine second-person style move still flows through.
+  assert.match(card, /second-person tests/i, "the real style move survives sanitization");
+});
+
+test("P1/F-01: formatVoiceBible emits a do: line when a style move survives, none when all are stripped", () => {
+  const ALL_DEVICE = "zz-fixture-voice-alldevice";
+  const MIXED = "zz-fixture-voice-mixed";
+  try {
+    // Every signature move is a device mandate → no do: line at all (never empty).
+    writeBriefWithMoves(ALL_DEVICE, [
+      "opens with recognizable business, aviation, civil-rights, or consumer-technology cases",
+      "turns a case into a simple three-part distinction such as WHY, HOW, and WHAT",
+      "returns to Apple, the Wright brothers, and Martin Luther King Jr. as recurring reference points",
+    ]);
+    const allDevice = formatVoiceBible(ALL_DEVICE);
+    assert.ok(allDevice, "a charter with a register still yields a bible");
+    assert.doesNotMatch(allDevice!, /\bdo:/, "no do: line when every signature move is a device mandate");
+    assert.doesNotMatch(allDevice!, /^\s*do:\s*$/m, "never an empty do: line");
+    assert.match(allDevice!, /^voice: plainspoken/, "the register line still leads");
+    // Red-team: a book whose every move is stripped still gets a NON-NULL card
+    // (the register line survives) — never a null card for a book that had a charter.
+    assert.ok(voiceCard(ALL_DEVICE), "a charter book with all moves stripped still yields a card");
+
+    // One device mandate + one style move → do: line carries ONLY the style move.
+    writeBriefWithMoves(MIXED, [
+      "opens with recognizable business, aviation, civil-rights, or consumer-technology cases",
+      "uses plain verbs and short, common words",
+    ]);
+    const mixed = formatVoiceBible(MIXED);
+    assert.ok(mixed, "mixed charter yields a bible");
+    assert.match(mixed!, /do: uses plain verbs and short, common words/, "the style move survives on the do: line");
+    assert.doesNotMatch(mixed!, /opens with recognizable/, "the device mandate is stripped from the do: line");
+  } finally {
+    rmSync(briefPath(ALL_DEVICE), { force: true });
+    rmSync(briefPath(MIXED), { force: true });
   }
 });
 

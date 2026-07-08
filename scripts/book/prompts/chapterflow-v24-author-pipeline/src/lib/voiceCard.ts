@@ -16,8 +16,13 @@
  * calibration — never a sample sentence, a named case, or any phrase a writer
  * could paste. The QUALITY-BAR prose exemplar was reverted for exactly this
  * contamination (commit ed8e02c0b), so this path drops the brief's "sounds like"
- * specimen. Voice data flows one way (config/brief -> task); it never reaches a
- * gate.
+ * specimen. The "never WHAT to say" half is ENFORCED, not just asserted: the
+ * brief's signatureMoves flow in via formatVoiceBible, and its voice-move sanitizer
+ * (sanitizeVoiceMoves, voiceBible.ts) strips content-DEVICE mandates ("opens on a
+ * famous case", "turns it into a WHY/HOW/WHAT split", "returns to <named anchors>")
+ * before they can reach the `do:` line — so a device mandate can never ride the card
+ * into a writer prompt (Finding F-01). Voice data flows one way (config/brief ->
+ * task); it never reaches a gate.
  *
  * Source order: the per-book editor-in-chief charter (via formatVoiceBible),
  * then a register template keyed off the book's author-voice profile, then null
