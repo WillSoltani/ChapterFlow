@@ -60,6 +60,11 @@
 
 import { fnv1a } from "../lib/fnv1a.js";
 import { normSlug } from "../lib/chapterPaths.js";
+import {
+  CONTENT_DEVICE_CATALOG,
+  dealContentDeviceBans,
+  type ContentDeviceId,
+} from "./contentDeviceDeal.js";
 
 /** Bumped whenever the SET of dealt rotation fields changes — part of the regen-cap
  *  lineage hash, so a rotation redesign re-keys chapters' write budgets honestly.
@@ -320,6 +325,95 @@ export function dealRotation<T>(
     result.push(picked);
   }
   return result;
+}
+
+// ── manual-brief always-on rotation (F-07 / F-08) ──────────────────────────────
+// Manual-brief books (~113 of ~119 in production) never compile a machine brief, so
+// they skip the whole per-chapter VARIETY block — including the architecture-family
+// deal (v5) and the practice-shape rotation. These lean, pure helpers reproduce JUST
+// those two low-dependency levers as a function of (bookId, chapterNumber,
+// totalChapters), so the always-on dealt section (authorRun.ts) can hand them to
+// manual-brief writers. They share the SAME namespace + cap as dealBriefRotations,
+// so a machine-brief and a manual-brief book of the same id/size receive the
+// IDENTICAL architecture/practice deal — one source of truth, no drift.
+
+/** The architecture family dealt to every chapter 1..N (two-thirds cap). */
+export function dealArchitectureFamilies(bookId: string, totalChapters: number): ArchitectureFamily[] {
+  return dealRotation(bookId, "brief-architecture-family", ARCHITECTURE_FAMILIES, totalChapters, twoThirdsCap(totalChapters));
+}
+
+/** The practice shape dealt to every chapter 1..N (two-thirds cap). */
+export function dealPracticeShapes(bookId: string, totalChapters: number): PracticeShape[] {
+  return dealRotation(bookId, "brief-practice-shape", PRACTICE_SHAPES, totalChapters, twoThirdsCap(totalChapters));
+}
+
+/** Which content-device a practice shape EMBODIES (so dealing that shape would land
+ *  the device). The content-device deal and this practice rotation must not fight: a
+ *  chapter that BANS a device must never be dealt a practice shape that embodies it.
+ *
+ *  The current pool has NO overlap — every PRACTICE_SHAPE is a shape DESCRIPTOR
+ *  (single-imperative, two-step-sequence, …) while the only practice-adjacent
+ *  device, `practice-shell`, is a CADENCE (a fixed calendar ritual) that can wrap ANY
+ *  shape. So this map is empty today and the filter excludes nothing — but it is
+ *  wired and tested as a forward guard: if a calendar-cadence shape is ever added to
+ *  PRACTICE_SHAPES, map it here and it will then be filtered out of any chapter that
+ *  bans practice-shell. */
+export const PRACTICE_SHAPE_EMBODIES: Partial<Record<PracticeShape, ContentDeviceId>> = {};
+
+/** The practice shapes allowed for a chapter: the full pool minus any shape whose
+ *  embodied device is banned for that chapter by the content-device deal. Pure. The
+ *  `embodies` map is injectable so the filter mechanism is testable with a synthetic
+ *  overlap even while the production map is empty. */
+export function practiceShapesForChapter(
+  chapterNumber: number,
+  totalChapters: number,
+  embodies: Partial<Record<PracticeShape, ContentDeviceId>> = PRACTICE_SHAPE_EMBODIES,
+): PracticeShape[] {
+  const banned = new Set<ContentDeviceId>(dealContentDeviceBans(chapterNumber, totalChapters));
+  return PRACTICE_SHAPES.filter((s) => {
+    const dev = embodies[s];
+    return dev === undefined || !banned.has(dev);
+  });
+}
+
+/** The dealt architecture family + practice shape for one chapter, resolving the
+ *  consistency filter: if the dealt practice shape embodies a device this chapter
+ *  bans, substitute the first ALLOWED shape (walking the dealt rotation order from
+ *  this chapter's pick). Pure + deterministic — same inputs → same result across
+ *  re-runs and --only retries. */
+export function dealManualBriefRotation(
+  bookId: string,
+  chapterNumber: number,
+  totalChapters: number,
+  embodies: Partial<Record<PracticeShape, ContentDeviceId>> = PRACTICE_SHAPE_EMBODIES,
+): { architectureFamily: ArchitectureFamily; practiceShape: PracticeShape } {
+  const idx = chapterNumber - 1;
+  const architectureFamily = dealArchitectureFamilies(bookId, totalChapters)[idx];
+  const dealtShapes = dealPracticeShapes(bookId, totalChapters);
+  const allowed = new Set(practiceShapesForChapter(chapterNumber, totalChapters, embodies));
+  let practiceShape = dealtShapes[idx];
+  if (!allowed.has(practiceShape)) {
+    for (let k = 0; k < dealtShapes.length; k++) {
+      const cand = dealtShapes[(idx + k) % dealtShapes.length];
+      if (allowed.has(cand)) { practiceShape = cand; break; }
+    }
+  }
+  return { architectureFamily, practiceShape };
+}
+
+/** The two compact writer-card lines for a manual-brief book's chapter — the
+ *  architecture-family shape + the practice shape — rendered ALWAYS-ON (no machine
+ *  brief required). Empty below book scale (totalChapters < 4), mirroring the
+ *  content-device deal. Machine-brief books get the richer compiled VARIETY block
+ *  instead and must NOT also receive these (the caller gates on args.brief). */
+export function manualBriefRotationLines(bookId: string, chapterNumber: number, totalChapters: number): string[] {
+  if (totalChapters < 4) return [];
+  const { architectureFamily, practiceShape } = dealManualBriefRotation(bookId, chapterNumber, totalChapters);
+  return [
+    "CHAPTER SHAPE (dealt for this chapter — keeps the BOOK from running one skeleton)",
+    `Architecture — ${architectureFamily}: ${ARCHITECTURE_INSTRUCTION[architectureFamily]}`,
+    `Practice — ${PRACTICE_INSTRUCTION[practiceShape]}`,
+  ];
 }
 
 /** Deal each chapter a TRIPLE of distinct example lenses. Same determinism

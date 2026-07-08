@@ -25,8 +25,11 @@
  *   ARCH4  lead-anchor over-reuse — one marquee proper-noun anchors the OPENING of
  *          more than anchor-cap chapters (e.g. Apple leading 7/14).
  *   ARCH0  aggregate — ≥ axes-warn axes fire → the book reads as one mold (major,
- *          surfaced); ≥ axes-block axes fire → severe monoculture (blocker when the
- *          operator opts structural sameness into the hard gate).
+ *          surfaced advisory); ≥ axes-block axes fire → SEVERE monoculture. A severe
+ *          aggregate emits `blocker` ONLY when the operator opts structural sameness
+ *          into the hard gate (CHAPTERFLOW_STRUCTURAL_SAMENESS=enforce, default
+ *          advisory — see structuralSamenessMode.ts); otherwise it stays `major`
+ *          and the semantic book-acceptance panel remains the true gate.
  *
  * Thematic consistency (the book's actual thesis vocabulary — WHY/belief/trust) is
  * NOT penalised: the axes key on the delivery MACHINERY (practice shell, reversal
@@ -39,6 +42,7 @@
 import type { ChapterV21 } from "../types.js";
 import type { BookGateFinding } from "./bookGate.js";
 import { extractNamesFromText } from "../librarian/libraryState.js";
+import { resolveStructuralSamenessMode, type StructuralSamenessMode } from "./structuralSamenessMode.js";
 
 export type ArchitectureMonocultureThresholds = {
   /** Fraction of chapters sharing the practice-shell scaffold marker → ARCH1. */
@@ -98,6 +102,9 @@ function openingSurface(ch: ChapterV21): string {
 export function checkArchitectureMonoculture(
   chapters: ChapterV21[],
   thresholds: ArchitectureMonocultureThresholds = DEFAULT_ARCHITECTURE_MONOCULTURE_THRESHOLDS,
+  // F-06: default resolves from the env flag (advisory unless an operator opts in).
+  // Passing an explicit mode is how tests pin both modes without touching the env.
+  mode: StructuralSamenessMode = resolveStructuralSamenessMode(),
 ): BookGateFinding[] {
   const findings: BookGateFinding[] = [];
   const N = chapters.length;
@@ -191,9 +198,11 @@ export function checkArchitectureMonoculture(
     const target = [...new Set(axes.flatMap((a) => a.chapters))].sort((a, b) => a - b);
     findings.push({
       catalogId: "ARCH0.architecture_monoculture",
-      // major = surfaced advisory (the book-acceptance panel is the true gate); the
-      // structural-sameness enforcement flag can promote it. Never a silent pass.
-      severity: severe ? "major" : "major",
+      // major = surfaced advisory (the book-acceptance panel is the true gate).
+      // A SEVERE aggregate (≥ axesBlock axes) is promoted to a hard blocker ONLY
+      // under the operator-opt-in enforcement mode (F-06); default advisory keeps
+      // it major, byte-identical to before the flag. Never a silent pass.
+      severity: mode === "enforce" && severe ? "blocker" : "major",
       message:
         `Book-level architecture monoculture: ${axes.length} skeleton axis/axes repeat across the book ` +
         `(${axes.map((a) => a.id.split(".")[0]).join(", ")}) — the chapters share one delivery mold, which the ` +

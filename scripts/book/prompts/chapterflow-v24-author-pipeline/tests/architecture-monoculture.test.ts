@@ -99,6 +99,53 @@ test("architecture-monoculture: thresholds are configurable and a <4-chapter boo
   assert.equal(checkArchitectureMonoculture(four, { ...DEFAULT_ARCHITECTURE_MONOCULTURE_THRESHOLDS, anchorCap: 10 }).filter((f) => f.catalogId === "ARCH4.lead_anchor_overreuse").length, 0, "a high anchorCap suppresses ARCH4");
 });
 
+test("architecture-monoculture (F-06): a SEVERE aggregate stays major under advisory and blocks ONLY under enforce; a non-severe aggregate never blocks", () => {
+  // A 12-chapter book firing all FOUR skeleton axes (practice shell + compound
+  // takeaway + reversal device + one lead anchor) — a SEVERE mold (axes ≥ axesBlock).
+  const severe = Array.from({ length: 12 }, (_, i) =>
+    ch(i + 1, {
+      hook: `Apple in ${1976 + i} shows the move number ${i + 1}.`,
+      breakdown: { fastRead: `Apple's ${i + 1}th decision opens the chapter.`, deepRead: "", fullRead: "" },
+      keyTakeaway: `Start with the reason, then name the way, then judge the result number ${i + 1}.`,
+      memorableLines: [{ text: `Proof is the return trip, not the starting gun — take ${i + 1}.` } as never],
+      implementationPlan: { weeklyPractice: `Each Friday, if one promise drifted number ${i + 1}, then write the missing proof.` } as never,
+    }),
+  );
+  const axesFired = checkArchitectureMonoculture(severe, DEFAULT_ARCHITECTURE_MONOCULTURE_THRESHOLDS, "advisory")
+    .filter((f) => /^ARCH[1-4]\./.test(f.catalogId)).length;
+  assert.ok(axesFired >= DEFAULT_ARCHITECTURE_MONOCULTURE_THRESHOLDS.axesBlock, `severe fixture fires ≥ axesBlock axes (got ${axesFired})`);
+
+  const advAgg = checkArchitectureMonoculture(severe, DEFAULT_ARCHITECTURE_MONOCULTURE_THRESHOLDS, "advisory")
+    .find((f) => f.catalogId === "ARCH0.architecture_monoculture");
+  assert.equal(advAgg?.severity, "major", "advisory keeps a SEVERE aggregate major (byte-identical to before the flag)");
+
+  const enfAgg = checkArchitectureMonoculture(severe, DEFAULT_ARCHITECTURE_MONOCULTURE_THRESHOLDS, "enforce")
+    .find((f) => f.catalogId === "ARCH0.architecture_monoculture");
+  assert.equal(enfAgg?.severity, "blocker", "enforce promotes a SEVERE aggregate to a hard blocker");
+
+  // A NON-severe aggregate: only ARCH1 (practice shell) + ARCH4 (lead anchor) fire
+  // — ≥ axesWarn (ARCH0 surfaces) but < axesBlock (not severe). It must stay major
+  // in BOTH modes: enforce promotes SEVERE molds only, never the warn tier.
+  const nonSevere = Array.from({ length: 12 }, (_, i) =>
+    ch(i + 1, {
+      hook: `Apple in ${1976 + i} made a plain call number ${i + 1}.`,
+      breakdown: { fastRead: `Apple opens scene ${i + 1} with a distinct beat.`, deepRead: "", fullRead: "" },
+      keyTakeaway: `Purpose ${i + 1} is a single clear commitment you keep.`, // no "then" → not compound
+      memorableLines: [{ text: `A clear reason ${i + 1} guides the work.` } as never], // no reversal motif
+      implementationPlan: { weeklyPractice: `Each Friday, note one decision from step ${i + 1}.` } as never,
+    }),
+  );
+  const nsAxes = checkArchitectureMonoculture(nonSevere, DEFAULT_ARCHITECTURE_MONOCULTURE_THRESHOLDS, "advisory")
+    .filter((f) => /^ARCH[1-4]\./.test(f.catalogId)).length;
+  assert.ok(
+    nsAxes >= DEFAULT_ARCHITECTURE_MONOCULTURE_THRESHOLDS.axesWarn && nsAxes < DEFAULT_ARCHITECTURE_MONOCULTURE_THRESHOLDS.axesBlock,
+    `non-severe fixture fires axesWarn..<axesBlock axes (got ${nsAxes})`,
+  );
+  const nsEnf = checkArchitectureMonoculture(nonSevere, DEFAULT_ARCHITECTURE_MONOCULTURE_THRESHOLDS, "enforce")
+    .find((f) => f.catalogId === "ARCH0.architecture_monoculture");
+  assert.equal(nsEnf?.severity, "major", "a non-severe aggregate stays major even under enforce (calibration guard)");
+});
+
 test("architecture-family deal: distinct skeletons dealt per chapter under the two-thirds cap, deterministic", () => {
   for (const n of [8, 12, 14, 20]) {
     const rot = dealBriefRotations("some-book", n);

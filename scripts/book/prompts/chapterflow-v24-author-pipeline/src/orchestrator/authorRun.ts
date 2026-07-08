@@ -30,6 +30,7 @@ import { chapterBriefMdPath, chapterBriefPath, readJsonFile, sourcePacketPath } 
 import { writerPacketProjection } from "../compiler/sourcePacketProjection.js";
 import { DEFAULT_LENGTH_BUDGET_CHARS, LENGTH_BUDGET_TOLERANCE, ROUND_TIMER_MINUTES_LIST, briefVarietyInstructionLines } from "../compiler/chapterBrief.js";
 import { contentDeviceDealLines } from "../compiler/contentDeviceDeal.js";
+import { manualBriefRotationLines } from "../compiler/briefRotation.js";
 import { voiceCard, voiceRegisterLine } from "../lib/voiceCard.js";
 import { chapterFileName, normSlug, CHAPTERS_DIR } from "../lib/chapterPaths.js";
 import { buildBudgetRepairComplaints, checkReaderBudgets, type BudgetFinding } from "../critics/readerBudgets.js";
@@ -460,6 +461,17 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
   if (args.totalChapters && args.totalChapters >= 4) {
     const dealLines = contentDeviceDealLines(chapterNumber, args.totalChapters);
     if (dealLines.length > 0) sections.push("", ...dealLines);
+
+    // v24 (2026-07-07, F-07/F-08): manual-brief books (~113/119) never compile a
+    // machine brief, so the whole VARIETY block above never renders for them. Deal
+    // the two low-dependency rotational levers — architecture family + practice
+    // shape — always-on here, exactly as the content-device deal reaches them. Skip
+    // when a machine brief IS present: those books already carry the richer compiled
+    // VARIETY block (double-dealing would fight it).
+    if (!args.brief) {
+      const shapeLines = manualBriefRotationLines(bookId, chapterNumber, args.totalChapters);
+      if (shapeLines.length > 0) sections.push("", ...shapeLines);
+    }
   }
 
   const styleLines = ["", "HOUSE STYLE"];

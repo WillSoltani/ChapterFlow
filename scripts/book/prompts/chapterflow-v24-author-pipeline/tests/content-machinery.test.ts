@@ -23,11 +23,13 @@ import {
   detectChapterDevices,
   detectProxyNames,
 } from "../src/compiler/contentDeviceDeal.js";
-import { checkContentMachinery, reportContentMachinery } from "../src/critics/contentMachinery.js";
+import { checkContentMachinery, reportContentMachinery, DEFAULT_CONTENT_MACHINERY_THRESHOLDS } from "../src/critics/contentMachinery.js";
 import { planContentDeviceRepair } from "../src/critics/contentDeviceRepair.js";
 import { AUTHOR_QUALITY_BAR } from "../src/orchestrator/authorRun.js";
 
-// A device → a marker sentence that trips exactly that detector.
+// A device → a marker sentence that trips exactly that detector. named-anchor-lead
+// is injected into the hook (opener); practice-shell into the practice surface
+// (weeklyPractice); all others into the body.
 const MARKER: Record<ContentDeviceId, string> = {
   "named-anchor-lead": "", // injected into the hook (opener), not the body
   "proxy-cast": "Colleen weighs the plan and decides.",
@@ -35,14 +37,22 @@ const MARKER: Record<ContentDeviceId, string> = {
   "return-proof": "The proof has to come back before you trust it.",
   "hard-detail-boundary": "Keep the hard detail home where it belongs.",
   "three-part-split": "It splits into WHY, HOW, and WHAT.",
+  "practice-shell": "Each Friday, run the move again.", // injected into weeklyPractice
 };
 
 /** A chapter whose ONLY device markers are the ones in `devices`. Neutral filler is
  *  crafted to trip no detector. */
 function chWithDevices(n: number, devices: ContentDeviceId[]): ChapterV21 {
   const set = new Set(devices);
-  const bodyMarkers = CONTENT_DEVICE_IDS.filter((d) => d !== "named-anchor-lead" && set.has(d)).map((d) => MARKER[d]);
+  // practice-shell lands in the practice surface, not the body; the anchor lead in
+  // the hook. Everything else is a body marker.
+  const bodyMarkers = CONTENT_DEVICE_IDS
+    .filter((d) => d !== "named-anchor-lead" && d !== "practice-shell" && set.has(d))
+    .map((d) => MARKER[d]);
   const hook = set.has("named-anchor-lead") ? `Apple in ${1976 + n} made a clear call.` : `A team faced a plain choice in year ${n}.`;
+  // A calendar-ritual shell trips practice-shell; the neutral default (a trigger-anchored
+  // practice) trips nothing.
+  const weeklyPractice = set.has("practice-shell") ? MARKER["practice-shell"] : "Before your next handoff, name who checks the promise.";
   return {
     number: n,
     hook,
@@ -53,7 +63,7 @@ function chWithDevices(n: number, devices: ContentDeviceId[]): ChapterV21 {
     reviewCards: [],
     quiz: { passingScorePercent: 70, questions: [] },
     memorableLines: [],
-    implementationPlan: { weeklyPractice: "Practice the move." },
+    implementationPlan: { weeklyPractice },
   } as unknown as ChapterV21;
 }
 
@@ -108,6 +118,43 @@ test("contentMachinery: a book saturated by return-proof + proxy fires CM0 (majo
   assert.ok(agg && agg.severity === "major", "aggregate CM0 is a major advisory");
 });
 
+test("contentMachinery (F-06): CM0 stays major under advisory; a SEVERE (≥ axesBlock over-cap) book blocks only under enforce; a 2-device book stays major under enforce (axesBlock consumed)", () => {
+  // FOUR body devices in every chapter → 4 devices over cap → a SEVERE mold.
+  const fourDevices: ContentDeviceId[] = ["proxy-cast", "second-setting", "return-proof", "hard-detail-boundary"];
+  const severe = Array.from({ length: 14 }, (_, i) => chWithDevices(i + 1, fourDevices));
+  const report = reportContentMachinery(severe);
+  assert.ok(
+    report.overCapDevices.length >= DEFAULT_CONTENT_MACHINERY_THRESHOLDS.axesBlock,
+    `severe fixture has ≥ axesBlock over-cap devices (got ${report.overCapDevices.length})`,
+  );
+  assert.equal(
+    checkContentMachinery(severe, DEFAULT_CONTENT_MACHINERY_THRESHOLDS, "advisory").find((f) => f.catalogId === "CM0.content_machinery_monoculture")?.severity,
+    "major",
+    "advisory keeps a SEVERE CM0 major (byte-identical to before the flag)",
+  );
+  assert.equal(
+    checkContentMachinery(severe, DEFAULT_CONTENT_MACHINERY_THRESHOLDS, "enforce").find((f) => f.catalogId === "CM0.content_machinery_monoculture")?.severity,
+    "blocker",
+    "enforce promotes a SEVERE CM0 to a hard blocker",
+  );
+
+  // TWO devices over cap → CM0 fires (≥ axesWarn) but is NOT severe (< axesBlock).
+  // It must stay major even under enforce — the promotion consumes axesBlock, not axesWarn.
+  const twoDevices: ContentDeviceId[] = ["proxy-cast", "return-proof"];
+  const nonSevere = Array.from({ length: 14 }, (_, i) => chWithDevices(i + 1, twoDevices));
+  const nsReport = reportContentMachinery(nonSevere);
+  assert.ok(
+    nsReport.overCapDevices.length >= DEFAULT_CONTENT_MACHINERY_THRESHOLDS.axesWarn &&
+      nsReport.overCapDevices.length < DEFAULT_CONTENT_MACHINERY_THRESHOLDS.axesBlock,
+    `non-severe fixture fires axesWarn..<axesBlock over-cap devices (got ${nsReport.overCapDevices.length})`,
+  );
+  assert.equal(
+    checkContentMachinery(nonSevere, DEFAULT_CONTENT_MACHINERY_THRESHOLDS, "enforce").find((f) => f.catalogId === "CM0.content_machinery_monoculture")?.severity,
+    "major",
+    "a non-severe CM0 stays major even under enforce (calibration guard)",
+  );
+});
+
 test("contentMachinery: a VARIED book (each device ≤ half) fires nothing", () => {
   // Rotate one device per chapter so no device exceeds the cap.
   const bodyDevices = CONTENT_DEVICE_IDS.filter((d) => d !== "named-anchor-lead");
@@ -115,6 +162,32 @@ test("contentMachinery: a VARIED book (each device ≤ half) fires nothing", () 
   const report = reportContentMachinery(chapters);
   for (const u of report.usage) assert.ok(!u.overCap, `${u.id} at ${Math.round(u.frac * 100)}% is under cap`);
   assert.deepEqual(checkContentMachinery(chapters), [], "no findings on a varied book");
+});
+
+test("contentMachinery: a book saturated by the practice-shell fires CM.practice-shell; a rotated book is silent (F-07)", () => {
+  // Every chapter closes on a fixed calendar ritual → over cap.
+  const saturated = Array.from({ length: 14 }, (_, i) => chWithDevices(i + 1, ["practice-shell"]));
+  const findings = checkContentMachinery(saturated);
+  assert.ok(findings.some((f) => f.catalogId === "CM.practice-shell"), "flags practice-shell over cap on a saturated book");
+  // Only the first 4 chapters use the calendar shell (28.6% < 60% cap) → no finding.
+  const rotated = Array.from({ length: 14 }, (_, i) => chWithDevices(i + 1, i < 4 ? ["practice-shell"] : []));
+  assert.ok(
+    !checkContentMachinery(rotated).some((f) => f.catalogId === "CM.practice-shell"),
+    "a book whose practice-shell is under cap does not fire",
+  );
+});
+
+test("content-device deal: the 7-device rotation includes practice-shell and keeps it ≤ 60% (planar difference set, F-07)", () => {
+  assert.equal(CONTENT_DEVICE_IDS.length, 7, "catalog is 7 devices");
+  let practiceShellBans = 0;
+  for (let n = 1; n <= 14; n++) {
+    const bans = dealContentDeviceBans(n, 14);
+    assert.equal(bans.length, 3, `ch${n} bans exactly 3 of 7 devices`);
+    if (bans.includes("practice-shell")) practiceShellBans++;
+  }
+  // {0,1,3} mod 7 over 14 chapters bans each device exactly 6/14 → present 8/14 ≈ 57%.
+  assert.equal(practiceShellBans, 6, "practice-shell is banned in exactly 6/14 chapters");
+  assert.ok((14 - practiceShellBans) / 14 <= 0.6, "practice-shell present in ≤ 60% of chapters by construction");
 });
 
 test("contentMachinery: mere thematic (thesis-vocabulary) repetition is NOT churn", () => {

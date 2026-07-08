@@ -15,8 +15,11 @@
  * writer card), this critic DETECTS residual saturation before the expensive
  * book-acceptance panel and names the chapters the content-deal repair lane should
  * fix. A device present in > cap fraction of chapters is over-reliance; ≥ axesWarn
- * such devices → the book is one content template (major, surfaced advisory —
- * never blocks; the semantic panel remains the true gate).
+ * such devices → the book is one content template (CM0, major surfaced advisory).
+ * The semantic panel remains the true gate by default; ≥ axesBlock over-cap devices
+ * is a SEVERE mold that emits `blocker` ONLY when an operator opts structural
+ * sameness into the hard gate (CHAPTERFLOW_STRUCTURAL_SAMENESS=enforce, default
+ * advisory — see structuralSamenessMode.ts). Default behavior is unchanged.
  *
  * Thematic consistency is NOT penalised: the devices are DELIVERY machinery, not the
  * argument. Recurring thesis vocabulary (WHY/belief/trust), source facts, and the
@@ -31,6 +34,7 @@ import {
   type ContentDeviceId,
   detectChapterDevices,
 } from "../compiler/contentDeviceDeal.js";
+import { resolveStructuralSamenessMode, type StructuralSamenessMode } from "./structuralSamenessMode.js";
 
 export type ContentMachineryThresholds = {
   /** A device used in > this fraction of chapters is over-reliance (an axis). */
@@ -88,6 +92,9 @@ export function reportContentMachinery(
 export function checkContentMachinery(
   chapters: ChapterV21[],
   thresholds: ContentMachineryThresholds = DEFAULT_CONTENT_MACHINERY_THRESHOLDS,
+  // F-06: default resolves from the env flag (advisory unless an operator opts in).
+  // Passing an explicit mode is how tests pin both modes without touching the env.
+  mode: StructuralSamenessMode = resolveStructuralSamenessMode(),
 ): BookGateFinding[] {
   const findings: BookGateFinding[] = [];
   const N = chapters.length;
@@ -117,9 +124,13 @@ export function checkContentMachinery(
       .filter(([, h]) => h > 0)
       .sort((a, b) => (b[1] - a[1]) || (a[0] - b[0]))
       .map(([n]) => n);
+    // SEVERE = ≥ axesBlock devices over cap (the previously-unconsumed axesBlock
+    // threshold). Promoted to a hard blocker ONLY under enforce mode (F-06);
+    // default advisory keeps it major, byte-identical to before the flag.
+    const severe = overCap.length >= thresholds.axesBlock;
     findings.push({
       catalogId: "CM0.content_machinery_monoculture",
-      severity: "major",
+      severity: mode === "enforce" && severe ? "blocker" : "major",
       message:
         `Book-level content-machinery monoculture: ${overCap.length} body device(s) saturate the book ` +
         `(${overCap.map((u) => `${u.id} ${Math.round(u.frac * 100)}%`).join(", ")}). Every chapter reuses the same ` +
