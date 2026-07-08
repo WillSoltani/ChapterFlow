@@ -1746,8 +1746,28 @@ async function doAuthorReviewInner(
       }
       regenerated.add(chapter.number);
       io.recordRegenConsumed(bookId, chapter.number); // durable: this write attempt counts across re-entries
+      // Review-lane restore-on-write-failure (fresh-gold live finding, 2026-07-08):
+      // authorWriteOneChapter WRITES the draft to disk before its gate/contract
+      // self-check — a regen whose final retry dies on the write contract used to
+      // leave that UNREVIEWED failing draft on disk, silently replacing reviewed
+      // bytes (observed live: high-output-management ch14 — the 87-composite
+      // original was overwritten by a lead-contract-failing draft and lost; the
+      // next entry would have blindly reviewed the draft as if legitimate).
+      // Snapshot the prior bytes; a failed write restores them so disk always
+      // holds REVIEWED bytes. The grant is not refunded (consumed at spawn) —
+      // mirrors the acceptance lane's F-03 guard.
+      const regenPath = chapterFilePath(bookId, chapter.number);
+      const regenPriorBytes = existsSync(regenPath) ? readFileSync(regenPath, "utf8") : null;
       const regen = await authorWriteOneChapter(bookId, chapter.number, deps, { complaints, io: opts.io });
       if (!regen.ok) {
+        if (regenPriorBytes !== null) {
+          writeFileSync(regenPath, regenPriorBytes);
+          try {
+            const priorChapter = JSON.parse(regenPriorBytes) as ChapterV21;
+            restoreAuthorProvenance(authorChapterId(bookId, chapter.number), chapterContentHash(priorChapter), deps.log);
+          } catch { /* unparseable prior bytes / provenance write — non-fatal */ }
+          deps.log(`[autopilot] author review ch${nn}: regen write failed — restored prior reviewed bytes (the failed draft never reached review and must not replace reviewed content).`);
+        }
         stillFailing.push({ chapterNumber: chapter.number, summary: regen.reason });
         return;
       }

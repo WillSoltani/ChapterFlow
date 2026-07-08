@@ -487,3 +487,52 @@ test("calibration: CHB14/15/17 NEVER appear as findings; the measure functions s
   const molds = measureStemOpenerMolds(chapters);
   assert.ok(molds.total > 0 && Array.isArray(molds.molds), "telemetry shape sane");
 });
+
+// ── deal↔deal consistency: lead thread vs content-device ban (fresh-gold 2026-07-08) ──
+
+test("resolveLeadThread avoidInvented: a proxy-banned chapter never deals an invented lead while ANY owned case exists", async () => {
+  const { dealContentDeviceBans } = await import("../src/compiler/contentDeviceDeal.js");
+  // Token-less concept label — the old fallback would have degraded to the invented
+  // proxy even though the chapter's CONTENT DEVICES section bans proxy-cast (the
+  // observed live collision: ch01 "Willow"×8 on a proxy-banned chapter).
+  const conceptOnly = [{ id: "c1", label: "the turnaround" }];
+  assert.deepEqual(
+    resolveLeadThread(false, conceptOnly, ["Mara"], { avoidInvented: true }),
+    { kind: "owned-case", name: "the turnaround" },
+  );
+  // avoidInvented forces the case path even when the parity preference said invented.
+  assert.deepEqual(
+    resolveLeadThread(false, [{ id: "c1", label: "Honeywell 1999 integration" }], ["Mara"], { avoidInvented: true }),
+    { kind: "owned-case", name: "Honeywell 1999 integration" },
+  );
+  // True last resort: a packet with zero cases still gets a lead (invented), never undefined-by-ban.
+  assert.deepEqual(
+    resolveLeadThread(false, [], ["Mara"], { avoidInvented: true }),
+    { kind: "invented", name: "Mara" },
+  );
+  // Behavior WITHOUT the flag is byte-identical to the pre-fix dealer (regression pin).
+  assert.deepEqual(resolveLeadThread(false, conceptOnly, ["Mara"]), { kind: "invented", name: "Mara" });
+  // Composed invariant over a 16-chapter book: every proxy-banned chapter with ≥1 owned
+  // case resolves to an owned-case lead when the compile passes the ban flag.
+  for (let n = 1; n <= 16; n++) {
+    const banned = dealContentDeviceBans(n, 16).includes("proxy-cast");
+    const lead = resolveLeadThread(false, conceptOnly, ["Mara"], { avoidInvented: banned });
+    if (banned) assert.equal(lead?.kind, "owned-case", `ch${n}: proxy-banned chapter must not deal an invented lead`);
+  }
+});
+
+test("proxy-banned owned-case chapters deal an EMPTY cast and a no-stand-ins lead line", () => {
+  // Renderer contract: an owned-case lead with a dealt cast keeps the supporting-scenes
+  // licence; with an EMPTY cast (the proxy-banned deal) it forbids invented stand-ins.
+  const base = {
+    leadThread: { kind: "owned-case" as const, name: "Salary review" },
+    exampleArcs: [], quizStemShapes: [], quizFailureModes: [],
+    openerType: "cold-scene", challengeFrame: "replace-one", practiceShape: "if-then-trigger",
+    architectureFamily: "historical-narrative",
+  };
+  const withCast = briefVarietyInstructionLines({ ...base, cast: ["Mara"] } as never).join("\n");
+  const noCast = briefVarietyInstructionLines({ ...base, cast: [] } as never).join("\n");
+  assert.match(withCast, /Invented cast appears only in supporting scenes/);
+  assert.match(noCast, /NO invented stand-in characters/);
+  assert.doesNotMatch(noCast, /supporting scenes\./);
+});

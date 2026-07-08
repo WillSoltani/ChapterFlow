@@ -84,6 +84,7 @@ import {
   resolvedPoolsForBook,
 } from "./chapterBlueprint.js";
 import { protectedSourceNames } from "./sourceNames.js";
+import { dealContentDeviceBans } from "./contentDeviceDeal.js";
 
 /** The blueprint compiler always deals a 9-question quiz (quizCount in compileChapterBlueprint);
  *  the brief's answerIndexPattern must be the same 9-slot deal. */
@@ -259,8 +260,9 @@ export function resolveLeadThread(
   preferCase: boolean,
   ownedCases: Array<{ id: string; label: string }>,
   cast: string[],
+  opts?: { avoidInvented?: boolean },
 ): { kind: "invented" | "owned-case"; name: string } | undefined {
-  if (preferCase) {
+  if (preferCase || opts?.avoidInvented) {
     // Prefer a real NAMED case (person/study) over a bare framework-concept label:
     // the D7 lead-thread contract needs a case with real actors/dates to run the
     // fastRead + >=2 examples, and a single-concept owned-case ("Neocortex") cannot
@@ -274,6 +276,15 @@ export function resolveLeadThread(
     if (named) return { kind: "owned-case", name: named.label };
     for (const c of ownedCases) {
       if (leadLabelHasToken(c.label)) return { kind: "owned-case", name: c.label };
+    }
+    // Deal↔deal consistency (fresh-gold live finding, 2026-07-08): when the chapter's
+    // dealt CONTENT DEVICES ban proxy-cast, an invented lead would put a mandate and a
+    // ban on the same writer card — and the STIER-2 lead-thread write contract then
+    // FORCES the banned device in (observed live: ch01 "Willow" ×8 on a proxy-banned
+    // chapter). With the ban dealt, take ANY owned case (even a concept label) before
+    // the proxy; invented remains the true last resort (a packet with zero cases).
+    if (opts?.avoidInvented && ownedCases.length > 0) {
+      return { kind: "owned-case", name: ownedCases[0].label };
     }
   }
   if (cast.length > 0) return { kind: "invented", name: cast[0] };
@@ -451,6 +462,24 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
     // reuse for both the cast field and the lead-thread resolution.
     const dealtCast = castFor(spec, packet);
 
+    // Deal↔deal consistency (fresh-gold live finding, 2026-07-08): a chapter whose
+    // always-on CONTENT DEVICES section bans proxy-cast must not be HANDED an invented
+    // cast at all — with an owned-case lead, a dealt cast list plus the template's
+    // "invented cast in supporting scenes" licence still put the banned device on the
+    // card (observed live: ch13 kept "Preston" ×10 in supporting scenes after the lead
+    // itself was fixed). Resolve the lead first; when proxy-cast is banned AND the lead
+    // is an owned case, deal an EMPTY cast (castFor above still ran, so the shared
+    // cast-dealer state stays identical for every other chapter). The invented-lead
+    // last resort (packet with zero cases) keeps its cast — a lead must exist.
+    const proxyBanned = dealContentDeviceBans(n, totalChapters).includes("proxy-cast");
+    const leadThread = resolveLeadThread(
+      (rotations.get(n) ?? fallbackRotation(n)).leadPreferReal,
+      packet.namedCases.map((c) => ({ id: c.id, label: c.label })),
+      dealtCast,
+      { avoidInvented: proxyBanned },
+    );
+    const briefCast = proxyBanned && leadThread?.kind === "owned-case" ? [] : dealtCast;
+
     briefs.push({
       schemaVersion: CHAPTER_BRIEF_SCHEMA_VERSION,
       chapterId: spec.chapterId,
@@ -461,7 +490,7 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
       readerPromise: briefReaderPromise(coreMove),
       ownedCases: packet.namedCases.map((c) => ({ id: c.id, label: c.label })),
       notYours,
-      cast: dealtCast,
+      cast: briefCast,
       answerIndexPattern: answerPattern(n, BRIEF_QUIZ_SLOT_COUNT, totalChapters),
       avoid: [...new Set(avoid)].slice(0, AVOID_CAP),
       lengthBudget: { renderedChars: opts.lengthBudget ?? DEFAULT_LENGTH_BUDGET_CHARS, tolerance: LENGTH_BUDGET_TOLERANCE },
@@ -487,11 +516,7 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
       groundingForm: (rotations.get(n) ?? fallbackRotation(n)).groundingForm,
       idiomFamilies: (rotations.get(n) ?? fallbackRotation(n)).idiomFamilies,
       shellRegister: (rotations.get(n) ?? fallbackRotation(n)).shellRegister,
-      leadThread: resolveLeadThread(
-        (rotations.get(n) ?? fallbackRotation(n)).leadPreferReal,
-        packet.namedCases.map((c) => ({ id: c.id, label: c.label })),
-        dealtCast,
-      ),
+      leadThread,
     });
   }
 
@@ -552,9 +577,16 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
   // STIER-2 P11 — the section-thread lead (the universal invented-proxy device was
   // the stamp the acceptance readers listed first).
   if (brief.leadThread) {
+    // Owned-case leads: the supporting-cast licence depends on whether this chapter was
+    // DEALT a cast. A proxy-banned chapter gets an empty cast (deal↔deal consistency —
+    // see compileChapterBriefs), so its line forbids stand-ins instead of licensing them.
+    const ownedCaseLine =
+      (brief.cast ?? []).length > 0
+        ? `- LEAD THREAD: this chapter runs on YOUR case "${brief.leadThread.name}" — the fastRead and at least 2 examples live inside that case's real story (its real actors, numbers, dates; packet-attested actions only, never invented quotes). Invented cast appears only in supporting scenes.`
+        : `- LEAD THREAD: this chapter runs on YOUR case "${brief.leadThread.name}" — the fastRead and at least 2 examples live inside that case's real story (its real actors, numbers, dates; packet-attested actions only, never invented quotes). NO invented stand-in characters in this chapter — every scene runs on the case's real, attested actors (this chapter's CONTENT DEVICES ban the invented proxy cast).`;
     lines.push(
       brief.leadThread.kind === "owned-case"
-        ? `- LEAD THREAD: this chapter runs on YOUR case "${brief.leadThread.name}" — the fastRead and at least 2 examples live inside that case's real story (its real actors, numbers, dates; packet-attested actions only, never invented quotes). Invented cast appears only in supporting scenes.`
+        ? ownedCaseLine
         : `- LEAD THREAD: ${brief.leadThread.name} carries this chapter — the fastRead and at least 2 examples follow ${brief.leadThread.name}'s situation; other cast support. Introduce invented people role-BEFORE-name in varied wording (never one fixed "call her X" phrase).`,
     );
   }

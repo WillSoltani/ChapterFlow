@@ -19,7 +19,7 @@
  * tests drive the whole phase against fixtures/tmp state, never real state.
  */
 
-import { existsSync, readFileSync } from "fs";
+import { existsSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -86,12 +86,29 @@ export type AuthorIo = {
   authorSessionOf: (chapterId: string) => string | undefined;
   /** Stamp author provenance bound to the authored content hash. */
   recordProvenance: (chapterId: string, sessionId: string, contentHash?: string) => void;
+  /** Raw chapter-file bytes (null when absent) — the write-failure restore hooks
+   *  (fresh-gold live finding, 2026-07-08): a writer session lands its draft on
+   *  disk BEFORE the gate/rubric/contract self-checks, so a fully-failed
+   *  authorWriteOneChapter used to leave an UNREVIEWED failing draft in place
+   *  (or orphan one where no chapter existed) that the next entry would blindly
+   *  review as legitimate. */
+  readChapterFile: (bookId: string, chapterNumber: number) => string | null;
+  writeChapterFile: (bookId: string, chapterNumber: number, bytes: string) => void;
+  removeChapterFile: (bookId: string, chapterNumber: number) => void;
 };
 
 export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
   return {
     chapterExists: over?.chapterExists
       ?? ((bookId, n) => existsSync(resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n))))),
+    readChapterFile: over?.readChapterFile ?? ((bookId, n) => {
+      const p = resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n)));
+      try { return existsSync(p) ? readFileSync(p, "utf8") : null; } catch { return null; }
+    }),
+    writeChapterFile: over?.writeChapterFile
+      ?? ((bookId, n, bytes) => writeFileSync(resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n))), bytes)),
+    removeChapterFile: over?.removeChapterFile
+      ?? ((bookId, n) => rmSync(resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n))), { force: true })),
     readBriefMd: over?.readBriefMd ?? ((bookId, n) => {
       try {
         const p = chapterBriefMdPath(normSlug(bookId), n);
@@ -557,6 +574,16 @@ export async function authorWriteOneChapter(
   const packet = io.readPacket(bookId, chapterNumber);
   if (!packet) return { ok: false, reason: `ch${nn}: no source packet — run compile-source-packets first` };
 
+  // Write-failure restore (fresh-gold live finding, 2026-07-08): writer sessions land
+  // their draft on disk BEFORE the gate/rubric/contract self-checks below. When every
+  // attempt fails, disk must not keep an UNREVIEWED failing draft: restore the prior
+  // bytes (they were reviewed or at least gate-known), or REMOVE the orphan when no
+  // chapter existed before — otherwise the next entry sees the failed draft as an
+  // existing chapter and blindly reviews it as if it had passed its write checks
+  // (observed live: high-output-management ch14 — an 87-composite original was
+  // replaced by a lead-contract-failing draft and lost).
+  const preWriteBytes = io.readChapterFile(bookId, chapterNumber);
+
   const machineBrief = io.readBrief(bookId, chapterNumber);
   // Authoritative total-chapter count (works before all chapters exist on disk) —
   // gates the book-scale content-device deal. Explicit opt override wins.
@@ -736,6 +763,22 @@ export async function authorWriteOneChapter(
     const report = reportOf(gate);
     lastReason = `ch${nn}: gate-chapter still blocks after attempt ${attempt}:\n${report.slice(0, 1500)}`;
     card = `${baseCard}\n\nGATE BLOCKERS FROM YOUR PREVIOUS ATTEMPT\nYour previous draft of ${relPath} failed the deterministic gate. Rewrite the chapter (regenerate — do not minimally patch) so every blocker below is cleared, then re-run gate-chapter until clean:\n${report.slice(0, 2000)}`;
+  }
+  // All attempts failed — never leave the last (unreviewed, self-check-failing)
+  // draft on disk. Restore the pre-write bytes, or remove the orphan draft when
+  // this was a missing-chapter write. Best-effort: a cleanup error must not mask
+  // the real failure reason.
+  try {
+    const nowBytes = io.readChapterFile(bookId, chapterNumber);
+    if (preWriteBytes !== null && nowBytes !== preWriteBytes) {
+      io.writeChapterFile(bookId, chapterNumber, preWriteBytes);
+      deps.log(`[autopilot] author ch${nn}: all write attempts failed — restored the pre-write chapter bytes (a failed draft must not replace known bytes).`);
+    } else if (preWriteBytes === null && nowBytes !== null) {
+      io.removeChapterFile(bookId, chapterNumber);
+      deps.log(`[autopilot] author ch${nn}: all write attempts failed — removed the unreviewed failed draft (no prior chapter existed; the next entry must re-write it, not review it).`);
+    }
+  } catch (err) {
+    deps.log(`[autopilot] author ch${nn}: write-failure cleanup itself failed (${(err as Error).message.split("\n")[0]}) — disk may hold an unreviewed failed draft.`);
   }
   return { ok: false, reason: lastReason || `ch${nn}: writer failed` };
 }
