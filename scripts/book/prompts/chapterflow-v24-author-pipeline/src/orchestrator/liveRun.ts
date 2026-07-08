@@ -665,13 +665,14 @@ export async function runDiversify(args: string[], flags: Flags): Promise<number
   }
   const diversified = result.outcomes.filter((o) => o.status === "diversified");
   const reverted = result.outcomes.filter((o) => o.status === "reverted" || o.status === "write-failed");
+  const devicesPersisted = result.outcomes.filter((o) => o.status === "devices-persisted");
   const skipped = result.outcomes.filter((o) => o.status === "skipped-cap");
   console.log("");
   for (const o of result.outcomes) {
     const tag = o.status === "diversified" ? green("diversified") : o.status === "skipped-cap" ? yellow("skipped-cap") : red(o.status);
     console.log(`   ch${String(o.chapterNumber).padStart(2, "0")} → ${o.assignedFamily}: ${tag}${o.newComposite != null ? ` (composite ${o.newComposite})` : ""} — ${o.detail}`);
   }
-  console.log(dim(`\n   diversified ${diversified.length} · reverted/failed ${reverted.length} · skipped(cap) ${skipped.length} · (${mins} min)`));
+  console.log(dim(`\n   diversified ${diversified.length} · devices-persisted ${devicesPersisted.length} · reverted/failed ${reverted.length} · skipped(cap) ${skipped.length} · (${mins} min)`));
   if (result.preservedViolations.length > 0) {
     console.log(red(`   ✗ PRESERVED-CHAPTER VIOLATION on ${result.preservedViolations.map((n) => `ch${n}`).join(", ")} — the 14/14 base was disturbed (bug).`));
     return 1;
@@ -722,13 +723,18 @@ export async function runContentRepair(args: string[], flags: Flags): Promise<nu
   console.log(dim(`\n   over-cap before: ${result.overCapDevices.join(", ") || "none"}`));
   const diversified = result.outcomes.filter((o) => o.status === "diversified");
   const reverted = result.outcomes.filter((o) => o.status === "reverted" || o.status === "write-failed");
+  const devicesPersisted = result.outcomes.filter((o) => o.status === "devices-persisted");
   const skipped = result.outcomes.filter((o) => o.status === "skipped-cap");
   console.log("");
   for (const o of result.outcomes) {
     const tag = o.status === "diversified" ? green("repaired") : o.status === "skipped-cap" ? yellow("skipped-cap") : red(o.status);
-    console.log(`   ch${String(o.chapterNumber).padStart(2, "0")}: ${tag}${o.newComposite != null ? ` (composite ${o.newComposite})` : ""} — ${o.detail}`);
+    const sub = o.substitutedDevices && o.substitutedDevices.length > 0 ? dim(` [substituted: ${o.substitutedDevices.join("+")}]`) : "";
+    console.log(`   ch${String(o.chapterNumber).padStart(2, "0")}: ${tag}${o.newComposite != null ? ` (composite ${o.newComposite})` : ""} — ${o.detail}${sub}`);
   }
-  console.log(dim(`\n   repaired ${diversified.length} · reverted/failed ${reverted.length} · skipped(cap) ${skipped.length} · (${mins} min)`));
+  console.log(dim(`\n   repaired ${diversified.length} · devices-persisted ${devicesPersisted.length} · reverted/failed ${reverted.length} · skipped(cap) ${skipped.length} · (${mins} min)`));
+  if (devicesPersisted.length > 0) {
+    console.log(yellow(`   ⚠ devices persisted on ${devicesPersisted.map((o) => `ch${String(o.chapterNumber).padStart(2, "0")}[${(o.persistedDevices ?? []).join("+")}]`).join(", ")} — writer did not shed the banned device(s); grants spent, prior bytes restored.`));
+  }
   console.log(dim(`   over-cap after: ${result.residualOverCap.join(", ") || "none — all devices under cap ✓"}`));
   if (result.preservedViolations.length > 0) {
     console.log(red(`   ✗ PRESERVED-CHAPTER VIOLATION on ${result.preservedViolations.map((n) => `ch${n}`).join(", ")} — the passing base was disturbed (bug).`));

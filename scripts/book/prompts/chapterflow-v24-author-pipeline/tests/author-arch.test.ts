@@ -37,18 +37,41 @@ import {
   doAuthorWrite,
 } from "../src/orchestrator/authorRun.js";
 import {
+  AUTHOR_REGEN_CAP,
   acceptanceRecordPath,
   acceptanceRoundSegment,
   complaintsOf,
+  decideAcceptanceRegenOutcome,
   doAuthorReview,
   mapBookComplaintsToChapters,
+  runBookAcceptance,
   trueMedian,
+  AUTHOR_BOOK_READERS,
   type AcceptanceWriters,
   type AuthorAcceptanceRecord,
   type AuthorReviewIo,
 } from "../src/orchestrator/authorReview.js";
 import { renderBriefMd } from "../src/compiler/chapterBrief.js";
-import { reviewHistoryPath } from "../src/orchestrator/authorReviewLedger.js";
+import {
+  appendReviewHistory,
+  carryReviewFor,
+  reviewDir,
+  reviewHistoryPath,
+  type ReopenNote,
+} from "../src/orchestrator/authorReviewLedger.js";
+import { authorChapterId } from "../src/orchestrator/authorRun.js";
+import {
+  contentRepairConsumedFor,
+  loadAuthorRegenLedger,
+  recordContentRepairConsumed,
+} from "../src/orchestrator/authorRegenLedger.js";
+import type { ContentRepairResult, SamenessChapterOutcome } from "../src/orchestrator/bookSamenessRun.js";
+import { CHAPTERS_DIR, chapterFileName } from "../src/lib/chapterPaths.js";
+import {
+  CHAPTER_REVIEW_SCHEMA_VERSION,
+  type ChapterReviewV1,
+} from "../src/artifacts/artifactTypes.js";
+import { chapterReaderDocHash, REVIEW_DOC_HASH_VERSION } from "../src/review/readerReview.js";
 import { estimatedRenderedChars } from "../src/critics/readerBudgets.js";
 import {
   chapterContentHash,
@@ -251,11 +274,12 @@ function mkDeps(
 
 const TMP = mkdtempSync(join(tmpdir(), "author-arch-"));
 
-function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { attestations: QcAttestation[]; bars: ValidatedBarReadSubmission[]; confirms: ValidatedConfirmReadSubmission[]; acceptanceRecords: AuthorAcceptanceRecord[] } {
+function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { attestations: QcAttestation[]; bars: ValidatedBarReadSubmission[]; confirms: ValidatedConfirmReadSubmission[]; acceptanceRecords: AuthorAcceptanceRecord[]; reopenNotes: ReopenNote[] } {
   const attestations: QcAttestation[] = [];
   const bars: ValidatedBarReadSubmission[] = [];
   const confirms: ValidatedConfirmReadSubmission[] = [];
   const acceptanceRecords: AuthorAcceptanceRecord[] = [];
+  const reopenNotes: ReopenNote[] = [];
   const regenLedger = new Map<number, number>(); // in-memory E2 regen-cap tracking, per io instance
   const acceptance: AcceptanceWriters = {
     openRound: () => ({ roundId: "r20260101000000-abcdef", tokens: {} }),
@@ -314,9 +338,16 @@ function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { a
     // contaminating the next's — the fixture book id is shared).
     regenConsumedFor: (_b, n) => regenLedger.get(n) ?? 0,
     recordRegenConsumed: (_b, n) => { regenLedger.set(n, (regenLedger.get(n) ?? 0) + 1); },
+    // F-03: capture reopen notes in memory so the acceptance-regen block never
+    // leaks state/reviews/<book>/reopen-notes.json into the real state dir.
+    appendReopenNote: (_b, note) => { reopenNotes.push(note); },
+    // F-04: default the content-device repair lane to a NO-OP (fired:false) so a
+    // churn-HIGH test never accidentally lazy-imports + spawns the real writer.
+    // Routing tests override this with a controlled stub.
+    contentDeviceRepair: async () => ({ fired: false, targets: [], preserved: [], outcomes: [], preservedViolations: [], overCapDevices: [], residualOverCap: [] }),
     ...over,
   };
-  return Object.assign(io, { attestations, bars, confirms, acceptanceRecords });
+  return Object.assign(io, { attestations, bars, confirms, acceptanceRecords, reopenNotes });
 }
 
 /** The default spawn script: writers succeed, chapter readers pass, book readers accept. */
@@ -428,6 +459,41 @@ test("author card: renders the W4 brief-derived VARIETY instructions (opener / 2
   // graceful degradation: no machine brief → no explicit block (the md still carries VARIETY).
   const noBrief = buildAuthorCard({ bookId: "zz", chapterNumber: 1, briefMd, packet: GOLDEN_PACKET, voice: null });
   assert.ok(!noBrief.includes("VARIETY (dealt for this chapter"), "no explicit reinforcement block without the machine brief");
+});
+
+test("author card: manual-brief books get the always-on CHAPTER SHAPE (architecture + practice) lines; machine-brief books do NOT double-deal them (F-07/F-08)", () => {
+  const briefMd = renderBriefMd(mkBrief(3));
+  // Manual-brief: no machine brief passed, book-scale (totalChapters >= 4) → the two
+  // always-on rotational levers render.
+  const manual = buildAuthorCard({ bookId: "zz-manual", chapterNumber: 3, totalChapters: 14, briefMd, packet: GOLDEN_PACKET, voice: null });
+  assert.ok(manual.includes("CHAPTER SHAPE (dealt for this chapter"), "manual-brief card carries the always-on shape section");
+  assert.match(manual, /Architecture — [a-z-]+: /, "architecture-family line rendered with its instruction");
+  assert.match(manual, /Practice — Shape tryThisNow/, "practice-shape line rendered");
+  // and it is deterministic across re-runs / --only retries.
+  assert.equal(
+    manual,
+    buildAuthorCard({ bookId: "zz-manual", chapterNumber: 3, totalChapters: 14, briefMd, packet: GOLDEN_PACKET, voice: null }),
+    "manual-brief card is deterministic for the same (bookId, chapter, totalChapters)",
+  );
+
+  // Machine-brief: brief passed → the compiled VARIETY block renders INSTEAD; the
+  // always-on shape lines must NOT also appear (no double-deal).
+  const brief = mkBrief(3);
+  const machine = buildAuthorCard({ bookId: "zz-machine", chapterNumber: 3, totalChapters: 14, briefMd: renderBriefMd(brief), packet: GOLDEN_PACKET, voice: null, brief });
+  assert.ok(!machine.includes("CHAPTER SHAPE (dealt for this chapter"), "machine-brief card does NOT render the always-on shape lines (its VARIETY block owns that)");
+  assert.ok(machine.includes("VARIETY (dealt for this chapter"), "machine-brief keeps its compiled VARIETY block");
+
+  // Below book scale (single-chapter tools): no shape lines, exactly as before.
+  const single = buildAuthorCard({ bookId: "zz-manual", chapterNumber: 1, briefMd, packet: GOLDEN_PACKET, voice: null });
+  assert.ok(!single.includes("CHAPTER SHAPE (dealt for this chapter"), "no always-on shape lines without a book-scale totalChapters");
+
+  // Card budget (Requirement 5): even the manual-brief card — which carries BOTH the
+  // content-device deal AND the new always-on shape lines — stays under the ceiling,
+  // and the two always-on sections add a bounded, small amount over the baseline card.
+  assert.ok(manual.length <= AUTHOR_CARD_MAX_CHARS, `manual-brief card must be <= ${AUTHOR_CARD_MAX_CHARS} chars, got ${manual.length}`);
+  const delta = manual.length - single.length;
+  assert.ok(delta > 0 && delta < 1500, `always-on additions are bounded (+${delta} chars over the pre-book-scale card)`);
+  console.log(`  [measure] manual-brief card: ${manual.length} chars (ceiling ${AUTHOR_CARD_MAX_CHARS}); always-on additions +${delta} chars`);
 });
 
 test("author card: complaints section appears ONLY on regeneration, with the review's bullets", () => {
@@ -659,6 +725,342 @@ test("doAuthorReview: acceptance rejection drives ONE targeted regen round (<= 3
   assert.ok(regens[0].task.includes("book reader verdict"), "regen complaints come from the book readers");
   const acceptanceSpawns = spawns.filter((s) => s.sessionId.includes("author-book-reader") && !s.sessionId.includes("-r2"));
   assert.equal(acceptanceSpawns.length, 6, "exactly two acceptance rounds (3 readers each, Q5) — re-run ONCE");
+});
+
+// ── F-03: acceptance-regen regression safety ─────────────────────────────────
+
+test("decideAcceptanceRegenOutcome: FAIL/write-fail restore; pass-below-band restores; pass-within-band + boundary keep", () => {
+  const band = 4;
+  const prior = 85;
+  // write failed → restore (regardless of any review numbers).
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: false, reviewPass: false, composite: 0, priorComposite: prior, band }), "restore-fail");
+  // regen wrote but its review FAILs → restore.
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: false, composite: 88, priorComposite: prior, band }), "restore-fail");
+  // passes but composite fell MORE than a band below prior → restore-regress.
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: true, composite: prior - band - 0.1, priorComposite: prior, band }), "restore-regress");
+  // passes within the band (dipped, but tolerated) → keep.
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: true, composite: prior - band + 0.1, priorComposite: prior, band }), "keep");
+  // BOUNDARY: composite exactly prior − band is WITHIN band → keep (not strictly-better).
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: true, composite: prior - band, priorComposite: prior, band }), "keep");
+  // passes above prior → keep.
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: true, composite: prior + 3, priorComposite: prior, band }), "keep");
+  // unknown prior composite → regression cannot be judged, a PASS is kept.
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: true, composite: 10, priorComposite: undefined, band }), "keep");
+  // per-round comparison uses the caller's pre-reopen prior — a band-6 default
+  // over a prior 84 keeps 79 (79 >= 84-6=78) but restores 77.
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: true, composite: 79, priorComposite: 84, band: 6 }), "keep");
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: true, composite: 77, priorComposite: 84, band: 6 }), "restore-regress");
+});
+
+test("doAuthorReview: an acceptance regen whose review FAILs is RESTORED — reopen note attributed, grant consumed, halt category unchanged", async () => {
+  // ch01 review passes; book acceptance REJECTS (churn LOW → non-churn routing,
+  // maps the named complaint to ch01); the regen CHANGES bytes but its review
+  // FAILs → the prior passing chapter must be restored, not left failing.
+  let regenBumps = 0;
+  const chaptersNow = () => FIXTURE_CHAPTERS.map((c) => (regenBumps > 0 && c.number === 1 ? { ...c, hook: `${c.hook} (regen ${regenBumps})` } : c));
+  const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.startsWith("author-ch01")) regenBumps++;
+    if (o.sessionId.includes("author-book-reader")) {
+      if (o.sessionId.includes("-r2")) return { finalMessage: "no json here" };
+      return { finalMessage: bookReply(chaptersNow(), { gate: "FAIL", churn: "LOW", verdictText: "chapter 1 quiz key is contradicted by its own prose" }) };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) {
+      // The post-regen review of ch01 FAILs hard (well below the near-bar band).
+      if (o.sessionId.includes("bookregen")) {
+        return { finalMessage: reviewReply(chaptersNow()[0], { ship84: false, score: 52, complaints: [{ unit: "quiz Q2", problem: "the derived answer contradicts the stated key", mustFix: true }] }) };
+      }
+      return { finalMessage: reviewReply(Number(m[1]) === 1 ? chaptersNow()[0] : CH2) };
+    }
+    return {};
+  });
+  const io = mkIo({ loadChapters: () => chaptersNow() });
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+  assert.ok(result && result.status === "halt" && result.category === "content", "a still-failing regen halts content (category unchanged)");
+  if (result && result.status === "halt") assert.match(result.reason, /targeted regen round failed/, "the restore path routes into the existing failed-regen halt");
+  // The intent to reopen a passing chapter is attributed durably.
+  const note = io.reopenNotes.find((n) => n.chapterNumber === 1);
+  assert.ok(note, "a reopen note was appended for the reopened chapter");
+  assert.equal(note!.trigger, "acceptance-regen", "trigger names the acceptance lane");
+  assert.equal(note!.decision, "reopened-for-acceptance");
+  assert.ok((note!.detail ?? "").length > 0, "the reopen note carries the reader complaint that selected the chapter");
+  // The grant is consumed at spawn and a restore does NOT refund it.
+  assert.equal(io.regenConsumedFor!("zz", 1), 1, "the acceptance regen consumed its global-cap grant (restore does not refund)");
+  const regens = spawns.filter((s) => s.sessionId.startsWith("author-ch01"));
+  assert.equal(regens.length, 1, "exactly one regen write spawned for the reopened chapter");
+});
+
+// Real on-disk chapter file path (identical to the source's chapterFilePath).
+function realChapterPath(bookId: string, n: number): string {
+  return join(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n)));
+}
+const CH_BYTES = (ch: ChapterV21) => JSON.stringify(ch, null, 2) + "\n";
+
+/** Drive doAuthorReview to the acceptance-regen block over REAL chapter files on
+ *  disk. The writer spawn writes `regressedCh1` to disk (a genuine byte change);
+ *  the post-regen review scores `regenScore` (pass gated at bar 80). Returns the
+ *  halt + the io (with captured reopen notes) + the final on-disk ch01 bytes. */
+async function driveRealFileAcceptanceRegen(opts: {
+  bookId: string;
+  initialCh1Score: number;
+  regenScore: number;
+  regressedCh1: ChapterV21;
+}): Promise<{ result: Awaited<ReturnType<typeof doAuthorReview>>; io: ReturnType<typeof mkIo>; ch1Bytes: string; originalBytes: string }> {
+  const { bookId } = opts;
+  const p1 = realChapterPath(bookId, 1);
+  const p2 = realChapterPath(bookId, 2);
+  const originalBytes = CH_BYTES(CH1);
+  rmSync(reviewDir(bookId), { recursive: true, force: true }); // no stale carry
+  mkdirSync(dirname(p1), { recursive: true });
+  writeFileSync(p1, originalBytes, "utf8");
+  writeFileSync(p2, CH_BYTES(CH2), "utf8");
+  const readDisk = (): ChapterV21[] => [JSON.parse(readFileSync(p1, "utf8")), JSON.parse(readFileSync(p2, "utf8"))];
+  const { deps } = mkDeps((o) => {
+    if (o.sessionId.startsWith("author-ch01")) {
+      // Simulate the whole-chapter writer: persist a CHANGED draft to disk.
+      writeFileSync(p1, CH_BYTES(opts.regressedCh1), "utf8");
+      return {};
+    }
+    if (o.sessionId.includes("author-book-reader")) {
+      if (o.sessionId.includes("-r2")) return { finalMessage: "no json here" };
+      return { finalMessage: bookReply(readDisk(), { gate: "FAIL", churn: "LOW", verdictText: "chapter 1 quiz key is contradicted by its own prose" }) };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) {
+      const disk = readDisk();
+      if (o.sessionId.includes("bookregen")) {
+        return { finalMessage: reviewReply(disk[0], { score: opts.regenScore, ship84: opts.regenScore >= 80 }) };
+      }
+      return { finalMessage: reviewReply(Number(m[1]) === 1 ? disk[0] : disk[1], { score: Number(m[1]) === 1 ? opts.initialCh1Score : 90 }) };
+    }
+    return {};
+  });
+  const io = mkIo({ loadChapters: readDisk, chapterExists: () => true });
+  const result = await doAuthorReview(bookId, deps, { maxParallel: 2, io });
+  return { result, io, ch1Bytes: readFileSync(p1, "utf8"), originalBytes };
+}
+
+test("doAuthorReview (real files): an acceptance regen whose review FAILs restores the prior bytes BYTE-FOR-BYTE", async () => {
+  const bookId = "zz-fixture-regen-fail";
+  const p1 = realChapterPath(bookId, 1), p2 = realChapterPath(bookId, 2);
+  try {
+    const { result, io, ch1Bytes, originalBytes } = await driveRealFileAcceptanceRegen({
+      bookId,
+      initialCh1Score: 90,
+      regenScore: 55, // < bar 80 → the regen review FAILs
+      regressedCh1: { ...CH1, hook: `${CH1.hook} (regressed regen draft that fails review)` },
+    });
+    assert.ok(result && result.status === "halt" && result.category === "content", "a still-failing regen halts content");
+    assert.equal(ch1Bytes, originalBytes, "the failing regen was restored to the prior passing bytes, byte-for-byte");
+    assert.ok(io.reopenNotes.some((n) => n.chapterNumber === 1 && n.trigger === "acceptance-regen"), "the reopen was attributed");
+  } finally {
+    rmSync(p1, { force: true }); rmSync(p2, { force: true }); rmSync(reviewDir(bookId), { recursive: true, force: true });
+  }
+});
+
+test("doAuthorReview (real files): a regen that PASSES but scores a band+ below prior is RESTORED (no silent quality slide)", async () => {
+  const bookId = "zz-fixture-regen-regress";
+  const p1 = realChapterPath(bookId, 1), p2 = realChapterPath(bookId, 2);
+  try {
+    // prior 95, regen passes at 82 (>= bar 80) but 82 < 95 − 3.7 = 91.3 → restore-regress.
+    const { result, io, ch1Bytes, originalBytes } = await driveRealFileAcceptanceRegen({
+      bookId,
+      initialCh1Score: 95,
+      regenScore: 82,
+      regressedCh1: { ...CH1, hook: `${CH1.hook} (passing but lower-quality regen draft)` },
+    });
+    assert.ok(result && result.status === "halt" && result.category === "content", "a below-band PASS is counted as a failure and halts (the rejection stands)");
+    assert.equal(ch1Bytes, originalBytes, "the regressed-quality PASS was restored to the higher-scoring prior bytes");
+    assert.ok(io.reopenNotes.some((n) => n.chapterNumber === 1 && n.trigger === "acceptance-regen"));
+  } finally {
+    rmSync(p1, { force: true }); rmSync(p2, { force: true }); rmSync(reviewDir(bookId), { recursive: true, force: true });
+  }
+});
+
+test("acceptance-regen carry invariant: restored bytes (== prior) still CARRY their durable PASS — no re-review needed", () => {
+  const bookId = "zz-fixture-regen-carry";
+  const scores = Object.fromEntries(REVIEW_FACTORS.map((f) => [f, 88]));
+  const priorReview: ChapterReviewV1 = {
+    schemaVersion: CHAPTER_REVIEW_SCHEMA_VERSION,
+    chapterId: CH1.chapterId, chapterNumber: 1,
+    contentHash: chapterContentHash(CH1),
+    reviewerSessionId: "indep-reviewer-x",
+    scores: scores as never, composite: 88, ship84: true, pass: true, valid: true,
+    keyCheck: { derived: [], matches: 9, of: 9, disagreements: [] },
+    quotes: [{ quote: CH1.title, why: "ok", verified: true }],
+    tells: [], complaints: [], oneParagraphVerdict: "ships",
+    bar: 80, docHash: chapterReaderDocHash(CH1), hashVersion: REVIEW_DOC_HASH_VERSION,
+    reviewedAt: new Date().toISOString(),
+  };
+  try {
+    // The prior PASS lives in the content-keyed history; a restore puts the exact
+    // prior bytes back, so a later entry re-verifies the SAME contentHash + doc.
+    appendReviewHistory(bookId, priorReview);
+    const carry = carryReviewFor(bookId, CH1, 80, "some-current-author");
+    assert.ok(carry.hit, "restored (== prior) bytes carry their durable PASS — no fresh reader spawned");
+    if (carry.hit) assert.equal(carry.review.composite, 88);
+    // A different-author independence guard still holds (reviewer ≠ author).
+    const collide = carryReviewFor(bookId, CH1, 80, "indep-reviewer-x");
+    assert.equal(collide.hit, false, "the prior review never carries for a same-session author (independence preserved)");
+  } finally {
+    rmSync(reviewDir(bookId), { recursive: true, force: true });
+  }
+});
+
+// ── F-04: churn-HIGH acceptance rejections route to the bounded content lane FIRST ──
+
+function mkContentOutcome(n: number, status: SamenessChapterOutcome["status"]): SamenessChapterOutcome {
+  return { chapterNumber: n, assignedFamily: "content-deal", status, detail: `stub ${status}` };
+}
+function mkContentResult(outcomes: SamenessChapterOutcome[], fired = true): ContentRepairResult {
+  return {
+    fired,
+    targets: outcomes.map((o) => o.chapterNumber),
+    preserved: [],
+    outcomes,
+    preservedViolations: [],
+    overCapDevices: fired ? ["returnProof"] : [],
+    residualOverCap: [],
+  };
+}
+
+test("F-04: churn-HIGH rejection runs the content lane FIRST — kept chapters record contentRepairConsumed and never touch the regen lane", async () => {
+  const tmpRoot = mkdtempSync(join(tmpdir(), "p4-ledger-"));
+  const LIN = "p4-test-lineage";
+  const calls: string[] = [];
+  let contentRan = false;
+  // Once the content lane fires, the book's bytes change → round-2 sees a fresh docSha.
+  const chaptersNow = () => FIXTURE_CHAPTERS.map((c) => (contentRan ? { ...c, hook: `${c.hook} (content-repaired)` } : c));
+  const contentDeviceRepair: AuthorReviewIo["contentDeviceRepair"] = async (b) => {
+    calls.push(b);
+    // Mirror the real lane's bounded side effect: consume ONE content-repair grant per target.
+    for (const n of [1, 2]) recordContentRepairConsumed(b, n, LIN, tmpRoot);
+    contentRan = true;
+    return mkContentResult([mkContentOutcome(1, "diversified"), mkContentOutcome(2, "diversified")]);
+  };
+  const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.includes("author-book-reader")) {
+      const round2 = o.sessionId.includes("-round2");
+      return { finalMessage: bookReply(chaptersNow(), round2 ? { gate: "PASS", churn: "LOW" } : { gate: "FAIL", churn: "HIGH", verdictText: "one template stamped across every chapter" }) };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(chaptersNow()[Number(m[1]) - 1]) };
+    return {};
+  });
+  const io = mkIo({ loadChapters: () => chaptersNow(), contentDeviceRepair });
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+
+  assert.equal(result, null, "the content lane's kept re-authors flip the sticky same-bytes FAIL — accepted on the new docSha");
+  assert.equal(calls.length, 1, "the content lane ran exactly once, before any regen");
+  assert.equal(contentRepairConsumedFor(loadAuthorRegenLedger("zz", tmpRoot), 1, LIN), 1, "ch01 recorded its content-repair grant");
+  assert.equal(contentRepairConsumedFor(loadAuthorRegenLedger("zz", tmpRoot), 2, LIN), 1, "ch02 recorded its content-repair grant");
+  assert.equal(io.regenConsumedFor!("zz", 1), 0, "the GLOBAL regen lane was NOT spent on a content-fixed chapter");
+  assert.equal(io.regenConsumedFor!("zz", 2), 0, "the GLOBAL regen lane was NOT spent on a content-fixed chapter");
+  assert.equal(spawns.filter((s) => /^author-ch\d/.test(s.sessionId)).length, 0, "no regen WRITER spawned — the content lane handled the round");
+  rmSync(tmpRoot, { recursive: true, force: true });
+});
+
+test("F-04: a content-lane devices-persisted chapter (and ONLY it) falls through to the F-03-guarded regen; content-fixed chapters do not", async () => {
+  let contentRan = false;
+  let ch1Regen = 0;
+  const chaptersNow = () => FIXTURE_CHAPTERS.map((c) => {
+    if (c.number === 1 && ch1Regen > 0) return { ...c, hook: `${c.hook} (regen ${ch1Regen})` };
+    if (contentRan) return { ...c, hook: `${c.hook} (content)` };
+    return c;
+  });
+  const contentDeviceRepair: AuthorReviewIo["contentDeviceRepair"] = async () => {
+    contentRan = true;
+    // ch1 still uses a banned device (unfixed → regen fallthrough); ch2 diversified (fixed).
+    return mkContentResult([mkContentOutcome(1, "devices-persisted"), mkContentOutcome(2, "diversified")]);
+  };
+  const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.startsWith("author-ch01")) ch1Regen++;
+    if (o.sessionId.includes("author-book-reader")) {
+      const round2 = o.sessionId.includes("-round2");
+      return { finalMessage: bookReply(chaptersNow(), round2 ? { gate: "PASS", churn: "LOW" } : { gate: "FAIL", churn: "HIGH", verdictText: "one template stamped repeatedly" }) };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(chaptersNow()[Number(m[1]) - 1], { score: 84 }) }; // passes, but < 87 (not strong-pass)
+    return {};
+  });
+  const io = mkIo({ loadChapters: () => chaptersNow(), contentDeviceRepair });
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+
+  assert.equal(result, null, "ch1 regen + ch2 content-fix flip the round → accepted on round 2");
+  assert.equal(io.regenConsumedFor!("zz", 1), 1, "the devices-persisted ch01 fell through and spent ONE regen");
+  assert.equal(io.regenConsumedFor!("zz", 2), 0, "the content-fixed ch02 never entered the regen lane");
+  const regenWriters = spawns.filter((s) => /^author-ch\d/.test(s.sessionId));
+  assert.equal(regenWriters.length, 1, "exactly one regen writer spawned");
+  assert.ok(regenWriters.every((s) => s.sessionId.startsWith("author-ch01")), "and it was ch01 (the unfixed chapter), never ch02");
+  const note = io.reopenNotes.find((n) => n.chapterNumber === 1);
+  assert.ok(note && note.trigger === "acceptance-regen", "F-03 reopen note attributed for the fallthrough regen");
+});
+
+test("F-04: churn HIGH with BOTH lanes spent for every target halts content with the content-repair-book escape hatch", async () => {
+  const contentDeviceRepair: AuthorReviewIo["contentDeviceRepair"] = async () =>
+    mkContentResult([mkContentOutcome(1, "skipped-cap"), mkContentOutcome(2, "skipped-cap")]);
+  const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.includes("author-book-reader")) {
+      return { finalMessage: bookReply(FIXTURE_CHAPTERS, { gate: "FAIL", churn: "HIGH", verdictText: "one template stamped repeatedly" }) };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(FIXTURE_CHAPTERS[Number(m[1]) - 1], { score: 84 }) };
+    return {};
+  });
+  // Regen already exhausted for every chapter (a prior conductor entry spent them).
+  const io = mkIo({ contentDeviceRepair, regenConsumedFor: () => AUTHOR_REGEN_CAP - 1 });
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+
+  assert.ok(result && result.status === "halt" && result.category === "content", "both lanes spent → content halt");
+  if (result && result.status === "halt") {
+    assert.match(result.reason, /BOTH bounded repair lanes are spent/, "the halt names the both-lanes-spent state");
+    assert.match(result.reason, /content-repair-book zz --only/, "the halt names the manual escape hatch");
+  }
+  assert.equal(spawns.filter((s) => /^author-ch\d/.test(s.sessionId)).length, 0, "no regen writer burned — halted instead of spending unrelated regen");
+});
+
+test("F-04 kill switch: CHAPTERFLOW_CHURN_CONTENT_REPAIR=0 never calls the content lane and restores pre-P4 regen routing", async () => {
+  const prev = process.env.CHAPTERFLOW_CHURN_CONTENT_REPAIR;
+  process.env.CHAPTERFLOW_CHURN_CONTENT_REPAIR = "0";
+  try {
+    let called = 0;
+    const contentDeviceRepair: AuthorReviewIo["contentDeviceRepair"] = async () => { called++; return mkContentResult([]); };
+    const { deps, spawns } = mkDeps((o) => {
+      if (o.sessionId.includes("author-book-reader")) {
+        if (o.sessionId.includes("-round2")) return { finalMessage: "no json here" };
+        return { finalMessage: bookReply(FIXTURE_CHAPTERS, { gate: "FAIL", churn: "HIGH", verdictText: "chapter 1 reads stamped" }) };
+      }
+      const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+      if (m) return { finalMessage: reviewReply(FIXTURE_CHAPTERS[Number(m[1]) - 1]) };
+      return {};
+    });
+    const io = mkIo({ contentDeviceRepair });
+    const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+    assert.equal(called, 0, "the content lane is NEVER called when the kill switch is off");
+    assert.ok(spawns.some((s) => /^author-ch\d/.test(s.sessionId)), "pre-P4 named+saturation churn routing spent a regen writer (old behavior restored)");
+    assert.ok(result && result.status === "halt", "the pre-P4 path reaches its halt");
+  } finally {
+    if (prev === undefined) delete process.env.CHAPTERFLOW_CHURN_CONTENT_REPAIR;
+    else process.env.CHAPTERFLOW_CHURN_CONTENT_REPAIR = prev;
+  }
+});
+
+test("F-04: a NON-churn acceptance rejection never calls the content lane (routing unchanged)", async () => {
+  let called = 0;
+  const contentDeviceRepair: AuthorReviewIo["contentDeviceRepair"] = async () => { called++; return mkContentResult([]); };
+  const { deps } = mkDeps((o) => {
+    if (o.sessionId.includes("author-book-reader")) {
+      if (o.sessionId.includes("-round2")) return { finalMessage: "no json here" };
+      return { finalMessage: bookReply(FIXTURE_CHAPTERS, { gate: "FAIL", churn: "LOW", verdictText: "chapter 1 quiz key contradicts its prose" }) };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(FIXTURE_CHAPTERS[Number(m[1]) - 1]) };
+    return {};
+  });
+  const io = mkIo({ contentDeviceRepair });
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+  assert.equal(called, 0, "churn LOW → the content lane is never engaged");
+  assert.ok(result && result.status === "halt" && result.category === "content", "non-churn routing halts content as before");
 });
 
 test("mapBookComplaintsToChapters: chapter-specific lines route to their chapters; cap 3; generic rejections fall back to the sample", () => {
@@ -1210,4 +1612,152 @@ test("Q3 a disproven structural FAIL reader is respawned in the acceptance loop"
   // The invalidated attempt-1 read left a structural-screen decision on record.
   const respawnSpawns = spawns.filter((s) => s.sessionId.includes("author-book-reader-3"));
   assert.ok(respawnSpawns.length >= 2, "a second reader-3 session was spawned");
+});
+
+// ── F-05: the book-acceptance PREDICATE, pinned ──────────────────────────────
+// Verified semantics (authorReview.ts): accepted = quorumMet ∧ sticky-gate PASS
+// ∧ median>=AUTHOR_BOOK_ACCEPT_FLOOR(74) ∧ (shipped===null ∨ median>=shipped+
+// BEAT_SHIPPED_MARGIN(5)). These tests drive runBookAcceptance directly with an
+// injected 3-read pool at the per-doc cap (PANEL_READS_PER_DOC_CAP): the decision
+// is FROZEN for those bytes, so NO reader spawns and the predicate is computed
+// purely from the pooled median + the injected shipped control. No live readers.
+
+/** A single durable same-doc read at full valid-reader quorum. Three of these at
+ *  the cap freeze the decision; trueMedian([c,c,c]) === c pins any composite. */
+function poolRead(composite: number, gate: "PASS" | "FAIL", churn = "LOW"): AuthorAcceptanceRecord {
+  return {
+    schemaVersion: "author-acceptance-v1",
+    bookId: "zz", roundLabel: "", at: "2026-07-08T00:00:00Z",
+    bar: 80, beatShipped: null, accepted: true,
+    sampledChapters: [1, 2], docSha256: "pool-sha",
+    verdict: { id: "zz", medianComposite: composite, factors: null, gate, gateVotes: gate === "PASS" ? "3P/0F" : "0P/3F", churn, validCount: 3, readerCount: 3, chapters: [1, 2], readers: [] } as unknown as AuthorAcceptanceRecord["verdict"],
+    readers: [],
+  };
+}
+
+/** Drive runBookAcceptance over a frozen (cap-filled) pool; capture the accept
+ *  decision + logs without spawning a single reader. */
+async function drivePredicate(pool: AuthorAcceptanceRecord[], shipped: number | null): Promise<{ accepted: boolean; logs: string[] }> {
+  const { deps } = mkDeps(() => { throw new Error("a cap-frozen pool must NOT spawn any reader"); });
+  const logs: string[] = [];
+  (deps as unknown as { log: (m: string) => void }).log = (m: string) => { logs.push(m); };
+  const io = mkIo({
+    listAcceptanceReads: () => pool,
+    resolveBeatShipped: async () => ({ ok: true as const, composite: shipped, source: shipped === null ? "none" as const : "env" as const }),
+  });
+  const res = await runBookAcceptance("zz", FIXTURE_CHAPTERS, deps, io as unknown as AuthorReviewIo, 80, "");
+  return { accepted: res.accepted, logs };
+}
+
+test("F-05 predicate: FLOOR boundary with no shipped control — 73.9 rejects, 74.0 accepts", async () => {
+  const below = await drivePredicate([poolRead(73.9, "PASS"), poolRead(73.9, "PASS"), poolRead(73.9, "PASS")], null);
+  assert.equal(below.accepted, false, "median 73.9 < floor 74 → REJECT");
+  const at = await drivePredicate([poolRead(74.0, "PASS"), poolRead(74.0, "PASS"), poolRead(74.0, "PASS")], null);
+  assert.equal(at.accepted, true, "median 74.0 == floor 74 → ACCEPT (no shipped control, floor-only)");
+});
+
+test("F-05 predicate: MARGIN boundary against a shipped control 72.7 — 77.6 rejects, 77.7 accepts", async () => {
+  const below = await drivePredicate([poolRead(77.6, "PASS"), poolRead(77.6, "PASS"), poolRead(77.6, "PASS")], 72.7);
+  assert.equal(below.accepted, false, "77.6 < shipped(72.7)+5 → REJECT (clears the 74 floor but not the +5 margin)");
+  const at = await drivePredicate([poolRead(77.7, "PASS"), poolRead(77.7, "PASS"), poolRead(77.7, "PASS")], 72.7);
+  assert.equal(at.accepted, true, "77.7 == shipped(72.7)+5 → ACCEPT");
+});
+
+test("F-05 predicate: a sticky gate FAIL forces REJECT regardless of a passing median", async () => {
+  // One FAIL read among three makes gateFailStuck; composite 90 is irrelevant.
+  const r = await drivePredicate([poolRead(90, "PASS"), poolRead(90, "FAIL"), poolRead(90, "PASS")], null);
+  assert.equal(r.accepted, false, "a FAIL on any pooled read sticks → REJECT even at median 90");
+});
+
+test("F-05 predicate: quorum unmet → REJECT with the valid-reader-quorum message", async () => {
+  // Empty pool + a panel that never parses → 0 valid readers → sub-quorum.
+  const { deps } = mkDeps((o) => (o.sessionId.includes("author-book-reader") ? { finalMessage: "not valid json at all" } : {}));
+  const logs: string[] = [];
+  (deps as unknown as { log: (m: string) => void }).log = (m: string) => { logs.push(m); };
+  const io = mkIo({
+    listAcceptanceReads: () => [],
+    resolveBeatShipped: async () => ({ ok: true as const, composite: null, source: "none" as const }),
+  });
+  const res = await runBookAcceptance("zz", FIXTURE_CHAPTERS, deps, io as unknown as AuthorReviewIo, 80, "");
+  assert.equal(res.accepted, false, "a sub-quorum panel is never accepted");
+  assert.ok(res.verdict.validCount < AUTHOR_BOOK_READERS, "fewer than the 3-reader quorum were valid");
+  assert.ok(logs.some((l) => /below valid-reader quorum/.test(l)), `the reject log names the quorum: ${JSON.stringify(logs.filter((l) => /REJECT/.test(l)))}`);
+});
+
+test("F-05 predicate: churn HIGH with passing numbers is ACCEPTED — churn is telemetry, NOT an accept-time veto", async () => {
+  // STANDING 2026-07-04 calibration (owner decision): the correctness gate, the
+  // 74 floor, and the +5 beat-shipped margin are the ONLY accept blockers; the
+  // holistic churn label routes repair AFTER a rejection but never vetoes. Do not
+  // read this test as endorsing churn HIGH — it pins the semantics loudly so a
+  // future campaign is not, again, run against a wrong model of the gate. Whether
+  // churn should ever veto is an explicit OPEN owner question:
+  // docs/v24/ACCEPTANCE-GATE-POLICY.md (open question a).
+  const r = await drivePredicate(
+    [poolRead(80, "PASS", "HIGH"), poolRead(80, "PASS", "HIGH"), poolRead(80, "PASS", "HIGH")],
+    null,
+  );
+  assert.equal(r.accepted, true, "unanimous churn HIGH + gate PASS + median 80 >= floor 74 → ACCEPT");
+});
+
+// ── F-09: the sub-band second-opinion guard (bounded, one extra read) ─────────
+
+test("F-09 guard: a sub-band taste FAIL rescued by a shipping second opinion spends NO regen (one extra read, ledger untouched)", async () => {
+  // ch01: a valid, clean-keyed, sub-band (composite 60 < 80−3.7) FAIL whose only
+  // complaint is aesthetic (downgraded by the classifier). The guard fires ONE
+  // independent read; that read ships → the better read stands → no regen spent.
+  const { deps, spawns } = mkDeps((o) => {
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) {
+      const n = Number(m[1]);
+      if (o.sessionId.includes("-2nd")) return { finalMessage: reviewReply(n === 1 ? CH1 : CH2, { ship84: true, score: 90 }) };
+      if (n === 1) return { finalMessage: reviewReply(CH1, { ship84: false, score: 60, complaints: [{ unit: "example 2", problem: "the phrasing is a bit generic and could be richer", mustFix: false }] }) };
+      return { finalMessage: reviewReply(CH2) };
+    }
+    if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS) };
+    return {};
+  });
+  const io = mkIo();
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+  assert.equal(spawns.filter((s) => s.sessionId.includes("author-review-ch01-2nd")).length, 1, "exactly ONE second-opinion read for the sub-band chapter");
+  assert.equal(spawns.filter((s) => s.sessionId.includes("author-review-ch02-2nd")).length, 0, "the passing chapter earns no second opinion");
+  assert.equal(io.regenConsumedFor!("zz", 1), 0, "the shipping second opinion PREVENTED the regen — lifetime write budget untouched");
+  assert.equal(spawns.filter((s) => s.sessionId.startsWith("author-ch")).length, 0, "no regen writer spawned");
+  assert.equal(result, null, "the better read stands → the run completes to acceptance");
+});
+
+test("F-09 guard: a sub-band taste FAIL whose second opinion ALSO fails proceeds to regen (one extra read, then the cap is spent)", async () => {
+  const { deps, spawns } = mkDeps((o) => {
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) {
+      const n = Number(m[1]);
+      if (o.sessionId.includes("-2nd")) return { finalMessage: reviewReply(CH1, { ship84: false, score: 60, complaints: [{ unit: "example 2", problem: "still reads a little thin", mustFix: false }] }) };
+      if (n === 1) return { finalMessage: reviewReply(CH1, { ship84: false, score: 60, complaints: [{ unit: "example 2", problem: "the phrasing is a bit generic", mustFix: false }] }) };
+      return { finalMessage: reviewReply(CH2) };
+    }
+    if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS) };
+    return {};
+  });
+  const io = mkIo();
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+  assert.equal(spawns.filter((s) => s.sessionId.includes("author-review-ch01-2nd")).length, 1, "exactly one second-opinion read (hard cap)");
+  assert.equal(io.regenConsumedFor!("zz", 1), 1, "a corroborated sub-band FAIL still spends its regen — the guard never hides a durable fail");
+  assert.ok(result && result.status === "halt" && result.category === "content", "no-op (byte-identical) regen halts content after the guard");
+});
+
+test("F-09 guard: a reserved-harm FAIL spawns NO second opinion — it goes straight to regen", async () => {
+  const { deps, spawns } = mkDeps((o) => {
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) {
+      const n = Number(m[1]);
+      if (n === 1) return { finalMessage: reviewReply(CH1, { ship84: false, score: 60, complaints: [{ unit: "quiz Q2", problem: "the answer key is wrong — two choices are correct", mustFix: true }] }) };
+      return { finalMessage: reviewReply(CH2) };
+    }
+    if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS) };
+    return {};
+  });
+  const io = mkIo();
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+  assert.equal(spawns.filter((s) => s.sessionId.includes("-2nd")).length, 0, "a reserved-harm complaint blocks the second-opinion guard entirely");
+  assert.equal(io.regenConsumedFor!("zz", 1), 1, "the reserved-harm FAIL spent its regen directly (no cheap read wasted)");
+  assert.ok(result && result.status === "halt" && result.category === "content", "byte-identical regen halts content");
 });

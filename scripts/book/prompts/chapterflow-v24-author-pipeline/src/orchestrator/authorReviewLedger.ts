@@ -280,24 +280,32 @@ export function holdsDurablePass(
 
 // ── PASS-lock decision forensics (CONVERGENCE-SAFE PASS, 2026-07-05) ───────────
 
-/** A durable audit trail of every PASS-lock decision the book-wide budget-repair
- *  lane made about a chapter holding a durable PASS:
+/** A durable audit trail of every PASS-lock / reopen decision made about a
+ *  chapter holding a durable PASS:
  *   - `protected-downgrade`: a book-wide budget blocker was carried ONLY by
  *     PASS-locked chapter(s), so it was downgraded to advisory and the passing
  *     chapter was NOT reopened (the convergence-safe outcome).
  *   - `reopened-anomaly`: the regression guard observed a PASS-locked chapter's
  *     content hash CHANGE across the repair round — this must never happen under
  *     the carry-aware router, so it is recorded as a bug signal alongside a halt.
+ *   - `reopened-for-acceptance`: a book-acceptance rejection deliberately reopened
+ *     a passing chapter for a targeted regen (holistic rejections must be able to
+ *     touch passing chapters). This is NOT a lock — it is the durable attribution
+ *     of WHY the passing chapter was reopened, carrying the reader complaints that
+ *     selected it. The regen itself is regression-guarded (restore-on-fail /
+ *     restore-on-regress); see the acceptance-regen block in authorReview.ts.
  *  This is the "why was / wasn't a passing chapter reopened" record the operator
  *  reads to audit convergence. Rebuildable/deletable; never gates a decision. */
-export type ReopenDecision = "protected-downgrade" | "reopened-anomaly";
+export type ReopenDecision = "protected-downgrade" | "reopened-anomaly" | "reopened-for-acceptance";
 
 export type ReopenNote = {
   chapterNumber: number;
   contentHash: string;
   at: string;
   decision: ReopenDecision;
-  /** The checkId that would have reopened the chapter (e.g. "CHB10.lexical_saturation"). */
+  /** What triggered the (would-be) reopen: a budget checkId (e.g.
+   *  "CHB10.lexical_saturation") for the budget lane, or the literal
+   *  "acceptance-regen" when a book-acceptance rejection reopened the chapter. */
   trigger: string;
   detail?: string;
 };

@@ -173,6 +173,13 @@ test("composeBookVerdict medians factors, majority gate (ties PASS), churn mode,
   assert.equal(v.gate, "PASS");
   assert.equal(v.gateVotes, "2P/1F");
   assert.equal(v.churn, "LOW");
+  // F-05: a 1P/1F tie on a DEGRADED 2-valid-reader panel favors PASS (compose.py:
+  // npass >= nfail). At BOOK ACCEPTANCE this is shielded by the ≥3 valid-reader
+  // quorum (a sub-quorum panel is never accepted — author-arch.test.ts). The one
+  // place this tie could distort a decision was the SHIPPED CONTROL read, whose
+  // composite sets the +5 margin baseline — now guarded by the same ≥3 quorum
+  // (a 1-2 valid control degrades to floor-only; sweep-rejected-and-control-e5).
+  // This behavior is intentionally UNCHANGED; it is pinned here for the record.
   const tie = composeBookVerdict("x", [1], [reader(scores(70), "PASS", "LOW"), reader(scores(80), "FAIL", "LOW")]);
   assert.equal(tie.gate, "PASS", "compose.py: PASS when npass >= nfail");
   const none = composeBookVerdict("x", [1], [reader(scores(0), "FAIL", "HIGH", false)]);
