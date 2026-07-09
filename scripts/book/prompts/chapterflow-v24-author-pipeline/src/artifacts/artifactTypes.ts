@@ -250,6 +250,14 @@ export type ChapterBriefV1 = {
   idiomFamilies?: string[];
   /** STIER-3 P18 (v4): the chapter's whatToDo/whyItMatters opener register. */
   shellRegister?: string;
+  /** CF-C (2026-07-08): the adjacent chapters' LEARNING JOBS — each neighbour's own
+   *  `coreMove`, carried here so the single-brief writer card can render a
+   *  NOT-THIS-CHAPTER line ("chapter N-1 owns Y; chapter N+1 owns Z — do not
+   *  re-teach them") without re-reading siblings. The chapter's OWN job is its
+   *  `coreMove` (no twin field). Compiled deterministically from the neighbours'
+   *  packets, so a recompile is byte-derivable (F-1 sidecar invariant). Optional —
+   *  omitted for a single-chapter book and absent on briefs compiled before CF-C. */
+  adjacentJobs?: { prev?: string; next?: string };
 };
 
 /** v24 W4 rotation vocabularies — mirrored from src/compiler/briefRotation.ts (kept here as string

@@ -308,6 +308,7 @@ export type CriticCheckId =
   | "BP32.quiz_pronoun_referent_mismatch"
   // Try-this-now opener reuse across chapters (the separable opener subset of repeated_unit).
   | "BP33.try_this_now_opener_reuse"
+  | "BP34.aphorism_repetition"
   | "schema.quiz_duplicate_choice"
   | "schema.quiz_lowercase_choice_start"
   | "schema.quiz_unexpected_field"
@@ -623,7 +624,7 @@ export type ReviewCardV21 = {
 };
 
 export type ImplementationPlanV21 = {
-  title: string;                        // 4–7 words naming the specific skill this plan teaches
+  title: string;                        // 2–5 word skill name (imperative verb + concrete object; see QUALITY BAR rule 9)
   titleSourceAnchorIds?: string[];
   coreSkill: string;                    // 2–4 sentences
   coreSkillSourceAnchorIds?: string[];

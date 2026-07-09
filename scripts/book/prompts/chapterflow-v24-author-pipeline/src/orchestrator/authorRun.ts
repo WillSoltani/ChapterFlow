@@ -262,6 +262,40 @@ export const AUTHOR_HOUSE_RULES =
  * ubiquity), which the book-acceptance panel rejected as "one template, different nouns".
  * They now point to the per-chapter CONTENT DEVICES deal (contentDeviceDeal.ts); the
  * anti-thin-example + anti-fabrication protections are preserved verbatim.
+ * 2026-07-08 CONTENT-FEEDBACK CF-A (G1): rule 8 (HOOK CARRIES A STAKE + DOORWAY) —
+ * HOM ch8's hook was a flat activity description ("maps functions to shared standards")
+ * and scored the book's lowest chapter; the pipeline had no per-hook tension bar (the
+ * schema asked only "60-120 chars"). Rule 8 is mode-agnostic (satisfiable by all five
+ * OPENER_TYPES) and scored, not a blocker; OPENER_TYPES / titles / rubric / C26 untouched.
+ * 2026-07-08 CONTENT-FEEDBACK CF-B (F3/F5/F13/F17): rule 7 (EXAMPLE CRAFT) drops the
+ * rubric-shaped "what MEASURABLY CHANGED … before→after" phrasing — echoed verbatim into
+ * HOM ch8's evaluator-Q&A example fields, the same disease the ~435 label-strip patched —
+ * for a REGISTER rule (consequence narrated in the scene's own voice; no field opens with
+ * an evaluator question answered in the next clause) + a CONDITIONAL competing-interests
+ * staging clause (only where legitimate interests collide — NOT a universal conflict
+ * mandate) + the F17 humanization guardrail (no new named cast, honor the deal's
+ * proxy/stand-in bans). Substance preserved: decision + completed consequence,
+ * "set, not met" = FAILED, no invented facts. New advisory critic C31
+ * (exampleRegister.ts) is the deterministic complement; MINOR, no gate/blocker touched.
+ * 2026-07-08 CONTENT-FEEDBACK CF-E (F9/F10/F14): the implementation-plan take-home
+ * surfaces. TITLE-DROP TRACE (emitted-and-dropped): ChapterV21.implementationPlan
+ * (types.ts ImplementationPlanV21) carries `title` and the schema hint asks for it, but
+ * the app projection has NO title field at four layers — PackageImplementationPlan
+ * (book-package-core.ts), the bridge (~380, never reads title), the validator
+ * (validate-book-package.ts, never reads title), and the reader (ImplementationPlanCard
+ * renders coreSkill/ifThenPlans only). So the written skill name never reaches the reader.
+ * Fix WITHOUT app changes: rule 9 (TAKE-HOME SURFACES) + the schema hint make the skill
+ * name the REQUIRED opener of coreSkill (which DOES render), carry one generic reviewer
+ * exemplar, and require >=1 memorableLine to hold the chapter's central image (this
+ * chapter's own, never reused across chapters). PLAIN WORDS gains a zero-coined-shorthand
+ * clause for the action fields (coordinates with CF-D's inherited-terms text). Self-verify
+ * item 7 added. Rule 3 timebox floor + D9 timers untouched. An app-side `title` surfacing
+ * is a CF-H/follow-up decision.
+ * 2026-07-08 ATTENTION-ECONOMY TRIM (post-campaign cleanup): the CF-A/B/D/E additions
+ * (rules 7/8/9, the PLAIN WORDS extension, self-verify items 5-7, schema-hint notes)
+ * compressed to fit the card's attention budget — every requirement above survives,
+ * wording only. Net campaign delta across QUALITY_BAR + PREMIUM_BLOCK + schemaHint +
+ * selfVerify: +1,395 chars (pre-trim +2,613), of which +142 is CF-C's rule-6 job wording.
  */
 export const AUTHOR_QUALITY_BAR =
   "QUALITY BAR — hit these on the FIRST draft. Caps marked [GATED] are enforced by a deterministic preflight (missing one forces a full rewrite); [SCORED] rules are scored by the blinded reviewers who decide ship:\n" +
@@ -270,8 +304,10 @@ export const AUTHOR_QUALITY_BAR =
   "3. PRACTICE CONCRETENESS [GATED floor: at least ONE of tryThisNow / the 24-hour challenge must be imperative-led with a number or timebox]. Write BOTH concrete [SCORED]: each names ONE action with a number or a timebox, concrete enough to start within a minute. The action's FORM comes from your dealt practice shapes — never default to a touch-this-object or say-this-aloud ritual (the same staging in every chapter reads as theater). No \"a, b, or c\" option menus — one move, not a menu.\n" +
   "4. PLAIN LANGUAGE FROM SENTENCE ONE [GATED]. The gate measures Flesch ease 72-84 on the BREAKDOWN prose (fastRead+deepRead+fullRead) — land the band there; keep the rest of the chapter just as plain. Short sentences, common words, one idea per sentence. Open plain — no throat-clearing abstraction before the first concrete beat.\n" +
   "5. DISTRACTOR TRANSFORM [SCORED; strawman-rate gate]. Write the KEY first, then TRANSFORM it: every wrong answer is the key warped by ONE of your brief's dealt failure modes — a smart half-reader would defend it out loud; a reader of YOUR prose can settle exactly why it fails. Never a generic bad practice; never rejectable without reading the chapter (unless the chapter explicitly teaches against that named move). KEY SUPPORT: every key must be defensible by pointing at a specific breakdown sentence that teaches it — a key the chapter never actually taught reads as arbitrary to the reader who did the work. CAUSAL STEMS: when a stem asks WHY something happened (what caused / what led to / what explains / the main reason), the key names the ONE specific cause your prose shows — never the outcome restated, never a remedy or lesson — and the distractors are plausible SIBLING causes a specific sentence of yours refutes. ECHO SYMMETRY: if the key uses the chapter's signature vocabulary, at least two distractors must too — the key is never the only choice that sounds like the chapter. Every explanation names why one tempting wrong answer fails, in varied wording each time — NEVER a fixed stem like \"If you chose (b):\" (identical stems ×81 is its own template). A deterministic gate still counts mechanical-distractor words (polish/announce/slides/deck/morale/optics/louder/inspire/motivate) book-wide and blocks above 7% — build from your dealt failure modes and these never appear.\n" +
-  "6. SURFACES THAT TRANSFER [SCORED]. Review cards drill the reusable TOOL, not source trivia — at most 2 cards may hinge on a named source case; every other must be answerable by a reader applying the move in their own life. Practice prompts must be actions a person would do unprompted at a desk — if a prompt reads as a ritual or meta-exercise, write the plain version: a concrete action the reader can check they did (its FORM is dealt per chapter — do NOT reuse one 'return-proof' close everywhere). Each example teaches a DIFFERENT facet or failure-mode — if two teach the same lesson, merge them and spend the freed slot on a facet you have not shown.\n" +
-  "7. EXAMPLE CRAFT [SCORED — readers block ship on thin examples]. Every example must dramatize a DECISION and its COMPLETED CONSEQUENCE — not relay the lesson. Show three things: an actor with a real stake, the concrete action they take, and what MEASURABLY CHANGED after (a result, a number, a visible before→after). Vary WHO carries it per this chapter's CONTENT DEVICES deal — the reader ('you'), a real source case, or an explicit hypothetical, not a default invented proxy. An arc that never lands ('set, not met', no result) is a FAILED example — finish it. Never use invented people as thin handles or let a scenario restate the move. If the research gives no case with a concrete consequence, pick one that does — never invent facts to manufacture one.";
+  "6. SURFACES THAT TRANSFER [SCORED]. Review cards drill the reusable TOOL, not source trivia — at most 2 cards may hinge on a named source case; every other must be answerable by a reader applying the move in their own life. Practice prompts must be actions a person would do unprompted at a desk — if a prompt reads as a ritual or meta-exercise, write the plain version: a concrete action the reader can check they did (its FORM is dealt per chapter — do NOT reuse one 'return-proof' close everywhere). Each example must advance THIS CHAPTER'S JOB (declared in the VARIETY block) through a DIFFERENT facet or failure-mode — no two examples may teach the same lesson. If two would, merge them and spend the freed slot on a facet you have not shown yet; never invent a facet the source cannot ground.\n" +
+  "7. EXAMPLE CRAFT [SCORED]. Every example must dramatize a DECISION and its COMPLETED CONSEQUENCE — not relay the lesson: an actor with a real stake, their concrete action, the consequence landing, NARRATED in the scene's own voice. Never open a field with an evaluator question answered in the next clause. Vary WHO carries it per the CONTENT DEVICES deal — never a default invented proxy or a named person beyond the dealt cast; honor its proxy/stand-in bans. Where legitimate interests collide, one example must STAGE the clash — who pulls the other way, what it costs. An arc that never lands ('set, not met') is a FAILED example — finish it. Never let a scenario restate the move; if no source case has a concrete consequence, pick one that does — never invent facts to manufacture one.\n" +
+  "8. HOOK CARRIES A STAKE [SCORED]. Whatever opener mode is dealt, make the STAKE visible in plain words — who loses/pays/misses what; a bare activity or diagram description is a FAILED hook. FAIL: \"The team maps functions to shared standards.\" PASS: \"It shipped late because no one owned the date.\" DOORWAY: land one concrete fastRead beat BEFORE the first abstract term.\n" +
+  "9. TAKE-HOME SURFACES [SCORED]. The implementation plan leads with a SKILL NAME — imperative verb + concrete object, 2-5 words, never a virtue-noun (excellence/ownership) — e.g. \"Name the Local Signal\"; coreSkill OPENS with it. ≥1 memorableLine carries THIS chapter's central image; none reused across chapters.";
 
 /**
  * S-tier P5 (plan §C, fixes B10) — the acceptance rubric's demands, stated to the
@@ -286,7 +322,7 @@ export const AUTHOR_PREMIUM_BLOCK =
   "- INSIGHT: the counterintuition must REVERSE a default the reader actually holds, not restate the thesis politely. Your dealt example arcs already assign the outcomes — write the failure/partial slots as REAL friction, not staged stumbles.\n" +
   "- LIMITS: say plainly when this chapter's move does NOT apply, what it costs, and when to do the opposite — one honest passage, living where your dealt LIMITS PLACEMENT puts it (not the same slot every chapter). Overselling is a scored defect.\n" +
   "- DENSITY: every paragraph adds NEW information. Never restate the previous paragraph in fresh words; never reuse a sentence across fastRead/deepRead/fullRead — each tier must ADD, not re-say.\n" +
-  "- PLAIN WORDS: any compressed term this chapter coins (a 'return pass', a 'capability call') must be unpacked in plain words at first use — never dodge a vocabulary budget by minting jargon.\n" +
+  "- PLAIN WORDS: any load-bearing term — COINED here (a 'return pass') or INHERITED from the source — must be unpacked in plain words at first use, one clause in the flow. Never dodge a vocabulary budget by minting jargon. Action fields (tryThisNow/24h challenge/weeklyPractice) carry ZERO coined shorthand — restate needed terms plainly in the same sentence.\n" +
   "- READER AGENCY: teach the move so a reader with NO title power can run it today — at least one example or paragraph applies it to the reader's own promises, projects, or role choices, not only to people they manage.\n" +
   "- VOICE: this book's voice, not a house voice — four concrete moves: (1) in deepRead/fullRead, never let more than 2 consecutive paragraphs open on an abstraction; break runs with a person, scene, or object. (2) At least twice per tier, land a ≤6-word sentence beside a ≥25-word one — varied placement, not a ritual pair. (3) Ask 1-3 real rhetorical questions somewhere in the chapter. (4) Only the dealt +anchor example slots carry a physical/sensory detail — everywhere else, none.\n" +
   "- QUIZZES: a reader who skipped the chapter should score ~33%, not 60% — wrong answers must tempt someone who half-read. Explanations teach why the wrong answer fails, not only why the right one is right.";
@@ -295,17 +331,22 @@ export const AUTHOR_PREMIUM_BLOCK =
  *  style sectionTasks.ts uses for section artifacts. */
 export function authorSchemaHint(bookId: string, chapterNumber: number): string {
   const chapterId = authorChapterId(bookId, chapterNumber);
-  return `{"schemaVersion":"chapterflow-v21-authored","chapterId":"${chapterId}","number":${chapterNumber},"title":"...","readingTimeMinutes":7,"hook":"...(60-120 chars)","counterintuition":"...(1-2 sentences)","tryThisNow":"...(80-220 chars)","keyTakeaway":"...(140-220 chars)","breakdown":{"fastRead":"...(~400-700 chars)","deepRead":"...(~1200-1800 chars)","fullRead":"...(~2500-3500 chars)"},"examples":[{"exampleId":"ex01","title":"...","tags":["..."],"planSpec":{"domain":"...","audience":"...","stakes":"...","format":"...","requiredBeat":"..."},"scenario":"...(280-520 chars)","whatToDo":"...(120-240 chars)","whyItMatters":"...(120-240 chars)"}],"quiz":{"passingScorePercent":70,"questions":[{"questionId":"q01","prompt":"...","choices":["...","...","..."],"correctIndex":0,"explanation":"...(120-300 chars)","bloomsLevel":"apply","depthLevel":"standard"}]},"reviewCards":[{"cardId":"c01","front":"...(30-200 chars)","back":"...(80-400 chars)","difficulty":"medium"}],"implementationPlan":{"title":"...(4-7 words)","coreSkill":"...(2-4 sentences)","ifThenPlans":[{"context":"...","plan":"If X, then Y."}],"twentyFourHourChallenge":"...","weeklyPractice":"..."},"memorableLines":[{"text":"...(exact sentence from the chapter)","location":"breakdown.deepRead","why":"..."}]}`;
+  return `{"schemaVersion":"chapterflow-v21-authored","chapterId":"${chapterId}","number":${chapterNumber},"title":"...","readingTimeMinutes":7,"hook":"...(60-120 chars)","counterintuition":"...(1-2 sentences)","tryThisNow":"...(80-220 chars)","keyTakeaway":"...(140-220 chars)","breakdown":{"fastRead":"...(~400-700 chars)","deepRead":"...(~1200-1800 chars)","fullRead":"...(~2500-3500 chars)"},"examples":[{"exampleId":"ex01","title":"...","tags":["..."],"planSpec":{"domain":"...","audience":"...","stakes":"...","format":"...","requiredBeat":"..."},"scenario":"...(280-520 chars)","whatToDo":"...(120-240 chars)","whyItMatters":"...(120-240 chars)"}],"quiz":{"passingScorePercent":70,"questions":[{"questionId":"q01","prompt":"...","choices":["...","...","..."],"correctIndex":0,"explanation":"...(120-300 chars)","bloomsLevel":"apply","depthLevel":"standard"}]},"reviewCards":[{"cardId":"c01","front":"...(30-200 chars)","back":"...(80-400 chars)","difficulty":"medium"}],"implementationPlan":{"title":"...(2-5 word skill name)","coreSkill":"<skill name>. ...(2-4 sentences)","ifThenPlans":[{"context":"...","plan":"If X, then Y."}],"twentyFourHourChallenge":"...","weeklyPractice":"..."},"memorableLines":[{"text":"...(exact sentence from the chapter; >=1 carries the central image)","location":"breakdown.deepRead","why":"..."}]}`;
 }
 
-/** SELF-VERIFY block (4 checks; kept <= 1200 chars — pinned by test). */
+/** SELF-VERIFY block (7 checks; kept <= 1300 chars — pinned by test. The ceiling rose
+ *  from 1200 to 1300 for the CF-A HOOK, CF-D TERMS and CF-E TAKE-HOME items (5-7),
+ *  net of a KEYS/LENGTH tightening. The 1300 cap still fights rule-count dilution). */
 export function authorSelfVerify(bookId: string, chapterNumber: number): string {
   const relPath = authorChapterRelPath(bookId, chapterNumber);
-  return `SELF-VERIFY before declaring done — run ALL FOUR:
-1. KEYS — derive every quiz answer from your own prose alone, blind; each derived answer must land on the stored correctIndex, and each explanation must argue for exactly that choice. Any mismatch: re-key or rewrite the question.
-2. FACTS — confirm every claim, number, name, and case detail appears in the SOURCE PACKET above. Anything you cannot trace: delete or soften it. Never invent precision.
-3. LENGTH — confirm the rendered chapter is inside the brief's length budget. Over budget: cut, never compress by jargon. Under: deepen a real case, never pad.
+  return `SELF-VERIFY before declaring done — run ALL SEVEN:
+1. KEYS — derive every quiz answer from your prose alone, blind; each must hit the stored correctIndex, and its explanation argue for exactly that choice. Mismatch: re-key or rewrite.
+2. FACTS — confirm every claim, number, name, and case detail traces to the SOURCE PACKET above. Anything you cannot trace: delete or soften it. Never invent precision.
+3. LENGTH — confirm the chapter fits the brief's length budget. Over: cut, never compress by jargon. Under: deepen a real case, never pad.
 4. SCAFFOLD — scan every reader-facing field for scaffold vocabulary (slot names, shape labels, anchor ids, "Fact 2"-style numbering, internal " / " label seams). None may appear.
+5. HOOK — point at the stake (who loses/pays/misses what) and the fastRead's concrete beat before its first abstract term.
+6. TERMS — name the 2-4 terms this chapter stands on; confirm each got a plain first-use unpacking.
+7. TAKE-HOME — coreSkill opens with the skill name; no coined shorthand in actions; one memorableLine carries the central image, none reused.
 Then run: npx tsx src/cli.ts gate-chapter ${relPath} — 0 blockers required; fix and re-run until clean.`;
 }
 

@@ -85,6 +85,7 @@ import {
 } from "./chapterBlueprint.js";
 import { protectedSourceNames } from "./sourceNames.js";
 import { dealContentDeviceBans } from "./contentDeviceDeal.js";
+import { contentLemmaSet } from "../critics/intraBookFieldSimilarity.js";
 
 /** The blueprint compiler always deals a 9-question quiz (quizCount in compileChapterBlueprint);
  *  the brief's answerIndexPattern must be the same 9-slot deal. */
@@ -127,6 +128,15 @@ export type WriteChapterBriefsResult = {
 
 function oneLine(s: string): string {
   return s.replace(/\s+/g, " ").trim();
+}
+
+/** CF-C: a compact one-line learning-job phrase for the writer card — trailing
+ *  punctuation stripped and truncated so the NOT-THIS-CHAPTER line stays short even
+ *  when a coreMove is a full mechanism sentence. Returns "" for an empty job. */
+function compactJob(raw: string | undefined | null, maxLen = 100): string {
+  const t = oneLine(raw ?? "").replace(/[.;:]+\s*$/, "");
+  if (!t) return "";
+  return t.length <= maxLen ? t : `${t.slice(0, maxLen - 1).trimEnd()}…`;
 }
 
 /**
@@ -525,10 +535,25 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
   // chapters share the SAME budget list (per-chapter lists would let a noun saturate anyway).
   const frameworkNouns = hotFrameworkNouns(chapters.map((c) => c.packet));
 
+  // CF-C: each chapter's LEARNING JOB is its own coreMove (no twin field). Precompute
+  // every chapter's coreMove and the present-chapter order so each brief can carry its
+  // immediate neighbours' jobs (adjacentJobs) — the single-brief writer card renders the
+  // NOT-THIS-CHAPTER line from them. Derived purely from packets, so recompiles are stable.
+  const coreMoveByChapter = new Map<number, string>(
+    chapters.map(({ spec, packet }) => [spec.chapterNumber, briefCoreMove(packet, spec.chapterTitle)]),
+  );
+  const orderedNums = chapters.map((c) => c.spec.chapterNumber).sort((a, b) => a - b);
+
   const briefs: ChapterBriefV1[] = [];
   for (const { spec, packet } of chapters) {
     const n = spec.chapterNumber;
     const coreMove = briefCoreMove(packet, spec.chapterTitle);
+    const orderIdx = orderedNums.indexOf(n);
+    const prevJob = orderIdx > 0 ? coreMoveByChapter.get(orderedNums[orderIdx - 1]) : undefined;
+    const nextJob = orderIdx >= 0 && orderIdx < orderedNums.length - 1 ? coreMoveByChapter.get(orderedNums[orderIdx + 1]) : undefined;
+    const adjacentJobs = prevJob || nextJob
+      ? { ...(prevJob ? { prev: prevJob } : {}), ...(nextJob ? { next: nextJob } : {}) }
+      : undefined;
     const ownLabelsLower = new Set((labelsByChapter.get(n) ?? []).map((l) => l.toLowerCase()));
     const notYours = [...new Set(
       chapters
@@ -611,6 +636,7 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
       idiomFamilies: (rotations.get(n) ?? fallbackRotation(n)).idiomFamilies,
       shellRegister: (rotations.get(n) ?? fallbackRotation(n)).shellRegister,
       leadThread,
+      ...(adjacentJobs ? { adjacentJobs } : {}),
     });
   }
 
@@ -631,6 +657,22 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
   if (brief.architectureFamily) {
     const arch = ARCHITECTURE_INSTRUCTION[brief.architectureFamily as ArchitectureFamily];
     if (arch) lines.push(`- CHAPTER ARCHITECTURE (${brief.architectureFamily}): ${arch} This is the chapter's overall SHAPE — the sections below dress it; they do not override it.`);
+  }
+  // CF-C (2026-07-08): the chapter's declared LEARNING JOB (its coreMove) plus the
+  // neighbours' jobs, rendered as a NOT-THIS-CHAPTER line so adjacent chapters teach
+  // distinct capabilities instead of near-parallel passages (Findings 4/8). The
+  // writer owns THIS job; the named neighbour jobs are off-limits to re-teach.
+  {
+    const job = compactJob(brief.coreMove);
+    const prev = compactJob(brief.adjacentJobs?.prev, 64);
+    const next = compactJob(brief.adjacentJobs?.next, 64);
+    if (job) {
+      const owns: string[] = [];
+      if (prev) owns.push(`prev ch owns "${prev}"`);
+      if (next) owns.push(`next ch owns "${next}"`);
+      const tail = owns.length ? ` NOT THIS CHAPTER: ${owns.join("; ")} — mention only in passing, never re-teach.` : "";
+      lines.push(`- THIS CHAPTER'S JOB: ${job} — serve it through a DIFFERENT facet per example.${tail}`);
+    }
   }
   lines.push(
     `- OPENER: ${opener} Carry the SAME mode into the fastRead opening sentence.`,
@@ -1081,7 +1123,46 @@ export function validateChapterBriefs(bookId: string, roots: CompilerStoreRoots 
     }
   }
 
+  // LJ1 (CF-C) — adjacent chapters must teach DISTINCT learning jobs. Compares each
+  // adjacent pair's coreMove (the chapter's learning JOB — no twin field) by content-
+  // lemma Jaccard; a near-duplicate pair surfaces ONE advisory naming both chapters.
+  // ADVISORY only — the pipeline assigns distinct EMPHASIS, it never invents separation,
+  // so this must never block (source chapters legitimately overlap). Scoped to v3
+  // (machine-compiled) briefs, mirroring BR8: manual-brief books are out of scope.
+  const ljBriefs = briefs
+    .filter(({ brief }) => brief.rotationSchemaVersion && oneLine(brief.coreMove ?? ""))
+    .sort((a, b) => a.n - b.n);
+  for (let i = 0; i + 1 < ljBriefs.length; i++) {
+    const a = ljBriefs[i];
+    const b = ljBriefs[i + 1];
+    const la = contentLemmaSet(a.brief.coreMove);
+    const lb = contentLemmaSet(b.brief.coreMove);
+    if (la.size < LEARNING_JOB_MIN_LEMMAS || lb.size < LEARNING_JOB_MIN_LEMMAS) continue;
+    const sim = lemmaJaccard(la, lb);
+    if (sim >= LEARNING_JOB_ADJACENT_JACCARD) {
+      findings.push({
+        checkId: "LJ1.adjacent_learning_job",
+        severity: "advisory",
+        message: `chapters ${a.n} and ${b.n} declare near-duplicate learning jobs (coreMove content-lemma Jaccard ${sim.toFixed(2)} ≥ ${LEARNING_JOB_ADJACENT_JACCARD}) — adjacent chapters should teach DISTINCT capabilities. Ch${a.n}: "${oneLine(a.brief.coreMove).slice(0, 80)}"; Ch${b.n}: "${oneLine(b.brief.coreMove).slice(0, 80)}". Give one chapter a different facet/emphasis of the shared material, or reassign a case so their jobs diverge.`,
+      });
+    }
+  }
+
   return { bookId: normalized, passed: !findings.some((f) => f.severity === "blocker"), findings };
+}
+
+/** LJ1 (CF-C) tuning. coreMoves are short mechanism sentences, so a content-lemma
+ *  Jaccard this high means the two chapters restate the SAME move — not merely shared
+ *  domain vocabulary (two chapters may share terms while teaching different jobs). The
+ *  real gold corpus (start-with-why, 14 ch) tops out at 0.19 within-chapter and its
+ *  adjacent coreMoves sit far below 0.6; the crafted duplicate-job fixture clears it. */
+const LEARNING_JOB_ADJACENT_JACCARD = 0.6;
+const LEARNING_JOB_MIN_LEMMAS = 4;
+function lemmaJaccard(a: Set<string>, b: Set<string>): number {
+  if (a.size === 0 || b.size === 0) return 0;
+  let inter = 0;
+  for (const x of a) if (b.has(x)) inter++;
+  return inter / (a.size + b.size - inter);
 }
 
 export function formatChapterBriefGateReport(report: ChapterBriefGateReport): string {

@@ -10,6 +10,7 @@ import { findSourceSidecar } from "../librarian/sourceSidecars.js";
 import { loadVenuePalette } from "../librarian/venuePlan.js";
 import { finding, truncate } from "./shared.js";
 import { normalizeSurfaceFrame } from "./bookPatternAudit.js";
+import { isAphorismShaped } from "./crossBookSignatureAudit.js";
 import { checkQuizChoiceLabelUniform } from "./quizQuality.js";
 
 /** A book-level finding that names the offending chapters structurally (not just
@@ -422,6 +423,123 @@ export function checkBookActionContainerReuse(chapters: ChapterV21[]): BookRepet
 // with ALL choices Title-Case labelled, so the QC barrier + repair brief can
 // name them. NOT density-gated — the signal is zero across the entire clean+gold
 // corpus, so any chapter carrying it is a true positive. SHADOW major.
+// ── BP34 — within-book aphorism repetition (the CF-F / Finding-11 leak) ───────
+//
+// high-output-management shipped the aphorism "Agreement nods; commitment signs"
+// as a lede/coreSkill line in FOUR chapters (2/5/8/11); the previously published
+// `execution` carried it in two more. No existing gate saw it: the phrase is 4
+// words (below crossBookSignatureAudit's 6-word floor), it lands in fields the
+// cross-book audit never scanned (coreSkill, counterintuition, memorableLines),
+// BP10/BP12 only scan full breakdown PARAGRAPHS (not the one-sentence lede), and
+// the banned-phrase list didn't carry it. A reader cycling chapters meets the
+// same minted one-liner over and over.
+//
+// BP34 scans the reader-facing sentence surfaces (memorableLines,
+// counterintuition, coreSkill, keyTakeaway, tryThisNow, and every breakdown-tier
+// sentence), normalizes each — unifying case, terminal punctuation, and `;`↔`,`
+// so the semicolon and comma variants collapse — and fires ONE advisory (MINOR)
+// per sentence that recurs verbatim across ≥ 3 chapters. Threshold 3 is
+// deliberate: a single intentional callback (2 chapters) stays legal.
+//
+// A repeated line only counts if it is APHORISM-SHAPED (a semicolon antithesis
+// or a balanced two-clause couplet — the same shape gate the cross-book audit
+// uses; see isAphorismShaped). This is the deliberate precision bar: books and
+// the reference corpus legitimately REPEAT plain crafted/structural lines — the
+// fullReadSkeletonPlan hinge ("There is a limit." in 12/14 start-with-why
+// chapters), a book-wide coreSkill, a section refrain — and scanning every
+// repeated sentence would flood the advisory and false-positive on gold (the SC9
+// trap). The minted aphorism this campaign targets ("Agreement nods; commitment
+// signs", in high-output-management ch2/5/8/11) IS aphorism-shaped, so the shape
+// gate keeps it while dropping the plain repeats. Plain templated-line reuse is a
+// separate defect class handled by BP1/BP10/BP12 and the model sweep. Advisory
+// only — the semantic panel is the true gate; this names the chapters for repair.
+const APHORISM_MIN_WORDS = 4;
+const APHORISM_MAX_WORDS = 25;
+const APHORISM_MIN_CHAPTERS = 3;
+
+/** Unify case, terminal punctuation, and `;`↔`,` so punctuation-variant twins of
+ *  the same minted line collapse to one key. Internal words are preserved. */
+function normalizeAphorism(sentence: string): string {
+  return sentence
+    .toLowerCase()
+    .replace(/;/g, ",")            // `;` ↔ `,` — collapse the two antithesis forms
+    .replace(/[.!?]+\s*$/g, "")    // drop terminal punctuation
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function wordCount(sentence: string): number {
+  return sentence.trim().split(/\s+/).filter(Boolean).length;
+}
+
+function splitSentences(text: string): string[] {
+  return text
+    .split(/(?<=[.!?])\s+/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+/** The reader-facing surfaces an aphorism gets minted into. BP10/BP12 catch
+ *  whole PARAGRAPH reuse; a minted one-liner hides as ONE sentence inside a
+ *  per-chapter-distinct paragraph (in high-output-management it sat at sentence
+ *  index 4–20 of the breakdown tiers, never the lede), so paragraph matching
+ *  never sees it. BP34 works at the SENTENCE level across the short fields and
+ *  every breakdown-tier sentence. */
+function aphorismCandidateSentences(chapter: ChapterV21): Array<{ field: string; sentence: string }> {
+  const out: Array<{ field: string; sentence: string }> = [];
+  // Admit only aphorism-shaped sentences — the shape gate is what keeps this
+  // FP-clean on plainly-repeated crafted/structural lines (see the header note).
+  const push = (field: string, text: string | undefined) => {
+    if (!text) return;
+    for (const s of splitSentences(text)) if (isAphorismShaped(s)) out.push({ field, sentence: s });
+  };
+
+  push("counterintuition", chapter.counterintuition);
+  push("keyTakeaway", chapter.keyTakeaway);
+  push("tryThisNow", chapter.tryThisNow);
+  push("implementationPlan.coreSkill", chapter.implementationPlan?.coreSkill);
+  for (const m of chapter.memorableLines ?? []) push("memorableLines", m?.text);
+  push("breakdown.fastRead", chapter.breakdown?.fastRead);
+  push("breakdown.deepRead", chapter.breakdown?.deepRead);
+  push("breakdown.fullRead", chapter.breakdown?.fullRead);
+
+  return out;
+}
+
+export function checkBookAphorismRepetition(chapters: ChapterV21[]): BookRepetitionFinding[] {
+  // normalized sentence → { chapters, a readable sample of the line + its fields }
+  const byLine = new Map<string, { chapters: Set<number>; sample: string; fields: Set<string> }>();
+  for (const ch of chapters) {
+    for (const { field, sentence } of aphorismCandidateSentences(ch)) {
+      const wc = wordCount(sentence);
+      if (wc < APHORISM_MIN_WORDS || wc > APHORISM_MAX_WORDS) continue;
+      const key = normalizeAphorism(sentence);
+      if (!key) continue;
+      const rec = byLine.get(key) ?? { chapters: new Set<number>(), sample: sentence, fields: new Set<string>() };
+      // chapters is a Set, so a line repeated across fields in one chapter counts once.
+      rec.chapters.add(ch.number);
+      rec.fields.add(field);
+      byLine.set(key, rec);
+    }
+  }
+
+  const findings: BookRepetitionFinding[] = [];
+  for (const rec of byLine.values()) {
+    const chs = [...rec.chapters].sort((a, b) => a - b);
+    if (chs.length < APHORISM_MIN_CHAPTERS) continue;
+    findings.push({
+      ...finding(
+        "BP34.aphorism_repetition",
+        "minor",
+        `the line "${truncate(rec.sample, 90)}" recurs verbatim (punctuation-variants unified) in ${chs.length} chapters (${chs.map((n) => `ch${n}`).join(", ")}), across ${[...rec.fields].join(", ")}. A minted aphorism reused across the book reads as house voice, not chapter teaching — give each chapter its own chapter-native line (2 chapters is a legal callback; 3+ is repetition).`,
+        rec.sample,
+      ),
+      chapters: chs,
+    });
+  }
+  return findings.sort((a, b) => b.chapters.length - a.chapters.length);
+}
+
 export function checkBookQuizChoiceLabelUniform(chapters: ChapterV21[]): BookRepetitionFinding[] {
   const hits: number[] = [];
   for (const ch of chapters) {

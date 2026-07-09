@@ -24,6 +24,7 @@ import { loadBannedPhrases } from "./shared.js";
 import { normalizeConvergenceKey } from "./experiencePlan.js";
 import {
   checkBookActionContainerReuse,
+  checkBookAphorismRepetition,
   checkBookCallbackFrameReuse,
   checkBookExemplarChapterReuse,
   checkBookQuizChoiceLabelUniform,
@@ -554,6 +555,20 @@ export function runBookGate(bookId: string, chapters: ChapterV21[], options: Boo
   // valence-telegraph). SHADOW major; zero across the clean+gold corpus. Carries
   // chapters[] so the barrier + repair brief can name the offending chapters.
   for (const f of checkBookQuizChoiceLabelUniform(chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+      chapters: f.chapters,
+    });
+  }
+  // ── BP34 — within-book aphorism repetition (CF-F / Finding 11). The minted
+  // one-liner ("Agreement nods; commitment signs") reused as a lede/coreSkill
+  // across ≥3 chapters, invisible to BP10/BP12 (paragraph-scale) and to the
+  // banned-phrase list before this campaign. Advisory (MINOR) — surfaces the line
+  // and names the chapters; never blocks (the semantic panel is the true gate).
+  for (const f of checkBookAphorismRepetition(chapters)) {
     findings.push({
       catalogId: f.checkId,
       severity: f.severity as "blocker" | "major" | "minor",

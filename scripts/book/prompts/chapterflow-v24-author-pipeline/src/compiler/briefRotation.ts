@@ -108,7 +108,7 @@ export const IDIOM_INSTRUCTION: Record<IdiomFamily, string> = {
   "artifact-speak": "point at the physical thing — 'the date written where the team reads it'",
   "cost-speak": "price the default — 'every unowned promise costs a week of pretending'",
   "question-speak": "carry it as the question someone asks — 'who checks, and when?'",
-  "contrast-speak": "set it against its counterfeit — 'agreement nods; commitment signs'",
+  "contrast-speak": "set it against its counterfeit with a chapter-native antithesis",
   "motion-speak": "verbs of travel — 'the promise comes back on a date, or it drifts'",
   "ledger-speak": "counts and balances — 'three promises out, one return date set'",
   "sensory-speak": "what a bystander would see or hear in the room when it works",

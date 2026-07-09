@@ -8,6 +8,7 @@ import { WEEKLY_PRACTICE_FORMS } from "../src/librarian/weeklyPracticePlan.js";
 import { FULLREAD_BOUNDARY_BEATS } from "../src/librarian/fullReadSkeletonPlan.js";
 import { TRIGGER_CLASSES } from "../src/librarian/timingPlan.js";
 import { loadPedagogyPalettes } from "../src/librarian/pedagogyPlan.js";
+import { IDIOM_INSTRUCTION, SHELL_INSTRUCTION } from "../src/compiler/briefRotation.js";
 import { loadBannedPhrases } from "../src/critics/shared.js";
 
 // WS-3 — deal↔gate invariant (the generalizable fix). An allocator must never DEAL
@@ -42,6 +43,12 @@ test("no allocator directive contains a hard-banned phrase (deal↔gate consiste
       { label: `quiz.ex:${q.id}`, text: q.example ?? "" },
     ]),
     ...ped.hookShapes.map((h: any) => ({ label: `hookShape:${h.id}`, text: h.definition ?? "" })),
+    // Brief-rotation idiom/shell instructions — the family that minted "agreement
+    // nods; commitment signs" as a contrast-speak EXAMPLE (CF-F / Finding 11). An
+    // instruction that literally hands the writer a phrase the critic bans is the
+    // same deal↔gate contradiction this guard exists to prevent.
+    ...Object.entries(IDIOM_INSTRUCTION).map(([id, text]) => ({ label: `idiom:${id}`, text })),
+    ...Object.entries(SHELL_INSTRUCTION).map(([id, text]) => ({ label: `shell:${id}`, text })),
   ];
   const violations: string[] = [];
   for (const { label, text } of directives) {

@@ -48,6 +48,8 @@ import { checkExampleSourceGrounding, checkChapterProvenance, loadChapterSidecar
 import { checkTestimonialEvidence, checkQuizKeyTestimonial } from "./evidenceIntegrity.js";
 import { checkSceneConcreteness } from "./sceneConcreteness.js";
 import { checkExampleCraft } from "./exampleCraft.js";
+import { checkExampleRegister } from "./exampleRegister.js";
+import { checkExampleLessonRepetition } from "./intraChapterExampleLesson.js";
 import { checkOutcomeVariety } from "./outcomeVariety.js";
 import { checkGroundedNumbers } from "./groundedNumbers.js";
 import { checkInventedWitness } from "./evidenceWitness.js";
@@ -230,6 +232,28 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // corpus (the both-absent guard). See critics/exampleCraft.ts +
   // tests/example-craft.test.ts.
   "C29.example_thinness": "minor",
+  // C30 — within-chapter example-lesson repetition (advisory, CF-C 2026-07-08).
+  // ≥2 of a chapter's example whyItMatters pairs restate the SAME lesson at high
+  // content-lemma overlap — examples that dramatize different scenes but teach one
+  // lesson (HOM ch7's evidence trio), the gap QUALITY BAR rule 6 left unenforced.
+  // MINOR/SHADOW + V2-GATED: the deterministic lexical floor for the semantic
+  // example_coherence bar axis; never blocks, zero-effect on v1/synthetic (no
+  // sidecar). See critics/intraChapterExampleLesson.ts +
+  // tests/intra-chapter-example-lesson.test.ts.
+  "C30.example_lesson_repetition": "minor",
+  // C31 — example evaluator-register (advisory, CF-B 2026-07-08). ≥3 of a chapter's
+  // example fields OPEN with a short (≤6-word) evaluator question answered in the
+  // next clause ("What changed? X.", "Why does it work? Y.") — analyst-card register
+  // grading the scene instead of narrating it (HOM ch8's eight evaluator openers vs
+  // ch7's zero). The deterministic complement to CF-B's rule-7 register rewrite, the
+  // same disease the ~435 label-prefix strip patched in another costume. MINOR/SHADOW:
+  // example voice is semantic and gates on the example_coherence bar axis + the
+  // blinded reader; C31 surfaces the mechanical floor as repair-routable QC debt and
+  // never blocks. Opening-position + answered + ≤6-word guards keep it narrow (lexical
+  // gates measured INVERTED before — CHB14/15/17). NOT zero-FP on the gold corpus (the
+  // tic leaked into start-with-why too); the pin asserts the MEASURED count. See
+  // critics/exampleRegister.ts + tests/example-register.test.ts.
+  "C31.example_evaluator_register": "minor",
   E4: "major",
   A11: "blocker",
   A12: "blocker",
@@ -400,6 +424,11 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // choices' gender unambiguously conflict (name-swap residue). SHADOW major (zero
   // across the clean+gold corpus; not in ENFORCED_MAJOR).
   "BP32.quiz_pronoun_referent_mismatch": "major",
+  // BP34 — within-book aphorism repetition (CF-F / Finding 11): a minted one-liner
+  // reused as a lede/coreSkill across ≥3 chapters (e.g. "Agreement nods; commitment
+  // signs" in high-output-management ch2/5/8/11). Advisory only — a deliberate 2-
+  // chapter callback stays legal; 3+ is house-voice repetition the reader notices.
+  "BP34.aphorism_repetition": "minor",
   // Source grounding (May 2026 SWW round-1 root cause: invented scenarios with
   // zero reference to real source cases). SHADOW=major. A mid-session promotion to
   // blocker was REVERTED here: the verification pass proved the "zero-FP on gold"
@@ -962,6 +991,18 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   for (const f of checkExampleCraft(chapter)) {
     push(f.checkId as string, "example-craft", f.message, f.evidence);
   }
+  // C30 — within-chapter example-lesson repetition (advisory, v2-gated). ≥2 example
+  // pairs whose whyItMatters restate one lesson at high content overlap — the
+  // deterministic floor under QUALITY BAR rule 6 ("each example a DIFFERENT facet").
+  for (const f of checkExampleLessonRepetition(chapter)) {
+    push(f.checkId as string, "example-lesson", f.message, f.evidence);
+  }
+  // C31 — example evaluator-register (advisory, CF-B). ≥3 example fields open with a
+  // short evaluator question answered in the next clause ("What changed? X.") —
+  // analyst-card register instead of a narrated scene (HOM ch8's evaluator openers).
+  for (const f of checkExampleRegister(chapter)) {
+    push(f.checkId as string, "example-register", f.message, f.evidence);
+  }
   // GN1 — ungrounded statistical figures (fabricated percentages/multipliers/
   // magnitudes) in reader prose. v2-gated (returns [] on a v1 chapter → skip);
   // SHADOW=major. Complements the semantic factual_accuracy axis deterministically.
@@ -1206,11 +1247,11 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   const minors = findings.filter((f) => f.severity === "minor");
 
   // The gate fails on any blocker OR any ENFORCED major (a curated, clean-corpus-
-  // calibrated subset of majors that block the write self-gate). ENFORCED_MAJOR is
-  // currently empty — see its definition for why no quality major is enforceable —
-  // so this is presently equivalent to `blockers.length === 0`, but the mechanism
-  // is wired and test-guarded so a genuinely-precise critic can be promoted in one
-  // line without touching every `gate.passed` consumer.
+  // calibrated subset of majors that block the write self-gate). ENFORCED_MAJOR
+  // currently holds EW1 + SEAM1 + SEAM2 — see its definition for the mechanical
+  // rung-4 bar (clean-zero, gold-zero, ≥2 TPs) an id must clear. The mechanism is
+  // test-guarded so a genuinely-precise critic can be promoted in one line without
+  // touching every `gate.passed` consumer.
   const enforcedMajors = majors.filter((f) => ENFORCED_MAJOR.has(f.catalogId));
 
   return {
