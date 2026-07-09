@@ -25,6 +25,7 @@ import {
   waiverPath,
 } from "../src/qc/majorDisposition.js";
 import { sourceVerifyRecordPath } from "../src/critics/sourceVerify.js";
+import { firstMachineryExampleTag, isMachineryExampleTag } from "../src/lib/readerContent.js";
 import type { ChapterV21 } from "../src/types.js";
 
 const BOOK = "zz-fixture-promote";
@@ -795,6 +796,61 @@ test("strip removes writer-INVENTED *SourceAnchorIds variants — strip ⊇ veri
   const json = JSON.stringify(shipped);
   assert.doesNotMatch(json, /SourceAnchorIds?"/, "every *SourceAnchorId(s) key is stripped, whatever the prefix");
   assert.equal(shipped.breakdown.fastRead, ch.breakdown.fastRead, "reader content survives");
+});
+
+// ── CF-I machinery-tag strip (Fix D) — dealt beat labels shipped as example display
+// tags (live: multipliers ch07 tags "early signal" / "return point"). The strip
+// filters them; firstMachineryExampleTag is the verifier-side mirror. ──
+
+test("strip removes machinery watchlist example tags (multipliers-ch07 style) and keeps benign tags — strip ⊇ verifier", () => {
+  const ch = makeChapter(BOOK, 9) as any;
+  // The live ch07 shape: dealt beat labels mixed into otherwise-benign display tags.
+  ch.examples[0].tags = ["HarperCollins", "metadata", "early signal"];
+  ch.examples[1].tags = ["return point", "one behavior", "partial"];
+  ch.examples[2].tags = ["rescue", "judgment", "repair"];        // fully benign — untouched
+  ch.examples[3].tags = ["Late Catch"];                          // case-insensitive; emptied list stays []
+  ch.examples[4].tags = ["reckoning"];                           // single-word surface as the WHOLE tag → dropped
+  // Measured false positive that pins the single-word scoping: dare-to-lead ch8's
+  // "reckoning, rumble, revolution" is the book's OWN framework vocabulary — a longer
+  // tag merely CONTAINING a single-word surface is legitimate reader content.
+  ch.examples[5].tags = ["reckoning, rumble, revolution"];
+
+  const before = JSON.stringify(ch.examples.map((e: any) => e.tags));
+  const shipped = stripInternalFields(ch) as any;
+  assert.deepEqual(shipped.examples[0].tags, ["HarperCollins", "metadata"], "the machinery tag is dropped, the rest survive");
+  assert.deepEqual(shipped.examples[1].tags, ["one behavior", "partial"], "'return point' is dropped");
+  assert.deepEqual(shipped.examples[2].tags, ["rescue", "judgment", "repair"], "benign tags are untouched");
+  assert.deepEqual(shipped.examples[3].tags, [], "an emptied tag list ships as an empty array");
+  assert.deepEqual(shipped.examples[4].tags, [], "a single-word surface as the whole tag is dropped");
+  assert.deepEqual(shipped.examples[5].tags, ["reckoning, rumble, revolution"], "a legitimate tag that merely contains a single-word surface survives (dare-to-lead ch8)");
+  // strip ⊇ verifier: the stripped chapter provably carries no machinery tag.
+  assert.equal(firstMachineryExampleTag(shipped), null, "the verifier mirror finds nothing after the strip");
+  assert.equal(firstMachineryExampleTag(ch), "early signal", "the mirror finds the first machinery tag on the un-stripped chapter");
+  assert.equal(JSON.stringify(ch.examples.map((e: any) => e.tags)), before, "the strip works on a copy — the loose chapter is not mutated");
+  // The matcher itself: word-boundary, not substring, for multi-word surfaces.
+  assert.equal(isMachineryExampleTag("nearly signal"), false, "no substring matching across word boundaries");
+  assert.equal(isMachineryExampleTag("the early signal beat"), true, "a multi-word surface inside a longer tag still matches");
+});
+
+test("verifyProductionPackage flags a machinery example tag as PPKG.machinery_tag (BLOCKER — mirrors the planSpec forbidden-field severity)", () => {
+  const mkPkg = (tags: string[]) => ({
+    schemaVersion: "chapterflow-v21-authored",
+    packageId: "zz-machinery-tag-v21-1",
+    createdAt: "2026-07-09T00:00:00.000Z",
+    contentOwner: "chapterflow",
+    book: { bookId: "zz-machinery-tag", title: "T", author: "A" },
+    chapters: [{ chapterId: "zz-machinery-tag-ch01", number: 1, title: "C1", examples: [{ exampleId: "ex01", title: "E", tags }] }],
+  });
+  const flagged = verifyProductionPackage({ packageData: mkPkg(["HarperCollins", "early signal"]) });
+  assert.equal(flagged.ok, false, "a package with a machinery tag must not verify");
+  const finding = flagged.findings.find((f) => f.checkId === "PPKG.machinery_tag");
+  assert.ok(finding, `expected PPKG.machinery_tag, got [${flagged.findings.map((f) => f.checkId).join(", ")}]`);
+  assert.equal(finding!.severity, "blocker", "the machinery-tag check mirrors the forbidden-field blocker severity");
+  assert.equal(finding!.actual, "early signal", "the finding names the offending tag");
+  assert.equal((finding as any).chapterNumber, 1, "the finding names the chapter");
+
+  const clean = verifyProductionPackage({ packageData: mkPkg(["HarperCollins", "metadata"]) });
+  assert.ok(!clean.findings.some((f) => f.checkId === "PPKG.machinery_tag"), "benign tags produce no machinery-tag finding");
 });
 
 // ── Safe canonical chapter-file loader (CHSET.chapter_file_unreadable) ────────

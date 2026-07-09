@@ -45,6 +45,22 @@ test("BP34 fires when the same aphorism recurs in ≥3 chapters (semicolon + com
   assert.match(bp34[0].message, /agreement nods/i);
 });
 
+test("BP34 (CF-I-1) now scans the HOOK field — an aphorism minted into ≥3 hooks fires", () => {
+  // `hook` was added to the aphorism scan set in CF-I-1 (multipliers ch01/ch06 shipped a
+  // verbatim hook sentence at 2 chapters — legal, but the hook was outside the field set).
+  const book = "zz-fixture-bp34-hook";
+  const chapters = [1, 2, 3].map((n) => makeChapter(book, n));
+  chapters.forEach((c) => { c.memorableLines = []; });
+  chapters[0].hook = `${APHORISM} A chapter-specific opener follows here.`;
+  chapters[1].hook = `${APHORISM_COMMA} A different chapter-specific opener follows.`;
+  chapters[2].hook = `agreement nods; commitment signs. And a third distinct opener.`;
+  const findings = checkBookAphorismRepetition(chapters);
+  const bp34 = findings.filter((f) => f.checkId === "BP34.aphorism_repetition");
+  assert.equal(bp34.length, 1, `expected one BP34 finding from the hook field, got ${JSON.stringify(bp34)}`);
+  assert.deepEqual(bp34[0].chapters, [1, 2, 3]);
+  assert.match(bp34[0].message, /hook/, "the finding attributes the hook field");
+});
+
 test("BP34 stays silent at 2 chapters — a deliberate callback is legal", () => {
   const book = "zz-fixture-bp34-pair";
   const chapters = [1, 2, 3].map((n) => makeChapter(book, n));

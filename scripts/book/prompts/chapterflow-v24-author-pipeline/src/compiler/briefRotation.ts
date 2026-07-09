@@ -243,11 +243,11 @@ export const ARCHITECTURE_INSTRUCTION: Record<ArchitectureFamily, string> = {
   "single-deep-case": "Build the WHOLE chapter on ONE case, developed end to end. Do NOT add a 'second setting proves it travels' case or a third 'edge' case, and do NOT staff it with a chorus of invented role+name proxies — one real situation, followed all the way through.",
   "two-way-contrast": "Structure the chapter as exactly TWO cases held in tension — the contrast itself is the lesson. No third edge case, no proxy chorus; let the two do all the work.",
   "research-lead": "Open on a study, mechanism, or measured finding and let the IDEA drive; named company cases are secondary and sparse. Do NOT open on a famous founder/brand, and keep invented cast to at most one.",
-  "failure-autopsy": "Dissect ONE failure and exactly what it cost, step by step. No frictionless-win second case, and do NOT close on the 'proof must come back / return point' reversal drill — end on the lesson the failure teaches.",
+  "failure-autopsy": "Dissect ONE failure and exactly what it cost, step by step. No frictionless-win second case, and do NOT close on the stock 'drag the proof back' reversal drill — end on the lesson the failure teaches.",
   "everyday-first-person": "Ground the chapter in the READER's own moment — write to 'you', a decision they actually face. No famous brand/founder anchor and no invented proxy cast; the reader is the protagonist.",
   "misconception-reversal": "Open on the specific belief the reader already holds, then overturn it with argument and one clean illustration. Argument-driven — do NOT run the 3-anchor 'concrete → travels → edge' sequence.",
   "historical-narrative": "Tell ONE case as a chronological story with real dates, actors, and stakes. No invented stand-in characters and no second/third mirror case — the single narrative carries it.",
-  "direct-conceptual": "Frame the idea directly and unfold it with ONE worked illustration. Examples SUPPORT the concept rather than lead it; skip the named-anchor parade and the return-point drill.",
+  "direct-conceptual": "Frame the idea directly and unfold it with ONE worked illustration. Examples SUPPORT the concept rather than lead it; skip the named-anchor parade and the stock reversal-drill close.",
 };
 
 export const PRACTICE_INSTRUCTION: Record<PracticeShape, string> = {
@@ -489,10 +489,10 @@ export type ExampleEntryPoint = (typeof EXAMPLE_ENTRY_POINTS)[number];
 export const ENTRY_INSTRUCTION: Record<ExampleEntryPoint, string> = {
   "at-the-demand": "open at the moment the demand/standard is stated",
   "mid-behavior": "open mid-action, demand already in the past — no setup",
-  "at-the-return-moment": "open AT the check-in/return moment itself",
+  "at-the-return-moment": "open AT the check-in itself, where the earlier commitment is answered for",
   "aftermath-looking-back": "open after it's over, tracing back what happened",
   "outsider-arrives": "open when someone outside the room first feels the effect",
-  "before-anyone-notices": "open on the early signal nobody has flagged yet",
+  "before-anyone-notices": "open on what is quietly going wrong before anyone flags it",
 };
 
 /** How the example RESOLVES. failure|partial are dealt ONLY to friction-flagged
@@ -511,8 +511,8 @@ export const OUTCOME_INSTRUCTION: Record<ExampleOutcome, string> = {
   "clean-win": "the move works — but earn it, show the cost paid",
   "failure": "the move is skipped or botched and the miss lands",
   "partial": "the move half-works; name what stayed broken",
-  "averted-late": "headed for a miss, caught late — barely",
-  "still-open": "ends unresolved; the return point is set but not yet met",
+  "averted-late": "headed for a miss, pulled back barely in time",
+  "still-open": "ends unresolved — cut away before anyone learns how it turned out",
 };
 
 /** The rhetoric INSIDE the app's fixed whatToDo/whyItMatters labels (the labels are

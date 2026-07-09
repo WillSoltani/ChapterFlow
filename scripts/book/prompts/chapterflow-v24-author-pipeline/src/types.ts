@@ -353,6 +353,16 @@ export type CriticCheckId =
   // Exotic / off-standard name density — the example cast is mostly off the
   // American/Canadian commonality oracle (advisory).
   | "C27.exotic_name_density"
+  // CF-I machinery-leakage family (advisory). Contract/provenance vocabulary and
+  // dealt beat labels leaking into reader content: a pipeline artifact narrated as
+  // the example protagonist (C32), briefRotation entry/outcome beat labels surfacing
+  // as reader prose (C33, per-chapter + book-level), a date/citation standing in for
+  // an opening scene (C34), and a quiz key rewarding source-citation over application
+  // (C35). See critics/{metaCaseProtagonist,beatVocabularyEcho,citationDateDoorway,lineageKeyQuiz}.ts.
+  | "C32.meta_case_protagonist"
+  | "C33.beat_vocabulary_echo"
+  | "C34.citation_date_doorway"
+  | "C35.lineage_key_quiz"
   // Uniform success — every example resolves in clean instant success, no
   // friction-bearing scene anywhere in the chapter's slate (advisory).
   | "C28.uniform_success"

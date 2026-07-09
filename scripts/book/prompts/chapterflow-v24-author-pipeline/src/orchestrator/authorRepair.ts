@@ -26,6 +26,7 @@ import type { AuthorIo } from "./authorRun.js";
 import { AUTHOR_WRITER_EFFORT, AUTHOR_WRITER_MODEL, authorWriteContractFindings, readLeadOverrideFromDisk } from "./authorRun.js";
 import { applyLeadThreadOverride } from "../compiler/chapterBrief.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
+import { registerAdvisoryFixLines } from "../critics/registerAdvisories.js";
 import { restoreAuthorProvenance } from "../qc/sessionProvenance.js";
 
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -166,6 +167,7 @@ export function buildRepairCard(opts: {
 }): string {
   const { chapter, brief, complaints, scopes, relPath } = opts;
   const criteria = [...new Set(complaints.map(stripRemedyClauses))].map((c) => `- ${c}`).join("\n");
+  const regAdvisories = registerAdvisoryFixLines(chapter);
   const dealt: string[] = [];
   if (scopes.includes("quiz") && brief?.quizStemShapes?.length) {
     dealt.push(`Quiz deals still bind: stem shapes ${brief.quizStemShapes.join(", ")}; distractor failure modes ${(brief.quizFailureModes ?? []).join(", ")}; fact order ${(brief.questionFactOrder ?? []).join(",")}; answer-index pattern unchanged. HARD length caps: the key may be the uniquely LONGEST choice in at most ONE of the 9 questions and uniquely SHORTEST in at most FOUR — land keys mid-length.`);
@@ -189,6 +191,12 @@ export function buildRepairCard(opts: {
     ``,
     ...(scopes.includes("quiz") ? [`MEASURED QUIZ EVIDENCE (char counts on the current bytes):`, ...quizTellEvidence(chapter), ``] : []),
     ...(dealt.length ? [`DEALT CONSTRAINTS (these still bind your edits):`, ...dealt.map((d) => `- ${d}`), ``] : []),
+    // CF-I-2 (owner decision 4): surface the C31–C35 register/machinery advisories on
+    // the current bytes. ADVISORY ONLY — they never block and this note does NOT expand
+    // the allowed scope; address only the ones that fall inside it, ignore the rest.
+    ...(regAdvisories.length
+      ? [`ADVISORY REGISTER NOTES (never block; do NOT expand scope — fix only those inside your ALLOWED SCOPE):`, ...regAdvisories, ``]
+      : []),
     `RULES:`,
     `- Never reuse a reviewer's phrasing inside content fields — reviewer wording in a key or distractor is a fresh tell.`,
     `- Never change the NUMBER of examples, questions, choices, or cards.`,

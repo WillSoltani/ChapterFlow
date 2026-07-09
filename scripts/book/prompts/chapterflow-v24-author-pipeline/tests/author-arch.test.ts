@@ -38,6 +38,7 @@ import {
   doAuthorWrite,
   ROUND_TIMER_MINUTES,
 } from "../src/orchestrator/authorRun.js";
+import { questionKeysOnLineage } from "../src/critics/lineageKeyQuiz.js";
 import {
   AUTHOR_REGEN_CAP,
   acceptanceRecordPath,
@@ -469,8 +470,10 @@ test("author card: W1 QUALITY BAR (all four house rules) rides the ALWAYS-SENT c
   // item 7 — then TRIMMED back (attention economy): the campaign's net delta on
   // the four card constants is +1,395 chars (fixture card measures ~18.2k).
   // The variable parts (brief md + packet projection) are represented by the fixture.
-  assert.ok(card.length <= 18700, `W1 card length budget: card must be <= 18,700 chars, got ${card.length}`);
-  console.log(`  [measure] W1 card with QUALITY BAR: ${card.length} chars (budget 18,700)`);
+  // 2026-07-09: the pin rose 18,700 → 18,820 for the CF-I campaign's +599 card delta
+  // (CF-I-2 register rule +391, CF-I-3 quiz application-over-lineage +208); ≤19,000 cap.
+  assert.ok(card.length <= 18820, `W1 card length budget: card must be <= 18,820 chars, got ${card.length}`);
+  console.log(`  [measure] W1 card with QUALITY BAR: ${card.length} chars (budget 18,820)`);
 });
 
 // ── CF-A (G1): hook carries a stake + fastRead doorway ─────────────────────────
@@ -489,8 +492,9 @@ test("CF-A: rule 8 HOOK CARRIES A STAKE + DOORWAY rides the ALWAYS-SENT card; mo
   assert.ok(AUTHOR_QUALITY_BAR.includes('PASS: "It shipped late because no one owned the date."'), "rule 8 carries the passing micro-example");
   assert.equal(AUTHOR_QUALITY_BAR.split(/\bFAIL:/).length - 1, 1, "exactly one FAIL micro-example in rule 8");
   assert.equal(AUTHOR_QUALITY_BAR.split(/\bPASS:/).length - 1, 1, "exactly one PASS micro-example in rule 8");
-  // The doorway rule for the fastRead opening.
-  assert.match(card, /DOORWAY: land one concrete fastRead beat BEFORE the first abstract term/i, "doorway orders concrete-beat-before-abstraction");
+  // The doorway rule for the fastRead opening (CF-I-2 tightened the beat definition
+  // between "beat" and "BEFORE"; the concrete-beat-before-abstraction order stands).
+  assert.match(card, /DOORWAY: land one concrete fastRead beat .*BEFORE the first abstract term/i, "doorway orders concrete-beat-before-abstraction");
 
   // Mode-agnostic: rule 8 binds WHATEVER opener mode is dealt (wording, not enforcement —
   // no hook critic, no OPENER_TYPES change), so all five dealt modes can satisfy it.
@@ -509,6 +513,80 @@ test("CF-A: rule 8 HOOK CARRIES A STAKE + DOORWAY rides the ALWAYS-SENT card; mo
   assert.ok(AUTHOR_QUALITY_BAR.includes("4. PLAIN LANGUAGE FROM SENTENCE ONE [GATED]"), "rule 4 header unchanged");
   assert.ok(AUTHOR_QUALITY_BAR.includes("Open plain — no throat-clearing abstraction before the first concrete beat."), "rule 4 'Open plain' clause unchanged");
   assert.ok(AUTHOR_PREMIUM_BLOCK.includes("never let more than 2 consecutive paragraphs open on an abstraction; break runs with a person, scene, or object."), "PREMIUM_BLOCK VOICE move 1 unchanged");
+});
+
+// ── CF-I-2 (machinery-leakage): rule 8 REGISTER clause + DOORWAY tightening ─────
+test("CF-I-2: rule 8 carries the REGISTER rule + citation-date DOORWAY tightening; self-verify names beat labels; budget holds", () => {
+  const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
+  const briefMd = renderBriefMd(brief);
+  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
+
+  // REGISTER clause (the reader never meets the machinery) rides the always-sent card.
+  assert.match(card, /REGISTER: the reader never meets the machinery/i, "rule 8 REGISTER clause present");
+  assert.match(card, /no internal artifact or dealt beat label as the acting subject/i, "REGISTER bans machinery-as-protagonist (C32) and beat-labels-as-prose (C33)");
+  assert.match(card, /no drafting narration \(\"in the weak version…\"\)/i, "REGISTER bans drafting/process narration");
+  assert.match(card, /write the beat, not its name/i, "REGISTER states the beat-not-its-name rule");
+  assert.match(card, /quiz keys test what a reader can DO, not name the source lineage/i, "REGISTER carries the compact quiz-key principle (C35; CF-I-3 elaborates)");
+
+  // DOORWAY tightening: a doorway is someone acting or a cost landing, never a bare date (C34).
+  assert.match(card, /someone acting or a cost landing, never a citation\/publication date on its own/i, "DOORWAY tightening folds in the citation-date exclusion (S4)");
+
+  // Self-verify item 4 (SCAFFOLD) now names beat labels; block still under the 1300 pin.
+  const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
+  assert.match(sv, /4\. SCAFFOLD — scan every reader-facing field for scaffold vocabulary \(slot names, shape\/beat labels/, "self-verify item 4 adds beat labels to the scaffold list");
+  assert.ok(sv.length <= 1300, `self-verify stays <= 1300 chars, got ${sv.length}`);
+
+  // Net CF-I-2 card delta ≤ +400 chars (register-rule budget); the whole card stays under
+  // the CF-I pin (18,820, raised from 18,700 in CF-I-3 for the +599 campaign delta).
+  assert.ok(card.length <= 18820, `W1 card length budget: card must be <= 18,820 chars, got ${card.length}`);
+  assert.ok(AUTHOR_QUALITY_BAR.length <= 6300, `QUALITY_BAR CF-I delta stays within budget, got ${AUTHOR_QUALITY_BAR.length}`);
+  console.log(`  [measure] CF-I-2 card: ${card.length} chars (budget 18,820); QUALITY_BAR ${AUTHOR_QUALITY_BAR.length}`);
+
+  // NEGATIVE: nothing from CF-A/CF-B weakened — rule 7 register + rule 8 stake intact.
+  assert.match(card, /7\. EXAMPLE CRAFT \[SCORED\]/, "rule 7 header unchanged");
+  assert.match(card, /NARRATED in the scene's own voice/i, "rule 7 CF-B register requirement intact");
+  assert.match(card, /make the STAKE visible in plain words — who loses\/pays\/misses what/i, "rule 8 CF-A stake requirement intact");
+  assert.equal(AUTHOR_QUALITY_BAR.split(/\bFAIL:/).length - 1, 1, "still exactly one FAIL micro-example");
+  assert.equal(AUTHOR_QUALITY_BAR.split(/\bPASS:/).length - 1, 1, "still exactly one PASS micro-example");
+});
+
+// ── CF-I-3 (quiz application-over-lineage): rule 5 KEY-IS-A-MOVE + schemaHint + self-verify ─
+test("CF-I-3: rule 5 carries KEY IS A MOVE; schemaHint + self-verify state application-over-lineage; detector-consistent; budget holds", () => {
+  const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
+  const briefMd = renderBriefMd(brief);
+  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
+
+  // The fuller quiz-application rule rides the always-sent card, inside rule 5.
+  assert.match(card, /KEY IS A MOVE: the graded answer is a move the reader makes, not a source — a citation belongs in a distractor or the explanation, never the tested skill\./, "rule 5 carries the KEY IS A MOVE application-over-lineage rule");
+  assert.ok(AUTHOR_QUALITY_BAR.includes("5. DISTRACTOR TRANSFORM"), "the rule lives on rule 5 where the quiz-key guidance is");
+
+  // schemaHint's explanation note gains the why-the-move-works direction.
+  const hint = authorSchemaHint("zz-fixture-fact-ranking", 3);
+  assert.match(hint, /"explanation":"\.\.\.\(120-300 chars; why the move works\)"/, "schemaHint quiz explanation note extended to why-the-move-works");
+  assert.ok(card.includes(hint), "the extended schemaHint rides the card");
+
+  // Self-verify item 1 (KEYS) gains the move-not-source check; block within the 1300 pin.
+  const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
+  assert.match(sv, /A key tests a move, not a source\. Mismatch: re-key or rewrite\./, "self-verify item 1 adds the move-not-source check before its re-key action");
+  assert.ok(sv.length <= 1300, `self-verify stays <= 1300 chars, got ${sv.length}`);
+
+  // CONSISTENCY: the C35 detector (critics/lineageKeyQuiz.ts) flags exactly the key
+  // shape this rule forbids — its "Tie the move to <source> … so the frame is traceable"
+  // fixture key cites a source AS the graded answer, which "KEY IS A MOVE … never the
+  // tested skill" prevents at write time. Rule and detector agree on the failure.
+  const lineageKey = {
+    choices: [
+      "Tie the move to Getting to Yes and its named authors, so the frame is traceable to a real source.",
+      "Ask for the interest under the demand before hardening the counter-position.",
+    ],
+    correctIndex: 0,
+    explanation: "The source lineage matters here: naming the authors makes the frame checkable.",
+  };
+  assert.equal(questionKeysOnLineage(lineageKey), true, "the C35 detector fires on the very key shape rule 5 forbids (rule↔detector consistency)");
+
+  // Whole-card budget: net CF-I campaign delta +599 (CF-I-2 +391 + CF-I-3 +208) under +600.
+  assert.ok(card.length <= 18820, `W1 card length budget: card must be <= 18,820 chars, got ${card.length}`);
+  console.log(`  [measure] CF-I-3 card: ${card.length} chars (budget 18,820); QUALITY_BAR ${AUTHOR_QUALITY_BAR.length}`);
 });
 
 // ── CF-D (G3): PLAIN WORDS covers inherited terms of art, not only coined ──────

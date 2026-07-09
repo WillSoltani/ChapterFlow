@@ -7,6 +7,7 @@ import { REPO_ROOT, CANONICAL_STATE, normSlug } from "./lib/chapterPaths.js";
 import { canonicalJson, canonicalJsonSha256 } from "./lib/canonicalJson.js";
 import {
   containsAuthoringInternalField,
+  firstMachineryExampleTag,
   readerContentHash,
   stripInternalFields,
 } from "./lib/readerContent.js";
@@ -463,6 +464,20 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
         chapterNumber: typeof chapter?.number === "number" ? chapter.number : undefined,
         message: `Package chapter ${chapter?.chapterId ?? "(unknown)"} contains authoring-only field "${internal}".`,
         actual: internal,
+      }));
+    }
+    // Machinery-tag hygiene (CF-I): dealt beat labels shipped as example display
+    // tags ("early signal", "return point" — live: multipliers ch07). The
+    // reader-content strip now filters them; this is the strip ⊇ verifier mirror
+    // (readerContent.firstMachineryExampleTag), the same BLOCKER severity as the
+    // planSpec/forbidden-field checks above.
+    const machineryTag = firstMachineryExampleTag(chapter);
+    if (machineryTag) {
+      findings.push(blocker({
+        checkId: "PPKG.machinery_tag",
+        chapterNumber: typeof chapter?.number === "number" ? chapter.number : undefined,
+        message: `Package chapter ${chapter?.chapterId ?? "(unknown)"} ships example display tag ${JSON.stringify(machineryTag)}, a machinery watchlist phrase — dealt beat labels are authoring vocabulary, not reader-facing tags. Re-promote to strip it.`,
+        actual: machineryTag,
       }));
     }
   }

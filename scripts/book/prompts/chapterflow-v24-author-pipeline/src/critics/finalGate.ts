@@ -50,6 +50,10 @@ import { checkSceneConcreteness } from "./sceneConcreteness.js";
 import { checkExampleCraft } from "./exampleCraft.js";
 import { checkExampleRegister } from "./exampleRegister.js";
 import { checkExampleLessonRepetition } from "./intraChapterExampleLesson.js";
+import { checkMetaCaseProtagonist } from "./metaCaseProtagonist.js";
+import { checkBeatVocabularyEcho } from "./beatVocabularyEcho.js";
+import { checkCitationDateDoorway } from "./citationDateDoorway.js";
+import { checkLineageKeyQuiz } from "./lineageKeyQuiz.js";
 import { checkOutcomeVariety } from "./outcomeVariety.js";
 import { checkGroundedNumbers } from "./groundedNumbers.js";
 import { checkInventedWitness } from "./evidenceWitness.js";
@@ -254,6 +258,39 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // tic leaked into start-with-why too); the pin asserts the MEASURED count. See
   // critics/exampleRegister.ts + tests/example-register.test.ts.
   "C31.example_evaluator_register": "minor",
+  // C32 — meta-case protagonist (advisory, CF-I-1 2026-07-09). ≥2 example fields across
+  // ≥2 examples make a pipeline artifact the acting subject ("The case stops…", "The
+  // late fix used…") — offstage machinery narration, the report's §7.3.1 finding class.
+  // MINOR/SHADOW: example voice gates on the example_coherence bar axis + the blinded
+  // reader; C32 surfaces the mechanical floor and never blocks. Exempts document/artifact-
+  // subject books via the sidecar (red-team rule 1). Measured: multipliers ch02, gold
+  // start-with-why ch07 ("The source gives…"), HOM 0. See critics/metaCaseProtagonist.ts.
+  "C32.meta_case_protagonist": "minor",
+  // C33 — beat-vocabulary echo (advisory, CF-I-1 2026-07-09). briefRotation's internal
+  // entry/outcome beat LABELS ("return point", "early signal", "late catch", "return
+  // moment") surfacing as reader prose: ≥3 distinct families in one chapter (per-chapter)
+  // or one family across ≥3 chapters (book-level, in bookGate). MINOR/SHADOW: the contract
+  // vocabulary is a fleet-wide leak (gold start-with-why + HOM carry it too — the pins
+  // record the MEASURED count, as C31 does); CF-I-2 de-mints the instructions. Never
+  // blocks. See critics/beatVocabularyEcho.ts + critics/machineryPhrases.ts.
+  "C33.beat_vocabulary_echo": "minor",
+  // C34 — citation-date doorway (advisory, CF-I-1 2026-07-09). The fastRead opens on a
+  // date/publication citation carrying CF-A's concreteness beat with no person acting —
+  // provenance metadata standing in for an opening scene (report §7.3.4). A DATED SCENE
+  // (a named person acting near the date, "Kennedy stood before Congress…") is EXEMPT
+  // (red-team rule 2). MINOR/SHADOW: CF-A concreteness gates semantically; C34 surfaces
+  // the mechanical doorway floor and never blocks. Measured: multipliers ch01/02/05,
+  // gold ch08/12 (year-as-subject / provenance appositive), HOM 0. See critics/citationDateDoorway.ts.
+  "C34.citation_date_doorway": "minor",
+  // C35 — lineage-key quiz (advisory, CF-I-1 2026-07-09). A quiz KEY rewards naming/
+  // citing the source lineage ("Tie the move to Getting to Yes … so the frame is
+  // traceable") over applying the idea, with an explanation reinforcing lineage/
+  // traceable/checkable (report §7.3.2). Flags the KEY only — a source-citing DISTRACTOR
+  // is fine; keyEvidence anchor-traceability (sourceGrounding) is untouched. MINOR/SHADOW:
+  // key quality gates on the blinded readers + key-judge; C35 surfaces the answer-content
+  // pattern and never blocks. Measured: multipliers ch08 (q01/q04), gold + HOM 0. See
+  // critics/lineageKeyQuiz.ts.
+  "C35.lineage_key_quiz": "minor",
   E4: "major",
   A11: "blocker",
   A12: "blocker",
@@ -1002,6 +1039,30 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // analyst-card register instead of a narrated scene (HOM ch8's evaluator openers).
   for (const f of checkExampleRegister(chapter)) {
     push(f.checkId as string, "example-register", f.message, f.evidence);
+  }
+  // C32 — meta-case protagonist (advisory, CF-I-1). ≥2 example fields across ≥2
+  // examples make a pipeline artifact the acting subject ("The case stops…", "The
+  // late fix used…") — offstage machinery narration instead of a person in the scene.
+  for (const f of checkMetaCaseProtagonist(chapter)) {
+    push(f.checkId as string, "meta-case", f.message, f.evidence);
+  }
+  // C33 — beat-vocabulary echo (advisory, CF-I-1). ≥3 distinct briefRotation entry/
+  // outcome beat labels ("return point", "early signal", "late catch"…) surface in
+  // one chapter's reader prose — the contract's dealing vocabulary read as house voice.
+  for (const f of checkBeatVocabularyEcho(chapter)) {
+    push(f.checkId as string, "beat-vocabulary", f.message, f.evidence);
+  }
+  // C34 — citation-date doorway (advisory, CF-I-1). The fastRead opens on a date/
+  // citation carrying the concreteness beat with no person acting — provenance
+  // metadata gaming CF-A's opening-scene rule (person-scene ledes are exempt).
+  for (const f of checkCitationDateDoorway(chapter)) {
+    push(f.checkId as string, "citation-doorway", f.message, f.evidence);
+  }
+  // C35 — lineage-key quiz (advisory, CF-I-1). A quiz key rewards naming/citing the
+  // source lineage ("Tie the move to <source> so the frame is traceable") over
+  // applying the idea — the pipeline's anchor discipline leaking into reader pedagogy.
+  for (const f of checkLineageKeyQuiz(chapter)) {
+    push(f.checkId as string, "lineage-key", f.message, f.evidence);
   }
   // GN1 — ungrounded statistical figures (fabricated percentages/multipliers/
   // magnitudes) in reader prose. v2-gated (returns [] on a v1 chapter → skip);

@@ -20,6 +20,7 @@ import { checkKeyedChoiceDuplication } from "./quizCorrectness.js";
 import { checkBookQuizPromptTemplates } from "./antiSalting.js";
 import { checkArchitectureMonoculture } from "./architectureMonoculture.js";
 import { checkContentMachinery } from "./contentMachinery.js";
+import { checkBookBeatVocabularyEcho } from "./beatVocabularyEcho.js";
 import { loadBannedPhrases } from "./shared.js";
 import { normalizeConvergenceKey } from "./experiencePlan.js";
 import {
@@ -569,6 +570,21 @@ export function runBookGate(bookId: string, chapters: ChapterV21[], options: Boo
   // banned-phrase list before this campaign. Advisory (MINOR) — surfaces the line
   // and names the chapters; never blocks (the semantic panel is the true gate).
   for (const f of checkBookAphorismRepetition(chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+      chapters: f.chapters,
+    });
+  }
+  // ── C33 (book-level) — beat-vocabulary echo (CF-I-1). A single briefRotation entry/
+  // outcome beat label ("early signal", "return point"…) surfacing across ≥3 chapters
+  // — the dealt vocabulary becoming a book-wide refrain, one advisory per family naming
+  // the chapters. Advisory (MINOR); never blocks. The per-chapter twin lives in the
+  // ship gate. The beat vocabulary is a fleet-wide leak (gold + HOM fire too); CF-I-2
+  // de-mints the source instructions.
+  for (const f of checkBookBeatVocabularyEcho(chapters)) {
     findings.push({
       catalogId: f.checkId,
       severity: f.severity as "blocker" | "major" | "minor",

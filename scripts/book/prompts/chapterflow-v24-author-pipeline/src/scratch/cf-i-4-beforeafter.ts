@@ -1,0 +1,12 @@
+import { readFileSync } from "fs";
+const bak = (n:number)=>JSON.parse(readFileSync(`state/chapters/multipliers-cf-i-4.bak/multipliers-ch0${n}.v21-native.chapter.json`,"utf8"));
+const cur = (n:number)=>JSON.parse(readFileSync(`state/chapters/multipliers-ch0${n}.v21-native.chapter.json`,"utf8"));
+const line=(l:string,b:string,a:string)=>console.log(`\n### ${l}\nBEFORE: ${JSON.stringify(b)}\nAFTER:  ${JSON.stringify(a)}`);
+const b2=bak(2),a2=cur(2);
+line("ch02 C31 — ex01.whatToDo (evaluator question -> declarative)", b2.examples[0].whatToDo, a2.examples[0].whatToDo);
+line("ch02 C34 — fastRead lede (date-doorway -> person acts)", b2.breakdown.fastRead.split(/(?<=[.?!])\s+/)[0], a2.breakdown.fastRead.split(/(?<=[.?!])\s+/)[0]);
+const b6=bak(6),a6=cur(6);
+line("ch06 C33 — ex1.scenario (dealt 'return point' label -> rendered beat)", b6.examples[1].scenario, a6.examples[1].scenario);
+const b8=bak(8),a8=cur(8);
+line("ch08 C35 — q01 correct choice (cite lineage -> apply)", b8.quiz.questions[0].choices[b8.quiz.questions[0].correctIndex], a8.quiz.questions[0].choices[a8.quiz.questions[0].correctIndex]);
+console.log("\n  ch08 q01 correctIndex before/after:", b8.quiz.questions[0].correctIndex, a8.quiz.questions[0].correctIndex);

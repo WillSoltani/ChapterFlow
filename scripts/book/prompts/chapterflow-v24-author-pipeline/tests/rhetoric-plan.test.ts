@@ -8,7 +8,24 @@ import { WEEKLY_PRACTICE_FORMS } from "../src/librarian/weeklyPracticePlan.js";
 import { FULLREAD_BOUNDARY_BEATS } from "../src/librarian/fullReadSkeletonPlan.js";
 import { TRIGGER_CLASSES } from "../src/librarian/timingPlan.js";
 import { loadPedagogyPalettes } from "../src/librarian/pedagogyPlan.js";
-import { IDIOM_INSTRUCTION, SHELL_INSTRUCTION } from "../src/compiler/briefRotation.js";
+import {
+  IDIOM_INSTRUCTION,
+  SHELL_INSTRUCTION,
+  OPENER_INSTRUCTION,
+  ARCHITECTURE_INSTRUCTION,
+  PRACTICE_INSTRUCTION,
+  CHALLENGE_INSTRUCTION,
+  LENS_INSTRUCTION,
+  ENTRY_INSTRUCTION,
+  OUTCOME_INSTRUCTION,
+  FIELD_STYLE_INSTRUCTION,
+  STEM_SHAPE_INSTRUCTION,
+  FAILURE_MODE_INSTRUCTION,
+  MEMORABLE_SHAPE_INSTRUCTION,
+  LIMITS_INSTRUCTION,
+  GROUNDING_INSTRUCTION,
+} from "../src/compiler/briefRotation.js";
+import { beatFamiliesInText, MACHINERY_BEAT_SURFACES } from "../src/critics/machineryPhrases.js";
 import { loadBannedPhrases } from "../src/critics/shared.js";
 
 // WS-3 — deal↔gate invariant (the generalizable fix). An allocator must never DEAL
@@ -57,6 +74,45 @@ test("no allocator directive contains a hard-banned phrase (deal↔gate consiste
     }
   }
   assert.deepEqual(violations, [], `allocator directives must not instruct a banned phrase:\n${violations.join("\n")}`);
+});
+
+// CF-I-2 — the deal↔gate invariant for the machinery-BEAT family. C33
+// (beatVocabularyEcho) flags a chapter whose reader prose echoes the briefRotation
+// entry/outcome beat labels ("return point", "early signal", "late catch", "return
+// moment"). The instruction strings that DEAL those beats must never hand the writer
+// one of those surface forms verbatim — that is exactly the deal↔gate contradiction
+// the CF-F "agreement nods" precedent proved (a directive minting the phrase a critic
+// then charges). CF-I-2 de-minted the source strings; this guard pins that no future
+// edit to ANY briefRotation instruction map can reintroduce a machinery surface. The
+// phrase list is machineryPhrases.MACHINERY_BEAT_SURFACES — one source of truth shared
+// with the detector, so the two can never drift.
+test("no briefRotation instruction string echoes a machinery beat surface (C33 deal↔gate consistency)", () => {
+  const maps: Array<{ name: string; map: Record<string, string> }> = [
+    { name: "IDIOM_INSTRUCTION", map: IDIOM_INSTRUCTION },
+    { name: "SHELL_INSTRUCTION", map: SHELL_INSTRUCTION },
+    { name: "OPENER_INSTRUCTION", map: OPENER_INSTRUCTION },
+    { name: "ARCHITECTURE_INSTRUCTION", map: ARCHITECTURE_INSTRUCTION },
+    { name: "PRACTICE_INSTRUCTION", map: PRACTICE_INSTRUCTION },
+    { name: "CHALLENGE_INSTRUCTION", map: CHALLENGE_INSTRUCTION },
+    { name: "LENS_INSTRUCTION", map: LENS_INSTRUCTION },
+    { name: "ENTRY_INSTRUCTION", map: ENTRY_INSTRUCTION },
+    { name: "OUTCOME_INSTRUCTION", map: OUTCOME_INSTRUCTION },
+    { name: "FIELD_STYLE_INSTRUCTION", map: FIELD_STYLE_INSTRUCTION },
+    { name: "STEM_SHAPE_INSTRUCTION", map: STEM_SHAPE_INSTRUCTION },
+    { name: "FAILURE_MODE_INSTRUCTION", map: FAILURE_MODE_INSTRUCTION },
+    { name: "MEMORABLE_SHAPE_INSTRUCTION", map: MEMORABLE_SHAPE_INSTRUCTION },
+    { name: "LIMITS_INSTRUCTION", map: LIMITS_INSTRUCTION },
+    { name: "GROUNDING_INSTRUCTION", map: GROUNDING_INSTRUCTION },
+  ];
+  assert.ok(MACHINERY_BEAT_SURFACES.length >= 4, "the machinery-surface list is populated (guard is live)");
+  const violations: string[] = [];
+  for (const { name, map } of maps) {
+    for (const [id, text] of Object.entries(map)) {
+      const hits = beatFamiliesInText(text);
+      if (hits.length) violations.push(`${name}.${id} deals machinery beat surface(s) [${hits.join(", ")}]: "${text}"`);
+    }
+  }
+  assert.deepEqual(violations, [], `no rotation instruction may echo a machinery beat surface:\n${violations.join("\n")}`);
 });
 
 test("rhetoric plan keeps the negation shell and every hook class under their book-gate caps", () => {

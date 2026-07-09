@@ -46,6 +46,7 @@ import { buildBudgetRepairComplaints, checkReaderBudgets, type BudgetFinding } f
 import { loadNameBank } from "../librarian/namePlan.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
+import { registerAdvisoryRetryBlock } from "../critics/registerAdvisories.js";
 import { loadAuthorProvenance, recordAuthorProvenance } from "../qc/sessionProvenance.js";
 import {
   RegenLedgerError,
@@ -296,6 +297,29 @@ export const AUTHOR_HOUSE_RULES =
  * compressed to fit the card's attention budget — every requirement above survives,
  * wording only. Net campaign delta across QUALITY_BAR + PREMIUM_BLOCK + schemaHint +
  * selfVerify: +1,395 chars (pre-trim +2,613), of which +142 is CF-C's rule-6 job wording.
+ * 2026-07-09 CF-I-2 (machinery-leakage): rule 8 gains a REGISTER clause + a DOORWAY
+ * tightening — the reader never meets the pipeline machinery (no internal artifact or
+ * dealt beat label as the acting subject, no drafting-process narration; write the beat,
+ * not its name), and a doorway is someone acting or a cost landing, never a citation/
+ * publication date on its own (the C34 gaming path). Self-verify item 4's scaffold list
+ * adds "beat labels". Net CF-I-2 card delta +391 chars (QUALITY_BAR +386, selfVerify +5);
+ * card measures ~18.6k, under the 18,700 pin. Advisory critics C31-C35 (exampleRegister,
+ * metaCaseProtagonist, beatVocabularyEcho, citationDateDoorway, lineageKeyQuiz) are the
+ * deterministic complement; all MINOR, no gate/blocker/severity touched. The quiz-key
+ * principle here is the compact statement; CF-I-3 adds the fuller quiz application-over-
+ * lineage instruction on the same card.
+ * 2026-07-09 CF-I-3 (quiz application-over-lineage): rule 5 gains "KEY IS A MOVE" — the
+ * graded answer is a move the reader makes, not a source; a citation belongs in a
+ * distractor or the explanation, never the tested skill. schemaHint's explanation hint
+ * gains "why the move works"; self-verify item 1 (KEYS) gains "A key tests a move, not a
+ * source." CONSISTENCY with the C35 detector (critics/lineageKeyQuiz.ts): its fixture key
+ * "Tie the move to Getting to Yes … so the frame is traceable" (tests/lineage-key-quiz.ts
+ * LINEAGE_Q1) cites a source AS the graded answer — exactly what "KEY IS A MOVE … never
+ * the tested skill" forbids; the advisory catches at gate what this rule prevents at write
+ * time. Net CF-I-3 card delta +209 chars (rule 5 +155, schemaHint +20, selfVerify +34);
+ * whole CF-I campaign card delta +600 (CF-I-2 +391 + CF-I-3 +209), at the +600 cap;
+ * card measures ~18.8k so the 18,700 pin rises to 18,820 (≤19,000 per campaign). No gate,
+ * sourceGrounding, keyEvidence, quiz schema, or bloom/depth enum touched.
  */
 export const AUTHOR_QUALITY_BAR =
   "QUALITY BAR — hit these on the FIRST draft. Caps marked [GATED] are enforced by a deterministic preflight (missing one forces a full rewrite); [SCORED] rules are scored by the blinded reviewers who decide ship:\n" +
@@ -303,10 +327,10 @@ export const AUTHOR_QUALITY_BAR =
   "2. KEY PARAPHRASE [SCORED; advisory meter]. The keyed answer must PARAPHRASE the idea in fresh words — never reuse 5 or more consecutive content words from anywhere in the chapter, INCLUDING the review cards and the implementation plan. If a key echoes a sentence you already wrote, reword the key.\n" +
   "3. PRACTICE CONCRETENESS [GATED floor: at least ONE of tryThisNow / the 24-hour challenge must be imperative-led with a number or timebox]. Write BOTH concrete [SCORED]: each names ONE action with a number or a timebox, concrete enough to start within a minute. The action's FORM comes from your dealt practice shapes — never default to a touch-this-object or say-this-aloud ritual (the same staging in every chapter reads as theater). No \"a, b, or c\" option menus — one move, not a menu.\n" +
   "4. PLAIN LANGUAGE FROM SENTENCE ONE [GATED]. The gate measures Flesch ease 72-84 on the BREAKDOWN prose (fastRead+deepRead+fullRead) — land the band there; keep the rest of the chapter just as plain. Short sentences, common words, one idea per sentence. Open plain — no throat-clearing abstraction before the first concrete beat.\n" +
-  "5. DISTRACTOR TRANSFORM [SCORED; strawman-rate gate]. Write the KEY first, then TRANSFORM it: every wrong answer is the key warped by ONE of your brief's dealt failure modes — a smart half-reader would defend it out loud; a reader of YOUR prose can settle exactly why it fails. Never a generic bad practice; never rejectable without reading the chapter (unless the chapter explicitly teaches against that named move). KEY SUPPORT: every key must be defensible by pointing at a specific breakdown sentence that teaches it — a key the chapter never actually taught reads as arbitrary to the reader who did the work. CAUSAL STEMS: when a stem asks WHY something happened (what caused / what led to / what explains / the main reason), the key names the ONE specific cause your prose shows — never the outcome restated, never a remedy or lesson — and the distractors are plausible SIBLING causes a specific sentence of yours refutes. ECHO SYMMETRY: if the key uses the chapter's signature vocabulary, at least two distractors must too — the key is never the only choice that sounds like the chapter. Every explanation names why one tempting wrong answer fails, in varied wording each time — NEVER a fixed stem like \"If you chose (b):\" (identical stems ×81 is its own template). A deterministic gate still counts mechanical-distractor words (polish/announce/slides/deck/morale/optics/louder/inspire/motivate) book-wide and blocks above 7% — build from your dealt failure modes and these never appear.\n" +
+  "5. DISTRACTOR TRANSFORM [SCORED; strawman-rate gate]. Write the KEY first, then TRANSFORM it: every wrong answer is the key warped by ONE of your brief's dealt failure modes — a smart half-reader would defend it out loud; a reader of YOUR prose can settle exactly why it fails. Never a generic bad practice; never rejectable without reading the chapter (unless the chapter explicitly teaches against that named move). KEY SUPPORT: every key must be defensible by pointing at a specific breakdown sentence that teaches it — a key the chapter never actually taught reads as arbitrary to the reader who did the work. CAUSAL STEMS: when a stem asks WHY something happened (what caused / what led to / what explains / the main reason), the key names the ONE specific cause your prose shows — never the outcome restated, never a remedy or lesson — and the distractors are plausible SIBLING causes a specific sentence of yours refutes. ECHO SYMMETRY: if the key uses the chapter's signature vocabulary, at least two distractors must too — the key is never the only choice that sounds like the chapter. Every explanation names why one tempting wrong answer fails, in varied wording each time — NEVER a fixed stem like \"If you chose (b):\" (identical stems ×81 is its own template). A deterministic gate still counts mechanical-distractor words (polish/announce/slides/deck/morale/optics/louder/inspire/motivate) book-wide and blocks above 7% — build from your dealt failure modes and these never appear. KEY IS A MOVE: the graded answer is a move the reader makes, not a source — a citation belongs in a distractor or the explanation, never the tested skill.\n" +
   "6. SURFACES THAT TRANSFER [SCORED]. Review cards drill the reusable TOOL, not source trivia — at most 2 cards may hinge on a named source case; every other must be answerable by a reader applying the move in their own life. Practice prompts must be actions a person would do unprompted at a desk — if a prompt reads as a ritual or meta-exercise, write the plain version: a concrete action the reader can check they did (its FORM is dealt per chapter — do NOT reuse one 'return-proof' close everywhere). Each example must advance THIS CHAPTER'S JOB (declared in the VARIETY block) through a DIFFERENT facet or failure-mode — no two examples may teach the same lesson. If two would, merge them and spend the freed slot on a facet you have not shown yet; never invent a facet the source cannot ground.\n" +
   "7. EXAMPLE CRAFT [SCORED]. Every example must dramatize a DECISION and its COMPLETED CONSEQUENCE — not relay the lesson: an actor with a real stake, their concrete action, the consequence landing, NARRATED in the scene's own voice. Never open a field with an evaluator question answered in the next clause. Vary WHO carries it per the CONTENT DEVICES deal — never a default invented proxy or a named person beyond the dealt cast; honor its proxy/stand-in bans. Where legitimate interests collide, one example must STAGE the clash — who pulls the other way, what it costs. An arc that never lands ('set, not met') is a FAILED example — finish it. Never let a scenario restate the move; if no source case has a concrete consequence, pick one that does — never invent facts to manufacture one.\n" +
-  "8. HOOK CARRIES A STAKE [SCORED]. Whatever opener mode is dealt, make the STAKE visible in plain words — who loses/pays/misses what; a bare activity or diagram description is a FAILED hook. FAIL: \"The team maps functions to shared standards.\" PASS: \"It shipped late because no one owned the date.\" DOORWAY: land one concrete fastRead beat BEFORE the first abstract term.\n" +
+  "8. HOOK CARRIES A STAKE [SCORED]. Whatever opener mode is dealt, make the STAKE visible in plain words — who loses/pays/misses what; a bare activity or diagram description is a FAILED hook. FAIL: \"The team maps functions to shared standards.\" PASS: \"It shipped late because no one owned the date.\" DOORWAY: land one concrete fastRead beat — someone acting or a cost landing, never a citation/publication date on its own — BEFORE the first abstract term. REGISTER: the reader never meets the machinery — no internal artifact or dealt beat label as the acting subject (not \"the case stops…\" or \"the return point\"), no drafting narration (\"in the weak version…\"); write the beat, not its name; quiz keys test what a reader can DO, not name the source lineage.\n" +
   "9. TAKE-HOME SURFACES [SCORED]. The implementation plan leads with a SKILL NAME — imperative verb + concrete object, 2-5 words, never a virtue-noun (excellence/ownership) — e.g. \"Name the Local Signal\"; coreSkill OPENS with it. ≥1 memorableLine carries THIS chapter's central image; none reused across chapters.";
 
 /**
@@ -331,7 +355,7 @@ export const AUTHOR_PREMIUM_BLOCK =
  *  style sectionTasks.ts uses for section artifacts. */
 export function authorSchemaHint(bookId: string, chapterNumber: number): string {
   const chapterId = authorChapterId(bookId, chapterNumber);
-  return `{"schemaVersion":"chapterflow-v21-authored","chapterId":"${chapterId}","number":${chapterNumber},"title":"...","readingTimeMinutes":7,"hook":"...(60-120 chars)","counterintuition":"...(1-2 sentences)","tryThisNow":"...(80-220 chars)","keyTakeaway":"...(140-220 chars)","breakdown":{"fastRead":"...(~400-700 chars)","deepRead":"...(~1200-1800 chars)","fullRead":"...(~2500-3500 chars)"},"examples":[{"exampleId":"ex01","title":"...","tags":["..."],"planSpec":{"domain":"...","audience":"...","stakes":"...","format":"...","requiredBeat":"..."},"scenario":"...(280-520 chars)","whatToDo":"...(120-240 chars)","whyItMatters":"...(120-240 chars)"}],"quiz":{"passingScorePercent":70,"questions":[{"questionId":"q01","prompt":"...","choices":["...","...","..."],"correctIndex":0,"explanation":"...(120-300 chars)","bloomsLevel":"apply","depthLevel":"standard"}]},"reviewCards":[{"cardId":"c01","front":"...(30-200 chars)","back":"...(80-400 chars)","difficulty":"medium"}],"implementationPlan":{"title":"...(2-5 word skill name)","coreSkill":"<skill name>. ...(2-4 sentences)","ifThenPlans":[{"context":"...","plan":"If X, then Y."}],"twentyFourHourChallenge":"...","weeklyPractice":"..."},"memorableLines":[{"text":"...(exact sentence from the chapter; >=1 carries the central image)","location":"breakdown.deepRead","why":"..."}]}`;
+  return `{"schemaVersion":"chapterflow-v21-authored","chapterId":"${chapterId}","number":${chapterNumber},"title":"...","readingTimeMinutes":7,"hook":"...(60-120 chars)","counterintuition":"...(1-2 sentences)","tryThisNow":"...(80-220 chars)","keyTakeaway":"...(140-220 chars)","breakdown":{"fastRead":"...(~400-700 chars)","deepRead":"...(~1200-1800 chars)","fullRead":"...(~2500-3500 chars)"},"examples":[{"exampleId":"ex01","title":"...","tags":["..."],"planSpec":{"domain":"...","audience":"...","stakes":"...","format":"...","requiredBeat":"..."},"scenario":"...(280-520 chars)","whatToDo":"...(120-240 chars)","whyItMatters":"...(120-240 chars)"}],"quiz":{"passingScorePercent":70,"questions":[{"questionId":"q01","prompt":"...","choices":["...","...","..."],"correctIndex":0,"explanation":"...(120-300 chars; why the move works)","bloomsLevel":"apply","depthLevel":"standard"}]},"reviewCards":[{"cardId":"c01","front":"...(30-200 chars)","back":"...(80-400 chars)","difficulty":"medium"}],"implementationPlan":{"title":"...(2-5 word skill name)","coreSkill":"<skill name>. ...(2-4 sentences)","ifThenPlans":[{"context":"...","plan":"If X, then Y."}],"twentyFourHourChallenge":"...","weeklyPractice":"..."},"memorableLines":[{"text":"...(exact sentence from the chapter; >=1 carries the central image)","location":"breakdown.deepRead","why":"..."}]}`;
 }
 
 /** SELF-VERIFY block (7 checks; kept <= 1300 chars — pinned by test. The ceiling rose
@@ -340,10 +364,10 @@ export function authorSchemaHint(bookId: string, chapterNumber: number): string 
 export function authorSelfVerify(bookId: string, chapterNumber: number): string {
   const relPath = authorChapterRelPath(bookId, chapterNumber);
   return `SELF-VERIFY before declaring done — run ALL SEVEN:
-1. KEYS — derive every quiz answer from your prose alone, blind; each must hit the stored correctIndex, and its explanation argue for exactly that choice. Mismatch: re-key or rewrite.
+1. KEYS — derive every quiz answer from your prose alone, blind; each must hit the stored correctIndex, and its explanation argue for exactly that choice. A key tests a move, not a source. Mismatch: re-key or rewrite.
 2. FACTS — confirm every claim, number, name, and case detail traces to the SOURCE PACKET above. Anything you cannot trace: delete or soften it. Never invent precision.
 3. LENGTH — confirm the chapter fits the brief's length budget. Over: cut, never compress by jargon. Under: deepen a real case, never pad.
-4. SCAFFOLD — scan every reader-facing field for scaffold vocabulary (slot names, shape labels, anchor ids, "Fact 2"-style numbering, internal " / " label seams). None may appear.
+4. SCAFFOLD — scan every reader-facing field for scaffold vocabulary (slot names, shape/beat labels, anchor ids, "Fact 2"-style numbering, internal " / " label seams). None may appear.
 5. HOOK — point at the stake (who loses/pays/misses what) and the fastRead's concrete beat before its first abstract term.
 6. TERMS — name the 2-4 terms this chapter stands on; confirm each got a plain first-use unpacking.
 7. TAKE-HOME — coreSkill opens with the skill name; no coined shorthand in actions; one memorableLine carries the central image, none reused.
@@ -716,6 +740,29 @@ export async function authorWriteOneChapter(
 
   let card = baseCard;
   let lastReason = "";
+  // CF-I-2 (owner decision 4): the C31–C35 register/machinery advisories surfaced as
+  // retry fix lines. This closure loads the just-written draft and returns the labelled
+  // block (or "" when clean/unreadable). It is ONLY ever appended to a card already
+  // built for a BLOCKING failure (gate blocker, rubric FAIL, write-contract FAIL), so
+  // an advisory NEVER triggers a retry by itself and NEVER changes a pass/fail predicate
+  // — it only changes the TEXT the next attempt sees. Best-effort, deterministic.
+  const advisoryRegisterBlock = (): string => {
+    try {
+      const draft = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
+      return draft ? registerAdvisoryRetryBlock(draft) : "";
+    } catch { return ""; }
+  };
+  // CF-I regen surfacing (live re-mint, multipliers ch02): a REGEN is always requested
+  // for a chapter the blinded reviewers already read, and the reviewed draft is still
+  // on disk at card-build time (the same bytes preWriteBytes snapshotted above) — but
+  // its C31–C35 advisories never reached the regen card, so a review-FAIL regen
+  // re-minted the exact register defects the reviewers could feel (ch02 re-minted 10
+  // evaluator openers). Seed the ATTEMPT-1 regen card with the PRIOR draft's advisory
+  // block; empty-string-safe when the prior draft is clean/unreadable. The card is
+  // already being built for the regen's BLOCKING complaints, so this changes card TEXT
+  // only — no new retry trigger, no pass/fail predicate change. (In-loop failures below
+  // keep re-appending the block computed from the freshly-failed draft, as before.)
+  if (isRegen) card = baseCard + advisoryRegisterBlock();
   // F-1 failure classification: the degraded extra slot opens ONLY when every
   // configured attempt failed at the write contract with lead-thread findings
   // alone. Any other failure (spawn death, no file, gate, rubric, mixed contract
@@ -867,6 +914,7 @@ export async function authorWriteOneChapter(
           } catch { /* best-effort evidence — the metric block still stands */ }
         }
         card = `${baseCard}\n\nRUBRIC PREFLIGHT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but FAILED the deterministic reader-metrics preflight. Rewrite the chapter so ALL of these clear:\n${rubricBlock}${tellEvidence}\nHow to read it: ease must land in 72-84 (write plainer, shorter sentences); tell must be <= 0.2 (at most ONE of the 9 keys may be the uniquely longest choice — fix the listed questions); transfer must be >= 0.7 (most quiz questions test a NEW scenario, not recall); memClean >= 2 (short portable memorable lines); lenTell — the key may be the uniquely SHORTEST choice in at most 4 of 9 questions and the uniquely LONGEST in at most 1 of 9 (the same caps as your quality bar — fix only the questions over a cap; do NOT purge every length extreme, that mints the opposite tell); practice — tryThisNow or the 24-hour challenge must be imperative-led with a concrete number/timebox; echo (advisory) — paraphrase any key that reuses 5+ consecutive words from the chapter.`;
+        card += advisoryRegisterBlock();
         nonLeadFailure = true;
         continue;
       }
@@ -890,6 +938,7 @@ export async function authorWriteOneChapter(
           lastReason = `ch${nn}: STIER-2 write contract FAIL — ${contract.join(" | ")}`;
           deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
           card = `${baseCard}\n\nWRITE-CONTRACT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but broke the dealt write contract. Rewrite the chapter so ALL of these clear:\n${contract.map((c) => `- ${c}`).join("\n")}`;
+          card += advisoryRegisterBlock();
           continue;
         }
       }
@@ -930,6 +979,7 @@ export async function authorWriteOneChapter(
     const report = reportOf(gate);
     lastReason = `ch${nn}: gate-chapter still blocks after attempt ${attempt}:\n${report.slice(0, 1500)}`;
     card = `${baseCard}\n\nGATE BLOCKERS FROM YOUR PREVIOUS ATTEMPT\nYour previous draft of ${relPath} failed the deterministic gate. Rewrite the chapter (regenerate — do not minimally patch) so every blocker below is cleared, then re-run gate-chapter until clean:\n${report.slice(0, 2000)}`;
+    card += advisoryRegisterBlock();
     nonLeadFailure = true;
   }
   // All attempts failed — never leave the last (unreviewed, self-check-failing)

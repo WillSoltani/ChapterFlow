@@ -494,6 +494,11 @@ function aphorismCandidateSentences(chapter: ChapterV21): Array<{ field: string;
     for (const s of splitSentences(text)) if (isAphorismShaped(s)) out.push({ field, sentence: s });
   };
 
+  // CF-I-1: `hook` added to the scan set. On the fresh `multipliers` run ch01/ch06
+  // shipped a verbatim hook sentence ("No one knew who would bring back proof") — legal
+  // at 2 chapters (below the ≥3 threshold), but the hook is exactly where a minted
+  // aphorism lands, and it was outside the field set. Future-proofing, not a threshold change.
+  push("hook", chapter.hook);
   push("counterintuition", chapter.counterintuition);
   push("keyTakeaway", chapter.keyTakeaway);
   push("tryThisNow", chapter.tryThisNow);
