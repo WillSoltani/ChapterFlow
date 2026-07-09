@@ -10,6 +10,16 @@
         "deploy-workflow",
         "verify-live-sync"
       ]
+    },
+    {
+      "bookId": "multipliers",
+      "packageSha256": "3c97829d0f3b283741d0b7fa0218046f75ff0c1430ef6657917f947410cf98fc",
+      "publishedAt": "2026-07-09T10:12:45.443Z",
+      "steps": [
+        "upload-book-packages-to-s3",
+        "deploy-workflow",
+        "verify-live-sync"
+      ]
     }
   ]
 }

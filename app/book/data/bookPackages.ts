@@ -131,6 +131,7 @@ import auto_the_effective_executive_Json from "@/book-packages/the-effective-exe
 import auto_the_power_of_moments_Json from "@/book-packages/the-power-of-moments.v21.json";
 import auto_the_intelligent_investor_Json from "@/book-packages/the-intelligent-investor.v21.json";
 import auto_high_output_management_Json from "@/book-packages/high-output-management.v21.json";
+import auto_multipliers_Json from "@/book-packages/multipliers.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -2057,4 +2058,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_high_output_management_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["high-output-management"] = (tone) => normalizeAnyPackage(auto_high_output_management_Json, tone);
+}
+
+// --- auto-registered by `publish-final` for "multipliers" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_multipliers_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["multipliers"] = (tone) => normalizeAnyPackage(auto_multipliers_Json, tone);
 }
