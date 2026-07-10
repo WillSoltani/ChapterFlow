@@ -29,6 +29,8 @@ import {
   sourceUsePlanStale,
 } from "../src/compiler/sourceUsePlanCompiler.js";
 import { sourceUsePlanHash, validateSourceUsePlan, type SourceUsePlanUnitV1, type SourceUsePlanV1 } from "../src/contracts/sourceUsePlan.js";
+import { sha256Hex } from "../src/contracts/contractUtil.js";
+import { LEGACY_NO_PLAN_HASH, patchValueHash } from "../src/orchestrator/repairPatch.js";
 import { sourcePacketHash } from "../src/compiler/sourcePacket.js";
 import { checkSourcePacketGate } from "../src/compiler/sourcePacketGate.js";
 import { sourcePacketPath, sourceUsePlanPath, writeJsonFile } from "../src/artifacts/artifactStore.js";
@@ -539,12 +541,14 @@ function mkRepairIo(opts: {
   return { io, writes };
 }
 
-function mkRepairDeps(repaired: unknown, spawns: Array<{ cwd?: string }>): AutopilotDeps {
+/** IMP-07: the repair lane consumes a TYPED PATCH (patch.json) — the fake spawn
+ *  drops one into its workspace, exactly like a compliant repair agent. */
+function mkRepairDeps(patch: unknown, spawns: Array<{ cwd?: string }>): AutopilotDeps {
   return {
     runVerb: async () => ({ code: 0, stdout: "", stderr: "" }),
     spawn: (async (o: { sessionId: string; cwd?: string }) => {
       spawns.push({ cwd: o.cwd });
-      if (o.cwd) writeFileSync(join(o.cwd, chapterFileName("zz-plan-ch01")), JSON.stringify(repaired, null, 2) + "\n");
+      if (o.cwd) writeFileSync(join(o.cwd, "patch.json"), JSON.stringify(patch, null, 2) + "\n");
       return { ok: true, exitCode: 0, finalMessage: "done", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId };
     }) as unknown as AutopilotDeps["spawn"],
     mkSessionId: (label: string) => label,
@@ -552,6 +556,17 @@ function mkRepairDeps(repaired: unknown, spawns: Array<{ cwd?: string }>): Autop
     logSession: () => {},
     log: () => {},
   } as unknown as AutopilotDeps;
+}
+
+function mkRepairPatch(original: ChapterV21, plan: SourceUsePlanV1 | null, operations: Array<{ path: string; expectedOldValueHash: string; replacement: unknown; dependencyUnitIds: string[] }>): unknown {
+  return {
+    schema: "chapter-patch-v1",
+    chapterId: (original as { chapterId: string }).chapterId,
+    expectedBaseHash: sha256Hex(JSON.stringify(original, null, 2) + "\n"),
+    sourcePlanHash: plan ? sourceUsePlanHash(plan) : LEGACY_NO_PLAN_HASH,
+    findingIds: ["review.must-fix#0"],
+    operations,
+  };
 }
 
 test("repair card: the plan block + enveloped reviewer criteria/advisories render; the plan is instruction, the findings are data", () => {
@@ -570,22 +585,28 @@ test("repair card: the plan block + enveloped reviewer criteria/advisories rende
   assert.ok(card.includes("- quiz Q2: the key echoes the prose"), "criteria bullets byte-preserved inside the envelope");
 });
 
-test("repair path: a repaired scope smuggling a plan-control key is rejected AFTER splice, before any commit", async () => {
+test("repair path (IMP-07): an attempted relabel has NO patchable path — the op is rejected at the allowlist, before any commit", async () => {
   const original = mkRepairChapter();
   const packet = mkPacket();
   const { plan } = compileSourceUsePlan(packet);
-  const repaired = JSON.parse(JSON.stringify(original)) as Record<string, unknown>;
-  (repaired.quiz as { questions: Array<Record<string, unknown>> }).questions[1].claimStrength = "causal";
-  (repaired.quiz as { questions: Array<Record<string, unknown>> }).questions[1].prompt = "Q2 edited?";
+  // The old smuggle vector (a claimStrength key inside a repaired quiz object)
+  // is structurally impossible now — patches replace string/number LEAVES only.
+  // The nearest attack is an op that TARGETS a plan-ish path directly:
+  const patch = mkRepairPatch(original, plan, [{
+    path: "quiz.questions[1].claimStrength",
+    expectedOldValueHash: "0".repeat(16),
+    replacement: "causal",
+    dependencyUnitIds: [],
+  }]);
   const spawns: Array<{ cwd?: string }> = [];
   const { io, writes } = mkRepairIo({ original, plan, packet });
-  const r = await doRepairOneChapter("zz-plan", 1, mkRepairDeps(repaired, spawns), {
+  const r = await doRepairOneChapter("zz-plan", 1, mkRepairDeps(patch, spawns), {
     io, scopes: ["quiz"], complaints: ["quiz Q2: the key echoes the prose"],
   });
-  assert.ok(!r.ok, "smuggled relabel rejected");
-  assert.match(r.reason ?? "", /control field/);
+  assert.ok(!r.ok, "relabel-path op rejected");
+  assert.match(r.reason ?? "", /allowlist/);
   assert.deepEqual(writes, [], "canonical bytes untouched");
-  assert.equal(spawns.length, 1, "the repair spawn ran once (rejection is post-splice, pre-commit)");
+  assert.equal(spawns.length, 1, "the repair spawn ran once (rejection is post-apply-verify, pre-commit)");
 });
 
 test("repair path: a STALE plan refuses before any spawn; a clean scoped repair under a FRESH plan still commits", async () => {
@@ -603,13 +624,19 @@ test("repair path: a STALE plan refuses before any spawn; a clean scoped repair 
   assert.ok(!r1.ok && /STALE/.test(r1.reason ?? ""), "stale plan refuses the repair");
   assert.equal(staleSpawns.length, 0, "no spawn under a stale plan");
 
-  const repaired = JSON.parse(JSON.stringify(original)) as ChapterV21;
-  repaired.quiz.questions[1].prompt = "Q2, sharpened without any relabel?";
+  const patch = mkRepairPatch(original, plan, [{
+    path: "quiz.questions[1].prompt",
+    expectedOldValueHash: patchValueHash((original as { quiz: { questions: Array<{ prompt: string }> } }).quiz.questions[1].prompt).slice(0, 16),
+    replacement: "Q2, sharpened without any relabel?",
+    dependencyUnitIds: [],
+  }]);
   const freshSpawns: Array<{ cwd?: string }> = [];
   const fresh = mkRepairIo({ original, plan, packet });
-  const r2 = await doRepairOneChapter("zz-plan", 1, mkRepairDeps(repaired, freshSpawns), {
+  const r2 = await doRepairOneChapter("zz-plan", 1, mkRepairDeps(patch, freshSpawns), {
     io: fresh.io, scopes: ["quiz"], complaints: ["quiz Q2: x"],
   });
-  assert.ok(r2.ok, `clean scoped repair commits: ${r2.reason ?? ""}`);
+  assert.ok(r2.ok, `clean typed patch commits: ${r2.reason ?? ""}`);
   assert.equal(fresh.writes.length, 1, "one canonical commit");
+  const committed = JSON.parse(fresh.writes[0]) as { quiz: { questions: Array<{ prompt: string }> } };
+  assert.equal(committed.quiz.questions[1].prompt, "Q2, sharpened without any relabel?", "the patched leaf landed");
 });

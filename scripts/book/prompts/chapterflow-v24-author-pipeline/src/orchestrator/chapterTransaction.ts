@@ -209,7 +209,7 @@ export function importCandidate(attempt: ChapterAttempt): CandidateImport {
 
 /** Any workspace entry besides the candidate file is an unexpected write —
  *  first-class attempt failure, never silently tolerated (F-020). */
-export function unexpectedAttemptWrites(attempt: ChapterAttempt): string[] {
+export function unexpectedAttemptWrites(attempt: ChapterAttempt, extraAllowed: readonly string[] = []): string[] {
   const out: string[] = [];
   const walk = (rel: string): void => {
     let entries;
@@ -217,7 +217,9 @@ export function unexpectedAttemptWrites(attempt: ChapterAttempt): string[] {
     for (const e of entries) {
       const relPath = rel === "" ? e.name : join(rel, e.name);
       if (e.isDirectory()) walk(relPath);
-      else if (relPath !== attempt.candidateFileName) out.push(relPath);
+      // IMP-07: a patch-returning attempt legitimately writes exactly one extra
+      // file (patch.json) — the caller names it explicitly; nothing is implicit.
+      else if (relPath !== attempt.candidateFileName && !extraAllowed.includes(relPath)) out.push(relPath);
     }
   };
   walk("");
