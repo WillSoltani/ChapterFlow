@@ -28,8 +28,11 @@ import {
 import {
   AUTHOR_CARD_MAX_CHARS,
   AUTHOR_HOUSE_RULES,
+  AUTHOR_PRECEDENCE,
   AUTHOR_PREMIUM_BLOCK,
   AUTHOR_QUALITY_BAR,
+  authorCardComposition,
+  authorCardMetrics,
   authorChapterRelPath,
   authorSchemaHint,
   authorSelfVerify,
@@ -38,6 +41,7 @@ import {
   doAuthorWrite,
   ROUND_TIMER_MINUTES,
 } from "../src/orchestrator/authorRun.js";
+import { UNTRUSTED_ARTIFACT_RENDERER_VERSION } from "../src/exec/untrustedArtifact.js";
 import { questionKeysOnLineage } from "../src/critics/lineageKeyQuiz.js";
 import {
   AUTHOR_REGEN_CAP,
@@ -436,187 +440,78 @@ test("author card: brief md verbatim + writer projection + schema hint + self-ve
   assert.ok(card.includes(AUTHOR_HOUSE_RULES), "house-style rules verbatim");
   // IMP-01: the card no longer instructs the writer to run repository commands —
   // the conductor gates the candidate; the self-verify names the consequence.
-  assert.ok(card.includes("the conductor gates state/chapters/zz-fixture-fact-ranking-ch03.v21-native.chapter.json the moment you exit"), "self-verify names the exact output file + conductor gating");
+  assert.ok(card.includes("the conductor gates state/chapters/zz-fixture-fact-ranking-ch03.v21-native.chapter.json the moment you do"), "self-verify names the exact output file + conductor gating");
   assert.ok(!card.includes("npx tsx src/cli.ts"), "no repository-command instruction rides the card (IMP-01 least authority)");
   assert.ok(!card.includes("PRIOR-ATTEMPT COMPLAINTS"), "no complaints section on a first attempt");
+  // IMP-05: the precedence contract rides the always-sent card.
+  assert.ok(card.includes(AUTHOR_PRECEDENCE), "the precedence order is embedded");
   assert.ok(card.length <= AUTHOR_CARD_MAX_CHARS, `card must be <= ${AUTHOR_CARD_MAX_CHARS} chars, got ${card.length}`);
-  assert.ok(authorSelfVerify("zz-fixture-fact-ranking", 3).length <= 1400, "self-verify stays <= 1400 chars");
+  assert.ok(authorSelfVerify("zz-fixture-fact-ranking", 3).length <= 900, "self-verify stays <= 900 chars (IMP-05 diet)");
   console.log(`  [measure] author card on the golden fixture packet: ${card.length} chars`);
 });
 
-// ── W1: the QUALITY BAR travels in the ALWAYS-SENT card ────────────────────────
-test("author card: W1 QUALITY BAR (all four house rules) rides the ALWAYS-SENT card, not just the retry", () => {
+// ── IMP-05: the dieted, precedence-ordered writer card ─────────────────────────
+// The CF-A..CF-J / STIER / W1 rule-text pins were consolidated here: IMP-05 moved
+// the accumulated incident lessons to their enforcement owners (gates, C31-C35,
+// the source-use plan, the blinded reviewers) — see docs/v25/IMP-05-REQUIREMENT-
+// LEDGER.md. These tests assert the COMPACT invariants ride the card and each
+// protection's enforcement owner is unchanged.
+test("IMP-05: control blocks (precedence + invariants + craft targets + reviewer axes) ride the always-sent card, dieted", () => {
   const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
-  const briefMd = renderBriefMd(brief);
-  // FIRST-ATTEMPT card (no complaints): the four rules must already be present, so
-  // a compliant first draft clears the W2 preflight without the ~19-min retry.
-  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
-  assert.ok(card.includes(AUTHOR_QUALITY_BAR), "the QUALITY BAR block is embedded verbatim on the first attempt");
-  // Rule 1 — distractor parity states the REAL symmetric caps (FINAL-HARDENING-PLAN
-  // 2026-07-04 D1/D5 rebase: the old "NEITHER longest NOR shortest / aim middle" text
-  // contradicted the 1-longest/4-shortest gates and CHB8's 20% shortest floor).
-  assert.match(card, /uniquely LONGEST choice in AT MOST ONE/i, "rule 1 states the longest cap");
-  assert.match(card, /uniquely SHORTEST in AT MOST FOUR/i, "rule 1 states the shortest cap");
-  assert.match(card, /up to 4 of 9.*never make shortest the rule/i, "rule 1 reconciles the CHB8 shortest floor");
-  // Rule 2 — key paraphrase incl. review cards + implementation plan.
-  assert.match(card, /never reuse 5 or more consecutive content words/i, "rule 2 key-paraphrase 5-word rule");
-  assert.match(card, /review cards and the implementation plan/i, "rule 2 names review cards + implementation plan explicitly");
-  // Rule 3 — practice concreteness, no option menus. STIER-2 rebase (documented,
-  // plan §B P13): the old "exact object to touch" wording itself minted "touch X
-  // and say Y" theater across 6+ chapters — the concrete FORM now comes from the
-  // dealt practice shapes.
-  assert.match(card, /number or a timebox, concrete enough to start within a minute/i, "rule 3 concreteness");
-  assert.match(card, /never default to a touch-this-object or say-this-aloud ritual/i, "rule 3 de-theaters the staging");
-  assert.match(card, /No "a, b, or c" option menus/i, "rule 3 bans option menus");
-  // Rule 4 — plain language / ease band from sentence one.
-  assert.match(card, /Flesch ease 72-84/i, "rule 4 names the ease band");
-  // Rule 7 — example craft (Phase 5): the thin/manufactured-example write-time
-  // standard that shifts C29 + the reader's slot-filler judgment left.
-  assert.match(card, /EXAMPLE CRAFT/i, "rule 7 names the example-craft standard");
-  assert.match(card, /DECISION and its COMPLETED CONSEQUENCE/i, "rule 7 demands the decision→consequence arc");
-  assert.match(card, /FAILED example/i, "rule 7 states the thin-example reject condition");
-  // CF-B (F3/F5/F13/F17): the register rewrite. The rubric-shaped phrasing that leaked
-  // verbatim into HOM ch8's evaluator-Q&A fields is GONE; the new register + conditional
-  // tension + F17 humanization guardrail are present. (C31 is the deterministic complement.)
-  assert.ok(!AUTHOR_QUALITY_BAR.includes("MEASURABLY CHANGED"), "CF-B: the rubric-shaped 'MEASURABLY CHANGED … before→after' phrasing is removed");
-  assert.match(card, /NARRATED in the scene's own voice/i, "rule 7 states the register rule (narrate in the scene's voice)");
-  assert.match(card, /Never open a field with an evaluator question answered in the next clause/i, "rule 7 bans the evaluator-question-then-answer opener");
-  assert.match(card, /Where legitimate interests collide/i, "rule 7 carries the CONDITIONAL competing-interests staging clause");
-  assert.match(card, /one example must STAGE the clash — who pulls the other way, what it costs/i, "the tension clause demands staging, not describing");
-  assert.match(card, /never a default invented proxy or a named person beyond the dealt cast/i, "rule 7 carries the F17 humanization guardrail (no new named cast)");
-  assert.match(card, /honor its proxy\/stand-in bans/i, "the F17 guardrail honors dealt proxy/stand-in bans");
-  // CF-C (Findings 4/8): rule 6's per-example JOB wording — every example serves THIS
-  // chapter's declared learning job through a distinct facet, grounded in the source
-  // (the write-time twin of the C30 critic + the brief's NOT-THIS-CHAPTER line).
-  assert.match(card, /Each example must advance THIS CHAPTER'S JOB \(declared in the VARIETY block\)/, "rule 6 ties every example to the chapter's declared learning job");
-  assert.match(card, /no two examples may teach the same lesson/i, "rule 6 forbids duplicate example lessons");
-  assert.match(card, /merge them and spend the freed slot on a facet you have not shown yet/i, "rule 6 keeps the merge-and-respend instruction");
-  assert.match(card, /never invent a facet the source cannot ground/i, "rule 6 keeps the source-grounding guard on new facets");
-
-  // Length budget: the WHOLE card stays <= 18,700 chars (W1 spec, bumped from
-  // 16,000 for the Phase-5 example-craft rule, then raised for the 2026-07-08
-  // content-feedback campaign: CF-A rule 8 HOOK CARRIES A STAKE + self-verify
-  // item 5, CF-C rule-6 job wording + the NOT-THIS-CHAPTER learning-job line in
-  // the brief VARIETY block, CF-B's rule-7 register rewrite (net of the removed
-  // rubric-shaped phrase), CF-D's PLAIN WORDS inherited-terms + self-verify TERMS
-  // item, and CF-E's rule 9 TAKE-HOME SURFACES + schema-hint notes + self-verify
-  // item 7 — then TRIMMED back (attention economy): the campaign's net delta on
-  // the four card constants is +1,395 chars (fixture card measures ~18.2k).
-  // The variable parts (brief md + packet projection) are represented by the fixture.
-  // 2026-07-09: the pin rose 18,700 → 18,820 for the CF-I campaign's +599 card delta
-  // (CF-I-2 register rule +391, CF-I-3 quiz application-over-lineage +208); ≤19,000 cap.
-  // 2026-07-09 CF-J: 18,820 → 18,940 for the self-verify item-4 page-citation clause
-  // ("Page/section citations … are internal coordinates, never reader prose", +91;
-  // measured card 18,911 — still under the ≤19,000-per-campaign governance cap).
-  // 2026-07-10 IMP-03: 18,940 → 20,000 (measured 19,924, +1,013). NOT prose growth:
-  // the typed untrusted-data ENVELOPE around the projection (notice + delimiters +
-  // hash header, F-021 security boundary, ~710), the projection's v2 SAFETY fields
-  // on this fixture (doNotRestamp/naturalSetting, F-005), and the two-line hedge/
-  // restamp instruction. Prompt DIET is IMP-05's package (conflict matrix: "IMP-03
-  // data first, IMP-05 diet second") — the pin drops again there.
-  assert.ok(card.length <= 20000, `W1 card length budget: card must be <= 20,000 chars, got ${card.length}`);
-  console.log(`  [measure] W1 card with QUALITY BAR: ${card.length} chars (budget 20,000)`);
+  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd: renderBriefMd(brief), packet: GOLDEN_PACKET, voice: null });
+  // All four control blocks are embedded verbatim on the FIRST attempt.
+  assert.ok(card.includes(AUTHOR_PRECEDENCE), "precedence contract present");
+  assert.ok(card.includes(AUTHOR_HOUSE_RULES), "global invariants present");
+  assert.ok(card.includes(AUTHOR_QUALITY_BAR), "craft targets present");
+  assert.ok(card.includes(AUTHOR_PREMIUM_BLOCK), "reviewer-scored axes present");
+  // Precedence orders safety/source above optional style (instruction 3).
+  assert.ok(AUTHOR_PRECEDENCE.indexOf("Safety, source obedience") < AUTHOR_PRECEDENCE.indexOf("Optional style"), "safety/source outranks optional style");
+  // The retained global invariants (ledger I1-I5).
+  assert.match(AUTHOR_HOUSE_RULES, /COMPLETE:.*every required field/i, "I1 completeness invariant");
+  assert.match(AUTHOR_HOUSE_RULES, /FACTUAL:.*SOURCE-USE PLAN/i, "I2 source obedience invariant");
+  assert.match(AUTHOR_HOUSE_RULES, /QUIZ:.*tests a MOVE the reader makes, not a source/i, "I3 quiz-is-a-move invariant");
+  assert.match(AUTHOR_HOUSE_RULES, /IDENTITY:.*reader never meets the machinery/i, "I4 identity/machinery invariant");
+  assert.match(AUTHOR_HOUSE_RULES, /PLAIN & DENSE:.*Flesch ease 72-84/i, "I5 plain+dense invariant");
 });
 
-// ── CF-A (G1): hook carries a stake + fastRead doorway ─────────────────────────
-test("CF-A: rule 8 HOOK CARRIES A STAKE + DOORWAY rides the ALWAYS-SENT card; mode-agnostic; nothing weakened", () => {
+test("IMP-05: the diet actually shrank the card; instruction count fell; budget holds", () => {
   const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
-  const briefMd = renderBriefMd(brief);
-  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
-
-  // Rule 8 is present on the FIRST-ATTEMPT card (exact-line pins).
-  assert.ok(AUTHOR_QUALITY_BAR.includes("8. HOOK CARRIES A STAKE"), "rule 8 exists in the QUALITY BAR");
-  assert.ok(card.includes("8. HOOK CARRIES A STAKE"), "rule 8 rides the always-sent card");
-  assert.match(card, /make the STAKE visible in plain words — who loses\/pays\/misses what/i, "rule 8 states the stake requirement");
-  assert.match(card, /a bare activity or diagram description is a FAILED hook/i, "rule 8 names the activity/diagram FAIL condition");
-  // Exactly TWO generic micro-examples, one passing + one failing (not book-specific).
-  assert.ok(AUTHOR_QUALITY_BAR.includes('FAIL: "The team maps functions to shared standards."'), "rule 8 carries the failing micro-example");
-  assert.ok(AUTHOR_QUALITY_BAR.includes('PASS: "It shipped late because no one owned the date."'), "rule 8 carries the passing micro-example");
-  assert.equal(AUTHOR_QUALITY_BAR.split(/\bFAIL:/).length - 1, 1, "exactly one FAIL micro-example in rule 8");
-  assert.equal(AUTHOR_QUALITY_BAR.split(/\bPASS:/).length - 1, 1, "exactly one PASS micro-example in rule 8");
-  // The doorway rule for the fastRead opening (CF-I-2 tightened the beat definition
-  // between "beat" and "BEFORE"; the concrete-beat-before-abstraction order stands).
-  assert.match(card, /DOORWAY: land one concrete fastRead beat .*BEFORE the first abstract term/i, "doorway orders concrete-beat-before-abstraction");
-
-  // Mode-agnostic: rule 8 binds WHATEVER opener mode is dealt (wording, not enforcement —
-  // no hook critic, no OPENER_TYPES change), so all five dealt modes can satisfy it.
-  assert.match(AUTHOR_QUALITY_BAR, /Whatever opener mode is dealt/i, "rule 8 is explicitly mode-agnostic");
-
-  // Self-verify item 5 present (write-time stake self-check), block still <= the self-verify pin (1400 since CF-J).
-  const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
-  assert.ok(card.includes(sv), "self-verify block rides the card");
-  assert.match(sv, /run ALL SEVEN/i, "self-verify header updated to seven checks");
-  assert.match(sv, /5\. HOOK — point at the stake \(who loses\/pays\/misses what\)/, "self-verify item 5 (point-at-the-stake) present");
-  assert.match(sv, /the fastRead's concrete beat before its first abstract term/, "self-verify item 5 covers the doorway check");
-  assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
-
-  // NEGATIVE: nothing was weakened. Rule 4 "Open plain" and the PREMIUM_BLOCK VOICE
-  // rhythm rule (move 1) are byte-for-byte unchanged.
-  assert.ok(AUTHOR_QUALITY_BAR.includes("4. PLAIN LANGUAGE FROM SENTENCE ONE [GATED]"), "rule 4 header unchanged");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("Open plain — no throat-clearing abstraction before the first concrete beat."), "rule 4 'Open plain' clause unchanged");
-  assert.ok(AUTHOR_PREMIUM_BLOCK.includes("never let more than 2 consecutive paragraphs open on an abstraction; break runs with a person, scene, or object."), "PREMIUM_BLOCK VOICE move 1 unchanged");
+  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd: renderBriefMd(brief), packet: GOLDEN_PACKET, voice: null });
+  const m = authorCardMetrics(card);
+  // IMP-03 left the fixture card at 19,924; the IMP-05 diet brings it under 15,000.
+  assert.ok(m.chars <= 15000, `dieted card must be <= 15,000 chars, got ${m.chars} (was 19,924 after IMP-03)`);
+  assert.ok(m.controlChars <= 4600, `control blocks must be <= 4,600 chars, got ${m.controlChars} (was ~10,900)`);
+  // Rule-count dilution signal: the control blocks carry far fewer directive lines.
+  assert.ok(m.instructions <= 40, `directive-line count stays low, got ${m.instructions}`);
+  console.log(`  [measure] IMP-05 dieted card: ${m.chars} chars, ${m.instructions} directive lines, control ${m.controlChars}`);
 });
 
-// ── CF-I-2 (machinery-leakage): rule 8 REGISTER clause + DOORWAY tightening ─────
-test("CF-I-2: rule 8 carries the REGISTER rule + citation-date DOORWAY tightening; self-verify names beat labels; budget holds", () => {
-  const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
-  const briefMd = renderBriefMd(brief);
-  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
-
-  // REGISTER clause (the reader never meets the machinery) rides the always-sent card.
-  assert.match(card, /REGISTER: the reader never meets the machinery/i, "rule 8 REGISTER clause present");
-  assert.match(card, /no internal artifact or dealt beat label as the acting subject/i, "REGISTER bans machinery-as-protagonist (C32) and beat-labels-as-prose (C33)");
-  assert.match(card, /no drafting narration \(\"in the weak version…\"\)/i, "REGISTER bans drafting/process narration");
-  assert.match(card, /write the beat, not its name/i, "REGISTER states the beat-not-its-name rule");
-  assert.match(card, /quiz keys test what a reader can DO, not name the source lineage/i, "REGISTER carries the compact quiz-key principle (C35; CF-I-3 elaborates)");
-
-  // DOORWAY tightening: a doorway is someone acting or a cost landing, never a bare date (C34).
-  assert.match(card, /someone acting or a cost landing, never a citation\/publication date on its own/i, "DOORWAY tightening folds in the citation-date exclusion (S4)");
-
-  // Self-verify item 4 (SCAFFOLD) now names beat labels; block still under the self-verify pin (1400 since CF-J — item 4 also gains the page-citation clause).
-  const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
-  assert.match(sv, /4\. SCAFFOLD — scan every reader-facing field for scaffold vocabulary \(slot names, shape\/beat labels/, "self-verify item 4 adds beat labels to the scaffold list");
-  assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
-
-  // Net CF-I-2 card delta ≤ +400 chars (register-rule budget); whole-card pin raised
-  // 18,940 → 20,000 by IMP-03 (untrusted envelope + v2 safety projection — see the
-  // W1 budget test's history comment; diet returns in IMP-05).
-  assert.ok(card.length <= 20000, `W1 card length budget: card must be <= 20,000 chars, got ${card.length}`);
-  assert.ok(AUTHOR_QUALITY_BAR.length <= 6300, `QUALITY_BAR CF-I delta stays within budget, got ${AUTHOR_QUALITY_BAR.length}`);
-  console.log(`  [measure] CF-I-2 card: ${card.length} chars (budget 20,000); QUALITY_BAR ${AUTHOR_QUALITY_BAR.length}`);
-
-  // NEGATIVE: nothing from CF-A/CF-B weakened — rule 7 register + rule 8 stake intact.
-  assert.match(card, /7\. EXAMPLE CRAFT \[SCORED\]/, "rule 7 header unchanged");
-  assert.match(card, /NARRATED in the scene's own voice/i, "rule 7 CF-B register requirement intact");
-  assert.match(card, /make the STAKE visible in plain words — who loses\/pays\/misses what/i, "rule 8 CF-A stake requirement intact");
-  assert.equal(AUTHOR_QUALITY_BAR.split(/\bFAIL:/).length - 1, 1, "still exactly one FAIL micro-example");
-  assert.equal(AUTHOR_QUALITY_BAR.split(/\bPASS:/).length - 1, 1, "still exactly one PASS micro-example");
+test("IMP-05: block versioning + composition hash are stable and stamp every control block", () => {
+  const comp = authorCardComposition();
+  assert.equal(comp.versions.qualityBar, "quality-bar-v2", "quality bar is at the IMP-05 diet version");
+  assert.equal(comp.versions.selfVerify, "self-verify-v2", "self-verify is at the IMP-05 diet version");
+  assert.equal(comp.versions.dataEnvelope, UNTRUSTED_ARTIFACT_RENDERER_VERSION, "data-envelope version tracks IMP-03");
+  assert.equal(comp.controlSha256.length, 64, "composition hash is a full sha256");
+  assert.equal(authorCardComposition().controlSha256, comp.controlSha256, "composition hash is deterministic");
 });
 
-// ── CF-I-3 (quiz application-over-lineage): rule 5 KEY-IS-A-MOVE + schemaHint + self-verify ─
-test("CF-I-3: rule 5 carries KEY IS A MOVE; schemaHint + self-verify state application-over-lineage; detector-consistent; budget holds", () => {
+test("IMP-05: HOOK stake target rides the card (protection retained; C34 doorway critic unchanged)", () => {
   const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
-  const briefMd = renderBriefMd(brief);
-  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
+  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd: renderBriefMd(brief), packet: GOLDEN_PACKET, voice: null });
+  assert.match(card, /HOOK \[SCORED\]\. Make the stake visible in plain words/i, "the hook-stake craft target is present, compactly");
+  // One sparse FAIL/PASS micro-example survives (O3 endorses sparse examples).
+  assert.equal(AUTHOR_QUALITY_BAR.split(/\bFAIL:/).length - 1, 1, "exactly one FAIL micro-example");
+  assert.equal(AUTHOR_QUALITY_BAR.split(/\bPASS:/).length - 1, 1, "exactly one PASS micro-example");
+  // The machinery/register protection moved to invariant I4 + the C32/C33 critics.
+  assert.match(AUTHOR_HOUSE_RULES, /no internal artifact or beat label as an acting subject/i, "machinery-register protection lives in invariant I4");
+});
 
-  // The fuller quiz-application rule rides the always-sent card, inside rule 5.
-  assert.match(card, /KEY IS A MOVE: the graded answer is a move the reader makes, not a source — a citation belongs in a distractor or the explanation, never the tested skill\./, "rule 5 carries the KEY IS A MOVE application-over-lineage rule");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("5. DISTRACTOR TRANSFORM"), "the rule lives on rule 5 where the quiz-key guidance is");
-
-  // schemaHint's explanation note gains the why-the-move-works direction.
-  const hint = authorSchemaHint("zz-fixture-fact-ranking", 3);
-  assert.match(hint, /"explanation":"\.\.\.\(120-300 chars; why the move works\)"/, "schemaHint quiz explanation note extended to why-the-move-works");
-  assert.ok(card.includes(hint), "the extended schemaHint rides the card");
-
-  // Self-verify item 1 (KEYS) gains the move-not-source check; block within the self-verify pin (1400 since CF-J).
-  const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
-  assert.match(sv, /A key tests a move, not a source\. Mismatch: re-key or rewrite\./, "self-verify item 1 adds the move-not-source check before its re-key action");
-  assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
-
-  // CONSISTENCY: the C35 detector (critics/lineageKeyQuiz.ts) flags exactly the key
-  // shape this rule forbids — its "Tie the move to <source> … so the frame is traceable"
-  // fixture key cites a source AS the graded answer, which "KEY IS A MOVE … never the
-  // tested skill" prevents at write time. Rule and detector agree on the failure.
+test("IMP-05: quiz key-is-a-move protection is on the card AND still enforced by the C35 detector", () => {
+  const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
+  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd: renderBriefMd(brief), packet: GOLDEN_PACKET, voice: null });
+  assert.match(card, /A key tests a move the reader makes, never a source\./, "key-is-a-move invariant present (rule 1)");
+  // The enforcement owner (C35 lineageKeyQuiz critic) is UNCHANGED — it still fires
+  // on the exact key shape the invariant forbids (proving the protection moved, not vanished).
   const lineageKey = {
     choices: [
       "Tie the move to Getting to Yes and its named authors, so the frame is traceable to a real source.",
@@ -625,99 +520,17 @@ test("CF-I-3: rule 5 carries KEY IS A MOVE; schemaHint + self-verify state appli
     correctIndex: 0,
     explanation: "The source lineage matters here: naming the authors makes the frame checkable.",
   };
-  assert.equal(questionKeysOnLineage(lineageKey), true, "the C35 detector fires on the very key shape rule 5 forbids (rule↔detector consistency)");
-
-  // Whole-card budget: net CF-I campaign delta +599 (CF-I-2 +391 + CF-I-3 +208); pin
-  // raised 18,940 → 20,000 by IMP-03 (see the W1 budget test's history comment).
-  assert.ok(card.length <= 20000, `W1 card length budget: card must be <= 20,000 chars, got ${card.length}`);
-  console.log(`  [measure] CF-I-3 card: ${card.length} chars (budget 20,000); QUALITY_BAR ${AUTHOR_QUALITY_BAR.length}`);
+  assert.equal(questionKeysOnLineage(lineageKey), true, "the C35 detector still fires on a lineage-keyed question");
 });
 
-// ── CF-D (G3): PLAIN WORDS covers inherited terms of art, not only coined ──────
-test("CF-D: PLAIN WORDS rule covers inherited-from-source terms + self-verify TERMS item; coined clause + no def-critic", () => {
-  const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
-  const briefMd = renderBriefMd(brief);
-  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
-
-  // The extended PLAIN WORDS rule: still names coined terms, now ALSO inherited ones.
-  const plainLine = AUTHOR_PREMIUM_BLOCK.split("\n").find((l) => l.startsWith("- PLAIN WORDS:"));
-  assert.ok(plainLine, "PLAIN WORDS rule still present in the PREMIUM_BLOCK");
-  assert.match(plainLine, /load-bearing term/i, "rule scopes to load-bearing terms");
-  assert.match(plainLine, /COINED here/, "rule still covers terms the chapter coins");
-  assert.match(plainLine, /INHERITED from the source/i, "rule now also covers terms inherited from the source (gap G3)");
-  assert.ok(plainLine.includes("'return pass'"), "a coined-term example intact");
-  assert.match(plainLine, /unpacked in plain words at first use/i, "the plain first-use unpacking survives");
-  assert.match(plainLine, /never dodge a vocabulary budget by minting jargon/i, "the mint-jargon clause is preserved");
-  assert.match(plainLine, /one clause in the flow/i, "expert pace preserved — one clause, not a glossary");
-  assert.ok(card.includes(plainLine), "extended PLAIN WORDS rule rides the always-sent card");
-
-  // Self-verify gains the TERMS item (item 6); the block still fits the self-verify pin (1400 since CF-J).
-  const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
-  assert.match(sv, /run ALL SEVEN/i, "self-verify header advanced to seven checks");
-  assert.match(sv, /6\. TERMS — name the 2-4 terms this chapter stands on; confirm each got a plain first-use unpacking\./, "self-verify TERMS item present");
-  assert.match(sv, /5\. HOOK — point at the stake/, "prior item 5 still present (nothing dropped)");
-  assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
-  assert.ok(card.includes(sv), "self-verify block rides the card");
-});
-
-// ── CF-E (F9/F10/F14): implementation-plan take-home surfaces ───────────────────
-// Skill name leads coreSkill (the field that actually reaches the reader — the writer's
-// implementationPlan.title is emitted-and-dropped by the app projection), action fields
-// carry no coined shorthand, and >=1 memorableLine holds the chapter's central image.
-test("CF-E impl-plan UX: rule 9 skill-name pattern + exemplar, coreSkill leads with the name, plain-action clause, central-image memorableLine, self-verify item 7; rule 3 + D9 untouched", () => {
-  const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
-  const briefMd = renderBriefMd(brief);
-  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
-
-  // (a) SKILL-NAME rule — rule 9 rides the always-sent card with the pattern + one
-  //     reviewer exemplar (generic, not book-specific) and the virtue-noun ban.
-  assert.ok(AUTHOR_QUALITY_BAR.includes("9. TAKE-HOME SURFACES [SCORED]"), "rule 9 exists in the QUALITY BAR");
-  assert.ok(card.includes("9. TAKE-HOME SURFACES [SCORED]"), "rule 9 rides the always-sent card");
-  assert.match(card, /SKILL NAME — imperative verb \+ concrete object, 2-5 words/, "rule 9 states the skill-name pattern (imperative verb + concrete object, 2-5 words)");
-  assert.match(card, /never a virtue-noun \(excellence\/ownership\)/, "rule 9 bans virtue-nouns as the skill name");
-  assert.ok(card.includes('"Name the Local Signal"'), "rule 9 carries a generic reviewer exemplar");
-  assert.match(card, /coreSkill OPENS with it/, "rule 9 requires coreSkill to lead with the skill name (the field that reaches the reader)");
-
-  // (b) The schema hint reinforces the two field placements the reader actually sees.
+test("IMP-05: schema hint (unchanged) carries the take-home + memorable-line shapes; D9 round-timer set intact", () => {
   const hint = authorSchemaHint("zz-fixture-fact-ranking", 3);
-  assert.ok(card.includes(hint), "schema hint rides the card");
-  assert.match(hint, /"title":"\.\.\.\(2-5 word skill name\)"/, "schema hint carries the 2-5-word skill-name pattern on title");
-  assert.match(hint, /"coreSkill":"<skill name>\. \.\.\.\(2-4 sentences\)"/, "schema hint puts the skill name first in coreSkill");
-
-  // (c) PLAIN-ACTION clause — action fields carry zero coined shorthand (extends the CF-D
-  //     PLAIN WORDS line, not rule 3).
-  const plainLine = AUTHOR_PREMIUM_BLOCK.split("\n").find((l) => l.startsWith("- PLAIN WORDS:"));
-  assert.ok(plainLine, "PLAIN WORDS rule still present");
-  assert.match(plainLine!, /Action fields \(tryThisNow\/24h challenge\/weeklyPractice\) carry ZERO coined shorthand/, "PLAIN WORDS gains the no-shorthand action-field clause");
-  assert.match(plainLine!, /restate needed terms plainly in the same sentence/, "the action clause requires a plain restatement in the same sentence");
-  assert.ok(card.includes(plainLine!), "the extended PLAIN WORDS rule rides the card");
-
-  // (d) MEMORABLE-LINE selection — >=1 line carries the chapter's central image; no line
-  //     reused across chapters.
-  assert.match(card, /≥1 memorableLine carries THIS chapter's central image/, "rule 9 requires >=1 memorableLine to carry the central image");
-  assert.match(card, /none reused across chapters/, "rule 9 forbids reusing another chapter's line");
-  assert.match(hint, /"memorableLines":\[\{"text":"\.\.\.\(exact sentence from the chapter; >=1 carries the central image\)"/, "schema hint carries the memorable-line selection rule");
-
-  // (e) SELF-VERIFY item 7 covers all three take-home checks in one line; block within the self-verify pin (1400 since CF-J).
-  const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
-  assert.match(sv, /run ALL SEVEN/i, "self-verify advanced to seven checks");
-  assert.match(sv, /7\. TAKE-HOME — coreSkill opens with the skill name; no coined shorthand in actions; one memorableLine carries the central image, none reused\./, "self-verify item 7 covers skill name + no-shorthand actions + central-image line");
-  assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
-  assert.ok(card.includes(sv), "self-verify block rides the card");
-
-  // NEGATIVE — rule 3's timebox floor + body are byte-for-byte unchanged (not weakened).
-  assert.ok(
-    AUTHOR_QUALITY_BAR.includes("3. PRACTICE CONCRETENESS [GATED floor: at least ONE of tryThisNow / the 24-hour challenge must be imperative-led with a number or timebox]"),
-    "rule 3 GATED timebox floor unchanged",
-  );
-  assert.ok(
-    AUTHOR_QUALITY_BAR.includes("each names ONE action with a number or a timebox, concrete enough to start within a minute"),
-    "rule 3 concreteness body unchanged",
-  );
-  // NEGATIVE — the D9 round-timer contract is untouched (function + canonical minute set).
-  for (const m of [5, 10, 15, 20, 25, 30, 45, 60]) {
-    assert.ok(ROUND_TIMER_MINUTES.has(m), `D9 round-timer set still contains ${m}`);
-  }
+  assert.match(hint, /"coreSkill":"<skill name>\. \.\.\.\(2-4 sentences\)"/, "coreSkill opens with the skill name (schema hint)");
+  assert.match(hint, /"memorableLines":\[\{"text":"\.\.\.\(exact sentence from the chapter; >=1 carries the central image\)"/, "memorable-line selection in the schema hint");
+  // The take-home craft target compactly names the skill-name shape.
+  assert.match(AUTHOR_QUALITY_BAR, /coreSkill opens with a 2-5 word skill name/i, "take-home craft target present");
+  // D9 round-timer contract untouched (enforcement owner unchanged).
+  for (const m of [5, 10, 15, 20, 25, 30, 45, 60]) assert.ok(ROUND_TIMER_MINUTES.has(m), `D9 round-timer set still contains ${m}`);
 });
 
 test("author card: renders the W4 brief-derived VARIETY instructions (opener / 24h-frame / practice) when the machine brief is passed", () => {

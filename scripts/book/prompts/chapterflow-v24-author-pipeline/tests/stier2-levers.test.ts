@@ -316,16 +316,19 @@ test("B0 real-size pin: a full v3 brief + realistic packet keeps the card ≤ 24
 
 // ── card text pins ─────────────────────────────────────────────────────────────
 
-test("card pins: TRANSFORM recipe + de-theatered rule 3 + VOICE block + pruned INSIGHT clause + dealt LIMITS placement", () => {
-  assert.ok(AUTHOR_QUALITY_BAR.includes("5. DISTRACTOR TRANSFORM"), "rule 5 is the transform recipe");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("ECHO SYMMETRY"), "echo symmetry named");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("polish/announce/slides"), "banned families still named (grill 2b #17)");
-  assert.ok(!AUTHOR_QUALITY_BAR.includes("exact object to touch"), "rule 3's theater-minting shape is gone");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("never default to a touch-this-object"), "rule 3 bans the ritual instead");
-  assert.ok(AUTHOR_PREMIUM_BLOCK.includes("- VOICE:"), "VOICE block replaces the TONE bullet");
-  assert.ok(AUTHOR_PREMIUM_BLOCK.includes("never let more than 2 consecutive paragraphs"), "voice move 1 (scoped to tiers — never the dealt hook)");
-  assert.ok(!AUTHOR_PREMIUM_BLOCK.includes("At least one example ends in failure"), "INSIGHT failure clause pruned — the dealt arcs carry it");
-  assert.ok(AUTHOR_PREMIUM_BLOCK.includes("dealt LIMITS PLACEMENT"), "limits paragraph rides the dealt placement");
+test("card pins (IMP-05 dieted): compact quiz-distractor + practice + VOICE/LIMITS axes; the theater/mechanical-word prose is gone", () => {
+  // IMP-05 removed the verbose STIER prose (transform recipe, echo symmetry,
+  // mechanical-word list, the touch-this-object ban, the VOICE 4-move formula,
+  // the dealt-LIMITS-placement clause) — those protections live in their gates/
+  // critics/deals now (see the ledger). The card carries the compact targets.
+  assert.ok(AUTHOR_QUALITY_BAR.includes("QUIZ DISTRACTORS [GATED]"), "quiz-distractor craft target present");
+  assert.match(AUTHOR_QUALITY_BAR, /warp it into each distractor by one of the brief's dealt failure modes/i, "key-first warp derivation named");
+  assert.ok(!AUTHOR_QUALITY_BAR.includes("polish/announce/slides"), "mechanical-word list moved off the card to the CHB12 gate");
+  assert.ok(!AUTHOR_QUALITY_BAR.includes("touch-this-object"), "the ritual-ban prose is gone; PRACTICE names the dealt shape instead");
+  assert.match(AUTHOR_QUALITY_BAR, /the FORM is your dealt practice shape, not a fixed ritual/i, "practice form points to the dealt shape");
+  assert.ok(AUTHOR_PREMIUM_BLOCK.includes("- VOICE:"), "VOICE axis present");
+  assert.ok(!AUTHOR_PREMIUM_BLOCK.includes("never let more than 2 consecutive paragraphs"), "the VOICE 4-move formula is removed (fixed formula = the anti-pattern)");
+  assert.match(AUTHOR_PREMIUM_BLOCK, /- LIMITS: one honest passage/i, "LIMITS axis present, compact (placement is the dealt LIMITS PLACEMENT in the brief)");
 });
 
 // ── D7/D9: write-time contract ─────────────────────────────────────────────────

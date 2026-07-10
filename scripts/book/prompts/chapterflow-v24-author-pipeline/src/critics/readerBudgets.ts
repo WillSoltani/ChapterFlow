@@ -1360,8 +1360,10 @@ function checkSceneClassSpread(chapters: ChapterV21[]): BudgetFinding[] {
 }
 
 /** The strawman giveaway lexicon — distractors rejectable by TONE without reading the
- *  chapter. Mirrors the calibration regex exactly. */
-const STRAWMAN_LEXICON =
+ *  chapter. Mirrors the calibration regex exactly. Exported (IMP-05): the CHB12 gate
+ *  is now the SOLE owner of this banned-family list — the writer card no longer names
+ *  the words (that was the "X not Y" anti-pattern), so tests assert the gate directly. */
+export const STRAWMAN_LEXICON =
   /\b(announce|announcement|slide|slides|deck|polish|polished|morale|optics|sound sharper|look impressive|louder|prettier|fancier|inspir\w*|motivat\w*|slogan|poster)\b/i;
 
 export const CHB12_STRAWMAN_RATE_CAP = 0.07;

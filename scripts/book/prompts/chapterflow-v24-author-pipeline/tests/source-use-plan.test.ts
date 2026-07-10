@@ -247,7 +247,7 @@ test("author card: WITH a plan the SOURCE-USE PLAN block renders; WITHOUT one th
   assert.ok(withPlan.includes("cannot relabel origin, form, claim strength"), "immutability instruction present");
   assert.ok(withPlan.length <= 25000, `a plan-bearing card stays under the AUTHOR_CARD_MAX_CHARS ceiling, got ${withPlan.length}`);
   const without = buildAuthorCard(base);
-  assert.ok(!without.includes("SOURCE-USE PLAN"), "no plan → no block (legacy books render as before)");
+  assert.ok(!without.includes("SOURCE-USE PLAN (compiler-owned"), "no plan → no block (legacy books render as before; the invariant text mentions the plan but the BLOCK is absent)");
 });
 
 // ── SP15/SP16 gate wiring ─────────────────────────────────────────────────────
@@ -425,7 +425,7 @@ test("write path: NO plan → legacy behavior (writes succeed, card has no plan 
   const r = await authorWriteOneChapter("zz-plan", 1, rig.deps, { io: rig.io, totalChapters: 2 });
   assert.ok(r.ok, `legacy write succeeds: ${r.ok ? "" : r.reason}`);
   assert.equal(rig.writes.length, 1, "committed");
-  assert.ok(!rig.spawns[0].task.includes("SOURCE-USE PLAN"), "no plan block on the legacy card");
+  assert.ok(!rig.spawns[0].task.includes("SOURCE-USE PLAN (compiler-owned"), "no plan block on the legacy card");
   const attemptDirs = readdirSync(join(TMP, "attempts", "zz-plan", "ch01"));
   const identities = attemptDirs
     .map((d) => { try { return JSON.parse(readFileSync(join(TMP, "attempts", "zz-plan", "ch01", d, "attempt.json"), "utf8")); } catch { return null; } })
