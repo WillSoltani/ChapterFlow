@@ -108,8 +108,11 @@ export const EXECUTION_PROFILES: Record<AgentRole, ExecutionProfileV1> = {
   "autopilot-repair": makeProfile("autopilot-repair", "pipeline-root", ["workspace-write"], "high"),
   "autopilot-scout": makeProfile("autopilot-scout", "pipeline-root", ["read-only"], "medium"),
   "qc-reviewer": makeProfile("qc-reviewer", "isolated-workspace", ["read-only"], "high"),
-  "author-writer": makeProfile("author-writer", "pipeline-root", ["workspace-write"], "xhigh"),
-  "author-repair": makeProfile("author-repair", "pipeline-root", ["workspace-write"], "xhigh"),
+  // IMP-01: writers/repairers run in isolated attempt workspaces (their cwd +
+  // ONLY writable dir) — the conductor owns every canonical mutation via
+  // compare-and-swap commit of a validated candidate (chapterTransaction.ts).
+  "author-writer": makeProfile("author-writer", "isolated-workspace", ["workspace-write"], "xhigh"),
+  "author-repair": makeProfile("author-repair", "isolated-workspace", ["workspace-write"], "xhigh"),
   "chapter-reviewer": makeProfile("chapter-reviewer", "pipeline-root", ["read-only"], "high"),
   "book-acceptance-reader": makeProfile("book-acceptance-reader", "pipeline-root", ["read-only"], "high"),
   "author-evidence": makeProfile("author-evidence", "pipeline-root", ["read-only"], "low"),

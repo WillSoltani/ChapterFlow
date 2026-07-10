@@ -1,0 +1,98 @@
+{
+  "schema": "worker-implementation-report-v1",
+  "promptId": "IMP-01",
+  "baselineHash": "1946b320bf10f84f7d977003bc437bda2f8ef666",
+  "resultHash": "08c56fcef139e5e00df04333486e824997ab1466f99ef11321900342a5f09682",
+  "contractVersions": {
+    "execution-profile": 1,
+    "effective-context-manifest": 1,
+    "candidate-transaction": 1,
+    "repair": 1,
+    "worker-implementation-report": 1
+  },
+  "filesChanged": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/chapterTransaction.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/critics/chapterGateComposite.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRun.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRepair.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/candidates.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/exec/executionEnvelope.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/cli.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/.gitignore",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/chapter-transaction.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-arch.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-write-restore.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/lead-degradation.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/register-advisory-surfacing.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/model-bakeoff-args.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/model-bakeoff-generation.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/model-bakeoff-helpers.ts"
+  ],
+  "requirementsImplemented": [
+    { "requirementId": "IMP01-R01", "status": "implemented", "note": "Canonical writer/reader inventory + static scan test (no direct canonical writes outside the io seam; authorRepair has zero direct fs writes)." },
+    { "requirementId": "IMP01-R02", "status": "implemented", "note": "Architecture qualification executed LIVE: corpus-max 33,278-byte chapter echo failed to complete via -o (420s) AND via --output-schema (540s) on codex-cli 0.144.1 gpt-5.5@low. Isolated-workspace fallback selected on this evidence; structured output remains qualified-available for small single-shot roles." },
+    { "requirementId": "IMP01-R03", "status": "implemented", "note": "AttemptIdentityV1 (frozen contract) minted per attempt with expected canonical base hash + generation." },
+    { "requirementId": "IMP01-R04", "status": "implemented", "note": "Author/regen produce a complete ChapterV21 CANDIDATE in an isolated workspace; the conductor imports, validates, and commits. Agents never save repository files." },
+    { "requirementId": "IMP01-R05", "status": "deferred", "deferredTo": "IMP-07", "note": "Typed-patch repair is IMP-07's package (contract frozen). Interim: repair edits a SEEDED workspace copy; conductor splices in memory and CAS-commits — canonical exposure already eliminated." },
+    { "requirementId": "IMP01-R06", "status": "implemented", "note": "Attempt-scoped workspace outside canonical state; only the candidate path is expected; unexpected writes are first-class failures; codex sandbox confines writes to the workspace cwd." },
+    { "requirementId": "IMP01-R07", "status": "implemented", "note": "Card instructions to save repository files / run gate CLIs removed; parse/schema/identity/gate/rubric/contract validation is conductor-owned." },
+    { "requirementId": "IMP01-R08", "status": "implemented", "note": "Self-verify remains an in-card checklist only; it cannot execute commands from the workspace." },
+    { "requirementId": "IMP01-R09", "status": "implemented", "note": "Malformed/oversized/missing/wrong-identity candidates classified distinctly (malformed_output / validation_failed) with evidence retained." },
+    { "requirementId": "IMP01-R10", "status": "implemented", "note": "JSON, identity, size, and full gate-composite validation before any commit." },
+    { "requirementId": "IMP01-R11", "status": "implemented", "note": ".attempts/ lives outside state/ — invisible to chapter enumeration, review, packaging, promotion by construction." },
+    { "requirementId": "IMP01-R12", "status": "implemented", "note": "Gate composite runs in-process on the candidate with COMMITTED siblings as context; rubric substitutes the candidate into the committed book; contract reads the candidate object." },
+    { "requirementId": "IMP01-R13", "status": "implemented", "note": "CAS on canonical hash; mismatch = stale_base, never rebase/overwrite/auto-retry (race test: exactly one of two same-base attempts commits)." },
+    { "requirementId": "IMP01-R14", "status": "implemented", "note": "Atomic tmp+rename replacement via writeFileAtomic as the canonical io default (fixes the F-001 torn-read wedge at the primitive too)." },
+    { "requirementId": "IMP01-R15", "status": "implemented", "note": "Pending/committed/aborted commit-manifest bracket; deterministic recovery for both crash points." },
+    { "requirementId": "IMP01-R16", "status": "implemented", "note": "Workspace diff detects unexpected writes; the attempt fails; repository files are unreachable (cwd isolation)." },
+    { "requirementId": "IMP01-R17", "status": "implemented", "note": "Recovery is idempotent and runs on every mint for the chapter." },
+    { "requirementId": "IMP01-R18", "status": "implemented", "note": "Bound to frozen Phase-0 contracts; the contracts-freeze test guards the versions." },
+    { "requirementId": "IMP01-R19", "status": "implemented", "note": "All retry/repair/regeneration/acceptance caps unchanged — pinned by the existing suite (2,098 green)." }
+  ],
+  "testsRequired": [
+    "attempt identity / expected-base / path containment / candidate exclusion / atomic replacement / recovery transitions",
+    "max-size structured-output qualification incl. truncation behavior",
+    "concurrent canonical readers during candidate production see only committed bytes",
+    "authority: author/repair agents cannot modify source, prompts, tests, state, reviews, acceptance, canonical chapters",
+    "failure paths: process exit, malformed JSON, wrong identity, gate failure, no-op repair, unexpected write, recovery",
+    "two-attempt same-base race: exactly one commit",
+    "regression: original-plus-one-regeneration cap, one surgical grant",
+    "candidates never quarantined/assembled/reviewed/packaged/swept/accepted"
+  ],
+  "testsRun": [
+    "tests/chapter-transaction.test.ts (12)",
+    "tests/author-arch.test.ts (68)",
+    "tests/author-write-restore.test.ts (4, rewritten to the stronger invariant)",
+    "tests/lead-degradation.test.ts (12)",
+    "tests/register-advisory-surfacing.test.ts (9)",
+    "tests/model-bakeoff-*.test.ts (33)",
+    "full hermetic pipeline suite (236 files)"
+  ],
+  "testResults": {
+    "pass": 2098,
+    "fail": 0,
+    "xfail": 0,
+    "xpass": 0,
+    "skip": 18,
+    "xenv": 6,
+    "commands": [
+      "npx tsc -p . --noEmit",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts"
+    ]
+  },
+  "gateChanges": [],
+  "bookSpecificExceptions": [],
+  "unexpectedWrites": [],
+  "unresolvedRisks": [
+    "v23 legacy writer fanout (autopilot write phase for non-author books) and compilerRun section writers still write artifacts directly from pipeline-root cwd — documented legacy-route debt outside the active v24 author route this package converts.",
+    ".attempts/ failed-candidate retention is interim forensics until IMP-10's evidence store (bounded by the 7-day pending-aware sweep).",
+    "A commit-write failure surfaces as a thrown infrastructure error; the pending bracket resolves on the next mint — deterministic, but the halt taxonomy attributes it as generic infra until IMP-10 adds richer outcomes.",
+    "The concurrent-reader torn-read guarantee derives from atomic rename + candidates-outside-state construction; a live many-reader soak belongs to the §17 gold run.",
+    "Channel probes ran at low effort on one host; IMP-11 may re-qualify --output-schema for its small single-shot judge outputs where the emission wall does not apply."
+  ],
+  "dependencyAssumptions": [
+    "codex sandbox `workspace-write` confines writes to the spawn cwd (+tmp) — the workspace-isolation premise, consistent with observed behavior and codex documentation.",
+    "src/bakeoff/** and its tests (previously uncommitted work-in-progress on this branch) are committed with this wave since IMP-01 adapts them; IMP-11 owns their redesign.",
+    "IMP-07 consumes the candidate-transaction interface for typed patches; IMP-10 consumes attempt/outcome evidence files."
+  ]
+}

@@ -248,11 +248,18 @@ function bookReply(chapters: ChapterV21[], over: { gate?: string; churn?: string
   return "```json\n" + JSON.stringify(body) + "\n```";
 }
 
-type SpawnRec = { sessionId: string; task: string; sandbox?: string };
+type SpawnRec = { sessionId: string; task: string; sandbox?: string; cwd?: string };
 
-/** Stub deps + a scripted spawn that answers per session-label. */
+/** Stub deps + a scripted spawn that answers per session-label.
+ *
+ *  IMP-01: an author-write spawn (label `author-chNN…`) must leave a CANDIDATE
+ *  chapter file in its attempt WORKSPACE (the spawn's cwd) — the conductor
+ *  imports/validates/commits it; nothing is read from canonical. The fake
+ *  spawn drops the matching fixture chapter there by default; a script can
+ *  return `candidate` to override the object, or `candidate: null` to simulate
+ *  a writer that produced no file. */
 function mkDeps(
-  spawnScript: (o: { sessionId: string; task: string }) => { ok?: boolean; finalMessage?: string },
+  spawnScript: (o: { sessionId: string; task: string; cwd?: string }) => { ok?: boolean; finalMessage?: string; candidate?: ChapterV21 | null },
   runVerbScript?: (args: string[]) => { code: number; stdout: string; stderr: string },
 ): { deps: AutopilotDeps; spawns: SpawnRec[]; verbs: string[][] } {
   const spawns: SpawnRec[] = [];
@@ -263,9 +270,14 @@ function mkDeps(
       verbs.push(args);
       return runVerbScript ? runVerbScript(args) : { code: 0, stdout: "", stderr: "" };
     },
-    spawn: (async (o: { sessionId: string; task: string; sandbox?: string }) => {
-      spawns.push({ sessionId: o.sessionId, task: o.task, sandbox: o.sandbox });
+    spawn: (async (o: { sessionId: string; task: string; sandbox?: string; cwd?: string }) => {
+      spawns.push({ sessionId: o.sessionId, task: o.task, sandbox: o.sandbox, cwd: o.cwd });
       const r = spawnScript(o);
+      const authorLabel = o.sessionId.match(/^author-ch(\d{2})/);
+      if (authorLabel && o.cwd && r.candidate !== null) {
+        const candidate = r.candidate ?? FIXTURE_CHAPTERS[parseInt(authorLabel[1], 10) - 1];
+        if (candidate) writeFileSync(join(o.cwd, chapterFileName(candidate.chapterId)), JSON.stringify(candidate, null, 2) + "\n");
+      }
       return { ok: r.ok ?? true, exitCode: (r.ok ?? true) ? 0 : 1, finalMessage: r.finalMessage ?? "done", stdout: r.finalMessage ?? "", stderr: "", durationMs: 1, sessionId: o.sessionId };
     }) as unknown as AutopilotDeps["spawn"],
     mkSessionId: (label: string) => `${label}#${++n}`,
@@ -278,13 +290,17 @@ function mkDeps(
 
 const TMP = mkdtempSync(join(tmpdir(), "author-arch-"));
 
-function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { attestations: QcAttestation[]; bars: ValidatedBarReadSubmission[]; confirms: ValidatedConfirmReadSubmission[]; acceptanceRecords: AuthorAcceptanceRecord[]; reopenNotes: ReopenNote[] } {
+function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { attestations: QcAttestation[]; bars: ValidatedBarReadSubmission[]; confirms: ValidatedConfirmReadSubmission[]; acceptanceRecords: AuthorAcceptanceRecord[]; reopenNotes: ReopenNote[]; gateCandidateCalls: Array<{ attemptKey: string; chapterId: string }>; chapterBytes: Map<string, string> } {
   const attestations: QcAttestation[] = [];
   const bars: ValidatedBarReadSubmission[] = [];
   const confirms: ValidatedConfirmReadSubmission[] = [];
   const acceptanceRecords: AuthorAcceptanceRecord[] = [];
   const reopenNotes: ReopenNote[] = [];
   const regenLedger = new Map<number, number>(); // in-memory E2 regen-cap tracking, per io instance
+  // IMP-01: in-memory canonical chapter store + tmp attempts root — the
+  // transaction's mint/commit path must never touch the real pipeline tree.
+  const chapterBytes = new Map<string, string>();
+  const gateCandidateCalls: Array<{ attemptKey: string; chapterId: string }> = [];
   const acceptance: AcceptanceWriters = {
     openRound: () => ({ roundId: "r20260101000000-abcdef", tokens: {} }),
     writeBar: (s) => { bars.push(s); return "/tmp/bar.json"; },
@@ -293,6 +309,17 @@ function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { a
   };
   const io: Partial<AuthorReviewIo> = {
     chapterExists: () => true,
+    readChapterFile: (b, n) => chapterBytes.get(`${b}:${n}`) ?? null,
+    writeChapterFile: (b, n, bytes) => { chapterBytes.set(`${b}:${n}`, bytes); },
+    removeChapterFile: (b, n) => { chapterBytes.delete(`${b}:${n}`); },
+    attemptsRoot: () => join(TMP, "attempts"),
+    // IMP-01 candidate validation defaults: PASS (tests scripting gate/rubric
+    // failures override these — the old runVerb gate/rubric stubs are inert now).
+    gateCandidate: async (candidate, _abs, attemptKey) => {
+      gateCandidateCalls.push({ attemptKey, chapterId: candidate.chapterId });
+      return { code: 0, stdout: "Gate verdict: PASS — 0 blockers (0 major(s), 0 minor(s) above are non-blocking). (exit 0)", stderr: "" };
+    },
+    rubricWithCandidate: async () => ({ code: 0, stdout: "", stderr: "" }),
     readBriefMd: (b, ch) => renderBriefMd(mkBrief(ch)),
     readBrief: (_b, ch) => mkBrief(ch),
     readPacket: () => GOLDEN_PACKET,
@@ -351,7 +378,7 @@ function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { a
     contentDeviceRepair: async () => ({ fired: false, targets: [], preserved: [], outcomes: [], preservedViolations: [], overCapDevices: [], residualOverCap: [] }),
     ...over,
   };
-  return Object.assign(io, { attestations, bars, confirms, acceptanceRecords, reopenNotes });
+  return Object.assign(io, { attestations, bars, confirms, acceptanceRecords, reopenNotes, gateCandidateCalls, chapterBytes });
 }
 
 /** The default spawn script: writers succeed, chapter readers pass, book readers accept. */
@@ -404,7 +431,10 @@ test("author card: brief md verbatim + writer projection + schema hint + self-ve
   assert.ok(card.includes(authorSchemaHint("zz-fixture-fact-ranking", 3)), "compact ChapterV21 schema hint present");
   assert.ok(card.includes("SELF-VERIFY"), "self-verify block present");
   assert.ok(card.includes(AUTHOR_HOUSE_RULES), "house-style rules verbatim");
-  assert.ok(card.includes("gate-chapter state/chapters/zz-fixture-fact-ranking-ch03.v21-native.chapter.json"), "gate command names the exact output file");
+  // IMP-01: the card no longer instructs the writer to run repository commands —
+  // the conductor gates the candidate; the self-verify names the consequence.
+  assert.ok(card.includes("the conductor gates state/chapters/zz-fixture-fact-ranking-ch03.v21-native.chapter.json the moment you exit"), "self-verify names the exact output file + conductor gating");
+  assert.ok(!card.includes("npx tsx src/cli.ts"), "no repository-command instruction rides the card (IMP-01 least authority)");
   assert.ok(!card.includes("PRIOR-ATTEMPT COMPLAINTS"), "no complaints section on a first attempt");
   assert.ok(card.length <= AUTHOR_CARD_MAX_CHARS, `card must be <= ${AUTHOR_CARD_MAX_CHARS} chars, got ${card.length}`);
   assert.ok(authorSelfVerify("zz-fixture-fact-ranking", 3).length <= 1400, "self-verify stays <= 1400 chars");
@@ -763,7 +793,7 @@ test("book-sameness directive reaches the writer card for a MANUAL-brief re-auth
 // ── authorWriteOneChapter ────────────────────────────────────────────────────
 
 test("authorWriteOneChapter: spawns one workspace-write writer, verifies file + gate, records content-bound provenance", async () => {
-  const { deps, spawns, verbs } = mkDeps(() => ({}));
+  const { deps, spawns } = mkDeps(() => ({}));
   const provenance: Array<{ chapterId: string; sessionId: string; contentHash?: string }> = [];
   const io = mkIo({ recordProvenance: (chapterId, sessionId, contentHash) => { provenance.push({ chapterId, sessionId, contentHash }); } });
   const r = await authorWriteOneChapter("zz", 1, deps, { io });
@@ -771,7 +801,14 @@ test("authorWriteOneChapter: spawns one workspace-write writer, verifies file + 
   assert.equal(spawns.length, 1, "exactly one writer spawn");
   assert.equal(spawns[0].sandbox, "workspace-write");
   assert.ok(spawns[0].sessionId.startsWith("author-ch01"), "distinct labeled session id");
-  assert.deepEqual(verbs[0], ["gate-chapter", authorChapterRelPath("zz", 1)], "gate-chapter verifies the exact chapter file");
+  // IMP-01: the writer runs in an isolated attempt workspace, never the pipeline root.
+  assert.ok(spawns[0].cwd && spawns[0].cwd.includes("workspace"), "writer cwd is the attempt workspace");
+  // IMP-01: the gate runs in-process on the CANDIDATE, keyed by the canonical relPath.
+  assert.equal(io.gateCandidateCalls.length, 1, "gate ran exactly once");
+  assert.equal(io.gateCandidateCalls[0].attemptKey, authorChapterRelPath("zz", 1), "gate history keyed by the canonical relPath");
+  assert.equal(io.gateCandidateCalls[0].chapterId, "zz-ch01", "the gate saw the candidate chapter");
+  // The commit landed through the io seam (conductor-owned canonical write).
+  assert.ok(io.chapterBytes.get("zz:1"), "canonical bytes committed via the io seam");
   assert.equal(provenance.length, 1, "author provenance recorded once");
   assert.equal(provenance[0].chapterId, "zz-ch01");
   assert.equal(provenance[0].contentHash, chapterContentHash(CH1), "provenance bound to the authored content hash");
@@ -779,13 +816,13 @@ test("authorWriteOneChapter: spawns one workspace-write writer, verifies file + 
 
 test("authorWriteOneChapter: ONE retry appends the gate blockers to the card, then succeeds", async () => {
   let gateCalls = 0;
-  const { deps, spawns } = mkDeps(
-    () => ({}),
-    (args) => args[0] === "gate-chapter"
-      ? (++gateCalls === 1 ? { code: 1, stdout: "[BLOCKER A12] ch01: lowercase sentence boundary", stderr: "" } : { code: 0, stdout: "PASS", stderr: "" })
-      : { code: 0, stdout: "", stderr: "" },
-  );
-  const r = await authorWriteOneChapter("zz", 1, deps, { io: mkIo() });
+  const { deps, spawns } = mkDeps(() => ({}));
+  const io = mkIo({
+    gateCandidate: async () => ++gateCalls === 1
+      ? { code: 1, stdout: "[BLOCKER A12] ch01: lowercase sentence boundary", stderr: "" }
+      : { code: 0, stdout: "Gate verdict: PASS — 0 blockers", stderr: "" },
+  });
+  const r = await authorWriteOneChapter("zz", 1, deps, { io });
   assert.ok(r.ok, "retry converged");
   assert.equal(spawns.length, 2, "initial + exactly one retry");
   assert.ok(spawns[1].task.includes("GATE BLOCKERS FROM YOUR PREVIOUS ATTEMPT"), "retry card carries the gate framing");
@@ -811,14 +848,16 @@ test("authorWriteOneChapter: a DIED writer spawn is logged (honest-accounting in
 });
 
 test("authorWriteOneChapter: fails after the retry budget when gate-chapter keeps blocking", async () => {
-  const { deps, spawns } = mkDeps(
-    () => ({}),
-    (args) => args[0] === "gate-chapter" ? { code: 1, stdout: "[BLOCKER SEC105] ch01: source label leak", stderr: "" } : { code: 0, stdout: "", stderr: "" },
-  );
-  const r = await authorWriteOneChapter("zz", 1, deps, { io: mkIo() });
+  const { deps, spawns } = mkDeps(() => ({}));
+  const io = mkIo({
+    gateCandidate: async () => ({ code: 1, stdout: "[BLOCKER SEC105] ch01: source label leak", stderr: "" }),
+  });
+  const r = await authorWriteOneChapter("zz", 1, deps, { io });
   assert.ok(!r.ok, "must fail closed");
   assert.equal(spawns.length, 2, "the budget is the initial spawn + ONE retry");
   if (!r.ok) assert.match(r.reason, /SEC105/, "the failure carries the gate report");
+  // IMP-01: every attempt failed → the canonical store is untouched (no draft, no restore).
+  assert.equal(io.chapterBytes.get("zz:1"), undefined, "no failed draft ever reaches canonical");
 });
 
 // ── doAuthorWrite ────────────────────────────────────────────────────────────
@@ -939,7 +978,10 @@ test("doAuthorReview: acceptance rejection drives ONE targeted regen round (<= 3
   let regenBumps = 0; // regen writers CHANGE bytes (else the no-op guard correctly fails them)
   const chaptersNow = () => FIXTURE_CHAPTERS.map((c) => (regenBumps > 0 && c.number === 1 ? { ...c, hook: `${c.hook} (regen ${regenBumps})` } : c));
   const { deps, spawns } = mkDeps((o) => {
-    if (o.sessionId.startsWith("author-ch01")) regenBumps++;
+    if (o.sessionId.startsWith("author-ch01")) {
+      regenBumps++;
+      return { candidate: chaptersNow()[0] }; // the regen writer CHANGES bytes (IMP-01: candidate in workspace)
+    }
     if (o.sessionId.includes("author-book-reader")) {
       if (o.sessionId.includes("-r2")) return { finalMessage: "no json here" }; // never parses twice — keep 2 readers/round
       bookRounds++;
@@ -1499,7 +1541,10 @@ test("authorWriteOneChapter: a regen that CHANGES the chapter succeeds normally"
   let bumped = 0;
   const chaptersNow = () => FIXTURE_CHAPTERS.map((c) => (bumped > 0 && c.number === 1 ? { ...c, hook: `${c.hook} (v2)` } : c));
   const { deps, spawns } = mkDeps((o) => {
-    if (o.sessionId.startsWith("author-ch01")) bumped++;
+    if (o.sessionId.startsWith("author-ch01")) {
+      bumped++;
+      return { candidate: chaptersNow()[0] }; // changed bytes land as the workspace candidate
+    }
     return {};
   });
   const r = await authorWriteOneChapter("zz", 1, deps, { complaints: ["quiz Q2: key contradicted"], io: mkIo({ loadChapters: () => chaptersNow() }) });
@@ -1519,7 +1564,10 @@ test("doAuthorReview: AUTHOR_REGEN_CAP is GLOBAL — a chapter regened in the re
   const chaptersNow = () => FIXTURE_CHAPTERS.map((c) => (regenBumps > 0 && c.number === 1 ? { ...c, hook: `${c.hook} (regen ${regenBumps})` } : c));
   let ch1Reviews = 0;
   const { deps, spawns } = mkDeps((o) => {
-    if (o.sessionId.startsWith("author-ch01")) regenBumps++;
+    if (o.sessionId.startsWith("author-ch01")) {
+      regenBumps++;
+      return { candidate: chaptersNow()[0] }; // the regen writer CHANGES bytes (IMP-01: candidate in workspace)
+    }
     if (o.sessionId.includes("author-book-reader")) {
       return { finalMessage: bookReply(chaptersNow(), { gate: "FAIL", verdictText: "chapter 1 quiz key is contradicted by its own prose" }) };
     }
@@ -1543,23 +1591,20 @@ test("doAuthorReview: AUTHOR_REGEN_CAP is GLOBAL — a chapter regened in the re
 
 test("authorWriteOneChapter: a rubric-preflight FAIL feeds the retry card like a gate blocker (Phase-3 live finding)", async () => {
   let rubricCalls = 0;
-  const { deps, spawns } = mkDeps(
-    () => ({}),
-    (args) => {
-      if (args[0] === "rubric-metrics") {
-        rubricCalls++;
-        return {
-          code: 1,
-          stdout: rubricCalls === 1
-            ? "  ch01: FAIL ease=66.4✗ fk=6.9~ tell=0.778✗ transfer=0.556✗ memClean=3 — FAIL: fleschEase, tellRate, transferRatio"
-            : "  ch01: WARN ease=75.1 fk=5.7~ tell=0.111 transfer=0.778 memClean=3",
-          stderr: "",
-        };
-      }
-      return { code: 0, stdout: "PASS", stderr: "" };
+  const { deps, spawns } = mkDeps(() => ({}));
+  const io = mkIo({
+    rubricWithCandidate: async () => {
+      rubricCalls++;
+      return {
+        code: 1,
+        stdout: rubricCalls === 1
+          ? "  ch01: FAIL ease=66.4✗ fk=6.9~ tell=0.778✗ transfer=0.556✗ memClean=3 — FAIL: fleschEase, tellRate, transferRatio"
+          : "  ch01: WARN ease=75.1 fk=5.7~ tell=0.111 transfer=0.778 memClean=3",
+        stderr: "",
+      };
     },
-  );
-  const r = await authorWriteOneChapter("zz", 1, deps, { io: mkIo() });
+  });
+  const r = await authorWriteOneChapter("zz", 1, deps, { io });
   assert.ok(r.ok, "retry converged after the rubric complaint");
   assert.equal(spawns.length, 2, "rubric FAIL consumed the single retry");
   assert.ok(spawns[1].task.includes("RUBRIC PREFLIGHT FAILURES"), "retry card carries the rubric framing");
@@ -1575,27 +1620,24 @@ test("authorWriteOneChapter: a W2 card-quality FAIL carries its `chNN fix:` repa
   // `chNN fix:` lines formatRubricMetrics emits beneath the verdict line, or the
   // W2 length-tell / practice-floor repair instruction never reaches the writer.
   let rubricCalls = 0;
-  const { deps, spawns } = mkDeps(
-    () => ({}),
-    (args) => {
-      if (args[0] === "rubric-metrics") {
-        rubricCalls++;
-        return rubricCalls === 1
-          ? {
-              code: 1,
-              // The real formatRubricMetrics block: a verdict line + an indented
-              // `chNN fix:` reason line (length-tell shortest-side).
-              stdout:
-                "  ch01: FAIL ease=80 fk=5~ tell=0 transfer=1 memClean=3 echo=0 lenTell=5✗ practice=2 — FAIL: lengthTell\n" +
-                "    ch01 fix: length-tell: key is the uniquely-SHORTEST choice in 5/9 questions (max 4) — lengthen keys / balance distractors",
-              stderr: "",
-            }
-          : { code: 0, stdout: "  ch01: PASS ease=80 fk=5~ tell=0 transfer=1 memClean=3 echo=0 lenTell=2 practice=2", stderr: "" };
-      }
-      return { code: 0, stdout: "PASS", stderr: "" };
+  const { deps, spawns } = mkDeps(() => ({}));
+  const io = mkIo({
+    rubricWithCandidate: async () => {
+      rubricCalls++;
+      return rubricCalls === 1
+        ? {
+            code: 1,
+            // The real formatRubricMetrics block: a verdict line + an indented
+            // `chNN fix:` reason line (length-tell shortest-side).
+            stdout:
+              "  ch01: FAIL ease=80 fk=5~ tell=0 transfer=1 memClean=3 echo=0 lenTell=5✗ practice=2 — FAIL: lengthTell\n" +
+              "    ch01 fix: length-tell: key is the uniquely-SHORTEST choice in 5/9 questions (max 4) — lengthen keys / balance distractors",
+            stderr: "",
+          }
+        : { code: 0, stdout: "  ch01: PASS ease=80 fk=5~ tell=0 transfer=1 memClean=3 echo=0 lenTell=2 practice=2", stderr: "" };
     },
-  );
-  const r = await authorWriteOneChapter("zz", 1, deps, { io: mkIo() });
+  });
+  const r = await authorWriteOneChapter("zz", 1, deps, { io });
   assert.ok(r.ok, "retry converged after the card-quality complaint");
   assert.equal(spawns.length, 2, "the length-tell FAIL consumed the single retry");
   assert.ok(spawns[1].task.includes("FAIL: lengthTell"), "the verdict line reaches the writer");

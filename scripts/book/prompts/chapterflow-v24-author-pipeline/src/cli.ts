@@ -5470,7 +5470,6 @@ async function runGateChapter(args: string[]): Promise<number> {
     console.error("Usage: gate-chapter <path/to/chapter.json>");
     return 2;
   }
-  const { runShipGate, formatGateReport } = await import("./critics/finalGate.js");
   let chapter: ChapterV21;
   try {
     chapter = JSON.parse(readFileSync(resolve(chapterFile), "utf8")) as ChapterV21;
@@ -5478,164 +5477,21 @@ async function runGateChapter(args: string[]): Promise<number> {
     console.error(`Could not read/parse ${chapterFile}: ${(err as Error).message}`);
     return 2;
   }
-  // H5 defense: a malformed authored chapter could make a critic throw. The repair agent runs
-  // gate-chapter to converge — it needs an actionable BLOCK report, not a raw stack trace (which
-  // gives it nothing to fix and drives the conductor's no-progress HALT). Surface a crash as a
-  // gate failure with the message instead.
-  let report;
-  try {
-    report = runShipGate(chapter);
-  } catch (err) {
-    console.error(`gate-chapter: ship gate CRASHED on a malformed chapter (${(err as Error)?.message ?? String(err)}). Fix the malformed field (likely a quiz question: missing/null choices, out-of-range correctIndex, or non-string bloomsLevel) and re-run.`);
+  // IMP-01: the full composition (ship gate + intra-book siblings + IDN identity
+  // + advisory layers + the combined "Gate verdict:" line + the STUCK/FORM-SHIFTING
+  // circuit breakers) lives in critics/chapterGateComposite — shared VERBATIM with
+  // the conductor's candidate validation so the CLI and the transaction can never
+  // drift. Sibling context = the file's own path; the gate-attempt history stays
+  // keyed by the RAW argument spelling (relative "state/chapters/…" for the
+  // conductor's calls), preserving pre-refactor history rows.
+  const { runChapterGateComposite } = await import("./critics/chapterGateComposite.js");
+  const result = await runChapterGateComposite(chapter, chapterFile, chapterFile);
+  if (result.crashed) {
+    console.error(result.report);
     return 1;
   }
-  console.log(formatGateReport(report));
-
-  // Intra-book quiz similarity check — runs AFTER the chapter-only ship gate.
-  // Loads sibling chapters of the same book from state/chapters/ and checks
-  // for templated quiz content (AS5 prompt similarity + AS6 distractor reuse).
-  // This is the early-detection version of AS4 / BP20 which only fire at
-  // book-gate time. Catches the May 2026 "7 Habits Step 2" defect class:
-  // writer agents producing one quiz and reusing it across chapters with
-  // name substitution. Without this, the writer wastes 10+ chapters of work
-  // before book-gate surfaces the structural issue.
-  const { runIntraBookChecks, loadSiblingChapters } = await import("./critics/intraBook.js");
-  const siblingLoad = loadSiblingChapters(chapter, chapterFile);
-  if (siblingLoad.warning) console.log(`  WARN: ${siblingLoad.warning}`);
-  const intraFindings = runIntraBookChecks(chapter, siblingLoad.siblings);
-  let extraBlockers = 0;
-  let extraMajors = 0;
-  if (intraFindings.length > 0) {
-    console.log("");
-    console.log("Intra-book quiz similarity findings (compared against prior chapters of same book):");
-    for (const f of intraFindings) {
-      console.log(`  [${f.checkId} ${f.severity}] ${f.message}`);
-      if (f.severity === "blocker") extraBlockers++;
-    }
-  }
-
-  // ── Identity guard (IDN, Phase 0) — chapterId must equal its filename stem ──
-  // The intra-book critics above match siblings on chapterId; a mismatch can
-  // silently skip them (the verified casing bug). Surface it here. Ships as
-  // `major` (shadow) so the casing fix doesn't simultaneously hard-block the
-  // already-mismatched chapters; promotes to blocker after `fix-chapter-ids`.
-  const identityFindings = checkChapterIdentity(chapter, chapterFile);
-  if (identityFindings.length > 0) {
-    console.log("");
-    console.log("Identity findings (chapterId vs filename):");
-    for (const f of identityFindings) {
-      console.log(`  [${f.checkId} ${f.severity}] ${f.message}`);
-      if (f.severity === "blocker") extraBlockers++;
-      else if (f.severity === "major") extraMajors++;
-    }
-  }
-
-  // ── Authoring-contract findings (Phase 1, advisory/shadow) ──────────────
-  // The field-JOB layer the structural gate lacks (concept-as-actor, templated
-  // loops, echo-template explanations, bare-label card fronts, scaffold leaks,
-  // proposition-whatToDo). Calibrated to ZERO fires on the clean corpus. SHADOW:
-  // surfaced for the writer to fix in-session via `author-check`, but does NOT
-  // affect the ship-gate blocker count until promoted out of shadow.
-  try {
-    const { checkAuthoringContract } = await import("./critics/authoringContract.js");
-    const { loadChapterSidecar } = await import("./critics/sourceGrounding.js");
-    const acFindings = checkAuthoringContract(chapter, { sidecar: loadChapterSidecar(chapter.chapterId), filePath: resolve(chapterFile) });
-    if (acFindings.length > 0) {
-      console.log("");
-      console.log(`Authoring-contract findings (advisory/shadow — ${acFindings.length}; run \`author-check\` for the full JOB report):`);
-      for (const f of acFindings) console.log(`  [${f.checkId}] ${f.unit}: ${f.message.slice(0, 140)}`);
-    }
-  } catch {
-    /* non-fatal — advisory layer */
-  }
-
-  // ── Quiz answer-key judge (advisory) ────────────────────────────────────
-  // Surface any wrong-key result the model judge recorded for this chapter
-  // (run out-of-band via `quiz-judge`). ADVISORY here so authoring iteration is
-  // never blocked by it; it BLOCKS at promote (QC1.wrong_quiz_key). A missing
-  // result is silent — gate-chapter never requires the judge to have run.
-  try {
-    const { checkKeyJudge } = await import("./critics/quizKeyGate.js");
-    const kjFindings = checkKeyJudge(chapter, false);
-    if (kjFindings.length > 0) {
-      console.log("");
-      console.log("Quiz answer-key judge findings (advisory — blocks at promote):");
-      for (const f of kjFindings) console.log(`  [${f.checkId} ${f.severity}] ${f.message}`);
-    }
-  } catch {
-    /* non-fatal — advisory layer */
-  }
-
-  // ── Authoritative combined verdict ──────────────────────────────────────
-  // formatGateReport prints "Ship gate: PASS/BLOCK" for the CHAPTER-ONLY ship
-  // gate. The intra-book blockers above are computed separately and are NOT in
-  // that count, so a chapter with 0 chapter-blockers but an AS5/AS6 intra-book
-  // blocker used to print "Ship gate: PASS" up top while exiting non-zero —
-  // the headline disagreed with the exit code (a trust hazard: a human or a
-  // writer agent reads "PASS" and ships a templated chapter). Print a single
-  // final line that combines both sources and matches the exit code exactly.
-  const combinedBlockers = report.blockers.length + extraBlockers;
-  console.log("");
-  if (combinedBlockers > 0) {
-    console.log(
-      `Gate verdict: BLOCK — ${report.blockers.length} chapter blocker(s) + ${extraBlockers} intra-book blocker(s) = ${combinedBlockers} total. (exit 1)`,
-    );
-  } else {
-    console.log(
-      `Gate verdict: PASS — 0 blockers (${report.majors.length + extraMajors} major(s), ${report.minors.length} minor(s) above are non-blocking). (exit 0)`,
-    );
-  }
-
-  // Gate-attempt tracking — added after the May 2026 Covey incident. We persist
-
-  // Gate-attempt tracking — added after the May 2026 Covey incident. We persist
-  // a per-chapter counter of (attempt, blocker_signature) so an agent that
-  // re-runs the gate against the same chapter many times with the same blocker
-  // pattern gets a SCREAMING warning that it's probably trying to game the
-  // critic. Most legitimate fixes converge in 1-3 attempts; 4+ on the same
-  // blocker is a structural issue requiring upstream resolution, not retry.
-  // Record the COMBINED failure (chapter + intra-book blockers) so the breakers
-  // engage for intra-book-only failures too (the common case — a chapter can pass
-  // the chapter-only gate while failing AS5–AS12 against its siblings).
-  const intraBlockerSig = intraFindings.filter((f) => f.severity === "blocker").map((f) => ({ catalogId: f.checkId }));
-  const combinedReport = {
-    blockers: [...report.blockers, ...intraBlockerSig],
-    passed: report.blockers.length === 0 && extraBlockers === 0,
-  };
-  const attempts = recordGateAttempt(chapterFile, combinedReport);
-  // Two circuit-breakers: STUCK (same blocker repeats) and FORM-SHIFTING (the
-  // blocker relocates each attempt — the writer editing surface to dodge the
-  // critic, the let-them-theory failure mode). Either trips a halt (exit 3).
-  let breakerTripped = false;
-  if (attempts.sameBlockerStreak >= 3) {
-    breakerTripped = true;
-    console.log("");
-    console.log("⚠️  STUCK-BLOCKER — CIRCUIT BREAKER TRIPPED ⚠️");
-    console.log(`This chapter has been gate-checked ${attempts.total} times; the SAME blocker signature fired ${attempts.sameBlockerStreak} times in a row:`);
-    console.log(`  ${attempts.lastSignature}`);
-    console.log("");
-    console.log("STOP. A blocker that survives 3+ attempts is structural, not a surface edit.");
-    console.log("Re-author the field from the source notes, or surface a one-paragraph status to");
-    console.log("the user (the source notes may not differentiate this chapter — a Step-1 issue).");
-  } else if (attempts.distinctSigStreak >= 3 && attempts.nonPassTotal >= 3) {
-    breakerTripped = true;
-    console.log("");
-    console.log("⚠️  FORM-SHIFTING REPAIR — CIRCUIT BREAKER TRIPPED ⚠️");
-    console.log(`This chapter has failed ${attempts.nonPassTotal} times and the blocker MOVED each attempt:`);
-    console.log(`  ${attempts.recentSigs.join("  →  ")}`);
-    console.log("");
-    console.log("A defect that relocates instead of resolving means you are editing SURFACE FORM");
-    console.log("to evade the critic, not fixing the field — the underlying template just hides in");
-    console.log("whichever field isn't yet covered. STOP patching surfaces. Re-author the failing");
-    console.log("field from the source notes (the Bind Block), or escalate to the user / a different");
-    console.log("author. Do NOT run gate-chapter again on another surface edit — it will just relocate.");
-  }
-  if (breakerTripped) console.log("\n(gate-chapter exit code 3 — halt the repair loop.)");
-
-  // Combined block: ship-gate blockers OR intra-book similarity blockers. Exit 3
-  // when a circuit-breaker tripped (so an orchestrating loop halts, not spins).
-  if (breakerTripped) return 3;
-  return report.blockers.length === 0 && extraBlockers === 0 ? 0 : 1;
+  console.log(result.report);
+  return result.exitCode;
 }
 
 
@@ -5643,53 +5499,7 @@ function escapeRegex(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-/** Persists gate-attempt history per chapter file to track stuck-blocker
- *  patterns. Returns the running totals so the caller can warn the operator. */
-type GateAttemptEntry = {
-  total: number;
-  lastSignature: string;
-  sameBlockerStreak: number;
-  /** ++ each attempt where the non-PASS signature CHANGED from the prior one. */
-  distinctSigStreak: number;
-  /** count of consecutive non-PASS attempts (resets on PASS). */
-  nonPassTotal: number;
-  /** last few non-PASS signatures, for the form-shift message. */
-  recentSigs: string[];
-};
-
-function recordGateAttempt(
-  chapterFile: string,
-  report: { blockers: Array<{ catalogId: string }>; passed: boolean },
-): { total: number; sameBlockerStreak: number; lastSignature: string; distinctSigStreak: number; nonPassTotal: number; recentSigs: string[] } {
-  const STATE_FILE = resolve(__dirname, "../state/gate-attempts.json");
-  let state: Record<string, GateAttemptEntry> = {};
-  try {
-    if (existsSyncFs(STATE_FILE)) state = JSON.parse(readFileSync(STATE_FILE, "utf8"));
-  } catch {
-    state = {};
-  }
-  // Signature: sorted unique blocker catalogIds (e.g., "AS4,BP20"). Used to
-  // detect "same blocker repeating" (stuck) vs "blocker changing each attempt"
-  // (form-shifting — the writer relocating the defect to dodge the critic).
-  const sig = report.passed
-    ? "PASS"
-    : [...new Set(report.blockers.map((b) => b.catalogId))].sort().join(",");
-  const prev: GateAttemptEntry = state[chapterFile] ?? { total: 0, lastSignature: "", sameBlockerStreak: 0, distinctSigStreak: 0, nonPassTotal: 0, recentSigs: [] };
-  const isPass = sig === "PASS";
-  const sameBlockerStreak = !isPass && sig === prev.lastSignature ? prev.sameBlockerStreak + 1 : isPass ? 0 : 1;
-  const shifted = !isPass && prev.lastSignature && prev.lastSignature !== "PASS" && sig !== prev.lastSignature;
-  const distinctSigStreak = isPass ? 0 : shifted ? prev.distinctSigStreak + 1 : prev.distinctSigStreak;
-  const nonPassTotal = isPass ? 0 : prev.nonPassTotal + 1;
-  const recentSigs = isPass ? [] : [...(prev.recentSigs ?? []), sig].slice(-4);
-  state[chapterFile] = { total: prev.total + 1, lastSignature: sig, sameBlockerStreak, distinctSigStreak, nonPassTotal, recentSigs };
-  try {
-    mkdirSync(dirname(STATE_FILE), { recursive: true });
-    writeFileSync(STATE_FILE, JSON.stringify(state, null, 2), "utf8");
-  } catch {
-    // Non-fatal — tracking is informational.
-  }
-  return { total: state[chapterFile].total, sameBlockerStreak, lastSignature: sig, distinctSigStreak, nonPassTotal, recentSigs };
-}
+// (gate-attempt tracking moved to critics/chapterGateComposite.ts — IMP-01)
 
 async function main() {
   const { cmd, args, flags } = parseArgs(process.argv.slice(2));

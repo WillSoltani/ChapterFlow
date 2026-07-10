@@ -8,13 +8,15 @@
  *  - patch-apply: the harness SPLICES only the allowed scopes from the repair
  *    session's output into the original bytes — out-of-scope drift is discarded
  *    by construction, never policed;
- *  - one repair per lineage (durable ledger), no repair retries, failure or
- *    no-op restores the ORIGINAL bytes (the review latest-pointer must keep
- *    matching the on-disk hash) and falls through to the regen path;
+ *  - one repair per lineage (durable ledger), no repair retries; failure or
+ *    no-op leaves the ORIGINAL canonical bytes UNTOUCHED (IMP-01: the repair
+ *    session edits a seeded COPY inside an isolated attempt workspace — only a
+ *    fully validated splice ever commits, via compare-and-swap) and falls
+ *    through to the regen path;
  *  - the confirming read is just the next normal review of the new content
  *    hash — no "confirm the fix" mode exists to rubber-stamp.
  */
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync } from "fs";
 import { join, resolve } from "path";
 
 import type { ChapterV21 } from "../types.js";
@@ -27,9 +29,14 @@ import { AUTHOR_WRITER_EFFORT, AUTHOR_WRITER_MODEL, authorWriteContractFindings,
 import { applyLeadThreadOverride } from "../compiler/chapterBrief.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { registerAdvisoryFixLines } from "../critics/registerAdvisories.js";
-import { restoreAuthorProvenance } from "../qc/sessionProvenance.js";
-
-const PIPELINE_DIR = resolve(__dirname, "../..");
+import { sha256Hex } from "../contracts/contractUtil.js";
+import {
+  commitChapterCandidate,
+  finalizeAttempt,
+  importCandidate,
+  mintChapterAttempt,
+  unexpectedAttemptWrites,
+} from "./chapterTransaction.js";
 
 /** Kill switch (plan R7): default ON; set CHAPTERFLOW_REVIEW_REPAIR=0 to disable. */
 export function reviewRepairEnabled(): boolean {
@@ -202,7 +209,7 @@ export function buildRepairCard(opts: {
     `- Never change the NUMBER of examples, questions, choices, or cards.`,
     `- Quiz edits: derive every distractor FROM the key (half-measure / wrong-trigger / over-correction / borrowed-authority), keep key wording paraphrased from the chapter (no 5+ consecutive shared words), keep every correctIndex unchanged.`,
     ``,
-    `OUTPUT: rewrite ${relPath} as the complete chapter JSON (same schema, same field order) with ONLY the scoped fields changed. Then run: npx tsx src/cli.ts gate-chapter ${relPath} — and fix any blocker it reports before finishing.`,
+    `OUTPUT: ${relPath} in your working directory already holds the chapter exactly as reviewed. Rewrite it in place as the complete chapter JSON (same schema, same field order) with ONLY the scoped fields changed. Do not create any other file. The conductor splices your scoped fields into the original and runs the full deterministic gate the moment you finish — an out-of-scope change is discarded, a blocker rejects the repair outright.`,
   ].join("\n");
 }
 
@@ -272,10 +279,14 @@ export async function doRepairOneChapter(
   const chapterId = `${bookId}-ch${nn}`;
   const relPath = join("state", "chapters", chapterFileName(chapterId));
   const absPath = join(CANONICAL_STATE, "chapters", chapterFileName(chapterId));
+  const candidateName = chapterFileName(chapterId);
   let originalBytes: string;
   let original: ChapterV21;
   try {
-    originalBytes = readFileSync(absPath, "utf8");
+    // IMP-01: canonical reads go through the io seam (fixture/slot roots included).
+    const bytes = opts.io.readChapterFile(bookId, chapterNumber);
+    if (bytes === null) throw new Error(`no canonical chapter at ${relPath}`);
+    originalBytes = bytes;
     original = JSON.parse(originalBytes) as ChapterV21;
   } catch (err) {
     return { ok: false, reason: `ch${nn}: unreadable chapter for repair (${(err as Error).message})` };
@@ -290,41 +301,44 @@ export async function doRepairOneChapter(
   // false lead-thread complaint.
   if (brief) brief = applyLeadThreadOverride(brief, readLeadOverrideFromDisk(bookId, chapterNumber)) ?? brief;
 
-  const card = buildRepairCard({ bookId, chapter: original, brief, complaints: opts.complaints, scopes: opts.scopes, relPath });
+  const card = buildRepairCard({ bookId, chapter: original, brief, complaints: opts.complaints, scopes: opts.scopes, relPath: candidateName });
   const sessionId = `auto-author-repair-${bookId}-ch${nn}-${Date.now().toString(36)}`;
+  // IMP-01 (F-001/F-020): the repair session edits a SEEDED COPY of the chapter
+  // inside an isolated attempt workspace (its cwd + only writable dir). The
+  // canonical file is untouched until a fully validated splice commits via
+  // compare-and-swap — so the old byte-restore lane (and its F6 restore-failure
+  // halt) is structurally unnecessary: there is never anything to restore.
+  const chAttempt = mintChapterAttempt({
+    bookId,
+    chapterNumber,
+    chapterId,
+    attemptKind: "surgical-repair",
+    attemptSequence: 1,
+    promptSha256: sha256Hex(card),
+    io: opts.io,
+    seedBytes: originalBytes,
+    attemptsRoot: opts.io.attemptsRoot(),
+  });
   deps.log(`[autopilot] author repair ch${nn}: surgical editor working (scopes ${opts.scopes.join(",")}, card ${card.length} chars, ${AUTHOR_WRITER_MODEL} @ ${AUTHOR_WRITER_EFFORT}, timeout ${Math.round(REPAIR_TIMEOUT_MS / 60000)}min)`);
-  let restoreFailed = false;
-  const restore = () => {
-    try {
-      writeFileSync(absPath, originalBytes);
-      // A repair session that changed the chapter moved author provenance to the
-      // repair session; putting the ORIGINAL bytes back must move it back to the
-      // original author, or the independence gate reads the wrong author. Best-effort.
-      try { restoreAuthorProvenance(chapterId, chapterContentHash(original), deps.log); }
-      catch { /* provenance rollback is non-fatal; the byte restore is what matters */ }
-    } catch (err) {
-      // F6: a failed restore leaves unreviewed repair bytes on disk while the
-      // persisted review still points at the pre-repair hash — surfaced to the
-      // caller as an infra halt, never a silent divergence.
-      restoreFailed = true;
-      deps.log(`[autopilot] author repair ch${nn}: RESTORE FAILED — ${(err as Error).message}; disk holds unreviewed repair-session bytes`);
-    }
-  };
   try {
     const r = await deps.spawn({
       task: card,
       role: "author-repair",
       sessionId,
-      cwd: PIPELINE_DIR,
+      cwd: chAttempt.workspaceDir,
       sandbox: "workspace-write",
+      skipGitRepoCheck: true,
       model: AUTHOR_WRITER_MODEL,
       reasoningEffort: AUTHOR_WRITER_EFFORT,
       timeoutMs: REPAIR_TIMEOUT_MS,
     });
     try { deps.logSession(bookId, `author-repair-ch${nn}`, r); } catch { /* best-effort */ }
-    if (r.exitCode !== 0) { restore(); return { ok: false, reason: `ch${nn}: repair session exited ${r.exitCode}`, sessionId, restoreFailed }; }
+    if (r.exitCode !== 0) {
+      finalizeAttempt(chAttempt, "validation_failed", `repair session exited ${r.exitCode}`);
+      return { ok: false, reason: `ch${nn}: repair session exited ${r.exitCode}`, sessionId };
+    }
   } catch (err) {
-    restore();
+    finalizeAttempt(chAttempt, "infrastructure_failure", (err as Error).message.slice(0, 300));
     // Honest-accounting: a died repair spawn was minted but not logged on the
     // success path — record a synthetic failed session so the cost-report
     // invariant stays honest (same fix as the writer spawn in authorRun).
@@ -334,42 +348,59 @@ export async function doRepairOneChapter(
         stderr: (err as Error)?.message ?? String(err), durationMs: 0, sessionId,
       });
     } catch { /* best-effort */ }
-    return { ok: false, reason: `ch${nn}: repair session died (${(err as Error).message.slice(0, 200)})`, sessionId, restoreFailed };
+    return { ok: false, reason: `ch${nn}: repair session died (${(err as Error).message.slice(0, 200)})`, sessionId };
   }
-  // Patch-apply: splice allowed scopes from the session's file into the original.
+  // Workspace containment: exactly ONE file (the seeded candidate) may exist.
+  const smuggled = unexpectedAttemptWrites(chAttempt);
+  if (smuggled.length > 0) {
+    const reason = `ch${nn}: repair session wrote unexpected workspace file(s): ${smuggled.join(", ")}`;
+    finalizeAttempt(chAttempt, "unexpected_write", reason);
+    return { ok: false, reason, sessionId };
+  }
+  // Patch-apply: splice allowed scopes from the session's candidate into the
+  // original — entirely in memory; the canonical file is never rewritten first.
   let spliced: ChapterV21;
   try {
-    const written = JSON.parse(readFileSync(absPath, "utf8")) as ChapterV21;
-    spliced = spliceRepairScopes(original, written, opts.scopes);
+    const imported = importCandidate(chAttempt);
+    if (!imported.ok) throw new Error(imported.reason);
+    spliced = spliceRepairScopes(original, imported.chapter, opts.scopes);
   } catch (err) {
-    restore();
-    return { ok: false, reason: `ch${nn}: repair output rejected at splice (${(err as Error).message})`, sessionId, restoreFailed };
+    finalizeAttempt(chAttempt, "validation_failed", `rejected at splice: ${(err as Error).message.slice(0, 300)}`);
+    return { ok: false, reason: `ch${nn}: repair output rejected at splice (${(err as Error).message})`, sessionId };
   }
   const splicedBytes = JSON.stringify(spliced, null, 2) + "\n";
   if (JSON.stringify(spliced) === JSON.stringify(original)) {
-    restore();
-    return { ok: false, reason: `ch${nn}: repair was a no-op inside its scope`, sessionId, restoreFailed };
+    finalizeAttempt(chAttempt, "validation_failed", "no-op inside scope");
+    return { ok: false, reason: `ch${nn}: repair was a no-op inside its scope`, sessionId };
   }
-  writeFileSync(absPath, splicedBytes);
-  // Full deterministic stack on the SPLICED bytes (plan R4) — any FAIL restores.
-  const gate = await deps.runVerb(["gate-chapter", relPath]);
+  // Full deterministic stack on the SPLICED chapter (plan R4) — against candidate
+  // bytes with COMMITTED siblings as context; any FAIL simply never commits.
+  const gate = await opts.io.gateCandidate(spliced, absPath, relPath);
   const gateOut = [gate.stdout, gate.stderr].join("\n");
   if (!/Gate verdict: PASS/.test(gateOut)) {
-    restore();
-    return { ok: false, reason: `ch${nn}: spliced repair fails the gate`, sessionId, restoreFailed };
+    finalizeAttempt(chAttempt, "validation_failed", "spliced repair fails the gate");
+    return { ok: false, reason: `ch${nn}: spliced repair fails the gate`, sessionId };
   }
-  const rubric = await deps.runVerb(["rubric-metrics", bookId]);
+  const rubric = await opts.io.rubricWithCandidate(bookId, chapterNumber, spliced);
   const verdictLine = [rubric.stdout, rubric.stderr].join("\n").split("\n").find((l) => l.trim().startsWith(`ch${nn}:`)) ?? "";
   if (verdictLine.includes("FAIL")) {
-    restore();
-    return { ok: false, reason: `ch${nn}: spliced repair fails the rubric preflight — ${verdictLine.trim()}`, sessionId, restoreFailed };
+    finalizeAttempt(chAttempt, "validation_failed", `rubric preflight FAIL — ${verdictLine.trim().slice(0, 200)}`);
+    return { ok: false, reason: `ch${nn}: spliced repair fails the rubric preflight — ${verdictLine.trim()}`, sessionId };
   }
   if (brief && packet) {
     const contract = authorWriteContractFindings(spliced, brief, packet);
     if (contract.length > 0) {
-      restore();
-      return { ok: false, reason: `ch${nn}: spliced repair breaks the write contract — ${contract.join(" | ").slice(0, 300)}`, sessionId, restoreFailed };
+      finalizeAttempt(chAttempt, "validation_failed", `write contract — ${contract.join(" | ").slice(0, 200)}`);
+      return { ok: false, reason: `ch${nn}: spliced repair breaks the write contract — ${contract.join(" | ").slice(0, 300)}`, sessionId };
     }
   }
+  // Commit: compare-and-swap against the canonical bytes this repair was minted
+  // from. A mismatch (anything committed since) is a losing stale attempt.
+  const committed = commitChapterCandidate({ attempt: chAttempt, bytes: splicedBytes, io: opts.io });
+  if (!committed.ok) {
+    finalizeAttempt(chAttempt, "stale_base", committed.reason);
+    return { ok: false, reason: `ch${nn}: ${committed.reason}`, sessionId };
+  }
+  finalizeAttempt(chAttempt, "committed");
   return { ok: true, sessionId };
 }

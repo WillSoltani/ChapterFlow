@@ -16,9 +16,12 @@
  */
 
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+
+import { chapterFileName } from "../src/lib/chapterPaths.js";
 
 import { test } from "./harness.js";
 import {
@@ -124,9 +127,15 @@ type Rig = {
   removed: number[];
 };
 
-/** In-memory rig: the writer stub LANDS its draft in `files` (exactly like the
- *  real session lands bytes on disk before the self-checks), gate/rubric verbs
- *  are scriptable, contract runs REAL. */
+const RIG_TMP = mkdtempSync(join(tmpdir(), "lead-degradation-"));
+let rigSeq = 0;
+
+/** In-memory rig. IMP-01: the writer stub LANDS its draft as the CANDIDATE in
+ *  the attempt WORKSPACE (the spawn's cwd) — exactly like the real session,
+ *  which has no path to canonical at all. The old gate/rubric runVerb scripts
+ *  are routed through the io candidate-validation seam UNCHANGED (same args
+ *  shape, same call counter), so per-test scripts keep working verbatim.
+ *  Contract runs REAL. */
 function mkRig(opts: {
   n: number;
   brief: ChapterBriefV1;
@@ -144,10 +153,10 @@ function mkRig(opts: {
   let sid = 0;
   const deps = {
     runVerb: async (args: string[]) => opts.runVerb ? opts.runVerb(args, ++verbCalls) : { code: 0, stdout: "", stderr: "" },
-    spawn: (async (o: { sessionId: string; task: string }) => {
+    spawn: (async (o: { sessionId: string; task: string; cwd?: string }) => {
       spawns.push({ sessionId: o.sessionId, task: o.task });
       const draft = opts.drafts[Math.min(spawns.length - 1, opts.drafts.length - 1)];
-      files.set(opts.n, JSON.stringify(draft));
+      if (o.cwd) writeFileSync(join(o.cwd, chapterFileName(draft.chapterId)), JSON.stringify(draft));
       return { ok: true, exitCode: 0, finalMessage: "done", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId };
     }) as unknown as AutopilotDeps["spawn"],
     mkSessionId: (label: string) => `${label}#${++sid}`,
@@ -170,6 +179,11 @@ function mkRig(opts: {
     recordProvenance: () => {},
     readLeadOverride: () => opts.storedOverride ?? null,
     writeLeadOverride: (_b, _n, o) => { overrides.push(o); },
+    attemptsRoot: () => join(RIG_TMP, `attempts-${rigSeq++}`),
+    gateCandidate: async (_c, _abs, attemptKey) =>
+      opts.runVerb ? opts.runVerb(["gate-chapter", attemptKey], ++verbCalls) : { code: 0, stdout: "", stderr: "" },
+    rubricWithCandidate: async (bookId) =>
+      opts.runVerb ? opts.runVerb(["rubric-metrics", bookId], ++verbCalls) : { code: 0, stdout: "", stderr: "" },
   };
   return { deps, spawns, logs, io, files, overrides, removed };
 }
@@ -283,7 +297,10 @@ test("F-1: proxy-banned chapter whose ONLY owned case failed → honest halt nam
     assert.match(r.reason, new RegExp(`"${LEAD_A}"`), "the exhausted lead is named");
   }
   assert.ok(!rig.spawns.some((s) => s.task.includes(`LEAD THREAD: Willow carries`)), "the banned invented lead was never dealt");
-  assert.deepEqual(rig.removed, [n], "the failed orphan draft was removed (write-failure restore still fires)");
+  // IMP-01: no orphan ever exists — the drafts lived and died in their attempt
+  // workspaces; canonical was never written, so there is nothing to remove.
+  assert.deepEqual(rig.removed, [], "nothing to remove — canonical untouched by construction");
+  assert.equal(rig.files.has(n), false, "no failed draft ever reached the canonical store");
   assert.equal(rig.overrides.length, 0);
 });
 
@@ -298,7 +315,9 @@ test("F-1: the degraded attempt ALSO failing → bounded halt naming BOTH leads;
     assert.match(r.reason, new RegExp(`"${LEAD_A}"`), "names the original lead");
     assert.match(r.reason, new RegExp(`"${LEAD_B}"`), "names the degraded lead");
   }
-  assert.deepEqual(rig.removed, [n], "restore block fires after the degraded attempt too");
+  // IMP-01: canonical untouched across the dealt AND degraded attempts alike.
+  assert.deepEqual(rig.removed, [], "nothing to remove — canonical untouched by construction");
+  assert.equal(rig.files.has(n), false, "no failed draft ever reached the canonical store");
   // Cross-entry convergence (live: the 2026-07-08 resume replayed the identical
   // dealt→degraded cycle): a FAILED degradation persists pure failure MEMORY —
   // no overlay (lead null), but every proven-uncarriable name recorded.

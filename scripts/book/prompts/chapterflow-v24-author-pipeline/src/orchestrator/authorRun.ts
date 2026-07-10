@@ -57,6 +57,18 @@ import {
   recordBudgetRepairConsumed,
 } from "./authorRegenLedger.js";
 import { appendReopenNote, holdsDurablePass } from "./authorReviewLedger.js";
+import {
+  ATTEMPTS_ROOT,
+  commitChapterCandidate,
+  finalizeAttempt,
+  gateCandidate,
+  importCandidate,
+  mintChapterAttempt,
+  rubricMetricsWithCandidate,
+  unexpectedAttemptWrites,
+} from "./chapterTransaction.js";
+import { sha256Hex } from "../contracts/contractUtil.js";
+import { writeFileAtomic } from "../lib/atomicWrite.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -117,6 +129,15 @@ export type AuthorIo = {
    *  only when a degraded attempt lands a passing chapter. */
   readLeadOverride: (bookId: string, chapterNumber: number) => LeadThreadOverrideV1 | null;
   writeLeadOverride: (bookId: string, chapterNumber: number, override: LeadThreadOverrideV1) => void;
+  /** IMP-01 candidate validation seam. The conductor gates CANDIDATE bytes (the
+   *  attempt-workspace draft) in process — never by exposing them at the
+   *  canonical path. Tests that previously stubbed the `gate-chapter` /
+   *  `rubric-metrics` runVerb calls override these two instead. */
+  gateCandidate: (candidate: ChapterV21, canonicalAbsPath: string, attemptKey: string) => Promise<{ code: number; stdout: string; stderr: string }>;
+  rubricWithCandidate: (bookId: string, chapterNumber: number, candidate: ChapterV21) => Promise<{ code: number; stdout: string; stderr: string }>;
+  /** Root for per-attempt workspaces/evidence (.attempts by default; tests use
+   *  tmp roots so unit runs never write the real pipeline tree). */
+  attemptsRoot: () => string;
 };
 
 /** Disk implementations of the F-1 sidecar, exported so the repair lane
@@ -137,6 +158,9 @@ export function writeLeadOverrideToDisk(bookId: string, chapterNumber: number, o
 }
 
 export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
+  // Hoisted: the candidate-rubric default substitutes the candidate into the
+  // SAME chapter set the rest of the io reads (fixture/slot roots included).
+  const loadChaptersResolved = over?.loadChapters ?? ((bookId: string) => loadBookChapters(bookId));
   return {
     chapterExists: over?.chapterExists
       ?? ((bookId, n) => existsSync(resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n))))),
@@ -144,8 +168,11 @@ export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
       const p = resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n)));
       try { return existsSync(p) ? readFileSync(p, "utf8") : null; } catch { return null; }
     }),
+    // IMP-01: the canonical write default is ATOMIC (tmp + rename). A plain
+    // writeFileSync here was the torn-read wedge (F-001): a concurrent status/
+    // key-judge read could parse a half-written file and brick the conductor.
     writeChapterFile: over?.writeChapterFile
-      ?? ((bookId, n, bytes) => writeFileSync(resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n))), bytes)),
+      ?? ((bookId, n, bytes) => writeFileAtomic(resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n))), bytes)),
     removeChapterFile: over?.removeChapterFile
       ?? ((bookId, n) => rmSync(resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n))), { force: true })),
     readBriefMd: over?.readBriefMd ?? ((bookId, n) => {
@@ -166,7 +193,7 @@ export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
         return existsSync(p) ? readJsonFile<SourcePacketV1>(p) : null;
       } catch { return null; }
     }),
-    loadChapters: over?.loadChapters ?? ((bookId) => loadBookChapters(bookId)),
+    loadChapters: loadChaptersResolved,
     nameBankOk: over?.nameBankOk ?? (() => {
       try { return loadNameBank().length > 0; } catch { return false; }
     }),
@@ -176,6 +203,10 @@ export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
       ?? ((chapterId, sessionId, contentHash) => { recordAuthorProvenance(chapterId, sessionId, contentHash); }),
     readLeadOverride: over?.readLeadOverride ?? readLeadOverrideFromDisk,
     writeLeadOverride: over?.writeLeadOverride ?? writeLeadOverrideToDisk,
+    gateCandidate: over?.gateCandidate ?? gateCandidate,
+    rubricWithCandidate: over?.rubricWithCandidate
+      ?? ((bookId, n, candidate) => rubricMetricsWithCandidate(bookId, n, candidate, loadChaptersResolved)),
+    attemptsRoot: over?.attemptsRoot ?? (() => ATTEMPTS_ROOT),
   };
 }
 
@@ -374,7 +405,7 @@ export function authorSelfVerify(bookId: string, chapterNumber: number, outputRe
 5. HOOK — point at the stake (who loses/pays/misses what) and the fastRead's concrete beat before its first abstract term.
 6. TERMS — name the 2-4 terms this chapter stands on; confirm each got a plain first-use unpacking.
 7. TAKE-HOME — coreSkill opens with the skill name; no coined shorthand in actions; one memorableLine carries the central image, none reused.
-Then run: npx tsx src/cli.ts gate-chapter ${relPath} — 0 blockers required; fix and re-run until clean.`;
+Fix every failure NOW — the conductor gates ${relPath} the moment you exit; a blocker costs a full rewrite.`;
 }
 
 /** STIER-2 D7/D9 — deterministic write-time contract checks that need the BRIEF in
@@ -699,15 +730,17 @@ export async function authorWriteOneChapter(
   const packet = io.readPacket(bookId, chapterNumber);
   if (!packet) return { ok: false, reason: `ch${nn}: no source packet — run compile-source-packets first` };
 
-  // Write-failure restore (fresh-gold live finding, 2026-07-08): writer sessions land
-  // their draft on disk BEFORE the gate/rubric/contract self-checks below. When every
-  // attempt fails, disk must not keep an UNREVIEWED failing draft: restore the prior
-  // bytes (they were reviewed or at least gate-known), or REMOVE the orphan when no
-  // chapter existed before — otherwise the next entry sees the failed draft as an
-  // existing chapter and blindly reviews it as if it had passed its write checks
-  // (observed live: high-output-management ch14 — an 87-composite original was
-  // replaced by a lead-contract-failing draft and lost).
-  const preWriteBytes = io.readChapterFile(bookId, chapterNumber);
+  // IMP-01 (F-001/F-020): the writer never touches the canonical path. Every
+  // attempt gets an isolated workspace (the agent's cwd and ONLY writable dir);
+  // the candidate is validated in memory against the COMMITTED book and lands
+  // via one compare-and-swap atomic commit. The 2026-07-08 preWriteBytes
+  // restore lane this replaced is structurally unnecessary now — a failed
+  // attempt never changed canonical bytes to begin with, so there is nothing
+  // to restore and no window where an unreviewed draft shadows reviewed bytes.
+  const candidateName = chapterFileName(chapterId);
+  // Sibling/gate context follows the same override the io hooks use (bakeoff
+  // slot roots pass outputRelPath + slot-rooted io; production = canonical).
+  const canonicalAbs = resolve(PIPELINE_DIR, relPath);
 
   const machineBrief = io.readBrief(bookId, chapterNumber);
   // Authoritative total-chapter count (works before all chapters exist on disk) —
@@ -738,7 +771,9 @@ export async function authorWriteOneChapter(
   const voice = io.voiceCard(bookId);
   const mkCard = (brief: ChapterBriefV1 | null, md: string): string => buildAuthorCard({
     bookId, chapterNumber, totalChapters, briefMd: md, packet, voice, complaints: opts.complaints, brief,
-    outputRelPath: opts.outputRelPath,
+    // IMP-01: the agent-facing output path is the candidate file in its own
+    // working directory — never a repository path.
+    outputRelPath: candidateName,
   });
   const briefMdEffective = effectiveBrief !== machineBrief && effectiveBrief ? renderBriefMd(effectiveBrief) : briefMd;
   const baseCard = mkCard(effectiveBrief, briefMdEffective);
@@ -767,9 +802,11 @@ export async function authorWriteOneChapter(
   // built for a BLOCKING failure (gate blocker, rubric FAIL, write-contract FAIL), so
   // an advisory NEVER triggers a retry by itself and NEVER changes a pass/fail predicate
   // — it only changes the TEXT the next attempt sees. Best-effort, deterministic.
-  const advisoryRegisterBlock = (): string => {
+  const advisoryRegisterBlock = (candidate?: ChapterV21): string => {
     try {
-      const draft = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
+      // IMP-01: in-loop retries pass the failed CANDIDATE (it is not on disk);
+      // the attempt-1 regen seed still reads the prior committed draft.
+      const draft = candidate ?? io.loadChapters(bookId).find((c) => c.number === chapterNumber);
       return draft ? registerAdvisoryRetryBlock(draft) : "";
     } catch { return ""; }
   };
@@ -826,6 +863,19 @@ export async function authorWriteOneChapter(
     }
     const label = attempt === 1 ? `author-ch${nn}` : attempt > baseAttempts ? `author-ch${nn}-degraded` : `author-ch${nn}-retry${attempt - 1}`;
     const sessionId = deps.mkSessionId(label);
+    // IMP-01: mint the attempt AFTER the card is final (its hash is part of the
+    // immutable identity). The workspace is the writer's cwd — its ONLY writable
+    // directory; the canonical path is not reachable by this session at all.
+    const chAttempt = mintChapterAttempt({
+      bookId,
+      chapterNumber,
+      chapterId,
+      attemptKind: isRegen ? "author-regeneration" : "author-initial",
+      attemptSequence: attempt,
+      promptSha256: sha256Hex(card),
+      io,
+      attemptsRoot: io.attemptsRoot(),
+    });
     deps.log(`[autopilot] author ch${nn}: whole-chapter writer working (attempt ${attempt}, card ${card.length} chars, ${writerModel} @ ${writerEffort}, timeout ${Math.round(AUTHOR_WRITE_TIMEOUT_MS / 60000)}min)`);
     // M-lane: pinned model/effort/timeout. The runner REJECTS on timeout (SIGKILL) —
     // catch it into the structured retry path; an unhandled throw here would escape
@@ -836,8 +886,9 @@ export async function authorWriteOneChapter(
         task: card,
         role: "author-writer",
         sessionId,
-        cwd: PIPELINE_DIR,
+        cwd: chAttempt.workspaceDir,
         sandbox: "workspace-write",
+        skipGitRepoCheck: true,
         model: writerModel,
         reasoningEffort: writerEffort,
         timeoutMs: AUTHOR_WRITE_TIMEOUT_MS,
@@ -857,6 +908,7 @@ export async function authorWriteOneChapter(
           stderr: (err as Error)?.message ?? String(err), durationMs: 0, sessionId,
         });
       } catch { /* best-effort: never convert a spawn error into a log error */ }
+      finalizeAttempt(chAttempt, "infrastructure_failure", lastReason);
       card = `${baseCard}\n\nPREVIOUS ATTEMPT DID NOT COMPLETE\nYour previous session was cut off before finishing. Write the complete chapter file this time.`;
       nonLeadFailure = true;
       continue;
@@ -864,26 +916,41 @@ export async function authorWriteOneChapter(
     try { deps.logSession(bookId, label, r); } catch { /* best-effort */ }
     if (!r.ok) deps.log(`[autopilot] author ch${nn}: writer exited ${r.exitCode}`);
 
-    if (!io.chapterExists(bookId, chapterNumber)) {
-      lastReason = `ch${nn}: writer session ${sessionId} exited ${r.exitCode} without writing ${relPath}`;
-      card = `${baseCard}\n\nPREVIOUS ATTEMPT WROTE NO FILE\nYour previous session ended without creating ${relPath}. Write the complete chapter file this time.`;
+    // IMP-01: anything in the workspace beyond the single candidate file is an
+    // unexpected write — a first-class attempt failure, never tolerated (F-020).
+    const smuggled = unexpectedAttemptWrites(chAttempt);
+    if (smuggled.length > 0) {
+      lastReason = `ch${nn}: writer session ${sessionId} wrote unexpected workspace file(s): ${smuggled.join(", ")}`;
+      finalizeAttempt(chAttempt, "unexpected_write", lastReason);
+      card = `${baseCard}\n\nPREVIOUS ATTEMPT WROTE UNEXPECTED FILES\nWrite EXACTLY one file (${candidateName}). Your previous session also wrote: ${smuggled.join(", ")} — do not create any other file.`;
       nonLeadFailure = true;
       continue;
     }
+    const imported = importCandidate(chAttempt);
+    if (!imported.ok) {
+      const missing = imported.reason.startsWith("no candidate file");
+      lastReason = `ch${nn}: writer session ${sessionId} exited ${r.exitCode} — ${imported.reason}`;
+      finalizeAttempt(chAttempt, imported.outcome, imported.reason);
+      card = missing
+        ? `${baseCard}\n\nPREVIOUS ATTEMPT WROTE NO FILE\nYour previous session ended without creating ${candidateName}. Write the complete chapter file this time.`
+        : `${baseCard}\n\nPREVIOUS ATTEMPT WROTE A MALFORMED FILE\nYour previous session's ${candidateName} was rejected: ${imported.reason}. Write the complete, valid chapter JSON this time.`;
+      nonLeadFailure = true;
+      continue;
+    }
+    const candidate = imported.chapter;
 
-    const gate = await deps.runVerb(["gate-chapter", relPath]);
+    const gate = await io.gateCandidate(candidate, canonicalAbs, relPath);
     if (gate.code === 0) {
       if (priorHash) {
-        let freshHash: string | undefined;
-        try {
-          const fresh = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
-          freshHash = fresh ? chapterContentHash(fresh) : undefined;
-        } catch { /* fall through — unreadable counts as changed */ }
-        if (freshHash && freshHash === priorHash) {
+        // IMP-01: the no-op check reads the CANDIDATE (the prior draft is still
+        // the committed canonical — a regen that reproduces it produced nothing).
+        const freshHash = chapterContentHash(candidate);
+        if (freshHash === priorHash) {
           // Fail immediately, no retry: the gate-retry budget exists for gate
           // blockers, not for a session that ignored explicit complaints. The
           // chapter stays failing and the caller's cap/halt logic reports it.
           const reason = `ch${nn}: regen session ${sessionId} left the chapter byte-identical — a failing chapter regenerated to the same bytes is still failing`;
+          finalizeAttempt(chAttempt, "validation_failed", reason);
           deps.log(`[autopilot] author ch${nn}: ${reason}`);
           return { ok: false, reason };
         }
@@ -893,7 +960,7 @@ export async function authorWriteOneChapter(
       // deterministic reader-facing metrics (Flesch band, distractor tell,
       // transfer ratio, memorable lines) are as binding as the ship gate in
       // the author arch — a FAIL feeds the retry card like a gate blocker.
-      const rubric = await deps.runVerb(["rubric-metrics", bookId]);
+      const rubric = await io.rubricWithCandidate(bookId, chapterNumber, candidate);
       // Capture THIS chapter's `chNN:` verdict line AND its follow-on
       // `chNN fix: …` reason lines. formatRubricMetrics emits the W2 card-quality
       // repair instructions (length-tell / practice-floor) as indented `chNN fix:`
@@ -914,7 +981,7 @@ export async function authorWriteOneChapter(
         let tellEvidence = "";
         if (/tellRate/.test(rubricBlock)) {
           try {
-            const draft = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
+            const draft = candidate;
             const evid: string[] = [];
             for (const q of draft?.quiz?.questions ?? []) {
               const choices = (q.choices ?? []).map((c) => {
@@ -935,19 +1002,18 @@ export async function authorWriteOneChapter(
             }
           } catch { /* best-effort evidence — the metric block still stands */ }
         }
+        finalizeAttempt(chAttempt, "validation_failed", lastReason);
         card = `${baseCard}\n\nRUBRIC PREFLIGHT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but FAILED the deterministic reader-metrics preflight. Rewrite the chapter so ALL of these clear:\n${rubricBlock}${tellEvidence}\nHow to read it: ease must land in 72-84 (write plainer, shorter sentences); tell must be <= 0.2 (at most ONE of the 9 keys may be the uniquely longest choice — fix the listed questions); transfer must be >= 0.7 (most quiz questions test a NEW scenario, not recall); memClean >= 2 (short portable memorable lines); lenTell — the key may be the uniquely SHORTEST choice in at most 4 of 9 questions and the uniquely LONGEST in at most 1 of 9 (the same caps as your quality bar — fix only the questions over a cap; do NOT purge every length extreme, that mints the opposite tell); practice — tryThisNow or the 24-hour challenge must be imperative-led with a concrete number/timebox; echo (advisory) — paraphrase any key that reuses 5+ consecutive words from the chapter.`;
-        card += advisoryRegisterBlock();
+        card += advisoryRegisterBlock(candidate);
         nonLeadFailure = true;
         continue;
       }
       // STIER-2 D7/D9 — the write-time contract (lead thread + timer sanity) runs with
       // the BRIEF in scope, same retry semantics as the rubric preflight. Deterministic,
-      // evidence-first complaints (the proven repair pattern).
-      let writtenChapter: ChapterV21 | undefined;
-      try {
-        writtenChapter = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
-      } catch { /* unreadable → skip the contract check; the gate already passed */ }
-      if (writtenChapter) {
+      // evidence-first complaints (the proven repair pattern). IMP-01: the contract
+      // reads the CANDIDATE directly — no disk round-trip, no unreadable case.
+      const writtenChapter: ChapterV21 = candidate;
+      {
         // F-1: the contract runs against the ACTIVE brief — the effective (override-
         // resolved) brief normally, the degraded-lead brief on the extra attempt —
         // so a degraded lead is verified at exactly the same strength.
@@ -958,9 +1024,10 @@ export async function authorWriteOneChapter(
             if (attempt > baseAttempts) degradedFailedOnLead = true; // the DEGRADED lead is now proven uncarriable too
           } else nonLeadFailure = true;
           lastReason = `ch${nn}: STIER-2 write contract FAIL — ${contract.join(" | ")}`;
+          finalizeAttempt(chAttempt, "validation_failed", lastReason);
           deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
           card = `${baseCard}\n\nWRITE-CONTRACT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but broke the dealt write contract. Rewrite the chapter so ALL of these clear:\n${contract.map((c) => `- ${c}`).join("\n")}`;
-          card += advisoryRegisterBlock();
+          card += advisoryRegisterBlock(candidate);
           continue;
         }
       }
@@ -987,39 +1054,39 @@ export async function authorWriteOneChapter(
           deps.log(`[autopilot] author ch${nn}: degraded lead LANDED but the lead-override sidecar could not be persisted (${(err as Error).message.split("\n")[0]}) — the next entry will re-fail on the dealt lead and re-degrade; fix the briefs dir permissions.`);
         }
       }
+      // IMP-01 commit: compare-and-swap against the attempt's expected canonical
+      // base. A mismatch means another actor committed since this attempt was
+      // minted — the stale attempt LOSES (no overwrite, no auto-retry; the
+      // caller's existing bounded policy owns any further work).
+      const committed = commitChapterCandidate({ attempt: chAttempt, bytes: imported.bytes, io });
+      if (!committed.ok) {
+        const reason = `ch${nn}: ${committed.reason}`;
+        finalizeAttempt(chAttempt, "stale_base", committed.reason);
+        deps.log(`[autopilot] author ch${nn}: ${reason}`);
+        return { ok: false, reason };
+      }
       // Success: bind author provenance to the authored content (create-once per
       // content; a conflict means a prior author of identical bytes stands).
       try {
-        const chapter = writtenChapter ?? io.loadChapters(bookId).find((c) => c.number === chapterNumber);
-        io.recordProvenance(chapterId, sessionId, chapter ? chapterContentHash(chapter) : undefined);
+        io.recordProvenance(chapterId, sessionId, chapterContentHash(candidate));
       } catch (err) {
         deps.log(`[autopilot] author ch${nn}: provenance unchanged (${(err as Error).message.split(".")[0]})`);
       }
+      finalizeAttempt(chAttempt, "committed");
       deps.log(`[autopilot] author ch${nn}: done (gate-chapter clean)`);
       return { ok: true, sessionId };
     }
     const report = reportOf(gate);
     lastReason = `ch${nn}: gate-chapter still blocks after attempt ${attempt}:\n${report.slice(0, 1500)}`;
-    card = `${baseCard}\n\nGATE BLOCKERS FROM YOUR PREVIOUS ATTEMPT\nYour previous draft of ${relPath} failed the deterministic gate. Rewrite the chapter (regenerate — do not minimally patch) so every blocker below is cleared, then re-run gate-chapter until clean:\n${report.slice(0, 2000)}`;
-    card += advisoryRegisterBlock();
+    finalizeAttempt(chAttempt, "validation_failed", lastReason);
+    card = `${baseCard}\n\nGATE BLOCKERS FROM YOUR PREVIOUS ATTEMPT\nYour previous draft of ${candidateName} failed the deterministic gate. Rewrite the chapter (regenerate — do not minimally patch) so every blocker below is cleared:\n${report.slice(0, 2000)}`;
+    card += advisoryRegisterBlock(candidate);
     nonLeadFailure = true;
   }
-  // All attempts failed — never leave the last (unreviewed, self-check-failing)
-  // draft on disk. Restore the pre-write bytes, or remove the orphan draft when
-  // this was a missing-chapter write. Best-effort: a cleanup error must not mask
-  // the real failure reason.
-  try {
-    const nowBytes = io.readChapterFile(bookId, chapterNumber);
-    if (preWriteBytes !== null && nowBytes !== preWriteBytes) {
-      io.writeChapterFile(bookId, chapterNumber, preWriteBytes);
-      deps.log(`[autopilot] author ch${nn}: all write attempts failed — restored the pre-write chapter bytes (a failed draft must not replace known bytes).`);
-    } else if (preWriteBytes === null && nowBytes !== null) {
-      io.removeChapterFile(bookId, chapterNumber);
-      deps.log(`[autopilot] author ch${nn}: all write attempts failed — removed the unreviewed failed draft (no prior chapter existed; the next entry must re-write it, not review it).`);
-    }
-  } catch (err) {
-    deps.log(`[autopilot] author ch${nn}: write-failure cleanup itself failed (${(err as Error).message.split("\n")[0]}) — disk may hold an unreviewed failed draft.`);
-  }
+  // All attempts failed. IMP-01: nothing to restore — no attempt ever wrote the
+  // canonical path, so the last reviewed/known bytes are exactly what disk holds
+  // (the 2026-07-08 restore lane this replaced is structurally unnecessary).
+  deps.log(`[autopilot] author ch${nn}: all write attempts failed — canonical bytes untouched (candidates retained under .attempts/ for forensics).`);
   // F-1 honesty: when the bounded degradation also failed, the halt names BOTH
   // leads — the operator must see that the fallback was tried, not just the last
   // attempt's complaint. Failure MEMORY persists so the NEXT entry's degradation
