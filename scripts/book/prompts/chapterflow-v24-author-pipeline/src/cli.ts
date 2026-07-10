@@ -4411,6 +4411,46 @@ async function runExecQualify(flags: Record<string, string | boolean>): Promise<
   return missingRequired === 0 ? 0 : 1;
 }
 
+/** `contract-validate` — IMP-12 CI entry point (no model/network): assert the
+ *  Phase-0 frozen contract manifest still matches the live contract source, and
+ *  validate every landed worker report against the frozen worker-report schema.
+ *  A parallel agent that forked a schema, or a report that dropped an adverse
+ *  field, fails CI here before any suite runs. */
+async function runContractValidate(): Promise<number> {
+  const { existsSync, readFileSync, readdirSync } = await import("fs");
+  const { resolve, dirname } = await import("path");
+  const { fileURLToPath } = await import("url");
+  const { contractFreezeDivergences } = await import("./contracts/index.js");
+  const { validateWorkerReport } = await import("./contracts/workerReport.js");
+  let failures = 0;
+  const divergences = contractFreezeDivergences();
+  if (divergences.length > 0) {
+    failures += divergences.length;
+    console.log(`contract-freeze: FAIL — ${divergences.length} divergence(s) from the frozen manifest:`);
+    for (const d of divergences) console.log(`  ✗ ${d}`);
+    console.log("  Fix: bump the changed contract's version and rerun `npx tsx src/contracts/generateManifest.ts`.");
+  } else {
+    console.log("contract-freeze: PASS — the live contracts match the frozen manifest.");
+  }
+  const here = dirname(fileURLToPath(import.meta.url));
+  const reportsDir = resolve(here, "..", "..", "..", "..", "..", "docs", "v25", "reports");
+  if (existsSync(reportsDir)) {
+    const reports = readdirSync(reportsDir).filter((f) => /^implementation-report\.imp-\d\d\.json$/.test(f)).sort();
+    for (const file of reports) {
+      let errors: string[] = [];
+      try { errors = validateWorkerReport(JSON.parse(readFileSync(resolve(reportsDir, file), "utf8"))); }
+      catch (err) { errors = [`unreadable: ${(err as Error).message}`]; }
+      if (errors.length > 0) { failures += errors.length; console.log(`worker-report ${file}: FAIL — ${errors.slice(0, 4).join("; ")}`); }
+      else console.log(`worker-report ${file}: PASS`);
+    }
+    if (reports.length === 0) console.log("worker-report: (no landed reports found — nothing to validate)");
+  } else {
+    console.log(`worker-report: (reports dir not present at ${reportsDir} — skipped)`);
+  }
+  console.log(failures === 0 ? "contract-validate: PASS" : `contract-validate: FAIL — ${failures} issue(s)`);
+  return failures === 0 ? 0 : 1;
+}
+
 /** `codex-agent-run <task-file>` — debug verb: spawn ONE headless codex agent with
  *  a task file as its instruction and print the result. Proves `codex exec` works
  *  in-environment before relying on the autopilot. Needs a real codex binary. */
@@ -5589,6 +5629,8 @@ async function main() {
       return runDoctor(args, flags);
     case "exec-qualify":
       return runExecQualify(flags);
+    case "contract-validate":
+      return runContractValidate();
     case "authoring-guardrails":
       return runAuthoringGuardrails(args, flags);
     case "promote-book":
