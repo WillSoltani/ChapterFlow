@@ -247,35 +247,42 @@ function mkV3Brief(n: number): ChapterBriefV1 {
   } as ChapterBriefV1;
 }
 
-test("v3 VARIETY render: every dealt lever line present; v2 briefs render untouched (back-compat)", () => {
+test("v3 VARIETY render (IMP-06 de-reciped): compact outcome lines present; internal taxonomy ABSENT; v2 briefs still render", () => {
   const brief = mkV3Brief(5);
   const lines = briefVarietyInstructionLines(brief).join("\n");
-  assert.ok(lines.includes("EXAMPLE PLAN: write EXACTLY"), "arc table present");
-  assert.ok(lines.includes("+anchor"), "dealt prop slots marked");
+  // Retained (book allocation / outcome preference), expressed compactly:
+  assert.ok(lines.includes("EXAMPLES: write EXACTLY"), "dealt example count still binds");
+  assert.ok(lines.includes("ANCHORS: give 2-3 examples exactly ONE concrete"), "anchor budget stated as an outcome");
   assert.ok(lines.includes("LEAD THREAD"), "lead thread present");
   assert.ok(lines.includes("QUIZ STEMS"), "stem shapes present");
   assert.ok(lines.includes("DISTRACTOR MODES"), "failure modes present");
   assert.ok(lines.includes("QUESTION ORDER"), "fact-order permutation present");
-  assert.ok(lines.includes("PRACTICE SLOT SHAPES"), "per-slot shapes present");
-  assert.ok(lines.includes("MEMORABLE LINES"), "memorable shapes present");
+  assert.ok(lines.includes("PRACTICE SURFACES"), "surfaces-must-differ outcome present");
+  assert.ok(lines.includes("MEMORABLE LINES"), "memorable-line outcome present");
   assert.ok(lines.includes("LIMITS PLACEMENT"), "limits placement present");
-  assert.ok(lines.includes("FIRST-MENTION GROUNDING"), "grounding form present");
-  assert.ok(lines.includes("FRAMEWORK IDIOM"), "STIER-3 idiom line present");
-  assert.ok(lines.includes("EXAMPLE SHELL REGISTER"), "STIER-3 shell line present");
-  // The arc table is the single source of the failure slot — no duplicate friction
-  // prose even when the flag is set (forced TRUE so the assertion can't pass vacuously).
+  assert.ok(lines.includes("FIRST-MENTION GROUNDING"), "grounding rules present");
+  // IMP-06 (F-008/F-016): the writer-visible NARRATIVE PROCEDURES and internal
+  // taxonomy labels are GONE — the deal still allocates them (lineage/BR6 stable),
+  // but no card exposes a named scene/rhetoric recipe.
+  for (const leaked of [
+    "EXAMPLE PLAN", "+anchor", "PRACTICE SLOT SHAPES", "FRAMEWORK IDIOM", "EXAMPLE SHELL REGISTER",
+    "PRACTICE VERB:", "prop-tableau", "dialogue-beat", "at-the-demand", "mid-behavior",
+    "mechanism-speak", "ledger-speak", "verb-first", "cost-statement", "appositive",
+  ]) {
+    assert.ok(!lines.includes(leaked), `internal taxonomy leaked to the writer surface: "${leaked}"`);
+  }
+  // Friction is a dealt OUTCOME and renders as one prose sentence when dealt (the
+  // arc table that used to carry the failure slot no longer renders).
   const frictionLines = briefVarietyInstructionLines({ ...brief, requireFrictionExample: true } as ChapterBriefV1).join("\n");
-  assert.ok(!frictionLines.includes("At least ONE of your examples must show the move failing"), "v2 friction sentence suppressed when arcs carry the slot");
-  // v2 brief (no v3 fields): the original lines render, none of the v3 lines do.
-  // Force the friction flag TRUE — whether ch5 is friction-dealt is the dealer's
-  // business; this assertion is about the v2 RENDER path, not the deal.
+  assert.ok(frictionLines.includes("At least ONE example must show the move failing"), "friction outcome renders when dealt");
+  // v2 brief (no v3 fields): the compact example outcome + friction still render.
   const v2 = { ...brief } as Record<string, unknown>;
   for (const k of ["rotationSchemaVersion", "exampleCount", "exampleArcs", "practiceSlotShapes", "quizStemShapes", "quizFailureModes", "questionFactOrder", "memorableShapes", "limitsPlacement", "groundingForm", "leadThread", "idiomFamilies", "shellRegister"]) delete v2[k];
   v2.requireFrictionExample = true;
   const v2lines = briefVarietyInstructionLines(v2 as ChapterBriefV1).join("\n");
-  assert.ok(!v2lines.includes("EXAMPLE PLAN"), "no v3 lines on a v2 brief");
-  assert.ok(!v2lines.includes("FRAMEWORK IDIOM") && !v2lines.includes("EXAMPLE SHELL REGISTER"), "no v4 lines on a v2 brief");
-  assert.ok(v2lines.includes("At least ONE of your examples must show the move failing"), "v2 friction sentence still renders on v2 briefs");
+  assert.ok(v2lines.includes("EXAMPLES: write EXACTLY"), "v2 briefs render the same compact outcome");
+  assert.ok(!v2lines.includes("PRACTICE SURFACES"), "no v3-field lines on a v2 brief");
+  assert.ok(v2lines.includes("At least ONE example must show the move failing"), "friction renders on v2 briefs");
 });
 
 // ── B0: card single-render + real-size pin ─────────────────────────────────────
@@ -287,8 +294,8 @@ test("B0: the card carries each dealt VARIETY line exactly ONCE (md section stri
   const briefMd = `# Chapter 5 — The Return Point\n\n## THE MOVE\ntie every promise to a named return point\n\n## PROMISE\nAfter this chapter…\n\n${varietyBlock}\n\n## YOUR CASES\n- Honeywell 1999 integration\n\n## LENGTH\n~16000 chars`;
   const packet = mkPacket(5, { cases: [{ id: "c1", label: "Honeywell 1999 integration" }] });
   const card = buildAuthorCard({ bookId: BOOK, chapterNumber: 5, briefMd, packet, voice: null, brief });
-  const marker = "EXAMPLE PLAN: write EXACTLY";
-  assert.equal(card.split(marker).length - 1, 1, "arc table appears exactly once in the card");
+  const marker = "EXAMPLES: write EXACTLY";
+  assert.equal(card.split(marker).length - 1, 1, "the dealt example-outcome line appears exactly once in the card");
   assert.ok(card.includes("## YOUR CASES"), "non-VARIETY md sections survive the strip");
   // Without the machine brief the md keeps its own VARIETY section (graceful degrade).
   const cardNoBrief = buildAuthorCard({ bookId: BOOK, chapterNumber: 5, briefMd, packet, voice: null });

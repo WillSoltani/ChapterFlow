@@ -4495,6 +4495,54 @@ async function runEvidenceCleanup(flags: Record<string, string | boolean>): Prom
   return 0;
 }
 
+/** `diversity-report <bookId>` — IMP-06: the SHADOW diversity report. Feature
+ *  concentration over the immutable FIRST-WRITE ledger records (never inferred
+ *  from final chapters) + exact/near clone scan of the CURRENT canonical
+ *  chapters (labeled as such). Report-only: no gate, no rejection, no writer
+ *  effect — activation is governed by the versioned diversity config. */
+async function runDiversityReport(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) { console.error("usage: diversity-report <bookId> [--root <ledger-dir>]"); return 2; }
+  const { resolveDiversityLedgerRoot, readDiversityLedger, firstWriteRecords, featureConcentration } = await import("./telemetry/diversityLedger.js");
+  const { detectClones } = await import("./critics/cloneDetection.js");
+  const { DEFAULT_DIVERSITY_CONFIG, diversityConfigHash, validateDiversityConfig } = await import("./telemetry/diversityConfig.js");
+  const { loadBookChapters } = await import("./qc/manualKeyJudge.js");
+
+  const config = DEFAULT_DIVERSITY_CONFIG;
+  const configErrors = validateDiversityConfig(config);
+  console.log(`diversity-report ${bookId} (config ${diversityConfigHash(config).slice(0, 12)}, all-shadow${configErrors.length ? ` — CONFIG INVALID: ${configErrors.join("; ")}` : ""})`);
+
+  const root = resolveDiversityLedgerRoot(typeof flags["root"] === "string" ? flags["root"] : undefined);
+  if (!root) {
+    console.log("  first-write ledger: DISABLED (set CHAPTERFLOW_DIVERSITY_LEDGER_ROOT or pass --root) — first-write concentration unavailable");
+  } else {
+    const records = readDiversityLedger(root, bookId);
+    const first = firstWriteRecords(records);
+    console.log(`  first-write ledger: ${records.length} record(s), ${first.length} immutable first write(s)`);
+    if (first.length > 0) {
+      const maxShareBar = config.checks["feature-concentration"].thresholds.maxShare ?? 0.67;
+      for (const c of featureConcentration(first)) {
+        const flag = c.maxShare >= maxShareBar && first.length >= 4 ? "  ⚠ concentrated (shadow — report only)" : "";
+        console.log(`    ${String(c.feature).padEnd(22)} max ${(c.maxShare * 100).toFixed(0)}% = ${c.dominantValue}${flag}`);
+      }
+      const leaks = first.flatMap((r) => r.taxonomyLeaks.map((l) => `ch${r.chapterNumber}:${l}`));
+      if (leaks.length > 0) console.log(`    taxonomy leaks in prose: ${leaks.join(", ")}`);
+    }
+  }
+
+  const chapters = loadBookChapters(bookId);
+  if (chapters.length === 0) {
+    console.log("  clone scan: no canonical chapters on disk");
+    return 0;
+  }
+  const clones = detectClones(chapters, config);
+  console.log(`  clone scan (CURRENT canonical bytes, ${chapters.length} chapter(s)): ${clones.length} finding(s)`);
+  for (const f of clones) {
+    console.log(`    [${f.class}] ${f.kind} ch${f.chapters.join("+ch")} (${f.measure}) — ${f.evidence}`);
+  }
+  return 0;
+}
+
 /** `codex-agent-run <task-file>` — debug verb: spawn ONE headless codex agent with
  *  a task file as its instruction and print the result. Proves `codex exec` works
  *  in-environment before relying on the autopilot. Needs a real codex binary. */
@@ -5679,6 +5727,8 @@ async function main() {
       return runEvidenceReconstruct(args, flags);
     case "evidence-cleanup":
       return runEvidenceCleanup(flags);
+    case "diversity-report":
+      return runDiversityReport(args, flags);
     case "authoring-guardrails":
       return runAuthoringGuardrails(args, flags);
     case "promote-book":

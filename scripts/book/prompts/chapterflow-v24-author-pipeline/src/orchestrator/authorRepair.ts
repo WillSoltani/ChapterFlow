@@ -32,7 +32,8 @@ import { sourceUsePlanHash, validateSourceUsePlan, type SourceUsePlanV1 } from "
 import { sourcePacketHash } from "../compiler/sourcePacket.js";
 import { embeddedPlanMutationFindings, renderSourceUsePlanLines, sourceUsePlanStale } from "../compiler/sourceUsePlanCompiler.js";
 import { untrustedArtifact } from "../exec/untrustedArtifact.js";
-import { recordSpawnEvidence } from "../evidence/attemptRecorder.js";
+import { recordAttemptObject, recordSpawnEvidence } from "../evidence/attemptRecorder.js";
+import { recordChapterDiversity } from "../telemetry/diversityLedger.js";
 import {
   commitChapterCandidate,
   finalizeAttempt,
@@ -193,7 +194,10 @@ export function buildRepairCard(opts: {
     const m = s.match(/^examples\[(\d+)\]$/);
     if (m && brief?.exampleArcs) {
       const arc = brief.exampleArcs[parseInt(m[1], 10)];
-      if (arc) dealt.push(`Example ${parseInt(m[1], 10) + 1}'s dealt arc still binds: entry=${arc.entry}, outcome=${arc.outcome}, register=${arc.fieldStyle}${arc.prop ? ", one concrete anchor" : ", no props"}.`);
+      // IMP-06: the arc taxonomy (entry/outcome/register) no longer renders anywhere —
+      // only the slot's ANCHOR allocation still binds a scoped edit (2-3 anchor slots
+      // per chapter is a cross-slot budget the edit must not break).
+      if (arc) dealt.push(`Example ${parseInt(m[1], 10) + 1}'s dealt constraints still bind: ${arc.prop ? "it carries exactly ONE concrete physical/sensory anchor" : "it carries NO physical-anchor prop (other slots own the anchors)"}; vary its entry and resolution away from the chapter's other examples.`);
     }
   }
   return [
@@ -487,5 +491,19 @@ export async function doRepairOneChapter(
     return { ok: false, reason: `ch${nn}: ${committed.reason}`, sessionId };
   }
   finalizeAttempt(chAttempt, "committed");
+  // IMP-06: diagnosis-version diversity snapshot (repaired bytes are never the
+  // first-write denominator — firstWrite stays false on repair kinds). OPT-IN,
+  // never throws.
+  const divRec = recordChapterDiversity({
+    bookId,
+    chapterNumber,
+    chapter: spliced,
+    plan,
+    attemptKind: chAttempt.identity.attemptKind,
+    committedGeneration: chAttempt.identity.expectedBaseGeneration + 1,
+  });
+  if (divRec && chAttempt.evidenceRoot) {
+    recordAttemptObject(chAttempt.evidenceRoot, chAttempt.identity.attemptId, "diversity-features", JSON.stringify(divRec) + "\n");
+  }
   return { ok: true, sessionId };
 }

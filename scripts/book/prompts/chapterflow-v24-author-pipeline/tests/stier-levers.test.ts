@@ -161,11 +161,19 @@ test("P1/P2/P4: briefVarietyInstructionLines renders the new dealt lines; legacy
     frameworkNouns: ["cadence", "promise"],
   } as ChapterBriefV1);
   const text = full.join("\n");
-  assert.ok(text.includes("EXAMPLE SCENES"), "lens block present");
+  // IMP-06 (F-008/F-016): the S-tier lens taxonomy + practice-verb register were
+  // demoted from the writer surface — the deal still allocates them; the card
+  // states compact outcomes with no internal label. Friction stays a dealt outcome.
+  // The #15 dialogue-fabrication guardrail that rode LENS_INSTRUCTION now lives
+  // with its enforcement owners: the FACTUAL invariant (card-diet I2: every quote
+  // appears in the packet), the SOURCE-USE PLAN case license ("never invent
+  // dialogue"), and C37.unsupported_scene_completion (source-register tests).
+  assert.ok(text.includes("EXAMPLES: write EXACTLY"), "compact example outcome present");
   assert.ok(text.includes("failing or only partially working"), "dealt friction requirement present");
-  assert.ok(text.includes("dialogue-beat:"), "per-lens instruction rendered");
-  assert.ok(text.includes("never given invented quotes"), "dialogue fabrication guardrail shipped (#15)");
-  assert.ok(text.includes('around "circle"'), "practice verb dealt");
+  assert.ok(!text.includes("EXAMPLE SCENES"), "the lens block no longer renders");
+  assert.ok(!text.includes("dialogue-beat"), "no lens taxonomy label on the card");
+  assert.ok(!text.includes('around "circle"'), "no practice-verb register line");
+  assert.ok(text.includes("PRACTICE & FIELD VARIETY"), "the compact verb/field outcome survives the demotion");
   assert.ok(text.includes("FRAMEWORK VOCABULARY BUDGET"), "vocabulary budget present");
   assert.ok(text.includes("cadence, promise"), "hot nouns listed");
   assert.ok(text.includes("owner, leader, manager"), "emergent role-noun rule present (#12)");

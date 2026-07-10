@@ -75,7 +75,8 @@ import {
   rubricMetricsWithCandidate,
   unexpectedAttemptWrites,
 } from "./chapterTransaction.js";
-import { recordSpawnEvidence } from "../evidence/attemptRecorder.js";
+import { recordAttemptObject, recordSpawnEvidence } from "../evidence/attemptRecorder.js";
+import { recordChapterDiversity } from "../telemetry/diversityLedger.js";
 import { sha256Hex } from "../contracts/contractUtil.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { BASELINE_MODEL } from "./modelPolicy.js";
@@ -1167,6 +1168,21 @@ export async function authorWriteOneChapter(
         io.recordProvenance(chapterId, sessionId, chapterContentHash(candidate));
       } catch (err) {
         deps.log(`[autopilot] author ch${nn}: provenance unchanged (${(err as Error).message.split(".")[0]})`);
+      }
+      // IMP-06: passive first-write diversity snapshot (shadow telemetry; OPT-IN
+      // via CHAPTERFLOW_DIVERSITY_LEDGER_ROOT — no-op otherwise, never throws).
+      const divRec = recordChapterDiversity({
+        bookId,
+        chapterNumber,
+        chapter: candidate,
+        plan,
+        attemptKind: chAttempt.identity.attemptKind,
+        committedGeneration: chAttempt.identity.expectedBaseGeneration + 1,
+      });
+      // Instruction 12: the same record (with its config hash) rides the
+      // attempt's evidence objects when evidence is opted-in.
+      if (divRec && chAttempt.evidenceRoot) {
+        recordAttemptObject(chAttempt.evidenceRoot, chAttempt.identity.attemptId, "diversity-features", JSON.stringify(divRec) + "\n");
       }
       finalizeAttempt(chAttempt, "committed");
       deps.log(`[autopilot] author ch${nn}: done (gate-chapter clean)`);
