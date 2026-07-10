@@ -28,9 +28,10 @@ const ICONS: Record<TestResult["status"], string> = {
   xfail: "▣",
   xpass: "✗",
   skip: "−",
+  xenv: "⊘",
 };
 
-let pass = 0, fail = 0, xfailCount = 0, xpass = 0, skipped = 0;
+let pass = 0, fail = 0, xfailCount = 0, xpass = 0, skipped = 0, xenvCount = 0;
 
 async function main(): Promise<void> {
 for (const file of files) {
@@ -39,26 +40,37 @@ for (const file of files) {
   const results = await runRegistered();
   for (const r of results) {
     const icon = ICONS[r.status];
-    const tag = r.status === "xfail" ? " [known defect]" : r.status === "xpass" ? " [XPASS]" : r.status === "skip" ? " [skip]" : "";
+    const tag = r.status === "xfail" ? " [known defect]" : r.status === "xpass" ? " [XPASS]" : r.status === "skip" ? " [skip]" : r.status === "xenv" ? " [env-absent]" : "";
     console.log(`  ${icon} ${r.name}${tag}`);
     if (r.status === "xfail" && r.reason) console.log(`      ↳ ${r.reason}`);
     if (r.status === "skip" && r.reason) console.log(`      ↳ ${r.reason}`);
+    if (r.status === "xenv" && r.reason) console.log(`      ↳ ${r.reason}`);
     if (r.error) console.log(`      ↳ ${r.error.replace(/\n/g, "\n        ")}`);
     if (r.status === "pass") pass++;
     else if (r.status === "fail") fail++;
     else if (r.status === "xfail") xfailCount++;
     else if (r.status === "xpass") xpass++;
+    else if (r.status === "xenv") xenvCount++;
     else skipped++;
   }
 }
 
 console.log(
   `\n${"─".repeat(60)}\n` +
-  `pass ${pass}  fail ${fail}  xfail(known defects) ${xfailCount}  xpass ${xpass}  skip ${skipped}`,
+  `pass ${pass}  fail ${fail}  xfail(known defects) ${xfailCount}  xpass ${xpass}  xenv(env-absent) ${xenvCount}  skip ${skipped}`,
 );
 if (xpass > 0) {
   console.log("XPASS means a documented defect got fixed — promote its xfail() to test().");
 }
+if (xenvCount > 0) {
+  console.log(
+    `xenv means a test's required environment (e.g. the tracked gold corpus) is absent on this ` +
+    `checkout, so it was skipped with a machine-checked reason. It RUNS automatically where that ` +
+    `corpus is present. xenv never masks a real FAIL — only fail/xpass fail the suite.`,
+  );
+}
+// `fail` is a REAL regression (a genuinely failing NAME, incl. a precondition-present
+// env test that broke); `xenv` is expected-absent-corpus and never fails the suite.
 process.exit(fail > 0 || xpass > 0 ? 1 : 0);
 }
 

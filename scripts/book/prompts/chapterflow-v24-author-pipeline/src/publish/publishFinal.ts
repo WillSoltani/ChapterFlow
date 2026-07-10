@@ -65,6 +65,150 @@ export type PublishFinalStep = {
   detail: string;
 };
 
+// ── Deploy sentinel (FINAL-HARDENING-PLAN 2026-07-04) ─────────────────────────
+// publish-final ends at git push BY DESIGN (no-AWS invariant). Prod SERVER
+// grading/ask/audio read the package from S3 (book-content/packages/<id>.v21.json),
+// synced out-of-band by scripts/book/upload-book-packages-to-s3.ts, and served by
+// a separate web deploy — none of which publish triggers. The sentinel is the
+// tracked, machine-readable "deploy owed" flag: written INTO the publish commit so
+// it can never be silently forgotten, and cleared by `npm run verify:live` once
+// repo↔S3↔deployed-app parity is proven.
+
+export const PENDING_DEPLOY_REL = "book-packages/.pending-deploy.json";
+export const PENDING_DEPLOY_SCHEMA = "pending-deploy-v1";
+/** The ordered manual steps every pending publish still owes. */
+export const PENDING_DEPLOY_STEPS = ["upload-book-packages-to-s3", "deploy-workflow", "verify-live-sync"] as const;
+
+export type PendingDeployEntry = {
+  bookId: string;
+  packageSha256: string;
+  publishedAt: string;
+  steps: string[];
+};
+
+/** Pure: merge one entry into the sentinel JSON text. Same-bookId entry is
+ *  REPLACED; all other valid entries are PRESERVED; result is sorted by bookId
+ *  and newline-terminated. A null/torn/foreign existing blob starts fresh but a
+ *  well-formed one NEVER loses its other entries.
+ *  IDEMPOTENT: when the existing same-book entry already carries the SAME
+ *  packageSha256, it is kept VERBATIM (its publishedAt is not refreshed) — so a
+ *  publish-final re-run over unchanged content produces byte-identical output and
+ *  the commit-skip idempotency holds. */
+export function mergePendingDeploy(existingRaw: string | null, entry: PendingDeployEntry): string {
+  let pending: PendingDeployEntry[] = [];
+  if (existingRaw) {
+    try {
+      const parsed = JSON.parse(existingRaw) as { pending?: unknown };
+      if (parsed && Array.isArray(parsed.pending)) {
+        pending = parsed.pending.filter(
+          (e): e is PendingDeployEntry =>
+            !!e && typeof (e as PendingDeployEntry).bookId === "string" && typeof (e as PendingDeployEntry).packageSha256 === "string",
+        );
+      }
+    } catch { /* torn/foreign → start fresh (never throws away a parseable list) */ }
+  }
+  const prior = pending.find((e) => e.bookId === entry.bookId);
+  const kept = prior && prior.packageSha256 === entry.packageSha256 ? prior : entry;
+  const next = pending.filter((e) => e.bookId !== entry.bookId);
+  next.push(kept);
+  next.sort((a, b) => a.bookId.localeCompare(b.bookId));
+  return JSON.stringify({ schemaVersion: PENDING_DEPLOY_SCHEMA, pending: next }, null, 2) + "\n";
+}
+
+// ── Deploy sentinel READER (F-11 visibility) ─────────────────────────────────
+// publishFinal WRITES the sentinel; nothing until now READ it back, so the
+// "deploy owed" debt became invisible the moment the publish print scrolled away
+// (F-11). These pure readers/formatters surface it in `doctor` / `book-status`.
+// Strictly read-only — they never write, clear, or deploy anything.
+
+export type PendingDeployReport =
+  | { outcome: "clean"; sentinelPath: string; entries: [] }
+  | { outcome: "pending"; sentinelPath: string; entries: PendingDeployEntry[] }
+  | { outcome: "outer-root-missing"; sentinelPath: string; entries: []; warning: string }
+  | { outcome: "malformed"; sentinelPath: string; entries: []; warning: string };
+
+function isPendingEntry(e: unknown): e is PendingDeployEntry {
+  return (
+    !!e &&
+    typeof (e as PendingDeployEntry).bookId === "string" &&
+    typeof (e as PendingDeployEntry).packageSha256 === "string"
+  );
+}
+
+/**
+ * Pure reader for the pending-deploy sentinel. NEVER throws.
+ *  - outer root dir absent            → "outer-root-missing" (a WARNING, never a
+ *                                        false "all clear" — deploy status UNKNOWN)
+ *  - sentinel file absent             → "clean" (no debt recorded)
+ *  - unreadable / non-JSON / no pending[] array → "malformed" (loud parse warning)
+ *  - parses but 0 valid entries       → "clean"
+ *  - ≥1 valid entry                   → "pending" with the entries verbatim
+ */
+export function readPendingDeploy(outerRoot: string = MONOREPO_ANCESTOR): PendingDeployReport {
+  const sentinelPath = resolve(outerRoot, PENDING_DEPLOY_REL);
+  if (!existsSync(outerRoot)) {
+    return {
+      outcome: "outer-root-missing",
+      sentinelPath,
+      entries: [],
+      warning: `outer checkout not found at ${outerRoot} — cannot verify pending-deploy debt (deploy status UNKNOWN, not clean)`,
+    };
+  }
+  if (!existsSync(sentinelPath)) {
+    return { outcome: "clean", sentinelPath, entries: [] };
+  }
+  let raw: string;
+  try {
+    raw = readFileSync(sentinelPath, "utf8");
+  } catch (err) {
+    return { outcome: "malformed", sentinelPath, entries: [], warning: `could not read ${PENDING_DEPLOY_REL}: ${(err as Error).message}` };
+  }
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (err) {
+    return { outcome: "malformed", sentinelPath, entries: [], warning: `${PENDING_DEPLOY_REL} is not valid JSON (hand-edited?): ${(err as Error).message}` };
+  }
+  const pendingRaw = (parsed as { pending?: unknown })?.pending;
+  if (!Array.isArray(pendingRaw)) {
+    return { outcome: "malformed", sentinelPath, entries: [], warning: `${PENDING_DEPLOY_REL} has no pending[] array (hand-edited?)` };
+  }
+  const entries = pendingRaw.filter(isPendingEntry);
+  if (entries.length === 0) return { outcome: "clean", sentinelPath, entries: [] };
+  return { outcome: "pending", sentinelPath, entries };
+}
+
+/** Age of a pending entry in whole hours, or null if publishedAt is unparseable. */
+export function pendingDeployAgeHours(publishedAt: string, now: number): number | null {
+  const t = Date.parse(publishedAt);
+  if (!Number.isFinite(t)) return null;
+  return Math.max(0, Math.floor((now - t) / 3_600_000));
+}
+
+/** book-status helper: the remaining-steps block for ONE book, or null if that
+ *  book has no pending-deploy debt. Steps are printed verbatim from the sentinel. */
+export function formatBookPendingDeploy(bookId: string, report: PendingDeployReport): string | null {
+  if (report.outcome !== "pending") return null;
+  const entry = report.entries.find((e) => e.bookId === bookId);
+  if (!entry) return null;
+  return [
+    `⚠ DEPLOY PENDING — ${bookId} is committed to the repo but NOT yet served by the app.`,
+    `  steps remaining: ${entry.steps.join(" → ")}`,
+    `  runbook: docs/v24/DEPLOY-RUNBOOK.md (clear with: npm run verify:live)`,
+  ].join("\n");
+}
+
+/** The three commands a pending deploy still owes, for the loud report. */
+export function deployRequiredHint(bookId: string): string[] {
+  return [
+    "⚠ DEPLOY REQUIRED — the app is NOT serving this content yet (publish only pushed the repo).",
+    `  1. upload the package to S3:  BOOK_CONTENT_BUCKET=<bucket> AWS_REGION=us-east-1 npx tsx scripts/book/upload-book-packages-to-s3.ts`,
+    `  2. deploy the web app:        gh workflow run deploy.yml -f environment=prod -f deploy_app=true`,
+    `  3. verify the app serves it:  npm run verify:live`,
+    `     (${bookId} is tracked in ${PENDING_DEPLOY_REL} until step 3 confirms repo↔S3↔deployed parity)`,
+  ];
+}
+
 export type PublishFinalResult = {
   ok: boolean;
   bookId: string;
@@ -84,6 +228,9 @@ export type PublishFinalResult = {
   overheadPct?: number;
   durationMs?: number;
   error?: string;
+  /** The deploy still owed after a successful push (sentinel written). Present on
+   *  any successful non-dry publish so callers can print the DEPLOY REQUIRED hint. */
+  deployRequired?: string[];
 };
 
 export type PublishFinalOptions = {
@@ -296,7 +443,8 @@ export async function publishFinal(bookId: string, opts: PublishFinalOptions = {
     const probe = probeRegistration(outerRoot, id);
     push("plan:bridge", true, `would copy ${localPath} → ${resolve(outerRoot, bridgeRel)} + byte-compare (sha256 ${pkgSha.slice(0, 12)}…)`);
     push("plan:register", true, `registration probe: ${probe.state}${probe.state === "not-found" ? " → would append-register into the outer registry" : ""}; would regenerate ${OUTER_CATALOG_METADATA_REL}`);
-    push("plan:commit", true, `would pathspec-commit {${bridgeRel}${probe.state === "not-found" ? `, ${OUTER_REGISTRY_REL}` : ""}, ${OUTER_CATALOG_METADATA_REL} (if dirty)} on ${branch}`);
+    push("plan:deploy-sentinel", true, `would record deploy debt for ${id} in ${PENDING_DEPLOY_REL} (cleared by npm run verify:live)`);
+    push("plan:commit", true, `would pathspec-commit {${bridgeRel}, ${PENDING_DEPLOY_REL}${probe.state === "not-found" ? `, ${OUTER_REGISTRY_REL}` : ""}, ${OUTER_CATALOG_METADATA_REL} (if dirty)} on ${branch}`);
     push("plan:push", true, `would push ${branch} with a MERGE loop (never rebase/force)`);
     push("plan:sync", true, `would fetch + ff-only pull + assert origin/${branch}...${branch} == "0 0"`);
     const manifest = buildCleanupManifest(id, { outerRoot });
@@ -344,9 +492,33 @@ export async function publishFinal(bookId: string, opts: PublishFinalOptions = {
     return finish(false, (err as Error).message);
   }
 
+  // ── 3b. DEPLOY SENTINEL ───────────────────────────────────────────────────
+  // Write the "deploy owed" flag and stage it INTO the publish commit, so a
+  // pushed publish can never be silently un-served. Reuses the pkgSha already
+  // computed for the byte-compare. Best-effort READ of the existing sentinel
+  // (a torn blob starts fresh via mergePendingDeploy without dropping valid
+  // entries); the write itself is fail-closed (a publish that cannot record the
+  // deploy debt must not silently succeed).
+  const sentinelAbs = resolve(outerRoot, PENDING_DEPLOY_REL);
+  const deployHint = deployRequiredHint(id);
+  try {
+    const existing = existsSync(sentinelAbs) ? readFileSync(sentinelAbs, "utf8") : null;
+    const merged = mergePendingDeploy(existing, {
+      bookId: id,
+      packageSha256: pkgSha,
+      publishedAt: new Date().toISOString(),
+      steps: [...PENDING_DEPLOY_STEPS],
+    });
+    writeFileSync(sentinelAbs, merged);
+    push("deploy-sentinel", true, `recorded deploy debt for ${id} in ${PENDING_DEPLOY_REL} (clear with: npm run verify:live)`);
+  } catch (err) {
+    push("deploy-sentinel", false, `could not write ${PENDING_DEPLOY_REL}: ${(err as Error).message}`);
+    return finish(false, `deploy-sentinel write failed: ${(err as Error).message}`);
+  }
+
   // ── 4. COMMIT ─────────────────────────────────────────────────────────────
   const bridgeRel = `book-packages/${id}.v21.json`;
-  const pathspec = [bridgeRel];
+  const pathspec = [bridgeRel, PENDING_DEPLOY_REL];
   const dirtyRegistryCatalog = dirtyPaths(outerRoot, [OUTER_REGISTRY_REL, OUTER_CATALOG_METADATA_REL]);
   for (const p of dirtyRegistryCatalog) if (!pathspec.includes(p)) pathspec.push(p);
 
@@ -416,6 +588,7 @@ export async function publishFinal(bookId: string, opts: PublishFinalOptions = {
         ...finish(false, `publish succeeded but cleanup ABORTED: ${cleanup.error}`),
         commitSha, syncState, cleanup, cleanupManifest,
         packageSha: pkgSha, packageBytes: pkgBytes, overheadPct,
+        deployRequired: deployHint,
       };
     }
     const ledgerNote = cleanup.prunedLedgers.length ? `; line-pruned ${cleanup.prunedLedgers.length} ledger(s)` : "";
@@ -426,6 +599,7 @@ export async function publishFinal(bookId: string, opts: PublishFinalOptions = {
     ...finish(true),
     commitSha, syncState, cleanup, cleanupManifest,
     packageSha: pkgSha, packageBytes: pkgBytes, overheadPct,
+    deployRequired: deployHint,
   };
 }
 
@@ -483,5 +657,10 @@ export function formatPublishFinalResult(r: PublishFinalResult): string {
   }
   if (r.durationMs != null) L.push(`  duration: ${(r.durationMs / 1000).toFixed(1)}s`);
   if (!r.ok && r.error) L.push(`  reason: ${r.error}`);
+  // Loud DEPLOY REQUIRED block whenever a publish landed (the sentinel is owed).
+  if (r.deployRequired && r.deployRequired.length > 0 && !r.dryRun) {
+    L.push("");
+    for (const line of r.deployRequired) L.push(line);
+  }
   return L.join("\n");
 }

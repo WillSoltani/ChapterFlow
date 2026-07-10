@@ -19,24 +19,44 @@
  * tests drive the whole phase against fixtures/tmp state, never real state.
  */
 
-import { existsSync, readFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import type { AutopilotDeps, AutopilotOutcome, HaltCategory, VerbResult } from "./autopilot.js";
 import type { ChapterV21 } from "../types.js";
 import type { ChapterBriefV1, SourcePacketV1 } from "../artifacts/artifactTypes.js";
-import { chapterBriefMdPath, chapterBriefPath, readJsonFile, sourcePacketPath } from "../artifacts/artifactStore.js";
+import { chapterBriefMdPath, chapterBriefPath, leadOverridePath, readJsonFile, sourcePacketPath } from "../artifacts/artifactStore.js";
 import { writerPacketProjection } from "../compiler/sourcePacketProjection.js";
-import { DEFAULT_LENGTH_BUDGET_CHARS, LENGTH_BUDGET_TOLERANCE, briefVarietyInstructionLines } from "../compiler/chapterBrief.js";
+import {
+  DEFAULT_LENGTH_BUDGET_CHARS,
+  LENGTH_BUDGET_TOLERANCE,
+  ROUND_TIMER_MINUTES_LIST,
+  applyLeadThreadOverride,
+  briefVarietyInstructionLines,
+  degradedLeadCandidates,
+  renderBriefMd,
+  type LeadThreadOverrideV1,
+} from "../compiler/chapterBrief.js";
+import { contentDeviceDealLines, dealContentDeviceBans } from "../compiler/contentDeviceDeal.js";
+import { manualBriefRotationLines } from "../compiler/briefRotation.js";
 import { voiceCard, voiceRegisterLine } from "../lib/voiceCard.js";
 import { chapterFileName, normSlug, CHAPTERS_DIR } from "../lib/chapterPaths.js";
 import { buildBudgetRepairComplaints, checkReaderBudgets, type BudgetFinding } from "../critics/readerBudgets.js";
 import { loadNameBank } from "../librarian/namePlan.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
+import { registerAdvisoryRetryBlock } from "../critics/registerAdvisories.js";
 import { loadAuthorProvenance, recordAuthorProvenance } from "../qc/sessionProvenance.js";
-import { RegenLedgerError, migrateLegacyRegenCounts } from "./authorRegenLedger.js";
+import {
+  RegenLedgerError,
+  budgetRepairConsumedFor,
+  computeRegenLineage,
+  loadAuthorRegenLedger,
+  migrateLegacyRegenCounts,
+  recordBudgetRepairConsumed,
+} from "./authorRegenLedger.js";
+import { appendReopenNote, holdsDurablePass } from "./authorReviewLedger.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -49,6 +69,13 @@ export const AUTHOR_CARD_MAX_CHARS = 25000;
  *  blockers appended. (The review phase's regen budget is separate — see
  *  authorReview.ts AUTHOR_REGEN_CAP.) */
 export const AUTHOR_WRITE_GATE_RETRIES = 1;
+
+/** F-1: at most ONE extra attempt per call with a DEGRADED lead, taken only when
+ *  EVERY configured attempt failed the write contract on lead-thread findings
+ *  ALONE (a gate/rubric/spawn failure never triggers degradation — the writer, not
+ *  the lead, is the problem there). Max writer spawns per call is therefore
+ *  1 + AUTHOR_WRITE_GATE_RETRIES + AUTHOR_WRITE_LEAD_DEGRADE_RETRIES. */
+export const AUTHOR_WRITE_LEAD_DEGRADE_RETRIES = 1;
 
 // ── Injectable IO ─────────────────────────────────────────────────────────────
 
@@ -76,12 +103,51 @@ export type AuthorIo = {
   authorSessionOf: (chapterId: string) => string | undefined;
   /** Stamp author provenance bound to the authored content hash. */
   recordProvenance: (chapterId: string, sessionId: string, contentHash?: string) => void;
+  /** Raw chapter-file bytes (null when absent) — the write-failure restore hooks
+   *  (fresh-gold live finding, 2026-07-08): a writer session lands its draft on
+   *  disk BEFORE the gate/rubric/contract self-checks, so a fully-failed
+   *  authorWriteOneChapter used to leave an UNREVIEWED failing draft in place
+   *  (or orphan one where no chapter existed) that the next entry would blindly
+   *  review as legitimate. */
+  readChapterFile: (bookId: string, chapterNumber: number) => string | null;
+  writeChapterFile: (bookId: string, chapterNumber: number, bytes: string) => void;
+  removeChapterFile: (bookId: string, chapterNumber: number) => void;
+  /** F-1 lead-degradation sidecar (chNN.lead-override.json beside the compiled
+   *  briefs) — read on every write call to resolve the EFFECTIVE brief; written
+   *  only when a degraded attempt lands a passing chapter. */
+  readLeadOverride: (bookId: string, chapterNumber: number) => LeadThreadOverrideV1 | null;
+  writeLeadOverride: (bookId: string, chapterNumber: number, override: LeadThreadOverrideV1) => void;
 };
+
+/** Disk implementations of the F-1 sidecar, exported so the repair lane
+ *  (authorRepair) resolves the same EFFECTIVE brief its contract re-check needs. */
+export function readLeadOverrideFromDisk(bookId: string, chapterNumber: number): LeadThreadOverrideV1 | null {
+  try {
+    const p = leadOverridePath(normSlug(bookId), chapterNumber);
+    if (!existsSync(p)) return null;
+    const rec = readJsonFile<LeadThreadOverrideV1>(p);
+    return rec?.schemaVersion === "lead-thread-override-v1" ? rec : null;
+  } catch { return null; }
+}
+
+export function writeLeadOverrideToDisk(bookId: string, chapterNumber: number, override: LeadThreadOverrideV1): void {
+  const p = leadOverridePath(normSlug(bookId), chapterNumber);
+  mkdirSync(dirname(p), { recursive: true });
+  writeFileSync(p, JSON.stringify(override, null, 2) + "\n");
+}
 
 export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
   return {
     chapterExists: over?.chapterExists
       ?? ((bookId, n) => existsSync(resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n))))),
+    readChapterFile: over?.readChapterFile ?? ((bookId, n) => {
+      const p = resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n)));
+      try { return existsSync(p) ? readFileSync(p, "utf8") : null; } catch { return null; }
+    }),
+    writeChapterFile: over?.writeChapterFile
+      ?? ((bookId, n, bytes) => writeFileSync(resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n))), bytes)),
+    removeChapterFile: over?.removeChapterFile
+      ?? ((bookId, n) => rmSync(resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n))), { force: true })),
     readBriefMd: over?.readBriefMd ?? ((bookId, n) => {
       try {
         const p = chapterBriefMdPath(normSlug(bookId), n);
@@ -108,6 +174,8 @@ export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
     authorSessionOf: over?.authorSessionOf ?? ((chapterId) => loadAuthorProvenance(chapterId)?.authorSessionId ?? undefined),
     recordProvenance: over?.recordProvenance
       ?? ((chapterId, sessionId, contentHash) => { recordAuthorProvenance(chapterId, sessionId, contentHash); }),
+    readLeadOverride: over?.readLeadOverride ?? readLeadOverrideFromDisk,
+    writeLeadOverride: over?.writeLeadOverride ?? writeLeadOverrideToDisk,
   };
 }
 
@@ -185,16 +253,85 @@ export const AUTHOR_HOUSE_RULES =
  * satisfied neither — writers obeyed the card (2-3 longest keys) and the preflight
  * rejected them (ch01 twice, ch02, ch09 → write-phase halt). The card now states
  * the REAL constraint. Gates unchanged.
+ * 2026-07-04 FINAL-HARDENING-PLAN: per-rule [GATED]/[SCORED] tags replace the false
+ * blanket enforcement claim (D-audit: only rules 1/3-floor/4 + the strawman rate are
+ * deterministic); D1/D2/D3/D5/D9 wording reconciled to the gates; W3 causal-stem clause.
  * Verbatim; do not reword outside a documented plan change.
+ * 2026-07-06 CONTENT-DEAL CAMPAIGN: rule 6 drops the "who owns it, what proof returns,
+ * when it comes back" close and rule 7 drops the "specific actor" invented-proxy default —
+ * both hard-mandated the return-proof + proxy-cast devices in EVERY chapter (measured 93%
+ * ubiquity), which the book-acceptance panel rejected as "one template, different nouns".
+ * They now point to the per-chapter CONTENT DEVICES deal (contentDeviceDeal.ts); the
+ * anti-thin-example + anti-fabrication protections are preserved verbatim.
+ * 2026-07-08 CONTENT-FEEDBACK CF-A (G1): rule 8 (HOOK CARRIES A STAKE + DOORWAY) —
+ * HOM ch8's hook was a flat activity description ("maps functions to shared standards")
+ * and scored the book's lowest chapter; the pipeline had no per-hook tension bar (the
+ * schema asked only "60-120 chars"). Rule 8 is mode-agnostic (satisfiable by all five
+ * OPENER_TYPES) and scored, not a blocker; OPENER_TYPES / titles / rubric / C26 untouched.
+ * 2026-07-08 CONTENT-FEEDBACK CF-B (F3/F5/F13/F17): rule 7 (EXAMPLE CRAFT) drops the
+ * rubric-shaped "what MEASURABLY CHANGED … before→after" phrasing — echoed verbatim into
+ * HOM ch8's evaluator-Q&A example fields, the same disease the ~435 label-strip patched —
+ * for a REGISTER rule (consequence narrated in the scene's own voice; no field opens with
+ * an evaluator question answered in the next clause) + a CONDITIONAL competing-interests
+ * staging clause (only where legitimate interests collide — NOT a universal conflict
+ * mandate) + the F17 humanization guardrail (no new named cast, honor the deal's
+ * proxy/stand-in bans). Substance preserved: decision + completed consequence,
+ * "set, not met" = FAILED, no invented facts. New advisory critic C31
+ * (exampleRegister.ts) is the deterministic complement; MINOR, no gate/blocker touched.
+ * 2026-07-08 CONTENT-FEEDBACK CF-E (F9/F10/F14): the implementation-plan take-home
+ * surfaces. TITLE-DROP TRACE (emitted-and-dropped): ChapterV21.implementationPlan
+ * (types.ts ImplementationPlanV21) carries `title` and the schema hint asks for it, but
+ * the app projection has NO title field at four layers — PackageImplementationPlan
+ * (book-package-core.ts), the bridge (~380, never reads title), the validator
+ * (validate-book-package.ts, never reads title), and the reader (ImplementationPlanCard
+ * renders coreSkill/ifThenPlans only). So the written skill name never reaches the reader.
+ * Fix WITHOUT app changes: rule 9 (TAKE-HOME SURFACES) + the schema hint make the skill
+ * name the REQUIRED opener of coreSkill (which DOES render), carry one generic reviewer
+ * exemplar, and require >=1 memorableLine to hold the chapter's central image (this
+ * chapter's own, never reused across chapters). PLAIN WORDS gains a zero-coined-shorthand
+ * clause for the action fields (coordinates with CF-D's inherited-terms text). Self-verify
+ * item 7 added. Rule 3 timebox floor + D9 timers untouched. An app-side `title` surfacing
+ * is a CF-H/follow-up decision.
+ * 2026-07-08 ATTENTION-ECONOMY TRIM (post-campaign cleanup): the CF-A/B/D/E additions
+ * (rules 7/8/9, the PLAIN WORDS extension, self-verify items 5-7, schema-hint notes)
+ * compressed to fit the card's attention budget — every requirement above survives,
+ * wording only. Net campaign delta across QUALITY_BAR + PREMIUM_BLOCK + schemaHint +
+ * selfVerify: +1,395 chars (pre-trim +2,613), of which +142 is CF-C's rule-6 job wording.
+ * 2026-07-09 CF-I-2 (machinery-leakage): rule 8 gains a REGISTER clause + a DOORWAY
+ * tightening — the reader never meets the pipeline machinery (no internal artifact or
+ * dealt beat label as the acting subject, no drafting-process narration; write the beat,
+ * not its name), and a doorway is someone acting or a cost landing, never a citation/
+ * publication date on its own (the C34 gaming path). Self-verify item 4's scaffold list
+ * adds "beat labels". Net CF-I-2 card delta +391 chars (QUALITY_BAR +386, selfVerify +5);
+ * card measures ~18.6k, under the 18,700 pin. Advisory critics C31-C35 (exampleRegister,
+ * metaCaseProtagonist, beatVocabularyEcho, citationDateDoorway, lineageKeyQuiz) are the
+ * deterministic complement; all MINOR, no gate/blocker/severity touched. The quiz-key
+ * principle here is the compact statement; CF-I-3 adds the fuller quiz application-over-
+ * lineage instruction on the same card.
+ * 2026-07-09 CF-I-3 (quiz application-over-lineage): rule 5 gains "KEY IS A MOVE" — the
+ * graded answer is a move the reader makes, not a source; a citation belongs in a
+ * distractor or the explanation, never the tested skill. schemaHint's explanation hint
+ * gains "why the move works"; self-verify item 1 (KEYS) gains "A key tests a move, not a
+ * source." CONSISTENCY with the C35 detector (critics/lineageKeyQuiz.ts): its fixture key
+ * "Tie the move to Getting to Yes … so the frame is traceable" (tests/lineage-key-quiz.ts
+ * LINEAGE_Q1) cites a source AS the graded answer — exactly what "KEY IS A MOVE … never
+ * the tested skill" forbids; the advisory catches at gate what this rule prevents at write
+ * time. Net CF-I-3 card delta +209 chars (rule 5 +155, schemaHint +20, selfVerify +34);
+ * whole CF-I campaign card delta +600 (CF-I-2 +391 + CF-I-3 +209), at the +600 cap;
+ * card measures ~18.8k so the 18,700 pin rises to 18,820 (≤19,000 per campaign). No gate,
+ * sourceGrounding, keyEvidence, quiz schema, or bloom/depth enum touched.
  */
 export const AUTHOR_QUALITY_BAR =
-  "QUALITY BAR — hit these on the FIRST draft (a deterministic preflight enforces them; missing any forces a full rewrite):\n" +
-  "1. DISTRACTOR PARITY. Write every distractor as substantial as the key. The keyed answer must be NEITHER the longest NOR the shortest choice — aim for the middle length. Before you declare done: list the 9 keys' character lengths beside their distractors. HARD CONSTRAINTS (deterministic gates fail the chapter above EITHER): the key may be the uniquely LONGEST choice in AT MOST ONE of the 9 questions, AND the uniquely SHORTEST in AT MOST FOUR. Do not fix one tell by minting the other — never trim every key; land keys mid-length by growing a distractor past a long key and lengthening a too-short key.\n" +
-  "2. KEY PARAPHRASE. The keyed answer must PARAPHRASE the idea in fresh words — never reuse 5 or more consecutive content words from anywhere in the chapter, INCLUDING the review cards and the implementation plan. If a key echoes a sentence you already wrote, reword the key.\n" +
-  "3. PRACTICE CONCRETENESS. Each tryThisNow and each 24-hour challenge names ONE action with a number or a timebox, concrete enough to start within a minute. The action's FORM comes from your dealt practice shapes — never default to a touch-this-object or say-this-aloud ritual (the same staging in every chapter reads as theater). No \"a, b, or c\" option menus — one move, not a menu.\n" +
-  "4. PLAIN LANGUAGE FROM SENTENCE ONE. Target whole-chapter Flesch ease 72-84: short sentences, common words, one idea per sentence. Open plain — no throat-clearing abstraction before the first concrete beat.\n" +
-  "5. DISTRACTOR TRANSFORM. Write the KEY first, then TRANSFORM it: every wrong answer is the key warped by ONE of your brief's dealt failure modes — a smart half-reader would defend it out loud; a reader of YOUR prose can settle exactly why it fails. Never a generic bad practice; never rejectable without reading the chapter (unless the chapter explicitly teaches against that named move). KEY SUPPORT: every key must be defensible by pointing at a specific breakdown sentence that teaches it — a key the chapter never actually taught reads as arbitrary to the reader who did the work. ECHO SYMMETRY: if the key uses the chapter's signature vocabulary, at least two distractors must too — the key is never the only choice that sounds like the chapter. Every explanation names why one tempting wrong answer fails, in varied wording each time — NEVER a fixed stem like \"If you chose (b):\" (identical stems ×81 is its own template). A deterministic gate still counts mechanical-distractor words (polish/announce/slides/deck/briefing/morale/optics/louder/inspire/motivate) book-wide and blocks above 7% — build from your dealt failure modes and these never appear.\n" +
-  "6. SURFACES THAT TRANSFER. Review cards drill the reusable TOOL, not source trivia — at most 2 cards may hinge on a named source case; every other card must be answerable by a reader applying the move in their own life. Practice prompts must be actions a person would actually do unprompted at a desk — if a prompt reads as a ritual or a meta-exercise (counting behaviors, scoring yourself), write the plain version instead: who owns it, what proof returns, when it comes back. Each example teaches a DIFFERENT facet or failure-mode of the move — if two examples teach the same lesson, merge them and spend the freed slot on a facet you have not shown.";
+  "QUALITY BAR — hit these on the FIRST draft. Caps marked [GATED] are enforced by a deterministic preflight (missing one forces a full rewrite); [SCORED] rules are scored by the blinded reviewers who decide ship:\n" +
+  "1. DISTRACTOR PARITY [GATED]. Write every distractor as substantial as the key. Before you declare done: list the 9 keys' character lengths beside their distractors. HARD CONSTRAINTS (deterministic gates fail the chapter above EITHER): the key may be the uniquely LONGEST choice in AT MOST ONE of the 9 questions, AND the uniquely SHORTEST in AT MOST FOUR. Do not fix one tell by minting the other — never trim every key; land most keys mid-length by growing a distractor past a long key and lengthening a too-short key. A few uniquely-shortest keys are natural (up to 4 of 9) — do not purge them all; just never make shortest the rule.\n" +
+  "2. KEY PARAPHRASE [SCORED; advisory meter]. The keyed answer must PARAPHRASE the idea in fresh words — never reuse 5 or more consecutive content words from anywhere in the chapter, INCLUDING the review cards and the implementation plan. If a key echoes a sentence you already wrote, reword the key.\n" +
+  "3. PRACTICE CONCRETENESS [GATED floor: at least ONE of tryThisNow / the 24-hour challenge must be imperative-led with a number or timebox]. Write BOTH concrete [SCORED]: each names ONE action with a number or a timebox, concrete enough to start within a minute. The action's FORM comes from your dealt practice shapes — never default to a touch-this-object or say-this-aloud ritual (the same staging in every chapter reads as theater). No \"a, b, or c\" option menus — one move, not a menu.\n" +
+  "4. PLAIN LANGUAGE FROM SENTENCE ONE [GATED]. The gate measures Flesch ease 72-84 on the BREAKDOWN prose (fastRead+deepRead+fullRead) — land the band there; keep the rest of the chapter just as plain. Short sentences, common words, one idea per sentence. Open plain — no throat-clearing abstraction before the first concrete beat.\n" +
+  "5. DISTRACTOR TRANSFORM [SCORED; strawman-rate gate]. Write the KEY first, then TRANSFORM it: every wrong answer is the key warped by ONE of your brief's dealt failure modes — a smart half-reader would defend it out loud; a reader of YOUR prose can settle exactly why it fails. Never a generic bad practice; never rejectable without reading the chapter (unless the chapter explicitly teaches against that named move). KEY SUPPORT: every key must be defensible by pointing at a specific breakdown sentence that teaches it — a key the chapter never actually taught reads as arbitrary to the reader who did the work. CAUSAL STEMS: when a stem asks WHY something happened (what caused / what led to / what explains / the main reason), the key names the ONE specific cause your prose shows — never the outcome restated, never a remedy or lesson — and the distractors are plausible SIBLING causes a specific sentence of yours refutes. ECHO SYMMETRY: if the key uses the chapter's signature vocabulary, at least two distractors must too — the key is never the only choice that sounds like the chapter. Every explanation names why one tempting wrong answer fails, in varied wording each time — NEVER a fixed stem like \"If you chose (b):\" (identical stems ×81 is its own template). A deterministic gate still counts mechanical-distractor words (polish/announce/slides/deck/morale/optics/louder/inspire/motivate) book-wide and blocks above 7% — build from your dealt failure modes and these never appear. KEY IS A MOVE: the graded answer is a move the reader makes, not a source — a citation belongs in a distractor or the explanation, never the tested skill.\n" +
+  "6. SURFACES THAT TRANSFER [SCORED]. Review cards drill the reusable TOOL, not source trivia — at most 2 cards may hinge on a named source case; every other must be answerable by a reader applying the move in their own life. Practice prompts must be actions a person would do unprompted at a desk — if a prompt reads as a ritual or meta-exercise, write the plain version: a concrete action the reader can check they did (its FORM is dealt per chapter — do NOT reuse one 'return-proof' close everywhere). Each example must advance THIS CHAPTER'S JOB (declared in the VARIETY block) through a DIFFERENT facet or failure-mode — no two examples may teach the same lesson. If two would, merge them and spend the freed slot on a facet you have not shown yet; never invent a facet the source cannot ground.\n" +
+  "7. EXAMPLE CRAFT [SCORED]. Every example must dramatize a DECISION and its COMPLETED CONSEQUENCE — not relay the lesson: an actor with a real stake, their concrete action, the consequence landing, NARRATED in the scene's own voice. Never open a field with an evaluator question answered in the next clause. Vary WHO carries it per the CONTENT DEVICES deal — never a default invented proxy or a named person beyond the dealt cast; honor its proxy/stand-in bans. Where legitimate interests collide, one example must STAGE the clash — who pulls the other way, what it costs. An arc that never lands ('set, not met') is a FAILED example — finish it. Never let a scenario restate the move; if no source case has a concrete consequence, pick one that does — never invent facts to manufacture one.\n" +
+  "8. HOOK CARRIES A STAKE [SCORED]. Whatever opener mode is dealt, make the STAKE visible in plain words — who loses/pays/misses what; a bare activity or diagram description is a FAILED hook. FAIL: \"The team maps functions to shared standards.\" PASS: \"It shipped late because no one owned the date.\" DOORWAY: land one concrete fastRead beat — someone acting or a cost landing, never a citation/publication date on its own — BEFORE the first abstract term. REGISTER: the reader never meets the machinery — no internal artifact or dealt beat label as the acting subject (not \"the case stops…\" or \"the return point\"), no drafting narration (\"in the weak version…\"); write the beat, not its name; quiz keys test what a reader can DO, not name the source lineage.\n" +
+  "9. TAKE-HOME SURFACES [SCORED]. The implementation plan leads with a SKILL NAME — imperative verb + concrete object, 2-5 words, never a virtue-noun (excellence/ownership) — e.g. \"Name the Local Signal\"; coreSkill OPENS with it. ≥1 memorableLine carries THIS chapter's central image; none reused across chapters.";
 
 /**
  * S-tier P5 (plan §C, fixes B10) — the acceptance rubric's demands, stated to the
@@ -209,7 +346,7 @@ export const AUTHOR_PREMIUM_BLOCK =
   "- INSIGHT: the counterintuition must REVERSE a default the reader actually holds, not restate the thesis politely. Your dealt example arcs already assign the outcomes — write the failure/partial slots as REAL friction, not staged stumbles.\n" +
   "- LIMITS: say plainly when this chapter's move does NOT apply, what it costs, and when to do the opposite — one honest passage, living where your dealt LIMITS PLACEMENT puts it (not the same slot every chapter). Overselling is a scored defect.\n" +
   "- DENSITY: every paragraph adds NEW information. Never restate the previous paragraph in fresh words; never reuse a sentence across fastRead/deepRead/fullRead — each tier must ADD, not re-say.\n" +
-  "- PLAIN WORDS: any compressed term this chapter coins (a 'return pass', a 'capability call') must be unpacked in plain words at first use — never dodge a vocabulary budget by minting jargon.\n" +
+  "- PLAIN WORDS: any load-bearing term — COINED here (a 'return pass') or INHERITED from the source — must be unpacked in plain words at first use, one clause in the flow. Never dodge a vocabulary budget by minting jargon. Action fields (tryThisNow/24h challenge/weeklyPractice) carry ZERO coined shorthand — restate needed terms plainly in the same sentence.\n" +
   "- READER AGENCY: teach the move so a reader with NO title power can run it today — at least one example or paragraph applies it to the reader's own promises, projects, or role choices, not only to people they manage.\n" +
   "- VOICE: this book's voice, not a house voice — four concrete moves: (1) in deepRead/fullRead, never let more than 2 consecutive paragraphs open on an abstraction; break runs with a person, scene, or object. (2) At least twice per tier, land a ≤6-word sentence beside a ≥25-word one — varied placement, not a ritual pair. (3) Ask 1-3 real rhetorical questions somewhere in the chapter. (4) Only the dealt +anchor example slots carry a physical/sensory detail — everywhere else, none.\n" +
   "- QUIZZES: a reader who skipped the chapter should score ~33%, not 60% — wrong answers must tempt someone who half-read. Explanations teach why the wrong answer fails, not only why the right one is right.";
@@ -218,17 +355,25 @@ export const AUTHOR_PREMIUM_BLOCK =
  *  style sectionTasks.ts uses for section artifacts. */
 export function authorSchemaHint(bookId: string, chapterNumber: number): string {
   const chapterId = authorChapterId(bookId, chapterNumber);
-  return `{"schemaVersion":"chapterflow-v21-authored","chapterId":"${chapterId}","number":${chapterNumber},"title":"...","readingTimeMinutes":7,"hook":"...(60-120 chars)","counterintuition":"...(1-2 sentences)","tryThisNow":"...(80-220 chars)","keyTakeaway":"...(140-220 chars)","breakdown":{"fastRead":"...(~400-700 chars)","deepRead":"...(~1200-1800 chars)","fullRead":"...(~2500-3500 chars)"},"examples":[{"exampleId":"ex01","title":"...","tags":["..."],"planSpec":{"domain":"...","audience":"...","stakes":"...","format":"...","requiredBeat":"..."},"scenario":"...(280-520 chars)","whatToDo":"...(120-240 chars)","whyItMatters":"...(120-240 chars)"}],"quiz":{"passingScorePercent":70,"questions":[{"questionId":"q01","prompt":"...","choices":["...","...","..."],"correctIndex":0,"explanation":"...(120-300 chars)","bloomsLevel":"apply","depthLevel":"standard"}]},"reviewCards":[{"cardId":"c01","front":"...(30-200 chars)","back":"...(80-400 chars)","difficulty":"medium"}],"implementationPlan":{"title":"...(4-7 words)","coreSkill":"...(2-4 sentences)","ifThenPlans":[{"context":"...","plan":"If X, then Y."}],"twentyFourHourChallenge":"...","weeklyPractice":"..."},"memorableLines":[{"text":"...(exact sentence from the chapter)","location":"breakdown.deepRead","why":"..."}]}`;
+  return `{"schemaVersion":"chapterflow-v21-authored","chapterId":"${chapterId}","number":${chapterNumber},"title":"...","readingTimeMinutes":7,"hook":"...(60-120 chars)","counterintuition":"...(1-2 sentences)","tryThisNow":"...(80-220 chars)","keyTakeaway":"...(140-220 chars)","breakdown":{"fastRead":"...(~400-700 chars)","deepRead":"...(~1200-1800 chars)","fullRead":"...(~2500-3500 chars)"},"examples":[{"exampleId":"ex01","title":"...","tags":["..."],"planSpec":{"domain":"...","audience":"...","stakes":"...","format":"...","requiredBeat":"..."},"scenario":"...(280-520 chars)","whatToDo":"...(120-240 chars)","whyItMatters":"...(120-240 chars)"}],"quiz":{"passingScorePercent":70,"questions":[{"questionId":"q01","prompt":"...","choices":["...","...","..."],"correctIndex":0,"explanation":"...(120-300 chars; why the move works)","bloomsLevel":"apply","depthLevel":"standard"}]},"reviewCards":[{"cardId":"c01","front":"...(30-200 chars)","back":"...(80-400 chars)","difficulty":"medium"}],"implementationPlan":{"title":"...(2-5 word skill name)","coreSkill":"<skill name>. ...(2-4 sentences)","ifThenPlans":[{"context":"...","plan":"If X, then Y."}],"twentyFourHourChallenge":"...","weeklyPractice":"..."},"memorableLines":[{"text":"...(exact sentence from the chapter; >=1 carries the central image)","location":"breakdown.deepRead","why":"..."}]}`;
 }
 
-/** SELF-VERIFY block (4 checks; kept <= 1200 chars — pinned by test). */
-export function authorSelfVerify(bookId: string, chapterNumber: number): string {
-  const relPath = authorChapterRelPath(bookId, chapterNumber);
-  return `SELF-VERIFY before declaring done — run ALL FOUR:
-1. KEYS — derive every quiz answer from your own prose alone, blind; each derived answer must land on the stored correctIndex, and each explanation must argue for exactly that choice. Any mismatch: re-key or rewrite the question.
-2. FACTS — confirm every claim, number, name, and case detail appears in the SOURCE PACKET above. Anything you cannot trace: delete or soften it. Never invent precision.
-3. LENGTH — confirm the rendered chapter is inside the brief's length budget. Over budget: cut, never compress by jargon. Under: deepen a real case, never pad.
-4. SCAFFOLD — scan every reader-facing field for scaffold vocabulary (slot names, shape labels, anchor ids, "Fact 2"-style numbering, internal " / " label seams). None may appear.
+/** SELF-VERIFY block (7 checks; kept <= 1400 chars — pinned by test. The ceiling rose
+ *  from 1200 to 1300 for the CF-A HOOK, CF-D TERMS and CF-E TAKE-HOME items (5-7),
+ *  net of a KEYS/LENGTH tightening; 1300 → 1400 for the CF-J item-4 SCAFFOLD clause
+ *  (page/section citations are internal coordinates, never reader prose — the
+ *  radical-candor §7 apparatus-leakage class; measured 1381). The cap still fights
+ *  rule-count dilution). */
+export function authorSelfVerify(bookId: string, chapterNumber: number, outputRelPath?: string): string {
+  const relPath = outputRelPath ?? authorChapterRelPath(bookId, chapterNumber);
+  return `SELF-VERIFY before declaring done — run ALL SEVEN:
+1. KEYS — derive every quiz answer from your prose alone, blind; each must hit the stored correctIndex, and its explanation argue for exactly that choice. A key tests a move, not a source. Mismatch: re-key or rewrite.
+2. FACTS — confirm every claim, number, name, and case detail traces to the SOURCE PACKET above. Anything you cannot trace: delete or soften it. Never invent precision.
+3. LENGTH — confirm the chapter fits the brief's length budget. Over: cut, never compress by jargon. Under: deepen a real case, never pad.
+4. SCAFFOLD — scan every reader-facing field for scaffold vocabulary (slot names, shape/beat labels, anchor ids, "Fact 2"-style numbering, internal " / " label seams). Page/section citations (Ch./p./pp./"on page N") are internal coordinates, never reader prose. None may appear.
+5. HOOK — point at the stake (who loses/pays/misses what) and the fastRead's concrete beat before its first abstract term.
+6. TERMS — name the 2-4 terms this chapter stands on; confirm each got a plain first-use unpacking.
+7. TAKE-HOME — coreSkill opens with the skill name; no coined shorthand in actions; one memorableLine carries the central image, none reused.
 Then run: npx tsx src/cli.ts gate-chapter ${relPath} — 0 blockers required; fix and re-run until clean.`;
 }
 
@@ -243,7 +388,7 @@ Then run: npx tsx src/cli.ts gate-chapter ${relPath} — 0 blockers required; fi
  *  minutes; packet-attested numbers exempt), and two practice surfaces that restate
  *  the same action verbatim (shared 6-gram) must agree on the minutes — the halted
  *  run shipped a "19-minute challenge" and a 12-vs-10-minute discrepancy. */
-export const ROUND_TIMER_MINUTES = new Set([5, 10, 15, 20, 25, 30, 45, 60]);
+export const ROUND_TIMER_MINUTES = new Set<number>(ROUND_TIMER_MINUTES_LIST);
 
 /** STIER-2 M-lane (owner-directed): the author WRITE/REGEN sessions are pinned to an
  *  explicit model + reasoning effort instead of inheriting whatever the operator's
@@ -370,6 +515,10 @@ export function authorWriteContractFindings(
 export type AuthorCardArgs = {
   bookId: string;
   chapterNumber: number;
+  /** Total chapters in the book — gates the book-scale content-device deal (>=4) and
+   *  is authoritative even before all chapters exist on disk. Omitted by single-chapter
+   *  tools → no content-device deal rendered (exactly as before this field existed). */
+  totalChapters?: number;
   /** The rendered chNN.brief.md, embedded verbatim. */
   briefMd: string;
   packet: SourcePacketV1;
@@ -381,6 +530,11 @@ export type AuthorCardArgs = {
    *  EXPLICIT writer instructions. null when the brief md is present but the json is not
    *  readable (the md already carries the VARIETY section, so the card degrades gracefully). */
   brief?: ChapterBriefV1 | null;
+  /** Model-bakeoff isolation: write the chapter to this pipeline-relative path instead of
+   *  the canonical state/chapters/ path. ORCHESTRATION DATA ONLY — the card's substantive
+   *  content is byte-identical across candidates; only this path (and the session id, which
+   *  never enters the card) may differ. Omitted → the canonical path, exactly as before. */
+  outputRelPath?: string;
 };
 
 /** Build the whole-chapter author card (target <= 25k chars; sections in the
@@ -388,7 +542,7 @@ export type AuthorCardArgs = {
 export function buildAuthorCard(args: AuthorCardArgs): string {
   const { bookId, chapterNumber, briefMd, packet, voice } = args;
   const nn = String(chapterNumber).padStart(2, "0");
-  const relPath = authorChapterRelPath(bookId, chapterNumber);
+  const relPath = args.outputRelPath ?? authorChapterRelPath(bookId, chapterNumber);
   const sections: string[] = [];
 
   sections.push(
@@ -426,6 +580,28 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
       "VARIETY (dealt for this chapter — non-negotiable; do NOT fall back to the house pattern)",
       ...briefVarietyInstructionLines(args.brief),
     );
+  }
+
+  // v24 (2026-07-06): the CONTENT-DEVICE deal — rotating per-chapter bans on the body
+  // machinery (return-proof, proxy-cast, second-setting, hard-detail boundary, …) so no
+  // device saturates the book. ALWAYS rendered (independent of the machine brief) — this
+  // is the per-chapter variety manual-brief books otherwise never receive, and the fix
+  // for the book-acceptance "one template, different nouns" churn. args.totalChapters
+  // omitted (single-chapter tools) → no deal, exactly as before.
+  if (args.totalChapters && args.totalChapters >= 4) {
+    const dealLines = contentDeviceDealLines(chapterNumber, args.totalChapters);
+    if (dealLines.length > 0) sections.push("", ...dealLines);
+
+    // v24 (2026-07-07, F-07/F-08): manual-brief books (~113/119) never compile a
+    // machine brief, so the whole VARIETY block above never renders for them. Deal
+    // the two low-dependency rotational levers — architecture family + practice
+    // shape — always-on here, exactly as the content-device deal reaches them. Skip
+    // when a machine brief IS present: those books already carry the richer compiled
+    // VARIETY block (double-dealing would fight it).
+    if (!args.brief) {
+      const shapeLines = manualBriefRotationLines(bookId, chapterNumber, args.totalChapters);
+      if (shapeLines.length > 0) sections.push("", ...shapeLines);
+    }
   }
 
   const styleLines = ["", "HOUSE STYLE"];
@@ -468,7 +644,7 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
     authorSchemaHint(bookId, chapterNumber),
   );
 
-  sections.push("", authorSelfVerify(bookId, chapterNumber));
+  sections.push("", authorSelfVerify(bookId, chapterNumber, args.outputRelPath));
 
   return sections.join("\n");
 }
@@ -482,6 +658,19 @@ export type AuthorWriteOneResult =
 export type AuthorWriteOneOpts = {
   complaints?: string[];
   io?: Partial<AuthorIo>;
+  /** Override the book's total-chapter count (gates the content-device deal). When
+   *  omitted, resolved authoritatively from deps.expectedChapterNumbers. */
+  totalChapters?: number;
+  /** Model-bakeoff isolation: write to this pipeline-relative path instead of the
+   *  canonical state/chapters/ path (threaded into the card, the gate verb, and the
+   *  self-verify command). Callers overriding this MUST also override the io chapter
+   *  file hooks to the same location. Omitted → canonical path, exactly as before. */
+  outputRelPath?: string;
+  /** Model-bakeoff candidate pinning: override the author model / reasoning effort
+   *  for THIS call only. Omitted → the production pins (CHAPTERFLOW_AUTHOR_MODEL /
+   *  CHAPTERFLOW_AUTHOR_EFFORT, defaults unchanged). */
+  model?: string;
+  effort?: "minimal" | "low" | "medium" | "high" | "xhigh";
 };
 
 /**
@@ -501,23 +690,58 @@ export async function authorWriteOneChapter(
   const io = resolveAuthorIo(opts.io);
   const nn = String(chapterNumber).padStart(2, "0");
   const chapterId = authorChapterId(bookId, chapterNumber);
-  const relPath = authorChapterRelPath(bookId, chapterNumber);
+  const relPath = opts.outputRelPath ?? authorChapterRelPath(bookId, chapterNumber);
+  const writerModel = opts.model ?? AUTHOR_WRITER_MODEL;
+  const writerEffort = opts.effort ?? AUTHOR_WRITER_EFFORT;
 
   const briefMd = io.readBriefMd(bookId, chapterNumber);
   if (!briefMd) return { ok: false, reason: `ch${nn}: no rendered brief (chNN.brief.md) — run compile-chapter-briefs first` };
   const packet = io.readPacket(bookId, chapterNumber);
   if (!packet) return { ok: false, reason: `ch${nn}: no source packet — run compile-source-packets first` };
 
+  // Write-failure restore (fresh-gold live finding, 2026-07-08): writer sessions land
+  // their draft on disk BEFORE the gate/rubric/contract self-checks below. When every
+  // attempt fails, disk must not keep an UNREVIEWED failing draft: restore the prior
+  // bytes (they were reviewed or at least gate-known), or REMOVE the orphan when no
+  // chapter existed before — otherwise the next entry sees the failed draft as an
+  // existing chapter and blindly reviews it as if it had passed its write checks
+  // (observed live: high-output-management ch14 — an 87-composite original was
+  // replaced by a lead-contract-failing draft and lost).
+  const preWriteBytes = io.readChapterFile(bookId, chapterNumber);
+
   const machineBrief = io.readBrief(bookId, chapterNumber);
-  const baseCard = buildAuthorCard({
-    bookId,
-    chapterNumber,
-    briefMd,
-    packet,
-    voice: io.voiceCard(bookId),
-    complaints: opts.complaints,
-    brief: machineBrief,
+  // Authoritative total-chapter count (works before all chapters exist on disk) —
+  // gates the book-scale content-device deal. Explicit opt override wins.
+  let totalChapters = opts.totalChapters;
+  if (totalChapters === undefined) {
+    try { totalChapters = deps.expectedChapterNumbers(bookId).length; }
+    catch { try { totalChapters = io.loadChapters(bookId).length; } catch { totalChapters = 0; } }
+  }
+  // F-1: resolve the EFFECTIVE brief under a persisted lead override (a prior
+  // entry's degraded lead that landed a passing chapter). The compiled brief on
+  // disk still deals the failed lead — compile-chapter-briefs re-deals it every
+  // entry — so the sidecar is what keeps write/regen/repair consistent with the
+  // chapter's ACTUAL lead. Stale overrides (brief re-dealt) are ignored inside
+  // applyLeadThreadOverride.
+  const leadOverride = io.readLeadOverride(bookId, chapterNumber);
+  // Failure MEMORY is honored under the same staleness rule as the overlay: only
+  // while the compiled brief still deals the recorded failed lead (a re-deal
+  // supersedes everything the memory proved).
+  const leadMemory = leadOverride && leadOverride.failedLead === machineBrief?.leadThread?.name ? leadOverride : null;
+  const effectiveBrief = applyLeadThreadOverride(machineBrief, leadOverride);
+  if (effectiveBrief !== machineBrief) {
+    deps.log(`[autopilot] author ch${nn}: persisted lead override active — writing to lead "${effectiveBrief?.leadThread?.name}" (the dealt lead "${leadOverride?.failedLead}" repeatedly failed the lead-thread write contract; override recorded ${leadOverride?.at}).`);
+  }
+  // The rendered md is a pure render of the machine brief — under an override (or a
+  // degraded attempt below) it must be re-rendered from the EFFECTIVE brief, or the
+  // card would carry two disagreeing LEAD THREAD/cast signals.
+  const voice = io.voiceCard(bookId);
+  const mkCard = (brief: ChapterBriefV1 | null, md: string): string => buildAuthorCard({
+    bookId, chapterNumber, totalChapters, briefMd: md, packet, voice, complaints: opts.complaints, brief,
+    outputRelPath: opts.outputRelPath,
   });
+  const briefMdEffective = effectiveBrief !== machineBrief && effectiveBrief ? renderBriefMd(effectiveBrief) : briefMd;
+  const baseCard = mkCard(effectiveBrief, briefMdEffective);
   if (baseCard.length > AUTHOR_CARD_MAX_CHARS) {
     deps.log(`[autopilot] author ch${nn}: card is ${baseCard.length} chars (> ${AUTHOR_CARD_MAX_CHARS} target) — proceeding, but the packet/brief deserve a diet`);
   }
@@ -537,10 +761,72 @@ export async function authorWriteOneChapter(
 
   let card = baseCard;
   let lastReason = "";
-  for (let attempt = 1; attempt <= 1 + AUTHOR_WRITE_GATE_RETRIES; attempt++) {
-    const label = attempt === 1 ? `author-ch${nn}` : `author-ch${nn}-retry${attempt - 1}`;
+  // CF-I-2 (owner decision 4): the C31–C35 register/machinery advisories surfaced as
+  // retry fix lines. This closure loads the just-written draft and returns the labelled
+  // block (or "" when clean/unreadable). It is ONLY ever appended to a card already
+  // built for a BLOCKING failure (gate blocker, rubric FAIL, write-contract FAIL), so
+  // an advisory NEVER triggers a retry by itself and NEVER changes a pass/fail predicate
+  // — it only changes the TEXT the next attempt sees. Best-effort, deterministic.
+  const advisoryRegisterBlock = (): string => {
+    try {
+      const draft = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
+      return draft ? registerAdvisoryRetryBlock(draft) : "";
+    } catch { return ""; }
+  };
+  // CF-I regen surfacing (live re-mint, multipliers ch02): a REGEN is always requested
+  // for a chapter the blinded reviewers already read, and the reviewed draft is still
+  // on disk at card-build time (the same bytes preWriteBytes snapshotted above) — but
+  // its C31–C35 advisories never reached the regen card, so a review-FAIL regen
+  // re-minted the exact register defects the reviewers could feel (ch02 re-minted 10
+  // evaluator openers). Seed the ATTEMPT-1 regen card with the PRIOR draft's advisory
+  // block; empty-string-safe when the prior draft is clean/unreadable. The card is
+  // already being built for the regen's BLOCKING complaints, so this changes card TEXT
+  // only — no new retry trigger, no pass/fail predicate change. (In-loop failures below
+  // keep re-appending the block computed from the freshly-failed draft, as before.)
+  if (isRegen) card = baseCard + advisoryRegisterBlock();
+  // F-1 failure classification: the degraded extra slot opens ONLY when every
+  // configured attempt failed at the write contract with lead-thread findings
+  // alone. Any other failure (spawn death, no file, gate, rubric, mixed contract
+  // findings) marks the call non-lead — the lead is not proven uncarriable there.
+  const baseAttempts = 1 + AUTHOR_WRITE_GATE_RETRIES;
+  let leadOnlyContractFails = 0;
+  let nonLeadFailure = false;
+  let activeBrief = effectiveBrief;
+  let degraded: { from: string; to: { kind: "invented" | "owned-case"; name: string }; castEmptied: boolean } | null = null;
+  let degradedFailedOnLead = false;
+  for (let attempt = 1; attempt <= baseAttempts + AUTHOR_WRITE_LEAD_DEGRADE_RETRIES; attempt++) {
+    if (attempt > baseAttempts) {
+      // The extra slot exists ONLY for bounded lead degradation (F-1).
+      if (nonLeadFailure || leadOnlyContractFails !== baseAttempts) break;
+      const failedLead = activeBrief?.leadThread?.name;
+      if (!failedLead) break;
+      const proxyBanned = !!totalChapters && totalChapters >= 4
+        && dealContentDeviceBans(chapterNumber, totalChapters).includes("proxy-cast");
+      // Exclude every lead already proven uncarriable: this call's failed lead,
+      // (when an override was active) the ORIGINAL dealt lead it replaced, and the
+      // persisted cross-entry failure memory — candidates strictly shrink across
+      // entries, so the halt cycle terminates instead of replaying forever.
+      const alreadyFailed = [...new Set([
+        failedLead,
+        ...(leadMemory ? [leadMemory.failedLead] : []),
+        ...(leadMemory?.failedLeads ?? []),
+      ])];
+      const candidates = degradedLeadCandidates(activeBrief?.ownedCases ?? [], activeBrief?.cast ?? [], proxyBanned, alreadyFailed);
+      if (candidates.length === 0) {
+        lastReason = `ch${nn}: the dealt lead "${failedLead}" failed the lead-thread write contract on every attempt, and NO degradation candidate remains (exhausted: ${alreadyFailed.map((x) => `"${x}"`).join(", ")}; ${proxyBanned ? "invented lead unavailable — this chapter's content-device deal bans proxy-cast" : "no invented cast remains"}) — honest halt, nothing carriable exists.`;
+        deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
+        break;
+      }
+      const to = candidates[0];
+      const castEmptied = proxyBanned && to.kind === "owned-case";
+      degraded = { from: failedLead, to, castEmptied };
+      activeBrief = activeBrief ? { ...activeBrief, leadThread: to, cast: castEmptied ? [] : activeBrief.cast } : activeBrief;
+      deps.log(`[autopilot] author ch${nn}: lead degraded: "${failedLead}" → "${to.name}" after ${leadOnlyContractFails} contract failures (bounded +${AUTHOR_WRITE_LEAD_DEGRADE_RETRIES} attempt; the lead-thread contract enforces the NEW lead at full strength).`);
+      card = `${mkCard(activeBrief, activeBrief ? renderBriefMd(activeBrief) : briefMdEffective)}\n\nLEAD CHANGE\nThe previously dealt lead ("${failedLead}") could not carry the fastRead + 2 examples across ${leadOnlyContractFails} attempts. The LEAD THREAD above now deals "${to.name}" — the same contract applies to it at full strength.`;
+    }
+    const label = attempt === 1 ? `author-ch${nn}` : attempt > baseAttempts ? `author-ch${nn}-degraded` : `author-ch${nn}-retry${attempt - 1}`;
     const sessionId = deps.mkSessionId(label);
-    deps.log(`[autopilot] author ch${nn}: whole-chapter writer working (attempt ${attempt}, card ${card.length} chars, ${AUTHOR_WRITER_MODEL} @ ${AUTHOR_WRITER_EFFORT}, timeout ${Math.round(AUTHOR_WRITE_TIMEOUT_MS / 60000)}min)`);
+    deps.log(`[autopilot] author ch${nn}: whole-chapter writer working (attempt ${attempt}, card ${card.length} chars, ${writerModel} @ ${writerEffort}, timeout ${Math.round(AUTHOR_WRITE_TIMEOUT_MS / 60000)}min)`);
     // M-lane: pinned model/effort/timeout. The runner REJECTS on timeout (SIGKILL) —
     // catch it into the structured retry path; an unhandled throw here would escape
     // doAuthorWrite's halt taxonomy entirely (grill round-2b #12).
@@ -551,14 +837,27 @@ export async function authorWriteOneChapter(
         sessionId,
         cwd: PIPELINE_DIR,
         sandbox: "workspace-write",
-        model: AUTHOR_WRITER_MODEL,
-        reasoningEffort: AUTHOR_WRITER_EFFORT,
+        model: writerModel,
+        reasoningEffort: writerEffort,
         timeoutMs: AUTHOR_WRITE_TIMEOUT_MS,
       });
     } catch (err) {
       lastReason = `ch${nn}: writer session ${sessionId} died before completing (${(err as Error).message})`;
       deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
+      // Honest-accounting: the spawn id was MINTED (mkSessionId above) but the
+      // throw skips the success-path logSession, so the cost-report invariant
+      // trips ("minted but never logged"). Record a synthetic failed session —
+      // the same drain-then-record pattern as spawnAndLog (autopilot.ts) — so a
+      // died/timed-out writer still leaves a durable trace (live-caught on the
+      // start-with-why gold run: ch04's retry spawn was unlogged).
+      try {
+        deps.logSession(bookId, label, {
+          ok: false, exitCode: -1, finalMessage: "", stdout: "",
+          stderr: (err as Error)?.message ?? String(err), durationMs: 0, sessionId,
+        });
+      } catch { /* best-effort: never convert a spawn error into a log error */ }
       card = `${baseCard}\n\nPREVIOUS ATTEMPT DID NOT COMPLETE\nYour previous session was cut off before finishing. Write the complete chapter file this time.`;
+      nonLeadFailure = true;
       continue;
     }
     try { deps.logSession(bookId, label, r); } catch { /* best-effort */ }
@@ -567,6 +866,7 @@ export async function authorWriteOneChapter(
     if (!io.chapterExists(bookId, chapterNumber)) {
       lastReason = `ch${nn}: writer session ${sessionId} exited ${r.exitCode} without writing ${relPath}`;
       card = `${baseCard}\n\nPREVIOUS ATTEMPT WROTE NO FILE\nYour previous session ended without creating ${relPath}. Write the complete chapter file this time.`;
+      nonLeadFailure = true;
       continue;
     }
 
@@ -634,7 +934,9 @@ export async function authorWriteOneChapter(
             }
           } catch { /* best-effort evidence — the metric block still stands */ }
         }
-        card = `${baseCard}\n\nRUBRIC PREFLIGHT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but FAILED the deterministic reader-metrics preflight. Rewrite the chapter so ALL of these clear:\n${rubricBlock}${tellEvidence}\nHow to read it: ease must land in 72-84 (write plainer, shorter sentences); tell must be <= 0.2 (at most ONE of the 9 keys may be the uniquely longest choice — fix the listed questions); transfer must be >= 0.7 (most quiz questions test a NEW scenario, not recall); memClean >= 2 (short portable memorable lines); lenTell — the keyed answer must NOT be the uniquely shortest choice (nor uniquely longest); give each key a middle length; practice — tryThisNow or the 24-hour challenge must be imperative-led with a concrete number/timebox; echo (advisory) — paraphrase any key that reuses 5+ consecutive words from the chapter.`;
+        card = `${baseCard}\n\nRUBRIC PREFLIGHT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but FAILED the deterministic reader-metrics preflight. Rewrite the chapter so ALL of these clear:\n${rubricBlock}${tellEvidence}\nHow to read it: ease must land in 72-84 (write plainer, shorter sentences); tell must be <= 0.2 (at most ONE of the 9 keys may be the uniquely longest choice — fix the listed questions); transfer must be >= 0.7 (most quiz questions test a NEW scenario, not recall); memClean >= 2 (short portable memorable lines); lenTell — the key may be the uniquely SHORTEST choice in at most 4 of 9 questions and the uniquely LONGEST in at most 1 of 9 (the same caps as your quality bar — fix only the questions over a cap; do NOT purge every length extreme, that mints the opposite tell); practice — tryThisNow or the 24-hour challenge must be imperative-led with a concrete number/timebox; echo (advisory) — paraphrase any key that reuses 5+ consecutive words from the chapter.`;
+        card += advisoryRegisterBlock();
+        nonLeadFailure = true;
         continue;
       }
       // STIER-2 D7/D9 — the write-time contract (lead thread + timer sanity) runs with
@@ -645,12 +947,43 @@ export async function authorWriteOneChapter(
         writtenChapter = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
       } catch { /* unreadable → skip the contract check; the gate already passed */ }
       if (writtenChapter) {
-        const contract = authorWriteContractFindings(writtenChapter, machineBrief, packet);
+        // F-1: the contract runs against the ACTIVE brief — the effective (override-
+        // resolved) brief normally, the degraded-lead brief on the extra attempt —
+        // so a degraded lead is verified at exactly the same strength.
+        const contract = authorWriteContractFindings(writtenChapter, activeBrief, packet);
         if (contract.length > 0) {
+          if (contract.every((c) => c.startsWith("lead thread"))) {
+            leadOnlyContractFails++;
+            if (attempt > baseAttempts) degradedFailedOnLead = true; // the DEGRADED lead is now proven uncarriable too
+          } else nonLeadFailure = true;
           lastReason = `ch${nn}: STIER-2 write contract FAIL — ${contract.join(" | ")}`;
           deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
           card = `${baseCard}\n\nWRITE-CONTRACT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but broke the dealt write contract. Rewrite the chapter so ALL of these clear:\n${contract.map((c) => `- ${c}`).join("\n")}`;
+          card += advisoryRegisterBlock();
           continue;
+        }
+      }
+      // F-1: a degraded lead that LANDED is persisted to the sidecar so every future
+      // entry (write, review-regen, repair contract re-check) resolves the chapter's
+      // ACTUAL lead instead of re-dealing the proven-uncarriable one. Keyed on the
+      // COMPILED brief's dealt lead (the staleness guard); best-effort but LOUD —
+      // a persist failure means the next entry re-degrades from scratch.
+      if (degraded) {
+        try {
+          io.writeLeadOverride(bookId, chapterNumber, {
+            schemaVersion: "lead-thread-override-v1",
+            bookId: normSlug(bookId),
+            chapterNumber,
+            failedLead: machineBrief?.leadThread?.name ?? degraded.from,
+            lead: degraded.to,
+            cast: degraded.castEmptied ? [] : (activeBrief?.cast ?? []),
+            failedLeads: [...new Set([degraded.from, ...(leadMemory?.failedLeads ?? [])])],
+            reason: `lead-thread contract failed ${leadOnlyContractFails}× on "${degraded.from}"; degraded per F-1 (bounded write-time recovery)`,
+            at: new Date().toISOString(),
+          });
+          deps.log(`[autopilot] author ch${nn}: lead override persisted (chNN.lead-override.json) — future regens/repairs enforce the contract against "${degraded.to.name}".`);
+        } catch (err) {
+          deps.log(`[autopilot] author ch${nn}: degraded lead LANDED but the lead-override sidecar could not be persisted (${(err as Error).message.split("\n")[0]}) — the next entry will re-fail on the dealt lead and re-degrade; fix the briefs dir permissions.`);
         }
       }
       // Success: bind author provenance to the authored content (create-once per
@@ -667,6 +1000,55 @@ export async function authorWriteOneChapter(
     const report = reportOf(gate);
     lastReason = `ch${nn}: gate-chapter still blocks after attempt ${attempt}:\n${report.slice(0, 1500)}`;
     card = `${baseCard}\n\nGATE BLOCKERS FROM YOUR PREVIOUS ATTEMPT\nYour previous draft of ${relPath} failed the deterministic gate. Rewrite the chapter (regenerate — do not minimally patch) so every blocker below is cleared, then re-run gate-chapter until clean:\n${report.slice(0, 2000)}`;
+    card += advisoryRegisterBlock();
+    nonLeadFailure = true;
+  }
+  // All attempts failed — never leave the last (unreviewed, self-check-failing)
+  // draft on disk. Restore the pre-write bytes, or remove the orphan draft when
+  // this was a missing-chapter write. Best-effort: a cleanup error must not mask
+  // the real failure reason.
+  try {
+    const nowBytes = io.readChapterFile(bookId, chapterNumber);
+    if (preWriteBytes !== null && nowBytes !== preWriteBytes) {
+      io.writeChapterFile(bookId, chapterNumber, preWriteBytes);
+      deps.log(`[autopilot] author ch${nn}: all write attempts failed — restored the pre-write chapter bytes (a failed draft must not replace known bytes).`);
+    } else if (preWriteBytes === null && nowBytes !== null) {
+      io.removeChapterFile(bookId, chapterNumber);
+      deps.log(`[autopilot] author ch${nn}: all write attempts failed — removed the unreviewed failed draft (no prior chapter existed; the next entry must re-write it, not review it).`);
+    }
+  } catch (err) {
+    deps.log(`[autopilot] author ch${nn}: write-failure cleanup itself failed (${(err as Error).message.split("\n")[0]}) — disk may hold an unreviewed failed draft.`);
+  }
+  // F-1 honesty: when the bounded degradation also failed, the halt names BOTH
+  // leads — the operator must see that the fallback was tried, not just the last
+  // attempt's complaint. Failure MEMORY persists so the NEXT entry's degradation
+  // advances to the next candidate instead of replaying this exact cycle (live:
+  // the 2026-07-08 resume replayed dealt→"Corrective" identically until this).
+  if (degraded) {
+    const provenFailed = [...new Set([
+      degraded.from,
+      ...(degradedFailedOnLead ? [degraded.to.name] : []),
+      ...(leadMemory?.failedLeads ?? []),
+    ])];
+    try {
+      io.writeLeadOverride(bookId, chapterNumber, {
+        schemaVersion: "lead-thread-override-v1",
+        bookId: normSlug(bookId),
+        chapterNumber,
+        failedLead: machineBrief?.leadThread?.name ?? degraded.from,
+        // Preserve a previously LANDED overlay (the on-disk chapter still carries
+        // it after the byte restore above); null when nothing ever landed.
+        lead: leadMemory?.lead ?? null,
+        cast: leadMemory?.cast ?? machineBrief?.cast ?? [],
+        failedLeads: provenFailed,
+        reason: `degradation failed: dealt "${degraded.from}" ${baseAttempts}× lead-only; degraded "${degraded.to.name}" ${degradedFailedOnLead ? "also failed the lead contract" : "failed (non-lead)"} — memory so the next entry advances`,
+        at: new Date().toISOString(),
+      });
+      deps.log(`[autopilot] author ch${nn}: lead-failure memory persisted (${provenFailed.map((x) => `"${x}"`).join(", ")}) — the next entry degrades PAST these instead of replaying them.`);
+    } catch (err) {
+      deps.log(`[autopilot] author ch${nn}: lead-failure memory could not be persisted (${(err as Error).message.split("\n")[0]}) — the next entry will replay this degradation cycle.`);
+    }
+    return { ok: false, reason: `ch${nn}: lead degradation did not converge — dealt lead "${degraded.from}" failed ${baseAttempts} lead-only contract attempts and the degraded lead "${degraded.to.name}" also failed: ${lastReason || "no reason recorded"}` };
   }
   return { ok: false, reason: lastReason || `ch${nn}: writer failed` };
 }
@@ -787,6 +1169,40 @@ export async function doAuthorWrite(
  * costs milliseconds on the happy path; enforcement at every downstream
  * entry is a pure strengthen.
  */
+/**
+ * CONVERGENCE-SAFE PASS (2026-07-05): split book-wide budget blockers into the
+ * set to ROUTE into the repair round and the set to DOWNGRADE to advisory.
+ *
+ * A finding's CARRIER SET is exactly the chapters `buildBudgetRepairComplaints`
+ * would fan its evidence out to (the same routing the round already uses — no new
+ * detector). A finding carried ONLY by chapters holding a durable PASS is
+ * downgraded: re-authoring a passing chapter to satisfy a book-wide budget that a
+ * SIBLING's edit shifted is the carry-churn that regressed ch04 85.6→73.4, and the
+ * durable PASS (an independent reviewer accepted these exact bytes at this bar) is
+ * the evidence the block is not reader-harming. A finding with NO routable carrier
+ * stays in `route` so the existing "no repair-routable evidence" halt still fires —
+ * we never silently swallow a blocker we cannot attribute. Running the SAME
+ * partition at the initial scan and the post-round re-check makes them agree, so a
+ * band sustained purely by PASS-locked bytes can never deadlock the halt.
+ */
+export function partitionBudgetBlockers(
+  chapters: ChapterV21[],
+  blockers: BudgetFinding[],
+  isPassLocked: (chapterNumber: number) => boolean,
+): { route: BudgetFinding[]; downgraded: BudgetFinding[]; carriersOf: Map<BudgetFinding, number[]> } {
+  const route: BudgetFinding[] = [];
+  const downgraded: BudgetFinding[] = [];
+  const carriersOf = new Map<BudgetFinding, number[]>();
+  for (const f of blockers) {
+    const carriers = [...buildBudgetRepairComplaints(chapters, [f]).keys()];
+    carriersOf.set(f, carriers);
+    const hasUnlocked = carriers.some((n) => !isPassLocked(n));
+    if (carriers.length > 0 && !hasUnlocked) downgraded.push(f);
+    else route.push(f);
+  }
+  return { route, downgraded, carriersOf };
+}
+
 export async function ensureReaderBudgetsClean(
   bookId: string,
   deps: AutopilotDeps,
@@ -797,6 +1213,11 @@ export async function ensureReaderBudgetsClean(
     haltPhase: "write" | "qc";
     label: string;
     io?: Partial<AuthorIo>;
+    /** CONVERGENCE-SAFE PASS (2026-07-05): the current review bar. When present
+     *  (review re-entry), a chapter holding a durable PASS at this bar is never
+     *  full-re-authored by the budget-repair round. Omitted at the WRITE entry
+     *  (no reviews exist yet) → the carry-aware path is entirely inert. */
+    bar?: number;
   },
 ): Promise<AutopilotOutcome | null> {
   const haltHere = (category: HaltCategory, reason: string): AutopilotOutcome =>
@@ -821,11 +1242,55 @@ export async function ensureReaderBudgetsClean(
   const firstBrief = expected.map((n) => io.readBrief(bookId, n)).find((b) => b?.lengthBudget?.renderedChars);
   const lengthBudget = firstBrief?.lengthBudget ?? { renderedChars: DEFAULT_LENGTH_BUDGET_CHARS, tolerance: LENGTH_BUDGET_TOLERANCE };
 
+  // CONVERGENCE-SAFE PASS (2026-07-05): compute the PASS-lock set for this bar.
+  // A chapter is PASS-locked iff an INDEPENDENT reviewer PASSed its EXACT current
+  // content+doc bytes at opts.bar (fail-closed via holdsDurablePass — any doubt →
+  // not locked, so the guard can only ever protect, never hide a blocker). At the
+  // WRITE entry opts.bar is undefined → the set is empty → every step below is
+  // inert (byte-identical to the pre-fix behavior; regression only ever occurs on
+  // a REVIEW re-entry). Snapshot each locked chapter's content hash up front so the
+  // post-round regression guard can prove none was modified.
+  const passLocked = new Set<number>();
+  const passLockedHashBefore = new Map<number, string>();
+  for (const ch of chapters) {
+    if (holdsDurablePass(bookId, ch, opts.bar, io.authorSessionOf(ch.chapterId))) {
+      passLocked.add(ch.number);
+      try { passLockedHashBefore.set(ch.number, chapterContentHash(ch)); } catch { /* leave unset — guard skips it */ }
+    }
+  }
+  const isPassLocked = (n: number): boolean => passLocked.has(n);
+  if (passLocked.size > 0) {
+    deps.log(`[autopilot] ${opts.label}: ${passLocked.size} chapter(s) hold a durable PASS at bar ${opts.bar} — protected from full re-author (${[...passLocked].sort((a, b) => a - b).map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")})`);
+  }
+
   let { findings, nameBankWarn } = runBudgetsCapturingWarn(chapters, packets, lengthBudget);
   if (nameBankWarn) {
     return haltHere("infra", `${opts.label}: readerBudgets reported the name bank unavailable (CHB3 silently disabled): ${nameBankWarn}. Fix config/name-bank.json; refusing to skip the check.`);
   }
   let blockers = findings.filter((f) => f.severity === "blocker");
+  // CONVERGENCE-SAFE PASS: downgrade any blocker carried ONLY by PASS-locked
+  // chapters to advisory — never re-author a passing chapter for a book-wide
+  // budget a sibling's edit shifted. Records a forensic protection note per
+  // protected carrier (best-effort). No-op when nothing is PASS-locked.
+  if (passLocked.size > 0 && blockers.length > 0) {
+    const part = partitionBudgetBlockers(chapters, blockers, isPassLocked);
+    for (const f of part.downgraded) {
+      deps.log(`[autopilot] ${opts.label}: [${f.checkId}] ch${String(f.chapterNumber).padStart(2, "0")} carried ONLY by PASS-locked chapter(s) — downgraded to advisory, no re-author (convergence-safe; deadlock avoided)`);
+      for (const n of part.carriersOf.get(f) ?? []) {
+        try {
+          appendReopenNote(bookId, {
+            chapterNumber: n,
+            contentHash: passLockedHashBefore.get(n) ?? "",
+            at: new Date().toISOString(),
+            decision: "protected-downgrade",
+            trigger: f.checkId,
+            detail: "book-wide budget blocker carried only by PASS-locked chapters; not reopened",
+          });
+        } catch { /* forensic note is best-effort; never converts a decision into a halt */ }
+      }
+    }
+    blockers = part.route;
+  }
   if (blockers.length > 0) {
     // ONE bounded budget-repair round (live-added 2026-07-03: the first S-tier run
     // halted here with CHB10+CHB12 while the evidence for a targeted repair was
@@ -834,7 +1299,15 @@ export async function ensureReaderBudgetsClean(
     // byte-identical guard; then the budgets re-run ONCE. Still blocking → the
     // same fail-closed halt as before. The block is never weakened — this only
     // spends bounded writers where the halt previously spent the operator.
-    const allTargets = buildBudgetRepairComplaints(chapters, blockers);
+    // CONVERGENCE-SAFE PASS: never route a PASS-locked chapter into a full
+    // re-author, even when it co-carries a routed book-wide finding — trim it from
+    // the target set (its UNLOCKED siblings carry the reduction). A routed finding
+    // has ≥1 unlocked carrier by construction, so this can only shrink the set to a
+    // still-non-empty one (a finding with no routable carrier stays a blocker and
+    // hits the size===0 halt below). A locked chapter thus never consumes F4 cap.
+    const allTargets = new Map(
+      [...buildBudgetRepairComplaints(chapters, blockers)].filter(([n]) => !isPassLocked(n)),
+    );
     const lines = blockers.map((f) => `  [${f.checkId}] ch${String(f.chapterNumber).padStart(2, "0")}: ${f.message}`);
     if (allTargets.size === 0) {
       return haltHere("content", `${opts.label}: reader budgets BLOCK (${blockers.length} finding(s)) with no repair-routable chapter evidence:\n${lines.join("\n").slice(0, 3000)}`);
@@ -853,6 +1326,35 @@ export async function ensureReaderBudgetsClean(
       targets = new Map(ranked);
       deps.log(`[autopilot] ${opts.label}: repair evidence spans ${allTargets.size} chapters — capping the round to the top ${REPAIR_TARGET_CAP} contributors (${ranked.map(([n]) => `ch${String(n).padStart(2, "0")}`).join(", ")}); the re-check still runs book-wide`);
     }
+    // F4 (FINAL-HARDENING-PLAN 2026-07-04): the budget-repair round is bounded
+    // WITHIN an entry, but it runs at BOTH the write and review entries and its
+    // writer spawns never touched a durable ledger — a persistently blocking
+    // book could re-spend the full round on every conductor re-entry, forever.
+    // One budget-repair write per chapter LINEAGE, consumed durably BEFORE the
+    // spawn (failed rounds count too). A chapter with no computable lineage
+    // (pre-brief fixtures; real v24 books always compile briefs before writes)
+    // runs uncounted rather than converting a safety net into an infra halt.
+    {
+      const skipped: number[] = [];
+      const runnable = new Map<number, string[]>();
+      for (const [n, complaints] of targets) {
+        let lineage: string | null = null;
+        try { lineage = computeRegenLineage(bookId, n); } catch { lineage = null; }
+        if (!lineage) { runnable.set(n, complaints); continue; }
+        let consumed = 1;
+        try { consumed = budgetRepairConsumedFor(loadAuthorRegenLedger(bookId), n, lineage); } catch { consumed = 1; } // unreadable ledger → fail closed
+        if (consumed >= 1) { skipped.push(n); continue; }
+        recordBudgetRepairConsumed(bookId, n, lineage);
+        runnable.set(n, complaints);
+      }
+      if (skipped.length > 0) {
+        deps.log(`[autopilot] ${opts.label}: ${skipped.length} chapter(s) already consumed their durable budget-repair write for this lineage (${skipped.sort((a, b) => a - b).map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}) — not re-spending`);
+      }
+      if (runnable.size === 0) {
+        return haltHere("content", `${opts.label}: reader budgets BLOCK and every routable chapter has already consumed its one durable budget-repair write for its current lineage (F4) — a byte/design change is required:\n${lines.join("\n").slice(0, 3000)}`);
+      }
+      targets = runnable;
+    }
     deps.log(`[autopilot] ${opts.label}: reader budgets BLOCK (${blockers.length} finding(s)) — ONE bounded budget-repair round over ${targets.size} chapter(s): ${[...targets.keys()].sort((a, b) => a - b).map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}`);
     const repairFailures: string[] = [];
     await mapPool([...targets.entries()], opts.maxParallel, async ([n, complaints]) => {
@@ -868,11 +1370,41 @@ export async function ensureReaderBudgetsClean(
     } catch (err) {
       return haltHere("infra", `${opts.label}: could not reload chapters after the budget-repair round: ${(err as Error).message}`);
     }
+    // A4 REGRESSION GUARD (CONVERGENCE-SAFE PASS): no PASS-locked chapter may have
+    // changed bytes across the round — the target filter guarantees it, so this is
+    // a loud invariant assertion. If it EVER fires, a passing chapter was modified
+    // (a bug) and its durable PASS may have regressed; refuse to advance rather
+    // than ship a possibly-regressed PASS.
+    for (const n of passLocked) {
+      const before = passLockedHashBefore.get(n);
+      if (!before) continue;
+      const ch = chapters.find((c) => c.number === n);
+      const after = ch ? chapterContentHash(ch) : undefined;
+      if (after && after !== before) {
+        try {
+          appendReopenNote(bookId, {
+            chapterNumber: n,
+            contentHash: after,
+            at: new Date().toISOString(),
+            decision: "reopened-anomaly",
+            trigger: "budget-repair-round",
+            detail: `content hash ${before}→${after} despite PASS-lock`,
+          });
+        } catch { /* best-effort */ }
+        return haltHere("infra", `${opts.label}: REGRESSION GUARD — ch${String(n).padStart(2, "0")} held a durable PASS at bar ${opts.bar} but its content hash CHANGED (${before}→${after}) across the budget-repair round. A passing chapter was modified; refusing to advance a possibly-regressed PASS.`);
+      }
+    }
     ({ findings, nameBankWarn } = runBudgetsCapturingWarn(chapters, packets, lengthBudget));
     if (nameBankWarn) {
       return haltHere("infra", `${opts.label}: readerBudgets reported the name bank unavailable after repair: ${nameBankWarn}.`);
     }
     blockers = findings.filter((f) => f.severity === "blocker");
+    // Re-partition with the SAME pass-lock set (locked chapters are byte-unchanged,
+    // proven by the guard above, so they still hold their PASS): a book-wide band
+    // now sustained purely by PASS-locked bytes downgrades identically → no halt.
+    if (passLocked.size > 0 && blockers.length > 0) {
+      blockers = partitionBudgetBlockers(chapters, blockers, isPassLocked).route;
+    }
     if (blockers.length > 0) {
       const stillLines = blockers.map((f) => `  [${f.checkId}] ch${String(f.chapterNumber).padStart(2, "0")}: ${f.message}`);
       return haltHere("content", `${opts.label}: reader budgets STILL BLOCK after the one bounded repair round (${blockers.length} finding(s)):\n${stillLines.join("\n").slice(0, 3000)}`);

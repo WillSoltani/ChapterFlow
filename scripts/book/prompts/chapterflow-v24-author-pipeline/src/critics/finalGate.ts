@@ -25,6 +25,7 @@ import { checkAnswerPositionBalance, checkEnumValidity } from "./schema.js";
 import {
   checkQuizAnswerLabelLeak,
   checkQuizAnswerLengthRatio,
+  checkQuizCausalKeyShape,
   checkQuizChoiceLabelUniform,
   checkQuizPronounReferent,
   checkQuizCorrectLongestRate,
@@ -46,6 +47,14 @@ import { checkBreakdownCrossTierVerbatim, checkCrossTierContentOverlap } from ".
 import { checkExampleSourceGrounding, checkChapterProvenance, loadChapterSidecar } from "./sourceGrounding.js";
 import { checkTestimonialEvidence, checkQuizKeyTestimonial } from "./evidenceIntegrity.js";
 import { checkSceneConcreteness } from "./sceneConcreteness.js";
+import { checkExampleCraft } from "./exampleCraft.js";
+import { checkExampleRegister } from "./exampleRegister.js";
+import { checkExampleLessonRepetition } from "./intraChapterExampleLesson.js";
+import { checkMetaCaseProtagonist } from "./metaCaseProtagonist.js";
+import { checkBeatVocabularyEcho } from "./beatVocabularyEcho.js";
+import { checkCitationDateDoorway } from "./citationDateDoorway.js";
+import { checkLineageKeyQuiz } from "./lineageKeyQuiz.js";
+import { checkApparatusLeakage } from "./apparatusLeakage.js";
 import { checkOutcomeVariety } from "./outcomeVariety.js";
 import { checkGroundedNumbers } from "./groundedNumbers.js";
 import { checkInventedWitness } from "./evidenceWitness.js";
@@ -218,6 +227,88 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // keeps the gold corpus clean — its scenarios are saturated with friction
   // vocabulary. See critics/outcomeVariety.ts + tests/outcome-variety.test.ts.
   "C28.uniform_success": "major",
+  // C29 — example thinness (advisory, Phase 5). An example scenario with BOTH no
+  // concrete specificity (no proper noun / number / clock-time) AND no cause→
+  // effect movement connective — a slot-filler placeholder rather than a lived
+  // decision-and-consequence (the start-with-why gold-run thin-example defect).
+  // MINOR/SHADOW: example craft is semantic and gates on the example_coherence
+  // bar axis + the blinded reader; C29 surfaces the mechanical floor as
+  // repair-routable QC debt and never blocks. Calibrated ZERO-FP on the gold
+  // corpus (the both-absent guard). See critics/exampleCraft.ts +
+  // tests/example-craft.test.ts.
+  "C29.example_thinness": "minor",
+  // C30 — within-chapter example-lesson repetition (advisory, CF-C 2026-07-08).
+  // ≥2 of a chapter's example whyItMatters pairs restate the SAME lesson at high
+  // content-lemma overlap — examples that dramatize different scenes but teach one
+  // lesson (HOM ch7's evidence trio), the gap QUALITY BAR rule 6 left unenforced.
+  // MINOR/SHADOW + V2-GATED: the deterministic lexical floor for the semantic
+  // example_coherence bar axis; never blocks, zero-effect on v1/synthetic (no
+  // sidecar). See critics/intraChapterExampleLesson.ts +
+  // tests/intra-chapter-example-lesson.test.ts.
+  "C30.example_lesson_repetition": "minor",
+  // C31 — example evaluator-register (advisory, CF-B 2026-07-08). ≥3 of a chapter's
+  // example fields OPEN with a short (≤8-word; 6→8 per the CF-J measured undercount
+  // fix — see exampleRegister.ts) evaluator question answered in the
+  // next clause ("What changed? X.", "Why does it work? Y.") — analyst-card register
+  // grading the scene instead of narrating it (HOM ch8's eight evaluator openers vs
+  // ch7's zero). The deterministic complement to CF-B's rule-7 register rewrite, the
+  // same disease the ~435 label-prefix strip patched in another costume. MINOR/SHADOW:
+  // example voice is semantic and gates on the example_coherence bar axis + the
+  // blinded reader; C31 surfaces the mechanical floor as repair-routable QC debt and
+  // never blocks. Opening-position + answered + ≤6-word guards keep it narrow (lexical
+  // gates measured INVERTED before — CHB14/15/17). NOT zero-FP on the gold corpus (the
+  // tic leaked into start-with-why too); the pin asserts the MEASURED count. See
+  // critics/exampleRegister.ts + tests/example-register.test.ts.
+  "C31.example_evaluator_register": "minor",
+  // C32 — meta-case protagonist (advisory, CF-I-1 2026-07-09). ≥2 example fields across
+  // ≥2 examples make a pipeline artifact the acting subject ("The case stops…", "The
+  // late fix used…") — offstage machinery narration, the report's §7.3.1 finding class.
+  // MINOR/SHADOW: example voice gates on the example_coherence bar axis + the blinded
+  // reader; C32 surfaces the mechanical floor and never blocks. Exempts document/artifact-
+  // subject books via the sidecar (red-team rule 1). Measured: multipliers ch02, gold
+  // start-with-why ch07 ("The source gives…"), HOM 0. See critics/metaCaseProtagonist.ts.
+  "C32.meta_case_protagonist": "minor",
+  // C33 — beat-vocabulary echo (advisory, CF-I-1 2026-07-09). briefRotation's internal
+  // entry/outcome beat LABELS ("return point", "early signal", "late catch", "return
+  // moment") surfacing as reader prose: ≥3 distinct families in one chapter (per-chapter)
+  // or one family across ≥3 chapters (book-level, in bookGate). MINOR/SHADOW: the contract
+  // vocabulary is a fleet-wide leak (gold start-with-why + HOM carry it too — the pins
+  // record the MEASURED count, as C31 does); CF-I-2 de-mints the instructions. Never
+  // blocks. See critics/beatVocabularyEcho.ts + critics/machineryPhrases.ts.
+  "C33.beat_vocabulary_echo": "minor",
+  // C34 — citation-date doorway (advisory, CF-I-1 2026-07-09). The fastRead opens on a
+  // date/publication citation carrying CF-A's concreteness beat with no person acting —
+  // provenance metadata standing in for an opening scene (report §7.3.4). A DATED SCENE
+  // (a named person acting near the date, "Kennedy stood before Congress…") is EXEMPT
+  // (red-team rule 2). MINOR/SHADOW: CF-A concreteness gates semantically; C34 surfaces
+  // the mechanical doorway floor and never blocks. Measured: multipliers ch01/02/05,
+  // gold ch08/12 (year-as-subject / provenance appositive), HOM 0. See critics/citationDateDoorway.ts.
+  "C34.citation_date_doorway": "minor",
+  // C35 — lineage-key quiz (advisory, CF-I-1 2026-07-09). A quiz KEY rewards naming/
+  // citing the source lineage ("Tie the move to Getting to Yes … so the frame is
+  // traceable") over applying the idea, with an explanation reinforcing lineage/
+  // traceable/checkable (report §7.3.2). Flags the KEY only — a source-citing DISTRACTOR
+  // is fine; keyEvidence anchor-traceability (sourceGrounding) is untouched. MINOR/SHADOW:
+  // key quality gates on the blinded readers + key-judge; C35 surfaces the answer-content
+  // pattern and never blocks. Measured: multipliers ch08 (q01/q04), gold + HOM 0. See
+  // critics/lineageKeyQuiz.ts.
+  "C35.lineage_key_quiz": "minor",
+  // C36 — source-guide apparatus leakage (advisory, CF-J 2026-07-09). The radical-candor
+  // release review (§7) found the guide's own APPARATUS narrated to the reader BELOW
+  // C31–C35 coverage: page citations in reader prose ("on Ch. 6 p. 138", "On page 33"),
+  // guide-structure narration ("the official guide", "the bonus chapter"), machinery
+  // vocabulary INSIDE quiz surfaces ("page references as proof", "the page span points
+  // to"), and drafting-spec sentences printed verbatim ("The outcome is not claimed
+  // here."). One advisory per chapter per category. MINOR/SHADOW like its C31–C35
+  // siblings: never blocks, rides the registerAdvisories repair routing. Calibrated
+  // ZERO on gold start-with-why + the-culture-code + HOM + multipliers; fires heavily
+  // on radical-candor (the defect corpus — pinned). See critics/apparatusLeakage.ts +
+  // tests/apparatus-leakage.test.ts. The PREVENTION half is stripPageCitationSpans in
+  // the writer projection/brief (same module).
+  "C36.apparatus_page_citation": "minor",
+  "C36.apparatus_guide_structure": "minor",
+  "C36.apparatus_machinery_term": "minor",
+  "C36.apparatus_spec_narration": "minor",
   E4: "major",
   A11: "blocker",
   A12: "blocker",
@@ -311,6 +402,10 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "BP16.quiz_answer_length_major": "major",
   "BP17.quiz_opener_monotony": "major",
   "BP18.quiz_label_shape_correct": "minor",
+  // BP33 (W3) — causal stem keyed to a remedy-shaped choice. Two live incidents
+  // (execution ch01/ch09 Q1). ADVISORY: key QUALITY stays with the blinded
+  // readers + key-judge; only the mechanical remedy-shape is flagged here.
+  "BP33.causal_key_remedy_shape": "minor",
   // BP27 — answer-label leak: the key is identifiable from its choice label
   // alone (e.g. key "…move", every distractor "…misconception"). Lets a reader
   // ace the quiz without reading. Conservative detector (fires only when a
@@ -384,6 +479,20 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // choices' gender unambiguously conflict (name-swap residue). SHADOW major (zero
   // across the clean+gold corpus; not in ENFORCED_MAJOR).
   "BP32.quiz_pronoun_referent_mismatch": "major",
+  // BP34 — within-book aphorism repetition (CF-F / Finding 11): a minted one-liner
+  // reused as a lede/coreSkill across ≥3 chapters (e.g. "Agreement nods; commitment
+  // signs" in high-output-management ch2/5/8/11). Advisory only — a deliberate 2-
+  // chapter callback stays legal; 3+ is house-voice repetition the reader notices.
+  "BP34.aphorism_repetition": "minor",
+  // BP34.tail_clone — recurring distinctive sentence TAIL (CF-J 2026-07-09). The
+  // radical-candor clone "…comes back…, or it drifts" (ch3/6/9) evades the verbatim
+  // BP34 check because the FRAME varies around a fixed final clause. Fires when the
+  // same final comma-clause (3-5 normalized words carrying ≥1 content word) closes a
+  // sentence in ≥3 chapters. Advisory only, like its parent. Measured: gold
+  // start-with-why 1 (", not a slogan" ch4/11/12 — an honest soft refrain), HOM /
+  // multipliers / the-culture-code 0, radical-candor 1 (the target clone). See
+  // critics/bookRepetition.ts + tests/aphorism-repetition.test.ts.
+  "BP34.tail_clone": "minor",
   // Source grounding (May 2026 SWW round-1 root cause: invented scenarios with
   // zero reference to real source cases). SHADOW=major. A mid-session promotion to
   // blocker was REVERTED here: the verification pass proved the "zero-FP on gold"
@@ -941,6 +1050,53 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   for (const f of checkOutcomeVariety(chapter)) {
     push(f.checkId as string, "outcome-variety", f.message, f.evidence);
   }
+  // C29 — example thinness (advisory). A scenario with no named/number anchor AND
+  // no cause→effect movement — a slot-filler placeholder, not a lived decision.
+  for (const f of checkExampleCraft(chapter)) {
+    push(f.checkId as string, "example-craft", f.message, f.evidence);
+  }
+  // C30 — within-chapter example-lesson repetition (advisory, v2-gated). ≥2 example
+  // pairs whose whyItMatters restate one lesson at high content overlap — the
+  // deterministic floor under QUALITY BAR rule 6 ("each example a DIFFERENT facet").
+  for (const f of checkExampleLessonRepetition(chapter)) {
+    push(f.checkId as string, "example-lesson", f.message, f.evidence);
+  }
+  // C31 — example evaluator-register (advisory, CF-B). ≥3 example fields open with a
+  // short evaluator question answered in the next clause ("What changed? X.") —
+  // analyst-card register instead of a narrated scene (HOM ch8's evaluator openers).
+  for (const f of checkExampleRegister(chapter)) {
+    push(f.checkId as string, "example-register", f.message, f.evidence);
+  }
+  // C32 — meta-case protagonist (advisory, CF-I-1). ≥2 example fields across ≥2
+  // examples make a pipeline artifact the acting subject ("The case stops…", "The
+  // late fix used…") — offstage machinery narration instead of a person in the scene.
+  for (const f of checkMetaCaseProtagonist(chapter)) {
+    push(f.checkId as string, "meta-case", f.message, f.evidence);
+  }
+  // C33 — beat-vocabulary echo (advisory, CF-I-1). ≥3 distinct briefRotation entry/
+  // outcome beat labels ("return point", "early signal", "late catch"…) surface in
+  // one chapter's reader prose — the contract's dealing vocabulary read as house voice.
+  for (const f of checkBeatVocabularyEcho(chapter)) {
+    push(f.checkId as string, "beat-vocabulary", f.message, f.evidence);
+  }
+  // C34 — citation-date doorway (advisory, CF-I-1). The fastRead opens on a date/
+  // citation carrying the concreteness beat with no person acting — provenance
+  // metadata gaming CF-A's opening-scene rule (person-scene ledes are exempt).
+  for (const f of checkCitationDateDoorway(chapter)) {
+    push(f.checkId as string, "citation-doorway", f.message, f.evidence);
+  }
+  // C35 — lineage-key quiz (advisory, CF-I-1). A quiz key rewards naming/citing the
+  // source lineage ("Tie the move to <source> so the frame is traceable") over
+  // applying the idea — the pipeline's anchor discipline leaking into reader pedagogy.
+  for (const f of checkLineageKeyQuiz(chapter)) {
+    push(f.checkId as string, "lineage-key", f.message, f.evidence);
+  }
+  // C36 — source-guide apparatus leakage (advisory, CF-J). Page citations, guide-
+  // structure narration, machinery vocabulary (incl. quiz/card surfaces), and
+  // spec-narration sentences reaching the reader — the radical-candor §7 class.
+  for (const f of checkApparatusLeakage(chapter)) {
+    push(f.checkId as string, "apparatus-leakage", f.message, f.evidence);
+  }
   // GN1 — ungrounded statistical figures (fabricated percentages/multipliers/
   // magnitudes) in reader prose. v2-gated (returns [] on a v1 chapter → skip);
   // SHADOW=major. Complements the semantic factual_accuracy axis deterministically.
@@ -1070,6 +1226,9 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   for (const f of checkQuizLabelShapedCorrect(chapter.quiz)) {
     push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
   }
+  for (const f of checkQuizCausalKeyShape(chapter.quiz)) {
+    push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
+  }
   for (const f of checkQuizAnswerLabelLeak(chapter.quiz)) {
     push(f.checkId as string, `quiz.${extractQid(f.message)}`, f.message, f.evidence);
   }
@@ -1182,11 +1341,11 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   const minors = findings.filter((f) => f.severity === "minor");
 
   // The gate fails on any blocker OR any ENFORCED major (a curated, clean-corpus-
-  // calibrated subset of majors that block the write self-gate). ENFORCED_MAJOR is
-  // currently empty — see its definition for why no quality major is enforceable —
-  // so this is presently equivalent to `blockers.length === 0`, but the mechanism
-  // is wired and test-guarded so a genuinely-precise critic can be promoted in one
-  // line without touching every `gate.passed` consumer.
+  // calibrated subset of majors that block the write self-gate). ENFORCED_MAJOR
+  // currently holds EW1 + SEAM1 + SEAM2 — see its definition for the mechanical
+  // rung-4 bar (clean-zero, gold-zero, ≥2 TPs) an id must clear. The mechanism is
+  // test-guarded so a genuinely-precise critic can be promoted in one line without
+  // touching every `gate.passed` consumer.
   const enforcedMajors = majors.filter((f) => ENFORCED_MAJOR.has(f.catalogId));
 
   return {

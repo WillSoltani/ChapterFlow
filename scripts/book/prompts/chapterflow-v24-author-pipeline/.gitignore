@@ -1,3 +1,12 @@
 # Pre-QC variety-scout reads (P08). Ephemeral operator/P10 comparison artifacts written by the
 # autopilot; they are NOT QC evidence and must never be committed into the tracked state corpus.
 state/qc-preflight/
+
+# Retention archives of blocked promotion reports (F-14 / Prompt 12). Reports pruned
+# beyond the newest-5-per-book are MOVED here (never deleted) — they are cleanable
+# debris, not evidence to commit. The live _blocked/*.report.json are deliberately
+# NOT ignored: a real book's current blocked history is legitimate evidence.
+state/books/_blocked/_archive-*/
+
+# Test-only scratch state root (Prompt 11 state-root injection lands fixtures here).
+tests/.tmp/

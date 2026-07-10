@@ -105,24 +105,47 @@ export const REVIEW_WEIGHTS: Record<ReviewFactor, number> = {
   if (keys !== factors) throw new Error(`REVIEW_WEIGHTS keys (${keys}) must equal REVIEW_FACTORS (${factors})`);
 }
 
+// ── The chapter soft-acceptance bar ─────────────────────────────────────────
+
+/** The chapter-review SOFT acceptance bar — the single source of truth for the
+ *  numeric quality threshold a blinded reader ships a chapter against.
+ *
+ *  Owner decision 2026-07-04: lowered 84 → 80. The 84 bar was too brittle for
+ *  production — chapters in the demonstrated 84–87 same-bytes noise band
+ *  (±3.7, execution campaign) flapped: some converted via the near-bar tiebreak
+ *  while equally-good siblings fell to a consumed regen. 80 is a soft QUALITY
+ *  threshold ONLY; it does NOT relax any true blocker. Schema, factuality,
+ *  safety, source fidelity, rendering, quote-integrity, and key-soundness are
+ *  enforced independently (gate-chapter, finalGate, the quote byte-verify + the
+ *  Q3 structural recount here) and a chapter scoring 80+ still fails if any of
+ *  those trip. A chapter below 80 (outside the noise band) repairs/regenerates
+ *  through the normal bounded process.
+ *
+ *  The JSON contract field stays `ship84` (a fixed schema name) regardless of
+ *  the bar value; only the GATE line's number moves. The orchestrator resolves
+ *  an optional CHAPTERFLOW_CHAPTER_BAR override (authorReview.resolveChapterBar)
+ *  and threads it explicitly; this constant is the production default the pure
+ *  helpers fall back to. */
+export const AUTHOR_CHAPTER_BAR = 80;
+
 // ── The blinded reader task ─────────────────────────────────────────────────
 
 /** Build the blinded single-doc reader prompt for the chapter document at
  *  `docRelPath` (relative to the reader session's cwd, i.e. the pipeline dir).
  *  `bar` is substituted into the GATE line; the JSON field stays `ship84`
  *  (fixed contract name) regardless of the bar value. */
-export function buildReaderReviewTask(docRelPath: string, bar = 84): string {
+export function buildReaderReviewTask(docRelPath: string, bar = AUTHOR_CHAPTER_BAR): string {
   return `BLINDED CHAPTER REVIEW — you are an independent reader. You do not know how this chapter was produced; judge only what is on the page.
 
 One chapter of a book-learning product is at: ${docRelPath}
 Read ONLY this file. Do not write any files.
 
 PROCESS (strict order):
-1. Read the chapter top to bottom. Answer its quiz YOURSELF from the prose BEFORE looking at the ANSWER KEY at the document bottom. Record your answers, any disagreement with the key (key-soundness), and any tell that would let someone guess keys without reading (uniquely longest choice, hedging, giveaway phrasing).
+1. Read the chapter top to bottom. Answer its quiz YOURSELF from the prose BEFORE looking at the ANSWER KEY at the document bottom. Record your answers, any disagreement with the key (key-soundness), and any tell that would let someone guess keys without reading (uniquely longest choice, hedging, giveaway phrasing). For any stem asking WHY something happened (what caused / led to / explains): the key must name the ONE cause the prose actually shows — a key that restates the outcome, states a remedy, or has a sibling cause the prose supports equally is a key-soundness disagreement; say so.
 2. Score the chapter 0-100 on each factor: retention, quizzes, transfer, practical, summaries, tone, limits, insight, density, beginner.
    - retention: will a reader remember the core move in a week (memorable lines, concrete images, echoes)
    - quizzes: fair, derivable from prose, sound keys, no tells, distractors that teach
-   - transfer: applies beyond the book's own examples (if-then quality, challenge quality)
+   - transfer: applies beyond the book's own examples (if-then quality, challenge quality). Grade two DISTINCT example defects differently: (a) a FABRICATED / MISLEADING / SOURCE-CONTRADICTORY example — invents a person, event, quote, or number that did not happen, attributes a claim the source never makes, or teaches something the chapter's own material contradicts — is reader-harming and IS a mustFix; (b) a merely THIN-but-usable example — real and on-topic but a slot-filler that names no one and no place/number, shows no before→after (a decision and its consequence), only restates the lesson, or would fit any chapter — is NOT a mustFix: record it as a complaint with unit "example N" (the 1-based index) and mustFix:false so it can be improved without blocking the ship, and register the weakness by scoring transfer down. "Could be richer" is never a mustFix.
    - practical: a real person would actually DO these actions (low-friction, concrete, not theater)
    - summaries: fast/deep/full reads layered, accurate, each standalone
    - tone: plain confident register; no corporate filler; no template/scaffold smell
@@ -131,7 +154,7 @@ PROCESS (strict order):
    - density: ideas per paragraph; no padding or repetition
    - beginner: approachable cold; jargon-free
 3. GATE: would you ship this against a professional >=${bar}/100 bar? true/false.
-4. EVIDENCE: 2-4 VERBATIM quotes (exact copy-paste substrings of the file, each <=200 chars): strongest moment(s) and worst defect(s), each with a one-line why. Quotes are mechanically byte-verified — one altered character invalidates your review. Do not paraphrase inside quote fields. Additionally list every concrete defect in "complaints": unit = where it lives (e.g. "quiz Q2", "deep read"), problem = what is wrong, mustFix = whether you would block shipping on it. Use an empty array if there are none.
+4. EVIDENCE: 2-4 VERBATIM quotes (exact copy-paste substrings of the file, each <=200 chars): strongest moment(s) and worst defect(s), each with a one-line why. Quotes are mechanically byte-verified — one altered character invalidates your review. Do not paraphrase inside quote fields. Additionally list every concrete defect in "complaints": unit = where it lives (e.g. "quiz Q2", "deep read"), problem = what is wrong, mustFix = a SEVERITY judgment, not a preference. Set mustFix:true ONLY when you can name a concrete reader-harming defect in one of these RESERVED categories: (1) UNSAFE — advice that could hurt a reader who follows it; (2) FACTUALLY WRONG — an incorrect fact, name, date, number, or quote; (3) STRUCTURALLY INVALID — a missing or duplicated section, a broken quiz, or a section that fails its stand-alone promise; (4) SOURCE-CONTRADICTORY — contradicts the chapter's own material or a claim it makes elsewhere; (5) SCHEMA / APP-BREAKING — content that would render or function incorrectly in the product; (6) UNUSABLE — a reader genuinely could not learn or apply the chapter's core move from what is on the page; (7) FABRICATED / MISLEADING EXAMPLE (see transfer). mustFix is FALSE for everything else — thin-but-usable examples, weak or uneven distractors, generic phrasing, mild repetition, uneven rhythm, pacing, tone, or any "could be richer / I would prefer" polish. Registering craft weakness is what the 0-100 scores are for; a low score is not a mustFix. You may NOT set mustFix on subjective taste: if you cannot name the concrete defect and its reserved category, mustFix is FALSE. Use an empty array if there are no complaints.
 
 FINAL MESSAGE: exactly one fenced json block, no prose outside it:
 {
@@ -350,6 +373,34 @@ export function screenChapterStructuralClaims(
   return screen;
 }
 
+/** Formatting normalization for quote verification: NFC unicode, curly quotes →
+ *  straight, en/em dashes → hyphen, non-breaking → normal space, all whitespace
+ *  runs (incl. newlines) → one space, lowercased, trimmed. Deliberately narrow —
+ *  it forgives ONLY presentation (case, quote glyphs, whitespace), never word
+ *  choice, so a fabricated quote still fails the substring test. */
+function normalizeForQuoteMatch(s: string): string {
+  return s
+    .normalize("NFC")
+    .replace(/[‘’‛′]/g, "'")
+    .replace(/[“”‟″]/g, '"')
+    .replace(/[–—−]/g, "-")
+    .replace(/ /g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+/** A quote is verified if it is an exact substring of the doc, OR — after the
+ *  narrow formatting normalization above — a normalized substring. Fabrication
+ *  (words not in the chapter) is still rejected; only formatting flakes pass. */
+export function quoteVerified(docText: string, quote: string): boolean {
+  if (typeof quote !== "string" || quote.length === 0) return false;
+  if (docText.includes(quote)) return true;
+  const nq = normalizeForQuoteMatch(quote);
+  if (nq.length === 0) return false;
+  return normalizeForQuoteMatch(docText).includes(nq);
+}
+
 export type AdjudicateOpts = { bar?: number; reviewerSessionId?: string };
 
 /** Deterministically adjudicate a parsed reader review against the rendered
@@ -366,13 +417,20 @@ export function adjudicateReview(
   chapter: ChapterV21,
   opts: AdjudicateOpts = {},
 ): ChapterReviewV1 {
-  const bar = opts.bar ?? 84;
+  const bar = opts.bar ?? AUTHOR_CHAPTER_BAR;
 
-  // (a) quote byte-verification.
+  // (a) quote verification — exact substring first, then a FORMATTING-normalized
+  // fallback (quoteVerified). The anti-fabrication guarantee is preserved: the
+  // fallback only forgives case, smart-quotes/dashes, and whitespace/newline
+  // runs — a reader who invents words the chapter never wrote still fails. It
+  // rescues the common flake where a reader quotes a mid-sentence fragment as a
+  // standalone (capitalizing the leading letter) or normalizes a curly quote —
+  // 9 such false-invalid respawns in one gold run, twice failing a shippable
+  // chapter (ch06: "The return is set and not yet met." vs the doc's lowercase).
   const quotes = parsed.quotes.map((q) => ({
     quote: q.quote,
     why: q.why,
-    verified: docText.includes(q.quote),
+    verified: quoteVerified(docText, q.quote),
   }));
   const quotesValid = quotes.length > 0 && quotes.every((q) => q.verified);
 

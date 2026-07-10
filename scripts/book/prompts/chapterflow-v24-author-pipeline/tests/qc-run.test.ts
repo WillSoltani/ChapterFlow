@@ -13,10 +13,20 @@ import { spawnSync } from "child_process";
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
-import { test } from "./harness.js";
-import { cleanTmp, makeChapter, PIPELINE_DIR, runCli, TMP_DIR } from "./helpers.js";
+import { test, xenv } from "./harness.js";
+import { cleanTmp, makeChapter, PIPELINE_DIR, runCli, STATE_CHAPTERS, TMP_DIR } from "./helpers.js";
 
 const BOOK = "zz-fixture-blind";
+
+/** The qc-run workflow generator resolves the REAL `daring-greatly` gold corpus (7
+ *  chapters + its live rubric); it can't be synthesized without that book, so it is
+ *  env-gated on the corpus (F-12) — RUNS where daring-greatly is on disk, xenv on a
+ *  bare checkout. (The quiz-blind/quiz-verify tests below stay hermetic — they use a
+ *  synthetic makeChapter fixture.) */
+function daringGreatlyCorpusPresent(): boolean {
+  return existsSync(resolve(STATE_CHAPTERS, "daring-greatly-ch01.v21-native.chapter.json")) &&
+    existsSync(resolve(STATE_CHAPTERS, "daring-greatly-ch07.v21-native.chapter.json"));
+}
 
 function withChapterFile(fn: (file: string) => void): void {
   mkdirSync(TMP_DIR, { recursive: true });
@@ -72,7 +82,10 @@ test("quiz-verify: partial coverage fails (no passing by answering only the easy
   });
 });
 
-test("qc-run generates a launchable workflow with live rubric + resolved chapters", () => {
+xenv("qc-run generates a launchable workflow with live rubric + resolved chapters",
+  "needs the `daring-greatly` gold corpus (7 chapters in state/chapters/) — absent on this checkout",
+  daringGreatlyCorpusPresent,
+  () => {
   const outPath = resolve(PIPELINE_DIR, "state", "qc-runs", "daring-greatly.workflow.js");
   const existed = existsSync(outPath) ? readFileSync(outPath, "utf8") : null;
   try {

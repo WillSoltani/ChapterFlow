@@ -416,6 +416,61 @@ test("E2 integration: doAuthorReview CARRIES a durable per-chapter review — sp
   }
 });
 
+test("F-06: the durable acceptance record carries the deterministic structural-sameness snapshot (telemetry, advisory by default)", async () => {
+  const chapters = [makeChapter(BOOK, 1), makeChapter(BOOK, 2)];
+  // Same diversification the E2 integration test needs so the review-entry budget
+  // check exercises the carry path, not the fixture.
+  chapters[1].implementationPlan.twentyFourHourChallenge = "Before your next standup, write the one blocker sentence in your notes app.";
+  chapters[1].implementationPlan.weeklyPractice = "Every Friday, count the open loops in your tracker and close exactly one.";
+  chapters[1].tryThisNow = "When the next email lands, say the two-sentence triage script out loud.";
+  rmSync(reviewDir(BOOK), { recursive: true, force: true });
+  for (const ch of chapters) appendReviewHistory(BOOK, mkReview(ch, { bar: 84, reviewerSessionId: "prior-reviewer" }));
+  try {
+    const { deps } = mkReviewDeps(bookAcceptReply, chapters);
+    const tmpDoc = mkdtempSync(join(tmpdir(), "f06-int-"));
+    const records: AuthorAcceptanceRecord[] = [];
+    const io: Partial<AuthorReviewIo> = {
+      loadChapters: () => chapters,
+      authorSessionOf: () => "the-author-not-the-reviewer",
+      chapterExists: () => true,
+      writeReviewDoc: (bookId, fileName, text) => {
+        const abs = join(tmpDoc, `${bookId}-${fileName}`);
+        writeFileSync(abs, text, "utf8");
+        return { absPath: abs, relPath: abs };
+      },
+      persistReview: () => "/tmp/r.json",
+      persistAcceptance: (_bookId, record) => { records.push(record); return "/tmp/a.json"; },
+      // Deterministic empty pool → the panel spawns fresh and persists exactly the
+      // record we capture (never reads a stray on-disk acceptance read).
+      listAcceptanceReads: () => [],
+      acceptance: {
+        openRound: () => ({ roundId: "r-int", tokens: {} }),
+        writeBar: () => "/tmp/bar.json",
+        writeConfirm: () => "/tmp/confirm.json",
+        writeAttestation: () => "/tmp/att.json",
+      },
+      evidence: { runKeyJudge: async () => ({ ok: true }), runSweep: async () => ({ ok: true }) },
+      resolveBeatShipped: async () => ({ ok: true, composite: null, source: "none" }),
+      regenConsumedFor: () => 0,
+      recordRegenConsumed: () => {},
+    };
+    const result = await doAuthorReview(BOOK, deps, { maxParallel: 2, bar: 84, io });
+    assert.equal(result, null, `expected phase-complete (null), got ${JSON.stringify(result)}`);
+    assert.ok(records.length >= 1, "an acceptance record was persisted");
+    const snap = records[records.length - 1].structuralSameness;
+    assert.ok(snap, "the acceptance record carries the structuralSameness telemetry field");
+    assert.equal(snap!.mode, "advisory", "default mode is advisory (flag ships off)");
+    assert.ok(Array.isArray(snap!.archAxes) && Array.isArray(snap!.contentOverCap), "snapshot carries both axis arrays");
+    assert.equal(typeof snap!.archSevere, "boolean");
+    assert.equal(typeof snap!.contentSevere, "boolean");
+    // The telemetry field must NOT perturb the doc identity the pool keys on.
+    assert.equal(typeof records[records.length - 1].docSha256, "string");
+    rmSync(tmpDoc, { recursive: true, force: true });
+  } finally {
+    rmSync(reviewDir(BOOK), { recursive: true, force: true });
+  }
+});
+
 test("E2: regen counts PERSIST across a simulated re-entry (a carried PASS never resets the budget)", () => {
   const root = mkdtempSync(join(tmpdir(), "e2-regen-"));
   const LIN = "abc123def456"; // fixed design lineage for the simulated entries

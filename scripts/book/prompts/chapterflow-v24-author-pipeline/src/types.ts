@@ -308,6 +308,10 @@ export type CriticCheckId =
   | "BP32.quiz_pronoun_referent_mismatch"
   // Try-this-now opener reuse across chapters (the separable opener subset of repeated_unit).
   | "BP33.try_this_now_opener_reuse"
+  | "BP34.aphorism_repetition"
+  // Recurring distinctive sentence TAIL — the varied-frame clone class BP34's
+  // verbatim key misses (CF-J: radical-candor "…, or it drifts" ch3/6/9).
+  | "BP34.tail_clone"
   | "schema.quiz_duplicate_choice"
   | "schema.quiz_lowercase_choice_start"
   | "schema.quiz_unexpected_field"
@@ -352,6 +356,16 @@ export type CriticCheckId =
   // Exotic / off-standard name density — the example cast is mostly off the
   // American/Canadian commonality oracle (advisory).
   | "C27.exotic_name_density"
+  // CF-I machinery-leakage family (advisory). Contract/provenance vocabulary and
+  // dealt beat labels leaking into reader content: a pipeline artifact narrated as
+  // the example protagonist (C32), briefRotation entry/outcome beat labels surfacing
+  // as reader prose (C33, per-chapter + book-level), a date/citation standing in for
+  // an opening scene (C34), and a quiz key rewarding source-citation over application
+  // (C35). See critics/{metaCaseProtagonist,beatVocabularyEcho,citationDateDoorway,lineageKeyQuiz}.ts.
+  | "C32.meta_case_protagonist"
+  | "C33.beat_vocabulary_echo"
+  | "C34.citation_date_doorway"
+  | "C35.lineage_key_quiz"
   // Uniform success — every example resolves in clean instant success, no
   // friction-bearing scene anywhere in the chapter's slate (advisory).
   | "C28.uniform_success"
@@ -623,7 +637,7 @@ export type ReviewCardV21 = {
 };
 
 export type ImplementationPlanV21 = {
-  title: string;                        // 4–7 words naming the specific skill this plan teaches
+  title: string;                        // 2–5 word skill name (imperative verb + concrete object; see QUALITY BAR rule 9)
   titleSourceAnchorIds?: string[];
   coreSkill: string;                    // 2–4 sentences
   coreSkillSourceAnchorIds?: string[];

@@ -134,6 +134,63 @@ test("order: facts and namedCases keep exact packet order (also under a reshuffl
   assert.deepEqual(reprojected.namedCases.map((c) => c.id), [...packet.namedCases.map((c) => c.id)].reverse());
 });
 
+// ── CF-J Task 4: page-citation mint-removal in the projection ─────────────────────
+
+const PAGE_CITE = /\b(?:Ch(?:apter)?\.?\s*\d+\s*,?\s*)?pp?\.\s*\d+|\bon\s+pages?\s+\d+/i;
+
+/** A packet decorated with the radical-candor-class research-minted page citations
+ *  in every text field the projection copies. */
+function loadCiteMintedPacket(): SourcePacketV1 {
+  const packet = loadLegacyPacket();
+  packet.facts[0].claim = "Growth Management is documented at Ch. 3 pp. 47-48 as supporting each person's trajectory.";
+  packet.facts[0].mechanism = "The trajectory frame works because Ch. 3 pp. 47-48 separates role fit from talent labels.";
+  packet.facts[1].commonError = "Treating the label as fixed, per Ch. 3 p. 49.";
+  packet.facts[1].whyWrong = "On page 49, the modes are trajectories, not types.";
+  packet.namedCases[0].label = "Rock Star Mode appears at Ch. 3 pp. 49-50 as gradual growth.";
+  packet.namedCases[0].summary = "The official glossary locates Growth Management at Ch. 3 pp. 47-48. It shifts attention to trajectory.";
+  packet.namedCases[0].hardSpecifics = ["gradual growth and mastery", "Ch. 3 pp. 49-50", "role fit over talent labels"];
+  return packet;
+}
+
+test("CF-J: the projected text carries NO page citations; citation-only hardSpecifics are dropped", () => {
+  const packet = loadCiteMintedPacket();
+  const projection = writerPacketProjection(packet);
+  const projected = JSON.stringify(projection);
+  assert.ok(!PAGE_CITE.test(projected), `a page citation survived into the writer projection: ${projected.match(PAGE_CITE)?.[0]}`);
+  // Spans stripped, content kept.
+  assert.equal(projection.facts[0].claim, "Growth Management is documented as supporting each person's trajectory.");
+  assert.equal(projection.facts[1].whyWrong, "the modes are trajectories, not types.");
+  assert.equal(projection.namedCases[0].label, "Rock Star Mode appears as gradual growth.");
+  // The citation-only hardSpecifics entry is DROPPED; the real specifics survive.
+  assert.deepEqual(projection.namedCases[0].hardSpecifics, ["gradual growth and mastery", "role fit over talent labels"]);
+});
+
+test("CF-J: the RAW packet keeps its citations (mint-removal is projection-only) and anchor IDs are unchanged", () => {
+  const packet = loadCiteMintedPacket();
+  const before = JSON.stringify(packet);
+  const projection = writerPacketProjection(packet);
+  assert.equal(JSON.stringify(packet), before, "the raw packet must keep its page citations byte-for-byte");
+  assert.ok(PAGE_CITE.test(before), "precondition: the raw packet really carries citations");
+  assert.deepEqual(projection.allowedAnchors, packet.allowedAnchors.map((a) => a.id), "anchor IDs are untouched by the strip");
+});
+
+test("CF-J: the writer CARD renders without the packet's page citations (the faithful-quoting channel closed)", async () => {
+  const { buildAuthorCard } = await import("../src/orchestrator/authorRun.js");
+  const packet = loadCiteMintedPacket();
+  const card = buildAuthorCard({
+    bookId: packet.bookId,
+    chapterNumber: packet.chapterNumber,
+    briefMd: "# brief\n",
+    packet,
+    voice: null,
+  });
+  // Scope the assertion to the SOURCE PACKET section — the self-verify block
+  // legitimately NAMES the citation forms ("Ch./p./pp.") as banned vocabulary.
+  const packetSection = card.slice(card.indexOf("SOURCE PACKET"), card.indexOf("OUTPUT"));
+  assert.ok(packetSection.length > 100, "precondition: the card carries the SOURCE PACKET section");
+  assert.ok(!PAGE_CITE.test(packetSection), `a page citation reached the writer card: ${packetSection.match(PAGE_CITE)?.[0]}`);
+});
+
 // ── purity ─────────────────────────────────────────────────────────────────────────
 
 test("purity: projecting never mutates the packet, and projection arrays are fresh", () => {

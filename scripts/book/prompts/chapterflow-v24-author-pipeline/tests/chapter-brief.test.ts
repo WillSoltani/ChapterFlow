@@ -64,11 +64,21 @@ const CASE_LABELS: Record<number, string[]> = {
 
 const HARD_SPECIFICS = ["credit utilization", "payment timing window", "reported balance snapshot", "statement closing date"];
 
+// A distinct learning JOB per chapter — a good brief set teaches distinct capabilities,
+// so the coreMove (facts[0].mechanism) must diverge across chapters or CF-C's LJ1
+// adjacent-learning-job advisory legitimately fires. Templated "Mechanism i of chapter n"
+// text (identical modulo the chapter number) is what LJ1 is designed to catch.
+const CHAPTER_MOVE: Record<number, string> = {
+  1: "verify a live handoff against its signed source note",
+  2: "pace deliberate practice against honest outside feedback",
+  3: "read a cohort study without overclaiming its finding",
+};
+
 function fact(n: number, i: number, over: Partial<SourcePacketFact> = {}): SourcePacketFact {
   return {
     id: `ch${n}.fact.${i}`,
     claim: `Claim ${i} for chapter ${n} about a concrete decision moment.`,
-    mechanism: `Mechanism ${i} of chapter ${n} explains the effect concretely.`,
+    mechanism: `Mechanism ${i}: ${CHAPTER_MOVE[n] ?? `handle case ${i} of chapter ${n}`}, and the effect follows.`,
     commonError: `Common error ${i} for chapter ${n}.`,
     whyWrong: `Why error ${i} is wrong in chapter ${n}.`,
     allowedClaimTypes: [],
@@ -366,6 +376,53 @@ test("B1: writeChapterBriefs persists json+md and the gate passes on a good set"
   });
 });
 
+// ── CF-C: learning-job separation (adjacentJobs + NOT-THIS card line + LJ1 advisory) ──
+test("CF-C: each brief carries its neighbours' learning jobs (adjacentJobs) and renders a NOT-THIS-CHAPTER line", () => {
+  withBook("cfd-jobs", (roots) => {
+    const { briefs } = compileChapterBriefs(BOOK, { roots });
+    const byN = new Map(briefs.map((b) => [b.chapterNumber, b]));
+    // ch1 (first) has next only; ch2 (middle) has prev+next; ch3 (last) has prev only.
+    assert.equal(byN.get(1)!.adjacentJobs?.prev, undefined, "first chapter has no prev job");
+    assert.equal(byN.get(1)!.adjacentJobs?.next, byN.get(2)!.coreMove, "ch1's next job is ch2's coreMove");
+    assert.equal(byN.get(2)!.adjacentJobs?.prev, byN.get(1)!.coreMove, "ch2's prev job is ch1's coreMove");
+    assert.equal(byN.get(2)!.adjacentJobs?.next, byN.get(3)!.coreMove, "ch2's next job is ch3's coreMove");
+    assert.equal(byN.get(3)!.adjacentJobs?.next, undefined, "last chapter has no next job");
+    // The rendered card VARIETY line names THIS job and the neighbour it must not re-teach.
+    const md2 = renderBriefMd(byN.get(2)!);
+    assert.match(md2, /THIS CHAPTER'S JOB:/, "the job line renders");
+    assert.match(md2, /NOT THIS CHAPTER:/, "the neighbour-job separation renders");
+    assert.match(md2, /prev ch owns/, "names the previous chapter's job");
+    assert.match(md2, /next ch owns/, "names the next chapter's job");
+  });
+});
+
+test("CF-C: LJ1 fires (advisory, not blocker) when adjacent chapters declare near-duplicate learning jobs", () => {
+  withBook(
+    "cfd-lj1",
+    (roots) => {
+      const { findings } = writeChapterBriefs(BOOK, { roots });
+      assert.deepEqual(findings, []);
+      const report = validateChapterBriefs(BOOK, roots);
+      // ADVISORY only — the gate still PASSES (adjacent overlap is never a blocker).
+      assert.equal(report.passed, true, `LJ1 must never block: ${JSON.stringify(report.findings)}`);
+      const lj1 = report.findings.filter((f) => f.checkId === "LJ1.adjacent_learning_job");
+      assert.equal(lj1.length, 1, `expected exactly one LJ1 advisory, got: ${JSON.stringify(report.findings)}`);
+      assert.equal(lj1[0].severity, "advisory");
+      assert.match(lj1[0].message, /chapters 1 and 2/, "names both offending chapters");
+    },
+    { mutatePackets: (packets) => { packets[1].facts[0].mechanism = packets[0].facts[0].mechanism; } },
+  );
+});
+
+test("CF-C: LJ1 stays SILENT on the distinct-job fixture (adjacent coreMoves diverge)", () => {
+  withBook("cfd-lj1-silent", (roots) => {
+    writeChapterBriefs(BOOK, { roots });
+    const report = validateChapterBriefs(BOOK, roots);
+    assert.deepEqual(report.findings.filter((f) => f.checkId === "LJ1.adjacent_learning_job"), [], "distinct adjacent jobs must not fire LJ1");
+    assert.equal(report.passed, true);
+  });
+});
+
 // ── gate blockers on crafted bad briefs ──────────────────────────────────────────────
 function corruptBrief(roots: Roots, n: number, mutate: (brief: ChapterBriefV1) => void): void {
   const p = chapterBriefPath(BOOK, n, roots);
@@ -468,7 +525,7 @@ test("B1: rendered md contains every section and stays ≤ 9200 chars on the fix
       // (fixture measures ~7.8k). The CARD no longer pays this twice — B0 strips the
       // md's VARIETY section when the machine brief renders the explicit block, so the
       // card's ≤25k budget holds (real-size pin lives in stier2-levers.test.ts).
-      assert.ok(md.length <= 9200, `ch${brief.chapterNumber} md is ${md.length} chars (cap 9200)`); // 8200 → 9200: STIER-3 v4 idiom + shell lines (fixture measures ~8.7k)
+      assert.ok(md.length <= 9600, `ch${brief.chapterNumber} md is ${md.length} chars (cap 9600)`); // 8200 → 9200 (STIER-3 v4) → 9600: CF-C THIS-CHAPTER'S-JOB / NOT-THIS-CHAPTER line in VARIETY (fixture measures ~9.5k)
     }
   });
 });

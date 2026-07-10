@@ -294,10 +294,17 @@ test("source-v2 provenance rejects nonexistent, wrong-chapter, placeholder, and 
       mutate: (chapter) => { chapter.authoring!.sourceAnchors!.effectiveAnchors.hook = ["anchor-99"]; },
     },
     {
+      // SC11.6 fires for an anchor that EXISTS and is chapter-correct but whose KIND cannot
+      // back the unit's claim type. ch01.concept.harbor is a `concept` anchor, and
+      // defaultClaimTypesFor("concept") omits quiz_prompt/quiz_explanation — so citing it on a
+      // quiz unit is genuinely unsupportive and must surface the precise SC11.6.
+      // NOTE: an earlier revision planted ch01.ex.lantern here, but a named_example anchor DOES
+      // support quiz claims — that under-uses its hardSpecifics, which is the distinct, coarser
+      // SC11.2 failure (exercised as the boundary's other side below), not SC11.6.
       name: "unsupported",
       checkId: "SC11.6.unsupported_anchor",
-      evidence: "ch01.ex.lantern",
-      mutate: (chapter) => { chapter.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.ex.lantern"]; },
+      evidence: "ch01.concept.harbor",
+      mutate: (chapter) => { chapter.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.concept.harbor"]; },
     },
   ];
   for (const c of cases) {
@@ -309,6 +316,42 @@ test("source-v2 provenance rejects nonexistent, wrong-chapter, placeholder, and 
       `${c.name} should raise ${c.checkId}; got ${findings.map((finding) => `${finding.checkId}:${finding.evidence}`).join(", ")}`,
     );
   }
+});
+
+test("SC11 boundary: supported-but-missing-specific → SC11.2; present-but-unsupportive → SC11.6", () => {
+  // These two failure modes are DISTINCT and must not collapse. SC11.2 is the coarser "you
+  // cited a supporting anchor but did not build the unit from its hardSpecifics"; SC11.6 is the
+  // precise "this anchor's kind cannot back this claim type at all". The validator checks SC11.6
+  // before SC11.2 (with `continue`), so each failure mode reports its own most-actionable code.
+  // Both are v2 blockers (finalGate catalog). This test pins each side so the precedence cannot
+  // silently invert.
+
+  // Side A — anchor SUPPORTS the claim type but the unit omits its verbatim specifics → SC11.2.
+  // ch01.ex.lantern is a named_example (supportsClaimTypes includes quiz_prompt), so it is a
+  // legal anchor for a quiz unit; the quiz prose simply never names lantern/ledger/beacon.
+  const missingSpecific = fullyAnchoredChapter();
+  missingSpecific.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.ex.lantern"];
+  const specificFindings = checkChapterProvenance(missingSpecific, sidecar());
+  const sc112 = specificFindings.filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && f.evidence === "ch01.ex.lantern");
+  assert.ok(sc112.length > 0, "supported anchor missing its hardSpecifics must raise SC11.2");
+  assert.ok(sc112.every((f) => f.severity === "blocker"), "SC11.2 must stay a blocker");
+  assert.ok(
+    !specificFindings.some((f) => String(f.checkId) === "SC11.6.unsupported_anchor" && f.evidence === "ch01.ex.lantern"),
+    "a genuinely supporting anchor must NOT be mislabeled unsupported (SC11.6)",
+  );
+
+  // Side B — anchor EXISTS and is chapter-correct but its kind cannot back the claim type → SC11.6.
+  // ch01.concept.harbor is a `concept` anchor; concept.supportsClaimTypes omits quiz_prompt.
+  const unsupportive = fullyAnchoredChapter();
+  unsupportive.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.concept.harbor"];
+  const unsupportiveFindings = checkChapterProvenance(unsupportive, sidecar());
+  const sc116 = unsupportiveFindings.filter((f) => String(f.checkId) === "SC11.6.unsupported_anchor" && f.evidence === "ch01.concept.harbor");
+  assert.ok(sc116.length > 0, "present-but-unsupportive anchor must raise SC11.6");
+  assert.ok(sc116.every((f) => f.severity === "blocker"), "SC11.6 must stay a blocker");
+  assert.ok(
+    !unsupportiveFindings.some((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && f.evidence === "ch01.concept.harbor"),
+    "an unsupportive anchor must report the precise SC11.6, not the coarser SC11.2",
+  );
 });
 
 test("SC11.2 quota rebalance (P15 ship-layer): non-narrative units need 1 verbatim specific, narration keeps 2", () => {
@@ -342,6 +385,42 @@ test("SC11.2 quota rebalance (P15 ship-layer): non-narrative units need 1 verbat
     .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && String(f.message).includes("example["));
   assert.ok(exHits.length >= 1, "an example with 1 of 2+ specifics still blocks (narration keeps 2)");
   assert.match(exHits[0].message, /<2 of its hardSpecifics/, "narration message keeps the min-2 quota");
+});
+
+test("SC11.2 CF-J tolerance: a page-citation-shaped hardSpecific counts as satisfied by construction; real specifics still bind", () => {
+  // CF-J Task 4 investigation result: SC11 matches anchors BY ID against the sidecar
+  // catalog; its ONE text-based clause is SC11.2, which requires the unit text to
+  // contain the cited anchor's hardSpecifics VERBATIM. The radical-candor research
+  // minted page citations INTO hardSpecifics ("Ch. 6 p. 138"), so writers satisfied
+  // SC11.2 by quoting the citation into reader prose. The projection now withholds
+  // citations from the writer — SC11.2 therefore treats a citation-shaped specific
+  // as an internal coordinate, satisfied by construction. Strictly TOLERANT:
+  // `present` can only rise, so no unit can newly block.
+  const citedSidecar = sidecar();
+  // lantern anchor: one REAL specific + one citation locator (the radical-candor shape).
+  citedSidecar.namedExamples[0].hardSpecifics = ["lantern", "Ch. 6 p. 138"];
+
+  // NARRATION unit (example, min 2): text carries the real specific but NOT the
+  // citation — previously SC11.2 blocked; the citation now counts by construction.
+  const tolerant = fullyAnchoredChapter();
+  tolerant.examples[0].title = "A rushed handover";
+  tolerant.examples[0].scenario = "A rushed handover; the lantern record gets checked before the shift ends.";
+  tolerant.examples[0].whatToDo = "Check the record before the handover.";
+  tolerant.examples[0].whyItMatters = "Early checks catch drift before it compounds.";
+  const tolerantHits = checkChapterProvenance(tolerant, citedSidecar)
+    .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && String(f.message).includes("example[0]"));
+  assert.deepEqual(tolerantHits.map((f) => f.message), [], "real specific present + citation auto-satisfied → SC11.2 passes without page cites in reader prose");
+
+  // The tolerance is BOUNDED: drop the real specific too and the unit still blocks
+  // (the citation contributes 1; the narration quota is 2).
+  const stillBound = fullyAnchoredChapter();
+  stillBound.examples[0].title = "A rushed handover";
+  stillBound.examples[0].scenario = "A rushed handover; the record gets checked before the shift ends.";
+  stillBound.examples[0].whatToDo = "Check the record before the handover.";
+  stillBound.examples[0].whyItMatters = "Early checks catch drift before it compounds.";
+  const boundHits = checkChapterProvenance(stillBound, citedSidecar)
+    .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && String(f.message).includes("example[0]"));
+  assert.ok(boundHits.length >= 1, "with the real specific absent, SC11.2 still blocks — the tolerance covers ONLY citation-shaped specifics");
 });
 
 test("generation loads and passes validated source evidence before editor and planner calls", async () => {

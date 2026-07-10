@@ -7,8 +7,18 @@ import { currentProviderIdentity, writeStageCacheManifest } from "../src/cache/s
 import { buildChapterCacheInputs } from "../src/generateChapter.js";
 import { generateBook, loadChapterIndex } from "../src/generateBook.js";
 import { cacheAcceptancePath, loadAuthorProvenance, loadCacheAcceptances, provenancePath } from "../src/qc/sessionProvenance.js";
-import { test } from "./harness.js";
+import { xenv } from "./harness.js";
 import { PIPELINE_DIR, STATE_CHAPTERS } from "./helpers.js";
+
+/** This regression drives the REAL `drive` gold corpus through generateBook's
+ *  cache-acceptance path (chapter content + a reproducible cache manifest); it cannot
+ *  be synthesized without reproducing the whole authoring cache, so it is env-gated on
+ *  the corpus rather than converted to a fixture (F-12). RUNS wherever `drive` is on
+ *  disk; xenv on a bare checkout. */
+function driveCorpusPresent(): boolean {
+  return existsSync(resolve(PIPELINE_DIR, "state", "indexes", "drive.json")) &&
+    existsSync(resolve(STATE_CHAPTERS, "drive-ch06.v21-native.chapter.json"));
+}
 
 function snapshotFile(path: string): string | null {
   return existsSync(path) ? readFileSync(path, "utf8") : null;
@@ -19,7 +29,10 @@ function restoreFile(path: string, snapshot: string | null): void {
   else writeFileSync(path, snapshot, "utf8");
 }
 
-test("generateBook range runs do not write or overwrite production packages", async () => {
+xenv("generateBook range runs do not write or overwrite production packages",
+  "needs the `drive` gold corpus (state/indexes/drive.json + drive-ch06 chapter) — absent on this checkout",
+  driveCorpusPresent,
+  async () => {
   const bookId = "drive";
   const chapterNumber = 6;
   // Defensive isolation: clear any leaked `.chapterflow/runs/drive/zz-test-*` source-run dir from a

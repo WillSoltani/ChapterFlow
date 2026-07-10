@@ -75,17 +75,27 @@ function cleanPair(): [ChapterV21, ChapterV21] {
 
 // ── CHB1: anchor repetition ─────────────────────────────────────────────────
 
-test("CHB1 fires (blocker) when a packet case's distinctive token exceeds repCap on the reading surface", () => {
-  const [ch1, ch2] = cleanPair();
+test("CHB1 severity is BANDED (convergence-safe 2026-07-05): just over cap is ADVISORY; egregious hammering (≥ 2×cap) is a blocker", () => {
   // 'popsicle' and 'hotline' tie on document frequency (both only in ch1);
-  // the longer token wins, so 'popsicle' is the counted anchor. 7 > 6.
-  ch1.breakdown.deepRead += " The popsicle hotline rang." + " The popsicle stayed cold.".repeat(6);
+  // the longer token wins, so 'popsicle' is the counted anchor.
+  const build = (mentions: number): ChapterV21[] => {
+    const [ch1, ch2] = cleanPair();
+    ch1.breakdown.deepRead += " The popsicle hotline rang." + " The popsicle stayed cold.".repeat(mentions - 1);
+    return [ch1, ch2];
+  };
   const packets = packetsFor([[1, ["Popsicle Hotline"]], [2, ["Emerson Electric"]]]);
-  const findings = only(checkReaderBudgets([ch1, ch2], { packets }), "CHB1.anchor_repetition");
-  assert.equal(findings.length, 1);
-  assert.equal(findings[0].severity, "blocker");
-  assert.equal(findings[0].chapterNumber, 1);
-  assert.match(findings[0].message, /"popsicle"/);
+  // 7 mentions (one over cap 6) — a packet anchor, but minor repetition → ADVISORY,
+  // so it no longer routes an otherwise-passing chapter into a full re-author.
+  const minor = only(checkReaderBudgets(build(7), { packets }), "CHB1.anchor_repetition");
+  assert.equal(minor.length, 1);
+  assert.equal(minor[0].severity, "advisory", "one over cap is minor repetition → advisory");
+  assert.equal(minor[0].chapterNumber, 1);
+  assert.match(minor[0].message, /"popsicle"/);
+  // 12 mentions (≥ repCap*CHB1_HARD_ANCHOR_MULT = 12) — egregious hammering, the
+  // band where SEAM2/the reader panel co-fire → stays a BLOCKER.
+  const egregious = only(checkReaderBudgets(build(12), { packets }), "CHB1.anchor_repetition");
+  assert.equal(egregious.length, 1);
+  assert.equal(egregious[0].severity, "blocker", "≥ 2×cap is egregious → blocker");
 });
 
 test("CHB1 boundary: count == repCap(6) passes; count 7 fires at cap 6 but passes at --rep-cap 7", () => {

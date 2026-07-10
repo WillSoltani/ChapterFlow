@@ -22,9 +22,27 @@
  *
  * Pure function: no fs, no clock, no mutation of the input; returned arrays are
  * fresh (mutating the projection never touches the packet).
+ *
+ * PAGE-CITATION MINT-REMOVAL (CF-J Task 4, 2026-07-09). The radical-candor research
+ * minted "Ch. N pp. N-M" locators INSIDE packet fact/case TEXT (99 occurrences across
+ * that book's packets: "HHIPP is documented at Ch. 6 pp. 137-141 and 152.",
+ * hardSpecifics entries that ARE bare citations like "Ch. 6 p. 138"). The projection
+ * handed that text to the writer as the ONLY allowed factual material, and the writer
+ * quoted it faithfully into reader prose — the release review's §7 apparatus-leakage
+ * class. Every projected TEXT field (fact claim/mechanism/commonError/whyWrong, case
+ * label/summary/hardSpecifics) is therefore passed through stripPageCitationSpans:
+ * the citation span is deleted and the seams tidied; a hardSpecifics entry that IS a
+ * citation is dropped. INVARIANTS: (a) the raw packet on disk stays untouched (this
+ * function was already pure); (b) anchor IDs and every validation surface are
+ * unchanged — sourceGrounding's SC11 matches by anchor ID against the SIDECAR
+ * catalog, and its one text-based clause (SC11.2 hardSpecifics-presence) treats
+ * citation-shaped specifics as internal coordinates satisfied by construction (see
+ * sourceGrounding.ts checkUnit). The DETECTION half is critic C36
+ * (critics/apparatusLeakage.ts), which shares the same citation grammar.
  */
 
 import type { SourcePacketV1 } from "../artifacts/artifactTypes.js";
+import { isPageCitationOnly, stripPageCitationSpans } from "../critics/apparatusLeakage.js";
 
 export const WRITER_PACKET_PROJECTION_SCHEMA_VERSION = "chapterflow-writer-packet-v1" as const;
 
@@ -63,9 +81,12 @@ export type WriterPacketProjection = {
 };
 
 /** Copy a string field only when it carries content (defensive against partially
- *  populated legacy packets; keeps empty-string noise out of the card). */
+ *  populated legacy packets; keeps empty-string noise out of the card), with page
+ *  citations stripped (CF-J mint-removal — see the header). */
 function textOrUndefined(value: unknown): string | undefined {
-  return typeof value === "string" && value.length > 0 ? value : undefined;
+  if (typeof value !== "string" || value.length === 0) return undefined;
+  const stripped = stripPageCitationSpans(value);
+  return stripped.length > 0 ? stripped : undefined;
 }
 
 /** Project a full source packet down to the slim writer view. Array order is
@@ -77,7 +98,14 @@ export function writerPacketProjection(packet: SourcePacketV1): WriterPacketProj
     chapterId: packet.chapterId,
     chapterNumber: packet.chapterNumber,
     facts: (packet.facts ?? []).map((fact) => {
-      const projected: WriterPacketProjectionFact = { id: fact.id, claim: fact.claim };
+      // claim is REQUIRED on the projection: strip citations but never drop the field
+      // (a claim that somehow strips to "" keeps its original text — fail-open on the
+      // writer's factual material rather than handing over an empty claim).
+      const strippedClaim = typeof fact.claim === "string" ? stripPageCitationSpans(fact.claim) : fact.claim;
+      const projected: WriterPacketProjectionFact = {
+        id: fact.id,
+        claim: typeof strippedClaim === "string" && strippedClaim.length > 0 ? strippedClaim : fact.claim,
+      };
       const mechanism = textOrUndefined(fact.mechanism);
       if (mechanism !== undefined) projected.mechanism = mechanism;
       const commonError = textOrUndefined(fact.commonError);
@@ -91,12 +119,23 @@ export function writerPacketProjection(packet: SourcePacketV1): WriterPacketProj
       return projected;
     }),
     namedCases: (packet.namedCases ?? []).map((namedCase) => {
-      const projected: WriterPacketProjectionCase = { id: namedCase.id, label: namedCase.label };
+      // label is REQUIRED: same strip-but-never-drop policy as fact.claim above.
+      const strippedLabel = typeof namedCase.label === "string" ? stripPageCitationSpans(namedCase.label) : namedCase.label;
+      const projected: WriterPacketProjectionCase = {
+        id: namedCase.id,
+        label: typeof strippedLabel === "string" && strippedLabel.length > 0 ? strippedLabel : namedCase.label,
+      };
       if (typeof namedCase.realWorld === "boolean") projected.realWorld = namedCase.realWorld;
       const summary = textOrUndefined(namedCase.summary);
       if (summary !== undefined) projected.summary = summary;
       if (Array.isArray(namedCase.hardSpecifics) && namedCase.hardSpecifics.length > 0) {
-        projected.hardSpecifics = [...namedCase.hardSpecifics];
+        // A hardSpecific that IS a page citation ("Ch. 6 p. 138") is an internal
+        // locator, not writer material — DROP it; strip citations inside the rest.
+        const specifics = namedCase.hardSpecifics
+          .filter((s) => !isPageCitationOnly(String(s)))
+          .map((s) => stripPageCitationSpans(String(s)))
+          .filter((s) => s.length > 0);
+        if (specifics.length > 0) projected.hardSpecifics = specifics;
       }
       return projected;
     }),

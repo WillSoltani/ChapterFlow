@@ -22,6 +22,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { ChapterV21, CriticFinding, SourceAnchorForPrompt, SourceClaimType } from "../types.js";
 import { finding } from "./shared.js";
+import { isPageCitationOnly } from "./apparatusLeakage.js";
 import { parseChapterId } from "../lib/chapterPaths.js";
 import { findLatestRunDir, findRunArtifact } from "../lib/runDirs.js";
 import { detectSidecarShape } from "../source/sidecarSchema.js";
@@ -313,7 +314,16 @@ function checkUnit(
     if (specifics.length >= 2) {
       const minRequired = SINGLE_SPECIFIC_CLAIM_TYPES.has(unit.claimType) ? 1 : 2;
       const lc = unit.text.toLowerCase();
-      const present = specifics.filter((s) => s && lc.includes(s.toLowerCase())).length;
+      // CF-J Task 4 (2026-07-09): a hardSpecific that IS a page citation ("Ch. 6
+      // p. 138") is the source guide's internal locator coordinate, and the writer
+      // projection now WITHHOLDS it from the writer (sourcePacketProjection strips
+      // citation spans; the release review proved writers were quoting them into
+      // reader prose to satisfy exactly this presence check). An internal coordinate
+      // can never be REQUIRED reader-visible text, so it counts as satisfied by
+      // construction. Strictly TOLERANT: `present` can only rise, so findings(new)
+      // ⊆ findings(old) — previously-shipped v2 chapters (which DO quote the cites)
+      // gate identically, and no unit can newly block.
+      const present = specifics.filter((s) => s && (isPageCitationOnly(s) || lc.includes(s.toLowerCase()))).length;
       if (present < minRequired) {
         findings.push(finding("SC11.2.anchor_specific_not_present" as any, "blocker",
           `${unit.unit} names anchor "${anchorId}" but uses <${minRequired} of its hardSpecifics (${specifics.slice(0, 4).join(", ")}). Build the unit FROM the anchor's concrete details.`, anchorId));

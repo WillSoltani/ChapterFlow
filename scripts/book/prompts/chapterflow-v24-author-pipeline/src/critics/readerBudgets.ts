@@ -189,8 +189,12 @@
  *      verbatim-identical stamped text (see above), kept as true positives.
  */
 
+import { readFileSync } from "fs";
 import type { ChapterV21 } from "../types.js";
 import { resolveDirect } from "../types.js";
+import { parseChapterId } from "../lib/chapterPaths.js";
+import { chapterBriefPath } from "../artifacts/artifactStore.js";
+import { DEFAULT_LENGTH_BUDGET_CHARS, LENGTH_BUDGET_TOLERANCE } from "../compiler/chapterBrief.js";
 import type { SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import { extractNamesFromText } from "../librarian/libraryState.js";
 import { loadNameBank } from "../librarian/namePlan.js";
@@ -214,7 +218,21 @@ export type ReaderBudgetOptions = {
 };
 
 export const DEFAULT_REP_CAP = 6;
-export const DEFAULT_LENGTH_BUDGET = { renderedChars: 16000, tolerance: 0.2 } as const;
+/** CHB1 calibration (CONVERGENCE-SAFE PASS, 2026-07-05): a packet-anchored case
+ *  token repeated just over the cap on the linear reading surface is "minor
+ *  repetition" (owner rubric → scored/advisory), not a reader-harming blocker.
+ *  Only EGREGIOUS hammering — count ≥ repCap * this multiple (≥12 at cap 6),
+ *  the band where SEAM2 and the blinded reader panel co-fire — stays a blocker.
+ *  This stops CHB1 from routing an otherwise-passing chapter into a FULL
+ *  re-author (the carry-churn root cause). The blinded reader panel remains the
+ *  backstop for true hammering below the hard band. */
+export const CHB1_HARD_ANCHOR_MULT = 2;
+/** Single-sourced from the compiler's canonical constants (P6, FINAL-HARDENING-
+ *  PLAN 2026-07-04): the brief STAMPS lengthBudget from DEFAULT_LENGTH_BUDGET_CHARS
+ *  / LENGTH_BUDGET_TOLERANCE, so CHB2's default must be the SAME literals — two
+ *  independent copies were a drift surface. No cycle: no compiler module imports
+ *  this file. */
+export const DEFAULT_LENGTH_BUDGET = { renderedChars: DEFAULT_LENGTH_BUDGET_CHARS, tolerance: LENGTH_BUDGET_TOLERANCE } as const;
 
 /** CHB2 calibration constant: renderedChars ≈ k * proseChars.
  *
@@ -423,9 +441,10 @@ function checkAnchorRepetition(
   chapters.forEach((chapter, idx) => {
     const packet = packets?.get(chapter.number);
     // Calibration decision #3: packet namedCases labels are real source
-    // anchors → blocker; title-derived labels are the chapter's own concept
-    // vocabulary → advisory only.
-    const severity: BudgetFinding["severity"] = packet ? "blocker" : "advisory";
+    // anchors; title-derived labels are the chapter's own concept vocabulary
+    // (always advisory). Severity for a packet anchor is banded by COUNT below
+    // (CHB1_HARD_ANCHOR_MULT) — a small overflow is advisory, egregious
+    // hammering is a blocker.
     const labels = packet
       ? packet.namedCases.map((c) => c.label)
       : (chapter.examples ?? []).map((ex) => ex.title ?? "").filter(Boolean);
@@ -438,6 +457,12 @@ function checkAnchorRepetition(
       const count = countTokenMentions(token, surface);
       if (count > repCap) {
         flagged.add(token);
+        // Banded: a packet anchor is a blocker ONLY at egregious hammering
+        // (count ≥ repCap * CHB1_HARD_ANCHOR_MULT); a small overflow, and any
+        // title-derived label, is advisory. Prevents CHB1 from full-re-authoring
+        // an otherwise-passing chapter over minor repetition.
+        const severity: BudgetFinding["severity"] =
+          packet && count >= repCap * CHB1_HARD_ANCHOR_MULT ? "blocker" : "advisory";
         findings.push({
           checkId: "CHB1.anchor_repetition",
           severity,
@@ -704,13 +729,16 @@ function contentTokens(text: string): string[] {
 
 // ── CHB6: opener-class budget ────────────────────────────────────────────────
 
-export const OPENER_CLASSES = ["question", "scene", "statistic", "claim"] as const;
+export const OPENER_CLASSES = ["question", "scene", "statistic", "claim", "tension-thesis"] as const;
 export type OpenerClass = (typeof OPENER_CLASSES)[number];
 
-/** Classify an opening sentence into {question, scene, statistic, claim} — the same four classes
- *  the W4 brief rotation deals. Book-level heuristic (the calibration note is explicit that these
- *  regexes are safe as aggregate budgets, noisy as per-item gates). Order matters: question →
- *  statistic → scene → claim (default). */
+/** Classify an opening sentence into {question, scene, statistic, claim} lexically. The v4
+ *  rotation also deals "tension-thesis", which is lexically a claim — the budget check below
+ *  re-buckets a claim-classified chapter into "tension-thesis" when its BRIEF dealt that mode
+ *  (deal-aware, same precedent as finalGate.dealtExampleFloor), so a deal-compliant book cannot
+ *  overflow the claim budget by obeying its deal. Book-level heuristic (the calibration note is
+ *  explicit that these regexes are safe as aggregate budgets, noisy as per-item gates). Order
+ *  matters: question → statistic → scene → claim (default). */
 export function classifyOpener(text: string): OpenerClass {
   const first = (text.match(/[^.!?]*[.!?]?/)?.[0] ?? text).trim();
   if (!first) return "claim";
@@ -734,6 +762,22 @@ export function classifyOpener(text: string): OpenerClass {
 /** CHB6: over the whole book, the hook opening class AND the fastRead opening class each get a
  *  budget of ceil(2/3·N) chapters — no single class may open more than two-thirds of chapters
  *  (readers named the claim-opener monoculture directly). Dual-shape via asText. */
+/** Dealt opener mode from the chapter's brief, or null when no valid v-rotation brief exists
+ *  (legacy books, missing briefs — fail-open to pure lexical classification). */
+function dealtOpenerType(chapter: ChapterV21): string | null {
+  try {
+    const parsed = parseChapterId(chapter.chapterId ?? "");
+    if (!parsed) return null;
+    const raw = readFileSync(chapterBriefPath(parsed.bookId, parsed.num), "utf8");
+    const brief = JSON.parse(raw) as { rotationSchemaVersion?: unknown; openerType?: unknown };
+    if (typeof brief?.rotationSchemaVersion === "string" && brief.rotationSchemaVersion.length > 0 &&
+        typeof brief?.openerType === "string" && brief.openerType.length > 0) {
+      return brief.openerType;
+    }
+  } catch { /* no readable brief → lexical class stands */ }
+  return null;
+}
+
 function checkOpenerClassBudget(chapters: ChapterV21[]): BudgetFinding[] {
   const n = chapters.length;
   if (n === 0) return [];
@@ -748,7 +792,10 @@ function checkOpenerClassBudget(chapters: ChapterV21[]): BudgetFinding[] {
     for (const chapter of chapters) {
       const text = surface.get(chapter);
       if (!text.trim()) continue;
-      const cls = classifyOpener(text);
+      let cls: OpenerClass = classifyOpener(text);
+      // v4 deal-aware re-bucket: a dealt tension-thesis hook is lexically a claim; obeying
+      // the deal must not overflow the claim budget (D8, FINAL-HARDENING-PLAN 2026-07-04).
+      if (cls === "claim" && dealtOpenerType(chapter) === "tension-thesis") cls = "tension-thesis";
       const list = byClass.get(cls) ?? [];
       list.push(chapter.number);
       byClass.set(cls, list);
@@ -766,7 +813,7 @@ function checkOpenerClassBudget(chapters: ChapterV21[]): BudgetFinding[] {
           message:
             `${surface.label} opener class "${cls}" appears in ${nums.length} of ${n} chapters ` +
             `(${nums.map((x) => `ch${String(x).padStart(2, "0")}`).join(", ")}) — over the ceil(2/3·N)=${cap} ` +
-            `opener-class budget; rotate ${surface.label} openers across question/scene/statistic/claim.`,
+            `opener-class budget; rotate ${surface.label} openers across question/scene/statistic/claim/tension-thesis.`,
         });
       }
     }
@@ -1657,6 +1704,24 @@ export function buildBudgetRepairComplaints(chapters: ChapterV21[], blockers: Bu
     }
   }
 
+  // CHB1 anchor-hammering (FINAL-HARDENING-PLAN 2026-07-04): a case's distinctive
+  // token repeated over the per-chapter cap. Fully routable — the finding carries
+  // the chapter, the exact token, its count, and the cap. Without this the block
+  // hard-halts with "no repair-routable evidence" and no automated recovery (the
+  // gap start-with-why hit: 9 CHB1 blockers across 5 chapters). Per-chapter,
+  // evidence-first (the proven repair pattern), and mechanically checkable.
+  for (const f of blockers) {
+    if (f.checkId !== "CHB1.anchor_repetition" || !Number.isInteger(f.chapterNumber)) continue;
+    const m = /mentions "([^"]+)" \(distinctive token of case "([^"]+)"\) (\d+) times — over the per-chapter cap of (\d+)/.exec(f.message);
+    if (!m) continue;
+    const [, token, label, countStr, capStr] = m;
+    const count = parseInt(countStr, 10);
+    const cap = parseInt(capStr, 10);
+    if (!Number.isInteger(count) || !Number.isInteger(cap)) continue;
+    add(f.chapterNumber as number,
+      `anchor hammering (CHB1): the reading surface (counterintuition, tryThisNow, keyTakeaway, breakdown tiers) names "${token}" ${count} times for the case "${label}" — the per-chapter ceiling is ${cap} and a re-check above it halts the whole book. Cut it to AT MOST ${cap}: after the first full naming, refer to it with a pronoun, its role, or a shorter alias, and delete mentions that merely repeat what a sentence already established. Keep every fact, actor, number, and the case's substance — change only how often you REPEAT the distinctive word. Do not touch the quiz keys or the dealt structure.`);
+  }
+
   if (blocked("CHB10.lexical_saturation") && N >= 4) {
     const freq = new Map<string, number>();
     const spread = new Map<string, Set<number>>();
@@ -1682,7 +1747,7 @@ export function buildBudgetRepairComplaints(chapters: ChapterV21[], blockers: Bu
       if (counts.length === 0) continue;
       add(chapter.number,
         `budget repair (CHB10.lexical_saturation): the BOOK is blocked because the same words saturate every chapter. ` +
-        `YOUR chapter uses ${counts.map(([w, c]) => `'${w}' ${c}×`).join(", ")}. Rewrite with a HARD ceiling of 8 uses for each listed word — ` +
+        `YOUR chapter uses ${counts.map(([w, c]) => `'${w}' ${c}×`).join(", ")}. Rewrite with a HARD ceiling of 8 uses for each listed word — this repair ceiling OVERRIDES your brief's vocabulary budget for the listed words only (the book is saturated; the brief's per-chapter allowance no longer applies to them) — ` +
         `replace the overflow with this chapter's case-concrete referents (the named person, the named artifact, the number), never a stilted synonym. ` +
         `Keep the teaching identical; change only the telling.`);
     }

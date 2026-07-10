@@ -249,3 +249,90 @@ export function carryReviewFor(
     reason: `no reusable review: needs a PASS+valid record at content ${wantContent} / doc ${wantDoc.slice(0, 12)}… / bar ${bar} / hash ${REVIEW_DOC_HASH_VERSION}, reviewer ≠ current author`,
   };
 }
+
+/**
+ * PASS-lock predicate (CONVERGENCE-SAFE PASS, 2026-07-05): does `chapter`
+ * currently hold a DURABLE PASS — an independent reviewer's PASS bound to its
+ * exact current content+doc bytes at `bar`? This is a thin, side-effect-free
+ * wrapper over `carryReviewFor` (the same fail-closed evidence), used by the
+ * book-wide budget-repair lane to REFUSE full-re-authoring a passing chapter.
+ *
+ * Fail-DIRECTION is deliberately "NOT locked" on every uncertainty (unknown bar,
+ * unreadable/torn ledger, any throw): a false "locked" could let a genuine
+ * blocker be force-carried (worse); a false "not locked" only risks re-authoring
+ * a chapter whose PASS we could not confirm — exactly today's behavior. So the
+ * predicate can only ever PROTECT, never HIDE.
+ */
+export function holdsDurablePass(
+  bookId: string,
+  chapter: ChapterV21,
+  bar: number | undefined,
+  currentAuthorSession: string | undefined,
+  stateRoot: string = CANONICAL_STATE,
+): boolean {
+  if (typeof bar !== "number" || !Number.isFinite(bar)) return false;
+  try {
+    return carryReviewFor(bookId, chapter, bar, currentAuthorSession, stateRoot).hit;
+  } catch {
+    return false;
+  }
+}
+
+// ── PASS-lock decision forensics (CONVERGENCE-SAFE PASS, 2026-07-05) ───────────
+
+/** A durable audit trail of every PASS-lock / reopen decision made about a
+ *  chapter holding a durable PASS:
+ *   - `protected-downgrade`: a book-wide budget blocker was carried ONLY by
+ *     PASS-locked chapter(s), so it was downgraded to advisory and the passing
+ *     chapter was NOT reopened (the convergence-safe outcome).
+ *   - `reopened-anomaly`: the regression guard observed a PASS-locked chapter's
+ *     content hash CHANGE across the repair round — this must never happen under
+ *     the carry-aware router, so it is recorded as a bug signal alongside a halt.
+ *   - `reopened-for-acceptance`: a book-acceptance rejection deliberately reopened
+ *     a passing chapter for a targeted regen (holistic rejections must be able to
+ *     touch passing chapters). This is NOT a lock — it is the durable attribution
+ *     of WHY the passing chapter was reopened, carrying the reader complaints that
+ *     selected it. The regen itself is regression-guarded (restore-on-fail /
+ *     restore-on-regress); see the acceptance-regen block in authorReview.ts.
+ *  This is the "why was / wasn't a passing chapter reopened" record the operator
+ *  reads to audit convergence. Rebuildable/deletable; never gates a decision. */
+export type ReopenDecision = "protected-downgrade" | "reopened-anomaly" | "reopened-for-acceptance";
+
+export type ReopenNote = {
+  chapterNumber: number;
+  contentHash: string;
+  at: string;
+  decision: ReopenDecision;
+  /** What triggered the (would-be) reopen: a budget checkId (e.g.
+   *  "CHB10.lexical_saturation") for the budget lane, or the literal
+   *  "acceptance-regen" when a book-acceptance rejection reopened the chapter. */
+  trigger: string;
+  detail?: string;
+};
+
+export function reopenNotesPath(bookId: string, stateRoot: string = CANONICAL_STATE): string {
+  return resolve(reviewDir(bookId, stateRoot), "reopen-notes.json");
+}
+
+/** Append one reopen note (read-modify-write, small single-writer file). Best-
+ *  effort: a note failure never converts a decided repair into a halt. Mirrors
+ *  `appendTiebreakNote`. */
+export function appendReopenNote(bookId: string, note: ReopenNote, stateRoot: string = CANONICAL_STATE): string {
+  const p = reopenNotesPath(bookId, stateRoot);
+  mkdirSync(dirname(p), { recursive: true });
+  const notes = loadReopenNotes(bookId, stateRoot);
+  notes.push(note);
+  writeFileAtomic(p, JSON.stringify(notes, null, 2) + "\n");
+  return p;
+}
+
+export function loadReopenNotes(bookId: string, stateRoot: string = CANONICAL_STATE): ReopenNote[] {
+  const p = reopenNotesPath(bookId, stateRoot);
+  if (!existsSync(p)) return [];
+  try {
+    const parsed = JSON.parse(readFileSync(p, "utf8"));
+    return Array.isArray(parsed) ? (parsed as ReopenNote[]) : [];
+  } catch {
+    return [];
+  }
+}

@@ -55,10 +55,21 @@ test("doctor: a clean book passes the chapter-numbers check", () => {
 
 test("doctor --json emits machine-readable findings and planned exit code", () => {
   const cli = runCli(["doctor", "--json"]);
-  assert.equal(cli.status, 0, cli.out);
   const parsed = JSON.parse(cli.out) as { status: string; exitCode: number; findings: Array<{ level: string; check: string; message: string }> };
-  assert.equal(parsed.status, "ok");
-  assert.equal(parsed.exitCode, 0);
+  // This runs against the REAL checkout, which legitimately carries operational
+  // WARN-level state between a publish and its verify:live (the P10 pending-deploy
+  // debt is doctor DOING ITS JOB — live: high-output-management published
+  // 2026-07-08). Pin the machine-readable CONTRACT (status↔exitCode pairing,
+  // structural findings), fail on any fatal, and fail on warning classes that are
+  // NOT known operational lifecycle state.
+  const OPERATIONAL_WARN_CHECKS = new Set(["pending-deploy"]);
+  const fatals = parsed.findings.filter((f) => f.level === "fatal");
+  const unexpectedWarns = parsed.findings.filter((f) => f.level === "warn" && !OPERATIONAL_WARN_CHECKS.has(f.check));
+  assert.deepEqual(fatals, [], "doctor must find no fatal condition on a healthy checkout");
+  assert.deepEqual(unexpectedWarns, [], "only known operational lifecycle warnings are tolerated");
+  assert.ok(parsed.status === "ok" || parsed.status === "warn", `status must be ok/warn, got ${parsed.status}`);
+  assert.equal(parsed.exitCode, parsed.status === "ok" ? 0 : 1, "exitCode must pair with status");
+  assert.equal(cli.status, parsed.exitCode, "the process exit must honor the planned exit code");
   assert.ok(Array.isArray(parsed.findings), "findings must be an array");
   assert.ok(parsed.findings.some((f) => f.check === "shadow-state-dir" && f.level === "ok"), "global doctor checks must be represented structurally");
 });

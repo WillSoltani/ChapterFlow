@@ -50,6 +50,9 @@ import {
   IDIOM_INSTRUCTION,
   LENS_INSTRUCTION,
   LIMITS_INSTRUCTION,
+  ARCHITECTURE_FAMILIES,
+  ARCHITECTURE_INSTRUCTION,
+  type ArchitectureFamily,
   LIMITS_PLACEMENTS,
   MEMORABLE_SHAPES,
   MEMORABLE_SHAPE_INSTRUCTION,
@@ -73,6 +76,7 @@ import {
 } from "./briefRotation.js";
 import type { ChapterSpec } from "../generateChapter.js";
 import { C7_BANNED_NAMES } from "../critics/finalGate.js";
+import { stripPageCitationSpans } from "../critics/apparatusLeakage.js";
 import {
   answerPattern,
   compilerNameBank,
@@ -81,6 +85,8 @@ import {
   resolvedPoolsForBook,
 } from "./chapterBlueprint.js";
 import { protectedSourceNames } from "./sourceNames.js";
+import { dealContentDeviceBans } from "./contentDeviceDeal.js";
+import { contentLemmaSet } from "../critics/intraBookFieldSimilarity.js";
 
 /** The blueprint compiler always deals a 9-question quiz (quizCount in compileChapterBlueprint);
  *  the brief's answerIndexPattern must be the same 9-slot deal. */
@@ -89,6 +95,13 @@ export const DEFAULT_LENGTH_BUDGET_CHARS = 16000;
 export const LENGTH_BUDGET_TOLERANCE = 0.2;
 export const LENGTH_BUDGET_MIN = 8000;
 export const LENGTH_BUDGET_MAX = 30000;
+/** Canonical round-timer minutes for writer-invented practice timers (D9). Single
+ *  source (P6, FINAL-HARDENING-PLAN 2026-07-04): the brief renders this list into
+ *  its PRACTICE SLOT SHAPES line and authorRun's D9 timer contract builds its
+ *  membership Set from it — the two were independent literal copies. Lives here
+ *  (the compiler owns brief-shape constants); authorRun already imports this file,
+ *  so no new import edge / no cycle. */
+export const ROUND_TIMER_MINUTES_LIST = [5, 10, 15, 20, 25, 30, 45, 60] as const;
 const NOT_YOURS_CAP = 20;
 const AVOID_CAP = 6;
 const FLAVOR_CAP = 5;
@@ -118,6 +131,15 @@ function oneLine(s: string): string {
   return s.replace(/\s+/g, " ").trim();
 }
 
+/** CF-C: a compact one-line learning-job phrase for the writer card — trailing
+ *  punctuation stripped and truncated so the NOT-THIS-CHAPTER line stays short even
+ *  when a coreMove is a full mechanism sentence. Returns "" for an empty job. */
+function compactJob(raw: string | undefined | null, maxLen = 100): string {
+  const t = oneLine(raw ?? "").replace(/[.;:]+\s*$/, "");
+  if (!t) return "";
+  return t.length <= maxLen ? t : `${t.slice(0, maxLen - 1).trimEnd()}…`;
+}
+
 /**
  * The chapter's core move — a faithful reimplementation of the P13 rule inlined in
  * chapterBlueprint.buildPlan (coreMoveFactId's mechanism, else its claim; legacy fallback
@@ -125,19 +147,29 @@ function oneLine(s: string): string {
  * pinned by tests/chapter-brief.test.ts against the pre-P13 legacy golden AND a ranked packet.
  */
 export function briefCoreMove(packet: SourcePacketV1, chapterTitle: string): string {
-  const coreFact = packet.coreMoveFactId ? packet.facts.find((f) => f.id === packet.coreMoveFactId) : undefined;
-  return (coreFact?.mechanism || coreFact?.claim)
+  const raw = (packet.coreMoveFactId ? packet.facts.find((f) => f.id === packet.coreMoveFactId) : undefined);
+  const picked = (raw?.mechanism || raw?.claim)
     || packet.facts[0]?.mechanism || packet.facts[0]?.claim
     || `Use ${chapterTitle} as a concrete decision tool.`;
+  // CF-J Task 4: the brief is WRITER-VISIBLE projected text — strip any research-
+  // minted page citation ("…appears at Ch. 2 p. 33 as…") exactly as the packet
+  // projection does; the raw packet/fact on disk is untouched. Fail-open: a line
+  // that would strip to nothing keeps its original text.
+  const stripped = stripPageCitationSpans(picked);
+  return stripped.length > 0 ? stripped : picked;
 }
 
-/** One line: the highest-teachingPriority fact's claim (legacy fallback: the first fact). */
+/** One line: the highest-teachingPriority fact's claim (legacy fallback: the first fact).
+ *  Page citations stripped — same CF-J writer-visibility rule as briefCoreMove
+ *  (live: 4/9 radical-candor rendered briefs carried "Thesis: … at Ch. N p. N …"). */
 export function briefThesis(packet: SourcePacketV1): string {
   const ranked = packet.facts
     .filter((f) => typeof f.teachingPriority === "number")
     .sort((a, b) => (a.teachingPriority! - b.teachingPriority!) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
   const fact = ranked[0] ?? packet.facts[0];
-  return oneLine(fact?.claim ?? "");
+  const line = oneLine(fact?.claim ?? "");
+  const stripped = stripPageCitationSpans(line);
+  return stripped.length > 0 ? stripped : line;
 }
 
 /** Deterministic template. Guidance, not contract. */
@@ -204,6 +236,7 @@ function fallbackRotation(n: number): BriefRotation {
   };
   const perm = Array.from({ length: 9 }, (_, k) => ((i + k) % 9) + 1);
   return {
+    architectureFamily: ARCHITECTURE_FAMILIES[i % ARCHITECTURE_FAMILIES.length],
     openerType: OPENER_TYPES[i % OPENER_TYPES.length],
     challengeFrame: CHALLENGE_FRAMES[i % CHALLENGE_FRAMES.length],
     practiceShape: PRACTICE_SHAPES[i % PRACTICE_SHAPES.length],
@@ -229,19 +262,148 @@ function fallbackRotation(n: number): BriefRotation {
  *  only when the chapter owns a case whose label carries a distinctive capitalized
  *  anchor token (≥4 chars — what the write-time thread check keys on); invented
  *  cast[0] otherwise. Pure. */
+/** Capitalized proper-noun words in a case label, minus sentence-frame stopwords. */
+const LEAD_CAP_STOP = new Set(["The", "This", "That", "When", "What", "From", "Into", "With", "And", "Or", "Of", "A", "An", "For", "To", "In", "On"]);
+function leadLabelHasToken(label: string): boolean {
+  return (label ?? "").split(/\s+/).some((w) => /^[A-Z][A-Za-z-]{3,}/.test(w) && !LEAD_CAP_STOP.has(w));
+}
+/** A label names a real PERSON or STUDY the writer can thread (real actors/dates),
+ *  as opposed to a bare framework CONCEPT ("Neocortex", "Limbic system"). Signal: a
+ *  "/" attribution ("Antonio Damasio / Descartes' Error") or >=2 proper nouns
+ *  (first+last name). Single-token concepts have neither. */
+function leadLabelIsNamedCase(label: string): boolean {
+  if ((label ?? "").includes("/")) return true;
+  const proper = (label.match(/\b[A-Z][A-Za-z'-]+/g) ?? []).filter((w) => !LEAD_CAP_STOP.has(w));
+  return proper.length >= 2;
+}
+
 export function resolveLeadThread(
   preferCase: boolean,
   ownedCases: Array<{ id: string; label: string }>,
   cast: string[],
+  opts?: { avoidInvented?: boolean },
 ): { kind: "invented" | "owned-case"; name: string } | undefined {
-  if (preferCase) {
+  if (preferCase || opts?.avoidInvented) {
+    // Prefer a real NAMED case (person/study) over a bare framework-concept label:
+    // the D7 lead-thread contract needs a case with real actors/dates to run the
+    // fastRead + >=2 examples, and a single-concept owned-case ("Neocortex") cannot
+    // carry it — start-with-why ch04 ("This Is Not Opinion, This Is Biology") failed
+    // the contract twice when the dealer picked the concept "Neocortex" over the real
+    // case "Antonio Damasio / Descartes' Error" that sat later in the same list.
+    // Regression-safe: falls back to the original first-with-token pick, so a
+    // single-name real case (a company, a one-name person) is unchanged — behavior
+    // shifts ONLY when a concept label precedes a named case (the mis-deal class).
+    const named = ownedCases.find((c) => leadLabelHasToken(c.label) && leadLabelIsNamedCase(c.label));
+    if (named) return { kind: "owned-case", name: named.label };
     for (const c of ownedCases) {
-      const token = (c.label ?? "").split(/\s+/).find((w) => /^[A-Z][A-Za-z-]{3,}/.test(w) && !/^(The|This|That|When|What|From|Into|With)$/.test(w));
-      if (token) return { kind: "owned-case", name: c.label };
+      if (leadLabelHasToken(c.label)) return { kind: "owned-case", name: c.label };
+    }
+    // Deal↔deal consistency (fresh-gold live finding, 2026-07-08): when the chapter's
+    // dealt CONTENT DEVICES ban proxy-cast, an invented lead would put a mandate and a
+    // ban on the same writer card — and the STIER-2 lead-thread write contract then
+    // FORCES the banned device in (observed live: ch01 "Willow" ×8 on a proxy-banned
+    // chapter). With the ban dealt, take ANY owned case (even a concept label) before
+    // the proxy; invented remains the true last resort (a packet with zero cases).
+    if (opts?.avoidInvented && ownedCases.length > 0) {
+      return { kind: "owned-case", name: ownedCases[0].label };
     }
   }
   if (cast.length > 0) return { kind: "invented", name: cast[0] };
   return undefined;
+}
+
+/** F-1 (fresh-gold blocker, 2026-07-08): DEGRADATION candidates for a lead that
+ *  repeatedly failed the write-time lead-thread contract. Live evidence: a bare
+ *  concept-label owned case ("Task-focused interview questions", packet with zero
+ *  named actors) failed the contract 5/6 drafts across three conductor entries —
+ *  an unbreakable honest-halt cycle, because re-entry re-deals the identical lead.
+ *  Labels are NOT lexically separable from carriable concept leads (seven similar
+ *  ones carried fine in the same book), so the reliable signal is the writer's own
+ *  repeated contract failure; this function only ORDERS the fallbacks.
+ *
+ *  Order (deterministic): (a) packet-order owned cases that still carry a contract-
+ *  enforceable anchor token — a token-less label would pass the contract VACUOUSLY,
+ *  which is gate-dodging, so those are never candidates; (b) the invented cast[0],
+ *  ONLY when the chapter's content-device deal does not ban proxy-cast. Names in
+ *  `failedLeadNames` (already failed in this or a prior call) are excluded. Pure. */
+export function degradedLeadCandidates(
+  ownedCases: Array<{ id: string; label: string }>,
+  cast: string[],
+  proxyBanned: boolean,
+  failedLeadNames: string[],
+): Array<{ kind: "invented" | "owned-case"; name: string }> {
+  const failed = new Set(failedLeadNames);
+  const out: Array<{ kind: "invented" | "owned-case"; name: string }> = [];
+  for (const c of ownedCases) {
+    if (failed.has(c.label)) continue;
+    if (!leadLabelHasToken(c.label)) continue;
+    out.push({ kind: "owned-case", name: c.label });
+  }
+  if (!proxyBanned) {
+    for (const name of cast) {
+      if (failed.has(name)) continue;
+      out.push({ kind: "invented", name });
+      break; // cast[0] semantics: exactly one invented fallback
+    }
+  }
+  return out;
+}
+
+/** F-1 persistence (requirement-4 decision, documented here): the degraded lead is
+ *  persisted as a SIDECAR next to the compiled briefs (chNN.lead-override.json),
+ *  written only after a degraded attempt actually LANDS a passing chapter.
+ *
+ *  Why a sidecar and not the brief json: doAuthorWrite re-runs compile-chapter-briefs
+ *  on EVERY entry, so an edit to the compiled brief is clobbered within one entry —
+ *  the recompile would silently resurrect the uncarriable lead for every future regen
+ *  of the chapter. The sidecar lives in the same runs/<runId>/briefs/ dir (a NEW
+ *  research run mints a new runId and naturally orphans it) and writeChapterBriefs
+ *  never cleans the dir, so it survives recompiles.
+ *
+ *  Why not a pure in-memory overlay: the write contract is re-checked OUTSIDE the
+ *  write call (authorRepair verifies spliced repairs against the brief) — a chapter
+ *  legitimately carrying lead B while the brief deals lead A would fail every future
+ *  repair. Every contract consumer resolves the EFFECTIVE brief via
+ *  applyLeadThreadOverride.
+ *
+ *  Lineage/budgets: computeRegenLineage reads the compiled brief only, NEVER the
+ *  sidecar — a degradation is a bounded write-time recovery, not a re-deal, so it
+ *  must not re-key lineage and mint fresh regen budgets (F-1 requirement 5). */
+export type LeadThreadOverrideV1 = {
+  schemaVersion: "lead-thread-override-v1";
+  bookId: string;
+  chapterNumber: number;
+  /** The dealt lead that repeatedly failed the write contract — the STALENESS key:
+   *  the override applies ONLY while the compiled brief still deals this exact lead.
+   *  A re-deal (new packet cases / rotation bump) supersedes the override. */
+  failedLead: string;
+  /** The degraded lead a chapter actually LANDED with — null when the record is
+   *  pure failure MEMORY (a degradation was tried and failed; nothing landed).
+   *  Live necessity (high-output-management ch14, 2026-07-08 resume): without
+   *  failure memory, every conductor entry deterministically replays the same
+   *  dealt lead + first candidate and never advances to the next one — the exact
+   *  cross-entry halt cycle F-1 exists to break. */
+  lead: { kind: "invented" | "owned-case"; name: string } | null;
+  /** The cast the degraded card ran with (emptied for a proxy-banned owned-case
+   *  lead — the ch13 supporting-cast-licence rule, kept consistent here). */
+  cast: string[];
+  /** Every lead name PROVEN uncarriable for this dealt-lead lineage (lead-only
+   *  contract failures across all attempts) — the next entry's degradation
+   *  excludes these, so candidates strictly shrink and the cycle terminates. */
+  failedLeads?: string[];
+  reason: string;
+  at: string;
+};
+
+/** Resolve the EFFECTIVE brief under a persisted lead override. Null-safe; stale
+ *  overrides (the brief no longer deals the recorded failed lead) are ignored. */
+export function applyLeadThreadOverride(
+  brief: ChapterBriefV1 | null,
+  override: LeadThreadOverrideV1 | null | undefined,
+): ChapterBriefV1 | null {
+  if (!brief || !override || !override.lead) return brief; // pure failure memory → no overlay
+  if (brief.leadThread?.name !== override.failedLead) return brief;
+  return { ...brief, leadThread: override.lead, cast: override.cast };
 }
 
 /**
@@ -384,10 +546,25 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
   // chapters share the SAME budget list (per-chapter lists would let a noun saturate anyway).
   const frameworkNouns = hotFrameworkNouns(chapters.map((c) => c.packet));
 
+  // CF-C: each chapter's LEARNING JOB is its own coreMove (no twin field). Precompute
+  // every chapter's coreMove and the present-chapter order so each brief can carry its
+  // immediate neighbours' jobs (adjacentJobs) — the single-brief writer card renders the
+  // NOT-THIS-CHAPTER line from them. Derived purely from packets, so recompiles are stable.
+  const coreMoveByChapter = new Map<number, string>(
+    chapters.map(({ spec, packet }) => [spec.chapterNumber, briefCoreMove(packet, spec.chapterTitle)]),
+  );
+  const orderedNums = chapters.map((c) => c.spec.chapterNumber).sort((a, b) => a - b);
+
   const briefs: ChapterBriefV1[] = [];
   for (const { spec, packet } of chapters) {
     const n = spec.chapterNumber;
     const coreMove = briefCoreMove(packet, spec.chapterTitle);
+    const orderIdx = orderedNums.indexOf(n);
+    const prevJob = orderIdx > 0 ? coreMoveByChapter.get(orderedNums[orderIdx - 1]) : undefined;
+    const nextJob = orderIdx >= 0 && orderIdx < orderedNums.length - 1 ? coreMoveByChapter.get(orderedNums[orderIdx + 1]) : undefined;
+    const adjacentJobs = prevJob || nextJob
+      ? { ...(prevJob ? { prev: prevJob } : {}), ...(nextJob ? { next: nextJob } : {}) }
+      : undefined;
     const ownLabelsLower = new Set((labelsByChapter.get(n) ?? []).map((l) => l.toLowerCase()));
     const notYours = [...new Set(
       chapters
@@ -415,6 +592,24 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
     // reuse for both the cast field and the lead-thread resolution.
     const dealtCast = castFor(spec, packet);
 
+    // Deal↔deal consistency (fresh-gold live finding, 2026-07-08): a chapter whose
+    // always-on CONTENT DEVICES section bans proxy-cast must not be HANDED an invented
+    // cast at all — with an owned-case lead, a dealt cast list plus the template's
+    // "invented cast in supporting scenes" licence still put the banned device on the
+    // card (observed live: ch13 kept "Preston" ×10 in supporting scenes after the lead
+    // itself was fixed). Resolve the lead first; when proxy-cast is banned AND the lead
+    // is an owned case, deal an EMPTY cast (castFor above still ran, so the shared
+    // cast-dealer state stays identical for every other chapter). The invented-lead
+    // last resort (packet with zero cases) keeps its cast — a lead must exist.
+    const proxyBanned = dealContentDeviceBans(n, totalChapters).includes("proxy-cast");
+    const leadThread = resolveLeadThread(
+      (rotations.get(n) ?? fallbackRotation(n)).leadPreferReal,
+      packet.namedCases.map((c) => ({ id: c.id, label: c.label })),
+      dealtCast,
+      { avoidInvented: proxyBanned },
+    );
+    const briefCast = proxyBanned && leadThread?.kind === "owned-case" ? [] : dealtCast;
+
     briefs.push({
       schemaVersion: CHAPTER_BRIEF_SCHEMA_VERSION,
       chapterId: spec.chapterId,
@@ -425,11 +620,12 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
       readerPromise: briefReaderPromise(coreMove),
       ownedCases: packet.namedCases.map((c) => ({ id: c.id, label: c.label })),
       notYours,
-      cast: dealtCast,
+      cast: briefCast,
       answerIndexPattern: answerPattern(n, BRIEF_QUIZ_SLOT_COUNT, totalChapters),
       avoid: [...new Set(avoid)].slice(0, AVOID_CAP),
       lengthBudget: { renderedChars: opts.lengthBudget ?? DEFAULT_LENGTH_BUDGET_CHARS, tolerance: LENGTH_BUDGET_TOLERANCE },
       flavor: flavorByChapter.get(n) ?? [],
+      architectureFamily: (rotations.get(n) ?? fallbackRotation(n)).architectureFamily,
       openerType: (rotations.get(n) ?? fallbackRotation(n)).openerType,
       challengeFrame: (rotations.get(n) ?? fallbackRotation(n)).challengeFrame,
       practiceShape: (rotations.get(n) ?? fallbackRotation(n)).practiceShape,
@@ -450,11 +646,8 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
       groundingForm: (rotations.get(n) ?? fallbackRotation(n)).groundingForm,
       idiomFamilies: (rotations.get(n) ?? fallbackRotation(n)).idiomFamilies,
       shellRegister: (rotations.get(n) ?? fallbackRotation(n)).shellRegister,
-      leadThread: resolveLeadThread(
-        (rotations.get(n) ?? fallbackRotation(n)).leadPreferReal,
-        packet.namedCases.map((c) => ({ id: c.id, label: c.label })),
-        dealtCast,
-      ),
+      leadThread,
+      ...(adjacentJobs ? { adjacentJobs } : {}),
     });
   }
 
@@ -469,11 +662,34 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
   const opener = OPENER_INSTRUCTION[brief.openerType] ?? `Open the hook in "${brief.openerType}" mode.`;
   const frame = CHALLENGE_INSTRUCTION[brief.challengeFrame] ?? `frame it as "${brief.challengeFrame}"`;
   const practice = PRACTICE_INSTRUCTION[brief.practiceShape] ?? `Shape tryThisNow as "${brief.practiceShape}".`;
-  const lines = [
+  const lines: string[] = [];
+  // v5 (2026-07-05): the whole-SKELETON directive leads — the writer picks the
+  // chapter's SHAPE before the opener/practice dressing. The anti-monoculture lever.
+  if (brief.architectureFamily) {
+    const arch = ARCHITECTURE_INSTRUCTION[brief.architectureFamily as ArchitectureFamily];
+    if (arch) lines.push(`- CHAPTER ARCHITECTURE (${brief.architectureFamily}): ${arch} This is the chapter's overall SHAPE — the sections below dress it; they do not override it.`);
+  }
+  // CF-C (2026-07-08): the chapter's declared LEARNING JOB (its coreMove) plus the
+  // neighbours' jobs, rendered as a NOT-THIS-CHAPTER line so adjacent chapters teach
+  // distinct capabilities instead of near-parallel passages (Findings 4/8). The
+  // writer owns THIS job; the named neighbour jobs are off-limits to re-teach.
+  {
+    const job = compactJob(brief.coreMove);
+    const prev = compactJob(brief.adjacentJobs?.prev, 64);
+    const next = compactJob(brief.adjacentJobs?.next, 64);
+    if (job) {
+      const owns: string[] = [];
+      if (prev) owns.push(`prev ch owns "${prev}"`);
+      if (next) owns.push(`next ch owns "${next}"`);
+      const tail = owns.length ? ` NOT THIS CHAPTER: ${owns.join("; ")} — mention only in passing, never re-teach.` : "";
+      lines.push(`- THIS CHAPTER'S JOB: ${job} — serve it through a DIFFERENT facet per example.${tail}`);
+    }
+  }
+  lines.push(
     `- OPENER: ${opener} Carry the SAME mode into the fastRead opening sentence.`,
     `- 24-HOUR CHALLENGE: Frame it as ${brief.challengeFrame} — ${frame} Do NOT use the "In the next 24 hours," stem.`,
     `- PRACTICE: ${practice}`,
-  ];
+  );
   // v24 S-tier P2/P4/P1 — optional fields; briefs compiled before 2026-07-03 render the
   // original three lines unchanged.
   const exCount = brief.exampleCount ?? 6;
@@ -508,9 +724,16 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
   // STIER-2 P11 — the section-thread lead (the universal invented-proxy device was
   // the stamp the acceptance readers listed first).
   if (brief.leadThread) {
+    // Owned-case leads: the supporting-cast licence depends on whether this chapter was
+    // DEALT a cast. A proxy-banned chapter gets an empty cast (deal↔deal consistency —
+    // see compileChapterBriefs), so its line forbids stand-ins instead of licensing them.
+    const ownedCaseLine =
+      (brief.cast ?? []).length > 0
+        ? `- LEAD THREAD: this chapter runs on YOUR case "${brief.leadThread.name}" — the fastRead and at least 2 examples live inside that case's real story (its real actors, numbers, dates; packet-attested actions only, never invented quotes). Invented cast appears only in supporting scenes.`
+        : `- LEAD THREAD: this chapter runs on YOUR case "${brief.leadThread.name}" — the fastRead and at least 2 examples live inside that case's real story (its real actors, numbers, dates; packet-attested actions only, never invented quotes). NO invented stand-in characters in this chapter — every scene runs on the case's real, attested actors (this chapter's CONTENT DEVICES ban the invented proxy cast).`;
     lines.push(
       brief.leadThread.kind === "owned-case"
-        ? `- LEAD THREAD: this chapter runs on YOUR case "${brief.leadThread.name}" — the fastRead and at least 2 examples live inside that case's real story (its real actors, numbers, dates; packet-attested actions only, never invented quotes). Invented cast appears only in supporting scenes.`
+        ? ownedCaseLine
         : `- LEAD THREAD: ${brief.leadThread.name} carries this chapter — the fastRead and at least 2 examples follow ${brief.leadThread.name}'s situation; other cast support. Introduce invented people role-BEFORE-name in varied wording (never one fixed "call her X" phrase).`,
     );
   }
@@ -534,7 +757,7 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
   // one-shape-everywhere minted the "read aloud" ×4 chant).
   if (brief.practiceSlotShapes && brief.practiceSlotShapes.length >= 4) {
     lines.push(
-      `- PRACTICE SLOT SHAPES: the four practice surfaces must NOT share one skeleton — tryThisNow: dealt above; weekly practice: "${brief.practiceSlotShapes[2]}" structure; if-then contexts: "${brief.practiceSlotShapes[3]}" structure. Never repeat one prompt style (read-aloud, touch-the-object) across surfaces, and keep any timers round (5/10/15/20/25/30/45/60) and consistent wherever the same action is restated.`,
+      `- PRACTICE SLOT SHAPES: the four practice surfaces must NOT share one skeleton — tryThisNow: dealt above; weekly practice: "${brief.practiceSlotShapes[2]}" structure; if-then contexts: "${brief.practiceSlotShapes[3]}" structure. Never repeat one prompt style (read-aloud, touch-the-object) across surfaces, and keep any timers round (${ROUND_TIMER_MINUTES_LIST.join("/")}) and consistent wherever the same action is restated.`,
     );
   }
   // STIER-2 P14 — dealt memorable-line shapes (27/27 halted lines shared one mold).
@@ -911,7 +1134,46 @@ export function validateChapterBriefs(bookId: string, roots: CompilerStoreRoots 
     }
   }
 
+  // LJ1 (CF-C) — adjacent chapters must teach DISTINCT learning jobs. Compares each
+  // adjacent pair's coreMove (the chapter's learning JOB — no twin field) by content-
+  // lemma Jaccard; a near-duplicate pair surfaces ONE advisory naming both chapters.
+  // ADVISORY only — the pipeline assigns distinct EMPHASIS, it never invents separation,
+  // so this must never block (source chapters legitimately overlap). Scoped to v3
+  // (machine-compiled) briefs, mirroring BR8: manual-brief books are out of scope.
+  const ljBriefs = briefs
+    .filter(({ brief }) => brief.rotationSchemaVersion && oneLine(brief.coreMove ?? ""))
+    .sort((a, b) => a.n - b.n);
+  for (let i = 0; i + 1 < ljBriefs.length; i++) {
+    const a = ljBriefs[i];
+    const b = ljBriefs[i + 1];
+    const la = contentLemmaSet(a.brief.coreMove);
+    const lb = contentLemmaSet(b.brief.coreMove);
+    if (la.size < LEARNING_JOB_MIN_LEMMAS || lb.size < LEARNING_JOB_MIN_LEMMAS) continue;
+    const sim = lemmaJaccard(la, lb);
+    if (sim >= LEARNING_JOB_ADJACENT_JACCARD) {
+      findings.push({
+        checkId: "LJ1.adjacent_learning_job",
+        severity: "advisory",
+        message: `chapters ${a.n} and ${b.n} declare near-duplicate learning jobs (coreMove content-lemma Jaccard ${sim.toFixed(2)} ≥ ${LEARNING_JOB_ADJACENT_JACCARD}) — adjacent chapters should teach DISTINCT capabilities. Ch${a.n}: "${oneLine(a.brief.coreMove).slice(0, 80)}"; Ch${b.n}: "${oneLine(b.brief.coreMove).slice(0, 80)}". Give one chapter a different facet/emphasis of the shared material, or reassign a case so their jobs diverge.`,
+      });
+    }
+  }
+
   return { bookId: normalized, passed: !findings.some((f) => f.severity === "blocker"), findings };
+}
+
+/** LJ1 (CF-C) tuning. coreMoves are short mechanism sentences, so a content-lemma
+ *  Jaccard this high means the two chapters restate the SAME move — not merely shared
+ *  domain vocabulary (two chapters may share terms while teaching different jobs). The
+ *  real gold corpus (start-with-why, 14 ch) tops out at 0.19 within-chapter and its
+ *  adjacent coreMoves sit far below 0.6; the crafted duplicate-job fixture clears it. */
+const LEARNING_JOB_ADJACENT_JACCARD = 0.6;
+const LEARNING_JOB_MIN_LEMMAS = 4;
+function lemmaJaccard(a: Set<string>, b: Set<string>): number {
+  if (a.size === 0 || b.size === 0) return 0;
+  let inter = 0;
+  for (const x of a) if (b.has(x)) inter++;
+  return inter / (a.size + b.size - inter);
 }
 
 export function formatChapterBriefGateReport(report: ChapterBriefGateReport): string {

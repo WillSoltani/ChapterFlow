@@ -178,6 +178,13 @@ export type ChapterBriefV1 = {
   /** Non-binding venue/frame suggestions from the book design pools (empty without a design
    *  artifact). Use, adapt, or ignore. */
   flavor: string[];
+  /** v5 (2026-07-05): the whole-SKELETON architecture family dealt to this chapter
+   *  (single-deep-case / two-way-contrast / research-lead / failure-autopsy /
+   *  everyday-first-person / misconception-reversal / historical-narrative /
+   *  direct-conceptual). Dealt ABOVE the surface rotations and rendered as the
+   *  FIRST structural writer instruction — the anti-monoculture lever. Optional so
+   *  briefs compiled before v5 render without it. */
+  architectureFamily?: string;
   /** HARD reservation (v24 W4): the hook/fastRead opening MODE dealt to this chapter, rotated
    *  across {question, scene, claim, statistic} so no one mode dominates the book (CHB6 backstop).
    *  Rendered as an explicit writer instruction. */
@@ -243,6 +250,14 @@ export type ChapterBriefV1 = {
   idiomFamilies?: string[];
   /** STIER-3 P18 (v4): the chapter's whatToDo/whyItMatters opener register. */
   shellRegister?: string;
+  /** CF-C (2026-07-08): the adjacent chapters' LEARNING JOBS — each neighbour's own
+   *  `coreMove`, carried here so the single-brief writer card can render a
+   *  NOT-THIS-CHAPTER line ("chapter N-1 owns Y; chapter N+1 owns Z — do not
+   *  re-teach them") without re-reading siblings. The chapter's OWN job is its
+   *  `coreMove` (no twin field). Compiled deterministically from the neighbours'
+   *  packets, so a recompile is byte-derivable (F-1 sidecar invariant). Optional —
+   *  omitted for a single-chapter book and absent on briefs compiled before CF-C. */
+  adjacentJobs?: { prev?: string; next?: string };
 };
 
 /** v24 W4 rotation vocabularies — mirrored from src/compiler/briefRotation.ts (kept here as string

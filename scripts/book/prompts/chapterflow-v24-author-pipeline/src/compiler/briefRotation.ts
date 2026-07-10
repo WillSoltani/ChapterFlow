@@ -60,6 +60,11 @@
 
 import { fnv1a } from "../lib/fnv1a.js";
 import { normSlug } from "../lib/chapterPaths.js";
+import {
+  CONTENT_DEVICE_CATALOG,
+  dealContentDeviceBans,
+  type ContentDeviceId,
+} from "./contentDeviceDeal.js";
 
 /** Bumped whenever the SET of dealt rotation fields changes — part of the regen-cap
  *  lineage hash, so a rotation redesign re-keys chapters' write budgets honestly.
@@ -67,7 +72,7 @@ import { normSlug } from "../lib/chapterPaths.js";
  *  v3 = the STIER-2 deal (example arcs + lead thread + quiz stem/failure-mode/order
  *  deals + per-slot practice shapes + memorable shapes + limits placement +
  *  grounding form — plan docs/v24/STIER2-PLAN-2026-07-03.md §B). */
-export const ROTATION_SCHEMA_VERSION = "brief-rotation-v4";
+export const ROTATION_SCHEMA_VERSION = "brief-rotation-v5";
 
 /** STIER-3 P17 (plan docs/v24/STIER3-XCHAPTER-IDIOM-PLAN-2026-07-04.md): idiom
  *  families for verbalizing the book's shared framework — the round-2 book panel
@@ -103,7 +108,7 @@ export const IDIOM_INSTRUCTION: Record<IdiomFamily, string> = {
   "artifact-speak": "point at the physical thing — 'the date written where the team reads it'",
   "cost-speak": "price the default — 'every unowned promise costs a week of pretending'",
   "question-speak": "carry it as the question someone asks — 'who checks, and when?'",
-  "contrast-speak": "set it against its counterfeit — 'agreement nods; commitment signs'",
+  "contrast-speak": "set it against its counterfeit with a chapter-native antithesis",
   "motion-speak": "verbs of travel — 'the promise comes back on a date, or it drifts'",
   "ledger-speak": "counts and balances — 'three promises out, one return date set'",
   "sensory-speak": "what a bystander would see or hear in the room when it works",
@@ -120,6 +125,29 @@ export const SHELL_INSTRUCTION: Record<ShellRegister, string> = {
 
 export const OPENER_TYPES = ["question", "scene", "claim", "statistic", "tension-thesis"] as const;
 export type OpenerType = (typeof OPENER_TYPES)[number];
+
+/**
+ * ARCHITECTURE FAMILY (2026-07-05) — the chapter's whole-SKELETON shape, dealt
+ * ABOVE the opener/practice/lead rotations. The surface deals vary the dressing;
+ * the book-acceptance panel rejected start-with-why "churn HIGH" because every
+ * chapter still ran ONE skeleton (3 named anchors → proxy cast → return-point
+ * device → Friday drill), which no existing deal controlled. This deal assigns
+ * each chapter a DISTINCT structural skeleton and — critically — PROHIBITS the
+ * default 3-anchor+proxy+return machinery where the family calls for a different
+ * shape. Rotated with a two-thirds cap so no single skeleton dominates the book.
+ * Keeps the thesis/app-structure constant; varies only the delivery architecture.
+ */
+export const ARCHITECTURE_FAMILIES = [
+  "single-deep-case",       // ONE anchor developed end to end; no second/third case, no proxy chorus.
+  "two-way-contrast",       // exactly TWO cases held in tension; the contrast IS the lesson.
+  "research-lead",          // open on a study/mechanism/data; named cases are secondary, cast minimal.
+  "failure-autopsy",        // dissect ONE failure and what it cost; no frictionless win, no return-drill close.
+  "everyday-first-person",  // the reader's own moment/decision, no famous brand anchor; second person.
+  "misconception-reversal", // open on the belief the reader holds, then overturn it; argument-driven, no 3-anchor.
+  "historical-narrative",   // one case told as a chronological story with real stakes; no proxy stand-ins.
+  "direct-conceptual",      // frame the idea directly with one worked illustration; examples support, not lead.
+] as const;
+export type ArchitectureFamily = (typeof ARCHITECTURE_FAMILIES)[number];
 
 export const CHALLENGE_FRAMES = [
   "before-your-next-X",
@@ -206,6 +234,22 @@ export const OPENER_INSTRUCTION: Record<OpenerType, string> = {
   "tension-thesis": "Open the hook with the chapter's core tension stated flat in two short sentences — no named person, no scene furniture; the second sentence carries the friction ('Everyone agreed. No one knew who would bring back proof.').",
 };
 
+/** The whole-skeleton directive for each architecture family — rendered as the
+ *  FIRST, top-level structural instruction in the brief so the writer chooses the
+ *  chapter's SHAPE before anything else. Each one names what to do AND what NOT to
+ *  do, because the default (3 named anchors → proxy chorus → return-point drill)
+ *  is the writer's fallback and the source of the book-level monoculture. */
+export const ARCHITECTURE_INSTRUCTION: Record<ArchitectureFamily, string> = {
+  "single-deep-case": "Build the WHOLE chapter on ONE case, developed end to end. Do NOT add a 'second setting proves it travels' case or a third 'edge' case, and do NOT staff it with a chorus of invented role+name proxies — one real situation, followed all the way through.",
+  "two-way-contrast": "Structure the chapter as exactly TWO cases held in tension — the contrast itself is the lesson. No third edge case, no proxy chorus; let the two do all the work.",
+  "research-lead": "Open on a study, mechanism, or measured finding and let the IDEA drive; named company cases are secondary and sparse. Do NOT open on a famous founder/brand, and keep invented cast to at most one.",
+  "failure-autopsy": "Dissect ONE failure and exactly what it cost, step by step. No frictionless-win second case, and do NOT close on the stock 'drag the proof back' reversal drill — end on the lesson the failure teaches.",
+  "everyday-first-person": "Ground the chapter in the READER's own moment — write to 'you', a decision they actually face. No famous brand/founder anchor and no invented proxy cast; the reader is the protagonist.",
+  "misconception-reversal": "Open on the specific belief the reader already holds, then overturn it with argument and one clean illustration. Argument-driven — do NOT run the 3-anchor 'concrete → travels → edge' sequence.",
+  "historical-narrative": "Tell ONE case as a chronological story with real dates, actors, and stakes. No invented stand-in characters and no second/third mirror case — the single narrative carries it.",
+  "direct-conceptual": "Frame the idea directly and unfold it with ONE worked illustration. Examples SUPPORT the concept rather than lead it; skip the named-anchor parade and the stock reversal-drill close.",
+};
+
 export const PRACTICE_INSTRUCTION: Record<PracticeShape, string> = {
   "single-imperative": "Shape tryThisNow as ONE direct command — no 'Pick one…' menu, no a/b/or-c options.",
   "if-then-trigger": "Shape tryThisNow as an if-then trigger: 'When X happens, do Y.'",
@@ -283,6 +327,95 @@ export function dealRotation<T>(
   return result;
 }
 
+// ── manual-brief always-on rotation (F-07 / F-08) ──────────────────────────────
+// Manual-brief books (~113 of ~119 in production) never compile a machine brief, so
+// they skip the whole per-chapter VARIETY block — including the architecture-family
+// deal (v5) and the practice-shape rotation. These lean, pure helpers reproduce JUST
+// those two low-dependency levers as a function of (bookId, chapterNumber,
+// totalChapters), so the always-on dealt section (authorRun.ts) can hand them to
+// manual-brief writers. They share the SAME namespace + cap as dealBriefRotations,
+// so a machine-brief and a manual-brief book of the same id/size receive the
+// IDENTICAL architecture/practice deal — one source of truth, no drift.
+
+/** The architecture family dealt to every chapter 1..N (two-thirds cap). */
+export function dealArchitectureFamilies(bookId: string, totalChapters: number): ArchitectureFamily[] {
+  return dealRotation(bookId, "brief-architecture-family", ARCHITECTURE_FAMILIES, totalChapters, twoThirdsCap(totalChapters));
+}
+
+/** The practice shape dealt to every chapter 1..N (two-thirds cap). */
+export function dealPracticeShapes(bookId: string, totalChapters: number): PracticeShape[] {
+  return dealRotation(bookId, "brief-practice-shape", PRACTICE_SHAPES, totalChapters, twoThirdsCap(totalChapters));
+}
+
+/** Which content-device a practice shape EMBODIES (so dealing that shape would land
+ *  the device). The content-device deal and this practice rotation must not fight: a
+ *  chapter that BANS a device must never be dealt a practice shape that embodies it.
+ *
+ *  The current pool has NO overlap — every PRACTICE_SHAPE is a shape DESCRIPTOR
+ *  (single-imperative, two-step-sequence, …) while the only practice-adjacent
+ *  device, `practice-shell`, is a CADENCE (a fixed calendar ritual) that can wrap ANY
+ *  shape. So this map is empty today and the filter excludes nothing — but it is
+ *  wired and tested as a forward guard: if a calendar-cadence shape is ever added to
+ *  PRACTICE_SHAPES, map it here and it will then be filtered out of any chapter that
+ *  bans practice-shell. */
+export const PRACTICE_SHAPE_EMBODIES: Partial<Record<PracticeShape, ContentDeviceId>> = {};
+
+/** The practice shapes allowed for a chapter: the full pool minus any shape whose
+ *  embodied device is banned for that chapter by the content-device deal. Pure. The
+ *  `embodies` map is injectable so the filter mechanism is testable with a synthetic
+ *  overlap even while the production map is empty. */
+export function practiceShapesForChapter(
+  chapterNumber: number,
+  totalChapters: number,
+  embodies: Partial<Record<PracticeShape, ContentDeviceId>> = PRACTICE_SHAPE_EMBODIES,
+): PracticeShape[] {
+  const banned = new Set<ContentDeviceId>(dealContentDeviceBans(chapterNumber, totalChapters));
+  return PRACTICE_SHAPES.filter((s) => {
+    const dev = embodies[s];
+    return dev === undefined || !banned.has(dev);
+  });
+}
+
+/** The dealt architecture family + practice shape for one chapter, resolving the
+ *  consistency filter: if the dealt practice shape embodies a device this chapter
+ *  bans, substitute the first ALLOWED shape (walking the dealt rotation order from
+ *  this chapter's pick). Pure + deterministic — same inputs → same result across
+ *  re-runs and --only retries. */
+export function dealManualBriefRotation(
+  bookId: string,
+  chapterNumber: number,
+  totalChapters: number,
+  embodies: Partial<Record<PracticeShape, ContentDeviceId>> = PRACTICE_SHAPE_EMBODIES,
+): { architectureFamily: ArchitectureFamily; practiceShape: PracticeShape } {
+  const idx = chapterNumber - 1;
+  const architectureFamily = dealArchitectureFamilies(bookId, totalChapters)[idx];
+  const dealtShapes = dealPracticeShapes(bookId, totalChapters);
+  const allowed = new Set(practiceShapesForChapter(chapterNumber, totalChapters, embodies));
+  let practiceShape = dealtShapes[idx];
+  if (!allowed.has(practiceShape)) {
+    for (let k = 0; k < dealtShapes.length; k++) {
+      const cand = dealtShapes[(idx + k) % dealtShapes.length];
+      if (allowed.has(cand)) { practiceShape = cand; break; }
+    }
+  }
+  return { architectureFamily, practiceShape };
+}
+
+/** The two compact writer-card lines for a manual-brief book's chapter — the
+ *  architecture-family shape + the practice shape — rendered ALWAYS-ON (no machine
+ *  brief required). Empty below book scale (totalChapters < 4), mirroring the
+ *  content-device deal. Machine-brief books get the richer compiled VARIETY block
+ *  instead and must NOT also receive these (the caller gates on args.brief). */
+export function manualBriefRotationLines(bookId: string, chapterNumber: number, totalChapters: number): string[] {
+  if (totalChapters < 4) return [];
+  const { architectureFamily, practiceShape } = dealManualBriefRotation(bookId, chapterNumber, totalChapters);
+  return [
+    "CHAPTER SHAPE (dealt for this chapter — keeps the BOOK from running one skeleton)",
+    `Architecture — ${architectureFamily}: ${ARCHITECTURE_INSTRUCTION[architectureFamily]}`,
+    `Practice — ${PRACTICE_INSTRUCTION[practiceShape]}`,
+  ];
+}
+
 /** Deal each chapter a TRIPLE of distinct example lenses. Same determinism
  *  contract as dealRotation (fnv1a-seeded, ascending walk, pure): per chapter,
  *  walk the rotated pool from an advancing offset picking 3 DISTINCT lenses,
@@ -356,10 +489,10 @@ export type ExampleEntryPoint = (typeof EXAMPLE_ENTRY_POINTS)[number];
 export const ENTRY_INSTRUCTION: Record<ExampleEntryPoint, string> = {
   "at-the-demand": "open at the moment the demand/standard is stated",
   "mid-behavior": "open mid-action, demand already in the past — no setup",
-  "at-the-return-moment": "open AT the check-in/return moment itself",
+  "at-the-return-moment": "open AT the check-in itself, where the earlier commitment is answered for",
   "aftermath-looking-back": "open after it's over, tracing back what happened",
   "outsider-arrives": "open when someone outside the room first feels the effect",
-  "before-anyone-notices": "open on the early signal nobody has flagged yet",
+  "before-anyone-notices": "open on what is quietly going wrong before anyone flags it",
 };
 
 /** How the example RESOLVES. failure|partial are dealt ONLY to friction-flagged
@@ -378,8 +511,8 @@ export const OUTCOME_INSTRUCTION: Record<ExampleOutcome, string> = {
   "clean-win": "the move works — but earn it, show the cost paid",
   "failure": "the move is skipped or botched and the miss lands",
   "partial": "the move half-works; name what stayed broken",
-  "averted-late": "headed for a miss, caught late — barely",
-  "still-open": "ends unresolved; the return point is set but not yet met",
+  "averted-late": "headed for a miss, pulled back barely in time",
+  "still-open": "ends unresolved — cut away before anyone learns how it turned out",
 };
 
 /** The rhetoric INSIDE the app's fixed whatToDo/whyItMatters labels (the labels are
@@ -676,6 +809,10 @@ export function dealLeadPreference(bookId: string, totalChapters: number): boole
 }
 
 export type BriefRotation = {
+  /** v5 (2026-07-05): the whole-skeleton architecture family — dealt ABOVE the
+   *  surface rotations so each chapter's overall SHAPE differs, not just its
+   *  dressing. The anti-monoculture lever. */
+  architectureFamily: ArchitectureFamily;
   openerType: OpenerType;
   challengeFrame: ChallengeFrame;
   practiceShape: PracticeShape;
@@ -756,6 +893,10 @@ export function dealBriefRotations(bookId: string, totalChapters: number): Map<n
   const shellCap = n <= SHELL_REGISTERS.length ? 1 : Math.max(1, oneThirdCap(n));
   const shells = dealRotation(bookId, "brief-shell-register", SHELL_REGISTERS, n, shellCap);
 
+  // v5 (2026-07-05) — the whole-skeleton architecture family, two-thirds cap so no
+  // single delivery mold dominates the book (the churn-HIGH monoculture fix).
+  const architectures = dealRotation(bookId, "brief-architecture-family", ARCHITECTURE_FAMILIES, n, twoThirdsCap(n));
+
   const out = new Map<number, BriefRotation>();
   for (let i = 0; i < n; i++) {
     // The four practice surfaces get DISTINCT shapes; slot 0 stays the legacy
@@ -766,6 +907,7 @@ export function dealBriefRotations(bookId: string, totalChapters: number): Map<n
       if (!slots.includes(s)) slots.push(s);
     }
     out.set(i + 1, {
+      architectureFamily: architectures[i],
       openerType: openers[i],
       challengeFrame: frames[i],
       practiceShape: shapes[i],

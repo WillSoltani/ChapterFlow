@@ -119,11 +119,14 @@ Commands:
                                      (key-packs, blind submissions, authoring cards, prior QC rounds, the source-
                                      sidecar cache; ~7 MB/book) so the worktree stays lean. Keeps every git-tracked
                                      artifact + the source-verify record. Dry-run by default; --apply deletes. [--json]
-  derive-artifacts <bookId>          Inline-operator helper: derives the book-pattern-audit
+  derive-artifacts <bookId> [--force-voice]
+                                     Inline-operator helper: derives the book-pattern-audit
                                      prerequisites (state/briefs/<bookId>.manual-brief.json +
                                      state/plans/<chapterId>.manual-plan.json per chapter) from
                                      the bibliography + cached chapters. Run after writing all
-                                     chapters, before generate-book.
+                                     chapters, before generate-book. Preserves a reviewed/diverged
+                                     voiceCharter by default (other fields re-derive); --force-voice
+                                     re-derives the voiceCharter from the TOC.
   research "<title>" "<author>" [--book-id <slug>] [--concurrency N] [--force-refresh]
                                      SUBPROCESS MODE: run the researcher via claude -p subprocess
                                      calls. Counts against your Max subscription quota.
@@ -382,6 +385,9 @@ Commands:
                                      every book whose QC is complete. Re-run as books progress.
 
   Phase-0 maintenance (see MASTER-PLAN.md):
+  calibration-scan <bookId> [--json] Run the cast/name calibration detectors (C23/C24/C25/C27) against a book's
+                                     on-disk chapters and PRINT findings. Advisory, NON-gating, always exits 0 —
+                                     the opt-in live-book twin of the shipped-reference-only zero-FP suite pins.
   state-status                       Per-book: chapters on disk, untracked-in-git, chapterId mismatches, promoted.
   migrate-state [--apply]            Reconcile the repo-root shadow state/chapters into the canonical dir.
                                      [--prefer-canonical|--prefer-shadow] to resolve divergent files.
@@ -390,7 +396,7 @@ Commands:
   quarantine-book <bookId>           Pull a shipped-but-corrupt package; promote/register refuse until released
   unquarantine-book <bookId>         Release a quarantine tombstone (book must then re-pass the full gate)
 
-  eval-reader-proxy <bookId> [<bookId2> ...] [--chapters N] [--bar 84] [--json]
+  eval-reader-proxy <bookId> [<bookId2> ...] [--chapters N] [--bar 80] [--json]
                                      v24 reader-proxy instrument: deterministically sample N chapters (default 3)
                                      of each shipped package, render each as a blinded reader doc under
                                      scratch/eval-proxy/, spawn one independent read-only codex reader per
@@ -945,12 +951,17 @@ async function runGenerateBook(args: string[], flags: Record<string, string | bo
  *  Without these, generate-book's book gate fails closed on BP7. The inline
  *  playbooks instruct the operator to run this between writing every chapter
  *  and running finalization. */
-async function runDeriveArtifacts(args: string[]): Promise<number> {
+async function runDeriveArtifacts(args: string[], flags: Record<string, string | boolean> = {}): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: derive-artifacts <bookId>");
+    console.error("Usage: derive-artifacts <bookId> [--force-voice]");
     return 2;
   }
+  // P1 (F-01): by default, derivation PRESERVES a reviewed/diverged voiceCharter
+  // instead of clobbering it from the TOC. --force-voice re-derives it. The
+  // auto-run callers (book-gate, QC entry) pass no flags → preserve, which is what
+  // stops those hooks from silently reverting a hand-edited charter.
+  const forceVoice = flags["force-voice"] === true;
   const REPO = resolve(__dirname, "..");
   const RUNS_DIR = resolve(REPO, ".chapterflow/runs");
   const STATE_DIR = resolve(__dirname, "../state");
@@ -981,7 +992,7 @@ async function runDeriveArtifacts(args: string[]): Promise<number> {
   const briefDir = resolve(STATE_DIR, "briefs");
   mkdirSync(briefDir, { recursive: true });
   const briefPath = resolve(briefDir, `${bookId}.manual-brief.json`);
-  const brief = {
+  const derivedBrief = {
     bookId,
     title: toc.title,
     author: toc.author,
@@ -1000,8 +1011,31 @@ async function runDeriveArtifacts(args: string[]): Promise<number> {
     derivedFromInlineMode: true,
     derivedAt: new Date().toISOString(),
   };
+  // P1 (F-01): non-clobbering derivation — preserve a reviewed/diverged voiceCharter
+  // unless --force-voice. Every other field re-derives. This stops the book-gate/QC
+  // auto-derive hooks from silently reverting a hand-edited charter.
+  const { reconcileDerivedBrief } = await import("./lib/manualBriefReconcile.js");
+  const { sanitizeVoiceMoves } = await import("./lib/voiceBible.js");
+  let existingBrief: unknown = null;
+  if (existsSyncFs(briefPath)) {
+    try { existingBrief = JSON.parse(readFileSync(briefPath, "utf8")); } catch { existingBrief = null; }
+  }
+  const { brief, preservedVoice, forcedVoice } = reconcileDerivedBrief({ existing: existingBrief, derived: derivedBrief, forceVoice });
   writeFileSync(briefPath, JSON.stringify(brief, null, 2), "utf8");
   console.log(`Wrote ${briefPath}`);
+  if (preservedVoice) {
+    console.log("  preserved the existing voiceCharter (diverged from the TOC-derived one); other fields re-derived. Pass --force-voice to overwrite it from the TOC.");
+  } else if (forcedVoice) {
+    console.log("  --force-voice: overwrote the existing voiceCharter with the TOC-derived one.");
+  }
+  // Gate-time explainability (F-01): surface which signatureMoves the voice-move
+  // sanitizer will filter out of writer prompts, so book-gate diffs are legible.
+  const finalMoves = ((brief.voiceCharter as { signatureMoves?: string[] } | undefined)?.signatureMoves) ?? [];
+  const strippedMoves = sanitizeVoiceMoves(finalMoves).stripped;
+  if (strippedMoves.length > 0) {
+    const preview = strippedMoves.map((m) => `"${m.length > 60 ? `${m.slice(0, 60)}…` : m}"`).join("; ");
+    console.log(`  note: ${strippedMoves.length} content-device mandate(s) in voiceCharter.signatureMoves will be filtered from writer prompts by the voice-move sanitizer: ${preview}`);
+  }
 
   // ── Per-chapter plan stubs ──────────────────────────────────────────────
   const plansDir = resolve(STATE_DIR, "plans");
@@ -1852,6 +1886,17 @@ async function runBookStatus(args: string[], flags: Record<string, string | bool
     console.log(`  could not read status: ${(err as Error).message}`);
     console.log(`  run: npx tsx src/cli.ts doctor ${bookId}`);
   }
+  // F-11: if this book still owes a cross-repo deploy, print the remaining steps
+  // verbatim. Read-only, best-effort — never fails the status read (and silent for
+  // a book with no pending debt). Suppressed under --json (the machine caller reads
+  // the sentinel directly).
+  if (flags["json"] !== true) {
+    try {
+      const { readPendingDeploy, formatBookPendingDeploy } = await import("./publish/publishFinal.js");
+      const block = formatBookPendingDeploy(bookId, readPendingDeploy());
+      if (block) console.log("\n" + block);
+    } catch { /* visibility is best-effort; never crash the status view */ }
+  }
   return 0;
 }
 
@@ -1962,6 +2007,78 @@ async function runAuthorCheck(args: string[]): Promise<number> {
   const balance = checkChapterAnswerBalance(chapter, loadAnswerKeyPlan(bookId));
   for (const f of balance) console.log(`  [${f.checkId}] ${f.message}`);
   return findings.length === 0 ? 0 : 1;
+}
+
+/** `calibration-scan <bookId>` — R4. Runs the reference-quality CAST/NAME
+ *  calibration detectors (C23 example-protagonist reuse, C24 cast-overflow,
+ *  C25 example↔quiz name shuffle, C27 off-standard name density) against a book's
+ *  on-disk chapters and PRINTS the findings. This is the opt-in, NON-GATING twin
+ *  of the zero-FP calibration pins in cast-discipline.test.ts / name-commonality.
+ *  test.ts: those pins now precondition on a SHIPPED reference package (P11), so
+ *  they no longer run — and never failed — on the ACTIVE campaign book. This verb
+ *  restores that live FP signal on demand for ANY on-disk book without
+ *  reintroducing always-fails-on-active-book suite noise: it opens no QC round,
+ *  touches no ledger, and ALWAYS exits 0 (advisory). */
+async function runCalibrationScan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: calibration-scan <bookId> [--json]");
+    return 2;
+  }
+  const chaptersDir = resolve(__dirname, "../state/chapters");
+  const files = existsSyncFs(chaptersDir)
+    ? readdirSync(chaptersDir)
+        .filter((f) => f.startsWith(`${bookId}-ch`) && f.endsWith(".v21-native.chapter.json"))
+        .sort()
+    : [];
+  const {
+    checkCastSize,
+    checkExampleQuizNameConsistency,
+    checkExampleProtagonistReuse,
+    checkNameCommonality,
+  } = await import("./critics/narrative.js");
+
+  type ScanHit = { chapterId: string; checkId: string; severity: string; message: string };
+  const hits: ScanHit[] = [];
+  for (const f of files) {
+    let ch: ChapterV21;
+    try {
+      ch = JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21;
+    } catch (err) {
+      console.error(`  (skipped ${f}: ${(err as Error).message})`);
+      continue;
+    }
+    const chId = ch.chapterId ?? f.replace(/\.v21-native\.chapter\.json$/, "");
+    const findings = [
+      ...checkCastSize(ch),
+      ...checkExampleQuizNameConsistency(ch),
+      ...checkExampleProtagonistReuse(ch.examples ?? []),
+      ...checkNameCommonality(ch),
+    ];
+    for (const hit of findings) hits.push({ chapterId: chId, checkId: hit.checkId, severity: hit.severity, message: hit.message });
+  }
+
+  if (flags["json"] === true) {
+    console.log(JSON.stringify({ bookId, chaptersScanned: files.length, findings: hits }, null, 2));
+    return 0;
+  }
+
+  console.log(`calibration-scan ${bookId}: cast/name detectors (C23/C24/C25/C27) — ADVISORY, non-gating.`);
+  if (files.length === 0) {
+    console.log(`  No on-disk chapters at state/chapters/${bookId}-ch*.v21-native.chapter.json — nothing to scan.`);
+    return 0;
+  }
+  console.log(`  Scanned ${files.length} chapter(s).`);
+  if (hits.length === 0) {
+    console.log("  ✓ Clean — 0 cast/name calibration findings.");
+    return 0;
+  }
+  console.log(`  ${hits.length} finding(s):`);
+  for (const h of hits) console.log(`    [${h.severity}] ${h.checkId} — ${h.chapterId}: ${h.message}`);
+  console.log("  (Advisory only — this scan never blocks and never fails the suite.)");
+  return 0;
 }
 
 /** `quarantine-book <bookId> [--reason "..."]` — Phase 0. Moves a shipped-but-bad
@@ -5612,7 +5729,7 @@ async function main() {
     case "prune-book-state":
       return runPruneBookState(args, flags);
     case "derive-artifacts":
-      return runDeriveArtifacts(args);
+      return runDeriveArtifacts(args, flags);
     case "research":
       return runResearch(args, flags);
     case "generate":
@@ -5689,6 +5806,10 @@ async function main() {
       return runBookAutopilot(args, flags);
     case "book-run":
       return (await import("./orchestrator/liveRun.js")).runLive(args, flags);
+    case "diversify-book":
+      return (await import("./orchestrator/liveRun.js")).runDiversify(args, flags);
+    case "content-repair-book":
+      return (await import("./orchestrator/liveRun.js")).runContentRepair(args, flags);
     case "compile-source-packets":
       return runCompileSourcePackets(args);
     case "source-packet-gate":
@@ -5775,6 +5896,8 @@ async function main() {
       return runBatch(args, flags);
     case "author-check":
       return runAuthorCheck(args);
+    case "calibration-scan":
+      return runCalibrationScan(args, flags);
     case "fix-chapter-ids":
       return runFixChapterIds(args, flags);
     case "migrate-chapter-identity":

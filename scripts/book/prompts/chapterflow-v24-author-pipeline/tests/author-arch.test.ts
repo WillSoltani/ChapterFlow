@@ -13,7 +13,7 @@
  * targeted regen then halting; and compiler/legacy defaults unchanged.
  */
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -28,6 +28,7 @@ import {
 import {
   AUTHOR_CARD_MAX_CHARS,
   AUTHOR_HOUSE_RULES,
+  AUTHOR_PREMIUM_BLOCK,
   AUTHOR_QUALITY_BAR,
   authorChapterRelPath,
   authorSchemaHint,
@@ -35,18 +36,46 @@ import {
   authorWriteOneChapter,
   buildAuthorCard,
   doAuthorWrite,
+  ROUND_TIMER_MINUTES,
 } from "../src/orchestrator/authorRun.js";
+import { questionKeysOnLineage } from "../src/critics/lineageKeyQuiz.js";
 import {
+  AUTHOR_REGEN_CAP,
   acceptanceRecordPath,
   acceptanceRoundSegment,
   complaintsOf,
+  decideAcceptanceRegenOutcome,
   doAuthorReview,
   mapBookComplaintsToChapters,
+  runBookAcceptance,
+  trueMedian,
+  AUTHOR_BOOK_READERS,
   type AcceptanceWriters,
   type AuthorAcceptanceRecord,
   type AuthorReviewIo,
 } from "../src/orchestrator/authorReview.js";
 import { renderBriefMd } from "../src/compiler/chapterBrief.js";
+import {
+  appendReviewHistory,
+  carryReviewFor,
+  reviewDir,
+  reviewHistoryPath,
+  type ReopenNote,
+} from "../src/orchestrator/authorReviewLedger.js";
+import { authorChapterId } from "../src/orchestrator/authorRun.js";
+import { loadAuthorProvenance, provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
+import {
+  contentRepairConsumedFor,
+  loadAuthorRegenLedger,
+  recordContentRepairConsumed,
+} from "../src/orchestrator/authorRegenLedger.js";
+import type { ContentRepairResult, SamenessChapterOutcome } from "../src/orchestrator/bookSamenessRun.js";
+import { CHAPTERS_DIR, chapterFileName } from "../src/lib/chapterPaths.js";
+import {
+  CHAPTER_REVIEW_SCHEMA_VERSION,
+  type ChapterReviewV1,
+} from "../src/artifacts/artifactTypes.js";
+import { chapterReaderDocHash, REVIEW_DOC_HASH_VERSION } from "../src/review/readerReview.js";
 import { estimatedRenderedChars } from "../src/critics/readerBudgets.js";
 import {
   chapterContentHash,
@@ -249,11 +278,12 @@ function mkDeps(
 
 const TMP = mkdtempSync(join(tmpdir(), "author-arch-"));
 
-function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { attestations: QcAttestation[]; bars: ValidatedBarReadSubmission[]; confirms: ValidatedConfirmReadSubmission[]; acceptanceRecords: AuthorAcceptanceRecord[] } {
+function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { attestations: QcAttestation[]; bars: ValidatedBarReadSubmission[]; confirms: ValidatedConfirmReadSubmission[]; acceptanceRecords: AuthorAcceptanceRecord[]; reopenNotes: ReopenNote[] } {
   const attestations: QcAttestation[] = [];
   const bars: ValidatedBarReadSubmission[] = [];
   const confirms: ValidatedConfirmReadSubmission[] = [];
   const acceptanceRecords: AuthorAcceptanceRecord[] = [];
+  const reopenNotes: ReopenNote[] = [];
   const regenLedger = new Map<number, number>(); // in-memory E2 regen-cap tracking, per io instance
   const acceptance: AcceptanceWriters = {
     openRound: () => ({ roundId: "r20260101000000-abcdef", tokens: {} }),
@@ -278,6 +308,15 @@ function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { a
     },
     persistReview: () => "/tmp/review.json",
     persistAcceptance: (bookId, record) => { acceptanceRecords.push(record); return `/tmp/acceptance.${record.roundLabel || "round1"}.json`; },
+    // Multi-read pool (F1/F3): mirror the in-memory persisted records with the
+    // same quorum filter the real listAcceptanceReads applies, so cross-read and
+    // cross-entry pooling is exercised without touching real state/.
+    listAcceptanceReads: (_b, docSha256) =>
+      acceptanceRecords.filter(
+        (r) => r.docSha256 === docSha256
+          && (r.verdict?.validCount ?? 0) >= 3
+          && typeof r.verdict?.medianComposite === "number",
+      ),
     acceptance,
     // B5 publish evidence is stubbed OK in these unit tests (its real
     // implementations are pinned by tests/author-evidence.test.ts against
@@ -303,9 +342,16 @@ function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { a
     // contaminating the next's — the fixture book id is shared).
     regenConsumedFor: (_b, n) => regenLedger.get(n) ?? 0,
     recordRegenConsumed: (_b, n) => { regenLedger.set(n, (regenLedger.get(n) ?? 0) + 1); },
+    // F-03: capture reopen notes in memory so the acceptance-regen block never
+    // leaks state/reviews/<book>/reopen-notes.json into the real state dir.
+    appendReopenNote: (_b, note) => { reopenNotes.push(note); },
+    // F-04: default the content-device repair lane to a NO-OP (fired:false) so a
+    // churn-HIGH test never accidentally lazy-imports + spawns the real writer.
+    // Routing tests override this with a controlled stub.
+    contentDeviceRepair: async () => ({ fired: false, targets: [], preserved: [], outcomes: [], preservedViolations: [], overCapDevices: [], residualOverCap: [] }),
     ...over,
   };
-  return Object.assign(io, { attestations, bars, confirms, acceptanceRecords });
+  return Object.assign(io, { attestations, bars, confirms, acceptanceRecords, reopenNotes });
 }
 
 /** The default spawn script: writers succeed, chapter readers pass, book readers accept. */
@@ -361,7 +407,7 @@ test("author card: brief md verbatim + writer projection + schema hint + self-ve
   assert.ok(card.includes("gate-chapter state/chapters/zz-fixture-fact-ranking-ch03.v21-native.chapter.json"), "gate command names the exact output file");
   assert.ok(!card.includes("PRIOR-ATTEMPT COMPLAINTS"), "no complaints section on a first attempt");
   assert.ok(card.length <= AUTHOR_CARD_MAX_CHARS, `card must be <= ${AUTHOR_CARD_MAX_CHARS} chars, got ${card.length}`);
-  assert.ok(authorSelfVerify("zz-fixture-fact-ranking", 3).length <= 1200, "self-verify stays <= 1200 chars");
+  assert.ok(authorSelfVerify("zz-fixture-fact-ranking", 3).length <= 1400, "self-verify stays <= 1400 chars");
   console.log(`  [measure] author card on the golden fixture packet: ${card.length} chars`);
 });
 
@@ -373,8 +419,12 @@ test("author card: W1 QUALITY BAR (all four house rules) rides the ALWAYS-SENT c
   // a compliant first draft clears the W2 preflight without the ~19-min retry.
   const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
   assert.ok(card.includes(AUTHOR_QUALITY_BAR), "the QUALITY BAR block is embedded verbatim on the first attempt");
-  // Rule 1 — distractor parity (symmetric: neither longest nor shortest).
-  assert.match(card, /NEITHER the longest NOR the shortest/i, "rule 1 distractor parity is symmetric");
+  // Rule 1 — distractor parity states the REAL symmetric caps (FINAL-HARDENING-PLAN
+  // 2026-07-04 D1/D5 rebase: the old "NEITHER longest NOR shortest / aim middle" text
+  // contradicted the 1-longest/4-shortest gates and CHB8's 20% shortest floor).
+  assert.match(card, /uniquely LONGEST choice in AT MOST ONE/i, "rule 1 states the longest cap");
+  assert.match(card, /uniquely SHORTEST in AT MOST FOUR/i, "rule 1 states the shortest cap");
+  assert.match(card, /up to 4 of 9.*never make shortest the rule/i, "rule 1 reconciles the CHB8 shortest floor");
   // Rule 2 — key paraphrase incl. review cards + implementation plan.
   assert.match(card, /never reuse 5 or more consecutive content words/i, "rule 2 key-paraphrase 5-word rule");
   assert.match(card, /review cards and the implementation plan/i, "rule 2 names review cards + implementation plan explicitly");
@@ -387,11 +437,246 @@ test("author card: W1 QUALITY BAR (all four house rules) rides the ALWAYS-SENT c
   assert.match(card, /No "a, b, or c" option menus/i, "rule 3 bans option menus");
   // Rule 4 — plain language / ease band from sentence one.
   assert.match(card, /Flesch ease 72-84/i, "rule 4 names the ease band");
+  // Rule 7 — example craft (Phase 5): the thin/manufactured-example write-time
+  // standard that shifts C29 + the reader's slot-filler judgment left.
+  assert.match(card, /EXAMPLE CRAFT/i, "rule 7 names the example-craft standard");
+  assert.match(card, /DECISION and its COMPLETED CONSEQUENCE/i, "rule 7 demands the decision→consequence arc");
+  assert.match(card, /FAILED example/i, "rule 7 states the thin-example reject condition");
+  // CF-B (F3/F5/F13/F17): the register rewrite. The rubric-shaped phrasing that leaked
+  // verbatim into HOM ch8's evaluator-Q&A fields is GONE; the new register + conditional
+  // tension + F17 humanization guardrail are present. (C31 is the deterministic complement.)
+  assert.ok(!AUTHOR_QUALITY_BAR.includes("MEASURABLY CHANGED"), "CF-B: the rubric-shaped 'MEASURABLY CHANGED … before→after' phrasing is removed");
+  assert.match(card, /NARRATED in the scene's own voice/i, "rule 7 states the register rule (narrate in the scene's voice)");
+  assert.match(card, /Never open a field with an evaluator question answered in the next clause/i, "rule 7 bans the evaluator-question-then-answer opener");
+  assert.match(card, /Where legitimate interests collide/i, "rule 7 carries the CONDITIONAL competing-interests staging clause");
+  assert.match(card, /one example must STAGE the clash — who pulls the other way, what it costs/i, "the tension clause demands staging, not describing");
+  assert.match(card, /never a default invented proxy or a named person beyond the dealt cast/i, "rule 7 carries the F17 humanization guardrail (no new named cast)");
+  assert.match(card, /honor its proxy\/stand-in bans/i, "the F17 guardrail honors dealt proxy/stand-in bans");
+  // CF-C (Findings 4/8): rule 6's per-example JOB wording — every example serves THIS
+  // chapter's declared learning job through a distinct facet, grounded in the source
+  // (the write-time twin of the C30 critic + the brief's NOT-THIS-CHAPTER line).
+  assert.match(card, /Each example must advance THIS CHAPTER'S JOB \(declared in the VARIETY block\)/, "rule 6 ties every example to the chapter's declared learning job");
+  assert.match(card, /no two examples may teach the same lesson/i, "rule 6 forbids duplicate example lessons");
+  assert.match(card, /merge them and spend the freed slot on a facet you have not shown yet/i, "rule 6 keeps the merge-and-respend instruction");
+  assert.match(card, /never invent a facet the source cannot ground/i, "rule 6 keeps the source-grounding guard on new facets");
 
-  // Length budget: the WHOLE card stays <= 15,000 chars (W1 spec). The variable
-  // parts (brief md + packet projection) are represented by the golden fixture.
-  assert.ok(card.length <= 16000, `W1 card length budget: card must be <= 16,000 chars, got ${card.length}`);
-  console.log(`  [measure] W1 card with QUALITY BAR: ${card.length} chars (budget 15,000)`);
+  // Length budget: the WHOLE card stays <= 18,700 chars (W1 spec, bumped from
+  // 16,000 for the Phase-5 example-craft rule, then raised for the 2026-07-08
+  // content-feedback campaign: CF-A rule 8 HOOK CARRIES A STAKE + self-verify
+  // item 5, CF-C rule-6 job wording + the NOT-THIS-CHAPTER learning-job line in
+  // the brief VARIETY block, CF-B's rule-7 register rewrite (net of the removed
+  // rubric-shaped phrase), CF-D's PLAIN WORDS inherited-terms + self-verify TERMS
+  // item, and CF-E's rule 9 TAKE-HOME SURFACES + schema-hint notes + self-verify
+  // item 7 — then TRIMMED back (attention economy): the campaign's net delta on
+  // the four card constants is +1,395 chars (fixture card measures ~18.2k).
+  // The variable parts (brief md + packet projection) are represented by the fixture.
+  // 2026-07-09: the pin rose 18,700 → 18,820 for the CF-I campaign's +599 card delta
+  // (CF-I-2 register rule +391, CF-I-3 quiz application-over-lineage +208); ≤19,000 cap.
+  // 2026-07-09 CF-J: 18,820 → 18,940 for the self-verify item-4 page-citation clause
+  // ("Page/section citations … are internal coordinates, never reader prose", +91;
+  // measured card 18,911 — still under the ≤19,000-per-campaign governance cap).
+  assert.ok(card.length <= 18940, `W1 card length budget: card must be <= 18,940 chars, got ${card.length}`);
+  console.log(`  [measure] W1 card with QUALITY BAR: ${card.length} chars (budget 18,940)`);
+});
+
+// ── CF-A (G1): hook carries a stake + fastRead doorway ─────────────────────────
+test("CF-A: rule 8 HOOK CARRIES A STAKE + DOORWAY rides the ALWAYS-SENT card; mode-agnostic; nothing weakened", () => {
+  const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
+  const briefMd = renderBriefMd(brief);
+  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
+
+  // Rule 8 is present on the FIRST-ATTEMPT card (exact-line pins).
+  assert.ok(AUTHOR_QUALITY_BAR.includes("8. HOOK CARRIES A STAKE"), "rule 8 exists in the QUALITY BAR");
+  assert.ok(card.includes("8. HOOK CARRIES A STAKE"), "rule 8 rides the always-sent card");
+  assert.match(card, /make the STAKE visible in plain words — who loses\/pays\/misses what/i, "rule 8 states the stake requirement");
+  assert.match(card, /a bare activity or diagram description is a FAILED hook/i, "rule 8 names the activity/diagram FAIL condition");
+  // Exactly TWO generic micro-examples, one passing + one failing (not book-specific).
+  assert.ok(AUTHOR_QUALITY_BAR.includes('FAIL: "The team maps functions to shared standards."'), "rule 8 carries the failing micro-example");
+  assert.ok(AUTHOR_QUALITY_BAR.includes('PASS: "It shipped late because no one owned the date."'), "rule 8 carries the passing micro-example");
+  assert.equal(AUTHOR_QUALITY_BAR.split(/\bFAIL:/).length - 1, 1, "exactly one FAIL micro-example in rule 8");
+  assert.equal(AUTHOR_QUALITY_BAR.split(/\bPASS:/).length - 1, 1, "exactly one PASS micro-example in rule 8");
+  // The doorway rule for the fastRead opening (CF-I-2 tightened the beat definition
+  // between "beat" and "BEFORE"; the concrete-beat-before-abstraction order stands).
+  assert.match(card, /DOORWAY: land one concrete fastRead beat .*BEFORE the first abstract term/i, "doorway orders concrete-beat-before-abstraction");
+
+  // Mode-agnostic: rule 8 binds WHATEVER opener mode is dealt (wording, not enforcement —
+  // no hook critic, no OPENER_TYPES change), so all five dealt modes can satisfy it.
+  assert.match(AUTHOR_QUALITY_BAR, /Whatever opener mode is dealt/i, "rule 8 is explicitly mode-agnostic");
+
+  // Self-verify item 5 present (write-time stake self-check), block still <= the self-verify pin (1400 since CF-J).
+  const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
+  assert.ok(card.includes(sv), "self-verify block rides the card");
+  assert.match(sv, /run ALL SEVEN/i, "self-verify header updated to seven checks");
+  assert.match(sv, /5\. HOOK — point at the stake \(who loses\/pays\/misses what\)/, "self-verify item 5 (point-at-the-stake) present");
+  assert.match(sv, /the fastRead's concrete beat before its first abstract term/, "self-verify item 5 covers the doorway check");
+  assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
+
+  // NEGATIVE: nothing was weakened. Rule 4 "Open plain" and the PREMIUM_BLOCK VOICE
+  // rhythm rule (move 1) are byte-for-byte unchanged.
+  assert.ok(AUTHOR_QUALITY_BAR.includes("4. PLAIN LANGUAGE FROM SENTENCE ONE [GATED]"), "rule 4 header unchanged");
+  assert.ok(AUTHOR_QUALITY_BAR.includes("Open plain — no throat-clearing abstraction before the first concrete beat."), "rule 4 'Open plain' clause unchanged");
+  assert.ok(AUTHOR_PREMIUM_BLOCK.includes("never let more than 2 consecutive paragraphs open on an abstraction; break runs with a person, scene, or object."), "PREMIUM_BLOCK VOICE move 1 unchanged");
+});
+
+// ── CF-I-2 (machinery-leakage): rule 8 REGISTER clause + DOORWAY tightening ─────
+test("CF-I-2: rule 8 carries the REGISTER rule + citation-date DOORWAY tightening; self-verify names beat labels; budget holds", () => {
+  const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
+  const briefMd = renderBriefMd(brief);
+  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
+
+  // REGISTER clause (the reader never meets the machinery) rides the always-sent card.
+  assert.match(card, /REGISTER: the reader never meets the machinery/i, "rule 8 REGISTER clause present");
+  assert.match(card, /no internal artifact or dealt beat label as the acting subject/i, "REGISTER bans machinery-as-protagonist (C32) and beat-labels-as-prose (C33)");
+  assert.match(card, /no drafting narration \(\"in the weak version…\"\)/i, "REGISTER bans drafting/process narration");
+  assert.match(card, /write the beat, not its name/i, "REGISTER states the beat-not-its-name rule");
+  assert.match(card, /quiz keys test what a reader can DO, not name the source lineage/i, "REGISTER carries the compact quiz-key principle (C35; CF-I-3 elaborates)");
+
+  // DOORWAY tightening: a doorway is someone acting or a cost landing, never a bare date (C34).
+  assert.match(card, /someone acting or a cost landing, never a citation\/publication date on its own/i, "DOORWAY tightening folds in the citation-date exclusion (S4)");
+
+  // Self-verify item 4 (SCAFFOLD) now names beat labels; block still under the self-verify pin (1400 since CF-J — item 4 also gains the page-citation clause).
+  const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
+  assert.match(sv, /4\. SCAFFOLD — scan every reader-facing field for scaffold vocabulary \(slot names, shape\/beat labels/, "self-verify item 4 adds beat labels to the scaffold list");
+  assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
+
+  // Net CF-I-2 card delta ≤ +400 chars (register-rule budget); the whole card stays under
+  // the CF-I pin (18,820, raised from 18,700 in CF-I-3 for the +599 campaign delta).
+  assert.ok(card.length <= 18940, `W1 card length budget: card must be <= 18,940 chars, got ${card.length}`);
+  assert.ok(AUTHOR_QUALITY_BAR.length <= 6300, `QUALITY_BAR CF-I delta stays within budget, got ${AUTHOR_QUALITY_BAR.length}`);
+  console.log(`  [measure] CF-I-2 card: ${card.length} chars (budget 18,940); QUALITY_BAR ${AUTHOR_QUALITY_BAR.length}`);
+
+  // NEGATIVE: nothing from CF-A/CF-B weakened — rule 7 register + rule 8 stake intact.
+  assert.match(card, /7\. EXAMPLE CRAFT \[SCORED\]/, "rule 7 header unchanged");
+  assert.match(card, /NARRATED in the scene's own voice/i, "rule 7 CF-B register requirement intact");
+  assert.match(card, /make the STAKE visible in plain words — who loses\/pays\/misses what/i, "rule 8 CF-A stake requirement intact");
+  assert.equal(AUTHOR_QUALITY_BAR.split(/\bFAIL:/).length - 1, 1, "still exactly one FAIL micro-example");
+  assert.equal(AUTHOR_QUALITY_BAR.split(/\bPASS:/).length - 1, 1, "still exactly one PASS micro-example");
+});
+
+// ── CF-I-3 (quiz application-over-lineage): rule 5 KEY-IS-A-MOVE + schemaHint + self-verify ─
+test("CF-I-3: rule 5 carries KEY IS A MOVE; schemaHint + self-verify state application-over-lineage; detector-consistent; budget holds", () => {
+  const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
+  const briefMd = renderBriefMd(brief);
+  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
+
+  // The fuller quiz-application rule rides the always-sent card, inside rule 5.
+  assert.match(card, /KEY IS A MOVE: the graded answer is a move the reader makes, not a source — a citation belongs in a distractor or the explanation, never the tested skill\./, "rule 5 carries the KEY IS A MOVE application-over-lineage rule");
+  assert.ok(AUTHOR_QUALITY_BAR.includes("5. DISTRACTOR TRANSFORM"), "the rule lives on rule 5 where the quiz-key guidance is");
+
+  // schemaHint's explanation note gains the why-the-move-works direction.
+  const hint = authorSchemaHint("zz-fixture-fact-ranking", 3);
+  assert.match(hint, /"explanation":"\.\.\.\(120-300 chars; why the move works\)"/, "schemaHint quiz explanation note extended to why-the-move-works");
+  assert.ok(card.includes(hint), "the extended schemaHint rides the card");
+
+  // Self-verify item 1 (KEYS) gains the move-not-source check; block within the self-verify pin (1400 since CF-J).
+  const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
+  assert.match(sv, /A key tests a move, not a source\. Mismatch: re-key or rewrite\./, "self-verify item 1 adds the move-not-source check before its re-key action");
+  assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
+
+  // CONSISTENCY: the C35 detector (critics/lineageKeyQuiz.ts) flags exactly the key
+  // shape this rule forbids — its "Tie the move to <source> … so the frame is traceable"
+  // fixture key cites a source AS the graded answer, which "KEY IS A MOVE … never the
+  // tested skill" prevents at write time. Rule and detector agree on the failure.
+  const lineageKey = {
+    choices: [
+      "Tie the move to Getting to Yes and its named authors, so the frame is traceable to a real source.",
+      "Ask for the interest under the demand before hardening the counter-position.",
+    ],
+    correctIndex: 0,
+    explanation: "The source lineage matters here: naming the authors makes the frame checkable.",
+  };
+  assert.equal(questionKeysOnLineage(lineageKey), true, "the C35 detector fires on the very key shape rule 5 forbids (rule↔detector consistency)");
+
+  // Whole-card budget: net CF-I campaign delta +599 (CF-I-2 +391 + CF-I-3 +208) under +600.
+  assert.ok(card.length <= 18940, `W1 card length budget: card must be <= 18,940 chars, got ${card.length}`);
+  console.log(`  [measure] CF-I-3 card: ${card.length} chars (budget 18,940); QUALITY_BAR ${AUTHOR_QUALITY_BAR.length}`);
+});
+
+// ── CF-D (G3): PLAIN WORDS covers inherited terms of art, not only coined ──────
+test("CF-D: PLAIN WORDS rule covers inherited-from-source terms + self-verify TERMS item; coined clause + no def-critic", () => {
+  const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
+  const briefMd = renderBriefMd(brief);
+  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
+
+  // The extended PLAIN WORDS rule: still names coined terms, now ALSO inherited ones.
+  const plainLine = AUTHOR_PREMIUM_BLOCK.split("\n").find((l) => l.startsWith("- PLAIN WORDS:"));
+  assert.ok(plainLine, "PLAIN WORDS rule still present in the PREMIUM_BLOCK");
+  assert.match(plainLine, /load-bearing term/i, "rule scopes to load-bearing terms");
+  assert.match(plainLine, /COINED here/, "rule still covers terms the chapter coins");
+  assert.match(plainLine, /INHERITED from the source/i, "rule now also covers terms inherited from the source (gap G3)");
+  assert.ok(plainLine.includes("'return pass'"), "a coined-term example intact");
+  assert.match(plainLine, /unpacked in plain words at first use/i, "the plain first-use unpacking survives");
+  assert.match(plainLine, /never dodge a vocabulary budget by minting jargon/i, "the mint-jargon clause is preserved");
+  assert.match(plainLine, /one clause in the flow/i, "expert pace preserved — one clause, not a glossary");
+  assert.ok(card.includes(plainLine), "extended PLAIN WORDS rule rides the always-sent card");
+
+  // Self-verify gains the TERMS item (item 6); the block still fits the self-verify pin (1400 since CF-J).
+  const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
+  assert.match(sv, /run ALL SEVEN/i, "self-verify header advanced to seven checks");
+  assert.match(sv, /6\. TERMS — name the 2-4 terms this chapter stands on; confirm each got a plain first-use unpacking\./, "self-verify TERMS item present");
+  assert.match(sv, /5\. HOOK — point at the stake/, "prior item 5 still present (nothing dropped)");
+  assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
+  assert.ok(card.includes(sv), "self-verify block rides the card");
+});
+
+// ── CF-E (F9/F10/F14): implementation-plan take-home surfaces ───────────────────
+// Skill name leads coreSkill (the field that actually reaches the reader — the writer's
+// implementationPlan.title is emitted-and-dropped by the app projection), action fields
+// carry no coined shorthand, and >=1 memorableLine holds the chapter's central image.
+test("CF-E impl-plan UX: rule 9 skill-name pattern + exemplar, coreSkill leads with the name, plain-action clause, central-image memorableLine, self-verify item 7; rule 3 + D9 untouched", () => {
+  const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
+  const briefMd = renderBriefMd(brief);
+  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
+
+  // (a) SKILL-NAME rule — rule 9 rides the always-sent card with the pattern + one
+  //     reviewer exemplar (generic, not book-specific) and the virtue-noun ban.
+  assert.ok(AUTHOR_QUALITY_BAR.includes("9. TAKE-HOME SURFACES [SCORED]"), "rule 9 exists in the QUALITY BAR");
+  assert.ok(card.includes("9. TAKE-HOME SURFACES [SCORED]"), "rule 9 rides the always-sent card");
+  assert.match(card, /SKILL NAME — imperative verb \+ concrete object, 2-5 words/, "rule 9 states the skill-name pattern (imperative verb + concrete object, 2-5 words)");
+  assert.match(card, /never a virtue-noun \(excellence\/ownership\)/, "rule 9 bans virtue-nouns as the skill name");
+  assert.ok(card.includes('"Name the Local Signal"'), "rule 9 carries a generic reviewer exemplar");
+  assert.match(card, /coreSkill OPENS with it/, "rule 9 requires coreSkill to lead with the skill name (the field that reaches the reader)");
+
+  // (b) The schema hint reinforces the two field placements the reader actually sees.
+  const hint = authorSchemaHint("zz-fixture-fact-ranking", 3);
+  assert.ok(card.includes(hint), "schema hint rides the card");
+  assert.match(hint, /"title":"\.\.\.\(2-5 word skill name\)"/, "schema hint carries the 2-5-word skill-name pattern on title");
+  assert.match(hint, /"coreSkill":"<skill name>\. \.\.\.\(2-4 sentences\)"/, "schema hint puts the skill name first in coreSkill");
+
+  // (c) PLAIN-ACTION clause — action fields carry zero coined shorthand (extends the CF-D
+  //     PLAIN WORDS line, not rule 3).
+  const plainLine = AUTHOR_PREMIUM_BLOCK.split("\n").find((l) => l.startsWith("- PLAIN WORDS:"));
+  assert.ok(plainLine, "PLAIN WORDS rule still present");
+  assert.match(plainLine!, /Action fields \(tryThisNow\/24h challenge\/weeklyPractice\) carry ZERO coined shorthand/, "PLAIN WORDS gains the no-shorthand action-field clause");
+  assert.match(plainLine!, /restate needed terms plainly in the same sentence/, "the action clause requires a plain restatement in the same sentence");
+  assert.ok(card.includes(plainLine!), "the extended PLAIN WORDS rule rides the card");
+
+  // (d) MEMORABLE-LINE selection — >=1 line carries the chapter's central image; no line
+  //     reused across chapters.
+  assert.match(card, /≥1 memorableLine carries THIS chapter's central image/, "rule 9 requires >=1 memorableLine to carry the central image");
+  assert.match(card, /none reused across chapters/, "rule 9 forbids reusing another chapter's line");
+  assert.match(hint, /"memorableLines":\[\{"text":"\.\.\.\(exact sentence from the chapter; >=1 carries the central image\)"/, "schema hint carries the memorable-line selection rule");
+
+  // (e) SELF-VERIFY item 7 covers all three take-home checks in one line; block within the self-verify pin (1400 since CF-J).
+  const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
+  assert.match(sv, /run ALL SEVEN/i, "self-verify advanced to seven checks");
+  assert.match(sv, /7\. TAKE-HOME — coreSkill opens with the skill name; no coined shorthand in actions; one memorableLine carries the central image, none reused\./, "self-verify item 7 covers skill name + no-shorthand actions + central-image line");
+  assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
+  assert.ok(card.includes(sv), "self-verify block rides the card");
+
+  // NEGATIVE — rule 3's timebox floor + body are byte-for-byte unchanged (not weakened).
+  assert.ok(
+    AUTHOR_QUALITY_BAR.includes("3. PRACTICE CONCRETENESS [GATED floor: at least ONE of tryThisNow / the 24-hour challenge must be imperative-led with a number or timebox]"),
+    "rule 3 GATED timebox floor unchanged",
+  );
+  assert.ok(
+    AUTHOR_QUALITY_BAR.includes("each names ONE action with a number or a timebox, concrete enough to start within a minute"),
+    "rule 3 concreteness body unchanged",
+  );
+  // NEGATIVE — the D9 round-timer contract is untouched (function + canonical minute set).
+  for (const m of [5, 10, 15, 20, 25, 30, 45, 60]) {
+    assert.ok(ROUND_TIMER_MINUTES.has(m), `D9 round-timer set still contains ${m}`);
+  }
 });
 
 test("author card: renders the W4 brief-derived VARIETY instructions (opener / 24h-frame / practice) when the machine brief is passed", () => {
@@ -409,6 +694,41 @@ test("author card: renders the W4 brief-derived VARIETY instructions (opener / 2
   assert.ok(!noBrief.includes("VARIETY (dealt for this chapter"), "no explicit reinforcement block without the machine brief");
 });
 
+test("author card: manual-brief books get the always-on CHAPTER SHAPE (architecture + practice) lines; machine-brief books do NOT double-deal them (F-07/F-08)", () => {
+  const briefMd = renderBriefMd(mkBrief(3));
+  // Manual-brief: no machine brief passed, book-scale (totalChapters >= 4) → the two
+  // always-on rotational levers render.
+  const manual = buildAuthorCard({ bookId: "zz-manual", chapterNumber: 3, totalChapters: 14, briefMd, packet: GOLDEN_PACKET, voice: null });
+  assert.ok(manual.includes("CHAPTER SHAPE (dealt for this chapter"), "manual-brief card carries the always-on shape section");
+  assert.match(manual, /Architecture — [a-z-]+: /, "architecture-family line rendered with its instruction");
+  assert.match(manual, /Practice — Shape tryThisNow/, "practice-shape line rendered");
+  // and it is deterministic across re-runs / --only retries.
+  assert.equal(
+    manual,
+    buildAuthorCard({ bookId: "zz-manual", chapterNumber: 3, totalChapters: 14, briefMd, packet: GOLDEN_PACKET, voice: null }),
+    "manual-brief card is deterministic for the same (bookId, chapter, totalChapters)",
+  );
+
+  // Machine-brief: brief passed → the compiled VARIETY block renders INSTEAD; the
+  // always-on shape lines must NOT also appear (no double-deal).
+  const brief = mkBrief(3);
+  const machine = buildAuthorCard({ bookId: "zz-machine", chapterNumber: 3, totalChapters: 14, briefMd: renderBriefMd(brief), packet: GOLDEN_PACKET, voice: null, brief });
+  assert.ok(!machine.includes("CHAPTER SHAPE (dealt for this chapter"), "machine-brief card does NOT render the always-on shape lines (its VARIETY block owns that)");
+  assert.ok(machine.includes("VARIETY (dealt for this chapter"), "machine-brief keeps its compiled VARIETY block");
+
+  // Below book scale (single-chapter tools): no shape lines, exactly as before.
+  const single = buildAuthorCard({ bookId: "zz-manual", chapterNumber: 1, briefMd, packet: GOLDEN_PACKET, voice: null });
+  assert.ok(!single.includes("CHAPTER SHAPE (dealt for this chapter"), "no always-on shape lines without a book-scale totalChapters");
+
+  // Card budget (Requirement 5): even the manual-brief card — which carries BOTH the
+  // content-device deal AND the new always-on shape lines — stays under the ceiling,
+  // and the two always-on sections add a bounded, small amount over the baseline card.
+  assert.ok(manual.length <= AUTHOR_CARD_MAX_CHARS, `manual-brief card must be <= ${AUTHOR_CARD_MAX_CHARS} chars, got ${manual.length}`);
+  const delta = manual.length - single.length;
+  assert.ok(delta > 0 && delta < 1500, `always-on additions are bounded (+${delta} chars over the pre-book-scale card)`);
+  console.log(`  [measure] manual-brief card: ${manual.length} chars (ceiling ${AUTHOR_CARD_MAX_CHARS}); always-on additions +${delta} chars`);
+});
+
 test("author card: complaints section appears ONLY on regeneration, with the review's bullets", () => {
   const briefMd = renderBriefMd(mkBrief(1));
   const complaints = ["quiz Q2: the key contradicts the prose", "deep read: restates the fast read"];
@@ -418,6 +738,26 @@ test("author card: complaints section appears ONLY on regeneration, with the rev
   for (const c of complaints) assert.ok(card.includes(`- ${c}`), `complaint bullet present: ${c}`);
   const empty = buildAuthorCard({ bookId: "zz", chapterNumber: 1, briefMd, packet: GOLDEN_PACKET, voice: null, complaints: [] });
   assert.ok(!empty.includes("PRIOR-ATTEMPT COMPLAINTS"), "an EMPTY complaints list adds no section");
+});
+
+test("book-sameness directive reaches the writer card for a MANUAL-brief re-author (injected as a complaint)", async () => {
+  const { planBookSamenessRepair } = await import("../src/critics/bookSamenessRepair.js");
+  // A firing set implicating ch03 by 3 axes → a real per-chapter directive.
+  const findings = [
+    { catalogId: "ARCH1.practice_shell_monoculture", severity: "minor" as const, message: "", chapters: [3, 6, 8, 9, 11, 12] },
+    { catalogId: "ARCH4.lead_anchor_overreuse", severity: "minor" as const, message: "", chapters: [3, 9, 12] },
+    { catalogId: "ARCH0.architecture_monoculture", severity: "major" as const, message: "", chapters: [3, 6, 8, 9, 11, 12] },
+  ];
+  const plan = planBookSamenessRepair(findings, 14, { preserveChapters: [1, 4, 7, 10], targetCap: 6 });
+  const target = plan.targets.find((t) => t.chapterNumber === 3)!;
+  const briefMd = renderBriefMd(mkBrief(3));
+  const card = buildAuthorCard({ bookId: "zz", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null, complaints: [target.directive] });
+  // The directive is visible in the actual writer payload, with the assigned family
+  // + the preserve-facts + prohibit-the-default-mold instructions.
+  assert.ok(card.includes("BOOK-SAMENESS REPAIR"), "the sameness directive reaches the card");
+  assert.ok(card.includes(target.assignedFamily), `the assigned architecture family is in the card: ${target.assignedFamily}`);
+  assert.match(card, /Keep the chapter's WHY\/thesis, its source-supported facts/, "fact/schema preservation instruction present");
+  assert.match(card, /do NOT reuse the default named-anchor/, "prohibits the default 3-anchor mold");
 });
 
 // ── authorWriteOneChapter ────────────────────────────────────────────────────
@@ -450,6 +790,24 @@ test("authorWriteOneChapter: ONE retry appends the gate blockers to the card, th
   assert.equal(spawns.length, 2, "initial + exactly one retry");
   assert.ok(spawns[1].task.includes("GATE BLOCKERS FROM YOUR PREVIOUS ATTEMPT"), "retry card carries the gate framing");
   assert.ok(spawns[1].task.includes("[BLOCKER A12]"), "retry card carries the verbatim blocker");
+});
+
+test("authorWriteOneChapter: a DIED writer spawn is logged (honest-accounting invariant — start-with-why gold-run bug)", async () => {
+  // The cost-report honest-accounting invariant tripped on the gold run: a
+  // timed-out ch04 writer spawn was minted (mkSessionId) but the throw skipped
+  // the success-path logSession. The catch must now record a synthetic failed
+  // session so no minted spawn goes unlogged.
+  const logged: Array<{ label: string; ok: boolean }> = [];
+  let spawnCall = 0;
+  const { deps } = mkDeps(() => {
+    if (++spawnCall === 1) throw new Error("timeout SIGKILL");
+    return {};
+  });
+  deps.logSession = ((_b: string, label: string, r: { ok: boolean }) => { logged.push({ label, ok: r.ok }); }) as never;
+  const r = await authorWriteOneChapter("zz", 1, deps, { io: mkIo() });
+  assert.ok(r.ok, "recovers on the retry after the first spawn dies");
+  assert.ok(logged.some((l) => l.label === "author-ch01" && l.ok === false), "the DIED initial spawn was logged as a failed session (no minted-but-unlogged id)");
+  assert.ok(logged.some((l) => l.label === "author-ch01-retry1"), "the successful retry was logged too");
 });
 
 test("authorWriteOneChapter: fails after the retry budget when gate-chapter keeps blocking", async () => {
@@ -600,6 +958,407 @@ test("doAuthorReview: acceptance rejection drives ONE targeted regen round (<= 3
   assert.ok(regens[0].task.includes("book reader verdict"), "regen complaints come from the book readers");
   const acceptanceSpawns = spawns.filter((s) => s.sessionId.includes("author-book-reader") && !s.sessionId.includes("-r2"));
   assert.equal(acceptanceSpawns.length, 6, "exactly two acceptance rounds (3 readers each, Q5) — re-run ONCE");
+});
+
+// ── F-03: acceptance-regen regression safety ─────────────────────────────────
+
+test("decideAcceptanceRegenOutcome: FAIL/write-fail restore; pass-below-band restores; pass-within-band + boundary keep", () => {
+  const band = 4;
+  const prior = 85;
+  // write failed → restore (regardless of any review numbers).
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: false, reviewPass: false, composite: 0, priorComposite: prior, band }), "restore-fail");
+  // regen wrote but its review FAILs → restore.
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: false, composite: 88, priorComposite: prior, band }), "restore-fail");
+  // passes but composite fell MORE than a band below prior → restore-regress.
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: true, composite: prior - band - 0.1, priorComposite: prior, band }), "restore-regress");
+  // passes within the band (dipped, but tolerated) → keep.
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: true, composite: prior - band + 0.1, priorComposite: prior, band }), "keep");
+  // BOUNDARY: composite exactly prior − band is WITHIN band → keep (not strictly-better).
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: true, composite: prior - band, priorComposite: prior, band }), "keep");
+  // passes above prior → keep.
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: true, composite: prior + 3, priorComposite: prior, band }), "keep");
+  // unknown prior composite → regression cannot be judged, a PASS is kept.
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: true, composite: 10, priorComposite: undefined, band }), "keep");
+  // per-round comparison uses the caller's pre-reopen prior — a band-6 default
+  // over a prior 84 keeps 79 (79 >= 84-6=78) but restores 77.
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: true, composite: 79, priorComposite: 84, band: 6 }), "keep");
+  assert.equal(decideAcceptanceRegenOutcome({ regenOk: true, reviewPass: true, composite: 77, priorComposite: 84, band: 6 }), "restore-regress");
+});
+
+test("doAuthorReview: an acceptance regen whose review FAILs is RESTORED — reopen note attributed, grant consumed, halt category unchanged", async () => {
+  // ch01 review passes; book acceptance REJECTS (churn LOW → non-churn routing,
+  // maps the named complaint to ch01); the regen CHANGES bytes but its review
+  // FAILs → the prior passing chapter must be restored, not left failing.
+  let regenBumps = 0;
+  const chaptersNow = () => FIXTURE_CHAPTERS.map((c) => (regenBumps > 0 && c.number === 1 ? { ...c, hook: `${c.hook} (regen ${regenBumps})` } : c));
+  const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.startsWith("author-ch01")) regenBumps++;
+    if (o.sessionId.includes("author-book-reader")) {
+      if (o.sessionId.includes("-r2")) return { finalMessage: "no json here" };
+      return { finalMessage: bookReply(chaptersNow(), { gate: "FAIL", churn: "LOW", verdictText: "chapter 1 quiz key is contradicted by its own prose" }) };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) {
+      // The post-regen review of ch01 FAILs hard (well below the near-bar band).
+      if (o.sessionId.includes("bookregen")) {
+        return { finalMessage: reviewReply(chaptersNow()[0], { ship84: false, score: 52, complaints: [{ unit: "quiz Q2", problem: "the derived answer contradicts the stated key", mustFix: true }] }) };
+      }
+      return { finalMessage: reviewReply(Number(m[1]) === 1 ? chaptersNow()[0] : CH2) };
+    }
+    return {};
+  });
+  const io = mkIo({ loadChapters: () => chaptersNow() });
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+  assert.ok(result && result.status === "halt" && result.category === "content", "a still-failing regen halts content (category unchanged)");
+  if (result && result.status === "halt") assert.match(result.reason, /targeted regen round failed/, "the restore path routes into the existing failed-regen halt");
+  // The intent to reopen a passing chapter is attributed durably.
+  const note = io.reopenNotes.find((n) => n.chapterNumber === 1);
+  assert.ok(note, "a reopen note was appended for the reopened chapter");
+  assert.equal(note!.trigger, "acceptance-regen", "trigger names the acceptance lane");
+  assert.equal(note!.decision, "reopened-for-acceptance");
+  assert.ok((note!.detail ?? "").length > 0, "the reopen note carries the reader complaint that selected the chapter");
+  // The grant is consumed at spawn and a restore does NOT refund it.
+  assert.equal(io.regenConsumedFor!("zz", 1), 1, "the acceptance regen consumed its global-cap grant (restore does not refund)");
+  const regens = spawns.filter((s) => s.sessionId.startsWith("author-ch01"));
+  assert.equal(regens.length, 1, "exactly one regen write spawned for the reopened chapter");
+});
+
+// Real on-disk chapter file path (identical to the source's chapterFilePath).
+function realChapterPath(bookId: string, n: number): string {
+  return join(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n)));
+}
+const CH_BYTES = (ch: ChapterV21) => JSON.stringify(ch, null, 2) + "\n";
+
+/** Drive doAuthorReview to the acceptance-regen block over REAL chapter files on
+ *  disk. The writer spawn writes `regressedCh1` to disk (a genuine byte change);
+ *  the post-regen review scores `regenScore` (pass gated at bar 80). Returns the
+ *  halt + the io (with captured reopen notes) + the final on-disk ch01 bytes. */
+async function driveRealFileAcceptanceRegen(opts: {
+  bookId: string;
+  initialCh1Score: number;
+  regenScore: number;
+  regressedCh1: ChapterV21;
+}): Promise<{ result: Awaited<ReturnType<typeof doAuthorReview>>; io: ReturnType<typeof mkIo>; ch1Bytes: string; originalBytes: string }> {
+  const { bookId } = opts;
+  const p1 = realChapterPath(bookId, 1);
+  const p2 = realChapterPath(bookId, 2);
+  const originalBytes = CH_BYTES(CH1);
+  rmSync(reviewDir(bookId), { recursive: true, force: true }); // no stale carry
+  mkdirSync(dirname(p1), { recursive: true });
+  writeFileSync(p1, originalBytes, "utf8");
+  writeFileSync(p2, CH_BYTES(CH2), "utf8");
+  const readDisk = (): ChapterV21[] => [JSON.parse(readFileSync(p1, "utf8")), JSON.parse(readFileSync(p2, "utf8"))];
+  const { deps } = mkDeps((o) => {
+    if (o.sessionId.startsWith("author-ch01")) {
+      // Simulate the whole-chapter writer: persist a CHANGED draft to disk.
+      writeFileSync(p1, CH_BYTES(opts.regressedCh1), "utf8");
+      return {};
+    }
+    if (o.sessionId.includes("author-book-reader")) {
+      if (o.sessionId.includes("-r2")) return { finalMessage: "no json here" };
+      return { finalMessage: bookReply(readDisk(), { gate: "FAIL", churn: "LOW", verdictText: "chapter 1 quiz key is contradicted by its own prose" }) };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) {
+      const disk = readDisk();
+      if (o.sessionId.includes("bookregen")) {
+        return { finalMessage: reviewReply(disk[0], { score: opts.regenScore, ship84: opts.regenScore >= 80 }) };
+      }
+      return { finalMessage: reviewReply(Number(m[1]) === 1 ? disk[0] : disk[1], { score: Number(m[1]) === 1 ? opts.initialCh1Score : 90 }) };
+    }
+    return {};
+  });
+  const io = mkIo({ loadChapters: readDisk, chapterExists: () => true });
+  const result = await doAuthorReview(bookId, deps, { maxParallel: 2, io });
+  return { result, io, ch1Bytes: readFileSync(p1, "utf8"), originalBytes };
+}
+
+test("doAuthorReview (real files): an acceptance regen whose review FAILs restores the prior bytes BYTE-FOR-BYTE + rolls provenance back (R2)", async () => {
+  const bookId = "zz-fixture-regen-fail";
+  const p1 = realChapterPath(bookId, 1), p2 = realChapterPath(bookId, 2);
+  const chapterId = authorChapterId(bookId, 1);
+  try {
+    // Seed the STALE record the acceptance regen leaves behind: content bound to the
+    // discarded regen draft (regen-B), with the true prior author (author-A) recorded.
+    const regressedCh1 = { ...CH1, hook: `${CH1.hook} (regressed regen draft that fails review)` };
+    const hashPrior = chapterContentHash(CH1);
+    const hashDiscarded = chapterContentHash(regressedCh1);
+    recordAuthorProvenance(chapterId, "author-A", hashPrior);
+    recordAuthorProvenance(chapterId, "regen-B", hashDiscarded);
+    assert.equal(loadAuthorProvenance(chapterId)?.authorSessionId, "regen-B", "precondition: record points at the discarded regen draft");
+
+    const { result, io, ch1Bytes, originalBytes } = await driveRealFileAcceptanceRegen({
+      bookId,
+      initialCh1Score: 90,
+      regenScore: 55, // < bar 80 → the regen review FAILs
+      regressedCh1,
+    });
+    assert.ok(result && result.status === "halt" && result.category === "content", "a still-failing regen halts content");
+    assert.equal(ch1Bytes, originalBytes, "the failing regen was restored to the prior passing bytes, byte-for-byte");
+    assert.ok(io.reopenNotes.some((n) => n.chapterNumber === 1 && n.trigger === "acceptance-regen"), "the reopen was attributed");
+    const rec = loadAuthorProvenance(chapterId);
+    assert.equal(rec?.contentHash, hashPrior, "provenance content hash rolled back to the restored bytes");
+    assert.equal(rec?.authorSessionId, "author-A", "provenance author rolled back to the true prior author");
+  } finally {
+    rmSync(p1, { force: true }); rmSync(p2, { force: true }); rmSync(reviewDir(bookId), { recursive: true, force: true });
+    rmSync(provenancePath(chapterId), { force: true });
+  }
+});
+
+test("doAuthorReview (real files): a regen that PASSES but scores a band+ below prior is RESTORED (no silent quality slide)", async () => {
+  const bookId = "zz-fixture-regen-regress";
+  const p1 = realChapterPath(bookId, 1), p2 = realChapterPath(bookId, 2);
+  try {
+    // prior 95, regen passes at 82 (>= bar 80) but 82 < 95 − 3.7 = 91.3 → restore-regress.
+    const { result, io, ch1Bytes, originalBytes } = await driveRealFileAcceptanceRegen({
+      bookId,
+      initialCh1Score: 95,
+      regenScore: 82,
+      regressedCh1: { ...CH1, hook: `${CH1.hook} (passing but lower-quality regen draft)` },
+    });
+    assert.ok(result && result.status === "halt" && result.category === "content", "a below-band PASS is counted as a failure and halts (the rejection stands)");
+    assert.equal(ch1Bytes, originalBytes, "the regressed-quality PASS was restored to the higher-scoring prior bytes");
+    assert.ok(io.reopenNotes.some((n) => n.chapterNumber === 1 && n.trigger === "acceptance-regen"));
+  } finally {
+    rmSync(p1, { force: true }); rmSync(p2, { force: true }); rmSync(reviewDir(bookId), { recursive: true, force: true });
+  }
+});
+
+test("doAuthorReview (real files): a REVIEW-LANE regen whose WRITE fails restores prior bytes + rolls provenance back (F-2 case c — the ch14 loss)", async () => {
+  // The live loss this pins: a failing chapter's regen writer landed a draft that
+  // then failed its own write self-checks (gate/contract); the unreviewed draft
+  // replaced the reviewed original on disk (high-output-management ch14 — the
+  // 87-composite original was lost). The review-lane call-site must restore the
+  // prior bytes AND re-bind provenance to them.
+  const bookId = "zz-fixture-reviewregen-fail";
+  const p1 = realChapterPath(bookId, 1), p2 = realChapterPath(bookId, 2);
+  const chapterId = authorChapterId(bookId, 1);
+  try {
+    const originalBytes = CH_BYTES(CH1);
+    rmSync(reviewDir(bookId), { recursive: true, force: true });
+    mkdirSync(dirname(p1), { recursive: true });
+    writeFileSync(p1, originalBytes, "utf8");
+    writeFileSync(p2, CH_BYTES(CH2), "utf8");
+    const readDisk = (): ChapterV21[] => [JSON.parse(readFileSync(p1, "utf8")), JSON.parse(readFileSync(p2, "utf8"))];
+    const regressed = { ...CH1, hook: `${CH1.hook} (regen draft that will fail its own write gate)` };
+    // Seed a STALE provenance record (bound to the draft that will be discarded)
+    // over the true prior author — the rollback must land on author-A@prior.
+    const hashPrior = chapterContentHash(CH1);
+    recordAuthorProvenance(chapterId, "author-A", hashPrior);
+    recordAuthorProvenance(chapterId, "regen-B", chapterContentHash(regressed));
+    const logs: string[] = [];
+    const { deps } = mkDeps(
+      (o) => {
+        if (o.sessionId.startsWith("author-ch01")) {
+          writeFileSync(p1, CH_BYTES(regressed), "utf8"); // the writer LANDS its draft pre-check
+          return {};
+        }
+        const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+        if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? readDisk()[0] : readDisk()[1], { score: Number(m[1]) === 1 ? 55 : 90, ship84: Number(m[1]) !== 1 }) };
+        return {};
+      },
+      // The regen writer's own gate blocks every attempt → total write failure.
+      (args) => args[0] === "gate-chapter" ? { code: 1, stdout: "[BLOCKER A12] ch01: fixture gate block", stderr: "" } : { code: 0, stdout: "", stderr: "" },
+    );
+    deps.log = ((m: string) => { logs.push(m); }) as never;
+    const io = mkIo({ loadChapters: readDisk, chapterExists: () => true });
+    const result = await doAuthorReview(bookId, deps, { maxParallel: 2, io });
+    assert.ok(result && result.status === "halt" && result.category === "content", "the failed regen halts content — review/PASS state is NOT advanced");
+    assert.equal(readFileSync(p1, "utf8"), originalBytes, "prior reviewed bytes restored byte-for-byte");
+    assert.ok(logs.some((l) => l.includes("regen write failed") && l.includes("restored prior reviewed bytes")), "the review-lane restore is loudly logged");
+    const rec = loadAuthorProvenance(chapterId);
+    assert.equal(rec?.contentHash, hashPrior, "provenance content hash re-bound to the restored bytes");
+    assert.equal(rec?.authorSessionId, "author-A", "provenance author rolled back to the true prior author");
+  } finally {
+    rmSync(p1, { force: true }); rmSync(p2, { force: true }); rmSync(reviewDir(bookId), { recursive: true, force: true });
+    rmSync(provenancePath(chapterId), { force: true });
+  }
+});
+
+test("acceptance-regen carry invariant: restored bytes (== prior) still CARRY their durable PASS — no re-review needed", () => {
+  const bookId = "zz-fixture-regen-carry";
+  const scores = Object.fromEntries(REVIEW_FACTORS.map((f) => [f, 88]));
+  const priorReview: ChapterReviewV1 = {
+    schemaVersion: CHAPTER_REVIEW_SCHEMA_VERSION,
+    chapterId: CH1.chapterId, chapterNumber: 1,
+    contentHash: chapterContentHash(CH1),
+    reviewerSessionId: "indep-reviewer-x",
+    scores: scores as never, composite: 88, ship84: true, pass: true, valid: true,
+    keyCheck: { derived: [], matches: 9, of: 9, disagreements: [] },
+    quotes: [{ quote: CH1.title, why: "ok", verified: true }],
+    tells: [], complaints: [], oneParagraphVerdict: "ships",
+    bar: 80, docHash: chapterReaderDocHash(CH1), hashVersion: REVIEW_DOC_HASH_VERSION,
+    reviewedAt: new Date().toISOString(),
+  };
+  try {
+    // The prior PASS lives in the content-keyed history; a restore puts the exact
+    // prior bytes back, so a later entry re-verifies the SAME contentHash + doc.
+    appendReviewHistory(bookId, priorReview);
+    const carry = carryReviewFor(bookId, CH1, 80, "some-current-author");
+    assert.ok(carry.hit, "restored (== prior) bytes carry their durable PASS — no fresh reader spawned");
+    if (carry.hit) assert.equal(carry.review.composite, 88);
+    // A different-author independence guard still holds (reviewer ≠ author).
+    const collide = carryReviewFor(bookId, CH1, 80, "indep-reviewer-x");
+    assert.equal(collide.hit, false, "the prior review never carries for a same-session author (independence preserved)");
+  } finally {
+    rmSync(reviewDir(bookId), { recursive: true, force: true });
+  }
+});
+
+// ── F-04: churn-HIGH acceptance rejections route to the bounded content lane FIRST ──
+
+function mkContentOutcome(n: number, status: SamenessChapterOutcome["status"]): SamenessChapterOutcome {
+  return { chapterNumber: n, assignedFamily: "content-deal", status, detail: `stub ${status}` };
+}
+function mkContentResult(outcomes: SamenessChapterOutcome[], fired = true): ContentRepairResult {
+  return {
+    fired,
+    targets: outcomes.map((o) => o.chapterNumber),
+    preserved: [],
+    outcomes,
+    preservedViolations: [],
+    overCapDevices: fired ? ["returnProof"] : [],
+    residualOverCap: [],
+  };
+}
+
+test("F-04: churn-HIGH rejection runs the content lane FIRST — kept chapters record contentRepairConsumed and never touch the regen lane", async () => {
+  const tmpRoot = mkdtempSync(join(tmpdir(), "p4-ledger-"));
+  const LIN = "p4-test-lineage";
+  const calls: string[] = [];
+  let contentRan = false;
+  // Once the content lane fires, the book's bytes change → round-2 sees a fresh docSha.
+  const chaptersNow = () => FIXTURE_CHAPTERS.map((c) => (contentRan ? { ...c, hook: `${c.hook} (content-repaired)` } : c));
+  const contentDeviceRepair: AuthorReviewIo["contentDeviceRepair"] = async (b) => {
+    calls.push(b);
+    // Mirror the real lane's bounded side effect: consume ONE content-repair grant per target.
+    for (const n of [1, 2]) recordContentRepairConsumed(b, n, LIN, tmpRoot);
+    contentRan = true;
+    return mkContentResult([mkContentOutcome(1, "diversified"), mkContentOutcome(2, "diversified")]);
+  };
+  const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.includes("author-book-reader")) {
+      const round2 = o.sessionId.includes("-round2");
+      return { finalMessage: bookReply(chaptersNow(), round2 ? { gate: "PASS", churn: "LOW" } : { gate: "FAIL", churn: "HIGH", verdictText: "one template stamped across every chapter" }) };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(chaptersNow()[Number(m[1]) - 1]) };
+    return {};
+  });
+  const io = mkIo({ loadChapters: () => chaptersNow(), contentDeviceRepair });
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+
+  assert.equal(result, null, "the content lane's kept re-authors flip the sticky same-bytes FAIL — accepted on the new docSha");
+  assert.equal(calls.length, 1, "the content lane ran exactly once, before any regen");
+  assert.equal(contentRepairConsumedFor(loadAuthorRegenLedger("zz", tmpRoot), 1, LIN), 1, "ch01 recorded its content-repair grant");
+  assert.equal(contentRepairConsumedFor(loadAuthorRegenLedger("zz", tmpRoot), 2, LIN), 1, "ch02 recorded its content-repair grant");
+  assert.equal(io.regenConsumedFor!("zz", 1), 0, "the GLOBAL regen lane was NOT spent on a content-fixed chapter");
+  assert.equal(io.regenConsumedFor!("zz", 2), 0, "the GLOBAL regen lane was NOT spent on a content-fixed chapter");
+  assert.equal(spawns.filter((s) => /^author-ch\d/.test(s.sessionId)).length, 0, "no regen WRITER spawned — the content lane handled the round");
+  rmSync(tmpRoot, { recursive: true, force: true });
+});
+
+test("F-04: a content-lane devices-persisted chapter (and ONLY it) falls through to the F-03-guarded regen; content-fixed chapters do not", async () => {
+  let contentRan = false;
+  let ch1Regen = 0;
+  const chaptersNow = () => FIXTURE_CHAPTERS.map((c) => {
+    if (c.number === 1 && ch1Regen > 0) return { ...c, hook: `${c.hook} (regen ${ch1Regen})` };
+    if (contentRan) return { ...c, hook: `${c.hook} (content)` };
+    return c;
+  });
+  const contentDeviceRepair: AuthorReviewIo["contentDeviceRepair"] = async () => {
+    contentRan = true;
+    // ch1 still uses a banned device (unfixed → regen fallthrough); ch2 diversified (fixed).
+    return mkContentResult([mkContentOutcome(1, "devices-persisted"), mkContentOutcome(2, "diversified")]);
+  };
+  const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.startsWith("author-ch01")) ch1Regen++;
+    if (o.sessionId.includes("author-book-reader")) {
+      const round2 = o.sessionId.includes("-round2");
+      return { finalMessage: bookReply(chaptersNow(), round2 ? { gate: "PASS", churn: "LOW" } : { gate: "FAIL", churn: "HIGH", verdictText: "one template stamped repeatedly" }) };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(chaptersNow()[Number(m[1]) - 1], { score: 84 }) }; // passes, but < 87 (not strong-pass)
+    return {};
+  });
+  const io = mkIo({ loadChapters: () => chaptersNow(), contentDeviceRepair });
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+
+  assert.equal(result, null, "ch1 regen + ch2 content-fix flip the round → accepted on round 2");
+  assert.equal(io.regenConsumedFor!("zz", 1), 1, "the devices-persisted ch01 fell through and spent ONE regen");
+  assert.equal(io.regenConsumedFor!("zz", 2), 0, "the content-fixed ch02 never entered the regen lane");
+  const regenWriters = spawns.filter((s) => /^author-ch\d/.test(s.sessionId));
+  assert.equal(regenWriters.length, 1, "exactly one regen writer spawned");
+  assert.ok(regenWriters.every((s) => s.sessionId.startsWith("author-ch01")), "and it was ch01 (the unfixed chapter), never ch02");
+  const note = io.reopenNotes.find((n) => n.chapterNumber === 1);
+  assert.ok(note && note.trigger === "acceptance-regen", "F-03 reopen note attributed for the fallthrough regen");
+});
+
+test("F-04: churn HIGH with BOTH lanes spent for every target halts content with the content-repair-book escape hatch", async () => {
+  const contentDeviceRepair: AuthorReviewIo["contentDeviceRepair"] = async () =>
+    mkContentResult([mkContentOutcome(1, "skipped-cap"), mkContentOutcome(2, "skipped-cap")]);
+  const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.includes("author-book-reader")) {
+      return { finalMessage: bookReply(FIXTURE_CHAPTERS, { gate: "FAIL", churn: "HIGH", verdictText: "one template stamped repeatedly" }) };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(FIXTURE_CHAPTERS[Number(m[1]) - 1], { score: 84 }) };
+    return {};
+  });
+  // Regen already exhausted for every chapter (a prior conductor entry spent them).
+  const io = mkIo({ contentDeviceRepair, regenConsumedFor: () => AUTHOR_REGEN_CAP - 1 });
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+
+  assert.ok(result && result.status === "halt" && result.category === "content", "both lanes spent → content halt");
+  if (result && result.status === "halt") {
+    assert.match(result.reason, /BOTH bounded repair lanes are spent/, "the halt names the both-lanes-spent state");
+    assert.match(result.reason, /content-repair-book zz --only/, "the halt names the manual escape hatch");
+  }
+  assert.equal(spawns.filter((s) => /^author-ch\d/.test(s.sessionId)).length, 0, "no regen writer burned — halted instead of spending unrelated regen");
+});
+
+test("F-04 kill switch: CHAPTERFLOW_CHURN_CONTENT_REPAIR=0 never calls the content lane and restores pre-P4 regen routing", async () => {
+  const prev = process.env.CHAPTERFLOW_CHURN_CONTENT_REPAIR;
+  process.env.CHAPTERFLOW_CHURN_CONTENT_REPAIR = "0";
+  try {
+    let called = 0;
+    const contentDeviceRepair: AuthorReviewIo["contentDeviceRepair"] = async () => { called++; return mkContentResult([]); };
+    const { deps, spawns } = mkDeps((o) => {
+      if (o.sessionId.includes("author-book-reader")) {
+        if (o.sessionId.includes("-round2")) return { finalMessage: "no json here" };
+        return { finalMessage: bookReply(FIXTURE_CHAPTERS, { gate: "FAIL", churn: "HIGH", verdictText: "chapter 1 reads stamped" }) };
+      }
+      const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+      if (m) return { finalMessage: reviewReply(FIXTURE_CHAPTERS[Number(m[1]) - 1]) };
+      return {};
+    });
+    const io = mkIo({ contentDeviceRepair });
+    const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+    assert.equal(called, 0, "the content lane is NEVER called when the kill switch is off");
+    assert.ok(spawns.some((s) => /^author-ch\d/.test(s.sessionId)), "pre-P4 named+saturation churn routing spent a regen writer (old behavior restored)");
+    assert.ok(result && result.status === "halt", "the pre-P4 path reaches its halt");
+  } finally {
+    if (prev === undefined) delete process.env.CHAPTERFLOW_CHURN_CONTENT_REPAIR;
+    else process.env.CHAPTERFLOW_CHURN_CONTENT_REPAIR = prev;
+  }
+});
+
+test("F-04: a NON-churn acceptance rejection never calls the content lane (routing unchanged)", async () => {
+  let called = 0;
+  const contentDeviceRepair: AuthorReviewIo["contentDeviceRepair"] = async () => { called++; return mkContentResult([]); };
+  const { deps } = mkDeps((o) => {
+    if (o.sessionId.includes("author-book-reader")) {
+      if (o.sessionId.includes("-round2")) return { finalMessage: "no json here" };
+      return { finalMessage: bookReply(FIXTURE_CHAPTERS, { gate: "FAIL", churn: "LOW", verdictText: "chapter 1 quiz key contradicts its prose" }) };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(FIXTURE_CHAPTERS[Number(m[1]) - 1]) };
+    return {};
+  });
+  const io = mkIo({ contentDeviceRepair });
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+  assert.equal(called, 0, "churn LOW → the content lane is never engaged");
+  assert.ok(result && result.status === "halt" && result.category === "content", "non-churn routing halts content as before");
 });
 
 test("mapBookComplaintsToChapters: chapter-specific lines route to their chapters; cap 3; generic rejections fall back to the sample", () => {
@@ -844,7 +1603,10 @@ test("authorWriteOneChapter: a W2 card-quality FAIL carries its `chNN fix:` repa
     spawns[1].task.includes("ch01 fix: length-tell: key is the uniquely-SHORTEST choice in 5/9"),
     "the concrete `chNN fix:` repair line is carried VERBATIM into the retry card",
   );
-  assert.ok(spawns[1].task.includes("uniquely shortest choice"), "the how-to-read guidance now decodes lenTell for the writer");
+  // FINAL-HARDENING-PLAN 2026-07-04 D1 rebase: the retry guidance states the real
+  // caps (4-shortest/1-longest) instead of the old zero-extremes overreach.
+  assert.ok(spawns[1].task.includes("uniquely SHORTEST choice in at most 4 of 9"), "the how-to-read guidance decodes lenTell with the REAL caps");
+  assert.ok(spawns[1].task.includes("do NOT purge every length extreme"), "the retry guidance carries the anti-pendulum instruction");
 });
 
 // ── Book-acceptance bar calibration (owner decision 2026-07-03) ───────────────
@@ -955,6 +1717,159 @@ test("Q6 acceptance writes a durable record: verdict, readers, bar, sampled, doc
   assert.ok(rec.verdict.medianComposite !== null, "composed verdict captured");
 });
 
+// ── Multi-read acceptance median (FINAL-HARDENING-PLAN 2026-07-04) ────────────
+
+const bookReaderSpawns = (spawns: SpawnRec[]) => spawns.filter((s) => s.sessionId.includes("author-book-reader")).length;
+
+test("multi-read: a CLEAR pass spends exactly one panel; a CLEAR fail spends exactly one panel", async () => {
+  // 90 is far above the floor-74 boundary → no extra reads.
+  const pass = mkDeps(happyScript);
+  const passIo = mkIo();
+  assert.equal(await doAuthorReview("zz", pass.deps, { maxParallel: 3, io: passIo }), null, "clear pass accepted");
+  assert.equal(bookReaderSpawns(pass.spawns), 3, "ONE 3-reader panel — no multi-read on an obvious accept");
+  assert.equal(passIo.acceptanceRecords.length, 1, "one durable read record");
+  assert.equal(passIo.acceptanceRecords[0].pooled?.reads, 1);
+
+  // 60 is far below → one panel, reject.
+  const fail = mkDeps((o) => {
+    if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS, { score: 60 }) };
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? CH1 : CH2) };
+    return {};
+  });
+  const failIo = mkIo();
+  const rejected = await doAuthorReview("zz", fail.deps, { maxParallel: 3, io: failIo });
+  assert.ok(rejected && rejected.status === "halt", "clear fail rejected");
+  assert.equal(bookReaderSpawns(fail.spawns), 3, "ONE 3-reader panel — no multi-read on an obvious reject");
+});
+
+test("multi-read: a borderline composite triggers extra panels; the TRUE median of 3 decides at the cap", async () => {
+  // Panel scores 76 → 71 → 74: the old upper-median-of-2 pooling would have
+  // decided max(76,71)=76; the true median of all three is 74 (accept at floor).
+  const panelScores = [76, 71, 74];
+  let bookSpawnCount = 0;
+  const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.includes("author-book-reader")) {
+      const panelIdx = Math.min(Math.floor(bookSpawnCount / 3), panelScores.length - 1);
+      bookSpawnCount++;
+      return { finalMessage: bookReply(FIXTURE_CHAPTERS, { score: panelScores[panelIdx] }) };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? CH1 : CH2) };
+    return {};
+  });
+  const io = mkIo();
+  assert.equal(await doAuthorReview("zz", deps, { maxParallel: 3, io }), null, "median 74 >= floor 74 → accepted");
+  assert.equal(bookReaderSpawns(spawns), 9, "three panels spawned (borderline stayed inside the ±3.7 band)");
+  assert.equal(io.acceptanceRecords.length, 3, "every panel read persisted append-only");
+  const last = io.acceptanceRecords[2];
+  assert.equal(last.pooled?.reads, 3);
+  assert.equal(last.pooled?.composite, 74, "TRUE median of [71, 74, 76]");
+  assert.equal(last.pooled?.capped, true, "per-doc panel cap reached");
+  assert.equal(last.accepted, true, "the pooled decision rides the record deriveDurableAcceptance corroborates");
+});
+
+test("multi-read: trueMedian is the standard median (even count averages the middle pair — never max)", () => {
+  assert.equal(trueMedian([72, 75]), 73.5, "the BREAK-2 exploit case: two reads pool to their mean, not their max");
+  assert.equal(trueMedian([71, 74, 76]), 74);
+  assert.equal(trueMedian([80]), 80);
+  assert.equal(trueMedian([1, 2, 3, 100]), 2.5, "outlier-resistant on even counts");
+});
+
+test("multi-read: a gate FAIL sticks for the docSha — no further reads, and a re-entry on identical bytes spawns NOTHING", async () => {
+  const script = (o: { sessionId: string }) => {
+    if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS, { score: 76, gate: "FAIL" }) };
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? CH1 : CH2) };
+    return {};
+  };
+  const io = mkIo();
+  const entry1 = mkDeps(script);
+  const r1 = await doAuthorReview("zz", entry1.deps, { maxParallel: 3, io });
+  assert.ok(r1 && r1.status === "halt", "gate FAIL rejects despite composite 76 >= floor");
+  assert.equal(bookReaderSpawns(entry1.spawns), 3, "76 is within the band of 74, but a stuck gate FAIL makes more reads pointless — one panel only");
+  // Re-entry on the SAME bytes: the durable FAIL read is reused; zero panels spawn.
+  const entry2 = mkDeps(script);
+  const r2 = await doAuthorReview("zz", entry2.deps, { maxParallel: 3, io });
+  assert.ok(r2 && r2.status === "halt", "still rejected");
+  assert.equal(bookReaderSpawns(entry2.spawns), 0, "gate-FAIL stickiness survives re-entry (the old per-label overwrite decayed after one)");
+});
+
+test("multi-read: at the per-doc cap the decision FREEZES — a later entry on identical bytes reuses it without spawning", async () => {
+  const script = (o: { sessionId: string }) => {
+    if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS, { score: 75 }) };
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? CH1 : CH2) };
+    return {};
+  };
+  const io = mkIo();
+  const entry1 = mkDeps(script);
+  assert.equal(await doAuthorReview("zz", entry1.deps, { maxParallel: 3, io }), null, "borderline 75 accepted on the pooled median");
+  assert.equal(bookReaderSpawns(entry1.spawns), 9, "cap of 3 panels consumed inside entry 1");
+  const entry2 = mkDeps(script);
+  assert.equal(await doAuthorReview("zz", entry2.deps, { maxParallel: 3, io }), null, "frozen pooled ACCEPT reused");
+  assert.equal(bookReaderSpawns(entry2.spawns), 0, "no panel re-roll after the cap — the ±3.7 casino is closed");
+  assert.equal(io.acceptanceRecords.length, 3, "no new records after the cap either");
+});
+
+test("multi-read: CHAPTERFLOW_PANEL_NOISE_BAND is fail-closed on garbage and honored at 0", async () => {
+  process.env.CHAPTERFLOW_PANEL_NOISE_BAND = "abc";
+  try {
+    const { deps } = mkDeps(happyScript);
+    const r = await doAuthorReview("zz", deps, { maxParallel: 3, io: mkIo() });
+    assert.ok(r && r.status === "halt" && r.category === "infra", "set-but-invalid band halts infra (BREAK-1 lesson)");
+    assert.match(r.reason, /CHAPTERFLOW_PANEL_NOISE_BAND/);
+  } finally {
+    delete process.env.CHAPTERFLOW_PANEL_NOISE_BAND;
+  }
+  // Band 0: even a knife-edge 75 is "clear" — exactly one panel.
+  process.env.CHAPTERFLOW_PANEL_NOISE_BAND = "0";
+  try {
+    const { deps, spawns } = mkDeps((o) => {
+      if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS, { score: 75 }) };
+      const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+      if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? CH1 : CH2) };
+      return {};
+    });
+    assert.equal(await doAuthorReview("zz", deps, { maxParallel: 3, io: mkIo() }), null);
+    assert.equal(bookReaderSpawns(spawns), 3, "band 0 disables the multi-read trigger");
+  } finally {
+    delete process.env.CHAPTERFLOW_PANEL_NOISE_BAND;
+  }
+});
+
+test("multi-read: a quorum-met read whose durable record cannot be persisted FAILS CLOSED (cap can't be laundered)", async () => {
+  // red-team #1: the per-doc cap survives re-entry ONLY through durable records;
+  // without them the next entry re-seeds totalReads=0 and re-rolls the panel.
+  const io = mkIo({ persistAcceptance: () => { throw new Error("disk full"); } });
+  const { deps } = mkDeps(happyScript);
+  const r = await doAuthorReview("zz", deps, { maxParallel: 3, io });
+  assert.ok(r && r.status === "halt" && r.category === "infra", "unpersistable quorum-met read → infra halt");
+  assert.match(r.reason, /per-doc read cap cannot be enforced/);
+});
+
+test("F5: a dead-ended chapter (exact bytes already FAILed, regen+repair spent) halts BEFORE any reader spawns", async () => {
+  const hash = chapterContentHash(CH1);
+  const p = reviewHistoryPath("zz", 1, hash);
+  mkdirSync(dirname(p), { recursive: true });
+  writeFileSync(p, JSON.stringify({ chapterNumber: 1, contentHash: hash, valid: true, pass: false, composite: 81 }), "utf8");
+  try {
+    const { deps, spawns } = mkDeps(happyScript);
+    const io = mkIo({
+      regenConsumedFor: () => 1, // >= AUTHOR_REGEN_CAP - 1
+      repairConsumedFor: () => 1,
+      recordRepairConsumed: () => {},
+    });
+    const r = await doAuthorReview("zz", deps, { maxParallel: 3, io });
+    assert.ok(r && r.status === "halt" && r.category === "content", "dead end halts as content");
+    assert.match(r.reason, /DEAD-ENDED/);
+    assert.equal(spawns.filter((s) => s.sessionId.includes("author-review-ch")).length, 0, "no chapter readers spawned");
+    assert.equal(bookReaderSpawns(spawns), 0, "no acceptance panel spawned");
+  } finally {
+    rmSync(p, { force: true });
+  }
+});
+
 test("Q6 acceptanceRoundSegment + path: '' → round1, '-round2' → round2, fs-safe", () => {
   assert.equal(acceptanceRoundSegment(""), "round1");
   assert.equal(acceptanceRoundSegment("-round2"), "round2");
@@ -995,4 +1910,152 @@ test("Q3 a disproven structural FAIL reader is respawned in the acceptance loop"
   // The invalidated attempt-1 read left a structural-screen decision on record.
   const respawnSpawns = spawns.filter((s) => s.sessionId.includes("author-book-reader-3"));
   assert.ok(respawnSpawns.length >= 2, "a second reader-3 session was spawned");
+});
+
+// ── F-05: the book-acceptance PREDICATE, pinned ──────────────────────────────
+// Verified semantics (authorReview.ts): accepted = quorumMet ∧ sticky-gate PASS
+// ∧ median>=AUTHOR_BOOK_ACCEPT_FLOOR(74) ∧ (shipped===null ∨ median>=shipped+
+// BEAT_SHIPPED_MARGIN(5)). These tests drive runBookAcceptance directly with an
+// injected 3-read pool at the per-doc cap (PANEL_READS_PER_DOC_CAP): the decision
+// is FROZEN for those bytes, so NO reader spawns and the predicate is computed
+// purely from the pooled median + the injected shipped control. No live readers.
+
+/** A single durable same-doc read at full valid-reader quorum. Three of these at
+ *  the cap freeze the decision; trueMedian([c,c,c]) === c pins any composite. */
+function poolRead(composite: number, gate: "PASS" | "FAIL", churn = "LOW"): AuthorAcceptanceRecord {
+  return {
+    schemaVersion: "author-acceptance-v1",
+    bookId: "zz", roundLabel: "", at: "2026-07-08T00:00:00Z",
+    bar: 80, beatShipped: null, accepted: true,
+    sampledChapters: [1, 2], docSha256: "pool-sha",
+    verdict: { id: "zz", medianComposite: composite, factors: null, gate, gateVotes: gate === "PASS" ? "3P/0F" : "0P/3F", churn, validCount: 3, readerCount: 3, chapters: [1, 2], readers: [] } as unknown as AuthorAcceptanceRecord["verdict"],
+    readers: [],
+  };
+}
+
+/** Drive runBookAcceptance over a frozen (cap-filled) pool; capture the accept
+ *  decision + logs without spawning a single reader. */
+async function drivePredicate(pool: AuthorAcceptanceRecord[], shipped: number | null): Promise<{ accepted: boolean; logs: string[] }> {
+  const { deps } = mkDeps(() => { throw new Error("a cap-frozen pool must NOT spawn any reader"); });
+  const logs: string[] = [];
+  (deps as unknown as { log: (m: string) => void }).log = (m: string) => { logs.push(m); };
+  const io = mkIo({
+    listAcceptanceReads: () => pool,
+    resolveBeatShipped: async () => ({ ok: true as const, composite: shipped, source: shipped === null ? "none" as const : "env" as const }),
+  });
+  const res = await runBookAcceptance("zz", FIXTURE_CHAPTERS, deps, io as unknown as AuthorReviewIo, 80, "");
+  return { accepted: res.accepted, logs };
+}
+
+test("F-05 predicate: FLOOR boundary with no shipped control — 73.9 rejects, 74.0 accepts", async () => {
+  const below = await drivePredicate([poolRead(73.9, "PASS"), poolRead(73.9, "PASS"), poolRead(73.9, "PASS")], null);
+  assert.equal(below.accepted, false, "median 73.9 < floor 74 → REJECT");
+  const at = await drivePredicate([poolRead(74.0, "PASS"), poolRead(74.0, "PASS"), poolRead(74.0, "PASS")], null);
+  assert.equal(at.accepted, true, "median 74.0 == floor 74 → ACCEPT (no shipped control, floor-only)");
+});
+
+test("F-05 predicate: MARGIN boundary against a shipped control 72.7 — 77.6 rejects, 77.7 accepts", async () => {
+  const below = await drivePredicate([poolRead(77.6, "PASS"), poolRead(77.6, "PASS"), poolRead(77.6, "PASS")], 72.7);
+  assert.equal(below.accepted, false, "77.6 < shipped(72.7)+5 → REJECT (clears the 74 floor but not the +5 margin)");
+  const at = await drivePredicate([poolRead(77.7, "PASS"), poolRead(77.7, "PASS"), poolRead(77.7, "PASS")], 72.7);
+  assert.equal(at.accepted, true, "77.7 == shipped(72.7)+5 → ACCEPT");
+});
+
+test("F-05 predicate: a sticky gate FAIL forces REJECT regardless of a passing median", async () => {
+  // One FAIL read among three makes gateFailStuck; composite 90 is irrelevant.
+  const r = await drivePredicate([poolRead(90, "PASS"), poolRead(90, "FAIL"), poolRead(90, "PASS")], null);
+  assert.equal(r.accepted, false, "a FAIL on any pooled read sticks → REJECT even at median 90");
+});
+
+test("F-05 predicate: quorum unmet → REJECT with the valid-reader-quorum message", async () => {
+  // Empty pool + a panel that never parses → 0 valid readers → sub-quorum.
+  const { deps } = mkDeps((o) => (o.sessionId.includes("author-book-reader") ? { finalMessage: "not valid json at all" } : {}));
+  const logs: string[] = [];
+  (deps as unknown as { log: (m: string) => void }).log = (m: string) => { logs.push(m); };
+  const io = mkIo({
+    listAcceptanceReads: () => [],
+    resolveBeatShipped: async () => ({ ok: true as const, composite: null, source: "none" as const }),
+  });
+  const res = await runBookAcceptance("zz", FIXTURE_CHAPTERS, deps, io as unknown as AuthorReviewIo, 80, "");
+  assert.equal(res.accepted, false, "a sub-quorum panel is never accepted");
+  assert.ok(res.verdict.validCount < AUTHOR_BOOK_READERS, "fewer than the 3-reader quorum were valid");
+  assert.ok(logs.some((l) => /below valid-reader quorum/.test(l)), `the reject log names the quorum: ${JSON.stringify(logs.filter((l) => /REJECT/.test(l)))}`);
+});
+
+test("F-05 predicate: churn HIGH with passing numbers is ACCEPTED — churn is telemetry, NOT an accept-time veto", async () => {
+  // STANDING 2026-07-04 calibration (owner decision): the correctness gate, the
+  // 74 floor, and the +5 beat-shipped margin are the ONLY accept blockers; the
+  // holistic churn label routes repair AFTER a rejection but never vetoes. Do not
+  // read this test as endorsing churn HIGH — it pins the semantics loudly so a
+  // future campaign is not, again, run against a wrong model of the gate. Whether
+  // churn should ever veto is an explicit OPEN owner question:
+  // docs/v24/ACCEPTANCE-GATE-POLICY.md (open question a).
+  const r = await drivePredicate(
+    [poolRead(80, "PASS", "HIGH"), poolRead(80, "PASS", "HIGH"), poolRead(80, "PASS", "HIGH")],
+    null,
+  );
+  assert.equal(r.accepted, true, "unanimous churn HIGH + gate PASS + median 80 >= floor 74 → ACCEPT");
+});
+
+// ── F-09: the sub-band second-opinion guard (bounded, one extra read) ─────────
+
+test("F-09 guard: a sub-band taste FAIL rescued by a shipping second opinion spends NO regen (one extra read, ledger untouched)", async () => {
+  // ch01: a valid, clean-keyed, sub-band (composite 60 < 80−3.7) FAIL whose only
+  // complaint is aesthetic (downgraded by the classifier). The guard fires ONE
+  // independent read; that read ships → the better read stands → no regen spent.
+  const { deps, spawns } = mkDeps((o) => {
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) {
+      const n = Number(m[1]);
+      if (o.sessionId.includes("-2nd")) return { finalMessage: reviewReply(n === 1 ? CH1 : CH2, { ship84: true, score: 90 }) };
+      if (n === 1) return { finalMessage: reviewReply(CH1, { ship84: false, score: 60, complaints: [{ unit: "example 2", problem: "the phrasing is a bit generic and could be richer", mustFix: false }] }) };
+      return { finalMessage: reviewReply(CH2) };
+    }
+    if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS) };
+    return {};
+  });
+  const io = mkIo();
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+  assert.equal(spawns.filter((s) => s.sessionId.includes("author-review-ch01-2nd")).length, 1, "exactly ONE second-opinion read for the sub-band chapter");
+  assert.equal(spawns.filter((s) => s.sessionId.includes("author-review-ch02-2nd")).length, 0, "the passing chapter earns no second opinion");
+  assert.equal(io.regenConsumedFor!("zz", 1), 0, "the shipping second opinion PREVENTED the regen — lifetime write budget untouched");
+  assert.equal(spawns.filter((s) => s.sessionId.startsWith("author-ch")).length, 0, "no regen writer spawned");
+  assert.equal(result, null, "the better read stands → the run completes to acceptance");
+});
+
+test("F-09 guard: a sub-band taste FAIL whose second opinion ALSO fails proceeds to regen (one extra read, then the cap is spent)", async () => {
+  const { deps, spawns } = mkDeps((o) => {
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) {
+      const n = Number(m[1]);
+      if (o.sessionId.includes("-2nd")) return { finalMessage: reviewReply(CH1, { ship84: false, score: 60, complaints: [{ unit: "example 2", problem: "still reads a little thin", mustFix: false }] }) };
+      if (n === 1) return { finalMessage: reviewReply(CH1, { ship84: false, score: 60, complaints: [{ unit: "example 2", problem: "the phrasing is a bit generic", mustFix: false }] }) };
+      return { finalMessage: reviewReply(CH2) };
+    }
+    if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS) };
+    return {};
+  });
+  const io = mkIo();
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+  assert.equal(spawns.filter((s) => s.sessionId.includes("author-review-ch01-2nd")).length, 1, "exactly one second-opinion read (hard cap)");
+  assert.equal(io.regenConsumedFor!("zz", 1), 1, "a corroborated sub-band FAIL still spends its regen — the guard never hides a durable fail");
+  assert.ok(result && result.status === "halt" && result.category === "content", "no-op (byte-identical) regen halts content after the guard");
+});
+
+test("F-09 guard: a reserved-harm FAIL spawns NO second opinion — it goes straight to regen", async () => {
+  const { deps, spawns } = mkDeps((o) => {
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) {
+      const n = Number(m[1]);
+      if (n === 1) return { finalMessage: reviewReply(CH1, { ship84: false, score: 60, complaints: [{ unit: "quiz Q2", problem: "the answer key is wrong — two choices are correct", mustFix: true }] }) };
+      return { finalMessage: reviewReply(CH2) };
+    }
+    if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS) };
+    return {};
+  });
+  const io = mkIo();
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+  assert.equal(spawns.filter((s) => s.sessionId.includes("-2nd")).length, 0, "a reserved-harm complaint blocks the second-opinion guard entirely");
+  assert.equal(io.regenConsumedFor!("zz", 1), 1, "the reserved-harm FAIL spent its regen directly (no cheap read wasted)");
+  assert.ok(result && result.status === "halt" && result.category === "content", "byte-identical regen halts content");
 });

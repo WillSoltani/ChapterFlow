@@ -26,10 +26,13 @@ import { runSweepEvidence, type AuthorEvidenceRound } from "../src/orchestrator/
 import { sweepRejectedPath, type SweepRejectedRecord } from "../src/orchestrator/sweepRejectedRecord.js";
 import { resolveAuthorReviewIo, type AuthorReviewIo } from "../src/orchestrator/authorReview.js";
 import {
+  effectiveControlValidCount,
   loadShippedControlRecord,
   resolveBeatShippedBar,
   type ShippedControlIo,
+  type ShippedControlRecord,
 } from "../src/orchestrator/shippedControl.js";
+import { AUTHOR_BOOK_READERS } from "../src/orchestrator/authorReview.js";
 import { REVIEW_FACTORS, type ReviewFactor } from "../src/artifacts/artifactTypes.js";
 import type { AutopilotDeps } from "../src/orchestrator/autopilot.js";
 import type { BookPackageV21, ChapterV21 } from "../src/types.js";
@@ -303,4 +306,122 @@ test("control-read: a pin failure (empty HEAD) → FAIL-CLOSED", async () => {
     const r = await resolveBeatShippedBar(CTRL_BOOK, mkDeps(() => ({})).deps, mkEvIo(), io);
     assert.ok(!r.ok && /could not pin/.test(r.reason), `fail-closed on pin failure: ${JSON.stringify(r)}`);
   } finally { if (prev !== undefined) process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE = prev; }
+});
+
+// ── F-05 quorum guard for the shipped control ────────────────────────────────
+// A control composite may set the +5 margin baseline ONLY at the same
+// valid-reader quorum acceptance requires (AUTHOR_BOOK_READERS = 3). A partial
+// panel (1-2 valid) — where composeBookVerdict's ties-favor-PASS could distort
+// the baseline — falls to floor-only + a loud log, never fabricating a control.
+
+/** deps whose log() is captured so the loud degrade line can be asserted. */
+function mkLoggingDeps(script: (o: { sessionId: string; task: string }) => { finalMessage?: string }): { deps: AutopilotDeps; logs: string[] } {
+  const base = mkDeps(script);
+  const logs: string[] = [];
+  (base.deps as unknown as { log: (m: string) => void }).log = (m: string) => { logs.push(m); };
+  return { deps: base.deps, logs };
+}
+
+test("control-read (F-05): a DEGRADED fresh read (2/3 valid) → FLOOR-ONLY, loud log, NOT persisted", async () => {
+  const prev = process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
+  delete process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
+  try {
+    const io = mkControlIo();
+    // Reader 3 emits unparseable output on both attempts → only 2 valid readers.
+    const { deps, logs } = mkLoggingDeps((o) => {
+      if (!o.sessionId.includes("shipped-control")) return {};
+      return o.sessionId.includes("-r3") ? { finalMessage: "not json" } : { finalMessage: bookReadReply(controlPkg().chapters, 82) };
+    });
+    const r = await resolveBeatShippedBar(CTRL_BOOK, deps, mkEvIo(), io);
+    assert.ok(r.ok && r.source === "degraded" && r.composite === null, `degraded → floor-only: ${JSON.stringify(r)}`);
+    assert.ok(logs.some((l) => /DEGRADED control read/.test(l) && /2\/3 valid/.test(l)), `loud degrade log emitted: ${JSON.stringify(logs)}`);
+    // A degraded panel is NOT cached — the next entry re-runs it to recover.
+    assert.equal(loadShippedControlRecord(CTRL_BOOK, io), null, "a degraded read is not persisted (retry next entry)");
+  } finally { if (prev !== undefined) process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE = prev; }
+});
+
+test("control-read (F-05): a full-quorum fresh read persists validCount === 3 (zero behavior change for the normal case)", async () => {
+  const prev = process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
+  delete process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
+  try {
+    const io = mkControlIo();
+    const { deps } = mkDeps((o) => (o.sessionId.includes("shipped-control") ? { finalMessage: bookReadReply(controlPkg().chapters, 82) } : {}));
+    const r = await resolveBeatShippedBar(CTRL_BOOK, deps, mkEvIo(), io);
+    assert.ok(r.ok && r.source === "control" && r.composite === 82, `normal 3-valid control read unchanged: ${JSON.stringify(r)}`);
+    const rec = loadShippedControlRecord(CTRL_BOOK, io);
+    assert.ok(rec && rec.validCount === 3, `the persisted record carries the valid-reader quorum count: ${JSON.stringify(rec?.validCount)}`);
+  } finally { if (prev !== undefined) process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE = prev; }
+});
+
+test("control-read (F-05): a CACHED below-quorum record (validCount 2) is NOT trusted → FLOOR-ONLY, loud log", async () => {
+  const prev = process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
+  delete process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
+  try {
+    const io = mkControlIo();
+    // Seed a cached record at the matching pin with only 2 valid readers.
+    const rec: ShippedControlRecord = {
+      schemaVersion: "shipped-control-v1", bookId: CTRL_BOOK, pin: "PIN0",
+      composite: 70, gate: "PASS", churn: "LOW", validCount: 2,
+      readers: [{ valid: true }, { valid: true }, { valid: false }] as any,
+      at: "2026-07-08T00:00:00Z",
+    };
+    writeFileSync(io.controlRecordPath(CTRL_BOOK), JSON.stringify(rec), "utf8");
+    const { deps, logs } = mkLoggingDeps(() => { throw new Error("must not spawn — a cached record must be consulted, then declined"); });
+    const r = await resolveBeatShippedBar(CTRL_BOOK, deps, mkEvIo(), io);
+    assert.ok(r.ok && r.source === "degraded" && r.composite === null, `cached below-quorum → floor-only: ${JSON.stringify(r)}`);
+    assert.ok(logs.some((l) => /BELOW the valid-reader quorum \(2\/3/.test(l)), `loud cached-degrade log: ${JSON.stringify(logs)}`);
+  } finally { if (prev !== undefined) process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE = prev; }
+});
+
+test("control-read (F-05): a CACHED full-quorum record (validCount 3) IS trusted (no re-spawn)", async () => {
+  const prev = process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
+  delete process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
+  try {
+    const io = mkControlIo();
+    const rec: ShippedControlRecord = {
+      schemaVersion: "shipped-control-v1", bookId: CTRL_BOOK, pin: "PIN0",
+      composite: 82, gate: "PASS", churn: "LOW", validCount: 3,
+      readers: [{ valid: true }, { valid: true }, { valid: true }] as any,
+      at: "2026-07-08T00:00:00Z",
+    };
+    writeFileSync(io.controlRecordPath(CTRL_BOOK), JSON.stringify(rec), "utf8");
+    const { deps } = mkDeps(() => { throw new Error("must not spawn on a pin-matched full-quorum reuse"); });
+    const r = await resolveBeatShippedBar(CTRL_BOOK, deps, mkEvIo(), io);
+    assert.ok(r.ok && r.source === "control" && r.composite === 82, `cached full-quorum trusted: ${JSON.stringify(r)}`);
+  } finally { if (prev !== undefined) process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE = prev; }
+});
+
+test("control-read (F-05): an OLD cached record with no validCount DERIVES the count from readers (3 valid → trusted; 2 valid → floor-only)", async () => {
+  const prev = process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
+  delete process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
+  try {
+    // (a) old record shape (no validCount field) with 3 valid readers — like the
+    //     live start-with-why control (72.7, 3/3 valid): DERIVED count 3 → trusted.
+    const io = mkControlIo();
+    const oldTrusted = {
+      schemaVersion: "shipped-control-v1", bookId: CTRL_BOOK, pin: "PIN0",
+      composite: 72.7, gate: "FAIL", churn: "HIGH",
+      readers: [{ valid: true }, { valid: true }, { valid: true }],
+      at: "2026-07-07T00:00:00Z",
+    };
+    writeFileSync(io.controlRecordPath(CTRL_BOOK), JSON.stringify(oldTrusted), "utf8");
+    const rA = await resolveBeatShippedBar(CTRL_BOOK, mkDeps(() => { throw new Error("no spawn"); }).deps, mkEvIo(), io);
+    assert.ok(rA.ok && rA.source === "control" && rA.composite === 72.7, `old 3-valid record derives quorum → trusted: ${JSON.stringify(rA)}`);
+
+    // (b) old record shape with only 2 valid readers → DERIVED count 2 → floor-only.
+    const io2 = mkControlIo();
+    const oldDegraded = { ...oldTrusted, readers: [{ valid: true }, { valid: true }, { valid: false }] };
+    writeFileSync(io2.controlRecordPath(CTRL_BOOK), JSON.stringify(oldDegraded), "utf8");
+    const rB = await resolveBeatShippedBar(CTRL_BOOK, mkDeps(() => { throw new Error("no spawn"); }).deps, mkEvIo(), io2);
+    assert.ok(rB.ok && rB.source === "degraded" && rB.composite === null, `old 2-valid record derives sub-quorum → floor-only: ${JSON.stringify(rB)}`);
+  } finally { if (prev !== undefined) process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE = prev; }
+});
+
+test("effectiveControlValidCount: prefers the stored count, else derives from readers, else 0", () => {
+  const base = { schemaVersion: "shipped-control-v1", bookId: CTRL_BOOK, pin: "P", composite: 80, gate: "PASS", churn: "LOW", at: "x" } as const;
+  assert.equal(effectiveControlValidCount({ ...base, validCount: 3, readers: [] as any }), 3, "stored validCount wins");
+  assert.equal(effectiveControlValidCount({ ...base, readers: [{ valid: true }, { valid: true }, { valid: true }] as any }), 3, "derives 3 from readers");
+  assert.equal(effectiveControlValidCount({ ...base, readers: [{ valid: true }, { valid: false }, { valid: true }] as any }), 2, "derives 2 from readers");
+  assert.equal(effectiveControlValidCount({ ...base, readers: undefined as any }), 0, "no usable readers → 0 (degraded)");
+  assert.ok(AUTHOR_BOOK_READERS === 3, "quorum is the 3-reader panel");
 });

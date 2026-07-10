@@ -23,7 +23,11 @@ import { chapterBriefPath, sourcePacketPath } from "../artifacts/artifactStore.j
 import type { ChapterBriefV1, SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import type { AutopilotDeps } from "./autopilot.js";
 import type { AuthorIo } from "./authorRun.js";
-import { AUTHOR_WRITER_EFFORT, AUTHOR_WRITER_MODEL, authorWriteContractFindings } from "./authorRun.js";
+import { AUTHOR_WRITER_EFFORT, AUTHOR_WRITER_MODEL, authorWriteContractFindings, readLeadOverrideFromDisk } from "./authorRun.js";
+import { applyLeadThreadOverride } from "../compiler/chapterBrief.js";
+import { chapterContentHash } from "../critics/qcAttestation.js";
+import { registerAdvisoryFixLines } from "../critics/registerAdvisories.js";
+import { restoreAuthorProvenance } from "../qc/sessionProvenance.js";
 
 const PIPELINE_DIR = resolve(__dirname, "../..");
 
@@ -35,10 +39,15 @@ export function reviewRepairEnabled(): boolean {
 /** Surgical edits are smaller than authoring — 30 min is generous at xhigh. */
 export const REPAIR_TIMEOUT_MS = 1_800_000;
 
-/** Median composite floor for the lane. The chapter bar is 84 and the book bar
- *  is 80; tiebreak-upholding reads routinely score 83.x on repair-worthy
- *  chapters (ch05 live: 83.7/83.8), so 84 would veto the lane's own
- *  population. 82 = comfortably above the book bar, below reader noise. */
+/** Median composite floor for the lane. Both the chapter soft bar and the book
+ *  bar are now 80 (owner decision 2026-07-04, was chapter 84). The lane's job is
+ *  the SHIP-BLOCK-despite-good-score case: after the near-bar median tiebreak
+ *  CONVERTS anything with median ≥80 + ship-majority, an upheld FAIL that still
+ *  scores ≥82 means the readers withheld ship on specific, scope-convergent
+ *  defects — exactly what a surgical field patch fixes. Below 82 the score
+ *  itself is short (not just a ship-block), so a scoped edit can't reliably lift
+ *  the whole composite → regen instead. 82 sits above the bar (80) and below
+ *  reader noise. */
 export const REPAIR_COMPOSITE_FLOOR = 82;
 
 export type RepairScope =
@@ -158,6 +167,7 @@ export function buildRepairCard(opts: {
 }): string {
   const { chapter, brief, complaints, scopes, relPath } = opts;
   const criteria = [...new Set(complaints.map(stripRemedyClauses))].map((c) => `- ${c}`).join("\n");
+  const regAdvisories = registerAdvisoryFixLines(chapter);
   const dealt: string[] = [];
   if (scopes.includes("quiz") && brief?.quizStemShapes?.length) {
     dealt.push(`Quiz deals still bind: stem shapes ${brief.quizStemShapes.join(", ")}; distractor failure modes ${(brief.quizFailureModes ?? []).join(", ")}; fact order ${(brief.questionFactOrder ?? []).join(",")}; answer-index pattern unchanged. HARD length caps: the key may be the uniquely LONGEST choice in at most ONE of the 9 questions and uniquely SHORTEST in at most FOUR — land keys mid-length.`);
@@ -181,6 +191,12 @@ export function buildRepairCard(opts: {
     ``,
     ...(scopes.includes("quiz") ? [`MEASURED QUIZ EVIDENCE (char counts on the current bytes):`, ...quizTellEvidence(chapter), ``] : []),
     ...(dealt.length ? [`DEALT CONSTRAINTS (these still bind your edits):`, ...dealt.map((d) => `- ${d}`), ``] : []),
+    // CF-I-2 (owner decision 4): surface the C31–C35 register/machinery advisories on
+    // the current bytes. ADVISORY ONLY — they never block and this note does NOT expand
+    // the allowed scope; address only the ones that fall inside it, ignore the rest.
+    ...(regAdvisories.length
+      ? [`ADVISORY REGISTER NOTES (never block; do NOT expand scope — fix only those inside your ALLOWED SCOPE):`, ...regAdvisories, ``]
+      : []),
     `RULES:`,
     `- Never reuse a reviewer's phrasing inside content fields — reviewer wording in a key or distractor is a fresh tell.`,
     `- Never change the NUMBER of examples, questions, choices, or cards.`,
@@ -221,7 +237,27 @@ export function spliceRepairScopes(original: ChapterV21, repaired: ChapterV21, s
   return out;
 }
 
-export type RepairResult = { ok: boolean; reason?: string; sessionId?: string };
+/** F6: thrown by the review caller when a rejected repair could not restore the
+ *  original bytes — the conductor must halt infra (disk no longer matches the
+ *  persisted review pointers). */
+export class RepairRestoreError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "RepairRestoreError";
+  }
+}
+
+export type RepairResult = {
+  ok: boolean;
+  reason?: string;
+  sessionId?: string;
+  /** F6 (FINAL-HARDENING-PLAN 2026-07-04): a rejected repair whose byte RESTORE
+   *  also failed — disk now holds unreviewed repair-session bytes while the
+   *  latest persisted review points at the pre-repair hash. The caller must
+   *  treat this as an INFRA HALT, never continue routing (a regen-exhausted
+   *  book would otherwise halt "content" with silently divergent bytes). */
+  restoreFailed?: boolean;
+};
 
 /** Run one surgical repair end-to-end. On ANY failure the ORIGINAL bytes are
  *  restored (the persisted review's contentHash must keep matching the disk)
@@ -248,11 +284,32 @@ export async function doRepairOneChapter(
   let packet: SourcePacketV1 | undefined;
   try { brief = JSON.parse(readFileSync(chapterBriefPath(bookId, chapterNumber), "utf8")); } catch { /* brief optional */ }
   try { packet = JSON.parse(readFileSync(sourcePacketPath(bookId, chapterNumber), "utf8")); } catch { /* packet optional */ }
+  // F-1: a chapter written under a DEGRADED lead legitimately carries a different
+  // lead than the compiled brief deals — the contract re-check below must verify
+  // the chapter's ACTUAL lead, or every repair of such a chapter reverts on a
+  // false lead-thread complaint.
+  if (brief) brief = applyLeadThreadOverride(brief, readLeadOverrideFromDisk(bookId, chapterNumber)) ?? brief;
 
   const card = buildRepairCard({ bookId, chapter: original, brief, complaints: opts.complaints, scopes: opts.scopes, relPath });
   const sessionId = `auto-author-repair-${bookId}-ch${nn}-${Date.now().toString(36)}`;
   deps.log(`[autopilot] author repair ch${nn}: surgical editor working (scopes ${opts.scopes.join(",")}, card ${card.length} chars, ${AUTHOR_WRITER_MODEL} @ ${AUTHOR_WRITER_EFFORT}, timeout ${Math.round(REPAIR_TIMEOUT_MS / 60000)}min)`);
-  const restore = () => { try { writeFileSync(absPath, originalBytes); } catch { /* restore is best-effort */ } };
+  let restoreFailed = false;
+  const restore = () => {
+    try {
+      writeFileSync(absPath, originalBytes);
+      // A repair session that changed the chapter moved author provenance to the
+      // repair session; putting the ORIGINAL bytes back must move it back to the
+      // original author, or the independence gate reads the wrong author. Best-effort.
+      try { restoreAuthorProvenance(chapterId, chapterContentHash(original), deps.log); }
+      catch { /* provenance rollback is non-fatal; the byte restore is what matters */ }
+    } catch (err) {
+      // F6: a failed restore leaves unreviewed repair bytes on disk while the
+      // persisted review still points at the pre-repair hash — surfaced to the
+      // caller as an infra halt, never a silent divergence.
+      restoreFailed = true;
+      deps.log(`[autopilot] author repair ch${nn}: RESTORE FAILED — ${(err as Error).message}; disk holds unreviewed repair-session bytes`);
+    }
+  };
   try {
     const r = await deps.spawn({
       task: card,
@@ -264,10 +321,19 @@ export async function doRepairOneChapter(
       timeoutMs: REPAIR_TIMEOUT_MS,
     });
     try { deps.logSession(bookId, `author-repair-ch${nn}`, r); } catch { /* best-effort */ }
-    if (r.exitCode !== 0) { restore(); return { ok: false, reason: `ch${nn}: repair session exited ${r.exitCode}`, sessionId }; }
+    if (r.exitCode !== 0) { restore(); return { ok: false, reason: `ch${nn}: repair session exited ${r.exitCode}`, sessionId, restoreFailed }; }
   } catch (err) {
     restore();
-    return { ok: false, reason: `ch${nn}: repair session died (${(err as Error).message.slice(0, 200)})`, sessionId };
+    // Honest-accounting: a died repair spawn was minted but not logged on the
+    // success path — record a synthetic failed session so the cost-report
+    // invariant stays honest (same fix as the writer spawn in authorRun).
+    try {
+      deps.logSession(bookId, `author-repair-ch${nn}`, {
+        ok: false, exitCode: -1, finalMessage: "", stdout: "",
+        stderr: (err as Error)?.message ?? String(err), durationMs: 0, sessionId,
+      });
+    } catch { /* best-effort */ }
+    return { ok: false, reason: `ch${nn}: repair session died (${(err as Error).message.slice(0, 200)})`, sessionId, restoreFailed };
   }
   // Patch-apply: splice allowed scopes from the session's file into the original.
   let spliced: ChapterV21;
@@ -276,12 +342,12 @@ export async function doRepairOneChapter(
     spliced = spliceRepairScopes(original, written, opts.scopes);
   } catch (err) {
     restore();
-    return { ok: false, reason: `ch${nn}: repair output rejected at splice (${(err as Error).message})`, sessionId };
+    return { ok: false, reason: `ch${nn}: repair output rejected at splice (${(err as Error).message})`, sessionId, restoreFailed };
   }
   const splicedBytes = JSON.stringify(spliced, null, 2) + "\n";
   if (JSON.stringify(spliced) === JSON.stringify(original)) {
     restore();
-    return { ok: false, reason: `ch${nn}: repair was a no-op inside its scope`, sessionId };
+    return { ok: false, reason: `ch${nn}: repair was a no-op inside its scope`, sessionId, restoreFailed };
   }
   writeFileSync(absPath, splicedBytes);
   // Full deterministic stack on the SPLICED bytes (plan R4) — any FAIL restores.
@@ -289,19 +355,19 @@ export async function doRepairOneChapter(
   const gateOut = [gate.stdout, gate.stderr].join("\n");
   if (!/Gate verdict: PASS/.test(gateOut)) {
     restore();
-    return { ok: false, reason: `ch${nn}: spliced repair fails the gate`, sessionId };
+    return { ok: false, reason: `ch${nn}: spliced repair fails the gate`, sessionId, restoreFailed };
   }
   const rubric = await deps.runVerb(["rubric-metrics", bookId]);
   const verdictLine = [rubric.stdout, rubric.stderr].join("\n").split("\n").find((l) => l.trim().startsWith(`ch${nn}:`)) ?? "";
   if (verdictLine.includes("FAIL")) {
     restore();
-    return { ok: false, reason: `ch${nn}: spliced repair fails the rubric preflight — ${verdictLine.trim()}`, sessionId };
+    return { ok: false, reason: `ch${nn}: spliced repair fails the rubric preflight — ${verdictLine.trim()}`, sessionId, restoreFailed };
   }
   if (brief && packet) {
     const contract = authorWriteContractFindings(spliced, brief, packet);
     if (contract.length > 0) {
       restore();
-      return { ok: false, reason: `ch${nn}: spliced repair breaks the write contract — ${contract.join(" | ").slice(0, 300)}`, sessionId };
+      return { ok: false, reason: `ch${nn}: spliced repair breaks the write contract — ${contract.join(" | ").slice(0, 300)}`, sessionId, restoreFailed };
     }
   }
   return { ok: true, sessionId };

@@ -66,7 +66,7 @@ import {
   writeKeyPacks,
   type KeyPack,
 } from "../qc/manualKeyJudge.js";
-import { checkSweep, loadSweepRecord, writeSweepPack, writeSweepRecordFromSubmission } from "../qc/sweep.js";
+import { checkSweep, loadSweepRecord, sweepTextureAdvisories, writeSweepPack, writeSweepRecordFromSubmission } from "../qc/sweep.js";
 import { renderSweepFamilyRubric, SWEEP_FAMILIES, SWEEP_SUBMISSION_SCHEMA_ID } from "../qc/sweepSpec.js";
 import { validateSubmission, type ValidatedSweepSubmission } from "../qc/orchestrator/schemas.js";
 import { submitQcArtifact } from "../qc/orchestrator/index.js";
@@ -576,5 +576,16 @@ export async function runSweepEvidence(
     return content(`sweep read did not clear the book (record persisted; promote will block): ${findings.map((f) => `${f.checkId}: ${f.message}`).join("; ")}`);
   }
   deps.log(`[autopilot] author evidence: sweep attestation written by session ${read.sessionId} (round ${round.roundId})`);
+  // P5 texture visibility (FINAL-HARDENING-PLAN 2026-07-04): the sweep CLEARED
+  // the gate, but any TEXTURE-family findings were demoted (scored by the panel,
+  // not blocked) and would otherwise be invisible. Surface them so cross-book
+  // sameness is observable during a gold-corpus regen.
+  try {
+    const texture = sweepTextureAdvisories(bookId);
+    if (texture.length > 0) {
+      deps.log(`[autopilot] author evidence: ${texture.length} texture advisory finding(s) (scored, non-blocking):`);
+      for (const t of texture) deps.log(`[autopilot] author evidence: advisory ${t}`);
+    }
+  } catch { /* visibility only — never fail the evidence step on it */ }
   return { ok: true };
 }

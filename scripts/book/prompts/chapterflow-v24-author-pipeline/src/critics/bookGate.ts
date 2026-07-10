@@ -18,13 +18,18 @@ import {
 } from "./quizQuality.js";
 import { checkKeyedChoiceDuplication } from "./quizCorrectness.js";
 import { checkBookQuizPromptTemplates } from "./antiSalting.js";
+import { checkArchitectureMonoculture } from "./architectureMonoculture.js";
+import { checkContentMachinery } from "./contentMachinery.js";
+import { checkBookBeatVocabularyEcho } from "./beatVocabularyEcho.js";
 import { loadBannedPhrases } from "./shared.js";
 import { normalizeConvergenceKey } from "./experiencePlan.js";
 import {
   checkBookActionContainerReuse,
+  checkBookAphorismRepetition,
   checkBookCallbackFrameReuse,
   checkBookExemplarChapterReuse,
   checkBookQuizChoiceLabelUniform,
+  checkBookSentenceTailClone,
   checkBookTimingAnchorStamping,
   checkBookTryThisNowOpenerReuse,
   checkBookVenueStamping,
@@ -555,6 +560,83 @@ export function runBookGate(bookId: string, chapters: ChapterV21[], options: Boo
     findings.push({
       catalogId: f.checkId,
       severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+      chapters: f.chapters,
+    });
+  }
+  // ── BP34 — within-book aphorism repetition (CF-F / Finding 11). The minted
+  // one-liner ("Agreement nods; commitment signs") reused as a lede/coreSkill
+  // across ≥3 chapters, invisible to BP10/BP12 (paragraph-scale) and to the
+  // banned-phrase list before this campaign. Advisory (MINOR) — surfaces the line
+  // and names the chapters; never blocks (the semantic panel is the true gate).
+  for (const f of checkBookAphorismRepetition(chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+      chapters: f.chapters,
+    });
+  }
+  // ── BP34.tail_clone — recurring distinctive sentence TAIL (CF-J). The clone
+  // "…comes back…, or it drifts" (radical-candor ch3/6/9) varies its frame around
+  // a fixed final comma-clause, so the verbatim BP34 above never collapses the
+  // three. One advisory per recurring tail, naming the chapters. MINOR; never blocks.
+  for (const f of checkBookSentenceTailClone(chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+      chapters: f.chapters,
+    });
+  }
+  // ── C33 (book-level) — beat-vocabulary echo (CF-I-1). A single briefRotation entry/
+  // outcome beat label ("early signal", "return point"…) surfacing across ≥3 chapters
+  // — the dealt vocabulary becoming a book-wide refrain, one advisory per family naming
+  // the chapters. Advisory (MINOR); never blocks. The per-chapter twin lives in the
+  // ship gate. The beat vocabulary is a fleet-wide leak (gold + HOM fire too); CF-I-2
+  // de-mints the source instructions.
+  for (const f of checkBookBeatVocabularyEcho(chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+      chapters: f.chapters,
+    });
+  }
+
+  // ── ARCH0-4 — book-level STRUCTURAL-SKELETON monoculture (2026-07-05). ────
+  // The surface critics above (BP26-31, AS4) vary the dressing; this catches a
+  // book where every chapter runs the SAME delivery skeleton (practice shell,
+  // reversal device, lead anchor, compound takeaway) — the "churn HIGH" the
+  // book-acceptance panel rejects. Advisory (major, surfaced): the semantic panel
+  // is the true gate; this makes the sameness deterministically visible + names
+  // the chapters the book-sameness repair lane should diversify. Never blocks.
+  for (const f of checkArchitectureMonoculture(chapters)) {
+    findings.push({
+      catalogId: f.catalogId,
+      severity: f.severity,
+      message: f.message,
+      evidence: f.evidence,
+      chapters: f.chapters,
+    });
+  }
+
+  // ── CM0 — book-level CONTENT-MACHINERY monoculture (2026-07-06). ──────────
+  // Deeper than the ARCH openings above: catches the repeated BODY devices
+  // (return-proof, proxy-cast, second-setting, hard-detail boundary…) that recur
+  // across every chapter's examples/quiz/cards — the "one template filled with
+  // different nouns" the acceptance panel named as the real churn cause. Advisory
+  // (major, surfaced): the content-device deal prevents it at write time; this
+  // makes residual saturation visible + names the chapters the content-deal repair
+  // lane should fix. Never blocks — the semantic panel is the true gate.
+  for (const f of checkContentMachinery(chapters)) {
+    findings.push({
+      catalogId: f.catalogId,
+      severity: f.severity,
       message: f.message,
       evidence: f.evidence,
       chapters: f.chapters,

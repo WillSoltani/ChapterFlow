@@ -33,6 +33,7 @@ import { existsSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync 
 import { dirname, relative, resolve, sep } from "node:path";
 
 import { CANONICAL_STATE, MONOREPO_ANCESTOR, REPO_ROOT, normSlug } from "../lib/chapterPaths.js";
+import { blockedReportsForBook } from "./blockedReportRetention.js";
 
 /** The one structural boundary we must NEVER cross: the v21 gold-corpus pipeline dir
  *  (2,813 tracked files, the regression corpus). Excluded at the tool level, not by
@@ -261,6 +262,18 @@ function candidatePaths(bookId: string, roots: Required<CleanupRoots>): Array<{ 
   for (const p of chapterFiles(stateRoot, bookId)) cands.push({ path: p, kind: "state-chapters" });
   for (const p of provenanceFiles(stateRoot, bookId)) cands.push({ path: p, kind: "state-provenance" });
   for (const p of indexFile(stateRoot, bookId)) cands.push({ path: p, kind: "state-index" });
+
+  // ── state/books/_blocked/<book>.<epoch>.report.json ──
+  // A published book's blocked history is RESOLVED (the shipped package is the
+  // durable record), so its live blocked reports are debris. The prefix-sub scan
+  // above only sees the top level of state/books/, so _blocked/ is invisible to
+  // it (exactly the F-14 gap). Match EXACT stem (collision-safe) for both the raw
+  // id and its slug. Archived reports (_blocked/_archive-*/) are left untouched —
+  // they are gitignored evidence, not per-publish debris.
+  const blockedDir = resolve(stateRoot, "books", "_blocked");
+  for (const b of new Set([bookId, normSlug(bookId)])) {
+    for (const f of blockedReportsForBook(blockedDir, b)) cands.push({ path: f.path, kind: "state-book" });
+  }
 
   // ── .chapterflow/ run cache + source-verify record ──
   const runsDir = resolve(pipelineRoot, ".chapterflow", "runs", bookId);

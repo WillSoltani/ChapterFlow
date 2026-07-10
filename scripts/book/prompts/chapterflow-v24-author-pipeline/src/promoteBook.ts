@@ -8,7 +8,9 @@
  *
  * If any blocker fails:
  *   - Bundle is NOT written to book-packages/.
- *   - Failure report is written to state/books/_blocked/<bookId>.report.json.
+ *   - A failure report is written to state/books/_blocked/<bookId>.<epoch>.report.json,
+ *     and this book's blocked history is bounded to the newest 5 (older reports are
+ *     MOVED — never deleted — into _blocked/_archive-<date>/; see blockedReportRetention).
  *   - The book remains in pre-production state until issues are fixed.
  *
  * If all gates pass:
@@ -40,6 +42,7 @@ import { runBookGate, BookGateReport, formatBookGateReport } from "./critics/boo
 import { runIntraBookChecks } from "./critics/intraBook.js";
 import { checkQcAttestation } from "./critics/qcAttestation.js";
 import { checkKeyJudge } from "./critics/quizKeyGate.js";
+import { resolveBookKeyEvidence } from "./critics/quizKeyEvidence.js";
 import { isNoApiCodexQcMode } from "./qc/noApiMode.js";
 import { checkSourceV2Gate } from "./qc/sourceV2Gate.js";
 import {
@@ -52,6 +55,7 @@ import { checkSweep } from "./qc/sweep.js";
 import { evaluateMajorCleanliness } from "./qc/majorDisposition.js";
 import { ChapterSpec } from "./generateChapter.js";
 import { normSlug } from "./lib/chapterPaths.js";
+import { pruneBlockedReports } from "./publish/blockedReportRetention.js";
 import { stripInternalFields } from "./lib/readerContent.js";
 import { buildProductionManifest, type ProductionManifestFinding, type ProductionPackageManifest } from "./productionManifest.js";
 import { verifyProductionPackage } from "./verifyProductionPackage.js";
@@ -175,6 +179,14 @@ export type PromotionOptions = {
   /** Test seam: invoked once, after verification, immediately before the final
    *  atomic rename. */
   onBeforeFinalRename?: () => void;
+  /** R5(a): read-root for state-backed lookups that promote resolves through
+   *  defaults today (the quiz-key EVIDENCE resolver reads the review ledger).
+   *  Promote does NOT currently inject a state root anywhere else (P11 left
+   *  chapter loading on the canonical dir), so this is forward-looking plumbing:
+   *  undefined preserves the exact default behavior, and if a promote-wide
+   *  state-root injection is ever added it can flow through here so key evidence
+   *  reads the SAME root as the rest of promote. */
+  stateRoot?: string;
 };
 
 export type PromotionResult = {
@@ -207,6 +219,17 @@ export type PromotionResult = {
   canonicalBlockers?: ChapterSetBlocker[];
   shipGateMajorCount: number;
   bookGateMajorCount: number;
+  /** R5(b): the F-10 quiz answer-key EVIDENCE, surfaced on the result so the
+   *  operator-facing CLI can print the PER-CHAPTER lines — not just the summary
+   *  folded into `reason`. Advisory only (mirrors the report sidecar; never
+   *  affects `promoted`). Absent on pre-gate fail-closed returns that never
+   *  resolved key evidence (e.g. a quarantine tombstone / unreadable chapter). */
+  quizKeyEvidence?: {
+    summary: string;
+    counts: { judgeVerified: number; readerVerified: number; unverified: number };
+    unverifiedChapters: number[];
+    lines: string[];
+  };
   reason: string;                // human-readable explanation
 };
 
@@ -652,6 +675,15 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
   );
   const keyJudgeBlockerCount = keyJudgeFindings.length;
 
+  // Step 3.6b: Quiz answer-key EVIDENCE resolution (F-10). Independent of the
+  // block/no-block gate above: for EVERY chapter, state loudly what key evidence
+  // promote actually has — a fresh judge result, a durable reader review that
+  // re-derived all keys at the current content, or NONE. A chapter with no
+  // evidence is reported prominently (never silently promoted with unverified
+  // keys), but this is ADVISORY — it does not block. Escalating UNVERIFIED to a
+  // hard gate is an owner decision (see F-10), deliberately NOT taken here.
+  const keyEvidence = resolveBookKeyEvidence(loadedChapters, options.stateRoot);
+
   // Step 3.7: v21.1 no-API Codex QC mode. Default promotion remains backward
   // compatible; this stricter stack is active only when explicitly enabled.
   const noApiFindings: Array<{ chapter?: number; checkId: string; severity: "blocker"; message: string }> = [];
@@ -834,6 +866,15 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
     intraBook: { totalBlockers: intraBlockerCount, findings: intraFindings },
     qcAttestation: { totalBlockers: qcBlockerCount, findings: qcFindings },
     quizKeyJudge: { totalBlockers: keyJudgeBlockerCount, findings: keyJudgeFindings },
+    // F-10: per-chapter key-evidence lines + a prominent UNVERIFIED summary. This
+    // is advisory (does not affect promotion) — it makes a silent fail-open loud.
+    quizKeyEvidence: {
+      schemaVersion: keyEvidence.schemaVersion,
+      summary: keyEvidence.summary,
+      counts: keyEvidence.counts,
+      unverifiedChapters: keyEvidence.unverifiedChapters,
+      lines: keyEvidence.perChapter.map((c) => c.line),
+    },
     sourceIntegrity: { totalBlockers: sourceIntegrityBlockerCount, findings: sourceIntegrityFindings },
     sourceReality: {
       schemaVersion: "source-reality-policy-v1",
@@ -877,6 +918,10 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
     mkdirSync(QUARANTINE_DIR, { recursive: true });
     const quarantinePath = resolve(QUARANTINE_DIR, `${bookId}.${now().getTime()}.report.json`);
     writeFileAtomic(quarantinePath, JSON.stringify(fullReport, null, 2) + "\n");
+    // Bound this book's blocked-report history: keep the newest 5, MOVE the rest
+    // into _blocked/_archive-<date>/ (never delete — F-14). The just-written report
+    // is always the newest, so it is never archived by its own write.
+    pruneBlockedReports({ dir: QUARANTINE_DIR, bookId, keep: 5, now });
     const qcSummary = qcBlockerCount > 0
       ? ` + ${qcBlockerCount} QC-attestation blocker(s): ${qcFindings.slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${qcFindings.length > 3 ? ", …" : ""}`
       : "";
@@ -924,7 +969,13 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
       canonicalBlockerCount: 0,
       shipGateMajorCount: shipMajorCount,
       bookGateMajorCount: bookMajorCount,
-      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${sourceIntegritySummary}${sourceRealitySummary}${generationDebtSummary}${noApiSummary}${majorSummary}${manifestSummary}. Quarantined at ${quarantinePath}.`,
+      quizKeyEvidence: {
+        summary: keyEvidence.summary,
+        counts: keyEvidence.counts,
+        unverifiedChapters: keyEvidence.unverifiedChapters,
+        lines: keyEvidence.perChapter.map((c) => c.line),
+      },
+      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${sourceIntegritySummary}${sourceRealitySummary}${generationDebtSummary}${noApiSummary}${majorSummary}${manifestSummary}. Quarantined at ${quarantinePath}.${keyEvidence.unverifiedChapters.length > 0 ? ` ${keyEvidence.summary}` : ""}`,
     };
   }
 
@@ -965,7 +1016,13 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
     canonicalBlockerCount: 0,
     shipGateMajorCount: shipMajorCount,
     bookGateMajorCount: bookMajorCount,
-    reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Source-reality: ${sourceReality.decision}. Major policy clean with ${majorPolicy.current.length} current major(s) waived or absent.`,
+    quizKeyEvidence: {
+      summary: keyEvidence.summary,
+      counts: keyEvidence.counts,
+      unverifiedChapters: keyEvidence.unverifiedChapters,
+      lines: keyEvidence.perChapter.map((c) => c.line),
+    },
+    reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Source-reality: ${sourceReality.decision}. Major policy clean with ${majorPolicy.current.length} current major(s) waived or absent.${keyEvidence.unverifiedChapters.length > 0 ? ` ${keyEvidence.summary}` : ""}`,
   };
 }
 
@@ -1013,5 +1070,16 @@ export function formatPromotionResult(r: PromotionResult): string {
   lines.push(`  Major policy: ${r.majorBlockerCount} blockers`);
   lines.push(`  Production manifest: ${r.productionManifestBlockerCount} blockers`);
   lines.push(`  Book gate: ${r.bookGateBlockerCount} blockers, ${r.bookGateMajorCount} majors`);
+  // R5(b): the F-10 quiz answer-key EVIDENCE, per chapter. The `reason` only
+  // folds in the one-line summary (and only when a chapter is UNVERIFIED), so the
+  // operator never saw WHICH chapters carry which evidence. Print every
+  // per-chapter line under a header. Advisory — this never reflects a block.
+  if (r.quizKeyEvidence) {
+    const ev = r.quizKeyEvidence;
+    lines.push(
+      `  Quiz key evidence: ${ev.counts.judgeVerified} judge, ${ev.counts.readerVerified} reader, ${ev.counts.unverified} unverified`,
+    );
+    for (const line of ev.lines) lines.push(`    ${line}`);
+  }
   return lines.join("\n");
 }

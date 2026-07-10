@@ -32,8 +32,8 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync, readdirSync } from "fs";
 import { resolve } from "path";
 
-import { test, skip } from "./harness.js";
-import { makeChapter, goldChapterFiles, STATE_CHAPTERS } from "./helpers.js";
+import { test, xenv } from "./harness.js";
+import { makeChapter, goldChapterFiles, PIPELINE_DIR, STATE_CHAPTERS } from "./helpers.js";
 import {
   chapterCast,
   offStandardNames,
@@ -141,24 +141,37 @@ test("C27: synthetic gold corpus has ZERO findings", () => {
   }
 });
 
-for (const bookId of ["daring-greatly", "start-with-why"]) {
-  const files = existsSync(STATE_CHAPTERS)
+// Zero-FP pin on SHIPPED reference books (see cast-discipline.test.ts for the same
+// rationale): the precondition is that the book is actually a shipped reference
+// (gold chapters on disk AND a promoted production package). That gates out a bare
+// checkout (F-12) and the ACTIVE campaign book (chapters present, not yet promoted),
+// while still RUNNING — and catching a real regression — on a genuinely shipped book.
+// A real file-existence check, never a name allowlist.
+function c27GoldChapterFiles(bookId: string): string[] {
+  return existsSync(STATE_CHAPTERS)
     ? readdirSync(STATE_CHAPTERS).filter((f) => f.startsWith(`${bookId}-ch`) && f.endsWith(".v21-native.chapter.json"))
     : [];
-  if (files.length === 0) {
-    skip(`C27 gold zero-FP: ${bookId}`, `no ${bookId} chapters in state/chapters/ on this machine`);
-    continue;
-  }
-  test(`C27: real gold corpus ${bookId} (${files.length} ch) emits ZERO findings (regenerated onto standard names)`, () => {
-    const offenders: string[] = [];
-    for (const f of files) {
-      const ch = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, f), "utf8")) as ChapterV21;
-      const cast = chapterCast((ch.examples ?? []).map((e) => (typeof e.scenario === "string" ? e.scenario : JSON.stringify(e.scenario))));
-      const off = offStandardNames(cast);
-      for (const hit of checkNameCommonality(ch)) offenders.push(`${ch.chapterId}: ${hit.message.slice(0, 110)}`);
-      // Documents the regen: the gold cast must be entirely standard now.
-      assert.deepEqual(off, [], `${ch.chapterId} still has off-standard recurring names: ${off.join(", ")}`);
-    }
-    assert.equal(offenders.length, 0, `C27 false-positives on reference-quality ${bookId} (miscalibrated):\n${offenders.join("\n")}`);
-  });
+}
+function c27IsShippedReference(bookId: string): boolean {
+  return c27GoldChapterFiles(bookId).length > 0 &&
+    existsSync(resolve(PIPELINE_DIR, "book-packages", `${bookId}.v21.json`));
+}
+for (const bookId of ["daring-greatly", "start-with-why"]) {
+  xenv(
+    `C27: real gold corpus ${bookId} emits ZERO findings (regenerated onto standard names)`,
+    `${bookId} is not a shipped reference on this checkout (needs state/chapters/${bookId}-ch* AND book-packages/${bookId}.v21.json)`,
+    () => c27IsShippedReference(bookId),
+    () => {
+      const offenders: string[] = [];
+      for (const f of c27GoldChapterFiles(bookId)) {
+        const ch = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, f), "utf8")) as ChapterV21;
+        const cast = chapterCast((ch.examples ?? []).map((e) => (typeof e.scenario === "string" ? e.scenario : JSON.stringify(e.scenario))));
+        const off = offStandardNames(cast);
+        for (const hit of checkNameCommonality(ch)) offenders.push(`${ch.chapterId}: ${hit.message.slice(0, 110)}`);
+        // Documents the regen: the gold cast must be entirely standard now.
+        assert.deepEqual(off, [], `${ch.chapterId} still has off-standard recurring names: ${off.join(", ")}`);
+      }
+      assert.equal(offenders.length, 0, `C27 false-positives on reference-quality ${bookId} (miscalibrated):\n${offenders.join("\n")}`);
+    },
+  );
 }

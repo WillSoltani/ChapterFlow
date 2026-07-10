@@ -769,6 +769,26 @@ export function sweepChapterStatus(rec: SweepRecord | null, chapterNumber: numbe
  *  publish gate. Coherence/correctness families are deliberately absent. */
 export const SWEEP_TEXTURE_FAMILIES = new Set(["scene_skeleton", "repeated_unit", "location_stamping"]);
 
+/** P5 texture visibility (FINAL-HARDENING-PLAN 2026-07-04): the demoted texture
+ *  families vanish from the gate return by design (they must not block), so a
+ *  single-framework book's cross-chapter sameness would otherwise be INVISIBLE
+ *  during a regen. This read-only helper surfaces exactly those findings for the
+ *  run log — one line per texture-family finding in the current sweep record.
+ *  NEVER consulted by the gate; purely for operator visibility. */
+export function sweepTextureAdvisories(bookId: string): string[] {
+  const rec = loadSweepRecord(bookId);
+  if (!rec || !Array.isArray(rec.findings)) return [];
+  const out: string[] = [];
+  for (const f of rec.findings) {
+    const fam = String((f as { family?: unknown; repairClass?: unknown }).family ?? (f as { repairClass?: unknown }).repairClass ?? "");
+    if (!SWEEP_TEXTURE_FAMILIES.has(fam)) continue;
+    const chapters = Array.isArray((f as { chapters?: unknown }).chapters) ? (f as { chapters: unknown[] }).chapters.join(", ") : "?";
+    const problem = String((f as { problem?: unknown }).problem ?? "").slice(0, 160);
+    out.push(`texture[${fam}] ch ${chapters}: ${problem} (scored by the acceptance panel, not blocked)`);
+  }
+  return out;
+}
+
 export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFinding[] {
   const sev: "blocker" | "advisory" = enforce ? "blocker" : "advisory";
   const parsed = chapters[0]?.chapterId ? parseChapterId(chapters[0].chapterId) : null;

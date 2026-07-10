@@ -52,24 +52,26 @@
  * identically. Compiler/legacy QC behavior is byte-untouched.
  */
 
-import { readFileSync } from "fs";
-import { mkdirSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
+import { mkdirSync, existsSync, readdirSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { createHash } from "crypto";
 
-import { CANONICAL_STATE } from "../lib/chapterPaths.js";
+import { CANONICAL_STATE, CHAPTERS_DIR, chapterFileName } from "../lib/chapterPaths.js";
 import type { AutopilotDeps, AutopilotOutcome } from "./autopilot.js";
 import type { ChapterV21 } from "../types.js";
 import {
   CHAPTER_REVIEW_SCHEMA_VERSION,
   REVIEW_FACTORS,
   type ChapterReviewV1,
+  type ChapterReviewComplaint,
   type ReviewFactor,
 } from "../artifacts/artifactTypes.js";
 import {
   adjudicateReview,
   assertChapterReaderDocIntegrity,
+  AUTHOR_CHAPTER_BAR,
   buildReaderReviewTask,
   parseReaderReview,
   writeChapterReview,
@@ -88,7 +90,9 @@ import {
   type BookVerdict,
 } from "../review/evalBookProxy.js";
 import { buildChurnEvidenceReport, rankSaturationContributors } from "../critics/readerBudgets.js";
+import { structuralSamenessSnapshot, type StructuralSamenessSnapshot } from "../critics/structuralSamenessSnapshot.js";
 import { chapterContentHash, writeAttestation, type QcAttestation } from "../critics/qcAttestation.js";
+import { restoreAuthorProvenance } from "../qc/sessionProvenance.js";
 import { AXIS_WEIGHTS, computeVerdict, type AxisId, type AxisScore } from "../critics/semantic/publishableBar.js";
 import { writeBarReadArtifact, writeConfirmReadArtifact } from "../qc/orchestrator/artifacts.js";
 import type { ValidatedBarReadSubmission, ValidatedConfirmReadSubmission } from "../qc/orchestrator/schemas.js";
@@ -101,17 +105,21 @@ import {
   type AuthorEvidenceRound,
 } from "./authorEvidence.js";
 import {
+  authorChapterId,
   authorWriteOneChapter,
   ensureReaderBudgetsClean,
   resolveAuthorIo,
   type AuthorIo,
 } from "./authorRun.js";
 import {
+  appendReopenNote,
   appendReviewHistory,
   appendTiebreakNote,
   carryReviewFor,
   loadTiebreakNotes,
+  reviewHistoryPath,
   writeReviewClearsLedger,
+  type ReopenNote,
 } from "./authorReviewLedger.js";
 import {
   RegenLedgerError,
@@ -123,8 +131,13 @@ import {
   regenConsumedFor,
   repairConsumedFor,
 } from "./authorRegenLedger.js";
-import { classifyRepairEligibility, doRepairOneChapter, reviewRepairEnabled } from "./authorRepair.js";
+import { classifyRepairEligibility, doRepairOneChapter, RepairRestoreError, reviewRepairEnabled } from "./authorRepair.js";
 import { resolveBeatShippedBar, type BeatShippedResult } from "./shippedControl.js";
+// F-04 (Prompt 4): the bounded content-device repair lane. TYPE-ONLY import — the
+// runtime `doContentDeviceRepair` is loaded lazily inside resolveAuthorReviewIo's
+// default so the authorReview↔bookSamenessRun module cycle never resolves at import
+// time (bookSamenessRun imports reviewOneChapter et al. from THIS module).
+import type { BookSamenessOptions, ContentRepairResult } from "./bookSamenessRun.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -182,6 +195,26 @@ export type AuthorAcceptanceRecord = {
   docSha256: string;
   verdict: BookVerdict;
   readers: BookReaderResult[];
+  /** Multi-read median (FINAL-HARDENING-PLAN 2026-07-04, additive to v1): the
+   *  pooled state at the moment this read was persisted — how many same-docSha
+   *  quorum-met reads pooled, the TRUE-median composite, the sticky gate, the
+   *  noise band in force, and whether the per-doc panel cap was reached. The
+   *  record-level `accepted` above IS the pooled decision, which is what
+   *  deriveDurableAcceptance corroborates. */
+  pooled?: {
+    reads: number;
+    composite: number;
+    gate: "PASS" | "FAIL";
+    noiseBand: number;
+    capped: boolean;
+  };
+  /** F-06 (additive telemetry, 2026-07-08): the DETERMINISTIC sameness snapshot of
+   *  the whole book at acceptance time — which ARCH skeleton axes and content-
+   *  machinery devices were over-saturated. Read-only attribution: it does NOT
+   *  feed the `accepted` predicate and is computed from the chapters (never the
+   *  docText), so it leaves docSha256 / the pooling key untouched. Lets a
+   *  churn-HIGH rejection be cross-checked against deterministic saturation. */
+  structuralSameness?: StructuralSamenessSnapshot;
 };
 
 export type AuthorReviewIo = AuthorIo & {
@@ -189,8 +222,13 @@ export type AuthorReviewIo = AuthorIo & {
   writeReviewDoc: (bookId: string, fileName: string, text: string) => { absPath: string; relPath: string };
   /** Persist a chapter's ChapterReviewV1 artifact. */
   persistReview: (bookId: string, review: ChapterReviewV1) => string;
-  /** Q6 — persist a durable acceptance-round record; returns the path written. */
+  /** Q6 — persist a durable acceptance-round record; returns the path written.
+   *  APPEND-ONLY (F1): the default impl writes one file per read and never
+   *  overwrites a prior read of the same label. */
   persistAcceptance: (bookId: string, record: AuthorAcceptanceRecord) => string;
+  /** Multi-read pool (F1/F3): every durable quorum-met read of these exact
+   *  bytes. Injectable so unit tests pool from an in-memory set. */
+  listAcceptanceReads: (bookId: string, docSha256: string) => AuthorAcceptanceRecord[];
   acceptance: AcceptanceWriters;
   evidence: EvidenceRunners;
   /** AUTO control-read: resolve the beat-shipped bar (env override / git-pinned
@@ -217,7 +255,27 @@ export type AuthorReviewIo = AuthorIo & {
    *  design lineage (durable; cap 1). Injectable like the regen pair. */
   repairConsumedFor: (bookId: string, chapterNumber: number) => number;
   recordRepairConsumed: (bookId: string, chapterNumber: number) => void;
+  /** F-03: append a durable reopen note (why a passing chapter was reopened by an
+   *  acceptance rejection). Injectable so unit tests capture notes in memory
+   *  instead of writing real state/. Default = the SAME appendReopenNote ledger
+   *  the budget lane uses. Best-effort at the call site (a note failure never
+   *  converts a decided regen into a halt). */
+  appendReopenNote: (bookId: string, note: ReopenNote) => void;
+  /** F-04 (Prompt 4): the bounded content-device repair lane (planner + driver +
+   *  device-verify + revert), the SAME core the `content-repair-book` CLI verb
+   *  runs. Injectable so the churn router drives it before spending regen, and so
+   *  tests exercise the routing without spawning the real writer. Default = the
+   *  real doContentDeviceRepair, imported lazily to break the module cycle. */
+  contentDeviceRepair: (bookId: string, deps: AutopilotDeps, opts: BookSamenessOptions) => Promise<ContentRepairResult>;
 };
+
+/** F-04 kill switch (Prompt 4): a churn-HIGH acceptance rejection tries the bounded
+ *  content-device repair lane BEFORE spending any global regen write. Default ON;
+ *  `CHAPTERFLOW_CHURN_CONTENT_REPAIR=0` restores the pre-P4 named+saturation regen
+ *  routing byte-for-byte. Mirrors CHAPTERFLOW_REVIEW_REPAIR (authorRepair.ts:30-32). */
+export function churnContentRepairEnabled(): boolean {
+  return process.env.CHAPTERFLOW_CHURN_CONTENT_REPAIR !== "0";
+}
 
 /** Default io lineage resolution: uncomputable lineage = infra, never no-cap. */
 function requireLineage(bookId: string, chapterNumber: number): string {
@@ -270,11 +328,19 @@ export function resolveAuthorReviewIo(over?: Partial<AuthorReviewIo>): AuthorRev
       return path;
     }),
     persistAcceptance: over?.persistAcceptance ?? ((bookId, record) => {
-      const path = acceptanceRecordPath(bookId, record.roundLabel);
+      // F1: append-only — find the first free read index for this (label, docSha)
+      // instead of overwriting the per-label slot. A prior read is a durable vote.
+      let path = "";
+      for (let k = 1; k <= 99; k++) {
+        const candidate = acceptanceReadRecordPath(bookId, record.roundLabel, record.docSha256, k);
+        if (!existsSync(candidate)) { path = candidate; break; }
+      }
+      if (!path) throw new Error(`persistAcceptance: 99 read records already exist for ${bookId} ${record.roundLabel} ${record.docSha256.slice(0, 8)} — refusing to overwrite`);
       mkdirSync(dirname(path), { recursive: true });
       writeFileAtomic(path, JSON.stringify(record, null, 2) + "\n");
       return path;
     }),
+    listAcceptanceReads: over?.listAcceptanceReads ?? ((bookId, docSha256) => listAcceptanceReads(bookId, docSha256)),
     acceptance: over?.acceptance ?? {
       openRound: (bookId) => {
         const opened = openQcRound(bookId);
@@ -294,6 +360,13 @@ export function resolveAuthorReviewIo(over?: Partial<AuthorReviewIo>): AuthorRev
     migrateRegenLedger: over?.migrateRegenLedger ?? ((bookId, log) => { migrateLegacyRegenCounts(bookId, undefined, log); }),
     repairConsumedFor: over?.repairConsumedFor ?? ((bookId, n) => repairConsumedFor(loadAuthorRegenLedger(bookId), n, requireLineage(bookId, n))),
     recordRepairConsumed: over?.recordRepairConsumed ?? ((bookId, n) => { recordRepairConsumed(bookId, n, requireLineage(bookId, n)); }),
+    appendReopenNote: over?.appendReopenNote ?? ((bookId, note) => { appendReopenNote(bookId, note); }),
+    contentDeviceRepair: over?.contentDeviceRepair ?? (async (bookId, deps, o) => {
+      // Lazy import breaks the authorReview↔bookSamenessRun cycle (the real driver
+      // imports reviewOneChapter/resolveAuthorReviewIo from this module).
+      const { doContentDeviceRepair } = await import("./bookSamenessRun.js");
+      return doContentDeviceRepair(bookId, deps, o);
+    }),
   };
 }
 
@@ -301,6 +374,57 @@ export function resolveAuthorReviewIo(over?: Partial<AuthorReviewIo>): AuthorRev
 
 function halt(bookId: string, category: "infra" | "content" | "progress", reason: string): AutopilotOutcome {
   return { status: "halt", bookId, phase: "qc", category, reason };
+}
+
+/** Canonical on-disk path of an author chapter's bytes (the file the writer,
+ *  gates, and promote all read/write). Mirrors bookSamenessRun's chapterPath so
+ *  the acceptance-regen restore snapshots/restores the exact same bytes. */
+function chapterFilePath(bookId: string, chapterNumber: number): string {
+  return resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, chapterNumber)));
+}
+
+// ── F-03: acceptance-regen regression safety ──────────────────────────────────
+
+/** The outcome of an acceptance-round regen of a (previously passing) chapter. */
+export type AcceptanceRegenOutcome = "keep" | "restore-fail" | "restore-regress";
+
+/**
+ * PURE decision (F-03): should an acceptance-round regen draft be KEPT, or the
+ * prior passing bytes RESTORED? Testable without spawning. An acceptance regen
+ * may never leave a chapter worse than it found it:
+ *   - the regen WRITE failed (`regenOk=false`)                → restore-fail
+ *   - the regen's independent review FAILs (`reviewPass=false`) → restore-fail
+ *   - the regen PASSES but its composite fell more than `band` BELOW the prior
+ *     review                                                   → restore-regress
+ *     (the complaint was not addressed at equal quality — a 74-draft must never
+ *      silently replace an 85-draft; the documented ch04 85.6→73.4 class)
+ *   - the regen PASSES within/above the band                  → keep
+ *
+ * The band is a tolerance (not keep-if-strictly-better): a diversified chapter
+ * may legitimately dip slightly, mirroring the sameness driver's `bar - band`
+ * philosophy. BOUNDARY: composite === prior − band is WITHIN band → keep. The
+ * prior composite is compared per-round against the PRE-REOPEN snapshot the
+ * caller passes (never an accumulating baseline), so multi-round reopens cannot
+ * ratchet quality down one band at a time. When the prior composite is unknown
+ * (no prior review to compare), regression cannot be judged, so a PASS is kept.
+ */
+export function decideAcceptanceRegenOutcome(input: {
+  regenOk: boolean;
+  reviewPass: boolean;
+  composite: number;
+  priorComposite: number | undefined;
+  band: number;
+}): AcceptanceRegenOutcome {
+  if (!input.regenOk) return "restore-fail";
+  if (!input.reviewPass) return "restore-fail";
+  if (
+    typeof input.priorComposite === "number" &&
+    Number.isFinite(input.priorComposite) &&
+    input.composite < input.priorComposite - input.band
+  ) {
+    return "restore-regress";
+  }
+  return "keep";
 }
 
 /** Normalize an acceptance round label ("" → "round1"; "-round2" → "round2") to
@@ -311,9 +435,132 @@ export function acceptanceRoundSegment(roundLabel: string): string {
 }
 
 /** Path of a durable acceptance record under `stateRoot` (default: canonical
- *  pipeline state dir). Injectable root so tests write to a tmp dir. */
+ *  pipeline state dir). Injectable root so tests write to a tmp dir.
+ *  LEGACY single-slot path — kept for fixtures/back-compat reads; production
+ *  writes go through acceptanceReadRecordPath (append-only, F1 fix). */
 export function acceptanceRecordPath(bookId: string, roundLabel: string, stateRoot: string = CANONICAL_STATE): string {
   return resolve(stateRoot, "reviews", bookId, `acceptance.${acceptanceRoundSegment(roundLabel)}.json`);
+}
+
+/** Append-only per-read acceptance record path (F1, FINAL-HARDENING-PLAN
+ *  2026-07-04): the old per-label single slot meant every re-entry OVERWROTE the
+ *  prior read, so gate-FAIL stickiness decayed after exactly one re-entry and the
+ *  pool never saw more than one prior. One file per panel read, keyed by round
+ *  segment + docSha prefix + read index — nothing ever overwrites a prior read. */
+export function acceptanceReadRecordPath(
+  bookId: string,
+  roundLabel: string,
+  docSha256: string,
+  readIndex: number,
+  stateRoot: string = CANONICAL_STATE,
+): string {
+  const seg = acceptanceRoundSegment(roundLabel);
+  return resolve(stateRoot, "reviews", bookId, `acceptance.${seg}.${docSha256.slice(0, 8)}.r${readIndex}.json`);
+}
+
+/** Every durable QUORUM-MET acceptance read of these EXACT bytes, oldest first.
+ *  Scans acceptance.*.json (legacy single-slot records pool too — their docSha
+ *  keys them honestly). Quorum-failed reads are infra noise, not votes: their
+ *  composites are composed over a shrunken panel, so they join neither the
+ *  median nor the sticky-gate set. Torn/foreign files are skipped. */
+export function listAcceptanceReads(
+  bookId: string,
+  docSha256: string,
+  stateRoot: string = CANONICAL_STATE,
+): AuthorAcceptanceRecord[] {
+  const dir = resolve(stateRoot, "reviews", bookId);
+  if (!existsSync(dir)) return [];
+  const out: AuthorAcceptanceRecord[] = [];
+  for (const f of readdirSync(dir)) {
+    if (!/^acceptance\..+\.json$/.test(f)) continue;
+    try {
+      const rec = JSON.parse(readFileSync(resolve(dir, f), "utf8")) as AuthorAcceptanceRecord;
+      if (!rec || rec.schemaVersion !== "author-acceptance-v1" || rec.bookId !== bookId) continue;
+      if (rec.docSha256 !== docSha256) continue;
+      if ((rec.verdict?.validCount ?? 0) < AUTHOR_BOOK_READERS) continue;
+      if (typeof rec.verdict?.medianComposite !== "number" || !Number.isFinite(rec.verdict.medianComposite)) continue;
+      out.push(rec);
+    } catch { /* torn/foreign record — skip */ }
+  }
+  return out.sort((a, b) => String(a.at).localeCompare(String(b.at)));
+}
+
+/** TRUE median (F2 fix): the old pooled decision used the UPPER median, which on
+ *  the typical two reads is max(prev, cur) — a bias TOWARD acceptance, inverting
+ *  the re-roll guard. Even count → mean of the two middle values. */
+export function trueMedian(values: number[]): number {
+  const s = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(s.length / 2);
+  return s.length % 2 === 1 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
+}
+
+/** Panel reads per docSha256, TOTAL and durable across conductor re-entries (F3):
+ *  read 1 always runs on unseen bytes; extra reads run only while the pooled
+ *  decision sits inside the noise band; at the cap the pooled decision FREEZES
+ *  for those bytes — further entries reuse it and spawn nothing. */
+export const PANEL_READS_PER_DOC_CAP = 3;
+
+/** Measured same-bytes acceptance-panel noise (execution campaign 2026-07-04:
+ *  a fixed 9-chapter board read 75.0–78.7 across 5 panels — ±3.7). */
+export const PANEL_NOISE_BAND_DEFAULT = 3.7;
+
+/** Multi-read config error — set-but-invalid env must halt, never silently fall
+ *  back (the BREAK-1 lesson from the beat-shipped override). */
+export class AcceptanceConfigError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "AcceptanceConfigError";
+  }
+}
+
+/** CHAPTERFLOW_PANEL_NOISE_BAND: unset/empty → the measured default; a
+ *  set-but-non-finite or negative value throws (fail closed). 0 disables the
+ *  multi-read trigger (every decision counts as clear). */
+export function resolvePanelNoiseBand(): number {
+  const raw = process.env.CHAPTERFLOW_PANEL_NOISE_BAND;
+  if (raw === undefined || raw.trim() === "") return PANEL_NOISE_BAND_DEFAULT;
+  const n = Number(raw);
+  if (!Number.isFinite(n) || n < 0) {
+    throw new AcceptanceConfigError(
+      `CHAPTERFLOW_PANEL_NOISE_BAND is set but not a finite non-negative number ("${raw}") — unset it or export a real band (default ${PANEL_NOISE_BAND_DEFAULT}).`,
+    );
+  }
+  return n;
+}
+
+/** CHAPTERFLOW_CHAPTER_BAR: unset/empty → AUTHOR_CHAPTER_BAR (80); a
+ *  set-but-non-finite or out-of-range (not 0-100) value throws (fail closed —
+ *  same discipline as the panel band; a typo must halt, never silently ship at
+ *  a bogus bar). Resolved ONCE at the review entry and threaded explicitly. */
+export function resolveChapterBar(): number {
+  const raw = process.env.CHAPTERFLOW_CHAPTER_BAR;
+  if (raw === undefined || raw.trim() === "") return AUTHOR_CHAPTER_BAR;
+  const n = Number(raw);
+  if (!Number.isFinite(n) || n < 0 || n > 100) {
+    throw new AcceptanceConfigError(
+      `CHAPTERFLOW_CHAPTER_BAR is set but not a finite 0-100 number ("${raw}") — unset it or export a real bar (default ${AUTHOR_CHAPTER_BAR}).`,
+    );
+  }
+  return n;
+}
+
+/** The chapter-gate near-bar noise band (Phase 3). Reuses the measured
+ *  same-bytes panel noise (±3.7) as the default: a chapter whose composite sits
+ *  within ±band of the bar is in the flap zone and earns bounded extra reads
+ *  before a regen is spent. CHAPTERFLOW_CHAPTER_NOISE_BAND overrides; 0 disables
+ *  the chapter-gate tiebreak entirely (every FAIL goes straight to regen). */
+export const CHAPTER_NOISE_BAND_DEFAULT = PANEL_NOISE_BAND_DEFAULT;
+
+export function resolveChapterNoiseBand(): number {
+  const raw = process.env.CHAPTERFLOW_CHAPTER_NOISE_BAND;
+  if (raw === undefined || raw.trim() === "") return CHAPTER_NOISE_BAND_DEFAULT;
+  const n = Number(raw);
+  if (!Number.isFinite(n) || n < 0) {
+    throw new AcceptanceConfigError(
+      `CHAPTERFLOW_CHAPTER_NOISE_BAND is set but not a finite non-negative number ("${raw}") — unset it or export a real band (default ${CHAPTER_NOISE_BAND_DEFAULT}).`,
+    );
+  }
+  return n;
 }
 
 async function mapPool<T, R>(items: T[], limit: number, fn: (item: T, i: number) => Promise<R>): Promise<R[]> {
@@ -327,6 +574,108 @@ async function mapPool<T, R>(items: T[], limit: number, fn: (item: T, i: number)
   });
   await Promise.all(workers);
   return out;
+}
+
+/**
+ * QC CALIBRATION BACKSTOP (CONVERGENCE-SAFE PASS, 2026-07-05): does a mustFix
+ * complaint name a CONCRETE reader-harming defect in a RESERVED category, or is
+ * it subjective taste dressed as a blocker?
+ *
+ * The reviewer prompt now defines mustFix as reserved-category harm only, but
+ * reader classification still drifts run-to-run — the single biggest churn lever
+ * is a reviewer stamping mustFix on a thin example / weak distractor / prose
+ * polish, which alone blocks near-bar conversion and forces a full regen. This
+ * code-side check makes the narrowing DURABLE regardless of reader drift, while
+ * defaulting to TRUST so it can never HIDE a real blocker. F-09 replaced the two
+ * blunt substring nets with the context-anchored classifier below:
+ *   - ASSERTS a reserved harm (the KEY/answer/fact is wrong, a section is missing/
+ *     broken, unsafe advice, fabrication, self-contradiction, unusable) → TRUE.
+ *   - clearly aesthetic (a quiz-tell / thin-but-usable example / prose polish /
+ *     a key-SOUNDNESS affirmation) with NO block signal → FALSE (downgraded).
+ *   - ambiguous (neither signal) → TRUE (default trust — never hide a blocker).
+ * A downgraded complaint is still EMITTED by complaintsOf and still rides to the
+ * repair/regen lane; downgrading changes ONLY whether it blocks the near-bar
+ * conversion. Keys (matches===of / anyKeyDefect) and quotes (valid) are wholly
+ * independent paths this never touches, and medianComposite ≥ bar is still
+ * required — so this can only relax a SUBJECTIVE block, never a structural one.
+ */
+// ── F-09: harm-SEMANTIC classifier (replaces the two blunt substring nets) ─────
+//
+// The prior RESERVED_HARM_RX matched bare substrings anywhere in the complaint —
+// "answer", "key", "wrong", "missing", "harm", "render", "invalid" — so an
+// AESTHETIC complaint that merely used one of those words ("the answer feels
+// generic", "distractors are broadly wrong", "creating answer-key tells") was
+// classified as reserved harm and blocked a near-bar conversion / burned a regen.
+// SUBJECTIVE_ONLY_RX conversely carried "thin"/"filler", so a genuine "filler
+// example → unusable" could get DOWNGRADED. Both are wrong on harm-semantics.
+//
+// The rewrite is table-driven and context-anchored, decided over three signals:
+//   1. BLOCK signal — the complaint ASSERTS a reserved-category defect
+//      (safety / factual-wrong / fabrication / KEY-or-ANSWER-is-wrong /
+//      structural-missing-or-broken / unusable / self-contradiction). Anchored so
+//      a "wrong" that describes a DISTRACTOR (correct design) or a "tell" never
+//      fires it, and "not a broken key" / "keys are sound" never fires it.
+//   2. AESTHETIC signal — quiz-tell / thin-but-usable / taste / density / a
+//      key-SOUNDNESS AFFIRMATION.
+//   3. Decision: BLOCK wins over AESTHETIC (so "filler … unusable" blocks); a
+//      lone AESTHETIC signal downgrades; NEITHER → ambiguous → BLOCK (default
+//      trust — the fail-direction is unchanged: never hide a blocker).
+// The full labeled corpus that pins this lives in tests/reserved-harm-corpus.test.ts.
+
+type HarmClass = "block" | "downgrade" | "ambiguous";
+
+/** A "wrong / broken / missing key or answer" defect ASSERTED of the key/answer/
+ *  item itself (subject-then-defect within a clause), NOT of a distractor. */
+const BLOCK_PATTERNS: ReadonlyArray<{ name: string; rx: RegExp }> = [
+  // (1) SAFETY
+  { name: "unsafe", rx: /\b(?:unsafe|dangerous|hazardous?|reckless|harmful|safety)\b/ },
+  { name: "could-harm-reader", rx: /\bcould\b[^.]{0,40}\b(?:hurt|harm|harmed|injure|injur\w*|endanger|damage)\b|\b(?:hurt|harm|injur\w*)\b[^.]{0,30}\breader|\breader\b[^.]{0,30}\b(?:hurt|harm|injur\w*)\b/ },
+  // (2) FACTUALLY WRONG / UNTRUE (the FACT/date/number/quote is wrong, not a distractor)
+  { name: "factually-wrong", rx: /\bfactual(?:ly)?\b[^.]{0,25}\b(?:wrong|incorrect|false|error|mistaken|inaccurate)\b|\b(?:incorrect|false|inaccurate|untrue|mistaken|wrong)\b[^.]{0,20}\b(?:fact|facts|date|dates|number|numbers|figure|figures|statistic\w*|quote|quotes|claim|claims|attribution)\b|\b(?:fact|facts|date|number|figure|statistic|quote|claim)\b[^.]{0,20}\b(?:is|are|was|were)\b[^.]{0,12}\b(?:wrong|incorrect|false|inaccurate|untrue|mistaken)\b/ },
+  { name: "untrue", rx: /\buntrue\b|\bnot true\b|\bis false\b|\bimplies something (?:untrue|false)\b/ },
+  { name: "misleading", rx: /\bmislead(?:s|ing)?\b|\bmisattribut\w*|\bmisrepresent\w*/ },
+  { name: "fabricated", rx: /\bfabricat\w*|\bmade[- ]?up\b|\bdid not (?:happen|exist|occur)\b|\bnever (?:happened|existed)\b|\bno such (?:study|person|place|event|company|quote|source)\b/ },
+  { name: "misname", rx: /\bmisnames?\b|\bmisnamed\b|\bmisidentif\w*|\bmislabel\w*/ },
+  // (3) KEY / ANSWER is WRONG (correctness) — anchored subject-then-defect
+  { name: "key-defect", rx: /\b(?:key|keys|keyed|answer|answers|correct (?:option|choice|answer)|item|stem)\b[^.]{0,30}\b(?:wrong|incorrect|unsound|invalid|mis-?key\w*|misnames?|mismatch\w*|does not match|doesn't match|not supported|unsupported|no support|two correct|multiple correct|both correct|confusing|contradict\w*)\b/ },
+  { name: "wrong-key", rx: /\b(?:wrong|incorrect|unsound|invalid|mis-?keyed)\s+(?:key|keys|keyed|answer|answers)\b|\bkeys?\s+(?:the\s+)?wrong\b|\bwrong\s+(?:choice|option)\s+is\s+keyed\b/ },
+  { name: "multiple-correct", rx: /\b(?:two|three|multiple|several|both|more than one)\b[^.]{0,20}\b(?:correct|right|valid)\b[^.]{0,12}\b(?:answer|answers|option|options|choice|choices)\b|\b(?:two|three|multiple|both|several)\b[^.]{0,15}\b(?:choices|options|answers)\b[^.]{0,10}\b(?:are|is)\b[^.]{0,6}\b(?:correct|right|valid)\b|\bno correct (?:answer|option|choice)\b|\bmore than one (?:correct|right)\b/ },
+  // (4) STRUCTURAL — a section/quiz missing, duplicated, broken, or non-rendering
+  { name: "missing-section", rx: /\b(?:missing|absent|omitted|dropped)\b[^.]{0,20}\b(?:section|summary|summaries|quiz|fast[- ]read|deep[- ]read|full[- ]read|heading|question|answer key|read)\b|\b(?:section|summary|summaries|quiz|heading)\b[^.]{0,15}\b(?:is|are)?\s*(?:missing|absent|omitted|duplicated)\b/ },
+  { name: "duplicate", rx: /\bduplicat\w*/ },
+  { name: "broken-render", rx: /(?<!not )(?<!not a )\bbroken\b|\bmalformed\b|\bcrash\w*|\bwon't render\b|\bfails? to render\b|\brenders?\b[^.]{0,20}\b(?:wrong|incorrectly|broken|blank)\b/ },
+  // (6) UNUSABLE
+  { name: "unusable", rx: /\bunusable\b|\bunreadable\b|\billegible\b|\bincoheren\w*|\bnonsense\b|\bcannot (?:learn|apply|use|follow)\b|\bcould not (?:learn|apply|use|follow)\b|\bcan't (?:learn|apply|follow)\b|\bteaches? (?:nothing|no one|nobody)\b|\bteaches? no \b|\bimpossible to (?:follow|apply|learn|use)\b|\bno one could (?:learn|apply|use)\b/ },
+  // (4) SOURCE-CONTRADICTORY — contradicts the chapter's OWN material (possessive/
+  //     self anchor; a distractor that "contradicts the chapter" is fair design).
+  { name: "self-contradiction", rx: /\bcontradicts?\b[^.]{0,35}\b(?:its own|the chapter's own|the chapter's|the source|the prose|earlier|elsewhere|itself|what it (?:says|claims|taught|showed))\b|\b(?:the chapter|the prose|the source|the hook)\b[^.]{0,20}\bcontradict/ },
+];
+
+const AESTHETIC_PATTERNS: ReadonlyArray<{ name: string; rx: RegExp }> = [
+  // quiz-tell / guessable / too-easy distractor craft (keys are SOUND)
+  { name: "quiz-tell", rx: /\btells?\b|\bgiveaway\b|\btelegraph\w*|\bguess(?:able|ed|ing)?\b|\btest[- ]?wise\b|\beasy to (?:guess|reject|eliminate|spot|answer)\b|\btoo (?:easy|obvious|obviously)\b|\bobviously (?:wrong|bad|weak|overbroad)\b|\bby elimination\b|\beliminat\w*|\boverclaim\w*|\boverbroad\b|\boverreach\w*|\bovergeneral\w*|\bcaricatur\w*|\bstraw\b|\babsolut(?:e|ist|es)\b|\bcartoonish\b|\bshortcut\w*/ },
+  // thin-but-usable example (real, on-topic, but a slot-filler)
+  { name: "thin-usable", rx: /\bthin\b|\bslot[- ]?filler\b|\bfiller\b|\bplaceholder\b|\bmanufactured\b|\bconstructed\b|\binvented (?:name|names|role|roles|people|person|workplace)\b|\binsular\b|\bunresolved\b|\bscene (?:dressing|texture)\b|\bthin[- ]but[- ]usable\b|\busable but\b/ },
+  // taste / prose polish / density / beginner-abstraction
+  { name: "taste", rx: /\bgeneric\b|\bricher\b|\bcould be richer\b|\bpolish\w*|\bprefer\w*|\bbland\b|\bdry\b|\bpadding\b|\brepetit\w*|\bredundan\w*|\buneven\b|\bmonoton\w*|\brhythm\b|\bpacing\b|\btone\b|\bengag\w*|\bstylish\b|\bstyle\b|\bsmooth\w*|\bflow\b|\bvague\w*|\bunderdefined\b|\babstract\w*|\bfeels?\b|\bscaffold\w*|\btemplate\b|\bslightly\b|\bsomewhat\b|\ba bit\b|\ba little\b|\bweak(?:er|ly|ened|ness)?\b|\blower(?:s|ing)? density\b|\bcold beginner\b|\bmany labels\b|\bcould be\b|\bwould be nicer\b/ },
+  // key-SOUNDNESS AFFIRMATION — explicitly says the key/answer is fine
+  { name: "key-sound-affirm", rx: /\bkey[- ]?sound\b|\bkeys? (?:are|is) (?:basically |essentially )?sound\b|\bkeyed answer is (?:basically |essentially )?sound\b|\bnot a broken key\b|\bnot broken\b|\bsound key\b|\bstill (?:the )?best answer\b|\bbasically sound\b|\bsound but\b|\bquiz tell\b/ },
+];
+
+/** Pure harm classifier over the complaint text. Exported for the corpus test.
+ *  BLOCK wins over AESTHETIC; neither → ambiguous (caller defaults to block). */
+export function classifyComplaintHarm(text: string): HarmClass {
+  const t = (text ?? "").toLowerCase();
+  if (BLOCK_PATTERNS.some((p) => p.rx.test(t))) return "block";
+  if (AESTHETIC_PATTERNS.some((p) => p.rx.test(t))) return "downgrade";
+  return "ambiguous";
+}
+
+export function complaintNamesReservedHarm(c: ChapterReviewComplaint): boolean {
+  const t = `${c.unit ?? ""} ${c.problem ?? ""}`;
+  // ambiguous → DEFAULT TRUST (never hide a blocker); only a clearly-aesthetic
+  // complaint with NO block signal is downgraded.
+  return classifyComplaintHarm(t) !== "downgrade";
 }
 
 /** Actionable complaint lines for a failed review: the reader's explicit
@@ -455,13 +804,13 @@ export function mapNamedBookComplaints(
  *  the repaired chapters from matching each other instead of the book. */
 export const CHURN_DIVERGENCE_ASSIGNMENTS = [
   "YOUR DIVERGENCE LANE — VOCABULARY: rewrite the teaching through your own cases' concrete referents (names, artifacts, numbers). Respect the framework-vocabulary budget ruthlessly; where the old draft leaned on the framework nouns, this one names the person, the document, the number.",
-  "YOUR DIVERGENCE LANE — SCENE ARCHITECTURE: recast your examples into your dealt lenses. No more than ONE person-handling-a-document tableau in the whole chapter; lead with ledgers, postmortems, walkthroughs, dialogue, or counterfactual reasoning instead.",
+  "YOUR DIVERGENCE LANE — SCENE ARCHITECTURE: recast your examples into your dealt lenses. No more than ONE person-handling-a-document tableau in the whole chapter — deliberately TIGHTER than your brief's cap of two; this lane overrides the brief on that one number. Lead with ledgers, postmortems, walkthroughs, dialogue, or counterfactual reasoning instead.",
   "YOUR DIVERGENCE LANE — QUIZ SEMANTICS: rebuild every distractor from the packet's commonError material (defensible operational alternatives); kill every tone-giveaway option; every explanation names why the tempting wrong answer fails, in varied phrasing.",
 ] as const;
 
 // ── One blinded chapter review ───────────────────────────────────────────────
 
-async function reviewOneChapter(
+export async function reviewOneChapter(
   bookId: string,
   chapter: ChapterV21,
   deps: AutopilotDeps,
@@ -545,7 +894,51 @@ export function isFlipSignature(review: ChapterReviewV1, bar: number): boolean {
     && review.keyCheck.matches === review.keyCheck.of;
 }
 
-async function tiebreakFlipVerdict(
+/** Phase 3 — the GENERALIZED near-bar trigger for the chapter-gate noise
+ *  tolerance. A FAIL is "near the bar" (noise, not a settled defect) when it is
+ *  valid, has NO key defect (a key mismatch is a deterministic true blocker that
+ *  must regen, never vote), and its composite sits within `band` BELOW the bar
+ *  OR at/above it. This strictly SUPERSETS isFlipSignature (which is the
+ *  composite ≥ bar, ship=false special case): it additionally rescues a chapter
+ *  a hair UNDER the bar (e.g. 79.x at bar 80, or the shipped-reader whose
+ *  composite fell just short) from a needless regen. A composite far below the
+ *  band is a clear FAIL → one read, straight to regen. The DECISION is still
+ *  median-of-3 + ship-majority (see tiebreakNearBarVerdict); this predicate only
+ *  decides WHO earns the extra reads. band=0 disables it (flip case still fires
+ *  via the composite ≥ bar arm). */
+export function isNearBar(review: ChapterReviewV1, bar: number, band: number): boolean {
+  return review.valid === true
+    && review.pass === false
+    && review.keyCheck.matches === review.keyCheck.of
+    && review.composite >= bar - band;
+}
+
+/** F-09 — the SUB-BAND second-opinion trigger. A single FAIL read that is
+ *  (a) valid, (b) clean-keyed — a key defect is a deterministic true blocker that
+ *  must regen, never vote — (c) sub-band (composite < bar−band, i.e. NOT already
+ *  handled by the near-bar tiebreak), and (d) names NO reserved harm across ALL
+ *  its complaints, is one reader's TASTE about to burn a lifetime regen write.
+ *  Such a chapter earns exactly ONE independent read before the regen is spent
+ *  (see subBandSecondOpinion). It is the strict complement of isNearBar on the
+ *  clean-keyed valid-FAIL surface: near-bar → 2-read tiebreak; sub-band-clean →
+ *  1-read second opinion; a key defect or any reserved-harm complaint → neither,
+ *  straight to regen. band=band keeps the two triggers mutually exclusive. */
+export function needsSecondOpinion(review: ChapterReviewV1, bar: number, band: number): boolean {
+  return review.valid === true
+    && review.pass === false
+    && review.ship84 === false
+    && review.keyCheck.matches === review.keyCheck.of
+    && !isNearBar(review, bar, band)                                  // sub-band only
+    // Demonstrable TASTE requires an ARTICULATED complaint that is aesthetic: at
+    // least one complaint, and none naming reserved harm. An unexplained FAIL (no
+    // complaints at all) is NOT "one reader's taste" — it takes the normal regen
+    // path unchanged. This also keeps the guard from firing on the empty-complaint
+    // FAILs that drive the existing review→book regen-cap flow.
+    && review.complaints.length > 0
+    && !review.complaints.some((c) => complaintNamesReservedHarm(c)); // no reserved harm
+}
+
+async function tiebreakNearBarVerdict(
   bookId: string,
   chapter: ChapterV21,
   original: ChapterReviewV1,
@@ -554,18 +947,52 @@ async function tiebreakFlipVerdict(
   bar: number,
 ): Promise<{ review: ChapterReviewV1; extraComplaints: string[]; upheldReadSets?: string[][]; upheldComposites?: number[] }> {
   const nn = String(chapter.number).padStart(2, "0");
-  deps.log(`[autopilot] author review ch${nn}: FAIL carries the flip signature (composite ${original.composite} ≥ bar ${bar}, keys ${original.keyCheck.matches}/${original.keyCheck.of}, ship=false) — spawning 2 tiebreak readers (majority-of-3, no cap consumed)`);
+  deps.log(`[autopilot] author review ch${nn}: FAIL is near the bar (composite ${original.composite}, bar ${bar}, keys ${original.keyCheck.matches}/${original.keyCheck.of}, ship=${original.ship84}) — spawning 2 tiebreak readers (median-of-3, no cap consumed)`);
   const extras: ChapterReviewV1[] = [];
   for (const suffix of ["-tiebreak-r2", "-tiebreak-r3"]) {
     extras.push(await reviewOneChapter(bookId, chapter, deps, io, bar, suffix, /* persist */ false));
   }
-  const cleanShips = extras.filter((r) => r.valid && r.ship84 && r.keyCheck.matches === r.keyCheck.of && r.composite >= bar);
-  const converted = cleanShips.length === 2; // both fresh reads must ship clean → 2/3 with the original FAIL
-  const reads = [original, ...extras].map((r) => ({
+  // Decide by MEDIAN composite + ship-MAJORITY over the VALID reads (mirrors the
+  // book-level multi-read median). True blockers STICK: a key defect on ANY
+  // valid read is deterministic (never noise) and blocks conversion; an invalid
+  // read is excluded from the vote, and conversion needs a ≥2 valid-read quorum
+  // — so the median can never manufacture a PASS from a single lucky read.
+  const allReads = [original, ...extras];
+  const validReads = allReads.filter((r) => r.valid);
+  const anyKeyDefect = validReads.some((r) => r.keyCheck.matches !== r.keyCheck.of);
+  const medianComposite = validReads.length > 0 ? trueMedian(validReads.map((r) => r.composite)) : 0;
+  const shipCount = validReads.filter((r) => r.ship84).length;
+  const shipMajority = shipCount * 2 > validReads.length; // strict majority of the valid reads
+  // The directive's pass condition is "median ≥ bar with NO TRUE BLOCKER." The
+  // reader's OWN mustFix flag is the true-blocker signal — a manufactured example
+  // that fails the learning promise, an unsound key, a missing section all get
+  // marked mustFix ("whether you would block shipping on it"). So a chapter that
+  // clears the bar with clean keys/quotes and NO mustFix across THREE independent
+  // reads has, by the directive's definition, no true blocker — even if the
+  // holistic ship84 gestalt stayed false. Convert on ship-majority OR a
+  // unanimous no-mustFix; the ship84 boolean alone no longer blocks a ≥bar,
+  // blocker-free chapter (that residual brittleness is exactly what the bar drop
+  // targeted). ANY mustFix on ANY read keeps the FAIL → true blockers stay strict.
+  // A mustFix blocks conversion ONLY if it names a concrete reserved-category
+  // harm (complaintNamesReservedHarm — default-trust, so a real blocker is never
+  // hidden); a subjective-only mustFix (thin example, weak distractor, polish)
+  // is downgraded and cannot block a ≥bar, clean-keyed chapter alone.
+  const noMustFix = validReads.length > 0 && validReads.every((r) => !r.complaints.some((c) => c.mustFix && complaintNamesReservedHarm(c)));
+  const convertReason = shipMajority ? "ship-majority" : noMustFix ? "no-mustFix (no true blocker)" : "";
+  const converted = validReads.length >= 2 && !anyKeyDefect && medianComposite >= bar && (shipMajority || noMustFix);
+  const reads = allReads.map((r) => ({
     reviewerSessionId: r.reviewerSessionId, composite: r.composite, ship: r.ship84, valid: r.valid,
   }));
   if (converted) {
-    const deciding = [...cleanShips].sort((a, b) => b.composite - a.composite)[0];
+    // Prefer a ship+clean read as the persisted decider; fall back to the highest
+    // clean-keys read for the no-mustFix path (no reader shipped, but none named a
+    // blocker). Force pass=true — the tiebreak is the collective decision that
+    // overrides the individual ship gestalt when no true blocker exists.
+    const cleanKeyed = (r: ChapterReviewV1) => r.keyCheck.matches === r.keyCheck.of;
+    const shipCandidates = validReads.filter((r) => r.ship84 && cleanKeyed(r));
+    const pool = shipCandidates.length > 0 ? shipCandidates : validReads.filter(cleanKeyed);
+    const base = [...pool].sort((a, b) => b.composite - a.composite)[0];
+    const deciding: ChapterReviewV1 = base.pass ? base : { ...base, pass: true };
     // Deciding PASS persists LAST — it owns the latest-pointer and the history
     // slot for this content hash; the clears ledger rebuild sees the PASS.
     io.persistReview(bookId, deciding);
@@ -579,7 +1006,7 @@ async function tiebreakFlipVerdict(
         reads,
       });
     } catch { /* forensic note; never fail a decided review on it */ }
-    deps.log(`[autopilot] author review ch${nn}: tiebreak 2/3 SHIP (${extras.map((r) => r.composite).join(", ")}) — deciding PASS ${deciding.composite} persisted; original FAIL's complaints preserved in tiebreak notes`);
+    deps.log(`[autopilot] author review ch${nn}: tiebreak median ${medianComposite} ≥ bar ${bar} via ${convertReason} (ship ${shipCount}/${validReads.length}, reads ${allReads.map((r) => r.composite).join(", ")}) — deciding PASS ${deciding.composite} persisted; original FAIL's complaints preserved in tiebreak notes`);
     return { review: deciding, extraComplaints: [] };
   }
   // Fail stands. Never persist a losing PASS (it would mint a clear at this
@@ -598,16 +1025,81 @@ async function tiebreakFlipVerdict(
       reads,
     });
   } catch { /* forensic note */ }
-  deps.log(`[autopilot] author review ch${nn}: tiebreak upheld the FAIL (${extras.map((r) => `${r.composite}${r.ship84 ? " ship" : ""}${r.valid ? "" : " invalid"}`).join(", ")}) — regen proceeds with merged complaints`);
+  deps.log(`[autopilot] author review ch${nn}: tiebreak upheld the FAIL (median ${medianComposite}${anyKeyDefect ? " KEY-DEFECT sticks" : ""}, reads ${extras.map((r) => `${r.composite}${r.ship84 ? " ship" : ""}${r.valid ? "" : " invalid"}`).join(", ")}) — regen proceeds with merged complaints`);
   // Repair-lane inputs (plan R1): per-read must-fix sets and composites of the
-  // valid reads, so the caller can test scope-level complaint convergence.
-  const validReads = [original, ...extras.filter((r) => r.valid)];
+  // valid reads (`validReads` = [original, ...valid extras]), so the caller can
+  // test scope-level complaint convergence.
   return {
     review: original,
     extraComplaints,
     upheldReadSets: validReads.filter((r) => !r.ship84).map((r) => complaintsOf(r)),
     upheldComposites: validReads.map((r) => r.composite),
   };
+}
+
+// ── F-09: the SUB-BAND second-opinion guard (bounded, one extra read) ─────────
+//
+// A sub-band single-read FAIL that names NO reserved harm (needsSecondOpinion)
+// is one reader's taste about to consume 1 of the 2 lifetime regen writes. Spawn
+// exactly ONE independent read over the SAME bytes; the regen proceeds only if
+// that read ALSO fails. If the second read genuinely PASSES (valid, ships, ≥bar,
+// clean keys), the better read STANDS — the deciding PASS is persisted LAST
+// (owns the latest-pointer / clears, mirroring the tiebreak's persistence
+// discipline) and no regen is spent. This is STRICTLY narrower than the near-bar
+// tiebreak (one read, not two) and can only ever PREVENT a regen — it never
+// manufactures a ship of a chapter with a true blocker, because the guard fires
+// only when keys are clean AND no reserved-harm complaint exists.
+async function subBandSecondOpinion(
+  bookId: string,
+  chapter: ChapterV21,
+  original: ChapterReviewV1,
+  deps: AutopilotDeps,
+  io: AuthorReviewIo,
+  bar: number,
+): Promise<{ review: ChapterReviewV1; extraComplaints: string[] }> {
+  const nn = String(chapter.number).padStart(2, "0");
+  deps.log(`[autopilot] author review ch${nn}: sub-band taste FAIL (composite ${original.composite}, bar ${bar}, keys ${original.keyCheck.matches}/${original.keyCheck.of}, no reserved-harm complaint) — spawning ONE second-opinion reader before any regen`);
+  // The extra read never self-persists; the decider is persisted LAST below.
+  const second = await reviewOneChapter(bookId, chapter, deps, io, bar, "-2nd", /* persist */ false);
+  const reads = [original, second].map((r) => ({
+    reviewerSessionId: r.reviewerSessionId, composite: r.composite, ship: r.ship84, valid: r.valid,
+  }));
+  // The better read stands ONLY on a genuine independent PASS (valid, ships, ≥bar,
+  // clean keys — that is exactly review.pass). Anything else — a second FAIL, a
+  // near-bar FAIL, an invalid read — leaves the original FAIL standing and lets
+  // the regen proceed with both readers' complaints.
+  if (second.valid && second.pass) {
+    const deciding: ChapterReviewV1 = second.pass ? second : { ...second, pass: true };
+    io.persistReview(bookId, deciding); // deciding PASS persists LAST
+    try {
+      appendTiebreakNote(bookId, {
+        chapterNumber: chapter.number,
+        contentHash: original.contentHash,
+        at: new Date().toISOString(),
+        outcome: "converted-to-pass",
+        overriddenComplaints: complaintsOf(original),
+        reads,
+      });
+    } catch { /* forensic note; never fail a decided review on it */ }
+    deps.log(`[autopilot] author review ch${nn}: second opinion SHIPPED (${deciding.composite}) — the better read stands, no regen spent; original FAIL's complaints preserved in tiebreak notes`);
+    return { review: deciding, extraComplaints: [] };
+  }
+  // Second read also failed — the FAIL is corroborated; original persists LAST as
+  // the canonical latest-pointer and the second read's complaints ride the regen.
+  const extraComplaints = second.valid && !second.ship84 ? complaintsOf(second) : [];
+  io.persistReview(bookId, original);
+  try {
+    appendTiebreakNote(bookId, {
+      chapterNumber: chapter.number,
+      contentHash: original.contentHash,
+      at: new Date().toISOString(),
+      outcome: "fail-stands",
+      overriddenComplaints: extraComplaints,
+      reads,
+    });
+  } catch { /* forensic note */ }
+  deps.log(`[autopilot] author review ch${nn}: second opinion also FAILED (${second.composite}${second.valid ? "" : " invalid"}) — regen proceeds with merged complaints`);
+  return { review: original, extraComplaints };
 }
 
 // ── Book acceptance ───────────────────────────────────────────────────────────
@@ -620,17 +1112,24 @@ export type BookAcceptanceResult = {
   sampledNumbers: number[];
 };
 
-/** Book-acceptance bar, CALIBRATED separately from the 84 chapter-review bar
- *  (owner decision 2026-07-03): the book-level instrument reads ~4-5 points
- *  harsher than the owner's own scores — Phase-0: atomic-habits (owner 85.3,
- *  #1 of 131) scores 80.2; the LIVE shipped POM scores 80.0 with a unanimous
- *  correctness-gate FAIL; no real book has ever scored >=84 on this read. 80
- *  therefore corresponds to an owner-84/85 book. Additionally, when
- *  CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE is set (regens of published books: the
- *  operator runs the same-instrument control read over the shipped package and
- *  exports its composite), acceptance ALSO requires meeting it — the regen must
- *  never be accepted below the book it replaces. */
-export const AUTHOR_BOOK_ACCEPT_BAR = 80;
+/** PREMIUM telemetry target — NOT an accept gate (F-05, 2026-07-08 rename from
+ *  the gate-sounding AUTHOR_BOOK_ACCEPT_BAR). The verified accept predicate is
+ *  quorum ∧ sticky-gate PASS ∧ median>=AUTHOR_BOOK_ACCEPT_FLOOR(74) ∧
+ *  (no shipped control ∨ median>=shipped+BEAT_SHIPPED_MARGIN); this 80 value is
+ *  logged and stamped into the acceptance record's `bar` field as an aspirational
+ *  reference only, and NOTHING gates on it. See docs/v24/ACCEPTANCE-GATE-POLICY.md
+ *  for the standing predicate and the two open owner-decision questions (should
+ *  churn ever veto; should fresh books face more than the 74 floor). The name was
+ *  changed because the old one implied a gate: the calibration note below records
+ *  why 80 corresponds to an owner-84/85 book on this instrument, which is exactly
+ *  why it remains a useful telemetry target even though it does not block.
+ *
+ *  Calibration (retained): the book-level instrument reads ~4-5 points harsher
+ *  than the owner's own scores — Phase-0: atomic-habits (owner 85.3, #1 of 131)
+ *  scores 80.2; the LIVE shipped POM scores 80.0 with a unanimous correctness-gate
+ *  FAIL; no real book has ever scored >=84 on this read. 80 therefore corresponds
+ *  to an owner-84/85 book. */
+export const AUTHOR_BOOK_PREMIUM_TARGET = 80;
 
 /** Publish calibration (2026-07-04): the ACCEPT floor. 74 sits below the
  *  demonstrated good-book noise band (a 9×85.7-88.9 chapter board read 75.0-78.7
@@ -641,7 +1140,7 @@ export const AUTHOR_BOOK_ACCEPT_FLOOR = 74;
 /** A regen must beat its shipped control by a REAL margin, not by noise. */
 export const BEAT_SHIPPED_MARGIN = 5;
 
-async function runBookAcceptance(
+export async function runBookAcceptance(
   bookId: string,
   chapters: ChapterV21[],
   deps: AutopilotDeps,
@@ -676,131 +1175,195 @@ async function runBookAcceptance(
   assertBookSampleDocIntegrity(docText, sampled);
   const { relPath } = io.writeReviewDoc(bookId, "book-sample.txt", docText);
   const task = buildBookReviewTask(relPath);
-  deps.log(`[autopilot] author acceptance${roundLabel}: sampled ch ${sampled.map((c) => c.number).join(", ")} → ${docText.length} chars; spawning ${AUTHOR_BOOK_READERS} independent book readers`);
 
-  const readerSessionIds: string[] = [];
-  const readers = await mapPool(
-    Array.from({ length: AUTHOR_BOOK_READERS }, (_, i) => i + 1),
-    AUTHOR_BOOK_READERS,
-    async (readerNo) => {
-      let lastSessionId = `author-book-reader-${readerNo}-invalid`;
-      for (let attempt = 1; attempt <= 2; attempt++) {
-        const sessionId = deps.mkSessionId(`author-book-reader-${readerNo}${roundLabel}${attempt > 1 ? "-r2" : ""}`);
-        lastSessionId = sessionId;
-        const r = await deps.spawn({
-          task,
-          sessionId,
-          cwd: PIPELINE_DIR,
-          sandbox: "read-only",
-          skipGitRepoCheck: true,
-          reasoningEffort: "high",
-        });
-        try { deps.logSession(bookId, `author-book-reader-${readerNo}${roundLabel}`, r); } catch { /* best-effort */ }
-        const parsed = parseBookReview(r.finalMessage) ?? parseBookReview(r.stdout);
-        if (!parsed) {
-          deps.log(`[autopilot] author acceptance${roundLabel} r${readerNo}: attempt ${attempt} unparseable (exit ${r.exitCode})`);
-          continue;
+  /** One full independent 3-reader panel over the SAME doc bytes. `panelSuffix`
+   *  disambiguates session ids for multi-read panels (-p2, -p3). */
+  const spawnPanel = async (panelSuffix: string): Promise<{ readers: BookReaderResult[]; sessionIds: string[] }> => {
+    deps.log(`[autopilot] author acceptance${roundLabel}${panelSuffix}: sampled ch ${sampled.map((c) => c.number).join(", ")} → ${docText.length} chars; spawning ${AUTHOR_BOOK_READERS} independent book readers`);
+    const sessionIds: string[] = [];
+    const readers = await mapPool(
+      Array.from({ length: AUTHOR_BOOK_READERS }, (_, i) => i + 1),
+      AUTHOR_BOOK_READERS,
+      async (readerNo) => {
+        let lastSessionId = `author-book-reader-${readerNo}-invalid`;
+        for (let attempt = 1; attempt <= 2; attempt++) {
+          const sessionId = deps.mkSessionId(`author-book-reader-${readerNo}${roundLabel}${panelSuffix}${attempt > 1 ? "-r2" : ""}`);
+          lastSessionId = sessionId;
+          const r = await deps.spawn({
+            task,
+            sessionId,
+            cwd: PIPELINE_DIR,
+            sandbox: "read-only",
+            skipGitRepoCheck: true,
+            reasoningEffort: "high",
+          });
+          try { deps.logSession(bookId, `author-book-reader-${readerNo}${roundLabel}${panelSuffix}`, r); } catch { /* best-effort */ }
+          const parsed = parseBookReview(r.finalMessage) ?? parseBookReview(r.stdout);
+          if (!parsed) {
+            deps.log(`[autopilot] author acceptance${roundLabel}${panelSuffix} r${readerNo}: attempt ${attempt} unparseable (exit ${r.exitCode})`);
+            continue;
+          }
+          const adjudicated = adjudicateBookReview(parsed, docText, sampled, sessionId);
+          if (adjudicated.valid || attempt === 2) {
+            if (!adjudicated.valid) deps.log(`[autopilot] author acceptance${roundLabel}${panelSuffix} r${readerNo}: INVALID — ${adjudicated.invalidReason}`);
+            sessionIds.push(sessionId);
+            return adjudicated;
+          }
+          deps.log(`[autopilot] author acceptance${roundLabel}${panelSuffix} r${readerNo}: attempt ${attempt} failed verification (${adjudicated.invalidReason}) — respawning once`);
         }
-        const adjudicated = adjudicateBookReview(parsed, docText, sampled, sessionId);
-        if (adjudicated.valid || attempt === 2) {
-          if (!adjudicated.valid) deps.log(`[autopilot] author acceptance${roundLabel} r${readerNo}: INVALID — ${adjudicated.invalidReason}`);
-          readerSessionIds.push(sessionId);
-          return adjudicated;
-        }
-        deps.log(`[autopilot] author acceptance${roundLabel} r${readerNo}: attempt ${attempt} failed verification (${adjudicated.invalidReason}) — respawning once`);
-      }
-      readerSessionIds.push(lastSessionId);
-      return adjudicateBookReview(
-        {
-          gate_verdict: "FAIL",
-          book3_churn: "HIGH",
-          quizDerivation: {},
-          scores: Object.fromEntries(REVIEW_FACTORS.map((f) => [f, 0])) as Record<ReviewFactor, number>,
-          quotes: [],
-          oneParagraphVerdict: "INVALID: unparseable after retry",
-        },
-        docText,
-        sampled,
-        lastSessionId,
-      );
-    },
-  );
+        sessionIds.push(lastSessionId);
+        return adjudicateBookReview(
+          {
+            gate_verdict: "FAIL",
+            book3_churn: "HIGH",
+            quizDerivation: {},
+            scores: Object.fromEntries(REVIEW_FACTORS.map((f) => [f, 0])) as Record<ReviewFactor, number>,
+            quotes: [],
+            oneParagraphVerdict: "INVALID: unparseable after retry",
+          },
+          docText,
+          sampled,
+          lastSessionId,
+        );
+      },
+    );
+    return { readers, sessionIds };
+  };
 
-  const verdict = composeBookVerdict(bookId, sampled.map((c) => c.number), readers);
-  const comp = verdict.medianComposite ?? 0;
-  // Q4 — valid-count QUORUM (fail-closed): a book is NEVER accepted below full
-  // panel. composeBookVerdict happily composes over even ONE valid reader, so
-  // without this floor a Q3 invalidation (or unparseable-after-retry readers)
-  // could shrink the panel and let a single voice carry acceptance. Requiring
-  // validCount >= AUTHOR_BOOK_READERS is a pure strengthen AND the guarantee
-  // that makes Q3's invalidation weaken-proof.
-  const quorumMet = verdict.validCount >= AUTHOR_BOOK_READERS;
-  // Red-team BREAK-2 (publish calibration): REJECT had no memory — identical
-  // bytes could re-roll a fresh panel every conductor entry until noise (±3.7)
-  // cleared the floor, while one ACCEPT persisted forever. Pool the on-disk
-  // acceptance records for the SAME docSha256: the decision composite is the
-  // MEDIAN across all same-doc reads, and a gate FAIL recorded on these exact
-  // bytes sticks (fail-closed) until the bytes change.
+  // ── Multi-read median (FINAL-HARDENING-PLAN 2026-07-04; replaces the BREAK-2
+  //    pooling guard, which a boundedness audit broke two ways: per-label records
+  //    OVERWROTE — gate-FAIL stickiness decayed after one re-entry — and the
+  //    even-count "median" was the UPPER median, i.e. max(prev,cur) on the typical
+  //    two reads, a bias TOWARD acceptance). Semantics now: every quorum-met panel
+  //    read of these EXACT bytes is a durable append-only vote; read 1 always runs
+  //    on unseen bytes; extra reads run ONLY while the pooled TRUE-median sits
+  //    within the noise band of the binding boundary AND the per-doc cap (3) has
+  //    room; a gate FAIL on any read sticks for these bytes (never outvoted); at
+  //    the cap the pooled decision FREEZES — re-entries reuse it and spawn
+  //    NOTHING (the ±3.7 re-roll casino is closed in both directions). ──────────
   const docSha = createHash("sha256").update(docText).digest("hex");
-  let compPooled = comp;
-  let gatePooled = verdict.gate;
-  try {
-    const priors: Array<{ c: number | null; gate: string | null }> = [];
-    for (const label of ["", "-round2"]) {
-      try {
-        const rec = JSON.parse(readFileSync(acceptanceRecordPath(bookId, label), "utf8")) as AuthorAcceptanceRecord;
-        if (rec && rec.docSha256 === docSha && typeof rec.verdict?.medianComposite === "number") {
-          priors.push({ c: rec.verdict.medianComposite, gate: rec.verdict.gate ?? null });
-        }
-      } catch { /* no prior record for this label */ }
+  // F-06 telemetry: deterministic sameness snapshot of the WHOLE book (not the
+  // sampled doc) — attribution only, computed once, never feeds the accept
+  // predicate and never touches docText/docSha.
+  const structuralSameness = structuralSamenessSnapshot(chapters);
+  const noiseBand = resolvePanelNoiseBand();
+  // The binding composite boundary: the floor, or the shipped control + margin
+  // when that is higher. Distance from it decides whether a decision is "clear".
+  const binding = shipped === null ? AUTHOR_BOOK_ACCEPT_FLOOR : Math.max(AUTHOR_BOOK_ACCEPT_FLOOR, shipped + BEAT_SHIPPED_MARGIN);
+
+  const pool = io.listAcceptanceReads(bookId, docSha); // durable quorum-met reads of these bytes, oldest first
+  const readComposites: number[] = pool.map((r) => r.verdict.medianComposite as number);
+  let gateFailStuck = pool.some((r) => r.verdict.gate === "FAIL");
+  let totalReads = pool.length;
+  let verdict: BookVerdict | null = pool.length > 0 ? pool[pool.length - 1].verdict : null;
+  let readers: BookReaderResult[] = pool.length > 0 ? pool[pool.length - 1].readers : [];
+  let readerSessionIds: string[] = [];
+  // Q4 — valid-count QUORUM (fail-closed): a book is NEVER accepted below full
+  // panel. Pooled reads met quorum by construction (listAcceptanceReads filters);
+  // a fresh panel below quorum rejects this entry and is never a pooled vote.
+  let quorumMet = totalReads > 0;
+  let spawnedThisEntry = 0;
+
+  while (true) {
+    const pooledNow = readComposites.length > 0 ? trueMedian(readComposites) : null;
+    const needRead =
+      totalReads === 0 ||
+      (!gateFailStuck &&
+        pooledNow !== null &&
+        Math.abs(pooledNow - binding) <= noiseBand &&
+        totalReads < PANEL_READS_PER_DOC_CAP);
+    if (!needRead) {
+      if (spawnedThisEntry === 0 && totalReads > 0) {
+        deps.log(`[autopilot] author acceptance${roundLabel}: REUSING ${totalReads} durable same-doc read(s) (${gateFailStuck ? "gate-FAIL stuck" : totalReads >= PANEL_READS_PER_DOC_CAP ? "panel cap reached — decision FROZEN for these bytes" : "pooled decision clear of the noise band"}) — no panel spawned`);
+      }
+      break;
     }
-    if (priors.length > 0) {
-      const reads = [...priors.map((p) => p.c as number), comp].sort((a, b) => a - b);
-      compPooled = reads[Math.floor(reads.length / 2)];
-      if (priors.some((p) => p.gate === "FAIL")) gatePooled = "FAIL";
-      deps.log(`[autopilot] author acceptance${roundLabel}: pooled ${priors.length + 1} same-doc read(s) → composite ${compPooled}, gate ${gatePooled} (re-roll guard)`);
+    const readNo = totalReads + 1;
+    if (readNo > 1) {
+      deps.log(`[autopilot] author acceptance${roundLabel}: pooled composite ${pooledNow} is within ±${noiseBand} of the binding boundary ${binding} — spawning independent panel read ${readNo}/${PANEL_READS_PER_DOC_CAP}`);
     }
-  } catch { /* pooling is best-effort; the single-read decision stands */ }
+    const panel = await spawnPanel(readNo > 1 ? `-p${readNo}` : "");
+    spawnedThisEntry++;
+    verdict = composeBookVerdict(bookId, sampled.map((c) => c.number), panel.readers);
+    readers = panel.readers;
+    readerSessionIds = panel.sessionIds;
+    quorumMet = verdict.validCount >= AUTHOR_BOOK_READERS;
+    const comp = verdict.medianComposite ?? 0;
+    if (quorumMet) {
+      readComposites.push(comp);
+      totalReads++;
+      if (verdict.gate === "FAIL") gateFailStuck = true;
+    }
+    // Q6 — durable per-read record over the EXACT bytes scored (append-only).
+    // The per-doc read CAP survives re-entry ONLY through these durable records
+    // (a fresh entry seeds totalReads from listAcceptanceReads). So a quorum-met
+    // read that cannot be persisted must FAIL CLOSED (red-team #1, FINAL-
+    // HARDENING-PLAN 2026-07-04): silently continuing would let the next entry
+    // re-seed totalReads=0 and re-spawn up to CAP panels, laundering the cap and
+    // reopening the ±3.7 re-roll across entries. A quorum-FAILED read is not a
+    // vote and never counts toward the cap, so its write failure only warns.
+    try {
+      const pooledComp = readComposites.length > 0 ? trueMedian(readComposites) : comp;
+      const gatePooledNow: "PASS" | "FAIL" = gateFailStuck ? "FAIL" : "PASS";
+      const record: AuthorAcceptanceRecord = {
+        schemaVersion: "author-acceptance-v1",
+        bookId,
+        roundLabel,
+        at: new Date().toISOString(),
+        // Serialized field name `bar` kept stable (persisted record schema); the
+        // VALUE is the renamed premium-telemetry target, not a gate.
+        bar: AUTHOR_BOOK_PREMIUM_TARGET,
+        beatShipped: shipped,
+        accepted: quorumMet
+          && gatePooledNow === "PASS"
+          && pooledComp >= AUTHOR_BOOK_ACCEPT_FLOOR
+          && (shipped === null || pooledComp >= shipped + BEAT_SHIPPED_MARGIN),
+        sampledChapters: sampled.map((c) => c.number),
+        docSha256: docSha,
+        verdict,
+        readers,
+        pooled: {
+          reads: totalReads,
+          composite: pooledComp,
+          gate: gatePooledNow,
+          noiseBand,
+          capped: totalReads >= PANEL_READS_PER_DOC_CAP,
+        },
+        structuralSameness,
+      };
+      const path = io.persistAcceptance(bookId, record);
+      deps.log(`[autopilot] author acceptance${roundLabel}: durable read record → ${path}`);
+    } catch (err) {
+      if (quorumMet) {
+        throw new AcceptanceConfigError(
+          `could not persist a quorum-met acceptance read for ${bookId}${roundLabel} (${(err as Error).message}) — the per-doc read cap cannot be enforced across re-entries without it; halting rather than re-rolling the panel next entry.`,
+        );
+      }
+      deps.log(`[autopilot] author acceptance${roundLabel}: WARNING durable record write failed for a sub-quorum read (not a vote): ${(err as Error).message}`);
+    }
+    if (!quorumMet) break; // infra-degraded panel: reject this entry; not a vote
+  }
+
   // Publish calibration (owner decision 2026-07-04, plan docs/v24/
-  // PUBLISH-CALIBRATION-PLAN-2026-07-04.md): the single bar-80 demanded
-  // corpus-#1 quality (atomic-habits reads 80.2 on this instrument; panel noise
-  // is ±3.7 on identical bytes; no real book has read ≥84) and churn-HIGH as a
-  // binary veto fired on genre-inherent framework repetition through every
-  // texture lever. ACCEPT is now multi-signal: correctness gate PASS stays a
-  // HARD blocker (stricter than the shipped corpus's own history — POM shipped
-  // at 80.0 with a unanimous gate FAIL), composite must clear the absolute
+  // PUBLISH-CALIBRATION-PLAN-2026-07-04.md): ACCEPT is multi-signal — the
+  // correctness gate stays a HARD blocker (now sticky per docSha across all
+  // pooled reads), the TRUE-median pooled composite must clear the absolute
   // FLOOR and beat the shipped control by a real MARGIN. Churn is telemetry +
-  // repair routing, never an accept-time veto. AUTHOR_BOOK_ACCEPT_BAR (80)
+  // repair routing, never an accept-time veto. AUTHOR_BOOK_PREMIUM_TARGET (80)
   // remains in the record as the premium telemetry target.
+  const compPooled = readComposites.length > 0 ? trueMedian(readComposites) : (verdict?.medianComposite ?? 0);
+  const gatePooled: "PASS" | "FAIL" = gateFailStuck ? "FAIL" : "PASS";
   const accepted = quorumMet
     && gatePooled === "PASS"
     && compPooled >= AUTHOR_BOOK_ACCEPT_FLOOR
     && (shipped === null || compPooled >= shipped + BEAT_SHIPPED_MARGIN);
-  deps.log(`[autopilot] author acceptance${roundLabel}: composite ${verdict.medianComposite ?? "n/a"} gate ${verdict.gate ?? "?"} (${verdict.gateVotes}) churn ${verdict.churn} valid ${verdict.validCount}/${AUTHOR_BOOK_READERS} vs floor ${AUTHOR_BOOK_ACCEPT_FLOOR}${shipped === null ? "" : ` + beat-shipped ${shipped}+${BEAT_SHIPPED_MARGIN}`} (premium target ${AUTHOR_BOOK_ACCEPT_BAR}) → ${accepted ? "ACCEPT" : `REJECT${quorumMet ? "" : " (below valid-reader quorum)"}`}`);
+  deps.log(`[autopilot] author acceptance${roundLabel}: pooled composite ${compPooled} over ${totalReads} read(s) (band ±${noiseBand}) gate ${gatePooled} churn ${verdict?.churn ?? "?"} valid ${verdict?.validCount ?? 0}/${AUTHOR_BOOK_READERS} vs floor ${AUTHOR_BOOK_ACCEPT_FLOOR}${shipped === null ? "" : ` + beat-shipped ${shipped}+${BEAT_SHIPPED_MARGIN}`} (premium target ${AUTHOR_BOOK_PREMIUM_TARGET}) → ${accepted ? "ACCEPT" : `REJECT${quorumMet ? "" : " (below valid-reader quorum)"}`}`);
 
-  // Q6 — durable acceptance record over the EXACT bytes readers scored. Best-
-  // effort (a record-write failure never converts a valid acceptance into a
-  // halt), but attempted for every round so forensics have a repo-local trail.
-  try {
-    const record: AuthorAcceptanceRecord = {
-      schemaVersion: "author-acceptance-v1",
-      bookId,
-      roundLabel,
-      at: new Date().toISOString(),
-      bar: AUTHOR_BOOK_ACCEPT_BAR,
-      beatShipped: shipped,
-      accepted,
-      sampledChapters: sampled.map((c) => c.number),
-      docSha256: createHash("sha256").update(docText).digest("hex"),
-      verdict,
-      readers,
-    };
-    const path = io.persistAcceptance(bookId, record);
-    deps.log(`[autopilot] author acceptance${roundLabel}: durable record → ${path}`);
-  } catch (err) {
-    deps.log(`[autopilot] author acceptance${roundLabel}: WARNING durable record write failed: ${(err as Error).message}`);
+  if (!verdict) {
+    // Unreachable by construction (read 1 always runs when the pool is empty),
+    // but fail closed rather than fabricate a verdict.
+    throw new DocIntegrityError(`author acceptance${roundLabel}: no panel verdict and no pooled reads for ${bookId} — refusing to decide`);
   }
-
   return { accepted, verdict, readers, readerSessionIds, sampledNumbers: sampled.map((c) => c.number) };
 }
 
@@ -917,6 +1480,12 @@ export async function doAuthorReview(
     // A required AUTO control-read that cannot be produced is a fail-closed infra
     // halt — never a silent drop of the beat-shipped protection.
     if (err instanceof ControlReadError) return halt(bookId, "infra", `author acceptance beat-shipped control read: ${err.message}`);
+    // Multi-read config: a set-but-invalid noise band halts, never a silent
+    // fallback (BREAK-1 lesson).
+    if (err instanceof AcceptanceConfigError) return halt(bookId, "infra", `author acceptance multi-read config: ${err.message}`);
+    // F6: a rejected repair whose byte restore ALSO failed — disk diverges from
+    // the persisted review pointers; halt infra before any further routing.
+    if (err instanceof RepairRestoreError) return halt(bookId, "infra", `author review repair lane: ${err.message}`);
     // A regen cap that cannot be honored honestly (unreadable ledger, or a
     // chapter whose design lineage is uncomputable) is an infra halt — never a
     // fail-open cap and never a faked content cap-exhaustion (#8).
@@ -932,7 +1501,11 @@ async function doAuthorReviewInner(
 ): Promise<AutopilotOutcome | null> {
   const io = resolveAuthorReviewIo(opts.io);
   const heartbeat = opts.heartbeat ?? (() => true);
-  const bar = opts.bar ?? 84;
+  // Phase 2: the chapter soft bar (default AUTHOR_CHAPTER_BAR=80, CHAPTERFLOW_CHAPTER_BAR
+  // override). Phase 3: the near-bar noise band that earns bounded extra reads.
+  // Both fail closed on a set-but-garbage env (AcceptanceConfigError → infra halt).
+  const bar = opts.bar ?? resolveChapterBar();
+  const noiseBand = resolveChapterNoiseBand();
 
   let chapters: ChapterV21[];
   try {
@@ -959,6 +1532,10 @@ async function doAuthorReviewInner(
     haltPhase: "qc",
     label: "author review budgets",
     io: opts.io,
+    // CONVERGENCE-SAFE PASS (2026-07-05): pass the live review bar so the budget
+    // round is carry-aware — a chapter holding a durable PASS at this bar is never
+    // full-re-authored to satisfy a book-wide budget a sibling shifted.
+    bar,
   });
   if (budgetOutcome) return budgetOutcome;
   // The repair round may have rewritten chapters — reload so reviews score the
@@ -967,6 +1544,36 @@ async function doAuthorReviewInner(
     chapters = [...io.loadChapters(bookId)].sort((a, b) => a.number - b.number);
   } catch (err) {
     return halt(bookId, "infra", `author review: could not reload chapters after the budget check: ${(err as Error).message}`);
+  }
+
+  // ── F5 (FINAL-HARDENING-PLAN 2026-07-04): dead-end pre-check BEFORE any
+  //    reader spawns. The exhaustion halt below (regen budget) used to fire only
+  //    AFTER fresh reviews + tiebreaks ran, so every re-entry of a capped-out
+  //    book re-burned up to N×2 reads + 2 tiebreak reads on bytes that already
+  //    failed — pure noise re-rolls (a FAIL is never carryable by design). A
+  //    chapter whose EXACT current bytes hold a persisted FAILing review, with
+  //    the regen budget exhausted AND the repair lane spent (or disabled),
+  //    cannot progress without a byte change — halt before spending reads. ─────
+  {
+    const deadEnds: Array<{ n: number; composite: number }> = [];
+    for (const chapter of chapters) {
+      if (io.regenConsumedFor(bookId, chapter.number) < (AUTHOR_REGEN_CAP - 1)) continue;
+      let repairSpent = !reviewRepairEnabled();
+      if (!repairSpent) {
+        try { repairSpent = io.repairConsumedFor(bookId, chapter.number) >= 1; } catch { repairSpent = true; } // unreadable ledger → fail closed
+      }
+      if (!repairSpent) continue;
+      try {
+        const p = reviewHistoryPath(bookId, chapter.number, chapterContentHash(chapter));
+        if (!existsSync(p)) continue;
+        const rec = JSON.parse(readFileSync(p, "utf8")) as ChapterReviewV1;
+        if (rec && rec.valid !== false && rec.pass === false) deadEnds.push({ n: chapter.number, composite: rec.composite ?? 0 });
+      } catch { /* unreadable history — a fresh read is legitimate */ }
+    }
+    if (deadEnds.length > 0) {
+      const table = deadEnds.map((d) => `  ch${String(d.n).padStart(2, "0")} — persisted review FAIL (composite ${d.composite}) on the exact current bytes; regen + repair budgets exhausted`).join("\n");
+      return halt(bookId, "content", `author review: ${deadEnds.length} chapter(s) are DEAD-ENDED — their current bytes already failed a durable review and every write budget is spent; spawning fresh readers would only re-roll noise (F5):\n${table}`);
+    }
   }
 
   // ── 1. One blinded reader per chapter — UNLESS a durable review can be
@@ -1014,17 +1621,43 @@ async function doAuthorReviewInner(
   {
     const flips = chapters.filter((chapter) => {
       const r = reviews.get(chapter.number)!;
-      return !r.pass && isFlipSignature(r, bar);
+      return !r.pass && isNearBar(r, bar, noiseBand);
     });
     await mapPool(flips, opts.maxParallel, async (chapter) => {
       heartbeat();
-      const outcome = await tiebreakFlipVerdict(bookId, chapter, reviews.get(chapter.number)!, deps, io, bar);
+      const outcome = await tiebreakNearBarVerdict(bookId, chapter, reviews.get(chapter.number)!, deps, io, bar);
       reviews.set(chapter.number, outcome.review);
       if (outcome.extraComplaints.length > 0) tiebreakExtraComplaints.set(chapter.number, outcome.extraComplaints);
       if (outcome.upheldReadSets) tiebreakReadEvidence.set(chapter.number, { readSets: outcome.upheldReadSets, composites: outcome.upheldComposites ?? [] });
     });
   }
   if (!heartbeat()) return halt(bookId, "infra", `lost the run lock for ${bookId} during the review tiebreak — halting to avoid two conductors on the same book.`);
+
+  // ── F-09: sub-band second-opinion guard BEFORE any regen. A sub-band, clean-
+  //    keyed, reserved-harm-free FAIL (mutually exclusive with the near-bar
+  //    tiebreak above) is one reader's taste about to burn a lifetime regen —
+  //    give it ONE independent read; regen proceeds only if that read also fails.
+  //    Only chapters that could still regen are eligible (an exhausted chapter
+  //    halts below regardless, so a read there would be wasted). This runs AFTER
+  //    the F5 dead-end pre-check (which halts the whole run before any reader when
+  //    a chapter's exact bytes already hold a durable FAIL with budgets spent), so
+  //    it can never resurrect a dead-ended chapter. ─────────────────────────────
+  {
+    const subBand = chapters.filter((chapter) => {
+      const r = reviews.get(chapter.number)!;
+      return !r.pass && !regenExhausted(chapter.number) && needsSecondOpinion(r, bar, noiseBand);
+    });
+    await mapPool(subBand, opts.maxParallel, async (chapter) => {
+      heartbeat();
+      const outcome = await subBandSecondOpinion(bookId, chapter, reviews.get(chapter.number)!, deps, io, bar);
+      reviews.set(chapter.number, outcome.review);
+      if (outcome.extraComplaints.length > 0) {
+        const prev = tiebreakExtraComplaints.get(chapter.number) ?? [];
+        tiebreakExtraComplaints.set(chapter.number, [...new Set([...prev, ...outcome.extraComplaints])]);
+      }
+    });
+  }
+  if (!heartbeat()) return halt(bookId, "infra", `lost the run lock for ${bookId} during the review second-opinion guard — halting to avoid two conductors on the same book.`);
 
   const failing = chapters.filter((chapter) => !reviews.get(chapter.number)!.pass);
   const regenerated = new Set<number>(); // chapters that consumed their single regen THIS entry (unioned with the durable ledger for the GLOBAL cap)
@@ -1075,8 +1708,8 @@ async function doAuthorReviewInner(
             const repaired = io.loadChapters(bookId).find((c) => c.number === chapter.number);
             if (repaired) {
               let confirm = await reviewOneChapter(bookId, repaired, deps, io, bar, "-repair");
-              if (!confirm.pass && isFlipSignature(confirm, bar)) {
-                const tb = await tiebreakFlipVerdict(bookId, repaired, confirm, deps, io, bar);
+              if (!confirm.pass && isNearBar(confirm, bar, noiseBand)) {
+                const tb = await tiebreakNearBarVerdict(bookId, repaired, confirm, deps, io, bar);
                 confirm = tb.review;
                 tiebreakExtraComplaints.set(chapter.number, tb.extraComplaints);
               }
@@ -1092,6 +1725,13 @@ async function doAuthorReviewInner(
               ])];
             }
           } else {
+            if (rep.restoreFailed) {
+              // F6: disk holds unreviewed repair bytes and the original could not
+              // be restored — routing on as if bytes matched the persisted review
+              // would let a regen-exhausted book halt "content" over divergent
+              // state. Infra halt; the operator restores from git/state history.
+              throw new RepairRestoreError(`ch${nn}: repair rejected (${rep.reason ?? "unknown"}) AND the original bytes could not be restored — disk no longer matches the persisted review; halting before any further routing`);
+            }
             deps.log(`[autopilot] author review ch${nn}: repair rejected (${rep.reason ?? "unknown"}) — regen proceeds`);
           }
         } else {
@@ -1106,8 +1746,28 @@ async function doAuthorReviewInner(
       }
       regenerated.add(chapter.number);
       io.recordRegenConsumed(bookId, chapter.number); // durable: this write attempt counts across re-entries
+      // Review-lane restore-on-write-failure (fresh-gold live finding, 2026-07-08):
+      // authorWriteOneChapter WRITES the draft to disk before its gate/contract
+      // self-check — a regen whose final retry dies on the write contract used to
+      // leave that UNREVIEWED failing draft on disk, silently replacing reviewed
+      // bytes (observed live: high-output-management ch14 — the 87-composite
+      // original was overwritten by a lead-contract-failing draft and lost; the
+      // next entry would have blindly reviewed the draft as if legitimate).
+      // Snapshot the prior bytes; a failed write restores them so disk always
+      // holds REVIEWED bytes. The grant is not refunded (consumed at spawn) —
+      // mirrors the acceptance lane's F-03 guard.
+      const regenPath = chapterFilePath(bookId, chapter.number);
+      const regenPriorBytes = existsSync(regenPath) ? readFileSync(regenPath, "utf8") : null;
       const regen = await authorWriteOneChapter(bookId, chapter.number, deps, { complaints, io: opts.io });
       if (!regen.ok) {
+        if (regenPriorBytes !== null) {
+          writeFileSync(regenPath, regenPriorBytes);
+          try {
+            const priorChapter = JSON.parse(regenPriorBytes) as ChapterV21;
+            restoreAuthorProvenance(authorChapterId(bookId, chapter.number), chapterContentHash(priorChapter), deps.log);
+          } catch { /* unparseable prior bytes / provenance write — non-fatal */ }
+          deps.log(`[autopilot] author review ch${nn}: regen write failed — restored prior reviewed bytes (the failed draft never reached review and must not replace reviewed content).`);
+        }
         stillFailing.push({ chapterNumber: chapter.number, summary: regen.reason });
         return;
       }
@@ -1117,10 +1777,10 @@ async function doAuthorReviewInner(
         return;
       }
       let review = await reviewOneChapter(bookId, fresh, deps, io, bar, "-regen");
-      // C3 on the post-regen read too: with the cap now consumed, a flip here
-      // would otherwise halt the book on a coin toss (the exact ch07 scenario).
-      if (!review.pass && isFlipSignature(review, bar)) {
-        review = (await tiebreakFlipVerdict(bookId, fresh, review, deps, io, bar)).review;
+      // C3 on the post-regen read too: with the cap now consumed, a near-bar
+      // flap here would otherwise halt the book on a coin toss (the ch07 scenario).
+      if (!review.pass && isNearBar(review, bar, noiseBand)) {
+        review = (await tiebreakNearBarVerdict(bookId, fresh, review, deps, io, bar)).review;
       }
       reviews.set(chapter.number, review);
       if (!review.pass) stillFailing.push({ chapterNumber: chapter.number, summary: complaintsOf(review).join("; ").slice(0, 400) });
@@ -1158,6 +1818,55 @@ async function doAuthorReviewInner(
     // DISTINCT divergence lane (+ any tiebreak-overridden complaints for that
     // chapter). Non-churn rejections keep the existing complaint mapping.
     const churnDriven = acceptance.verdict.churn === "HIGH";
+
+    // F-04 (Prompt 4): a churn-HIGH rejection tries the BOUNDED, revert-protected,
+    // device-verified content-device repair lane BEFORE spending any global regen
+    // write. Content-machinery saturation is the measured churn driver; the lane is
+    // single-grant-per-lineage (contentRepairConsumed) and shares the CLI verb's
+    // core. Chapters it KEEPS (byte-changed + re-reviewed PASS) are the round's
+    // action; only chapters it could NOT fix fall through to the (F-03 guarded)
+    // regen targeting. Gated by CHAPTERFLOW_CHURN_CONTENT_REPAIR (default ON).
+    const contentFixed = new Set<number>();    // kept + authoritative PASS → no regen
+    const contentUnfixed = new Set<number>();  // reverted/persisted/skipped-cap/write-failed OR kept-then-FAIL → regen fallthrough
+    let contentLaneRan = false;
+    if (churnDriven && churnContentRepairEnabled()) {
+      const contentResult = await io.contentDeviceRepair(bookId, deps, {
+        io: opts.io,
+        maxParallel: opts.maxParallel,
+        heartbeat,
+      });
+      contentLaneRan = contentResult.fired;
+      if (contentResult.fired) {
+        const kept = contentResult.outcomes.filter((o) => o.status === "diversified").map((o) => o.chapterNumber);
+        for (const o of contentResult.outcomes) {
+          if (o.status !== "diversified") contentUnfixed.add(o.chapterNumber);
+        }
+        // Refresh the AUTHORITATIVE review for each kept (byte-changed) chapter so the
+        // publish attestation + latest-pointer reflect the repaired bytes — exactly as
+        // the regen loop does after a kept re-author. The content lane keeps near-bar
+        // drafts for the conductor to formalize (its self-check is non-persisting), so
+        // a C3 tiebreak formalizes them here. A kept draft the authoritative read still
+        // FAILs is never left as a fake success: it falls through to the regen lane, and
+        // its fresh failing review now matches the on-disk bytes so the F-03 guard below
+        // snapshots a consistent prior.
+        for (const n of kept) {
+          const fresh = io.loadChapters(bookId).find((c) => c.number === n);
+          if (!fresh) { contentUnfixed.add(n); continue; }
+          let review = await reviewOneChapter(bookId, fresh, deps, io, bar, "-contentrepair");
+          if (!review.pass && isNearBar(review, bar, noiseBand)) {
+            review = (await tiebreakNearBarVerdict(bookId, fresh, review, deps, io, bar)).review;
+          }
+          reviews.set(n, review);
+          if (review.pass) contentFixed.add(n);
+          else contentUnfixed.add(n);
+        }
+        chapters = [...io.loadChapters(bookId)].sort((a, b) => a.number - b.number);
+        deps.log(`[autopilot] author acceptance: content-device repair lane ran — kept+PASS ${[...contentFixed].map((n) => `ch${String(n).padStart(2, "0")}`).join(", ") || "none"}; unfixed→regen ${[...contentUnfixed].map((n) => `ch${String(n).padStart(2, "0")}`).join(", ") || "none"}.`);
+      } else {
+        deps.log(`[autopilot] author acceptance: content-device repair lane found no device over the ubiquity cap — falling back to regen routing for the churn rejection.`);
+      }
+    }
+
     let allTargets: Map<number, string[]>;
     if (churnDriven) {
       const named = mapNamedBookComplaints(acceptance.readers, acceptance.sampledNumbers);
@@ -1172,11 +1881,19 @@ async function doAuthorReviewInner(
         const r = reviews.get(n);
         return !!r && r.pass && r.composite >= 87;
       };
-      const contributors = rankSaturationContributors(chapters).filter((n) => acceptance.sampledNumbers.includes(n) && !strongPass(n));
-      const targetNums = [...named.keys()].sort((a, b) => a - b).slice(0, AUTHOR_BOOK_REGEN_CHAPTER_CAP);
-      for (const n of contributors) {
-        if (targetNums.length >= AUTHOR_BOOK_REGEN_CHAPTER_CAP) break;
-        if (!targetNums.includes(n)) targetNums.push(n);
+      let targetNums: number[];
+      if (contentLaneRan) {
+        // F-04: regen ONLY the chapters the content lane could not fix; content-fixed
+        // chapters keep their improved bytes and are never re-rolled by the regen lane.
+        // The strong-pass guard still applies (never re-roll a >=87 restored baseline).
+        targetNums = [...contentUnfixed].filter((n) => !strongPass(n)).sort((a, b) => a - b).slice(0, AUTHOR_BOOK_REGEN_CHAPTER_CAP);
+      } else {
+        const contributors = rankSaturationContributors(chapters).filter((n) => acceptance.sampledNumbers.includes(n) && !strongPass(n));
+        targetNums = [...named.keys()].sort((a, b) => a - b).slice(0, AUTHOR_BOOK_REGEN_CHAPTER_CAP);
+        for (const n of contributors) {
+          if (targetNums.length >= AUTHOR_BOOK_REGEN_CHAPTER_CAP) break;
+          if (!targetNums.includes(n)) targetNums.push(n);
+        }
       }
       const verdictLines = acceptance.readers
         .filter((r) => r.valid !== false)
@@ -1208,33 +1925,127 @@ async function doAuthorReviewInner(
       const readerLines = acceptance.readers
         .map((r) => `  reader ${r.reviewerSessionId}: comp=${r.composite} gate=${r.gateVerdict} churn=${r.churn} — ${r.oneParagraphVerdict.slice(0, 300)}`)
         .join("\n");
-      return halt(bookId, "content", `author acceptance REJECTED and every targeted chapter has already consumed its regen budget (cap ${AUTHOR_REGEN_CAP} write attempts/chapter, global across review + acceptance rounds):\n${readerLines}`);
+      if (contentFixed.size > 0) {
+        // F-04: the content lane already CHANGED bytes (kept + PASS) and no chapter
+        // needs a regen fallthrough — the round HAS its action. Skip the (empty) regen
+        // round and re-run acceptance below on the NEW docSha (fresh pool). Do NOT halt.
+        deps.log(`[autopilot] author acceptance: content-device repair changed bytes on ${[...contentFixed].map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")} with no regen fallthrough needed — re-running acceptance on the new docSha.`);
+      } else if (churnDriven && contentLaneRan) {
+        // F-04 (Req 3): churn HIGH and BOTH bounded lanes are spent for every
+        // content-repair target — the content lane kept nothing (all reverted /
+        // devices-persisted / grant-consumed) AND each such chapter is regen-exhausted
+        // (or a protected strong-pass baseline). Halt with the manual escape hatch
+        // instead of burning remaining regen writes on unrelated chapters.
+        const unfixedList = [...contentUnfixed].sort((a, b) => a - b).map((n) => `ch${String(n).padStart(2, "0")}`).join(", ") || "(none)";
+        return halt(bookId, "content",
+          `author acceptance REJECTED (churn HIGH) and BOTH bounded repair lanes are spent for every content-repair target:\n` +
+          `  content-device lane: kept no chapter (reverted / devices-persisted / grant-consumed) on ${unfixedList}\n` +
+          `  global regen lane: exhausted for those chapters (cap ${AUTHOR_REGEN_CAP} write attempts/chapter)\n` +
+          `Manual escape hatch — reset a chapter's content-repair grant and force one fresh attempt, then re-run book acceptance:\n` +
+          `  content-repair-book ${bookId} --only <ch[,ch...]> [--force]\n` +
+          `Readers:\n${readerLines}`);
+      } else {
+        // Non-churn, kill switch off, or the content lane never fired: unchanged
+        // behavior — every targeted chapter has already consumed its regen budget.
+        return halt(bookId, "content", `author acceptance REJECTED and every targeted chapter has already consumed its regen budget (cap ${AUTHOR_REGEN_CAP} write attempts/chapter, global across review + acceptance rounds):\n${readerLines}`);
+      }
     }
-    deps.log(`[autopilot] author acceptance REJECTED — one targeted regen round over ${targets.size} chapter(s): ${[...targets.keys()].map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}`);
+    if (targets.size > 0) {
+      deps.log(`[autopilot] author acceptance REJECTED — one targeted regen round over ${targets.size} chapter(s): ${[...targets.keys()].map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}`);
+    }
     const regenFailures: string[] = [];
     await mapPool([...targets.entries()], opts.maxParallel, async ([chapterNumber, complaints]) => {
       heartbeat();
       const nn = String(chapterNumber).padStart(2, "0");
+      // F-03: this is the churn lane that actually spends the book's regen budget,
+      // and it reopens PASSING chapters. Give it the budget lane's protections —
+      // snapshot the prior passing bytes + review composite BEFORE reopening, so a
+      // regressing regen can NEVER be left on disk. The reopen note fires here
+      // (before the spawn) because the INTENT to reopen a passing chapter is the
+      // event to attribute — it is recorded even if the write below never spawns.
+      const path = chapterFilePath(bookId, chapterNumber);
+      const priorBytes = existsSync(path) ? readFileSync(path, "utf8") : null;
+      const priorReview = reviews.get(chapterNumber);
+      const priorComposite = priorReview?.composite;
+      try {
+        io.appendReopenNote(bookId, {
+          chapterNumber,
+          contentHash: priorReview?.contentHash ?? "",
+          at: new Date().toISOString(),
+          decision: "reopened-for-acceptance",
+          trigger: "acceptance-regen",
+          detail: complaints.slice(0, 3).join(" | ").slice(0, 400) || undefined,
+        });
+      } catch { /* forensic note; never fail the regen round on it */ }
+
+      // Restore the prior passing bytes AND re-persist the prior review so the
+      // latest-pointer matches the restored content again (the regen's review was
+      // persisted over the now-discarded bytes). The prior review is unchanged in
+      // the content-keyed history, so carryReviewFor still hits the restored bytes
+      // on the next entry — no re-review spawn for bytes we put back. The grant is
+      // NOT refunded (consumed at spawn, below): a restore spends the attempt.
+      const restore = (logWhy: string, failLine: string): void => {
+        if (priorBytes !== null) {
+          writeFileSync(path, priorBytes);
+          // The discarded regen re-stamped author provenance with its OWN session/hash;
+          // roll it back to the restored bytes' true author so the independence gate
+          // does not flag the wrong reviewer. Best-effort — never fail a restore on it.
+          try {
+            const priorChapter = JSON.parse(priorBytes) as ChapterV21;
+            restoreAuthorProvenance(authorChapterId(bookId, chapterNumber), chapterContentHash(priorChapter), deps.log);
+          } catch { /* unparseable prior bytes / provenance write — non-fatal */ }
+        }
+        if (priorReview) {
+          io.persistReview(bookId, priorReview);
+          reviews.set(chapterNumber, priorReview);
+        }
+        deps.log(`[autopilot] author acceptance ch${nn}: ${logWhy} — restored prior passing bytes.`);
+        regenFailures.push(failLine);
+      };
+
       regenerated.add(chapterNumber);
       io.recordRegenConsumed(bookId, chapterNumber); // durable: the acceptance-round regen also counts against the global cap
       const regen = await authorWriteOneChapter(bookId, chapterNumber, deps, { complaints, io: opts.io });
       if (!regen.ok) {
-        regenFailures.push(regen.reason);
+        // Write failure: restore in case a partial/failed write touched the bytes.
+        restore(`regen write failed (${regen.reason.slice(0, 160)})`, regen.reason);
         return;
       }
       const fresh = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
       if (!fresh) {
-        regenFailures.push(`ch${nn}: regenerated file missing after write`);
+        restore("regenerated file missing after write", `ch${nn}: regenerated file missing after write`);
         return;
       }
       let review = await reviewOneChapter(bookId, fresh, deps, io, bar, "-bookregen");
-      // C3 applies here too: this chapter's budget is now consumed — a flip on
-      // this read would otherwise halt the whole book on a coin toss.
-      if (!review.pass && isFlipSignature(review, bar)) {
-        review = (await tiebreakFlipVerdict(bookId, fresh, review, deps, io, bar)).review;
+      // C3 applies here too: this chapter's budget is now consumed — a near-bar
+      // flap on this read would otherwise halt the whole book on a coin toss.
+      if (!review.pass && isNearBar(review, bar, noiseBand)) {
+        review = (await tiebreakNearBarVerdict(bookId, fresh, review, deps, io, bar)).review;
+      }
+      const outcome = decideAcceptanceRegenOutcome({
+        regenOk: true,
+        reviewPass: review.pass,
+        composite: review.composite,
+        priorComposite,
+        band: noiseBand,
+      });
+      if (outcome === "restore-fail") {
+        // The regen's review FAILs — a previously-PASSING chapter must not be left
+        // FAILING by an acceptance round.
+        restore(`regen review FAILed (composite ${review.composite})`, `ch${nn}: ${complaintsOf(review).join("; ").slice(0, 400)}`);
+        return;
+      }
+      if (outcome === "restore-regress") {
+        // The regen PASSES but scored materially below the prior review — the
+        // complaint was not addressed at equal quality. Count it as a failure for
+        // the halt (the rejection stands) rather than shipping a quality slide.
+        restore(
+          `regressed-quality restored (composite ${review.composite} < prior ${priorComposite ?? "n/a"} − band ${noiseBand})`,
+          `ch${nn}: acceptance regen regressed quality (composite ${review.composite} < prior ${priorComposite ?? "n/a"} − band ${noiseBand}); the complaint was not addressed at equal quality`,
+        );
+        return;
       }
       reviews.set(chapterNumber, review);
-      if (!review.pass) regenFailures.push(`ch${nn}: ${complaintsOf(review).join("; ").slice(0, 400)}`);
     });
     if (regenFailures.length > 0) {
       return halt(bookId, "content", `author acceptance: targeted regen round failed:\n${regenFailures.map((f) => `  ${f}`).join("\n")}`);
@@ -1245,7 +2056,9 @@ async function doAuthorReviewInner(
       // re-accept provably re-reads the repaired bytes (#5/#6).
       acceptance = await runBookAcceptance(bookId, chapters, deps, io, bar, "-round2", {
         salt: "-round2",
-        forceInclude: [...targets.keys()],
+        // F-04: force-include BOTH the regen targets and the content-lane-fixed
+        // chapters so the re-accept provably re-reads every byte that changed.
+        forceInclude: [...new Set([...contentFixed, ...targets.keys()])],
       });
     } catch (err) {
       if (err instanceof DocIntegrityError) return halt(bookId, "infra", `author acceptance (round2): ${err.message}`);

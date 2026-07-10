@@ -64,6 +64,11 @@ export type ShippedControlRecord = {
   composite: number | null;
   gate: "PASS" | "FAIL" | null;
   churn: string;
+  /** F-05 quorum guard: the valid-reader count behind `composite`. A control
+   *  composite may set the +5 margin baseline ONLY at the same quorum acceptance
+   *  requires (AUTHOR_BOOK_READERS). Optional so records predating this field
+   *  still parse — their effective count is DERIVED from `readers` on read. */
+  validCount?: number;
   readers: BookReaderResult[];
   at: string;
 };
@@ -117,8 +122,19 @@ export function loadShippedControlRecord(bookId: string, io: ShippedControlIo): 
 }
 
 export type BeatShippedResult =
-  | { ok: true; composite: number | null; source: "env" | "control" | "none"; pin?: string }
+  | { ok: true; composite: number | null; source: "env" | "control" | "none" | "degraded"; pin?: string }
   | { ok: false; reason: string };
+
+/** F-05 quorum guard helper: the valid-reader count that stands behind a cached
+ *  control composite. New records carry `validCount`; records that predate the
+ *  field DERIVE it from the persisted `readers` array (the exact count
+ *  composeBookVerdict used) — this is computation from evidence, not a guess. A
+ *  record with no usable readers array yields 0 (degraded → floor-only). */
+export function effectiveControlValidCount(rec: ShippedControlRecord): number {
+  if (typeof rec.validCount === "number") return rec.validCount;
+  if (Array.isArray(rec.readers)) return rec.readers.filter((r) => r && r.valid).length;
+  return 0;
+}
 
 function envOverride(): number | null | undefined {
   const raw = process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
@@ -197,7 +213,16 @@ export async function resolveBeatShippedBar(
   // 4. Reuse a persisted control record when the pin still matches (expensive read).
   const cached = loadShippedControlRecord(bookId, io);
   if (cached && cached.pin === pin) {
-    return { ok: true, composite: cached.composite, source: "control", pin };
+    const cachedValid = effectiveControlValidCount(cached);
+    if (cached.composite !== null && cachedValid >= AUTHOR_BOOK_READERS) {
+      return { ok: true, composite: cached.composite, source: "control", pin };
+    }
+    // F-05 quorum guard: a cached record below quorum (or with a null composite,
+    // or an old record whose valid count cannot be established) must NOT set the
+    // beat-shipped baseline. Fall to floor-only and log loudly — never guess a
+    // count and never trust a partial-panel composite.
+    deps.log(`[autopilot] shipped-control ${bookId}: cached control record at ${pin.slice(0, 12)} is BELOW the valid-reader quorum (${cachedValid}/${AUTHOR_BOOK_READERS}${cached.composite === null ? ", null composite" : ""}) — NOT trusting it as the beat-shipped baseline (F-05). Falling to FLOOR-ONLY (74) mode this entry.`);
+    return { ok: true, composite: null, source: "degraded", pin };
   }
 
   // 5. Load the SHIPPED bytes at the pin (committed, never the working tree).
@@ -220,10 +245,23 @@ export async function resolveBeatShippedBar(
     return { ok: false, reason: `shipped control read failed: ${(err as Error).message}` };
   }
   const verdict = composeBookVerdict(bookId, sampled.map((c) => c.number), readers);
-  // A control read that produced NO valid reader is an infra failure — we must
-  // not silently drop the beat-shipped protection with a null bar.
+  // A control read that produced NO valid reader is a total-panel (likely infra)
+  // failure — FAIL-CLOSED, never silently drop the beat-shipped protection with a
+  // null bar (halts the run so the operator fixes the reader infra).
   if (verdict.validCount < 1 || verdict.medianComposite === null) {
     return { ok: false, reason: `shipped control read produced no valid reader (${verdict.validCount}/${readers.length}) — cannot derive a beat-shipped bar` };
+  }
+  // F-05 quorum guard: a PARTIAL panel (1-2 valid) produced signal but not the
+  // AUTHOR_BOOK_READERS quorum acceptance requires. composeBookVerdict ties favor
+  // PASS, so a 2-reader control could set a distorted baseline the +5 margin is
+  // then measured against. Do NOT trust it: fall to floor-only (shipped === null)
+  // and log loudly. We return BEFORE persisting so the next entry re-runs the
+  // panel (a partial panel is usually transient reader flakiness — retry rather
+  // than cache a degraded baseline). This does not fabricate a control where none
+  // exists; it declines to trust a degraded one.
+  if (verdict.validCount < AUTHOR_BOOK_READERS) {
+    deps.log(`[autopilot] shipped-control ${bookId}: DEGRADED control read — only ${verdict.validCount}/${AUTHOR_BOOK_READERS} valid readers; a partial panel cannot set the beat-shipped baseline (F-05 quorum guard). Falling to FLOOR-ONLY (74) mode — the regen is NOT held to beat the shipped composite this entry. Fix the reader infra to restore beat-shipped protection.`);
+    return { ok: true, composite: null, source: "degraded", pin };
   }
 
   const record: ShippedControlRecord = {
@@ -233,6 +271,7 @@ export async function resolveBeatShippedBar(
     composite: verdict.medianComposite,
     gate: verdict.gate,
     churn: verdict.churn,
+    validCount: verdict.validCount,
     readers,
     at: new Date().toISOString(),
   };
@@ -240,7 +279,12 @@ export async function resolveBeatShippedBar(
     const p = io.controlRecordPath(bookId);
     mkdirSync(dirname(p), { recursive: true });
     writeFileAtomic(p, JSON.stringify(record, null, 2) + "\n");
-  } catch { /* the record is a cache; a write failure must not fail the read */ }
+  } catch (err) {
+    // The record is a cache; a write failure must not fail the read — but it
+    // must be LOUD (F7): a persistently unwritable cache re-runs this 3-reader
+    // control panel on every conductor entry.
+    deps.log(`[autopilot] shipped-control ${bookId}: WARNING cache write failed (${(err as Error).message}) — the 3-reader control read will RE-RUN next entry; fix the state dir to stop re-spending readers`);
+  }
 
   return { ok: true, composite: verdict.medianComposite, source: "control", pin };
 }

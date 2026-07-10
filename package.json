@@ -26,6 +26,7 @@
     "pipeline:doctor": "npm run doctor --workspace @chapterflow/v21-authored",
     "pipeline:test:focused": "npm run test:focused --workspace @chapterflow/v21-authored",
     "verify": "npm run typecheck && npm run test && npm run scan:style && npm run build",
+    "verify:live": "tsx scripts/book/verify-live-sync.ts",
     "test": "FILES=$(find app lib -name '*.test.ts' -not -path '*/node_modules/*'); if [ -z \"$FILES\" ]; then echo 'no test files found' >&2; exit 1; fi; tsx --test $FILES",
     "test:integration": "FILES=$(find app lib tests -name '*.itest.ts' -not -path '*/node_modules/*'); if [ -z \"$FILES\" ]; then echo 'no integration test files found' >&2; exit 1; fi; tsx --test $FILES",
     "test:e2e": "playwright test",

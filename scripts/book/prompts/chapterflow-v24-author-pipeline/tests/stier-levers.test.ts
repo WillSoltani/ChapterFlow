@@ -53,8 +53,10 @@ import {
 import { selectAcceptanceSample, selectSeededIdxs } from "../src/review/evalBookProxy.js";
 import {
   AUTHOR_BOOK_READERS,
+  complaintNamesReservedHarm,
   doAuthorReview,
   isFlipSignature,
+  isNearBar,
   mapNamedBookComplaints,
   type AuthorReviewIo,
 } from "../src/orchestrator/authorReview.js";
@@ -404,11 +406,35 @@ test("C3 #2: isFlipSignature — keys 9/9 + composite ≥ bar + ship=false only;
   assert.ok(!isFlipSignature({ ...base, pass: true, ship84: true } as ChapterReviewV1, 84), "a pass needs nothing");
 });
 
-function readerReply(ch: ChapterV21, opts: { ship: boolean; score: number; complaint?: string }): string {
+test("Phase 3: isNearBar generalizes the trigger — supersets the flip case AND rescues a hair below the bar", () => {
+  // bar 80, band 3.7 → near-bar window is composite ≥ 76.3.
+  const clean = { valid: true, pass: false, keyCheck: { matches: 9, of: 9 } };
+  const flip = { ...clean, ship84: false, composite: 86 } as ChapterReviewV1; // the old flip case
+  assert.ok(isNearBar(flip, 80, 3.7), "flip case (composite ≥ bar, ship=false) is still near-bar");
+  const justUnder = { ...clean, ship84: true, composite: 79.2 } as ChapterReviewV1; // shipped reader, composite short
+  assert.ok(isNearBar(justUnder, 80, 3.7), "79.2 at bar 80 is inside the band → earns extra reads (NEW)");
+  const atBandEdge = { ...clean, ship84: false, composite: 76.3 } as ChapterReviewV1;
+  assert.ok(isNearBar(atBandEdge, 80, 3.7), "exactly bar−band is inclusive");
+  const belowBand = { ...clean, ship84: false, composite: 76.2 } as ChapterReviewV1;
+  assert.ok(!isNearBar(belowBand, 80, 3.7), "outside the band is a clear FAIL → straight to regen, one read");
+  // True blockers are NEVER near-bar noise.
+  assert.ok(!isNearBar({ ...clean, ship84: false, composite: 82, keyCheck: { matches: 8, of: 9 } } as ChapterReviewV1, 80, 3.7), "a key defect is a true blocker, not noise");
+  assert.ok(!isNearBar({ ...clean, valid: false, ship84: false, composite: 82 } as ChapterReviewV1, 80, 3.7), "an invalid read never tiebreaks");
+  assert.ok(!isNearBar({ ...clean, pass: true, ship84: true, composite: 82 } as ChapterReviewV1, 80, 3.7), "a PASS is not a tiebreak candidate");
+  // band 0 collapses to the flip case (composite ≥ bar only).
+  assert.ok(isNearBar(flip, 80, 0), "band 0 still fires the flip arm (composite ≥ bar)");
+  assert.ok(!isNearBar({ ...clean, ship84: true, composite: 79.9 } as ChapterReviewV1, 80, 0), "band 0 disables the below-bar rescue");
+});
+
+function readerReply(ch: ChapterV21, opts: { ship: boolean; score: number; complaint?: string; keyWrong?: boolean }): string {
+  const answers = ch.quiz.questions.map((q) => "abc"[q.correctIndex]);
+  // keyWrong: this reader DERIVES a different answer for Q1 than the key — a
+  // key-soundness disagreement, i.e. a deterministic true blocker (not noise).
+  if (opts.keyWrong && answers.length > 0) answers[0] = answers[0] === "a" ? "b" : "a";
   const body = {
     quizDerivation: {
-      answers: ch.quiz.questions.map((q) => "abc"[q.correctIndex]),
-      keyDisagreements: [],
+      answers,
+      keyDisagreements: opts.keyWrong ? ["Q1: the prose supports a different answer than the key"] : [],
       tells: [],
     },
     scores: Object.fromEntries(REVIEW_FACTORS.map((f) => [f, opts.score])),
@@ -585,6 +611,229 @@ test("C3 integration: a tiebreak SPLIT (1 ship / 1 no-ship) upholds the FAIL —
     rmSync(tmpDoc, { recursive: true, force: true });
     rmSync(reviewDir(BOOK), { recursive: true, force: true });
   }
+});
+
+test("Phase 3 integration: a BELOW-bar FAIL (79, ship=false) converts on a median ≥ 80 with ship-majority — no regen consumed", async () => {
+  const chapters = [makeChapter(BOOK, 1)];
+  rmSync(reviewDir(BOOK), { recursive: true, force: true });
+  const spawns: string[] = [];
+  let n = 0;
+  const deps = {
+    spawn: (async (o: { sessionId: string }) => {
+      spawns.push(o.sessionId);
+      let msg: string;
+      // Original read: 79 (a hair under the 80 bar), ship=false → previously a
+      // straight regen; now near-bar → earns two tiebreak reads at 81, ship=true.
+      if (o.sessionId.includes("tiebreak")) msg = readerReply(chapters[0], { ship: true, score: 81 });
+      else if (o.sessionId.includes("author-review-ch")) msg = readerReply(chapters[0], { ship: false, score: 79, complaint: "one summary reads thin" });
+      else if (o.sessionId.includes("author-book-reader")) msg = bookAcceptReply(chapters);
+      else msg = "done";
+      return { ok: true, exitCode: 0, finalMessage: msg, stdout: msg, stderr: "", durationMs: 1, sessionId: o.sessionId };
+    }) as unknown as AutopilotDeps["spawn"],
+    mkSessionId: (label: string) => `${label}#${++n}`,
+    logSession: () => {},
+    expectedChapterNumbers: () => chapters.map((c) => c.number),
+    log: () => {},
+  } as unknown as AutopilotDeps;
+
+  const persisted: ChapterReviewV1[] = [];
+  let regensConsumed = 0;
+  const tmpDoc = mkdtempSync(join(tmpdir(), "p3-below-"));
+  const io: Partial<AuthorReviewIo> = {
+    loadChapters: () => chapters,
+    authorSessionOf: () => "the-author",
+    chapterExists: () => true,
+    writeReviewDoc: (bookId, fileName, text) => {
+      const abs = join(tmpDoc, `${bookId}-${fileName}`);
+      writeFileSync(abs, text, "utf8");
+      return { absPath: abs, relPath: abs };
+    },
+    persistReview: (bookId, review) => { persisted.push(review); return "/tmp/r.json"; },
+    persistAcceptance: () => "/tmp/a.json",
+    acceptance: {
+      openRound: () => ({ roundId: "r-int", tokens: {} }),
+      writeBar: () => "/tmp/bar.json",
+      writeConfirm: () => "/tmp/confirm.json",
+      writeAttestation: () => "/tmp/att.json",
+    },
+    evidence: { runKeyJudge: async () => ({ ok: true }), runSweep: async () => ({ ok: true }) },
+    resolveBeatShipped: async () => ({ ok: true, composite: null, source: "none" }),
+    regenConsumedFor: () => 0,
+    recordRegenConsumed: () => { regensConsumed++; },
+    migrateRegenLedger: () => {},
+  };
+  try {
+    const result = await doAuthorReview(BOOK, deps, { maxParallel: 2, bar: 80, io });
+    assert.equal(result, null, `phase completes: ${JSON.stringify(result)}`);
+    assert.equal(spawns.filter((s) => s.includes("tiebreak")).length, 2, "exactly two tiebreak reads (cap 3 total)");
+    assert.equal(regensConsumed, 0, "median conversion consumes NO regen budget");
+    assert.equal(spawns.filter((s) => s.includes("author-ch")).length, 0, "no writer spawned");
+    const last = persisted.filter((r) => r.chapterNumber === 1).at(-1)!;
+    assert.equal(last.pass, true, "deciding PASS (median 81 ≥ 80) persisted last");
+    assert.equal(last.composite, 81);
+  } finally {
+    rmSync(tmpDoc, { recursive: true, force: true });
+    rmSync(reviewDir(BOOK), { recursive: true, force: true });
+    rmSync(join(dirname(reviewDir(BOOK)), `${BOOK}.review-clears.json`), { force: true });
+  }
+});
+
+test("Phase 3 integration: a KEY DEFECT surfaced by a tiebreak read STICKS — the median never converts a true blocker", async () => {
+  const chapters = [makeChapter(BOOK, 1)];
+  rmSync(reviewDir(BOOK), { recursive: true, force: true });
+  const spawns: string[] = [];
+  const writerTasks: string[] = [];
+  let n = 0;
+  let tiebreakCount = 0;
+  const deps = {
+    spawn: (async (o: { sessionId: string; task: string }) => {
+      spawns.push(o.sessionId);
+      let msg: string;
+      if (o.sessionId.includes("tiebreak")) {
+        tiebreakCount++;
+        // Both tiebreak reads would ship at a passing score, BUT one of them
+        // derives a different key for Q1 — a deterministic key-soundness defect
+        // that must block conversion no matter how high the median composite is.
+        msg = tiebreakCount === 1
+          ? readerReply(chapters[0], { ship: true, score: 88, keyWrong: true })
+          : readerReply(chapters[0], { ship: true, score: 88 });
+      } else if (o.sessionId.includes("author-review-ch")) {
+        msg = readerReply(chapters[0], { ship: false, score: 86, complaint: "distractors rejectable by tone" });
+      } else if (o.sessionId.includes("author-book-reader")) {
+        msg = bookAcceptReply(chapters);
+      } else {
+        writerTasks.push(o.task);
+        msg = "done"; // writer writes nothing → fail-closed halt (the asserted outcome)
+      }
+      return { ok: true, exitCode: 0, finalMessage: msg, stdout: msg, stderr: "", durationMs: 1, sessionId: o.sessionId };
+    }) as unknown as AutopilotDeps["spawn"],
+    mkSessionId: (label: string) => `${label}#${++n}`,
+    logSession: () => {},
+    expectedChapterNumbers: () => chapters.map((c) => c.number),
+    log: () => {},
+    runVerb: async () => ({ code: 0, stdout: "gate ok", stderr: "" }),
+  } as unknown as AutopilotDeps;
+
+  const persisted: ChapterReviewV1[] = [];
+  const tmpDoc = mkdtempSync(join(tmpdir(), "p3-keydefect-"));
+  const io: Partial<AuthorReviewIo> = {
+    loadChapters: () => chapters,
+    authorSessionOf: () => "the-author",
+    chapterExists: () => true,
+    readBriefMd: () => "# Chapter 1\nbrief body",
+    readPacket: () => mkPacket(1, ["a cadence claim"]),
+    readBrief: () => null,
+    writeReviewDoc: (bookId, fileName, text) => {
+      const abs = join(tmpDoc, `${bookId}-${fileName}`);
+      writeFileSync(abs, text, "utf8");
+      return { absPath: abs, relPath: abs };
+    },
+    persistReview: (bookId, review) => { persisted.push(review); return "/tmp/r.json"; },
+    persistAcceptance: () => "/tmp/a.json",
+    acceptance: {
+      openRound: () => ({ roundId: "r-int", tokens: {} }),
+      writeBar: () => "/tmp/bar.json",
+      writeConfirm: () => "/tmp/confirm.json",
+      writeAttestation: () => "/tmp/att.json",
+    },
+    evidence: { runKeyJudge: async () => ({ ok: true }), runSweep: async () => ({ ok: true }) },
+    resolveBeatShipped: async () => ({ ok: true, composite: null, source: "none" }),
+    regenConsumedFor: () => 0,
+    recordRegenConsumed: () => {},
+    migrateRegenLedger: () => {},
+  };
+  try {
+    const result = await doAuthorReview(BOOK, deps, { maxParallel: 2, bar: 80, io });
+    assert.equal(spawns.filter((s) => s.includes("tiebreak")).length, 2, "tiebreak ran");
+    assert.ok(persisted.every((r) => r.chapterNumber !== 1 || r.pass === false), "NO PASS persisted — the key defect stuck");
+    assert.ok(writerTasks.length >= 1, "escalated to the regen writer (true blocker → regen)");
+    assert.ok(result !== null && result.status === "halt" && result.category === "content", `fail-closed halt, got ${JSON.stringify(result)}`);
+  } finally {
+    rmSync(tmpDoc, { recursive: true, force: true });
+    rmSync(reviewDir(BOOK), { recursive: true, force: true });
+  }
+});
+
+test("QC calibration: complaintNamesReservedHarm TRUSTS reserved harm + ambiguous, DOWNGRADES subjective-only (never hides a blocker)", () => {
+  const c = (unit: string, problem: string) => ({ unit, problem, mustFix: true });
+  // Reserved-category harms → TRUE (blocks conversion).
+  assert.equal(complaintNamesReservedHarm(c("quiz Q2", "the answer key is wrong — two choices are correct")), true);
+  assert.equal(complaintNamesReservedHarm(c("deep read", "this fact is factually incorrect")), true);
+  assert.equal(complaintNamesReservedHarm(c("example 3", "the scenario is fabricated — no such study exists")), true);
+  assert.equal(complaintNamesReservedHarm(c("fast read", "contradicts the chapter's own claim in the hook")), true);
+  assert.equal(complaintNamesReservedHarm(c("structure", "the summaries section is missing")), true);
+  // Subjective-only, no reserved-harm signal → FALSE (downgraded, cannot block alone).
+  assert.equal(complaintNamesReservedHarm(c("example 2", "reads as a slot-filler and could be richer")), false);
+  assert.equal(complaintNamesReservedHarm(c("deep read", "the phrasing is a bit generic")), false);
+  assert.equal(complaintNamesReservedHarm(c("quiz Q1", "the distractors are slightly weak")), false);
+  assert.equal(complaintNamesReservedHarm(c("tone", "the rhythm is uneven and the pacing drags")), false);
+  // Ambiguous (neither signal) → DEFAULT TRUST (never hide a possible blocker).
+  assert.equal(complaintNamesReservedHarm(c("quiz Q3", "something is off here")), true);
+  // Red-team: a REAL harm co-occurring with a subjective word STILL blocks —
+  // reserved vocabulary is checked first and wins over the subjective marker.
+  assert.equal(complaintNamesReservedHarm(c("tryThisNow", "the pacing makes the safety warning unreadable")), true);
+  assert.equal(complaintNamesReservedHarm(c("example 1", "the generic phrasing states a factually wrong date")), true);
+});
+
+test("Phase 3 + QC calibration (2026-07-05): near-bar conversion is blocked ONLY by a mustFix that names a reserved-category harm — a subjective-only mustFix is downgraded and converts", async () => {
+  // Shared harness: original + 2 tiebreak reads all ship=false at 82 (≥ bar 80),
+  // keys clean, parameterized by the complaint text carried as a mustFix.
+  const run = async (complaint: string | undefined) => {
+    const chapters = [makeChapter(BOOK, 1)];
+    rmSync(reviewDir(BOOK), { recursive: true, force: true });
+    let n = 0; const persisted: ChapterReviewV1[] = []; let regens = 0;
+    const spawns: string[] = [];
+    const deps = {
+      spawn: (async (o: { sessionId: string }) => {
+        spawns.push(o.sessionId);
+        let msg: string;
+        if (o.sessionId.includes("tiebreak") || o.sessionId.includes("author-review-ch")) {
+          msg = readerReply(chapters[0], { ship: false, score: 82, complaint });
+        } else if (o.sessionId.includes("author-book-reader")) msg = bookAcceptReply(chapters);
+        else { msg = "done"; }
+        return { ok: true, exitCode: 0, finalMessage: msg, stdout: msg, stderr: "", durationMs: 1, sessionId: o.sessionId };
+      }) as unknown as AutopilotDeps["spawn"],
+      mkSessionId: (label: string) => `${label}#${++n}`,
+      logSession: () => {}, expectedChapterNumbers: () => chapters.map((c) => c.number), log: () => {},
+      runVerb: async () => ({ code: 0, stdout: "gate ok", stderr: "" }),
+    } as unknown as AutopilotDeps;
+    const tmpDoc = mkdtempSync(join(tmpdir(), "p3-mf-"));
+    const io: Partial<AuthorReviewIo> = {
+      loadChapters: () => chapters, authorSessionOf: () => "the-author", chapterExists: () => true,
+      readBriefMd: () => "# Chapter 1\nbrief body", readPacket: () => mkPacket(1, ["a cadence claim"]), readBrief: () => null,
+      writeReviewDoc: (bookId, fileName, text) => { const abs = join(tmpDoc, `${bookId}-${fileName}`); writeFileSync(abs, text, "utf8"); return { absPath: abs, relPath: abs }; },
+      persistReview: (bookId, review) => { persisted.push(review); return "/tmp/r.json"; },
+      persistAcceptance: () => "/tmp/a.json",
+      acceptance: { openRound: () => ({ roundId: "r", tokens: {} }), writeBar: () => "/tmp/b.json", writeConfirm: () => "/tmp/c.json", writeAttestation: () => "/tmp/att.json" },
+      evidence: { runKeyJudge: async () => ({ ok: true }), runSweep: async () => ({ ok: true }) },
+      resolveBeatShipped: async () => ({ ok: true, composite: null, source: "none" }),
+      regenConsumedFor: () => 0, recordRegenConsumed: () => { regens++; }, migrateRegenLedger: () => {},
+    };
+    try {
+      const result = await doAuthorReview(BOOK, deps, { maxParallel: 2, bar: 80, io });
+      return { result, persisted, regens, spawns };
+    } finally { rmSync(tmpDoc, { recursive: true, force: true }); rmSync(reviewDir(BOOK), { recursive: true, force: true }); rmSync(join(dirname(reviewDir(BOOK)), `${BOOK}.review-clears.json`), { force: true }); }
+  };
+
+  // (1) No mustFix → no true blocker → converts on the ≥bar median despite ship=false.
+  const clean = await run(undefined);
+  assert.equal(clean.result, null, `no-mustFix book completes: ${JSON.stringify(clean.result)}`);
+  assert.equal(clean.regens, 0, "no-mustFix conversion consumes no regen");
+  assert.equal(clean.persisted.filter((r) => r.chapterNumber === 1).at(-1)!.pass, true, "≥bar + zero mustFix converts to PASS");
+
+  // (2) A SUBJECTIVE-only mustFix (a thin example — "could be richer") is downgraded
+  //     by complaintNamesReservedHarm → it CANNOT block a ≥bar clean chapter alone →
+  //     converts, no regen. This is the calibration: production editor, not perfectionist.
+  const subjective = await run("a thin example reads as a slot-filler and could be richer");
+  assert.equal(subjective.result, null, `subjective-only mustFix still completes: ${JSON.stringify(subjective.result)}`);
+  assert.equal(subjective.regens, 0, "a downgraded subjective mustFix consumes no regen");
+  assert.equal(subjective.persisted.filter((r) => r.chapterNumber === 1).at(-1)!.pass, true, "subjective-only mustFix downgraded → converts");
+
+  // (3) A RESERVED-category mustFix (a wrong quiz answer key) is a TRUE blocker →
+  //     never converted → escalates (fail-closed halt here). Blockers stay strict.
+  const blocked = await run("quiz Q2: the answer key is wrong — two choices are correct");
+  assert.ok(blocked.persisted.every((r) => r.chapterNumber !== 1 || r.pass === false), "a reserved-harm mustFix is never converted by the no-mustFix path");
+  assert.ok(blocked.result !== null && blocked.result.status === "halt", "the reserved-harm blocker escalates (no false pass)");
 });
 
 // ── Budget-repair round (live-added after the first S-tier run blocked here) ──
