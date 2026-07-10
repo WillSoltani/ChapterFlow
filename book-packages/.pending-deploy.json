@@ -1,45 +1,6 @@
 {
   "schemaVersion": "pending-deploy-v1",
-  "pending": [
-    {
-      "bookId": "high-output-management",
-      "packageSha256": "57d0fc10f5306dc763ffaf34a906ee7db50720eb228377baabb9c135a98ec79b",
-      "publishedAt": "2026-07-08T19:27:36.376Z",
-      "steps": [
-        "upload-book-packages-to-s3",
-        "deploy-workflow",
-        "verify-live-sync"
-      ]
-    },
-    {
-      "bookId": "multipliers",
-      "packageSha256": "3c97829d0f3b283741d0b7fa0218046f75ff0c1430ef6657917f947410cf98fc",
-      "publishedAt": "2026-07-09T10:12:45.443Z",
-      "steps": [
-        "upload-book-packages-to-s3",
-        "deploy-workflow",
-        "verify-live-sync"
-      ]
-    },
-    {
-      "bookId": "radical-candor",
-      "packageSha256": "c10a176719de4b450968e747cd4fcbc5db272bdf05cff8327cf33ee2f3df61ea",
-      "publishedAt": "2026-07-10T08:35:39.921Z",
-      "steps": [
-        "upload-book-packages-to-s3",
-        "deploy-workflow",
-        "verify-live-sync"
-      ]
-    },
-    {
-      "bookId": "the-culture-code",
-      "packageSha256": "ef396658df3de38839be86c858e89cc6ba608b0258b2208f83d24da8cbbf5964",
-      "publishedAt": "2026-07-10T08:34:53.108Z",
-      "steps": [
-        "upload-book-packages-to-s3",
-        "deploy-workflow",
-        "verify-live-sync"
-      ]
-    }
-  ]
+  "pending": [],
+  "lastCompletedAt": "2026-07-10T22:55:00Z",
+  "lastCompletedNote": "high-output-management, multipliers, radical-candor, the-culture-code: upload-s3 + deploy + API registration (register-api-books) + verify-live all complete"
 }
