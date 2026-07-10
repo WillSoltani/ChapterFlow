@@ -59,6 +59,71 @@ function cleanChapter(): ChapterV21 {
   } as unknown as ChapterV21;
 }
 
+// A chapter carrying the CF-J C36 apparatus classes: a page citation + guide-structure
+// narration in prose, machinery vocabulary inside a quiz choice, and a spec-narration
+// sentence in an example — the radical-candor §7 inventory in miniature.
+function c36Chapter(chapterId = "zz-adv-c36-ch01", number = 1): ChapterV21 {
+  return {
+    chapterId,
+    number,
+    title: "Apparatus Fixture",
+    breakdown: {
+      fastRead: "The official guide places the tool at Ch. 6 pp. 137-141 for reference.",
+      deepRead: "",
+      fullRead: "",
+    },
+    examples: [
+      { exampleId: "ex01", scenario: "The outcome is not claimed here. The proof is earlier: the mug sat where he left it.", whatToDo: "Name the behavior.", whyItMatters: "The habit holds." },
+    ],
+    quiz: {
+      questions: [{
+        questionId: "q01",
+        prompt: "A trainer stretches the checklist into a culture slogan. What went wrong?",
+        choices: [
+          "The checklist was applied too late.",
+          "A delivery checklist was used as a culture label.",
+          "Page references were accepted as proof the tools are interchangeable.",
+        ],
+        correctIndex: 1,
+        explanation: "The tool belongs to feedback mechanics, not every culture problem.",
+      }],
+    },
+  } as unknown as ChapterV21;
+}
+
+test("CF-J: C36 rides the SAME advisory routing — collected minor-only, with the strip-apparatus directives", () => {
+  const advisories = collectRegisterAdvisories(c36Chapter());
+  const c36 = advisories.filter((f) => String(f.checkId).startsWith("C36."));
+  assert.ok(c36.length >= 3, `page-citation + guide-structure + machinery + spec-narration advisories expected; got ${advisories.map((f) => f.checkId).join(", ")}`);
+  assert.ok(advisories.every((f) => f.severity === "minor"), "every C36 finding is severity minor (never blocks)");
+
+  const lines = registerAdvisoryFixLines(c36Chapter());
+  // The directive text per the CF-J spec rides the fix lines verbatim.
+  assert.ok(lines.some((l) => l.includes("[C36.apparatus_page_citation]") && /internal coordinates/i.test(l)), "strip-apparatus directive (page citations are internal coordinates)");
+  assert.ok(lines.some((l) => l.includes("[C36.apparatus_guide_structure]") && /replace the structure-talk with the idea/i.test(l)), "structure-talk → the idea directive");
+  assert.ok(lines.some((l) => l.includes("[C36.apparatus_machinery_term]") && /quiz\/card surfaces/i.test(l)), "machinery-out-of-quiz/card directive");
+  assert.ok(lines.some((l) => l.includes("[C36.apparatus_spec_narration]") && /natural explanation/i.test(l)), "spec-narration → natural explanation directive");
+  // Facts/keys/schema preservation is stated on the lines that touch graded surfaces.
+  assert.ok(lines.some((l) => /key/i.test(l) && /unchanged/i.test(l)), "the preserve-facts/keys/schema clause rides the directives");
+
+  const block = registerAdvisoryRetryBlock(c36Chapter());
+  assert.match(block, /ADVISORY REGISTER NOTES/, "the C36 lines ride the same retry block as C31–C35");
+  assert.match(block, /\[C36\.apparatus_page_citation\]/);
+});
+
+test("CF-J: the surgical review-repair directive carries the C36 fix lines (same routing as C31–C35)", () => {
+  const card = buildRepairCard({
+    bookId: "zz-adv-c36",
+    chapter: c36Chapter(),
+    complaints: ["Quiz question 1's distractor teaches pipeline vocabulary."],
+    scopes: ["quiz"],
+    relPath: "state/chapters/zz-adv-c36-ch01.v21-native.chapter.json",
+  });
+  assert.match(card, /ADVISORY REGISTER NOTES \(never block; do NOT expand scope/);
+  assert.match(card, /\[C36\.apparatus_machinery_term\]/, "the machinery fix line rides the repair directive");
+  assert.match(card, /\[C36\.apparatus_page_citation\]/, "the page-citation fix line rides the repair directive");
+});
+
 test("CF-I-2 helper: register advisories collect as MINOR-only fix lines; a clean draft yields none", () => {
   const advisories = collectRegisterAdvisories(c31Chapter());
   assert.ok(advisories.length >= 1, "the C31 fixture trips at least one register advisory");
@@ -235,6 +300,18 @@ test("CF-I Fix A (a): a review-FAIL regen of an advisory-tripping reviewed draft
   assert.doesNotMatch(tasks[1], /ADVISORY REGISTER NOTES/, "the attempt-2 card reflects the FRESH (clean) draft — the block is not sticky");
 });
 
+test("CF-J: a regen of a C36-tripping reviewed draft seeds the ATTEMPT-1 card with the apparatus fix lines", async () => {
+  const { tasks, result } = await driveRegen(
+    "zz-adv-regen-c36",
+    c36Chapter("zz-adv-regen-c36-ch01", 1),
+    { ...cleanChapter(), chapterId: "zz-adv-regen-c36-ch01", number: 1 } as unknown as ChapterV21,
+  );
+  assert.ok(!result.ok, "the regen still fails closed on the gate blocker (no verdict changed)");
+  assert.match(tasks[0], /\[C36\.apparatus_page_citation\]/, "the attempt-1 regen card carries the prior draft's C36 page-citation fix line");
+  assert.match(tasks[0], /\[C36\.apparatus_machinery_term\]/, "…and the machinery fix line (quiz surface)");
+  assert.doesNotMatch(tasks[1], /ADVISORY REGISTER NOTES/, "the attempt-2 card reflects the FRESH (clean) draft");
+});
+
 test("CF-I Fix A (b): a regen of an advisory-CLEAN reviewed draft adds no block to the attempt-1 card", async () => {
   const { tasks } = await driveRegen("zz-adv-regen-clean", { ...cleanChapter(), chapterId: "zz-adv-regen-clean-ch01", number: 1 } as unknown as ChapterV21, c31Chapter("zz-adv-regen-clean-ch01", 1));
   assert.doesNotMatch(tasks[0], /ADVISORY REGISTER NOTES/, "a clean prior draft yields an empty block — the attempt-1 card is the plain base");
@@ -246,8 +323,11 @@ test("CF-I Fix A (b): a regen of an advisory-CLEAN reviewed draft adds no block 
 // advisory block") — no complaints ⇒ no block before any failure.
 
 // ── The no-new-blocking-path proof, asserted DIRECTLY on the real gold corpus:
-// every start-with-why chapter that trips a C31–C35 advisory still PASSES the ship
-// gate (`passed === true`) — the surfacing changed text, never a predicate. ──
+// every start-with-why chapter that trips a C31–C36 advisory still PASSES the ship
+// gate (`passed === true`) — the surfacing changed text, never a predicate.
+// (collectRegisterAdvisories now includes CF-J's C36, so this assertion set covers
+// it by construction; the C36-specific planted-vs-clean passed-parity proof lives
+// in tests/apparatus-leakage.test.ts.) ──
 {
   const bookId = "start-with-why";
   const files = existsSync(STATE_CHAPTERS)

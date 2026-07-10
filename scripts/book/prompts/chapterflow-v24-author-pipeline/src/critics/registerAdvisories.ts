@@ -2,12 +2,14 @@
  * Register/machinery advisory surfacing (CF-I-2, 2026-07-09 — the C31 fold-in,
  * owner decision 4).
  *
- * The C31–C35 detectors are ADVISORY-MINOR (exampleRegister, metaCaseProtagonist,
- * beatVocabularyEcho, citationDateDoorway, lineageKeyQuiz). They surface machinery
- * leaking into reader prose — evaluator-card register, an internal artifact acting
- * as the scene's subject, dealt beat labels rendered verbatim, a citation-date
- * doorway, a quiz key that rewards naming the source lineage over applying the idea.
- * They never block: finalGate lists all five as `minor`, none is in ENFORCED_MAJOR,
+ * The C31–C36 detectors are ADVISORY-MINOR (exampleRegister, metaCaseProtagonist,
+ * beatVocabularyEcho, citationDateDoorway, lineageKeyQuiz, apparatusLeakage). They
+ * surface machinery leaking into reader prose — evaluator-card register, an internal
+ * artifact acting as the scene's subject, dealt beat labels rendered verbatim, a
+ * citation-date doorway, a quiz key that rewards naming the source lineage over
+ * applying the idea, and (CF-J) the source guide's own apparatus: page citations,
+ * guide-structure narration, machinery terms in quiz/card text, spec-narration.
+ * They never block: finalGate lists all of them as `minor`, none is in ENFORCED_MAJOR,
  * and none is wired to a gate/contract/acceptance predicate.
  *
  * S5's root cause (verification report §7.2) is that these advisory findings never
@@ -31,10 +33,14 @@ import { checkMetaCaseProtagonist } from "./metaCaseProtagonist.js";
 import { checkBeatVocabularyEcho } from "./beatVocabularyEcho.js";
 import { checkCitationDateDoorway } from "./citationDateDoorway.js";
 import { checkLineageKeyQuiz } from "./lineageKeyQuiz.js";
+import { checkApparatusLeakage } from "./apparatusLeakage.js";
 
-/** The C31–C35 register/machinery advisory family, collected on one chapter draft.
+/** The C31–C36 register/machinery advisory family, collected on one chapter draft.
  *  Every finding is MINOR (advisory) — this function does not gate anything; it only
- *  gathers the findings a surfacing caller will render as text. Pure; [] = clean. */
+ *  gathers the findings a surfacing caller will render as text. Pure; [] = clean.
+ *  (C36 — source-guide apparatus leakage, CF-J 2026-07-09 — rides the SAME routing
+ *  as its siblings by construction: write-retry cards, the review-repair directive,
+ *  and the regen attempt-1 card all render this collection.) */
 export function collectRegisterAdvisories(chapter: ChapterV21): CriticFinding[] {
   return [
     ...checkExampleRegister(chapter),
@@ -42,6 +48,7 @@ export function collectRegisterAdvisories(chapter: ChapterV21): CriticFinding[] 
     ...checkBeatVocabularyEcho(chapter),
     ...checkCitationDateDoorway(chapter),
     ...checkLineageKeyQuiz(chapter),
+    ...checkApparatusLeakage(chapter),
   ];
 }
 

@@ -76,6 +76,7 @@ import {
 } from "./briefRotation.js";
 import type { ChapterSpec } from "../generateChapter.js";
 import { C7_BANNED_NAMES } from "../critics/finalGate.js";
+import { stripPageCitationSpans } from "../critics/apparatusLeakage.js";
 import {
   answerPattern,
   compilerNameBank,
@@ -146,19 +147,29 @@ function compactJob(raw: string | undefined | null, maxLen = 100): string {
  * pinned by tests/chapter-brief.test.ts against the pre-P13 legacy golden AND a ranked packet.
  */
 export function briefCoreMove(packet: SourcePacketV1, chapterTitle: string): string {
-  const coreFact = packet.coreMoveFactId ? packet.facts.find((f) => f.id === packet.coreMoveFactId) : undefined;
-  return (coreFact?.mechanism || coreFact?.claim)
+  const raw = (packet.coreMoveFactId ? packet.facts.find((f) => f.id === packet.coreMoveFactId) : undefined);
+  const picked = (raw?.mechanism || raw?.claim)
     || packet.facts[0]?.mechanism || packet.facts[0]?.claim
     || `Use ${chapterTitle} as a concrete decision tool.`;
+  // CF-J Task 4: the brief is WRITER-VISIBLE projected text — strip any research-
+  // minted page citation ("…appears at Ch. 2 p. 33 as…") exactly as the packet
+  // projection does; the raw packet/fact on disk is untouched. Fail-open: a line
+  // that would strip to nothing keeps its original text.
+  const stripped = stripPageCitationSpans(picked);
+  return stripped.length > 0 ? stripped : picked;
 }
 
-/** One line: the highest-teachingPriority fact's claim (legacy fallback: the first fact). */
+/** One line: the highest-teachingPriority fact's claim (legacy fallback: the first fact).
+ *  Page citations stripped — same CF-J writer-visibility rule as briefCoreMove
+ *  (live: 4/9 radical-candor rendered briefs carried "Thesis: … at Ch. N p. N …"). */
 export function briefThesis(packet: SourcePacketV1): string {
   const ranked = packet.facts
     .filter((f) => typeof f.teachingPriority === "number")
     .sort((a, b) => (a.teachingPriority! - b.teachingPriority!) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
   const fact = ranked[0] ?? packet.facts[0];
-  return oneLine(fact?.claim ?? "");
+  const line = oneLine(fact?.claim ?? "");
+  const stripped = stripPageCitationSpans(line);
+  return stripped.length > 0 ? stripped : line;
 }
 
 /** Deterministic template. Guidance, not contract. */

@@ -17,7 +17,7 @@ import { existsSync, readFileSync, readdirSync } from "fs";
 import { resolve } from "path";
 
 import { test, skip } from "./harness.js";
-import { makeChapter, goldChapterFiles, labelCleanCorpusChapterFiles, STATE_CHAPTERS } from "./helpers.js";
+import { makeChapter, goldChapterFiles, labelCleanCorpusChapterFiles, PIPELINE_DIR, STATE_CHAPTERS } from "./helpers.js";
 import {
   opensWithAnsweredQuestion,
   findEvaluatorOpeners,
@@ -53,10 +53,24 @@ test("C31: opensWithAnsweredQuestion spares the non-tic constructions", () => {
   assert.equal(opensWithAnsweredQuestion("What changed?"), false, "unanswered rhetorical question is spared");
   assert.equal(opensWithAnsweredQuestion("What changed? And who noticed?"), false, "a question answered by another question is spared");
   // (3) SHORT — a long opening question is a real scene-setting beat, not the tic.
-  assert.equal(opensWithAnsweredQuestion("What did the branch lead decide to do about the late demand signal that week? She escalated it."), false, "a >6-word opening question is a scene beat, not the tic");
+  assert.equal(opensWithAnsweredQuestion("What did the branch lead decide to do about the late demand signal that week? She escalated it."), false, "a >8-word opening question is a scene beat, not the tic");
   // Not even a question / not an interrogative opener.
   assert.equal(opensWithAnsweredQuestion("Skip this and a real branch signal becomes gossip."), false, "imperative opener");
   assert.equal(opensWithAnsweredQuestion("The answer is cost and sameness, so she attaches the local signal."), false, "declarative opener");
+});
+
+test("C31 (CF-J cap 6→8): the radical-candor ch02-class 7-8-word evaluator openers now fire", () => {
+  // The measured undercount: the release review's direct read counted ~15 evaluator
+  // openers in radical-candor ch02; the ≤6-word cap saw 7. These verbatim ch02 openers
+  // are the evidence the cap raise rests on — each is the SAME terse graded-Q&A tic,
+  // two words longer.
+  assert.equal(opensWithAnsweredQuestion("What gets protected when you wait for trust? The person's ability to use the fact."), true, "8-word wh-opener fires");
+  assert.equal(opensWithAnsweredQuestion("What changes after the minute is spent? The hard observation stays tied to help."), true, "7-word wh-opener fires");
+  assert.equal(opensWithAnsweredQuestion("Which question proves you can receive truth? Ask it again before you correct anyone."), true, "7-word which-opener fires");
+  assert.equal(opensWithAnsweredQuestion("Which praise lets the person repeat the move? Name the observed behavior."), true, "8-word which-opener fires");
+  // A 9-word opener stays a scene beat — the cap is 8, not open-ended (this one is
+  // radical-candor ch02 ex01.whatToDo verbatim: 9 words, correctly out of scope).
+  assert.equal(opensWithAnsweredQuestion("Can the other person read your line as help? If trust is thin, ask for criticism of yourself first."), false, "9-word opener stays spared");
 });
 
 // ── The chapter-level critic ──────────────────────────────────────────────────
@@ -145,25 +159,64 @@ test("C31: synthetic gold corpus has ZERO evaluator-register findings", () => {
 // that adopts the tic is caught as a regression, while faithfully recording that
 // the pattern predates HOM. daring-greatly is not present on every checkout (its
 // state/chapters files are absent here), so it is skipped rather than guessed.
+//
+// CF-J RE-PIN JUSTIFICATION TABLE (2026-07-09, cap 6 → 8 — see exampleRegister.ts
+// for the diagnosis). Chapters firing at ≥3 openers, cap 6 → cap 8, with the
+// per-chapter opener counts in parentheses:
+//   gold start-with-why (14 ch)   2 → 2   ch6 (8→8), ch12 (8→8)             UNCHANGED
+//   the-culture-code    (16 ch)   3 → 3   ch4 (9→11), ch10 (10→10), ch16 (10→10)
+//   HOM package         (16 ch)   3 → 3   ch2 (7→8), ch8 (8→8), ch14 (8→8)
+//   multipliers package  (9 ch)   0 → 0                                     UNCHANGED
+//   radical-candor       (9 ch)   1 → 1   ch2 (7→12) — the undercount closed
+// ZERO chapters newly fire anywhere; the raise only deepens counts where the tic
+// already saturates. The reader's ~15 for radical-candor ch02 includes mid-field
+// question-then-answer turns, which stay out of scope by design (opening-position
+// guard); 12 of the ~15 are opening-position and now measured.
+type C31Pin = { label: string; loadChapters: () => ChapterV21[]; firing: number[]; openerCounts?: Record<number, number> };
 {
-  const bookId = "start-with-why";
-  const files = existsSync(STATE_CHAPTERS)
-    ? readdirSync(STATE_CHAPTERS).filter((f) => f.startsWith(`${bookId}-ch`) && f.endsWith(".v21-native.chapter.json"))
-    : [];
-  if (files.length === 0) {
-    skip(`C31 gold pin: ${bookId}`, `no ${bookId} chapters in state/chapters/ on this machine`);
-  } else {
-    test(`C31: real gold corpus ${bookId} (${files.length} ch) emits its MEASURED finding count`, () => {
-      const firing: string[] = [];
-      for (const f of files) {
-        const ch = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, f), "utf8")) as ChapterV21;
-        if (checkExampleRegister(ch).length > 0) firing.push(ch.chapterId);
+  const PKG_DIR = resolve(PIPELINE_DIR, "../../../..", "book-packages");
+  const stateBook = (bookId: string) => () =>
+    (existsSync(STATE_CHAPTERS)
+      ? readdirSync(STATE_CHAPTERS).filter((f) => f.startsWith(`${bookId}-ch`) && f.endsWith(".v21-native.chapter.json"))
+      : []
+    ).map((f) => JSON.parse(readFileSync(resolve(STATE_CHAPTERS, f), "utf8")) as ChapterV21);
+  const pkgBook = (bookId: string) => () => {
+    const p = resolve(PKG_DIR, `${bookId}.v21.json`);
+    return existsSync(p) ? (JSON.parse(readFileSync(p, "utf8")) as { chapters: ChapterV21[] }).chapters : [];
+  };
+  const pins: C31Pin[] = [
+    { label: "gold start-with-why (state)", loadChapters: stateBook("start-with-why"), firing: [6, 12] },
+    { label: "the-culture-code (state)", loadChapters: stateBook("the-culture-code"), firing: [4, 10, 16] },
+    { label: "high-output-management (package)", loadChapters: pkgBook("high-output-management"), firing: [2, 8, 14] },
+    { label: "multipliers (package)", loadChapters: pkgBook("multipliers"), firing: [] },
+    // radical-candor ch2's opener count is pinned too — the CF-J content repair
+    // (2026-07-09) de-saturated ch02 from the 12-opener headline measurement
+    // (was 7 under cap 6; the review's direct read said ~15 incl. mid-field
+    // turns) down to the 2 strongest kept openers — below the ≥3 threshold, so
+    // C31 no longer fires. DELIBERATE pin change per the plan above.
+    // RE-MEASURED 2026-07-09 (author-review regen round r20260709204223-456b08):
+    // the ch02 REGEN draft superseded the CF-J-repaired draft entirely; the new
+    // draft carries a single opening-position evaluator opener (ex06.scenario
+    // "Is praise really guidance?"). Still below the ≥3 threshold; firing stays [].
+    { label: "radical-candor (state)", loadChapters: stateBook("radical-candor"), firing: [], openerCounts: { 2: 1 } },
+  ];
+  for (const pin of pins) {
+    const chapters = pin.loadChapters();
+    if (chapters.length === 0) {
+      skip(`C31 corpus pin: ${pin.label}`, `${pin.label} not present on this machine`);
+      continue;
+    }
+    test(`C31: ${pin.label} (${chapters.length} ch) emits its MEASURED counts at cap 8`, () => {
+      const firing = chapters.filter((ch) => checkExampleRegister(ch).length > 0).map((ch) => ch.number).sort((a, b) => a - b);
+      assert.deepEqual(firing, pin.firing, `C31 pin drifted on ${pin.label} (firing chapters)`);
+      for (const [num, expected] of Object.entries(pin.openerCounts ?? {})) {
+        const ch = chapters.find((c) => c.number === Number(num))!;
+        assert.equal(
+          findEvaluatorOpeners(ch).length,
+          expected,
+          `C31 opener-count pin drifted on ${pin.label} ch${num}`,
+        );
       }
-      assert.equal(
-        firing.length,
-        2,
-        `C31 gold-corpus pin drifted (expected 2 firing chapters — the pre-existing start-with-why tic; got ${firing.length}: ${firing.join(", ")})`,
-      );
     });
   }
 }

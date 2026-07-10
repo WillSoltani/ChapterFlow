@@ -7,11 +7,11 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdtempSync, writeFileSync, rmSync, readdirSync, readFileSync } from "fs";
+import { existsSync, mkdtempSync, writeFileSync, rmSync, readdirSync, readFileSync } from "fs";
 import { tmpdir } from "os";
 import { resolve } from "path";
 
-import { checkBookAphorismRepetition } from "../src/critics/bookRepetition.js";
+import { checkBookAphorismRepetition, checkBookSentenceTailClone, sentenceTailKey } from "../src/critics/bookRepetition.js";
 import {
   isAphorismShaped,
   runCrossBookSignatureAudit,
@@ -21,7 +21,7 @@ import { checkBannedPhrases } from "../src/critics/register.js";
 import { loadBannedPhrases } from "../src/critics/shared.js";
 import type { ChapterV21 } from "../src/types.js";
 import { test, skip } from "./harness.js";
-import { makeChapter, STATE_CHAPTERS } from "./helpers.js";
+import { makeChapter, PIPELINE_DIR, STATE_CHAPTERS } from "./helpers.js";
 
 const APHORISM = "Agreement nods; commitment signs.";
 const APHORISM_COMMA = "Agreement nods, commitment signs.";
@@ -188,6 +188,117 @@ test("banned-phrases config carries both 'agreement nods' variants and the regis
     );
   }
 });
+
+// ── BP34.tail_clone — recurring distinctive sentence TAIL (CF-J, 2026-07-09) ──
+//
+// The radical-candor clone "…comes back…, or it drifts" (ch3/6/9) evades the
+// verbatim BP34 above because the FRAME varies around a fixed final comma-clause.
+// The tail-clone check keys on that clause (3-5 normalized words, ≥1 content word).
+
+test("BP34.tail_clone: sentenceTailKey extracts a distinctive final comma-clause; common tails never key", () => {
+  // The target clone — three different frames, one tail.
+  assert.equal(sentenceTailKey("The promise comes back on a date, or it drifts."), "or it drifts");
+  assert.equal(sentenceTailKey("The promise gets a named path, or it drifts."), "or it drifts");
+  assert.equal(sentenceTailKey("Feeling needed biology, not a slogan."), "not a slogan");
+  // No comma → no clause tail (plain phrase endings are structurally excluded).
+  assert.equal(sentenceTailKey("The promise gets a named path or it drifts."), null);
+  // All-stopword clauses never key ("of the chapter" / "in the book" class).
+  assert.equal(sentenceTailKey("He kept the note, as it was."), null);
+  assert.equal(sentenceTailKey("She filed it away, and so on."), null);
+  // Too long a clause is a real second clause, not a minted tail.
+  assert.equal(sentenceTailKey("She stopped, because the whole team was already waiting downstairs."), null);
+});
+
+test("BP34.tail_clone fires ONE advisory when the tail recurs across ≥3 chapters despite varied frames", () => {
+  const book = "zz-fixture-tailclone";
+  const chapters = [1, 2, 3, 4].map((n) => makeChapter(book, n));
+  chapters.forEach((c) => { c.memorableLines = []; });
+  // Three DIFFERENT sentences (the verbatim BP34 can never collapse them), one tail.
+  chapters[0].breakdown.fastRead += " You have to keep asking, because the promise comes back on a date, or it drifts.";
+  chapters[1].breakdown.deepRead += " The promise comes back on a short clock, or it drifts.";
+  chapters[2].keyTakeaway = "The promise gets a named path, or it drifts.";
+  // chapter 4 carries no tail.
+  const findings = checkBookSentenceTailClone(chapters);
+  const clones = findings.filter((f) => f.checkId === "BP34.tail_clone");
+  assert.equal(clones.length, 1, `expected exactly one tail-clone advisory, got ${JSON.stringify(clones)}`);
+  assert.equal(clones[0].severity, "minor", "ADVISORY — never blocks");
+  assert.deepEqual(clones[0].chapters, [1, 2, 3]);
+  assert.match(clones[0].message, /or it drifts/);
+  // The verbatim BP34 stays blind to it — proof the tail check closes a real gap.
+  assert.equal(
+    checkBookAphorismRepetition(chapters).filter((f) => f.checkId === "BP34.aphorism_repetition").length,
+    0,
+    "the varied-frame clone is invisible to verbatim BP34 (that is why tail_clone exists)",
+  );
+});
+
+test("BP34.tail_clone stays silent at 2 chapters and on unplanted fixtures", () => {
+  const book = "zz-fixture-tailclone-pair";
+  const chapters = [1, 2, 3].map((n) => makeChapter(book, n));
+  chapters.forEach((c) => { c.memorableLines = []; });
+  chapters[0].keyTakeaway = "The promise comes back on a date, or it drifts.";
+  chapters[1].keyTakeaway = "The promise gets a named path, or it drifts.";
+  assert.deepEqual(checkBookSentenceTailClone(chapters), [], "2 chapters is a legal callback");
+  const clean = [1, 2, 3].map((n) => makeChapter("zz-fixture-tailclone-clean", n));
+  assert.deepEqual(checkBookSentenceTailClone(clean), [], "unplanted makeChapter book is tail-clean");
+});
+
+// Real-corpus pins (measured 2026-07-09). Gold is NOT zero: start-with-why carries
+// one soft refrain (", not a slogan" ch4/11/12) — pinned at the MEASURED count,
+// exactly as the C31/C33 gold pins do; the-culture-code is zero; radical-candor
+// carried the target clone (", or it drifts" ch3/6/9 — the reason this check
+// exists) until the CF-J content repair (2026-07-09) rewrote the ch6/ch9 tails;
+// ch3 keeps the single strongest instance (1 chapter, legally below the ≥3
+// threshold) — DELIBERATE pin change to the repaired measurement.
+{
+  const cases: Array<{ bookId: string; expect: Array<{ tail: string; chapters: number[] }> }> = [
+    { bookId: "start-with-why", expect: [{ tail: "not a slogan", chapters: [4, 11, 12] }] },
+    { bookId: "the-culture-code", expect: [] },
+    { bookId: "radical-candor", expect: [] },
+  ];
+  for (const { bookId, expect } of cases) {
+    let files: string[] = [];
+    try {
+      files = readdirSync(STATE_CHAPTERS).filter((f) => f.startsWith(`${bookId}-ch`) && f.endsWith(".v21-native.chapter.json"));
+    } catch { /* absent → skip below */ }
+    if (files.length === 0) {
+      skip(`BP34.tail_clone pin: ${bookId}`, `no ${bookId} chapters in state/chapters/ on this machine`);
+      continue;
+    }
+    test(`BP34.tail_clone: ${bookId} (${files.length} ch) emits its MEASURED tails`, () => {
+      const chapters = files.map((f) => JSON.parse(readFileSync(resolve(STATE_CHAPTERS, f), "utf8")) as ChapterV21);
+      const findings = checkBookSentenceTailClone(chapters);
+      assert.deepEqual(
+        findings.map((f) => ({ tail: sentenceTailKeyOfFinding(f), chapters: f.chapters })),
+        expect,
+        `BP34.tail_clone pin drifted on ${bookId}: ${findings.map((f) => f.message.slice(0, 100)).join(" | ")}`,
+      );
+    });
+  }
+}
+
+// HOM + multipliers (published packages at repo-root book-packages/) — pinned ZERO.
+{
+  const PKG_DIR = resolve(PIPELINE_DIR, "../../../..", "book-packages");
+  for (const bookId of ["high-output-management", "multipliers"]) {
+    const pkgPath = resolve(PKG_DIR, `${bookId}.v21.json`);
+    if (!existsSync(pkgPath)) {
+      skip(`BP34.tail_clone pin: ${bookId} package`, `book-packages/${bookId}.v21.json absent on this machine`);
+      continue;
+    }
+    test(`BP34.tail_clone: ${bookId} package is tail-clean (measured ZERO)`, () => {
+      const chapters = (JSON.parse(readFileSync(pkgPath, "utf8")) as { chapters: ChapterV21[] }).chapters;
+      const findings = checkBookSentenceTailClone(chapters);
+      assert.deepEqual(findings, [], `BP34.tail_clone false positive on ${bookId}: ${findings.map((f) => f.message.slice(0, 100)).join(" | ")}`);
+    });
+  }
+}
+
+/** The normalized tail a finding reports (parsed from its message's quoted span). */
+function sentenceTailKeyOfFinding(f: { message: string }): string {
+  const m = f.message.match(/^the sentence tail ", ([^"]+)" closes/);
+  return m ? m[1] : "";
+}
 
 // ── Gold-corpus pin ──────────────────────────────────────────────────────────
 

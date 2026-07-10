@@ -29,6 +29,7 @@ import {
   checkBookCallbackFrameReuse,
   checkBookExemplarChapterReuse,
   checkBookQuizChoiceLabelUniform,
+  checkBookSentenceTailClone,
   checkBookTimingAnchorStamping,
   checkBookTryThisNowOpenerReuse,
   checkBookVenueStamping,
@@ -570,6 +571,19 @@ export function runBookGate(bookId: string, chapters: ChapterV21[], options: Boo
   // banned-phrase list before this campaign. Advisory (MINOR) — surfaces the line
   // and names the chapters; never blocks (the semantic panel is the true gate).
   for (const f of checkBookAphorismRepetition(chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+      chapters: f.chapters,
+    });
+  }
+  // ── BP34.tail_clone — recurring distinctive sentence TAIL (CF-J). The clone
+  // "…comes back…, or it drifts" (radical-candor ch3/6/9) varies its frame around
+  // a fixed final comma-clause, so the verbatim BP34 above never collapses the
+  // three. One advisory per recurring tail, naming the chapters. MINOR; never blocks.
+  for (const f of checkBookSentenceTailClone(chapters)) {
     findings.push({
       catalogId: f.checkId,
       severity: f.severity as "blocker" | "major" | "minor",

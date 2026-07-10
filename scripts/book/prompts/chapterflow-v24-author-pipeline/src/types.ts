@@ -309,6 +309,9 @@ export type CriticCheckId =
   // Try-this-now opener reuse across chapters (the separable opener subset of repeated_unit).
   | "BP33.try_this_now_opener_reuse"
   | "BP34.aphorism_repetition"
+  // Recurring distinctive sentence TAIL — the varied-frame clone class BP34's
+  // verbatim key misses (CF-J: radical-candor "…, or it drifts" ch3/6/9).
+  | "BP34.tail_clone"
   | "schema.quiz_duplicate_choice"
   | "schema.quiz_lowercase_choice_start"
   | "schema.quiz_unexpected_field"

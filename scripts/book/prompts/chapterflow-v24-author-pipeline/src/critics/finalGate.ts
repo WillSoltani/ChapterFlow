@@ -54,6 +54,7 @@ import { checkMetaCaseProtagonist } from "./metaCaseProtagonist.js";
 import { checkBeatVocabularyEcho } from "./beatVocabularyEcho.js";
 import { checkCitationDateDoorway } from "./citationDateDoorway.js";
 import { checkLineageKeyQuiz } from "./lineageKeyQuiz.js";
+import { checkApparatusLeakage } from "./apparatusLeakage.js";
 import { checkOutcomeVariety } from "./outcomeVariety.js";
 import { checkGroundedNumbers } from "./groundedNumbers.js";
 import { checkInventedWitness } from "./evidenceWitness.js";
@@ -246,7 +247,8 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // tests/intra-chapter-example-lesson.test.ts.
   "C30.example_lesson_repetition": "minor",
   // C31 — example evaluator-register (advisory, CF-B 2026-07-08). ≥3 of a chapter's
-  // example fields OPEN with a short (≤6-word) evaluator question answered in the
+  // example fields OPEN with a short (≤8-word; 6→8 per the CF-J measured undercount
+  // fix — see exampleRegister.ts) evaluator question answered in the
   // next clause ("What changed? X.", "Why does it work? Y.") — analyst-card register
   // grading the scene instead of narrating it (HOM ch8's eight evaluator openers vs
   // ch7's zero). The deterministic complement to CF-B's rule-7 register rewrite, the
@@ -291,6 +293,22 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // pattern and never blocks. Measured: multipliers ch08 (q01/q04), gold + HOM 0. See
   // critics/lineageKeyQuiz.ts.
   "C35.lineage_key_quiz": "minor",
+  // C36 — source-guide apparatus leakage (advisory, CF-J 2026-07-09). The radical-candor
+  // release review (§7) found the guide's own APPARATUS narrated to the reader BELOW
+  // C31–C35 coverage: page citations in reader prose ("on Ch. 6 p. 138", "On page 33"),
+  // guide-structure narration ("the official guide", "the bonus chapter"), machinery
+  // vocabulary INSIDE quiz surfaces ("page references as proof", "the page span points
+  // to"), and drafting-spec sentences printed verbatim ("The outcome is not claimed
+  // here."). One advisory per chapter per category. MINOR/SHADOW like its C31–C35
+  // siblings: never blocks, rides the registerAdvisories repair routing. Calibrated
+  // ZERO on gold start-with-why + the-culture-code + HOM + multipliers; fires heavily
+  // on radical-candor (the defect corpus — pinned). See critics/apparatusLeakage.ts +
+  // tests/apparatus-leakage.test.ts. The PREVENTION half is stripPageCitationSpans in
+  // the writer projection/brief (same module).
+  "C36.apparatus_page_citation": "minor",
+  "C36.apparatus_guide_structure": "minor",
+  "C36.apparatus_machinery_term": "minor",
+  "C36.apparatus_spec_narration": "minor",
   E4: "major",
   A11: "blocker",
   A12: "blocker",
@@ -466,6 +484,15 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // signs" in high-output-management ch2/5/8/11). Advisory only — a deliberate 2-
   // chapter callback stays legal; 3+ is house-voice repetition the reader notices.
   "BP34.aphorism_repetition": "minor",
+  // BP34.tail_clone — recurring distinctive sentence TAIL (CF-J 2026-07-09). The
+  // radical-candor clone "…comes back…, or it drifts" (ch3/6/9) evades the verbatim
+  // BP34 check because the FRAME varies around a fixed final clause. Fires when the
+  // same final comma-clause (3-5 normalized words carrying ≥1 content word) closes a
+  // sentence in ≥3 chapters. Advisory only, like its parent. Measured: gold
+  // start-with-why 1 (", not a slogan" ch4/11/12 — an honest soft refrain), HOM /
+  // multipliers / the-culture-code 0, radical-candor 1 (the target clone). See
+  // critics/bookRepetition.ts + tests/aphorism-repetition.test.ts.
+  "BP34.tail_clone": "minor",
   // Source grounding (May 2026 SWW round-1 root cause: invented scenarios with
   // zero reference to real source cases). SHADOW=major. A mid-session promotion to
   // blocker was REVERTED here: the verification pass proved the "zero-FP on gold"
@@ -1063,6 +1090,12 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // applying the idea — the pipeline's anchor discipline leaking into reader pedagogy.
   for (const f of checkLineageKeyQuiz(chapter)) {
     push(f.checkId as string, "lineage-key", f.message, f.evidence);
+  }
+  // C36 — source-guide apparatus leakage (advisory, CF-J). Page citations, guide-
+  // structure narration, machinery vocabulary (incl. quiz/card surfaces), and
+  // spec-narration sentences reaching the reader — the radical-candor §7 class.
+  for (const f of checkApparatusLeakage(chapter)) {
+    push(f.checkId as string, "apparatus-leakage", f.message, f.evidence);
   }
   // GN1 — ungrounded statistical figures (fabricated percentages/multipliers/
   // magnitudes) in reader prose. v2-gated (returns [] on a v1 chapter → skip);

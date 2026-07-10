@@ -545,6 +545,104 @@ export function checkBookAphorismRepetition(chapters: ChapterV21[]): BookRepetit
   return findings.sort((a, b) => b.chapters.length - a.chapters.length);
 }
 
+// ── BP34.tail_clone — recurring distinctive sentence TAIL (CF-J, 2026-07-09) ────
+//
+// The radical-candor release review (§12) found a three-chapter near-verbatim
+// signature clone the verbatim BP34 check above MISSED: "…comes back on a date, or
+// it drifts." (ch3) / "…comes back on a short clock, or it drifts." (ch6) / "The
+// promise gets a named path, or it drifts." (ch9). The sentence VARIES around a
+// fixed final clause, so whole-sentence normalization never collapses the three.
+//
+// The tail-clone check keys on the sentence's FINAL COMMA-CLAUSE — the span after
+// the last comma, normalized to 3-5 words (matching the review's quoted clone
+// ", or it drifts") — and fires ONE advisory per tail that closes a sentence in
+// ≥3 chapters. Two guards keep it narrow:
+//   (1) COMMA-ANCHORED — the tail must be a clause set off by a comma. Plain
+//       phrase endings ("…of the chapter.", "…at the end of the day.") never
+//       carry the comma and are structurally excluded.
+//   (2) CONTENT WORD — the normalized tail must carry ≥1 non-stopword ("drifts"),
+//       so connective-only clauses (", and so on") never key.
+// Same candidate surfaces as BP34 but WITHOUT the aphorism shape gate (the clone
+// hides inside ordinary declarative sentences). Advisory (MINOR), like its parent.
+//
+// MEASURED (2026-07-09): gold start-with-why 1 (", not a slogan" ch4/11/12 — an
+// honest soft refrain, pinned as the measured count, exactly as the C31/C33 gold
+// pins do), the-culture-code 0, HOM package 0, multipliers package 0,
+// radical-candor 1 (", or it drifts" ch3/6/9 — the target). Pins live in
+// tests/aphorism-repetition.test.ts.
+const TAIL_CLONE_MIN_CHAPTERS = 3;
+const TAIL_MIN_WORDS = 3;
+const TAIL_MAX_WORDS = 5;
+
+// Function/connective words that can never make a tail distinctive on their own.
+const TAIL_STOPWORDS = new Set((
+  "the a an of in on at to for and or but it its is are was were be been being this that these those " +
+  "you your yours we our ours they their theirs he she his her him them not no nor so as by with from " +
+  "too then than there here one ones do does did done can could will would should shall may might must " +
+  "have has had having what when where who whom whose how why if while because though although until " +
+  "unless once again also just only even still yet more most much many some any all both each few other " +
+  "another same own very"
+).split(/\s+/));
+
+/** The normalized final comma-clause of a sentence, when it is a 3-5 word span
+ *  carrying at least one content word — else null. Pure. */
+export function sentenceTailKey(sentence: string): string | null {
+  const m = sentence.match(/,\s*([^,;]+?)[.!?]*\s*$/);
+  if (!m) return null;
+  const words = m[1].toLowerCase().replace(/[^a-z0-9'\s-]/g, " ").split(/\s+/).filter(Boolean);
+  if (words.length < TAIL_MIN_WORDS || words.length > TAIL_MAX_WORDS) return null;
+  if (!words.some((w) => !TAIL_STOPWORDS.has(w))) return null;
+  return words.join(" ");
+}
+
+/** Same surface set as aphorismCandidateSentences, without the shape gate. */
+function tailCandidateSentences(chapter: ChapterV21): string[] {
+  const out: string[] = [];
+  const push = (text: string | undefined) => {
+    if (!text) return;
+    out.push(...splitSentences(text));
+  };
+  push(chapter.hook);
+  push(chapter.counterintuition);
+  push(chapter.keyTakeaway);
+  push(chapter.tryThisNow);
+  push(chapter.implementationPlan?.coreSkill);
+  for (const m of chapter.memorableLines ?? []) push(m?.text);
+  push(chapter.breakdown?.fastRead);
+  push(chapter.breakdown?.deepRead);
+  push(chapter.breakdown?.fullRead);
+  return out;
+}
+
+export function checkBookSentenceTailClone(chapters: ChapterV21[]): BookRepetitionFinding[] {
+  // normalized tail → { chapters, a readable sample sentence }
+  const byTail = new Map<string, { chapters: Set<number>; sample: string }>();
+  for (const ch of chapters) {
+    for (const sentence of tailCandidateSentences(ch)) {
+      const key = sentenceTailKey(sentence);
+      if (!key) continue;
+      const rec = byTail.get(key) ?? { chapters: new Set<number>(), sample: sentence };
+      rec.chapters.add(ch.number);
+      byTail.set(key, rec);
+    }
+  }
+  const findings: BookRepetitionFinding[] = [];
+  for (const [key, rec] of byTail) {
+    const chs = [...rec.chapters].sort((a, b) => a - b);
+    if (chs.length < TAIL_CLONE_MIN_CHAPTERS) continue;
+    findings.push({
+      ...finding(
+        "BP34.tail_clone",
+        "minor",
+        `the sentence tail ", ${key}" closes a sentence in ${chs.length} chapters (${chs.map((n) => `ch${n}`).join(", ")}) — e.g. "${truncate(rec.sample, 90)}". The frame varies but the final clause is a minted clone (the "…, or it drifts" class); give each chapter its own closing turn instead of reusing the tail.`,
+        rec.sample,
+      ),
+      chapters: chs,
+    });
+  }
+  return findings.sort((a, b) => b.chapters.length - a.chapters.length || a.evidence!.localeCompare(b.evidence!));
+}
+
 export function checkBookQuizChoiceLabelUniform(chapters: ChapterV21[]): BookRepetitionFinding[] {
   const hits: number[] = [];
   for (const ch of chapters) {

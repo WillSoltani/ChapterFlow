@@ -358,16 +358,19 @@ export function authorSchemaHint(bookId: string, chapterNumber: number): string 
   return `{"schemaVersion":"chapterflow-v21-authored","chapterId":"${chapterId}","number":${chapterNumber},"title":"...","readingTimeMinutes":7,"hook":"...(60-120 chars)","counterintuition":"...(1-2 sentences)","tryThisNow":"...(80-220 chars)","keyTakeaway":"...(140-220 chars)","breakdown":{"fastRead":"...(~400-700 chars)","deepRead":"...(~1200-1800 chars)","fullRead":"...(~2500-3500 chars)"},"examples":[{"exampleId":"ex01","title":"...","tags":["..."],"planSpec":{"domain":"...","audience":"...","stakes":"...","format":"...","requiredBeat":"..."},"scenario":"...(280-520 chars)","whatToDo":"...(120-240 chars)","whyItMatters":"...(120-240 chars)"}],"quiz":{"passingScorePercent":70,"questions":[{"questionId":"q01","prompt":"...","choices":["...","...","..."],"correctIndex":0,"explanation":"...(120-300 chars; why the move works)","bloomsLevel":"apply","depthLevel":"standard"}]},"reviewCards":[{"cardId":"c01","front":"...(30-200 chars)","back":"...(80-400 chars)","difficulty":"medium"}],"implementationPlan":{"title":"...(2-5 word skill name)","coreSkill":"<skill name>. ...(2-4 sentences)","ifThenPlans":[{"context":"...","plan":"If X, then Y."}],"twentyFourHourChallenge":"...","weeklyPractice":"..."},"memorableLines":[{"text":"...(exact sentence from the chapter; >=1 carries the central image)","location":"breakdown.deepRead","why":"..."}]}`;
 }
 
-/** SELF-VERIFY block (7 checks; kept <= 1300 chars — pinned by test. The ceiling rose
+/** SELF-VERIFY block (7 checks; kept <= 1400 chars — pinned by test. The ceiling rose
  *  from 1200 to 1300 for the CF-A HOOK, CF-D TERMS and CF-E TAKE-HOME items (5-7),
- *  net of a KEYS/LENGTH tightening. The 1300 cap still fights rule-count dilution). */
-export function authorSelfVerify(bookId: string, chapterNumber: number): string {
-  const relPath = authorChapterRelPath(bookId, chapterNumber);
+ *  net of a KEYS/LENGTH tightening; 1300 → 1400 for the CF-J item-4 SCAFFOLD clause
+ *  (page/section citations are internal coordinates, never reader prose — the
+ *  radical-candor §7 apparatus-leakage class; measured 1381). The cap still fights
+ *  rule-count dilution). */
+export function authorSelfVerify(bookId: string, chapterNumber: number, outputRelPath?: string): string {
+  const relPath = outputRelPath ?? authorChapterRelPath(bookId, chapterNumber);
   return `SELF-VERIFY before declaring done — run ALL SEVEN:
 1. KEYS — derive every quiz answer from your prose alone, blind; each must hit the stored correctIndex, and its explanation argue for exactly that choice. A key tests a move, not a source. Mismatch: re-key or rewrite.
 2. FACTS — confirm every claim, number, name, and case detail traces to the SOURCE PACKET above. Anything you cannot trace: delete or soften it. Never invent precision.
 3. LENGTH — confirm the chapter fits the brief's length budget. Over: cut, never compress by jargon. Under: deepen a real case, never pad.
-4. SCAFFOLD — scan every reader-facing field for scaffold vocabulary (slot names, shape/beat labels, anchor ids, "Fact 2"-style numbering, internal " / " label seams). None may appear.
+4. SCAFFOLD — scan every reader-facing field for scaffold vocabulary (slot names, shape/beat labels, anchor ids, "Fact 2"-style numbering, internal " / " label seams). Page/section citations (Ch./p./pp./"on page N") are internal coordinates, never reader prose. None may appear.
 5. HOOK — point at the stake (who loses/pays/misses what) and the fastRead's concrete beat before its first abstract term.
 6. TERMS — name the 2-4 terms this chapter stands on; confirm each got a plain first-use unpacking.
 7. TAKE-HOME — coreSkill opens with the skill name; no coined shorthand in actions; one memorableLine carries the central image, none reused.
@@ -527,6 +530,11 @@ export type AuthorCardArgs = {
    *  EXPLICIT writer instructions. null when the brief md is present but the json is not
    *  readable (the md already carries the VARIETY section, so the card degrades gracefully). */
   brief?: ChapterBriefV1 | null;
+  /** Model-bakeoff isolation: write the chapter to this pipeline-relative path instead of
+   *  the canonical state/chapters/ path. ORCHESTRATION DATA ONLY — the card's substantive
+   *  content is byte-identical across candidates; only this path (and the session id, which
+   *  never enters the card) may differ. Omitted → the canonical path, exactly as before. */
+  outputRelPath?: string;
 };
 
 /** Build the whole-chapter author card (target <= 25k chars; sections in the
@@ -534,7 +542,7 @@ export type AuthorCardArgs = {
 export function buildAuthorCard(args: AuthorCardArgs): string {
   const { bookId, chapterNumber, briefMd, packet, voice } = args;
   const nn = String(chapterNumber).padStart(2, "0");
-  const relPath = authorChapterRelPath(bookId, chapterNumber);
+  const relPath = args.outputRelPath ?? authorChapterRelPath(bookId, chapterNumber);
   const sections: string[] = [];
 
   sections.push(
@@ -636,7 +644,7 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
     authorSchemaHint(bookId, chapterNumber),
   );
 
-  sections.push("", authorSelfVerify(bookId, chapterNumber));
+  sections.push("", authorSelfVerify(bookId, chapterNumber, args.outputRelPath));
 
   return sections.join("\n");
 }
@@ -653,6 +661,16 @@ export type AuthorWriteOneOpts = {
   /** Override the book's total-chapter count (gates the content-device deal). When
    *  omitted, resolved authoritatively from deps.expectedChapterNumbers. */
   totalChapters?: number;
+  /** Model-bakeoff isolation: write to this pipeline-relative path instead of the
+   *  canonical state/chapters/ path (threaded into the card, the gate verb, and the
+   *  self-verify command). Callers overriding this MUST also override the io chapter
+   *  file hooks to the same location. Omitted → canonical path, exactly as before. */
+  outputRelPath?: string;
+  /** Model-bakeoff candidate pinning: override the author model / reasoning effort
+   *  for THIS call only. Omitted → the production pins (CHAPTERFLOW_AUTHOR_MODEL /
+   *  CHAPTERFLOW_AUTHOR_EFFORT, defaults unchanged). */
+  model?: string;
+  effort?: "minimal" | "low" | "medium" | "high" | "xhigh";
 };
 
 /**
@@ -672,7 +690,9 @@ export async function authorWriteOneChapter(
   const io = resolveAuthorIo(opts.io);
   const nn = String(chapterNumber).padStart(2, "0");
   const chapterId = authorChapterId(bookId, chapterNumber);
-  const relPath = authorChapterRelPath(bookId, chapterNumber);
+  const relPath = opts.outputRelPath ?? authorChapterRelPath(bookId, chapterNumber);
+  const writerModel = opts.model ?? AUTHOR_WRITER_MODEL;
+  const writerEffort = opts.effort ?? AUTHOR_WRITER_EFFORT;
 
   const briefMd = io.readBriefMd(bookId, chapterNumber);
   if (!briefMd) return { ok: false, reason: `ch${nn}: no rendered brief (chNN.brief.md) — run compile-chapter-briefs first` };
@@ -718,6 +738,7 @@ export async function authorWriteOneChapter(
   const voice = io.voiceCard(bookId);
   const mkCard = (brief: ChapterBriefV1 | null, md: string): string => buildAuthorCard({
     bookId, chapterNumber, totalChapters, briefMd: md, packet, voice, complaints: opts.complaints, brief,
+    outputRelPath: opts.outputRelPath,
   });
   const briefMdEffective = effectiveBrief !== machineBrief && effectiveBrief ? renderBriefMd(effectiveBrief) : briefMd;
   const baseCard = mkCard(effectiveBrief, briefMdEffective);
@@ -805,7 +826,7 @@ export async function authorWriteOneChapter(
     }
     const label = attempt === 1 ? `author-ch${nn}` : attempt > baseAttempts ? `author-ch${nn}-degraded` : `author-ch${nn}-retry${attempt - 1}`;
     const sessionId = deps.mkSessionId(label);
-    deps.log(`[autopilot] author ch${nn}: whole-chapter writer working (attempt ${attempt}, card ${card.length} chars, ${AUTHOR_WRITER_MODEL} @ ${AUTHOR_WRITER_EFFORT}, timeout ${Math.round(AUTHOR_WRITE_TIMEOUT_MS / 60000)}min)`);
+    deps.log(`[autopilot] author ch${nn}: whole-chapter writer working (attempt ${attempt}, card ${card.length} chars, ${writerModel} @ ${writerEffort}, timeout ${Math.round(AUTHOR_WRITE_TIMEOUT_MS / 60000)}min)`);
     // M-lane: pinned model/effort/timeout. The runner REJECTS on timeout (SIGKILL) —
     // catch it into the structured retry path; an unhandled throw here would escape
     // doAuthorWrite's halt taxonomy entirely (grill round-2b #12).
@@ -816,8 +837,8 @@ export async function authorWriteOneChapter(
         sessionId,
         cwd: PIPELINE_DIR,
         sandbox: "workspace-write",
-        model: AUTHOR_WRITER_MODEL,
-        reasoningEffort: AUTHOR_WRITER_EFFORT,
+        model: writerModel,
+        reasoningEffort: writerEffort,
         timeoutMs: AUTHOR_WRITE_TIMEOUT_MS,
       });
     } catch (err) {

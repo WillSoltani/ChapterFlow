@@ -407,7 +407,7 @@ test("author card: brief md verbatim + writer projection + schema hint + self-ve
   assert.ok(card.includes("gate-chapter state/chapters/zz-fixture-fact-ranking-ch03.v21-native.chapter.json"), "gate command names the exact output file");
   assert.ok(!card.includes("PRIOR-ATTEMPT COMPLAINTS"), "no complaints section on a first attempt");
   assert.ok(card.length <= AUTHOR_CARD_MAX_CHARS, `card must be <= ${AUTHOR_CARD_MAX_CHARS} chars, got ${card.length}`);
-  assert.ok(authorSelfVerify("zz-fixture-fact-ranking", 3).length <= 1300, "self-verify stays <= 1300 chars");
+  assert.ok(authorSelfVerify("zz-fixture-fact-ranking", 3).length <= 1400, "self-verify stays <= 1400 chars");
   console.log(`  [measure] author card on the golden fixture packet: ${card.length} chars`);
 });
 
@@ -472,8 +472,11 @@ test("author card: W1 QUALITY BAR (all four house rules) rides the ALWAYS-SENT c
   // The variable parts (brief md + packet projection) are represented by the fixture.
   // 2026-07-09: the pin rose 18,700 → 18,820 for the CF-I campaign's +599 card delta
   // (CF-I-2 register rule +391, CF-I-3 quiz application-over-lineage +208); ≤19,000 cap.
-  assert.ok(card.length <= 18820, `W1 card length budget: card must be <= 18,820 chars, got ${card.length}`);
-  console.log(`  [measure] W1 card with QUALITY BAR: ${card.length} chars (budget 18,820)`);
+  // 2026-07-09 CF-J: 18,820 → 18,940 for the self-verify item-4 page-citation clause
+  // ("Page/section citations … are internal coordinates, never reader prose", +91;
+  // measured card 18,911 — still under the ≤19,000-per-campaign governance cap).
+  assert.ok(card.length <= 18940, `W1 card length budget: card must be <= 18,940 chars, got ${card.length}`);
+  console.log(`  [measure] W1 card with QUALITY BAR: ${card.length} chars (budget 18,940)`);
 });
 
 // ── CF-A (G1): hook carries a stake + fastRead doorway ─────────────────────────
@@ -500,13 +503,13 @@ test("CF-A: rule 8 HOOK CARRIES A STAKE + DOORWAY rides the ALWAYS-SENT card; mo
   // no hook critic, no OPENER_TYPES change), so all five dealt modes can satisfy it.
   assert.match(AUTHOR_QUALITY_BAR, /Whatever opener mode is dealt/i, "rule 8 is explicitly mode-agnostic");
 
-  // Self-verify item 5 present (write-time stake self-check), block still <= 1300.
+  // Self-verify item 5 present (write-time stake self-check), block still <= the self-verify pin (1400 since CF-J).
   const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
   assert.ok(card.includes(sv), "self-verify block rides the card");
   assert.match(sv, /run ALL SEVEN/i, "self-verify header updated to seven checks");
   assert.match(sv, /5\. HOOK — point at the stake \(who loses\/pays\/misses what\)/, "self-verify item 5 (point-at-the-stake) present");
   assert.match(sv, /the fastRead's concrete beat before its first abstract term/, "self-verify item 5 covers the doorway check");
-  assert.ok(sv.length <= 1300, `self-verify stays <= 1300 chars, got ${sv.length}`);
+  assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
 
   // NEGATIVE: nothing was weakened. Rule 4 "Open plain" and the PREMIUM_BLOCK VOICE
   // rhythm rule (move 1) are byte-for-byte unchanged.
@@ -531,16 +534,16 @@ test("CF-I-2: rule 8 carries the REGISTER rule + citation-date DOORWAY tightenin
   // DOORWAY tightening: a doorway is someone acting or a cost landing, never a bare date (C34).
   assert.match(card, /someone acting or a cost landing, never a citation\/publication date on its own/i, "DOORWAY tightening folds in the citation-date exclusion (S4)");
 
-  // Self-verify item 4 (SCAFFOLD) now names beat labels; block still under the 1300 pin.
+  // Self-verify item 4 (SCAFFOLD) now names beat labels; block still under the self-verify pin (1400 since CF-J — item 4 also gains the page-citation clause).
   const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
   assert.match(sv, /4\. SCAFFOLD — scan every reader-facing field for scaffold vocabulary \(slot names, shape\/beat labels/, "self-verify item 4 adds beat labels to the scaffold list");
-  assert.ok(sv.length <= 1300, `self-verify stays <= 1300 chars, got ${sv.length}`);
+  assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
 
   // Net CF-I-2 card delta ≤ +400 chars (register-rule budget); the whole card stays under
   // the CF-I pin (18,820, raised from 18,700 in CF-I-3 for the +599 campaign delta).
-  assert.ok(card.length <= 18820, `W1 card length budget: card must be <= 18,820 chars, got ${card.length}`);
+  assert.ok(card.length <= 18940, `W1 card length budget: card must be <= 18,940 chars, got ${card.length}`);
   assert.ok(AUTHOR_QUALITY_BAR.length <= 6300, `QUALITY_BAR CF-I delta stays within budget, got ${AUTHOR_QUALITY_BAR.length}`);
-  console.log(`  [measure] CF-I-2 card: ${card.length} chars (budget 18,820); QUALITY_BAR ${AUTHOR_QUALITY_BAR.length}`);
+  console.log(`  [measure] CF-I-2 card: ${card.length} chars (budget 18,940); QUALITY_BAR ${AUTHOR_QUALITY_BAR.length}`);
 
   // NEGATIVE: nothing from CF-A/CF-B weakened — rule 7 register + rule 8 stake intact.
   assert.match(card, /7\. EXAMPLE CRAFT \[SCORED\]/, "rule 7 header unchanged");
@@ -565,10 +568,10 @@ test("CF-I-3: rule 5 carries KEY IS A MOVE; schemaHint + self-verify state appli
   assert.match(hint, /"explanation":"\.\.\.\(120-300 chars; why the move works\)"/, "schemaHint quiz explanation note extended to why-the-move-works");
   assert.ok(card.includes(hint), "the extended schemaHint rides the card");
 
-  // Self-verify item 1 (KEYS) gains the move-not-source check; block within the 1300 pin.
+  // Self-verify item 1 (KEYS) gains the move-not-source check; block within the self-verify pin (1400 since CF-J).
   const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
   assert.match(sv, /A key tests a move, not a source\. Mismatch: re-key or rewrite\./, "self-verify item 1 adds the move-not-source check before its re-key action");
-  assert.ok(sv.length <= 1300, `self-verify stays <= 1300 chars, got ${sv.length}`);
+  assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
 
   // CONSISTENCY: the C35 detector (critics/lineageKeyQuiz.ts) flags exactly the key
   // shape this rule forbids — its "Tie the move to <source> … so the frame is traceable"
@@ -585,8 +588,8 @@ test("CF-I-3: rule 5 carries KEY IS A MOVE; schemaHint + self-verify state appli
   assert.equal(questionKeysOnLineage(lineageKey), true, "the C35 detector fires on the very key shape rule 5 forbids (rule↔detector consistency)");
 
   // Whole-card budget: net CF-I campaign delta +599 (CF-I-2 +391 + CF-I-3 +208) under +600.
-  assert.ok(card.length <= 18820, `W1 card length budget: card must be <= 18,820 chars, got ${card.length}`);
-  console.log(`  [measure] CF-I-3 card: ${card.length} chars (budget 18,820); QUALITY_BAR ${AUTHOR_QUALITY_BAR.length}`);
+  assert.ok(card.length <= 18940, `W1 card length budget: card must be <= 18,940 chars, got ${card.length}`);
+  console.log(`  [measure] CF-I-3 card: ${card.length} chars (budget 18,940); QUALITY_BAR ${AUTHOR_QUALITY_BAR.length}`);
 });
 
 // ── CF-D (G3): PLAIN WORDS covers inherited terms of art, not only coined ──────
@@ -607,12 +610,12 @@ test("CF-D: PLAIN WORDS rule covers inherited-from-source terms + self-verify TE
   assert.match(plainLine, /one clause in the flow/i, "expert pace preserved — one clause, not a glossary");
   assert.ok(card.includes(plainLine), "extended PLAIN WORDS rule rides the always-sent card");
 
-  // Self-verify gains the TERMS item (item 6); the block still fits the 1300 pin.
+  // Self-verify gains the TERMS item (item 6); the block still fits the self-verify pin (1400 since CF-J).
   const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
   assert.match(sv, /run ALL SEVEN/i, "self-verify header advanced to seven checks");
   assert.match(sv, /6\. TERMS — name the 2-4 terms this chapter stands on; confirm each got a plain first-use unpacking\./, "self-verify TERMS item present");
   assert.match(sv, /5\. HOOK — point at the stake/, "prior item 5 still present (nothing dropped)");
-  assert.ok(sv.length <= 1300, `self-verify stays <= 1300 chars, got ${sv.length}`);
+  assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
   assert.ok(card.includes(sv), "self-verify block rides the card");
 });
 
@@ -654,11 +657,11 @@ test("CF-E impl-plan UX: rule 9 skill-name pattern + exemplar, coreSkill leads w
   assert.match(card, /none reused across chapters/, "rule 9 forbids reusing another chapter's line");
   assert.match(hint, /"memorableLines":\[\{"text":"\.\.\.\(exact sentence from the chapter; >=1 carries the central image\)"/, "schema hint carries the memorable-line selection rule");
 
-  // (e) SELF-VERIFY item 7 covers all three take-home checks in one line; block within the 1300 pin.
+  // (e) SELF-VERIFY item 7 covers all three take-home checks in one line; block within the self-verify pin (1400 since CF-J).
   const sv = authorSelfVerify("zz-fixture-fact-ranking", 3);
   assert.match(sv, /run ALL SEVEN/i, "self-verify advanced to seven checks");
   assert.match(sv, /7\. TAKE-HOME — coreSkill opens with the skill name; no coined shorthand in actions; one memorableLine carries the central image, none reused\./, "self-verify item 7 covers skill name + no-shorthand actions + central-image line");
-  assert.ok(sv.length <= 1300, `self-verify stays <= 1300 chars, got ${sv.length}`);
+  assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
   assert.ok(card.includes(sv), "self-verify block rides the card");
 
   // NEGATIVE — rule 3's timebox floor + body are byte-for-byte unchanged (not weakened).
