@@ -20,6 +20,16 @@
         "deploy-workflow",
         "verify-live-sync"
       ]
+    },
+    {
+      "bookId": "the-culture-code",
+      "packageSha256": "ef396658df3de38839be86c858e89cc6ba608b0258b2208f83d24da8cbbf5964",
+      "publishedAt": "2026-07-10T08:34:53.108Z",
+      "steps": [
+        "upload-book-packages-to-s3",
+        "deploy-workflow",
+        "verify-live-sync"
+      ]
     }
   ]
 }
