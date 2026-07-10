@@ -372,6 +372,9 @@ export function renderSourceUsePlanLines(plan: SourceUsePlanV1): string[] {
   const lines: string[] = [
     `SOURCE-USE PLAN (compiler-owned; plan ${shortHash(sourceUsePlanHash(plan))})`,
     "Binding license table for this chapter's content units. You cannot relabel origin, form, claim strength, sufficiency, or detail permissions — a change routes upstream to source-plan recompile, never through your output.",
+    // IMP-04 instruction 2: the compact evidence-sufficiency decision policy —
+    // pick the safe FORM by what the evidence supports (no magic phrase required).
+    "CHOOSE THE SAFE FORM BY EVIDENCE: enough verified human/event detail → the permitted sourced form only; a concept you can teach directly → direct explanation (no cast, prop, or scene needed); an observable workflow helps → a generic operational scenario with role labels; a fictional contrast materially helps → a constructed application framed as hypothetical at first entry; not enough evidence → stop and request an upstream source-plan action, never invent to fill the gap.",
   ];
 
   const caseUnits = plan.units.filter((u) => u.form === "case");

@@ -234,7 +234,8 @@ test("plan card block: compact, grouped, hash-stamped; carries the scene license
   assert.ok(block.includes("ch01.ex.thin: NO scene license"), "the explanation degrade is rendered as an explicit no-scene line");
   assert.ok(block.includes("present it as the book's device"), "device framing rendered");
   assert.ok(block.includes("Direct conceptual explanation is a first-class form"), "direct explanation is affirmatively licensed, never penalized");
-  assert.ok(block.length <= 2800, `plan block stays compact (<= 2,800 chars), got ${block.length}`);
+  // IMP-04 added the compact evidence-sufficiency decision-policy line (~570 chars).
+  assert.ok(block.length <= 3200, `plan block stays compact (<= 3,200 chars), got ${block.length}`);
   assert.ok(lines.length <= 16, `grouped rendering (no per-fact line explosion), got ${lines.length} lines`);
 });
 

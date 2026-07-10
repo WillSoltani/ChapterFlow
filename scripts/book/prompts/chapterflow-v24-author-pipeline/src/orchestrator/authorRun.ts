@@ -849,7 +849,10 @@ export async function authorWriteOneChapter(
       // IMP-01: in-loop retries pass the failed CANDIDATE (it is not on disk);
       // the attempt-1 regen seed still reads the prior committed draft.
       const draft = candidate ?? io.loadChapters(bookId).find((c) => c.number === chapterNumber);
-      return draft ? registerAdvisoryRetryBlock(draft) : "";
+      // IMP-04: pass the source-use plan so the C37 source-register advisories
+      // (claim-strength overreach, unsupported scene, generic-specific leak) ride
+      // the same retry/repair routing as C31-C36. No-op without a plan.
+      return draft ? registerAdvisoryRetryBlock(draft, plan) : "";
     } catch { return ""; }
   };
   // CF-I regen surfacing (live re-mint, multipliers ch02): a REGEN is always requested

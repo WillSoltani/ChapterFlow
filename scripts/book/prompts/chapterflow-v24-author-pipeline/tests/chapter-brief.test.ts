@@ -525,7 +525,7 @@ test("B1: rendered md contains every section and stays ≤ 9200 chars on the fix
       // (fixture measures ~7.8k). The CARD no longer pays this twice — B0 strips the
       // md's VARIETY section when the machine brief renders the explicit block, so the
       // card's ≤25k budget holds (real-size pin lives in stier2-levers.test.ts).
-      assert.ok(md.length <= 9600, `ch${brief.chapterNumber} md is ${md.length} chars (cap 9600)`); // 8200 → 9200 (STIER-3 v4) → 9600: CF-C THIS-CHAPTER'S-JOB / NOT-THIS-CHAPTER line in VARIETY (fixture measures ~9.5k)
+      assert.ok(md.length <= 10000, `ch${brief.chapterNumber} md is ${md.length} chars (cap 10000)`); // 8200 → 9200 (STIER-3 v4) → 9600 (CF-C job lines) → 10000: IMP-04 instr-4 CAST role-label default + constructed-lead framing (fixture measures ~9.9k)
     }
   });
 });

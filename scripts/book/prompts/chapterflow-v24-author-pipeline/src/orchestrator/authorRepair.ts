@@ -181,7 +181,10 @@ export function buildRepairCard(opts: {
 }): string {
   const { chapter, brief, complaints, scopes, relPath } = opts;
   const criteria = [...new Set(complaints.map(stripRemedyClauses))].map((c) => `- ${c}`).join("\n");
-  const regAdvisories = registerAdvisoryFixLines(chapter);
+  // IMP-04: thread the plan so the C37 source-register family rides the SAME
+  // repair-directive surfacing as C31-C36 (advisory text only; legacy books
+  // pass null and get exactly the old set).
+  const regAdvisories = registerAdvisoryFixLines(chapter, opts.plan ?? null);
   const dealt: string[] = [];
   if (scopes.includes("quiz") && brief?.quizStemShapes?.length) {
     dealt.push(`Quiz deals still bind: stem shapes ${brief.quizStemShapes.join(", ")}; distractor failure modes ${(brief.quizFailureModes ?? []).join(", ")}; fact order ${(brief.questionFactOrder ?? []).join(",")}; answer-index pattern unchanged. HARD length caps: the key may be the uniquely LONGEST choice in at most ONE of the 9 questions and uniquely SHORTEST in at most FOUR — land keys mid-length.`);

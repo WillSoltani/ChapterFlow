@@ -478,8 +478,12 @@ test("IMP-05: the diet actually shrank the card; instruction count fell; budget 
   const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
   const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd: renderBriefMd(brief), packet: GOLDEN_PACKET, voice: null });
   const m = authorCardMetrics(card);
-  // IMP-03 left the fixture card at 19,924; the IMP-05 diet brings it under 15,000.
-  assert.ok(m.chars <= 15000, `dieted card must be <= 15,000 chars, got ${m.chars} (was 19,924 after IMP-03)`);
+  // IMP-03 left the fixture card at 19,924; the IMP-05 diet brought it to 14,862
+  // (pin 15,000). IMP-04 instruction 4 adds the CAST role-label default + the
+  // constructed-lead first-entry framing to the brief render (~230 chars on this
+  // fixture, already tightened once) — a required register addition, so the pin
+  // moves 15,000 → 15,200. The diet ratchet stands: ~4.7k under the pre-diet card.
+  assert.ok(m.chars <= 15200, `dieted card must be <= 15,200 chars, got ${m.chars} (was 19,924 after IMP-03)`);
   assert.ok(m.controlChars <= 4600, `control blocks must be <= 4,600 chars, got ${m.controlChars} (was ~10,900)`);
   // Rule-count dilution signal: the control blocks carry far fewer directive lines.
   assert.ok(m.instructions <= 40, `directive-line count stays low, got ${m.instructions}`);

@@ -734,7 +734,7 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
     lines.push(
       brief.leadThread.kind === "owned-case"
         ? ownedCaseLine
-        : `- LEAD THREAD: ${brief.leadThread.name} carries this chapter — the fastRead and at least 2 examples follow ${brief.leadThread.name}'s situation; other cast support. Introduce invented people role-BEFORE-name in varied wording (never one fixed "call her X" phrase).`,
+        : `- LEAD THREAD: ${brief.leadThread.name} carries this chapter — the fastRead and at least 2 examples follow ${brief.leadThread.name}'s situation; other cast support. This thread is a CONSTRUCTED application: make its non-factual status clear at first entry in natural wording (varied per scene; no single fixed phrase), and never let a later paragraph report the invented events as history. Introduce invented people role-BEFORE-name in varied wording (never one fixed "call her X" phrase).`,
     );
   }
   // STIER-2 P12 — the dealt quiz craft (the universal TRANSFORM recipe lives in the card).
@@ -842,7 +842,12 @@ export function renderBriefMd(brief: ChapterBriefV1): string {
   lines.push("");
   lines.push("## CAST");
   lines.push(`Invented first names reserved for ch${nn}: ${brief.cast.join(", ") || "(none)"}.`);
-  lines.push("Use only these; never a real source-person name.");
+  // IMP-04 instruction 4: role labels are the DEFAULT register for invented people;
+  // a reserved proper name is licensed only inside a typed constructed application
+  // (the dealt lead thread is one) where the name materially aids comprehension.
+  lines.push(
+    "Invented people default to ROLE LABELS (\"a plant manager\") — a generic scenario never needs a name. Spend a name ONLY in a clearly-framed constructed application (your dealt lead thread counts) where it materially helps. When naming, use only these; never a real source-person name.",
+  );
   lines.push("");
   lines.push("## QUIZ KEY PATTERN");
   lines.push(`Correct-answer indexes (0-2) for Q1-Q${brief.answerIndexPattern.length}, in order: ${brief.answerIndexPattern.join(", ")}.`);

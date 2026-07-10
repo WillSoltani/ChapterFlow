@@ -366,6 +366,15 @@ export type CriticCheckId =
   | "C33.beat_vocabulary_echo"
   | "C34.citation_date_doorway"
   | "C35.lineage_key_quiz"
+  // IMP-04 source-register family (C37) — advisory, plan-aware. Operationalizes
+  // the compiler-owned source-use plan (IMP-03): claim-strength overreach
+  // (causal language where no unit permits causal), unsupported scene completion
+  // (staged scene where no unit has a scene license), and generic-scenario
+  // specifics (dates/exact metrics/credentials where the plan has no source-bound
+  // support). See critics/sourceRegister.ts. MINOR; calibration-pending.
+  | "C37.claim_strength_overreach"
+  | "C37.unsupported_scene_completion"
+  | "C37.generic_specific_leak"
   // Uniform success — every example resolves in clean instant success, no
   // friction-bearing scene anywhere in the chapter's slate (advisory).
   | "C28.uniform_success"
