@@ -1315,6 +1315,7 @@ async function doResearch(bookId: string, deps: AutopilotDeps): Promise<Autopilo
     const passStartMs = Date.now();
     const r = await spawnAndLog(bookId, {
       task,
+      role: "research",
       sessionId: deps.mkSessionId(pass === 1 ? "research" : `research-retry-${pass}`),
       cwd: PIPELINE_DIR,
       sandbox: "workspace-write",
@@ -1445,6 +1446,7 @@ async function ensureSourceReadyBeforeWrite(bookId: string, deps: AutopilotDeps,
     const task = buildSourcePrewriteRepairTask(bookId, lastReport, attempt + 1, SOURCE_REPAIR_MAX_PASSES);
     const r = await spawnAndLog(bookId, {
       task,
+      role: "source-repair",
       sessionId: deps.mkSessionId(`source-repair-${attempt + 1}`),
       cwd: PIPELINE_DIR,
       sandbox: "workspace-write",
@@ -1482,7 +1484,7 @@ async function doWrite(bookId: string, status: BookStatus, maxParallel: number, 
     const writerSessionId = deps.mkSessionId(`write-ch${n}`);
     deps.log(`[autopilot] write ch${n}: writer working`); // per-chapter START (one writer agent per chapter)
     const task = `${deps.readTask(card)}\n\n---\nYou are a fresh Writer subagent for bookId ${bookId}, chapter ${n}. Author the chapter per the dispatch card above.\n\n${WRITER_SELF_VERIFY}`;
-    const r = await spawnAndLog(bookId, { task, sessionId: writerSessionId, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+    const r = await spawnAndLog(bookId, { task, role: "author-writer", sessionId: writerSessionId, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
     if (!r.ok) deps.log(`[autopilot] write ch${n} session exited ${r.exitCode}`);
     else deps.log(`[autopilot] write ch${n}: done`); // per-chapter SUCCESS
     // Record the authoring session so finalize's author≠reviewer invariant has a real AUTHOR
@@ -1567,7 +1569,7 @@ TARGETED REPAIR PLAYBOOK
 Run gate-chapter on every changed chapter and then qc-converge once at the end. If the same AS5/AS6/AS8/AS10 family remains after a real rewrite, stop surface edits and re-author that whole field from the source packet instead of nudging words.
 
 ${converge.stdout}`;
-      const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(`gate-repair-${attempt}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+      const r = await spawnAndLog(bookId, { task, role: "autopilot-repair", sessionId: deps.mkSessionId(`gate-repair-${attempt}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
       if (!r.ok) deps.log(`[autopilot] gate repair session exited ${r.exitCode}`);
       continue;
     }
@@ -1657,7 +1659,7 @@ ${converge.stdout}`;
       heartbeat();
       deps.log(`[autopilot] gate major repair ${shard.label}: working (${shard.majors.length} major(s))`);
       const task = buildGateMajorRepairTask(bookId, shard.majors, deps);
-      const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(`gate-major-repair-${gateContentAttempts}-${shard.label}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+      const r = await spawnAndLog(bookId, { task, role: "autopilot-repair", sessionId: deps.mkSessionId(`gate-major-repair-${gateContentAttempts}-${shard.label}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
       deps.log(`[autopilot] gate major repair ${shard.label}: exited ${r.exitCode}`);
       return r;
     });
@@ -1696,7 +1698,7 @@ ${chapterList}
 For each chapter listed, read state/chapters/${bookId}-ch<NN>.v21-native.chapter.json and its source-v2 sidecar under .chapterflow/runs/${bookId}/**/sidecars/source/ch<NN>.source.json. Report ONLY concrete claims, numbers, or named cases in the chapter that are NOT visible in that chapter's source sidecar. Output a concise plain-text summary; no file edits, no required JSON shape.`;
   const sessionId = deps.mkSessionId("qc-shadow-review");
   try {
-    const r = await spawnAndLog(bookId, { task, sessionId, cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort: "medium" }, deps);
+    const r = await spawnAndLog(bookId, { task, role: "autopilot-scout", sessionId, cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort: "medium" }, deps);
     deps.log(`[autopilot] qc-shadow review (${highRisk.length} high-risk chapter(s)) ${r.ok ? "completed" : `exited ${r.exitCode}`} — advancing to formal QC regardless (shadow review never gates)`);
   } catch (e) {
     deps.log(`[autopilot] qc-shadow review spawn error: ${(e as Error)?.message ?? String(e)} — advancing to formal QC (shadow review is best-effort and never blocks)`);
@@ -1924,7 +1926,7 @@ export async function scoutCrossChapterVariety(bookId: string, deps: AutopilotDe
   const empty: VarietyScoutResult = { rewrites: [], blockingFindings: [], submission: null, fingerprints: [] };
   let r: CodexAgentResult;
   try {
-    r = await spawnAndLog(bookId, { task: buildVarietyScoutTask(bookId), sessionId: deps.mkSessionId("pre-qc-variety-scout"), cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort: "high" }, deps);
+    r = await spawnAndLog(bookId, { task: buildVarietyScoutTask(bookId), role: "autopilot-scout", sessionId: deps.mkSessionId("pre-qc-variety-scout"), cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort: "high" }, deps);
   } catch (e) {
     deps.log(`[autopilot] pre-QC variety scout spawn error: ${(e as Error)?.message ?? String(e)} — advancing to QC`);
     return empty;
@@ -2013,7 +2015,7 @@ HOW: ${rw.instruction}
 
 After editing, run \`npx tsx src/cli.ts qc-converge ${bookId}\` (must stay DETERMINISTIC-CLEAN) and \`npx tsx src/cli.ts gate-chapter state/chapters/${bookId}-ch${pad(n)}.v21-native.chapter.json\` (0 blockers).${dealt}`;
     const sid = deps.mkSessionId(`pre-qc-variety-${pass}-ch${n}`);
-    const r = await spawnAndLog(bookId, { task, sessionId: sid, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+    const r = await spawnAndLog(bookId, { task, role: "autopilot-repair", sessionId: sid, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
     if (!r.ok) deps.log(`[autopilot] pre-QC variety repair ch${n} exited ${r.exitCode}`);
     // A real edit re-authors the chapter → author provenance moves to this session; a no-op
     // repair leaves content identical so the create-once guard throws and the prior author stands.
@@ -2076,7 +2078,7 @@ No markdown outside that JSON fence.`;
 async function scoutPreQcAlignment(bookId: string, deps: AutopilotDeps): Promise<PreQcAlignmentRepair[]> {
   let r: CodexAgentResult;
   try {
-    r = await spawnAndLog(bookId, { task: buildPreQcAlignmentScoutTask(bookId), sessionId: deps.mkSessionId("pre-qc-readiness-scout"), cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort: "high" }, deps);
+    r = await spawnAndLog(bookId, { task: buildPreQcAlignmentScoutTask(bookId), role: "autopilot-scout", sessionId: deps.mkSessionId("pre-qc-readiness-scout"), cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort: "high" }, deps);
   } catch (e) {
     deps.log(`[autopilot] pre-QC readiness scout spawn error: ${(e as Error)?.message ?? String(e)} — advancing to QC`);
     return [];
@@ -2147,7 +2149,7 @@ After editing, run:
   npx tsx src/cli.ts qc-converge ${bookId}
 Both must stay clean before you report done.${dealt}`;
     const sid = deps.mkSessionId(`pre-qc-readiness-${pass}-ch${n}`);
-    const r = await spawnAndLog(bookId, { task, sessionId: sid, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+    const r = await spawnAndLog(bookId, { task, role: "autopilot-repair", sessionId: sid, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
     if (!r.ok) deps.log(`[autopilot] pre-QC readiness repair ch${n} exited ${r.exitCode}`);
     try { recordAuthorProvenance(`${bookId}-ch${pad(n)}`, sid, chapterContentHashByNumber(bookId, n)); }
     catch { /* provenance unchanged (no-op repair) — best-effort */ }
@@ -2720,7 +2722,7 @@ export async function brokerReviewer(bookId: string, roundId: string, card: stri
   // pass can't emit a flickering blocking finding. Other roles keep the codex default.
   const reasoningEffort: "high" | undefined = role === "sweep" ? "high" : undefined;
   const attempt = async (taskText: string, sid: string, fileLabel: string): Promise<{ agentOk: boolean; json: string | null; submitOk: boolean; rejection?: string }> => {
-    const r = await spawnAndLog(bookId, { task: taskText, sessionId: sid, cwd: ws.cwd, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort }, deps);
+    const r = await spawnAndLog(bookId, { task: taskText, role: "qc-reviewer", sessionId: sid, cwd: ws.cwd, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort }, deps);
     if (!r.ok) { deps.log(`[autopilot] reviewer ${label} exited ${r.exitCode}`); return { agentOk: false, json: null, submitOk: false, rejection: `agent exited ${r.exitCode}` }; }
     // Extract from the FULL stdout first: spawnCodexAgent's finalMessage is only the LAST
     // non-empty line (the closing ``` of a fenced block), so `finalMessage || stdout` would

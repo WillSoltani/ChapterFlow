@@ -4380,6 +4380,37 @@ async function runReaderBudgetCheck(args: string[], flags: Record<string, string
   return blockers > 0 ? 1 : 0;
 }
 
+/** `exec-qualify` — IMP-00 operator preflight: probe the installed codex binary
+ *  (`--version` + `exec --help`, NO model call), report which envelope-required
+ *  flags it supports, and persist the qualification record the hermetic spawn
+ *  path caches against. Run after any codex upgrade; a missing required flag
+ *  means every real spawn will fail closed until the CLI supports it. */
+async function runExecQualify(flags: Record<string, string | boolean>): Promise<number> {
+  const { findCodexBinary, codexAvailable } = await import("./orchestrator/codexAgent.js");
+  const { qualifyCodexCli, PROBED_FLAGS } = await import("./exec/cliQualification.js");
+  const { defaultManifestSink, EXECUTION_PROFILES } = await import("./exec/executionEnvelope.js");
+  const bin = typeof flags["bin"] === "string" ? flags["bin"] : findCodexBinary();
+  if (!codexAvailable(bin)) {
+    console.error(`codex binary not found (${bin}). Install codex or set CHAPTERFLOW_CODEX_BIN.`);
+    return 2;
+  }
+  const qual = await qualifyCodexCli({ bin, cacheDir: defaultManifestSink() });
+  console.log(`codex: ${qual.version} (${qual.binPath})`);
+  const required = new Set<string>();
+  for (const p of Object.values(EXECUTION_PROFILES)) for (const f of p.requiredCliFlags) required.add(f);
+  let missingRequired = 0;
+  for (const flag of PROBED_FLAGS) {
+    const ok = qual.flags[flag];
+    const req = required.has(flag);
+    if (req && !ok) missingRequired++;
+    console.log(`  ${ok ? "✓" : "✗"} ${flag}${req ? "  (required)" : ""}`);
+  }
+  console.log(missingRequired === 0
+    ? "exec-qualify: PASS — every envelope-required flag is supported; qualification cached."
+    : `exec-qualify: FAIL — ${missingRequired} required flag(s) unsupported; hermetic spawns will fail closed.`);
+  return missingRequired === 0 ? 0 : 1;
+}
+
 /** `codex-agent-run <task-file>` — debug verb: spawn ONE headless codex agent with
  *  a task file as its instruction and print the result. Proves `codex exec` works
  *  in-environment before relying on the autopilot. Needs a real codex binary. */
@@ -4398,7 +4429,7 @@ async function runCodexAgentRun(args: string[], flags: Record<string, string | b
   const sessionId = typeof flags["session"] === "string" ? flags["session"] : `debug-${Date.now().toString(36)}`;
   const sandbox = (typeof flags["sandbox"] === "string" ? flags["sandbox"] : "workspace-write") as "read-only" | "workspace-write" | "danger-full-access";
   const timeoutMs = typeof flags["timeout-ms"] === "string" ? parseInt(flags["timeout-ms"], 10) : undefined;
-  const r = await spawnCodexAgent({ task, sessionId, cwd: process.cwd(), sandbox, timeoutMs });
+  const r = await spawnCodexAgent({ task, role: "cli-adhoc", sessionId, cwd: process.cwd(), sandbox, timeoutMs });
   console.log(`codex-agent-run: exit ${r.exitCode} (${r.durationMs}ms), session ${r.sessionId}`);
   console.log(`--- final message ---\n${r.finalMessage}`);
   if (!r.ok && r.stderr) console.error(r.stderr.slice(0, 1000));
@@ -5746,6 +5777,8 @@ async function main() {
       return runBookStatus(args, flags);
     case "doctor":
       return runDoctor(args, flags);
+    case "exec-qualify":
+      return runExecQualify(flags);
     case "authoring-guardrails":
       return runAuthoringGuardrails(args, flags);
     case "promote-book":

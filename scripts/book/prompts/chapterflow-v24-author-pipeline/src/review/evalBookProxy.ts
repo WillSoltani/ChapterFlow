@@ -567,6 +567,7 @@ export async function runEvalBookProxy(args: string[], flags: Record<string, str
           log(`[eval-book] ${id} r${readerNo}: attempt ${attempt} (session ${sessionId})`);
           const r = await spawnCodexAgent({
             task,
+            role: "eval-book",
             sessionId,
             cwd: REPO_ROOT,
             sandbox: "read-only",

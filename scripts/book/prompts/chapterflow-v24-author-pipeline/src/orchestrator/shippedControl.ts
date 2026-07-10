@@ -161,6 +161,7 @@ async function runControlPanel(
       const sessionId = deps.mkSessionId(`shipped-control-r${readerNo}${attempt > 1 ? "-r2" : ""}`);
       const r = await deps.spawn({
         task,
+        role: "shipped-control",
         sessionId,
         cwd: resolve(dirname(relPath)),
         sandbox: "read-only",

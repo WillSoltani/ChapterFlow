@@ -145,6 +145,7 @@ async function reviewOneChapter(
     log(`[eval-proxy] ${bookId} ch${nn}: reader attempt ${attempt} (session ${sessionId})`);
     const r = await spawnCodexAgent({
       task,
+      role: "eval-reader",
       sessionId,
       cwd: REPO_ROOT,
       sandbox: "read-only",

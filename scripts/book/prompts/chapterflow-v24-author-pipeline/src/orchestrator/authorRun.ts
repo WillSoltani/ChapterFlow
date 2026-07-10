@@ -834,6 +834,7 @@ export async function authorWriteOneChapter(
     try {
       r = await deps.spawn({
         task: card,
+        role: "author-writer",
         sessionId,
         cwd: PIPELINE_DIR,
         sandbox: "workspace-write",

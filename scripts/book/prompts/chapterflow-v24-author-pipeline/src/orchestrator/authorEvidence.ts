@@ -272,6 +272,7 @@ async function spawnJsonReader(args: {
     }
     const r = await deps.spawn({
       task: args.task,
+      role: "author-evidence",
       sessionId,
       cwd: PIPELINE_DIR,
       sandbox: "read-only",

@@ -10,3 +10,7 @@ state/books/_blocked/_archive-*/
 
 # Test-only scratch state root (Prompt 11 state-root injection lands fixtures here).
 tests/.tmp/
+
+# IMP-00 hermetic-execution evidence: per-spawn effective-context manifests, result
+# sidecars, and the CLI qualification cache. Generated per run — never corpus.
+logs/exec/

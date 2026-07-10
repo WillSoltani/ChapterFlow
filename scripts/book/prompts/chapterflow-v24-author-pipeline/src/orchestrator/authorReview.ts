@@ -844,6 +844,7 @@ export async function reviewOneChapter(
     lastSessionId = sessionId;
     const r = await deps.spawn({
       task,
+      role: "chapter-reviewer",
       sessionId,
       cwd: PIPELINE_DIR,
       sandbox: "read-only",
@@ -1191,6 +1192,7 @@ export async function runBookAcceptance(
           lastSessionId = sessionId;
           const r = await deps.spawn({
             task,
+            role: "book-acceptance-reader",
             sessionId,
             cwd: PIPELINE_DIR,
             sandbox: "read-only",

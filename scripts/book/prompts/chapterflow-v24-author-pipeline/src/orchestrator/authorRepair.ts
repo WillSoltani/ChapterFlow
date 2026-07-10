@@ -313,6 +313,7 @@ export async function doRepairOneChapter(
   try {
     const r = await deps.spawn({
       task: card,
+      role: "author-repair",
       sessionId,
       cwd: PIPELINE_DIR,
       sandbox: "workspace-write",

@@ -1,0 +1,60 @@
+{
+  "schema": "contract-manifest-v1",
+  "frozenAtIso": "2026-07-10T09:52:47.272Z",
+  "contracts": [
+    {
+      "name": "attempt-evidence-manifest",
+      "version": 1,
+      "ownerPrompt": "IMP-10",
+      "hash": "fecbfaaf645ec1634d3fb7e8c61445f495c333c3eb1023aa79dc76461ecfa9d9"
+    },
+    {
+      "name": "candidate-transaction",
+      "version": 1,
+      "ownerPrompt": "IMP-01",
+      "hash": "531916c55fb467e71053455a8b22c1fe20896687cf523cfc030de80f6393eb68"
+    },
+    {
+      "name": "effective-context-manifest",
+      "version": 1,
+      "ownerPrompt": "IMP-00",
+      "hash": "11901cface6f421ddf959b4ba137fc87e97179dd6e30144b89dab13022b2bd5a"
+    },
+    {
+      "name": "execution-profile",
+      "version": 1,
+      "ownerPrompt": "IMP-00",
+      "hash": "aa9a95b242d686ca3ab146aaada810af66eb55cb17eba2727b3be0d398cd5963"
+    },
+    {
+      "name": "repair",
+      "version": 1,
+      "ownerPrompt": "IMP-07",
+      "hash": "6641ed79c7fe682cf92d0ae3733a33c6f6fc513a888fb3d6a027b2a8db24b149"
+    },
+    {
+      "name": "review-output",
+      "version": 1,
+      "ownerPrompt": "IMP-08",
+      "hash": "f23414bbce201f5ffaa684cec569dae83bed8a99a44a5dbd6b37ef6396c9254f"
+    },
+    {
+      "name": "route-result",
+      "version": 1,
+      "ownerPrompt": "IMP-02",
+      "hash": "d8257c53ed3d6bf3a4f514d2e37155a4821ade226449e4aef12195ba9b76f74d"
+    },
+    {
+      "name": "source-use-plan",
+      "version": 1,
+      "ownerPrompt": "IMP-03",
+      "hash": "8a07e86f23c3a40c585067cc6e85015600b1fde5ba2e51e7d9f15da2d9314b67"
+    },
+    {
+      "name": "worker-implementation-report",
+      "version": 1,
+      "ownerPrompt": "IMP-00",
+      "hash": "9fbb345945e86da7b19575a15532d82df6d8d119e1aced02c0c897b2dc7c3f0d"
+    }
+  ]
+}
