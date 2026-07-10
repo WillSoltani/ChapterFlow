@@ -1,0 +1,162 @@
+{
+  "schema": "worker-implementation-report-v1",
+  "promptId": "IMP-02",
+  "baselineHash": "d2361b757d096879f1e56db44dc73207709ddeaa",
+  "resultHash": "d2177211c3368df3f0ed9b8fd12b752db1529769b38fb9bb7af3a0f31cf1a143",
+  "contractVersions": {
+    "execution-profile": 1,
+    "effective-context-manifest": 1,
+    "route-result": 1,
+    "worker-implementation-report": 1
+  },
+  "filesChanged": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/modelPolicy.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/codexAgent.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRun.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/exec/executionEnvelope.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/runBakeoff.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/model-policy.test.ts"
+  ],
+  "requirementsImplemented": [
+    {
+      "requirementId": "IMP02-R01",
+      "status": "implemented",
+      "note": "One typed policy module; 17-class task enum (frozen contract) + role mapping."
+    },
+    {
+      "requirementId": "IMP02-R02",
+      "status": "implemented",
+      "note": "Named profiles incl. baseline-55 (normal, test-pinned), SOL candidates as data matrices, call-explicit tiers for diagnostic/confirmatory/judge/rollback/experimental."
+    },
+    {
+      "requirementId": "IMP02-R03",
+      "status": "implemented",
+      "note": "Baseline encoded EXACTLY; three role-level effort overrides where task-class cells would silently change behavior; all 20 routes pinned by test."
+    },
+    {
+      "requirementId": "IMP02-R04",
+      "status": "implemented",
+      "note": "Every real spawn resolves via resolveRoute (role required since IMP-00); ambient inheritance impossible."
+    },
+    {
+      "requirementId": "IMP02-R05",
+      "status": "implemented",
+      "note": "Model-id shape + effort-union validation as policy_preflight_failure before process creation; CLI capability preflight from IMP-00."
+    },
+    {
+      "requirementId": "IMP02-R06",
+      "status": "implemented",
+      "note": "Precedence: call-explicit (test injection / frozen bakeoff spec / operator pin) over normal profile, per-field, tier recorded."
+    },
+    {
+      "requirementId": "IMP02-R07",
+      "status": "implemented",
+      "note": "RouteResultV1 sidecar per spawn: task class, profile, policy version, requested model/effort, execution-profile hash, CLI version, outcome, fingerprint."
+    },
+    {
+      "requirementId": "IMP02-R08",
+      "status": "implemented",
+      "note": "Disjoint 7-outcome taxonomy classified at the spawn layer (timeout != infra != content; rate markers)."
+    },
+    {
+      "requirementId": "IMP02-R09",
+      "status": "implemented",
+      "note": "No replay of safeguard/refusal \u2014 structurally (no replay logic at this layer) + recorded outcome slot."
+    },
+    {
+      "requirementId": "IMP02-R10",
+      "status": "implemented",
+      "note": "API-only 'max' excluded from the local union and rejected explicitly (tested)."
+    },
+    {
+      "requirementId": "IMP02-R11",
+      "status": "implemented",
+      "note": "Static scans: baseline literal confined to policy + pricing table; SOL cannot be a silent default (IMP-00 scan retained)."
+    },
+    {
+      "requirementId": "IMP02-R12",
+      "status": "implemented",
+      "note": "Candidate/judge routes vary via the call-explicit tier without mutating the normal profile (bakeoff passes explicit specs)."
+    },
+    {
+      "requirementId": "IMP02-R13",
+      "status": "implemented",
+      "note": "Drift fingerprint over model/effort/task/policy/profile/CLI; stability + sensitivity tested."
+    },
+    {
+      "requirementId": "IMP02-R14",
+      "status": "implemented",
+      "note": "ROLLBACK_ORDER data (last-qualified-sol \u2192 baseline-55 emergency); no automatic per-call fallback exists anywhere."
+    },
+    {
+      "requirementId": "IMP02-R15",
+      "status": "implemented",
+      "note": "Route provenance references the exact ExecutionProfileV1 hash + CLI version (manifest carries instructions/config/tools)."
+    },
+    {
+      "requirementId": "IMP02-R16",
+      "status": "partial",
+      "note": "Requested identifiers + wall-clock recorded; the local codex text route exposes no resolved snapshot id or token counts \u2014 recorded honestly as the requested alias, never fabricated.",
+      "deferredTo": "IMP-10/IMP-11"
+    },
+    {
+      "requirementId": "IMP02-R17",
+      "status": "implemented",
+      "note": "provider_safeguard_or_refusal is a distinct bounded outcome; marker list deliberately EMPTY pending observed samples (a guessy matcher would conflate in both directions).",
+      "deferredTo": "IMP-11"
+    },
+    {
+      "requirementId": "IMP02-R18",
+      "status": "partial",
+      "note": "CLI capability preflight (IMP-00) + shape validation ship now; live per model-effort pair qualification is Stage-Q work.",
+      "deferredTo": "IMP-11"
+    },
+    {
+      "requirementId": "IMP02-R19",
+      "status": "implemented",
+      "note": "Fingerprint change = requalification trigger surface for IMP-13."
+    },
+    {
+      "requirementId": "IMP02-R20",
+      "status": "implemented",
+      "note": "Baseline profile retained as data; last-qualified-sol slot exists; every fallback requires an explicit decision (none is automatic)."
+    }
+  ],
+  "testsRequired": [
+    "route matrix per task class/profile; negative model/effort/profile validation",
+    "spawn provenance: explicit effective model/effort + profile hash",
+    "provider outcome classification (safeguard vs infra vs content)",
+    "static literal/direct-spawn scans",
+    "drift fingerprint; candidate/judge independence; rollback data; no silent fallback"
+  ],
+  "testsRun": [
+    "tests/model-policy.test.ts (11)",
+    "tests/exec-spawn-boundary.test.ts (4, retained)",
+    "full hermetic pipeline suite (237 files)"
+  ],
+  "testResults": {
+    "pass": 2109,
+    "fail": 0,
+    "xfail": 0,
+    "xpass": 0,
+    "skip": 18,
+    "xenv": 6,
+    "commands": [
+      "npx tsc -p . --noEmit",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts"
+    ]
+  },
+  "gateChanges": [],
+  "bookSpecificExceptions": [],
+  "unexpectedWrites": [],
+  "unresolvedRisks": [
+    "Safeguard/refusal marker calibration pending observed local events (empty list = never misclassified, also never auto-detected until calibrated).",
+    "Token/latency provider telemetry unavailable on the local codex text route; cost accounting for IMP-11 must use wall-clock + frozen price snapshots with explicit unavailable-field marking.",
+    "last-qualified-sol has no concrete matrix until a SOL profile qualifies (by design)."
+  ],
+  "dependencyAssumptions": [
+    "IMP-11 consumes the call-explicit tier for candidate/judge cells and calibrates safeguard markers from observed events.",
+    "IMP-13 consumes ROLLBACK_ORDER, NORMAL_PROFILE pinning, and the drift fingerprint as requalification triggers.",
+    "baselineHash is the IMP-01 commit (full sha)."
+  ]
+}

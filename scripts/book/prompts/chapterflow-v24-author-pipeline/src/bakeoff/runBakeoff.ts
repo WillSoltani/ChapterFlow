@@ -27,6 +27,7 @@
  * autopilot/publish path does after it.
  */
 
+import { BASELINE_MODEL } from "../orchestrator/modelPolicy.js";
 import { execFileSync } from "child_process";
 import { existsSync, mkdirSync, readFileSync } from "fs";
 import { resolve } from "path";
@@ -70,7 +71,7 @@ import { writeReports, type ReportInputs } from "./report.js";
 
 export const DEFAULT_BAKEOFF_MODELS = ["gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna"];
 export const DEFAULT_BAKEOFF_EFFORT: ReasoningEffort = "xhigh";
-export const DEFAULT_JUDGE_MODEL = "gpt-5.5";
+export const DEFAULT_JUDGE_MODEL = BASELINE_MODEL; // IMP-02: judge default rides the policy baseline until IMP-11 qualification
 export const DEFAULT_JUDGE_EFFORT: ReasoningEffort = "high";
 const RESEARCH_TIMEOUT_MS = 45 * 60 * 1000;
 const PREFLIGHT_TIMEOUT_MS = 5 * 60 * 1000;

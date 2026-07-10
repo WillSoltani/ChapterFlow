@@ -69,6 +69,7 @@ import {
 } from "./chapterTransaction.js";
 import { sha256Hex } from "../contracts/contractUtil.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
+import { BASELINE_MODEL } from "./modelPolicy.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -428,7 +429,7 @@ export const ROUND_TIMER_MINUTES = new Set<number>(ROUND_TIMER_MINUTES_LIST);
  *  halted run's ambient default was very likely already xhigh, so NO content gain is
  *  booked to this pin — it buys provenance, reproducibility, and timeout headroom.
  *  Reviewers/readers/QC/research stay untouched (instrument stability). */
-export const AUTHOR_WRITER_MODEL = process.env.CHAPTERFLOW_AUTHOR_MODEL ?? "gpt-5.5";
+export const AUTHOR_WRITER_MODEL = process.env.CHAPTERFLOW_AUTHOR_MODEL ?? BASELINE_MODEL;
 export const AUTHOR_WRITER_EFFORT = (process.env.CHAPTERFLOW_AUTHOR_EFFORT ?? "xhigh") as
   "minimal" | "low" | "medium" | "high" | "xhigh";
 /** xhigh whole-chapter writes need headroom over the 30-min codex default; the same-host

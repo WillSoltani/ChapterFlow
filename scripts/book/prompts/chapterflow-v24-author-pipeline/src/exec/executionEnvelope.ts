@@ -50,9 +50,11 @@ export function defaultManifestSink(): string {
   return join(EXEC_PIPELINE_ROOT, "logs", "exec");
 }
 
-/** The qualified baseline model. THE only place it is spelled for envelope
- *  defaults; IMP-02's typed policy becomes the owner when it lands. */
-export const BASELINE_MODEL = "gpt-5.5";
+/** The qualified baseline model — OWNED by modelPolicy since IMP-02; re-exported
+ *  here for envelope consumers. Profile defaults below resolve through the
+ *  policy so the decision table lives in exactly one module. */
+export { BASELINE_MODEL } from "../orchestrator/modelPolicy.js";
+import { resolveRoute as policyResolveRoute } from "../orchestrator/modelPolicy.js";
 
 /** Base environment names allowed through to every agent child process.
  *  Everything else in the parent env is DROPPED. HOME stays: agent shell
@@ -74,8 +76,11 @@ function makeProfile(
   role: AgentRole,
   workingDir: WorkingDirPolicyV1,
   allowedSandboxes: readonly CodexSandboxV1[],
-  defaultReasoningEffort: EffortLevelV1,
 ): ExecutionProfileV1 {
+  // IMP-02: the model/effort defaults come from the central policy (single
+  // decision table); they stay materialized on the profile because the frozen
+  // ExecutionProfileV1 contract requires explicit values (hashed provenance).
+  const route = policyResolveRoute({ role });
   return {
     schema: "execution-profile-v1",
     profileVersion: 1,
@@ -87,8 +92,8 @@ function makeProfile(
     neutralizeProjectDocs: true,
     envAllowlist: DEFAULT_ENV_ALLOWLIST,
     allowedSandboxes,
-    defaultModel: BASELINE_MODEL,
-    defaultReasoningEffort,
+    defaultModel: route.model,
+    defaultReasoningEffort: route.effort,
     outputMode: "text",
     captureLastMessage: true,
     requiredCliFlags: REQUIRED_FLAGS_BASE,
@@ -100,29 +105,29 @@ function makeProfile(
  *  values so behavior is preserved: call-site explicit model/effort always wins
  *  over the profile default; the default exists so NO call can be ambient. */
 export const EXECUTION_PROFILES: Record<AgentRole, ExecutionProfileV1> = {
-  "research": makeProfile("research", "pipeline-root", ["workspace-write"], "high"),
-  "source-repair": makeProfile("source-repair", "pipeline-root", ["workspace-write"], "high"),
-  "source-verify": makeProfile("source-verify", "pipeline-root", ["read-only"], "high"),
-  "source-compiler": makeProfile("source-compiler", "pipeline-root", ["workspace-write"], "high"),
-  "compiler-polish": makeProfile("compiler-polish", "caller-cwd", ["workspace-write"], "medium"),
-  "autopilot-repair": makeProfile("autopilot-repair", "pipeline-root", ["workspace-write"], "high"),
-  "autopilot-scout": makeProfile("autopilot-scout", "pipeline-root", ["read-only"], "medium"),
-  "qc-reviewer": makeProfile("qc-reviewer", "isolated-workspace", ["read-only"], "high"),
+  "research": makeProfile("research", "pipeline-root", ["workspace-write"]),
+  "source-repair": makeProfile("source-repair", "pipeline-root", ["workspace-write"]),
+  "source-verify": makeProfile("source-verify", "pipeline-root", ["read-only"]),
+  "source-compiler": makeProfile("source-compiler", "pipeline-root", ["workspace-write"]),
+  "compiler-polish": makeProfile("compiler-polish", "caller-cwd", ["workspace-write"]),
+  "autopilot-repair": makeProfile("autopilot-repair", "pipeline-root", ["workspace-write"]),
+  "autopilot-scout": makeProfile("autopilot-scout", "pipeline-root", ["read-only"]),
+  "qc-reviewer": makeProfile("qc-reviewer", "isolated-workspace", ["read-only"]),
   // IMP-01: writers/repairers run in isolated attempt workspaces (their cwd +
   // ONLY writable dir) — the conductor owns every canonical mutation via
   // compare-and-swap commit of a validated candidate (chapterTransaction.ts).
-  "author-writer": makeProfile("author-writer", "isolated-workspace", ["workspace-write"], "xhigh"),
-  "author-repair": makeProfile("author-repair", "isolated-workspace", ["workspace-write"], "xhigh"),
-  "chapter-reviewer": makeProfile("chapter-reviewer", "pipeline-root", ["read-only"], "high"),
-  "book-acceptance-reader": makeProfile("book-acceptance-reader", "pipeline-root", ["read-only"], "high"),
-  "author-evidence": makeProfile("author-evidence", "pipeline-root", ["read-only"], "low"),
-  "shipped-control": makeProfile("shipped-control", "document-dir", ["read-only"], "high"),
-  "eval-reader": makeProfile("eval-reader", "pipeline-root", ["read-only"], "high"),
-  "eval-book": makeProfile("eval-book", "pipeline-root", ["read-only"], "high"),
-  "bakeoff-candidate": makeProfile("bakeoff-candidate", "caller-cwd", ["workspace-write"], "medium"),
-  "bakeoff-judge": makeProfile("bakeoff-judge", "caller-cwd", ["read-only"], "high"),
-  "bakeoff-aux": makeProfile("bakeoff-aux", "caller-cwd", ["read-only", "workspace-write"], "medium"),
-  "cli-adhoc": makeProfile("cli-adhoc", "caller-cwd", ["read-only", "workspace-write"], "high"),
+  "author-writer": makeProfile("author-writer", "isolated-workspace", ["workspace-write"]),
+  "author-repair": makeProfile("author-repair", "isolated-workspace", ["workspace-write"]),
+  "chapter-reviewer": makeProfile("chapter-reviewer", "pipeline-root", ["read-only"]),
+  "book-acceptance-reader": makeProfile("book-acceptance-reader", "pipeline-root", ["read-only"]),
+  "author-evidence": makeProfile("author-evidence", "pipeline-root", ["read-only"]),
+  "shipped-control": makeProfile("shipped-control", "document-dir", ["read-only"]),
+  "eval-reader": makeProfile("eval-reader", "pipeline-root", ["read-only"]),
+  "eval-book": makeProfile("eval-book", "pipeline-root", ["read-only"]),
+  "bakeoff-candidate": makeProfile("bakeoff-candidate", "caller-cwd", ["workspace-write"]),
+  "bakeoff-judge": makeProfile("bakeoff-judge", "caller-cwd", ["read-only"]),
+  "bakeoff-aux": makeProfile("bakeoff-aux", "caller-cwd", ["read-only", "workspace-write"]),
+  "cli-adhoc": makeProfile("cli-adhoc", "caller-cwd", ["read-only", "workspace-write"]),
 };
 
 const profileHashMemo = new Map<AgentRole, string>();
@@ -367,5 +372,17 @@ export function persistExecResult(result: ExecResultV1, sinkDir: string, manifes
     return path;
   } catch {
     return null; // the run already happened; result-sidecar loss is logged by callers, never a crash
+  }
+}
+
+/** IMP-02: persist the RouteResultV1 sidecar beside the manifest — the route
+ *  provenance + provider outcome + drift fingerprint for this exact spawn. */
+export function persistRouteResult(route: object, manifestPath: string): string | null {
+  try {
+    const path = manifestPath.replace(/\.manifest\.json$/, ".route.json");
+    writeFileSync(path, JSON.stringify(route, null, 2) + "\n");
+    return path;
+  } catch {
+    return null;
   }
 }

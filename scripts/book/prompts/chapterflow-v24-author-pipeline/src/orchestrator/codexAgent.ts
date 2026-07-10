@@ -61,9 +61,11 @@ import {
   hermeticExecArgv,
   persistEffectiveContextManifest,
   persistExecResult,
+  persistRouteResult,
   resolveExecutionProfile,
 } from "../exec/executionEnvelope.js";
 import { sweepStaleExecDirs } from "../exec/roleWorkspace.js";
+import { buildRouteResult, classifyProviderOutcome, resolveRoute } from "./modelPolicy.js";
 
 /** Strict env every pipeline agent session runs under (canonical list in
  *  lib/strictEnv, shared with runbook + the conductor's CLI runner so it can't
@@ -277,8 +279,13 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
     requireAuth: !runnerInjected,
   });
   try {
-    const model = opts.model ?? profile.defaultModel;
-    const reasoningEffort = opts.reasoningEffort ?? profile.defaultReasoningEffort;
+    // IMP-02: the model/effort decision goes through the ONE typed policy —
+    // call-site explicit values ride above the normal-profile matrix, invalid
+    // values fail closed BEFORE any process, and the resolved route is
+    // fingerprinted into a per-spawn sidecar.
+    const route = resolveRoute({ role: opts.role, requestedModel: opts.model, requestedEffort: opts.reasoningEffort });
+    const model = route.model;
+    const reasoningEffort = route.effort;
     const argv = hermeticExecArgv({
       profile,
       qualification,
@@ -322,8 +329,29 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
     }
 
     const startedAt = Date.now();
-    const { stdout, stderr, code } = await runner({ bin, argv, cwd: opts.cwd, env, timeoutMs });
+    let runOut: { stdout: string; stderr: string; code: number } | undefined;
+    let runnerError: Error | undefined;
+    try {
+      runOut = await runner({ bin, argv, cwd: opts.cwd, env, timeoutMs });
+    } catch (err) {
+      runnerError = err as Error;
+    }
     const durationMs = Date.now() - startedAt;
+
+    // IMP-02: the route sidecar is written for EVERY spawn that got a manifest —
+    // including timed-out/died runs (a timeout is a distinct provider outcome,
+    // never a content failure, never silently replayed).
+    if (runnerError) {
+      if (manifestPath) {
+        const outcome = classifyProviderOutcome({ completed: false, errorMessage: runnerError.message });
+        persistRouteResult(
+          buildRouteResult({ role: opts.role, resolved: route, executionProfileHash: profileHash, cliVersion: qualification.version, outcome }),
+          manifestPath,
+        );
+      }
+      throw runnerError; // preserve the caller-visible contract (spawn error/timeout throws)
+    }
+    const { stdout, stderr, code } = runOut!;
 
     let finalMessage = "";
     let finalMessageSource: "output-file" | "stdout-fallback" = "stdout-fallback";
@@ -335,6 +363,14 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
       }
     } catch { /* runner produced no capture file (test double / crashed run) */ }
     if (finalMessageSource === "stdout-fallback") finalMessage = lastNonEmptyLine(stdout);
+
+    if (manifestPath) {
+      const outcome = classifyProviderOutcome({ completed: true, exitCode: code, stderr, finalMessage });
+      persistRouteResult(
+        buildRouteResult({ role: opts.role, resolved: route, executionProfileHash: profileHash, cliVersion: qualification.version, outcome }),
+        manifestPath,
+      );
+    }
 
     if (manifestPath) {
       const result: ExecResultV1 = {
