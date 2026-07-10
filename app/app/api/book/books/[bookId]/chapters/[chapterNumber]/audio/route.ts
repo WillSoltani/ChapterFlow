@@ -1,9 +1,13 @@
 import "server-only";
 
+import { NextResponse } from "next/server";
+
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { resolveBookIdentity } from "@/app/app/api/book/_lib/identity";
 import { resolveLearningMode } from "@/app/app/api/book/_lib/learning-mode";
-import { bookErr } from "@/app/app/api/book/_lib/http";
+import { withBookApiErrors, bookErr } from "@/app/app/api/book/_lib/http";
+import { isBookApiError } from "@/app/app/api/book/_lib/errors";
+import { AuthError } from "@/app/app/api/_lib/auth";
 import { getBookTableName, getBookContentBucket } from "@/app/app/api/book/_lib/env";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
 import {
@@ -364,6 +368,10 @@ async function generateAndCacheBodySegment(
 // ── Main handler ─────────────────────────────────────────────────────
 
 export async function GET(req: Request, ctx: Params) {
+  return withBookApiErrors(req, () => handleAudioGet(req, ctx));
+}
+
+async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<unknown>> {
   try {
     const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
@@ -538,7 +546,7 @@ export async function GET(req: Request, ctx: Params) {
       audioDebug(
         `[audio] Plan: ${result.plan.segments.length}/${descriptors.length} segments, expires ${result.plan.expiresAt}`,
       );
-      return new Response(JSON.stringify(result.plan), {
+      return new NextResponse(JSON.stringify(result.plan), {
         status: 200,
         headers: {
           "Content-Type": "application/json",
@@ -675,7 +683,7 @@ export async function GET(req: Request, ctx: Params) {
     // concat happens per request.
 
     // Return the full MP3 directly
-    return new Response(finalAudio, {
+    return new NextResponse(finalAudio, {
       status: 200,
       headers: {
         "Content-Type": "audio/mpeg",
@@ -684,6 +692,10 @@ export async function GET(req: Request, ctx: Params) {
       },
     });
   } catch (err) {
+    // Auth/API errors carry their own status (401 signed-out, 403 account,
+    // 503 verifier outage) — let withBookApiErrors map them; collapsing them
+    // here made every stale-token audio request a 500.
+    if (err instanceof AuthError || isBookApiError(err)) throw err;
     console.error("[audio] Unexpected error:", err);
     return bookErr(req, 500, "internal_error", "Audio generation failed");
   }
