@@ -118,12 +118,14 @@ export const EXECUTION_PROFILES: Record<AgentRole, ExecutionProfileV1> = {
   // compare-and-swap commit of a validated candidate (chapterTransaction.ts).
   "author-writer": makeProfile("author-writer", "isolated-workspace", ["workspace-write"]),
   "author-repair": makeProfile("author-repair", "isolated-workspace", ["workspace-write"]),
-  "chapter-reviewer": makeProfile("chapter-reviewer", "pipeline-root", ["read-only"]),
-  "book-acceptance-reader": makeProfile("book-acceptance-reader", "pipeline-root", ["read-only"]),
+  // IMP-08: reviewer roles run in built role workspaces OUTSIDE the repo
+  // (reviewerWorkspace.ts) — the recorded policy now states that truth.
+  "chapter-reviewer": makeProfile("chapter-reviewer", "isolated-workspace", ["read-only"]),
+  "book-acceptance-reader": makeProfile("book-acceptance-reader", "isolated-workspace", ["read-only"]),
   "author-evidence": makeProfile("author-evidence", "pipeline-root", ["read-only"]),
-  "shipped-control": makeProfile("shipped-control", "document-dir", ["read-only"]),
-  "eval-reader": makeProfile("eval-reader", "pipeline-root", ["read-only"]),
-  "eval-book": makeProfile("eval-book", "pipeline-root", ["read-only"]),
+  "shipped-control": makeProfile("shipped-control", "isolated-workspace", ["read-only"]),
+  "eval-reader": makeProfile("eval-reader", "isolated-workspace", ["read-only"]),
+  "eval-book": makeProfile("eval-book", "isolated-workspace", ["read-only"]),
   "bakeoff-candidate": makeProfile("bakeoff-candidate", "caller-cwd", ["workspace-write"]),
   "bakeoff-judge": makeProfile("bakeoff-judge", "caller-cwd", ["read-only"]),
   "bakeoff-aux": makeProfile("bakeoff-aux", "caller-cwd", ["read-only", "workspace-write"]),

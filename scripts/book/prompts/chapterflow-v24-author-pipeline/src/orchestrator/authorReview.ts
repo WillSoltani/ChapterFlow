@@ -70,25 +70,45 @@ import {
 } from "../artifacts/artifactTypes.js";
 import {
   adjudicateReview,
-  assertChapterReaderDocIntegrity,
+  assertPhase1KeyIsolated,
   AUTHOR_CHAPTER_BAR,
   buildReaderReviewTask,
   parseReaderReview,
   writeChapterReview,
+  type ParsedReaderReview,
 } from "../review/readerReview.js";
-import { renderChapterReaderDoc } from "../review/renderReaderDoc.js";
+import { renderChapterReaderDocPhase1 } from "../review/renderReaderDoc.js";
 import {
   adjudicateBookReview,
-  assertBookSampleDocIntegrity,
-  buildBookReviewTask,
+  assertBookSamplePhase1Integrity,
+  buildBookReviewTaskPhase1,
   composeBookVerdict,
   DocIntegrityError,
   parseBookReview,
-  renderBookSampleDoc,
+  renderBookSampleDocPhase1,
   selectAcceptanceSample,
   type BookReaderResult,
   type BookVerdict,
 } from "../review/evalBookProxy.js";
+// IMP-08: physically blind reviewers — role workspaces outside the repo + the
+// two-phase quiz instrument (blind derivation committed before any key access).
+import {
+  assertReviewerWorkspaceIntact,
+  buildReviewerWorkspace,
+  ReviewerWorkspaceError,
+} from "../review/reviewerWorkspace.js";
+import {
+  buildQuizAdjudicationTask,
+  buildQuizDerivation,
+  commitQuizDerivation,
+  parseQuizAdjudication,
+  phase2DocSha256,
+  quizItemId,
+  renderQuizPhase2Doc,
+  validateQuizAdjudication,
+  type CommittedQuizDerivation,
+} from "../review/quizDerivation.js";
+import { resolveExecutionProfile } from "../exec/executionEnvelope.js";
 import { buildChurnEvidenceReport, rankSaturationContributors } from "../critics/readerBudgets.js";
 import { structuralSamenessSnapshot, type StructuralSamenessSnapshot } from "../critics/structuralSamenessSnapshot.js";
 import { chapterContentHash, writeAttestation, type QcAttestation } from "../critics/qcAttestation.js";
@@ -810,6 +830,116 @@ export const CHURN_DIVERGENCE_ASSIGNMENTS = [
 
 // ── One blinded chapter review ───────────────────────────────────────────────
 
+// ── IMP-08 phase 2: quiz-key adjudication over the committed blind derivation ──
+//
+// ADVISORY EVIDENCE in v1 (calibration-pending, the C37 posture): the verdicts
+// ride the persisted review's `quizAdjudication` field and never feed a pass
+// predicate — the blocking key channel stays the deterministic conductor-side
+// keyCheck (matches === of), unchanged. Bounded: 2 attempts; every failure mode
+// is an EXPLICIT `unavailable` record, never a silent skip and never a review
+// invalidation (failing the review on an adjudicator flake would change
+// acceptance behavior without calibration).
+async function runQuizKeyAdjudication(
+  bookId: string,
+  chapter: ChapterV21,
+  parsed: ParsedReaderReview,
+  phase1DocSha: string,
+  phase1SessionId: string,
+  deps: AutopilotDeps,
+  io: AuthorReviewIo,
+  labelSuffix: string,
+): Promise<NonNullable<ChapterReviewV1["quizAdjudication"]>> {
+  const nn = String(chapter.number).padStart(2, "0");
+  const questions = chapter.quiz?.questions ?? [];
+  if (questions.length === 0) return { status: "skipped-no-quiz" };
+
+  // Commit the blind derivation BEFORE any key-visible artifact exists.
+  let committed: CommittedQuizDerivation;
+  try {
+    committed = commitQuizDerivation(
+      buildQuizDerivation(chapter, {
+        answers: parsed.quizDerivation.answers,
+        mechanisms: parsed.quizDerivation.mechanisms,
+        confidence: parsed.quizDerivation.confidence,
+        ambiguities: parsed.quizDerivation.ambiguities,
+      }, phase1DocSha, phase1SessionId),
+      { documentSha256: phase1DocSha, questionCount: questions.length, itemIds: questions.map((_, i) => quizItemId(chapter, i)) },
+    );
+  } catch (err) {
+    return { status: "unavailable", reason: `derivation commit failed: ${(err as Error).message.slice(0, 300)}` };
+  }
+
+  let phase2Doc: string;
+  try {
+    phase2Doc = ensureTrailingNewline(renderQuizPhase2Doc(chapter, committed));
+  } catch (err) {
+    return { status: "unavailable", reason: `phase-2 render refused: ${(err as Error).message.slice(0, 300)}`, derivationSha256: committed.sha256 };
+  }
+  const p2Sha = phase2DocSha256(phase2Doc);
+  const fileName = `ch${nn}.phase2.txt`;
+  try { io.writeReviewDoc(bookId, fileName, phase2Doc); } catch { /* forensic copy only */ }
+  const task = buildQuizAdjudicationTask(fileName);
+  const authorSid = io.authorSessionOf(chapter.chapterId);
+
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    let sessionId = deps.mkSessionId(`author-quizadj-ch${nn}${labelSuffix}${attempt > 1 ? "-r2" : ""}`);
+    if (authorSid && sessionId === authorSid) sessionId = deps.mkSessionId(`author-quizadj-ch${nn}${labelSuffix}-indep`);
+    // The quiz-adjudication workspace holds ONLY the phase-2 doc (the one
+    // key-visible role); cwd is the workspace, outside the repo.
+    const ws = buildReviewerWorkspace({
+      role: "quiz-adjudication",
+      artifacts: [{ kind: "phase2-doc", relPath: fileName, content: phase2Doc }],
+      forbiddenStrings: authorSid ? [authorSid] : [],
+    });
+    let r;
+    try {
+      r = await deps.spawn({
+        task,
+        role: "chapter-reviewer",
+        sessionId,
+        cwd: ws.dir,
+        sandbox: "read-only",
+        skipGitRepoCheck: true,
+        reasoningEffort: "high",
+      });
+    } catch (err) {
+      // An infra throw (spawn preflight etc.) must not convert a decided
+      // phase-1 review into a failure — the adjudication is ADVISORY. Record
+      // and bound: this attempt is spent; a second throw ends in `unavailable`.
+      deps.log(`[autopilot] quiz adjudication ch${nn}${labelSuffix}: attempt ${attempt} spawn error (${(err as Error).message.slice(0, 200)})${attempt === 1 ? " — respawning once" : ""}`);
+      continue;
+    } finally {
+      ws.cleanup();
+    }
+    try { deps.logSession(bookId, `author-quizadj-ch${nn}${labelSuffix}`, r); } catch { /* best-effort */ }
+    const adj = parseQuizAdjudication(r.finalMessage) ?? parseQuizAdjudication(r.stdout);
+    if (!adj) {
+      deps.log(`[autopilot] quiz adjudication ch${nn}${labelSuffix}: attempt ${attempt} unparseable (exit ${r.exitCode})${attempt === 1 ? " — respawning once" : ""}`);
+      continue;
+    }
+    const errors = validateQuizAdjudication(adj, chapter, committed);
+    if (errors.length > 0) {
+      deps.log(`[autopilot] quiz adjudication ch${nn}${labelSuffix}: attempt ${attempt} failed verification (${errors[0]})${attempt === 1 ? " — respawning once" : ""}`);
+      continue;
+    }
+    const ambiguousCount = adj.items.filter((i) => i.keyCorrect === "ambiguous").length;
+    const keyWrongCount = adj.items.filter((i) => i.keyCorrect === "wrong").length;
+    if (ambiguousCount + keyWrongCount > 0) {
+      deps.log(`[autopilot] quiz adjudication ch${nn}${labelSuffix}: ${keyWrongCount} key-wrong, ${ambiguousCount} ambiguous of ${adj.items.length} (ADVISORY — recorded on the review)`);
+    }
+    return {
+      status: "adjudicated",
+      derivationSha256: committed.sha256,
+      phase2DocSha256: p2Sha,
+      reviewerSessionId: sessionId,
+      items: adj.items,
+      ambiguousCount,
+      keyWrongCount,
+    };
+  }
+  return { status: "unavailable", reason: "adjudication unparseable/unverifiable after 2 bounded attempts", derivationSha256: committed.sha256, phase2DocSha256: p2Sha };
+}
+
 export async function reviewOneChapter(
   bookId: string,
   chapter: ChapterV21,
@@ -824,16 +954,24 @@ export async function reviewOneChapter(
   persist = true,
 ): Promise<ChapterReviewV1> {
   const nn = String(chapter.number).padStart(2, "0");
-  // docText carries the trailing newline the reader's FILE has (writeReviewDoc
-  // adds it centrally) so adjudication + the Q2/Q3 recount see the exact reader
-  // bytes; quotes are interior substrings, so byte-verification is unaffected.
-  const docText = ensureTrailingNewline(renderChapterReaderDoc(chapter));
-  // Q2 (chapter analog): certify the doc BEFORE spawning — a truncated/
-  // mis-rendered chapter doc is an infra halt, never a reader verdict.
-  assertChapterReaderDocIntegrity(docText, chapter);
-  const { relPath } = io.writeReviewDoc(bookId, `ch${nn}.txt`, docText);
+  // IMP-08 (F-015): the direct reader scores the PHASE-1 document — reader-
+  // facing content with NO answer key. docText carries the trailing newline the
+  // reader's FILE has so adjudication sees the exact reader bytes; quotes are
+  // interior substrings, so byte-verification is unaffected.
+  const docText = ensureTrailingNewline(renderChapterReaderDocPhase1(chapter));
+  // Q2 (phase-1 analog): certify integrity AND key isolation BEFORE spawning —
+  // a truncated doc or a key-contaminated doc is an infra halt, never a verdict.
+  assertPhase1KeyIsolated(docText, chapter);
+  // Forensic copy under scratch/review (conductor-side audit trail). The reader
+  // never sees this path — it reads its own workspace copy.
+  const docFileName = `ch${nn}.txt`;
+  io.writeReviewDoc(bookId, `ch${nn}.phase1.txt`, docText);
+  const docSha = createHash("sha256").update(docText).digest("hex");
   const authorSid = io.authorSessionOf(chapter.chapterId);
-  const task = buildReaderReviewTask(relPath, bar);
+  const task = buildReaderReviewTask(docFileName, bar);
+  // Conductor-side profile evidence (plan instruction 10): recorded on the
+  // persisted review, NEVER rendered into any reviewer-visible artifact.
+  const { profileHash } = resolveExecutionProfile("chapter-reviewer");
 
   let lastSessionId = "";
   for (let attempt = 1; attempt <= 2; attempt++) {
@@ -842,23 +980,64 @@ export async function reviewOneChapter(
     let sessionId = deps.mkSessionId(`author-review-ch${nn}${labelSuffix}${attempt > 1 ? "-r2" : ""}`);
     if (authorSid && sessionId === authorSid) sessionId = deps.mkSessionId(`author-review-ch${nn}${labelSuffix}-indep`);
     lastSessionId = sessionId;
-    const r = await deps.spawn({
-      task,
-      role: "chapter-reviewer",
-      sessionId,
-      cwd: PIPELINE_DIR,
-      sandbox: "read-only",
-      skipGitRepoCheck: true,
-      reasoningEffort: "high",
+    // IMP-08: the reviewer runs INSIDE a role workspace built outside the repo
+    // containing ONLY the phase-1 doc — the information barrier is physical
+    // (workspace + read-only sandbox), not an instruction. The tiebreak role
+    // shares the direct-reader manifest; label it truthfully for evidence.
+    const ws = buildReviewerWorkspace({
+      role: labelSuffix.includes("tiebreak") ? "tiebreak" : "direct-reader",
+      artifacts: [{ kind: "phase1-doc", relPath: docFileName, content: docText }],
+      forbiddenStrings: authorSid ? [authorSid] : [],
     });
+    let r;
+    let wsProblem = "";
+    try {
+      r = await deps.spawn({
+        task,
+        role: "chapter-reviewer",
+        sessionId,
+        cwd: ws.dir,
+        sandbox: "read-only",
+        skipGitRepoCheck: true,
+        reasoningEffort: "high",
+      });
+      // Post-run containment: a read-only reviewer must leave the workspace
+      // byte-identical. A violation invalidates the ATTEMPT (respawn), never
+      // adjudicates output produced over drifted bytes.
+      try {
+        assertReviewerWorkspaceIntact(ws);
+      } catch (err) {
+        if (err instanceof ReviewerWorkspaceError) wsProblem = err.message;
+        else throw err;
+      }
+    } finally {
+      ws.cleanup();
+    }
     try { deps.logSession(bookId, `author-review-ch${nn}${labelSuffix}`, r); } catch { /* best-effort */ }
+    if (wsProblem) {
+      deps.log(`[autopilot] author review ch${nn}${labelSuffix}: attempt ${attempt} workspace-integrity failure (${wsProblem.slice(0, 200)})${attempt === 1 ? " — respawning once" : ""}`);
+      continue;
+    }
     const parsed = parseReaderReview(r.finalMessage) ?? parseReaderReview(r.stdout);
     if (!parsed) {
       deps.log(`[autopilot] author review ch${nn}: attempt ${attempt} unparseable (exit ${r.exitCode})${attempt === 1 ? " — respawning once" : ""}`);
       continue;
     }
     const review = adjudicateReview(parsed, docText, chapter, { bar, reviewerSessionId: sessionId });
+    review.executionProfileHash = profileHash;
+    review.workspaceManifestSha256 = ws.manifestSha256;
     if (review.valid || attempt === 2) {
+      // IMP-08 phase 2: the key-visible adjudication runs ONLY over a VALID
+      // phase-1 read (a quote-fabricating reader's derivation is untrusted),
+      // only AFTER the derivation was committed above the key barrier, and only
+      // for PERSISTING reads — tiebreak/second-opinion extras re-read the same
+      // bytes for the vote, and the adjudication evidence for those bytes
+      // already rides the persisted primary read (bounded cost, no rerun).
+      review.quizAdjudication = !review.valid
+        ? { status: "unavailable", reason: "phase-1 review invalid — its derivation is untrusted" }
+        : persist
+          ? await runQuizKeyAdjudication(bookId, chapter, parsed, docSha, sessionId, deps, io, labelSuffix)
+          : { status: "skipped-extra-read", reason: "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary" };
       if (persist) io.persistReview(bookId, review);
       deps.log(`[autopilot] author review ch${nn}${labelSuffix}: composite ${review.composite} ship=${review.ship84} keys ${review.keyCheck.matches}/${review.keyCheck.of} → ${review.pass ? "PASS" : "FAIL"}${review.valid ? "" : " (INVALID quotes)"}`);
       return review;
@@ -866,6 +1045,7 @@ export async function reviewOneChapter(
     deps.log(`[autopilot] author review ch${nn}${labelSuffix}: attempt ${attempt} failed quote verification — respawning once`);
   }
   const review = unparseableReview(chapter, lastSessionId);
+  review.quizAdjudication = { status: "unavailable", reason: "phase-1 review unparseable after bounded attempts" };
   if (persist) io.persistReview(bookId, review);
   return review;
 }
@@ -1166,16 +1346,20 @@ export async function runBookAcceptance(
   if (!beat.ok) throw new ControlReadError(beat.reason);
   const shipped = beat.composite;
   const sampled = selectAcceptanceSample(bookId, chapters, 4, sampleOpts?.salt ?? "", sampleOpts?.forceInclude ?? []);
-  const docText = renderBookSampleDoc(sampled);
-  // Q2 — doc-integrity postcondition: certify the rendered bytes BEFORE any
+  // IMP-08 (F-015): acceptance readers score the PHASE-1 book doc — chapter
+  // bodies with NO combined answer key. Their derivations are still compared
+  // against the real keys deterministically (adjudicateBookReview, unchanged).
+  const docText = renderBookSampleDocPhase1(sampled);
+  // Q2 — phase-1 doc postcondition: certify the rendered bytes BEFORE any
   // reader spawns. Per sampled chapter, question-line count === quiz question
-  // count === combined-key-row count, and the doc ends with a newline. A
+  // count, the doc ends with a newline, and NO key material is present. A
   // mismatch throws DocIntegrityError (caught by doAuthorReview → halt infra),
-  // so no reader ever scores a truncated/mis-rendered doc and any later "key
-  // omits chapter N Q<k>" claim is provably a reader error (Q3).
-  assertBookSampleDocIntegrity(docText, sampled);
-  const { relPath } = io.writeReviewDoc(bookId, "book-sample.txt", docText);
-  const task = buildBookReviewTask(relPath);
+  // so no reader ever scores a truncated/mis-rendered/key-contaminated doc.
+  assertBookSamplePhase1Integrity(docText, sampled);
+  // Forensic copy (conductor-side audit trail; readers read a workspace copy).
+  const bookDocFileName = "book-sample.txt";
+  io.writeReviewDoc(bookId, "book-sample.phase1.txt", docText);
+  const task = buildBookReviewTaskPhase1(bookDocFileName);
 
   /** One full independent 3-reader panel over the SAME doc bytes. `panelSuffix`
    *  disambiguates session ids for multi-read panels (-p2, -p3). */
@@ -1190,16 +1374,38 @@ export async function runBookAcceptance(
         for (let attempt = 1; attempt <= 2; attempt++) {
           const sessionId = deps.mkSessionId(`author-book-reader-${readerNo}${roundLabel}${panelSuffix}${attempt > 1 ? "-r2" : ""}`);
           lastSessionId = sessionId;
-          const r = await deps.spawn({
-            task,
-            role: "book-acceptance-reader",
-            sessionId,
-            cwd: PIPELINE_DIR,
-            sandbox: "read-only",
-            skipGitRepoCheck: true,
-            reasoningEffort: "high",
+          // IMP-08: each acceptance reader runs in its own role workspace
+          // outside the repo, containing ONLY the phase-1 book doc.
+          const ws = buildReviewerWorkspace({
+            role: "acceptance-reader",
+            artifacts: [{ kind: "phase1-doc", relPath: bookDocFileName, content: docText }],
           });
+          let r;
+          let wsProblem = "";
+          try {
+            r = await deps.spawn({
+              task,
+              role: "book-acceptance-reader",
+              sessionId,
+              cwd: ws.dir,
+              sandbox: "read-only",
+              skipGitRepoCheck: true,
+              reasoningEffort: "high",
+            });
+            try {
+              assertReviewerWorkspaceIntact(ws);
+            } catch (err) {
+              if (err instanceof ReviewerWorkspaceError) wsProblem = err.message;
+              else throw err;
+            }
+          } finally {
+            ws.cleanup();
+          }
           try { deps.logSession(bookId, `author-book-reader-${readerNo}${roundLabel}${panelSuffix}`, r); } catch { /* best-effort */ }
+          if (wsProblem) {
+            deps.log(`[autopilot] author acceptance${roundLabel}${panelSuffix} r${readerNo}: attempt ${attempt} workspace-integrity failure (${wsProblem.slice(0, 200)})${attempt === 1 ? " — respawning once" : ""}`);
+            continue;
+          }
           const parsed = parseBookReview(r.finalMessage) ?? parseBookReview(r.stdout);
           if (!parsed) {
             deps.log(`[autopilot] author acceptance${roundLabel}${panelSuffix} r${readerNo}: attempt ${attempt} unparseable (exit ${r.exitCode})`);

@@ -92,8 +92,10 @@ export function planAggregate(plan: SourceUsePlanV1): PlanAggregate {
 // ── detection lexicons (spans, not whole-clause semantics) ────────────────────
 
 /** Strong causal / inevitability connectives. A hit is only a FINDING when the
- *  plan permits no causal unit — so descriptive evidence stated as cause. */
-const CAUSAL_RE =
+ *  plan permits no causal unit — so descriptive evidence stated as cause.
+ *  Exported (IMP-08): causalClaims.extractCausalClaims reuses this ONE lexicon
+ *  so the critic and the causal-verifier packet can never drift apart. */
+export const CAUSAL_RE =
   /\b(causes?|caused|causing|because of (?:this|that|it)|leads? directly to|led directly to|guarantees?|guaranteed|inevitably|proves? that|is the reason|are the reason|results? in|resulted in|makes? (?:you|it|them) (?:succeed|fail|win|lose)|will (?:always|never))\b/gi;
 
 /** Invented-scene completion markers: a spoken quote, an interior-thought verb,

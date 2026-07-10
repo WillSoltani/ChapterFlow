@@ -24,10 +24,11 @@ import type { ChapterReviewV1 } from "../artifacts/artifactTypes.js";
 import { CHAPTER_REVIEW_SCHEMA_VERSION, REVIEW_FACTORS, type ReviewFactor } from "../artifacts/artifactTypes.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { REPO_ROOT, FORBIDDEN_STATE } from "../lib/chapterPaths.js";
-import { writeFileAtomic } from "../lib/atomicWrite.js";
+import { ensureTrailingNewline, writeFileAtomic } from "../lib/atomicWrite.js";
 import { spawnCodexAgent, codexAvailable } from "../orchestrator/codexAgent.js";
-import { renderChapterReaderDoc } from "./renderReaderDoc.js";
-import { adjudicateReview, AUTHOR_CHAPTER_BAR, buildReaderReviewTask, parseReaderReview, writeChapterReview } from "./readerReview.js";
+import { renderChapterReaderDocPhase1 } from "./renderReaderDoc.js";
+import { adjudicateReview, assertPhase1KeyIsolated, AUTHOR_CHAPTER_BAR, buildReaderReviewTask, parseReaderReview, writeChapterReview } from "./readerReview.js";
+import { buildReviewerWorkspace } from "./reviewerWorkspace.js";
 
 /** The outer checkout root (the repo this pipeline package is nested inside).
  *  Derived from chapterPaths' exported outer-shadow constant: FORBIDDEN_STATE
@@ -127,7 +128,10 @@ function reviewForJson(review: ChapterReviewV1): Record<string, unknown> {
 }
 
 /** Run one blinded reader over one rendered chapter doc; retry ONCE on a
- *  parse/verification failure with a fresh session id. */
+ *  parse/verification failure with a fresh session id. IMP-08: the reader
+ *  scores the PHASE-1 doc from a role workspace outside the repo — the same
+ *  instrument and envelope as the production review lane, so eval scores stay
+ *  comparable. */
 async function reviewOneChapter(
   bookId: string,
   chapter: ChapterV21,
@@ -136,22 +140,33 @@ async function reviewOneChapter(
   bar: number,
   log: (line: string) => void,
 ): Promise<ChapterReviewV1> {
+  void docRelPath; // forensic-copy path; the reader reads its workspace copy
   const nn = String(chapter.number).padStart(2, "0");
-  const task = buildReaderReviewTask(docRelPath, bar);
+  const docFileName = `ch${nn}.txt`;
+  const task = buildReaderReviewTask(docFileName, bar);
   let lastSessionId = "";
   for (let attempt = 1; attempt <= 2; attempt++) {
     const sessionId = `eval-proxy-${bookId}-ch${nn}-${Date.now()}`;
     lastSessionId = sessionId;
     log(`[eval-proxy] ${bookId} ch${nn}: reader attempt ${attempt} (session ${sessionId})`);
-    const r = await spawnCodexAgent({
-      task,
-      role: "eval-reader",
-      sessionId,
-      cwd: REPO_ROOT,
-      sandbox: "read-only",
-      skipGitRepoCheck: true,
-      reasoningEffort: "high",
+    const ws = buildReviewerWorkspace({
+      role: "direct-reader",
+      artifacts: [{ kind: "phase1-doc", relPath: docFileName, content: docText }],
     });
+    let r;
+    try {
+      r = await spawnCodexAgent({
+        task,
+        role: "eval-reader",
+        sessionId,
+        cwd: ws.dir,
+        sandbox: "read-only",
+        skipGitRepoCheck: true,
+        reasoningEffort: "high",
+      });
+    } finally {
+      ws.cleanup();
+    }
     const parsed = parseReaderReview(r.finalMessage) ?? parseReaderReview(r.stdout);
     if (!parsed) {
       log(`[eval-proxy] ${bookId} ch${nn}: attempt ${attempt} unparseable (exit ${r.exitCode})`);
@@ -204,12 +219,13 @@ export async function runEvalReaderProxy(args: string[], flags: Record<string, s
     const sampled = sampleChapters(bookId, loaded.pkg.chapters, chaptersN);
     log(`[eval-proxy] ${bookId}: ${loaded.pkg.chapters.length} chapters in package (${loaded.path}); sampling ${sampled.length}: ${sampled.map((c) => c.number).join(", ")}`);
 
-    // Render reader docs under the pipeline dir so read-only codex sandboxes
-    // (cwd = pipeline dir) can read them via a relative path.
+    // IMP-08: render the PHASE-1 (key-free) doc, certify key isolation, and
+    // keep a forensic copy under scratch; readers score a workspace copy.
     const jobs = sampled.map((chapter) => {
       const nn = String(chapter.number).padStart(2, "0");
-      const docRelPath = `scratch/eval-proxy/${bookId}/ch${nn}.txt`;
-      const docText = renderChapterReaderDoc(chapter);
+      const docRelPath = `scratch/eval-proxy/${bookId}/ch${nn}.phase1.txt`;
+      const docText = ensureTrailingNewline(renderChapterReaderDocPhase1(chapter));
+      assertPhase1KeyIsolated(docText, chapter);
       writeFileAtomic(resolve(REPO_ROOT, docRelPath), docText);
       return { chapter, docText, docRelPath };
     });

@@ -1,0 +1,103 @@
+{
+  "schema": "worker-implementation-report-v1",
+  "promptId": "IMP-08",
+  "baselineHash": "531db1461f610e2ae259d0187b4537bedb8bb08a",
+  "resultHash": "1ad8b97b1e51435b6b3ff3fe18c7a4bddc89138b33f769ef3cf8323f5b564f40",
+  "contractVersions": {
+    "review-output": 1,
+    "repair": 1,
+    "execution-profile": 1,
+    "source-use-plan": 1,
+    "worker-implementation-report": 1
+  },
+  "filesChanged": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewerWorkspace.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/quizDerivation.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/causalClaims.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewFindings.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/renderReaderDoc.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/readerReview.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evalBookProxy.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evalReaderProxy.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorReview.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/shippedControl.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/codexAgent.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/review.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/critics/sourceRegister.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/exec/executionEnvelope.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/artifacts/artifactTypes.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/reviewer-workspace.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/quiz-two-phase.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/review-blind-lane.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/causal-claims.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-arch.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/exec-envelope.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/model-bakeoff-review.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/stier-levers.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/sweep-rejected-and-control-e5.test.ts",
+    "docs/v25/reports/IMP-08-REPORT.md"
+  ],
+  "requirementsImplemented": [
+    { "requirementId": "IMP08-R01", "status": "implemented", "note": "Reviewer roles + manifests (REVIEWER_ROLE_MANIFESTS over the frozen ReviewerRoleV1): direct-reader/quiz-derivation/quiz-adjudication/source-verifier/causal-verifier/tiebreak/acceptance-reader, each with a minimum artifact-kind set. No verdict-bearing artifact kind exists, so no role can see another reviewer's conclusions structurally." },
+    { "requirementId": "IMP08-R02", "status": "implemented", "note": "buildReviewerWorkspace: mkdtemp workspaces OUTSIDE the pipeline repository (IMP-00 buildRoleWorkspace substrate: 0700, hashed manifest, path/symlink guards) containing ONLY the manifest's files; fail-closed on unknown role, unauthorized kind, key material to a key-blind role, and caller-named identity strings. assertReviewerWorkspaceIntact re-hashes post-spawn; drift/debris invalidates the attempt (bounded respawn)." },
+    { "requirementId": "IMP08-R03", "status": "implemented", "note": "Two-phase quiz split: renderChapterReaderDocPhase1 (prose + prompts + choices, phase1-v1); the direct reader returns derived answer + mechanism + confidence + ambiguity + evidence (extended parse, conservative defaults); commitQuizDerivation validates against conductor expectations and freezes BEFORE any key-visible artifact; renderQuizPhase2Doc (phase2-v1) refuses uncommitted/tampered derivations and bundles the committed derivation + key + explanations for the adjudication ask." },
+    { "requirementId": "IMP08-R04", "status": "implemented", "note": "Phase-1 key-isolation proof: assertPhase1KeyIsolated (chapter) + assertBookSamplePhase1Integrity (book) certify pre-spawn — no key header, no key-row line in either rendered shape, no explanation text (normalized substring scan), no correctIndex metadata, plus the structural question-count half of Q2. Workspace build screens key material independently (defense in depth); key-leak tests cover header/rows/explanations/metadata/truncation." },
+    { "requirementId": "IMP08-R05", "status": "implemented", "note": "Versioned renderers (READER_DOC_PHASE1_VERSION, QUIZ_PHASE2_VERSION); reviews bind document (docHash v3 = phase-1 bytes), rubric (READER_RUBRIC_VERSION), output schema (chapterflow-review-v1), execution profile (executionProfileHash, conductor-resolved), workspace file set (workspaceManifestSha256), and reviewer session. REVIEW_DOC_HASH_VERSION v2→v3 EXPLICITLY invalidates every pre-split carry (tested: v2 records and doc-drifted v3 records never satisfy carryReviewFor)." },
+    { "requirementId": "IMP08-R06", "status": "implemented", "note": "Direct-read/source-verification separation: the direct reader's manifest is reader-facing content only; the source verifier's is phase1-doc + bounded source-evidence + source-plan with no identity and no prior-verdict artifact kind (renderSourceVerifierPacket + buildSourceVerifierTask). Verdict-disjointness is structural — combination happens only at the conductor (pinned by test). Always-on production wiring of the new verifier spawns is deferred to IMP-11 (adding judges to the accept path without calibration would change acceptance behavior)." },
+    { "requirementId": "IMP08-R07", "status": "implemented", "note": "Causal-claim representation: extractCausalClaims links every causal-register span (C37's exported CAUSAL_RE — single lexicon owner) across hook/counterintuition/breakdowns/takeaway/practice/examples/quiz explanations/REVIEW CARDS/MEMORABLE LINES to the plan's strongest permitted claim strength and the causal-rank licensing unit ids; no plan → represent, judge nothing (the C37 absence rule). Overreach judgment stays C37's advisory (threshold untouched)." },
+    { "requirementId": "IMP08-R08", "status": "implemented", "note": "reviewComplaintsToFindings normalizes reviewer complaints into frozen RepairFindingV1 objects: scope from the deterministic classifier (never reviewer-named), severity from mustFix, complaint text as bounded evidence quotes, validated by the frozen validator; feeds IMP-07's route classifier/patch lane unchanged." },
+    { "requirementId": "IMP08-R09", "status": "implemented", "note": "Quote/hash verification on findings: an INVALID review (any fabricated quote) emits ZERO findings; a complaint quoting text absent from the reviewed document is rejected with a named reason; control-plane text in a complaint is inert quoted evidence — no field, no scope (injection-tested); unauthorized-file references cannot arise (scopes map only to chapter content surfaces)." },
+    { "requirementId": "IMP08-R10", "status": "implemented", "note": "Fresh-session-per-read and author≠reviewer independence preserved (collision re-mint pinned by test). Profile evidence added WITHOUT reviewer visibility: executionProfileHash + workspaceManifestSha256 ride the persisted review; spawns carry no model field; no reviewer-visible artifact (task or workspace file) names a model (tested)." },
+    { "requirementId": "IMP08-R11", "status": "implemented", "note": "Tiebreak/material-disagreement behavior remains defined before runtime and UNCHANGED: isFlipSignature/isNearBar/needsSecondOpinion predicates, median-of-3 + ship-majority, key-defect-sticks, no rerun-on-inconvenient — all pre-existing pins pass byte-identically. Non-persisting extra reads skip phase-2 with an explicit skipped-extra-read record (adjudication evidence rides the persisted primary read at the same content hash)." },
+    { "requirementId": "IMP08-R12", "status": "implemented", "note": "IMP-11 interfaces: buildReviewerWorkspace + verifier packets/task builders (causal-verdicts-v1 / source-verdicts-v1 output contracts); the bakeoff harness now measures the phase-1 instrument end-to-end (chapter reads inherit via reviewOneChapter; its book panel cut over explicitly); model injection stays role-based via the IMP-02 policy with no model identity in any review artifact." }
+  ],
+  "testsRequired": [
+    "workspace manifest tests proving phase-one/direct readers cannot access key, source, model identity, prior reviews, or repository state",
+    "renderer integrity/hash tests for both quiz phases",
+    "key-leak tests through explanations, headings, metadata, filenames, and sidecars",
+    "quiz cases: one valid answer, ambiguous/two-defensible, key-wrong, no derivation, wrong mechanism surface (adjudication rationale), plausible-distractor judgment",
+    "causal cases for descriptive/correlational/mechanistic/causal boundaries across all chapter fields incl. cards and memorable lines",
+    "structured finding/quote verification and prompt-injection tests",
+    "review carry invalidation on renderer/schema/hash changes",
+    "session independence, tiebreak, and acceptance regression tests"
+  ],
+  "testsRun": [
+    "tests/reviewer-workspace.test.ts (9, new): manifest matrix, exact-file-set outside repo, key-blind containment both key shapes, kind authorization, identity strings, post-spawn debris/drift, IMP-00 path guards, empty-set refusal",
+    "tests/quiz-two-phase.test.ts (15, new): phase-1 renders prompts/choices only + legacy byte-prefix, key-leak detection (header/rows/explanations/metadata/truncation), docHash v3, derivation commit + freeze + conservative defaults, phase-2 refuses tampered commitments, honest correct/ambiguous/wrong verdicts, hash-chain/rewrite/misreport/false-agreement rejections, keyCheck semantics identical, structural screen NO-OP on key-free docs, findings adapter incl. injection",
+    "tests/review-blind-lane.test.ts (7, new): workspace cwd outside repo + read-only + no model field, honest end-to-end phase-2 with hash chain + instrument-binding evidence, garbage adjudicator → explicit unavailable (2 bounded attempts), THROWING adjudicator spawn → unavailable (advisory never blocks), author-session collision re-mint, carry invalidation (v2 dead / drifted v3 dead / matching v3 carries), no model identity in reviewer-visible artifacts",
+    "tests/causal-claims.test.ts (7, new): card/memorable-line coverage, strength boundaries with named licensing units, no-plan rule, clean-prose zero claims, shared C37 lexicon, packet hygiene, verdict-disjoint manifests",
+    "retargets preserving protections: author-arch Q3 (key-omission claims are a NO-OP on key-free docs — no halt, vote stands), sweep-rejected-and-control-e5 (v2 literals + cached v1 legacy-instrument record re-runs the panel), model-bakeoff-review (fake judge reads its OWN cwd; phase-1 forensic filenames), stier-levers (explicit quizadj stub branch)",
+    "full hermetic suite (246 files)"
+  ],
+  "testResults": {
+    "pass": 2267,
+    "fail": 0,
+    "xfail": 0,
+    "xpass": 0,
+    "skip": 18,
+    "xenv": 6,
+    "commands": [
+      "npx tsc -p . --noEmit",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts contract-validate"
+    ]
+  },
+  "gateChanges": [],
+  "bookSpecificExceptions": [],
+  "unexpectedWrites": [],
+  "unresolvedRisks": [
+    "Instrument-calibration transfer is UNMEASURED: the 80/74 bars, ±3.7 noise band, and beat-shipped margins were calibrated on the key-bearing instrument; phase-1 reader score distributions may shift. §16 bakeoff / IMP-11 own re-measurement — this package makes NO quality/score-distribution claim.",
+    "Live phase-2 adjudicator compliance (clean quiz-adjudication-v1 on the first try) is unmeasured until §18 smoke; the failure mode is an explicit `unavailable` record on an advisory instrument, never a bad verdict.",
+    "Source/causal verifiers are interface-only (packets, tasks, schemas, extraction, isolation tests); wiring them into the accept path is IMP-11's qualification + calibration decision.",
+    "Legacy key-bearing renderers (renderChapterReaderDoc, renderBookSampleDoc, buildBookReviewTask) remain for the key-judge blinding slice and forensics; removal once every consumer migrates is follow-on cleanup.",
+    "Phase-2 adds one bounded spawn per persisting chapter review (small doc, 2-attempt cap); the token cost is real but bounded and skipped for tiebreak/second-opinion extras."
+  ],
+  "dependencyAssumptions": [
+    "IMP-00's buildRoleWorkspace/unexpectedWorkspaceEntries are the workspace substrate (path-escape/symlink guards live there); the executionProfile contract's 'isolated-workspace' policy value was reserved for this package.",
+    "IMP-02's central model policy resolves reviewer models per role inside the spawn envelope — reviewer-invisible by construction; this package only verifies non-leakage.",
+    "IMP-04's C37 owns the deterministic causal-overreach judgment (advisory, calibration-pending); extractCausalClaims shares its exported lexicon.",
+    "IMP-07's RepairFindingV1 + route classifier + patch lane consume reviewComplaintsToFindings output unchanged.",
+    "IMP-11 owns judge qualification, panel balancing, all pending calibrations (C37, clone thresholds, phase-2 promotion), and re-measurement of the phase-1 instrument; §16-18 own runtime evidence.",
+    "baselineHash is the IMP-07 commit (full sha); resultHash is sha256 of the staged unified diff (code + tests + narrative report, excluding this JSON)."
+  ]
+}

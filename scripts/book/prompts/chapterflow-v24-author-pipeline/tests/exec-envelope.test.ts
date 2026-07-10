@@ -70,6 +70,11 @@ test("every declared role resolves to a valid profile with an explicit baseline 
   assert.equal(EXECUTION_PROFILES["author-writer"].defaultReasoningEffort, "xhigh");
   assert.deepEqual([...EXECUTION_PROFILES["chapter-reviewer"].allowedSandboxes], ["read-only"]);
   assert.equal(EXECUTION_PROFILES["qc-reviewer"].workingDir, "isolated-workspace");
+  // IMP-08: every review-family role runs in built role workspaces outside the
+  // repo — the recorded policy states that truth (the F-015 exposure is gone).
+  for (const role of ["chapter-reviewer", "book-acceptance-reader", "shipped-control", "eval-reader", "eval-book"] as const) {
+    assert.equal(EXECUTION_PROFILES[role].workingDir, "isolated-workspace", `${role} is workspace-isolated post-IMP-08`);
+  }
 });
 
 test("hermetic argv carries isolation, neutralization, explicit model/effort, and output capture", async () => {

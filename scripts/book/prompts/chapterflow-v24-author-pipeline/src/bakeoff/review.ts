@@ -4,8 +4,9 @@
  * REUSES the existing blinded review instruments verbatim:
  *   - per-chapter: reviewOneChapter (renderChapterReaderDoc + 10-factor rubric +
  *     deterministic adjudication) — the SAME instrument the author arch ships on;
- *   - whole-book: the eval-book-proxy panel (renderBookSampleDoc +
- *     buildBookReviewTask + adjudicateBookReview + composeBookVerdict).
+ *   - whole-book: the eval-book-proxy panel (renderBookSampleDocPhase1 +
+ *     buildBookReviewTaskPhase1 + adjudicateBookReview + composeBookVerdict —
+ *     the IMP-08 key-free instrument, identical to production acceptance).
  *
  * Blinding: candidates are randomly mapped to opaque labels (A/B/C…); every
  * reviewer-visible artifact (doc path, doc bytes, task text) is checked against
@@ -27,14 +28,15 @@ import { writeFileAtomic, ensureTrailingNewline } from "../lib/atomicWrite.js";
 import { AUTHOR_CHAPTER_BAR } from "../review/readerReview.js";
 import {
   adjudicateBookReview,
-  assertBookSampleDocIntegrity,
-  buildBookReviewTask,
+  assertBookSamplePhase1Integrity,
+  buildBookReviewTaskPhase1,
   composeBookVerdict,
   parseBookReview,
-  renderBookSampleDoc,
+  renderBookSampleDocPhase1,
   selectAcceptanceSample,
   type BookReaderResult,
 } from "../review/evalBookProxy.js";
+import { buildReviewerWorkspace } from "../review/reviewerWorkspace.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import type { BlindLabel, CandidateBookReadV1, CandidateReviewV1, CandidateSpec, ReasoningEffort } from "./types.js";
 import { PIPELINE_DIR, combineHashes, pipelineRel, type BakeoffRoots } from "./paths.js";
@@ -198,11 +200,15 @@ export async function reviewCandidate(
   );
 
   // ── Whole-book panel reads (same seeded sample for every candidate) ───────
+  // IMP-08: the bake-off measures the PHASE-1 instrument (key-free doc,
+  // workspace-isolated judges) — the same instrument acceptance runs, so
+  // bake-off composites stay comparable with production reads.
   const sample = selectAcceptanceSample(bookId, chapters, 4, `bakeoff-${opts.runId}`);
-  const docText = ensureTrailingNewline(renderBookSampleDoc(sample));
-  assertBookSampleDocIntegrity(docText, sample);
-  const { relPath: docRelPath } = io.writeReviewDoc(bookId, "book-sample.txt", docText);
-  const task = buildBookReviewTask(docRelPath);
+  const docText = ensureTrailingNewline(renderBookSampleDocPhase1(sample));
+  assertBookSamplePhase1Integrity(docText, sample);
+  const bookDocFileName = "book-sample.txt";
+  io.writeReviewDoc(bookId, "book-sample.phase1.txt", docText);
+  const task = buildBookReviewTaskPhase1(bookDocFileName);
   assertNoIdentityLeak(task, opts.forbidden, `book review task (label ${label})`);
 
   const spawnBookRead = async (readerNo: number, tag: string): Promise<{ result: BookReaderResult; sessionId: string }> => {
@@ -210,15 +216,24 @@ export async function reviewCandidate(
     for (let attempt = 1; attempt <= 2; attempt++) {
       const sessionId = deps.mkSessionId(`bakeoff-review-${label}-r${readerNo}${tag}${attempt > 1 ? "-r2" : ""}`);
       lastSessionId = sessionId;
-      const r = await jdeps.spawn({
-        task,
-        role: "bakeoff-judge",
-        sessionId,
-        cwd: PIPELINE_DIR,
-        sandbox: "read-only",
-        skipGitRepoCheck: true,
-        reasoningEffort: opts.judge.effort,
+      const ws = buildReviewerWorkspace({
+        role: "acceptance-reader",
+        artifacts: [{ kind: "phase1-doc", relPath: bookDocFileName, content: docText }],
       });
+      let r;
+      try {
+        r = await jdeps.spawn({
+          task,
+          role: "bakeoff-judge",
+          sessionId,
+          cwd: ws.dir,
+          sandbox: "read-only",
+          skipGitRepoCheck: true,
+          reasoningEffort: opts.judge.effort,
+        });
+      } finally {
+        ws.cleanup();
+      }
       try { deps.logSession(bookId, `bakeoff-review-${label}-r${readerNo}`, r); } catch { /* best-effort */ }
       const parsed = parseBookReview(r.finalMessage) ?? parseBookReview(r.stdout);
       if (!parsed) {

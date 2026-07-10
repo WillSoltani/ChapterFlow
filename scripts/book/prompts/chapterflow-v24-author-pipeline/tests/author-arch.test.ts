@@ -1753,21 +1753,21 @@ test("Q6 acceptanceRoundSegment + path: '' → round1, '-round2' → round2, fs-
 
 // ── Q3 respawn in the live acceptance path ────────────────────────────────────
 
-test("Q3 a disproven structural FAIL reader is respawned in the acceptance loop", async () => {
-  // reader 3 gate-FAILs on attempt 1 with a byte-false 'key omits ch1 Q9' claim
-  // over the sampled doc; the Q3 screen invalidates it → the loop respawns it
-  // (attempt 2), which PASSes. All three end valid → quorum met, accepted.
-  // NOTE: FIXTURE_CHAPTERS have fewer than 9 quiz Qs, so the claim's Q number
-  // must exist in the sampled doc for a positive disproof — use the ch1 Q1 row.
+test("Q3 (IMP-08 retarget): a key-omission claim over the key-free phase-1 doc is a NO-OP — no infra halt, no invalidation, the FAIL vote stands", async () => {
+  // Pre-IMP-08 this pinned the Q3 respawn: a byte-false "key omits ch1 Q1"
+  // claim was disproven against the doc's key rows and invalidated the reader.
+  // The phase-1 acceptance doc contains NO key section AT ALL (certified by
+  // assertBookSamplePhase1Integrity pre-spawn), so the claim CLASS is obsolete.
+  // The protections this now pins: such a claim must neither CONFIRM against
+  // the empty key-row map (a DocIntegrityError infra-halt on reader confusion)
+  // nor invalidate the vote — the reader stays VALID and its gate FAIL counts
+  // as a real verdict. Quote fabrication remains the validity guard.
   let r3attempts = 0;
-  const { deps, spawns } = mkDeps((o) => {
+  const { deps } = mkDeps((o) => {
     if (o.sessionId.includes("author-book-reader-3")) {
       r3attempts++;
-      if (!o.sessionId.includes("-r2")) {
-        // attempt 1: a FAIL whose ONLY defect is a disproven structural claim.
-        return { finalMessage: bookReply(FIXTURE_CHAPTERS, { gate: "FAIL", verdictText: "The combined answer key omits chapter 1 Q1." }) };
-      }
-      return { finalMessage: bookReply(FIXTURE_CHAPTERS) }; // respawn passes
+      // A FAIL whose rationale is a key-omission claim over a key-free doc.
+      return { finalMessage: bookReply(FIXTURE_CHAPTERS, { gate: "FAIL", verdictText: "The combined answer key omits chapter 1 Q1." }) };
     }
     if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS) };
     const m = o.sessionId.match(/author-review-ch0*(\d+)/);
@@ -1775,14 +1775,13 @@ test("Q3 a disproven structural FAIL reader is respawned in the acceptance loop"
     return {};
   });
   const io = mkIo();
-  const result = await doAuthorReview("zz", deps, { maxParallel: 3, io });
-  assert.equal(result, null, "after the respawn the panel is 3-valid and accepts");
-  assert.ok(r3attempts >= 2, "reader 3 was respawned exactly once after the Q3 invalidation");
+  // Must NOT throw (the unguarded screen would have "confirmed" the claim
+  // against the empty key-row map and halted infra on a provably-correct doc).
+  await doAuthorReview("zz", deps, { maxParallel: 3, io });
   const round1 = io.acceptanceRecords.find((r) => r.roundLabel === "");
-  assert.ok(round1 && round1.verdict.validCount === 3, "all three readers valid after the respawn");
-  // The invalidated attempt-1 read left a structural-screen decision on record.
-  const respawnSpawns = spawns.filter((s) => s.sessionId.includes("author-book-reader-3"));
-  assert.ok(respawnSpawns.length >= 2, "a second reader-3 session was spawned");
+  assert.ok(round1 && round1.verdict.validCount === 3, "all three readers stay VALID (no structural invalidation on a key-free doc)");
+  assert.ok(round1 && round1.readers.some((r) => r.gateVerdict === "FAIL"), "the confused reader's gate FAIL still counts as a real vote");
+  assert.equal(r3attempts, 1, "reader 3 is NOT respawned — the claim is a no-op, not an invalidation");
 });
 
 // ── F-05: the book-acceptance PREDICATE, pinned ──────────────────────────────

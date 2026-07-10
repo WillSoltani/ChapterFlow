@@ -92,8 +92,10 @@ export type SpawnCodexAgentOptions = {
   /** Distinct per spawn → CHAPTERFLOW_SESSION_ID (proves + enforces independence). */
   sessionId: string;
   /** Working directory (recorded verbatim in the manifest under the role's
-   *  declared cwd POLICY — pipeline root for legacy writer/reviewer roles until
-   *  IMP-01/IMP-08 narrow them). */
+   *  declared cwd POLICY). IMP-01 narrowed writers/repairers into isolated
+   *  attempt workspaces; IMP-08 narrowed the review family into built role
+   *  workspaces (reviewerWorkspace.ts) — reviewer cwds are tmpdir workspaces,
+   *  never the pipeline root. */
   cwd: string;
   /** Default workspace-write (author/edit chapters); read-only for pure reviewers.
    *  Must be within the role profile's allowedSandboxes — else preflight failure. */

@@ -619,15 +619,54 @@ export type ChapterReviewV1 = {
    *  only when the current phase bar equals this. */
   bar?: number;
   /** sha256 (full hex) of the EXACT rendered reader doc the reader scored —
-   *  ensureTrailingNewline(renderChapterReaderDoc(chapter)) — hashed at the
-   *  write site. A doc-render drift (even one that leaves contentHash equal)
-   *  invalidates the carry. */
+   *  hashed at the write site. v2 = the legacy key-bearing renderChapterReaderDoc;
+   *  v3 (IMP-08) = the key-free renderChapterReaderDocPhase1 bytes. A doc-render
+   *  drift (even one that leaves contentHash equal) invalidates the carry. */
   docHash?: string;
   /** Which docHash algorithm produced docHash. "v2" = sha256 over the trailing-
-   *  newline-terminated rendered doc. A mismatch (or absence) blocks reuse. */
-  hashVersion?: "v2";
+   *  newline-terminated LEGACY rendered doc; "v3" = over the phase-1 (key-free)
+   *  doc (IMP-08). A mismatch (or absence) blocks reuse — bumping the live
+   *  constant is the explicit carry-invalidation switch. */
+  hashVersion?: "v2" | "v3";
   /** ISO timestamp the review was adjudicated. Audit only (never gates reuse). */
   reviewedAt?: string;
+  // ── IMP-08 instrument-binding evidence (ADDITIVE, all OPTIONAL) ────────────
+  /** Phase-1 renderer version the scored document was produced by. */
+  phase1DocVersion?: string;
+  /** Reader-rubric (task card) version the review was produced under. */
+  rubricVersion?: string;
+  /** The reviewer AgentRole's frozen execution-profile hash, resolved by the
+   *  CONDUCTOR (plan instruction 10) — recorded evidence; the hash never
+   *  appears in any reviewer-visible artifact. */
+  executionProfileHash?: string;
+  /** hashCanonical({role, files}) of the reviewer workspace the reader ran in
+   *  — binds the review to the exact file set the reviewer could see. */
+  workspaceManifestSha256?: string;
+  /** IMP-08 phase-2 quiz-key adjudication evidence (ADVISORY in v1 — feeds no
+   *  pass predicate; the blocking key channel stays keyCheck.matches===of).
+   *  status "unavailable" records an explicit bounded-attempt failure — the
+   *  review itself remains decided by the phase-1 instrument;
+   *  "skipped-extra-read" marks a non-persisting tiebreak/second-opinion read
+   *  (the adjudication for those chapter bytes rides the persisted primary). */
+  quizAdjudication?: {
+    status: "adjudicated" | "unavailable" | "skipped-no-quiz" | "skipped-extra-read";
+    derivationSha256?: string;
+    phase2DocSha256?: string;
+    reviewerSessionId?: string;
+    /** Per-question verdicts, verified against the conductor's own committed
+     *  derivation + real key (validateQuizAdjudication). */
+    items?: Array<{
+      itemId: string;
+      keyedAnswerIndex: number;
+      derivedAnswerIndex: number;
+      agreement: boolean;
+      keyCorrect: "correct" | "ambiguous" | "wrong";
+      rationale: string;
+    }>;
+    ambiguousCount?: number;
+    keyWrongCount?: number;
+    reason?: string;
+  };
   scores: Record<ReviewFactor, number>;
   /** Weighted composite = sum(weight * score) / 100, rounded to 1 decimal. */
   composite: number;

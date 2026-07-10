@@ -40,19 +40,29 @@ import { MONOREPO_ANCESTOR, CANONICAL_STATE } from "../lib/chapterPaths.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import {
   adjudicateBookReview,
-  buildBookReviewTask,
+  assertBookSamplePhase1Integrity,
+  buildBookReviewTaskPhase1,
   composeBookVerdict,
   parseBookReview,
-  renderBookSampleDoc,
+  renderBookSampleDocPhase1,
   selectSeededChapters,
   type BookReaderResult,
 } from "../review/evalBookProxy.js";
+// IMP-08: the control read runs on the SAME phase-1 instrument as acceptance
+// (both sides of the beat-shipped comparison must be one instrument), in role
+// workspaces outside the repo.
+import { buildReviewerWorkspace } from "../review/reviewerWorkspace.js";
 import { REVIEW_FACTORS, type ReviewFactor } from "../artifacts/artifactTypes.js";
 import type { AutopilotDeps } from "./autopilot.js";
 import type { AuthorReviewIo } from "./authorReview.js";
 import { AUTHOR_BOOK_READERS } from "./authorReview.js";
 
-const CONTROL_SCHEMA_VERSION = "shipped-control-v1" as const;
+/** v2 (IMP-08): the control read moved onto the phase-1 (key-free) book-sample
+ *  instrument. Bumping the schema version EXPLICITLY invalidates every cached
+ *  v1 control record — a baseline measured on the legacy key-bearing doc must
+ *  never be compared against phase-1 acceptance reads (instrument crossing
+ *  through the cache). The next entry re-runs the control panel on phase-1. */
+const CONTROL_SCHEMA_VERSION = "shipped-control-v2" as const;
 
 export type ShippedControlRecord = {
   schemaVersion: typeof CONTROL_SCHEMA_VERSION;
@@ -153,21 +163,34 @@ async function runControlPanel(
   relPath: string,
   deps: AutopilotDeps,
 ): Promise<{ readers: BookReaderResult[] }> {
-  const task = buildBookReviewTask(relPath);
+  void relPath; // forensic-copy path; readers read their workspace copy (IMP-08)
+  const docFileName = "book-sample.txt";
+  const task = buildBookReviewTaskPhase1(docFileName);
   const readers: BookReaderResult[] = [];
   for (let readerNo = 1; readerNo <= AUTHOR_BOOK_READERS; readerNo++) {
     let result: BookReaderResult | null = null;
     for (let attempt = 1; attempt <= 2; attempt++) {
       const sessionId = deps.mkSessionId(`shipped-control-r${readerNo}${attempt > 1 ? "-r2" : ""}`);
-      const r = await deps.spawn({
-        task,
-        role: "shipped-control",
-        sessionId,
-        cwd: resolve(dirname(relPath)),
-        sandbox: "read-only",
-        skipGitRepoCheck: true,
-        reasoningEffort: "high",
+      // IMP-08: control readers run in role workspaces outside the repo with
+      // ONLY the phase-1 doc — identical envelope to the acceptance readers.
+      const ws = buildReviewerWorkspace({
+        role: "acceptance-reader",
+        artifacts: [{ kind: "phase1-doc", relPath: docFileName, content: docText }],
       });
+      let r;
+      try {
+        r = await deps.spawn({
+          task,
+          role: "shipped-control",
+          sessionId,
+          cwd: ws.dir,
+          sandbox: "read-only",
+          skipGitRepoCheck: true,
+          reasoningEffort: "high",
+        });
+      } finally {
+        ws.cleanup();
+      }
       try { deps.logSession(bookId, `shipped-control-r${readerNo}`, r); } catch { /* best-effort */ }
       const parsed = parseBookReview(r.finalMessage) ?? parseBookReview(r.stdout);
       if (!parsed) continue;
@@ -234,10 +257,13 @@ export async function resolveBeatShippedBar(
     return { ok: false, reason: `could not load the shipped package bytes at ${pin}: ${(err as Error).message}` };
   }
 
-  // 6. The SAME 3-reader book-level read the acceptance uses, over the shipped bytes.
+  // 6. The SAME 3-reader book-level read the acceptance uses, over the shipped
+  // bytes — phase-1 instrument (IMP-08), so the beat-shipped comparison never
+  // crosses instruments.
   const sampled = selectSeededChapters(bookId, pkg.chapters, 4);
-  const docText = renderBookSampleDoc(sampled);
-  const { relPath } = reviewIo.writeReviewDoc(bookId, `shipped-control-${pin.slice(0, 12)}.txt`, docText);
+  const docText = renderBookSampleDocPhase1(sampled);
+  assertBookSamplePhase1Integrity(docText, sampled);
+  const { relPath } = reviewIo.writeReviewDoc(bookId, `shipped-control-${pin.slice(0, 12)}.phase1.txt`, docText);
 
   let readers: BookReaderResult[];
   try {

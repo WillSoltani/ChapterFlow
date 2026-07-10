@@ -544,7 +544,12 @@ test("C3 integration: a tiebreak SPLIT (1 ship / 1 no-ship) upholds the FAIL —
     spawn: (async (o: { sessionId: string; task: string }) => {
       spawns.push(o.sessionId);
       let msg: string;
-      if (o.sessionId.includes("tiebreak")) {
+      if (o.sessionId.includes("author-quizadj")) {
+        // IMP-08 phase-2 adjudicator: unparseable → recorded "unavailable"
+        // (advisory instrument; never affects the tiebreak under test) — and
+        // NEVER captured as a writer task by the catch-all below.
+        msg = "not an adjudication";
+      } else if (o.sessionId.includes("tiebreak")) {
         tiebreakCount++;
         msg = tiebreakCount % 2 === 1
           ? readerReply(chapters[0], { ship: true, score: 88 })

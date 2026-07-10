@@ -35,7 +35,9 @@ function judgeSpawn(
   return async (opts) => {
     record.push(opts);
     const docRel = opts.task.match(/at: (\S+)/)?.[1] ?? "";
-    const docText = readFileSync(resolve(PIPELINE_DIR, docRel), "utf8");
+    // IMP-08: reviewers run inside role workspaces (cwd = the workspace), so a
+    // realistic judge resolves the doc against ITS OWN cwd, like real codex.
+    const docText = readFileSync(resolve(opts.cwd ?? PIPELINE_DIR, docRel), "utf8");
     const quote = docText.split("\n").find((l) => l.length > 30 && !l.startsWith("#") && !l.startsWith("=")) ?? docText.slice(0, 40);
     const isBookReview = opts.task.includes("gate_verdict") || opts.task.startsWith("BLINDED BOOK REVIEW") || opts.task.includes("book3_churn");
     let payload: Record<string, unknown>;
@@ -104,7 +106,9 @@ test("reviewCandidate pins the FIXED judge on every spawn, blinds every packet, 
   assert.equal(review.chapterReviews.length, 2);
   assert.ok(review.contentSha256.length === 64, "content hash recorded for resume");
   // Docs + review records live under the LABEL dir (never the model name).
-  assert.ok(existsSync(join(roots.reviewsDir, "B", "ch01.txt")));
+  // IMP-08: the forensic chapter doc is the phase-1 (key-free) copy.
+  assert.ok(existsSync(join(roots.reviewsDir, "B", "ch01.phase1.txt")));
+  assert.ok(existsSync(join(roots.reviewsDir, "B", "book-sample.phase1.txt")), "book doc forensic copy is phase-1 too");
   assert.ok(existsSync(join(roots.reviewsDir, "B", "review.json")));
   const persisted = JSON.parse(readFileSync(join(roots.reviewsDir, "B", "review.json"), "utf8"));
   assert.equal(persisted.label, "B");
