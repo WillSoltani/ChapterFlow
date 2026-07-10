@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "chapterflow-writer-packet-v1",
+  "schemaVersion": "chapterflow-writer-packet-v2",
   "bookId": "zz-fixture-fact-ranking",
   "chapterId": "zz-fixture-fact-ranking-ch03",
   "chapterNumber": 3,
@@ -77,7 +77,8 @@
       "hardSpecifics": [
         "four years",
         "rewrote essays from memory"
-      ]
+      ],
+      "naturalSetting": "Benjamin Franklin Franklin"
     },
     {
       "id": "ch3.case.b",
@@ -87,7 +88,8 @@
       "hardSpecifics": [
         "10000 hours",
         "solitary practice"
-      ]
+      ],
+      "naturalSetting": "Ericsson"
     }
   ],
   "allowedAnchors": [

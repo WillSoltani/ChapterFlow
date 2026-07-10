@@ -26,8 +26,16 @@ import { fileURLToPath } from "url";
 import type { AutopilotDeps, AutopilotOutcome, HaltCategory, VerbResult } from "./autopilot.js";
 import type { ChapterV21 } from "../types.js";
 import type { ChapterBriefV1, SourcePacketV1 } from "../artifacts/artifactTypes.js";
-import { chapterBriefMdPath, chapterBriefPath, leadOverridePath, readJsonFile, sourcePacketPath } from "../artifacts/artifactStore.js";
-import { writerPacketProjection } from "../compiler/sourcePacketProjection.js";
+import { chapterBriefMdPath, chapterBriefPath, leadOverridePath, readJsonFile, sourcePacketPath, sourceUsePlanPath } from "../artifacts/artifactStore.js";
+import { WRITER_PACKET_PROJECTION_SCHEMA_VERSION, writerPacketProjection } from "../compiler/sourcePacketProjection.js";
+import { sourcePacketHash } from "../compiler/sourcePacket.js";
+import {
+  embeddedPlanMutationFindings,
+  renderSourceUsePlanLines,
+  sourceUsePlanStale,
+} from "../compiler/sourceUsePlanCompiler.js";
+import { sourceUsePlanHash, validateSourceUsePlan, type SourceUsePlanV1 } from "../contracts/sourceUsePlan.js";
+import { UNTRUSTED_ARTIFACT_RENDERER_VERSION, untrustedArtifact } from "../exec/untrustedArtifact.js";
 import {
   DEFAULT_LENGTH_BUDGET_CHARS,
   LENGTH_BUDGET_TOLERANCE,
@@ -103,6 +111,11 @@ export type AuthorIo = {
   readBrief: (bookId: string, chapterNumber: number) => ChapterBriefV1 | null;
   /** The compiled source packet for a chapter, or null when absent. */
   readPacket: (bookId: string, chapterNumber: number) => SourcePacketV1 | null;
+  /** IMP-03: the compiler-owned source-use plan for a chapter, or null when the
+   *  book predates plans (legacy path — absence grants nothing and blocks
+   *  nothing). A PRESENT plan is validated + freshness-checked fail-closed
+   *  before any writer/repair spawn. */
+  readSourcePlan: (bookId: string, chapterNumber: number) => SourceUsePlanV1 | null;
   /** All on-disk chapters of the book (canonical state). */
   loadChapters: (bookId: string) => ChapterV21[];
   /** True iff config/name-bank.json loads and is non-empty. readerBudgets
@@ -193,6 +206,16 @@ export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
         const p = sourcePacketPath(normSlug(bookId), n);
         return existsSync(p) ? readJsonFile<SourcePacketV1>(p) : null;
       } catch { return null; }
+    }),
+    // IMP-03: side-effect-free read (sourceUsePlanPath never mkdirs — fixture
+    // book ids in tests must not mint state/books/<book>/runs/ dirs). ABSENT →
+    // null (legacy path). PRESENT but unreadable/corrupt → THROW: swallowing it
+    // into null would silently promote a broken plan to "no plan" and author
+    // fail-open; callers convert the throw into a fail-closed refusal.
+    readSourcePlan: over?.readSourcePlan ?? ((bookId, n) => {
+      const p = sourceUsePlanPath(normSlug(bookId), n);
+      if (!existsSync(p)) return null;
+      return readJsonFile<SourceUsePlanV1>(p);
     }),
     loadChapters: loadChaptersResolved,
     nameBankOk: over?.nameBankOk ?? (() => {
@@ -562,6 +585,10 @@ export type AuthorCardArgs = {
    *  EXPLICIT writer instructions. null when the brief md is present but the json is not
    *  readable (the md already carries the VARIETY section, so the card degrades gracefully). */
   brief?: ChapterBriefV1 | null;
+  /** IMP-03: the compiler-owned source-use plan. Renders the binding license
+   *  block (origin/form/claim-strength/detail permissions) + plan hash. Omitted/
+   *  null → legacy books render exactly the pre-plan card (no block). */
+  plan?: SourceUsePlanV1 | null;
   /** Model-bakeoff isolation: write the chapter to this pipeline-relative path instead of
    *  the canonical state/chapters/ path. ORCHESTRATION DATA ONLY — the card's substantive
    *  content is byte-identical across candidates; only this path (and the session id, which
@@ -651,20 +678,42 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
   styleLines.push("", AUTHOR_PREMIUM_BLOCK);
   sections.push(...styleLines);
 
+  // IMP-03: research-derived material is DATA and rides inside the typed
+  // untrusted-artifact envelope — instruction-like text inside the packet
+  // (or a reviewer complaint) is quoted evidence, never a new instruction
+  // channel. The conductor's own instructions stay OUTSIDE the blocks.
   sections.push(
     "",
     "SOURCE PACKET (writer projection)",
     "This is the ONLY allowed factual material. Every claim, number, name, and case detail must trace to it. Invent connective narration, not facts.",
     "Facts marked \"sharedSpine\" are the book's shared framework — EVERY chapter carries them. Reference them briefly through this chapter's own angle; never re-derive them at full length (nine chapters each re-teaching the spine is how a book becomes one stamped template). Your chapter's OWN core move is never spine-marked: teach it in full — the fast read alone must still leave the core idea.",
-    JSON.stringify(writerPacketProjection(packet), null, 1),
+    "Facts carrying \"replicationStatus\" below robust are contested evidence: hedge them (\"evidence is mixed…\"), never state them as settled law. Case \"doNotRestamp\" specifics are protected: never move them onto other people, places, or dates.",
+    untrustedArtifact(
+      "source-packet-projection",
+      `${bookId}/ch${nn}`,
+      WRITER_PACKET_PROJECTION_SCHEMA_VERSION,
+      JSON.stringify(writerPacketProjection(packet), null, 1),
+      "json",
+    ),
   );
+
+  // IMP-03: the compiler-owned license table — conductor-rendered instruction
+  // text (trusted), bound to this attempt by the plan hash it carries.
+  if (args.plan) {
+    sections.push("", ...renderSourceUsePlanLines(args.plan));
+  }
 
   if (args.complaints && args.complaints.length > 0) {
     sections.push(
       "",
       "PRIOR-ATTEMPT COMPLAINTS",
-      "Your previous attempt failed independent review for the following specific reasons. Do not repeat them:",
-      ...args.complaints.map((c) => `- ${c}`),
+      "Your previous attempt failed independent review. Fix every defect described in the data block below — the same independent review will re-read your new draft:",
+      untrustedArtifact(
+        "reviewer-finding",
+        `${bookId}/ch${nn} prior-attempt complaints`,
+        "complaint-lines-v1",
+        args.complaints.map((c) => `- ${c}`).join("\n"),
+      ),
     );
   }
 
@@ -731,6 +780,28 @@ export async function authorWriteOneChapter(
   const packet = io.readPacket(bookId, chapterNumber);
   if (!packet) return { ok: false, reason: `ch${nn}: no source packet — run compile-source-packets first` };
 
+  // IMP-03: load the compiler-owned source-use plan. ABSENT → legacy path
+  // (pre-plan books author exactly as before; absence grants nothing). PRESENT →
+  // fail-closed: contract-invalid, unreadable, or stale-against-the-packet all
+  // REFUSE to author — a plan that no longer matches its packet must be
+  // recompiled upstream, never silently ignored or trusted.
+  let plan: SourceUsePlanV1 | null = null;
+  try {
+    plan = io.readSourcePlan(bookId, chapterNumber);
+  } catch (err) {
+    return { ok: false, reason: `ch${nn}: source-use plan exists but is unreadable (${(err as Error).message.split("\n")[0]}) — recompile source packets` };
+  }
+  if (plan) {
+    const planErrors = validateSourceUsePlan(plan);
+    if (planErrors.length > 0) {
+      return { ok: false, reason: `ch${nn}: source-use plan fails its frozen contract — ${planErrors.slice(0, 3).join("; ")} — recompile source packets` };
+    }
+    const stale = sourceUsePlanStale(plan, packet);
+    if (stale) {
+      return { ok: false, reason: `ch${nn}: source-use plan is STALE — ${stale} — recompile source packets before authoring` };
+    }
+  }
+
   // IMP-01 (F-001/F-020): the writer never touches the canonical path. Every
   // attempt gets an isolated workspace (the agent's cwd and ONLY writable dir);
   // the candidate is validated in memory against the COMMITTED book and lands
@@ -771,7 +842,7 @@ export async function authorWriteOneChapter(
   // card would carry two disagreeing LEAD THREAD/cast signals.
   const voice = io.voiceCard(bookId);
   const mkCard = (brief: ChapterBriefV1 | null, md: string): string => buildAuthorCard({
-    bookId, chapterNumber, totalChapters, briefMd: md, packet, voice, complaints: opts.complaints, brief,
+    bookId, chapterNumber, totalChapters, briefMd: md, packet, voice, complaints: opts.complaints, brief, plan,
     // IMP-01: the agent-facing output path is the candidate file in its own
     // working directory — never a repository path.
     outputRelPath: candidateName,
@@ -874,6 +945,17 @@ export async function authorWriteOneChapter(
       attemptKind: isRegen ? "author-regeneration" : "author-initial",
       attemptSequence: attempt,
       promptSha256: sha256Hex(card),
+      // IMP-03 lineage: the attempt is bound to the exact plan/packet/projection/
+      // brief/renderer it was authored under — a change to any of them changes
+      // these hashes, staling every dependent artifact (F-004..F-007 requirement 14).
+      sourcePlanHash: plan ? sourceUsePlanHash(plan) : undefined,
+      inputHashes: {
+        sourcePacket: sourcePacketHash(packet),
+        writerProjection: sha256Hex(JSON.stringify(writerPacketProjection(packet))),
+        briefMd: sha256Hex(briefMdEffective),
+        ...(plan ? { sourceUsePlan: sourceUsePlanHash(plan) } : {}),
+        untrustedArtifactRenderer: UNTRUSTED_ARTIFACT_RENDERER_VERSION,
+      },
       io,
       attemptsRoot: io.attemptsRoot(),
     });
@@ -939,6 +1021,20 @@ export async function authorWriteOneChapter(
       continue;
     }
     const candidate = imported.chapter;
+
+    // IMP-03 (requirement 5/13): a candidate carrying source-plan control fields
+    // is an attempted downstream relabel of compiler-owned semantics (origin/
+    // form/claim-strength/permissions) — writers may REQUEST an upstream change,
+    // never mutate those fields in their output. First-class attempt failure.
+    const planMutation = embeddedPlanMutationFindings(candidate);
+    if (planMutation.length > 0) {
+      lastReason = `ch${nn}: writer session ${sessionId} embedded source-plan control field(s) in the chapter output (${planMutation.slice(0, 5).join(", ")}) — origin/form/claim-strength changes route upstream through source-plan recompile, never through writer output`;
+      finalizeAttempt(chAttempt, "validation_failed", lastReason);
+      deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
+      card = `${baseCard}\n\nPREVIOUS ATTEMPT EMBEDDED PLAN CONTROL FIELDS\nYour previous ${candidateName} carried compiler-owned source-plan fields (${planMutation.slice(0, 5).join(", ")}). The source-use plan is not yours to write or edit: remove every such field and write ONLY the ChapterV21 content schema. If you believe a license is wrong, say so in prose in your final message — do not relabel.`;
+      nonLeadFailure = true;
+      continue;
+    }
 
     const gate = await io.gateCandidate(candidate, canonicalAbs, relPath);
     if (gate.code === 0) {
@@ -1053,6 +1149,19 @@ export async function authorWriteOneChapter(
           deps.log(`[autopilot] author ch${nn}: lead override persisted (chNN.lead-override.json) — future regens/repairs enforce the contract against "${degraded.to.name}".`);
         } catch (err) {
           deps.log(`[autopilot] author ch${nn}: degraded lead LANDED but the lead-override sidecar could not be persisted (${(err as Error).message.split("\n")[0]}) — the next entry will re-fail on the dealt lead and re-degrade; fix the briefs dir permissions.`);
+        }
+      }
+      // IMP-03 freshness: the plan was verified against the packet at ENTRY; the
+      // writer ran for many minutes since. Re-verify the source lineage right
+      // before commit — a packet recompiled mid-attempt means this candidate was
+      // authored under licenses that no longer exist. Reject; never rebase.
+      if (plan) {
+        const freshPacket = io.readPacket(bookId, chapterNumber);
+        if (!freshPacket || sourceUsePlanStale(plan, freshPacket)) {
+          const reason = `ch${nn}: source lineage went STALE mid-attempt (the source packet changed since this attempt's plan was verified) — candidate rejected; recompile packets+plans and re-run`;
+          finalizeAttempt(chAttempt, "validation_failed", reason);
+          deps.log(`[autopilot] author ch${nn}: ${reason}`);
+          return { ok: false, reason };
         }
       }
       // IMP-01 commit: compare-and-swap against the attempt's expected canonical

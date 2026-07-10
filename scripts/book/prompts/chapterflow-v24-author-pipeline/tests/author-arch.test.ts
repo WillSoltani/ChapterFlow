@@ -426,7 +426,10 @@ test("author card: brief md verbatim + writer projection + schema hint + self-ve
     voice: "voice: warm, direct coaching register; second-person; medium cadence",
   });
   assert.ok(card.includes(briefMd.trim()), "the rendered brief md is embedded verbatim");
-  assert.ok(card.includes('"schemaVersion": "chapterflow-writer-packet-v1"'), "the SLIM writer projection is embedded (not the raw packet)");
+  assert.ok(card.includes('"schemaVersion": "chapterflow-writer-packet-v2"'), "the SLIM writer projection is embedded (not the raw packet)");
+  // IMP-03 (F-021): the projection rides INSIDE the typed untrusted-data envelope.
+  assert.ok(card.includes('<chapterflow_untrusted_artifact type="source-packet-projection"'), "projection is data-enveloped");
+  assert.ok(card.includes("UNTRUSTED ARTIFACT DATA"), "the envelope notice rides the card");
   assert.ok(!card.includes("groundedNumbers"), "projection dropped the grounding inventories (card diet)");
   assert.ok(card.includes(authorSchemaHint("zz-fixture-fact-ranking", 3)), "compact ChapterV21 schema hint present");
   assert.ok(card.includes("SELF-VERIFY"), "self-verify block present");
@@ -505,8 +508,14 @@ test("author card: W1 QUALITY BAR (all four house rules) rides the ALWAYS-SENT c
   // 2026-07-09 CF-J: 18,820 → 18,940 for the self-verify item-4 page-citation clause
   // ("Page/section citations … are internal coordinates, never reader prose", +91;
   // measured card 18,911 — still under the ≤19,000-per-campaign governance cap).
-  assert.ok(card.length <= 18940, `W1 card length budget: card must be <= 18,940 chars, got ${card.length}`);
-  console.log(`  [measure] W1 card with QUALITY BAR: ${card.length} chars (budget 18,940)`);
+  // 2026-07-10 IMP-03: 18,940 → 20,000 (measured 19,924, +1,013). NOT prose growth:
+  // the typed untrusted-data ENVELOPE around the projection (notice + delimiters +
+  // hash header, F-021 security boundary, ~710), the projection's v2 SAFETY fields
+  // on this fixture (doNotRestamp/naturalSetting, F-005), and the two-line hedge/
+  // restamp instruction. Prompt DIET is IMP-05's package (conflict matrix: "IMP-03
+  // data first, IMP-05 diet second") — the pin drops again there.
+  assert.ok(card.length <= 20000, `W1 card length budget: card must be <= 20,000 chars, got ${card.length}`);
+  console.log(`  [measure] W1 card with QUALITY BAR: ${card.length} chars (budget 20,000)`);
 });
 
 // ── CF-A (G1): hook carries a stake + fastRead doorway ─────────────────────────
@@ -569,11 +578,12 @@ test("CF-I-2: rule 8 carries the REGISTER rule + citation-date DOORWAY tightenin
   assert.match(sv, /4\. SCAFFOLD — scan every reader-facing field for scaffold vocabulary \(slot names, shape\/beat labels/, "self-verify item 4 adds beat labels to the scaffold list");
   assert.ok(sv.length <= 1400, `self-verify stays <= 1400 chars, got ${sv.length}`);
 
-  // Net CF-I-2 card delta ≤ +400 chars (register-rule budget); the whole card stays under
-  // the CF-I pin (18,820, raised from 18,700 in CF-I-3 for the +599 campaign delta).
-  assert.ok(card.length <= 18940, `W1 card length budget: card must be <= 18,940 chars, got ${card.length}`);
+  // Net CF-I-2 card delta ≤ +400 chars (register-rule budget); whole-card pin raised
+  // 18,940 → 20,000 by IMP-03 (untrusted envelope + v2 safety projection — see the
+  // W1 budget test's history comment; diet returns in IMP-05).
+  assert.ok(card.length <= 20000, `W1 card length budget: card must be <= 20,000 chars, got ${card.length}`);
   assert.ok(AUTHOR_QUALITY_BAR.length <= 6300, `QUALITY_BAR CF-I delta stays within budget, got ${AUTHOR_QUALITY_BAR.length}`);
-  console.log(`  [measure] CF-I-2 card: ${card.length} chars (budget 18,940); QUALITY_BAR ${AUTHOR_QUALITY_BAR.length}`);
+  console.log(`  [measure] CF-I-2 card: ${card.length} chars (budget 20,000); QUALITY_BAR ${AUTHOR_QUALITY_BAR.length}`);
 
   // NEGATIVE: nothing from CF-A/CF-B weakened — rule 7 register + rule 8 stake intact.
   assert.match(card, /7\. EXAMPLE CRAFT \[SCORED\]/, "rule 7 header unchanged");
@@ -617,9 +627,10 @@ test("CF-I-3: rule 5 carries KEY IS A MOVE; schemaHint + self-verify state appli
   };
   assert.equal(questionKeysOnLineage(lineageKey), true, "the C35 detector fires on the very key shape rule 5 forbids (rule↔detector consistency)");
 
-  // Whole-card budget: net CF-I campaign delta +599 (CF-I-2 +391 + CF-I-3 +208) under +600.
-  assert.ok(card.length <= 18940, `W1 card length budget: card must be <= 18,940 chars, got ${card.length}`);
-  console.log(`  [measure] CF-I-3 card: ${card.length} chars (budget 18,940); QUALITY_BAR ${AUTHOR_QUALITY_BAR.length}`);
+  // Whole-card budget: net CF-I campaign delta +599 (CF-I-2 +391 + CF-I-3 +208); pin
+  // raised 18,940 → 20,000 by IMP-03 (see the W1 budget test's history comment).
+  assert.ok(card.length <= 20000, `W1 card length budget: card must be <= 20,000 chars, got ${card.length}`);
+  console.log(`  [measure] CF-I-3 card: ${card.length} chars (budget 20,000); QUALITY_BAR ${AUTHOR_QUALITY_BAR.length}`);
 });
 
 // ── CF-D (G3): PLAIN WORDS covers inherited terms of art, not only coined ──────
@@ -764,7 +775,10 @@ test("author card: complaints section appears ONLY on regeneration, with the rev
   const complaints = ["quiz Q2: the key contradicts the prose", "deep read: restates the fast read"];
   const card = buildAuthorCard({ bookId: "zz", chapterNumber: 1, briefMd, packet: GOLDEN_PACKET, voice: null, complaints });
   assert.ok(card.includes("PRIOR-ATTEMPT COMPLAINTS"), "complaints header present on regen");
-  assert.ok(card.includes("Do not repeat them:"), "regeneration framing present");
+  assert.ok(card.includes("Fix every defect described in the data block below"), "regeneration framing present (conductor instruction outside the data block)");
+  // IMP-03 (F-021): reviewer text is model output — it rides inside the typed
+  // untrusted-data envelope; the bullets are byte-preserved as its body.
+  assert.ok(card.includes('<chapterflow_untrusted_artifact type="reviewer-finding"'), "complaints are data-enveloped");
   for (const c of complaints) assert.ok(card.includes(`- ${c}`), `complaint bullet present: ${c}`);
   const empty = buildAuthorCard({ bookId: "zz", chapterNumber: 1, briefMd, packet: GOLDEN_PACKET, voice: null, complaints: [] });
   assert.ok(!empty.includes("PRIOR-ATTEMPT COMPLAINTS"), "an EMPTY complaints list adds no section");

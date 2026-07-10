@@ -111,6 +111,9 @@ test("allowlist: projection carries ONLY the allowlisted keys (any new packet fi
     "facts", "id", "claim", "mechanism", "commonError", "whyWrong",
     "namedCases", "label", "realWorld", "summary", "hardSpecifics",
     "allowedAnchors", "sourceQualityStatus",
+    // IMP-03 (v2, F-005): the deliberate SAFETY additions — case doNotRestamp/
+    // naturalSetting, fact replicationStatus (below-robust only), root sourceRisks.
+    "doNotRestamp", "naturalSetting", "replicationStatus", "sourceRisks",
   ]);
   const leaked = [...keys].filter((k) => !allowed.has(k)).sort();
   assert.deepEqual(leaked, [], `non-allowlisted key(s) leaked into the writer projection: ${leaked.join(", ")}`);

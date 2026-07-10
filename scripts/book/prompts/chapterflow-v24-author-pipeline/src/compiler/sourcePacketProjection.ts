@@ -13,12 +13,23 @@
  * ranking/dealing metadata (teachingPriority, coreMoveFactId), grounding
  * inventories (allowedNumbers/Entities/Places, groundedNumbers/Entities/
  * Places, allowedClaimTypes, verificationRefs), case linkage internals (allowedUses,
- * forbiddenUses, doNotRestamp, naturalSetting), frameworks, forbiddenClaims/
- * forbiddenLeakage, source provenance (sourceSidecarPath, sourceHash, chapterTitle),
- * anchor bodies (only anchor IDS survive), and sourceQuality.risks.
- * bookWideDuplicate is projected as `sharedSpine` (S-tier P6, 2026-07-03) — the one
- * ranking-metadata field the writer needs, because "this fact is every chapter's
- * fact" changes how a chapter should teach it.
+ * forbiddenUses), frameworks, forbiddenClaims/forbiddenLeakage, source provenance
+ * (sourceSidecarPath, sourceHash, chapterTitle), and anchor bodies (only anchor
+ * IDS survive). bookWideDuplicate is projected as `sharedSpine` (S-tier P6,
+ * 2026-07-03) — the one ranking-metadata field the writer needs, because "this
+ * fact is every chapter's fact" changes how a chapter should teach it.
+ *
+ * IMP-03 (v2, F-005): the projection stopped dropping the SAFETY subset of the
+ * case policy and source risk signal — the fields whose absence let writers
+ * restamp protected specifics and state contested claims as settled law:
+ *   - case `doNotRestamp` (the protected hard specifics) + `naturalSetting`;
+ *   - fact `replicationStatus` (only when BELOW "robust" — the hedge signal;
+ *     "robust"/absent stays out of the card as noise);
+ *   - root `sourceRisks` (sourceQuality.risks, citation-stripped, capped).
+ * Still deliberately dropped: allowedUses (a uniform constant — all uses allowed
+ * on every case today) and forbiddenUses (one identical boilerplate sentence per
+ * case; its CONTENT is carried categorically by the compiler-owned source-use
+ * plan's forbiddenDetailTypes, rendered in the card's SOURCE-USE PLAN block).
  *
  * Pure function: no fs, no clock, no mutation of the input; returned arrays are
  * fresh (mutating the projection never touches the packet).
@@ -44,7 +55,10 @@
 import type { SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import { isPageCitationOnly, stripPageCitationSpans } from "../critics/apparatusLeakage.js";
 
-export const WRITER_PACKET_PROJECTION_SCHEMA_VERSION = "chapterflow-writer-packet-v1" as const;
+export const WRITER_PACKET_PROJECTION_SCHEMA_VERSION = "chapterflow-writer-packet-v2" as const;
+
+/** How many sourceQuality.risks lines reach the card (compactness cap). */
+export const PROJECTED_SOURCE_RISKS_CAP = 6;
 
 export type WriterPacketProjectionFact = {
   id: string;
@@ -58,6 +72,9 @@ export type WriterPacketProjectionFact = {
    *  instead of re-deriving them (the halted `execution` run's nine writers each re-taught
    *  the full framework at full strength — the saturation seed). */
   sharedSpine?: true;
+  /** IMP-03 (v2): the researcher's replication verdict, projected ONLY when below
+   *  "robust" — the writer must hedge this claim instead of stating settled law. */
+  replicationStatus?: "mixed" | "contested" | "failed";
 };
 
 export type WriterPacketProjectionCase = {
@@ -66,6 +83,11 @@ export type WriterPacketProjectionCase = {
   realWorld?: boolean;
   summary?: string;
   hardSpecifics?: string[];
+  /** IMP-03 (v2): protected specifics — never relocate/restamp these onto other
+   *  entities, places, or dates (citation-stripped like every text field). */
+  doNotRestamp?: string[];
+  /** IMP-03 (v2): the case's own documented setting, when research recorded one. */
+  naturalSetting?: string;
 };
 
 export type WriterPacketProjection = {
@@ -78,6 +100,9 @@ export type WriterPacketProjection = {
   /** Anchor IDS only (SourceAnchorForPrompt.id) — labels/text/kind stay out of the card. */
   allowedAnchors: string[];
   sourceQualityStatus: string;
+  /** IMP-03 (v2): the packet's sourceQuality.risks, citation-stripped and capped —
+   *  the writer sees the researcher's own risk notes on this chapter's evidence. */
+  sourceRisks?: string[];
 };
 
 /** Copy a string field only when it carries content (defensive against partially
@@ -116,6 +141,10 @@ export function writerPacketProjection(packet: SourcePacketV1): WriterPacketProj
       // even when research tagged it bookWideDuplicate — a writer told to "reference
       // briefly" the fact their whole chapter teaches would under-teach the chapter.
       if (fact.bookWideDuplicate === true && fact.id !== packet.coreMoveFactId) projected.sharedSpine = true;
+      // IMP-03 (v2): only the below-robust verdicts reach the card — the hedge signal.
+      if (fact.replicationStatus === "mixed" || fact.replicationStatus === "contested" || fact.replicationStatus === "failed") {
+        projected.replicationStatus = fact.replicationStatus;
+      }
       return projected;
     }),
     namedCases: (packet.namedCases ?? []).map((namedCase) => {
@@ -137,10 +166,27 @@ export function writerPacketProjection(packet: SourcePacketV1): WriterPacketProj
           .filter((s) => s.length > 0);
         if (specifics.length > 0) projected.hardSpecifics = specifics;
       }
+      // IMP-03 (v2): the case's SAFETY policy subset — same citation hygiene as
+      // hardSpecifics for doNotRestamp (they are drawn from the same tokens).
+      if (Array.isArray(namedCase.doNotRestamp) && namedCase.doNotRestamp.length > 0) {
+        const protectedSpecifics = namedCase.doNotRestamp
+          .filter((s) => !isPageCitationOnly(String(s)))
+          .map((s) => stripPageCitationSpans(String(s)))
+          .filter((s) => s.length > 0);
+        if (protectedSpecifics.length > 0) projected.doNotRestamp = protectedSpecifics;
+      }
+      const naturalSetting = textOrUndefined(namedCase.naturalSetting);
+      if (naturalSetting !== undefined) projected.naturalSetting = naturalSetting;
       return projected;
     }),
     allowedAnchors: (packet.allowedAnchors ?? []).map((anchor) => anchor.id),
     sourceQualityStatus: packet.sourceQuality?.status ?? "unknown",
   };
+  // IMP-03 (v2): the researcher's own risk notes, citation-stripped and capped.
+  const risks = (packet.sourceQuality?.risks ?? [])
+    .map((r) => stripPageCitationSpans(String(r)))
+    .filter((r) => r.length > 0)
+    .slice(0, PROJECTED_SOURCE_RISKS_CAP);
+  if (risks.length > 0) projection.sourceRisks = risks;
   return projection;
 }

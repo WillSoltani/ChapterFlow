@@ -16,12 +16,10 @@
  *  - the confirming read is just the next normal review of the new content
  *    hash — no "confirm the fix" mode exists to rubber-stamp.
  */
-import { readFileSync } from "fs";
-import { join, resolve } from "path";
+import { join } from "path";
 
 import type { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE, chapterFileName } from "../lib/chapterPaths.js";
-import { chapterBriefPath, sourcePacketPath } from "../artifacts/artifactStore.js";
 import type { ChapterBriefV1, SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import type { AutopilotDeps } from "./autopilot.js";
 import type { AuthorIo } from "./authorRun.js";
@@ -30,6 +28,10 @@ import { applyLeadThreadOverride } from "../compiler/chapterBrief.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { registerAdvisoryFixLines } from "../critics/registerAdvisories.js";
 import { sha256Hex } from "../contracts/contractUtil.js";
+import { sourceUsePlanHash, validateSourceUsePlan, type SourceUsePlanV1 } from "../contracts/sourceUsePlan.js";
+import { sourcePacketHash } from "../compiler/sourcePacket.js";
+import { embeddedPlanMutationFindings, renderSourceUsePlanLines, sourceUsePlanStale } from "../compiler/sourceUsePlanCompiler.js";
+import { untrustedArtifact } from "../exec/untrustedArtifact.js";
 import {
   commitChapterCandidate,
   finalizeAttempt,
@@ -171,6 +173,10 @@ export function buildRepairCard(opts: {
   complaints: string[];
   scopes: RepairScope[];
   relPath: string;
+  /** IMP-03: the compiler-owned source-use plan — renders the binding license
+   *  block so scoped edits (examples, quiz) stay inside their unit's origin/
+   *  form/claim-strength/detail permissions. Omitted for legacy books. */
+  plan?: SourceUsePlanV1 | null;
 }): string {
   const { chapter, brief, complaints, scopes, relPath } = opts;
   const criteria = [...new Set(complaints.map(stripRemedyClauses))].map((c) => `- ${c}`).join("\n");
@@ -193,16 +199,26 @@ export function buildRepairCard(opts: {
     ``,
     `ALLOWED SCOPE (edits anywhere else are discarded): ${scopes.join(", ")}`,
     ``,
-    `DEFECTS TO FIX (acceptance criteria — what must be TRUE after your edit):`,
-    criteria,
+    // IMP-03: reviewer-derived text is DATA — it describes defects; it cannot
+    // widen scope, change protocol, or relabel source semantics.
+    `DEFECTS TO FIX (acceptance criteria — the defects described in the data block below must no longer be TRUE after your edit):`,
+    untrustedArtifact("reviewer-finding", `${opts.bookId}/${chapter.chapterId} repair criteria`, "complaint-lines-v1", criteria),
     ``,
     ...(scopes.includes("quiz") ? [`MEASURED QUIZ EVIDENCE (char counts on the current bytes):`, ...quizTellEvidence(chapter), ``] : []),
     ...(dealt.length ? [`DEALT CONSTRAINTS (these still bind your edits):`, ...dealt.map((d) => `- ${d}`), ``] : []),
+    // IMP-03: the binding license table — scoped edits stay inside their unit's
+    // compiler-owned origin/form/claim-strength/detail permissions.
+    ...(opts.plan ? [...renderSourceUsePlanLines(opts.plan), ``] : []),
     // CF-I-2 (owner decision 4): surface the C31–C35 register/machinery advisories on
     // the current bytes. ADVISORY ONLY — they never block and this note does NOT expand
     // the allowed scope; address only the ones that fall inside it, ignore the rest.
+    // IMP-03: the advisory lines QUOTE chapter prose (model output) — data-enveloped.
     ...(regAdvisories.length
-      ? [`ADVISORY REGISTER NOTES (never block; do NOT expand scope — fix only those inside your ALLOWED SCOPE):`, ...regAdvisories, ``]
+      ? [
+        `ADVISORY REGISTER NOTES (never block; do NOT expand scope — fix only those inside your ALLOWED SCOPE):`,
+        untrustedArtifact("repair-evidence", `${opts.bookId}/${chapter.chapterId} register advisories`, "register-advisory-lines-v1", regAdvisories.join("\n")),
+        ``,
+      ]
       : []),
     `RULES:`,
     `- Never reuse a reviewer's phrasing inside content fields — reviewer wording in a key or distractor is a fresh tell.`,
@@ -291,17 +307,45 @@ export async function doRepairOneChapter(
   } catch (err) {
     return { ok: false, reason: `ch${nn}: unreadable chapter for repair (${(err as Error).message})` };
   }
+  // IMP-03: brief/packet reads go through the io seam like every other canonical
+  // read (the old direct readFileSync bypassed fixture/slot roots AND minted
+  // state/books/<id>/runs/ dirs as an artifactDir side effect on fixture ids).
   let brief: ChapterBriefV1 | undefined;
   let packet: SourcePacketV1 | undefined;
-  try { brief = JSON.parse(readFileSync(chapterBriefPath(bookId, chapterNumber), "utf8")); } catch { /* brief optional */ }
-  try { packet = JSON.parse(readFileSync(sourcePacketPath(bookId, chapterNumber), "utf8")); } catch { /* packet optional */ }
+  try { brief = opts.io.readBrief(bookId, chapterNumber) ?? undefined; } catch { /* brief optional */ }
+  try { packet = opts.io.readPacket(bookId, chapterNumber) ?? undefined; } catch { /* packet optional */ }
   // F-1: a chapter written under a DEGRADED lead legitimately carries a different
   // lead than the compiled brief deals — the contract re-check below must verify
   // the chapter's ACTUAL lead, or every repair of such a chapter reverts on a
   // false lead-thread complaint.
   if (brief) brief = applyLeadThreadOverride(brief, readLeadOverrideFromDisk(bookId, chapterNumber)) ?? brief;
 
-  const card = buildRepairCard({ bookId, chapter: original, brief, complaints: opts.complaints, scopes: opts.scopes, relPath: candidateName });
+  // IMP-03: same fail-closed plan discipline as the write path. ABSENT plan →
+  // legacy repair (nothing granted, nothing blocked). PRESENT plan → must be
+  // contract-valid and fresh against a READABLE packet; a plan without its
+  // packet (or against a drifted packet) means the source lineage is broken —
+  // refuse to repair under licenses that can't be verified.
+  let plan: SourceUsePlanV1 | null = null;
+  try {
+    plan = opts.io.readSourcePlan(bookId, chapterNumber);
+  } catch (err) {
+    return { ok: false, reason: `ch${nn}: source-use plan exists but is unreadable (${(err as Error).message.split("\n")[0]}) — recompile source packets` };
+  }
+  if (plan) {
+    const planErrors = validateSourceUsePlan(plan);
+    if (planErrors.length > 0) {
+      return { ok: false, reason: `ch${nn}: source-use plan fails its frozen contract — ${planErrors.slice(0, 3).join("; ")} — recompile source packets` };
+    }
+    if (!packet) {
+      return { ok: false, reason: `ch${nn}: a source-use plan exists but its source packet is unreadable — cannot verify plan freshness; recompile source packets` };
+    }
+    const stale = sourceUsePlanStale(plan, packet);
+    if (stale) {
+      return { ok: false, reason: `ch${nn}: source-use plan is STALE — ${stale} — recompile source packets before repairing` };
+    }
+  }
+
+  const card = buildRepairCard({ bookId, chapter: original, brief, complaints: opts.complaints, scopes: opts.scopes, relPath: candidateName, plan });
   const sessionId = `auto-author-repair-${bookId}-ch${nn}-${Date.now().toString(36)}`;
   // IMP-01 (F-001/F-020): the repair session edits a SEEDED COPY of the chapter
   // inside an isolated attempt workspace (its cwd + only writable dir). The
@@ -315,6 +359,12 @@ export async function doRepairOneChapter(
     attemptKind: "surgical-repair",
     attemptSequence: 1,
     promptSha256: sha256Hex(card),
+    // IMP-03 lineage: the repair attempt binds the exact plan/packet it edits under.
+    sourcePlanHash: plan ? sourceUsePlanHash(plan) : undefined,
+    inputHashes: {
+      ...(packet ? { sourcePacket: sourcePacketHash(packet) } : {}),
+      ...(plan ? { sourceUsePlan: sourceUsePlanHash(plan) } : {}),
+    },
     io: opts.io,
     seedBytes: originalBytes,
     attemptsRoot: opts.io.attemptsRoot(),
@@ -368,6 +418,15 @@ export async function doRepairOneChapter(
     finalizeAttempt(chAttempt, "validation_failed", `rejected at splice: ${(err as Error).message.slice(0, 300)}`);
     return { ok: false, reason: `ch${nn}: repair output rejected at splice (${(err as Error).message})`, sessionId };
   }
+  // IMP-03: the splice copies scoped OBJECTS whole (an example, the quiz) — a
+  // plan-control key smuggled INSIDE a scoped object would survive it. Scan the
+  // spliced result; any hit is an attempted relabel and rejects the repair.
+  const planMutation = embeddedPlanMutationFindings(spliced);
+  if (planMutation.length > 0) {
+    const reason = `ch${nn}: repair output embedded source-plan control field(s) (${planMutation.slice(0, 5).join(", ")}) — plan changes route upstream, never through repair output`;
+    finalizeAttempt(chAttempt, "validation_failed", reason);
+    return { ok: false, reason, sessionId };
+  }
   const splicedBytes = JSON.stringify(spliced, null, 2) + "\n";
   if (JSON.stringify(spliced) === JSON.stringify(original)) {
     finalizeAttempt(chAttempt, "validation_failed", "no-op inside scope");
@@ -392,6 +451,17 @@ export async function doRepairOneChapter(
     if (contract.length > 0) {
       finalizeAttempt(chAttempt, "validation_failed", `write contract — ${contract.join(" | ").slice(0, 200)}`);
       return { ok: false, reason: `ch${nn}: spliced repair breaks the write contract — ${contract.join(" | ").slice(0, 300)}`, sessionId };
+    }
+  }
+  // IMP-03 freshness: same pre-commit lineage re-check as the write path — a
+  // packet recompiled mid-repair invalidates the licenses this edit ran under.
+  if (plan) {
+    let freshPacket: SourcePacketV1 | undefined;
+    try { freshPacket = opts.io.readPacket(bookId, chapterNumber) ?? undefined; } catch { freshPacket = undefined; }
+    if (!freshPacket || sourceUsePlanStale(plan, freshPacket)) {
+      const reason = `ch${nn}: source lineage went STALE mid-repair (the source packet changed since this attempt's plan was verified) — candidate rejected; recompile packets+plans`;
+      finalizeAttempt(chAttempt, "validation_failed", reason);
+      return { ok: false, reason, sessionId };
     }
   }
   // Commit: compare-and-swap against the canonical bytes this repair was minted

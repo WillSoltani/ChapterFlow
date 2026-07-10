@@ -79,6 +79,9 @@ export type MintAttemptOptions = {
   executionProfileHash?: string;
   promptSha256: string;
   inputHashes?: Record<string, string>;
+  /** IMP-03: canonical hash of the source-use plan this attempt authors under
+   *  (omitted for legacy/pre-plan books — the contract field is optional). */
+  sourcePlanHash?: string;
   io: ChapterCanonicalIo;
   /** Pre-seed the workspace candidate with these bytes (surgical repair edits
    *  a COPY of the original — never the canonical file). */
@@ -111,6 +114,7 @@ export function mintChapterAttempt(opts: MintAttemptOptions): ChapterAttempt {
     attemptKind: opts.attemptKind,
     attemptSequence: opts.attemptSequence,
     executionProfileHash: opts.executionProfileHash ?? "",
+    ...(opts.sourcePlanHash ? { sourcePlanHash: opts.sourcePlanHash } : {}),
     promptSha256: opts.promptSha256,
     inputHashes: opts.inputHashes ?? {},
     outputSchemaVersion: "chapterflow-v21-authored",
