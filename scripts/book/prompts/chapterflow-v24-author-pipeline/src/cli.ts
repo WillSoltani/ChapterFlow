@@ -4451,6 +4451,50 @@ async function runContractValidate(): Promise<number> {
   return failures === 0 ? 0 : 1;
 }
 
+/** `evidence-reconstruct <attemptId>` — IMP-10: rebuild one attempt's lineage
+ *  chronologically from the durable evidence store (no debris scan). With no
+ *  attemptId, prints the whole-store lineage graph. Non-network. */
+async function runEvidenceReconstruct(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const { resolveEvidenceRoot } = await import("./evidence/attemptRecorder.js");
+  const { reconstructAttempt, evidenceLineageGraph, evidenceStoreSize, validateStoredManifest } = await import("./evidence/evidenceStore.js");
+  const root = resolveEvidenceRoot(typeof flags["root"] === "string" ? flags["root"] : undefined);
+  if (!root) { console.error("no evidence root — set CHAPTERFLOW_EVIDENCE_ROOT or pass --root <dir>"); return 2; }
+  const attemptId = args[0];
+  if (!attemptId) {
+    const graph = evidenceLineageGraph(root);
+    console.log(`evidence store: ${root} (${graph.length} attempt(s), ${Math.round(evidenceStoreSize(root) / 1024)} KiB)`);
+    for (const n of graph) console.log(`  ${n.attemptId}  [${n.taskClass}] → ${n.terminalState ?? "?"}  (${n.retentionClass})${n.parentAttemptId ? `  ⤸ ${n.parentAttemptId}` : ""}`);
+    return 0;
+  }
+  const recon = reconstructAttempt(root, attemptId);
+  if (!recon) { console.error(`no evidence for attempt ${attemptId}`); return 1; }
+  const schemaErrors = validateStoredManifest(root, attemptId);
+  console.log(`attempt ${attemptId}  [${recon.manifest.taskClass}]  book ${recon.manifest.bookId}${recon.manifest.chapterNumber ? ` ch${recon.manifest.chapterNumber}` : ""}`);
+  console.log(`  schema: ${schemaErrors.length === 0 ? "valid" : `INVALID — ${schemaErrors.join("; ")}`}`);
+  console.log(`  exec-context: ${recon.manifest.executionContextManifestPath}${recon.manifest.routeResultPath ? `  route: ${recon.manifest.routeResultPath}` : ""}`);
+  console.log("  transitions:");
+  for (const t of recon.transitions) console.log(`    ${t.atIso}  ${t.state}`);
+  console.log("  objects:");
+  for (const o of recon.objectsVerified) console.log(`    ${o.ok ? "✓" : "✗"} ${o.kind}  ${o.sha256.slice(0, 16)}…`);
+  const bad = recon.objectsVerified.filter((o) => !o.ok).length;
+  console.log(`evidence-reconstruct: ${schemaErrors.length === 0 && bad === 0 ? "PASS" : "FAIL"} (terminal ${recon.terminalState ?? "?"}, ${bad} unverified object(s))`);
+  return schemaErrors.length === 0 && bad === 0 ? 0 : 1;
+}
+
+/** `evidence-cleanup [--execute]` — IMP-10: bounded retention cleanup. Dry-run by
+ *  default; refuses to delete active or cited evidence. Non-network. */
+async function runEvidenceCleanup(flags: Record<string, string | boolean>): Promise<number> {
+  const { resolveEvidenceRoot } = await import("./evidence/attemptRecorder.js");
+  const { planEvidenceCleanup } = await import("./evidence/evidenceStore.js");
+  const root = resolveEvidenceRoot(typeof flags["root"] === "string" ? flags["root"] : undefined);
+  if (!root) { console.error("no evidence root — set CHAPTERFLOW_EVIDENCE_ROOT or pass --root <dir>"); return 2; }
+  const plan = planEvidenceCleanup(root, { now: Date.now(), execute: flags["execute"] === true });
+  console.log(`evidence-cleanup (${plan.dryRun ? "DRY-RUN — pass --execute to delete" : "EXECUTED"}): ${plan.deletable.length} deletable, ${plan.protected.length} protected`);
+  for (const id of plan.deletable) console.log(`  delete: ${id}`);
+  for (const p of plan.protected.slice(0, 40)) console.log(`  keep:   ${p.attemptId} — ${p.reason}`);
+  return 0;
+}
+
 /** `codex-agent-run <task-file>` — debug verb: spawn ONE headless codex agent with
  *  a task file as its instruction and print the result. Proves `codex exec` works
  *  in-environment before relying on the autopilot. Needs a real codex binary. */
@@ -5631,6 +5675,10 @@ async function main() {
       return runExecQualify(flags);
     case "contract-validate":
       return runContractValidate();
+    case "evidence-reconstruct":
+      return runEvidenceReconstruct(args, flags);
+    case "evidence-cleanup":
+      return runEvidenceCleanup(flags);
     case "authoring-guardrails":
       return runAuthoringGuardrails(args, flags);
     case "promote-book":

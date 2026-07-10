@@ -75,6 +75,7 @@ import {
   rubricMetricsWithCandidate,
   unexpectedAttemptWrites,
 } from "./chapterTransaction.js";
+import { recordSpawnEvidence } from "../evidence/attemptRecorder.js";
 import { sha256Hex } from "../contracts/contractUtil.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { BASELINE_MODEL } from "./modelPolicy.js";
@@ -997,6 +998,19 @@ export async function authorWriteOneChapter(
       continue;
     }
     try { deps.logSession(bookId, label, r); } catch { /* best-effort */ }
+    // IMP-10: link the spawn's IMP-00 effective-context manifest + store the
+    // rendered card and final message content-addressed (no-op unless evidence
+    // is enabled for this attempt). Best-effort — observability never gates.
+    if (chAttempt.evidenceRoot) {
+      recordSpawnEvidence({
+        evidenceRoot: chAttempt.evidenceRoot,
+        attemptId: chAttempt.identity.attemptId,
+        taskCard: card,
+        finalMessage: r.finalMessage,
+        executionContextManifestPath: (r as { manifestPath?: string }).manifestPath,
+        atIso: new Date().toISOString(),
+      });
+    }
     if (!r.ok) deps.log(`[autopilot] author ch${nn}: writer exited ${r.exitCode}`);
 
     // IMP-01: anything in the workspace beyond the single candidate file is an

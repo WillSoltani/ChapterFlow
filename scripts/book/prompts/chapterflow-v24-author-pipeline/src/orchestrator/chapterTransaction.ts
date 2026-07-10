@@ -44,6 +44,7 @@ import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { sha256Hex } from "../contracts/contractUtil.js";
 import type { AttemptIdentityV1, AttemptKindV1, CandidateOutcomeV1, CommitManifestV1 } from "../contracts/candidateTransaction.js";
 import { runChapterGateComposite } from "../critics/chapterGateComposite.js";
+import { recordAttemptMint, recordAttemptState, recordAttemptObject, recordAttemptFinal, resolveEvidenceRoot } from "../evidence/attemptRecorder.js";
 
 /** Attempt evidence root — pipeline-local, gitignored, EXCLUDED from chapter
  *  enumeration by construction (nothing under state/). */
@@ -67,6 +68,9 @@ export type ChapterAttempt = {
   workspaceDir: string;
   candidateFileName: string;
   candidatePath: string;
+  /** IMP-10: durable-evidence root for this attempt, or null when evidence
+   *  recording is off (the default — unit tests never enable it). */
+  evidenceRoot: string | null;
 };
 
 export type MintAttemptOptions = {
@@ -88,6 +92,17 @@ export type MintAttemptOptions = {
   seedBytes?: string;
   /** Override the attempts root (tests use tmp roots). */
   attemptsRoot?: string;
+  /** IMP-10: durable-evidence root. When set (or CHAPTERFLOW_EVIDENCE_ROOT is),
+   *  the attempt records an immutable content-addressed evidence manifest;
+   *  omitted → evidence recording is OFF (unit-test default, no extra writes). */
+  evidenceRoot?: string | null;
+  /** IMP-10: the frozen task class for this attempt's evidence (default derived
+   *  from attemptKind). */
+  taskClass?: string;
+  /** IMP-10: path of the IMP-00 effective-context manifest for the spawn that
+   *  produced this attempt (links execution provenance into the evidence). */
+  executionContextManifestPath?: string;
+  routeResultPath?: string;
 };
 
 let attemptCounter = 0;
@@ -124,7 +139,39 @@ export function mintChapterAttempt(opts: MintAttemptOptions): ChapterAttempt {
   writeFileSync(join(attemptDir, "attempt.json"), JSON.stringify(identity, null, 2) + "\n");
   const candidatePath = join(workspaceDir, candidateFileName);
   if (opts.seedBytes !== undefined) writeFileSync(candidatePath, opts.seedBytes);
-  return { identity, attemptDir, workspaceDir, candidateFileName, candidatePath };
+  // IMP-10: open durable evidence when a root is configured (OFF by default —
+  // unit tests that pass neither param nor env write no evidence at all).
+  const evidenceRoot = resolveEvidenceRoot(opts.evidenceRoot);
+  if (evidenceRoot) {
+    const atIso = new Date().toISOString();
+    recordAttemptMint({
+      evidenceRoot,
+      identity,
+      taskClass: opts.taskClass ?? attemptKindTaskClass(opts.attemptKind),
+      // Non-empty at open (the contract requires it): the immutable attempt
+      // identity IS the execution anchor at mint time (it carries the execution-
+      // profile hash, prompt hash, and input hashes). linkExecutionContext()
+      // upgrades it to the IMP-00 spawn manifest once the spawn has run.
+      executionContextManifestPath: opts.executionContextManifestPath ?? join(attemptDir, "attempt.json"),
+      routeResultPath: opts.routeResultPath,
+      atIso,
+    });
+    // The immutable attempt identity is itself the first evidence object.
+    recordAttemptObject(evidenceRoot, attemptId, "attempt-identity", JSON.stringify(identity, null, 2) + "\n");
+    if (opts.seedBytes !== undefined) recordAttemptObject(evidenceRoot, attemptId, "seed-bytes", opts.seedBytes);
+  }
+  return { identity, attemptDir, workspaceDir, candidateFileName, candidatePath, evidenceRoot };
+}
+
+/** Default frozen task class per attempt kind (a caller may override). */
+function attemptKindTaskClass(kind: AttemptKindV1): string {
+  switch (kind) {
+    case "author-initial": return "author-first-write";
+    case "author-regeneration": return "author-regeneration";
+    case "surgical-repair": return "surgical-repair";
+    case "section-repair": return "section-repair";
+    default: return "author-first-write";
+  }
 }
 
 export type CandidateImport =
@@ -245,6 +292,15 @@ export function commitChapterCandidate(args: {
   const manifest = buildCommitManifest(attempt, currentSha, committedSha256, args.invalidated ?? [], "pending");
   const manifestPath = join(attempt.attemptDir, "commit-manifest.json");
   writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
+  // IMP-10: the candidate bytes + commit manifest are content-addressed evidence,
+  // recorded around the swap so a crash between rename and bookkeeping leaves a
+  // manifest that recovery reconciles (never a claim of success without proof).
+  if (attempt.evidenceRoot) {
+    const atIso = new Date().toISOString();
+    recordAttemptObject(attempt.evidenceRoot, attempt.identity.attemptId, "candidate-bytes", bytes);
+    recordAttemptObject(attempt.evidenceRoot, attempt.identity.attemptId, "commit-manifest", JSON.stringify(manifest, null, 2) + "\n");
+    recordAttemptState(attempt.evidenceRoot, attempt.identity.attemptId, "commit-pending", atIso);
+  }
   io.writeChapterFile(bookId, chapterNumber, bytes);
   writeFileSync(manifestPath, JSON.stringify({ ...manifest, phase: "committed" }, null, 2) + "\n");
   return { ok: true, committedSha256, commitManifestPath: manifestPath };
@@ -317,12 +373,17 @@ function countCommits(chapterRoot: string): number {
  *  removed (the candidate equals the canonical bytes), on failure the candidate
  *  is KEPT for forensics (IMP-10 owns durable evidence; this is the interim). */
 export function finalizeAttempt(attempt: ChapterAttempt, outcome: CandidateOutcomeV1, detail?: string): void {
+  const atIso = new Date().toISOString();
   try {
     writeFileSync(
       join(attempt.attemptDir, "outcome.json"),
-      JSON.stringify({ schema: "attempt-outcome-v1", attemptId: attempt.identity.attemptId, outcome, detail: detail ?? "", atIso: new Date().toISOString() }, null, 2) + "\n",
+      JSON.stringify({ schema: "attempt-outcome-v1", attemptId: attempt.identity.attemptId, outcome, detail: detail ?? "", atIso }, null, 2) + "\n",
     );
   } catch { /* evidence best-effort */ }
+  // IMP-10: the durable terminal state (frozen 17-state union). Recorded BEFORE
+  // the workspace is removed so a committed attempt's evidence is complete even
+  // though its transient workspace is swept.
+  if (attempt.evidenceRoot) recordAttemptFinal(attempt.evidenceRoot, attempt.identity, outcome, atIso);
   if (outcome === "committed") {
     try { rmSync(attempt.workspaceDir, { recursive: true, force: true }); } catch { /* best-effort */ }
   }

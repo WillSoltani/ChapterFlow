@@ -18,3 +18,8 @@ logs/exec/
 # IMP-01 chapter-transaction evidence: per-attempt workspaces, candidates, commit
 # manifests, outcomes. Bounded by sweepStaleAttempts; never tracked, never state/.
 .attempts/
+
+# IMP-10 durable evidence store: content-addressed objects + append-only attempt
+# manifests + state journals. Bounded by retention classes + protected-reference
+# cleanup; never tracked, never state/, excluded from chapter discovery/packages.
+.evidence/

@@ -32,6 +32,7 @@ import { sourceUsePlanHash, validateSourceUsePlan, type SourceUsePlanV1 } from "
 import { sourcePacketHash } from "../compiler/sourcePacket.js";
 import { embeddedPlanMutationFindings, renderSourceUsePlanLines, sourceUsePlanStale } from "../compiler/sourceUsePlanCompiler.js";
 import { untrustedArtifact } from "../exec/untrustedArtifact.js";
+import { recordSpawnEvidence } from "../evidence/attemptRecorder.js";
 import {
   commitChapterCandidate,
   finalizeAttempt,
@@ -383,6 +384,17 @@ export async function doRepairOneChapter(
       timeoutMs: REPAIR_TIMEOUT_MS,
     });
     try { deps.logSession(bookId, `author-repair-ch${nn}`, r); } catch { /* best-effort */ }
+    // IMP-10: durable spawn evidence (no-op unless evidence is enabled).
+    if (chAttempt.evidenceRoot) {
+      recordSpawnEvidence({
+        evidenceRoot: chAttempt.evidenceRoot,
+        attemptId: chAttempt.identity.attemptId,
+        taskCard: card,
+        finalMessage: r.finalMessage,
+        executionContextManifestPath: (r as { manifestPath?: string }).manifestPath,
+        atIso: new Date().toISOString(),
+      });
+    }
     if (r.exitCode !== 0) {
       finalizeAttempt(chAttempt, "validation_failed", `repair session exited ${r.exitCode}`);
       return { ok: false, reason: `ch${nn}: repair session exited ${r.exitCode}`, sessionId };
