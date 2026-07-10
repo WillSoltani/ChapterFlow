@@ -10,7 +10,7 @@
  * (book-packages/.pending-deploy.json). This command is the READ-ONLY proof
  * that each pending entry is now live, and clears the ones that are.
  *
- * Three checks per pending book, each reported OK / FAIL / SKIPPED(reason):
+ * Four checks per pending book, each reported OK / FAIL / SKIPPED(reason):
  *   (a) repo   — sha256(book-packages/<id>.v21.json) matches the entry's
  *                packageSha256 (a mismatch means a NEWER publish; we then verify
  *                S3/app against the CURRENT repo file's sha, and report the drift).
@@ -19,12 +19,20 @@
  *   (c) app    — GET <origin>/api/health .commit; assert the last commit that
  *                touched the repo package is an ANCESTOR of the deployed commit.
  *                SKIPPED without a resolvable origin / a locally-absent commit.
+ *   (d) api    — the DynamoDB/S3-backed API catalog (the surface the native iOS
+ *                app reads — a THIRD surface, populated only by
+ *                scripts/book/register-api-books.ts, NOT by the web deploy) serves
+ *                the book: GET <origin>/app/api/book/books/<id> must be 200, and
+ *                the served version's manifest.json packageId must match the repo
+ *                package's (else the API is serving a STALE version). A 404 here
+ *                with the app's book_not_found shape is a FAIL — the book is live
+ *                on the web but invisible to iOS; 37 books shipped that way before
+ *                2026-07-10. Parity SKIPPED without AWS creds / bucket.
  *
- * An entry with all runnable checks OK and NEITHER (b) NOR (c) skipped is
- * SATISFIED → removed from the sentinel (the file is rewritten; a suggested
- * `git commit` line is printed, never run). Exit 0 only when nothing pending
- * remains; 1 otherwise. NEVER fakes success: a skipped check leaves the entry
- * pending.
+ * An entry with ALL FOUR checks OK — no FAIL, no SKIP — is SATISFIED → removed
+ * from the sentinel (the file is rewritten; a suggested `git commit` line is
+ * printed, never run). Exit 0 only when nothing pending remains; 1 otherwise.
+ * NEVER fakes success: a skipped check leaves the entry pending.
  *
  * NEVER writes to S3 or dispatches a deploy. No secrets in code.
  *
@@ -135,6 +143,73 @@ async function checkApp(entry: PendingEntry, repoFile: string): Promise<Check> {
   return { name: "app", state: "FAIL", detail: `deployed commit ${deployedCommit.slice(0, 12)} PREDATES the package change ${pkgCommit.slice(0, 12)} — the web deploy has not shipped it (gh workflow run deploy.yml -f environment=prod -f deploy_app=true)` };
 }
 
+/** (d) the API catalog (iOS surface) serves this book, at a version built from
+ *  the CURRENT repo package. Presence is proven over public HTTP; version parity
+ *  reads the served version's manifest.json from S3 (same bucket/creds as (b))
+ *  and compares its packageId to the repo package's. Fail-closed: anything
+ *  unprovable is SKIPPED (stays pending), a definitive absence or mismatch FAILs. */
+async function checkApi(entry: PendingEntry, repoSha: string | null): Promise<Check> {
+  const origin = process.env.CHAPTERFLOW_LIVE_ORIGIN || DEFAULT_ORIGIN;
+  const url = `${origin}/app/api/book/books/${entry.bookId}`;
+  let res: Response;
+  try {
+    res = await fetch(url, { headers: { "cache-control": "no-store" } });
+  } catch (err) {
+    return { name: "api", state: "SKIPPED", detail: `${url} unreachable (${(err as Error).message.slice(0, 100)}) — cannot read the API catalog` };
+  }
+  if (res.status === 404) {
+    let code = "";
+    try { code = String(((await res.json()) as { error?: { code?: string } })?.error?.code ?? ""); } catch { /* non-JSON 404 body */ }
+    if (code === "book_not_found") {
+      return { name: "api", state: "FAIL", detail: `${url} → 404 book_not_found — NOT in the API catalog (live on the web, INVISIBLE to the iOS app); run register-api-books (npm run register:api -- ${entry.bookId})` };
+    }
+    return { name: "api", state: "SKIPPED", detail: `${url} → 404 without the app's book_not_found shape — wrong origin? (set CHAPTERFLOW_LIVE_ORIGIN)` };
+  }
+  if (!res.ok) {
+    return { name: "api", state: "SKIPPED", detail: `${url} → ${res.status} — cannot read the API catalog entry` };
+  }
+  let publishedVersion: number | null = null;
+  try {
+    const body = (await res.json()) as { book?: { publishedVersion?: unknown } };
+    publishedVersion = typeof body?.book?.publishedVersion === "number" ? body.book.publishedVersion : null;
+  } catch { /* non-JSON 200 → parity unprovable below */ }
+  if (publishedVersion === null) {
+    return { name: "api", state: "SKIPPED", detail: `${url} → 200 but no book.publishedVersion — present in the API catalog, version parity unprovable` };
+  }
+
+  // Version parity: the served version must be built from the CURRENT package.
+  const bucket = process.env.BOOK_CONTENT_BUCKET;
+  const region = process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || "us-east-1";
+  if (!bucket) return { name: "api", state: "SKIPPED", detail: `API serves v${publishedVersion}, but BOOK_CONTENT_BUCKET is unset — cannot prove it was built from the CURRENT package` };
+  if (repoSha === null) return { name: "api", state: "SKIPPED", detail: "repo package missing — nothing to compare the served API version against" };
+  let localPackageId: string | null = null;
+  try {
+    const pkg = JSON.parse(readFileSync(path.join(REPO_ROOT, "book-packages", `${entry.bookId}.v21.json`), "utf8")) as { packageId?: unknown };
+    localPackageId = typeof pkg.packageId === "string" && pkg.packageId ? pkg.packageId : null;
+  } catch { /* unreadable package → repo check already reports it */ }
+  if (!localPackageId) {
+    return { name: "api", state: "SKIPPED", detail: `API serves v${publishedVersion}, but the repo package has no packageId — version parity unprovable (stamp a packageId and re-publish)` };
+  }
+  const manifestKey = `book-content/books/${entry.bookId}/v${String(publishedVersion).padStart(6, "0")}/manifest.json`;
+  try {
+    // Same SDK/bucket/creds as check (b).
+    const { S3Client, GetObjectCommand } = await import("@aws-sdk/client-s3");
+    const s3 = new S3Client({ region });
+    const obj = await s3.send(new GetObjectCommand({ Bucket: bucket, Key: manifestKey }));
+    const manifest = JSON.parse(Buffer.from(await obj.Body!.transformToByteArray()).toString("utf8")) as { packageId?: unknown };
+    const served = typeof manifest.packageId === "string" && manifest.packageId ? manifest.packageId : null;
+    if (!served) {
+      return { name: "api", state: "SKIPPED", detail: `API serves v${publishedVersion} but its manifest records no packageId (pre-packageId ingest) — parity unprovable; stamp a new packageId and re-run register-api-books` };
+    }
+    if (served === localPackageId) {
+      return { name: "api", state: "OK", detail: `API catalog serves v${publishedVersion} built from the CURRENT package (packageId ${served})` };
+    }
+    return { name: "api", state: "FAIL", detail: `API serves v${publishedVersion} from packageId ${served}, but the repo package is ${localPackageId} — the API is STALE; re-run register-api-books (npm run register:api -- ${entry.bookId})` };
+  } catch (err) {
+    return { name: "api", state: "SKIPPED", detail: `could not read s3://${bucket}/${manifestKey} (${(err as Error).message.slice(0, 120)}) — creds/network unavailable here` };
+  }
+}
+
 async function main(): Promise<number> {
   if (!existsSync(SENTINEL_ABS)) {
     console.log("live-sync: nothing pending (no book-packages/.pending-deploy.json)");
@@ -160,7 +235,8 @@ async function main(): Promise<number> {
     const { check: repoCheck, repoSha, repoFile } = checkRepo(entry);
     const s3Check = await checkS3(entry, repoSha);
     const appCheck = await checkApp(entry, repoFile);
-    const checks = [repoCheck, s3Check, appCheck];
+    const apiCheck = await checkApi(entry, repoSha);
+    const checks = [repoCheck, s3Check, appCheck, apiCheck];
     console.log(`■ ${entry.bookId} (published ${entry.publishedAt})`);
     for (const c of checks) console.log(`    ${c.state === "OK" ? "✓" : c.state === "FAIL" ? "✗" : "–"} ${c.name}: ${c.detail}`);
 

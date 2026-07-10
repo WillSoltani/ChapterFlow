@@ -69,15 +69,18 @@ export type PublishFinalStep = {
 // publish-final ends at git push BY DESIGN (no-AWS invariant). Prod SERVER
 // grading/ask/audio read the package from S3 (book-content/packages/<id>.v21.json),
 // synced out-of-band by scripts/book/upload-book-packages-to-s3.ts, and served by
-// a separate web deploy — none of which publish triggers. The sentinel is the
-// tracked, machine-readable "deploy owed" flag: written INTO the publish commit so
-// it can never be silently forgotten, and cleared by `npm run verify:live` once
-// repo↔S3↔deployed-app parity is proven.
+// a separate web deploy — none of which publish triggers. The API catalog the
+// native iOS app reads is a THIRD surface again (DynamoDB rows + per-version S3
+// artifacts, populated only by scripts/book/register-api-books.ts): a book can be
+// live on the web and still 404 on the API — 37 books shipped that way before
+// 2026-07-10. The sentinel is the tracked, machine-readable "deploy owed" flag:
+// written INTO the publish commit so it can never be silently forgotten, and
+// cleared by `npm run verify:live` once repo↔S3↔deployed-app↔API parity is proven.
 
 export const PENDING_DEPLOY_REL = "book-packages/.pending-deploy.json";
 export const PENDING_DEPLOY_SCHEMA = "pending-deploy-v1";
 /** The ordered manual steps every pending publish still owes. */
-export const PENDING_DEPLOY_STEPS = ["upload-book-packages-to-s3", "deploy-workflow", "verify-live-sync"] as const;
+export const PENDING_DEPLOY_STEPS = ["upload-book-packages-to-s3", "deploy-workflow", "register-api-books", "verify-live-sync"] as const;
 
 export type PendingDeployEntry = {
   bookId: string;
@@ -198,14 +201,16 @@ export function formatBookPendingDeploy(bookId: string, report: PendingDeployRep
   ].join("\n");
 }
 
-/** The three commands a pending deploy still owes, for the loud report. */
+/** The four commands a pending deploy still owes, for the loud report. */
 export function deployRequiredHint(bookId: string): string[] {
   return [
     "⚠ DEPLOY REQUIRED — the app is NOT serving this content yet (publish only pushed the repo).",
     `  1. upload the package to S3:  BOOK_CONTENT_BUCKET=<bucket> AWS_REGION=us-east-1 npx tsx scripts/book/upload-book-packages-to-s3.ts`,
     `  2. deploy the web app:        gh workflow run deploy.yml -f environment=prod -f deploy_app=true`,
-    `  3. verify the app serves it:  npm run verify:live`,
-    `     (${bookId} is tracked in ${PENDING_DEPLOY_REL} until step 3 confirms repo↔S3↔deployed parity)`,
+    `  3. register in the API catalog (the iOS surface — DDB + S3 ingest; skipping this leaves the book web-only):`,
+    `        AWS_REGION=us-east-1 BOOK_TABLE_NAME=<table> BOOK_CONTENT_BUCKET=<bucket> BOOK_INGEST_BUCKET=<ingest-bucket> npx tsx scripts/book/register-api-books.ts ${bookId}`,
+    `  4. verify every surface serves it:  npm run verify:live`,
+    `     (${bookId} is tracked in ${PENDING_DEPLOY_REL} until step 4 confirms repo↔S3↔deployed-app↔API parity)`,
   ];
 }
 
