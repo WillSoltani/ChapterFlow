@@ -133,6 +133,7 @@ import auto_the_intelligent_investor_Json from "@/book-packages/the-intelligent-
 import auto_high_output_management_Json from "@/book-packages/high-output-management.v21.json";
 import auto_multipliers_Json from "@/book-packages/multipliers.v21.json";
 import auto_the_culture_code_Json from "@/book-packages/the-culture-code.v21.json";
+import auto_radical_candor_Json from "@/book-packages/radical-candor.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -2073,4 +2074,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_the_culture_code_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["the-culture-code"] = (tone) => normalizeAnyPackage(auto_the_culture_code_Json, tone);
+}
+
+// --- auto-registered by `publish-final` for "radical-candor" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_radical_candor_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["radical-candor"] = (tone) => normalizeAnyPackage(auto_radical_candor_Json, tone);
 }
