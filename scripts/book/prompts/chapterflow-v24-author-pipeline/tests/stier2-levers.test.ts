@@ -139,13 +139,22 @@ test("P12: stem shapes + failure modes deal 4 distinct per chapter; question ord
 
 // ── P11: lead thread ───────────────────────────────────────────────────────────
 
+/** IMP-09: selection-field projection — leadThread gained ADDITIVE metadata
+ *  (caseId + compiler-derived aliases); these pins assert WHICH lead is
+ *  selected, so they compare the selection fields only. */
+const sel = (l: ReturnType<typeof resolveLeadThread>) => (l ? { kind: l.kind, name: l.name } : l);
+
 test("P11: resolveLeadThread — case-led when preferred and anchored, invented otherwise; ~half the book prefers case-led", () => {
   const cases = [{ id: "c1", label: "Honeywell 1999 integration" }];
-  assert.deepEqual(resolveLeadThread(true, cases, ["Mara"]), { kind: "owned-case", name: "Honeywell 1999 integration" });
-  assert.deepEqual(resolveLeadThread(false, cases, ["Mara"]), { kind: "invented", name: "Mara" });
+  assert.deepEqual(sel(resolveLeadThread(true, cases, ["Mara"])), { kind: "owned-case", name: "Honeywell 1999 integration" });
+  // IMP-09: the packet case id + the compiler-derived alias set now RIDE the deal.
+  const dealt = resolveLeadThread(true, cases, ["Mara"]);
+  assert.equal(dealt?.caseId, "c1", "the case id survives onto the brief");
+  assert.ok(dealt?.aliases?.includes("Honeywell"), "compiler-derived aliases ride the deal");
+  assert.deepEqual(sel(resolveLeadThread(false, cases, ["Mara"])), { kind: "invented", name: "Mara" });
   // A label with no anchor token degrades to invented — and the BR8 gate for that
   // degenerate all-invented state is ADVISORY (deal-detector invariant).
-  assert.deepEqual(resolveLeadThread(true, [{ id: "c1", label: "the turnaround" }], ["Mara"]), { kind: "invented", name: "Mara" });
+  assert.deepEqual(sel(resolveLeadThread(true, [{ id: "c1", label: "the turnaround" }], ["Mara"])), { kind: "invented", name: "Mara" });
   assert.equal(resolveLeadThread(true, [], []), undefined);
   const prefs = dealLeadPreference(BOOK, 9);
   const trueCount = prefs.filter(Boolean).length;
@@ -162,21 +171,21 @@ test("resolveLeadThread prefers a real NAMED case over a framework CONCEPT (star
     { id: "ch04.ex.antonio-damasio-descartes-error", label: "Antonio Damasio / Descartes' Error" },
   ];
   assert.deepEqual(
-    resolveLeadThread(true, ch04Cases, ["Zane"]),
+    sel(resolveLeadThread(true, ch04Cases, ["Zane"])),
     { kind: "owned-case", name: "Antonio Damasio / Descartes' Error" },
     "a named person/study (>=2 proper nouns or a '/' attribution) is preferred over a bare concept",
   );
   // Regression-safe: a single-name real case still wins when it is the first with a
   // token (behavior unchanged for companies / one-name people).
   assert.deepEqual(
-    resolveLeadThread(true, [{ id: "c1", label: "Apple retail signals" }, { id: "c2", label: "Harley identity" }], ["Mara"]),
+    sel(resolveLeadThread(true, [{ id: "c1", label: "Apple retail signals" }, { id: "c2", label: "Harley identity" }], ["Mara"])),
     { kind: "owned-case", name: "Apple retail signals" },
     "no named-case signal anywhere → the original first-with-token pick stands",
   );
   // Concepts everywhere, no named case → falls back to the first concept (unchanged),
   // never crashes.
   assert.deepEqual(
-    resolveLeadThread(true, [{ id: "c1", label: "Neocortex" }, { id: "c2", label: "Limbic system" }], ["Mara"]),
+    sel(resolveLeadThread(true, [{ id: "c1", label: "Neocortex" }, { id: "c2", label: "Limbic system" }], ["Mara"])),
     { kind: "owned-case", name: "Neocortex" },
     "all-concept list keeps the prior first-token behavior",
   );
@@ -507,21 +516,22 @@ test("resolveLeadThread avoidInvented: a proxy-banned chapter never deals an inv
   // observed live collision: ch01 "Willow"×8 on a proxy-banned chapter).
   const conceptOnly = [{ id: "c1", label: "the turnaround" }];
   assert.deepEqual(
-    resolveLeadThread(false, conceptOnly, ["Mara"], { avoidInvented: true }),
+    sel(resolveLeadThread(false, conceptOnly, ["Mara"], { avoidInvented: true })),
     { kind: "owned-case", name: "the turnaround" },
   );
   // avoidInvented forces the case path even when the parity preference said invented.
   assert.deepEqual(
-    resolveLeadThread(false, [{ id: "c1", label: "Honeywell 1999 integration" }], ["Mara"], { avoidInvented: true }),
+    sel(resolveLeadThread(false, [{ id: "c1", label: "Honeywell 1999 integration" }], ["Mara"], { avoidInvented: true })),
     { kind: "owned-case", name: "Honeywell 1999 integration" },
   );
   // True last resort: a packet with zero cases still gets a lead (invented), never undefined-by-ban.
   assert.deepEqual(
-    resolveLeadThread(false, [], ["Mara"], { avoidInvented: true }),
+    sel(resolveLeadThread(false, [], ["Mara"], { avoidInvented: true })),
     { kind: "invented", name: "Mara" },
   );
-  // Behavior WITHOUT the flag is byte-identical to the pre-fix dealer (regression pin).
-  assert.deepEqual(resolveLeadThread(false, conceptOnly, ["Mara"]), { kind: "invented", name: "Mara" });
+  // SELECTION WITHOUT the flag is identical to the pre-fix dealer (regression pin;
+  // IMP-09 adds caseId/alias METADATA without moving any pick).
+  assert.deepEqual(sel(resolveLeadThread(false, conceptOnly, ["Mara"])), { kind: "invented", name: "Mara" });
   // Composed invariant over a 16-chapter book: every proxy-banned chapter with ≥1 owned
   // case resolves to an owned-case lead when the compile passes the ban flag.
   for (let n = 1; n <= 16; n++) {

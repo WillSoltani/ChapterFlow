@@ -68,6 +68,7 @@ import {
 import type { ChapterSpec } from "../generateChapter.js";
 import { C7_BANNED_NAMES } from "../critics/finalGate.js";
 import { stripPageCitationSpans } from "../critics/apparatusLeakage.js";
+import { leadAliasSet } from "../critics/leadAliases.js";
 import {
   answerPattern,
   compilerNameBank,
@@ -255,6 +256,11 @@ function fallbackRotation(n: number): BriefRotation {
  *  cast[0] otherwise. Pure. */
 /** Capitalized proper-noun words in a case label, minus sentence-frame stopwords. */
 const LEAD_CAP_STOP = new Set(["The", "This", "That", "When", "What", "From", "Into", "With", "And", "Or", "Of", "A", "An", "For", "To", "In", "On"]);
+// IMP-09 NOTE: this SELECTION heuristic is deliberately unchanged (ASCII-only)
+// — changing it would re-deal leads on existing books (dealt-state drift). Its
+// Unicode gap (a diacritic-leading label like "Ólafur…" is not selected as a
+// token-bearing case) is recorded in the IMP-09 validator inventory as
+// follow-on work; the D7 CHECKER is alias-based and Unicode-correct today.
 function leadLabelHasToken(label: string): boolean {
   return (label ?? "").split(/\s+/).some((w) => /^[A-Z][A-Za-z-]{3,}/.test(w) && !LEAD_CAP_STOP.has(w));
 }
@@ -268,12 +274,21 @@ function leadLabelIsNamedCase(label: string): boolean {
   return proper.length >= 2;
 }
 
+/** IMP-09: build the leadThread value with the STRUCTURED identity the D7
+ *  checker prefers — the packet case's stable id (it existed here all along
+ *  and was discarded pre-IMP-09) and the compiler-derived alias set. Metadata
+ *  only: WHICH lead is selected is untouched. */
+function mkLeadThread(kind: "invented" | "owned-case", name: string, caseId?: string): { kind: "invented" | "owned-case"; name: string; caseId?: string; aliases?: string[] } {
+  const aliases = leadAliasSet(name);
+  return { kind, name, ...(caseId ? { caseId } : {}), ...(aliases.length > 0 ? { aliases } : {}) };
+}
+
 export function resolveLeadThread(
   preferCase: boolean,
   ownedCases: Array<{ id: string; label: string }>,
   cast: string[],
   opts?: { avoidInvented?: boolean },
-): { kind: "invented" | "owned-case"; name: string } | undefined {
+): { kind: "invented" | "owned-case"; name: string; caseId?: string; aliases?: string[] } | undefined {
   if (preferCase || opts?.avoidInvented) {
     // Prefer a real NAMED case (person/study) over a bare framework-concept label:
     // the D7 lead-thread contract needs a case with real actors/dates to run the
@@ -285,9 +300,9 @@ export function resolveLeadThread(
     // single-name real case (a company, a one-name person) is unchanged — behavior
     // shifts ONLY when a concept label precedes a named case (the mis-deal class).
     const named = ownedCases.find((c) => leadLabelHasToken(c.label) && leadLabelIsNamedCase(c.label));
-    if (named) return { kind: "owned-case", name: named.label };
+    if (named) return mkLeadThread("owned-case", named.label, named.id);
     for (const c of ownedCases) {
-      if (leadLabelHasToken(c.label)) return { kind: "owned-case", name: c.label };
+      if (leadLabelHasToken(c.label)) return mkLeadThread("owned-case", c.label, c.id);
     }
     // Deal↔deal consistency (fresh-gold live finding, 2026-07-08): when the chapter's
     // dealt CONTENT DEVICES ban proxy-cast, an invented lead would put a mandate and a
@@ -296,10 +311,10 @@ export function resolveLeadThread(
     // chapter). With the ban dealt, take ANY owned case (even a concept label) before
     // the proxy; invented remains the true last resort (a packet with zero cases).
     if (opts?.avoidInvented && ownedCases.length > 0) {
-      return { kind: "owned-case", name: ownedCases[0].label };
+      return mkLeadThread("owned-case", ownedCases[0].label, ownedCases[0].id);
     }
   }
-  if (cast.length > 0) return { kind: "invented", name: cast[0] };
+  if (cast.length > 0) return mkLeadThread("invented", cast[0]);
   return undefined;
 }
 
@@ -322,18 +337,18 @@ export function degradedLeadCandidates(
   cast: string[],
   proxyBanned: boolean,
   failedLeadNames: string[],
-): Array<{ kind: "invented" | "owned-case"; name: string }> {
+): Array<{ kind: "invented" | "owned-case"; name: string; caseId?: string; aliases?: string[] }> {
   const failed = new Set(failedLeadNames);
-  const out: Array<{ kind: "invented" | "owned-case"; name: string }> = [];
+  const out: Array<{ kind: "invented" | "owned-case"; name: string; caseId?: string; aliases?: string[] }> = [];
   for (const c of ownedCases) {
     if (failed.has(c.label)) continue;
     if (!leadLabelHasToken(c.label)) continue;
-    out.push({ kind: "owned-case", name: c.label });
+    out.push(mkLeadThread("owned-case", c.label, c.id));
   }
   if (!proxyBanned) {
     for (const name of cast) {
       if (failed.has(name)) continue;
-      out.push({ kind: "invented", name });
+      out.push(mkLeadThread("invented", name));
       break; // cast[0] semantics: exactly one invented fallback
     }
   }

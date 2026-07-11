@@ -51,6 +51,7 @@ import { manualBriefRotationLines } from "../compiler/briefRotation.js";
 import { voiceCard, voiceRegisterLine } from "../lib/voiceCard.js";
 import { chapterFileName, normSlug, CHAPTERS_DIR } from "../lib/chapterPaths.js";
 import { buildBudgetRepairComplaints, checkReaderBudgets, type BudgetFinding } from "../critics/readerBudgets.js";
+import { anyAliasPresent, leadAliasSet } from "../critics/leadAliases.js";
 import { loadNameBank } from "../librarian/namePlan.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
@@ -451,21 +452,33 @@ export function authorWriteContractFindings(
   }
 
   // D7 — lead-thread presence (v3 briefs only; legacy briefs skip by construction).
+  //
+  // IMP-09 (F-016): the old check reduced the case label to its FIRST
+  // capitalized ASCII token ("Vincent van Gogh" → "Vincent") and rejected
+  // chapters that carried the thread under the SURNAME ("Van Gogh",
+  // "Malamud" — the R2 false negatives that burned regens and halted entry 1).
+  // The invariant is unchanged — the dealt lead must carry the fastRead and
+  // ≥2 examples — but presence is now judged against the COMPILER-DERIVED
+  // alias set (brief.leadThread.aliases when dealt; else derived at check time
+  // from the SAME deterministic utility): full label, family name with
+  // particles, given name, diacritic-folded variants. A chapter using NO form
+  // of the dealt name still fails — matching normalizes presentation
+  // (case/diacritics/possessives/hyphens), never word choice, and no alias is
+  // ever inferred beyond the label (leadAliases.ts).
   const lead = brief?.leadThread;
   if (lead?.name) {
-    const token = lead.kind === "invented"
-      ? lead.name
-      : (lead.name.split(/\s+/).find((w) => /^[A-Z][A-Za-z-]{3,}/.test(w) && !/^(The|This|That|When|What|From|Into|With)$/.test(w)) ?? "");
-    if (token) {
-      const hasToken = (text: string | undefined) => new RegExp(`\\b${token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`).test(text ?? "");
-      if (!hasToken(chapter.breakdown?.fastRead)) {
-        complaints.push(`lead thread: the dealt lead ${lead.kind === "invented" ? lead.name : `case "${lead.name}"`} never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line).`);
+    const aliases = (lead.aliases && lead.aliases.length > 0 ? lead.aliases : leadAliasSet(lead.name))
+      .filter((a) => typeof a === "string" && a.trim().length >= 3);
+    if (aliases.length > 0) {
+      const hasLead = (text: string | undefined) => anyAliasPresent(text, aliases);
+      if (!hasLead(chapter.breakdown?.fastRead)) {
+        complaints.push(`lead thread: the dealt lead ${lead.kind === "invented" ? lead.name : `case "${lead.name}"`} never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). Any natural form of the name counts (full name, surname).`);
       }
       const exampleHits = (chapter.examples ?? []).filter((ex) =>
-        hasToken(typeof ex.scenario === "string" ? ex.scenario : undefined) || hasToken(ex.title) || hasToken(ex.whatToDo) || hasToken(ex.whyItMatters),
+        hasLead(typeof ex.scenario === "string" ? ex.scenario : undefined) || hasLead(ex.title) || hasLead(ex.whatToDo) || hasLead(ex.whyItMatters),
       ).length;
       if (exampleHits < 2) {
-        complaints.push(`lead thread: the dealt lead (${token}) appears in ${exampleHits} example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.`);
+        complaints.push(`lead thread: the dealt lead (${lead.name}) appears in ${exampleHits} example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.`);
       }
     }
   }

@@ -192,16 +192,21 @@ const BASE_ATTEMPTS = 1 + AUTHOR_WRITE_GATE_RETRIES;
 
 // ── unit: the pure candidate order ───────────────────────────────────────────
 
+/** IMP-09: candidates gained ADDITIVE metadata (caseId + compiler-derived
+ *  aliases); these pins assert ORDER/SELECTION, so compare those fields. */
+const selOf = (c: { kind: string; name: string } | null | undefined) => (c ? { kind: c.kind, name: c.name } : c);
+
 test("degradedLeadCandidates: next token-bearing owned case in packet order, minus failed", () => {
   const cases = [{ id: "1", label: LEAD_A }, { id: "2", label: LEAD_B }, { id: "3", label: "Cadence-audit walkthrough" }];
   const got = degradedLeadCandidates(cases, ["Willow"], false, [LEAD_A]);
-  assert.deepEqual(got[0], { kind: "owned-case", name: LEAD_B }, "packet order, failed lead excluded");
+  assert.deepEqual(selOf(got[0]), { kind: "owned-case", name: LEAD_B }, "packet order, failed lead excluded");
+  assert.equal(got[0].caseId, "2", "IMP-09: the packet case id rides the candidate");
   assert.deepEqual(got.map((c) => c.name), [LEAD_B, "Cadence-audit walkthrough", "Willow"], "cases first, invented last");
 });
 
 test("degradedLeadCandidates: all cases failed + proxy ALLOWED → invented cast[0]; proxy BANNED → empty (halt path)", () => {
   const cases = [{ id: "1", label: LEAD_A }];
-  assert.deepEqual(degradedLeadCandidates(cases, ["Willow", "Preston"], false, [LEAD_A]), [{ kind: "invented", name: "Willow" }], "exactly one invented fallback (cast[0] semantics)");
+  assert.deepEqual(degradedLeadCandidates(cases, ["Willow", "Preston"], false, [LEAD_A]).map(selOf), [{ kind: "invented", name: "Willow" }], "exactly one invented fallback (cast[0] semantics)");
   assert.deepEqual(degradedLeadCandidates(cases, ["Willow", "Preston"], true, [LEAD_A]), [], "proxy ban closes the invented door — honest halt");
 });
 
@@ -248,7 +253,7 @@ test("F-1: lead-only contract failures on every attempt → ONE degraded attempt
   assert.ok(rig.logs.some((l) => l.includes(`lead degraded: "${LEAD_A}" → "${LEAD_B}"`)), "loud degradation log");
   assert.equal(rig.overrides.length, 1, "override persisted on success");
   assert.equal(rig.overrides[0].failedLead, LEAD_A, "override keyed on the COMPILED brief's dealt lead (staleness guard)");
-  assert.deepEqual(rig.overrides[0].lead, { kind: "owned-case", name: LEAD_B });
+  assert.deepEqual(selOf(rig.overrides[0].lead), { kind: "owned-case", name: LEAD_B });
 });
 
 test("F-1: rubric failures do NOT trigger degradation (the writer, not the lead, is the problem)", async () => {
@@ -342,7 +347,7 @@ test("F-1: the NEXT entry advances PAST the persisted failure memory to the inve
   assert.equal(rig.spawns.length, BASE_ATTEMPTS + 1);
   assert.ok(rig.logs.some((l) => l.includes(`lead degraded: "${LEAD_A}" → "Willow"`)), "degraded PAST the remembered candidate to the invented one");
   assert.equal(rig.overrides.length, 1, "the landed override replaces the memory record");
-  assert.deepEqual(rig.overrides[0].lead, { kind: "invented", name: "Willow" });
+  assert.deepEqual(selOf(rig.overrides[0].lead), { kind: "invented", name: "Willow" });
   assert.ok((rig.overrides[0].failedLeads ?? []).includes(LEAD_B), "history is carried forward");
 });
 

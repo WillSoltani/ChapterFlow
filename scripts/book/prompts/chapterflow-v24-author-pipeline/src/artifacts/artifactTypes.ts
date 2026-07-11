@@ -244,7 +244,13 @@ export type ChapterBriefV1 = {
   /** STIER-2 P11 (v3): the section-thread lead — either the chapter's invented cast[0] or its
    *  own ownedCases[0] real case (threading fastRead + ≥2 examples through the case's real
    *  actors; de-stamps the universal invented-proxy device). */
-  leadThread?: { kind: "invented" | "owned-case"; name: string };
+  /** The dealt lead thread. IMP-09 additive fields: `caseId` preserves the
+   *  packet case's stable id (it existed at deal time and was discarded
+   *  pre-IMP-09), and `aliases` is the COMPILER-DERIVED reviewable alias set
+   *  (leadAliases.leadAliasSet over the label — full label, family name with
+   *  particles, given name; never inferred). D7 checks alias presence; legacy
+   *  briefs without these fields derive the same set at check time. */
+  leadThread?: { kind: "invented" | "owned-case"; name: string; caseId?: string; aliases?: string[] };
   /** STIER-3 P17 (v4): the 2 idiom families this chapter verbalizes the shared framework
    *  through (the round-2 book panel churned on identical framework idiom book-wide). */
   idiomFamilies?: string[];
