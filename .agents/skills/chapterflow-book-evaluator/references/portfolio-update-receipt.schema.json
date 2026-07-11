@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chapterflow.local/schemas/portfolio-update-receipt-1.1.0.json",
+  "title": "ChapterFlow transactional portfolio update receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "generator", "transaction_id", "status", "book_id",
+    "source_hash", "baseline_report_data_sha256", "book_count", "unique_book_count",
+    "non_target_preserved", "remediation_valid", "source_downloads_valid",
+    "full_validator_status", "full_validator", "roots"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.1.0"},
+    "generator": {"const": "chapterflow-book-evaluator/scripts/update_portfolio_report.py"},
+    "transaction_id": {"type": "string", "pattern": "^portfolio-update-[0-9a-f]{32}$"},
+    "status": {"const": "valid"},
+    "book_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "source_hash": {"$ref": "#/$defs/sha256"},
+    "baseline_report_data_sha256": {"$ref": "#/$defs/sha256"},
+    "book_count": {"const": 140},
+    "unique_book_count": {"const": 140},
+    "non_target_preserved": {"const": true},
+    "remediation_valid": {"const": true},
+    "source_downloads_valid": {"const": true},
+    "full_validator_status": {"const": "valid"},
+    "full_validator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "module", "function", "status", "error_count",
+        "candidate_report_data_sha256", "candidate_report_html_sha256"
+      ],
+      "properties": {
+        "module": {"const": "chapterflow-book-evaluator/scripts/validate_report.py"},
+        "function": {"const": "validate_report"},
+        "status": {"const": "valid"},
+        "error_count": {"const": 0},
+        "candidate_report_data_sha256": {"$ref": "#/$defs/sha256"},
+        "candidate_report_html_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "roots": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"$ref": "#/$defs/root"}
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "path", "sha256"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "root": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "root", "outputs"],
+      "properties": {
+        "kind": {"enum": ["primary", "mirror"]},
+        "root": {"type": "string", "minLength": 1},
+        "outputs": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {"$ref": "#/$defs/output"}
+        }
+      }
+    }
+  }
+}

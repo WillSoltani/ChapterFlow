@@ -1,0 +1,4 @@
+interface:
+  display_name: "Book Repair"
+  short_description: "Repair, reevaluate, and publish ChapterFlow books"
+  default_prompt: "Use $book-repair to repair one ChapterFlow book from its report prompt, reevaluate it independently, refresh the report, and publish only after every gate passes."

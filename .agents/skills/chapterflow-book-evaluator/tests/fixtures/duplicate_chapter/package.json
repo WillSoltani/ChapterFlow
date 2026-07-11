@@ -1,0 +1,21 @@
+{
+  "packageId": "fixture-duplicate-chapter",
+  "book": {
+    "bookId": "fixture-duplicate-chapter",
+    "title": "A Book With a Duplicate"
+  },
+  "chapters": [
+    {
+      "chapterId": "same-id",
+      "number": 1,
+      "title": "First Copy",
+      "fullRead": "This is the first synthetic chapter."
+    },
+    {
+      "chapterId": "same-id",
+      "number": 1,
+      "title": "Second Copy",
+      "fullRead": "This is a displaced synthetic duplicate."
+    }
+  ]
+}

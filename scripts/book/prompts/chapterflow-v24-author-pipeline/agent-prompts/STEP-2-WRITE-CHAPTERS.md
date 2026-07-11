@@ -1,8 +1,24 @@
 # STEP 2 — WRITE CHAPTERS
 
-You are a writer agent on the ChapterFlow v21 book-production pipeline. Step 1 (research) is complete; the bibliography, per-chapter source notes, and chapter index already exist on disk for `<bookId>`. Your job in this conversation is to produce **one complete `ChapterV21` JSON file per chapter**. Each chapter must pass the deterministic ship gate. **Do not run any finalize commands; do not run `derive-artifacts`; do not run `generate-book`. Another agent will do that in Step 3.**
+You are a writer agent on the ChapterFlow v24 author-first book-production pipeline. Step 1 (research) is complete; the bibliography, per-chapter source notes, and chapter index already exist on disk for `<bookId>`. Your job in this conversation is to produce **one complete `ChapterV21` JSON file per chapter**. Each chapter must pass the deterministic ship gate. **Do not run any finalize commands; do not run `derive-artifacts`; do not run `generate-book`. Another agent will do that in Step 3.**
 
 When you finish, every chapter the user assigned you exists at `state/chapters/<chapterId>.v21-native.chapter.json` and ship-gates clean (0 blockers).
+
+## Required working directory
+
+Before reading or writing pipeline data or running any command, enter the active
+v24 pipeline root and remain there for the whole task:
+
+```bash
+cd "$(git rev-parse --show-toplevel)/scripts/book/prompts/chapterflow-v24-author-pipeline"
+```
+
+Every shell/filesystem path in this prompt is relative to that directory. Use `src/cli.ts`,
+`.chapterflow/**`, `state/**`, and `book-packages/**` exactly as written. Do not
+run these commands from the outer repository root, do not set
+`CHAPTERFLOW_STATE_DIR` to the outer `state/`, and do not create or use outer
+`state/` or `.chapterflow/` artifacts. Those are shadow locations and are not
+the active pipeline's source of truth.
 
 ---
 
@@ -77,7 +93,7 @@ Same source-grounding principle: each chapter's cards/plan/example explanations 
 After writing each chapter and BEFORE starting the next, run:
 
 ```bash
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts \
+npx tsx src/cli.ts \
   gate-chapter state/chapters/<chapterId>.v21-native.chapter.json
 ```
 
@@ -92,7 +108,7 @@ chapter 4 while it is one restage, instead of at chapter 14 when it is a book-wi
 ### After all chapters — use `book-gate <bookId>` to QC
 
 ```bash
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts book-gate <bookId>
+npx tsx src/cli.ts book-gate <bookId>
 ```
 
 This auto-derives brief + plan artifacts (so BP7 doesn't false-fire) and runs the full book-level pattern audit. Must report 0 blockers before reporting Step 2 complete.
@@ -102,7 +118,7 @@ This auto-derives brief + plan artifacts (so BP7 doesn't false-fire) and runs th
 `gate-chapter` and `book-gate` are subsets of one battery. Run the whole thing in one command:
 
 ```bash
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts qc-converge <bookId>
+npx tsx src/cli.ts qc-converge <bookId>
 ```
 
 `qc-converge` runs the EXACT deterministic battery the finalizer uses (source-v2, ship-gate,
@@ -121,10 +137,10 @@ key WITHOUT looking at the stored one, then diff:
 
 ```bash
 # 1. Print the quiz with the stored key stripped
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts \
+npx tsx src/cli.ts \
   quiz-blind state/chapters/<chapterId>.v21-native.chapter.json
 # 2. Answer each question yourself from the prompt + choices alone, then diff against the real key
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts \
+npx tsx src/cli.ts \
   quiz-verify state/chapters/<chapterId>.v21-native.chapter.json --answers "0:1,1:0,2:3,..."
 ```
 
@@ -137,7 +153,7 @@ dominant CORRUPTION after quiz keys, per the live willpower run):
 
 ```bash
 # List every named person who carries a finding (invented-witness "Piper move" + testimonial-as-proof)
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts \
+npx tsx src/cli.ts \
   evidence-audit state/chapters/<chapterId>.v21-native.chapter.json
 ```
 
@@ -494,11 +510,11 @@ After you finish each chapter — before you start the next — run both checks.
 
 ```bash
 # field-JOB check: does each field do its actual job?
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts \
+npx tsx src/cli.ts \
   author-check state/chapters/<chapterId>.v21-native.chapter.json
 
 # ship gate: structural + cross-chapter
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts \
+npx tsx src/cli.ts \
   gate-chapter state/chapters/<chapterId>.v21-native.chapter.json
 ```
 
@@ -524,19 +540,19 @@ Salting is detected and fails closed. The anti-evasion gates (`AS1`–`AS3`) cat
 
 ## Per-field JOBs — read before composing each field
 
-Every field has a JOB. The complete per-field specification — JOB, a WRITE recipe, what to REJECT and why it fails the reader, and a POSITIVE/NEGATIVE pair — lives in [FIELD-PURPOSE-CONTRACTS.md](FIELD-PURPOSE-CONTRACTS.md). Read the contract for each field as you compose it. The 10 composition steps below give the schema and order; FIELD-PURPOSE-CONTRACTS.md gives the JOB. `author-check` is the deterministic enforcement of those contracts.
+Every field has a JOB. The complete per-field specification — JOB, a WRITE recipe, what to REJECT and why it fails the reader, and a POSITIVE/NEGATIVE pair — lives in [FIELD-PURPOSE-CONTRACTS.md](FIELD-PURPOSE-CONTRACTS.md) (filesystem path: `agent-prompts/FIELD-PURPOSE-CONTRACTS.md`). Read the contract for each field as you compose it. The 10 composition steps below give the schema and order; FIELD-PURPOSE-CONTRACTS.md gives the JOB. `author-check` is the deterministic enforcement of those contracts.
 
 
 ---
 
 
-## Working directory
+## Working directory — reaffirm before authoring
 
-```
-/Users/radinsoltani/ChapterFlow-books
-```
-
-`cd` there at the start of your session. All paths below are relative to this directory.
+Remain in the active nested pipeline root established at the top of this
+prompt. If your working directory changed, run the required `cd` command again
+before `next-task` or any file operation. All paths below are pipeline-relative;
+never operate from the outer repository root, hard-code a user's home directory,
+or switch to a different checkout.
 
 ---
 
@@ -553,7 +569,7 @@ If the user did not say which chapters, run `next-task <bookId>` and produce whi
 ## How to know what chapter to work on
 
 ```bash
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts next-task <bookId>
+npx tsx src/cli.ts next-task <bookId>
 ```
 
 It prints:
@@ -575,7 +591,7 @@ cat .chapterflow/runs/<bookId>/<runId>/sidecars/source/ch<NN>.source.json
 cat .chapterflow/runs/<bookId>/<runId>/source-freeze/toc.json
 
 # Every chapter already written in this book — for voice consistency, name dedup, distractor dedup
-ls scripts/book/prompts/chapterflow-v21-authored/state/chapters/<bookId>-ch*.v21-native.chapter.json 2>/dev/null
+ls state/chapters/<bookId>-ch*.v21-native.chapter.json 2>/dev/null
 ```
 
 (The current `<runId>` is the directory under `.chapterflow/runs/<bookId>/` — pick the most recent.)
@@ -593,7 +609,7 @@ ls scripts/book/prompts/chapterflow-v21-authored/state/chapters/<bookId>-ch*.v21
 
 One JSON file at:
 ```
-scripts/book/prompts/chapterflow-v21-authored/state/chapters/<chapterId>.v21-native.chapter.json
+state/chapters/<chapterId>.v21-native.chapter.json
 ```
 
 Where `<chapterId>` comes from the chapter index file `state/indexes/<bookId>.json` (the `next-task` command also prints it).
@@ -918,8 +934,8 @@ Pick sentences that are:
 ## After producing the chapter — RUN THE SHIP GATE
 
 ```bash
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts gate-chapter \
-  scripts/book/prompts/chapterflow-v21-authored/state/chapters/<chapterId>.v21-native.chapter.json
+npx tsx src/cli.ts gate-chapter \
+  state/chapters/<chapterId>.v21-native.chapter.json
 ```
 
 The gate prints a chapter-only `Ship gate:` headline first — IGNORE IT. The
@@ -1005,17 +1021,17 @@ In either case, report:
 - Do NOT modify `state/indexes/<bookId>.json` — that was set in Step 1.
 - Do NOT run `derive-artifacts`.
 - Do NOT run `generate-book`.
-- Do NOT invoke `claude -p`, the v21 `research` subprocess, or any external model.
+- Do NOT invoke `claude -p`, the `research` subprocess, or any external model.
 
 ---
 
 ## TL;DR loop
 
 ```bash
-cd /Users/radinsoltani/ChapterFlow-books
-npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts next-task <bookId>
+cd "$(git rev-parse --show-toplevel)/scripts/book/prompts/chapterflow-v24-author-pipeline"
+npx tsx src/cli.ts next-task <bookId>
 # It tells you which chapter to write. Write the Bind Block from the source.
-# Compose each field to its JOB (FIELD-PURPOSE-CONTRACTS.md). Save to the printed path.
+# Compose each field to its JOB (agent-prompts/FIELD-PURPOSE-CONTRACTS.md). Save to the printed path.
 # Run author-check AND gate-chapter. Iterate until BOTH are clean.
 # Re-run next-task. When it stops saying "write-chapter", stop and report.
 ```
