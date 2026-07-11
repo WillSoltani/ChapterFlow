@@ -126,3 +126,52 @@ test("decision file: qualified/no-profile/inconclusive lines are exact; xhigh ne
   assert.equal(mixed.result, "INCONCLUSIVE");
   assert.equal(mixed.line, "SOL BAKEOFF RESULT: INCONCLUSIVE");
 });
+
+// Owner-frozen C4 repair-demand rule (§16 correction 2026-07-11): below the
+// baseline floor the relative comparison is informational and cannot
+// independently fail a configuration; at or above the floor both comparisons
+// block. The four cases below are the owner's mandated coverage, verbatim.
+test("repair demand (owner C4 rule): relative comparison blocks only when the baseline is at or above the frozen floor", () => {
+  const ownerT = {
+    ...DEFAULT_MIGRATION_THRESHOLDS,
+    repairDemand: { maxRelativeIncrease: 0.2, maxAbsoluteIncreasePerChapter: 0.05, relativeRuleAppliesWhenBaselineAtLeast: 0.1 },
+  };
+  const t9 = (baseline: number, candidate: number) =>
+    evaluateProfile(goodInputs({ repairDemand: { projectedPerChapter: candidate, baselinePerChapter: baseline } }), ownerT)
+      .verdicts.find((x) => x.id === "T9-repair-demand")!;
+
+  // baseline 5%, candidate 9%: absolute passes; relative (×1.8 > ×1.2) must NOT cause failure
+  const lowBaselinePass = t9(0.05, 0.09);
+  assert.equal(lowBaselinePass.verdict, "pass", "below-floor baseline: the relative rule is informational and cannot independently fail");
+  assert.ok(lowBaselinePass.note!.includes("informational"), "the informational relative comparison is disclosed on the verdict");
+
+  // baseline 5%, candidate 11%: absolute rule fails
+  assert.equal(t9(0.05, 0.11).verdict, "fail", "the absolute +5pp margin remains blocking below the floor");
+
+  // baseline 20%, candidate 23%: absolute and relative rules pass
+  assert.equal(t9(0.2, 0.23).verdict, "pass");
+
+  // baseline 20%, candidate 25%: relative fails even though the absolute difference is exactly 5 points
+  const relFail = t9(0.2, 0.25);
+  assert.equal(relFail.verdict, "fail", "at/above the floor the relative rule blocks even when the absolute margin is met");
+});
+
+test("repair demand: without the floor the pre-correction behavior is preserved (relative always blocking)", () => {
+  const legacyT = {
+    ...DEFAULT_MIGRATION_THRESHOLDS,
+    repairDemand: { maxRelativeIncrease: 0.2, maxAbsoluteIncreasePerChapter: 0.05 },
+  };
+  const r = evaluateProfile(goodInputs({ repairDemand: { projectedPerChapter: 0.09, baselinePerChapter: 0.05 } }), legacyT);
+  assert.ok(r.blockedBy.includes("T9-repair-demand"), "no configured floor ⇒ the relative rule still blocks (existing configs unchanged)");
+});
+
+test("thresholds validator: the relative-rule floor must be a finite number ≥ 0 when present", () => {
+  const mk = (floor: unknown) => JSON.stringify({
+    ...DEFAULT_MIGRATION_THRESHOLDS,
+    repairDemand: { maxRelativeIncrease: 0.2, maxAbsoluteIncreasePerChapter: 0.05, relativeRuleAppliesWhenBaselineAtLeast: floor },
+  });
+  assert.deepEqual(validateThresholds(mk(0.1)), [], "a valid floor is accepted");
+  assert.deepEqual(validateThresholds(JSON.stringify(DEFAULT_MIGRATION_THRESHOLDS)), [], "an absent floor stays valid");
+  assert.ok(validateThresholds(mk(-1)).some((p) => p.includes("relativeRuleAppliesWhenBaselineAtLeast")), "a negative floor is rejected");
+  assert.ok(validateThresholds(mk("0.1")).some((p) => p.includes("relativeRuleAppliesWhenBaselineAtLeast")), "a non-number floor is rejected");
+});

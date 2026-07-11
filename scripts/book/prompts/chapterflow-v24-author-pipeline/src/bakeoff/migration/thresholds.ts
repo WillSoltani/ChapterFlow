@@ -44,6 +44,13 @@ export type ThresholdsV1 = {
   repairDemand: {
     maxRelativeIncrease: number;
     maxAbsoluteIncreasePerChapter: number;
+    /** Owner-frozen C4 rule (§16 correction 2026-07-11): when the BASELINE
+     *  (55-XH) projected repair demand is BELOW this floor, the relative
+     *  comparison is informational only — the absolute margin is the sole
+     *  blocking comparison. At or above the floor, both block. Absent ⇒ the
+     *  pre-correction behavior (relative always blocking) is preserved for
+     *  existing configurations. */
+    relativeRuleAppliesWhenBaselineAtLeast?: number;
   };
   economics: {
     maxCostPerAcceptedChapterUsd: number | null;
@@ -83,6 +90,10 @@ export function validateThresholds(bytes: string): string[] {
   }
   if (!(t.reviewerReliability?.minRawAgreement > 0)) problems.push("reviewerReliability.minRawAgreement required");
   if (!(t.repairDemand?.maxRelativeIncrease >= 0)) problems.push("repairDemand.maxRelativeIncrease required");
+  const relFloor = t.repairDemand?.relativeRuleAppliesWhenBaselineAtLeast;
+  if (relFloor !== undefined && !(typeof relFloor === "number" && Number.isFinite(relFloor) && relFloor >= 0)) {
+    problems.push("repairDemand.relativeRuleAppliesWhenBaselineAtLeast must be a finite number ≥ 0 when present");
+  }
   if (!(t.highVsXhigh?.minQualityGainPts >= 0)) problems.push("highVsXhigh.minQualityGainPts required");
   return problems;
 }
@@ -211,12 +222,26 @@ export function evaluateProfile(inputs: ProfileThresholdInputsV1, t: ThresholdsV
   }
 
   const rd = inputs.repairDemand;
+  const rdRelFloor = t.repairDemand.relativeRuleAppliesWhenBaselineAtLeast;
+  const rdRuleText = rdRelFloor === undefined
+    ? `≤ baseline × ${1 + t.repairDemand.maxRelativeIncrease} and ≤ baseline + ${t.repairDemand.maxAbsoluteIncreasePerChapter}/chapter`
+    : `≤ baseline + ${t.repairDemand.maxAbsoluteIncreasePerChapter}/chapter (blocking); relative ≤ ×${1 + t.repairDemand.maxRelativeIncrease} blocking only when baseline ≥ ${rdRelFloor} (owner-frozen C4 rule)`;
   if (rd.projectedPerChapter === null || rd.baselinePerChapter === null) {
-    verdicts.push(v("T9-repair-demand", "Repair demand", "unavailable", `≤ baseline × ${1 + t.repairDemand.maxRelativeIncrease} and ≤ baseline + ${t.repairDemand.maxAbsoluteIncreasePerChapter}/chapter`, "inconclusive", false));
+    verdicts.push(v("T9-repair-demand", "Repair demand", "unavailable", rdRuleText, "inconclusive", false));
   } else {
-    const ok = rd.projectedPerChapter <= rd.baselinePerChapter * (1 + t.repairDemand.maxRelativeIncrease)
-      && rd.projectedPerChapter <= rd.baselinePerChapter + t.repairDemand.maxAbsoluteIncreasePerChapter;
-    verdicts.push(v("T9-repair-demand", "Repair demand", `${rd.projectedPerChapter.toFixed(2)} vs baseline ${rd.baselinePerChapter.toFixed(2)} sessions/chapter (projection)`, "frozen relative/absolute margin vs 55-XH", ok ? "pass" : "fail", false, "projection, not an observed production rate"));
+    // Owner-frozen C4 rule (correction 2026-07-11): the relative comparison
+    // blocks ONLY when the baseline is at or above the frozen floor; below it,
+    // the absolute margin is the sole blocking comparison and the relative
+    // value is reported informationally. No floor configured ⇒ pre-correction
+    // behavior (both always blocking).
+    const relBlocking = rdRelFloor === undefined || rd.baselinePerChapter >= rdRelFloor;
+    const absOk = rd.projectedPerChapter <= rd.baselinePerChapter + t.repairDemand.maxAbsoluteIncreasePerChapter;
+    const relOk = rd.projectedPerChapter <= rd.baselinePerChapter * (1 + t.repairDemand.maxRelativeIncrease);
+    const ok = absOk && (!relBlocking || relOk);
+    const note = relBlocking
+      ? "projection, not an observed production rate"
+      : `projection, not an observed production rate; relative comparison informational (baseline ${rd.baselinePerChapter.toFixed(2)} < ${rdRelFloor} floor) — relative ${relOk ? "clears" : "exceeds"} ×${(1 + t.repairDemand.maxRelativeIncrease).toFixed(2)} and cannot independently fail this configuration`;
+    verdicts.push(v("T9-repair-demand", "Repair demand", `${rd.projectedPerChapter.toFixed(2)} vs baseline ${rd.baselinePerChapter.toFixed(2)} sessions/chapter (projection)`, rdRuleText, ok ? "pass" : "fail", false, note));
   }
 
   const ec = inputs.economics;
