@@ -23,7 +23,7 @@
 
 import { hashCanonical } from "../contracts/contractUtil.js";
 import type { AgentRole, EffortLevelV1 } from "../contracts/executionProfile.js";
-import type { ProviderOutcomeV1, RouteResultV1, TaskClassV1 } from "../contracts/routeContracts.js";
+import type { ChatgptAuthProofV1, ProviderOutcomeV1, RouteResultV1, TaskClassV1 } from "../contracts/routeContracts.js";
 
 /** Bumped on ANY change to the matrices/mapping below — part of the drift
  *  fingerprint, so a policy edit stales prior qualification evidence. */
@@ -249,7 +249,11 @@ export function classifyProviderOutcome(result: {
   return "content_completed";
 }
 
-/** Assemble the per-spawn RouteResultV1 sidecar (frozen contract). */
+/** Assemble the per-spawn RouteResultV1 sidecar (frozen contract). `authProof`
+ *  is the envelope's fail-closed subscription-auth proof: present ⇒ this spawn
+ *  ran on the ChatGPT-subscription codex exec route; absent ⇒ an
+ *  injected-runner test double that never reached a provider. Both stamp
+ *  `apiFallbackAllowed: false` — no fallback branch exists in the broker. */
 export function buildRouteResult(args: {
   role: AgentRole;
   resolved: ResolvedRoute;
@@ -257,6 +261,7 @@ export function buildRouteResult(args: {
   cliVersion: string;
   providerSessionId?: string;
   outcome: ProviderOutcomeV1;
+  authProof?: ChatgptAuthProofV1;
 }): RouteResultV1 {
   return {
     schema: "route-result-v1",
@@ -270,6 +275,10 @@ export function buildRouteResult(args: {
     cliVersion: args.cliVersion,
     ...(args.providerSessionId ? { providerSessionId: args.providerSessionId } : {}),
     outcome: args.outcome,
+    executionRoute: args.authProof ? "codex_exec_chatgpt_subscription" : "injected_test_runner",
+    authMode: args.authProof ? "chatgpt" : "test",
+    apiKeyPresent: false,
+    apiFallbackAllowed: false,
     driftFingerprint: routeDriftFingerprint({
       model: args.resolved.model,
       effort: args.resolved.effort,

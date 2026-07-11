@@ -217,10 +217,11 @@ test("identical inputs produce an identical envelope (reproducibility modulo per
 test("buildIsolatedSession copies auth material when present and fails closed when required-but-missing", () => {
   const withAuth = freshDir("auth-src");
   mkdirSync(withAuth, { recursive: true });
-  writeFileSync(join(withAuth, "auth.json"), "{\"token\":\"fixture\"}");
+  writeFileSync(join(withAuth, "auth.json"), JSON.stringify({ auth_mode: "chatgpt", OPENAI_API_KEY: null, tokens: { id_token: "fixture" } }));
   const s = buildIsolatedSession({ baseDir: freshDir("auth-base"), requireAuth: true, authSourceDir: withAuth });
   assert.equal(s.authMaterial, "auth.json");
   assert.ok(existsSync(join(s.codexHomeDir, "auth.json")));
+  assert.deepEqual(s.authProof, { authMode: "chatgpt", apiKeyPresent: false, source: "auth.json" }, "a real session carries the subscription-auth proof");
   s.cleanup();
   assert.equal(existsSync(s.sessionDir), false);
 
@@ -229,6 +230,57 @@ test("buildIsolatedSession copies auth material when present and fails closed wh
     () => buildIsolatedSession({ baseDir: freshDir("auth-base2"), requireAuth: true, authSourceDir: empty }),
     (err: Error) => err instanceof ExecPreflightError && /auth material/.test(err.message),
   );
+});
+
+// §16 route-invariant directive (2026-07-11): only ChatGPT-subscription OAuth
+// may execute model work. API-key auth material, a missing auth mode, or a
+// usable key beside chatgpt mode must all fail BEFORE any process starts —
+// and the failure must clean up the session dir that held the copied material.
+test("buildIsolatedSession fails closed on non-ChatGPT auth material (metered API is unrepresentable)", () => {
+  const attempt = (contents: string, label: string): void => {
+    const src = freshDir(`auth-bad-src-${label}`);
+    mkdirSync(src, { recursive: true });
+    writeFileSync(join(src, "auth.json"), contents);
+    const base = freshDir(`auth-bad-base-${label}`);
+    assert.throws(
+      () => buildIsolatedSession({ baseDir: base, requireAuth: true, authSourceDir: src }),
+      (err: Error) => err instanceof ExecPreflightError,
+      `${label} must throw ExecPreflightError`,
+    );
+    assert.equal(readdirSync(base).length, 0, `${label}: the rejected session dir (holding copied auth material) must be removed`);
+  };
+  attempt(JSON.stringify({ auth_mode: "apikey", OPENAI_API_KEY: "sk-fixture" }), "api-key-mode");
+  attempt(JSON.stringify({ tokens: { id_token: "fixture" } }), "missing-auth-mode");
+  attempt(JSON.stringify({ auth_mode: "chatgpt", OPENAI_API_KEY: "sk-fixture", tokens: { id_token: "x" } }), "key-beside-chatgpt");
+  attempt(JSON.stringify({ auth_mode: "chatgpt", OPENAI_API_KEY: null }), "no-oauth-tokens");
+  attempt("not json", "unparseable");
+
+  // The injected-runner test seam (requireAuth: false) still accepts arbitrary
+  // fixtures — it never reaches a provider, and it carries NO auth proof.
+  const src = freshDir("auth-legacy-fixture");
+  mkdirSync(src, { recursive: true });
+  writeFileSync(join(src, "auth.json"), "{\"token\":\"fixture\"}");
+  const s = buildIsolatedSession({ baseDir: freshDir("auth-legacy-base"), requireAuth: false, authSourceDir: src });
+  assert.equal(s.authProof, undefined);
+  s.cleanup();
+});
+
+test("buildHermeticEnv refuses forbidden provider variables even when caller-injected", () => {
+  const { profile } = resolveExecutionProfile("chapter-reviewer");
+  for (const name of ["OPENAI_API_KEY", "CODEX_API_KEY", "OPENAI_BASE_URL", "ANTHROPIC_API_KEY"]) {
+    assert.throws(
+      () => buildHermeticEnv({ profile, codexHomeDir: "/iso/home", sessionId: "sid-x", callerEnv: { [name]: "v" }, baseEnv: { PATH: "/bin" } }),
+      (err: Error) => err instanceof ExecPreflightError && err.message.includes(name),
+      `${name} must be refused at the caller-env seam`,
+    );
+  }
+  // …and none of them pass through from the parent env either (not allowlisted).
+  const { env } = buildHermeticEnv({
+    profile, codexHomeDir: "/iso/home", sessionId: "sid-y",
+    baseEnv: { PATH: "/bin", OPENAI_API_KEY: "sk-parent", OPENAI_BASE_URL: "https://elsewhere" },
+  });
+  assert.equal(env.OPENAI_API_KEY, undefined);
+  assert.equal(env.OPENAI_BASE_URL, undefined);
 });
 
 test("buildHermeticEnv starts from an empty base — nothing outside the allowlist survives", () => {

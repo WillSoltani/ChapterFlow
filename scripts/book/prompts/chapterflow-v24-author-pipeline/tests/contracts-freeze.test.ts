@@ -31,7 +31,7 @@ test("contract manifest is frozen and matches the live descriptors exactly", () 
   assert.deepEqual(divergences, [], `contract drift detected:\n${divergences.join("\n")}`);
 });
 
-test("all nine Phase-0 contracts are present at version 1 with distinct owners", () => {
+test("all nine Phase-0 contracts are present at their pinned versions with distinct owners", () => {
   const manifest = loadFrozenManifest();
   assert.equal(manifest.contracts.length, 9);
   const names = manifest.contracts.map((c) => c.name).sort();
@@ -40,7 +40,13 @@ test("all nine Phase-0 contracts are present at version 1 with distinct owners",
     "execution-profile", "repair", "review-output", "route-result",
     "source-use-plan", "worker-implementation-report",
   ]);
-  for (const c of manifest.contracts) assert.equal(c.version, 1, `${c.name} must be v1 at freeze`);
+  // route-result was deliberately bumped to v2 (owner §16 route-invariant
+  // directive 2026-07-11: per-spawn subscription-route telemetry). Every other
+  // contract remains at the Phase-0 freeze version.
+  for (const c of manifest.contracts) {
+    const expected = c.name === "route-result" ? 2 : 1;
+    assert.equal(c.version, expected, `${c.name} must be v${expected}`);
+  }
   const owners = new Set(manifest.contracts.map((c) => c.ownerPrompt));
   for (const owner of ["IMP-00", "IMP-01", "IMP-02", "IMP-03", "IMP-07", "IMP-08", "IMP-10"]) {
     assert.ok(owners.has(owner), `expected an ${owner}-owned contract`);

@@ -104,6 +104,38 @@ test("buildRouteResult emits a schema-valid frozen RouteResultV1", () => {
   assert.equal(rr.requestedModel, BASELINE_MODEL);
 });
 
+// §16 route-invariant telemetry (owner directive 2026-07-11): every sidecar
+// records the execution route. With the envelope's subscription-auth proof the
+// route is the ChatGPT-subscription codex exec path; without it (injected test
+// doubles) the sidecar says so honestly. Both stamp apiKeyPresent=false and
+// apiFallbackAllowed=false — the values a metered or fallback route would need
+// are unrepresentable, and the validator enforces the pairing.
+test("buildRouteResult stamps the subscription-route telemetry from the auth proof", () => {
+  const resolved = resolveRoute({ role: "bakeoff-judge" });
+  const base = { role: "bakeoff-judge" as const, resolved, executionProfileHash: "h".repeat(64), cliVersion: "codex-cli 0.144.1", outcome: "content_completed" as const };
+
+  const live = buildRouteResult({ ...base, authProof: { authMode: "chatgpt", apiKeyPresent: false, source: "auth.json" } });
+  assert.deepEqual(validateRouteResult(live), []);
+  assert.equal(live.executionRoute, "codex_exec_chatgpt_subscription");
+  assert.equal(live.authMode, "chatgpt");
+  assert.equal(live.apiKeyPresent, false);
+  assert.equal(live.apiFallbackAllowed, false);
+
+  const doubled = buildRouteResult(base);
+  assert.deepEqual(validateRouteResult(doubled), []);
+  assert.equal(doubled.executionRoute, "injected_test_runner");
+  assert.equal(doubled.authMode, "test");
+
+  assert.ok(
+    validateRouteResult({ ...live, apiKeyPresent: true }).some((p) => p.includes("apiKeyPresent")),
+    "a sidecar claiming a present API key is schema-invalid",
+  );
+  assert.ok(
+    validateRouteResult({ ...live, authMode: "test" }).some((p) => p.includes("authMode")),
+    "the subscription route requires chatgpt auth mode",
+  );
+});
+
 // ── spawn integration: the .route.json sidecar rides every manifested spawn ──
 
 let seq = 0;

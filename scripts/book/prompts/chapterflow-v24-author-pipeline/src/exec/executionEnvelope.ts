@@ -34,6 +34,7 @@ import {
   type WorkingDirPolicyV1,
 } from "../contracts/executionProfile.js";
 import type { EffectiveContextManifestV1, ExecResultV1, InstructionSourceV1, WorkspaceFileV1 } from "../contracts/effectiveContext.js";
+import type { ChatgptAuthProofV1 } from "../contracts/routeContracts.js";
 import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
 import { assertFlagsSupported, type CodexCliQualificationV1, ExecPreflightError } from "./cliQualification.js";
 
@@ -66,6 +67,56 @@ export const DEFAULT_ENV_ALLOWLIST: readonly string[] = [
   "LANG", "LC_ALL", "LC_CTYPE", "TERM", "USER", "LOGNAME", "SHELL",
   "HTTP_PROXY", "HTTPS_PROXY", "NO_PROXY", "http_proxy", "https_proxy", "no_proxy",
 ];
+
+/** Metered-API / provider-redirect variables that must NEVER reach an agent
+ *  child process (§16 route-invariant directive 2026-07-11): all model work
+ *  runs on the ChatGPT-subscription `codex exec` route. None of these are on
+ *  the allowlist; this list additionally fail-closes the caller-env seam so a
+ *  call site cannot smuggle one in deliberately. */
+export const FORBIDDEN_PROVIDER_ENV: readonly string[] = [
+  "OPENAI_API_KEY", "CODEX_API_KEY", "OPENAI_BASE_URL", "OPENAI_API_BASE",
+  "OPENAI_ORGANIZATION", "OPENAI_PROJECT", "AZURE_OPENAI_API_KEY", "AZURE_OPENAI_ENDPOINT",
+  "ANTHROPIC_API_KEY", "ANTHROPIC_BASE_URL",
+];
+
+/** Fail-closed proof that the auth material an isolated CODEX_HOME will hand
+ *  to `codex exec` is ChatGPT-subscription OAuth and NOT an API key. Reads the
+ *  COPIED auth.json (never logs its contents — only key names and the auth
+ *  mode, which are non-secret enums, appear in errors). Throws
+ *  ExecPreflightError BEFORE any process starts when the file is unparseable,
+ *  the auth mode is missing or not "chatgpt", a usable API key is present, or
+ *  no OAuth token material exists (missing/expired-at-rest auth must not reach
+ *  the provider; a runtime token rejection is a recorded provider outcome and
+ *  is never retried on a different route). */
+export function assertChatgptSubscriptionAuth(authJsonPath: string): ChatgptAuthProofV1 {
+  let parsed: Record<string, unknown>;
+  try {
+    parsed = JSON.parse(readFileSync(authJsonPath, "utf8")) as Record<string, unknown>;
+  } catch (err) {
+    throw new ExecPreflightError(
+      `auth material at the isolated CODEX_HOME is unreadable or not JSON (${(err as Error).message.split("\n")[0]}) — refusing to spawn`,
+    );
+  }
+  const mode = parsed["auth_mode"];
+  if (mode !== "chatgpt") {
+    throw new ExecPreflightError(
+      `codex auth_mode is ${mode === undefined ? "missing" : `"${String(mode)}"`} — only ChatGPT-subscription OAuth may execute model work ` +
+      `(metered API-key authentication is prohibited; no fallback). Re-authenticate codex with the ChatGPT plan.`,
+    );
+  }
+  const apiKey = parsed["OPENAI_API_KEY"];
+  if (apiKey !== null && apiKey !== undefined && apiKey !== "") {
+    throw new ExecPreflightError(
+      "auth material carries a usable OPENAI_API_KEY alongside chatgpt mode — refusing to spawn (an API-key route must be unrepresentable)",
+    );
+  }
+  if (!parsed["tokens"]) {
+    throw new ExecPreflightError(
+      "codex auth material has no OAuth token block — ChatGPT-subscription authentication is absent; refusing to spawn rather than let codex fall back",
+    );
+  }
+  return { authMode: "chatgpt", apiKeyPresent: false, source: "auth.json" };
+}
 
 /** Flags every v1 hermetic spawn requires from the installed CLI. */
 const REQUIRED_FLAGS_BASE: readonly string[] = [
@@ -161,6 +212,10 @@ export type IsolatedSession = {
   lastMessagePath: string;
   authMaterial: "auth.json" | "none";
   authSourcePath?: string;
+  /** Present on real runs (requireAuth): the fail-closed proof that the copied
+   *  auth material is ChatGPT-subscription OAuth. Absent only for
+   *  injected-runner test sessions that never reach a provider. */
+  authProof?: ChatgptAuthProofV1;
   cleanup: () => void;
 };
 
@@ -181,11 +236,23 @@ export function buildIsolatedSession(opts: {
   const authSource = join(sourceDir, "auth.json");
   let authMaterial: "auth.json" | "none" = "none";
   let authSourcePath: string | undefined;
+  let authProof: ChatgptAuthProofV1 | undefined;
   if (existsSync(authSource)) {
-    copyFileSync(authSource, join(codexHomeDir, "auth.json"));
-    chmodSync(join(codexHomeDir, "auth.json"), 0o600);
+    const copied = join(codexHomeDir, "auth.json");
+    copyFileSync(authSource, copied);
+    chmodSync(copied, 0o600);
     authMaterial = "auth.json";
     authSourcePath = authSource;
+    if (opts.requireAuth) {
+      // Real run: the copied material must PROVE the ChatGPT-subscription route
+      // before any process could read it — an API-key file fails closed here.
+      try {
+        authProof = assertChatgptSubscriptionAuth(copied);
+      } catch (err) {
+        try { rmSync(sessionDir, { recursive: true, force: true }); } catch { /* best-effort */ }
+        throw err;
+      }
+    }
   } else if (opts.requireAuth) {
     try { rmSync(sessionDir, { recursive: true, force: true }); } catch { /* best-effort */ }
     throw new ExecPreflightError(
@@ -199,6 +266,7 @@ export function buildIsolatedSession(opts: {
     lastMessagePath: join(sessionDir, "last-message.txt"),
     authMaterial,
     authSourcePath,
+    ...(authProof ? { authProof } : {}),
     cleanup: () => { try { rmSync(sessionDir, { recursive: true, force: true }); } catch { /* best-effort */ } },
   };
 }
@@ -224,6 +292,14 @@ export function buildHermeticEnv(opts: {
   const strictEnv: Record<string, string> = { ...STRICT_PIPELINE_ENV };
   for (const [k, v] of Object.entries(strictEnv)) env[k] = v;
   env.CHAPTERFLOW_SESSION_ID = opts.sessionId;
+  for (const name of FORBIDDEN_PROVIDER_ENV) {
+    if (env[name] !== undefined) {
+      throw new ExecPreflightError(
+        `forbidden model-provider variable "${name}" would reach the agent environment — ` +
+        `metered-API and provider-redirect authentication are prohibited (ChatGPT-subscription codex exec only)`,
+      );
+    }
+  }
   return { env, envKeys: Object.keys(env).sort(), callerEnvKeys, strictEnv };
 }
 

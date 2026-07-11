@@ -347,7 +347,7 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
       if (manifestPath) {
         const outcome = classifyProviderOutcome({ completed: false, errorMessage: runnerError.message });
         persistRouteResult(
-          buildRouteResult({ role: opts.role, resolved: route, executionProfileHash: profileHash, cliVersion: qualification.version, outcome }),
+          buildRouteResult({ role: opts.role, resolved: route, executionProfileHash: profileHash, cliVersion: qualification.version, outcome, authProof: session.authProof }),
           manifestPath,
         );
       }
@@ -369,7 +369,7 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
     if (manifestPath) {
       const outcome = classifyProviderOutcome({ completed: true, exitCode: code, stderr, finalMessage });
       persistRouteResult(
-        buildRouteResult({ role: opts.role, resolved: route, executionProfileHash: profileHash, cliVersion: qualification.version, outcome }),
+        buildRouteResult({ role: opts.role, resolved: route, executionProfileHash: profileHash, cliVersion: qualification.version, outcome, authProof: session.authProof }),
         manifestPath,
       );
     }
