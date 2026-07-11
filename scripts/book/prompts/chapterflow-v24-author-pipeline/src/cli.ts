@@ -297,6 +297,14 @@ Commands:
                                      gate / QC round + publishable tally / repair / warnings / final). One
                                      input, walk away, get pinged. --no-notify = terminal only; --log appends
                                      an event log. Changes no pipeline behavior; same gates, env, exit code.
+  migration-bakeoff <plan|seal|qualify|run|analyze|decide|status> --experiment <spec.json|id> [--corpus <corpus.json>] [--state-root <dir>] [--max-parallel N] [--allow-synthetic-qualification] [--json]
+                                     IMP-11 NO-PUBLISH migration harness: Stage Q judge qualification →
+                                     Stage D prompt-stack diagnostic → Stage C confirmatory four-way
+                                     (55-H/55-XH/56S-H/56S-XH) under frozen sealed manifests: one-attempt
+                                     samples (no retry/repair), blinded QUALIFIED judges, cluster-aware
+                                     stats, precision-honest thresholds, machine-readable decision file.
+                                     Never promotes, publishes, or touches canonical state; activation is
+                                     IMP-13's separately authorized package.
   compile-source-packets <bookId>    v23 compiler: compile source-v2 sidecars into compact source packets.
   source-packet-gate <bookId>        v23 compiler: validate compiled source packets before blueprints.
   compile-book-design <bookId>       v23 compiler: derive the per-book variety pools artifact.
@@ -5789,6 +5797,8 @@ async function main() {
       return runBookAutopilot(args, flags);
     case "book-run":
       return (await import("./orchestrator/liveRun.js")).runLive(args, flags);
+    case "migration-bakeoff":
+      return (await import("./bakeoff/migration/cli.js")).runMigrationBakeoffCli(args, flags);
     case "diversify-book":
       return (await import("./orchestrator/liveRun.js")).runDiversify(args, flags);
     case "content-repair-book":

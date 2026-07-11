@@ -736,6 +736,15 @@ export type AuthorWriteOneOpts = {
    *  CHAPTERFLOW_AUTHOR_EFFORT, defaults unchanged). */
   model?: string;
   effort?: "minimal" | "low" | "medium" | "high" | "xhigh";
+  /** IMP-11 migration-experiment seam: exactly ONE first-write attempt — no gate
+   *  retry, no lead degradation (the experiment's one-attempt rule; a bounded
+   *  infrastructure replay lives at the SAMPLE layer, never here). Production
+   *  callers never set this; the default budget is unchanged. */
+  firstWriteOnly?: boolean;
+  /** IMP-11 Stage-D prompt-stack seam: transform the fully-built author card
+   *  before the first spawn (frozen snapshot stacks substitute their template).
+   *  Consulted once for the base card; production callers never set this. */
+  cardOverride?: (base: string, ctx: { bookId: string; chapterNumber: number; outputRelPath: string }) => string;
 };
 
 /**
@@ -832,7 +841,10 @@ export async function authorWriteOneChapter(
     outputRelPath: candidateName,
   });
   const briefMdEffective = effectiveBrief !== machineBrief && effectiveBrief ? renderBriefMd(effectiveBrief) : briefMd;
-  const baseCard = mkCard(effectiveBrief, briefMdEffective);
+  const builtCard = mkCard(effectiveBrief, briefMdEffective);
+  const baseCard = opts.cardOverride
+    ? opts.cardOverride(builtCard, { bookId, chapterNumber, outputRelPath: candidateName })
+    : builtCard;
   if (baseCard.length > AUTHOR_CARD_MAX_CHARS) {
     deps.log(`[autopilot] author ch${nn}: card is ${baseCard.length} chars (> ${AUTHOR_CARD_MAX_CHARS} target) — proceeding, but the packet/brief deserve a diet`);
   }
@@ -890,7 +902,8 @@ export async function authorWriteOneChapter(
   let activeBrief = effectiveBrief;
   let degraded: { from: string; to: { kind: "invented" | "owned-case"; name: string }; castEmptied: boolean } | null = null;
   let degradedFailedOnLead = false;
-  for (let attempt = 1; attempt <= baseAttempts + AUTHOR_WRITE_LEAD_DEGRADE_RETRIES; attempt++) {
+  const maxAttempts = opts.firstWriteOnly === true ? 1 : baseAttempts + AUTHOR_WRITE_LEAD_DEGRADE_RETRIES;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     if (attempt > baseAttempts) {
       // The extra slot exists ONLY for bounded lead degradation (F-1).
       if (nonLeadFailure || leadOnlyContractFails !== baseAttempts) break;
