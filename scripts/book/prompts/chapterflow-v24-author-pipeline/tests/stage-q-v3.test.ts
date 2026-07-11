@@ -75,9 +75,15 @@ test("D1: the real v3 target schemas reject stringified arrays, missing required
   if (!existsSync(join(base, "review-finding-result.schema.json"))) return; // env-absent on a clean checkout
   const sc = JSON.parse(readFileSync(join(base, "review-finding-result.schema.json"), "utf8"));
   assert.equal(sc.additionalProperties, false, "unknown fields rejected");
-  assert.deepEqual(sc.properties.evidenceSpans, { type: "array", items: { type: "string", minLength: 1 } }, "evidenceSpans is a typed array (stringified arrays rejected)");
+  assert.deepEqual(sc.properties.evidenceSpans, { type: "array", items: { type: "string" } }, "evidenceSpans is a typed array of strings (stringified arrays rejected at the execution layer)");
   assert.ok(sc.required.includes("evidenceSufficiency") && sc.required.includes("findingValidity"), "required fields explicit");
   assert.ok(Array.isArray(sc.properties.findingValidity.enum), "enum defined in schema");
+  // codex --output-schema is OpenAI strict structured-outputs: every property must carry a
+  // "type" and appear in required (empty-span rejection moves to the post-parse validator).
+  for (const [name, prop] of Object.entries(sc.properties as Record<string, { type?: string }>)) {
+    assert.ok(prop.type, `property ${name} declares a type (strict-mode compliant)`);
+    assert.ok(sc.required.includes(name), `property ${name} is required (strict mode)`);
+  }
 });
 
 // ── D2: evidence-sufficiency review-finding model ─────────────────────────────
