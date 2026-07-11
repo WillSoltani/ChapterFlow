@@ -342,8 +342,14 @@ export function hermeticExecArgv(opts: {
   skipGitRepoCheck: boolean;
   lastMessagePath: string;
   task: string;
+  /** §16 D1 (owner directive 2026-07-11): when a structured-output JSON Schema
+   *  file is supplied, the broker binds `--output-schema <file>` so the model's
+   *  FINAL response is constrained to the schema at the execution layer — not by
+   *  a prose legend. Stays on the ChatGPT-subscription codex exec route. */
+  outputSchemaPath?: string;
 }): string[] {
-  assertFlagsSupported(opts.qualification, opts.profile.requiredCliFlags);
+  const required = opts.outputSchemaPath ? [...opts.profile.requiredCliFlags, "--output-schema"] : opts.profile.requiredCliFlags;
+  assertFlagsSupported(opts.qualification, required);
   if (!opts.profile.allowedSandboxes.includes(opts.sandbox)) {
     throw new ExecPreflightError(
       `role "${opts.profile.role}" does not allow sandbox "${opts.sandbox}" (allowed: ${opts.profile.allowedSandboxes.join(", ")})`,
@@ -357,6 +363,7 @@ export function hermeticExecArgv(opts: {
   argv.push("-c", `model=${opts.model}`);
   argv.push("-c", `model_reasoning_effort=${opts.reasoningEffort}`);
   if (opts.sandbox === "workspace-write") for (const dir of opts.writableRoots) argv.push("--add-dir", dir);
+  if (opts.outputSchemaPath) argv.push("--output-schema", opts.outputSchemaPath);
   argv.push("--output-last-message", opts.lastMessagePath);
   argv.push(opts.task);
   return argv;
@@ -459,6 +466,30 @@ export function persistRouteResult(route: object, manifestPath: string): string 
   try {
     const path = manifestPath.replace(/\.manifest\.json$/, ".route.json");
     writeFileSync(path, JSON.stringify(route, null, 2) + "\n");
+    return path;
+  } catch {
+    return null;
+  }
+}
+
+export type StructuredOutputSidecarV1 = {
+  schema: "structured-output-sidecar-v1";
+  sessionId: string;
+  outputSchemaPath: string;
+  outputSchemaSha256: string;
+  rawFinalMessageSha256: string;
+  rawFinalMessageBytes: number;
+  parsedOk: boolean;
+  parseError?: string;
+};
+
+/** §16 D1: persist the structured-output provenance for a schema-bound spawn —
+ *  the schema path + SHA-256 and whether the constrained final message parsed.
+ *  Written only when the spawn used `--output-schema`. */
+export function persistStructuredOutput(sidecar: StructuredOutputSidecarV1, manifestPath: string): string | null {
+  try {
+    const path = manifestPath.replace(/\.manifest\.json$/, ".structured.json");
+    writeFileSync(path, JSON.stringify(sidecar, null, 2) + "\n");
     return path;
   } catch {
     return null;

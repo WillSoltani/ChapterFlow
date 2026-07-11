@@ -62,6 +62,7 @@ import {
   persistEffectiveContextManifest,
   persistExecResult,
   persistRouteResult,
+  persistStructuredOutput,
   resolveExecutionProfile,
 } from "../exec/executionEnvelope.js";
 import { sweepStaleExecDirs } from "../exec/roleWorkspace.js";
@@ -138,6 +139,13 @@ export type SpawnCodexAgentOptions = {
   /** IMP-00 test seam: base dir for the per-spawn isolated session (CODEX_HOME
    *  + last-message capture). Default: os tmpdir. */
   execBaseDir?: string;
+  /** §16 D1 (owner directive 2026-07-11): path to a JSON Schema file. When set,
+   *  the hermetic broker binds `codex exec --output-schema <file>` so the FINAL
+   *  response is execution-layer constrained to the schema (not a prose legend),
+   *  and writes a structured-output sidecar (schema path + SHA-256 + parse
+   *  result). Central capability — every structured judge/reviewer call may use
+   *  it; it is not a Stage-Q-only path. */
+  outputSchemaPath?: string;
 };
 
 export type CodexAgentResult = {
@@ -288,6 +296,15 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
     const route = resolveRoute({ role: opts.role, requestedModel: opts.model, requestedEffort: opts.reasoningEffort });
     const model = route.model;
     const reasoningEffort = route.effort;
+    // §16 D1: a supplied output schema must exist and is hashed into the
+    // structured-output sidecar (provenance). Fail closed on a missing schema.
+    let outputSchemaSha256: string | undefined;
+    if (opts.outputSchemaPath !== undefined) {
+      if (!existsSync(opts.outputSchemaPath)) {
+        throw new ExecPreflightError(`output schema file not found: ${opts.outputSchemaPath} — refusing to spawn a schema-bound call without its schema`);
+      }
+      outputSchemaSha256 = sha256Hex(readFileSync(opts.outputSchemaPath));
+    }
     const argv = hermeticExecArgv({
       profile,
       qualification,
@@ -298,6 +315,7 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
       skipGitRepoCheck: opts.skipGitRepoCheck ?? false,
       lastMessagePath: session.lastMessagePath,
       task: opts.task,
+      ...(opts.outputSchemaPath ? { outputSchemaPath: opts.outputSchemaPath } : {}),
     });
     const { env, envKeys, callerEnvKeys, strictEnv } = buildHermeticEnv({
       profile,
@@ -390,6 +408,22 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
         endedAtIso: new Date().toISOString(),
       };
       persistExecResult(result, opts.manifestSink ?? defaultManifestSink(), manifestPath);
+    }
+
+    // §16 D1: structured-output provenance for a schema-bound spawn.
+    if (manifestPath && opts.outputSchemaPath && outputSchemaSha256) {
+      let parsedOk = false; let parseError: string | undefined;
+      try { JSON.parse(finalMessage); parsedOk = true; } catch (err) { parseError = (err as Error).message.slice(0, 200); }
+      persistStructuredOutput({
+        schema: "structured-output-sidecar-v1",
+        sessionId: opts.sessionId,
+        outputSchemaPath: opts.outputSchemaPath,
+        outputSchemaSha256,
+        rawFinalMessageSha256: sha256Hex(finalMessage),
+        rawFinalMessageBytes: Buffer.byteLength(finalMessage),
+        parsedOk,
+        ...(parseError ? { parseError } : {}),
+      }, manifestPath);
     }
 
     return {
