@@ -51,7 +51,7 @@ import { manualBriefRotationLines } from "../compiler/briefRotation.js";
 import { voiceCard, voiceRegisterLine } from "../lib/voiceCard.js";
 import { chapterFileName, normSlug, CHAPTERS_DIR } from "../lib/chapterPaths.js";
 import { buildBudgetRepairComplaints, checkReaderBudgets, type BudgetFinding } from "../critics/readerBudgets.js";
-import { anyAliasPresent, leadAliasSet } from "../critics/leadAliases.js";
+import { anyAliasPresent, leadAliasSet, suppressGenericSuffixAliases } from "../critics/leadAliases.js";
 import { loadNameBank } from "../librarian/namePlan.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
@@ -467,8 +467,13 @@ export function authorWriteContractFindings(
   // ever inferred beyond the label (leadAliases.ts).
   const lead = brief?.leadThread;
   if (lead?.name) {
-    const aliases = (lead.aliases && lead.aliases.length > 0 ? lead.aliases : leadAliasSet(lead.name))
-      .filter((a) => typeof a === "string" && a.trim().length >= 3);
+    // Suffix demotion (G3) runs at CHECK time too: dealt briefs minted before
+    // the hardening carry raw alias arrays that still list bare suffix tokens.
+    const aliases = suppressGenericSuffixAliases(
+      lead.name,
+      (lead.aliases && lead.aliases.length > 0 ? lead.aliases : leadAliasSet(lead.name))
+        .filter((a) => typeof a === "string" && a.trim().length >= 3),
+    );
     if (aliases.length > 0) {
       const hasLead = (text: string | undefined) => anyAliasPresent(text, aliases);
       if (!hasLead(chapter.breakdown?.fastRead)) {

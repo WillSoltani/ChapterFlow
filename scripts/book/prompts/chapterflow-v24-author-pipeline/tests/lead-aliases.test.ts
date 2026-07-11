@@ -26,7 +26,7 @@ import { fxChapter } from "./migrationFixtures.js";
 import type { ChapterV21 } from "../src/types.js";
 import type { ChapterBriefV1 } from "../src/artifacts/artifactTypes.js";
 import type { SourceUsePlanV1 } from "../src/contracts/sourceUsePlan.js";
-import { aliasPresent, anyAliasPresent, foldDiacritics, leadAliasSet, normalizeForNameMatch } from "../src/critics/leadAliases.js";
+import { aliasPresent, anyAliasPresent, foldDiacritics, leadAliasSet, normalizeForNameMatch, suppressGenericSuffixAliases } from "../src/critics/leadAliases.js";
 import { d7ShadowReport, legacyD7Token, type D7ShadowFixture } from "../src/critics/validatorShadow.js";
 import { checkExampleSourceGrounding, scenarioGroundingFindings } from "../src/critics/sourceGrounding.js";
 import { resolveLeadThread } from "../src/compiler/chapterBrief.js";
@@ -57,7 +57,8 @@ test("leadAliasSet: concept lead = the label itself; leading article stripped; s
   assert.ok(!concept.includes("study"), "generic word alone is not an alias");
   const org = leadAliasSet("The Southwest Airlines turnaround");
   assert.ok(org.includes("Southwest"), "organization token");
-  assert.ok(org.includes("Airlines"), "org second token");
+  assert.ok(!org.includes("Airlines"), "a generic entity suffix is never a STANDALONE alias when a distinctive token exists (G3)");
+  assert.ok(org.some((a) => normalizeForNameMatch(a).includes("southwest airlines")), "the suffix still matches inside the multi-word form");
 });
 
 test("aliasPresent: Unicode, diacritics, possessives, hyphen/space variants, word boundaries", () => {
@@ -152,6 +153,53 @@ test("D7: concept lead is enforced via the label itself (no more vacuous skip wh
   );
 });
 
+test("G3: a same-suffix decoy entity cannot satisfy D7 — dealt aliases from pre-hardening briefs are filtered at check time", () => {
+  const decoy = d7Chapter(
+    "Delta Airlines cut turnaround times with one fleet type.",
+    ["Delta Airlines standardized the checklists.", "Delta Airlines cross-trained gate crews.", "A hospital uses the same rule."],
+  );
+  // Dealt path: a brief minted BEFORE suffix demotion carries the raw set.
+  const dealt = authorWriteContractFindings(
+    decoy,
+    d7Brief("Southwest Airlines", "owned-case", ["Southwest Airlines", "Airlines", "Southwest"]),
+    NO_PACKET,
+  );
+  assert.equal(dealt.filter((c) => c.startsWith("lead thread")).length, 2, "the decoy must fail BOTH D7 checks on the dealt-alias path");
+  // Derived path: check-time derivation is suppressed identically.
+  const derived = authorWriteContractFindings(decoy, d7Brief("Southwest Airlines", "owned-case"), NO_PACKET);
+  assert.equal(derived.filter((c) => c.startsWith("lead thread")).length, 2, "the decoy must fail on the derived path too");
+  // The pre-IMP-09 token was the distinctive one — suffix demotion restores
+  // exactly that strictness on this class.
+  assert.equal(legacyD7Token("Southwest Airlines", "owned-case"), "Southwest");
+});
+
+test("G3: legitimate forms of the entity lead still pass — no broad stopword damage", () => {
+  const full = d7Chapter(
+    "Southwest Airlines kept one fleet type.",
+    ["Southwest Airlines standardized the checklists.", "Southwest's gate crews cross-trained.", "x"],
+  );
+  assert.deepEqual(
+    authorWriteContractFindings(full, d7Brief("Southwest Airlines", "owned-case"), NO_PACKET).filter((c) => c.startsWith("lead thread")),
+    [], "full phrase + distinctive token carry the thread",
+  );
+  const distinctiveOnly = d7Chapter(
+    "Southwest kept one fleet type.",
+    ["Southwest standardized the checklists.", "Southwest cross-trained the gate crews.", "x"],
+  );
+  assert.deepEqual(
+    authorWriteContractFindings(distinctiveOnly, d7Brief("Southwest Airlines", "owned-case"), NO_PACKET).filter((c) => c.startsWith("lead thread")),
+    [], "the distinctive token alone still satisfies D7 (the pre-IMP-09 strictness, kept)",
+  );
+});
+
+test("G3: a label with ONLY generic-suffix tokens keeps its aliases (degenerate escape — D7 stays satisfiable)", () => {
+  const aliases = leadAliasSet("The University");
+  assert.ok(aliases.some((a) => normalizeForNameMatch(a) === normalizeForNameMatch("University")), "degenerate label keeps its only form");
+  assert.deepEqual(suppressGenericSuffixAliases("The University", aliases), aliases, "no distinctive token ⇒ nothing suppressed");
+  const concept = leadAliasSet("the 10,000-hour study");
+  assert.deepEqual(suppressGenericSuffixAliases("the 10,000-hour study", concept), concept, "concept labels (no name-shaped token) are untouched");
+});
+
 test("resolveLeadThread carries caseId + compiler-derived aliases (metadata only; selection unchanged)", () => {
   const lead = resolveLeadThread(true, [{ id: "case.gogh", label: "Vincent van Gogh" }], ["Willow"]);
   assert.ok(lead && lead.kind === "owned-case");
@@ -172,6 +220,7 @@ const SHADOW_CORPUS: D7ShadowFixture[] = [
   { id: "lowercase-particle", leadName: "Ludwig van Beethoven", kind: "owned-case", text: "van Beethoven revised the coda.", expected: "present" },
   { id: "hyphen-name", leadName: "Muhammad al-Khwarizmi", kind: "owned-case", text: "al-Khwarizmi laid out the steps.", expected: "present" },
   { id: "org", leadName: "Southwest Airlines", kind: "owned-case", text: "Southwest kept the fleet uniform.", expected: "present" },
+  { id: "org-suffix-decoy", leadName: "Southwest Airlines", kind: "owned-case", text: "Delta Airlines cut costs across the fleet.", expected: "absent" },
   { id: "concept-lead", leadName: "the 10,000-hour study", kind: "owned-case", text: "The 10,000-hour study cohort logged drills.", expected: "present" },
   { id: "true-absence", leadName: "Vincent van Gogh", kind: "owned-case", text: "A painter organizes a studio.", expected: "absent" },
   { id: "true-absence-concept", leadName: "the 10,000-hour study", kind: "owned-case", text: "A cohort logged drills.", expected: "absent" },

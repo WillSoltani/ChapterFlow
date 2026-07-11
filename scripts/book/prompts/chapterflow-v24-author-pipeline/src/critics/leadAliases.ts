@@ -38,6 +38,25 @@ const NAME_TOKEN_STOPWORDS = new Set([
  *  family name ("van Gogh", "de la Cruz", "al-Khwarizmi", "von Neumann"). */
 const NAME_PARTICLES = new Set(["van", "von", "de", "der", "den", "del", "della", "di", "da", "la", "le", "al", "bin", "ibn", "ter", "ten"]);
 
+/** Generic ENTITY-SUFFIX words that commonly end multi-word organization /
+ *  institution names. Unlike NAME_TOKEN_STOPWORDS these ARE legitimate name
+ *  material — they stay inside multi-word aliases ("Southwest Airlines") and
+ *  remain name-shaped for family-name assembly — but they are never
+ *  STANDALONE-sufficient when the label has a distinctive token, because any
+ *  same-suffix decoy entity would satisfy them (G3: "Delta Airlines" must not
+ *  satisfy a "Southwest Airlines" lead). Curated + lowercase; extend only
+ *  together with a decoy regression fixture in lead-aliases.test.ts. */
+const GENERIC_ENTITY_SUFFIXES = new Set([
+  "airline", "airlines", "airways", "brothers", "sisters", "university",
+  "college", "academy", "institute", "institution", "hospital", "clinic",
+  "bank", "company", "corporation", "incorporated", "enterprises",
+  "industries", "motors", "records", "studios", "laboratories", "labs",
+  "systems", "technologies", "foundation", "association", "society",
+  "committee", "council", "department", "agency", "bureau", "ministry",
+  "commission", "center", "centre", "church", "museum", "railway",
+  "railroad", "pictures", "press", "observatory",
+]);
+
 /** NFD-based diacritic fold ("Gödel" → "Godel", "Ólafur" → "Olafur"). */
 export function foldDiacritics(s: string): string {
   return s.normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -115,7 +134,31 @@ export function leadAliasSet(label: string): string[] {
   for (const tok of tokens) {
     if (isNameShapedToken(tok)) push(tok.replace(/[’']s$/i, ""));
   }
-  return out;
+  return suppressGenericSuffixAliases(cleaned, out);
+}
+
+/** Demote generic entity suffixes from STANDALONE-alias status (G3).
+ *
+ *  Without this, leadAliasSet("Southwest Airlines") emits the bare token
+ *  "Airlines", and any same-suffix decoy ("Delta Airlines") satisfies a
+ *  presence check that the pre-IMP-09 first-token matcher ("Southwest")
+ *  correctly failed. Suppression is CONDITIONAL: it applies only when the
+ *  label carries at least one distinctive (non-suffix) name-shaped token, so
+ *  a degenerate label made only of suffix words ("The University") keeps its
+ *  only form and D7 stays satisfiable. Multi-word aliases keep their suffix
+ *  words — "Southwest Airlines" still matches as a phrase. Exported because
+ *  it must ALSO run at check time: dealt brief alias arrays minted before
+ *  this hardening still carry standalone suffix tokens. */
+export function suppressGenericSuffixAliases(label: string, aliases: readonly string[]): string[] {
+  const tokens = label.trim().replace(/^(the|a|an)\s+/i, "").split(/\s+/);
+  const hasDistinctive = tokens.some(
+    (t) => isNameShapedToken(t) && !GENERIC_ENTITY_SUFFIXES.has(foldDiacritics(t).toLowerCase()),
+  );
+  if (!hasDistinctive) return [...aliases];
+  return aliases.filter((a) => {
+    const kc = normalizeKeepCase(a);
+    return kc.includes(" ") || !GENERIC_ENTITY_SUFFIXES.has(kc.toLowerCase());
+  });
 }
 
 /** Unicode-aware whole-word presence: does `text` contain `alias` as a word
