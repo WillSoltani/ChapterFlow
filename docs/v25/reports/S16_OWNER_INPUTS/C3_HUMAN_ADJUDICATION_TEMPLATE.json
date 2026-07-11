@@ -1,0 +1,23 @@
+{
+  "schema": "migration-human-adjudication-v1",
+  "_purpose": "Human adjudication of high-severity findings. Threshold groups T2 (severe factual), T4a (framing), T5a (quiz key/mechanism), T6a (causal), T7 (leakage/clone) evaluate ZERO-tolerance on UPHELD-BY-HUMAN counts; the harness never substitutes model judgment for these. Absent file or missing cell ⇒ those groups evaluate INCONCLUSIVE (never pass) ⇒ no SOL profile can QUALIFY.",
+  "_workflow": [
+    "1. Run §16 through the review phase. The blind reviews and sample records under state/migration-experiments/<id>/samples/** contain every complaint with evidence quotes.",
+    "2. Export every HIGH-SEVERITY candidate finding (the analyze phase surfaces them; complaints with mustFix/high severity in review records).",
+    "3. A human reads each finding against the chapter text and rules UPHELD or REJECTED. Model adjudication MUST NOT be recorded here — this file asserts human judgment, and misrepresenting it invalidates the decision.",
+    "4. Enter the UPHELD counts per cell below (integers; 0 is a real, meaningful answer).",
+    "5. Set highSeverityHumanReviewComplete to true ONLY when every surfaced high-severity finding has been human-ruled (T8 requires it).",
+    "6. Save as human-adjudication.json in the EXPERIMENT ROOT: state/migration-experiments/<experimentId>/human-adjudication.json (read at the decide phase, runExperiment.ts:382)."
+  ],
+  "_fieldMeaning": "Each count = number of UPHELD high-severity findings of that class among the cell's outputs. Keys per cell: sourcedFabrication, sourceFramingAmbiguity, quizKeyOrMechanism, causalOverreach, exactLeakageOrClone. Underscore-prefixed keys are annotations and are ignored by the harness.",
+  "_validationCommand": "npx tsx ../../../../docs/v25/reports/S16_OWNER_INPUTS/tools/validate-owner-inputs.mts c3 <file> (from the pipeline dir)",
+  "_requiredFor": "DECIDE phase (threshold evaluation). Execution, scoring, and unblinding proceed without it; the decision is INCONCLUSIVE without it.",
+  "perCell": {
+    "55-H":   { "_note": "baseline cell — fill after review", "sourcedFabrication": 0, "sourceFramingAmbiguity": 0, "quizKeyOrMechanism": 0, "causalOverreach": 0, "exactLeakageOrClone": 0 },
+    "55-XH":  { "sourcedFabrication": 0, "sourceFramingAmbiguity": 0, "quizKeyOrMechanism": 0, "causalOverreach": 0, "exactLeakageOrClone": 0 },
+    "56S-H":  { "sourcedFabrication": 0, "sourceFramingAmbiguity": 0, "quizKeyOrMechanism": 0, "causalOverreach": 0, "exactLeakageOrClone": 0 },
+    "56S-XH": { "sourcedFabrication": 0, "sourceFramingAmbiguity": 0, "quizKeyOrMechanism": 0, "causalOverreach": 0, "exactLeakageOrClone": 0 }
+  },
+  "_TEMPLATE_WARNING": "These zeros are PLACEHOLDERS, not findings. Replace with real upheld counts after human review; delete this key and _note keys when filling. Submitting placeholder zeros as real adjudication would fabricate human evidence.",
+  "highSeverityHumanReviewComplete": false
+}

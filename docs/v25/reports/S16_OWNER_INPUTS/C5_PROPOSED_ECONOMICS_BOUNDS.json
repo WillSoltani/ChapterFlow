@@ -1,0 +1,25 @@
+{
+  "schema": "s16-owner-input-c5-economics-decision",
+  "_purpose": "Owner decision on §16 threshold group 10 (economics/latency). This is a DECISION DOCUMENT, not a machine input: the chosen values merge into C4's economics{} before freezing. Background: T10 is currently the ONLY threshold group that PASSES when its bounds are null ('no bound declared') — every other group is inconclusive-on-missing. The §15 audit flagged this asymmetry (gap C5).",
+  "_measurementReality": {
+    "tokens": "STRUCTURALLY UNAVAILABLE on the local codex CLI route — no usage events are exposed (verified IMP-02/IMP-10/IMP-11). The harness records tokens: null with TOKENS_UNAVAILABLE_REASON and lists cost fields in unavailableFields. Plan instruction 18 forbids estimating them.",
+    "costPerAcceptedChapterUsd": "Cannot be measured without tokens. A frozen priceSnapshot alone cannot produce cost; the harness will NOT estimate.",
+    "latency": "MEASURED per sample (wall-clock durationMs; p50/p95 nearest-rank per cell). Timeout counts are distinct provider outcomes (never replayed as content)."
+  },
+  "optionA_recommended": {
+    "decision": "Freeze REAL bounds on what is measurable; explicitly accept cost-per-chapter as unavailable.",
+    "proposedValues": {
+      "maxCostPerAcceptedChapterUsd": null,
+      "maxLatencyP95Ms": 2700000,
+      "_derivation": "2,700,000 ms = 45 min ≈ 1.5× the observed v24 whole-chapter write envelope (~19-30 min at xhigh on this host). Owner should replace with 1.5× the measured 55-XH screening p50 if preferred — but must freeze BEFORE unblinding; the screening wave's own latency is visible pre-unblind only as blinded aggregates, so freezing an absolute number NOW is the clean option."
+    },
+    "consequences": "T10 becomes a real gate on latency: a SOL cell whose p95 exceeds the bound cannot QUALIFY. Cost stays null ⇒ the cost HALF of T10 still passes as 'no bound declared' — the report will say so explicitly. Timeout-rate discipline is already covered by provider-outcome reporting + T3 (timeouts fail first-write)."
+  },
+  "optionB": {
+    "decision": "Accept economics as informational for this bakeoff (both bounds null).",
+    "consequences": "T10 passes for every cell regardless of latency/cost; the §16 report still publishes full latency tables and unavailable-cost markers, but nothing blocks on them. The asymmetry the §15 audit flagged remains: T10 would be the only pass-on-missing group. If chosen, the decision file's T10 verdict is honest but toothless, and any economics judgment moves to the §20 readiness decision."
+  },
+  "_ownerActions": "DECIDE Option A (recommended) or B (or supply custom values). If A: merge maxLatencyP95Ms into C4 economics{} (and any cost bound if you have an out-of-band cost model — the harness itself will not compute cost). Then freeze C4.",
+  "_requiredFor": "DECIDE phase (T10). Not required to execute or score.",
+  "_absenceBehavior": "If never decided, C4's nulls stand and T10 passes as 'no bound declared' (Option B by default — flagged in the §15 audit as the asymmetry to close deliberately, not silently)."
+}
