@@ -1,38 +1,21 @@
 /**
- * Verification of Apple StoreKit / App Store Server JWS payloads.
+ * App Store signed-data verification through Apple's official Node library.
  *
- * StoreKit 2 signed transactions (`transactionJWS`) and App Store Server
- * Notifications V2 (`signedPayload`) are JWS Compact objects whose protected
- * header carries an `x5c` certificate chain — `[signing leaf, intermediate,
- * Apple Root CA - G3]` — and whose signature is ES256 over the leaf's EC P-256
- * key. Authenticity is established WITHOUT any network call to Apple:
- *
- *   1. Parse the `x5c` chain (DER certs, base64) into X.509 certificates.
- *   2. Verify each certificate is cryptographically signed by the next
- *      (`leaf`←`intermediate`←`root`) and that issuer/subject chain correctly.
- *   3. Verify the TOP of the chain is byte-identical to a PINNED Apple root we
- *      ship (see {@link APPLE_ROOT_CA_G3_PEM}) — the trust anchor is Apple's,
- *      not an attacker-supplied self-signed root embedded in the header.
- *   4. Verify every certificate is within its validity window.
- *   5. Verify the JWS signature against the leaf certificate's public key,
- *      restricted to ES256 (no `alg` downgrade / `none`).
- *
- * This module is intentionally free of `server-only` and the AWS SDK so it is
- * unit-testable (see apple-jws-verify-core.test.ts, which signs JWSs with a
- * throwaway test chain and injects it as the trusted root). It depends only on
- * `jose` (already used by the auth verifier) and Node's built-in `crypto`.
+ * The library owns the security-critical x5c profile: exact chain length,
+ * Apple-root trust, StoreKit leaf/intermediate private OIDs, intermediate CA
+ * Basic Constraints, signature/date checks, and (when enabled) OCSP. Production
+ * always enables online checks; Sandbox uses Apple's offline signedDate mode so
+ * local/sandbox verification is deterministic and does not depend on OCSP.
  */
 import { X509Certificate } from "node:crypto";
-import { compactVerify, decodeProtectedHeader } from "jose";
+import {
+  Environment,
+  SignedDataVerifier,
+  VerificationException,
+  VerificationStatus,
+} from "@apple/app-store-server-library";
 
-/**
- * Apple Root CA - G3 (the trust anchor for StoreKit / App Store Server JWS),
- * pinned by value. Downloaded from https://www.apple.com/certificateauthority/
- * (SHA-256 fingerprint
- * 63:34:3A:BF:B8:9A:6A:03:EB:B5:7E:9B:3F:5F:A7:BE:7C:4F:5C:75:6F:30:17:B3:A8:C4:88:C3:65:3E:91:79).
- * The signing leaf and Apple's intermediate rotate; this root is stable until
- * 2039 and is the only anchor we trust.
- */
+/** Apple Root CA - G3, pinned by value from Apple's certificate authority. */
 export const APPLE_ROOT_CA_G3_PEM = `-----BEGIN CERTIFICATE-----
 MIICQzCCAcmgAwIBAgIILcX8iNLFS5UwCgYIKoZIzj0EAwMwZzEbMBkGA1UEAwwS
 QXBwbGUgUm9vdCBDQSAtIEczMSYwJAYDVQQLDB1BcHBsZSBDZXJ0aWZpY2F0aW9u
@@ -49,230 +32,204 @@ at+qIxUCMG1mihDK1A3UT82NQz60imOlM27jbdoXt2QfyFMm+YhidDkLF1vLUagM
 6BgD56KyKA==
 -----END CERTIFICATE-----`;
 
-/** A machine-readable reason a JWS failed verification (mapped to 400 by routes). */
 export type AppleJwsErrorCode =
   | "malformed_jws"
-  | "unsupported_alg"
   | "missing_x5c"
   | "invalid_certificate"
-  | "broken_chain"
-  | "certificate_expired"
-  | "untrusted_root"
+  | "invalid_app_identifier"
+  | "invalid_environment"
   | "bad_signature"
-  | "malformed_payload";
+  | "verification_unavailable";
 
 export class AppleJwsVerificationError extends Error {
   constructor(
     public readonly code: AppleJwsErrorCode,
     message: string,
+    public readonly retryable = false,
   ) {
     super(message);
     this.name = "AppleJwsVerificationError";
   }
 }
 
-export type VerifyAppleJwsOptions = {
-  /**
-   * Trust anchors, PEM-encoded. Production passes {@link APPLE_ROOT_CA_G3_PEM};
-   * tests inject a throwaway root. The chain's top certificate must be
-   * byte-identical to one of these.
-   */
-  trustedRootsPem?: string[];
-  /** Clock for certificate-validity checks. Defaults to the current time. */
-  now?: Date;
+export type AppleSignedDataPolicy = {
+  bundleId: string;
+  appAppleId: number;
+  environment: "Production" | "Sandbox";
 };
 
-// Guard against an absurdly long x5c (cheap DoS). Apple sends exactly 3.
-const MAX_CHAIN_LENGTH = 10;
+type AppleVerifierLike = Pick<
+  SignedDataVerifier,
+  | "verifyAndDecodeTransaction"
+  | "verifyAndDecodeRenewalInfo"
+  | "verifyAndDecodeNotification"
+>;
 
-function derFromX5cEntry(entry: unknown): Buffer {
-  if (typeof entry !== "string" || entry.length === 0) {
-    throw new AppleJwsVerificationError(
-      "invalid_certificate",
-      "x5c entry is not a non-empty string.",
-    );
-  }
-  // x5c entries are base64 (standard, not base64url) DER per RFC 7515 §4.1.6.
-  return Buffer.from(entry, "base64");
+export type AppleVerifierOptions = {
+  /** DER roots are injectable only for deterministic certificate fixtures. */
+  trustedRootsDer?: Buffer[];
+  /** Tests may force offline/online; production callers use the policy default. */
+  enableOnlineChecks?: boolean;
+  verifierFactory?: (input: {
+    roots: Buffer[];
+    enableOnlineChecks: boolean;
+    environment: Environment;
+    bundleId: string;
+    appAppleId?: number;
+  }) => AppleVerifierLike;
+};
+
+export type AppleSignedDataVerifier = {
+  transaction(jws: string): Promise<Record<string, unknown>>;
+  renewal(jws: string): Promise<Record<string, unknown>>;
+  notification(jws: string): Promise<Record<string, unknown>>;
+};
+
+export function appleOnlineChecksEnabled(
+  policy: AppleSignedDataPolicy,
+): boolean {
+  return policy.environment === "Production";
 }
 
-/**
- * Verify an Apple JWS Compact string (a signed transaction OR a notification
- * signedPayload) and return its decoded JSON payload. Throws
- * {@link AppleJwsVerificationError} on any authenticity failure.
- */
-export async function verifyAppleJws(
-  jws: string,
-  opts: VerifyAppleJwsOptions = {},
-): Promise<Record<string, unknown>> {
-  if (typeof jws !== "string" || jws.split(".").length !== 3) {
-    throw new AppleJwsVerificationError(
-      "malformed_jws",
-      "Value is not a compact JWS (expected three dot-separated segments).",
-    );
-  }
-
-  const trustedRootsPem =
-    opts.trustedRootsPem && opts.trustedRootsPem.length > 0
-      ? opts.trustedRootsPem
-      : [APPLE_ROOT_CA_G3_PEM];
-  const now = opts.now ?? new Date();
-
-  let header: { alg?: unknown; x5c?: unknown };
-  try {
-    header = decodeProtectedHeader(jws);
-  } catch {
-    throw new AppleJwsVerificationError(
-      "malformed_jws",
-      "JWS protected header could not be decoded.",
-    );
-  }
-
-  // Pin the algorithm: only ES256 (Apple's signing algorithm). This blocks an
-  // `alg: none` / algorithm-confusion downgrade at the header level, and is
-  // re-enforced in compactVerify's `algorithms` allowlist below.
-  if (header.alg !== "ES256") {
-    throw new AppleJwsVerificationError(
-      "unsupported_alg",
-      `Unexpected JWS alg "${String(header.alg)}"; only ES256 is accepted.`,
-    );
-  }
-
-  if (
-    !Array.isArray(header.x5c) ||
-    header.x5c.length < 2 ||
-    header.x5c.length > MAX_CHAIN_LENGTH
-  ) {
-    throw new AppleJwsVerificationError(
-      "missing_x5c",
-      "JWS header is missing a well-formed x5c certificate chain.",
-    );
-  }
-
-  let chain: X509Certificate[];
-  try {
-    chain = header.x5c.map((entry) => new X509Certificate(derFromX5cEntry(entry)));
-  } catch (err) {
-    if (err instanceof AppleJwsVerificationError) throw err;
-    throw new AppleJwsVerificationError(
-      "invalid_certificate",
-      "An x5c certificate could not be parsed as X.509 DER.",
-    );
-  }
-
-  // Validity windows for every certificate in the chain.
-  for (const cert of chain) {
-    const notBefore = new Date(cert.validFrom);
-    const notAfter = new Date(cert.validTo);
-    if (
-      Number.isNaN(notBefore.getTime()) ||
-      Number.isNaN(notAfter.getTime()) ||
-      now < notBefore ||
-      now > notAfter
-    ) {
-      throw new AppleJwsVerificationError(
-        "certificate_expired",
-        `Certificate "${cert.subject.split("\n")[0]}" is outside its validity window.`,
-      );
+export function mapAppleOfficialVerificationError(
+  error: unknown,
+): AppleJwsVerificationError {
+  if (error instanceof AppleJwsVerificationError) return error;
+  if (error instanceof VerificationException) {
+    switch (error.status) {
+      case VerificationStatus.RETRYABLE_VERIFICATION_FAILURE:
+        return new AppleJwsVerificationError(
+          "verification_unavailable",
+          "Apple certificate revocation status is temporarily unavailable.",
+          true,
+        );
+      case VerificationStatus.INVALID_APP_IDENTIFIER:
+        return new AppleJwsVerificationError(
+          "invalid_app_identifier",
+          "The signed data belongs to a different App Store application.",
+        );
+      case VerificationStatus.INVALID_ENVIRONMENT:
+        return new AppleJwsVerificationError(
+          "invalid_environment",
+          "The signed data belongs to a different App Store environment.",
+        );
+      case VerificationStatus.INVALID_CHAIN_LENGTH:
+        return new AppleJwsVerificationError(
+          "missing_x5c",
+          "The signed data does not carry Apple's exact certificate chain.",
+        );
+      case VerificationStatus.INVALID_CERTIFICATE:
+        return new AppleJwsVerificationError(
+          "invalid_certificate",
+          "The App Store signing certificate is invalid.",
+        );
+      case VerificationStatus.VERIFICATION_FAILURE:
+      case VerificationStatus.FAILURE:
+      case VerificationStatus.OK:
+      default:
+        return new AppleJwsVerificationError(
+          "bad_signature",
+          "The App Store signed data could not be authenticated.",
+        );
     }
   }
-
-  // Cryptographic chain: each certificate must be signed by the next one's key
-  // (and correctly name it as issuer). This is the real trust link — an attacker
-  // cannot forge an intermediate signed by Apple's root private key.
-  for (let i = 0; i < chain.length - 1; i++) {
-    const subject = chain[i];
-    const issuer = chain[i + 1];
-    if (!subject.checkIssued(issuer) || !subject.verify(issuer.publicKey)) {
-      throw new AppleJwsVerificationError(
-        "broken_chain",
-        `Certificate at position ${i} is not validly issued by the next in the chain.`,
-      );
-    }
-  }
-
-  // Trust anchor: the top of the presented chain must be byte-identical to a
-  // pinned root we ship. (Its self-signature is not re-checked — identity is the
-  // anchor.) Prevents trusting an attacker-supplied self-signed root in x5c.
-  const presentedRoot = chain[chain.length - 1];
-  const trustedRoots = trustedRootsPem.map((pem) => new X509Certificate(pem));
-  const rootIsTrusted = trustedRoots.some((root) =>
-    root.raw.equals(presentedRoot.raw),
+  return new AppleJwsVerificationError(
+    "malformed_jws",
+    "The App Store signed data is malformed.",
   );
-  if (!rootIsTrusted) {
-    throw new AppleJwsVerificationError(
-      "untrusted_root",
-      "The x5c chain does not terminate at a trusted Apple root certificate.",
-    );
-  }
+}
 
-  // Signature: verify against the LEAF's public key, ES256 only.
-  let payloadBytes: Uint8Array;
-  try {
-    ({ payload: payloadBytes } = await compactVerify(jws, chain[0].publicKey, {
-      algorithms: ["ES256"],
-    }));
-  } catch {
-    throw new AppleJwsVerificationError(
-      "bad_signature",
-      "JWS signature verification failed against the leaf certificate.",
-    );
-  }
+export function createAppleSignedDataVerifier(
+  policy: AppleSignedDataPolicy,
+  options: AppleVerifierOptions = {},
+): AppleSignedDataVerifier {
+  const roots =
+    options.trustedRootsDer ?? [new X509Certificate(APPLE_ROOT_CA_G3_PEM).raw];
+  const enableOnlineChecks =
+    options.enableOnlineChecks ?? appleOnlineChecksEnabled(policy);
+  const environment =
+    policy.environment === "Production"
+      ? Environment.PRODUCTION
+      : Environment.SANDBOX;
+  const appAppleId =
+    policy.environment === "Production" ? policy.appAppleId : undefined;
+  const verifier = options.verifierFactory
+    ? options.verifierFactory({
+        roots,
+        enableOnlineChecks,
+        environment,
+        bundleId: policy.bundleId,
+        appAppleId,
+      })
+    : new SignedDataVerifier(
+        roots,
+        enableOnlineChecks,
+        environment,
+        policy.bundleId,
+        appAppleId,
+      );
 
-  try {
-    const parsed = JSON.parse(new TextDecoder().decode(payloadBytes));
-    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
-      throw new Error("payload is not a JSON object");
+  async function authenticated(
+    operation: () => Promise<unknown>,
+  ): Promise<Record<string, unknown>> {
+    try {
+      return (await operation()) as Record<string, unknown>;
+    } catch (error) {
+      throw mapAppleOfficialVerificationError(error);
     }
-    return parsed as Record<string, unknown>;
-  } catch {
-    throw new AppleJwsVerificationError(
-      "malformed_payload",
-      "JWS payload is not a JSON object.",
-    );
   }
+
+  return {
+    transaction: (jws) =>
+      authenticated(() => verifier.verifyAndDecodeTransaction(jws)),
+    renewal: (jws) =>
+      authenticated(() => verifier.verifyAndDecodeRenewalInfo(jws)),
+    notification: (jws) =>
+      authenticated(() => verifier.verifyAndDecodeNotification(jws)),
+  };
+}
+
+export async function verifyAppleTransactionJws(
+  jws: string,
+  policy: AppleSignedDataPolicy,
+  options?: AppleVerifierOptions,
+): Promise<Record<string, unknown>> {
+  return createAppleSignedDataVerifier(policy, options).transaction(jws);
 }
 
 // ─── Typed views over the decoded payloads ───────────────────────────────────
-//
-// Apple's JSON uses camelCase keys; we read the subset the entitlement path
-// needs. Dates are epoch MILLISECONDS in Apple's schema.
 
-/** Decoded `JWSTransactionDecodedPayload` subset. */
 export type AppleTransactionInfo = {
   bundleId?: string;
   productId?: string;
   transactionId?: string;
   originalTransactionId?: string;
-  /** Subscription expiry, epoch ms. Absent for non-renewing purchases. */
+  environment?: string;
+  subscriptionGroupIdentifier?: string;
+  appAccountToken?: string;
+  inAppOwnershipType?: string;
   expiresDateMs?: number;
-  /** Set when the transaction was refunded/revoked, epoch ms. */
   revocationDateMs?: number;
-  /** When Apple signed this transaction, epoch ms — used as an ordering stamp. */
   signedDateMs?: number;
-  /** e.g. "Auto-Renewable Subscription". */
   type?: string;
 };
 
-/** Decoded `JWSRenewalInfoDecodedPayload` subset. */
 export type AppleRenewalInfo = {
-  /** 1 = will auto-renew, 0 = auto-renew turned off. */
   autoRenewStatus?: number;
   autoRenewProductId?: string;
   productId?: string;
-  /** e.g. "GRACE_PERIOD" | "BILLING_RETRY". */
   gracePeriodExpiresDateMs?: number;
 };
 
-/** Decoded App Store Server Notification V2 `responseBodyV2DecodedPayload` subset. */
 export type AppleNotificationPayload = {
   notificationType?: string;
   subtype?: string;
   notificationUUID?: string;
-  /** When Apple signed the notification, epoch ms — the ordering high-water mark. */
   signedDateMs?: number;
   data?: {
     bundleId?: string;
+    appAppleId?: number;
+    environment?: string;
     signedTransactionInfo?: string;
     signedRenewalInfo?: string;
   };
@@ -294,6 +251,12 @@ export function parseAppleTransactionInfo(
     productId: readString(payload.productId),
     transactionId: readString(payload.transactionId),
     originalTransactionId: readString(payload.originalTransactionId),
+    environment: readString(payload.environment),
+    subscriptionGroupIdentifier: readString(
+      payload.subscriptionGroupIdentifier,
+    ),
+    appAccountToken: readString(payload.appAccountToken),
+    inAppOwnershipType: readString(payload.inAppOwnershipType),
     expiresDateMs: readNumber(payload.expiresDate),
     revocationDateMs: readNumber(payload.revocationDate),
     signedDateMs: readNumber(payload.signedDate),
@@ -327,6 +290,8 @@ export function parseAppleNotificationPayload(
     data: data
       ? {
           bundleId: readString(data.bundleId),
+          appAppleId: readNumber(data.appAppleId),
+          environment: readString(data.environment),
           signedTransactionInfo: readString(data.signedTransactionInfo),
           signedRenewalInfo: readString(data.signedRenewalInfo),
         }

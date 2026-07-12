@@ -1,5 +1,9 @@
-import { NextResponse } from "next/server";
-import { buildIosAppConfig } from "./config-core";
+import { withBookApiErrors, bookOk } from "../../_lib/http";
+import { BookApiError } from "../../_lib/errors";
+import {
+  buildIosAppConfig,
+  IosConfigValidationError,
+} from "./config-core";
 
 export const runtime = "nodejs";
 
@@ -13,18 +17,31 @@ export const runtime = "nodejs";
  * when auth is down) — middleware.ts passes everything under `/app/api/` through
  * without a cookie check, so no session is required.
  *
- * Values come straight from the server Lambda's env vars (like the billing
- * secrets in /api/health), so this handler is network-free and can never
- * false-fail. `max-age=300` lets the CDN and app cache the config for 5 minutes:
- * long enough to shield the origin, short enough that flipping a kill-switch or
- * entering maintenance mode propagates within minutes.
+ * Values come straight from the server Lambda's env vars. Invalid required
+ * identity fails closed with an uncached 503; successful validated responses use
+ * `max-age=300`, balancing origin load with operational flag propagation.
  */
-export function GET(): NextResponse {
-  const config = buildIosAppConfig(process.env);
-  return NextResponse.json(config, {
-    status: 200,
-    headers: {
-      "Cache-Control": "public, max-age=300",
-    },
+export async function GET(req: Request) {
+  return withBookApiErrors(req, async () => {
+    let config;
+    try {
+      config = buildIosAppConfig(process.env);
+    } catch (error) {
+      if (error instanceof IosConfigValidationError) {
+        throw new BookApiError(
+          503,
+          "ios_config_unavailable",
+          "The iOS application configuration is temporarily unavailable.",
+          { issues: error.issues },
+        );
+      }
+      throw error;
+    }
+    return bookOk(config, {
+      status: 200,
+      headers: {
+        "Cache-Control": "public, max-age=300",
+      },
+    });
   });
 }

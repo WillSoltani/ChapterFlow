@@ -1,6 +1,10 @@
 import "server-only";
 
-import { QueryCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
+import {
+  QueryCommand,
+  PutCommand,
+  UpdateCommand,
+} from "@aws-sdk/lib-dynamodb";
 import {
   ListUsersCommand,
   AdminDeleteUserCommand,
@@ -17,13 +21,18 @@ import {
   pairInviteSk,
   erasureLogPk,
   erasureLogSk,
+  accountStatusSk,
   nowIso,
 } from "./keys";
-import { targetKeysFromUserItems, isErasurePointerEntity } from "./erasure-pointers-core";
+import {
+  targetKeysFromUserItems,
+  isErasurePointerEntity,
+  mainPartitionKeysAfterPointerCleanup,
+} from "./erasure-pointers-core";
 import { hashErasureSubject } from "./erasure-audit-core";
 import { batchDeleteKeys, type DdbKey } from "./ddb-batch-delete";
 import { getStripeClient } from "./stripe-service";
-import { getUserEntitlement } from "./repo";
+import { getUserEntitlement, setAccountStatus } from "./repo";
 import { recordOpsFailure } from "./ops-failure-repo";
 import { putOpsMetric } from "./cloudwatch-metrics";
 
@@ -39,7 +48,7 @@ export type ErasureResult = {
   quizAttemptItemsDeleted: number;
   analyticsItemsDeleted: number;
   pairInviteItemsDeleted: number;
-  /** Externally-keyed items (risk/referral/pair) deleted via reverse-pointers (#4a). */
+  /** Externally-keyed items (risk/referral/pair/Apple) deleted via pointers. */
   pointerTargetItemsDeleted: number;
   stripeCustomer: StepOutcome;
   cognitoUser: StepOutcome;
@@ -64,6 +73,7 @@ async function queryAllItems(
         TableName: tableName,
         KeyConditionExpression: "PK = :pk",
         ExpressionAttributeValues: { ":pk": pk },
+        ConsistentRead: true,
         ExclusiveStartKey,
       })
     );
@@ -141,29 +151,39 @@ export async function eraseUserData(
     residualWarnings.push(msg);
   };
 
+  // A minimal deleted-status tombstone closes the race between an in-flight
+  // authenticated purchase claim and hard erasure. The atomic Apple claim
+  // condition-checks this item; account guards also block already-issued ID
+  // tokens after Cognito deletion. It is the only raw-sub item deliberately
+  // retained; a 24-hour TTL is armed only after Cognito deletion is confirmed.
+  await setAccountStatus(tableName, userId, "deleted", {
+    statusReason: "hard_erasure_in_progress",
+    changedBy: erasedBy,
+  });
+
   // Capture external identifiers BEFORE we delete the partition that holds them.
   const entitlement = await getUserEntitlement(tableName, userId).catch(() => null);
   const stripeCustomerId = entitlement?.stripeCustomerId;
 
-  // 1. Main user partition (the bulk of personal data). Each step is isolated so
-  //    one failure cannot abort the cascade or skip the audit record below.
+  // 1. Inventory the main partition. Do NOT delete pointer rows yet: their
+  //    external targets must be confirmed deleted first so a retry never loses
+  //    its only reachability path.
   let mainItemsDeleted = 0;
+  let mainItems: Record<string, unknown>[] = [];
+  let mainInventoryComplete = false;
   let quizPks: string[] = [];
   let pairInviteKeys: DdbKey[] = [];
-  // External targets (risk events, referral codes, pair invites) reconstructed
+  // External targets (risk/referral/pair records and Apple transaction maps) reconstructed
   // byte-exactly from reverse-pointer items in the user partition (#4a).
   let pointerTargetKeys: DdbKey[] = [];
   try {
-    const mainItems = await queryAllItems(tableName, bookUserPk(userId));
+    mainItems = await queryAllItems(tableName, bookUserPk(userId));
+    mainInventoryComplete = true;
     quizPks = quizAttemptPksFromUserItems(userId, mainItems);
     pairInviteKeys = pairInviteKeysFromUserItems(mainItems);
     pointerTargetKeys = targetKeysFromUserItems(mainItems);
-    const r = await batchDeleteKeys(tableName, asKeys(mainItems));
-    mainItemsDeleted = r.deleted;
-    unprocessedItems += r.unprocessed;
-    if (r.unprocessed) fail(`${r.unprocessed} main-table item(s) survived retries and were NOT deleted.`);
   } catch (e) {
-    fail(`Main partition erase failed: ${errMsg(e)}`);
+    fail(`Main partition inventory failed: ${errMsg(e)}`);
   }
 
   // 2. Quiz-attempt partitions (each keyed by QUIZATTEMPT#<userId>#<bookId>#<ch>).
@@ -194,21 +214,45 @@ export async function eraseUserData(
 
   // 3b. Externally-keyed targets reached via reverse-pointers (#4a): risk/fraud
   //     events (device/network fingerprint keys), referral-code reverse-index,
-  //     and pair-invite reverse-index. The target keys were reconstructed
-  //     byte-exactly above from the pointer items (which themselves were already
-  //     deleted as part of the main partition sweep).
+  //     and pair-invite/Apple reverse-index. Delete targets BEFORE pointers.
   let pointerTargetItemsDeleted = 0;
+  let pointerTargetsComplete = mainInventoryComplete;
   if (pointerTargetKeys.length) {
     try {
       const r = await batchDeleteKeys(tableName, pointerTargetKeys);
       pointerTargetItemsDeleted = r.deleted;
       unprocessedItems += r.unprocessed;
       if (r.unprocessed) {
-        fail(`${r.unprocessed} pointer-referenced item(s) (risk/referral/pair) were NOT deleted.`);
+        pointerTargetsComplete = false;
+        fail(`${r.unprocessed} pointer-referenced external item(s) were NOT deleted.`);
       }
     } catch (e) {
+      pointerTargetsComplete = false;
       fail(`Pointer-referenced (risk/referral/pair) erase failed: ${errMsg(e)}`);
     }
+  }
+
+  // 3c. Only after every pointer target is gone may we delete the user-owned
+  // pointer rows and remaining personal data. Preserve the short-lived deleted
+  // status tombstone so stale tokens and racing atomic claims stay blocked.
+  if (pointerTargetsComplete) {
+    try {
+      const mainKeys = mainPartitionKeysAfterPointerCleanup(mainItems, true);
+      const r = await batchDeleteKeys(tableName, mainKeys);
+      mainItemsDeleted = r.deleted;
+      unprocessedItems += r.unprocessed;
+      if (r.unprocessed) {
+        fail(
+          `${r.unprocessed} main-table item(s) survived retries and were NOT deleted.`,
+        );
+      }
+    } catch (e) {
+      fail(`Main partition erase failed: ${errMsg(e)}`);
+    }
+  } else {
+    fail(
+      "Main partition retained for retry because pointer-target erasure was incomplete.",
+    );
   }
 
   // 4. Stripe-customer reverse map.
@@ -264,6 +308,7 @@ export async function eraseUserData(
   //    into a SCIM filter, so strip anything that isn't valid in a sub
   //    (UUID chars) to prevent filter injection.
   let cognitoUser: StepOutcome = "skipped";
+  let cognitoDeletionConfirmed = false;
   const userPoolId = await getServerEnv("COGNITO_USER_POOL_ID");
   if (userPoolId) {
     try {
@@ -282,8 +327,10 @@ export async function eraseUserData(
           new AdminDeleteUserCommand({ UserPoolId: userPoolId, Username: username })
         );
         cognitoUser = "deleted";
+        cognitoDeletionConfirmed = true;
       } else {
         cognitoUser = "skipped";
+        cognitoDeletionConfirmed = true;
         residualWarnings.push("No matching Cognito user found for this sub (already deleted?).");
       }
     } catch (error) {
@@ -301,12 +348,48 @@ export async function eraseUserData(
     fail("COGNITO_USER_POOL_ID not configured — Cognito user was NOT deleted.");
   }
 
-  // Forward-only residual (#4a): risk/fraud events, referral-code and pair-invite
+  // Keep the tombstone indefinitely if Cognito deletion failed or could not be
+  // attempted: a surviving refresh token must never recreate erased data after
+  // a TTL reaps the gate. Once Cognito is confirmed absent, 24 hours safely
+  // covers already-issued token lifetime and minimizes raw-sub retention.
+  if (cognitoDeletionConfirmed) {
+    try {
+      await ddbDoc.send(
+        new UpdateCommand({
+          TableName: tableName,
+          Key: { PK: bookUserPk(userId), SK: accountStatusSk() },
+          ConditionExpression: "#status = :deleted",
+          UpdateExpression:
+            "SET #ttl = :ttl, statusReason = :statusReason, updatedAt = :updatedAt",
+          ExpressionAttributeNames: {
+            "#status": "status",
+            "#ttl": "ttl",
+          },
+          ExpressionAttributeValues: {
+            ":deleted": "deleted",
+            ":ttl": Math.floor(Date.now() / 1000) + 24 * 60 * 60,
+            ":statusReason": "hard_erasure_completed",
+            ":updatedAt": nowIso(),
+          },
+        }),
+      );
+    } catch (error) {
+      // Failure is safe (the no-TTL tombstone remains), but operator follow-up
+      // is required to minimize retained identity data.
+      fail(`Erasure tombstone TTL could not be armed: ${errMsg(error)}`);
+    }
+  } else {
+    residualWarnings.push(
+      "Deleted-account security tombstone retained without TTL until Cognito deletion is reconciled.",
+    );
+  }
+
+  // Forward-only residual (#4a): externally-keyed records
   // reverse-indexes are now auto-erased via reverse-pointers written at WRITE
   // time — but only for records created AFTER that change deployed. Pre-deploy
   // records have no pointer and remain unreachable without a userId GSI.
   residualWarnings.push(
-    "Risk/fraud events, referral codes, and pair invites are auto-erased only for records created after the reverse-pointer rollout; any PRE-EXISTING such records (no pointer, no userId GSI) are not auto-erased."
+    "Externally-keyed risk, referral, pair-invite, and Apple transaction-map records are auto-erased only when a reverse pointer exists; PRE-EXISTING records without one require operator reconciliation."
   );
 
   const erasedAt = nowIso();

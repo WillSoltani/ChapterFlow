@@ -196,6 +196,12 @@ export function buildEntitlementUpdateFromStripe(
     setParts.push("lastStripeEventAt = :eventCreated");
     eav[":eventCreated"] = params.stripeEventCreatedAt;
   }
+  const hasPaidIntentTimestamp = isProActivation && hasEventTime;
+  if (hasPaidIntentTimestamp) {
+    setParts.push("activePaidIntentAtMs = :paidIntentAtMs");
+    eav[":paidIntentAtMs"] =
+      (params.stripeEventCreatedAt as number) * 1000;
+  }
 
   // Sticky chargeback marker (L13). The dispute downgrade sets it; a "won"
   // dispute clears it. setDisputeOpen wins if both are passed (defensive).
@@ -207,12 +213,20 @@ export function buildEntitlementUpdateFromStripe(
     removeParts.push("disputeOpen");
   }
 
-  // Guard: only allow Stripe to write entitlement when the existing proSource is
-  // absent or already "stripe". This prevents a delayed Stripe webhook from
-  // clobbering a user who upgraded via license key or flow_points after the
-  // Stripe subscription ended.
+  // A completed Stripe payment is the newest paid intent and may activate over
+  // an Apple source. This closes the Checkout-session race where an Apple
+  // purchase lands after session creation but before Stripe completion: money
+  // must never be accepted without granting access. Stripe terminal/dispute
+  // writes remain same-source only, so they cannot later revoke Apple access.
+  // Timed promos and administrative grants remain protected.
+  const appleTakeoverGuard = hasPaidIntentTimestamp
+    ? " OR (proSource = :appleSource AND ((attribute_exists(activePaidIntentAtMs) AND activePaidIntentAtMs <= :paidIntentAtMs) OR (attribute_not_exists(activePaidIntentAtMs) AND (attribute_not_exists(lastAppleSignedDate) OR lastAppleSignedDate <= :paidIntentAtMs))))"
+    : "";
+  if (hasPaidIntentTimestamp) eav[":appleSource"] = "apple";
   const conditionParts = [
-    "(attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource)",
+    isProActivation
+      ? `(attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource${appleTakeoverGuard})`
+      : "(attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource)",
   ];
   // Event-ordering guard: refuse an out-of-order (stale) Stripe event. Uniform
   // across activations and downgrades so the high-water mark only moves forward.

@@ -311,7 +311,7 @@ export type BookUserEntitlement = {
   userId: string;
   plan: "FREE" | "PRO";
   proStatus?: "inactive" | "active" | "past_due" | "canceled";
-  /** How the user obtained PRO — "stripe" for a paid Stripe subscription, "apple" for an App Store / StoreKit in-app subscription, "license" for a free-pass key, "flow_points" for a timed reward pass, "gift_code" for a gifted Pro window. license/flow_points/gift_code are time-limited and expire at read time; stripe/apple are driven by webhooks/notifications (see getUserEntitlement). */
+  /** How the user obtained PRO — "stripe" for a paid Stripe subscription, "apple" for an App Store / StoreKit in-app subscription, "license" for a free-pass key, "flow_points" for a timed reward pass, "gift_code" for a gifted Pro window. Apple and promotional sources expire at read time; signed notifications also reconcile stored state (see getUserEntitlement). */
   proSource?: "stripe" | "apple" | "license" | "flow_points" | "gift_code" | "admin";
   freeBookSlots: number;
   unlockedBookIds: string[];

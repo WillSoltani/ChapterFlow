@@ -18,6 +18,7 @@ import {
   ANNUAL_TOTAL_AMOUNT,
   formatAmountWithCurrency,
 } from "@/lib/pricing";
+import { shouldBlockStripeCheckout } from "@/app/app/api/book/_lib/stripe-checkout-entitlement-core";
 
 export const runtime = "nodejs";
 
@@ -61,12 +62,12 @@ export async function POST(req: Request) {
 
     // Money-path guard (CHECKOUT-DOUBLE): refuse a NEW subscription for anyone
     // who is already Pro by ANY source — Stripe, license, gift_code,
-    // flow_points, admin. getUserEntitlement returns the EFFECTIVE plan (expired
-    // license/gift/flow grants already read back as FREE), so this is
-    // expiry-aware. The Stripe-subscription lookup below only catches Stripe-Pro
-    // users (customerExisted); this catches the rest, BEFORE we mint a Stripe
-    // customer or build a checkout session.
-    if (entitlement?.plan === "PRO") {
+    // flow_points, admin. Also block an attached Apple lineage after its
+    // effective period expires: Stripe's webhook cannot overwrite Apple, so
+    // charging first would create paid-without-access. The Stripe-subscription
+    // lookup below only catches Stripe-Pro users (customerExisted); this catches
+    // the rest BEFORE we mint a customer or checkout session.
+    if (shouldBlockStripeCheckout(entitlement)) {
       throw new BookApiError(
         409,
         "already_pro",

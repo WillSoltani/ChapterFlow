@@ -416,7 +416,10 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         path.join(openNextDir, "server-functions/default"),
       ),
       memorySize: 1024,
-      timeout: cdk.Duration.seconds(30),
+      // Apple's official Production verifier allows an OCSP responder up to
+      // 30s before returning a retryable failure. Leave enough time to map that
+      // failure to the stable 503 response rather than hard-killing Lambda.
+      timeout: cdk.Duration.seconds(45),
       role: lambdaRole,
       environment: commonEnv,
       architecture: lambda.Architecture.X86_64,
@@ -648,6 +651,9 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // Plain Function URL origins (no OAC). The OAC lock (X2) is reverted here —
     // see the serverFnUrl note above for why and the re-locking follow-up.
     const serverOrigin = new origins.FunctionUrlOrigin(serverFnUrl, {
+      // Must exceed ServerFn's timeout so CloudFront never closes first during
+      // the official verifier's worst-case OCSP timeout path.
+      readTimeout: cdk.Duration.seconds(60),
       // Tell OpenNext the public host (custom domain). With no custom domain
       // (dev/staging), omit it — OpenNext falls back to the CloudFront host.
       ...(appDomain
@@ -933,7 +939,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
 
     const alarmPeriod = cdk.Duration.minutes(5);
 
-    // Server Lambda — errors, throttles, and latency approaching the 30s timeout.
+    // Server Lambda — errors, throttles, and latency trending toward the 45s timeout.
     makeAlarm(
       "ServerFnErrorsAlarm",
       this.serverFunction.metricErrors({ period: alarmPeriod, statistic: "sum" }),
@@ -950,7 +956,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       "ServerFnDurationAlarm",
       this.serverFunction.metricDuration({ period: alarmPeriod, statistic: "p99" }),
       20000,
-      "ChapterFlow server Lambda p99 duration ≥20s — approaching the 30s timeout.",
+      "ChapterFlow server Lambda p99 duration ≥20s — early warning below the 45s timeout.",
       { evaluationPeriods: 3, datapointsToAlarm: 2 },
     );
 
