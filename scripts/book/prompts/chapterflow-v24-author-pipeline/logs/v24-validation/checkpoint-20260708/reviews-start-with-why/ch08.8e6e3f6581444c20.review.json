@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch08",
+  "chapterNumber": 8,
+  "contentHash": "8e6e3f6581444c20",
+  "reviewerSessionId": "auto-author-review-ch08-mrb9weuv-8",
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 86,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 87,
+    "limits": 90,
+    "insight": 86,
+    "density": 84,
+    "beginner": 83
+  },
+  "composite": 86.9,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "c",
+      "a",
+      "c",
+      "b",
+      "b",
+      "c",
+      "b",
+      "a"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "HOW does not shrink WHY; it keeps WHY from floating.",
+      "why": "Strongest memorable line: it gives the chapter's mechanism a compact image.",
+      "verified": true
+    },
+    {
+      "quote": "Before you rely on a promise, ask who carries the method and what visible result should follow.",
+      "why": "The practical move is clear, low-friction, and transferable beyond founder examples.",
+      "verified": true
+    },
+    {
+      "quote": "It does not turn three founder pairs into a license for generic advice.",
+      "why": "Good limit-setting; it prevents the chapter from overselling its pattern.",
+      "verified": true
+    },
+    {
+      "quote": "Serve as a final echo after the main claim has already been settled by earlier examples.",
+      "why": "This distractor is almost too obviously wrong, which weakens quiz discrimination.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q4's correct answer is the only one that names a real cognitive job for the third pair; the other two are visibly weak echo/decor options.",
+    "Q7's correct answer is the only option that uses the chapter's inspection/evidence language; the other options openly permit decoration."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q4",
+      "problem": "The incorrect choices are weak enough to signal the answer: both treat the third pair as mere repetition or echo, while only the keyed option describes an actual analytic job.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The keyed option is the only one that matches the chapter's evidence/inspectability vocabulary, while the distractors are visibly permissive of decoration.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The abstract labels WHY-type, HOW-type, and WHAT output are useful but repeated often enough that a few paragraphs feel denser than a cold beginner may prefer.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter has a clean core move: reason first, method second, visible output third, with founder pairs used as inspectable anchors rather than decoration. The summaries stand alone, the practical ask is simple enough to use, and the limits are unusually strong. The main weakness is quiz discrimination: a couple of items have distractors that are too openly bad, so a test-wise reader could guess without fully deriving the answer. That is a craft weakness, not a blocker.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "22b2d86de3ecd51a846268cf9447e1b53e894317d7dc8dfbe9a574d68ca823e7",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-07T23:22:00.094Z"
+}

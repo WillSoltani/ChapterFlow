@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several keyed choices are the only bounded, non-overclaiming option while distractors use giveaway absolutes such as settled proof, every, replace, and proven."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 83,
+    "transfer": 74,
+    "practical": 84,
+    "summaries": 90,
+    "tone": 82,
+    "limits": 86,
+    "insight": 85,
+    "density": 78,
+    "beginner": 88
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A discount can win the sale and still lose the buyer because it hides why they moved.",
+      "why": "Strong hook: compact, memorable, and carries the core distinction."
+    },
+    {
+      "quote": "Cross out the carrot before it writes the reason for you.",
+      "why": "Best retention line because it turns the concept into a repeatable mental move."
+    },
+    {
+      "quote": "Partner Noah feels the offer through people tied to the choice.",
+      "why": "Weakest transfer moment: vague invented character and no concrete setting, stakes, or observable before-after."
+    },
+    {
+      "quote": "The consequence is useful and narrow.",
+      "why": "This sounds like scaffold filler rather than a consequence the reader can picture or test."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz set",
+      "problem": "The keys are sound and derivable, but several distractors are visibly extreme while correct answers use the chapter's bounded language, making some answers guessable by tone.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 3",
+      "problem": "Reads like a manufactured slot-filler: Partner Noah has no concrete organization, place, number, decision context, or consequence beyond restating that peer pressure is borrowed.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "Founder Dawson is generic and unnamed beyond a first-name label; the example has no specific offer, venue, stakes, or before-after result, so it mostly restates the lesson about borrowed proof.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples section",
+      "problem": "The repeated What to do / Why it matters pattern often says the same diagnostic move in slightly different words, lowering density and creating a template smell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a clear and memorable move: separate the push from the reason, then trust the response only if action returns without the push. The summaries, review cards, and quiz keys are mostly strong, and the General Motors, MCI, and TiVo spine gives the idea real shape. I would not ship yet because part of the transfer layer depends on thin invented examples, especially Partner Noah and founder Dawson, that do not meet the chapter's own standard for grounded evidence."
+}
+```

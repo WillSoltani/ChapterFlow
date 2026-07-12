@@ -1,0 +1,76 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": [
+      "Correct options often reuse the chapter's exact teaching language: second venue, separate jobs, edge, checkable anchors, true fact grounding the wrong comparison.",
+      "Several distractors are exaggerated or obviously backwards, such as copying fast, removing Dallas, or proving the whole model with Apple-Dell alone."
+    ]
+  },
+  "scores": {
+    "retention": 76,
+    "quizzes": 78,
+    "transfer": 62,
+    "practical": 74,
+    "summaries": 84,
+    "tone": 72,
+    "limits": 86,
+    "insight": 78,
+    "density": 70,
+    "beginner": 73
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Self-referenced competition means this: let the rival warn you, then let your old promise judge the move.",
+      "why": "Strongest compact statement of the chapter's core move."
+    },
+    {
+      "quote": "If the second line is blank, the decision is not ready.",
+      "why": "Memorable, practical diagnostic a reader could retain."
+    },
+    {
+      "quote": "When the standard is demanded, name the three anchors.",
+      "why": "Shows the transfer problem: the action is memorizing this chapter's anchors, not applying a general decision skill."
+    },
+    {
+      "quote": "Microsoft (the software company founded in 1975) gives the second proof point.",
+      "why": "The parenthetical sourcing-marker style creates scaffold smell and weakens the natural prose."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "Several examples read manufactured: named people appear without a real organization, stakes, measurable decision, or consequence beyond restating the lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The example's practical instruction is to name Apple-Dell, Microsoft, and Southwest, which trains recall of chapter anchors instead of transferable behavior.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2",
+      "problem": "The scene is mostly about adding a second proof point to an account, so it feels like editing the chapter's evidence rather than making a real-world strategy decision.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "Phrases like headquarters marker and proof point expose the construction of the source packet and make the prose feel scaffolded.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The answer key is sound, but correct answers are often signaled by exact chapter vocabulary while distractors are implausibly extreme.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The iPod/Microsoft if-then is too chapter-specific; it helps police this lesson's facts more than guide a beginner through a new competitor decision.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear, memorable core: let a rival warn you, then let your own benchmark judge the move. The summaries are layered, the limits are unusually honest, and the quiz keys are derivable. I would not ship it at a professional bar because the transfer layer is weak: too many examples feel like staged proof-management exercises, not real decisions with consequences, and some practical actions collapse into naming this chapter's three anchors. The prose also carries visible scaffold smell in its marker-heavy company facts."
+}
+```

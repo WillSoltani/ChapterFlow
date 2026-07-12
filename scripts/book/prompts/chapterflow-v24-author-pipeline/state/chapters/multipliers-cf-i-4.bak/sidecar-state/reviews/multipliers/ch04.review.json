@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "multipliers-ch04",
+  "chapterNumber": 4,
+  "contentHash": "3c35c378115e3405",
+  "reviewerSessionId": "auto-author-review-ch04-mrczedym-9",
+  "scores": {
+    "retention": 91,
+    "quizzes": 84,
+    "transfer": 86,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 89,
+    "limits": 88,
+    "insight": 90,
+    "density": 86,
+    "beginner": 87
+  },
+  "composite": 87.9,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "c",
+      "a",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Name the Moon; leave the route open.",
+      "why": "Strongest memorable line; it compresses the chapter's core move into a phrase a reader can reuse.",
+      "verified": true
+    },
+    {
+      "quote": "The missing route is not the flaw; it is the stretch.",
+      "why": "Clear mechanism: uncertainty is framed as the productive part of the challenge, not a defect.",
+      "verified": true
+    },
+    {
+      "quote": "Do the opposite when safety, law, or basic care already fixes the path.",
+      "why": "Important boundary that prevents the advice from becoming reckless empowerment theater.",
+      "verified": true
+    },
+    {
+      "quote": "Because the first signal stayed local too long.",
+      "why": "This example is useful but slightly muddy because 'local' is also the chapter's positive Toyota principle.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several keyed choices reuse the chapter's signature phrasing very directly, especially Q3 'judgment was optional,' Q6 'visible way to call attention,' and Q8 'urgency while choice keeps ownership.'",
+    "Q9's correct option is the only one with the exact named date and venue, making it easy to pick from surface specificity."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q9",
+      "problem": "The correct answer is strongly telegraphed by being the only option with the exact date and public venue named in the stem's clue pattern.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "The phrase 'the first signal stayed local too long' muddies the Toyota lesson because the chapter also teaches that local frontline signaling is the useful mechanism; the intended defect is late or hidden signaling, not locality itself.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Some correct choices echo the prose so closely that a test-wise reader can match signature phrases rather than fully reason from the chapter.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter. The core idea is memorable, practical, and well bounded: set a visible hard outcome, give a real reason, and leave the route open when discovery is the point. The quiz is fair and the answer key is sound, though a few keyed options are easier to spot by phrase matching than by reasoning. The examples mostly transfer the lesson into usable workplace-scale situations; one Toyota example has a slightly muddy wording issue, but it does not block comprehension.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "d7c7d650858415a1c2ac93bb7ead706328770dffba8616547794251e08f4e341",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T04:04:04.823Z"
+}

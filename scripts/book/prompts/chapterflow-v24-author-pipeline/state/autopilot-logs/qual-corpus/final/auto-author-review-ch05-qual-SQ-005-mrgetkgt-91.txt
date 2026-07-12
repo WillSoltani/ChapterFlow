@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 20,
+    "quizzes": 0,
+    "transfer": 20,
+    "practical": 5,
+    "summaries": 0,
+    "tone": 25,
+    "limits": 55,
+    "insight": 35,
+    "density": 15,
+    "beginner": 40
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A careful reading says your standards can shift when the people close to you act as if a behavior is ordinary.",
+      "why": "Strongest moment: it states a cautious mechanism rather than overstating contagion."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "Worst defect: scaffold metadata appears where a real reader-facing hook should be."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "Worst defect: the fast read is a placeholder, not a standalone summary."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Worst defect: multiple required learner-facing sections are empty."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is scaffold text, not a reader-facing opening, so the section fails its standalone promise. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read does not state the chapter idea and cannot stand alone. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read says only that there is an added angle, without giving the angle. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the chapter gives no concrete action. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The examples section is empty. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section is empty, so there are no questions to answer or validate. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The review cards section is empty. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The memorable lines section is empty. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The Framingham example is real and on-topic, but it is thin: it gives no before-to-after decision, consequence, place-level scene, or transferable challenge.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The one substantive paragraph has a useful caution about social standards shifting without treating Framingham as proof of mind-to-mind contagion, but the chapter is mostly a skeleton: summaries are placeholders, several required sections are empty, there is no quiz to derive, and there is no practical exercise or review layer. The core idea is visible but not teachable at a professional product bar."
+}
+```

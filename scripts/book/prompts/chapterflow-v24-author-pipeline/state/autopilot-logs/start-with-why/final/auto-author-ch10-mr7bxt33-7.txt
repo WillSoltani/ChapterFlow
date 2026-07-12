@@ -1,0 +1,11 @@
+Done: [start-with-why-ch10.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch10.v21-native.chapter.json)
+
+Verification passed:
+- `author-check` clean
+- `gate-chapter` PASS: 0 blockers, 0 majors, 3 non-blocking minors
+- `quiz-verify`: 9/9 matched `2,1,0,1,1,0,2,2,0`
+- rendered length: 16,991 chars
+- prior complaint repaired: `celery` count is 6 across hook + reading surface, 5 in counter/try/key/breakdown
+- distractor parity: key uniquely longest 0/9, uniquely shortest 4/9
+- evidence audit clean
+- reader-facing scaffold scan clean

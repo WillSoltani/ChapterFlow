@@ -1,0 +1,79 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "a", "b", "c", "c", "b", "a"],
+    "mechanisms": [
+      "Her fear of seeming too junior is a competence/authority self-question, which the prose defines as identity.",
+      "The prose separates the promise/logistics, the resentment, and the family-duty identity fear.",
+      "Invoices are repair facts, while residents' dismissed feeling and the board's negligence fear are separate layers.",
+      "The chapter warns that the visible timeline can be real while trust feelings drive the exchange.",
+      "Hearing the question as 'You are a bad friend' makes it a question about what kind of person she is.",
+      "The three labels keep the belonging threat from being reduced to the authorship-order facts.",
+      "The attendance fact has become a parenting identity judgment, so repeating facts alone may increase defense.",
+      "The prose says the frame works first as private diagnosis and can sound accusatory when pasted onto someone else.",
+      "The first move is to sort the visible dishes issue from the respect layer driving the repeated fight."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", "Mildly underdetermined: 'respect' could be a feeling of being dismissed or an identity question about worth, but option a correctly asks to sort the layers."],
+    "tells": [
+      "Q1-Q8: the correct answer is consistently the longest or most fully qualified option.",
+      "Correct answers repeatedly reuse chapter vocabulary such as identity, layers, facts, feelings, and diagnosis.",
+      "Several distractors are exaggerated or evasive, such as 'only issue that matters,' 'save feelings,' and 'cannot offend.'"
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 74,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 84,
+    "limits": 90,
+    "insight": 90,
+    "density": 84,
+    "beginner": 89
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The log is evidence. It is not the whole map.",
+      "why": "Memorable compression of the chapter's central distinction."
+    },
+    {
+      "quote": "Diagnosis is not a cure.",
+      "why": "Strong boundary line that prevents overselling the frame."
+    },
+    {
+      "quote": "The three conversations are a diagnostic tool, not a script.",
+      "why": "Clear standalone summary of both use and limit."
+    },
+    {
+      "quote": "In the end, it really just comes down to giving this the attention it deserves.",
+      "why": "Generic filler that weakens an otherwise concrete example."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The correct options are repeatedly the longest, most nuanced choices, so a test-wise reader could often guess without reading closely.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Several wrong answers are cartoonishly extreme or evasive, which weakens the assessment value.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The final sentence is generic filler and does not add a concrete decision, consequence, or mechanism.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "The advice to name trust and judgment in the room slightly blurs the chapter's stronger caution to use the frame first as private diagnosis.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a useful diagnostic move with memorable lines, clear layering, honest limits, and practical prompts a beginner could use immediately. I would not ship it yet against a professional bar because the quiz design is too guessable: the right answers are consistently longer, more nuanced, and closer to the chapter's own vocabulary than the distractors. The prose itself is strong enough; the main pre-ship work is tightening the quiz and trimming the small amount of generic example language."
+}
+```

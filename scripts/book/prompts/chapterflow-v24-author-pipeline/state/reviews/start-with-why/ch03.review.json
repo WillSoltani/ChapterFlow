@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch03",
+  "chapterNumber": 3,
+  "contentHash": "834599b4bda48308",
+  "reviewerSessionId": "auto-author-review-ch03-bookregen-mrbqltb5-18",
+  "scores": {
+    "retention": 88,
+    "quizzes": 90,
+    "transfer": 87,
+    "practical": 86,
+    "summaries": 91,
+    "tone": 82,
+    "limits": 90,
+    "insight": 88,
+    "density": 85,
+    "beginner": 80
+  },
+  "composite": 87,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "c",
+      "a",
+      "b",
+      "a",
+      "a",
+      "c",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Use the order as a question, not a chant. What belief comes first? What action makes it visible? What visible thing can pay the price?",
+      "why": "Strongest practical formulation: it turns WHY/HOW/WHAT into a usable diagnostic.",
+      "verified": true
+    },
+    {
+      "quote": "A hard detail is a promise tied to one source. Move it and you may make the whole claim feel made up.",
+      "why": "Memorable and concrete; it makes the source-boundary lesson stick.",
+      "verified": true
+    },
+    {
+      "quote": "The first term frames the second; reverse it and a tactic has to carry a price it cannot pay alone.",
+      "why": "The mechanism is useful, but the repeated 'price' metaphor may be abstract for beginners.",
+      "verified": true
+    },
+    {
+      "quote": "The demand had passed: belief before visible list.",
+      "why": "This sentence is compressed and slightly opaque inside an otherwise clear example.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Correct answers often use the chapter's precise grounded language while distractors announce overreach with giveaway phrases like 'same way,' 'only,' 'already,' or 'feels sincere.' This is a mild pattern, not a broken quiz."
+  ],
+  "complaints": [
+    {
+      "unit": "deep read",
+      "problem": "The recurring 'price' language is memorable but underdefined; phrases like 'carry a price' and 'bear the price' may slow a cold beginner.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "The sentence 'The demand had passed: belief before visible list' is hard to parse and makes the scenario feel less grounded than the Apple/Wright examples.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Several distractors are easy to reject because they overstate with absolute or flattening language, which gives a mild test-taking tell independent of full comprehension.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Ship. The chapter has a clear core move, layered reads that stand on their own, fair quiz keys, and a strong boundary lesson about keeping hard details with their source. Its main weakness is not correctness but register: the 'price' metaphor and a few compressed lines make the lesson feel more stylized than necessary for a beginner. No must-fix defect appears on the page.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "4c5a3803a03bc7d7d0f9bb028e76cf55f42674cbae7eaa7de420f7a5ebc8df3a",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-08T07:09:53.028Z"
+}

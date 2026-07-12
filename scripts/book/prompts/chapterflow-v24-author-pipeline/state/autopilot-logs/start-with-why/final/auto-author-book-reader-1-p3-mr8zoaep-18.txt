@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 74,
+    "transfer": 80,
+    "practical": 70,
+    "summaries": 76,
+    "tone": 63,
+    "limits": 78,
+    "insight": 72,
+    "density": 60,
+    "beginner": 68
+  },
+  "quotes": [
+    {
+      "quote": "A clean fix can be the place a bad guess hides.",
+      "why": "A compact, portable line that makes the chapter's reversal memorable."
+    },
+    {
+      "quote": "What would still move if the offer were gone?",
+      "why": "Strong practical lens: short, reusable, and transferable beyond the example."
+    },
+    {
+      "quote": "Trust is a belief you can watch under pressure.",
+      "why": "One of the clearest review-card-quality claims in the sample."
+    },
+    {
+      "quote": "The return is set, not met.",
+      "why": "This clipped template move recurs and starts to feel like house scaffolding rather than authored prose."
+    },
+    {
+      "quote": "Move a true detail to the wrong story and it stops grounding the claim; it starts making fiction sound factual.",
+      "why": "Good limitation language, but also shows the repeated cross-chapter obsession with keeping details in their source setting."
+    },
+    {
+      "quote": "What to do: Skip this and the count wins. Keep Walmart with 1962, then ask which conduct returned.",
+      "why": "Awkward, compressed instruction that sounds generated and less natural than reader-facing advice."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is mostly sound and often useful: the quizzes are answerable, the core lenses transfer, and several lines would stick a week later. The main problem is not correctness but manufacture. Across chapters, the same machinery keeps reappearing: named company anchor, hard detail stays home, second setting prevents overreach, return proof, true detail becomes false when moved. That gives the book consistency, but also heavy churn and a narrow house voice that makes distinct Start With Why ideas feel processed through one template. It is publishable as a solid draft, not premium; the strongest revision need is less repeated scaffolding, more natural examples, and sharper quiz explanations."
+}
+```

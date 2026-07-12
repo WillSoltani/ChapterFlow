@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "5b65a510eb15a3594fcd149975eb8c42344e75b7c1ef72ba01f2678be517f3d3",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "q01",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 1,
+      "agreement": false,
+      "keyCorrect": "wrong",
+      "rationale": "Choice b is best supported because the calm, less painful ending can improve memory of the whole visit, whereas choice c contradicts that lesson."
+    },
+    {
+      "itemId": "q02",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b uniquely captures how a vivid, tellable surprise can transform an otherwise ordinary arrival."
+    },
+    {
+      "itemId": "q03",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a makes the achievement public and lets the group witness the nurses' effort at the transition."
+    },
+    {
+      "itemId": "q04",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c directly represents elevation, insight, pride, and connection, the four stated ingredients."
+    },
+    {
+      "itemId": "q05",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a applies the red-phone lesson by using one conspicuous object to signal a departure from the ordinary script."
+    },
+    {
+      "itemId": "q06",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b turns the gift's delivery into a staged, narratable experience instead of relying on price or quiet availability."
+    },
+    {
+      "itemId": "q07",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c marks the shared threshold while the group is still together, before the transition disperses into private logistics."
+    },
+    {
+      "itemId": "q08",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a is the unsupported assumption because remembered experience can overweight peaks and endings rather than average every minute equally."
+    },
+    {
+      "itemId": "q09",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c correctly diagnoses that the unceremonious mint lacks a distinctive, tellable format."
+    }
+  ]
+}
+```

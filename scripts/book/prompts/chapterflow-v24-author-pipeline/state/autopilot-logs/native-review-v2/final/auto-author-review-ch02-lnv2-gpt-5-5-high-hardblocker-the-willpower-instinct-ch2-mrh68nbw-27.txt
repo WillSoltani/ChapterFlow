@@ -1,0 +1,70 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "mechanisms": [
+      "The prose defines heart rate variability as beat-to-beat shifting under demand and links higher variability to stronger self-regulation.",
+      "The Trier Social Stress Test passage says public speaking, arithmetic, and evaluators' hard looks can trigger stress without physical danger.",
+      "The prose says stress makes cookies, purchases, or sharp replies feel like shelter because the body wants fast relief.",
+      "Tang's brief meditation practice is presented as training attention and softening stress reactivity before an urge peaks.",
+      "The chapter says slow exhaling keeps the choosing part online by changing the body state, not by merely distracting.",
+      "Pause-and-plan questions extra arousal because stress narrows attention and crowds out future consequences.",
+      "The sleep section says tired attention loses grip, letting louder cues displace the intended care task.",
+      "The movement section says physical activity can improve mood, stress regulation, and executive function.",
+      "The prose says waiting until a craving peaks is unfair; the body needs runway before the hardest moment."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q1: option b reuses the stem's 'beat-to-beat' language and is the only choice with the chapter's mechanism.",
+      "Q2: option c closely mirrors the prose phrase 'social judgment' and the example structure.",
+      "Q9: option c gives away the answer by repeating the chapter's 'runway before the craving peaked' wording."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 70,
+    "practical": 86,
+    "summaries": 88,
+    "tone": 87,
+    "limits": 86,
+    "insight": 88,
+    "density": 82,
+    "beginner": 90
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Panic is a poor coach. Calm gives the future a vote.",
+      "why": "This is compact, memorable, and carries the chapter's core mechanism."
+    },
+    {
+      "quote": "Breath buys time for choice.",
+      "why": "A strong retention line that makes the body-first idea easy to recall."
+    },
+    {
+      "quote": "Actually, the stronger move is to pump himself up and chase that panic before speaking, because a spike of adrenaline right at the peak is what proves the body is ready.",
+      "why": "This directly contradicts the chapter's pause-and-plan teaching inside an example."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 2",
+      "problem": "The 'What to do' section first says Adam should lower arousal, then says the stronger move is to pump himself up and chase panic; this contradicts the chapter's own mechanism and would teach the opposite behavior.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The keyed choice repeats the chapter's distinctive wording about runway before the craving peaked, making it easier to guess from phrasing.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The correct option is signaled by directly mirroring the stem's beat-to-beat wording while the distractors are plainly overbroad.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is clear, memorable, and genuinely practical: the body-first frame is repeated through stress, sleep, breathing, movement, and visible-cue examples without becoming hard for beginners. The quiz is mostly fair and derivable, though a few answers are telegraphed by wording. The blocking issue is Example 2, which contains a direct contradiction that tells the reader to chase panic and treat adrenaline as proof of readiness; that is opposite to the chapter's core lesson and should be fixed before shipping."
+}
+```

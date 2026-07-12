@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "high-output-management-ch05",
+  "chapterNumber": 5,
+  "title": "Decisions, Decisions",
+  "coreMove": "because manufacturing, engineering, sales, and planning choices affect one another quickly",
+  "thesis": "Intel's cross-functional environment makes decision clarity especially important.",
+  "readerPromise": "After this chapter, a reader can because manufacturing, engineering, sales, and planning choices affect one another quickly",
+  "ownedCases": [
+    {
+      "id": "ch05.ex.peerDecision",
+      "label": "Peer-group decision"
+    },
+    {
+      "id": "ch05.ex.intelDecision",
+      "label": "Intel decision culture"
+    },
+    {
+      "id": "ch05.ex.actionAssignment",
+      "label": "Assigned implementation"
+    }
+  ],
+  "notYours": [
+    "Bonus signal",
+    "Breakfast factory",
+    "Breakfast factory control system",
+    "Breakfast factory goes national",
+    "College graduate as output",
+    "Compiler development",
+    "Contractual obligation",
+    "Corrective performance conversation",
+    "Cultural values",
+    "Difficult feedback conversation",
+    "Environmental demand assessment",
+    "Escalated matrix conflict",
+    "Experienced employee on a new task",
+    "Expert delegated task",
+    "Free-market control",
+    "Functional organization",
+    "Geographic sales overlay",
+    "In-process quality inspection",
+    "Intel hybrid structure",
+    "Intel manager output formula"
+  ],
+  "cast": [
+    "Madelyn",
+    "Camille",
+    "Maurice",
+    "Joanne"
+  ],
+  "answerIndexPattern": [
+    0,
+    1,
+    2,
+    2,
+    0,
+    0,
+    1,
+    2,
+    1
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a doorway conversation",
+    "flavor (ch01): venue: a spare-room desk",
+    "flavor (ch01): venue: an unsent email draft",
+    "flavor (ch01): frame: a first attempt at admitted students as inputs that gets corrected",
+    "flavor (ch01): frame: a first encounter with admitted students as inputs that sets a benchmark",
+    "flavor (ch02): venue: a living-room couch"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a letter left on the table",
+    "venue: a back porch step",
+    "venue: a parked car in the driveway",
+    "frame: a first attempt at ambiguous interdependent tasks that gets corrected",
+    "frame: an unexpected kindness that lands and gets retold afterward"
+  ],
+  "architectureFamily": "research-lead",
+  "openerType": "statistic",
+  "challengeFrame": "teach-it-to-someone",
+  "practiceShape": "measure-one-number",
+  "exampleLenses": [
+    "counterfactual",
+    "outsider-witness",
+    "numbers-detective"
+  ],
+  "practiceVerb": "move",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "output",
+    "automatically",
+    "creates",
+    "enough",
+    "manager",
+    "value"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "measure-one-number",
+    "say-aloud-script",
+    "single-imperative",
+    "if-then-trigger"
+  ],
+  "quizStemShapes": [
+    "choose-next-move",
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why"
+  ],
+  "quizFailureModes": [
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger"
+  ],
+  "questionFactOrder": [
+    1,
+    5,
+    9,
+    8,
+    2,
+    6,
+    7,
+    4,
+    3
+  ],
+  "memorableShapes": [
+    "redefinition",
+    "cost-statement",
+    "pointed-question"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "contrast-speak",
+    "motion-speak"
+  ],
+  "shellRegister": "actor-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Madelyn"
+  }
+}

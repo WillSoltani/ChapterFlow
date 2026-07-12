@@ -1,0 +1,613 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "the-intelligent-investor-ch10",
+  "number": 10,
+  "title": "The Investor and His Advisers",
+  "readingTimeMinutes": 8,
+  "hook": "A signed advice agreement can feel like handing off risk, but the losses still land with the owner who accepted the recommendation.",
+  "counterintuition": "Help is useful only when it sharpens judgment. The safer default is not blind trust, but a disciplined review of incentives, duties, records, promises, and authority before money is entrusted.",
+  "tryThisNow": "Open one adviser note and run a two-minute audit: mark who bears the loss, how the adviser is paid, and whether the role is broker, adviser, or planner.",
+  "keyTakeaway": "Use advisers without surrendering judgment: check incentives, duties, records, scope, and promises before accepting recommendations.",
+  "breakdown": {
+    "fastRead": "Using an adviser does not transfer responsibility away from the investor. The owner still bears the losses and must judge whether advice is prudent. That judgment starts with incentives: commissions, asset-based fees, and hourly fees can reward different recommendations, so compensation is part of the advice. It also requires knowing the role being performed, because a broker selling securities and an adviser giving ongoing fiduciary advice are not identical services. Background checks matter because registration and disciplinary records can reveal risks before money is entrusted. Reliable counsel should also be conservative about promises, since good advice cannot guarantee superior market performance.",
+    "deepRead": "Advice can reduce confusion, but it cannot remove ownership of the result. The investor remains exposed to loss, so hiring help should be treated as a decision to add judgment, not replace it. The central mistake is assuming that a professional title moves accountability somewhere else. It does not. The practical question is whether the advice is prudent enough to accept.\n\nCompensation is one of the first things to inspect because fee structures change incentives. Commissions, asset-based fees, and hourly fees can reward different recommendations. None is automatically wrong, but each can shape what gets emphasized, sold, or ignored. Treating all advisers as motivated in the same way hides conflicts that should be visible before a recommendation is accepted.\n\nRole clarity matters as much as compensation. Brokerage sales and continuing advisory work create different duties, incentives, and evidence needs. A referral or credential can help screen candidates, but it cannot replace due diligence. Registration and disciplinary records are part of selecting help because they can reveal risks before money is entrusted. The same caution applies to promises: reliable counsel should be conservative, since forecasting markets accurately is not the core service most investors should expect.",
+    "fullRead": "The useful way to work with advisers starts from a hard boundary: using an adviser does not remove the investor's responsibility. The capital owner still bears the losses and still has to judge whether advice is prudent. That does not make professional help useless. It means help should be judged as a tool for better policy, discipline, and understanding, not as a transfer of accountability.\n\nThe first audit point is incentive. Fee structure affects adviser incentives because commissions, asset-based fees, and hourly fees can reward different recommendations. A commission can make transactions matter. An asset-based fee can make retained assets matter. An hourly fee can change the emphasis again. The point is not that one form is always superior, but that compensation changes conflicts and behavior. A recommendation becomes clearer when the investor can see how the adviser is paid and what that payment structure rewards.\n\nThe second audit point is role. Brokerage sales and continuing advisory work create different duties, incentives, and evidence needs. Assuming every financial professional has the same duty is a serious shortcut. The investor needs to know the scope of the relationship: what service is being provided, what duty applies, and whether the professional is acting as a salesperson, an ongoing adviser, or something narrower.\n\nThe third audit point is evidence before trust. Background checks are part of selecting help because registration and disciplinary records can reveal risks before money is entrusted. Personal trust, a referral, or a polished presentation does not replace records. FINRA Broker Check represents the kind of practical habit that makes trust more concrete by allowing review of registration and disclosure records, plus broker and firm history. Credentials can also help screen advisers, but the Certified Financial Planner Board example points to the same limit: certification standards are evidence to evaluate, not a substitute for compensation and scope questions.\n\nThe fourth audit point is restraint around promises. Investment counsel should be conservative about promises because reliable advice cannot guarantee superior market performance. A good adviser need not prove value by forecasting markets accurately. For many defensive investors, help with allocation, taxes, behavior, and restraint may matter more than selecting individual issues. Strong advice should make the investor's policy more understandable and durable; it should not ask for blind faith in market prediction, opaque complexity, or authority that the investor cannot review. Adviser review should separate registration facts, fiduciary duties, compensation method, and disciplinary records before any personal confidence enters the decision."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch10.example.1",
+      "sourceAnchorIds": [
+        "ch10.example.1"
+      ],
+      "title": "The Margin Note That Stops the Shortcut",
+      "tags": [
+        "decision_point",
+        "notebook",
+        "mistakerecovery"
+      ],
+      "planSpec": {
+        "domain": "notebook margin: mistake-recovery",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the default behavior quietly costs the reader",
+        "format": "decision_point",
+        "requiredBeat": "show the old default failing in a concrete moment"
+      },
+      "scenario": "Torin's pen is moving across a notebook margin beside an adviser note. Her old default is simple: if a professional is registered, the decision can move out of her hands. Then the margin catches the weak spot. The Investment Advisers Act of 1940 and SEC oversight show that advice is regulated, but they do not make the adviser prudent for her situation or move the loss away from her capital.",
+      "whatToDo": "Mark the advice as regulated but not delegated. Before accepting it, write one line in the margin: what loss would still land on me if this recommendation is wrong? Then check whether the advice is understandable and prudent enough to own.",
+      "whyItMatters": "The error is using a federal registration framework as a substitute for judgment. Using an adviser can help, but Nora still bears the result and must judge whether the advice is prudent. Investment Advisers Act of 1940 gives the concrete check: Investment Advisers Act of 1940; federal adviser registration framework."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch10.example.2",
+      "sourceAnchorIds": [
+        "ch10.example.2"
+      ],
+      "title": "The Chat Thread That Changes the Next Question",
+      "tags": [
+        "before_after",
+        "chat",
+        "audit"
+      ],
+      "planSpec": {
+        "domain": "team chat: before-after audit",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "before_after_audit",
+        "requiredBeat": "show the reader-facing move changing a decision"
+      },
+      "scenario": "Beckett drops a name into a team chat and writes that the adviser seems solid. Clara's first reply follows the usual default: all advisers probably want the same thing. Desmond pauses the thread with a before-after check. Before: trust the recommendation because the person sounds helpful. After: open FINRA Broker Check, review registration and disclosure records, and ask how commissions, asset-based fees, or hourly fees would affect the recommendation.",
+      "whatToDo": "Use the chat thread as an audit trail. Put compensation, registration, disclosures, and broker and firm history in the same decision note before deciding whether to rely on the advice.",
+      "whyItMatters": "That shift turns a personality judgment into an incentive check. Fee structure matters because different payment methods can reward different recommendations. FINRA Broker Check keeps two details visible, FINRA Broker Check and registration and disclosure records."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch10.example.3",
+      "sourceAnchorIds": [
+        "ch10.example.3"
+      ],
+      "title": "The Handoff That Repairs a Blurred Role",
+      "tags": [
+        "mistake_recovery",
+        "clinic",
+        "conversation"
+      ],
+      "planSpec": {
+        "domain": "clinic handoff: conversation repair",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "conversation_repair",
+        "requiredBeat": "show friction or recovery, not instant clean success"
+      },
+      "scenario": "At a clinic handoff, Clara summarizes the next adviser step too quickly: the credential is enough, so the role is settled. Anya pushes back because the handoff still blurs selling securities with ongoing fiduciary advice. Desmond has to repair the conversation without pretending the credential is meaningless. The Certified Financial Planner Board and financial planner certification standards can help screen the person, but compensation and scope questions still have to be answered.",
+      "whatToDo": "Restart the handoff with separate lines for credential, role, compensation, and scope. Ask whether the person is selling a security, giving ongoing fiduciary advice, or doing something narrower before relying on the recommendation.",
+      "whyItMatters": "The repair is uncomfortable because it slows down a conversation that sounded finished. That friction is useful: broker and adviser roles can differ legally and practically, so the duty cannot be assumed from a credential alone. Certified Financial Planner Board also brings in financial planner certification standards and compensation and scope questions."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch10.example.1",
+      "sourceAnchorIds": [
+        "ch10.example.1"
+      ],
+      "title": "Balance grid frames Investment Advisers Act of 1940",
+      "tags": [
+        "checklist_walkthrough",
+        "source_specific",
+        "file"
+      ],
+      "planSpec": {
+        "domain": "library aisle: Investment Advisers Act of 1940",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "one missing source detail can stop the purchase",
+        "format": "checklist_walkthrough",
+        "requiredBeat": "use a source detail as a stop point"
+      },
+      "scenario": "Mina pins a balance grid beside the ledger nook; the clean archive scores the page toward a neat worksheet. The policysocket stays closed.",
+      "whatToDo": "Mark Investment Advisers Act of 1940 beside federal adviser registration framework; settle SEC oversight.",
+      "whyItMatters": "Investment Advisers Act of 1940: SEC oversight."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch10.example.2",
+      "sourceAnchorIds": [
+        "ch10.example.2"
+      ],
+      "title": "Issuer file dates FINRA Broker Check",
+      "tags": [
+        "constraint_test",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "review room: FINRA Broker Check",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the written test has to survive a second reader",
+        "format": "constraint_test",
+        "requiredBeat": "turn a detail into a written constraint"
+      },
+      "scenario": "Nicolette dates a issuer file beside the policy shelf; the direct packet traces the page toward a orderly memoqueue. The fiscalrecord stays closed.",
+      "whatToDo": "Use FINRA Broker Check beside registration and disclosure records; settle broker and firm history.",
+      "whyItMatters": "FINRA Broker Check: broker and firm history."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch10.example.3",
+      "sourceAnchorIds": [
+        "ch10.example.3"
+      ],
+      "title": "Trust sheet routes Certified Financial Planner Board",
+      "tags": [
+        "handoff_review",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "window ledge: Certified Financial Planner Board",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the handoff keeps the exact condition visible",
+        "format": "handoff_review",
+        "requiredBeat": "carry the condition into the next review"
+      },
+      "scenario": "Orion numbers a trust sheet beside the fiscal drawer; the early basin balances the page toward a patient proofmark. The margincabinet stays closed.",
+      "whatToDo": "Weigh Certified Financial Planner Board beside financial planner certification standards; settle compensation and scope questions.",
+      "whyItMatters": "Certified Financial Planner Board: compensation and scope questions."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch10.fact.1",
+        "prompt": "An investor hires an adviser and stops reviewing recommendations because a professional is now involved. What is the main error?",
+        "choices": [
+          "The investor should avoid this advice because relying on help weakens judgment.",
+          "Using an adviser does not remove responsibility because the owner still bears losses and must judge prudence.",
+          "Hiring a professional transfers accountability because advice replaces the owner's exposure."
+        ],
+        "correctIndex": 1,
+        "explanation": "Advice can help, but responsibility stays with the capital owner. The person who owns the assets remains exposed to the outcome.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch10.fact.2",
+        "prompt": "Two advisers recommend different actions. One is paid by commissions, another by an hourly fee. What should be checked before treating both recommendations as neutral?",
+        "choices": [
+          "Whether both advisers sound equally confident.",
+          "How each fee structure may reward different recommendations.",
+          "Whether the recommendations use the same investment vocabulary."
+        ],
+        "correctIndex": 1,
+        "explanation": "Commissions, asset-based fees, and hourly fees can create different incentives, so compensation is part of judging advice.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch10.fact.3",
+        "prompt": "A financial professional sells securities and also talks about long-term planning. What distinction should an investor clarify?",
+        "choices": [
+          "Whether the professional uses adviser language, because the words alone settle the duty.",
+          "Whether the recommendation is complex, because complexity makes all duties identical.",
+          "Whether the service is selling securities, ongoing fiduciary advice, or some combination, because obligations can vary by role."
+        ],
+        "correctIndex": 2,
+        "explanation": "Broker and adviser roles can differ legally and practically. Selling securities and giving ongoing fiduciary advice are not identical services.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch10.fact.4",
+        "prompt": "A trusted friend recommends an adviser. What is the best next step before entrusting money?",
+        "choices": [
+          "Review registration and disciplinary records before entrusting money.",
+          "Skip records because personal trust is enough due diligence.",
+          "Rely on the referral unless the adviser volunteers a problem."
+        ],
+        "correctIndex": 0,
+        "explanation": "Personal trust does not replace records. Registration and disciplinary history can reveal risks before money is entrusted.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch10.fact.5",
+        "prompt": "An adviser promises superior market performance as the reason to hire them. What is the disciplined response?",
+        "choices": [
+          "Treat the promise skeptically; reliable advice cannot guarantee superior performance.",
+          "Treat forecast accuracy as the core service for most investors.",
+          "Accept the promise if it is paired with confident market forecasts."
+        ],
+        "correctIndex": 0,
+        "explanation": "Investment counsel should be conservative about promises. Forecasting skill is not the core service for most investors.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch10.fact.6",
+        "prompt": "A defensive investor says advice is useful only if it finds winning stocks. What value of advice is being overlooked?",
+        "choices": [
+          "Help with allocation, taxes, and behavior, where planning may matter more than stock picking.",
+          "The value of replacing policy with frequent security selection.",
+          "The value of avoiding all policy decisions once an adviser is hired."
+        ],
+        "correctIndex": 0,
+        "explanation": "A defensive investor may need policy help more than security selection. Planning and restraint can be the valuable service.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch10.fact.7",
+        "prompt": "An adviser proposes an opaque product and says its complexity proves sophistication. What should the investor do before accepting?",
+        "choices": [
+          "Accept it because complexity proves professional skill. under the stated evidence test",
+          "Require an explanation of costs, leverage, and conflicts because complexity can benefit the seller.",
+          "Ignore hidden terms if the adviser is confident. after checking the concrete source condition"
+        ],
+        "correctIndex": 1,
+        "explanation": "The investor should understand recommendations before accepting them. Opaque products can hide costs, leverage, or conflicts.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch10.fact.8",
+        "prompt": "An adviser asks for broad authority over assets and says review is unnecessary because the firm is reputable. What risk is being missed?",
+        "choices": [
+          "Reputation removes operational and fraud risks. under the stated evidence test",
+          "Unlimited discretion is safest when statements are ignored. after checking the concrete source condition",
+          "Control over assets creates operational and fraud risks, so custody, authority, controls, and statements must be clear."
+        ],
+        "correctIndex": 2,
+        "explanation": "Custody and authority arrangements must be clear. Controls and statements remain necessary even when an adviser appears reputable.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch10.fact.9",
+        "prompt": "An adviser follows a conservative policy, but a client judges the result against the S&P 500 every year. What is wrong with that comparison?",
+        "choices": [
+          "Use the S&P 500 because it is familiar and widely quoted.",
+          "A conservative mandate should be judged only by whether it avoids every decline.",
+          "Use a risk-matched benchmark; conservative policy should not be judged against aggressive stocks."
+        ],
+        "correctIndex": 2,
+        "explanation": "Performance comparisons should match the adviser's mandate. Any benchmark used should fit the policy's risk and objective.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "sourceAnchorId": "ch10.fact.1",
+      "sourceAnchorIds": [
+        "ch10.fact.1"
+      ],
+      "front": "Why does using an adviser not remove investor responsibility?",
+      "back": "The owner still bears the losses and must judge whether advice is prudent. Hiring help does not transfer all accountability.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "sourceAnchorId": "ch10.fact.2",
+      "sourceAnchorIds": [
+        "ch10.fact.2"
+      ],
+      "front": "Why does adviser fee structure matter?",
+      "back": "Commissions, asset-based fees, and hourly fees can reward different recommendations. Compensation can change conflicts and behavior.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc03",
+      "sourceAnchorId": "ch10.fact.3",
+      "sourceAnchorIds": [
+        "ch10.fact.3"
+      ],
+      "front": "Why should broker and adviser roles be clarified?",
+      "back": "Selling securities and giving ongoing fiduciary advice are not identical services. Regulatory obligations can vary by role.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "sourceAnchorId": "ch10.fact.4",
+      "sourceAnchorIds": [
+        "ch10.fact.4"
+      ],
+      "front": "What makes background checks part of selecting financial help?",
+      "back": "Registration and disciplinary records can reveal risks before money is entrusted. A referral or personal trust does not replace records.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc05",
+      "sourceAnchorId": "ch10.fact.5",
+      "sourceAnchorIds": [
+        "ch10.fact.5"
+      ],
+      "front": "How should investment counsel handle promises about performance?",
+      "back": "Counsel should be conservative about promises because reliable advice cannot guarantee superior market performance. Forecasting is not the core service for most investors.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc06",
+      "sourceAnchorId": "ch10.fact.6",
+      "sourceAnchorIds": [
+        "ch10.fact.6"
+      ],
+      "front": "What kind of help may matter more for a defensive investor than security selection?",
+      "back": "Policy help may matter more: allocation, taxes, and behavior can outweigh picking individual issues. Planning and restraint can be the valuable service.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc07",
+      "sourceAnchorId": "ch10.fact.7",
+      "sourceAnchorIds": [
+        "ch10.fact.7"
+      ],
+      "front": "Why should recommendations be understood before acceptance?",
+      "back": "Opaque products can hide costs, leverage, or conflicts. Complexity does not prove sophistication; it can benefit the seller.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Audit Advice Before Accepting It",
+    "titleSourceAnchorIds": [
+      "ch10.fact.1",
+      "ch10.fact.2",
+      "ch10.fact.3"
+    ],
+    "coreSkill": "Use advice without surrendering judgment. Before accepting a recommendation, confirm that the capital owner still bears the outcome, identify whether compensation creates an incentive, and separate broker sales activity from ongoing fiduciary advice.",
+    "coreSkillSourceAnchorIds": [
+      "ch10.fact.1",
+      "ch10.fact.2",
+      "ch10.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch10.fact.1",
+        "sourceAnchorIds": [
+          "ch10.fact.1"
+        ],
+        "context": "notebook margin",
+        "plan": "If regulation makes an adviser feel automatically safe, then write in the notebook margin: legal status is a starting point, but the owner still bears the loss and must judge the advice."
+      },
+      {
+        "sourceAnchorId": "ch10.fact.2",
+        "sourceAnchorIds": [
+          "ch10.fact.2"
+        ],
+        "context": "team chat",
+        "plan": "If a recommendation arrives without a clear pay explanation, then post a team chat request for the compensation and scope questions before treating the advice as neutral."
+      },
+      {
+        "sourceAnchorId": "ch10.fact.3",
+        "sourceAnchorIds": [
+          "ch10.fact.3"
+        ],
+        "context": "clinic handoff",
+        "plan": "If a broker, adviser, or planner label is being used as if all duties match, then pause the clinic handoff and check registration and disclosure records before relying on the role."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next day, pick one current or potential adviser and complete a two-minute audit: responsibility, compensation, and role. Leave the decision pending if any line is blank.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch10.fact.1",
+      "ch10.fact.2",
+      "ch10.fact.3"
+    ],
+    "weeklyPractice": "Once a week, use a two-trigger checklist. Trigger one: before accepting advice, note who bears the loss and how the adviser is paid. Trigger two: before relying on a professional title, check whether the role is sales, ongoing advice, or planning.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch10.fact.1",
+      "ch10.fact.2",
+      "ch10.fact.3"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "The point is not that one form is always superior, but that compensation changes conflicts and behavior.",
+      "location": "breakdown.fullRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "The central mistake is assuming that a professional title moves accountability somewhere else.",
+      "location": "breakdown.deepRead",
+      "why": "Repointed to an exact sentence already present in the chapter breakdown."
+    },
+    {
+      "text": "Background checks matter because registration and disciplinary records can reveal risks before money is entrusted.",
+      "location": "breakdown.fastRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:9cd0fbd1dee2275eb14a77623c0f7679413e036f2f37da6ee3e6f2fd85f51e6b",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v23-compiler-pipeline 2/.chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch10.source.json",
+      "observedAnchorIds": [
+        "ch10.concept",
+        "ch10.example.1",
+        "ch10.example.2",
+        "ch10.example.3",
+        "ch10.fact.1",
+        "ch10.fact.2",
+        "ch10.fact.3",
+        "ch10.fact.4",
+        "ch10.fact.5",
+        "ch10.fact.6",
+        "ch10.fact.7",
+        "ch10.fact.8",
+        "ch10.fact.9",
+        "ch10.framework.adviser.due.diligence"
+      ],
+      "effectiveAnchors": {
+        "examples[0]": [
+          "ch10.example.1"
+        ],
+        "examples[1]": [
+          "ch10.example.2"
+        ],
+        "examples[2]": [
+          "ch10.example.3"
+        ],
+        "quiz.questions[0]": [
+          "ch10.fact.1"
+        ],
+        "quiz.questions[0].keyEvidence": [
+          "ch10.fact.1"
+        ],
+        "quiz.questions[1]": [
+          "ch10.fact.2"
+        ],
+        "quiz.questions[1].keyEvidence": [
+          "ch10.fact.2"
+        ],
+        "quiz.questions[2]": [
+          "ch10.fact.3"
+        ],
+        "quiz.questions[2].keyEvidence": [
+          "ch10.fact.3"
+        ],
+        "quiz.questions[3]": [
+          "ch10.fact.4"
+        ],
+        "quiz.questions[3].keyEvidence": [
+          "ch10.fact.4"
+        ],
+        "quiz.questions[4]": [
+          "ch10.fact.5"
+        ],
+        "quiz.questions[4].keyEvidence": [
+          "ch10.fact.5"
+        ],
+        "quiz.questions[5]": [
+          "ch10.fact.6"
+        ],
+        "quiz.questions[5].keyEvidence": [
+          "ch10.fact.6"
+        ],
+        "quiz.questions[6]": [
+          "ch10.fact.7"
+        ],
+        "quiz.questions[6].keyEvidence": [
+          "ch10.fact.7"
+        ],
+        "quiz.questions[7]": [
+          "ch10.fact.8"
+        ],
+        "quiz.questions[7].keyEvidence": [
+          "ch10.fact.8"
+        ],
+        "quiz.questions[8]": [
+          "ch10.fact.9"
+        ],
+        "quiz.questions[8].keyEvidence": [
+          "ch10.fact.9"
+        ],
+        "reviewCards[0]": [
+          "ch10.fact.1"
+        ],
+        "reviewCards[1]": [
+          "ch10.fact.2"
+        ],
+        "reviewCards[2]": [
+          "ch10.fact.3"
+        ],
+        "reviewCards[3]": [
+          "ch10.fact.4"
+        ],
+        "reviewCards[4]": [
+          "ch10.fact.5"
+        ],
+        "reviewCards[5]": [
+          "ch10.fact.6"
+        ],
+        "reviewCards[6]": [
+          "ch10.fact.7"
+        ],
+        "implementationPlan.title": [
+          "ch10.fact.1",
+          "ch10.fact.2",
+          "ch10.fact.3"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch10.fact.1",
+          "ch10.fact.2",
+          "ch10.fact.3"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch10.fact.1"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch10.fact.2"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch10.fact.3"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch10.fact.1",
+          "ch10.fact.2",
+          "ch10.fact.3"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch10.fact.1",
+          "ch10.fact.2",
+          "ch10.fact.3"
+        ],
+        "hook": [
+          "ch10.fact.1"
+        ],
+        "counterintuition": [
+          "ch10.fact.1",
+          "ch10.fact.2",
+          "ch10.fact.3",
+          "ch10.fact.4",
+          "ch10.fact.5",
+          "ch10.framework.adviser.due.diligence"
+        ],
+        "keyTakeaway": [
+          "ch10.fact.1",
+          "ch10.fact.2",
+          "ch10.fact.3",
+          "ch10.fact.4",
+          "ch10.fact.5"
+        ],
+        "tryThisNow": [
+          "ch10.fact.1",
+          "ch10.fact.2",
+          "ch10.fact.3"
+        ],
+        "breakdown.fastRead": [
+          "ch10.fact.1",
+          "ch10.fact.2",
+          "ch10.fact.3",
+          "ch10.fact.4",
+          "ch10.fact.5"
+        ],
+        "breakdown.deepRead": [
+          "ch10.fact.1",
+          "ch10.fact.2",
+          "ch10.fact.3",
+          "ch10.fact.4",
+          "ch10.fact.5"
+        ],
+        "breakdown.fullRead": [
+          "ch10.fact.1",
+          "ch10.fact.2",
+          "ch10.fact.3",
+          "ch10.fact.4",
+          "ch10.fact.5",
+          "ch10.fact.6",
+          "ch10.framework.adviser.due.diligence"
+        ]
+      }
+    }
+  }
+}

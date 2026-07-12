@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water study says a milder final stretch can make a longer painful episode preferred in memory.",
+      "The Magic Castle example shows a modest place can create a vivid story by changing the ordinary arrival script.",
+      "YES Prep turns a private achievement into public pride by having peers and adults witness it.",
+      "The full read names elevation, insight, pride, and connection as the four handles for memorable moments.",
+      "The red phone lesson is that one concrete visible object can signal that the usual script has changed.",
+      "The popsicle works because the request and silver-tray delivery turn a free item into an event.",
+      "The threshold idea says to mark the crossing before the next stage becomes private logistics.",
+      "The prose says memory does not average each minute; it is shaped by the peak and the ending.",
+      "The mint is only a quiet free item; the red-phone lesson requires a tellable format."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "",
+      "Choice b is the only option framed as a positive design move; a and c are plainly inert.",
+      "",
+      "The stem asks for four ingredients, and choice c is the only four-part answer with all positive verbs.",
+      "Choice a closely repeats the chapter phrase about a visible object changing the script.",
+      "",
+      "Choice c closely echoes the chapter phrase about marking a threshold before private logistics.",
+      "",
+      "Choice c uses the chapter's own 'tellable' framing while the other choices are obviously weaker."
+    ]
+  },
+  "scores": {
+    "retention": 89,
+    "quizzes": 84,
+    "transfer": 78,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 88,
+    "insight": 86,
+    "density": 82,
+    "beginner": 93
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A small peak can become the story of the whole stay.",
+      "why": "This is the chapter's cleanest memory hook and it carries the central move."
+    },
+    {
+      "quote": "The 90-second trial did not become shorter because it ended less painfully.",
+      "why": "This keeps the lesson honest by separating remembered experience from actual discomfort."
+    },
+    {
+      "quote": "Lift the mood, spark insight, honor effort, and help people meet.",
+      "why": "As a quiz option, this nearly gives away Q4 because it visibly lists the four ingredients."
+    },
+    {
+      "quote": "The cold-water study gives her a different test: the 90-second trial with milder ending can be remembered better than the 60-second painful trial.",
+      "why": "The examples lean on the same study repeatedly, which narrows transfer."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct option is too telegraphed: the stem asks for four ingredients and the answer is the only four-part positive list.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The correct option repeats the chapter's threshold phrasing closely enough to function as a wording tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The named student gives the scene specificity, but the example does not name an actual college choice or show a concrete consequence after the public announcement.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The mentor example repeats the cold-water study again instead of building transfer through a fresh decision and consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The workshop threshold example mostly replays YES Prep's public-announcement pattern, so it is usable but thin as a distinct transfer case.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable: the core idea is memorable, beginner-friendly, and bounded by useful cautions about not covering real harm with a pleasant ending. The quiz is mostly fair and derivable, with a few answer-shape tells rather than broken keys. The main weakness is transfer: several examples are competent but repetitive, especially where they recycle the cold-water study or YES Prep structure instead of showing more varied before-and-after decisions."
+}
+```

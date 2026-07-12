@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "chapterflow-self-healing-repair-v1",
+  "createdAt": "2026-07-09T03:16:51.756Z",
+  "bookId": "multipliers",
+  "runId": "book-run",
+  "stage": "chapter-generation",
+  "severity": "blocker",
+  "summary": "author write: 2 chapter(s) failed to author within the retry budget:\nch04: STIER-2 write contract FAIL — lead thread: the dealt lead (John) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.\n\nch08: STIER-2 write contract FAIL — lead thread: the dealt lead (Getting) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.",
+  "findings": [],
+  "artifacts": [],
+  "recommendedFixes": [
+    "Edit only the failing chapter content unless the report names missing source/plans as the root cause.",
+    "Fix blocker-level findings first. Preserve chapterId, number, title, sourceAnchorIds, and quiz keys unless the finding explicitly targets them.",
+    "Run author-check and gate-chapter for the edited chapter, then rerun book-gate to catch cross-chapter regressions."
+  ],
+  "validationCommands": [
+    "npx tsx src/cli.ts qc-converge multipliers",
+    "npx tsx src/cli.ts book-run multipliers --no-publish"
+  ],
+  "nextCommand": "npx tsx src/cli.ts book-run multipliers --no-publish",
+  "promptPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/multipliers/book-run/chapter-generation.20260709031651.80d4b82b.repair.md",
+  "reportPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/multipliers/book-run/chapter-generation.20260709031651.80d4b82b.repair.json"
+}

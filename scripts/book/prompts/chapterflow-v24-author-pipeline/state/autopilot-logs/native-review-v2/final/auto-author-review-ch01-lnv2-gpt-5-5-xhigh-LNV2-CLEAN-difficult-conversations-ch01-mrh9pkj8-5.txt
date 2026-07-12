@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "a", "b", "c", "c", "b", "a"],
+    "mechanisms": [
+      "The prose defines identity as questions about competence, goodness, loyalty, worth, or respect; fear of seeming too junior is an authority/competence question.",
+      "The prose says to sort what happened, feelings, and identity, so the promise, resentment, and responsible-child fear are the three active layers.",
+      "The heat invoices are facts, residents feeling ignored is the feelings layer, and the board's fear of negligence is an identity/reputation layer.",
+      "The prose warns that the visible label can hide feelings driving tone, so deadline language can mask trust as the active layer.",
+      "Hearing the question as 'You are a bad friend' makes the surface dinner fact into a judgment about what kind of friend she is.",
+      "Separating facts, feelings, and identity keeps the belonging threat from being collapsed into only the authorship-order dispute.",
+      "The chapter says adding more facts can fail when the other person is defending dignity or identity.",
+      "The prose explicitly says the frame should be used privately first because labeling someone else's layer can sound like a verdict.",
+      "The repeated respect statement shows the dishes fact has acquired a feelings/identity layer, so the first move is to sort those layers."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "b is superficially tempting because terror is a feeling, but the object of the terror is competence and authority.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "a is the longest and contains the chapter's exact identity vocabulary.",
+      "b is much longer than the distractors and bundles all three layers.",
+      "c is the only option that names facts, feelings, and identity/reputation together.",
+      "a is the only option using the chapter's hidden-layer diagnosis rather than a generic fix.",
+      "b is the longest and repeats the stem's 'bad friend' identity cue.",
+      "c is the only option that mirrors the chapter's 'mistaking X for only Y' phrasing.",
+      "c is much more qualified and chapter-like than the other options.",
+      "b gives away the private-diagnosis warning almost verbatim.",
+      "a is the only option that asks a diagnostic layer question."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 85,
+    "practical": 84,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 92,
+    "insight": 90,
+    "density": 84,
+    "beginner": 88
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The log is evidence. It is not the whole map.",
+      "why": "This is the chapter's core move in a compact, memorable line."
+    },
+    {
+      "quote": "Diagnosis is not a cure.",
+      "why": "It cleanly limits the tool and keeps the chapter from overselling."
+    },
+    {
+      "quote": "The three conversations are a diagnostic tool, not a script.",
+      "why": "This accurately frames the skill's scope and supports practical use."
+    },
+    {
+      "quote": "b) Which layers are active: the promise, the resentment, and the fear of being the only responsible child.",
+      "why": "This correct option is a quiz tell because it names the full framework while the distractors are thin."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers repeatedly use the chapter's complete three-layer vocabulary and are often the longest, most qualified choices, making several items guessable without close reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "The quoted response is on-the-nose and mostly restates the lesson rather than showing a natural decision and consequence.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong opening chapter: the core diagnostic frame is clear, memorable, bounded, and easy for a beginner to try. The prose has real mechanism, not just advice, and the layered summaries stand alone well. The main weakness is quiz construction: the right answers often sound like the chapter while the distractors sound obviously incomplete. That lowers assessment quality but does not block shipment."
+}
+```

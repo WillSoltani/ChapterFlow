@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "radical-candor-ch07",
+  "chapterNumber": 7,
+  "contentHash": "9b5e5642d2c06822",
+  "reviewerSessionId": "auto-author-review-ch07-mrdyzzr5-10",
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 84,
+    "practical": 82,
+    "summaries": 88,
+    "tone": 84,
+    "limits": 90,
+    "insight": 86,
+    "density": 83,
+    "beginner": 85
+  },
+  "composite": 85.7,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "b",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Care is not a mood here; it is the act of learning what the person wants before you steer.",
+      "why": "Strongest mechanism line: it turns care from sentiment into observable discovery.",
+      "verified": true
+    },
+    {
+      "quote": "People's goals and constraints change, so last year's answer is not a standing order.",
+      "why": "Memorable and portable summary of the chapter's central warning.",
+      "verified": true
+    },
+    {
+      "quote": "Move one calendar block toward a Career Conversation and count the minutes it protects.",
+      "why": "Weakest practical instruction: the counting task feels artificial compared with the otherwise concrete method.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q8: the correct answer closely mirrors the stem's list of past choices, future hopes, and learning, making it easier to guess without full reading.",
+    "Q9: the correct answer uses the chapter's repeated phrase about key transition choices, which is fair but somewhat giveaway-like."
+  ],
+  "complaints": [
+    {
+      "unit": "Try this now",
+      "problem": "The action asks the reader to count protected minutes rather than start a concrete Life Story, Dreams, or Eighteen-Month Plan move; it is lower-friction than nothing but less useful than the chapter's own method.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The example is real to the lesson but thin: it names a fit tension and says they still do not know whether Ryder's role is wrong, so it shows less before-to-after consequence than the stronger examples.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The keyed option repeats the stem's structure closely enough to create a mild answer tell, even though the key is sound and derivable.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable. The core move is clear and memorable: do not steer from an old career map; run the three Career Conversations in order, then turn the live answer into a near learning step. The quiz keys are sound, the limits around failed fit are unusually strong, and the chapter transfers beyond management into clubs and study groups. Its main weaknesses are craft-level: one practical exercise is a little performative, and one example stops short of a clean consequence.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "54bdd36cfb6a84009fcc3b7c4975ecde48fd435df391a8f24d70b776be278073",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T20:40:20.753Z"
+}

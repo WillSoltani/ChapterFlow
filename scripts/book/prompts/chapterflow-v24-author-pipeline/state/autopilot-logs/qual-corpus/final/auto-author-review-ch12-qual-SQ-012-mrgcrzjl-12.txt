@@ -1,0 +1,86 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 25,
+    "quizzes": 0,
+    "transfer": 20,
+    "practical": 30,
+    "summaries": 5,
+    "tone": 35,
+    "limits": 10,
+    "insight": 35,
+    "density": 20,
+    "beginner": 45
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "\"If growth is the job, what else buys growth with this much money?\"",
+      "why": "This is the clearest core move: reframe a yes/no deal into alternative ways to satisfy the job."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "The fast read is a placeholder, so it fails its standalone summary role."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Multiple promised product sections are empty, including the quiz."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The Quiz section contains no questions, so the quiz is structurally broken and cannot be answered or scored.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The Key takeaway heading has no content, so a required standalone summary section is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The Try this now heading has no content, so the chapter gives no actionable practice step.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The Examples heading has no content, so the chapter lacks the promised example layer beyond the single full-read scenario.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The Review cards heading has no content, so the retention component is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The Memorable lines heading has no content, so the recall aid promised by the structure is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is placeholder text rather than a real compressed explanation of the chapter's idea.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is placeholder text rather than a deeper standalone explanation.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is meta-placeholder text about review status, not a reader-facing hook into the lesson.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is not shippable as a chapter. The one useful move is visible in the Snapple scene: turn a proposed solution into one option among competing ways to satisfy the underlying job. But most of the product surface is empty or placeholder text, including the quiz, key takeaway, examples, practice step, review cards, and memorable lines. A reader could infer the basic reframing tactic from the full read, but the chapter does not yet meet a professional learning-product bar."
+}
+```

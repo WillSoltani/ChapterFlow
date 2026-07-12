@@ -1,0 +1,115 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 28,
+    "quizzes": 0,
+    "transfer": 25,
+    "practical": 22,
+    "summaries": 4,
+    "tone": 35,
+    "limits": 5,
+    "insight": 18,
+    "density": 20,
+    "beginner": 16
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "These sentences are not decoration. They are load-bearing beams.",
+      "why": "The chapter's strongest memorable image emphasizes that the reframing sentences serve a real psychological function."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "The fast read is placeholder text and communicates none of the chapter's core move."
+    },
+    {
+      "quote": "One added angle.",
+      "why": "The deep read is also placeholder text and fails its stand-alone learning promise."
+    },
+    {
+      "quote": "The AND/BOTH version gives the self-image more structure.",
+      "why": "This introduces the central method without defining the original version, its mechanism, or when to use it."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook describes the document's review status rather than introducing a reader problem or chapter idea.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section contains only placeholder text and fails its stand-alone summary promise; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section contains only placeholder text and fails its stand-alone summary promise; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The central AND/BOTH technique is not defined, and the chapter supplies no explanation of how or why joining conflicting statements reduces identity threat.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "Laura's sentence demonstrates the form but supplies no situation, decision, or consequence showing whether the reframing changes behavior.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "Henrik's sentence demonstrates the form but supplies no before-to-after outcome showing that it helps him listen without seeking reassurance.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "Isabel's sentence demonstrates the form but supplies no resulting action or consequence, so transfer remains largely asserted.",
+      "mustFix": false
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, leaving readers without the promised exercise; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The designated section is empty; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions, so knowledge cannot be assessed and no derivation is possible; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty despite the full read containing a potentially memorable line; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "limits",
+      "problem": "The chapter gives no boundaries, failure modes, or indication of when an AND/BOTH statement would be insufficient.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is an incomplete scaffold, not a shippable chapter. Its sole substantive paragraph offers a potentially useful identity-preserving move—holding competence or worth alongside error, harm, or relationship trouble—and the load-bearing-beams image could aid retention. However, the method is never defined or mechanistically explained, the illustrative cases lack outcomes, and nearly every product section is empty or placeholder text. Most decisively, there is no quiz to answer, making the chapter structurally invalid against the requested learning format and far below the professional bar."
+}
+```

@@ -1,0 +1,89 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "b", "b", "b", "a", "c", "c"],
+    "mechanisms": [
+      "The prose defines willpower as starting a useful act, stopping a tempting act, and keeping the larger value visible.",
+      "Miller and Cohen's account says prefrontal control keeps goals active so they can steer attention and action against competing cues.",
+      "Gage retained speech and survival while planning and social restraint changed, separating basic ability from self-command.",
+      "The chapter says change begins by noticing the cue or urge before the action hardens.",
+      "The social examples connect self-control with promises, shared resources, trust, and conflict repair.",
+      "The vivid snack wins because the quieter running goal is not mentally active at the choice point.",
+      "The prose treats immediate relief and long-term saving as simultaneously sincere motives whose support affects action.",
+      "The method favors a concrete behavior, an observed trigger, and feedback over a vague declaration.",
+      "Prefrontal control becomes important when an automatic routine conflicts with the currently active goal."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Many distractors use giveaway absolutes such as \"only,\" \"fixed,\" \"must be fake,\" and \"whenever,\" while correct choices use the chapter's balanced language.",
+      "Several correct choices are the longest or most qualified option.",
+      "The answer positions form an conspicuously balanced pattern: three a answers, three b answers, and three c answers."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 80,
+    "transfer": 84,
+    "practical": 78,
+    "summaries": 89,
+    "tone": 87,
+    "limits": 87,
+    "insight": 91,
+    "density": 83,
+    "beginner": 94
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "If the goal drops out, the craving does not have to become stronger. It only has to become more visible.",
+      "why": "A concise, memorable mechanism explains why sincere goals can lose without moralizing."
+    },
+    {
+      "quote": "The loudest want is not always the deepest want.",
+      "why": "This sharply captures the chapter's central distinction between vivid relief and larger values."
+    },
+    {
+      "quote": "'I can skip the pharmacy,' a cousin says. 'That's I won't,' Jeanne answers. 'What is the I want?'",
+      "why": "This reverses the chapter's definition: skipping the needed stop is the tempting action, so I won't should mean not skipping it."
+    },
+    {
+      "quote": "Once you name the missing power, add a small barrier before the old default can run.",
+      "why": "The plan prescribes a barrier for every missing power even though the chapter separately assigns start cues, barriers, and value reminders."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 5",
+      "problem": "It labels the proposed omission \"I won't,\" although the chapter defines I won't as blocking the tempting act; here the coherent formulation is \"I won't skip the pharmacy.\" This source-contradictory example can teach the core framework backward.",
+      "mustFix": true
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "It tells readers to add a barrier after identifying any missing power, contradicting the full read's useful distinction among a start cue for I will, a barrier for I won't, and value salience for I want. This can direct readers to the wrong intervention.",
+      "mustFix": true
+    },
+    {
+      "unit": "weekly practice",
+      "problem": "The exercise asks readers to spend half a week deliberately retaining the all-or-nothing rule the chapter is trying to replace; this is needlessly slow and less practical than alternating or logging the two approaches at actual choice points.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The scene is thin-but-usable: it presents a cue and a proposed statement but never shows Brooklyn's resulting decision or consequence, so transfer remains asserted rather than demonstrated.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1-Q7 and Q9",
+      "problem": "Many distractors are implausible absolutes or direct denials of the chapter, allowing test-wise readers to select the measured, mechanism-rich choice without mastering the prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 2-6",
+      "problem": "The repeated pharmacy, clinic, and cue-versus-goal scenarios provide limited domain expansion, and several explanations merely restate that the goal must remain active instead of showing distinct consequences.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a memorable core move, unusually clear mechanism, approachable language, and strong lines that should survive beyond the reading session. Its quiz is fully derivable, though easy to game because the distractors lean on crude absolutes. The practical framework also transfers reasonably well, but the ride-call example reverses the defined meaning of I won't, and the implementation plan collapses three distinct failure modes into a universal barrier prescription. Those source-contradictory instructions touch the core skill, so the chapter should not ship until they are corrected; the thin example, repetitive scenarios, and counterproductive weekly comparison are worthwhile nonblocking revisions."
+}
+```

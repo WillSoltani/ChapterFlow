@@ -1,0 +1,284 @@
+{
+  "schemaVersion": "author-acceptance-v1",
+  "bookId": "start-with-why",
+  "roundLabel": "",
+  "at": "2026-07-08T06:49:10.542Z",
+  "bar": 80,
+  "beatShipped": 72.1,
+  "accepted": false,
+  "sampledChapters": [
+    1,
+    2,
+    6,
+    11
+  ],
+  "docSha256": "e1a5e5e6e959d5bb9d0083e75a22ccfe57f3ea46434cc1fe26a51ef9eb491239",
+  "verdict": {
+    "id": "start-with-why",
+    "medianComposite": 73.9,
+    "factors": {
+      "retention": 78,
+      "quizzes": 70,
+      "transfer": 82,
+      "practical": 76,
+      "summaries": 79,
+      "tone": 64,
+      "limits": 79,
+      "insight": 70,
+      "density": 62,
+      "beginner": 75
+    },
+    "gate": "PASS",
+    "gateVotes": "3P/0F",
+    "churn": "HIGH",
+    "validCount": 3,
+    "readerCount": 3,
+    "chapters": [
+      1,
+      2,
+      6,
+      11
+    ],
+    "readers": [
+      {
+        "reviewerSessionId": "auto-author-book-reader-1-mrbpurld-6",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 78,
+          "quizzes": 63,
+          "transfer": 76,
+          "practical": 72,
+          "summaries": 80,
+          "tone": 55,
+          "limits": 79,
+          "insight": 70,
+          "density": 62,
+          "beginner": 74
+        },
+        "composite": 71.1,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is coherent, keyed correctly, and often useful at the sentence level, with several sticky lines and reasonable limits. Its main weakness is sameness: every chapter leans on the same machinery of ordered terms, named company details, second-setting comparison, source-detail boundaries, and anti-purpose-talk warnings. That gives the lessons a dependable lens, but it also makes them feel generated from one mold rather than individually authored. The quizzes are answerable and mostly scenario-based, but the wrong answers are often obviously bad, with no real explanations. This is a solid draft with publishable pieces, not a premium reading experience.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-2-mrbpurlh-7",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 78,
+          "quizzes": 74,
+          "transfer": 82,
+          "practical": 76,
+          "summaries": 79,
+          "tone": 65,
+          "limits": 78,
+          "insight": 70,
+          "density": 63,
+          "beginner": 75
+        },
+        "composite": 74.5,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 5,
+        "quotesTotal": 5,
+        "oneParagraphVerdict": "The sample is sound on the page: I found no keyed quiz contradiction, corrupted prose, or unsupported answer key failure. Its main strength is a reusable diagnostic lens in each chapter, backed by concrete named settings and several memorable lines. The main weakness is severe cross-chapter churn: each chapter uses the same machinery of ordered terms, source-bound details, second-setting comparison, purpose-talk warnings, and similar if-then practice shells. That makes the book feel engineered more than individually authored. It is useful and mostly publishable as learning material, but not premium until the repeated scaffolding is broken up and the examples feel less like swapped nouns inside one template.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-3-mrbpurlh-8",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 83,
+          "quizzes": 70,
+          "transfer": 82,
+          "practical": 80,
+          "summaries": 78,
+          "tone": 64,
+          "limits": 83,
+          "insight": 78,
+          "density": 62,
+          "beginner": 75
+        },
+        "composite": 75.9,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 5,
+        "quotesTotal": 5,
+        "oneParagraphVerdict": "The sample is correct and often useful, with strong central lenses: separate premise from tactic, keep source details scoped, and make proof return as visible behavior. The best aphorisms are genuinely sticky, and the quizzes are mostly answerable from the prose. The main weakness is severe cross-chapter sameness: each chapter leans on the same named-example ladder, same boundary warning, same comparison move, same repair cadence, and same quiz pattern. That makes the book feel engineered rather than individually authored. It ships as a solid draft on correctness and utility, but it needs more tonal variety, denser examples, real wrong-answer explanations, and less scaffold repetition before it feels premium.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      }
+    ]
+  },
+  "readers": [
+    {
+      "reviewerSessionId": "auto-author-book-reader-1-mrbpurld-6",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 78,
+        "quizzes": 63,
+        "transfer": 76,
+        "practical": 72,
+        "summaries": 80,
+        "tone": 55,
+        "limits": 79,
+        "insight": 70,
+        "density": 62,
+        "beginner": 74
+      },
+      "composite": 71.1,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is coherent, keyed correctly, and often useful at the sentence level, with several sticky lines and reasonable limits. Its main weakness is sameness: every chapter leans on the same machinery of ordered terms, named company details, second-setting comparison, source-detail boundaries, and anti-purpose-talk warnings. That gives the lessons a dependable lens, but it also makes them feel generated from one mold rather than individually authored. The quizzes are answerable and mostly scenario-based, but the wrong answers are often obviously bad, with no real explanations. This is a solid draft with publishable pieces, not a premium reading experience.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-2-mrbpurlh-7",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 78,
+        "quizzes": 74,
+        "transfer": 82,
+        "practical": 76,
+        "summaries": 79,
+        "tone": 65,
+        "limits": 78,
+        "insight": 70,
+        "density": 63,
+        "beginner": 75
+      },
+      "composite": 74.5,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 5,
+      "quotesTotal": 5,
+      "oneParagraphVerdict": "The sample is sound on the page: I found no keyed quiz contradiction, corrupted prose, or unsupported answer key failure. Its main strength is a reusable diagnostic lens in each chapter, backed by concrete named settings and several memorable lines. The main weakness is severe cross-chapter churn: each chapter uses the same machinery of ordered terms, source-bound details, second-setting comparison, purpose-talk warnings, and similar if-then practice shells. That makes the book feel engineered more than individually authored. It is useful and mostly publishable as learning material, but not premium until the repeated scaffolding is broken up and the examples feel less like swapped nouns inside one template.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-3-mrbpurlh-8",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 83,
+        "quizzes": 70,
+        "transfer": 82,
+        "practical": 80,
+        "summaries": 78,
+        "tone": 64,
+        "limits": 83,
+        "insight": 78,
+        "density": 62,
+        "beginner": 75
+      },
+      "composite": 75.9,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 5,
+      "quotesTotal": 5,
+      "oneParagraphVerdict": "The sample is correct and often useful, with strong central lenses: separate premise from tactic, keep source details scoped, and make proof return as visible behavior. The best aphorisms are genuinely sticky, and the quizzes are mostly answerable from the prose. The main weakness is severe cross-chapter sameness: each chapter leans on the same named-example ladder, same boundary warning, same comparison move, same repair cadence, and same quiz pattern. That makes the book feel engineered rather than individually authored. It ships as a solid draft on correctness and utility, but it needs more tonal variety, denser examples, real wrong-answer explanations, and less scaffold repetition before it feels premium.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    }
+  ],
+  "pooled": {
+    "reads": 1,
+    "composite": 73.9,
+    "gate": "PASS",
+    "noiseBand": 3.7,
+    "capped": false
+  },
+  "structuralSameness": {
+    "mode": "advisory",
+    "archAxes": [
+      {
+        "id": "ARCH1.practice_shell_monoculture",
+        "chapters": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      }
+    ],
+    "archSevere": false,
+    "contentOverCap": [
+      {
+        "id": "practice-shell",
+        "frac": 0.86,
+        "chapters": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      }
+    ],
+    "contentSevere": false
+  }
+}

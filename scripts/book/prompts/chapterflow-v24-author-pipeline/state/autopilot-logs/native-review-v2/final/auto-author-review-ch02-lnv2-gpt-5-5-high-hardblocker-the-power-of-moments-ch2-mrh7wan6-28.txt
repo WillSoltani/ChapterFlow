@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "mechanisms": [
+      "The prose says to look first at transitions, milestones, and pits; welcome, awards, and complaint calls map to those charged points.",
+      "The John Deere lesson says purpose should arrive before forms and routine tasks define the job.",
+      "The Mary Kay example works because the pink Cadillac makes a milestone publicly visible and nameable.",
+      "The Joshie recovery shows that returning the item is not enough; proof of care must change the story carried away.",
+      "The prose says more forms do not improve the first day; purpose tied to real users should come before the packet.",
+      "The leader should check whether the achievement has a visible marker people can picture, not just private/dashboard data.",
+      "The pit lesson says a polished apology can miss the hurt; recovery needs a concrete care story around the returned item.",
+      "The chapter warns that the busiest step is not always what people retell, so first ask where the relationship will be summed up.",
+      "The prose says a low point can harden into the whole story unless the ending is changed after the practical fix."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "medium", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "c is not supported as the best test, but the contradictory sentence in Example 4 says the busiest step is exactly the relationship-summing moment, which could confuse the intended key.",
+      ""
+    ],
+    "tells": [
+      "Choice c names the exact chapter trio, making it easy to spot without deep reading.",
+      "Choice c is the only option with the chapter's positive language: customer purpose at the start.",
+      "Choice b repeats the visible-marker lesson; a and c are plainly anti-recognition.",
+      "Choice b repeats the proof-of-care/change-the-story phrasing; a and c are obvious under-repairs.",
+      "Choice a repeats the chapter's purpose-before-packet formula.",
+      "Choice c uses the phrase 'marker people can picture,' close to the chapter language.",
+      "Choice b is the only answer with the chapter's concrete-care/recovery-story frame.",
+      "Choice a uses the more abstract chapter wording; b and c are broadly disfavored by the prose.",
+      "Choice a repeats 'low point hardens'; b and c are obvious false closures."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 78,
+    "transfer": 68,
+    "practical": 80,
+    "summaries": 88,
+    "tone": 86,
+    "limits": 86,
+    "insight": 84,
+    "density": 82,
+    "beginner": 90
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The busy middle is not the whole story.",
+      "why": "Strong memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "At a transition, frame the purpose; at a milestone, make progress visible; at a pit, repair the meaning.",
+      "why": "Clear, transferable action map for the three moment types."
+    },
+    {
+      "quote": "If you add a ritual to every step, people stop trusting the cue.",
+      "why": "Good limit statement that prevents over-application."
+    },
+    {
+      "quote": "Then again, he should move the circle back to the crowded handoff, since the busiest, highest-traffic step is exactly the moment people use to sum up the whole relationship.",
+      "why": "This directly contradicts the chapter's central warning about not defaulting to the busiest step."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 4",
+      "problem": "The 'What to do' section first tells Eric to move from the crowded handoff to the first encounter, then reverses itself and says the busiest step is exactly the relationship-summing moment. This contradicts the chapter's own principle and makes the example teach the wrong action.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The intended answer is derivable from the main prose, but Example 4's contradiction makes the competing busy-step interpretation defensible for a careful reader.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The example shifts from designing a recovery to writing a thank-you note after receiving one, so it is thinner as transfer practice for readers who own an experience.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct choices echo the exact chapter phrasing while distractors are plainly anti-lesson, so the quiz is fair but somewhat guessable.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong, memorable core: do not polish the whole busy middle; find transitions, milestones, and pits, then match the intervention to the feeling already present. The summaries are layered well, the tone is plain, and the limits section usefully warns against fake or excessive ceremony. I would not ship it as-is because Example 4 contains a direct source-contradictory reversal that undermines the central transfer lesson and also muddies Q8. Fix that contradiction and tighten the guessable quiz wording, and the chapter would be close to the professional bar."
+}
+```

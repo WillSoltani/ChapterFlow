@@ -1,0 +1,66 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "c", "a", "b", "b", "a", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several wrong choices are telegraphed by obviously bad phrasing: \"proof feels thin,\" \"look even,\" \"purpose words,\" and \"already prefers.\"",
+      "Q8 uses \"third example\" even though the prose teaches a \"third anchor,\" which makes the intended answer less cleanly anchored."
+    ]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 83,
+    "limits": 91,
+    "insight": 87,
+    "density": 84,
+    "beginner": 80
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Proof is the return trip, not the starting gun.",
+      "why": "Strongest memorable line; it compresses the chapter's practical discipline."
+    },
+    {
+      "quote": "It does not mock the signal. It also keeps a mood from wearing a lab coat.",
+      "why": "Strong balance of respect for feeling and boundary against overclaiming."
+    },
+    {
+      "quote": "Feeling needed biology, not a slogan.",
+      "why": "The opening is memorable but grammatically compressed enough to slow a cold reader."
+    },
+    {
+      "quote": "Q8. Why did the third example fail when it repeated the first brain-side lesson?",
+      "why": "The quiz wording is confusing because the prose frames this as the third anchor, not clearly as an example."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The first sentence is punchy but syntactically odd; a beginner may need to reread before knowing whether 'Feeling' is a noun label or a sentence fragment.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The stem says 'third example,' but the teaching point in the prose is about the third anchor. The answer is still inferable, but the unit label is imprecise.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Some wrong answers are too easy to reject because they carry giveaway phrasing about weak proof, looking even, or already preferred options.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The examples are functional and show before-to-after consequences, but many stay in generic workplace scenes rather than vivid, place-specific situations.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against an 80 bar. The chapter has a clear core move, strong boundary-setting, and a practical repeatable action: separate the visible claim, the felt pull, and the proof due back. The best lines are memorable and the summaries layer well. The main weaknesses are not structural: a few quiz distractors are too visibly wrong, Q8 has a wording mismatch, and the examples could use more lived specificity. Still, the prose teaches a durable mechanism rather than a slogan, and the limits are unusually honest."
+}
+```

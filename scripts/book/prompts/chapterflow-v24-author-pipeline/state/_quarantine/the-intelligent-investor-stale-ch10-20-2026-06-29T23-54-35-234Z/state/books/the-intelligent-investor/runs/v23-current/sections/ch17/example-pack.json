@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "example-pack",
+  "chapterId": "the-intelligent-investor-ch17",
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "The Famous-Name Row",
+      "scenario": "Maya, Owen, and Priya are reviewing a shared spreadsheet before approving a security for the decision log. The old checklist has a comfort row that says, \"major name,\" and Maya marks it green because Penn Central was a major railroad corporate name. Owen adds the actual case note in the next column: Penn Central filed for bankruptcy in 1970 after the Pennsylvania Railroad and New York Central merger failed to create a sound enterprise. The green mark no longer supports the decision.",
+      "whatToDo": "Replace the comfort row with a failure check: does the prominent name still have sound finances after merger problems are considered? If that answer is unclear, mark the decision as unresolved instead of treating size as safety.",
+      "whyItMatters": "A famous issuer can still carry unsafe securities. The concrete failure is not obscurity; it is trusting prominence while weak finances and merger problems are doing the real work.",
+      "sourceAnchorIds": [
+        "ch17.fact.1",
+        "ch17.example.1"
+      ],
+      "sourceFactIds": [
+        "ch17.fact.1"
+      ],
+      "namedCaseIds": [
+        "ch17.example.1"
+      ]
+    },
+    {
+      "exampleId": "ex02",
+      "title": "The Acquisition-Growth Email",
+      "scenario": "Owen is drafting an email that recommends moving ahead because Ling-Temco-Vought-style acquisition growth looks impressive. Priya asks him to revise the draft before it goes out. The first version treats rapid acquisition growth as proof of managerial skill. The revised version adds the harder question: are conglomerate accounting and leverage making expansion look better than economic reality?",
+      "whatToDo": "In the email draft, separate growth from evidence. State that acquisition growth needs skepticism when debt and complexity may be driving the appearance of success, then ask for the decision log to show whether the growth is economically sound.",
+      "whyItMatters": "The move changes the decision from endorsing expansion to testing it. Debt-financed growth can collapse, so the useful action is to challenge the accounting impression before treating the story as skill.",
+      "sourceAnchorIds": [
+        "ch17.fact.2",
+        "ch17.example.2"
+      ],
+      "sourceFactIds": [
+        "ch17.fact.2"
+      ],
+      "namedCaseIds": [
+        "ch17.example.2"
+      ]
+    },
+    {
+      "exampleId": "ex03",
+      "title": "The Complexity Recovery Block",
+      "scenario": "Priya blocks time on the calendar after realizing her first NVF / Sharon Steel note treated complicated financing as a possible bargain. Nora joins the block and finds that the layered securities and accounting treatment are making owner economics harder to see. The recovery is slow: Leo has to split the calendar block into a second pass because the decision log still cannot show who bears the risk.",
+      "whatToDo": "Use the calendar block to unwind the structure, not to admire it. List what the financing makes harder to appraise, then pause the decision until the owner economics are understandable without promotional interpretation.",
+      "whyItMatters": "Complex capital structures do not create automatic bargains. The friction is the point: if the structure hides value transfer, speed would turn confusion into a decision.",
+      "sourceAnchorIds": [
+        "ch17.fact.3",
+        "ch17.example.3"
+      ],
+      "sourceFactIds": [
+        "ch17.fact.3"
+      ],
+      "namedCaseIds": [
+        "ch17.example.3"
+      ]
+    },
+    {
+      "exampleId": "ex04",
+      "title": "The Story-to-Evidence Audit",
+      "scenario": "Nora, Leo, and Camille run a before-after audit in a shared spreadsheet. Before the audit, AAA Enterprises sits in a row labeled \"promotional small company\" with the appeal column filled and the evidence column thin. After the audit, Camille changes the decision log from \"growth story\" to \"unverified business substance,\" but the row still feels tempting because the market appeal is easy to read.",
+      "whatToDo": "Keep the before-after audit focused on verified business substance. If the evidence column remains thin, do not give the small company story a growth multiple by default; mark the price support as unproven.",
+      "whyItMatters": "Promotion can imitate investment evidence. The recovery is not instant because the story still feels attractive, but thin evidence cannot support a high price.",
+      "sourceAnchorIds": [
+        "ch17.fact.4",
+        "ch17.example.4"
+      ],
+      "sourceFactIds": [
+        "ch17.fact.4"
+      ],
+      "namedCaseIds": [
+        "ch17.example.4"
+      ]
+    }
+  ]
+}

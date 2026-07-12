@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "c", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as four named moves that each meet a different decision danger.",
+      "The chapter says narrow framing makes a rich problem look like yes or no, so the first repair is adding live paths.",
+      "Reality-testing asks for evidence that can surprise or hurt the favorite answer.",
+      "The Intel section says emotion can carry information, but distance quiets short-term attachment so long-term matters can be judged.",
+      "Prepare to be wrong means naming a wider range of plausible futures instead of trusting one neat forecast.",
+      "HopeLab used parallel first passes so comparison could teach the team before commitment got expensive.",
+      "Grove's move was to ask what a fresh outsider would do without Intel's memory-chip attachment.",
+      "The four villains affect framing, evidence, emotion, and forecasting, and each needs a different WRAP move.",
+      "The chapter says good process raises the odds without promising the outcome."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q1: correct choice uniquely spells out all four WRAP moves, making it guessable by acronym recognition.",
+      "Q3: correct choice is the only one with the obvious technical cue 'disconfirming evidence'; the other two are openly pro-bias.",
+      "Q8: correct choice is the only one that names all four decision domains, while the distractors are vague final-review cautions.",
+      "Q9: wrong choices use extreme promises or abandonment, making the balanced middle answer easy to infer."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 78,
+    "practical": 82,
+    "summaries": 87,
+    "tone": 88,
+    "limits": 91,
+    "insight": 86,
+    "density": 80,
+    "beginner": 89
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "Strongest compact statement of the chapter's core move."
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "Memorable mechanism for confirmation bias, not just a label."
+    },
+    {
+      "quote": "If the building is on fire, nobody should pause to build a vendor horse race, invite dissenting evidence, and map three futures.",
+      "why": "Clear boundary condition that keeps the process from being oversold."
+    },
+    {
+      "quote": "The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.",
+      "why": "The action is concrete but a little under-explained and ritual-like."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "try this now",
+      "problem": "The instruction uses 'shortcut' before making clear what shortcut the reader should use, so the quick exercise is less standalone than the surrounding summaries.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The correct answer is made unusually visible because it is the only option that names all four WRAP moves.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q3",
+      "problem": "The distractors are too obviously wrong because both recommend strengthening advocacy for the favorite plan.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q5",
+      "problem": "The stem's 'Intel reviewer' and 'launch board' mix the Intel example with launch-forecast language, which is mildly distracting even though the answer remains derivable.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The example is thin-but-usable: Yvonne has no role or context, and the scene mostly restates the forecast-range lesson without a before-to-after consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples section",
+      "problem": "Several examples stay inside product, prototype, vendor, and strategy-review settings, so transfer beyond business decisions is narrower than the implementation plan implies.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter with a strong central model, memorable mechanism lines, fair quiz keys, and unusually good limits around uncertainty and emergencies. Its main weakness is transfer breadth: the examples are coherent but clustered in similar organizational settings, and one forecast example feels like a light placeholder. The quiz is derivable, but several correct answers are telegraphed by exact model terms while distractors are plainly foolish. No must-fix reader-harming defect appears on the page."
+}
+```

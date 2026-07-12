@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "atomic-habits-ch15",
+  "chapterNumber": 15,
+  "contentHash": "1db72fa92440953f",
+  "reviewerSessionId": "eval-proxy-atomic-habits-ch15-1783022480972",
+  "scores": {
+    "retention": 94,
+    "quizzes": 84,
+    "transfer": 92,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 86,
+    "limits": 84,
+    "insight": 90,
+    "density": 88,
+    "beginner": 92
+  },
+  "composite": 89,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "b",
+      "a",
+      "c",
+      "a",
+      "b",
+      "c",
+      "b"
+    ],
+    "matches": 10,
+    "of": 10,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The future self is a stranger you keep voting against, because the present self is the only one in the room holding a ballot.",
+      "why": "Strongest framing: memorable, plain, and captures the delayed-reward mechanism cleanly.",
+      "verified": true
+    },
+    {
+      "quote": "You do not need a bigger reason. You need a smaller reward, sooner.",
+      "why": "Excellent compression of the practical move.",
+      "verified": true
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Worst defect: visible production artifact that breaks professional polish.",
+      "verified": true
+    },
+    {
+      "quote": "cold water, chocolate, one song.",
+      "why": "The chocolate example can clash with the chapter's own warning that rewards should not undermine the behavior.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Correct choices often contain the chapter's repeated giveaway terms: immediate, sensory, visible, seconds, present self.",
+    "Several correct choices are the most specific and mechanism-rich option, while distractors are flatter or obviously extreme.",
+    "Q10's correct answer is easy to guess from phrasing because it directly negates the chapter's abstract-pride warning."
+  ],
+  "complaints": [
+    {
+      "unit": "Implementation plan",
+      "problem": "Contains the artifact 'Title: undefined', which signals scaffold leakage and would look unprofessional in a shipped chapter.",
+      "mustFix": true
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The reward examples include chocolate without the chapter's caveat that the reward must not undo the behavior, which could mislead readers applying this to health habits.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are often identifiable by chapter keywords and unusually mechanism-rich phrasing, reducing quiz diagnostic value.",
+      "mustFix": false
+    },
+    {
+      "unit": "Q10",
+      "problem": "The rejection of identity pride could seem in tension with the full read's advice to tie rewards to identity unless the distinction between abstract pride and sensory evidence is made sharper.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter: the core rule is memorable, the examples transfer across health, money, work, and relationships, and the mechanism is explained in plain language. The quizzes are mostly fair and fully derivable, though somewhat keyword-led. I would not ship this exact page because 'Title: undefined' is a visible production artifact, but once that is fixed and the reward caveat is tightened in the exercise, it clears the professional bar."
+}

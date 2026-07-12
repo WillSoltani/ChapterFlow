@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "high-output-management-ch03",
+  "chapterNumber": 3,
+  "title": "Managerial Leverage",
+  "coreMove": "because a fixed amount of managerial time can change the behavior or knowledge of a large group",
+  "thesis": "High leverage can come from affecting many people with one activity.",
+  "readerPromise": "After this chapter, a reader can because a fixed amount of managerial time can change the behavior or knowledge of a large group",
+  "ownedCases": [
+    {
+      "id": "ch03.ex.intelManager",
+      "label": "Intel manager output formula"
+    },
+    {
+      "id": "ch03.ex.trainingSession",
+      "label": "Training session leverage"
+    },
+    {
+      "id": "ch03.ex.managerInterruption",
+      "label": "Negative leverage interruption"
+    }
+  ],
+  "notYours": [
+    "Assigned implementation",
+    "Bonus signal",
+    "Breakfast factory",
+    "Breakfast factory control system",
+    "Breakfast factory goes national",
+    "College graduate as output",
+    "Compiler development",
+    "Contractual obligation",
+    "Corrective performance conversation",
+    "Cultural values",
+    "Difficult feedback conversation",
+    "Environmental demand assessment",
+    "Escalated matrix conflict",
+    "Experienced employee on a new task",
+    "Expert delegated task",
+    "Free-market control",
+    "Functional organization",
+    "Geographic sales overlay",
+    "In-process quality inspection",
+    "Intel decision culture"
+  ],
+  "cast": [
+    "Douglas",
+    "Dean",
+    "Alice",
+    "Elijah"
+  ],
+  "answerIndexPattern": [
+    1,
+    1,
+    2,
+    0,
+    1,
+    0,
+    0,
+    2,
+    2
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a doorway conversation",
+    "flavor (ch01): venue: a spare-room desk",
+    "flavor (ch01): venue: an unsent email draft",
+    "flavor (ch01): frame: a first attempt at admitted students as inputs that gets corrected",
+    "flavor (ch01): frame: a first encounter with admitted students as inputs that sets a benchmark",
+    "flavor (ch02): venue: a living-room couch"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on business unit coordination",
+    "venue: a shared calendar invite",
+    "venue: a handwritten note on the counter",
+    "frame: a first attempt at agreed expectations that gets corrected",
+    "frame: a first encounter with ambiguous interdependent tasks that sets a benchmark"
+  ],
+  "architectureFamily": "single-deep-case",
+  "openerType": "scene",
+  "challengeFrame": "timebox-N-minutes",
+  "practiceShape": "observe-then-note",
+  "exampleLenses": [
+    "numbers-detective",
+    "prop-tableau",
+    "dialogue-beat"
+  ],
+  "practiceVerb": "read-aloud",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "output",
+    "automatically",
+    "creates",
+    "enough",
+    "manager",
+    "value"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "partial",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "observe-then-note",
+    "single-imperative",
+    "if-then-trigger",
+    "two-step-sequence"
+  ],
+  "quizStemShapes": [
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority",
+    "transfer-new-domain"
+  ],
+  "quizFailureModes": [
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction",
+    "borrowed-authority"
+  ],
+  "questionFactOrder": [
+    5,
+    4,
+    3,
+    7,
+    1,
+    9,
+    6,
+    2,
+    8
+  ],
+  "memorableShapes": [
+    "cost-statement",
+    "pointed-question",
+    "imperative"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "sensory-speak",
+    "mechanism-speak"
+  ],
+  "shellRegister": "verb-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Douglas"
+  }
+}

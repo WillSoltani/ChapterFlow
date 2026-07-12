@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 2,
+    "quizzes": 0,
+    "transfer": 0,
+    "practical": 0,
+    "summaries": 0,
+    "tone": 15,
+    "limits": 0,
+    "insight": 0,
+    "density": 2,
+    "beginner": 1
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "They claim the memo alone caused the turnaround.",
+      "why": "The chapter asserts a causal conclusion but supplies no event, evidence, or mechanism supporting it."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read",
+      "why": "The promised reading layers are empty headings and cannot stand alone."
+    },
+    {
+      "quote": "## Quiz",
+      "why": "The quiz section contains no questions or answer choices, making derivation and assessment impossible."
+    },
+    {
+      "quote": "## Try this now\n## Examples",
+      "why": "Both application sections are empty, leaving readers with nothing to practice or transfer."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "chapter overall",
+      "problem": "The file is effectively an empty scaffold: it contains one unsupported hook sentence and otherwise only headings, so a reader cannot learn or apply a core move. Reserved category: UNUSABLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The claim that the memo alone caused a turnaround is unsupported; no situation, evidence, competing cause, or explanation follows.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore fails its stand-alone summary promise. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and therefore fails its stand-alone explanatory promise. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty and therefore provides no chapter instruction. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the chapter never states its core move. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, leaving the reader without an actionable exercise. Reserved category: UNUSABLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section contains no examples, so no decision, mechanism, consequence, or transfer case is demonstrated. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz has no questions or choices, so it cannot be answered or evaluated. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and provides no retrieval-practice material. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty and supplies no retention aid. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is not a chapter ready for review or publication; it is an unfilled template. The lone hook introduces an unsupported causal claim, while every instructional, summary, application, assessment, and retention section is empty. With no prose explaining a core move and no quiz questions to derive, the product cannot teach, test, or support transfer, so it falls far below the professional shipping bar."
+}
+```

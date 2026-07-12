@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "chapterflow-self-healing-repair-v1",
+  "createdAt": "2026-07-05T02:55:21.903Z",
+  "bookId": "start-with-why",
+  "runId": "book-run",
+  "stage": "qc",
+  "severity": "blocker",
+  "summary": "author review: 4 chapter(s) still fail independent review after the regen cap (2 write attempts each):\n  ch01 — full read: The American Airlines/Fort Worth material names a carrier and place but gives no concrete before-to-after boarding decision, measured consequence, or specific friction observed. (must fix); Example 3: The boarding example says the line bends and proof has not come back, but it does not show a completed consequence or what changed after the decision. (must fix); Example 6: The supplier e\n  ch06 — quiz: The keys are sound and derivable, but the correct answers often have the most careful, bounded phrasing while distractors use exaggerated claims, creating testwise tells.; Example 4: The paper-cup detail feels like a slot-filler: it names an object but does not affect the decision, consequence, or learning promise.; examples: Several examples demonstrate the lesson cleanly, but some feel eng\n  ch13 — quiz Q1: The stem says Tobias's service line failed and asks what caused the drift, but the Tobias service-launch example says the order almost collapsed, while a different Tobias example has a family group chat drift. The keyed cause is directionally right, but the stem blends two scenes. (must fix); quiz choices overall: Correct answers often carry the chapter's exact vocabulary while distractor\n  ch14 — Example 5: Reads like a slot-filler: Christophe's team recites the chapter's named examples and framework, but there is no concrete before-to-after decision or consequence. (must fix); Implementation plan if-then 2: Too tied to the book's own Apple-Dell/Microsoft artifact instead of transferring the principle to a general case where a true fact is used in the wrong comparison. (must fix); quiz Q3:",
+  "findings": [],
+  "artifacts": [
+    "state/qc/start-with-why.sweep.json"
+  ],
+  "recommendedFixes": [
+    "Use the QC repair brief/prompt for the latest round. Repair content only; never attest your own repair.",
+    "After edits, run qc-converge and then a fresh QC round."
+  ],
+  "validationCommands": [
+    "npx tsx src/cli.ts qc-converge start-with-why",
+    "npx tsx src/cli.ts book-run start-with-why --no-publish"
+  ],
+  "nextCommand": "npx tsx src/cli.ts book-run start-with-why --no-publish",
+  "promptPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/start-with-why/book-run/qc.20260705025521.ea58c51b.repair.md",
+  "reportPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/start-with-why/book-run/qc.20260705025521.ea58c51b.repair.json"
+}

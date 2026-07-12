@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 8,
+    "quizzes": 0,
+    "transfer": 5,
+    "practical": 12,
+    "summaries": 3,
+    "tone": 25,
+    "limits": 0,
+    "insight": 12,
+    "density": 18,
+    "beginner": 35
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "what would a new leader do without the memory-chip attachment?",
+      "why": "This is the only concrete, memorable mechanism in the chapter."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This reads as internal placeholder text, not learner-facing prose."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now",
+      "why": "Two promised learner-support sections are present as headings but contain no content."
+    },
+    {
+      "quote": "## Quiz\n## Review cards",
+      "why": "The quiz and review-card sections are structurally empty, so the product cannot test or reinforce learning."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder/meta text rather than a reader-facing opening, so it does not establish the chapter's learning problem.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read says only 'A concise idea' and does not stand alone as a summary.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read says only 'One added angle' and does not stand alone as a deeper explanation.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, a missing promised section.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the chapter provides no concrete exercise in the promised place.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The examples section is empty, so there are no transfer cases beyond the Intel scenario.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section has no questions, making the quiz broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The review cards section is empty, so the review layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The memorable lines section is empty, so the chapter does not deliver the promised retention aids.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The Intel scenario gives a usable core move but is compressed into one run-on block with labels embedded in prose, making the learning path hard to scan.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The only usable learning content is the outsider-question scenario in the full read, and even that is thin. Most required product sections are empty or placeholder-like, including the quiz, examples, takeaway, practice, review cards, and memorable lines. A reader could glimpse the core idea, but the chapter does not yet function as a professional learning chapter."
+}
+```

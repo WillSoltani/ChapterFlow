@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "0871eb1f976f564159233c55812be7800ad09cb849c032a0ea4178d9ce33859b",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "q01",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 1,
+      "agreement": false,
+      "keyCorrect": "wrong",
+      "rationale": "Keyed c avoids the weak passage; choice b is the supported purposeful-practice change and is even described by the key explanation."
+    },
+    {
+      "itemId": "q02",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a isolates the repeated redox error with step-level feedback; b and c stay too broad or delayed."
+    },
+    {
+      "itemId": "q03",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c names the core flaw: full-performance repetition lets the same weak slide survive."
+    },
+    {
+      "itemId": "q04",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b uses a specific cue, immediate video feedback, and short repeats aimed at the visible crossover fault."
+    },
+    {
+      "itemId": "q05",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b captures the feedback loop: each miss changes the next grouping strategy."
+    },
+    {
+      "itemId": "q06",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "ambiguous",
+      "rationale": "Choices a and b both directly reject repetition alone; a says comfort can leave size differences, while b adds visible target feedback."
+    },
+    {
+      "itemId": "q07",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c states the needed condition for feedback: it must change the next attempt while the error is traceable."
+    },
+    {
+      "itemId": "q08",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a is best because Plan B shortens the feedback loop enough to alter the next small batch."
+    },
+    {
+      "itemId": "q09",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c turns the vague goal into visible, countable, correctable actions across repeated turns."
+    }
+  ]
+}
+```

@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "the-now-habit-ch06",
+  "chapterNumber": 6,
+  "contentHash": "190121740bdb6400",
+  "reviewerSessionId": "eval-proxy-the-now-habit-ch06-1783022620443",
+  "scores": {
+    "retention": 92,
+    "quizzes": 84,
+    "transfer": 88,
+    "practical": 91,
+    "summaries": 90,
+    "tone": 89,
+    "limits": 93,
+    "insight": 88,
+    "density": 87,
+    "beginner": 91
+  },
+  "composite": 89.3,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "c",
+      "a",
+      "c",
+      "b",
+      "a",
+      "c",
+      "a"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Blank squares are not promises.",
+      "why": "Strongest compressed memory hook; it carries the whole method in one plain image.",
+      "verified": true
+    },
+    {
+      "quote": "The Unschedule treats tomorrow like a real day with a body inside it.",
+      "why": "Explains the mechanism memorably: time planning must account for human limits.",
+      "verified": true
+    },
+    {
+      "quote": "His first plan was not discipline. It was a fairy tale with boxes.",
+      "why": "Sharp, memorable diagnosis of fantasy scheduling.",
+      "verified": true
+    },
+    {
+      "quote": "Presley finds The Unschedule on page 118 of the 2007 Tarcher contents, not tucked in a footnote.",
+      "why": "Worst texture issue: the bibliographic detail feels oddly procedural compared with the otherwise human chapter.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several correct answers are the most balanced or prose-like option while distractors use obvious extremes such as 'no calendar role,' 'rely on mood,' or 'until the project ends.'",
+    "Q3 and Q7 have correct choices that are also the most complete restatement of the chapter's central wording, making them guessable without much reading."
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The opening Presley/page-118 bibliographic framing is less useful to a beginner than the method itself and has a slight production-note smell.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1-Q2",
+      "problem": "Two early questions test placement in the book sequence more than practical mastery of The Unschedule, so the quiz spends too much space on metadata.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Some wrong options are too obviously extreme or silly, which weakens assessment value even though the keys are sound.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The named examples are clear but slightly over-staged; several feel designed to demonstrate the concept rather than like naturally occurring reader situations.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter. The central move is memorable, practical, and repeated through clean images: visible life first, credit only after finished focus. The chapter is especially strong on limits because it includes the emergency counter-case instead of pretending the method solves every time problem. The main weakness is not accuracy but polish: a few quiz items are guessable, and the book-placement material feels less valuable than direct practice. Still, the prose is clear, beginner-safe, and likely to change how a reader opens a calendar."
+}

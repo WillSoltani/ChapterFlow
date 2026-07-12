@@ -1,0 +1,39 @@
+2026-07-08T05:22:37.648Z [info]  [content-deal] start-with-why: device ubiquity — named-anchor-lead 57%, proxy-cast 36%, second-setting 43%, return-proof 29%, hard-detail-boundary 36%, three-part-split 14%, practice-shell 100%⚠
+2026-07-08T05:22:37.656Z [info]  [content-deal] start-with-why: repairing 6 chapter(s) (ch01[drop practice-shell], ch02[drop practice-shell], ch03[drop practice-shell], ch04[drop practice-shell], ch05[drop practice-shell], ch06[drop practice-shell]); preserving ch07, ch08, ch09, ch10, ch11, ch12, ch13, ch14.
+2026-07-08T05:22:37.670Z [info]  author ch01: card is 30315 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T05:22:37.672Z [info]  author ch01: whole-chapter writer working (attempt 1, card 30315 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T05:38:13.434Z [info]  author ch01: done (gate-chapter clean)
+2026-07-08T05:38:47.351Z [info]  author review ch01-sameness-check: composite 83.2 ship=false keys 9/9 → FAIL
+2026-07-08T05:38:47.352Z [info]  [sameness] ch01: diversified to "content-deal" — composite 83.2, ship=false, keys 9/9 (near-bar; conductor tiebreak will formalize) [substituted (non-banned): hard-detail-boundary].
+2026-07-08T05:38:47.373Z [info]  author ch02: card is 30368 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T05:38:47.376Z [info]  author ch02: whole-chapter writer working (attempt 1, card 30368 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T05:51:47.893Z [info]  author ch02: done (gate-chapter clean)
+2026-07-08T05:52:54.586Z [info]  author review ch02-sameness-check: composite 84.7 ship=false keys 9/9 → FAIL
+2026-07-08T05:52:54.593Z [info]  [provenance] restore ch=start-with-why-ch02: restored bytes 38d01ace6b65198c do not match the recorded previousContentHash 3c0b94354df195a6 — cannot safely roll back; leaving the record untouched.
+2026-07-08T05:52:54.593Z [info]  [sameness] ch02: diversified draft did not clear the near-bar band (composite 84.7, ship=false, keys 9/9, valid=true) — restored prior passing bytes.
+2026-07-08T05:52:54.608Z [info]  author ch03: card is 29308 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T05:52:54.612Z [info]  author ch03: whole-chapter writer working (attempt 1, card 29308 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T06:05:34.522Z [info]  author ch03: done (gate-chapter clean)
+2026-07-08T06:06:11.910Z [info]  author review ch03-sameness-check: composite 85.8 ship=true keys 9/9 → PASS
+2026-07-08T06:06:11.910Z [info]  [provenance] restore ch=start-with-why-ch03: restored bytes 8ccb6fb4f8e96a21 do not match the recorded previousContentHash aa505c8fa47a98b6 — cannot safely roll back; leaving the record untouched.
+2026-07-08T06:06:11.918Z [info]  [sameness] ch03: repaired draft cleared review (composite 85.8) but STILL uses banned device(s) three-part-split — reverted (devices-persisted). Evidence: three-part-split: "ow. The Golden Circle is useful only when order meets evidence: s"
+2026-07-08T06:06:11.933Z [info]  author ch04: card is 30088 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T06:06:11.935Z [info]  author ch04: whole-chapter writer working (attempt 1, card 30088 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T06:12:27.206Z [info]  author ch04: done (gate-chapter clean)
+2026-07-08T06:12:58.636Z [info]  author review ch04-sameness-check: composite 85.7 ship=true keys 9/9 → PASS
+2026-07-08T06:12:58.637Z [info]  [sameness] ch04: diversified to "content-deal" — composite 85.7, ship=true, keys 9/9.
+2026-07-08T06:12:58.649Z [info]  author ch05: card is 29781 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T06:12:58.651Z [info]  author ch05: whole-chapter writer working (attempt 1, card 29781 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T06:27:52.648Z [info]  author ch05: done (gate-chapter clean)
+2026-07-08T06:28:32.017Z [info]  author review ch05-sameness-check: composite 87 ship=false keys 8/9 → FAIL
+2026-07-08T06:28:32.020Z [info]  [provenance] restore ch=start-with-why-ch05: restored bytes 5daf86e541e1f96c do not match the recorded previousContentHash 7da2879ecd558407 — cannot safely roll back; leaving the record untouched.
+2026-07-08T06:28:32.020Z [info]  [sameness] ch05: diversified draft did not clear the near-bar band (composite 87, ship=false, keys 8/9, valid=true) — restored prior passing bytes.
+2026-07-08T06:28:32.030Z [info]  author ch06: card is 29635 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T06:28:32.032Z [info]  author ch06: whole-chapter writer working (attempt 1, card 29635 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T06:42:20.430Z [info]  author ch06: done (gate-chapter clean)
+2026-07-08T06:42:53.670Z [info]  author review ch06-sameness-check: composite 86.4 ship=true keys 9/9 → PASS
+2026-07-08T06:42:53.672Z [info]  [provenance] restore ch=start-with-why-ch06: restored bytes f8dc3df27716c19d do not match the recorded previousContentHash 4003acc6ece4b725 — cannot safely roll back; leaving the record untouched.
+2026-07-08T06:42:53.672Z [info]  [sameness] ch06: repaired draft cleared review (composite 86.4) but STILL uses banned device(s) proxy-cast — reverted (devices-persisted). Evidence: proxy-cast: "invented name(s): Houston"
+2026-07-08T06:42:53.678Z [info]  [content-deal] start-with-why: repair summary — kept-and-clean 2, devices-persisted 2, reverted-quality 2, write-failed 0, skipped-cap 0.
+2026-07-08T06:42:53.678Z [info]  [content-deal] start-with-why: DEVICES PERSISTED on ch03[three-part-split], ch06[proxy-cast] — the writer did not shed the banned device(s); grants spent, prior bytes restored.
+2026-07-08T06:42:53.688Z [info]  [content-deal] start-with-why: AFTER — named-anchor-lead 50%, proxy-cast 36%, second-setting 43%, return-proof 29%, hard-detail-boundary 43%, three-part-split 14%, practice-shell 86%⚠

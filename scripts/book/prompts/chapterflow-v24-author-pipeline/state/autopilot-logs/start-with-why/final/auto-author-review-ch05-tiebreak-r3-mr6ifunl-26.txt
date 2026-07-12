@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "c", "a", "a", "b", "c", "b"],
+    "keyDisagreements": ["Q6 is only partly sound: the key says Kelleher with Southwest makes the pattern less one-off, but the chapter's own transfer logic says another setting is what prevents one-example overreach; Apple is the clearer second setting and is not offered."],
+    "tells": ["No reliable uniquely-longest-choice pattern, but several correct choices are the only ones using the chapter's named anchor language while distractors are obvious reversals such as removing anchors, copying any organization, or treating slogans as enough."]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 78,
+    "transfer": 86,
+    "practical": 84,
+    "summaries": 89,
+    "tone": 90,
+    "limits": 88,
+    "insight": 90,
+    "density": 86,
+    "beginner": 87
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "What would count as proof if nobody heard the slogan?",
+      "why": "Strong memorable diagnostic question; it carries the chapter's core move cleanly."
+    },
+    {
+      "quote": "The slogan does not explain the behavior; the behavior earns the slogan.",
+      "why": "Best compression of the mechanism and likely to stick after a week."
+    },
+    {
+      "quote": "Do not use it when the real facts are thin, when you are still exploring several possible WHYs, or when a one-time experiment should stay loose.",
+      "why": "Good boundary-setting; it prevents the tool from being oversold."
+    },
+    {
+      "quote": "A second example must repeat the same working logic in another setting.",
+      "why": "This creates tension with Q6, whose keyed answer stays inside the Southwest/Kelleher frame rather than another setting."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "The keyed answer says bringing in Herb Kelleher with Southwest makes the pattern less one-off, but the chapter says transfer comes from another setting; Apple is the better support and is absent from the choices.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q2",
+      "problem": "The keyed cause, 'same date-place-scale mold,' is more precise than the prose clearly establishes. The chapter supports Kelleher as people-side contrast, but the exact earlier failure mode is under-explicit.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several distractors are easy to eliminate without close reading because they openly reject anchors, specificity, or framework separation, which are visibly the chapter's main values.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 1",
+      "problem": "Neil 'cuts the fee from the launch copy,' which can read as removing the mention rather than removing the fee; that muddies the practical lesson about behavior proving the promise.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is strong on mechanism, memory, tone, and boundary-setting: the WHY/HOW/WHAT order is concrete, repeated without much padding, and backed by named examples. The main blocker is quiz soundness, especially Q6, where the keyed rationale conflicts with the chapter's own claim that transfer requires another setting. Fix that item and sharpen a couple of quiz distractors, and this would likely clear the professional bar."
+}
+```

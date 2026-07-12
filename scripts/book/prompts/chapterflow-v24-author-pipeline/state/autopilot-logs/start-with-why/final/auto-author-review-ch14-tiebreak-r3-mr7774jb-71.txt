@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several correct choices are uniquely more precise and chapter-phrased than their distractors, especially Q1, Q4, Q6, and Q9.", "Many distractors are obviously overreaching because they say examples can be dropped, facts can travel anywhere, or proof can wait."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 58,
+    "practical": 80,
+    "summaries": 79,
+    "tone": 68,
+    "limits": 84,
+    "insight": 76,
+    "density": 65,
+    "beginner": 57
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A rival is not the judge; it is the alarm.",
+      "why": "Strongest line: short, memorable, and carries the chapter's core distinction."
+    },
+    {
+      "quote": "Name what the rival changed. Name what your older promise required. Then name the proof due before the choice moves.",
+      "why": "This is the practical move in clean sequence."
+    },
+    {
+      "quote": "The loop closes only when outside pressure returns to an inside mark.",
+      "why": "Central mechanism, but also shows the chapter's abstract phrasing burden."
+    },
+    {
+      "quote": "The answer is not back yet.",
+      "why": "Example 5 ends before showing an actual decision or consequence, weakening transfer."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "examples",
+      "problem": "Several examples feel manufactured: they use named role-characters but rarely show a concrete before-to-after decision and consequence in a real setting.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "Christophe's scene names a bar and repeats the lesson, but the action has not resolved and no consequence is shown; it functions as a scaffolded restatement.",
+      "mustFix": true
+    },
+    {
+      "unit": "beginner accessibility",
+      "problem": "Phrases like 'inside mark,' 'return point,' 'proof comes back,' and 'WHY' are repeated before they are made fully concrete for a cold reader.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "The chapter has template smell from repeated naming patterns: rival pressure, older promise, proof owed, return point.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The correct answers often sound more like the chapter's exact vocabulary while distractors are exaggerated, making some keys guessable without full reading.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong core move: let rivals wake up pressure, then return to the older promise and demand proof before moving. The best lines are memorable and the quiz keys are sound, but the prose leans abstract and repetitive, and the manufactured examples do not consistently deliver real transfer because they often stop before a concrete decision produces a consequence. I would not ship at a professional 84 bar until the examples are made more lived-in and the language is made easier for a cold beginner to grasp."
+}
+```

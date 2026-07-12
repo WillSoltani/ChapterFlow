@@ -1,0 +1,38 @@
+2026-07-08T07:24:44.215Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-08T07:24:44.219Z [MAJOR] PHASE research written 0/? · gated 0 · qc'd 0
+2026-07-08T07:24:45.287Z [MAJOR] RESEARCH spawning research session
+2026-07-08T07:37:56.795Z [MAJOR] PHASE write written 0/16 · gated 0 · qc'd 0
+2026-07-08T07:37:58.539Z [info]  author source-packets: compile-source-packets: PASS (16 packet(s))
+2026-07-08T07:37:59.735Z [info]  author source-packet-gate: source-packet-gate: PASS (16 chapter(s), 0 blocker(s), 0 advisory)
+2026-07-08T07:38:01.018Z [info]  author book-design: compile-book-design: PASS
+2026-07-08T07:38:02.246Z [info]  author book-design-gate: book-design-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-08T07:38:03.930Z [info]  author chapter-briefs: compile-chapter-briefs: PASS (32 file(s))
+2026-07-08T07:38:05.189Z [info]  author chapter-brief-gate: chapter-brief-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-08T07:38:05.190Z [info]  author write: 16 missing chapter(s) of 16 (parallel ≤6)
+2026-07-08T07:38:05.197Z [info]  author ch01: card is 26691 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T07:38:05.198Z [info]  author ch01: whole-chapter writer working (attempt 1, card 26691 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T07:38:05.206Z [info]  author ch02: card is 26085 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T07:38:05.207Z [info]  author ch02: whole-chapter writer working (attempt 1, card 26085 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T07:38:05.215Z [info]  author ch03: card is 26447 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T07:38:05.216Z [info]  author ch03: whole-chapter writer working (attempt 1, card 26447 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T07:38:05.224Z [info]  author ch04: card is 25950 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T07:38:05.224Z [info]  author ch04: whole-chapter writer working (attempt 1, card 25950 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T07:38:05.228Z [info]  author ch05: card is 25659 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T07:38:05.228Z [info]  author ch05: whole-chapter writer working (attempt 1, card 25659 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T07:38:05.243Z [info]  author ch06: card is 26088 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T07:38:05.243Z [info]  author ch06: whole-chapter writer working (attempt 1, card 26088 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T07:47:46.350Z [info]  author ch02: ch02: STIER-2 write contract FAIL — lead thread: the dealt lead case "Breakfast factory control system" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line).
+2026-07-08T07:47:46.351Z [info]  author ch02: whole-chapter writer working (attempt 2, card 26461 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T07:50:49.640Z [info]  author ch01: done (gate-chapter clean)
+2026-07-08T07:50:49.644Z [info]  author ch07: card is 25739 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T07:50:49.645Z [info]  author ch07: whole-chapter writer working (attempt 1, card 25739 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T07:52:21.269Z [info]  author ch05: ch05: STIER-2 write contract FAIL — lead thread: the dealt lead (Madelyn) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-08T07:52:21.270Z [info]  author ch05: whole-chapter writer working (attempt 2, card 25986 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T07:55:06.071Z [info]  author ch06: ch06: rubric preflight FAIL — ch06: FAIL ease=59.586✗ fk=7.9 tell=0.111 transfer=0.889 memClean=3 tic=0 nom=4.648 echo=2~ lenTell=4 practice=2 — FAIL: fleschEase
+ch06 fix: echo-tell: quiz q04, q09 key lifts a ≥5-content-token verbatim phrase from the chapter (paraphrase the key)
+2026-07-08T07:55:06.073Z [info]  author ch06: whole-chapter writer working (attempt 2, card 27304 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T07:56:37.758Z [info]  author ch03: done (gate-chapter clean)
+2026-07-08T07:56:37.761Z [info]  author ch08: card is 25770 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T07:56:37.761Z [info]  author ch08: whole-chapter writer working (attempt 1, card 25770 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T07:59:06.447Z [info]  author ch04: ch04: STIER-2 write contract FAIL — lead thread: the dealt lead case "One-on-one meeting" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). | lead thread: the dealt lead (One-on-one) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-08T07:59:06.448Z [info]  author ch04: whole-chapter writer working (attempt 2, card 26464 chars, gpt-5.5 @ xhigh, timeout 60min)

@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "7": {
+      "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 66,
+    "transfer": 83,
+    "practical": 75,
+    "summaries": 78,
+    "tone": 64,
+    "limits": 82,
+    "insight": 73,
+    "density": 60,
+    "beginner": 78
+  },
+  "quotes": [
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "Strong compact line: portable, complete, and likely to stick."
+    },
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "Clear reversal that makes the chapter's sequence memorable."
+    },
+    {
+      "quote": "Every broad push sent too soon spends proof the early believers have not earned yet.",
+      "why": "Best retention line in the diffusion chapter; it turns the concept into a usable warning."
+    },
+    {
+      "quote": "One scene can show an idea. A second scene shows whether the path travels.",
+      "why": "Useful transfer principle, but it also recurs as a house move across chapters."
+    },
+    {
+      "quote": "Hard facts need the same discipline. Diffusion of Innovations belongs with Everett Rogers. About 250,000 people belongs with the March on Washington.",
+      "why": "Shows the repeated hard-detail-with-source pattern; sound, but overused across the sample."
+    },
+    {
+      "quote": "Two stakeholders can disagree without making the move grand. Heath can ask Hazel for one behavior by Friday.",
+      "why": "The named proxy characters feel artificial and interchangeable rather than individually authored."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is correct and mostly answerable, with several strong portable lines and clear mechanisms. Its largest weakness is churn: the chapters repeatedly use the same machinery of named anchors, second settings, edge details, proxy characters, return points, and hard facts staying with sources. That makes the book useful but noticeably manufactured. The quizzes are sound against the prose, yet many answers are too easy because the same preferred move keeps recurring while distractors are visibly wrong. Overall this is a solid draft with real teaching value, but it needs more chapter-specific voice, fresher examples, denser prose, and less visible template scaffolding before it feels premium."
+}
+```

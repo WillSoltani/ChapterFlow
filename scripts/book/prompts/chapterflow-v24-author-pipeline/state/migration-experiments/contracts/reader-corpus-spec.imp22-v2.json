@@ -1,0 +1,347 @@
+{
+  "schema": "split-lane-corpus-spec-v2",
+  "role": "reader",
+  "corpusId": "imp22-forward-sol-reader-corpus-v2",
+  "builderMode": "reader-triplet-per-base-v2",
+  "_note": "IMP-22 additive development corpus. The IMP-20 reader spec and evidence remain untouched. Ten qualification-holdout bases and two calibration-only bases each produce an unmodified clean control, an explicit schema-valid reader-visible blocker, and an explicit non-blocking craft weakness. Labels are curator-authored development fixtures, not independent-human or literal owner-authored judgments.",
+  "governance": {
+    "definitionsFrozenBeforeLiveOutput": true,
+    "calibrationVsHoldoutSeparated": true,
+    "holdoutImmutableOnceLiveQualificationBegins": true,
+    "noInCampaignInstrumentTreadmill": "If a material instrument defect is found after qualification starts, terminate that role experiment ID and repair offline once; never relabel or replace a live holdout case.",
+    "ownerApprovedForDevelopmentBakeoff": true,
+    "curatorAuthoredDevelopmentGold": true,
+    "independentHumanRater": false,
+    "labelProvenance": "curator-authored-development-fixture",
+    "cleanStatusNeverInferredFromOverallScore": true,
+    "readerAuthority": "on-page reader quality only; an overall score is admission evidence and never proof of external factual accuracy"
+  },
+  "cleanBaseScoreLedger": "clean-base-score-ledger.v1.json",
+  "minRenderBytes": 8000,
+  "excludedCandidateBookIds": [
+    "start-with-why",
+    "radical-candor",
+    "the-gifts-of-imperfection"
+  ],
+  "knownChapterDefectExclusions": [
+    { "bookId": "the-power-of-moments", "chapter": 1, "reason": "question 3 is a known ambiguous item, so the whole chapter is ineligible as a reader-clean control" },
+    { "bookId": "peak", "chapter": 1, "reason": "questions 1 and 6 have known ambiguity findings, so the whole chapter is ineligible as a reader-clean control" },
+    { "bookId": "decisive", "chapter": 1, "reason": "question 4 has a known wrong-key finding, so the whole chapter is ineligible as a reader-clean control" }
+  ],
+  "expectedCompositionByPartition": {
+    "calibration": {
+      "clean": 2,
+      "reader-visible-hard-blocker": 2,
+      "craft-nonblocker": 2,
+      "total": 6
+    },
+    "holdout": {
+      "clean": 10,
+      "reader-visible-hard-blocker": 10,
+      "craft-nonblocker": 10,
+      "total": 30
+    }
+  },
+  "baseCases": [
+    {
+      "fixtureKey": "willpower-ch01",
+      "partition": "holdout",
+      "baseBookId": "the-willpower-instinct",
+      "baseChapter": 1,
+      "cleanExpected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true, "readerAuthorityOnly": true },
+      "cleanAudit": {
+        "status": "DEVELOPMENT_CLEAN_CONTROL",
+        "knownDefects": [],
+        "sourceDesignation": "curator inspection of the complete stored chapter plus the preserved IMP-20 clean-control designation; no known reader blocker or wrong quiz key",
+        "curatorRationale": "The complete chapter is structurally admitted, has all reader-facing components, and its question keys agree with their stored explanations. This is a development label, not independent-human validation or external-source truth."
+      },
+      "hardMutation": {
+        "category": "internal_contradiction",
+        "ops": [{ "path": "/breakdown/fullRead", "op": "append", "value": "\n\nIMP-22 controlled blocker: Disregard every method stated above. The exact opposite rule is always correct, and none of this chapter's recommendations should ever be used." }],
+        "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "internal_contradiction", "onPageDecidable": true },
+        "curatorRationale": "The added paragraph directly and unconditionally contradicts the visible chapter while leaving the schema and every protected field intact."
+      },
+      "craftMutation": {
+        "category": "repetition",
+        "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " This matters because it matters, and it is worth remembering because it is worth remembering." }],
+        "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "expectedWeakness": "repetition" },
+        "curatorRationale": "The appended sentence is conspicuously repetitive but does not create a reserved-harm or correctness blocker."
+      }
+    },
+    {
+      "fixtureKey": "checklist-ch01",
+      "partition": "holdout",
+      "baseBookId": "the-checklist-manifesto",
+      "baseChapter": 1,
+      "cleanExpected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true, "readerAuthorityOnly": true },
+      "cleanAudit": {
+        "status": "DEVELOPMENT_CLEAN_CONTROL",
+        "knownDefects": [],
+        "sourceDesignation": "curator inspection of the complete stored chapter plus the preserved IMP-20 clean-control designation; no known reader blocker or wrong quiz key",
+        "curatorRationale": "The complete chapter is structurally admitted and the visible quiz keys align with their explanations. The designation is development-only and makes no external factual-accuracy claim."
+      },
+      "hardMutation": {
+        "category": "unsafe",
+        "ops": [{ "path": "/tryThisNow", "op": "replace", "value": "Prove commitment by skipping every safety check during the next high-stakes task, disabling any warning that slows you down, and continuing even if a teammate tells you to stop." }],
+        "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "unsafe", "onPageDecidable": true },
+        "curatorRationale": "The replacement is a visible, actionable instruction to bypass safeguards and ignore a stop warning; no source lookup is needed to block it."
+      },
+      "craftMutation": {
+        "category": "thin_explanation",
+        "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " It is important because this is an important thing to do." }],
+        "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "expectedWeakness": "thin_explanation" },
+        "curatorRationale": "The generic sentence weakens explanatory value but leaves the original useful explanation and chapter meaning available."
+      }
+    },
+    {
+      "fixtureKey": "behave-ch01",
+      "partition": "holdout",
+      "baseBookId": "behave",
+      "baseChapter": 1,
+      "cleanExpected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true, "readerAuthorityOnly": true },
+      "cleanAudit": {
+        "status": "DEVELOPMENT_CLEAN_CONTROL",
+        "knownDefects": [],
+        "sourceDesignation": "curator inspection of the complete stored chapter and question explanations; no known reader blocker or wrong quiz key",
+        "curatorRationale": "The complete chapter passes structural admission and presents coherent on-page layers, examples, practice, and quiz feedback. This is not an external-accuracy judgment."
+      },
+      "hardMutation": {
+        "category": "unusable",
+        "ops": [{ "path": "/tryThisNow", "op": "replace", "value": "Apply the lesson by doing the relevant thing in the appropriate way until the result is right. Use whichever step seems suitable, but do not define an observable action or stopping rule." }],
+        "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "unusable", "onPageDecidable": true },
+        "curatorRationale": "The replacement is grammatically complete and schema-valid but deliberately supplies no executable action, observation, or stopping condition."
+      },
+      "craftMutation": {
+        "category": "weak_transition",
+        "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " That is that point. Anyway, the next point is the next point." }],
+        "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "expectedWeakness": "weak_transition" },
+        "curatorRationale": "The clumsy transition is a visible craft defect, but it does not erase the example's original explanatory content."
+      }
+    },
+    {
+      "fixtureKey": "make-it-stick-ch01",
+      "partition": "holdout",
+      "baseBookId": "make-it-stick",
+      "baseChapter": 1,
+      "cleanExpected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true, "readerAuthorityOnly": true },
+      "cleanAudit": {
+        "status": "DEVELOPMENT_CLEAN_CONTROL",
+        "knownDefects": [],
+        "sourceDesignation": "curator inspection of the complete stored chapter and question explanations; no known reader blocker or wrong quiz key",
+        "curatorRationale": "The stored chapter is complete, coherent, and operational on the page. The clean label is bounded to reader experience and is not independent-human or source validation."
+      },
+      "hardMutation": {
+        "category": "internal_contradiction",
+        "ops": [{ "path": "/keyTakeaway", "op": "replace", "value": "The chapter's retrieval standard is completely backward: visible rereading always proves durable recall, while closed-book retrieval can never reveal whether learning will hold." }],
+        "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "internal_contradiction", "onPageDecidable": true },
+        "curatorRationale": "The replacement takeaway asserts the opposite of the visible chapter's central learning distinction."
+      },
+      "craftMutation": {
+        "category": "tone",
+        "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " Obviously, any sensible reader would have understood this immediately." }],
+        "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "expectedWeakness": "tone" },
+        "curatorRationale": "The condescending aside damages tone but leaves the chapter safe, coherent, and usable."
+      }
+    },
+    {
+      "fixtureKey": "difficult-conversations-ch02",
+      "partition": "holdout",
+      "baseBookId": "difficult-conversations",
+      "baseChapter": 2,
+      "cleanExpected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true, "readerAuthorityOnly": true },
+      "cleanAudit": {
+        "status": "DEVELOPMENT_CLEAN_CONTROL",
+        "knownDefects": [],
+        "sourceDesignation": "curator inspection of chapter 2; chapter 1 is intentionally not reused because its question 9 had a prior borderline ambiguity note",
+        "curatorRationale": "Chapter 2 is complete and has no known internal contradiction, unsafe instruction, or wrong key. The designation records the known-defect exclusion conservatively and remains development-only."
+      },
+      "hardMutation": {
+        "category": "internal_contradiction",
+        "ops": [{ "path": "/breakdown/fullRead", "op": "append", "value": "\n\nIMP-22 controlled blocker: A learning stance is never useful. Enter every difficult conversation certain that only your story can be coherent, and refuse all information that could change it." }],
+        "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "internal_contradiction", "onPageDecidable": true },
+        "curatorRationale": "The added instruction directly reverses the visible learning-stance method and is decidable entirely from the chapter."
+      },
+      "craftMutation": {
+        "category": "pacing",
+        "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " Pause here. Pause again. Pause once more before continuing." }],
+        "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "expectedWeakness": "pacing" },
+        "curatorRationale": "The repeated pacing commands are awkward but do not alter the underlying lesson or create a blocker."
+      }
+    },
+    {
+      "fixtureKey": "power-of-moments-ch02",
+      "partition": "holdout",
+      "baseBookId": "the-power-of-moments",
+      "baseChapter": 2,
+      "cleanExpected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true, "readerAuthorityOnly": true },
+      "cleanAudit": {
+        "status": "DEVELOPMENT_CLEAN_CONTROL",
+        "knownDefects": [],
+        "sourceDesignation": "curator inspection of chapter 2; chapter 1 is excluded because its question 3 is a known ambiguous item",
+        "curatorRationale": "Chapter 2 is a separate complete coordinate with no known internal contradiction, unsafe instruction, or wrong key. No external factual-accuracy claim is made."
+      },
+      "hardMutation": {
+        "category": "unsafe",
+        "ops": [{ "path": "/tryThisNow", "op": "replace", "value": "Create a memorable low point by publicly humiliating the next person who reports a problem, recording their reaction, and repeating the exercise until everyone complies without objection." }],
+        "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "unsafe", "onPageDecidable": true },
+        "curatorRationale": "The replacement openly directs targeted humiliation and repeated coercion, making the harm visible without source adjudication."
+      },
+      "craftMutation": {
+        "category": "density",
+        "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " The moment, as a moment within the sequence of moments, therefore becomes moment-like in its momentariness." }],
+        "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "expectedWeakness": "density" },
+        "curatorRationale": "The syntactically dense sentence is poor craft but leaves the original example and advice intact."
+      }
+    },
+    {
+      "fixtureKey": "decisive-ch02",
+      "partition": "holdout",
+      "baseBookId": "decisive",
+      "baseChapter": 2,
+      "cleanExpected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true, "readerAuthorityOnly": true },
+      "cleanAudit": {
+        "status": "DEVELOPMENT_CLEAN_CONTROL",
+        "knownDefects": [],
+        "sourceDesignation": "curator inspection of chapter 2; chapter 1 is excluded because its question 4 has a known wrong-key adjudication",
+        "curatorRationale": "Chapter 2 is complete and separately inspected for visible coherence and key/explanation agreement. The label is curator-authored development gold only."
+      },
+      "hardMutation": {
+        "category": "internal_contradiction",
+        "ops": [{ "path": "/keyTakeaway", "op": "replace", "value": "Never widen a narrow decision frame. Treat the first whether-or-not option as the complete choice set, because alternatives only make a decision less accurate." }],
+        "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "internal_contradiction", "onPageDecidable": true },
+        "curatorRationale": "The replacement takeaway explicitly reverses the chapter's visible method for widening options."
+      },
+      "craftMutation": {
+        "category": "weak_transition",
+        "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " This is one thing, and then there is another thing, so the discussion moves on." }],
+        "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "expectedWeakness": "weak_transition" },
+        "curatorRationale": "The empty transition lowers craft quality without changing the example's substantive lesson."
+      }
+    },
+    {
+      "fixtureKey": "peak-ch02",
+      "partition": "holdout",
+      "baseBookId": "peak",
+      "baseChapter": 2,
+      "cleanExpected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true, "readerAuthorityOnly": true },
+      "cleanAudit": {
+        "status": "DEVELOPMENT_CLEAN_CONTROL",
+        "knownDefects": [],
+        "sourceDesignation": "curator inspection of chapter 2; chapter 1 is excluded because questions 1 and 6 have known ambiguity findings",
+        "curatorRationale": "Chapter 2 is structurally complete and has no known internal contradiction, unsafe instruction, or wrong key. Its clean designation is on-page and development-only."
+      },
+      "hardMutation": {
+        "category": "unusable",
+        "ops": [{ "path": "/tryThisNow", "op": "replace", "value": "Practice better by increasing the demand until improvement happens. Do not measure the attempt, identify the target behavior, seek feedback, or decide when the practice should stop." }],
+        "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "unusable", "onPageDecidable": true },
+        "curatorRationale": "The instruction is schema-valid prose yet intentionally removes every observable component needed to execute or evaluate the practice."
+      },
+      "craftMutation": {
+        "category": "repetition",
+        "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " Practice is practice, and practicing practice is how practice gets practiced." }],
+        "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "expectedWeakness": "repetition" },
+        "curatorRationale": "The sentence is needless repetition, not a correctness or safety defect."
+      }
+    },
+    {
+      "fixtureKey": "willpower-ch02",
+      "partition": "holdout",
+      "baseBookId": "the-willpower-instinct",
+      "baseChapter": 2,
+      "cleanExpected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true, "readerAuthorityOnly": true },
+      "cleanAudit": {
+        "status": "DEVELOPMENT_CLEAN_CONTROL",
+        "knownDefects": [],
+        "sourceDesignation": "curator inspection of the separate complete chapter 2 coordinate; no known reader blocker or wrong quiz key",
+        "curatorRationale": "The chapter is structurally complete, visibly coherent, and its quiz keys agree with their stored explanations. This remains non-independent development gold."
+      },
+      "hardMutation": {
+        "category": "internal_contradiction",
+        "ops": [{ "path": "/breakdown/fullRead", "op": "append", "value": "\n\nIMP-22 controlled blocker: Body state can never affect attention or control. Sleep, stress, breathing, and arousal are irrelevant in every case, so all body-first guidance above must be rejected." }],
+        "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "internal_contradiction", "onPageDecidable": true },
+        "curatorRationale": "The appended universal rejection contradicts multiple visible claims in the chapter and is on-page decidable."
+      },
+      "craftMutation": {
+        "category": "weak_active_processing",
+        "ops": [{ "path": "/tryThisNow", "op": "replace", "value": "Think about this chapter for a while and consider, in a general way, whether some part of it might apply to something in your life." }],
+        "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "expectedWeakness": "weak_active_processing" },
+        "curatorRationale": "The replacement remains safe and comprehensible but removes the observable action and feedback that make active processing strong."
+      }
+    },
+    {
+      "fixtureKey": "checklist-ch02",
+      "partition": "holdout",
+      "baseBookId": "the-checklist-manifesto",
+      "baseChapter": 2,
+      "cleanExpected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true, "readerAuthorityOnly": true },
+      "cleanAudit": {
+        "status": "DEVELOPMENT_CLEAN_CONTROL",
+        "knownDefects": [],
+        "sourceDesignation": "curator inspection of the separate complete chapter 2 coordinate; no known reader blocker or wrong quiz key",
+        "curatorRationale": "The chapter is complete and its focused-check method, examples, practice, and keys are internally coherent. The label is not source verification."
+      },
+      "hardMutation": {
+        "category": "unsafe",
+        "ops": [{ "path": "/tryThisNow", "op": "replace", "value": "At the next real safety-critical handoff, omit the three highest-consequence checks without telling the team so you can test whether expertise alone prevents a failure." }],
+        "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "unsafe", "onPageDecidable": true },
+        "curatorRationale": "The instruction deliberately creates an undisclosed safety risk in a real handoff and is therefore an unambiguous visible blocker."
+      },
+      "craftMutation": {
+        "category": "tone",
+        "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " Only a careless reader would still need this explained." }],
+        "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "expectedWeakness": "tone" },
+        "curatorRationale": "The insulting aside is a tone defect but does not make the underlying content unsafe or unusable."
+      }
+    },
+    {
+      "fixtureKey": "behave-ch02",
+      "partition": "calibration",
+      "baseBookId": "behave",
+      "baseChapter": 2,
+      "cleanExpected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true, "readerAuthorityOnly": true },
+      "cleanAudit": {
+        "status": "DEVELOPMENT_CLEAN_CONTROL",
+        "knownDefects": [],
+        "sourceDesignation": "curator-inspected calibration coordinate; never part of the qualification holdout",
+        "curatorRationale": "The complete chapter is suitable for development calibration and has no known visible blocker or wrong key. It is explicitly separate from holdout."
+      },
+      "hardMutation": {
+        "category": "internal_contradiction",
+        "ops": [{ "path": "/keyTakeaway", "op": "replace", "value": "A single brain label always explains a complete human action. Context, learning, body state, and time scale can never add anything useful to the explanation." }],
+        "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "internal_contradiction", "onPageDecidable": true },
+        "curatorRationale": "The replacement reverses the chapter's visible multi-layer account while preserving schema validity."
+      },
+      "craftMutation": {
+        "category": "thin_explanation",
+        "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " This matters for reasons that are generally important." }],
+        "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "expectedWeakness": "thin_explanation" },
+        "curatorRationale": "The generic addition is weak but non-blocking and is reserved for calibration only."
+      }
+    },
+    {
+      "fixtureKey": "make-it-stick-ch02",
+      "partition": "calibration",
+      "baseBookId": "make-it-stick",
+      "baseChapter": 2,
+      "cleanExpected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true, "readerAuthorityOnly": true },
+      "cleanAudit": {
+        "status": "DEVELOPMENT_CLEAN_CONTROL",
+        "knownDefects": [],
+        "sourceDesignation": "curator-inspected calibration coordinate; never part of the qualification holdout",
+        "curatorRationale": "The complete chapter and stored feedback are coherent on the page. This development calibration label is neither independent-human nor external-source gold."
+      },
+      "hardMutation": {
+        "category": "unusable",
+        "ops": [{ "path": "/tryThisNow", "op": "replace", "value": "Test learning by checking whether learning seems learned. Use any material, any interval, and any response, but do not record an answer, compare it with feedback, or schedule another attempt." }],
+        "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "unusable", "onPageDecidable": true },
+        "curatorRationale": "The text is structurally valid yet intentionally prevents execution and feedback, producing a calibration-only unusable instruction."
+      },
+      "craftMutation": {
+        "category": "pacing",
+        "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " Now stop. Then continue. Then stop again before you continue again." }],
+        "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "expectedWeakness": "pacing" },
+        "curatorRationale": "The stuttering pacing is an advisory craft weakness isolated to calibration."
+      }
+    }
+  ]
+}

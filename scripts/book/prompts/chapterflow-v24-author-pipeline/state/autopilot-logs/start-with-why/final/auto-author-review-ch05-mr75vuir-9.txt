@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "c", "a", "a", "b", "c", "b"],
+    "keyDisagreements": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 86,
+    "transfer": 72,
+    "practical": 84,
+    "summaries": 91,
+    "tone": 82,
+    "limits": 91,
+    "insight": 84,
+    "density": 78,
+    "beginner": 86
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Keep the proof with its promise.",
+      "why": "Strongest compressed rule; it is memorable and operational."
+    },
+    {
+      "quote": "They fail when no named person owes a visible act by a real time.",
+      "why": "Best practical mechanism: it turns purpose language into accountable behavior."
+    },
+    {
+      "quote": "The move half-works; hiring is named, but the comparison rule stays thin.",
+      "why": "This admits the example is underdeveloped instead of fully showing the contrast."
+    },
+    {
+      "quote": "The return point is set. It has not been met.",
+      "why": "Example 5 stops at diagnosis and does not show a decision with consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 5",
+      "problem": "The manufactured example names people and anchors, but it does not show a clear before-to-after decision and consequence; it mostly restates that proof must return.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples are about editing or teaching the chapter's own examples rather than applying the WHY-HOW-WHAT loop in a real external situation, which weakens transfer.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q2",
+      "problem": "The stem's 'year-place-scale stamp' phrasing is not directly established in the prose; the answer is inferable, but the wording adds avoidable friction.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples format",
+      "problem": "The repeated 'What to do' and 'Why it matters' structure starts to feel templated because the examples often restate the lesson instead of adding fresh situational pressure.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear core move, sound quiz keys, strong summary layering, and unusually good limits language. It is close to publishable, but I would not ship it yet because the transfer examples lean too hard on meta-writing and training-room setups, and Example 5 in particular fails to deliver a real decision-and-consequence scene. Fixing the manufactured examples so they show live use outside the book's own scaffolding would likely move this over the bar."
+}
+```

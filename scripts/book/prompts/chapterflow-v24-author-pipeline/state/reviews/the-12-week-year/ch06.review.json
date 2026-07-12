@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "the-12-week-year-ch06",
+  "chapterNumber": 6,
+  "contentHash": "6ff2ac1931b1b2ea",
+  "reviewerSessionId": "eval-proxy-the-12-week-year-ch06-1783022657616",
+  "scores": {
+    "retention": 76,
+    "quizzes": 42,
+    "transfer": 58,
+    "practical": 68,
+    "summaries": 57,
+    "tone": 49,
+    "limits": 61,
+    "insight": 69,
+    "density": 50,
+    "beginner": 72
+  },
+  "composite": 60,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The plan has to touch the week while the week can still change.",
+      "why": "Strongest line: memorable, concrete, and captures the mechanism of timely measurement.",
+      "verified": true
+    },
+    {
+      "quote": "Without measurement, execution becomes too easy to overestimate.",
+      "why": "Clear explanation of why the chapter's core move matters.",
+      "verified": true
+    },
+    {
+      "quote": "The execution system argue that planning and effort remain vulnerable to distortion if they are not checked against evidence.",
+      "why": "Worst defect: visible grammar error in the core explanation.",
+      "verified": true
+    },
+    {
+      "quote": "What to do: Move measuring results in high school debate tournament prep. Henrik marks the tournament prep score next to each student name.",
+      "why": "Example mismatch: the preceding scene is about Isabel in a planning office, but the action suddenly becomes Henrik and debate prep.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Correct answers follow a visible a/b/c repeating pattern across all nine questions.",
+    "The three correct answer phrasings repeat almost verbatim, so the reader can answer by pattern matching rather than reading.",
+    "Distractors are giveaway negatives: pep talk, privacy, waiting, or skipping metrics are always obviously wrong."
+  ],
+  "complaints": [
+    {
+      "unit": "Hook",
+      "problem": "Opening sentence has a grammar error: 'One headsets hanging' should not ship in a polished chapter.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "Core explanation contains subject-verb error: 'The execution system argue'.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "Paragraph appears cut off at 'Commitment can sound strong while follow-through remains'.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "Paragraph appears cut off at 'A reader can track results, see the truth, and still fail to change'.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "Opening sentence has subject-verb error: 'Index cards on a debate lectern shows'.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 3",
+      "problem": "Scene names Isabel in a planning office, but the 'What to do' line switches to Henrik and high school debate tournament prep.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples feel stitched together from unrelated mini-scenes, with second characters and venues appearing abruptly inside the same example.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Correct answers follow the exact pattern a, b, c, a, b, c, a, b, c.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Correct options repeat three template phrasings while distractors are obviously bad choices, weakening derivation and teaching value.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "Explanation says the venue is call center quality score review, but the question is county recycling route redesign.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "Explanation says the venue is urban planning public-comment file, but the question is cardiology clinic referral backlog.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "Explanation says the venue is high school debate tournament prep, but the question is community ESL evening cohort.",
+      "mustFix": true
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "Title is 'undefined', which exposes scaffold residue.",
+      "mustFix": true
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "Contains awkward doubled punctuation and casing: 'results..' and lowercase names in if-then lines.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a solid core idea: visible weekly measurement replaces intention with evidence while there is still time to adjust. A few lines make that memorable. But it is not publishable at a professional bar because the execution is visibly rough: grammar errors, cut-off paragraphs, scaffold residue, mismatched examples, repetitive template language, and a quiz whose key can be guessed from pattern and phrasing. The lesson is useful, but the page needs a serious cleanup before it should ship."
+}

@@ -1,0 +1,73 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several distractors announce themselves with overbroad absolutes or obviously bad shortcuts: 'any chief executive', 'harmless', 'at all', 'every organization', and 'no airline details slow it down'."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 62,
+    "practical": 70,
+    "summaries": 85,
+    "tone": 78,
+    "limits": 88,
+    "insight": 84,
+    "density": 76,
+    "beginner": 72
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Belief does not follow trust; trust follows returned proof.",
+      "why": "Strongest compact statement of the chapter's causal model."
+    },
+    {
+      "quote": "Before making a promise, ask three things: what belief is being protected, who will act from it, and when will proof come back?",
+      "why": "Turns the concept into a usable diagnostic question."
+    },
+    {
+      "quote": "After the Continental Airlines turnaround had already played out, Daniel traces the Houston file under one gray binder clip.",
+      "why": "The example feels manufactured and does not show a concrete decision with consequence."
+    },
+    {
+      "quote": "Mark 1 promise you owe today and say aloud: \"I will show the belief before I ask for trust.\"",
+      "why": "Practical move is low-friction, but the spoken line feels staged rather than natural."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "Several examples read like internal source-handling drills rather than real-world transfer cases. Daniel, Hailey, and Georges are named, but the scenes rarely show a concrete before-to-after decision and consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2",
+      "problem": "Daniel tracing a Houston file under a binder clip is atmospheric but not a real application of the trust move; it mostly restates that Continental helps the Southwest lesson travel.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 4",
+      "problem": "Georges spotting 1994 teaches boundary discipline, but the example is about managing evidence in the chapter rather than applying trust-building behavior outside the book's own material.",
+      "mustFix": true
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The action is clear enough, but saying the sentence aloud is performative and less plausible than writing the belief, behavior, owner, and return point.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Some repeated phrases, especially 'return point', 'proof comes back', and 'scope', create a scaffolded feel and may slow a beginner who has not absorbed the chapter's private vocabulary.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The answer key is sound, but some wrong choices are too easy because they use obviously reckless generalizations or dismiss evidence entirely.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong core: trust is not a mood or a word, but a sequence in which belief becomes predictable conduct and then earns loyalty. The best lines are memorable, the summaries mostly stand alone, and the quiz keys are derivable. I would not ship it at a professional bar yet because the transfer section leans too heavily on meta-examples about keeping airline facts straight rather than showing real people using the trust test in new settings. Fix the examples so they show concrete decisions, consequences, and non-airline application, and the chapter would be much closer."
+}
+```

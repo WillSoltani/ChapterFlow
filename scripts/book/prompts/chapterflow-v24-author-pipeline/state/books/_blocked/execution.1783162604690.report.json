@@ -1,0 +1,1066 @@
+{
+  "bookId": "execution",
+  "title": "Execution: The Discipline of Getting Things Done",
+  "author": "Larry Bossidy and Ram Charan",
+  "promotedAt": "2026-07-04T10:56:44.689Z",
+  "chapterCount": 9,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C23",
+            "severity": "major",
+            "unit": "examples",
+            "message": "\"Eleanor\" is the recurring protagonist of multiple examples (1, 3) — each scene needs its own named protagonist (the name plan allocates one per scene). A reused name across scenes reads as a templated cast.",
+            "evidence": "Eleanor"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"cash debt and customer\" appears in both deepRead and fullRead — vary one of them"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A health insurer names a new recovery story while the inherited record stays off to the side. What is actually wrong?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Early warning signs reach a sponsor, and she treats them as disloyal before the path is set. Which diagnosis fits?"
+          }
+        ]
+      },
+      {
+        "chapter": 2,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"the alliedsignalhoneywell 1999 merger\" appears in both fastRead and deepRead — vary one of them"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Curtis approves a separate Lucent unit and leaves the operating asks for later. What happens downstream?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Annabelle hears a target that sounds strong, but she knows none of the business detail. Which principle is at risk?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Winnie separates staffing, strategy, and operating numbers into clean lanes, then gains fade. What best explains why?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Walker sees scale improve and starts taking over each task himself. Which correction fits here?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Annabelle schedules one intense GE-style pass after a broad goal sounds persuasive. What is missing?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Walker praises the clean account before the delivered result is known. What behavior will the better reward rule teach?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Curtis delays hard debate until a customer complaint confirms the weak assumption. What did he misunderstand?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Winnie brings a tidy plan with no named person, due day, or measured result. Which priority comes first?"
+          }
+        ]
+      },
+      {
+        "chapter": 3,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E7.long_sentence",
+            "severity": "major",
+            "unit": "plain_language",
+            "message": "examples[0].scenario: 43-word sentence — too long to read in one breath (cap 34). Break it into shorter sentences.",
+            "evidence": "The answer sits on the yellow pad: Jack Welch at General Electric showed how repeated reviews kept the business close, so Ezra paid the cost in hours and return"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Why did Ezra's annual pass hold this time? The answer sits on the yellow pad: Jack Welch at General Electric showed how repeated reviews kept the business close, so Ezra paid the cost in hours and re…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Before the client names the miss, Dana sees one fact that will not sit straight. The target has a person, but the resource line does not match the promise. Ram Charan, the management adviser known fo…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Your volunteer theater has many priorities before opening night. What maps best from the Bossidy lesson?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When a principal sees early bad news as disloyalty, her team stops raising staffing gaps. What is actually wrong?"
+          },
+          {
+            "catalogId": "C21.circular_back",
+            "severity": "minor",
+            "unit": "reviewCards[1]",
+            "message": "card back likely restates the front premise (4/6 leading content words overlap with front) — rewrite back to answer the front's question, not rephrase it",
+            "evidence": "Under Jack Welch, General Electric made close knowledge a repeated pass through the business, not di"
+          }
+        ]
+      },
+      {
+        "chapter": 4,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E4",
+            "severity": "major",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead: 4/8 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Name the integration standard before the sign-offs move: culture must show up as a behavior tied to a person and a visible line. Honeywell's 1999 integration gives the setting, because a large indust…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The mechanism shows up at the return pass: Violette reads the same store result twice. Before the reset, a service habit was praised while the customer result stayed weak. Once reset, the habit is ti…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "A customer reaches Maxwell first: service sounded busy, but the outcome did not move. The Home Depot was founded in 1978, and its retail operating model makes the failure plain: praise effort while t…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"opened in 1956 for\" appears in both deepRead and fullRead — vary one of them"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A department says it values ownership, but no one can point to the behavior due this week. What is actually wrong?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Several store leads praise effort after a missed customer promise and avoid consequence. What happens downstream?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "During rapid growth, the weekly forum repeats numbers but never teaches which ones matter. Which principle is violated?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A store habit feels energetic but customer and store results do not move. What is missing?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Suppose rewards still favor the old behavior while the new standard is repeated. What follows?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q09",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A quarterly pass looks clean, but conflict and weak assumptions never surface. What did the group mistake for proof?"
+          }
+        ]
+      },
+      {
+        "chapter": 5,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "GE Session C is over, and Eliana has one problem still open. The mechanism has to turn praise into a role-fit claim before the weak choice hardens. General Electric's annual talent reviews during Jac…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "What changes when Lou Gerstner arrives from outside IBM in 1993? Yvonne sees the answer as one reset assignment moves from broad language to a person with matched judgment. As IBM moves from hardware…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Before anyone names it, Reagan sees the GE career becoming the answer. The Home Depot's 2000 Nardelli appointment, a chief executive hired after a GE career for a scaling retail challenge, carried an…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Start with the role demand: the candidate has not shown the missing behavior yet. Maverick, keep GE Session C praise from closing the file inside General Electric's annual talent reviews during Jack …"
+          },
+          {
+            "catalogId": "C3",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+            "evidence": "Start with the role demand: the candidate has not shown the missing behavior yet. Maverick, keep GE Session C praise from closing the file inside General Electric's annual talent reviews during Jack …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The cost shows up while Eliana is auditing the IBM reset roster: one assignment has a name beside it, but no observed judgment for the new work. After Lou Gerstner's 1993 arrival, the company is movi…"
+          }
+        ],
+        "minors": []
+      },
+      {
+        "chapter": 6,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 7,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      },
+      {
+        "chapter": 8,
+        "passed": true,
+        "blockers": [],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead ¶1: 6 four-plus-syllable words (max 2 for a beginner reader). Replace academic vocabulary with plain words."
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The deal sponsor asks what Cisco's technology acquisitions still owe once the case works. Bailey answers before approval: the acquired capability needs integration routines, not only a fit argument. …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Bailey is already routing the acquired technology to teams. She treats Cisco's technology acquisitions as deal logic and skips the integration routines proof. The miss is plain: fit sounded right; no…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The proof comes back weak. Ophelie stops approval before it hardens: the services promise is running on the old path. IBM's 1993 services shift, a move toward services and integrated solutions, gives…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "Money is already aimed at fog when Kyle opens the pass page again. The market line had said customers were shifting, but no rival or customer move had been named. General Electric's structured busine…"
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"to ask whether the\" appears in both fastRead and deepRead — vary one of them"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q01",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "During a museum expansion pass, several actions look useful. Which comes first, and why?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q02",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "After factory leaders funded a new line, the first weak assumption surfaced too late. Which earlier step failed?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q03",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "When a school district pass ends with warm agreement, a weak staffing case survives. Why did that happen?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q04",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Your youth soccer club says participation is growing, so its travel plan must be sound. What maps best?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q05",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A software deal looked clever, then bogged down after closing. Which earlier gap best explains the failure?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q06",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "Before a city budget passes, the totals balance but no service action is named. Which priority is right?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q07",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "A clinic rolls out a new intake path and learns about drift only after patients complain. What was missing?"
+          },
+          {
+            "catalogId": "D1.short_prompt",
+            "severity": "minor",
+            "unit": "quiz.q08",
+            "message": "prompt is short and does not obviously test application — consider a scenario-based framing",
+            "evidence": "If a hardware firm copies IBM's 1993 move toward services, what question should the table press?"
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "passed": true,
+        "blockers": [],
+        "majors": [],
+        "minors": []
+      }
+    ],
+    "totalBlockers": 0,
+    "totalMajors": 19
+  },
+  "bookGate": {
+    "bookId": "execution",
+    "chapterCount": 9,
+    "passed": true,
+    "findings": [
+      {
+        "catalogId": "BP26.exemplar_chapter_reuse",
+        "severity": "minor",
+        "message": "marquee exemplar/proper noun \"Lucent Technologies\" appears in 2 chapters (ch1, ch2). Deal it to one chapter as a teaching unit; other chapters may mention it only in passing.",
+        "evidence": "ch1: Lucent Technologies; ch2: Lucent Technologies"
+      },
+      {
+        "catalogId": "BP26.exemplar_chapter_reuse",
+        "severity": "minor",
+        "message": "marquee exemplar/proper noun \"General Electric\" appears in 4 chapters (ch2, ch3, ch5, ch8). Deal it to one chapter as a teaching unit; other chapters may mention it only in passing.",
+        "evidence": "ch2: General Electric; ch3: General Electric; ch5: General Electric; ch8: General Electric"
+      },
+      {
+        "catalogId": "BP26.exemplar_chapter_reuse",
+        "severity": "minor",
+        "message": "marquee exemplar/proper noun \"Jack Welch\" appears in 2 chapters (ch3, ch5). Deal it to one chapter as a teaching unit; other chapters may mention it only in passing.",
+        "evidence": "ch3: Jack Welch; ch5: Jack Welch"
+      },
+      {
+        "catalogId": "BP26.exemplar_chapter_reuse",
+        "severity": "minor",
+        "message": "marquee exemplar/proper noun \"Home Depot\" appears in 2 chapters (ch4, ch5). Deal it to one chapter as a teaching unit; other chapters may mention it only in passing.",
+        "evidence": "ch4: Home Depot; ch5: Home Depot"
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        27,
+        27,
+        27
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 81,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "execution",
+        "chapterCount": 9,
+        "passed": true,
+        "findings": [],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [],
+          "missingBrief": false,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  },
+  "intraBook": {
+    "totalBlockers": 0,
+    "findings": []
+  },
+  "qcAttestation": {
+    "totalBlockers": 3,
+    "findings": [
+      {
+        "chapter": 1,
+        "checkId": "QC0.stale_attestation",
+        "severity": "blocker",
+        "message": "QC attestation is STALE: the chapter changed since review (attested bd595bd849d582d5, now c928d33551ab07e1, hash v2). Re-review before shipping."
+      },
+      {
+        "chapter": 8,
+        "checkId": "QC0.stale_attestation",
+        "severity": "blocker",
+        "message": "QC attestation is STALE: the chapter changed since review (attested 558e4526564ea5c2, now 1497da2b88aa2c61, hash v2). Re-review before shipping."
+      },
+      {
+        "chapter": 9,
+        "checkId": "QC0.stale_attestation",
+        "severity": "blocker",
+        "message": "QC attestation is STALE: the chapter changed since review (attested 5f15ee611297c117, now 9015e6774f057fcb, hash v2). Re-review before shipping."
+      }
+    ]
+  },
+  "quizKeyJudge": {
+    "totalBlockers": 0,
+    "findings": []
+  },
+  "sourceIntegrity": {
+    "totalBlockers": 0,
+    "findings": []
+  },
+  "sourceReality": {
+    "schemaVersion": "source-reality-policy-v1",
+    "decision": "required-and-verified",
+    "classification": "new-source-v2",
+    "applies": false,
+    "itemCount": 108,
+    "totalBlockers": 0,
+    "findings": [],
+    "summary": "source-reality: required-and-verified — execution (source-verify record present and VERIFIED).",
+    "exemption": null
+  },
+  "generationDebt": {
+    "schemaVersion": "generation-debt-report-v1",
+    "totalBlockers": 0,
+    "totalAdvisories": 0,
+    "findings": [],
+    "waived": []
+  },
+  "noApiCodexQc": {
+    "enabled": true,
+    "totalBlockers": 4,
+    "findings": [
+      {
+        "chapter": 1,
+        "checkId": "QC2.manual_keyjudge_stale",
+        "severity": "blocker",
+        "message": "Manual keyjudge record is stale for execution-ch01."
+      },
+      {
+        "chapter": 8,
+        "checkId": "QC2.manual_keyjudge_stale",
+        "severity": "blocker",
+        "message": "Manual keyjudge record is stale for execution-ch08."
+      },
+      {
+        "chapter": 9,
+        "checkId": "QC2.manual_keyjudge_stale",
+        "severity": "blocker",
+        "message": "Manual keyjudge record is stale for execution-ch09."
+      },
+      {
+        "checkId": "QC3.sweep_stale",
+        "severity": "blocker",
+        "message": "Sweep attestation is stale/missing for chapter(s): 1, 8, 9."
+      }
+    ]
+  },
+  "majorPolicy": {
+    "schemaVersion": "major-production-policy-v1",
+    "totalCurrent": 19,
+    "totalBlockers": 0,
+    "current": [
+      {
+        "id": "5459d88d4ac2",
+        "scope": "chapter:1:examples",
+        "checkId": "C23",
+        "message": "\"Eleanor\" is the recurring protagonist of multiple examples (1, 3) — each scene needs its own named protagonist (the name plan allocates one per scene). A reused name across scenes reads as a templated cast.",
+        "evidence": "Eleanor",
+        "contentHash": "c928d33551ab07e1",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "f749c2a7d947"
+      },
+      {
+        "id": "b717c2f6667d",
+        "scope": "chapter:3:plain_language",
+        "checkId": "E7.long_sentence",
+        "message": "examples[0].scenario: 43-word sentence — too long to read in one breath (cap 34). Break it into shorter sentences.",
+        "evidence": "The answer sits on the yellow pad: Jack Welch at General Electric showed how repeated reviews kept the business close, so Ezra paid the cost in hours and return",
+        "contentHash": "5f1840afbad75f7a",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "0523e9419899"
+      },
+      {
+        "id": "92cf50322449",
+        "scope": "chapter:3:example[0]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "Why did Ezra's annual pass hold this time? The answer sits on the yellow pad: Jack Welch at General Electric showed how repeated reviews kept the business close, so Ezra paid the cost in hours and re…",
+        "contentHash": "5f1840afbad75f7a",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "689389fb4e8d"
+      },
+      {
+        "id": "083133785fc7",
+        "scope": "chapter:3:example[2]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "Before the client names the miss, Dana sees one fact that will not sit straight. The target has a person, but the resource line does not match the promise. Ram Charan, the management adviser known fo…",
+        "contentHash": "5f1840afbad75f7a",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "194a236453d4"
+      },
+      {
+        "id": "50d85c1caebf",
+        "scope": "chapter:4:breakdown.fullRead",
+        "checkId": "E4",
+        "message": "breakdown.fullRead: 4/8 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead.",
+        "contentHash": "c6bb006612d8c945",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "a83cdcfb5c32"
+      },
+      {
+        "id": "d13306ca581e",
+        "scope": "chapter:4:example[0]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "Name the integration standard before the sign-offs move: culture must show up as a behavior tied to a person and a visible line. Honeywell's 1999 integration gives the setting, because a large indust…",
+        "contentHash": "c6bb006612d8c945",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "42b06194bcf2"
+      },
+      {
+        "id": "b158f68f0af7",
+        "scope": "chapter:4:example[2]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "The mechanism shows up at the return pass: Violette reads the same store result twice. Before the reset, a service habit was praised while the customer result stayed weak. Once reset, the habit is ti…",
+        "contentHash": "c6bb006612d8c945",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "15fb83c783c7"
+      },
+      {
+        "id": "f124c0ad0145",
+        "scope": "chapter:4:example[4]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "A customer reaches Maxwell first: service sounded busy, but the outcome did not move. The Home Depot was founded in 1978, and its retail operating model makes the failure plain: praise effort while t…",
+        "contentHash": "c6bb006612d8c945",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "d036a4a26b07"
+      },
+      {
+        "id": "5984d02f75f5",
+        "scope": "chapter:5:example[0]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "GE Session C is over, and Eliana has one problem still open. The mechanism has to turn praise into a role-fit claim before the weak choice hardens. General Electric's annual talent reviews during Jac…",
+        "contentHash": "45f3d50ffd351042",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "25aa594bb7a5"
+      },
+      {
+        "id": "94ea77131216",
+        "scope": "chapter:5:example[1]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "What changes when Lou Gerstner arrives from outside IBM in 1993? Yvonne sees the answer as one reset assignment moves from broad language to a person with matched judgment. As IBM moves from hardware…",
+        "contentHash": "45f3d50ffd351042",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "4cdcaf6e5880"
+      },
+      {
+        "id": "9a9d374d10d0",
+        "scope": "chapter:5:example[2]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "Before anyone names it, Reagan sees the GE career becoming the answer. The Home Depot's 2000 Nardelli appointment, a chief executive hired after a GE career for a scaling retail challenge, carried an…",
+        "contentHash": "45f3d50ffd351042",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "bf89e0e3290d"
+      },
+      {
+        "id": "8ce59ad02529",
+        "scope": "chapter:5:example[3]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "Start with the role demand: the candidate has not shown the missing behavior yet. Maverick, keep GE Session C praise from closing the file inside General Electric's annual talent reviews during Jack …",
+        "contentHash": "45f3d50ffd351042",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "5593358ed18c"
+      },
+      {
+        "id": "fbbd39110973",
+        "scope": "chapter:5:example[3]",
+        "checkId": "C3",
+        "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+        "evidence": "Start with the role demand: the candidate has not shown the missing behavior yet. Maverick, keep GE Session C praise from closing the file inside General Electric's annual talent reviews during Jack …",
+        "contentHash": "45f3d50ffd351042",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "0eaebbcc725e"
+      },
+      {
+        "id": "7aafabe71765",
+        "scope": "chapter:5:example[4]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "The cost shows up while Eliana is auditing the IBM reset roster: one assignment has a name beside it, but no observed judgment for the new work. After Lou Gerstner's 1993 arrival, the company is movi…",
+        "contentHash": "45f3d50ffd351042",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "262b67a3092e"
+      },
+      {
+        "id": "512e6f534b7b",
+        "scope": "chapter:8:breakdown.fastRead",
+        "checkId": "E1",
+        "message": "fastRead ¶1: 6 four-plus-syllable words (max 2 for a beginner reader). Replace academic vocabulary with plain words.",
+        "contentHash": "1497da2b88aa2c61",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "50ba4bb40ae0"
+      },
+      {
+        "id": "4ee0d3013917",
+        "scope": "chapter:8:example[0]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "The deal sponsor asks what Cisco's technology acquisitions still owe once the case works. Bailey answers before approval: the acquired capability needs integration routines, not only a fit argument. …",
+        "contentHash": "1497da2b88aa2c61",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "67ce8022a0a6"
+      },
+      {
+        "id": "1e4806c2ed5b",
+        "scope": "chapter:8:example[1]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "Bailey is already routing the acquired technology to teams. She treats Cisco's technology acquisitions as deal logic and skips the integration routines proof. The miss is plain: fit sounded right; no…",
+        "contentHash": "1497da2b88aa2c61",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "00bc8865ffeb"
+      },
+      {
+        "id": "be41c7d3e5f7",
+        "scope": "chapter:8:example[2]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "The proof comes back weak. Ophelie stops approval before it hardens: the services promise is running on the old path. IBM's 1993 services shift, a move toward services and integrated solutions, gives…",
+        "contentHash": "1497da2b88aa2c61",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "f26d4b9739ee"
+      },
+      {
+        "id": "a768100d89a8",
+        "scope": "chapter:8:example[3]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "Money is already aimed at fog when Kyle opens the pass page again. The market line had said customers were shifting, but no rival or customer move had been named. General Electric's structured busine…",
+        "contentHash": "1497da2b88aa2c61",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "0143cc5839ce"
+      }
+    ],
+    "decisions": [
+      {
+        "finding": {
+          "id": "5459d88d4ac2",
+          "scope": "chapter:1:examples",
+          "checkId": "C23",
+          "message": "\"Eleanor\" is the recurring protagonist of multiple examples (1, 3) — each scene needs its own named protagonist (the name plan allocates one per scene). A reused name across scenes reads as a templated cast.",
+          "evidence": "Eleanor",
+          "contentHash": "c928d33551ab07e1",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "f749c2a7d947"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "b717c2f6667d",
+          "scope": "chapter:3:plain_language",
+          "checkId": "E7.long_sentence",
+          "message": "examples[0].scenario: 43-word sentence — too long to read in one breath (cap 34). Break it into shorter sentences.",
+          "evidence": "The answer sits on the yellow pad: Jack Welch at General Electric showed how repeated reviews kept the business close, so Ezra paid the cost in hours and return",
+          "contentHash": "5f1840afbad75f7a",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "0523e9419899"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "92cf50322449",
+          "scope": "chapter:3:example[0]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Why did Ezra's annual pass hold this time? The answer sits on the yellow pad: Jack Welch at General Electric showed how repeated reviews kept the business close, so Ezra paid the cost in hours and re…",
+          "contentHash": "5f1840afbad75f7a",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "689389fb4e8d"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "083133785fc7",
+          "scope": "chapter:3:example[2]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before the client names the miss, Dana sees one fact that will not sit straight. The target has a person, but the resource line does not match the promise. Ram Charan, the management adviser known fo…",
+          "contentHash": "5f1840afbad75f7a",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "194a236453d4"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "50d85c1caebf",
+          "scope": "chapter:4:breakdown.fullRead",
+          "checkId": "E4",
+          "message": "breakdown.fullRead: 4/8 (50%) of paragraphs open with abstract claims (\"The X is…\", \"There is…\", \"Most people…\", numbered-rule lists). Open with scenes, named characters, or direct address to the reader instead.",
+          "contentHash": "c6bb006612d8c945",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "a83cdcfb5c32"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "d13306ca581e",
+          "scope": "chapter:4:example[0]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Name the integration standard before the sign-offs move: culture must show up as a behavior tied to a person and a visible line. Honeywell's 1999 integration gives the setting, because a large indust…",
+          "contentHash": "c6bb006612d8c945",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "42b06194bcf2"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "b158f68f0af7",
+          "scope": "chapter:4:example[2]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "The mechanism shows up at the return pass: Violette reads the same store result twice. Before the reset, a service habit was praised while the customer result stayed weak. Once reset, the habit is ti…",
+          "contentHash": "c6bb006612d8c945",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "15fb83c783c7"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "f124c0ad0145",
+          "scope": "chapter:4:example[4]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "A customer reaches Maxwell first: service sounded busy, but the outcome did not move. The Home Depot was founded in 1978, and its retail operating model makes the failure plain: praise effort while t…",
+          "contentHash": "c6bb006612d8c945",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "d036a4a26b07"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "5984d02f75f5",
+          "scope": "chapter:5:example[0]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "GE Session C is over, and Eliana has one problem still open. The mechanism has to turn praise into a role-fit claim before the weak choice hardens. General Electric's annual talent reviews during Jac…",
+          "contentHash": "45f3d50ffd351042",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "25aa594bb7a5"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "94ea77131216",
+          "scope": "chapter:5:example[1]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "What changes when Lou Gerstner arrives from outside IBM in 1993? Yvonne sees the answer as one reset assignment moves from broad language to a person with matched judgment. As IBM moves from hardware…",
+          "contentHash": "45f3d50ffd351042",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "4cdcaf6e5880"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "9a9d374d10d0",
+          "scope": "chapter:5:example[2]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Before anyone names it, Reagan sees the GE career becoming the answer. The Home Depot's 2000 Nardelli appointment, a chief executive hired after a GE career for a scaling retail challenge, carried an…",
+          "contentHash": "45f3d50ffd351042",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "bf89e0e3290d"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "8ce59ad02529",
+          "scope": "chapter:5:example[3]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Start with the role demand: the candidate has not shown the missing behavior yet. Maverick, keep GE Session C praise from closing the file inside General Electric's annual talent reviews during Jack …",
+          "contentHash": "45f3d50ffd351042",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "5593358ed18c"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "fbbd39110973",
+          "scope": "chapter:5:example[3]",
+          "checkId": "C3",
+          "message": "scenario has no explicit decision point — example doesn't force the reader into the protagonist's shoes",
+          "evidence": "Start with the role demand: the candidate has not shown the missing behavior yet. Maverick, keep GE Session C praise from closing the file inside General Electric's annual talent reviews during Jack …",
+          "contentHash": "45f3d50ffd351042",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "0eaebbcc725e"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "7aafabe71765",
+          "scope": "chapter:5:example[4]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "The cost shows up while Eliana is auditing the IBM reset roster: one assignment has a name beside it, but no observed judgment for the new work. After Lou Gerstner's 1993 arrival, the company is movi…",
+          "contentHash": "45f3d50ffd351042",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "262b67a3092e"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "512e6f534b7b",
+          "scope": "chapter:8:breakdown.fastRead",
+          "checkId": "E1",
+          "message": "fastRead ¶1: 6 four-plus-syllable words (max 2 for a beginner reader). Replace academic vocabulary with plain words.",
+          "contentHash": "1497da2b88aa2c61",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "50ba4bb40ae0"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "4ee0d3013917",
+          "scope": "chapter:8:example[0]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "The deal sponsor asks what Cisco's technology acquisitions still owe once the case works. Bailey answers before approval: the acquired capability needs integration routines, not only a fit argument. …",
+          "contentHash": "1497da2b88aa2c61",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "67ce8022a0a6"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "1e4806c2ed5b",
+          "scope": "chapter:8:example[1]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Bailey is already routing the acquired technology to teams. She treats Cisco's technology acquisitions as deal logic and skips the integration routines proof. The miss is plain: fit sounded right; no…",
+          "contentHash": "1497da2b88aa2c61",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "00bc8865ffeb"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "be41c7d3e5f7",
+          "scope": "chapter:8:example[2]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "The proof comes back weak. Ophelie stops approval before it hardens: the services promise is running on the old path. IBM's 1993 services shift, a move toward services and integrated solutions, gives…",
+          "contentHash": "1497da2b88aa2c61",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "f26d4b9739ee"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "a768100d89a8",
+          "scope": "chapter:8:example[3]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "Money is already aimed at fog when Kyle opens the pass page again. The market line had said customers were shifting, but no rival or customer move had been named. General Electric's structured busine…",
+          "contentHash": "1497da2b88aa2c61",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "0143cc5839ce"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      }
+    ]
+  },
+  "canonicalChapterSet": {
+    "indexPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/indexes/execution.json",
+    "chapterCount": 9,
+    "totalBlockers": 0,
+    "findings": []
+  },
+  "productionManifest": {
+    "contentId": null,
+    "skipped": true,
+    "totalBlockers": 0,
+    "findings": []
+  }
+}

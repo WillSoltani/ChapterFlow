@@ -1,0 +1,94 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "mechanisms": [
+      "The prose defines heart rate variability as adaptive beat-to-beat adjustment and links higher variability—not merely a slower pulse—to stronger self-regulation.",
+      "The Trier task shows that silent evaluation and low control create social threat, allowing stress without physical injury.",
+      "The chapter says stress narrows attention toward immediate shelter or relief while making the long goal harder to hear.",
+      "Tang's brief meditation practice is presented as training attention and reducing reactivity so an urge can be noticed before action.",
+      "Slow breathing reduces bodily arousal and restores attention and control, keeping the choosing system available.",
+      "The pause-and-plan model warns that added arousal narrows attention and leaves less room to weigh future goals.",
+      "The sleep section says tired attention loses its grip on intended goals when louder cues compete.",
+      "The prose says movement can improve mood, stress regulation, and executive function, lowering the load on later choices.",
+      "The chapter explicitly says waiting until a craving peaks is too late; the body needs a calmer runway beforehand."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q2, Q3, Q4, Q7, Q8, and Q9 reuse distinctive phrases from the prose in their correct choices, making lexical matching possible.",
+      "Many distractors contain conspicuous absolutes or category errors such as “only,” “separate,” “proved,” and “should be left out,” so test-wise elimination is often enough.",
+      "The correct choices consistently offer nuanced mechanisms while distractors tend to moralize, deny any connection, or make an exclusive claim."
+    ]
+  },
+  "scores": {
+    "retention": 93,
+    "quizzes": 84,
+    "transfer": 68,
+    "practical": 87,
+    "summaries": 91,
+    "tone": 85,
+    "limits": 96,
+    "insight": 88,
+    "density": 81,
+    "beginner": 92
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Panic is a poor coach. Calm gives the future a vote.",
+      "why": "A compact, memorable statement of both the problem and the chapter's core move."
+    },
+    {
+      "quote": "A slower body can also become a hiding place.",
+      "why": "This introduces an unusually clear and useful limit: calming down must still lead to action."
+    },
+    {
+      "quote": "The visible cost buys Landon the flexible state Amelie will need when the pastry feels urgent.",
+      "why": "It converts a reported HRV association into an unsupported causal claim about walking away producing a flexible physiological state."
+    },
+    {
+      "quote": "The object carries the attention Yi-Yuan Tang trained through return practice.",
+      "why": "It misleadingly attributes environmental cue placement to evidence described only as meditation-based attention training."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples 1-6",
+      "problem": "All six are presented as concrete named events—and several include inner thoughts or dialogue—without identifying them as hypothetical composites; this makes invented people, events, and quotations read like reported cases.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example implies that leaving the snack table and accepting a social cost produces the “flexible state” associated with higher heart rate variability, although the chapter reports only an association between variability and self-regulation.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 4",
+      "problem": "The example credits Tang's meditation research with the distinct tactic of moving a pill bottle into view; the chapter's account of that research supports attention practice, not environmental cue placement.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 6",
+      "problem": "The example attributes stepping out of line and creating precommitment runway to Segerstrom and Nes, extending their reported HRV association into an intervention claim the chapter has not established.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q2-Q9",
+      "problem": "Most wrong choices rely on obvious absolutes, denial of the chapter's premise, or moralized reasoning, so the distractors test less understanding than the otherwise strong stems could support.",
+      "mustFix": false
+    },
+    {
+      "unit": "Try this now",
+      "problem": "“Notice what that urge was protecting” is abstract and supplies no clear completion criterion, making the immediate exercise less actionable than the later implementation plan.",
+      "mustFix": false
+    },
+    {
+      "unit": "Implementation plan, weekly practice",
+      "problem": "Teaching the branded phrase to another person is less direct and lower-value practice than rehearsing the state-change sequence during one's own real decision.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a clear, memorable body-first move: reduce arousal early enough to restore attention and let future consequences influence the choice. Its layered reads, concrete implementation cues, beginner-friendly explanations, and unusually responsible discussion of delay and avoidance are strong, and every quiz answer is derivable with high confidence. The main weakness is the example suite: named fictional scenes and quotations are not labeled as hypothetical, while several examples stretch correlational or meditation evidence into unsupported causal tactics. Those reader-misleading examples, plus overly eliminable quiz distractors, keep an otherwise professional chapter from shipping until the scenarios are labeled and the research attributions are narrowed."
+}
+```

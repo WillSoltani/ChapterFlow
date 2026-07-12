@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "chapterflow-self-healing-repair-v1",
+  "createdAt": "2026-07-09T14:14:06.632Z",
+  "bookId": "the-culture-code",
+  "runId": "book-run",
+  "stage": "qc",
+  "severity": "blocker",
+  "summary": "author acceptance REJECTED (churn HIGH) and BOTH bounded repair lanes are spent for every content-repair target:\n  content-device lane: kept no chapter (reverted / devices-persisted / grant-consumed) on ch01\n  global regen lane: exhausted for those chapters (cap 2 write attempts/chapter)\nManual escape hatch — reset a chapter's content-repair grant and force one fresh attempt, then re-run book acceptance:\n  content-repair-book the-culture-code --only <ch[,ch...]> [--force]\nReaders:\n  reader auto-author-book-reader-1-mrdl6b4a-4: comp=70 gate=FAIL churn=HIGH — The sample has a real instructional spine: it repeatedly pushes readers to ground culture claims in visible behavior, named settings, and testable cues. The quizzes are answerable and the keyed answers match my derivations, but the answer choices are often predictable, explanations are absent, and m\n  reader auto-author-book-reader-2-mrdl6b4c-5: comp=73.3 gate=FAIL churn=HIGH — The sample has real strengths: the chapters usually keep claims bounded, name failure modes, and offer several memorable lines. The quizzes are answerable from the prose and I found no key mismatches. But the gate fails because one source claim smells factually wrong, and the book-level experience i\n  reader auto-author-book-reader-3-mrdl6b4c-6: comp=72.6 gate=FAIL churn=HIGH — The sample is keyed sound on the quizzes, and many chapter-level lessons are useful, concrete, and bounded. The gate fails because at least one named factual anchor smells wrong, especially the Will Felps institutional attribution, which is severe in chapters that repeatedly demand exact source disc",
+  "findings": [],
+  "artifacts": [
+    "state/qc/the-culture-code.sweep.json"
+  ],
+  "recommendedFixes": [
+    "Use the QC repair brief/prompt for the latest round. Repair content only; never attest your own repair.",
+    "After edits, run qc-converge and then a fresh QC round."
+  ],
+  "validationCommands": [
+    "npx tsx src/cli.ts qc-converge the-culture-code",
+    "npx tsx src/cli.ts book-run the-culture-code --no-publish"
+  ],
+  "nextCommand": "npx tsx src/cli.ts book-run the-culture-code --no-publish",
+  "promptPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/the-culture-code/book-run/qc.20260709141406.21e31435.repair.md",
+  "reportPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/the-culture-code/book-run/qc.20260709141406.21e31435.repair.json"
+}

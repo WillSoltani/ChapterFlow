@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "c", "a", "c", "b", "b", "c", "b", "a"],
+    "keyDisagreements": [],
+    "tells": ["Correct choices often reuse the chapter's signature phrasing more precisely than distractors: scope mark, earned use, named anchors, returned proof, visible behavior, second venue.", "Several distractors are easy to reject without reading because they use absolutes or minimizers such as every, only, just, and can still stand."]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 82,
+    "transfer": 72,
+    "practical": 78,
+    "summaries": 86,
+    "tone": 80,
+    "limits": 88,
+    "insight": 84,
+    "density": 79,
+    "beginner": 77
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The WHY does not make the HOW small; the HOW keeps the WHY honest.",
+      "why": "Strongest memorable line; it compresses the chapter's core distinction into a durable sentence."
+    },
+    {
+      "quote": "Ask where proof comes back.",
+      "why": "Strong practical handle; a reader can remember and reuse it quickly."
+    },
+    {
+      "quote": "Their story is not more color after Microsoft.",
+      "why": "Good transfer mechanism; it explains why the second example exists instead of merely adding another famous case."
+    },
+    {
+      "quote": "Anais's pencil stops under 1923.",
+      "why": "Worst defect: some examples feel staged around internal names and editing gestures rather than lived decisions with consequences."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "Several examples are about drafts, paragraphs, and internal lesson handling rather than real-world use outside the chapter's own founder material; this weakens transfer.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2",
+      "problem": "The example diagnoses that Paul Allen has faded, but it does not show a concrete before-to-after decision and consequence beyond restating the lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Correct answers are often identifiable by chapter-specific phrasing and more disciplined wording, while distractors lean on obvious overreach or minimization.",
+      "mustFix": false
+    },
+    {
+      "unit": "beginner path",
+      "problem": "WHY-type, HOW-type, WHAT output, return point, carrier, and scope mark are introduced quickly; a cold beginner can follow, but the abstraction load is high.",
+      "mustFix": false
+    },
+    {
+      "unit": "practical section",
+      "problem": "The actions are concrete but slightly theatrical in wording, especially the scripted sentence; a real reader may need a plainer version for normal conversation.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a real, memorable move: do not trust WHY until HOW and visible output bring proof back. The founder-pair structure is coherent, the summaries are layered, and the limits are unusually honest about overreach. I would not ship at a professional 84 bar because the transfer layer leans too heavily on staged draft-review examples and the same founder material, so the learning promise travels less well than the prose says it does. The quiz is mostly sound, but its correct choices often wear the chapter's vocabulary too visibly."
+}
+```

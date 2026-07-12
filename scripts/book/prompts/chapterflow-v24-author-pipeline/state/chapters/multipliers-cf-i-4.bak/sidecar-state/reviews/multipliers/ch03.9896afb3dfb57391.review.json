@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "multipliers-ch03",
+  "chapterNumber": 3,
+  "contentHash": "9896afb3dfb57391",
+  "reviewerSessionId": "auto-author-review-ch03-mrd0d8z0-27",
+  "scores": {
+    "retention": 91,
+    "quizzes": 84,
+    "transfer": 86,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 90,
+    "limits": 88,
+    "insight": 89,
+    "density": 87,
+    "beginner": 86
+  },
+  "composite": 88.1,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "c",
+      "a",
+      "b",
+      "a",
+      "a",
+      "c",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The price of the quiet yes is a clean report and a worse miss.",
+      "why": "Memorable, concrete line that carries the chapter's main warning.",
+      "verified": true
+    },
+    {
+      "quote": "Safety without challenge becomes ease. Challenge without safety becomes fear.",
+      "why": "Strong mechanism statement: it explains the two-sided discipline cleanly.",
+      "verified": true
+    },
+    {
+      "quote": "Do not cash silence as proof.",
+      "why": "Compact takeaway likely to stick and transfer to real meetings.",
+      "verified": true
+    },
+    {
+      "quote": "The miss is caught late, barely.",
+      "why": "The ending of Example 1 is useful but a little under-specified; it withholds what changed because the risk was named.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several correct answers reuse the chapter's exact signature phrases, especially Q3's 'without unfair social cost' and Q9's 'unfinished film' / 'maker's status', making them easier to spot without full comprehension.",
+    "Some distractors are visibly wrong because they endorse silence, delay, or comfort in absolute terms, while the chapter repeatedly rejects those moves."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "A few correct answers are easier to guess because they repeat the chapter's exact tag phrases while distractors often state obviously rejected ideas about silence, comfort, or delay.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example names the blocked handoff but gives only a thin consequence: 'caught late, barely' does not show enough before-to-after detail about what Holly's intervention changed.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The neighborhood-drive scenario is usable but slightly abstract; it names a delivery rule but not enough concrete stake, place, or consequence to make the transfer vivid.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable against a professional bar. The core move is clear and memorable: keep the standard high while lowering the social cost of naming risk, then treat silence as evidence rather than agreement. The summaries stand alone, the examples mostly transfer, and the chapter includes real limits around when not to use open-ended dissent. The main weakness is quiz and example sharpness: some answer choices are over-signaled by exact chapter language, and a couple of examples could show richer consequences. Those are craft issues, not blockers.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "4b3e954b7cdb737f1611f8d18b04c097ec47de0f62aadcc23f76f3e19753f51b",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T04:30:55.877Z"
+}

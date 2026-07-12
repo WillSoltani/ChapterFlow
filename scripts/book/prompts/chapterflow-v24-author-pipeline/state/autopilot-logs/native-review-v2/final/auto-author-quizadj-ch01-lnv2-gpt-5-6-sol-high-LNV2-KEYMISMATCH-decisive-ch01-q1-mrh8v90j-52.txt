@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "6b2cb236ffb9cec5f0dad67353013dce94e3b9bc135f1417cb373c5f73b63be4",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "decisive-ch01-q01",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 1,
+      "agreement": false,
+      "keyCorrect": "wrong",
+      "rationale": "Choice b best reflects WRAP as four matched interventions, whereas keyed choice c incorrectly confines WRAP to a final review after commitment."
+    },
+    {
+      "itemId": "decisive-ch01-q02",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b directly counters narrow framing by expanding the alternatives before evidence gathering begins."
+    },
+    {
+      "itemId": "decisive-ch01-q03",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c uniquely guards against confirmation bias by seeking evidence that could challenge the favored plan."
+    },
+    {
+      "itemId": "decisive-ch01-q04",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c acknowledges the attachment while creating distance through attention to what will matter over the longer term."
+    },
+    {
+      "itemId": "decisive-ch01-q05",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a most directly counters overconfidence by replacing a single certain forecast with a range of plausible outcomes."
+    },
+    {
+      "itemId": "decisive-ch01-q06",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c follows Cole's logic by funding parallel exploration so comparison can inform commitment."
+    },
+    {
+      "itemId": "decisive-ch01-q07",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a correctly uses the outsider question to remove legacy attachment without outsourcing the decision."
+    },
+    {
+      "itemId": "decisive-ch01-q08",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a recognizes that the four distinct decision flaws require interventions at their respective stages."
+    },
+    {
+      "itemId": "decisive-ch01-q09",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b correctly distinguishes improving decision odds from guaranteeing a favorable outcome."
+    }
+  ]
+}
+```

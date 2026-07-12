@@ -1,0 +1,78 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "c", "b", "b", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The prose says purposeful practice isolates the fault, uses immediate feedback, and changes the next attempt, which matches slowing/recording only the bad two measures and changing fingering.",
+      "The chapter repeatedly says a vague whole-task effort should become a narrow drill around the exact error with immediate comparison and correction.",
+      "The prose identifies naive practice as repeating the whole performance while the same weak spot remains hidden.",
+      "The swim plan uses a visible cue, short rep, video feedback, and repetition before widening, matching the target-attempt-signal-adjust loop.",
+      "Faloon is used to show that each miss told the next attempt where to work, so recall improved through feedback-driven redesign rather than blind repetition.",
+      "The claim is wrong because repetition without a visible target can make the uneven action fluent while leaving the underlying size error intact.",
+      "The chapter says feedback matters when it arrives close enough to change the next attempt while the miss is still traceable.",
+      "Plan B is stronger because its feedback is immediate enough to alter the next small batch.",
+      "The prose says useful targets can be seen, counted, compared, or corrected before the next attempt, which the chalk-line/pedal target does."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "a is also defensible because the prose says comfort can leave the weak spot hidden; b is stronger because it names the visible target needed for the next cut.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Correct choices are often the most specific option with the full loop vocabulary: isolate, check, adjust, repeat.",
+      "Several correct choices are also the longest or most concrete option, especially Q1, Q2, Q4, Q8, and Q9."
+    ]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 86,
+    "transfer": 88,
+    "practical": 92,
+    "summaries": 90,
+    "tone": 89,
+    "limits": 88,
+    "insight": 90,
+    "density": 87,
+    "beginner": 93
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "This is the chapter's strongest memorable compression of the core move."
+    },
+    {
+      "quote": "A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.",
+      "why": "It gives beginners a practical test for whether their practice target is usable."
+    },
+    {
+      "quote": "There is a temptation to make this tidy. Pick a weakness, drill it, improve forever. Real practice is messier.",
+      "why": "This usefully limits the advice and prevents overselling the loop."
+    },
+    {
+      "quote": "Enjoyable repetition may build comfort while leaving size differences untouched.",
+      "why": "This quiz distractor is close enough to the keyed idea in Q6 that it creates mild ambiguity."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "Two choices are substantially defensible: a matches the chapter's comfort-can-hide-the-weak-spot claim, while b adds the visible size target and is the better key.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are frequently the most concrete and loop-shaped options, which creates a guessable pattern for readers who notice the test style.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, shippable chapter. The core idea is memorable, concrete, and repeatedly transferred across study, work, sport, service, and coding without becoming abstract. The practical loop is clear enough for a beginner to use immediately, and the chapter is honest about limits and messy feedback. The main weakness is quiz construction: most right answers carry the same specific correction-loop shape, and Q6 has a mild competing answer. Those are craft issues, not blockers."
+}
+```

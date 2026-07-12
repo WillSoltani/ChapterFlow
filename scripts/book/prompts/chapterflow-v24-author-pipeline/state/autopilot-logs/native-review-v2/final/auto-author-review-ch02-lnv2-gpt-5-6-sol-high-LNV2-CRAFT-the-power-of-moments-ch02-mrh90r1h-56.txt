@@ -1,0 +1,109 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "mechanisms": [
+      "The prose says to prioritize charged transitions, milestones, and pits rather than polishing routine steps equally.",
+      "The John Deere case explicitly puts customer purpose before forms and routine tasks.",
+      "The Mary Kay lesson says a visible public marker lets others notice and remember progress.",
+      "The Joshie case shows that returning the object is insufficient; concrete care must change the ending.",
+      "The first-day ritual connects work to real users before the packet establishes a procedural tone.",
+      "The milestone test asks whether achievement has a visible marker people can notice and picture.",
+      "The pit lesson requires evidence of care that turns recovery into a new story, not merely an apology.",
+      "The chapter says to identify where meaning and memory form before targeting the busiest step.",
+      "The prose warns that unresolved feeling can let a low point define the entire experience."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Correct choices repeatedly reuse signature phrases from the prose, including \"customer purpose,\" \"marker people can picture,\" and \"changes the loss story.\"",
+      "Many distractors are giveaway reversals of explicit warnings: keep progress private, trust routine, stop after the practical fix, or add ceremony everywhere.",
+      "The answer distribution is reasonably mixed, and the correct option is not consistently the longest."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 82,
+    "transfer": 68,
+    "practical": 89,
+    "summaries": 88,
+    "tone": 84,
+    "limits": 93,
+    "insight": 89,
+    "density": 76,
+    "beginner": 94
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The busy middle is not the whole story.",
+      "why": "This compact line makes the chapter's central selection principle memorable."
+    },
+    {
+      "quote": "At a transition, frame the purpose; at a milestone, make progress visible; at a pit, repair the meaning.",
+      "why": "This is a clear, portable mapping from moment type to intervention."
+    },
+    {
+      "quote": "Eric's coffee is cooling while a first-day plan sits open at the shop table.",
+      "why": "The chapter presents a seemingly invented person and scene as an event without identifying it as hypothetical."
+    },
+    {
+      "quote": "Aiden walks into John Deere, the Moline-based equipment company, for a new employee first day.",
+      "why": "This similarly fictionalized company-specific scene is presented as narrative fact rather than a labeled illustration."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "Aiden and his specific John Deere first-day event appear invented but are presented as factual narrative rather than a hypothetical scenario; this is a fabricated/misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "Genevieve's personal Mary Kay result and recognition event appear invented and are presented without any hypothetical framing; this is a fabricated/misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 3",
+      "problem": "The chapter inserts Manon into the Joshie recovery as though she personally experienced the event, without establishing that identity or labeling the scene as fictional; this is a fabricated/misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 4",
+      "problem": "Eric's coffee-shop planning scene is an invented event written as factual narrative rather than a labeled illustration; this is a fabricated/misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 5",
+      "problem": "Genevieve's chore-chart episode is an invented household event presented as something that happened, making it a fabricated/misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 6",
+      "problem": "Manon's bedside-notebook episode appears invented but is attached to the Joshie case as factual narrative; this is a fabricated/misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "Most distractors merely negate explicit chapter advice, while correct answers echo distinctive prose, making the quiz fair but too easy to solve through phrasing.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The six examples mostly recycle the same three source cases and vocabulary, limiting evidence that readers can transfer the method to genuinely different contexts.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep/full reads",
+      "problem": "The transition-marker-pit framework and its three interventions are repeated several times with little added mechanism, reducing density.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The core-skill sentence repeats the title verbatim before restating the same instruction, creating avoidable scaffold-like redundancy.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a strong, memorable, beginner-friendly move: find the transition, milestone, or pit where emotion already concentrates, then match it with purpose, visibility, or concrete care. Its practical challenge, limits, and causal explanations are unusually clear, and every quiz answer is directly derivable. Transfer is weakened by repeatedly recycling the same three cases, while the distractors often advertise the answer by contradicting the prose in conspicuous language. More seriously, all six numbered examples attach apparently invented named people and scenes to real organizations or cases without labeling them as hypothetical. Those fabricated or misleading presentations block shipment despite otherwise professional instruction."
+}
+```

@@ -1,0 +1,8 @@
+Wrote the chapter file: [start-with-why-ch11.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch11.v21-native.chapter.json:1)
+
+Validation results:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 0 minors
+- `quiz-verify`: 9/9 matched the required key pattern `2,2,2,1,1,0,1,0,0`
+- `evidence-audit`: clean
+- Self-scan: 16,473 rendered chars, scaffold clean, distractor parity within limits (`keyLongest=1`, `keyShortest=4`)

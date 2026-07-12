@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several correct choices are the only ones using the chapter's exact machinery or named anchors, especially Q2's four-part list and Q8's Cupertino stopping mark, so a test-wise reader could sometimes infer the key without fully reading."]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 84,
+    "transfer": 77,
+    "practical": 82,
+    "summaries": 88,
+    "tone": 86,
+    "limits": 84,
+    "insight": 83,
+    "density": 79,
+    "beginner": 86
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The signal is not what you send. The signal is what comes back.",
+      "why": "Strongest memorable compression of the chapter's core mechanism."
+    },
+    {
+      "quote": "Words state what should be heard. Actions show whether the words have a carrier. Symbols are visible signs that outsiders read. Audience listening asks what came back, not what you hoped went out.",
+      "why": "Clear, teachable model that supports the quiz and review cards."
+    },
+    {
+      "quote": "The broader sentence costs less. The cleaner one costs pride.",
+      "why": "This sounds polished but vague; it gestures at a consequence without showing one."
+    },
+    {
+      "quote": "The audience has not heard it yet.",
+      "why": "This undercuts Example 6 as a transfer example because there is no completed before-to-after result."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 6",
+      "problem": "The example is not complete transfer evidence: Presley schedules a return, but the audience has not heard it yet, so there is no decision-and-consequence arc showing whether the method worked.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The partner-note example mostly restates the lesson about separating examples and says it 'costs trust' or 'costs clarity' without showing a concrete audience consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q2",
+      "problem": "The correct option is a near-verbatim list of the chapter's framework, making it easier to identify by phrasing rather than derivation.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "Some paragraphs spend more energy policing which detail belongs to which example than deepening the listening mechanism, which slightly thins the chapter's central promise.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, mostly publishable chapter with a memorable core move: communication is tested by the signal that comes back, not by the statement sent out. The summaries layer well, the quiz is largely fair and key-sound, and the limits around venue transfer are useful. I would not ship it at a professional 84 bar yet because at least one manufactured transfer example stops before the audience response, which weakens the chapter's own learning promise about listening for the return signal."
+}
+```

@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 72,
+    "transfer": 76,
+    "practical": 70,
+    "summaries": 74,
+    "tone": 62,
+    "limits": 80,
+    "insight": 72,
+    "density": 58,
+    "beginner": 76
+  },
+  "quotes": [
+    {
+      "quote": "A clean fix can be the place a bad guess hides.",
+      "why": "Strong compact line; it is portable and likely to stick."
+    },
+    {
+      "quote": "What would still move if the offer were gone?",
+      "why": "A clean diagnostic question that turns the chapter into a usable lens."
+    },
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "Memorable reversal that captures the trust chapter in one sentence."
+    },
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "Strong retention line and a useful guard against success fog."
+    },
+    {
+      "quote": "If-then 1: [First write the fact line; then write the guess under it.] If the guess appears first, then move the decision until the known line leads.",
+      "why": "The bracketed if-then shell feels mechanical and exposes the template."
+    },
+    {
+      "quote": "The lesson loses checkable ground, so purpose talk has to do the work that named stories should do.",
+      "why": "This is accurate, but the same hard-detail lesson recurs so often it becomes churn."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is quiz-sound and often clear, with several genuinely sticky lines and useful diagnostic questions. Its main weakness is not correctness but manufacture: the chapters repeatedly use the same architecture, the same named-setting logic, the same boundary-detail warning, the same return-proof move, and the same practice shells with nouns swapped. That makes the book feel coherent but not individually authored. It is a solid draft with strong moments, especially on limits and retention, but the density, tone, and churn would keep it below premium publish quality."
+}
+```

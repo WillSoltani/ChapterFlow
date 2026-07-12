@@ -1,0 +1,125 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 8,
+    "quizzes": 0,
+    "transfer": 5,
+    "practical": 2,
+    "summaries": 0,
+    "tone": 18,
+    "limits": 0,
+    "insight": 4,
+    "density": 6,
+    "beginner": 8
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The video shows both: muddy shoes and a shaking terrier.",
+      "why": "This is the clearest concrete image and briefly suggests that competing interpretations can both be true."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read",
+      "why": "All three promised reading layers are consecutive empty headings."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "The instruction is circular because the chapter never identifies or teaches the move."
+    },
+    {
+      "quote": "Odette she must decide whether to accuse him of not caring or say what feeling is already steering her.",
+      "why": "The malformed sentence typifies the unfinished prose, while the supposed lesson remains under-explained."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook contains only production-status metadata, not reader-facing chapter content.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore fails its stand-alone reading-layer promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and therefore fails its stand-alone reading-layer promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, leaving no prose that defines, explains, or supports the chapter's core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the reader is never told what should be retained.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the chapter provides no usable exercise or application procedure.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "A highly specific person, event, time, place, and dialogue are presented without any indication that the scene is hypothetical or sourced.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The prose contains malformed syntax, including \"Ludo he has to choose,\" and awkward context fragments.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "\"Follow the scene's move\" never names an action, and \"It shows the skill\" refers to a skill the chapter has not defined.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "A highly specific person, event, time, place, and dialogue are presented without any indication that the scene is hypothetical or sourced.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "The prose contains malformed syntax, including \"Odette she must decide,\" and awkward context fragments.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The text asserts that embarrassment is the real feeling without showing how Odette or the reader could establish that conclusion.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "\"Follow the scene's move\" never names an action, and \"It shows the skill\" refers to a skill the chapter has not defined.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions or answer choices, so the quiz is broken and cannot be answered or assessed.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, providing no material for retrieval practice.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, providing no intended retention anchors.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfinished scaffold rather than a shippable chapter. Nearly every promised section is empty, the quiz does not exist, and the only substantive material consists of two under-explained scenes whose circular instructions refer to an undefined skill. The muddy-shoes image hints at a potentially useful move—looking past rule enforcement to competing needs—but the chapter never states, explains, bounds, or operationalizes it. A beginner could neither identify the intended lesson with confidence nor apply it after reading."
+}
+```

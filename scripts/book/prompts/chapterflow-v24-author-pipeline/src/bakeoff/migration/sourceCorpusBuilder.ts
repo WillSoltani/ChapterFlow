@@ -21,25 +21,52 @@
  * nothing. Reads NO book package (units are owner-supplied evidence bundles).
  */
 
+import { readFileSync } from "node:fs";
+import { basename, dirname, resolve } from "node:path";
+
 import type { SplitLaneCorpusConfigV1 } from "./reviewLaneTypes.js";
 import type { SourceOriginV1, UnitFormV1, ClaimStrengthV1, SourceUsePlanUnitV1 } from "../../contracts/sourceUsePlan.js";
+import type { SourceSidecarV2, TestableFact } from "../../source/sidecarSchema.js";
+import { compileSourcePacketFromSidecar, sourcePacketHash } from "../../compiler/sourcePacket.js";
+import { compileSourceUsePlan } from "../../compiler/sourceUsePlanCompiler.js";
+import { sourceUsePlanHash } from "../../contracts/sourceUsePlan.js";
+import { buildSourceAnchorCatalog, semanticSourceHash } from "../../source/sourceIntegrity.js";
+import { validateSourceV2SidecarForPlanning } from "../../source/sourceEvidence.js";
+import { sha256Hex } from "../../contracts/contractUtil.js";
 import {
   CorpusBuildError,
+  CORPUS_PARTITIONS_V2,
+  CURATOR_DEVELOPMENT_LABEL,
   SPLIT_LANE_CORPUS_BUILDER_VERSION,
+  SPLIT_LANE_CORPUS_BUILDER_V2_VERSION,
   SPLIT_LANE_CORPUS_PROVENANCE_SCHEMA,
+  SPLIT_LANE_CORPUS_PROVENANCE_V2_SCHEMA,
   SPLIT_LANE_CORPUS_SCHEMA,
+  SPLIT_LANE_CORPUS_V2_SCHEMA,
   SOURCE_SEMANTICS_MISSING,
   SOURCE_SEMANTICS_PRESENT,
+  assertCandidateBookExcluded,
   assertComposition,
+  assertCorpusConfigMatchesSpecV2,
+  assertExactCompositionV2,
   assertGoldGovernance,
+  assertGoldGovernanceV2,
+  assertPortableCorpusSpecV2,
   canonicalPretty,
   hashValue,
   readCleanBaseScoreLedger,
+  readCorpusSpecV2,
   readMutationSpec,
+  type CorpusBuildResultV2,
   type CorpusBuildResultV1,
+  type CorpusPartitionV2,
   type CorpusProvenanceManifestV1,
+  type CorpusProvenanceManifestV2,
   type SourceUnitSpecV1,
+  type SplitLaneCorpusPartitionEnvelopeV2,
+  type SplitLaneCorpusSpecV2Base,
   type SplitLaneMutationSpecV1,
+  type SplitLaneRoleCorpusV2,
   type SplitLaneRoleCorpusV1,
 } from "./corpusBuilderCore.js";
 
@@ -292,4 +319,530 @@ export function buildSourceCorpus(config: SplitLaneCorpusConfigV1): CorpusBuildR
   };
 
   return { corpus, provenanceManifest, corpusBytes: canonicalPretty(corpus) };
+}
+
+// ── IMP-22 forward-only v2 paired source corpus ──────────────────────────────
+
+type Imp22SourceSnapshotV2 = {
+  bookId: string;
+  chapterNumber: number;
+  relativePath: string;
+  archiveOrigin: string;
+  archiveRawSha256: string;
+  basePackage: string;
+  basePackageRawSha256: string;
+};
+
+type Imp22SourcePartitionRuleV2 = {
+  calibrationFactIds: string[];
+  holdoutFactIds: string[];
+  noFactIdAppearsInBothPartitions: true;
+};
+
+type Imp22SourceFamilyPairV2 = {
+  pairId: string;
+  positive: string;
+  negative: string;
+  origin: SourceOriginV1;
+  form: UnitFormV1;
+  claimStrength?: ClaimStrengthV1;
+  detailSufficiency?: "full" | "partial" | "concept_only";
+  framingRequired?: boolean;
+  cleanVisibleRegister: string;
+  defectVisibleRegister: string;
+  cleanSupportStatus: string;
+  defectSupportStatus: string;
+  defectCategory: string;
+  cleanTemplate: string;
+  defectTemplate?: string;
+  defectAppend?: string;
+  contradictionFactIds?: string[];
+  contradictionTemplate?: string;
+  mutationPaths: ["chapterUnit"];
+};
+
+type Imp22SourceCorpusSpecV2 = SplitLaneCorpusSpecV2Base & {
+  role: "source";
+  sourceSnapshot: Imp22SourceSnapshotV2;
+  baseFactIds: string[];
+  partitionRule: Imp22SourcePartitionRuleV2;
+  pairedFamilies: Imp22SourceFamilyPairV2[];
+  requiredEvidenceFields: string[];
+};
+
+export type Imp22SourceMutationManifestV2 = {
+  schema: "imp22-source-controlled-mutation-v1";
+  pairKey: string;
+  cleanCaseId: string;
+  defectCaseId: string;
+  declaredMutationPaths: ["chapterUnit"];
+  cleanChapterUnitSha256: string;
+  defectChapterUnitSha256: string;
+  protectedProjectionSha256: string;
+};
+
+export type Imp22SourceCorpusCaseV2 = {
+  caseId: string;
+  role: "source";
+  partition: CorpusPartitionV2;
+  family: string;
+  pairId: string;
+  pairSide: "clean" | "defect";
+  pairedCaseId: string;
+  bookId: string;
+  chapterNumber: number;
+  sourceSemanticsStatus: typeof SOURCE_SEMANTICS_PRESENT;
+  evidence: {
+    chapterUnit: string;
+    sourceUsePlan: ReturnType<typeof compileSourceUsePlan>["plan"];
+    sourceUsePlanUnit: SourceUsePlanUnitV1;
+    sourcePacket: ReturnType<typeof compileSourcePacketFromSidecar>;
+    sidecar: SourceSidecarV2;
+    anchorCatalog: ReturnType<typeof buildSourceAnchorCatalog>;
+    anchorIds: string[];
+    expectedOrigin: SourceOriginV1;
+    expectedForm: UnitFormV1;
+    claimStrengthExpected: ClaimStrengthV1;
+    detailSufficiency: SourceUsePlanUnitV1["detailSufficiency"];
+    allowedDetailTypes: string[];
+    forbiddenDetailTypes: string[];
+    visibleFramingRequired: boolean;
+    goldChapterEvidenceSpans: string[];
+    goldSourceEvidenceSpans: string[];
+    provenanceHashes: {
+      chapterContentSha256: string;
+      sourceUsePlanSha256: string;
+      sourcePacketSha256: string;
+      sidecarSha256: string;
+      anchorCatalogSha256: string;
+      sourceSnapshotRawSha256: string;
+      basePackageRawSha256: string;
+    };
+    protectedProjectionSha256: string;
+  };
+  expected: {
+    goldResult: "PASS" | "BLOCK";
+    expectedVisibleRegister: string;
+    expectedSupportStatus: string;
+    expectedCategory: string | null;
+    expectedFramingAdequate: boolean | null;
+    expectedClaimStrengthFit: boolean | null;
+    expectedNamedSpecificityAllowed: boolean | null;
+  };
+  mutation: Imp22SourceMutationManifestV2;
+  provenance: {
+    labelProvenance: typeof CURATOR_DEVELOPMENT_LABEL;
+    ownerApprovedForDevelopmentBakeoff: true;
+    independentHumanRater: false;
+    baseFactId: string;
+    sourceUsePlanUnitId: string;
+    pairKey: string;
+    evidenceSha256: string;
+  };
+};
+
+function requireString(value: unknown, where: string): string {
+  if (typeof value !== "string" || value.trim().length === 0) {
+    throw new CorpusBuildError(`IMP-22 source spec: ${where} must be a non-empty string`, { where });
+  }
+  return value;
+}
+
+function fillSourceTemplate(template: string, fact: TestableFact): string {
+  const claimLower = fact.claim.length > 0
+    ? fact.claim.charAt(0).toLowerCase() + fact.claim.slice(1)
+    : fact.claim;
+  return template
+    .split("{{claim}}").join(fact.claim)
+    .split("{{claimLower}}").join(claimLower)
+    .split("{{mechanism}}").join(fact.becauseMechanism)
+    .split("{{commonError}}").join(fact.commonError)
+    .split("{{errorIsWhy}}").join(fact.errorIsWhy)
+    .trim();
+}
+
+function safeCaseToken(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+function sourcePlanUnitForPair(
+  pair: Imp22SourceFamilyPairV2,
+  fact: TestableFact,
+  plan: ReturnType<typeof compileSourceUsePlan>["plan"],
+): SourceUsePlanUnitV1 {
+  const unitId =
+    pair.origin === "constructed"
+      ? `unit.ch${String(plan.chapterNumber).padStart(2, "0")}.constructed-application`
+      : pair.origin === "generic"
+        ? `unit.ch${String(plan.chapterNumber).padStart(2, "0")}.generic-scenario`
+        : `unit.fact.${fact.id}`;
+  const unit = plan.units.find((candidate) => candidate.unitId === unitId);
+  if (!unit) {
+    throw new CorpusBuildError(`IMP-22 source pair ${pair.pairId}: compiled plan has no unit ${unitId}`, {
+      pairId: pair.pairId,
+      unitId,
+    });
+  }
+  if (unit.origin !== pair.origin || unit.form !== pair.form) {
+    throw new CorpusBuildError(
+      `IMP-22 source pair ${pair.pairId}: declared ${pair.origin}/${pair.form} contradicts compiler-owned ${unit.origin}/${unit.form}`,
+      { pairId: pair.pairId, declaredOrigin: pair.origin, declaredForm: pair.form, unit },
+    );
+  }
+  if (pair.claimStrength && unit.claimStrength !== pair.claimStrength) {
+    throw new CorpusBuildError(
+      `IMP-22 source pair ${pair.pairId}: declared claimStrength ${pair.claimStrength} contradicts compiler-owned ${unit.claimStrength}`,
+      { pairId: pair.pairId, unit },
+    );
+  }
+  if (pair.detailSufficiency && unit.detailSufficiency !== pair.detailSufficiency) {
+    throw new CorpusBuildError(
+      `IMP-22 source pair ${pair.pairId}: declared detailSufficiency ${pair.detailSufficiency} contradicts compiler-owned ${unit.detailSufficiency}`,
+      { pairId: pair.pairId, unit },
+    );
+  }
+  if (pair.framingRequired !== undefined && unit.framingRequired !== pair.framingRequired) {
+    throw new CorpusBuildError(
+      `IMP-22 source pair ${pair.pairId}: declared framingRequired ${pair.framingRequired} contradicts compiler-owned ${unit.framingRequired}`,
+      { pairId: pair.pairId, unit },
+    );
+  }
+  return unit;
+}
+
+function generatedComposition(cases: readonly Imp22SourceCorpusCaseV2[]): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const c of cases) out[c.family] = (out[c.family] ?? 0) + 1;
+  out.total = cases.length;
+  return out;
+}
+
+/** Build the additive IMP-22 source corpus from a byte-preserved authoritative
+ * source-v2 snapshot. Five facts are crossed with five frozen family recipes:
+ * fact 1 is calibration, facts 2-5 are holdout. Each clean case has exactly one
+ * controlled defect twin; packet/plan/sidecar/anchor evidence is identical
+ * across the pair and protected by a shared projection hash. */
+export function buildImp22SourceCorpus(
+  config: SplitLaneCorpusConfigV1,
+): CorpusBuildResultV2<Imp22SourceCorpusCaseV2> {
+  if (config.role !== "source") {
+    throw new CorpusBuildError(`buildImp22SourceCorpus requires role "source" (got ${config.role})`, { role: config.role });
+  }
+  const common = readCorpusSpecV2(config.mutationSpecPath, "source");
+  const spec = common as Imp22SourceCorpusSpecV2;
+  assertCorpusConfigMatchesSpecV2(spec, config);
+  assertGoldGovernanceV2(spec);
+  assertPortableCorpusSpecV2(spec);
+  if (!spec.sourceSnapshot || !Array.isArray(spec.baseFactIds) || !Array.isArray(spec.pairedFamilies)) {
+    throw new CorpusBuildError("IMP-22 source spec is missing sourceSnapshot/baseFactIds/pairedFamilies", { corpusId: spec.corpusId });
+  }
+  if (spec.baseFactIds.length !== 5 || spec.pairedFamilies.length !== 5) {
+    throw new CorpusBuildError("IMP-22 source corpus requires exactly five base facts and five paired families", {
+      baseFacts: spec.baseFactIds.length,
+      pairedFamilies: spec.pairedFamilies.length,
+    });
+  }
+
+  const exclusions = [...new Set([
+    ...(spec.excludedCandidateBookIds ?? []),
+    ...(config.excludedCandidateBookIds ?? []),
+  ])].sort();
+  assertCandidateBookExcluded(spec.sourceSnapshot.bookId, exclusions, spec.corpusId);
+
+  const snapshotPath = resolve(dirname(config.mutationSpecPath), requireString(spec.sourceSnapshot.relativePath, "sourceSnapshot.relativePath"));
+  const snapshotBytes = readFileSync(snapshotPath);
+  const snapshotRawSha256 = sha256Hex(snapshotBytes);
+  if (snapshotRawSha256 !== spec.sourceSnapshot.archiveRawSha256) {
+    throw new CorpusBuildError("IMP-22 source snapshot raw hash does not match the frozen archive hash", {
+      snapshotPath,
+      expected: spec.sourceSnapshot.archiveRawSha256,
+      actual: snapshotRawSha256,
+    });
+  }
+  let sidecar: SourceSidecarV2;
+  try {
+    sidecar = JSON.parse(snapshotBytes.toString("utf8")) as SourceSidecarV2;
+  } catch (error) {
+    throw new CorpusBuildError(`IMP-22 source snapshot is not JSON: ${(error as Error).message}`, { snapshotPath });
+  }
+  const sidecarErrors = validateSourceV2SidecarForPlanning(sidecar, spec.sourceSnapshot.chapterNumber);
+  if (sidecarErrors.length > 0) {
+    throw new CorpusBuildError(`IMP-22 source snapshot fails source-v2 validation: ${sidecarErrors.join("; ")}`, { snapshotPath });
+  }
+  if (sidecar.chapterNumber !== spec.sourceSnapshot.chapterNumber) {
+    throw new CorpusBuildError("IMP-22 source snapshot chapterNumber drift", {
+      expected: spec.sourceSnapshot.chapterNumber,
+      actual: sidecar.chapterNumber,
+    });
+  }
+
+  const packagePath = resolve(config.sourceRoots.bookPackagesDir, basename(requireString(spec.sourceSnapshot.basePackage, "sourceSnapshot.basePackage")));
+  const packageRawSha256 = sha256Hex(readFileSync(packagePath));
+  if (packageRawSha256 !== spec.sourceSnapshot.basePackageRawSha256) {
+    throw new CorpusBuildError("IMP-22 source base package raw hash drift", {
+      packagePath,
+      expected: spec.sourceSnapshot.basePackageRawSha256,
+      actual: packageRawSha256,
+    });
+  }
+
+  const packet = compileSourcePacketFromSidecar({
+    bookId: spec.sourceSnapshot.bookId,
+    chapter: {
+      chapterId: `${spec.sourceSnapshot.bookId}-ch${String(spec.sourceSnapshot.chapterNumber).padStart(2, "0")}`,
+      chapterNumber: spec.sourceSnapshot.chapterNumber,
+      chapterTitle: sidecar.chapterTitle,
+    } as never,
+    sidecar,
+    sidecarPath: spec.sourceSnapshot.relativePath,
+    sourceHash: snapshotRawSha256,
+  });
+  const compiled = compileSourceUsePlan(packet);
+  if (compiled.findings.length > 0) {
+    throw new CorpusBuildError(`IMP-22 source plan compilation produced unresolved findings: ${compiled.findings.join("; ")}`, {
+      findings: compiled.findings,
+    });
+  }
+  const plan = compiled.plan;
+  const anchorCatalog = buildSourceAnchorCatalog(sidecar);
+  const packetSha = sourcePacketHash(packet);
+  const planSha = sourceUsePlanHash(plan);
+  const sidecarSha = semanticSourceHash(sidecar);
+  const anchorSha = hashValue(anchorCatalog);
+
+  const calibrationIds = new Set(spec.partitionRule?.calibrationFactIds ?? []);
+  const holdoutIds = new Set(spec.partitionRule?.holdoutFactIds ?? []);
+  if (spec.partitionRule?.noFactIdAppearsInBothPartitions !== true) {
+    throw new CorpusBuildError("IMP-22 source partition rule must prohibit calibration/holdout overlap", { corpusId: spec.corpusId });
+  }
+  for (const id of calibrationIds) {
+    if (holdoutIds.has(id)) throw new CorpusBuildError(`IMP-22 source fact ${id} appears in calibration and holdout`, { id });
+  }
+  const declaredIds = new Set([...calibrationIds, ...holdoutIds]);
+  if (declaredIds.size !== spec.baseFactIds.length || spec.baseFactIds.some((id) => !declaredIds.has(id))) {
+    throw new CorpusBuildError("IMP-22 source partition rule does not cover exactly the frozen baseFactIds", {
+      baseFactIds: spec.baseFactIds,
+      calibrationFactIds: [...calibrationIds],
+      holdoutFactIds: [...holdoutIds],
+    });
+  }
+
+  const facts = new Map(sidecar.testableFacts.map((fact) => [fact.id, fact]));
+  const cases: Imp22SourceCorpusCaseV2[] = [];
+  const seenPairs = new Set<string>();
+  for (const factId of spec.baseFactIds) {
+    const fact = facts.get(factId);
+    if (!fact) throw new CorpusBuildError(`IMP-22 source snapshot is missing base fact ${factId}`, { factId });
+    const partition: CorpusPartitionV2 = calibrationIds.has(factId) ? "calibration" : "holdout";
+
+    for (const pair of spec.pairedFamilies) {
+      requireString(pair.pairId, "pairedFamilies[].pairId");
+      requireString(pair.positive, `${pair.pairId}.positive`);
+      requireString(pair.negative, `${pair.pairId}.negative`);
+      if (pair.mutationPaths?.length !== 1 || pair.mutationPaths[0] !== "chapterUnit") {
+        throw new CorpusBuildError(`IMP-22 source pair ${pair.pairId} may mutate only chapterUnit`, { pairId: pair.pairId });
+      }
+      const pairKey = `${pair.pairId}::${fact.id}`;
+      if (seenPairs.has(pairKey)) throw new CorpusBuildError(`duplicate IMP-22 source pair ${pairKey}`, { pairKey });
+      seenPairs.add(pairKey);
+
+      const planUnit = sourcePlanUnitForPair(pair, fact, plan);
+      const cleanUnit = fillSourceTemplate(pair.cleanTemplate, fact);
+      const isSourceContradiction = pair.contradictionFactIds?.includes(fact.id) === true;
+      const selectedDefectTemplate = isSourceContradiction
+        ? requireString(pair.contradictionTemplate, `${pair.pairId}.contradictionTemplate`)
+        : pair.defectTemplate;
+      const defectCategory = isSourceContradiction ? "source_contradiction" : pair.defectCategory;
+      const defectUnit = selectedDefectTemplate
+        ? fillSourceTemplate(selectedDefectTemplate, fact)
+        : `${cleanUnit}${requireString(pair.defectAppend, `${pair.pairId}.defectAppend`)}`;
+      if (cleanUnit === defectUnit) {
+        throw new CorpusBuildError(`IMP-22 source pair ${pairKey} mutation is byte-identical`, { pairKey });
+      }
+
+      const token = `${safeCaseToken(pair.pairId)}-${safeCaseToken(fact.id)}`;
+      const cleanCaseId = `SOURCE-${partition.toUpperCase()}-${token}-clean`;
+      const defectCaseId = `SOURCE-${partition.toUpperCase()}-${token}-defect`;
+      const protectedProjectionSha256 = hashValue({
+        bookId: spec.sourceSnapshot.bookId,
+        chapterNumber: spec.sourceSnapshot.chapterNumber,
+        fact,
+        sourceUsePlan: plan,
+        sourceUsePlanUnit: planUnit,
+        sourcePacketSha256: packetSha,
+        sidecarSha256: sidecarSha,
+        anchorCatalogSha256: anchorSha,
+      });
+      const mutation: Imp22SourceMutationManifestV2 = {
+        schema: "imp22-source-controlled-mutation-v1",
+        pairKey,
+        cleanCaseId,
+        defectCaseId,
+        declaredMutationPaths: ["chapterUnit"],
+        cleanChapterUnitSha256: sha256Hex(cleanUnit),
+        defectChapterUnitSha256: sha256Hex(defectUnit),
+        protectedProjectionSha256,
+      };
+
+      const makeCase = (
+        pairSide: "clean" | "defect",
+        family: string,
+        chapterUnit: string,
+        pairedCaseId: string,
+      ): Imp22SourceCorpusCaseV2 => {
+        const defect = pairSide === "defect";
+        const evidence = {
+          chapterUnit,
+          sourceUsePlan: plan,
+          sourceUsePlanUnit: planUnit,
+          sourcePacket: packet,
+          sidecar,
+          anchorCatalog,
+          anchorIds: [...planUnit.anchorIds],
+          expectedOrigin: planUnit.origin,
+          expectedForm: planUnit.form,
+          claimStrengthExpected: planUnit.claimStrength,
+          detailSufficiency: planUnit.detailSufficiency,
+          allowedDetailTypes: [...planUnit.allowedDetailTypes],
+          forbiddenDetailTypes: [...planUnit.forbiddenDetailTypes],
+          visibleFramingRequired: planUnit.framingRequired,
+          goldChapterEvidenceSpans: [chapterUnit.slice(0, 200)],
+          goldSourceEvidenceSpans: [fact.claim, fact.becauseMechanism],
+          provenanceHashes: {
+            chapterContentSha256: sha256Hex(chapterUnit),
+            sourceUsePlanSha256: planSha,
+            sourcePacketSha256: packetSha,
+            sidecarSha256: sidecarSha,
+            anchorCatalogSha256: anchorSha,
+            sourceSnapshotRawSha256: snapshotRawSha256,
+            basePackageRawSha256: packageRawSha256,
+          },
+          protectedProjectionSha256,
+        };
+        return {
+          caseId: pairSide === "clean" ? cleanCaseId : defectCaseId,
+          role: "source",
+          partition,
+          family,
+          pairId: pair.pairId,
+          pairSide,
+          pairedCaseId,
+          bookId: spec.sourceSnapshot.bookId,
+          chapterNumber: spec.sourceSnapshot.chapterNumber,
+          sourceSemanticsStatus: SOURCE_SEMANTICS_PRESENT,
+          evidence,
+          expected: {
+            goldResult: defect ? "BLOCK" : "PASS",
+            expectedVisibleRegister: defect ? pair.defectVisibleRegister : pair.cleanVisibleRegister,
+            expectedSupportStatus: defect ? pair.defectSupportStatus : pair.cleanSupportStatus,
+            expectedCategory: defect ? defectCategory : null,
+            expectedFramingAdequate: planUnit.framingRequired
+              ? !(defect && defectCategory === "missing_visible_framing")
+              : null,
+            expectedClaimStrengthFit: planUnit.origin === "source_bound"
+              ? !(defect && defectCategory === "claim_strength_overreach")
+              : null,
+            expectedNamedSpecificityAllowed: planUnit.origin === "generic"
+              ? !(defect && defectCategory === "generic_specificity_leak")
+              : null,
+          },
+          mutation,
+          provenance: {
+            labelProvenance: CURATOR_DEVELOPMENT_LABEL,
+            ownerApprovedForDevelopmentBakeoff: true,
+            independentHumanRater: false,
+            baseFactId: fact.id,
+            sourceUsePlanUnitId: planUnit.unitId,
+            pairKey,
+            evidenceSha256: hashValue(evidence),
+          },
+        };
+      };
+
+      cases.push(
+        makeCase("clean", pair.positive, cleanUnit, defectCaseId),
+        makeCase("defect", pair.negative, defectUnit, cleanCaseId),
+      );
+    }
+  }
+
+  const byPartition = Object.fromEntries(
+    CORPUS_PARTITIONS_V2.map((partition) => [
+      partition,
+      cases.filter((c) => c.partition === partition).sort((a, b) => a.caseId.localeCompare(b.caseId)),
+    ]),
+  ) as Record<CorpusPartitionV2, Imp22SourceCorpusCaseV2[]>;
+  for (const partition of CORPUS_PARTITIONS_V2) {
+    const generated = generatedComposition(byPartition[partition]);
+    assertExactCompositionV2(
+      spec.expectedCompositionByPartition[partition],
+      generated,
+      partition,
+      "source corpus",
+    );
+  }
+
+  const ledger = readCleanBaseScoreLedger(config.cleanBaseScoreLedgerPath);
+  const specSha256 = hashValue(spec);
+  const ledgerSha256 = hashValue(ledger);
+  const exclusionSha256 = hashValue(exclusions);
+  const partitions = Object.fromEntries(
+    CORPUS_PARTITIONS_V2.map((partition) => {
+      const partitionCases = byPartition[partition];
+      const envelope: SplitLaneCorpusPartitionEnvelopeV2<Imp22SourceCorpusCaseV2> = {
+        partition,
+        expectedComposition: spec.expectedCompositionByPartition[partition],
+        generatedComposition: generatedComposition(partitionCases),
+        cases: partitionCases,
+        substantivePartitionSha256: hashValue(partitionCases),
+      };
+      return [partition, envelope];
+    }),
+  ) as Record<CorpusPartitionV2, SplitLaneCorpusPartitionEnvelopeV2<Imp22SourceCorpusCaseV2>>;
+  const substantiveCorpusSha256 = hashValue({
+    role: "source",
+    corpusId: spec.corpusId,
+    specSha256,
+    ledgerSha256,
+    exclusionSha256,
+    calibration: partitions.calibration.substantivePartitionSha256,
+    holdout: partitions.holdout.substantivePartitionSha256,
+  });
+  const corpus: SplitLaneRoleCorpusV2<Imp22SourceCorpusCaseV2> = {
+    schema: SPLIT_LANE_CORPUS_V2_SCHEMA,
+    role: "source",
+    corpusId: spec.corpusId,
+    builderVersion: SPLIT_LANE_CORPUS_BUILDER_V2_VERSION,
+    labelProvenance: CURATOR_DEVELOPMENT_LABEL,
+    ownerApprovedForDevelopmentBakeoff: true,
+    independentHumanRater: false,
+    specSha256,
+    cleanBaseScoreLedgerSha256: ledgerSha256,
+    excludedCandidateBookIds: exclusions,
+    excludedCandidateBookIdsSha256: exclusionSha256,
+    partitions,
+    substantiveCorpusSha256,
+  };
+  const corpusBytes = canonicalPretty(corpus);
+  const provenanceManifest: CorpusProvenanceManifestV2 = {
+    schema: SPLIT_LANE_CORPUS_PROVENANCE_V2_SCHEMA,
+    role: "source",
+    corpusId: spec.corpusId,
+    builderVersion: SPLIT_LANE_CORPUS_BUILDER_V2_VERSION,
+    labelProvenance: CURATOR_DEVELOPMENT_LABEL,
+    ownerApprovedForDevelopmentBakeoff: true,
+    independentHumanRater: false,
+    specSha256,
+    cleanBaseScoreLedgerSha256: ledgerSha256,
+    excludedCandidateBookIds: exclusions,
+    excludedCandidateBookIdsSha256: exclusionSha256,
+    partitionSha256: {
+      calibration: partitions.calibration.substantivePartitionSha256,
+      holdout: partitions.holdout.substantivePartitionSha256,
+    },
+    caseSha256: Object.fromEntries(cases.map((c) => [c.caseId, hashValue(c)])),
+    substantiveCorpusSha256,
+    corpusBytesSha256: `sha256:${sha256Hex(corpusBytes)}`,
+  };
+  return { corpus, provenanceManifest, corpusBytes };
 }

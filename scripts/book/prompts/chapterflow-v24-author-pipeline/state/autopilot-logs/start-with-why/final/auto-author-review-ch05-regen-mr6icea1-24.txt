@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "c", "a", "a", "b", "c", "b"],
+    "keyDisagreements": ["Q2: I chose b as the least-wrong answer, but the key's stated cause, the 'shared mold' or 'date-place-scale mold,' is not clearly shown in the prose as the one cause of Kelleher sounding like a repeat. The prose supports cofounder/person-side contrast, but not that exact earlier mistake."],
+    "tells": ["Q2 b is unusually specific and technical compared with the distractors, which may signal the intended key.", "Q4 c echoes the stem phrase 'same move fits every named organization' and uses the chapter's boundary language, making it easier to guess.", "Q8 c is strongly signposted because the chapter repeatedly says Dallas belongs with Southwest."]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 76,
+    "transfer": 88,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 91,
+    "insight": 88,
+    "density": 85,
+    "beginner": 87
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "What would count as proof if nobody heard the slogan?",
+      "why": "Strong, memorable diagnostic question that captures the chapter's core move."
+    },
+    {
+      "quote": "The slogan does not explain the behavior; the behavior earns the slogan.",
+      "why": "Best compressed line; it makes the mechanism memorable."
+    },
+    {
+      "quote": "b) It used the same date-place-scale mold for Kelleher instead of letting cofounder create contrast.",
+      "why": "This quiz answer names a cause the prose does not clearly establish."
+    },
+    {
+      "quote": "then return the detail to the source in the packet before using the claim.",
+      "why": "The word 'packet' feels like production scaffolding rather than reader-facing prose."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "Cause question key is under-supported: the prose shows Kelleher should create people/cofounder contrast, but it does not clearly show that a prior 'date-place-scale mold' caused the comparison failure.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct answer is partly guessable because it repeats the stem's 'same move fits every named organization' phrasing and uses the chapter's boundary language.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The correct answer is heavily signposted by repeated chapter phrasing that Dallas belongs with Southwest, while the wrong choices are plainly unreasonable.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The phrase 'source in the packet' introduces insider/process language that a cold beginner may not understand.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a memorable core test: belief has to come back as visible behavior, not just a slogan. The examples, limits, review cards, and practice prompts mostly reinforce that move cleanly. I would not ship it yet because Q2 is a cause question whose keyed rationale is not clearly grounded in the prose, and the quiz has a few answer-shape tells. Fixing that would likely put the chapter over the professional bar."
+}
+```

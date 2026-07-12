@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 25,
+    "quizzes": 0,
+    "transfer": 30,
+    "practical": 55,
+    "summaries": 0,
+    "tone": 25,
+    "limits": 30,
+    "insight": 35,
+    "density": 25,
+    "beginner": 45
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "\"Careful about which future?\"",
+      "why": "Strongest moment: it compresses the core move into a memorable challenge."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "Worst defect: the hook is scaffold text, not reader-facing instruction."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "Worst defect: the fast read does not actually summarize the chapter."
+    },
+    {
+      "quote": "Title: One Forecast Conversation Scenario: On the call, analyst the analyst taps a Coinstar spreadsheet beside his keyboard.",
+      "why": "Worst defect: the full read contains an obvious copy error and a thin setup."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder/process text rather than a reader-facing opening, so the section fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read is only a placeholder and does not state the chapter's idea.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read is only a placeholder and does not add a usable angle.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "Contains the copy error 'analyst the analyst'.",
+      "mustFix": false
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the practical prompt is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is empty; there are no additional examples for transfer.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section is empty, so the quiz is structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is not a shippable chapter. The one usable idea is that a forecast should be tested against low and high cases before judgment, and the line 'Careful about which future?' gives that idea a memorable shape. But most sections are placeholders or empty, the quiz is missing, the summaries do not stand alone, and the practical layer is barely present. A reader could infer the core move from the full read, but the product structure is largely unbuilt."
+}
+```

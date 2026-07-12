@@ -1,0 +1,125 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "c", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose presents WRAP as four matched repairs for framing, evidence, emotion, and forecasting, not as a general pause or final-only check.",
+      "The first WRAP move repairs narrow framing by adding live alternatives before evidence gathering reinforces a yes-or-no menu.",
+      "Reality-testing asks what could disprove the favored plan and seeks evidence capable of weakening it.",
+      "The prose says emotion may contain information but needs distance so a short-term attachment does not control the long-term decision.",
+      "Preparing to be wrong requires naming a range of plausible futures rather than treating one detailed forecast as certain.",
+      "Cole's parallel first passes produce comparison and learning before an expensive commitment.",
+      "Grove's question imagines what a fresh leader would choose without Intel's emotional attachment to memory chips.",
+      "Each villain affects a different part of the decision and therefore requires its corresponding intervention.",
+      "The chapter explicitly says good process improves the odds without guaranteeing a good outcome."
+    ],
+    "confidence": ["medium", "high", "high", "medium", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "Choice b is clearly intended, but the prose calls these four dangers or parts of a sequence, not four distinct \"choice stages.\"",
+      "",
+      "",
+      "Choice c is closest, but its \"what will still matter later\" test comes from the implementation plan; the main Intel mechanism is specifically the fresh-outsider question.",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Choice b uniquely spells out the complete WRAP acronym and is the most technically specific option.",
+      "Choice b is the only option that challenges the stated yes-or-no frame; choice c openly endorses the diagnosed villain.",
+      "Choice c repeats the chapter's signature phrase \"disconfirming evidence,\" while a and b explicitly advocate bias.",
+      "Choice c is the only nuanced option; a and b use giveaway absolutes such as \"all emotion\" and \"before any budget work.\"",
+      "Choice a nearly repeats \"wider range of futures\" verbatim, while the distractors treat confidence or mood as proof.",
+      "Choice c echoes \"parallel\" work and \"before commitment\" almost word for word.",
+      "Choice a restates the outsider-question mechanism; b makes the explicitly rejected claim that outsiders know better.",
+      "Choice a alone names all four decision locations, whereas b and c reduce the model to the approaches the chapter rejects.",
+      "Choice b directly reproduces the memorable line about improving odds; a promises certainty and c abandons process."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 75,
+    "transfer": 68,
+    "practical": 80,
+    "summaries": 89,
+    "tone": 84,
+    "limits": 95,
+    "insight": 91,
+    "density": 82,
+    "beginner": 92
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "A compact, memorable expression of the chapter's central framing mechanism."
+    },
+    {
+      "quote": "Good process raises the odds without promising the outcome.",
+      "why": "This cleanly states the essential boundary between decision quality and outcome quality."
+    },
+    {
+      "quote": "Yvonne pins one clean launch forecast on the board, and the room expects the WRAP four villains to be done once the number looks careful.",
+      "why": "The unsupported named scene is presented as an event, and \"WRAP four villains\" confusingly conflates the repair process with the distortions."
+    },
+    {
+      "quote": "The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.",
+      "why": "The action is low-friction, but \"shortcut\" is undefined and the instruction does not say to apply the matching WRAP move."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The keyed choice calls the four WRAP interventions \"choice stages,\" a taxonomy the prose never establishes; it describes four dangers and corresponding repairs.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Most distractors openly recommend the diagnosed bias, certainty, or inaction, while correct choices repeat signature wording from the prose; this makes the quiz highly guessable.",
+      "mustFix": false
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The reader is told to record an undefined \"shortcut\" and identify a villain but is not told to perform the chapter's core move of selecting the matching WRAP response.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "FABRICATED / MISLEADING EXAMPLE: an unverified HopeLab planner, project-room scene, silence, and internal thoughts are presented as concrete narrative without being marked hypothetical.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "FABRICATED / MISLEADING EXAMPLE: a prototype planner, Monday meeting, budget wall, and deliberation are invented around the HopeLab case without a hypothetical label.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 3",
+      "problem": "FABRICATED / MISLEADING EXAMPLE: an Intel reviewer, strategy meeting, folder contents, and personal conflict are presented as a specific event unsupported by the chapter's factual Intel account.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 4",
+      "problem": "FABRICATED / MISLEADING EXAMPLE: the late review call, evidence folder, friendly-user finding, and direct quotation are narrated as events without being identified as a constructed scenario.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 5",
+      "problem": "FABRICATED / MISLEADING EXAMPLE and SOURCE-CONTRADICTORY wording: the named person and forecast-board reveal are unsupported, while \"WRAP four villains\" blurs the chapter's explicit distinction between four villains and four repair moves.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 6",
+      "problem": "FABRICATED / MISLEADING EXAMPLE: the train-platform exchange includes invented direct quotations and an event presented without a hypothetical label.",
+      "mustFix": true
+    },
+    {
+      "unit": "Examples",
+      "problem": "The examples repeatedly recycle HopeLab, Intel, or generic product-team scenes, so they demonstrate limited transfer to personal, civic, hiring, or other materially different decisions.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a clear, memorable mechanism: identify whether framing, evidence, emotion, or forecasting is distorting the choice, then apply the matching WRAP move. Its layered reads, strong aphorisms, practical if-then rules, and unusually honest limits make the core lesson accessible and durable. The quiz is derivable but too easy to game because correct options echo the prose while distractors often endorse obviously bad behavior. More seriously, all six examples add unsupported people, scenes, thoughts, events, or quotations without marking them as hypothetical, making them misleading under the review standard; they also remain clustered around the same organizational settings. The underlying instruction is strong, but the fabricated presentation of the examples prevents shipment until those scenarios are labeled as hypothetical or replaced with verified cases."
+}
+```

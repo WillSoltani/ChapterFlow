@@ -1,0 +1,54 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "a", "b", "a", "a", "c", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several keyed choices use the chapter's own phrasing more closely than distractors, such as 'visible choices', 'tactic has to carry', and 'hard detail must stay'. This is a mild style tell, not a broken quiz."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 82,
+    "limits": 90,
+    "insight": 87,
+    "density": 84,
+    "beginner": 82
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A product can show a belief, but it cannot invent one.",
+      "why": "This is the chapter's strongest mechanism in one memorable sentence."
+    },
+    {
+      "quote": "Cupertino belongs with Apple Inc., not with any paragraph that needs weight.",
+      "why": "This makes the evidence-integrity lesson concrete and easy to remember."
+    },
+    {
+      "quote": "After dusk in the parked car, the windshield fogs.",
+      "why": "This sensory detail is vivid but mostly decorative and does not materially teach the transfer move."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "Correct answers often sound more like the chapter's memorable language than the distractors, creating a mild phrasing tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The parked-car and windshield detail adds atmosphere but does not show a decision consequence or make the transfer materially easier.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Most transfer work stays close to the same Apple/Wright/King material instead of showing a fresh ordinary workplace case all the way through.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is publishable. It teaches a clear core move: start with WHY, keep HOW and WHAT in their own jobs, and make evidence prove rather than decorate the claim. The best lines are compact and memorable, the summaries stand alone, and the limits are unusually honest. The main weakness is transfer range: the examples are usable but stay close to the same named stories, and the quiz sometimes rewards recognizing chapter-like phrasing. Those are craft issues, not blockers."
+}
+```

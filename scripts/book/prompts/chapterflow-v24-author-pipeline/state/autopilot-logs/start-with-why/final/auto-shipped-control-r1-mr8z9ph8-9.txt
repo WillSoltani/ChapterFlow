@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "FAIL",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["a", "b", "c", "a", "b", "c", "a", "a", "c"],
+      "keyDisagreements": ["Q8: derived a; key says b. The chapter supports diagnosing copied-practice failure as a mismatch in starting belief, not a hidden better checklist."]
+    },
+    "2": {
+      "answers": ["b", "c", "a", "b", "c", "a", "b", "c", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["c", "b", "a", "c", "b", "a", "c", "b", "a"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "a", "c", "b", "a", "b", "c", "b", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 58,
+    "transfer": 84,
+    "practical": 73,
+    "summaries": 72,
+    "tone": 70,
+    "limits": 78,
+    "insight": 73,
+    "density": 67,
+    "beginner": 81
+  },
+  "quotes": [
+    {
+      "quote": "A clean finish can still hide a broken start.",
+      "why": "Strong, portable line that makes the chapter's lens memorable."
+    },
+    {
+      "quote": "A bought response is not the same as a chosen return.",
+      "why": "Compact and useful distinction that carries beyond the example."
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Scaffold artifact leaking into reader-facing prose."
+    },
+    {
+      "quote": "An American assembly lesson reframes a Friday release report shows the same defect escaping through final QA for the third sprint.",
+      "why": "Corrupted sentence structure that breaks coherence."
+    },
+    {
+      "quote": "A Japanese assembly report sits beside a simulator report shows pilots repeating the same landing-sequence mistake after extra drills.",
+      "why": "Another malformed example sentence, suggesting templated generation artifacts."
+    },
+    {
+      "quote": "CHAPTER 1 Q8: b",
+      "why": "The keyed answer is unsupported; the prose points to option a."
+    }
+  ],
+  "oneParagraphVerdict": "The sample has a clear instructional engine: each chapter gives a reusable lens, plain prose, scenario quizzes, practice prompts, and several memorable lines. It is not publishable as-is because the gate fails: Chapter 1 Q8 is keyed to an answer the prose does not support, and multiple reader-facing scaffold/corruption artifacts remain. Across chapters, the repeated section architecture, example cadence, if-then shells, and stock rhetorical moves create high churn; the material often feels assembled from one template with nouns swapped. With key repair, artifact cleanup, and more varied examples with real failure/partial outcomes, the book could become strong, but this sample is currently a polished draft rather than a clean shipped product."
+}
+```

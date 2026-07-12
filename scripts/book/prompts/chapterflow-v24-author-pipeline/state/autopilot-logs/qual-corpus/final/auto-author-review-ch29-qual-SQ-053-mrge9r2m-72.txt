@@ -1,0 +1,111 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": ["No quiz questions are present, so there are no answer-position tells to assess."]
+  },
+  "scores": {
+    "retention": 5,
+    "quizzes": 0,
+    "transfer": 8,
+    "practical": 0,
+    "summaries": 0,
+    "tone": 12,
+    "limits": 0,
+    "insight": 5,
+    "density": 4,
+    "beginner": 6
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Dima has a reply ready about protocol, but the badge in the mirror makes the real threat clear: maybe he is not ready for this role.",
+      "why": "This is the strongest moment because a concrete object reveals the emotional mechanism behind defensiveness."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now",
+      "why": "These consecutive empty headings expose the chapter's central structural failure."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "The instruction is unusable because neither the move nor its steps have been taught."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is production-status placeholder text rather than a reader-facing introduction to the chapter's subject.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore fails its stand-alone reading-layer promise (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and provides no explanation or mechanism (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty and contains no chapter instruction (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the core move is never stated (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, leaving the reader with no practical exercise (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The scenario is thin-but-usable: it stops at a decision point, shows no action or consequence, and instructs the reader to follow an undefined move.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The sentence \"Brisa she must answer\" is grammatically malformed.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The scenario is thin-but-usable: it presents a dilemma but no completed decision, observable action, or consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The sentence \"Dima he must decide\" is grammatically malformed.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz heading contains no questions, making the required assessment broken (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and supplies no retrieval-practice material (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty and supplies none of the promised memory anchors (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "chapter overall",
+      "problem": "Because every instructional section is empty, the reader cannot identify, learn, or apply the purported core move from the page (UNUSABLE).",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unshippable scaffold rather than a completed chapter. Two concrete scenes hint at a potentially useful lesson about pausing defensiveness and responding to the underlying threat or hurt, but the prose never defines that lesson, explains its mechanism, gives actionable steps, acknowledges limits, or demonstrates consequences. All three reading layers, the takeaway, exercise, quiz, review cards, and memorable-lines section are empty. The examples therefore cannot carry the instructional burden, and their generic directives refer to a move the reader has never been taught."
+}
+```

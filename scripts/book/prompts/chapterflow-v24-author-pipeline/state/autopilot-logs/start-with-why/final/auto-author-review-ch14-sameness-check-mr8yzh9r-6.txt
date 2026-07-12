@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several correct answers reuse exact chapter language, such as 'factual token,' 'renamed product story,' 'edge marker,' and 'grounding the wrong comparison.'", "Some distractors telegraph themselves with overbroad wording like 'every organization,' 'same detail should appear in every setting,' or 'move straight to the general rule.'"]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 84,
+    "transfer": 76,
+    "practical": 88,
+    "summaries": 82,
+    "tone": 74,
+    "limits": 86,
+    "insight": 84,
+    "density": 77,
+    "beginner": 73
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Competition, here, means using a rival as an alarm and your own benchmark as the judge.",
+      "why": "Strongest compact statement of the chapter's core move."
+    },
+    {
+      "quote": "True facts can mislead when they are asked to support the wrong comparison.",
+      "why": "Memorable mechanism that explains why factual anchors need local fit."
+    },
+    {
+      "quote": "Apple Inc. (company in the Apple-Dell product contrast) and Dell (the other company in that contrast) make this visible.",
+      "why": "The parenthetical scaffolding makes the prose feel generated and less like finished nonfiction."
+    },
+    {
+      "quote": "What to do: When the standard is stated, name the anchors.",
+      "why": "The fifth example's action step is much thinner than the stronger two-line benchmark practice elsewhere."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "Parenthetical labels such as company/product markers read like construction notes rather than finished explanatory prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The example is thin-but-usable: Edmund is introduced without a real decision consequence, and the action step only says to 'name the anchors' rather than showing a before-to-after use of the move.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Correct answers are often easier to spot because they echo exact chapter phrases while distractors use inflated or absolute claims.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a useful and memorable move: let rivals signal pressure, then bring proof back to an internal benchmark. The mechanism is clear, the limits section is unusually practical, and most quiz keys are sound. It falls short of a higher professional ship bar because several examples and summary passages still expose scaffolding language, and the quiz sometimes rewards phrase recognition more than comprehension. Nothing appears structurally broken or reader-harming, but the chapter needs polish before it feels fully finished."
+}
+```

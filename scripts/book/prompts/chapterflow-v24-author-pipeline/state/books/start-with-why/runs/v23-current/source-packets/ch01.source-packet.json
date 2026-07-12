@@ -1,0 +1,724 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "start-with-why",
+  "chapterId": "start-with-why-ch01",
+  "chapterNumber": 1,
+  "chapterTitle": "Assume You Know",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch01.source.json",
+  "sourceHash": "sha256:d87717d98574f22e8da781e8294d0daacc0913b630e562f6d73bfca30288c30f",
+  "facts": [
+    {
+      "id": "ch01.fact.1",
+      "claim": "Japanese car-door assembly makes assumption risk concrete through Toyota Production System and andon.",
+      "mechanism": "Because Toyota Production System gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Japanese car-door assembly as colorful background.",
+      "whyWrong": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Japanese",
+        "Toyota Production System",
+        "Because Toyota Production System"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.1"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch01.fact.2",
+      "claim": "Detroit automakers adds a second anchor for assumption risk with General Motors and Detroit.",
+      "mechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "whyWrong": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Detroit",
+        "General Motors",
+        "Detroit. Since",
+        "One"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.2"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch01.fact.3",
+      "claim": "American Airlines boarding assumptions supplies a third checkable scene using American Airlines and 1926.",
+      "mechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "whyWrong": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1926"
+      ],
+      "groundedEntities": [
+        "American Airlines"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.3"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch01.fact.4",
+      "claim": "assumption risk depends on the sequence Known data before Assumptions.",
+      "mechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "whyWrong": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Known",
+        "Assumptions. Because",
+        "Order"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.4"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch01.fact.5",
+      "claim": "Known data, Assumptions, Decisions, Results form the local framework for Assume You Know.",
+      "mechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "whyWrong": "Shortening removes the distinctions the quiz and examples need to test.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Known",
+        "Assumptions",
+        "Decisions",
+        "Results",
+        "Assume You Know. Because",
+        "Shortening"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.5"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch01.fact.6",
+      "claim": "jidoka is a hard detail that should stay attached to Japanese car-door assembly.",
+      "mechanism": "Because hard specifics are portable only inside their case, moving jidoka to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "whyWrong": "A true detail becomes misleading when it is attached to the wrong case.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Japanese",
+        "Any"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.6"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch01.fact.7",
+      "claim": "United States gives Detroit automakers a different factual token from Japanese car-door assembly.",
+      "mechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "whyWrong": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "United States",
+        "Detroit",
+        "Japanese",
+        "Since",
+        "All",
+        "Generic"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.7"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch01.fact.8",
+      "claim": "Fort Worth helps mark the boundary of assumption risk.",
+      "mechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "whyWrong": "The mechanism changes by venue; boundary details keep the application honest.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Fort Worth"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.8"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch01.fact.9",
+      "claim": "Assume You Know should teach assumption risk through Japanese car-door assembly, Detroit automakers, and American Airlines boarding assumptions, not through generic leadership advice.",
+      "mechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "whyWrong": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "3"
+      ],
+      "groundedEntities": [
+        "Assume You Know",
+        "Japanese",
+        "Detroit",
+        "American Airlines",
+        "Purpose"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.9"
+      ],
+      "teachingPriority": 4
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch01.ex.japanese-car-door-assembly",
+      "label": "Japanese car-door assembly",
+      "summary": "A Japanese assembly contrast shows that designing fit into the process beats correcting fit at the end. Toyota Production System, andon, jidoka, and Japanese factories make the case concrete.",
+      "realWorld": true,
+      "naturalSetting": "Japanese",
+      "hardSpecifics": [
+        "Toyota Production System",
+        "andon",
+        "jidoka",
+        "Japanese factories"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch01.ex.detroit-automakers",
+      "label": "Detroit automakers",
+      "summary": "Detroit automakers such as General Motors in Detroit represent the habit of solving visible defects late in automobile manufacturing. General Motors, Detroit, United States, and automobile manufacturing anchor the assumption trap.",
+      "realWorld": true,
+      "naturalSetting": "Detroit",
+      "hardSpecifics": [
+        "General Motors",
+        "Detroit",
+        "United States",
+        "automobile manufacturing"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "United States"
+      ]
+    },
+    {
+      "id": "ch01.ex.american-airlines-boarding-assumptions",
+      "label": "American Airlines boarding assumptions",
+      "summary": "American Airlines, founded in 1926 and based near Fort Worth, illustrates how operational routines can be defended as obvious until a different operating assumption exposes hidden friction.",
+      "realWorld": true,
+      "naturalSetting": "American Airlines",
+      "hardSpecifics": [
+        "American Airlines",
+        "1926",
+        "Fort Worth",
+        "airline operations"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "1926"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Assume You Know framework",
+      "members": [
+        "Known data",
+        "Assumptions",
+        "Decisions",
+        "Results"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch01.concept",
+      "kind": "concept",
+      "label": "assumption risk",
+      "text": "Decisions begin from what people think they know; weak assumptions can make competent action point at the wrong problem. A reader learns to test the premise behind a strategy before debating execution, price, or effort.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.ex.japanese-car-door-assembly",
+      "kind": "named_example",
+      "label": "Japanese car-door assembly",
+      "text": "A Japanese assembly contrast shows that designing fit into the process beats correcting fit at the end. Toyota Production System, andon, jidoka, and Japanese factories make the case concrete. Japanese car-door assembly turns Toyota Production System into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Toyota Production System",
+        "andon",
+        "jidoka",
+        "Japanese factories"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.ex.detroit-automakers",
+      "kind": "named_example",
+      "label": "Detroit automakers",
+      "text": "Detroit automakers such as General Motors in Detroit represent the habit of solving visible defects late in automobile manufacturing. General Motors, Detroit, United States, and automobile manufacturing anchor the assumption trap. Detroit automakers turns General Motors into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "General Motors",
+        "Detroit",
+        "United States",
+        "automobile manufacturing"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.ex.american-airlines-boarding-assumptions",
+      "kind": "named_example",
+      "label": "American Airlines boarding assumptions",
+      "text": "American Airlines, founded in 1926 and based near Fort Worth, illustrates how operational routines can be defended as obvious until a different operating assumption exposes hidden friction. American Airlines boarding assumptions turns American Airlines into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "American Airlines",
+        "1926",
+        "Fort Worth",
+        "airline operations"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.1",
+      "kind": "testable_fact",
+      "label": "Japanese car-door assembly makes assumption risk concrete through Toyota Production System and andon.",
+      "text": "Japanese car-door assembly makes assumption risk concrete through Toyota Production System and andon. Because Toyota Production System gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan. The safe move is to treat Japanese car-door assembly as colorful background. The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.2",
+      "kind": "testable_fact",
+      "label": "Detroit automakers adds a second anchor for assumption risk with General Motors and Detroit.",
+      "text": "Detroit automakers adds a second anchor for assumption risk with General Motors and Detroit. Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote. One example is enough to prove the whole model. One example can illustrate; comparison is what exposes the transferable pattern.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.3",
+      "kind": "testable_fact",
+      "label": "American Airlines boarding assumptions supplies a third checkable scene using American Airlines and 1926.",
+      "text": "American Airlines boarding assumptions supplies a third checkable scene using American Airlines and 1926. Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case. A third case should simply repeat the first case's lesson. The third case should test a neighboring misconception, not restamp the same sentence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.4",
+      "kind": "testable_fact",
+      "label": "assumption risk depends on the sequence Known data before Assumptions.",
+      "text": "assumption risk depends on the sequence Known data before Assumptions. Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone. Order is stylistic, so any sequence works if the message sounds polished. Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.5",
+      "kind": "testable_fact",
+      "label": "Known data, Assumptions, Decisions, Results form the local framework for Assume You Know.",
+      "text": "Known data, Assumptions, Decisions, Results form the local framework for Assume You Know. Because each member names a different job, the writer can assign claims to distinct functions rather than blending them. The framework is a slogan and can be shortened to one word. Shortening removes the distinctions the quiz and examples need to test.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.6",
+      "kind": "testable_fact",
+      "label": "jidoka is a hard detail that should stay attached to Japanese car-door assembly.",
+      "text": "jidoka is a hard detail that should stay attached to Japanese car-door assembly. Because hard specifics are portable only inside their case, moving jidoka to another example creates false grounding. Any true detail can be reused wherever it sounds useful. A true detail becomes misleading when it is attached to the wrong case.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.7",
+      "kind": "testable_fact",
+      "label": "United States gives Detroit automakers a different factual token from Japanese car-door assembly.",
+      "text": "United States gives Detroit automakers a different factual token from Japanese car-door assembly. Since the factual token is different, comparison can teach contrast rather than repeating a generic success story. All business examples can use the same date-place-scale language. Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.8",
+      "kind": "testable_fact",
+      "label": "Fort Worth helps mark the boundary of assumption risk.",
+      "text": "Fort Worth helps mark the boundary of assumption risk. Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case. A useful concept should apply the same way to every named organization. The mechanism changes by venue; boundary details keep the application honest.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.9",
+      "kind": "testable_fact",
+      "label": "Assume You Know should teach assumption risk through Japanese car-door assembly, Detroit automakers, and American Airlines boarding assumptions, not through generic leadership advice.",
+      "text": "Assume You Know should teach assumption risk through Japanese car-door assembly, Detroit automakers, and American Airlines boarding assumptions, not through generic leadership advice. Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes. Purpose language alone is enough to ground a leadership lesson. Purpose language without checkable anchors becomes motivational abstraction.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.framework.assume.you.know.framework",
+      "kind": "framework",
+      "label": "Assume You Know framework",
+      "text": "Known data, Assumptions, Decisions, Results",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1",
+    "1926",
+    "3"
+  ],
+  "allowedEntities": [
+    "Assume You Know",
+    "Decisions",
+    "Japanese",
+    "Detroit",
+    "American Airlines",
+    "Known",
+    "Assumptions",
+    "Results",
+    "A Japanese",
+    "Toyota Production System",
+    "General Motors",
+    "United States",
+    "Fort Worth",
+    "Golden Circle",
+    "Keep",
+    "Because Toyota Production System",
+    "Since",
+    "One",
+    "Order",
+    "Shortening",
+    "Any",
+    "All",
+    "Generic",
+    "Purpose",
+    "Japanese car-door assembly",
+    "Detroit automakers",
+    "American Airlines boarding assumptions"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch01.ex.japanese-car-door-assembly",
+      "warning": "Keep examples about Japanese car-door assembly source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch01.ex.detroit-automakers",
+      "warning": "Keep examples about Detroit automakers source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch01.ex.american-airlines-boarding-assumptions",
+      "warning": "Keep examples about American Airlines boarding assumptions source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch01.fact.2"
+}

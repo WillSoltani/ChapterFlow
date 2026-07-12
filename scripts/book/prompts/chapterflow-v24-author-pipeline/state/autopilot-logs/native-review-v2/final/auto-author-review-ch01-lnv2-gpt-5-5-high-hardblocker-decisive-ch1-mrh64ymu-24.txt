@@ -1,0 +1,80 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "c", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as four ordered repair moves matched to four dangers, not as a vague pause.",
+      "Narrow framing is the first villain, and the HopeLab examples show adding live alternatives before committing.",
+      "Reality-testing asks for evidence that can surprise or hurt the favorite answer, before the search becomes advocacy.",
+      "The Intel section says emotion can carry information but short-term attachment needs distance and a longer view.",
+      "Overconfidence is countered by naming better, worse, or different futures instead of trusting one neat forecast.",
+      "Steve Cole's logic was to buy comparison through parallel first passes before commitment got expensive.",
+      "Grove's outsider question asks what a fresh outsider would do without Intel's memory-chip attachment.",
+      "The chapter says each villain hits a different part of the choice and needs a different WRAP move.",
+      "The chapter explicitly says good process improves the odds while uncertainty can still produce a rough outcome."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q1: choice b is uniquely specific and lists the four WRAP verbs, while the distractors are vague or delayed.",
+      "Q3: choice c uses the giveaway term 'disconfirming evidence' and the other choices openly strengthen confirmation bias.",
+      "Q5: choice a echoes the prose's 'wider range of futures' language; b and c are cartoonishly credulous.",
+      "Q8: choice a is the only option preserving four distinct moves; b and c collapse the model in obviously wrong ways."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 60,
+    "practical": 78,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 88,
+    "insight": 86,
+    "density": 82,
+    "beginner": 90
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "Strong, memorable compression of the chapter's first core move."
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "The best line in the chapter: vivid, plain, and mechanistic."
+    },
+    {
+      "quote": "Good process raises the odds without promising the outcome.",
+      "why": "Clear boundary-setting that prevents the process from being oversold."
+    },
+    {
+      "quote": "On reflection, gather only the evidence that supports the plan you already favor, because disconfirming views just add noise and slow the decision down.",
+      "why": "This directly contradicts the chapter's advice inside an action step."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 4",
+      "problem": "The What to do step first asks for disconfirming evidence, then tells the reader to gather only supporting evidence; reserved category: SOURCE-CONTRADICTORY.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 6",
+      "problem": "Thin-but-usable example: it names the four villains but gives no concrete decision, stakes, or consequence, so it mostly restates the lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The laptop-lid cue feels arbitrary and slightly theatrical; the useful action is naming the cue, shortcut, and villain.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q5",
+      "problem": "The Intel reviewer is placed at a generic launch board, which blurs the Intel strategy example with the forecast lesson; still derivable.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is clear, beginner-friendly, and unusually good at making the WRAP sequence memorable: the summaries layer well, the core mechanism is repeated without much drag, and the quiz is mostly fair. It does not ship because example 4 contains a direct self-contradiction in the action advice, telling readers to seek disconfirming evidence and then to gather only supporting evidence. Fix that must-fix defect and tighten the thinnest transfer example, and the chapter would likely clear the professional bar."
+}
+```

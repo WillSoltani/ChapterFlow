@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 78,
+    "transfer": 84,
+    "practical": 76,
+    "summaries": 76,
+    "tone": 62,
+    "limits": 80,
+    "insight": 76,
+    "density": 63,
+    "beginner": 74
+  },
+  "quotes": [
+    {
+      "quote": "A clean fix can be the place a bad guess hides.",
+      "why": "Strong, portable line with real diagnostic value."
+    },
+    {
+      "quote": "What would still move if the offer were gone?",
+      "why": "Compact transfer question that makes the chapter usable."
+    },
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "Memorable reversal that should stick after a week."
+    },
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "Clear aphorism that compresses the chapter's lens."
+    },
+    {
+      "quote": "When the venue changes, use the order, then ask what fresh evidence must return.",
+      "why": "Representative of the repeated scaffold that makes chapters feel templated."
+    },
+    {
+      "quote": "If a detail belongs to another example, then say aloud: \"That proof stays there; my offer needs its own returning action.\"",
+      "why": "The practice language is specific but unnatural and over-scripted."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is correct and quiz-sound: I found no keyed answer contradicted by the prose. Its strongest asset is a set of reusable lenses with several genuinely sticky lines, especially around proof returning, loyalty as receipt, and metrics not being reasons. The main weakness is heavy cross-chapter sameness: named company facts, second-setting comparisons, boundary details, return proof, and true-detail-in-wrong-setting warnings recur so often that the book starts to feel generated from one master frame. It is publishable as a solid draft, but not premium; it needs more native voice, more varied example architecture, and less repeated scaffolding."
+}
+```

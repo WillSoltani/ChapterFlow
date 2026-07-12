@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "b", "c", "a", "c", "b", "c"],
+    "mechanisms": [
+      "The prose locates danger between capable roles when ownership becomes assumed, not in missing expertise.",
+      "The prescribed move is to map a critical transition to a named owner before pressure arrives.",
+      "The Ingrid example says to reconstruct every crossing before blaming the last visible person.",
+      "The chapter identifies cross-role transitions, rather than specialist competence, as the first inspection point.",
+      "It explicitly argues that success within separate roles does not ensure reliability across their seams.",
+      "The storm example directs the reader to assign one owner to the cross-department overlap before peak load.",
+      "The museum example shows that separate expert readiness can still leave dependencies exposed.",
+      "The chapter says expertise cannot make handoffs visible by memory alone, so ownership checks remain necessary.",
+      "Reliability must be designed into the system instead of depending on one leader holding transitions in memory."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Choice b is the only option using the chapter's signature ownership-seam language; the others are obvious blame or command strawmen.",
+      "Choice c nearly repeats the implementation-plan wording, while the alternatives prescribe conspicuously excessive effort or executive control.",
+      "Choice a is the only process-level response and is also the most specific, fully developed choice.",
+      "Choice b alone mentions handoffs; the other choices retreat to expertise or warnings.",
+      "Choice c restates the chapter's thesis, while the alternatives use negatively coded reminders and centralization.",
+      "Choice a is the only preventive action; the distractors are clearly delayed bureaucracy or wholesale replacement.",
+      "Choice c alone describes dependencies between experts and closely echoes the museum example.",
+      "Choice b repeats the memorable phrase about making ownership visible; a and c make implausibly absolute claims.",
+      "Choice c directly contrasts leader-held memory with a system, while the distractors rely on punishment or retraining."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 76,
+    "transfer": 89,
+    "practical": 91,
+    "summaries": 78,
+    "tone": 84,
+    "limits": 74,
+    "insight": 89,
+    "density": 82,
+    "beginner": 94
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The save lives in the chain, not in one brilliant pair of hands.",
+      "why": "A compact, memorable statement of the chapter's central mechanism."
+    },
+    {
+      "quote": "What would you inspect if you stopped asking who forgot and started asking where ownership thinned out?",
+      "why": "Turns the concept into a useful diagnostic question without jargon."
+    },
+    {
+      "quote": "The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.",
+      "why": "Invokes a supposedly important rescue that the chapter never actually identifies or narrates."
+    },
+    {
+      "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+      "why": "Generic scaffold language weakens an otherwise concrete example."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "\"That rescue story\" has an unclear antecedent because the preceding trauma-bay vignette never establishes the rescue or its circumstances.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The Austrian drowning rescue is treated as known evidence but receives no identifying details or actual narrative, weakening the section's stand-alone clarity.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 1-6",
+      "problem": "The examples transfer the lesson across domains, but nearly all resolve through the same named-owner move and do not test harder cases where ownership is explicit yet coordination still fails.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The closing sentence about practicing until the move feels routine is generic and adds no mechanism or consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "The correct option almost always repeats ownership, seam, handoff, dependency, or system language, while most distractors are obvious blame, punishment, work-harder, or lone-commander strawmen; answer positions are balanced, but conceptual guessing remains easy.",
+      "mustFix": false
+    },
+    {
+      "unit": "limits",
+      "problem": "The chapter briefly says complexity does not excuse sloppiness but does not explore when a named owner is insufficient, when shared authority is necessary, or when centralized command is appropriate.",
+      "mustFix": false
+    },
+    {
+      "unit": "summaries",
+      "problem": "The fast and deep reads rely on lightly established characters and rescue references, so their stand-alone performance is weaker than the full read and key takeaway.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches one strong, memorable move: diagnose the seam before blaming the people. Its imagery, cross-domain applications, concrete exercises, and repeated if-then guidance make the idea approachable and usable, and the mechanism is explained rather than merely asserted. It falls short of the professional shipping bar because the quiz mostly rewards recognition of signature vocabulary, the layered summaries contain underintroduced references, and the limits section does not test the named-owner prescription against meaningful failure cases. No defect is unsafe, factually demonstrable as wrong, app-breaking, or severe enough to make the lesson unusable, but the assessment and boundary work need another editorial pass."
+}
+```

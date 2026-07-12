@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch03",
+  "chapterNumber": 3,
+  "contentHash": "a0d81b4b91ea9279",
+  "reviewerSessionId": "auto-author-review-ch03-mr75vuin-7",
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 84,
+    "practical": 82,
+    "summaries": 87,
+    "tone": 82,
+    "limits": 88,
+    "insight": 86,
+    "density": 84,
+    "beginner": 81
+  },
+  "composite": 85,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "c",
+      "a",
+      "b",
+      "a",
+      "a",
+      "c",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "WHY works first because it gives HOW a job.",
+      "why": "Strongest mechanism line: short, memorable, and explains the order rather than just naming it.",
+      "verified": true
+    },
+    {
+      "quote": "A product is a receipt: visible proof that the reason had a body.",
+      "why": "Strong image that makes WHAT-as-proof sticky.",
+      "verified": true
+    },
+    {
+      "quote": "The return point is set, not met.",
+      "why": "Worst clarity lapse: compressed phrasing sounds clever but is hard for a beginner to operationalize.",
+      "verified": true
+    },
+    {
+      "quote": "Hard details are not spare parts.",
+      "why": "Strong limit statement that prevents overgeneralizing the framework.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "No uniquely-longest answer pattern. A few distractors are easier to reject because they use broad absolutes like every, only, or same, but this is not severe enough to make the quiz guessable."
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening is compact to the point of being cryptic for a cold beginner; it assumes the reader already knows why 1976, Apple Inc., and WHY behavior matter.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The sentence 'The return point is set, not met' is too compressed and may obscure the practical before-to-after lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Several wrong answers are softened by obvious overreach or absolutes, such as treating every cause like a company or saying a named company is the only failure condition.",
+      "mustFix": false
+    },
+    {
+      "unit": "practical section",
+      "problem": "The actions are useful but still mostly message-editing actions; the chapter could give one sharper example of what behavior actually proves a WHY after the words are changed.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against an 80+ professional bar. The chapter has a clear core move, strong mechanism lines, fair quizzes with sound keys, and useful limits around detail drift and over-application. Its main weakness is occasional compressed phrasing and a slightly stylized cost/price/return vocabulary that can make simple actions feel more abstract than they need to be. No defect blocks publication, but a light clarity pass on the hook, Example 1, and practical proof behavior would raise confidence.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "52173d397a313995d154e25d504660bca7cd033c5c4712a0dede8ed3827f80de",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T02:18:44.784Z"
+}

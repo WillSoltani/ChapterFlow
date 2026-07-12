@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch05",
+  "chapterNumber": 5,
+  "contentHash": "05135f1346c4f061",
+  "reviewerSessionId": "auto-author-review-ch05-r2-mr8wa3k4-8",
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 86,
+    "practical": 88,
+    "summaries": 89,
+    "tone": 88,
+    "limits": 86,
+    "insight": 86,
+    "density": 84,
+    "beginner": 83
+  },
+  "composite": 86.4,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "c",
+      "a",
+      "a",
+      "b",
+      "c",
+      "b"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "What would a stranger see before the slogan spoke?",
+      "why": "Strong memorable diagnostic line that makes the chapter's core move easy to recall.",
+      "verified": true
+    },
+    {
+      "quote": "The fare did not make the belief; the belief made the fare readable.",
+      "why": "Clear mechanism statement that separates visible artifact from underlying reason.",
+      "verified": true
+    },
+    {
+      "quote": "It does not save a false WHY, and it does not turn thin facts into strong proof.",
+      "why": "Useful limit that prevents the framework from becoming overbroad.",
+      "verified": true
+    },
+    {
+      "quote": "c) It lacks separate hard specifics from Southwest, Kelleher, and Apple design to ground the claim.",
+      "why": "This quiz option is fair, but it telegraphs the key by naming the full anchor set.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q3: the keyed option is the only answer that bundles all three named anchors from the chapter, making it easier to spot by surface matching.",
+    "Q5: the keyed option is the only one that directly preserves the chapter's three-part diagnostic frame; the distractors are plainly about timing or scope instead."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "The keyed option is noticeably more specific than the distractors because it lists the chapter's three hard anchors, so a reader may select it by pattern matching rather than reasoning through the prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q5",
+      "problem": "The keyed option repeats the chapter's three-job frame while the distractors focus on less plausible timing and scope explanations, weakening distractor quality.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The example is usable but somewhat overloaded with all three anchor cases at once, so it feels more like a summary of the chapter than a distinct before-to-after scenario.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter. The central move is clear and memorable: name the WHY, assign the HOW as owed conduct, and inspect the visible WHAT. The Southwest, Kelleher, and Apple anchors are kept mostly narrow and honest, and the practical drills are low-friction enough for a beginner to try. The main weakness is quiz construction: a couple of keyed options are more specific and chapter-shaped than their distractors, which slightly reduces assessment quality but does not break the chapter or mislead the reader.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "979164c534bab82b67cf7ce416ffebf8777417dc0949d58a16079d34977cc1e2",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-06T07:25:30.977Z"
+}

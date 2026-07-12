@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "mechanisms": [
+      "The prose defines heart rate variability as beat-to-beat rhythm shifting and links higher variability with stronger self-regulation under demand.",
+      "The Trier task is described as public speaking and arithmetic under social judgment, with evaluators' hard looks enough to trigger bodily stress.",
+      "The chapter says stress narrows attention toward fast relief, making a cookie, purchase, or sharp reply feel like shelter after tension.",
+      "Tang's training is presented as brief practice that steadies attention and softens stress reactivity before an urge peaks.",
+      "The chapter frames slow breathing as changing the body state so attention and choice stay online, not as mere delay.",
+      "Pause-and-plan questions arousal because a loud, braced body gives the long goal less room to speak.",
+      "The sleep passage says tired attention loses grip and lets loud cues crowd out the goal meant to be remembered.",
+      "Movement is said to help mood, stress regulation, and executive function, lowering the load on later choices.",
+      "The chapter explicitly warns that waiting until the craving peaks is unfair because the body needs runway before the hardest moment."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Choice b closely mirrors the chapter's phrasing around beat-to-beat flexibility and adaptive control.",
+      "Choice c contains the most chapter-specific phrase: social judgment and low control.",
+      "Choice c is the only option that treats stress as causally relevant, matching the chapter's repeated frame.",
+      "Choice a uses the chapter's exact mechanism: brief practice trains attention before obedience.",
+      "Choice b is the only answer with the chapter's causal chain of body signals, arousal, attention, and control.",
+      "Choice b is longer and uses the chapter's room/goal language, making it answer-shaped.",
+      "Choice a directly restates the sleep section's cue-competition mechanism.",
+      "Choice a lists the exact trio from the prose: mood, stress regulation, and executive function.",
+      "Choice c uses the chapter's signature wording: runway before the craving peaked."
+    ]
+  },
+  "scores": {
+    "retention": 89,
+    "quizzes": 86,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 86,
+    "limits": 92,
+    "insight": 88,
+    "density": 84,
+    "beginner": 88
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Panic is a poor coach. Calm gives the future a vote.",
+      "why": "Strongest compressed statement of the chapter's core move."
+    },
+    {
+      "quote": "The body is the room where the choice happens.",
+      "why": "Memorable mechanism image that makes the body-first frame stick."
+    },
+    {
+      "quote": "Pause-and-plan is not a way to avoid the hard act; it is a way to arrive at it with more of yourself present.",
+      "why": "Best limits passage; it prevents the technique from becoming avoidance."
+    },
+    {
+      "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+      "why": "A weak generic tag that adds little and slightly exposes template rhythm."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The correct option is somewhat answer-shaped because it repeats the stem's beat-to-beat wording and uses the chapter's adaptive-control language, while the distractors are visibly reductive.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q2",
+      "problem": "The correct option gives away the key mechanism with the exact social-judgment and low-control phrasing, so a reader could infer it by test-taking pattern.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The final sentence is generic and could fit many habit chapters; it weakens an otherwise useful concrete example.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples rely on named invented characters rather than clearly sourced before-to-after cases, so transfer is usable but less evidentially rich.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable. Its core lesson is clear, memorable, and practical: change the body state before asking willpower to decide. The prose gives beginners a concrete mechanism through stress, HRV, sleep, breathing, movement, and timing, while also naming real limits around avoidance and urgent action. The quiz is fair and derivable, though several correct answers are phrased in ways that make them easier to guess. The main improvement opportunity is richer transfer evidence in the examples, not a blocking defect."
+}
+```

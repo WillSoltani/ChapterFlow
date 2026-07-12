@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several correct answers are the most complete/qualified option, especially Q1, Q5, Q7, and Q8.", "Wrong choices often announce their wrongness with status shortcuts like familiar event, respected sponsor, famous executive, senior sponsor, or larger audience."]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 76,
+    "transfer": 70,
+    "practical": 82,
+    "summaries": 86,
+    "tone": 83,
+    "limits": 88,
+    "insight": 82,
+    "density": 78,
+    "beginner": 84
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Every broad push sent too soon spends proof the early believers have not earned yet.",
+      "why": "Strongest compressed line; it makes the core mistake memorable."
+    },
+    {
+      "quote": "Do not fake the proof. Narrow the ask.",
+      "why": "Clear practical command that a reader can actually use."
+    },
+    {
+      "quote": "The projector fan hums.",
+      "why": "This reads like decorative scene texture rather than decision evidence."
+    },
+    {
+      "quote": "What stayed broken was the missing path from first believers to early majority.",
+      "why": "Some examples repeat the abstract lesson without a concrete before-after consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "Several transfer examples feel manufactured: they name a role and repeat the chapter move, but the before-after consequence is thin or generic.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The sensory detail feels like slot-filler and does not strengthen the decision, consequence, or transfer lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Correct choices often sound more carefully bounded than distractors, while distractors lean on obviously weak status shortcuts. This creates answer-pattern tells.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The keyed answer is closest, but 'visible setting' is imprecise for Rogers; the real loss is checkable source/model grounding.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter repeats the proof-before-middle point many times; the repetition helps memory but lowers density.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong near-ship chapter with a memorable core move: count first believers before asking the cautious middle. The summaries are layered, the limits around TiVo are honest, and the practical advice is usable. It misses the professional bar mainly on transfer and quiz craft: several examples feel built to illustrate the lesson rather than drawn from a concrete situation with a real consequence, and the quiz distractors sometimes signal themselves by relying on obviously weak status or reach logic. I would revise before shipping."
+}
+```

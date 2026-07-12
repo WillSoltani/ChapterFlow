@@ -1,0 +1,17 @@
+Fixed the blocking major in [start-with-why-ch13.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch13.v21-native.chapter.json:151).
+
+Changed only `example[3].whatToDo`, rewriting it so it gives a new instruction instead of restating the scenario.
+
+Verification passed:
+
+```text
+npx tsx src/cli.ts qc-converge start-with-why
+DETERMINISTIC-CLEAN
+```
+
+```text
+npx tsx src/cli.ts major-status start-with-why
+PASS ... 0 unresolved
+```
+
+Only advisory lines remain.

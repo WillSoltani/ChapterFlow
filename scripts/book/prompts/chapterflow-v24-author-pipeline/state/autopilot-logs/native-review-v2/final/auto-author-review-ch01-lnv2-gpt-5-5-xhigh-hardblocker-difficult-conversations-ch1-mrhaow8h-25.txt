@@ -1,0 +1,80 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "a", "b", "c", "c", "b", "a"],
+    "mechanisms": [
+      "The fear is about whether she is competent and authorized to challenge him, which the prose defines as identity.",
+      "The prose says to diagnose the visible promise, the resentment, and the family-role identity question underneath.",
+      "The chapter's move is to separate facts from feelings and identity or reputation fears before responding.",
+      "The prose warns that accepting the visible label can trap the exchange in facts while feelings steer the room.",
+      "The reaction grew because the question seemed to judge what kind of friend she was, matching the identity layer.",
+      "Her notes separate facts, feelings, and identity, preventing the poster dispute from being treated as only authorship.",
+      "The attendance fact is now carrying a parenting identity threat, so repeating facts alone may increase defense.",
+      "The prose says the frame is most useful as private diagnosis and can sound accusatory when pasted onto someone else.",
+      "The recurring respect claim signals that dishes are the visible issue while respect is another active layer."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q1: a is the longest and mirrors 'competence and authority'; b has giveaway absolute wording, 'only issue.'",
+      "Q2: b is much longer and is the only option naming all three layers.",
+      "Q3: c is the only option that performs the chapter's full three-layer move.",
+      "Q4: a is the only answer using the chapter's mechanism language: timeline versus trust feeling.",
+      "Q5: b repeats the stem's 'bad friend' identity clue; c has giveaway absolute wording, 'always.'",
+      "Q6: c is the only answer preserving the diagnostic-not-script distinction.",
+      "Q7: c is much longer and contains the chapter's exact warning about more facts intensifying defense.",
+      "Q8: b is much longer and directly restates the private-diagnosis warning.",
+      "Q9: a is the only option that names layer separation; b and c are flat logistics/avoidance distractors."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 78,
+    "transfer": 72,
+    "practical": 84,
+    "summaries": 89,
+    "tone": 88,
+    "limits": 93,
+    "insight": 90,
+    "density": 85,
+    "beginner": 87
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The log is evidence. It is not the whole map.",
+      "why": "This is the strongest compact statement of the chapter's core move."
+    },
+    {
+      "quote": "The three conversations are a diagnostic tool, not a script.",
+      "why": "It gives the reader a clear boundary and prevents overselling."
+    },
+    {
+      "quote": "A person who already feels exposed will rarely thank you for diagnosing their identity layer.",
+      "why": "This is a practical failure mode stated in plain, memorable language."
+    },
+    {
+      "quote": "In truth, prepare only the deadline facts and skip the feelings and identity stakes, since sorting those extra layers just clouds a clean evidence-based review.",
+      "why": "This directly contradicts the chapter's lesson and would teach the wrong action."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The What to do section first tells Sarah to sort facts, feelings, and identity, then says to skip feelings and identity because they cloud the review. This is SOURCE-CONTRADICTORY and reader-harming.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Correct answers are often the longest option and the only option that names all three layers, while distractors often use giveaway absolutes such as 'only,' 'always,' or 'never.'",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The same names recur across unrelated roles and settings, especially Ingrid and Mathieu, which can blur whether the vignettes are connected.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong diagnostic chapter: the core idea is memorable, the prose explains the mechanism rather than just naming it, and the exercises are concrete enough for a beginner to use. I would not ship it as-is because Example 1 contains a direct contradiction that instructs the opposite of the chapter's central move. After that fix, the main improvements are craft-level: reduce quiz tells and avoid confusing name reuse across examples."
+}
+```

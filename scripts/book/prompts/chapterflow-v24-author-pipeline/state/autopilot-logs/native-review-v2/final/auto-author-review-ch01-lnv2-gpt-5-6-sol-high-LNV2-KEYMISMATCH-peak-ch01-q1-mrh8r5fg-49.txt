@@ -1,0 +1,110 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "c", "b", "b", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The prose defines purposeful practice as isolating the recurring fault, getting immediate feedback, and changing the next attempt.",
+      "A redox-only set isolates the repeated error and uses each checked step to direct an immediate correction.",
+      "Repeating the whole demo allows the same localized weakness to remain hidden inside the complete performance.",
+      "The lane-line cue isolates the crossover, video supplies prompt feedback, and the next repetition can change before adding distance.",
+      "Faloon's improvement comes from using each miss to alter the strategy for the next recall attempt.",
+      "A visible size target makes the uneven result traceable and able to guide the next cut.",
+      "The chapter says feedback matters when one attempt shapes the next while the error remains traceable.",
+      "Plan B creates a short compare-adjust-repeat loop, whereas Plan A delays feedback until all fifty repetitions are complete.",
+      "The pedal position and chalk line make the target observable and comparable across a short set of turns."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Choice a is also defensible: the prose explicitly says comfort can leave the weak spot hidden, so both a and b identify why repetition may preserve the error.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Q1's correct choice is the uniquely longest and most operationally detailed option.",
+      "Q2, Q4, Q8, and Q9 reuse the chapter's signature isolate-check-adjust vocabulary, while their distractors are conspicuously passive, vague, or extreme.",
+      "Q3 and Q7 are near-verbatim completions of the chapter's central claim.",
+      "Across the quiz, the answer containing immediate feedback plus a changed next attempt is usually recognizable without reading the scenarios closely."
+    ]
+  },
+  "scores": {
+    "retention": 94,
+    "quizzes": 76,
+    "transfer": 84,
+    "practical": 92,
+    "summaries": 88,
+    "tone": 90,
+    "limits": 94,
+    "insight": 91,
+    "density": 84,
+    "beginner": 94
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "This compact image makes the chapter's core correction-loop idea memorable."
+    },
+    {
+      "quote": "The rep has to press beyond comfort far enough to reveal the miss, but not so far that the feedback turns to noise.",
+      "why": "This gives the method a useful boundary instead of simply prescribing ever-harder practice."
+    },
+    {
+      "quote": "   a) Enjoyable repetition may build comfort while leaving size differences untouched.\n   b) Uneven cuts can become fluent unless a visible size target guides the next cut.",
+      "why": "Both choices are supported diagnoses of the claim, preventing Q6 from having a clean single answer."
+    },
+    {
+      "quote": "If Sarah shoots only the distance she already owns, if Camille steams only the pitcher size she can rescue, if Jonas keeps the transition in his notes without speaking it aloud, nothing has been asked to adapt.",
+      "why": "Sarah appears without introduction where the established archer is Megan, creating a small continuity distraction."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "Choices a and b are both supported by the prose: repetition can build comfort while preserving the weakness, and a visible target is needed to guide correction. The question therefore lacks one uniquely derivable answer.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Several correct choices echo the chapter's isolate-feedback-adjust language while distractors recommend obviously vague, passive, or extreme actions, making answers guessable from phrasing.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "Sarah is introduced without context in the stretch paragraph even though Megan is the chapter's established archer, creating a minor name-continuity stumble.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The scenario ends with a proposed correction and measurement but never shows the resulting arrow pattern, so it lacks a completed decision-to-consequence arc.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "Thomas chooses a narrow drill, but the example never shows whether it produces a correctly stamped packet.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "Camille identifies and drills the texture fault, but no subsequent pitcher demonstrates the consequence of changing wand depth.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The example stops at Jonas's choice to rewrite and rehearse the transition without showing whether visitors remain engaged afterward.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "Lin is left before the rerun, so the example proposes the correction loop without showing what the focused edit reveals or changes.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, highly teachable chapter built around a memorable correction-loop model: isolate the miss, stretch slightly, obtain prompt feedback, and change the next attempt. It transfers convincingly across study, work, sport, performance, and programming; its challenge and implementation plan are concrete enough to use immediately; and its explicit discussion of noisy feedback, poor targets, symptoms, and the limits of purposeful practice adds unusual honesty. The main weakness is that most extended examples stop at the recommended intervention instead of showing a real before-to-after consequence, while the quiz often telegraphs its keys and Q6 is genuinely double-keyed. Fixing that question is necessary, but the chapter otherwise clears a professional 80-point shipping bar."
+}
+```

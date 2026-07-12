@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 72,
+    "transfer": 82,
+    "practical": 74,
+    "summaries": 82,
+    "tone": 64,
+    "limits": 80,
+    "insight": 72,
+    "density": 66,
+    "beginner": 76
+  },
+  "quotes": [
+    {
+      "quote": "A clean fix can be the place a bad guess hides.",
+      "why": "Strong, compact, portable line that carries the chapter's reversal."
+    },
+    {
+      "quote": "What would still move if the offer were gone?",
+      "why": "Excellent transfer lens: short, reusable, and easy to apply outside the example."
+    },
+    {
+      "quote": "Trust is a belief you can watch under pressure.",
+      "why": "Memorable and concrete enough to survive a week later."
+    },
+    {
+      "quote": "Use the changed factual token to compare venues instead of stamping the first story shape onto both.",
+      "why": "Shows the recurring house machinery: abstract phrasing and the same venue-transfer rule repeated."
+    },
+    {
+      "quote": "At the first newness spike, split notice from need.",
+      "why": "A useful idea, but the practice guidance is compressed and not very behaviorally natural."
+    },
+    {
+      "quote": "First the reason, then the growth, then the count, then the blur.",
+      "why": "Clear ordering device, but also evidence of the repeated formula across chapters."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is sound and mostly useful: the keyed answers are supported, the core lenses are transferable, and several memorable lines are genuinely sticky. The main weakness is not correctness but sameness. Each chapter runs the same machine: named company anchors, a four-part order, warning against borrowed details, second-setting comparison, return proof, proxy character, then similar if-then practice. That makes the book feel engineered rather than individually authored. It would ship as a solid draft, but the voice, density, and quiz explanations need work before it feels premium."
+}
+```

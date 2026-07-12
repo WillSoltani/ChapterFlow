@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 74,
+    "quizzes": 75,
+    "transfer": 77,
+    "practical": 70,
+    "summaries": 78,
+    "tone": 62,
+    "limits": 76,
+    "insight": 61,
+    "density": 58,
+    "beginner": 80
+  },
+  "quotes": [
+    {
+      "quote": "A clean repair can be the wrong win.",
+      "why": "Compact and memorable; this is the sample at its stickiest."
+    },
+    {
+      "quote": "A metric is a receipt for spread, not a receipt for meaning.",
+      "why": "Strong portable line that cleanly reverses the reader's default assumption."
+    },
+    {
+      "quote": "These are not one word with six costumes.",
+      "why": "Plain, vivid phrasing that helps separate similar incentive mechanisms."
+    },
+    {
+      "quote": "A true detail can still mislead when it rides with the wrong setting.",
+      "why": "Useful warning, but this same source-detail move becomes a repeated scaffold."
+    },
+    {
+      "quote": "A true detail in the wrong paragraph is not extra support; it is false ground.",
+      "why": "Nearly the same rhetorical move appears again, making the chapters feel templated."
+    },
+    {
+      "quote": "One story can make you nod; two let you compare what actually repeats.",
+      "why": "Good principle, but the two-setting comparison shell is reused so often it becomes predictable."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is clean enough to pass the correctness gate: the quiz keys are supported by the prose, and I found no direct contradiction or corrupt artifact. As a book sample, though, it shows high cross-chapter churn. Each chapter has the same machinery: named company setting, source detail must stay home, second setting prevents one-story proof, sequence of four terms, practical mark/read-aloud exercise, then a caution about purpose talk. The result is usable, clear, and beginner-friendly, but it often feels like a house template wearing different nouns rather than chapters authored from the specific spirit of Start With Why. The best lines are memorable, and the quizzes are mostly sound, but density, tone, and insight suffer from repetition."
+}
+```

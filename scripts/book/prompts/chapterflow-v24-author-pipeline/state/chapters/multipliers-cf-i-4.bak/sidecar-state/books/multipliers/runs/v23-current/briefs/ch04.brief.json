@@ -1,0 +1,189 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "multipliers-ch04",
+  "chapterNumber": 4,
+  "title": "The Challenger",
+  "coreMove": "Because the public date and venue make the Moon goal a verifiable stretch-target case.",
+  "thesis": "John F. Kennedy set the Moon landing goal before Congress on May 25, 1961.",
+  "readerPromise": "After this chapter, a reader can because the public date and venue make the Moon goal a verifiable stretch-target case.",
+  "ownedCases": [
+    {
+      "id": "ch04.ex.kennedy-moonshot",
+      "label": "John F. Kennedy Moon goal"
+    },
+    {
+      "id": "ch04.ex.toyota-andon",
+      "label": "Toyota production problem-solving"
+    },
+    {
+      "id": "ch04.ex.atlassian-shipit",
+      "label": "Atlassian ShipIt"
+    }
+  ],
+  "notYours": [
+    "Amazon disagree and commit",
+    "Amy Edmondson hospital-team research",
+    "Amy Edmondson voice and silence",
+    "Anders Ericsson deliberate practice",
+    "Carol Dweck growth mindset",
+    "Chris Voss calibrated questions",
+    "Getting to Yes negotiation frame",
+    "Google Project Aristotle",
+    "Google Project Oxygen",
+    "HarperCollins revised edition",
+    "HarperCollins revised new chapters",
+    "Harvard Business Review article",
+    "Intel constructive confrontation",
+    "Kim Scott Radical Candor",
+    "Netflix freedom and responsibility",
+    "Original HarperBusiness release",
+    "Peter Gollwitzer implementation intentions",
+    "Pixar Braintrust",
+    "Pixar Braintrust candor",
+    "Satya Nadella / Microsoft culture shift"
+  ],
+  "cast": [
+    "Georges",
+    "Daniel",
+    "Lacey",
+    "Nash"
+  ],
+  "answerIndexPattern": [
+    1,
+    2,
+    0,
+    2,
+    0,
+    1,
+    1,
+    0,
+    2
+  ],
+  "avoid": [
+    "opener (ch01): \"A source analyst sees May 2010 as the\"",
+    "opener (ch02): \"At the return moment in Microsoft's 2014 CEO\"",
+    "opener (ch03): \"On a project call, delivery lead Holly hears\"",
+    "opener (ch05): \"Product lead Janelle asks the question no one\"",
+    "opener (ch06): \"Reed Hastings and Patty McCord reach the return\"",
+    "opener (ch07): \"Sabrina catches the early signal on the publisher\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a bedside notebook",
+    "venue: a lunch break",
+    "venue: a spare-room desk",
+    "frame: two stakeholders disagree about calibrated questions before deciding",
+    "frame: a first encounter with candid feedback practice that sets a benchmark"
+  ],
+  "architectureFamily": "misconception-reversal",
+  "openerType": "claim",
+  "challengeFrame": "before-your-next-X",
+  "practiceShape": "say-aloud-script",
+  "exampleLenses": [
+    "outsider-witness",
+    "numbers-detective",
+    "prop-tableau"
+  ],
+  "practiceVerb": "cross-out",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "leader",
+    "rather",
+    "assuming",
+    "thinking",
+    "team",
+    "concrete"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "failure",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "cost-first",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "say-aloud-script",
+    "measure-one-number",
+    "single-imperative",
+    "if-then-trigger"
+  ],
+  "quizStemShapes": [
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority"
+  ],
+  "quizFailureModes": [
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction"
+  ],
+  "questionFactOrder": [
+    2,
+    7,
+    8,
+    9,
+    6,
+    3,
+    4,
+    5,
+    1
+  ],
+  "memorableShapes": [
+    "imperative",
+    "reversal",
+    "redefinition"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "people-speak",
+    "artifact-speak"
+  ],
+  "shellRegister": "condition-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "John F. Kennedy Moon goal"
+  },
+  "adjacentJobs": {
+    "prev": "Because a multi-team analysis shows that contribution patterns are shaped by group conditions.",
+    "next": "Because the 1986 date fixes the cautionary decision case in a specific public event."
+  }
+}

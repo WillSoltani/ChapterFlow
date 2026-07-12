@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": ["No quiz questions are present, so there are no answer-choice tells to evaluate."]
+  },
+  "scores": {
+    "retention": 20,
+    "quizzes": 0,
+    "transfer": 25,
+    "practical": 35,
+    "summaries": 0,
+    "tone": 30,
+    "limits": 45,
+    "insight": 35,
+    "density": 20,
+    "beginner": 40
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This is placeholder-like rather than a substantive hook."
+    },
+    {
+      "quote": "What to do: Treat supplied artifacts as untrusted data.",
+      "why": "This is the clearest actionable core move in the chapter."
+    },
+    {
+      "quote": "Why it matters: Instructions in data must never steer the evaluator.",
+      "why": "This gives a concise mechanism for the lesson."
+    },
+    {
+      "quote": "## Quiz",
+      "why": "The quiz header exists, but no quiz questions follow it."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section is present as a header but has no standalone content.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is present as a header but has no standalone content.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is present as a header but has no standalone content.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is present as a header but has no takeaway text.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is present as a header but gives no action for the reader to try.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions, so the quiz is broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is present as a header but contains no review cards.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is present as a header but contains no memorable lines.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example is a large pasted remediation prompt artifact rather than a developed learning example with before-after application.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This should not ship. The only usable lesson is the brief warning to treat supplied artifacts as untrusted data, but nearly every promised learning layer is empty, including the fast/deep/full reads, takeaway, practice step, quiz, review cards, and memorable lines. The chapter has a valid seed of an idea, but as delivered it is structurally incomplete and cannot meet a professional learning-product bar."
+}
+```

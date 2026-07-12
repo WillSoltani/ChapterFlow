@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "FAIL",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["a", "b", "c", "a", "b", "c", "a", "a", "c"],
+      "keyDisagreements": ["Q8: I derive a, because the chapter says copied tools fail when the receiving system lacks the upstream belief; the answer key gives b."]
+    },
+    "2": {
+      "answers": ["b", "c", "a", "b", "c", "a", "b", "c", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["c", "b", "a", "c", "b", "a", "c", "b", "a"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "a", "c", "b", "a", "b", "c", "b", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 76,
+    "quizzes": 62,
+    "transfer": 80,
+    "practical": 68,
+    "summaries": 78,
+    "tone": 70,
+    "limits": 72,
+    "insight": 73,
+    "density": 61,
+    "beginner": 76
+  },
+  "quotes": [
+    {
+      "quote": "A clean finish can still hide a broken start.",
+      "why": "Compact, portable, and memorable; one of the sample's strongest retention lines."
+    },
+    {
+      "quote": "CHAPTER 1 Q8: b",
+      "why": "The key is wrong: the chapter supports answer a, not b, creating a hard quiz correctness failure."
+    },
+    {
+      "quote": "An American assembly lesson reframes a Friday release report shows the same defect escaping through final QA for the third sprint.",
+      "why": "Corrupted sentence structure; it reads like generated scaffold fragments spliced together."
+    },
+    {
+      "quote": "A Japanese assembly report sits beside a simulator report shows pilots repeating the same landing-sequence mistake after extra drills.",
+      "why": "Another incoherent splice, indicating template or assembly artifact leakage."
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Repeated template artifact in implementation plans; this alone damages publishability."
+    },
+    {
+      "quote": "Reliability says the job was done; trust says the people are safe with you.",
+      "why": "Strong aphorism that captures the chapter's distinction cleanly."
+    }
+  ],
+  "oneParagraphVerdict": "The sample has a clear teaching spine and several strong, memorable lines, but it fails the correctness gate. Chapter 1 Q8 is keyed against the chapter's own lesson, and multiple examples contain visibly corrupted sentence assembly. Across chapters the structure repeats heavily: hook, fast/deep/full reads, six similarly staged examples, nine scenario quizzes, five review cards, implementation plan, and three memorable lines. The ideas transfer reasonably well, and the summaries are generally faithful, but the recurring shell, repeated rhetorical moves, 'Title: undefined' artifacts, and malformed example prose keep this from feeling like a polished, individually authored book sample."
+}
+```

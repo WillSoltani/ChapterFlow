@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "the-now-habit-ch07",
+  "chapterNumber": 7,
+  "contentHash": "e911afac82351c1f",
+  "reviewerSessionId": "eval-proxy-the-now-habit-ch07-1783022620440",
+  "scores": {
+    "retention": 93,
+    "quizzes": 89,
+    "transfer": 91,
+    "practical": 88,
+    "summaries": 92,
+    "tone": 90,
+    "limits": 91,
+    "insight": 92,
+    "density": 89,
+    "beginner": 90
+  },
+  "composite": 90.6,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "a",
+      "c",
+      "c",
+      "a",
+      "b",
+      "b"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Flow is designed before it is felt.",
+      "why": "The chapter's core move is compressed into a memorable, accurate line.",
+      "verified": true
+    },
+    {
+      "quote": "A roadblock is a cue to reset, not a permit to flee.",
+      "why": "This gives the reader a concrete replacement meaning for a common failure point.",
+      "verified": true
+    },
+    {
+      "quote": "Do not turn flow into another standard you can fail.",
+      "why": "This is a strong boundary that prevents the concept from becoming perfectionism.",
+      "verified": true
+    },
+    {
+      "quote": "Before you send your next response, move your notebook beside the task.",
+      "why": "The prompt is a little context-specific and may not fit readers who are not writing a response.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q1 and Q6 have correct choices that are slightly more nuanced and more action-specific than the distractors, but there is no reliable answer pattern or giveaway strong enough to solve the quiz without reading."
+  ],
+  "complaints": [
+    {
+      "unit": "Hook",
+      "problem": "The line is vivid but compressed; a cold beginner may need an extra beat to understand what the inbox is interrupting.",
+      "mustFix": false
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The instruction assumes the reader is about to send a response, which narrows an otherwise broadly transferable practice.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The answer is derivable from 'time to soften,' but time distortion is less directly taught than the other quiz targets.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter teaches one clean operating idea: flow is not a mood to wait for but a channel to design through goals, feedback, challenge-skill balance, and protected attention. The examples transfer across writing, coding, design, chores, and roadblocks without feeling padded. The quiz is fair and the answer key is sound. The only notable weaknesses are small: the hook is slightly opaque, the immediate exercise is too response-specific, and one quiz item leans on a less-developed point about time."
+}

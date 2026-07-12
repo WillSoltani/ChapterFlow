@@ -1,0 +1,547 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "radical-candor-ch04",
+  "number": 4,
+  "title": "Drive Results Collaboratively",
+  "readingTimeMinutes": 7,
+  "hook": "A fast call can make the people doing the work miss the answer.",
+  "hookSourceAnchorIds": [
+    "ch04.fact.1"
+  ],
+  "counterintuition": "Speed can be the expensive move. Results improve when you slow only the step that is missing, then let the loop close without extra noise.",
+  "counterintuitionSourceAnchorIds": [
+    "ch04.fact.1",
+    "ch04.fact.7"
+  ],
+  "tryThisNow": "Schedule 10 minutes before your next recurring sync: list the step most likely to be skipped, then name who owes whom what by when.",
+  "tryThisNowSourceAnchorIds": [
+    "ch04.fact.1"
+  ],
+  "keyTakeaway": "Do not treat collaboration as one habit; use the GSD Wheel to find the missing step, protect the right handoff, and let evidence restart the loop.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch04.fact.1",
+    "ch04.fact.8"
+  ],
+  "breakdown": {
+    "fastRead": "A fast call can be the slowest move. Nathan hears the demand at lunch: decide now so the group can move. He grabs the loudest answer, skips the quiet risk, and the customer follows the wrong step. The Get Stuff Done Wheel, or GSD Wheel, is a seven-step path for shared results: Listen, Clarify, Debate, Decide, Persuade, Execute, and Learn. Each job closes a different gap. Skip Listen, and facts vanish. Skip Clarify, and a rough idea gets judged too soon. Skip Persuade, and the people doing the work inherit a call they do not trust. The fastest call is often the one that slows the work.",
+    "deepRead": "The loop works because it separates duties that look like one duty from far away. A raw idea first needs air, then form, and only after that should it take hits. The official guide, a self-test for managers, asks whether you are a quiet listener or a loud listener. That question is not about style points; it is about whose facts reach the table before the loudest voice frames the choice.\n\nUse the wheel with care. If the building is unsafe, if law sets the answer, or if one person can do the task alone, do not slow the moment to run all seven steps. The cost is real: Listen takes patience, Debate spends social heat, and Persuade asks you to say more than a bare call. The point is not more talk. The point is the check that fires before the miss.\n\nSteve Jobs's rock tumbler metaphor, the Ch. 4 pp. 94-97 image for Debate, gives the hard step a clean form. Plain rocks do not polish by sitting apart; they need friction, but the friction belongs on the idea, not on the person. Debate is the rock tumbler, not the rock fight. Avoid the tumble to keep peace, and the weak edge ships unchanged.\n\nAristotle three elements, the trio emotion credibility logic, gives the Persuade step its job in Ch. 4 pp. 101-105. Why sell a call after it is made? Because some people must act on a choice they did not help test. They need the feeling named, the source trusted, and the reason clear. Skip persuasion, and people pay with rework.",
+    "fullRead": "Reid sees the miss after the result, not before it. His group used the GSD Wheel like a ladder: climb from Listen to Execute, then stop. The last verb, Learn, was treated as optional. That is how a finished effort becomes a trap. Once people have spent time on an answer, they want the old answer to look wise. Learn breaks that grip. It restarts the wheel after results, so evidence gets a voice too.\n\nThe seven verbs are not ceremony. Listen is the intake valve. It gives quieter people a way in before the first speaker sets the frame. Clarify is the soft wrap around a new thought. It lets a rough idea become clear enough to deserve a fair fight. Debate is the tumble. Decide is the handoff from talk to action. A decision is a handoff from facts to action. Persuade carries the reason to people outside the earlier path. Execute protects time from drag. Learn asks what the result now proves.\n\nNotice the order. You can run it without a title. If you owe Nathan a count on Friday, Listen means asking what he has seen before you argue. Clarify means restating his rough idea until he says you have it right. Debate means testing the idea, not Nathan. Decide means moving the call toward the person closest to the facts. Persuade means telling Noemie why the choice makes sense before asking her to act. Execute means leaving Camden time to do the task. Learn means changing your mind when the result changes the facts.\n\nThe common failure is not laziness. It is false thrift. You save ten minutes by skipping Listen, then spend an hour fixing a fact you did not hear. You avoid Debate to keep the group warm, then ship an idea that breaks at first contact. You decide from rank instead of facts, then wonder why the person near the constraint saw the risk sooner. What looks like speed becomes debt.\n\nThe opposite error is wheel worship. Do not drag every small choice through all seven verbs. A low-risk task may need one clear call and quiet time. Execute, in Ch. 4 pp. 106-107, names that danger as collaboration tax: the cost added when people coordinate so much that doing shrinks. If the missing step is focused time, one more update can be the very thing that makes the miss worse.\n\nUse the wheel as a fault finder. Where did the loss begin? If people are surprised by the call, look at Persuade. If the debate keeps circling, look at Clarify. If a senior person keeps grabbing choices, look at Decide and push the call toward the facts. If the same error returns, look at Learn. The loop that closes is not the one that ends with action. It is the one that lets the result teach."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch04.ex.gsd-wheel",
+      "sourceAnchorIds": [
+        "ch04.ex.gsd-wheel"
+      ],
+      "sourceFactIds": [
+        "ch04.fact.2"
+      ],
+      "namedCaseIds": [
+        "ch04.ex.gsd-wheel"
+      ],
+      "title": "Nathan Skips the Quiet Risk",
+      "tags": [
+        "GSD Wheel",
+        "Listen",
+        "outsider witness"
+      ],
+      "planSpec": {
+        "domain": "customer support fix",
+        "audience": "people sharing a live customer answer",
+        "stakes": "a customer follows the wrong step",
+        "format": "mistake_recovery",
+        "requiredBeat": "state the demand, skip listening, and show the downstream miss",
+        "venue": "a lunch break",
+        "exemplar": "ch04.ex.gsd-wheel"
+      },
+      "scenario": "Support lead Nathan states the demand in the support queue during a lunch break: decide the fix now so the customer can leave with an answer. He lets the first loud claim set the path and skips Listen in the GSD Wheel's seven steps. By the time a junior risk surfaces, the customer has followed the wrong step and calls back.",
+      "whatToDo": "When one voice sets the path, the move works because it saves facts before debate: Nathan asks each quiet person for one risk, then Clarify follows.",
+      "whyItMatters": "If listening is skipped, the first speaker owns the frame. The people downstream pay for the fact that never made it into the choice."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch04.ex.steve-jobs-rock-tumbler",
+      "sourceAnchorIds": [
+        "ch04.ex.steve-jobs-rock-tumbler"
+      ],
+      "sourceFactIds": [
+        "ch04.fact.4",
+        "ch04.fact.7"
+      ],
+      "namedCaseIds": [
+        "ch04.ex.steve-jobs-rock-tumbler"
+      ],
+      "title": "Camden Adds the Wrong Call",
+      "tags": [
+        "Debate",
+        "Execute",
+        "rock tumbler"
+      ],
+      "planSpec": {
+        "domain": "execution stall",
+        "audience": "project peers facing delay",
+        "stakes": "more coordination before the idea is tested",
+        "format": "predict_reveal",
+        "requiredBeat": "start mid-action, trace the skipped debate, and leave the result open",
+        "venue": "a spare-room desk",
+        "exemplar": "ch04.ex.steve-jobs-rock-tumbler"
+      },
+      "scenario": "Project lead Camden is adding another status call at a spare-room desk after the demand has already passed. The blue calendar block is the only hard detail: execution has stalled. He skipped Debate to keep peace, though Steve Jobs's rock tumbler metaphor treats friction as the polish ideas need. The call is still unsent when Camden sees the problem.",
+      "whatToDo": "When execution stalls, what should Camden ask first? Whether Debate was skipped; then he schedules one focused clash over the idea before adding calls.",
+      "whyItMatters": "If peace was bought by avoiding friction, more coordination will not polish the idea. The rock tumbler belongs before the call spreads."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch04.ex.aristotle-persuasion",
+      "sourceAnchorIds": [
+        "ch04.ex.aristotle-persuasion"
+      ],
+      "sourceFactIds": [
+        "ch04.fact.6"
+      ],
+      "namedCaseIds": [
+        "ch04.ex.aristotle-persuasion"
+      ],
+      "title": "Noemie Pays the Persuasion Cost",
+      "tags": [
+        "Persuade",
+        "Aristotle",
+        "handoff"
+      ],
+      "planSpec": {
+        "domain": "decision handoff",
+        "audience": "people asked to act after a choice",
+        "stakes": "slow execution from people outside the debate",
+        "format": "dialogue",
+        "requiredBeat": "answer for an earlier commitment and show persuasion earning action",
+        "venue": "a family group chat",
+        "exemplar": "ch04.ex.aristotle-persuasion"
+      },
+      "scenario": "Project lead Noemie answers for the earlier commitment in the family group chat at the check-in itself. The decision has reached people who did not join Debate, and they are moving slowly. She pays the cost in the Persuade step, using Aristotle three elements: emotion credibility logic. No one gets a bare command. Action starts after the reasons land.",
+      "whatToDo": "When actors missed the argument, Noemie persuades before assigning action: feeling named, trust earned, reason clear, then the ask.",
+      "whyItMatters": "After Debate, a bare call asks for faith people may not owe. Persuasion transfers the reason so execution can begin without drag."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch04.ex.gsd-wheel",
+      "sourceAnchorIds": [
+        "ch04.ex.gsd-wheel"
+      ],
+      "sourceFactIds": [
+        "ch04.fact.8"
+      ],
+      "namedCaseIds": [
+        "ch04.ex.gsd-wheel"
+      ],
+      "title": "Reid Stops Before the Repeat",
+      "tags": [
+        "GSD Wheel",
+        "Learn",
+        "numbers detective"
+      ],
+      "planSpec": {
+        "domain": "after-result correction",
+        "audience": "peers repeating a weak choice",
+        "stakes": "the same miss repeats because the old choice feels safer",
+        "format": "postmortem",
+        "requiredBeat": "trace the result back to missing Learn and pull back late",
+        "venue": "a spare-room desk",
+        "exemplar": "ch04.ex.gsd-wheel"
+      },
+      "scenario": "Project partner Reid traces the miss at a spare-room desk after it is over. The one fact does not add up: the GSD Wheel has seven steps, and his path stopped at Execute. A red slash sits beside Learn. The result is weak, not final. He is ready to defend the old choice as steady, then pulls back just in time to change the repeat before it ships.",
+      "whatToDo": "When results arrive, schedule Learn before defending old choices. Name what evidence changed and one correction before the repeat leaves.",
+      "whyItMatters": "When consistency starts to sound noble, treat it as a warning. Close the loop around evidence, not pride, or the same miss returns."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch04.fact.8",
+        "prompt": "After a launch misses its mark, Camden wants to defend the old plan so he looks steady. What happens downstream if he treats that defense as leadership?",
+        "choices": [
+          "He keeps a short recap, asks for one lesson, then still frames the original plan as the answer to preserve confidence.",
+          "He blocks correction, because the need to look consistent becomes stronger than the evidence that the result just gave him.",
+          "He throws out every prior choice at once, using the bad result as proof that all past effort should be abandoned before anyone checks what changed."
+        ],
+        "correctIndex": 1,
+        "explanation": "Learn restarts the loop after results. A recap that still protects the old call is a half-step; it leaves consistency in charge of the evidence.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch04.fact.4",
+        "prompt": "During a product dispute with two viable designs, Reid proposes skipping debate so no one feels bruised. Which principle does that plan break?",
+        "choices": [
+          "Use debate only after execution stalls, so disagreement cannot slow the first push toward action or unset the early decision.",
+          "Invite comments but stop as soon as views diverge, keeping the dispute polite and brief.",
+          "Let focused friction test the idea before the decision, with the argument aimed at the work instead of status."
+        ],
+        "correctIndex": 2,
+        "explanation": "Debate is useful friction before the call. The polite-comments answer sounds kind, but it stops before the testing that polishes the idea.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch04.fact.9",
+        "prompt": "Noemie's brainstorm keeps surfacing ideas from the same two voices. What best explains why her listening process needs repair?",
+        "choices": [
+          "Her listening style is shaping participation, so she needs a method that offsets who her default makes easy to hear.",
+          "Her debate rules are too sharp, so she should delay disagreement until every person feels equally sure about the topic before speaking.",
+          "Her decision rights are unclear, so she should grab the final call before another voice changes the agenda."
+        ],
+        "correctIndex": 0,
+        "explanation": "Quiet and loud listening styles change whose ideas surface. Delaying disagreement treats the wrong step; the problem starts before debate.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch04.fact.7",
+        "prompt": "Execution stalls, and Nathan suggests another status call. Which action should come first if the real bottleneck is collaboration tax?",
+        "choices": [
+          "Schedule a larger discussion so every person can restate progress before the next task starts.",
+          "Reopen debate on all choices, even the parts already settled by facts near the work.",
+          "Protect execution space by removing coordination load before adding another touchpoint."
+        ],
+        "correctIndex": 2,
+        "explanation": "Execute protects doing time from coordination drag. A larger status call may feel responsive, but it can add the very load causing the stall.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch04.fact.2",
+        "prompt": "Camden lets whoever speaks first frame the issue during a launch fix, then starts debate. What consequence should he expect?",
+        "choices": [
+          "Useful facts can disappear before debate begins, especially from people who needed a clearer way into the exchange.",
+          "The decision will sit too close to the facts, making senior judgment less visible than it should be.",
+          "The execution window will be overprotected, leaving people with too little contact to act together once a decision finally lands."
+        ],
+        "correctIndex": 0,
+        "explanation": "Listen gives quieter people a voice before testing starts. Senior visibility is a tempting concern, but the miss here is lost input.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch04.fact.1",
+        "prompt": "A cross-functional project has plenty of calls but cannot name whether it is stuck in listening, debate, decision, or execution. Why does the GSD Wheel help?",
+        "choices": [
+          "It treats collaboration as a general habit, so people can improve the overall mood before naming a specific failure.",
+          "It separates the cycle into seven jobs, so a skipped step points to a distinct bottleneck.",
+          "It narrows the cycle to the decision maker, so one person can settle each issue faster."
+        ],
+        "correctIndex": 1,
+        "explanation": "The seven verbs diagnose different stalls. The mood answer is broad enough to sound helpful, but it keeps the bottleneck unnamed.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch04.fact.6",
+        "prompt": "A small group decides, then Noemie sends only the action item to people who must carry it out. Which flaw does that reveal?",
+        "choices": [
+          "She reopened debate too late, asking executors to relitigate a choice after the facts had already settled.",
+          "She failed to transfer reasons, trust, and felt stakes to people who were not part of the earlier debate.",
+          "She listened too broadly, letting people outside the execution path reshape a decision they did not own."
+        ],
+        "correctIndex": 1,
+        "explanation": "Persuade bridges the gap for people outside the earlier path. Reopening debate is the opposite miss; the problem is a bare handoff.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch04.fact.5",
+        "prompt": "Reid has the title, but Camden is closest to the constraint. Which move fits the Decide step best?",
+        "choices": [
+          "Move the call toward Camden's facts before rank pulls the choice away from the best information.",
+          "Keep the call with Reid so the chain of authority stays clear to everyone watching.",
+          "Delay the call until every person has equal closeness to the constraint and can share the same view."
+        ],
+        "correctIndex": 0,
+        "explanation": "Decide should stay near the best information. Keeping rank clear sounds orderly, but it separates the call from the facts that matter most.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch04.fact.3",
+        "prompt": "A rough idea comes up in Nathan's handoff after a junior proposes a new customer fix, and he debates it before anyone can restate it clearly. What failure is most likely?",
+        "choices": [
+          "People will overinvest in persuasion, giving latecomers too many reasons before a decision exists.",
+          "People will protect execution space too early, leaving too little time for coordination around the task.",
+          "People may reject a distorted version of the idea because it was tested before it was made clear."
+        ],
+        "correctIndex": 2,
+        "explanation": "Clarify protects rough ideas from early dismissal. The execution answer jumps to a later step; this failure happens before testing should begin.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "c01",
+      "sourceAnchorId": "ch04.fact.1",
+      "sourceAnchorIds": [
+        "ch04.fact.1"
+      ],
+      "front": "What problem does the GSD Wheel solve?",
+      "back": "It breaks collaboration into seven separate jobs: Listen, Clarify, Debate, Decide, Persuade, Execute, and Learn. That lets you find the missing step instead of treating every stall as the same problem.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "c02",
+      "sourceAnchorId": "ch04.fact.2",
+      "sourceAnchorIds": [
+        "ch04.fact.2"
+      ],
+      "front": "Why does Listen need a design, not just good intent?",
+      "back": "The best idea may not come from the first or loudest voice. A listening design gives quieter people a way in before debate hardens around the first frame.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c03",
+      "sourceAnchorId": "ch04.fact.3",
+      "sourceAnchorIds": [
+        "ch04.fact.3"
+      ],
+      "front": "What does Clarify protect before debate starts?",
+      "back": "It protects rough ideas. A weak first version may still hold value, so the idea needs to be made clear before the group tests or rejects it.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c04",
+      "sourceAnchorId": "ch04.fact.4",
+      "sourceAnchorIds": [
+        "ch04.fact.4",
+        "ch04.ex.steve-jobs-rock-tumbler"
+      ],
+      "front": "When does debate polish rather than damage?",
+      "back": "Debate helps when friction is aimed at the idea, not the person. The rock tumbler image works because pressure improves the stone without making the stone a villain.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c05",
+      "sourceAnchorId": "ch04.fact.6",
+      "sourceAnchorIds": [
+        "ch04.fact.6",
+        "ch04.ex.aristotle-persuasion"
+      ],
+      "front": "Why does Persuade need more than an action item?",
+      "back": "People who missed the earlier debate need understanding before they act. Aristotle three elements, emotion credibility logic, move the Persuade step from a bare command to a reason they can carry.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "c06",
+      "sourceAnchorId": "ch04.fact.8",
+      "sourceAnchorIds": [
+        "ch04.fact.8"
+      ],
+      "front": "What should Learn do after results arrive?",
+      "back": "Learn restarts the loop. It asks what the result now proves, so attachment to the old choice does not block correction.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Schedule the Missing Step",
+    "titleSourceAnchorIds": [
+      "ch04.fact.1"
+    ],
+    "coreSkill": "Schedule the Missing Step. Before a shared effort moves, name the step most likely to be skipped and put time around it. Keep the action small: one listening pass, one clarification pass, one debate, one decision handoff, one persuasion note, one protected execution block, or one learning pass.",
+    "coreSkillSourceAnchorIds": [
+      "ch04.fact.1",
+      "ch04.fact.7"
+    ],
+    "ifThenPlans": [
+      {
+        "context": "Observe who spoke first, then note whose view stayed quiet.",
+        "plan": "If the first voice is carrying the whole frame, then schedule a 10-minute listening pass before debate starts."
+      },
+      {
+        "context": "Observe a rough idea getting criticized, then note whether anyone can restate it cleanly.",
+        "plan": "If the idea is still fuzzy, then schedule a 10-minute clarification pass before testing it."
+      },
+      {
+        "context": "Observe a decision reaching people late, then note which reason they never heard.",
+        "plan": "If executors missed the earlier argument, then schedule a 15-minute persuasion handoff before assigning action."
+      }
+    ],
+    "twentyFourHourChallenge": "Before your next status call, schedule 15 minutes for the missing step you can name now. Put its verb in the calendar title and invite only the people needed for that verb.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch04.fact.1"
+    ],
+    "weeklyPractice": "For the coming week, use this trigger: if a shared effort stalls, then schedule the missing verb within 24 hours and write one line on what changed.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch04.fact.1",
+      "ch04.fact.8"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "The fastest call is often the one that slows the work.",
+      "location": "breakdown.fastRead",
+      "why": "It reverses the reader's default love of speed.",
+      "sourceAnchorIds": [
+        "ch04.fact.1"
+      ]
+    },
+    {
+      "text": "Debate is the rock tumbler, not the rock fight.",
+      "location": "breakdown.deepRead",
+      "why": "It carries the chapter's central image in plain words.",
+      "sourceAnchorIds": [
+        "ch04.fact.4",
+        "ch04.ex.steve-jobs-rock-tumbler"
+      ]
+    },
+    {
+      "text": "Skip persuasion, and people pay with rework.",
+      "location": "breakdown.deepRead",
+      "why": "It names the concrete price of a bare decision handoff.",
+      "sourceAnchorIds": [
+        "ch04.fact.6"
+      ]
+    }
+  ],
+  "authoring": {
+    "sourceAnchors": {
+      "effectiveAnchors": {
+        "hook": [
+          "ch04.fact.1"
+        ],
+        "counterintuition": [
+          "ch04.fact.1",
+          "ch04.fact.7"
+        ],
+        "tryThisNow": [
+          "ch04.fact.1"
+        ],
+        "keyTakeaway": [
+          "ch04.fact.1",
+          "ch04.fact.8"
+        ],
+        "breakdown.fastRead": [
+          "ch04.fact.1",
+          "ch04.fact.2",
+          "ch04.fact.3",
+          "ch04.fact.6"
+        ],
+        "breakdown.deepRead": [
+          "ch04.fact.1",
+          "ch04.fact.4",
+          "ch04.fact.6",
+          "ch04.fact.9",
+          "ch04.ex.steve-jobs-rock-tumbler",
+          "ch04.ex.aristotle-persuasion"
+        ],
+        "breakdown.fullRead": [
+          "ch04.fact.1",
+          "ch04.fact.2",
+          "ch04.fact.3",
+          "ch04.fact.5",
+          "ch04.fact.7",
+          "ch04.fact.8"
+        ],
+        "examples[0]": [
+          "ch04.ex.gsd-wheel"
+        ],
+        "examples[1]": [
+          "ch04.ex.steve-jobs-rock-tumbler"
+        ],
+        "examples[2]": [
+          "ch04.ex.aristotle-persuasion"
+        ],
+        "examples[3]": [
+          "ch04.ex.gsd-wheel"
+        ],
+        "quiz.questions[0]": [
+          "ch04.fact.8"
+        ],
+        "quiz.questions[1]": [
+          "ch04.fact.4"
+        ],
+        "quiz.questions[2]": [
+          "ch04.fact.9"
+        ],
+        "quiz.questions[3]": [
+          "ch04.fact.7"
+        ],
+        "quiz.questions[4]": [
+          "ch04.fact.2"
+        ],
+        "quiz.questions[5]": [
+          "ch04.fact.1"
+        ],
+        "quiz.questions[6]": [
+          "ch04.fact.6"
+        ],
+        "quiz.questions[7]": [
+          "ch04.fact.5"
+        ],
+        "quiz.questions[8]": [
+          "ch04.fact.3"
+        ],
+        "reviewCards[0]": [
+          "ch04.fact.1"
+        ],
+        "reviewCards[1]": [
+          "ch04.fact.2"
+        ],
+        "reviewCards[2]": [
+          "ch04.fact.3"
+        ],
+        "reviewCards[3]": [
+          "ch04.fact.4",
+          "ch04.ex.steve-jobs-rock-tumbler"
+        ],
+        "reviewCards[4]": [
+          "ch04.fact.6",
+          "ch04.ex.aristotle-persuasion"
+        ],
+        "reviewCards[5]": [
+          "ch04.fact.8"
+        ],
+        "implementationPlan.title": [
+          "ch04.fact.1"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch04.fact.1",
+          "ch04.fact.7"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch04.fact.2"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch04.fact.3"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch04.fact.6"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch04.fact.1"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch04.fact.1",
+          "ch04.fact.8"
+        ],
+        "memorableLines[0]": [
+          "ch04.fact.1"
+        ],
+        "memorableLines[1]": [
+          "ch04.fact.4",
+          "ch04.ex.steve-jobs-rock-tumbler"
+        ],
+        "memorableLines[2]": [
+          "ch04.fact.6"
+        ]
+      }
+    }
+  }
+}

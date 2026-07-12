@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several distractors are weakened by absolute or overreach language such as \"every named organization,\" \"all strong examples,\" and \"for all examples,\" making the bounded answer easier to guess.", "The keyed answers often echo the chapter's favored vocabulary: separate jobs, boundary marker, venue, proof, hard detail, evidence."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 84,
+    "transfer": 79,
+    "practical": 83,
+    "summaries": 87,
+    "tone": 82,
+    "limits": 86,
+    "insight": 85,
+    "density": 80,
+    "beginner": 78
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A clean fix can be the place a bad guess hides.",
+      "why": "Strong, memorable line that captures the core mechanism."
+    },
+    {
+      "quote": "Known data is the receipt you can bring back when confidence gets loud.",
+      "why": "Concrete image that makes the abstract tool easier to retain."
+    },
+    {
+      "quote": "Gregoire is already changing the boarding order; the demand for smoother movement came earlier.",
+      "why": "Confuses transfer by moving a car-door character into airline boarding without enough setup."
+    },
+    {
+      "quote": "After it was over, process coach Raymond traced the error to the stapled handout.",
+      "why": "Introduces an unsupported cause for the mistake, which weakens the example's evidence chain."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 3",
+      "problem": "Gregoire, established through the car-door material, is suddenly changing a boarding order. The cross-venue role shift feels manufactured and may confuse the learner about who is doing what.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The cause of Raymond's mistake is attributed to a stapled handout, but that cause is not prepared by the chapter. It reads like an invented prop rather than a shown reason.",
+      "mustFix": true
+    },
+    {
+      "unit": "transfer examples",
+      "problem": "Several examples teach the meta-rule of keeping details in their home setting, but fewer show a plain reader applying the known-data order to a non-source, everyday decision.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Some wrong answers are easy to reject because they overreach with universal or tidy language, reducing diagnostic value.",
+      "mustFix": false
+    },
+    {
+      "unit": "beginner approachability",
+      "problem": "Terms like andon, jidoka, return proof, and factual token are eventually bounded, but the opening pages stack them quickly and may feel abstract to a cold beginner.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear and useful core move: put known data before assumptions, make decisions answer to that guess, and require results to travel back. Its best lines are memorable, and the layered reads mostly stand alone. I would not ship it yet against a professional 84 bar because two transfer examples feel too manufactured or internally muddy, especially Gregoire moving into boarding and Raymond's unsupported stapled-handout cause. Tightening those examples and making one everyday transfer case more concrete would likely bring it over the line."
+}
+```

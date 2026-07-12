@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Q3: the keyed choice is the only answer that fully names the chapter's causal order and is visibly more precise than the distractors.", "Several distractors announce themselves with absolute or inflated claims such as 'any well-known chief executive story' and 'proves the whole model.'"]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 86,
+    "transfer": 67,
+    "practical": 78,
+    "summaries": 82,
+    "tone": 73,
+    "limits": 88,
+    "insight": 81,
+    "density": 72,
+    "beginner": 84
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Trust is not the opening move; it is what arrives after belief survives a cost.",
+      "why": "Strongest compact statement of the chapter's causal mechanism."
+    },
+    {
+      "quote": "A promise is a receipt waiting to be checked.",
+      "why": "Memorable and practical; it turns trust into something observable."
+    },
+    {
+      "quote": "Chain grease smells sharp as he writes the promise that finally came due.",
+      "why": "A sensory detail tries to make a thin invented example feel concrete without adding real consequence."
+    },
+    {
+      "quote": "The year tells you where the claim begins to stop.",
+      "why": "Good limit-setting, but the chapter repeats this bounding move enough that it starts to feel like scaffolding."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 2",
+      "problem": "Daniel's bicycle-shop example has no place or number, little before-to-after consequence, and mostly restates the lesson that trust follows repeated action.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 4",
+      "problem": "Georges has a name and a paper-cup detail, but no real decision consequence; the example mainly repeats that 1994 bounds Bethune's Continental story.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter repeats the same caution about bounded airline details several times, which lowers density and creates a template smell.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The keys are sound, but some distractors are too obviously wrong because they overclaim universal proof or treat misplaced details as harmless.",
+      "mustFix": false
+    },
+    {
+      "unit": "transfer",
+      "problem": "The practical transfer beyond airline examples is present but underdeveloped; the reader gets a useful sentence frame more than a robust range of real-world applications.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a clear and memorable mechanism: belief first, visible conduct under pressure second, trust only after the pattern holds. The quizzes are mostly fair and the answer key is sound, with no major cause-question errors. The blocker is transfer quality: several invented examples feel manufactured and do not earn their teaching role with concrete decisions and consequences. I would revise before shipping against a professional bar."
+}
+```

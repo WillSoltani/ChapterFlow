@@ -1,0 +1,48 @@
+[07:21:25] === researchBook: "High Output Management" by Andrew S. Grove ===
+[07:21:25] Step 1/4: bibliography research…
+Error: Provider "anthropic-cli" is not configured. Install with `npm install -g @anthropic-ai/claude-code` and run `claude /login`.
+    at selectProvider (/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/src/providers/router.ts:80:11)
+    at async callModel (/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/src/providers/router.ts:101:20)
+    at async callModel (/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/src/cost-tracker.ts:98:18)
+[07:22:48] === researchBook: "High Output Management" by Andrew S. Grove ===
+[07:22:48] Step 1/4: bibliography research…
+RateLimitError: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+    at Function.generate (/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/node_modules/openai/src/core/error.ts:97:14)
+    at OpenAI.makeStatusError (/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/node_modules/openai/src/client.ts:591:28)
+    at OpenAI.makeRequest (/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/node_modules/openai/src/client.ts:875:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async withProviderTimeout (/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/src/providers/types.ts:220:12)
+    at async Object.call (/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/src/providers/openai-api.ts:80:22)
+    at async callWithOwnedRetries (/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/src/providers/router.ts:165:19)
+    at async callModel (/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/src/providers/router.ts:106:17)
+    at async callModel (/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/src/cost-tracker.ts:98:18)
+    at async Object.runResearcherBibliography (/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/src/agents/researcher-bibliography.ts:88:22) {
+  status: 429,
+  headers: Headers {
+    date: 'Wed, 08 Jul 2026 07:22:51 GMT',
+    'content-type': 'application/json; charset=utf-8',
+    'content-length': '337',
+    connection: 'keep-alive',
+    'cf-ray': 'a17d5716bd878922-YHZ',
+    'cf-cache-status': 'DYNAMIC',
+    server: 'cloudflare',
+    'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+    vary: 'Origin',
+    'access-control-expose-headers': 'CF-Ray, CF-Ray',
+    'x-content-type-options': 'nosniff',
+    'x-openai-proxy-wasm': 'v0.1',
+    'x-request-id': 'req_159b3ef59dff4ebdbaac3bbf28dcca77',
+    'set-cookie': '__cf_bm=z.qpaAdAR8HmHLHaTgqjWKkUZrlcu6Y9L5JgUbvrT3k-1783495371.319687-1.0.1.1-fnhDGGy9QvE.PV9uCAKsX5mIfzRyueBr5j7wevmoOz9cYHpeFSljWgKo7ZvTH.MWs4BfdKZLSWl9abShcpBFyO70_fcjwhSRzJ6L.iU50IOVk94l_uyv1gjNR6aKJUy8; HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Wed, 08 Jul 2026 07:52:51 GMT',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  requestID: 'req_159b3ef59dff4ebdbaac3bbf28dcca77',
+  error: {
+    message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+    type: 'insufficient_quota',
+    param: null,
+    code: 'insufficient_quota'
+  },
+  code: 'insufficient_quota',
+  param: null,
+  type: 'insufficient_quota'
+}

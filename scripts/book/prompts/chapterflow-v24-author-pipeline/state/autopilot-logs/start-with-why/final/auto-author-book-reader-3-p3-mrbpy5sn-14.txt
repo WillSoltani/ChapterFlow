@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 74,
+    "transfer": 82,
+    "practical": 75,
+    "summaries": 76,
+    "tone": 68,
+    "limits": 78,
+    "insight": 70,
+    "density": 68,
+    "beginner": 73
+  },
+  "quotes": [
+    {
+      "quote": "A clean repair can be the wrong win.",
+      "why": "Compact, portable, and memorable; this is the sample at its stickiest."
+    },
+    {
+      "quote": "What would still move if the offer were gone?",
+      "why": "A strong transfer question that turns the chapter into a reusable diagnostic lens."
+    },
+    {
+      "quote": "Trust is belief made visible under pressure.",
+      "why": "Clear aphorism with mechanism, not just motivational restatement."
+    },
+    {
+      "quote": "A true detail can still mislead when it rides with the wrong setting.",
+      "why": "Good limit, but this same source-boundary move repeats so often it becomes template-like."
+    },
+    {
+      "quote": "A second setting shows whether the pressure repeats without asking Walmart to prove everything.",
+      "why": "Useful principle, yet it echoes the same second-setting scaffolding used across chapters."
+    },
+    {
+      "quote": "Shorten all of that to purpose talk and the useful split is gone.",
+      "why": "The book often warns against generic purpose talk, but the repeated warning itself becomes part of the house template."
+    }
+  ],
+  "oneParagraphVerdict": "This is internally sound and generally useful: the quizzes are answerable from the chapters, the keys match the prose, and several chapters produce memorable diagnostic questions. The book’s weakness is sameness. Across unrelated topics, the chapters repeatedly use the same machinery: define an order, keep hard details with their source, add a second setting, warn against purpose talk, then turn it into nearly identical if-then practice. That makes the sample feel competent but manufactured. It would ship as a solid draft, not a premium learning product, unless later chapters show more varied scenes, fresher practice design, and less reliance on the same comparison scaffold."
+}
+```

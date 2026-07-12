@@ -1,0 +1,10 @@
+Wrote [start-with-why-ch04.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch04.v21-native.chapter.json).
+
+Verification passed:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers
+- `quiz-verify`: 9/9 match
+- `evidence-audit`: no evidence-integrity candidates
+- Rendered length: 16,586 chars, inside target range
+
+Gate still reports 6 majors and 8 minors as non-blocking, but the required blocker count is zero.

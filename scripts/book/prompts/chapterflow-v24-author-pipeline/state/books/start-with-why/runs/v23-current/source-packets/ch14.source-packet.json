@@ -1,0 +1,738 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "start-with-why",
+  "chapterId": "start-with-why-ch14",
+  "chapterNumber": 14,
+  "chapterTitle": "The New Competition",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch14.source.json",
+  "sourceHash": "sha256:23baa8b4839e1b0a7dd20ed950052452c6ec89f77d818c13e785830d0ad27f76",
+  "facts": [
+    {
+      "id": "ch14.fact.1",
+      "claim": "Apple and Dell contrast makes self-referenced competition concrete through Apple Inc. and Dell.",
+      "mechanism": "Because Apple Inc. gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Apple and Dell contrast as colorful background.",
+      "whyWrong": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Apple",
+        "Dell",
+        "Apple Inc",
+        "Dell. Because Apple Inc"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.1"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch14.fact.2",
+      "claim": "Microsoft long-run rivalry adds a second anchor for self-referenced competition with Microsoft and 1975 founding.",
+      "mechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "whyWrong": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "1975"
+      ],
+      "groundedEntities": [
+        "Microsoft",
+        "Since",
+        "One"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.2"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch14.fact.3",
+      "claim": "Southwest Airlines operating benchmark supplies a third checkable scene using Southwest Airlines and 1971.",
+      "mechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "whyWrong": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1971"
+      ],
+      "groundedEntities": [
+        "Southwest Airlines"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.3"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch14.fact.4",
+      "claim": "self-referenced competition depends on the sequence External rival before Internal benchmark.",
+      "mechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "whyWrong": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "External",
+        "Internal",
+        "Order"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.4"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch14.fact.5",
+      "claim": "External rival, Internal benchmark, Purpose fidelity, Continuous improvement form the local framework for The New Competition.",
+      "mechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "whyWrong": "Shortening removes the distinctions the quiz and examples need to test.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "External",
+        "Internal",
+        "Purpose",
+        "Continuous",
+        "The New Competition. Because",
+        "Shortening"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.5"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch14.fact.6",
+      "claim": "2001 iPod is a hard detail that should stay attached to Apple and Dell contrast.",
+      "mechanism": "Because hard specifics are portable only inside their case, moving 2001 iPod to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "whyWrong": "A true detail becomes misleading when it is attached to the wrong case.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2001"
+      ],
+      "groundedEntities": [
+        "Apple",
+        "Dell",
+        "Any"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.6"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch14.fact.7",
+      "claim": "software company gives Microsoft long-run rivalry a different factual token from Apple and Dell contrast.",
+      "mechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "whyWrong": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Microsoft",
+        "Apple",
+        "Dell",
+        "Since",
+        "All",
+        "Generic"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.7"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch14.fact.8",
+      "claim": "Dallas helps mark the boundary of self-referenced competition.",
+      "mechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "whyWrong": "The mechanism changes by venue; boundary details keep the application honest.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Dallas"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.8"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch14.fact.9",
+      "claim": "The New Competition should teach self-referenced competition through Apple and Dell contrast, Microsoft long-run rivalry, and Southwest Airlines operating benchmark, not through generic leadership advice.",
+      "mechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "whyWrong": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "3"
+      ],
+      "groundedEntities": [
+        "The New Competition",
+        "Apple",
+        "Dell",
+        "Microsoft",
+        "Southwest Airlines",
+        "Purpose"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.9"
+      ],
+      "teachingPriority": 5
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch14.ex.apple-and-dell-contrast",
+      "label": "Apple and Dell contrast",
+      "summary": "Apple Inc. and Dell make the external-rival contrast concrete through the 2001 iPod and 2003 Dell DJ.",
+      "realWorld": true,
+      "naturalSetting": "Apple",
+      "hardSpecifics": [
+        "Apple Inc.",
+        "Dell",
+        "2001 iPod",
+        "2003 Dell DJ"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "2001 iPod",
+        "2003 Dell DJ"
+      ]
+    },
+    {
+      "id": "ch14.ex.microsoft-long-run-rivalry",
+      "label": "Microsoft long-run rivalry",
+      "summary": "Microsoft's 1975 founding, software company identity, and Redmond headquarters show how category rivalry can distract from purpose if winning becomes the only measure.",
+      "realWorld": true,
+      "naturalSetting": "Microsoft",
+      "hardSpecifics": [
+        "Microsoft",
+        "1975 founding",
+        "software company",
+        "Redmond headquarters"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "1975 founding",
+        "software company"
+      ]
+    },
+    {
+      "id": "ch14.ex.southwest-airlines-operating-benchmark",
+      "label": "Southwest Airlines operating benchmark",
+      "summary": "Southwest Airlines, 1971, Dallas, and low-fare carrier ground the idea of improving against an operating standard instead of copying rivals.",
+      "realWorld": true,
+      "naturalSetting": "Southwest Airlines",
+      "hardSpecifics": [
+        "Southwest Airlines",
+        "1971",
+        "Dallas",
+        "low-fare carrier"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "1971"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "The New Competition framework",
+      "members": [
+        "External rival",
+        "Internal benchmark",
+        "Purpose fidelity",
+        "Continuous improvement"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch14.concept",
+      "kind": "concept",
+      "label": "self-referenced competition",
+      "text": "The most useful competition is against yesterday's version of the organization or person, because WHY is measured by fidelity rather than category dominance. A reader learns to use rivals as information without letting them define the purpose.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.ex.apple-and-dell-contrast",
+      "kind": "named_example",
+      "label": "Apple and Dell contrast",
+      "text": "Apple Inc. and Dell make the external-rival contrast concrete through the 2001 iPod and 2003 Dell DJ. Apple and Dell contrast turns Apple Inc. into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Apple Inc.",
+        "Dell",
+        "2001 iPod",
+        "2003 Dell DJ"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.ex.microsoft-long-run-rivalry",
+      "kind": "named_example",
+      "label": "Microsoft long-run rivalry",
+      "text": "Microsoft's 1975 founding, software company identity, and Redmond headquarters show how category rivalry can distract from purpose if winning becomes the only measure. Microsoft long-run rivalry turns Microsoft into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Microsoft",
+        "1975 founding",
+        "software company",
+        "Redmond headquarters"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.ex.southwest-airlines-operating-benchmark",
+      "kind": "named_example",
+      "label": "Southwest Airlines operating benchmark",
+      "text": "Southwest Airlines, 1971, Dallas, and low-fare carrier ground the idea of improving against an operating standard instead of copying rivals. Southwest Airlines operating benchmark turns Southwest Airlines into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Southwest Airlines",
+        "1971",
+        "Dallas",
+        "low-fare carrier"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.1",
+      "kind": "testable_fact",
+      "label": "Apple and Dell contrast makes self-referenced competition concrete through Apple Inc. and Dell.",
+      "text": "Apple and Dell contrast makes self-referenced competition concrete through Apple Inc. and Dell. Because Apple Inc. gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan. The safe move is to treat Apple and Dell contrast as colorful background. The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.2",
+      "kind": "testable_fact",
+      "label": "Microsoft long-run rivalry adds a second anchor for self-referenced competition with Microsoft and 1975 founding.",
+      "text": "Microsoft long-run rivalry adds a second anchor for self-referenced competition with Microsoft and 1975 founding. Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote. One example is enough to prove the whole model. One example can illustrate; comparison is what exposes the transferable pattern.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.3",
+      "kind": "testable_fact",
+      "label": "Southwest Airlines operating benchmark supplies a third checkable scene using Southwest Airlines and 1971.",
+      "text": "Southwest Airlines operating benchmark supplies a third checkable scene using Southwest Airlines and 1971. Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case. A third case should simply repeat the first case's lesson. The third case should test a neighboring misconception, not restamp the same sentence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.4",
+      "kind": "testable_fact",
+      "label": "self-referenced competition depends on the sequence External rival before Internal benchmark.",
+      "text": "self-referenced competition depends on the sequence External rival before Internal benchmark. Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone. Order is stylistic, so any sequence works if the message sounds polished. Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.5",
+      "kind": "testable_fact",
+      "label": "External rival, Internal benchmark, Purpose fidelity, Continuous improvement form the local framework for The New Competition.",
+      "text": "External rival, Internal benchmark, Purpose fidelity, Continuous improvement form the local framework for The New Competition. Because each member names a different job, the writer can assign claims to distinct functions rather than blending them. The framework is a slogan and can be shortened to one word. Shortening removes the distinctions the quiz and examples need to test.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.6",
+      "kind": "testable_fact",
+      "label": "2001 iPod is a hard detail that should stay attached to Apple and Dell contrast.",
+      "text": "2001 iPod is a hard detail that should stay attached to Apple and Dell contrast. Because hard specifics are portable only inside their case, moving 2001 iPod to another example creates false grounding. Any true detail can be reused wherever it sounds useful. A true detail becomes misleading when it is attached to the wrong case.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.7",
+      "kind": "testable_fact",
+      "label": "software company gives Microsoft long-run rivalry a different factual token from Apple and Dell contrast.",
+      "text": "software company gives Microsoft long-run rivalry a different factual token from Apple and Dell contrast. Since the factual token is different, comparison can teach contrast rather than repeating a generic success story. All business examples can use the same date-place-scale language. Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.8",
+      "kind": "testable_fact",
+      "label": "Dallas helps mark the boundary of self-referenced competition.",
+      "text": "Dallas helps mark the boundary of self-referenced competition. Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case. A useful concept should apply the same way to every named organization. The mechanism changes by venue; boundary details keep the application honest.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.9",
+      "kind": "testable_fact",
+      "label": "The New Competition should teach self-referenced competition through Apple and Dell contrast, Microsoft long-run rivalry, and Southwest Airlines operating benchmark, not through generic leadership advice.",
+      "text": "The New Competition should teach self-referenced competition through Apple and Dell contrast, Microsoft long-run rivalry, and Southwest Airlines operating benchmark, not through generic leadership advice. Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes. Purpose language alone is enough to ground a leadership lesson. Purpose language without checkable anchors becomes motivational abstraction.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.framework.the.new.competition.framework",
+      "kind": "framework",
+      "label": "The New Competition framework",
+      "text": "External rival, Internal benchmark, Purpose fidelity, Continuous improvement",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1",
+    "1975",
+    "1971",
+    "2001",
+    "3",
+    "2003"
+  ],
+  "allowedEntities": [
+    "The New Competition",
+    "WHY",
+    "Apple",
+    "Dell",
+    "Microsoft",
+    "Southwest Airlines",
+    "External",
+    "Internal",
+    "Purpose",
+    "Continuous",
+    "Apple Inc",
+    "Dell DJ",
+    "Microsoft's",
+    "Redmond",
+    "Dallas",
+    "Dell DJ. Microsoft's",
+    "Keep Apple-Dell",
+    "Southwest",
+    "Because Apple Inc",
+    "Since",
+    "One",
+    "Order",
+    "Shortening",
+    "Any",
+    "All",
+    "Generic",
+    "Apple and Dell contrast",
+    "Microsoft long-run rivalry",
+    "Southwest Airlines operating benchmark"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch14.ex.apple-and-dell-contrast",
+      "warning": "Keep examples about Apple and Dell contrast source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch14.ex.microsoft-long-run-rivalry",
+      "warning": "Keep examples about Microsoft long-run rivalry source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch14.ex.southwest-airlines-operating-benchmark",
+      "warning": "Keep examples about Southwest Airlines operating benchmark source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch14.fact.2"
+}

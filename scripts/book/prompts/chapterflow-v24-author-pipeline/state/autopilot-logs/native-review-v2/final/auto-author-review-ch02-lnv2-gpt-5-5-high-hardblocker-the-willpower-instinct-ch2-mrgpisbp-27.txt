@@ -1,0 +1,76 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "mechanisms": [
+      "The prose says heart rate variability is the relevant marker because it shows the nervous system can adjust under demand.",
+      "The Trier setup is described as public speaking and arithmetic under social judgment, with evaluators enough to trigger stress.",
+      "The chapter says stress makes quick comforts feel like shelter before the long goal can speak through noise.",
+      "Tang's training is used to show brief practice steadies attention and softens stress reactivity before urges peak.",
+      "The prose frames slow breathing as a body-state change that keeps the choosing system online, not as mere delay.",
+      "Pause-and-plan questions extra arousal because stress narrows attention and leaves less room for future consequences.",
+      "The sleep section says tired attention loses its grip and cues can overpower the goal meant to be remembered.",
+      "The movement section says activity can improve mood, stress regulation, and executive function, lowering the next choice load.",
+      "The chapter repeatedly says waiting until the craving peaks is unfair because the body needs runway before the hardest moment."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Choice b repeats the stem's beat-to-beat cue and uses the chapter's technical phrase 'adaptive control under demand.'",
+      "Choice c mirrors the example wording 'social judgment and low control' and is the only answer without a forced false mechanism.",
+      "Choice c is the only option that contains the chapter's stress-to-quick-relief mechanism.",
+      "Choice a closely restates 'brief practice can train attention' while b and c use obvious overclaims.",
+      "Choice b is the only mechanism-rich option and contains the chapter's arousal-attention-control vocabulary.",
+      "Choice b echoes the chapter's room/goals language and is more nuanced than the surrounding distractors.",
+      "Choice a repeats the chapter's phrase 'tired attention' and maps directly to the pharmacy example.",
+      "Choice a repeats the exact triad 'mood, stress regulation, and executive function.'",
+      "Choice c repeats 'runway' and 'before the craving peaked,' making the answer highly guessable."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 78,
+    "transfer": 62,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 88,
+    "insight": 84,
+    "density": 82,
+    "beginner": 87
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Stress narrows the room. It makes the fastest comfort look wiser than it is.",
+      "why": "Strong compressed mechanism that makes the core lesson memorable."
+    },
+    {
+      "quote": "Pause-and-plan is not a way to avoid the hard act; it is a way to arrive at it with more of yourself present.",
+      "why": "Strong boundary-setting that prevents the technique from becoming avoidance."
+    },
+    {
+      "quote": "Actually, the stronger move is to pump himself up and chase that panic before speaking, because a spike of adrenaline right at the peak is what proves the body is ready.",
+      "why": "This directly contradicts the chapter's central pause-and-plan mechanism."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 2",
+      "problem": "The What to do section tells Adam to calm down, then reverses itself and says the stronger move is to pump himself up and chase panic; this is source-contradictory against the chapter's repeated claim that extra arousal narrows choice.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz set",
+      "problem": "Several correct answers reuse distinctive chapter wording almost verbatim, especially Q8 and Q9, making some keys guessable without reading deeply.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The example usefully shows object placement, but it loosely ties that move to Tang's meditation evidence, which muddies the evidence-to-action bridge.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, readable chapter with a clear body-first willpower mechanism, memorable phrasing, useful limits, and practical actions a beginner could try. The quiz is mostly fair and derivable, though several answers are too signposted by recycled wording. The chapter should not ship as-is because example 2 contains a direct contradiction that teaches the opposite of the core move; fixing that would likely bring the piece back near the professional bar."
+}
+```

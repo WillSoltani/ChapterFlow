@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": ["Q9: I chose c and the key's intended point is supported, but the wording 'visible setting' is imprecise because Rogers/1962 are source anchors, not a setting."],
+    "tells": ["Several correct choices reuse exact chapter vocabulary or near-phrases: 'own hard marker,' 'checkable ground,' 'collapsed,' and 'true detail becomes false grounding.'", "Many distractors are visibly bad because they appeal to rank, familiarity, or bigger size instead of evidence, making the correct evidence-preservation answer easy to guess."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 78,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 87,
+    "insight": 85,
+    "density": 82,
+    "beginner": 84
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Every broad push sent too soon spends proof the early believers have not earned yet.",
+      "why": "Strongest memorable line; it compresses the chapter's mechanism into a sentence a reader can reuse."
+    },
+    {
+      "quote": "Move a true detail to the wrong source and the claim looks grounded while the proof has gone missing.",
+      "why": "Strong explanation of why source anchors matter, not just that they matter."
+    },
+    {
+      "quote": "At Friday return in the repair bay, shop lead Keith sees half a win.",
+      "why": "This scene detail feels manufactured and undercontextualized; it names a place but does not show a real before-to-after consequence."
+    },
+    {
+      "quote": "The visible setting disappears, so the reader cannot judge the spread claim against Rogers and 1962.",
+      "why": "The keyed quiz wording is awkward because Rogers/1962 are not a visible setting."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q9",
+      "problem": "The keyed answer is basically sound by elimination, but 'visible setting' misnames the thing being lost; the prose supports loss of source anchor/checkable ground, not loss of a setting.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Correct options often announce themselves through chapter-specific evidence language while distractors lean on obviously weak shortcuts like rank, familiarity, or bigger size.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 4",
+      "problem": "The repair-bay scene feels like a slot-filler: it adds a location but does not show a concrete decision, cost, or consequence beyond restating the lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 6",
+      "problem": "The neighborhood/project-name scenario is plausible but thin; it gives no concrete number, decision, or consequence, so the transfer lesson rests on assertion.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, shippable-in-spirit chapter with a clear core move: do not ask the cautious middle to supply proof that first believers have not yet created. The summaries layer well, the main examples are anchored, and the limits around TiVo and public scale are honest. I would not ship it against a strict professional bar yet because the quiz has some guessable answer design and Q9 uses sloppy wording, while a couple of transfer examples feel generated rather than observed. The fixes are contained: sharpen the weak quiz language and replace the thinnest examples with before-to-after cases that include a real decision and consequence."
+}
+```

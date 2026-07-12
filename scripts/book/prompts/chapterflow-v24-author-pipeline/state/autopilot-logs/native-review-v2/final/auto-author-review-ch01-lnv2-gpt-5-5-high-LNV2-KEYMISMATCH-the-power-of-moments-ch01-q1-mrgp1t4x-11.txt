@@ -1,0 +1,71 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water study says a milder ending can make even a longer painful episode remembered as preferable.",
+      "The Magic Castle example shows a modest place can create a vivid, tellable peak with a bright object and special delivery.",
+      "YES Prep turns a private college step into a public milestone where peers and adults witness effort.",
+      "The prose names elevation, insight, pride, and connection as the four common ingredients.",
+      "The red phone lesson is that a concrete visible object can signal that the ordinary script has changed.",
+      "The popsicle is memorable because the request and silver-tray delivery turn the free item into an event.",
+      "Thresholds should be marked before the next stage becomes private logistics.",
+      "The prose explicitly says memory does not average each minute and is shaped by the peak and ending.",
+      "A quiet free item vanishes because it lacks the tellable format that made the red phone memorable."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": ["", "", "", "", "", "", "", "Negative wording makes the key the only option that contradicts the chapter's thesis.", ""]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 88,
+    "transfer": 84,
+    "practical": 89,
+    "summaries": 92,
+    "tone": 87,
+    "limits": 91,
+    "insight": 90,
+    "density": 86,
+    "beginner": 93
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Memory keeps score in odd ways. It does not average each minute. It holds what rose above the line and how the episode ended.",
+      "why": "This is the chapter's core mechanism in memorable, plain language."
+    },
+    {
+      "quote": "The move is not to excuse a bad process with a pretty finish. It is to see that a finish has power, so it deserves design.",
+      "why": "Strong boundary-setting keeps the lesson from becoming manipulative."
+    },
+    {
+      "quote": "Core skill: Practice finding the moment people will carry away. Look for a peak, a threshold, or an ending that is now blank.",
+      "why": "The implementation plan is useful, though the repeated title/core-skill phrasing has a template feel."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q8",
+      "problem": "The negative stem makes the item partly a polarity test; the correct answer is the only false assumption rather than a richer application choice.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The training scenario is usable but thin: it names a trainer and action, yet shows little concrete before-to-after consequence beyond people leaving with roles.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The cold-water study is used as Leah's trigger again, but the mentorship situation is not strongly connected to pain, duration, or recall beyond the general ending lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The title and core skill repeat the same phrase, which creates a mild scaffold/template smell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter: the central idea is clear, memorable, and responsibly bounded, with strong images in the red phone, the cold-water study, and YES Prep's public threshold. The quiz is mostly fair and derivable, and the practical moves are low-friction enough for a beginner to try. The main weakness is transfer polish: a few later examples feel like generic reenactments of the lesson rather than fully observed cases with concrete consequences. That lowers richness, but it does not block shipping."
+}
+```

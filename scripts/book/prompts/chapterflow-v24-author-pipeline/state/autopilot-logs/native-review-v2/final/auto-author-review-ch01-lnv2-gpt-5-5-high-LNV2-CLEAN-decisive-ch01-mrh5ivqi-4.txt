@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "c", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as four named repairs that match four distinct decision dangers, not as a vague pause.",
+      "The chapter says narrow framing makes a rich problem look like yes/no, so the first repair is to widen live options.",
+      "Reality-testing asks for evidence that can surprise or hurt the favorite answer, which is disconfirming evidence.",
+      "The Intel passage says emotion can carry information but short-term attachment needs distance and a longer view.",
+      "Overconfidence is countered by naming better, worse, or different futures instead of trusting one neat line.",
+      "Steve Cole's logic was to keep multiple design firms in the first lap so comparison could teach before commitment.",
+      "Grove's outsider question asks what a fresh outsider would do without the memory-chip attachment.",
+      "The four-villain model assigns separate repairs to framing, evidence, emotion, and forecasting rather than one final catch-all.",
+      "The chapter says good process raises the odds without promising the outcome because uncertainty remains."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Correct option is the only one that names all four WRAP moves and is the most formal.",
+      "Correct option repeats the chapter's yes-or-no frame language; distractors are visibly anti-WRAP.",
+      "Only the correct option uses disconfirming evidence, making the key obvious.",
+      "Correct option is the only nuanced choice; the other two use extreme all-or-nothing phrasing.",
+      "Correct option says wider range and forecast, directly echoing the overconfidence section.",
+      "Correct option nearly restates comparison before commitment.",
+      "Correct option gives the outsider question almost verbatim.",
+      "Correct option is the only one mapping four villains to four different moves.",
+      "Correct option repeats improving odds while uncertainty remains; distractors overpromise or discard the process."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 76,
+    "transfer": 77,
+    "practical": 82,
+    "summaries": 93,
+    "tone": 88,
+    "limits": 90,
+    "insight": 89,
+    "density": 84,
+    "beginner": 91
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "Strong, memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "Explains confirmation bias with a concrete mechanism rather than a label."
+    },
+    {
+      "quote": "Good process raises the odds without promising the outcome.",
+      "why": "Clearly states the boundary of WRAP and prevents outcome-based overclaiming."
+    },
+    {
+      "quote": "The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.",
+      "why": "The action is concrete, but 'shortcut' is under-explained at this point."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The correct answer is telegraphed because it alone lists the formal WRAP sequence while the distractors are generic.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q3",
+      "problem": "The correct answer is too easy to guess because it is the only option containing disconfirming evidence, the obvious antidote to confirmation bias.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "The correct answer closely echoes the chapter's phrasing about comparison before commitment, weakening the distractors.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "Thin-but-usable example: it repeats the HopeLab first-lap lesson from example 1 with little new decision consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "Thin-but-usable example: Yvonne's forecast scene is on-topic but generic, with no clear before-to-after consequence beyond restating the lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The prompt asks the reader to record a 'shortcut' before that term is made concrete, so the immediate action is slightly under-specified.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong opening chapter with clean layering, memorable mechanism lines, and unusually honest limits around uncertainty and emergency tempo. I would not ship it against a strict professional >=80 bar yet because the quiz answers are often guessable from giveaway phrasing, and transfer leans too heavily on HopeLab/Intel/product-review variants rather than showing the move travel into more distinct real contexts. No must-fix reserved-category defect appears on the page, but the chapter needs stronger distractors and a few richer transfer examples before it feels professionally finished."
+}
+```

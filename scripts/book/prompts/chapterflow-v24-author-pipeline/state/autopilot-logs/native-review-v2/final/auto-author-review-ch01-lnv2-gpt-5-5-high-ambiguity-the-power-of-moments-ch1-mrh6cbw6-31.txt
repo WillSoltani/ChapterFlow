@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "b", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water study says a milder ending can change remembered weight even when the episode is longer.",
+      "The red phone lesson is that a modest place can create one vivid, tellable peak.",
+      "The YES Prep material says to mark thresholds before they turn into private logistics.",
+      "The prose names elevation, insight, pride, and connection as the four common ingredients.",
+      "The Magic Castle example says a concrete visible object can signal that the ordinary script has changed.",
+      "The popsicle works because request plus tray turns a free item into a small event.",
+      "The threshold idea says to mark the crossing before the next stage becomes private logistics.",
+      "The chapter explicitly says memory does not average each minute and is shaped by peak and ending.",
+      "The mint is like a quiet free item: it lacks the tellable format that makes the gift a moment."
+    ],
+    "confidence": ["high", "high", "medium", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "Choice a is also defensible: the prose says YES Prep makes effort visible to peers and adults, and the team clap does exactly that.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Choice b is the only option using the chapter's calmer-finish logic.",
+      "Choice b is the only positive design answer and uses 'vivid, tellable' phrasing.",
+      "Choice b gives away the key with the exact phrase 'private logistics'; choice a is also prose-supported.",
+      "Choice c directly lists the four ingredients, so it is guessable if the reader recognizes list structure.",
+      "Choice a echoes the exact 'visible object' and 'script has changed' language.",
+      "Choice b echoes 'small event' and the request/reveal mechanism.",
+      "Choice c repeats the chapter's threshold/private-logistics phrasing.",
+      "The negative stem makes choice a stand out because b and c are true chapter claims.",
+      "Choice c uses the chapter's 'tellable' vocabulary while the other choices are straw answers."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 72,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 86,
+    "limits": 90,
+    "insight": 84,
+    "density": 80,
+    "beginner": 93
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A small peak can become the story of the whole stay.",
+      "why": "This is the chapter's cleanest memorable core."
+    },
+    {
+      "quote": "The ending can rewrite the remembered weight.",
+      "why": "Strong mechanism line: short, concrete, and useful beyond the example."
+    },
+    {
+      "quote": "a) Make the achievement public so the group can witness the effort.",
+      "why": "This quiz option is supported by the YES Prep pride-and-connection explanation."
+    },
+    {
+      "quote": "b) Mark the crossing into their next unit now, before the change turns into private logistics.",
+      "why": "This competing quiz option is also supported, creating an ambiguous key."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "Two choices are derivable from the prose: a matches public recognition and witnessed effort, while b matches threshold marking before private logistics.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct answers are signposted by exact chapter phrases, especially 'private logistics,' 'script has changed,' and 'tellable,' which weakens assessment quality.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "The example mostly restates the cold-water study rather than showing a fresh before-to-after decision and consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The title and core skill repeat the same sentence, creating a small scaffold smell and lowering density.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, beginner-friendly chapter with a memorable central image, clear layered reads, and unusually good limits around not using a nice ending to excuse bad design. The practical advice is low-friction and transferable: add one visible peak, mark a threshold, or improve the final minute. The main blocker is quiz Q3, which has two prose-supported answers and therefore cannot serve as a clean keyed question. The examples also get a little repetitive around the cold-water study, but that is craft drag rather than a ship-blocking defect."
+}
+```

@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 4,
+    "quizzes": 0,
+    "transfer": 8,
+    "practical": 3,
+    "summaries": 0,
+    "tone": 18,
+    "limits": 0,
+    "insight": 2,
+    "density": 5,
+    "beginner": 6
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This placeholder describes production status instead of introducing a lesson."
+    },
+    {
+      "quote": "Instead, she closes the sheet and asks what user risk he sees that her dashboard does not.",
+      "why": "This is the chapter's strongest concrete action, suggesting a useful shift from defending a plan to seeking omitted risk."
+    },
+    {
+      "quote": "What to do: Apply the move to the situation.",
+      "why": "The instruction is unusably circular because the chapter never defines the move."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now",
+      "why": "Five required learning sections appear consecutively with no content."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Hook",
+      "problem": "The hook is production-stage placeholder text and provides no subject, promise, tension, or learning context.",
+      "mustFix": false
+    },
+    {
+      "unit": "Fast read",
+      "problem": "The section is empty and therefore fails its stand-alone summary promise (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "Deep read",
+      "problem": "The section is empty and therefore fails its stand-alone explanatory promise (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "Full read",
+      "problem": "The section is empty, leaving the chapter with no lesson from which its core move can be learned (STRUCTURALLY INVALID; UNUSABLE).",
+      "mustFix": true
+    },
+    {
+      "unit": "Key takeaway",
+      "problem": "The section is empty, so the chapter never states its core move (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The section is empty, so the reader receives no actionable exercise (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The scenario shows an action but no result or consequence, and its instructions refer to an undefined 'move'; it is thin rather than a worked before-to-after example.",
+      "mustFix": false
+    },
+    {
+      "unit": "Quiz",
+      "problem": "The quiz contains no questions, making it broken and impossible to answer or assess (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "Review cards",
+      "problem": "The section is empty, so it supplies no retrieval-practice material (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "Memorable lines",
+      "problem": "The section is empty, so the promised retention aid is missing (STRUCTURALLY INVALID).",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfilled chapter scaffold, not a shippable learning chapter. Nearly every required section is empty; there is no explained core move, mechanism, boundary, summary, exercise, quiz, review card, or memorable line. The Claire scenario contains one potentially useful behavior—asking which user risk the dashboard omits—but without surrounding prose or a consequence it cannot carry the lesson by itself. Because the quiz has no questions, no derivation or answer-tell analysis is possible. The chapter is structurally invalid and genuinely unusable at the professional bar."
+}
+```

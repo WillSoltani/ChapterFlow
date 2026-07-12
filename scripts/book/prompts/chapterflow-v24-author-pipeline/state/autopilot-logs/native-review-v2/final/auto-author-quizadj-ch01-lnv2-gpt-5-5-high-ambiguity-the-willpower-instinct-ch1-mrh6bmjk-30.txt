@@ -1,0 +1,19 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "58017a70d8baed3c79fa0a13f0cebb0f0c4ca69f4130e3da52cc949705608e99",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {"itemId": "the-willpower-instinct-ch01-q01", "keyedAnswerIndex": 2, "derivedAnswerIndex": 2, "agreement": true, "keyCorrect": "correct", "rationale": "Choice c uniquely captures all three powers: start, stop, and remembered value."},
+    {"itemId": "the-willpower-instinct-ch01-q02", "keyedAnswerIndex": 0, "derivedAnswerIndex": 0, "agreement": true, "keyCorrect": "correct", "rationale": "Choice a best fits goal-biased attention and response selection under competing impulses."},
+    {"itemId": "the-willpower-instinct-ch01-q03", "keyedAnswerIndex": 0, "derivedAnswerIndex": 0, "agreement": true, "keyCorrect": "correct", "rationale": "Choice a gives the supported lesson that frontal damage can spare basic abilities while impairing regulation."},
+    {"itemId": "the-willpower-instinct-ch01-q04", "keyedAnswerIndex": 1, "derivedAnswerIndex": 1, "agreement": true, "keyCorrect": "correct", "rationale": "Choice b is the only option aimed at noticing the cue or urge before the automatic action."},
+    {"itemId": "the-willpower-instinct-ch01-q05", "keyedAnswerIndex": 1, "derivedAnswerIndex": 1, "agreement": true, "keyCorrect": "correct", "rationale": "Choice b matches the social-commitment framing of willpower's roots."},
+    {"itemId": "the-willpower-instinct-ch01-q06", "keyedAnswerIndex": 1, "derivedAnswerIndex": 0, "agreement": false, "keyCorrect": "ambiguous", "rationale": "Choices a and b are both defensible: a states the salience lesson, while b states the needed choice-point attention."},
+    {"itemId": "the-willpower-instinct-ch01-q07", "keyedAnswerIndex": 0, "derivedAnswerIndex": 0, "agreement": true, "keyCorrect": "correct", "rationale": "Choice a correctly treats both motives as sincere and asks which gets support."},
+    {"itemId": "the-willpower-instinct-ch01-q08", "keyedAnswerIndex": 2, "derivedAnswerIndex": 2, "agreement": true, "keyCorrect": "correct", "rationale": "Choice c fits the three-power method by testing behavior, trigger, and feedback concretely."},
+    {"itemId": "the-willpower-instinct-ch01-q09", "keyedAnswerIndex": 2, "derivedAnswerIndex": 2, "agreement": true, "keyCorrect": "correct", "rationale": "Choice c correctly limits prefrontal control to goal-conflict moments rather than all routines."}
+  ]
+}
+```

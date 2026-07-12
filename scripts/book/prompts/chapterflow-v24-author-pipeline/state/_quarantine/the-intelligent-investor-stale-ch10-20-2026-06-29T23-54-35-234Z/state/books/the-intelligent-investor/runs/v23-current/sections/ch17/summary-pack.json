@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "summary-pack",
+  "chapterId": "the-intelligent-investor-ch17",
+  "hook": {
+    "hook": "Maya sees Penn Central in a shared spreadsheet and pauses at the 1970 bankruptcy note: the famous name did not make the securities safe.",
+    "counterintuition": "The obvious shortcut is to trust prominence, rapid growth, complexity, or a persuasive small-company story. The harder move is to treat each one as a warning sign until weak finances, leverage, accounting opacity, promotion, and governance incentives have been checked.",
+    "sourceAnchorIds": [
+      "ch17.fact.1",
+      "ch17.example.1"
+    ],
+    "counterintuitionSourceAnchorIds": [
+      "ch17.fact.1",
+      "ch17.fact.2",
+      "ch17.fact.3",
+      "ch17.fact.4",
+      "ch17.fact.5",
+      "ch17.framework.failure.pattern.map"
+    ]
+  },
+  "breakdown": {
+    "fastRead": "Famous names, fast acquisition growth, complex financing, and promotional appeal can all hide unsafe securities. Penn Central's 1970 bankruptcy showed that a major name could still carry weak finances and merger problems. Ling-Temco-Vought showed that acquisition growth can look better than economic reality when leverage and conglomerate accounting are involved. NVF's Sharon Steel transaction showed how layered securities can make owner economics hard to see. AAA Enterprises showed that market appeal cannot replace verified business substance. The practical lesson is pattern recognition: company names change, but leverage, promotion, and accounting issues recur.",
+    "deepRead": "The central reversal is that respectable packaging can be the danger, not the protection. Penn Central had a major railroad name, yet its 1970 bankruptcy showed that prominence could not overcome weak finances and merger problems. That warning applies to bonds as well as stocks: a large issuer can still impair senior claims, so credit analysis remains necessary.\n\nLing-Temco-Vought adds a second pattern. Rapid acquisition growth can appear to prove managerial skill, but conglomerate accounting and leverage can make expansion look better than economic reality. Reported growth after a merger is not automatically organic progress, because purchase terms and consolidation can shift how performance appears.\n\nNVF's Sharon Steel transaction adds the complexity warning. Layered securities and accounting treatment can make owner economics harder to see, and complexity can conceal value transfer rather than create an automatic bargain. AAA Enterprises adds the promotional warning: a small-company story can attract market appeal before verified business substance exists. Together, these cases work as a failure pattern map: leverage, acquisition accounting, promotion, complex securities, and weak governance. The names are historical; the behavior is repeatable.",
+    "fullRead": "The case histories are not a gallery of old mistakes to memorize and dismiss. They are a pattern-recognition exercise for securities that look safer or more attractive than their economics justify. The first pattern is prominence without safety. Penn Central's 1970 bankruptcy exposed weak finances behind a major railroad corporate name after the Pennsylvania Railroad and New York Central merger failed to create a sound enterprise. The lesson is not limited to common stocks. Bond investors need as much skepticism as stock investors because weak issuers can impair senior claims too.\n\nThe second pattern is acquisition growth that outruns economic reality. Ling-Temco-Vought grew through conglomerate acquisitions and later unraveled under debt and complexity. The error is to treat rapid acquisition growth as proof of managerial skill. Conglomerate accounting and leverage can make expansion look stronger than the underlying economics, and acquisition accounting can distort earnings impressions because purchase terms and consolidation shift how performance appears. Reported growth after a merger may be repackaged acquired figures, not organic progress.\n\nThe third pattern is complexity that hides who bears risk. NVF's Sharon Steel transaction used complicated financing, layered securities, and accounting treatment that made owner economics harder to see. Complex capital structures do not create automatic bargains. They can conceal value transfer, especially when outside investors cannot understand the simple source of value and the real location of risk.\n\nThe fourth pattern is promotion without enough substance. AAA Enterprises illustrates how a promotional small company can have stock-market appeal that runs ahead of verified business substance. A small company story does not deserve a growth multiple by default. Thin operating evidence cannot support a high price, and market appeal can become a substitute for proof.\n\nThe shared map is leverage, acquisition accounting, promotion, complex securities, and weak governance. Governance and management incentives matter because capital allocation decisions can transfer risk to outside investors. Financial ratios are not enough when human incentives drive bad structures. The investor's practical defense is simple, understandable evidence. If the case is opaque, do not assume professionals found hidden value. Opacity often benefits sellers and insiders, while the buyer is left with promotional interpretation instead of evidence.",
+    "sourceAnchorIds": {
+      "fastRead": [
+        "ch17.fact.1",
+        "ch17.fact.2",
+        "ch17.fact.3",
+        "ch17.fact.4",
+        "ch17.fact.5"
+      ],
+      "deepRead": [
+        "ch17.fact.1",
+        "ch17.fact.2",
+        "ch17.fact.3",
+        "ch17.fact.4",
+        "ch17.fact.5",
+        "ch17.fact.6",
+        "ch17.fact.7",
+        "ch17.framework.failure.pattern.map"
+      ],
+      "fullRead": [
+        "ch17.fact.1",
+        "ch17.fact.2",
+        "ch17.fact.3",
+        "ch17.fact.4",
+        "ch17.fact.5",
+        "ch17.fact.6",
+        "ch17.fact.7",
+        "ch17.fact.8",
+        "ch17.fact.9",
+        "ch17.example.1",
+        "ch17.example.2",
+        "ch17.example.3",
+        "ch17.example.4",
+        "ch17.framework.failure.pattern.map"
+      ]
+    }
+  },
+  "keyTakeaway": "Treat fame, acquisition growth, complex securities, and promotional appeal as claims to verify, not evidence by themselves; demand simple proof before trusting the price.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch17.fact.1",
+    "ch17.fact.2",
+    "ch17.fact.3",
+    "ch17.fact.4",
+    "ch17.fact.9"
+  ],
+  "tryThisNow": "Add one line to a decision log for any security under review: name the warning pattern, the simple evidence that supports value, and the accounting or governance issue that could make the appearance misleading.",
+  "tryThisNowSourceAnchorIds": [
+    "ch17.fact.5",
+    "ch17.fact.7",
+    "ch17.fact.8",
+    "ch17.fact.9",
+    "ch17.framework.failure.pattern.map"
+  ],
+  "sourceFactIds": [
+    "ch17.fact.1",
+    "ch17.fact.2",
+    "ch17.fact.3",
+    "ch17.fact.4",
+    "ch17.fact.5",
+    "ch17.fact.6",
+    "ch17.fact.7",
+    "ch17.fact.8",
+    "ch17.fact.9"
+  ]
+}

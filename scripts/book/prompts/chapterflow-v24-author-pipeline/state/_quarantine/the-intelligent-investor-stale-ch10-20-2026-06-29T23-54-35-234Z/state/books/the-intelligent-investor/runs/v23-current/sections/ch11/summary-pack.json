@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "summary-pack",
+  "chapterId": "the-intelligent-investor-ch11",
+  "hook": {
+    "hook": "The highest bond yield looks like the obvious winner, until the coverage line asks whether the issuer can keep paying the coupon.",
+    "counterintuition": "The obvious move is to chase the larger quoted return or the latest profit number. The better move is to test payment strength, normalized earning power, conservative growth, asset backing, and debt before trusting price.",
+    "sourceAnchorIds": [
+      "ch11.fact.1"
+    ],
+    "counterintuitionSourceAnchorIds": [
+      "ch11.fact.1",
+      "ch11.fact.2",
+      "ch11.fact.3",
+      "ch11.fact.4",
+      "ch11.fact.5",
+      "ch11.framework.lay.analysis.inputs",
+      "ch11.framework.bond.safety.test"
+    ]
+  },
+  "breakdown": {
+    "fastRead": "Security analysis begins by refusing the easy headline. For a bond, the coupon is attractive only if the issuer can keep paying it, so interest coverage comes before yield. For a stock, the latest profit number is not enough because one year's result can be distorted by cycles or unusual items; normalized earnings power is the better base. Growth estimates should stay conservative because small changes in assumed growth can make valuation swing too far. Assets matter when earnings are uncertain because balance-sheet value can support the appraisal if profit estimates disappoint. Debt also changes common-stock value because fixed claims stand ahead of shareholders and magnify setbacks. The lay investor's job is not exact prophecy. It is to use practical checks before price excitement becomes a decision.",
+    "deepRead": "The first check is payment strength. A bond can advertise a high yield, but the yield is useful only if the issuer can keep paying the coupon. That turns bond analysis away from attraction and toward coverage: earnings before interest, interest charges, and the margin between them. High yield can be a warning when weak coverage is the reason the market demands more return.\n\nStock analysis has a parallel discipline. The latest earnings figure may feel current and therefore decisive, but one year's profit can be distorted by cycles or unusual items. Normalized earnings power gives the appraisal a steadier base. That does not make the number perfect. It simply reduces the chance that a single good or bad year becomes the whole valuation.\n\nGrowth then needs restraint. John Burr Williams-style valuation points attention toward future cash flows, but growth assumptions are powerful inputs. A small change in assumed growth can create a large change in value, so precision can become a disguise for guesswork. Assets and debt keep the analysis grounded. Assets matter when earnings are uncertain because balance-sheet value can change downside risk. Debt matters because fixed claims stand ahead of common shareholders and can turn business weakness into shareholder fragility. The useful lay approach is modest: earnings power, assets, debt, dividends, growth rate, and capitalization multiple are inputs to judgment, not permission to pretend that an exact value has been found.",
+    "fullRead": "The general approach is a disciplined narrowing of professional security analysis into checks a lay investor can actually use. The point is not to imitate a full analyst staff. The point is to ask the right questions before a quoted return, a fresh profit figure, or a confident forecast takes over the decision.\n\nBonds show the order of work most plainly. A high coupon or high yield may look like the prize, but the coupon matters only if the issuer can keep paying it. Bond analysis therefore starts with interest coverage before yield attraction. The safety test asks whether earnings before interest cover interest charges with a margin. If coverage is weak, a higher yield may be compensation for danger rather than evidence of opportunity. Credit safety has to be measured against obligations, not guessed from reputation.\n\nCommon-stock analysis starts somewhere different but follows the same habit of skepticism. The latest earnings number is not automatically the right value base because one year's profit can be distorted by cycles or unusual items. Normalized earnings power gives the investor a more durable starting point. From there, a capitalization multiple turns expected earning power into a price judgment: the price paid per dollar of earnings sets the buyer's implied return and risk. A low multiple is not proof of cheapness, because low multiples can reflect real deterioration.\n\nGrowth is the most tempting place to overreach. John Burr Williams-style estimates connect value to future cash flows, and the 1938 Theory of Investment Value clarifies why growth assumptions and discount rates matter. Yet small changes in assumed growth can produce large changes in valuation. That makes conservative assumptions essential. A precise growth forecast does not make valuation objective when the inputs are estimates.\n\nAssets provide a second support when earnings are uncertain. If profit estimates disappoint, balance-sheet value can still affect downside risk. That does not mean assets solve every problem, only that earnings are not the only relevant evidence for all stocks. Debt cuts the other way. Fixed claims stand ahead of common shareholders, so debt changes both value and risk. Sales growth does not erase leverage; leverage can turn business setbacks into shareholder fragility.\n\nOther evidence can strengthen or weaken the appraisal. A dividend record can support an earnings appraisal because cash paid over time checks whether accounting profits translated into shareholder returns. Common stocks also need market context. Comparing them with bond yields is part of valuation because attractiveness depends partly on other available returns. The final discipline is humility: avoid false precision. Earnings power, assets, debt, dividends, growth rate, and capitalization multiple can guide judgment, but appraisal error remains unavoidable and has to be absorbed by conservative assumptions.",
+    "sourceAnchorIds": {
+      "fastRead": [
+        "ch11.fact.1",
+        "ch11.fact.2",
+        "ch11.fact.3",
+        "ch11.fact.4",
+        "ch11.fact.5",
+        "ch11.framework.lay.analysis.inputs",
+        "ch11.framework.bond.safety.test"
+      ],
+      "deepRead": [
+        "ch11.fact.1",
+        "ch11.fact.2",
+        "ch11.fact.3",
+        "ch11.fact.4",
+        "ch11.fact.5",
+        "ch11.fact.7",
+        "ch11.example.2",
+        "ch11.framework.lay.analysis.inputs",
+        "ch11.framework.bond.safety.test"
+      ],
+      "fullRead": [
+        "ch11.fact.1",
+        "ch11.fact.2",
+        "ch11.fact.3",
+        "ch11.fact.4",
+        "ch11.fact.5",
+        "ch11.fact.6",
+        "ch11.fact.7",
+        "ch11.fact.8",
+        "ch11.fact.9",
+        "ch11.example.1",
+        "ch11.example.2",
+        "ch11.example.3",
+        "ch11.framework.lay.analysis.inputs",
+        "ch11.framework.bond.safety.test"
+      ]
+    }
+  },
+  "keyTakeaway": "Analyze securities by testing payment strength, normalized earning power, conservative growth, assets, debt, and market context before trusting yield, a single earnings number, or a precise forecast.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch11.fact.1",
+    "ch11.fact.2",
+    "ch11.fact.3",
+    "ch11.fact.4",
+    "ch11.fact.5",
+    "ch11.fact.7",
+    "ch11.fact.9"
+  ],
+  "tryThisNow": "Add a weekly calendar review that asks three questions before any security stays on the list: can the bond coupon be covered, are stock earnings normalized, and does debt change the downside?",
+  "tryThisNowSourceAnchorIds": [
+    "ch11.fact.1",
+    "ch11.fact.2",
+    "ch11.fact.5",
+    "ch11.framework.bond.safety.test"
+  ],
+  "sourceFactIds": [
+    "ch11.fact.1",
+    "ch11.fact.2",
+    "ch11.fact.3",
+    "ch11.fact.4",
+    "ch11.fact.5",
+    "ch11.fact.6",
+    "ch11.fact.7",
+    "ch11.fact.8",
+    "ch11.fact.9"
+  ]
+}

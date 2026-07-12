@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several correct answers echo exact chapter phrasing while distractors sound exaggerated, especially Q5's 'venue's standard' and Q9's 'product contrast.'", "Q7's correct answer is the most nuanced and least absolute; the wrong answers use obvious overreach words like 'Restate' and 'Replace.'"]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 84,
+    "transfer": 78,
+    "practical": 82,
+    "summaries": 76,
+    "tone": 73,
+    "limits": 88,
+    "insight": 82,
+    "density": 74,
+    "beginner": 68
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A rival is not the ruler; it is the starter's mark.",
+      "why": "Strongest concise image; it makes the core distinction memorable."
+    },
+    {
+      "quote": "The rival can wake you up, but it cannot tell you whether your own promise got stronger.",
+      "why": "Clear mechanism: outside pressure starts attention, internal proof judges progress."
+    },
+    {
+      "quote": "Apple Inc.'s side asks the harder return: did the choice beat yesterday's own mark?",
+      "why": "Worst clarity defect: 'Apple Inc.'s side' and 'own mark' are too vague for a cold reader."
+    },
+    {
+      "quote": "In a handoff, Cyrus owes Edmund more than a claim that the group matched Microsoft.",
+      "why": "Named characters appear without enough setup, making the example feel like internal scaffold."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The Apple/Dell contrast is introduced as if the reader already knows what Apple did internally; 'Apple Inc.'s side' is too vague to stand alone.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "Cyrus and Edmund appear without context, so the handoff example feels imported from planning notes rather than readable teaching prose.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter repeatedly names anchors and jobs but often withholds the concrete business decision being judged, which weakens beginner comprehension.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples are about writing the chapter's own evidence rather than applying the idea to ordinary decisions, limiting transfer beyond the book's drafting context.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz tells",
+      "problem": "Correct answers often use the chapter's exact vocabulary while distractors are more extreme or obviously shallow, letting a test-wise reader guess some keys.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong central move: use rivals as alarms, then return to an internal benchmark for proof. Its best lines are memorable and the quiz keys are sound. I would not ship it at an 84 bar because too much of the prose reads like edited scaffolding: named anchors, sidecar-like details, and unexplained characters stand in for fully grounded examples. The limits section is honest and useful, but the chapter needs clearer cold-reader setup and more real-world transfer before it feels professional."
+}
+```

@@ -1,0 +1,177 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "multipliers-ch03",
+  "chapterNumber": 3,
+  "title": "The Liberator",
+  "coreMove": "Because a multi-team analysis shows that contribution patterns are shaped by group conditions.",
+  "thesis": "Google Project Aristotle studied 180 teams while looking for drivers of team effectiveness.",
+  "readerPromise": "After this chapter, a reader can because a multi-team analysis shows that contribution patterns are shaped by group conditions.",
+  "ownedCases": [
+    {
+      "id": "ch03.ex.edmondson-hospitals",
+      "label": "Amy Edmondson hospital-team research"
+    },
+    {
+      "id": "ch03.ex.google-aristotle",
+      "label": "Google Project Aristotle"
+    },
+    {
+      "id": "ch03.ex.pixar-braintrust",
+      "label": "Pixar Braintrust candor"
+    }
+  ],
+  "notYours": [
+    "Amazon disagree and commit",
+    "Amy Edmondson voice and silence",
+    "Anders Ericsson deliberate practice",
+    "Atlassian ShipIt",
+    "Carol Dweck growth mindset",
+    "Chris Voss calibrated questions",
+    "Getting to Yes negotiation frame",
+    "Google Project Oxygen",
+    "HarperCollins revised edition",
+    "HarperCollins revised new chapters",
+    "Harvard Business Review article",
+    "Intel constructive confrontation",
+    "John F. Kennedy Moon goal",
+    "Kim Scott Radical Candor",
+    "Netflix freedom and responsibility",
+    "Original HarperBusiness release",
+    "Peter Gollwitzer implementation intentions",
+    "Pixar Braintrust",
+    "Satya Nadella / Microsoft culture shift",
+    "Space Shuttle Challenger decision record"
+  ],
+  "cast": [
+    "Holly",
+    "Preston",
+    "Josephine",
+    "Oscar"
+  ],
+  "answerIndexPattern": [
+    1,
+    1,
+    2,
+    0,
+    1,
+    0,
+    0,
+    2,
+    2
+  ],
+  "avoid": [
+    "opener (ch01): \"A source analyst sees May 2010 as the\"",
+    "opener (ch02): \"At the return moment in Microsoft's 2014 CEO\"",
+    "opener (ch05): \"Product lead Janelle asks the question no one\"",
+    "opener (ch06): \"Reed Hastings and Patty McCord reach the return\"",
+    "opener (ch07): \"Sabrina catches the early signal on the publisher\"",
+    "opener (ch09): \"Years on the job are the early signal\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a phone call home",
+    "venue: a reminder on a phone",
+    "venue: a car ride conversation",
+    "frame: a first attempt at calibrated questions that gets corrected",
+    "frame: a first encounter with candid feedback that sets a benchmark"
+  ],
+  "architectureFamily": "everyday-first-person",
+  "openerType": "scene",
+  "challengeFrame": "attach-to-existing-routine",
+  "practiceShape": "observe-then-note",
+  "exampleLenses": [
+    "postmortem",
+    "walkthrough",
+    "counterfactual"
+  ],
+  "practiceVerb": "read-aloud",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "leader",
+    "rather",
+    "assuming",
+    "thinking",
+    "team",
+    "concrete"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "averted-late",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "observe-then-note",
+    "two-step-sequence",
+    "say-aloud-script",
+    "measure-one-number"
+  ],
+  "quizStemShapes": [
+    "failure-postmortem",
+    "cold-diagnosis",
+    "choose-next-move",
+    "predict-consequence"
+  ],
+  "quizFailureModes": [
+    "wrong-target",
+    "wrong-timing",
+    "wrong-proof",
+    "wrong-scope"
+  ],
+  "questionFactOrder": [
+    3,
+    4,
+    1,
+    9,
+    8,
+    7,
+    2,
+    6,
+    5
+  ],
+  "memorableShapes": [
+    "cost-statement",
+    "pointed-question",
+    "imperative"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "ledger-speak",
+    "sensory-speak"
+  ],
+  "shellRegister": "verb-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Holly"
+  },
+  "adjacentJobs": {
+    "prev": "Because the 2014 CEO transition marks the leadership context for Microsoft's culture shift, it gives the talent example a fixed date.",
+    "next": "Because the public date and venue make the Moon goal a verifiable stretch-target case."
+  }
+}

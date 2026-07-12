@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "example-pack",
+  "chapterId": "the-intelligent-investor-ch10",
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "The Margin Note That Stops the Shortcut",
+      "scenario": "Nora's pen is moving across a notebook margin beside an adviser note. Her old default is simple: if a professional is registered, the decision can move out of her hands. Then the margin catches the weak spot. The Investment Advisers Act of 1940 and SEC oversight show that advice is regulated, but they do not make the adviser prudent for her situation or move the loss away from her capital.",
+      "whatToDo": "Mark the advice as regulated but not delegated. Before accepting it, write one line in the margin: what loss would still land on me if this recommendation is wrong? Then check whether the advice is understandable and prudent enough to own.",
+      "whyItMatters": "The mistake is treating a federal registration framework as a substitute for judgment. Using an adviser can help, but Nora still bears the result and must judge whether the advice is prudent.",
+      "sourceAnchorIds": [
+        "ch10.fact.1",
+        "ch10.example.1"
+      ],
+      "sourceFactIds": [
+        "ch10.fact.1"
+      ],
+      "namedCaseIds": [
+        "ch10.example.1"
+      ]
+    },
+    {
+      "exampleId": "ex02",
+      "title": "The Chat Thread That Changes the Next Question",
+      "scenario": "Leo drops a name into a team chat and writes that the adviser seems solid. Camille's first reply follows the usual default: all advisers probably want the same thing. Eli pauses the thread with a before-after check. Before: trust the recommendation because the person sounds helpful. After: open FINRA BrokerCheck, review registration and disclosure records, and ask how commissions, asset-based fees, or hourly fees would affect the recommendation.",
+      "whatToDo": "Use the chat thread as an audit trail. Put compensation, registration, disclosures, and broker and firm history in the same decision note before deciding whether to rely on the advice.",
+      "whyItMatters": "The move changes the decision from a personality judgment into an incentive check. Fee structure matters because different payment methods can reward different recommendations.",
+      "sourceAnchorIds": [
+        "ch10.fact.2",
+        "ch10.example.2"
+      ],
+      "sourceFactIds": [
+        "ch10.fact.2"
+      ],
+      "namedCaseIds": [
+        "ch10.example.2"
+      ]
+    },
+    {
+      "exampleId": "ex03",
+      "title": "The Handoff That Repairs a Blurred Role",
+      "scenario": "At a clinic handoff, Camille summarizes the next adviser step too quickly: the credential is enough, so the role is settled. Sofia pushes back because the handoff still blurs selling securities with ongoing fiduciary advice. Eli has to repair the conversation without pretending the credential is meaningless. The Certified Financial Planner Board and financial planner certification standards can help screen the person, but compensation and scope questions still have to be answered.",
+      "whatToDo": "Restart the handoff with separate lines for credential, role, compensation, and scope. Ask whether the person is selling a security, giving ongoing fiduciary advice, or doing something narrower before relying on the recommendation.",
+      "whyItMatters": "The repair is uncomfortable because it slows down a conversation that sounded finished. That friction is useful: broker and adviser roles can differ legally and practically, so the duty cannot be assumed from a credential alone.",
+      "sourceAnchorIds": [
+        "ch10.fact.3",
+        "ch10.example.3"
+      ],
+      "sourceFactIds": [
+        "ch10.fact.3"
+      ],
+      "namedCaseIds": [
+        "ch10.example.3"
+      ]
+    }
+  ]
+}

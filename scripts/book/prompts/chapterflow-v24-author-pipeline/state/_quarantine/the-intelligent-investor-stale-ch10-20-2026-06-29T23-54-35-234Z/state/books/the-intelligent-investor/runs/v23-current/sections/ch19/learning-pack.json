@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "learning-pack",
+  "chapterId": "the-intelligent-investor-ch19",
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorIds": [
+          "ch19.fact.1"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch19.fact.1"
+        ],
+        "prompt": "A shareholder checks only the moving quotation and ignores voting rights and residual claims. What correction best fits owner thinking?",
+        "choices": [
+          "The quotation is the whole role, because public shareholders have no economic or governance claim.",
+          "The shareholder is an owner, because common stock carries residual claims and voting rights.",
+          "The shareholder becomes an owner only after management invites direct participation."
+        ],
+        "correctIndex": 1,
+        "explanation": "Shareholders are not merely quotation watchers; common stock carries economic and governance claims through residual ownership and voting rights.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorIds": [
+          "ch19.fact.2"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch19.fact.2"
+        ],
+        "prompt": "Management wants to retain profits and gives no clear reason why owners will be better off. What should a shareholder ask for?",
+        "choices": [
+          "A promise that insiders know best whenever profits stay inside the business.",
+          "A larger retained balance, because retention itself proves better capital allocation.",
+          "A justification that retained profits can create at least comparable value for shareholders."
+        ],
+        "correctIndex": 2,
+        "explanation": "Retained profits belong to shareholders, so management should justify retention by showing that it can create at least comparable value.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorIds": [
+          "ch19.fact.3"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch19.fact.3"
+        ],
+        "prompt": "An investor treats dividend policy as separate from valuation work. Which response best corrects that split?",
+        "choices": [
+          "Dividend policy belongs in return analysis because cash distributions affect income and reveal capital allocation.",
+          "Dividend policy is only a preference for current income and does not affect owner outcomes.",
+          "Dividend policy matters only when a company has stopped reporting earnings."
+        ],
+        "correctIndex": 0,
+        "explanation": "Dividends are part of investment return because payout policy changes owner outcomes and shows how capital is being allocated.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorIds": [
+          "ch19.fact.4"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch19.fact.4"
+        ],
+        "prompt": "A small shareholder says voting is pointless because no practical governance channel exists. What answer best fits the source material?",
+        "choices": [
+          "Small shareholders can govern only by selling before proxy materials arrive.",
+          "Proxy voting is symbolic only, because directors are not part of shareholder decisions.",
+          "Proxy voting is limited but real, because shareholders elect directors and vote on selected corporate matters."
+        ],
+        "correctIndex": 2,
+        "explanation": "Proxy voting gives shareholders a practical governance mechanism through director elections and selected corporate matters, even when the power is limited.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorIds": [
+          "ch19.fact.5"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch19.fact.5"
+        ],
+        "prompt": "A capable business pays a low dividend because retained earnings can be reinvested well. Which judgment is most consistent with owner analysis?",
+        "choices": [
+          "A low dividend can be sensible when reinvestment returns are high enough to benefit owners.",
+          "A low dividend is always a warning because all companies should pay high dividends.",
+          "A low dividend is irrelevant because retained earnings do not affect shareholder value."
+        ],
+        "correctIndex": 0,
+        "explanation": "Low dividends can be rational when retained earnings compound value inside a capable business and benefit owners more than immediate payout.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorIds": [
+          "ch19.fact.6"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch19.fact.6"
+        ],
+        "prompt": "A company keeps cash despite poor reinvestment opportunities and calls retention a growth signal. What would owner-minded analysis prefer?",
+        "choices": [
+          "More retention, because keeping cash always shows growth discipline.",
+          "A higher dividend, because distributing excess cash can prevent low-return empire building.",
+          "No dividend discussion, because capital use cannot be evaluated by outside owners."
+        ],
+        "correctIndex": 1,
+        "explanation": "When reinvestment opportunities are poor, a high dividend can be sensible because retention may fund waste rather than growth.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorIds": [
+          "ch19.fact.7"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch19.fact.7"
+        ],
+        "prompt": "Shareholders rarely question retained profits or acquisitions, and managers face little pressure to explain capital use. What risk does that passivity create?",
+        "choices": [
+          "It can enable weak capital allocation because managers face less pressure to justify retained profits or acquisitions.",
+          "It improves capital allocation because managers are protected from all shareholder questions.",
+          "It has no owner relevance because governance cannot affect minority shareholders."
+        ],
+        "correctIndex": 0,
+        "explanation": "Shareholder passivity can enable weak capital allocation because capital policy affects every share and managers may face less pressure to explain decisions.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorIds": [
+          "ch19.fact.8"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch19.fact.8"
+        ],
+        "prompt": "An investor judges management only by earnings growth and ignores the record of cash returned to owners. What evidence is being missed?",
+        "choices": [
+          "Only earnings growth can reveal management quality, so cash returned to owners adds no evidence.",
+          "Dividend record can help assess management attitude because consistent distributions can show respect for outside owners.",
+          "Dividend record matters only when earnings growth is absent from reports."
+        ],
+        "correctIndex": 1,
+        "explanation": "Cash returned to owners is also evidence; a dividend record can show how management treats outside shareholders.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorIds": [
+          "ch19.fact.9"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch19.fact.9"
+        ],
+        "prompt": "A stockholder says the only concern is selling at a higher market price. How does owner thinking change that interpretation?",
+        "choices": [
+          "It treats market price as the only evidence that matters, because business decisions belong entirely to management.",
+          "It avoids judging capital use because ownership ends when a quote changes.",
+          "It evaluates corporate use of capital as well as quote movement, because ownership includes claims on business decisions."
+        ],
+        "correctIndex": 2,
+        "explanation": "Owner thinking looks beyond quote movement to how corporate capital is used, because ownership includes a claim on business decisions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cards": {
+    "cards": [
+      {
+        "cardId": "rc01",
+        "sourceAnchorIds": [
+          "ch19.fact.1"
+        ],
+        "front": "Why should shareholders think of themselves as owners rather than mere quotation watchers?",
+        "back": "Common stock carries residual claims and voting rights, so shareholders possess both economic and governance claims instead of only watching price movement.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc02",
+        "sourceAnchorIds": [
+          "ch19.fact.2"
+        ],
+        "front": "What must management justify when retaining earnings?",
+        "back": "Management should justify that retained profits can create at least comparable value for shareholders, because insiders can waste or hoard capital.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc03",
+        "sourceAnchorIds": [
+          "ch19.fact.3"
+        ],
+        "front": "Why is dividend policy part of investment return?",
+        "back": "Cash distributions affect income and provide evidence of capital allocation, so payout policy changes owner outcomes rather than sitting apart from valuation.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc04",
+        "sourceAnchorIds": [
+          "ch19.fact.4"
+        ],
+        "front": "How does proxy voting function as a governance mechanism?",
+        "back": "Shareholders use proxy materials to elect directors and vote on selected corporate matters. The voting power is limited, but it is still real.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc05",
+        "sourceAnchorIds": [
+          "ch19.fact.5"
+        ],
+        "front": "When can a low dividend be sensible for shareholders?",
+        "back": "A low dividend can be sensible when reinvestment returns are high, because retained earnings may compound value inside a capable business.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc06",
+        "sourceAnchorIds": [
+          "ch19.fact.6"
+        ],
+        "front": "When can a high dividend be the better owner-minded policy?",
+        "back": "A high dividend can be sensible when reinvestment opportunities are poor, because distributing excess cash can prevent low-return empire building.",
+        "difficulty": "hard"
+      },
+      {
+        "cardId": "rc07",
+        "sourceAnchorIds": [
+          "ch19.fact.7"
+        ],
+        "front": "Why can shareholder passivity damage capital allocation?",
+        "back": "Passivity gives managers less pressure to explain retained profits or acquisitions, and capital policy affects every share held by owners.",
+        "difficulty": "hard"
+      }
+    ]
+  }
+}

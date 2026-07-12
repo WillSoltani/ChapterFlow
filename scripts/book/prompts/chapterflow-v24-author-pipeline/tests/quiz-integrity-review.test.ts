@@ -10,8 +10,8 @@
  * (buildQuizDerivation → commitQuizDerivation BEFORE any key → adjudicate) and
  * composes the frozen QuizIntegrityResultV1 by populating EVERY field from an
  * explicit source. The phase-2 adjudication is INJECTED as a canned
- * strict-schema-valid fenced-JSON reply (exactly as quiz-two-phase.test.ts injects
- * canned replies) — ZERO live model calls.
+ * strict-schema-valid raw JSON reply (with fenced compatibility fixtures, exactly
+ * as quiz-two-phase.test.ts injects canned replies) — ZERO live model calls.
  */
 
 import assert from "node:assert/strict";
@@ -82,7 +82,7 @@ type AdjItem = {
   keyedMechanismSupported: boolean;
 };
 
-/** A fenced-JSON phase-2 superset adjudication reply (what the model would emit). */
+/** A legacy/canned fenced-JSON phase-2 superset adjudication reply. */
 function mkAdjReply(items: AdjItem[]): string {
   return "```json\n" + JSON.stringify({ schema: QUIZ_INTEGRITY_ADJUDICATION_SCHEMA, items }) + "\n```";
 }
@@ -92,10 +92,11 @@ function mkAdjReply(items: AdjItem[]): string {
 test("16: a uniquely-correct, mechanism-supported quiz composes result PASS", () => {
   const ch = quizChapter();
   const committed = commit(ch, { answers: ["b", "a"], evidence: [["a field was cut"], ["hides in defaults"]] });
-  const reply = mkAdjReply([
+  const items: AdjItem[] = [
     { itemId: "q1", keyedAnswerIndex: 1, derivedAnswerIndex: 1, agreement: true, keyCorrect: "correct", rationale: "Only choice b is supported.", defensibleAnswerIndices: [1], keyedMechanismSupported: true },
     { itemId: "q2", keyedAnswerIndex: 0, derivedAnswerIndex: 0, agreement: true, keyCorrect: "correct", rationale: "The hook names defaults.", defensibleAnswerIndices: [0], keyedMechanismSupported: true },
-  ]);
+  ];
+  const reply = JSON.stringify({ schema: QUIZ_INTEGRITY_ADJUDICATION_SCHEMA, items });
   const parsed = parseQuizIntegrityAdjudication(reply)!;
   assert.ok(parsed, "adjudication parses");
   assert.deepEqual(validateQuizIntegrityAdjudication(parsed, ch, committed), [], "honest adjudication verifies");
@@ -203,7 +204,7 @@ test("the superset validator rejects out-of-range / duplicate defensible indices
   assert.throws(() => composeQuizIntegrityResult(ch, committed, misreport, { chapterContentSha256: chapterContentShaFor(ch) }), QuizIntegrityError);
 });
 
-test("parse rejects a reply missing a superset field (defensibleAnswerIndices / keyedMechanismSupported)", () => {
+test("parser retains fenced fallback, rejects missing superset fields, and the task requests raw schema JSON", () => {
   const ch = quizChapter();
   const missing = "```json\n" + JSON.stringify({
     schema: QUIZ_INTEGRITY_ADJUDICATION_SCHEMA,
@@ -211,10 +212,15 @@ test("parse rejects a reply missing a superset field (defensibleAnswerIndices / 
   }) + "\n```";
   assert.equal(parseQuizIntegrityAdjudication(missing), null, "a base-only adjudication is not the superset");
   assert.equal(parseQuizIntegrityAdjudication("no fence here"), null);
+  assert.ok(parseQuizIntegrityAdjudication(mkAdjReply([
+    { itemId: "q1", keyedAnswerIndex: 1, derivedAnswerIndex: 1, agreement: true, keyCorrect: "correct", rationale: "legacy fence", defensibleAnswerIndices: [1], keyedMechanismSupported: true },
+  ])), "legacy/canned fenced JSON remains parseable");
   // The task card names the superset fields and the phase version constant is exported.
   const task = buildQuizIntegrityAdjudicationTask("ch01.phase2.txt");
   assert.ok(task.includes("defensibleAnswerIndices") && task.includes("keyedMechanismSupported"));
   assert.ok(task.includes("ch01.phase2.txt") && task.includes(QUIZ_INTEGRITY_ADJUDICATION_SCHEMA));
+  assert.match(task, /emit only the JSON object required by the bound output schema/i);
+  assert.doesNotMatch(task, /exactly one fenced json block/i);
   assert.equal(QUIZ_INTEGRITY_PHASE2_VERSION, "quiz-integrity-phase2-v1");
   void ch;
 });

@@ -1,0 +1,77 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Q4: keyed choice repeats the chapter's giveaway language about where the idea stops and what proof is owed.",
+      "Q5: keyed choice uses the chapter's exact rationale phrase pattern, changing cast and setting.",
+      "Q9: keyed choice is much more specific than the distractors, naming Toyota Production System and andon."
+    ]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 82,
+    "transfer": 78,
+    "practical": 86,
+    "summaries": 83,
+    "tone": 79,
+    "limits": 86,
+    "insight": 84,
+    "density": 80,
+    "beginner": 76
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Known is not a mood; it is a receipt you can point to.",
+      "why": "Strongest memorable line: concrete, portable, and central to the chapter's move."
+    },
+    {
+      "quote": "Order is not style. Known data has to frame Assumptions, because the first line tells the second what job it has.",
+      "why": "Best mechanism statement: it explains why the sequence matters rather than just naming the sequence."
+    },
+    {
+      "quote": "Plant analyst Gregoire pauses at the counter while a phone reminder says: fit the door early.",
+      "why": "Weak opening: cryptic image and reminder wording slow a cold reader before the core problem is clear."
+    },
+    {
+      "quote": "The promise comes back on a day, or it drifts.",
+      "why": "Useful practical rule, but the chapter repeats this proof-return idea enough that later sections can feel padded."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening image is too compressed and odd: the counter, phone reminder, and door-fit idea arrive before the reader knows the decision, stakes, or setting.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The American Airlines/Fort Worth material names a real carrier and place but never gives a concrete before-after boarding decision or measured consequence, so the transfer example is thinner than the factory contrast.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples end with proof not yet returned, which teaches caution but weakens the promised result loop because readers rarely see the completed evidence comparison.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Some sentences lean aphoristic and abstract, especially around promises drifting, stories hardening, and results returning; the style is memorable but occasionally smells like a template.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The keyed answer is fair, but it is telegraphed by exact chapter language about marking where an idea stops and naming owed proof.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The keyed answer is fair, but the distractors are implausible and the correct choice is the only one carrying the chapter's named evidence terms.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a solid chapter with a clear core move: separate known data, assumptions, decisions, and returning results before a fix becomes a defended habit. The best lines are sticky, the practical exercise is low-friction, and the Toyota/Detroit comparison gives the mechanism real weight. I would not ship it yet at a professional 84+ bar because the airline transfer example is under-specified: it names American Airlines and Fort Worth but does not show a concrete boarding change producing a consequence. Tightening that before-after evidence and reducing a little aphoristic repetition would make the chapter much stronger."
+}
+```

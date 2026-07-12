@@ -35,6 +35,7 @@ import {
   type AuthorIo,
 } from "../../orchestrator/authorRun.js";
 import { classifyProviderOutcome } from "../../orchestrator/modelPolicy.js";
+import type { AuthorProvenance } from "../../qc/sessionProvenance.js";
 import { extractCausalClaims } from "../../review/causalClaims.js";
 import { extractDiversityFeatures } from "../../telemetry/diversityFeatures.js";
 import type { ProviderOutcomeV1 } from "../../contracts/routeContracts.js";
@@ -68,6 +69,27 @@ export function experimentSampleIo(roots: MigrationRoots, blindSampleId: string)
   const provenanceDir = resolve(dir, "provenance");
   const chapterAbs = (bookId: string, n: number): string =>
     rootedPath(roots, "samples", blindSampleId, "chapters", chapterFileName(authorChapterId(bookId, n)));
+  const provenanceAbs = (chapterId: string): string =>
+    rootedPath(roots, "samples", blindSampleId, "provenance", `${chapterId}.json`);
+  const readProvenance = (chapterId: string): AuthorProvenance | null => {
+    const p = provenanceAbs(chapterId);
+    if (!existsSync(p)) return null;
+    try {
+      const rec = JSON.parse(readFileSync(p, "utf8")) as Partial<AuthorProvenance>;
+      return rec.schemaVersion === "author-provenance-v2"
+        && rec.chapterId === chapterId
+        && typeof rec.authorSessionId === "string"
+        && rec.authorSessionId.length > 0
+        && typeof rec.stampedAt === "string"
+        && rec.stampedAt.length > 0
+        && typeof rec.contentHash === "string"
+        && rec.contentHash.length > 0
+        ? rec as AuthorProvenance
+        : null;
+    } catch {
+      return null;
+    }
+  };
   return {
     chapterExists: (bookId, n) => existsSync(chapterAbs(bookId, n)),
     readChapterFile: (bookId, n) => {
@@ -87,11 +109,29 @@ export function experimentSampleIo(roots: MigrationRoots, blindSampleId: string)
         .map((f) => JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21)
         .sort((a, b) => a.number - b.number);
     },
-    authorSessionOf: () => undefined,
+    authorSessionOf: (chapterId) => readProvenance(chapterId)?.authorSessionId,
     recordProvenance: (chapterId, sessionId, contentHash) => {
-      const p = rootedPath(roots, "samples", blindSampleId, "provenance", `${chapterId}.json`);
+      if (!contentHash) throw new Error(`migration sample ${blindSampleId}: cannot stamp author provenance for ${chapterId} without a content hash`);
+      const p = provenanceAbs(chapterId);
       mkdirSync(provenanceDir, { recursive: true });
-      writeFileAtomic(p, JSON.stringify({ schemaVersion: "migration-sample-provenance-v1", chapterId, authorSessionId: sessionId, contentHash: contentHash ?? null, stampedAt: new Date().toISOString() }, null, 2) + "\n");
+      const record: AuthorProvenance = {
+        schemaVersion: "author-provenance-v2",
+        chapterId,
+        authorSessionId: sessionId,
+        contentHash,
+        stampedAt: new Date().toISOString(),
+        producer: "whole-chapter-writer",
+      };
+      writeFileAtomic(p, JSON.stringify(record, null, 2) + "\n");
+    },
+    readProvenance,
+    restoreProvenance: (chapterId, previous) => {
+      const p = provenanceAbs(chapterId);
+      if (previous === null) rmSync(p, { force: true });
+      else {
+        mkdirSync(provenanceDir, { recursive: true });
+        writeFileAtomic(p, JSON.stringify(previous, null, 2) + "\n");
+      }
     },
     readLeadOverride: () => null,
     writeLeadOverride: () => {

@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "multipliers-ch06",
+  "chapterNumber": 6,
+  "title": "The Investor",
+  "coreMove": "Because a 2009 written artifact makes the case checkable rather than relying on vague reputation.",
+  "thesis": "The Netflix culture deck is a concrete artifact for the autonomy case.",
+  "readerPromise": "After this chapter, a reader can because a 2009 written artifact makes the case checkable rather than relying on vague reputation.",
+  "ownedCases": [
+    {
+      "id": "ch06.ex.netflix-culture",
+      "label": "Netflix freedom and responsibility"
+    },
+    {
+      "id": "ch06.ex.wlgore-lattice",
+      "label": "W. L. Gore lattice organization"
+    },
+    {
+      "id": "ch06.ex.toyota-coaching",
+      "label": "Toyota coaching problem solving"
+    }
+  ],
+  "notYours": [
+    "Amazon disagree and commit",
+    "Amy Edmondson hospital-team research",
+    "Amy Edmondson voice and silence",
+    "Anders Ericsson deliberate practice",
+    "Atlassian ShipIt",
+    "Carol Dweck growth mindset",
+    "Chris Voss calibrated questions",
+    "Getting to Yes negotiation frame",
+    "Google Project Aristotle",
+    "Google Project Oxygen",
+    "HarperCollins revised edition",
+    "HarperCollins revised new chapters",
+    "Harvard Business Review article",
+    "Intel constructive confrontation",
+    "John F. Kennedy Moon goal",
+    "Kim Scott Radical Candor",
+    "Original HarperBusiness release",
+    "Peter Gollwitzer implementation intentions",
+    "Pixar Braintrust",
+    "Pixar Braintrust candor"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    1,
+    2,
+    2,
+    0,
+    1,
+    1,
+    0,
+    0,
+    2
+  ],
+  "avoid": [
+    "opener (ch01): \"A source analyst sees May 2010 as the\"",
+    "opener (ch02): \"At the return moment in Microsoft's 2014 CEO\"",
+    "opener (ch03): \"On a project call, delivery lead Holly hears\"",
+    "opener (ch05): \"Product lead Janelle asks the question no one\"",
+    "opener (ch07): \"Sabrina catches the early signal on the publisher\"",
+    "opener (ch09): \"Years on the job are the early signal\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a to-do list on the whiteboard",
+    "venue: a shared grocery list",
+    "venue: a walk around the block",
+    "frame: two stakeholders disagree about candid feedback before deciding",
+    "frame: a small ceremony that marks a transition so it feels earned"
+  ],
+  "architectureFamily": "direct-conceptual",
+  "openerType": "tension-thesis",
+  "challengeFrame": "script-one-sentence",
+  "practiceShape": "single-imperative",
+  "exampleLenses": [
+    "walkthrough",
+    "counterfactual",
+    "outsider-witness"
+  ],
+  "practiceVerb": "write",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "leader",
+    "rather",
+    "assuming",
+    "thinking",
+    "team",
+    "concrete"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "averted-late",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "single-imperative",
+    "two-step-sequence",
+    "observe-then-note",
+    "say-aloud-script"
+  ],
+  "quizStemShapes": [
+    "cold-diagnosis",
+    "choose-next-move",
+    "predict-consequence",
+    "spot-the-violation"
+  ],
+  "quizFailureModes": [
+    "wrong-timing",
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure"
+  ],
+  "questionFactOrder": [
+    2,
+    6,
+    5,
+    3,
+    4,
+    8,
+    9,
+    7,
+    1
+  ],
+  "memorableShapes": [
+    "pointed-question",
+    "imperative",
+    "reversal"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "ledger-speak",
+    "sensory-speak"
+  ],
+  "shellRegister": "artifact-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Netflix freedom and responsibility"
+  },
+  "adjacentJobs": {
+    "prev": "Because the 1986 date fixes the cautionary decision case in a specific public event.",
+    "next": "Because the publisher metadata explains why accidental Diminisher material belongs to the revised edition."
+  }
+}

@@ -1,0 +1,91 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "mechanisms": [
+      "The prose says to look first at transitions, milestones, and pits rather than smoothing every minute equally.",
+      "The John Deere section says the better first-day ritual links the factory role to real farm-equipment users before routine tasks.",
+      "The Mary Kay section says the pink Cadillac makes a sales milestone visible so others can notice and name it.",
+      "The Joshie section says recovery must add proof of care and change the ending people carry away, not merely return the item.",
+      "The prose explicitly says more forms do not improve a first day; purpose has to arrive before procedure.",
+      "The chapter says progress needs a visible marker before it becomes a memory.",
+      "The pit lesson says a polished apology can miss the moment unless concrete care changes the recovery story.",
+      "The coffee-shop example says workload can fool you and asks where people assign meaning or retell the relationship.",
+      "The pit warning says the repair has to change the ending people carry away before the low point hardens."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "medium", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Choice b is weak but partly defensible if staff workload is a real constraint; however the prose makes memory/relationship the first test.",
+      ""
+    ],
+    "tells": [
+      "Q1: Correct choice is the only one that repeats the chapter's triad; b is obviously overbroad.",
+      "Q2: Correct choice contains exact chapter terms, while a and b both make meaning late or subordinate.",
+      "Q3: Correct choice is the only one with the Mary Kay keyword visible; a's modesty framing is a giveaway distractor.",
+      "Q4: Correct choice repeats proof of care and loss story; a and c are plainly insufficient by the prose.",
+      "Q5: Correct choice uses purpose, packet, and real users from the chapter; the distractors both just add or delay paperwork.",
+      "Q6: Correct choice is the only one with marker and picture; a and b are generic data/privacy distractors.",
+      "Q7: Correct choice repeats concrete care story; a and c are intentionally incomplete.",
+      "Q8: Correct choice borrows the exact relationship-summing test; c is a giveaway because the chapter warns against ceremony everywhere.",
+      "Q9: Correct choice uses hardens, a repeated chapter warning; b and c are near-duplicates of the rejected practical-fix-only move."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 72,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 84,
+    "insight": 87,
+    "density": 82,
+    "beginner": 91
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The busy middle is not the whole story.",
+      "why": "This is the chapter's clearest memorable compression of the core move."
+    },
+    {
+      "quote": "At a transition, frame the purpose; at a milestone, make progress visible; at a pit, repair the meaning.",
+      "why": "It gives the reader a usable if-then map, not just a concept label."
+    },
+    {
+      "quote": "Then again, he should move the circle back to the crowded handoff, since the busiest, highest-traffic step is exactly the moment people use to sum up the whole relationship.",
+      "why": "This directly undercuts the example's stated lesson and the chapter's repeated warning."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 4",
+      "problem": "The What to do first says Eric should move attention from the crowded handoff to the first encounter, then reverses itself and says the busiest handoff is exactly the right relationship-summing moment. That contradicts the chapter's own mechanism and the example's Why it matters.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The item is derivable, but the correct answer is signposted by the exact phrase 'sum up the relationship' while the distractors are obviously workload/ceremony mistakes.",
+      "mustFix": false
+    },
+    {
+      "unit": "quizzes overall",
+      "problem": "Several distractors are too easy because they state the rejected behavior in blunt form: keep it private, close the case, move on, add ceremony everywhere.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The chore-chart example is usable but thin; it names a domestic case without much decision consequence beyond leaving a mark visible.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong, teachable core: scan for transitions, milestones, and pits, then match the intervention to the emotional job of that moment. The layered reads, review cards, and implementation plan mostly reinforce the same mechanism in beginner-friendly language. The major blocker is Example 4, whose What to do section reverses the chapter's own lesson and would teach the wrong diagnostic move. Fix that contradiction and sharpen a few quiz distractors, and this would be close to shippable."
+}
+```

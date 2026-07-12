@@ -1,0 +1,14 @@
+Created [start-with-why-ch01.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch01.v21-native.chapter.json).
+
+Verification:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors
+- `quiz-verify`: 9/9 match with dealt key pattern `1,1,0,2,0,1,2,0,2`
+- Evidence audit: clean
+- Scaffold scan: clean
+- Rendered reader-facing length: 17,049 chars, within budget
+
+Distractor parity:
+`q01 122 vs 126/115; q02 104 vs 98/108; q03 140 vs 146/115; q04 114 vs 117/97; q05 118 vs 117/129; q06 108 vs 109/100; q07 112 vs 104/138; q08 133 vs 115/150; q09 120 vs 108/110.`
+
+Unique longest keys: 1. Unique shortest keys: 0.

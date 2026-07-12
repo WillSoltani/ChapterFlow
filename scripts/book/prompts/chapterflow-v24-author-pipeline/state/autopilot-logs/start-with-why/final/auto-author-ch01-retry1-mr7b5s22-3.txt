@@ -1,0 +1,17 @@
+Updated [start-with-why-ch01.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch01.v21-native.chapter.json).
+
+Key fixes:
+- Reworded q01’s keyed answer to clear the echo-tell issue.
+- Replaced the three memorable lines with clean, exact chapter sentences under 14 words.
+- Removed one saturated prose tic and avoided a near-collision with another chapter opener.
+
+Verification passed:
+- `author-check` clean
+- `gate-chapter` PASS, 0 blockers, 0 majors
+- `quiz-verify` 9/9 matches, key pattern `1,1,0,2,0,1,2,0,2`
+- Read-only rubric probe: `memClean=3`, `echo=0`, `lenTell=1`, no fail metrics
+- Reader-visible length: `16719` chars
+- Evidence audit: no candidates
+- Scaffold scan: clean
+
+Note: the chapter file is untracked in git (`??`), and the repo already contains many unrelated untracked files.

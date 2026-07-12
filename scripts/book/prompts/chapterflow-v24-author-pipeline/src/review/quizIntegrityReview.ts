@@ -38,7 +38,7 @@
  * holistic ship preference can never decide quiz correctness.
  *
  * No live model calls here. The phase-2 reviewer output is INJECTED (a canned
- * strict-schema-valid fenced-JSON reply) exactly as `quiz-two-phase.test.ts`
+ * strict-schema-valid raw JSON reply, with a fenced compatibility form) exactly as `quiz-two-phase.test.ts`
  * injects canned replies; the in-repo validators parse it and the lane composes.
  */
 
@@ -122,35 +122,42 @@ Also report, per question:
 - "defensibleAnswerIndices": every 0-based choice index that is a genuinely defensible answer given ONLY the question and its choices. For a uniquely-correct key this is exactly the keyed index. For an ambiguous key it is two or more indices.
 - "keyedMechanismSupported": true when the keyed answer's stated mechanism or causal justification is actually supported by the question and choices; true for a question that makes no mechanism/causal claim; false when the key asserts a mechanism/cause the material does not support.
 
-FINAL MESSAGE: exactly one fenced json block, no prose outside it:
+FINAL RESPONSE: emit only the JSON object required by the bound output schema. Do not wrap it in markdown fences and do not add prose before or after it:
 {
   "schema": "${QUIZ_INTEGRITY_ADJUDICATION_SCHEMA}",
   "items": [{"itemId": "<copy>", "keyedAnswerIndex": 0, "derivedAnswerIndex": 0, "agreement": true, "keyCorrect": "correct|ambiguous|wrong", "rationale": "<one line>", "defensibleAnswerIndices": [0], "keyedMechanismSupported": true}]
 }`;
 }
 
-// ── parse (last fenced json wins, mirroring parseQuizAdjudication) ────────────
+// ── parse (raw JSON, with fenced compatibility fallback) ─────────────────────
 
-/** Parse the adjudicator's final fenced JSON into the superset shape. Returns
- *  null when nothing parses or a required field is missing/mistyped; all trust
- *  checks live in validateQuizIntegrityAdjudication. */
+/** Parse the adjudicator's strict schema-bound raw JSON into the superset shape.
+ *  If whole-output parsing fails, accept the legacy/canned final fenced JSON.
+ *  Returns null when nothing parses or a required field is missing/mistyped; all
+ *  trust checks live in validateQuizIntegrityAdjudication. */
 export function parseQuizIntegrityAdjudication(stdout: string): QuizIntegrityAdjudicationV1 | null {
   if (typeof stdout !== "string" || stdout.length === 0) return null;
-  const fenceRe = /```(json)?[^\n]*\n([\s\S]*?)```/g;
-  let lastJsonLabeled: string | null = null;
-  let lastAny: string | null = null;
-  let m: RegExpExecArray | null;
-  while ((m = fenceRe.exec(stdout)) !== null) {
-    lastAny = m[2];
-    if (m[1] === "json") lastJsonLabeled = m[2];
-  }
-  const body = lastJsonLabeled ?? lastAny;
-  if (!body) return null;
+  const trimmed = stdout.trim();
+  let body: string | null = trimmed.length > 0 ? trimmed : null;
   let raw: unknown;
   try {
-    raw = JSON.parse(body);
+    raw = JSON.parse(body ?? "");
   } catch {
-    return null;
+    const fenceRe = /```(json)?[^\n]*\n([\s\S]*?)```/g;
+    let lastJsonLabeled: string | null = null;
+    let lastAny: string | null = null;
+    let m: RegExpExecArray | null;
+    while ((m = fenceRe.exec(stdout)) !== null) {
+      lastAny = m[2];
+      if (m[1] === "json") lastJsonLabeled = m[2];
+    }
+    body = lastJsonLabeled ?? lastAny;
+    if (!body) return null;
+    try {
+      raw = JSON.parse(body);
+    } catch {
+      return null;
+    }
   }
   if (typeof raw !== "object" || raw === null || Array.isArray(raw)) return null;
   const obj = raw as Record<string, unknown>;
@@ -376,7 +383,8 @@ export type RunQuizIntegrityOpts = {
 
 /**
  * Run the quiz-integrity lane over a COMMITTED derivation and an INJECTED phase-2
- * adjudication reply (a canned strict-schema-valid fenced-JSON string — the
+ * adjudication reply (normally strict schema-bound raw JSON; fenced JSON remains
+ * a compatibility form for canned/legacy sessions — the
  * recovery conductor supplies this from a spawn; this package never spawns).
  *
  * Outcomes:

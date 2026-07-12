@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "action-pack",
+  "chapterId": "the-intelligent-investor-ch15",
+  "tryThisNow": "Open a shared spreadsheet and add three columns before keeping any bargain candidate: low P/E group, net-net test, and 20-stock group slot.",
+  "tryThisNowSourceAnchorIds": [
+    "ch15.fact.1",
+    "ch15.fact.2",
+    "ch15.fact.3"
+  ],
+  "implementationPlan": {
+    "title": "Build a Bargain Screen Friction Check",
+    "titleSourceAnchorIds": [
+      "ch15.fact.1",
+      "ch15.fact.2",
+      "ch15.fact.3"
+    ],
+    "coreSkill": "Turn bargain selection into a repeatable screen before any candidate stays active. Start with low P/E groups, test net-net candidates against current assets minus all liabilities, and keep the decision tied to a 20-stock group instead of one favorite bargain.",
+    "coreSkillSourceAnchorIds": [
+      "ch15.fact.1",
+      "ch15.fact.2",
+      "ch15.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch15.fact.1",
+        "sourceAnchorIds": [
+          "ch15.fact.1",
+          "ch15.example.1"
+        ],
+        "context": "manager one-on-one",
+        "plan": "If Julian wants to keep a low P/E candidate after a manager one-on-one, then he adds a low P/E group row and checks financial condition before treating cheapness as favorable odds."
+      },
+      {
+        "sourceAnchorId": "ch15.fact.2",
+        "sourceAnchorIds": [
+          "ch15.fact.2",
+          "ch15.example.2"
+        ],
+        "context": "phone call",
+        "plan": "If Tessa calls a candidate net-net during a phone call, then she pauses until market price has been compared with current assets minus all liabilities."
+      },
+      {
+        "sourceAnchorId": "ch15.fact.3",
+        "sourceAnchorIds": [
+          "ch15.fact.3",
+          "ch15.example.3"
+        ],
+        "context": "shared spreadsheet",
+        "plan": "If Samir is tempted to concentrate in 1 cheap company in the shared spreadsheet, then he marks the 20-stock group slot first and leaves the candidate pending until group diversification is visible."
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next day ends, create one shared spreadsheet row for a current bargain candidate. Leave it pending unless the row shows low P/E group status, net-net comparison, and the 20-stock group slot.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch15.fact.1",
+      "ch15.fact.2",
+      "ch15.fact.3",
+      "ch15.example.3"
+    ],
+    "weeklyPractice": "Use one recurring conversation each week to review the shared spreadsheet. Keep only candidates with a low P/E group note, a net-net comparison when claimed, and a visible place inside the 20-stock group.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch15.fact.1",
+      "ch15.fact.2",
+      "ch15.fact.3"
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "c", "b", "b", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The prose says purposeful practice isolates the exact fault, gets close feedback, and changes the next attempt.",
+      "The chapter repeatedly contrasts whole-unit rereading with drilling the last exact miss and rewriting the failing step.",
+      "The defect is whole-performance repetition letting one weak point survive hidden inside the full task.",
+      "The lane cue plus video creates one visible target, immediate feedback, and repetition before widening back to distance.",
+      "The Faloon paragraph says the digit string got longer because each miss told the next attempt where to work.",
+      "The claim trusts repetition to fix a weak spot, while the chapter requires a visible target and next-attempt correction.",
+      "Feedback matters only when it can shape the next repetition while the details are still traceable.",
+      "Plan B shortens the loop: small batch, template comparison, adjustment, then the next batch.",
+      "The revised target is visible, testable, and countable rather than a vague wish to improve."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "a is also defensible because the prose says comfort can leave the weak spot hidden; b is stronger because it names the visible size target.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "b is the longest and only option with isolate-record-change mechanics.",
+      "a is the most procedural option and mirrors the chapter's correction-loop language.",
+      "c repeats the chapter's central contrast between whole performance and surviving weak point.",
+      "b is the only option with cue, feedback, and repeat-before-widening structure.",
+      "b uses giveaway terms: miss, next attempt, feedback.",
+      "b contains the most chapter-specific phrase, visible target.",
+      "c almost directly states the chapter's core rule about changing the next attempt.",
+      "a makes Plan B correct by explicitly naming soon-enough feedback.",
+      "c is the only concrete, measurable target and is also the longest."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 82,
+    "transfer": 89,
+    "practical": 92,
+    "summaries": 91,
+    "tone": 88,
+    "limits": 93,
+    "insight": 91,
+    "density": 86,
+    "beginner": 94
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "This is the chapter's strongest mnemonic: short, concrete, and mechanically accurate."
+    },
+    {
+      "quote": "A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.",
+      "why": "This gives beginners a practical test for whether a practice goal is usable."
+    },
+    {
+      "quote": "Some feedback is late. Some goals are chosen badly. Some days reveal that the problem you named is only a symptom of a different one.",
+      "why": "The chapter earns trust by naming failure modes instead of overselling the loop."
+    },
+    {
+      "quote": "c) changes the next attempt while the mistake is still traceable",
+      "why": "This answer choice is fair but too close to the chapter's repeated phrasing, creating a quiz tell."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "The intended answer appears to be b, but a is also supported by the prose's claim that comfort can leave the weak spot hidden, so the item is mildly under-determined.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "Correct choices are often the most concrete, procedural, and chapter-phrased options, while distractors are visibly vague or passive; this weakens assessment even though the questions remain derivable.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter. The core move is memorable, concrete, and repeated through varied domains without becoming hard to follow: isolate the miss, create a short stretch rep, get immediate feedback, and change the next attempt. The layered reads, review cards, and implementation plan all stand on their own. The main weakness is quiz craft: most keys can be spotted by their feedback-loop language and richer procedural detail, and Q6 has a defensible competing answer. Those are polish issues, not blockers."
+}
+```

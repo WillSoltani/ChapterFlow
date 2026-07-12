@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": ["No quiz questions or answer choices are present, so there are no choice-level tells to evaluate."]
+  },
+  "scores": {
+    "retention": 8,
+    "quizzes": 0,
+    "transfer": 22,
+    "practical": 15,
+    "summaries": 0,
+    "tone": 20,
+    "limits": 0,
+    "insight": 5,
+    "density": 12,
+    "beginner": 30
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "Worst defect: this reads like placeholder metadata, not a hook for a learner."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read",
+      "why": "Worst defect: the promised layered reads are empty, so the chapter cannot stand alone."
+    },
+    {
+      "quote": "she draws the loop: silence leads to check-ins, check-ins lead to more silence, then marks her own arrow.",
+      "why": "Strongest moment: the only concrete image that hints at the chapter's intended move."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Worst defect: the quiz and retention supports are missing entirely."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The Fast read section is empty, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The Deep read section is empty, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The Full read section is empty, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The Key takeaway section is empty, leaving no explicit core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The Try this now section is empty, so there is no actionable exercise.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The Quiz section contains no questions, so the quiz is broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The Review cards section is empty, removing the promised retention layer.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The Memorable lines section is empty, removing the promised memory aid.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder-like product language rather than learner-facing content.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example is thin: it names a scenario but gives no completed decision, consequence, or clear before-to-after application.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not a shippable chapter; it is mostly a scaffold with headings. The only usable learning material is a brief Hannah scenario that hints at a feedback-loop move, but the reads, takeaway, exercise, quiz, review cards, and memorable lines are empty, so a beginner could not reliably learn, practice, review, or be assessed on the chapter's core idea."
+}
+```

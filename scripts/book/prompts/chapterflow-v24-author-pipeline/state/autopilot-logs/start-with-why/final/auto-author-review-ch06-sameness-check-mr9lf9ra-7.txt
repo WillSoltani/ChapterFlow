@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several correct choices are the most precise and chapter-shaped option, while distractors often contain giveaway overreach such as loyalty leading, all airlines, or purpose fitting any group.", "Q2, Q3, Q4, Q7, Q8, and Q9 make the keyed answer easier to spot because it alone preserves the chapter's exact distinction between source-grounded detail and broad slogan."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 81,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 86,
+    "limits": 90,
+    "insight": 87,
+    "density": 83,
+    "beginner": 84
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Trust is belief made visible under pressure. If you cannot name the visible act, do not ask for loyalty yet.",
+      "why": "Strongest compressed mechanism and practical stop rule."
+    },
+    {
+      "quote": "A low fare does not create trust; trust lets a low fare mean more than price.",
+      "why": "Memorable reversal that keeps the airline example from becoming a price lesson."
+    },
+    {
+      "quote": "The source gives only a few hard pieces: Southwest Airlines, Dallas, employees, low-fare carrier. Those pieces are enough.",
+      "why": "Shows the chapter's main limitation: it sometimes leans on sparse source pieces and asks them to carry a lot."
+    },
+    {
+      "quote": "At the check-in counter, imagine a Southwest training note being written as the question arrives: does the low fare explain trust by itself?",
+      "why": "The example is usable but staged, with limited concrete consequence beyond restating the lesson."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are often the only option that keeps the chapter's exact vocabulary and source-scope logic, while several distractors are implausibly broad or backward.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "Thin-but-usable example: it imagines a training note but names no specific decision-maker, actual action, or consequence beyond the before-after lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "Thin-but-usable example: the bicycle shop transfer is clear but generic, with a late catch and smaller promise rather than a concrete before-to-after outcome a reader can inspect.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The Continental material sometimes proves separation of details more strongly than it proves trust rebuilding through visible action, so the comparison is sound but a little abstract.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is publishable: it has a clear core order, strong memorable lines, honest limits, and practical if-then use outside the airline cases. The quiz is fair and derivable, though its keyed answers are often easier to spot because they alone preserve the chapter's exact distinctions. The main weakness is transfer richness: some examples are staged and thin rather than vividly consequential, but they are usable and not reader-harming."
+}
+```

@@ -1,0 +1,9 @@
+Wrote [start-with-why-ch01.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch01.v21-native.chapter.json:1).
+
+Verification:
+- `author-check`: clean
+- `quiz-verify`: 9/9 matched the required key pattern
+- Self-checks: length `17,241` chars, scaffold clean, off-brief case names clean
+- Anchor counts: total `Japanese` 3, total `Detroit` 6
+- `evidence-audit`: no candidates
+- `gate-chapter`: PASS, 0 blockers; it reports 10 non-blocking majors and 8 minors.

@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 77,
+    "quizzes": 78,
+    "transfer": 82,
+    "practical": 72,
+    "summaries": 79,
+    "tone": 70,
+    "limits": 82,
+    "insight": 73,
+    "density": 64,
+    "beginner": 74
+  },
+  "quotes": [
+    {
+      "quote": "A clean repair can be the wrong win.",
+      "why": "Compact, portable, and likely to stick."
+    },
+    {
+      "quote": "A metric is a receipt for spread, not a receipt for meaning.",
+      "why": "Strong reversal of a common default, phrased memorably."
+    },
+    {
+      "quote": "A true detail in the wrong paragraph is not extra support; it is false ground.",
+      "why": "Clear transferable lens for source-bound evidence."
+    },
+    {
+      "quote": "One story can make you nod; two let you compare what actually repeats.",
+      "why": "Useful principle, but it recurs in nearly the same role across chapters."
+    },
+    {
+      "quote": "If-then 1: [A weekly metric improves] If one metric improves, then write the founding reason beside that number",
+      "why": "The bracketed duplicate condition feels like visible scaffolding rather than polished reader prose."
+    },
+    {
+      "quote": "The demand was already set: stop borrowing detail across companies.",
+      "why": "Proxy-scene language feels manufactured and repeats the same template logic."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is sound on basic quiz correctness: I found no keyed answer contradicted by the chapter prose. Its best material teaches a real reusable lens: separate cause from visible result, keep source details with the setting that earned them, and test a pattern in a second context. The problem is churn. Across chapters, the same machinery keeps returning: named company detail, second setting, warning against purpose talk, source detail stays home, four-term order, if-then plan, memorable line. That makes the book feel more assembled than authored. It is a solid draft with useful tools, but not premium: clarity and limits are strong, while density, tone, and freshness suffer from repetition."
+}
+```

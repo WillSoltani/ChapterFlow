@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "chapterflow-self-healing-repair-v1",
+  "createdAt": "2026-07-09T13:09:57.913Z",
+  "bookId": "the-culture-code",
+  "runId": "book-run",
+  "stage": "qc",
+  "severity": "blocker",
+  "summary": "author review: 1 chapter(s) still fail independent review after the regen cap (2 write attempts each):\n  ch11 — quiz Q5: The keyed answer says the advice needs the three named anchors and their separate specifics, but the prose's actual rule is broader: pin a grounded token, write plainly, or find the fact. This makes the quiz teach an over-specific requirement the chapter does not support. (must fix); quiz tells: Some correct answers are easier to guess because they use the chapter's exact preferred vocabu",
+  "findings": [],
+  "artifacts": [
+    "state/qc/the-culture-code.sweep.json"
+  ],
+  "recommendedFixes": [
+    "Use the QC repair brief/prompt for the latest round. Repair content only; never attest your own repair.",
+    "After edits, run qc-converge and then a fresh QC round."
+  ],
+  "validationCommands": [
+    "npx tsx src/cli.ts qc-converge the-culture-code",
+    "npx tsx src/cli.ts book-run the-culture-code --no-publish"
+  ],
+  "nextCommand": "npx tsx src/cli.ts book-run the-culture-code --no-publish",
+  "promptPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/the-culture-code/book-run/qc.20260709130957.9a064268.repair.md",
+  "reportPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/the-culture-code/book-run/qc.20260709130957.9a064268.repair.json"
+}

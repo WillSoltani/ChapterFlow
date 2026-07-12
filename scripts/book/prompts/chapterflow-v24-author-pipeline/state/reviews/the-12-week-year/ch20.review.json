@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "the-12-week-year-ch20",
+  "chapterNumber": 20,
+  "contentHash": "d0f0a3073dfeaf36",
+  "reviewerSessionId": "eval-proxy-the-12-week-year-ch20-1783022657612",
+  "scores": {
+    "retention": 78,
+    "quizzes": 55,
+    "transfer": 70,
+    "practical": 72,
+    "summaries": 60,
+    "tone": 62,
+    "limits": 76,
+    "insight": 70,
+    "density": 58,
+    "beginner": 74
+  },
+  "composite": 67.4,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Read first-cycle resistance as expected data, then adjust through the first, second, last four weeks and the 13th week review.",
+      "why": "Strong central move: memorable, practical, and tied to the chapter's core mechanism.",
+      "verified": true
+    },
+    {
+      "quote": "The standard is visible action, not a better-sounding intention.",
+      "why": "Strongest line because it converts the idea into an observable test.",
+      "verified": true
+    },
+    {
+      "quote": "The stage then adds structure through Your First Four Weeks, Your Second Four Weeks, and Your Last Four",
+      "why": "Worst craft defect: the deep read cuts off mid-thought.",
+      "verified": true
+    },
+    {
+      "quote": "Readers often encounter predictable resistance and decide the commitment itself was the",
+      "why": "Another unfinished sentence in the full read, which blocks professional polish.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "The answers follow a visible a/b/c repeating pattern across all nine questions.",
+    "The correct option is always the only moderate adjustment-oriented choice; the distractors repeatedly say to abandon the plan or stick rigidly to it.",
+    "Several choices repeat exact takeaway wording, making the key guessable without reading deeply."
+  ],
+  "complaints": [
+    {
+      "unit": "deep read",
+      "problem": "The section ends with an incomplete sentence, so the layered summary is not standalone.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "A sentence cuts off at 'was the', creating an obvious production error.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Example 3 mixes Graham, Nathan, a community center, sign-up sheets, and a graduate thesis writing group, making the scenario internally inconsistent.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Example 5 mixes Neil, Robert, client files, solo consulting, and charity shop inventory reset, so the concrete application is incoherent.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The key pattern is a/b/c repeated three times, which is a strong test-taking tell.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz explanations Q6-Q9",
+      "problem": "Explanations cite the wrong scenario labels, including Edinburgh games publisher, fitness studio, county broadband, and graduate thesis writing group for unrelated prompts.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Distractors are too obviously wrong because they mostly say abandon the plan or stick rigidly to it, so they do not teach much.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "Title is 'undefined', which exposes template residue.",
+      "mustFix": true
+    },
+    {
+      "unit": "tone",
+      "problem": "Repeated phrases such as 'works only when the scene produces proof' create a scaffold/template smell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a usable core: read first-cycle resistance as expected data and convert it into visible adjustment through the cycle and 13th-week review. That idea is memorable and practical enough to retain, but the chapter is not publishable at a professional bar because multiple sections contain unfinished sentences, mismatched names and venues, template residue, and quiz tells. The best lines are strong, but the execution errors are too visible to ship."
+}

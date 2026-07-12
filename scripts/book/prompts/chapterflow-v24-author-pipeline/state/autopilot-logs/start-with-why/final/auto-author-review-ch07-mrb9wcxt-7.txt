@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several correct answers are the only ones that preserve named hard anchors instead of blending sources, so a test-wise reader could often pick the most evidence-conservative option.", "The wrong answers often contain visibly extreme or suspect moves like 'prove transfer,' 'replace,' or 'every product example,' making some distractors easier to eliminate without full reading."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 87,
+    "limits": 88,
+    "insight": 86,
+    "density": 84,
+    "beginner": 85
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Every broad ask sent too soon spends evidence the first believers have not earned.",
+      "why": "This is the chapter's strongest memorable compression of the mechanism."
+    },
+    {
+      "quote": "Early love can be real and still stop at the edge.",
+      "why": "It gives the reader a clean limit on overreading early adoption."
+    },
+    {
+      "quote": "What would count as evidence for the next group?",
+      "why": "This turns the concept into a practical diagnostic question."
+    },
+    {
+      "quote": "Had TiVo been treated as a simple win, you would miss the hard part: early adopters are a first signal, not proof that the Early majority has crossed.",
+      "why": "Strong causal explanation, though it also shows how heavily the chapter leans on one warning pattern."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "The correct answer about adding a second setting with its own hard marker is mostly supported by the review card and comparison logic, but the main prose does not make this transfer rule as explicit as the quiz expects.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The scenario is usable but thin: Janelle's consequence, 'loses the chance to revise the rest,' is asserted rather than shown through a concrete decision path.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The volunteer example is generic and names no concrete organization, decision, or measurable result beyond awareness versus motion, so it feels like a lesson restatement.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against a professional bar. The chapter has a clear core move: count first believers before aiming at the middle, and keep evidence attached to its actual source. It is memorable, practical, and honest about the limit of early enthusiasm. The main weakness is not correctness but some quiz and example polish: a few items test composition logic that is less explicit in the prose, and a couple of examples are thin. None of those defects prevent a reader from learning or applying the chapter."
+}
+```

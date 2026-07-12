@@ -1,0 +1,19 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "dcfe0edcb084efd99335ac7799f8266586d0ddda2af2b3a087dfe1f95c4058b8",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {"itemId": "decisive-ch01-q01", "keyedAnswerIndex": 1, "derivedAnswerIndex": 1, "agreement": true, "keyCorrect": "correct", "rationale": "Choice b uniquely matches WRAP to the four decision stages rather than treating it as a generic pause or final check."},
+    {"itemId": "decisive-ch01-q02", "keyedAnswerIndex": 1, "derivedAnswerIndex": 1, "agreement": true, "keyCorrect": "correct", "rationale": "Choice b is the supported repair for a narrow yes-or-no frame before evidence gathering is constrained by it."},
+    {"itemId": "decisive-ch01-q03", "keyedAnswerIndex": 2, "derivedAnswerIndex": 2, "agreement": true, "keyCorrect": "correct", "rationale": "Choice c directly counters confirmation bias by seeking disconfirming evidence before the favored plan controls the search."},
+    {"itemId": "decisive-ch01-q04", "keyedAnswerIndex": 2, "derivedAnswerIndex": 1, "agreement": false, "keyCorrect": "ambiguous", "rationale": "Choices b and c both defensibly apply the emotion lesson: b uses the outsider-distance move for attachment, while c preserves emotional information while testing long-term relevance."},
+    {"itemId": "decisive-ch01-q05", "keyedAnswerIndex": 0, "derivedAnswerIndex": 0, "agreement": true, "keyCorrect": "correct", "rationale": "Choice a uniquely counters overconfidence in a single forecast by requiring a wider range of plausible outcomes."},
+    {"itemId": "decisive-ch01-q06", "keyedAnswerIndex": 2, "derivedAnswerIndex": 2, "agreement": true, "keyCorrect": "correct", "rationale": "Choice c matches Steve Cole's parallel first-pass logic: comparison creates learning before commitment."},
+    {"itemId": "decisive-ch01-q07", "keyedAnswerIndex": 0, "derivedAnswerIndex": 0, "agreement": true, "keyCorrect": "correct", "rationale": "Choice a is the Grove outsider question applied to legacy-product attachment, while the other choices misstate the mechanism."},
+    {"itemId": "decisive-ch01-q08", "keyedAnswerIndex": 0, "derivedAnswerIndex": 0, "agreement": true, "keyCorrect": "correct", "rationale": "Choice a correctly treats the four villains as stage-specific problems requiring distinct interventions, not one final review."},
+    {"itemId": "decisive-ch01-q09", "keyedAnswerIndex": 1, "derivedAnswerIndex": 1, "agreement": true, "keyCorrect": "correct", "rationale": "Choice b correctly states that WRAP improves the odds of a good choice without guaranteeing the outcome."}
+  ]
+}
+```

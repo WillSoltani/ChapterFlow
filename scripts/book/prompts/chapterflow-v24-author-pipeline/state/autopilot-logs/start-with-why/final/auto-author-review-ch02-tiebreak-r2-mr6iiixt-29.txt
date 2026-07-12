@@ -1,0 +1,67 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several correct choices are the only ones that preserve the chapter's exact named tokens and mechanisms, while distractors drift into obviously weak advice.",
+      "Distractors often contain giveaway overclaims such as treating one visible result, audience preference, or liked wording as proof.",
+      "Correct answers are frequently the most concrete and chapter-shaped option: second setting, Price before Promotion, six levers, General Motors, MCI 1991, TiVo digital video recorder."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 78,
+    "transfer": 86,
+    "practical": 84,
+    "summaries": 90,
+    "tone": 83,
+    "limits": 90,
+    "insight": 86,
+    "density": 82,
+    "beginner": 88
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The cost of a borrowed lift is paying for it again.",
+      "why": "Strongest memorable compression of the chapter's central warning."
+    },
+    {
+      "quote": "Name the lever before you trust the lift.",
+      "why": "Clear, portable action rule a reader can remember and use."
+    },
+    {
+      "quote": "After trainer Dawson's offer ends, the bulletin board note curls at one corner.",
+      "why": "The staged scene adds texture but feels synthetic and distracts from the lesson."
+    },
+    {
+      "quote": "The reader may feel the sentence is solid while the proof has slipped away.",
+      "why": "Sharp explanation of how a true detail can still mislead when moved."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are often telegraphed by being the only option that uses the chapter's exact named facts and causal language, while distractors are visibly implausible.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q2",
+      "problem": "The question leans toward meta-pedagogy about how an example should function rather than directly testing the buyer-behavior lesson, making it less natural for a learner.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The fictional William, Dawson, Noah, and Gabriel scenarios feel manufactured and sometimes less concrete than the real GM, MCI, and TiVo material they are meant to apply.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "Some passages focus heavily on where evidence belongs in the argument, which is useful but can blur the chapter's practical business lesson with writing-process advice.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a memorable central move: name the incentive lever, then wait for behavior after the push is gone before calling it belief. The GM, MCI, and TiVo contrasts give it useful range, and the limit section keeps it from overselling. I would not ship it yet at a professional 84 bar because the quiz is too easy to game from option shape and exact-token matching, and some examples have a staged, template-like feel. Fix the quiz tells and make the applied scenarios less synthetic, and the chapter is close."
+}
+```

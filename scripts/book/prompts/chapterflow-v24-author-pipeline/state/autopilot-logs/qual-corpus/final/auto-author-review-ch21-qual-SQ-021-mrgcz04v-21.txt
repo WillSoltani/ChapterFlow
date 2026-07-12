@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 5,
+    "quizzes": 0,
+    "transfer": 8,
+    "practical": 5,
+    "summaries": 0,
+    "tone": 25,
+    "limits": 0,
+    "insight": 3,
+    "density": 8,
+    "beginner": 15
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read",
+      "why": "The promised layered reads are present only as empty headings."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "The quiz and reinforcement sections are structurally absent."
+    },
+    {
+      "quote": "What to do: Apply the move to the situation.",
+      "why": "The practical instruction is a placeholder and does not teach an executable action."
+    },
+    {
+      "quote": "she writes three words first: grief, fear, anger.",
+      "why": "This is the only concrete hint of a possible core move, but the chapter never explains it."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section is empty, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, leaving the chapter without an explicit core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the reader has no immediate practice step.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz heading exists but contains no questions, making the quiz broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so the promised review layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, so the promised retention layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example gestures at a scenario but never shows the before-to-after decision or consequence; it is thin but usable as a prompt.",
+      "mustFix": false
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook reads as a production placeholder rather than reader-facing instruction.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not a shippable chapter. It is mostly empty scaffolding: the fast, deep, full, quiz, takeaway, practice, review, and memorable-line sections are headings without instructional content. The lone example contains a potentially useful image and a hint of a move, but the chapter never explains the mechanism, boundaries, or action well enough for a reader to learn or apply it."
+}
+```

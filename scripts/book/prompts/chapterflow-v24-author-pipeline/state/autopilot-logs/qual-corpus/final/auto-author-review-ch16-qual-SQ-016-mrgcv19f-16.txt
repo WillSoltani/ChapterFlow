@@ -1,0 +1,91 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 25,
+    "quizzes": 0,
+    "transfer": 30,
+    "practical": 45,
+    "summaries": 5,
+    "tone": 35,
+    "limits": 10,
+    "insight": 45,
+    "density": 30,
+    "beginner": 55
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "People can see which tradeoffs were made before the work begins.",
+      "why": "Strongest line: it states the mechanism behind the better meeting."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "Worst tone defect: it exposes production scaffolding instead of teaching the reader."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz",
+      "why": "Worst structural defect: multiple required sections are present as empty headings."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The Quiz section contains no questions, so the assessment is broken and cannot be answered.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The Key takeaway section is empty, so the chapter lacks its promised standalone takeaway.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The Try this now section is empty, so the chapter gives no immediate exercise despite promising one.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The Examples section is empty, so there are no additional transfer cases.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The Review cards section is empty, so the retention layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The Memorable lines section is empty, so the promised memory aid is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is production-meta text rather than reader-facing instruction.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read is a placeholder and does not communicate the chapter's core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read is a placeholder and fails its standalone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The only substantive example is thin: it names a scenario but gives little before-after detail about the resistance, tradeoffs, or implementation results.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The full read contains the seed of a useful lesson: move bargaining and implementation ownership before the vote so agreement is visible before work begins. But most of the chapter is empty or placeholder text, including the quiz, takeaway, examples, review cards, memorable lines, and practical exercise. The result is structurally invalid as a learning product, even though the one substantive paragraph points toward a workable chapter."
+}
+```

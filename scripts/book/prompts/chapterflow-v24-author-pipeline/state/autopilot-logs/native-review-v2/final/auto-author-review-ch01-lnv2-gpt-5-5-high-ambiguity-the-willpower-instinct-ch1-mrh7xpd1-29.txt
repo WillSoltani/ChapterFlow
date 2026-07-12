@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "b", "b", "a", "a", "c", "c"],
+    "mechanisms": [
+      "The prose defines willpower as I will, I won't, and I want, so the fitting response names the start act, stop act, and value.",
+      "The Miller/Cohen passage says prefrontal control keeps goals active and tilts attention and action toward them.",
+      "The Gage section says he survived and could speak, while steadiness, planning, and social restraint changed.",
+      "The self-awareness section says change starts by noticing the moment before action, not regret after the fact.",
+      "The social-cost passages say self-control supports promises, waiting, sharing, and repair in group life.",
+      "The snack/run example says the vivid cue can beat a quiet value unless the larger want is made present.",
+      "The prose says the short-term relief self and the long-term value self can both be real.",
+      "The practical method uses concrete next moments, barriers, values, and feedback when a vague goal fails.",
+      "The Amelia desk routine shows control biasing attention and response when a routine conflicts with the current goal."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "b is also defensible: the prose and review cards explicitly say the long-term goal needs attention at the choice point to compete.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "c is the only option that names all three powers and is the most complete formulation.",
+      "a repeats distinctive prose language about prefrontal control, goals, attention, and response.",
+      "a alone preserves the stem's survival/speech/planning/restraint structure; b and c use extreme dismissive claims.",
+      "b is the only before-action answer; a and c point to after-the-fact intensity or regret.",
+      "b is the only socially constructive answer; a and c are implausible absolutes.",
+      "a is uniquely long and polished, and b is also prose-supported.",
+      "a is the only answer allowing both motives to be sincere; b and c contain giveaway absolutes.",
+      "c is the only answer with experiment and feedback language; a and b reject the evidence in the stem.",
+      "c repeats the chapter's exact prefrontal-control mechanism; a and b are exaggerated negatives."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 72,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 82,
+    "insight": 87,
+    "density": 80,
+    "beginner": 89
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Refusal is only one third of willpower. When a lapse repeats, ask which power went quiet before you call yourself weak.",
+      "why": "The core move is memorable, concrete, and corrects the reader's likely starting mistake."
+    },
+    {
+      "quote": "Self-command is not a halo over character. It depends on control systems that can be disrupted or supported.",
+      "why": "This is the chapter's strongest mechanism: it moves willpower from moral scolding to trainable control."
+    },
+    {
+      "quote": "A value can be real and still lose if it is absent at the cue.",
+      "why": "Strong line, but it also supports both Q6 options, creating the quiz ambiguity."
+    },
+    {
+      "quote": "b) The long-term goal needs attention at the choice point to compete.",
+      "why": "This answer is marked as a distractor by position, but the prose makes it defensible."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "Two answer choices are supported by the prose: a states that vivid cues can beat real values, while b states that the long-term goal needs attention at the choice point. This makes the quiz item broken rather than merely difficult.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "The likely keyed answer is also uniquely long and polished, creating a guessable test-taking tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 2, 5, 6",
+      "problem": "Several transfer examples reuse the same family/pharmacy/message setting, which narrows the sense of application beyond the chapter's own recurring scenario.",
+      "mustFix": false
+    },
+    {
+      "unit": "hook",
+      "problem": "The opening line is compressed enough to be cryptic on a cold read; it hints at the lesson but does not yet give a clear image or stakes.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, teachable chapter with a clear core distinction, useful mechanisms, and practical actions a beginner could try the same day. The best lines make willpower feel less like character judgment and more like keeping the right goal active at the right moment. I would not ship it yet because Q6 has two defensible answers, which is a concrete quiz defect; after fixing that, the chapter is likely over the professional bar, though the repeated pharmacy/family examples should be diversified to improve transfer."
+}
+```

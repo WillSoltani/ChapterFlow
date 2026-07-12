@@ -1,0 +1,84 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water study says a milder ending can make a longer hard episode remembered better.",
+      "The Magic Castle example says a modest place can create one vivid, tellable peak through a changed arrival script.",
+      "YES Prep works by making a private achievement public so peers and adults witness it.",
+      "The prose names elevation, insight, pride, and connection as the four ingredients; choice c maps to all four.",
+      "The red-phone lesson is that one concrete visible object can signal that the ordinary script has changed.",
+      "The prose says the free item is not enough; the request, phone, and tray turn delivery into a small event.",
+      "The threshold idea says to mark the crossing before the next stage becomes private logistics.",
+      "The prose explicitly says memory does not average each minute; peak and ending carry unusual weight.",
+      "The mint vanishes because it is only a quiet free item, unlike a gift shaped into a tellable event."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q4: the stem asks for four ingredients and choice c is the only four-part answer matching elevation, insight, pride, and connection.",
+      "Q7: the correct answer closely repeats the chapter's phrase about marking a transition before it becomes private logistics.",
+      "Q8: the negative wording makes a true lesson into the wrong answer, so the item partly tests noticing 'not assume'."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 76,
+    "practical": 86,
+    "summaries": 91,
+    "tone": 90,
+    "limits": 92,
+    "insight": 86,
+    "density": 82,
+    "beginner": 92
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A small peak can become the story of the whole stay.",
+      "why": "This is the chapter's clearest memorable compression of the main move."
+    },
+    {
+      "quote": "The extra discomfort still happened.",
+      "why": "This keeps the peak-end lesson honest instead of turning it into manipulation."
+    },
+    {
+      "quote": "A ceremony cannot replace real college support.",
+      "why": "This is a strong boundary condition that protects the lesson from overselling."
+    },
+    {
+      "quote": "He thinks of the cold-water contrast: a 60-second painful trial can lose in memory to a 90-second trial with milder ending.",
+      "why": "This shows the main repetition problem: several examples lean on the same study instead of expanding transfer."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct answer is too exposed because the stem asks for four ingredients and only one option gives a four-part mapping.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The correct answer borrows the chapter's phrasing closely enough to be guessable without much comprehension.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 3-5",
+      "problem": "Three examples in a row reuse the cold-water contrast, which narrows transfer and makes the section feel repetitive.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The named student is thinly specified; the example gives a public moment but little concrete decision, consequence, or personal texture.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The workshop ritual is usable but a little theatrical; it would be stronger with a lower-friction variant for groups that would resist public cheering.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, shippable chapter. The core idea is memorable, the layered reads stand alone, the tone is plain, and the chapter is unusually good about limits: it repeatedly warns that a designed ending cannot cover harm or a broken base. The quiz is mostly fair and derivable, though a few items give away the pattern through near-matching phrasing. The main weakness is transfer: the examples are on-topic, but several lean on the same cold-water study or use lightly sketched characters instead of showing more varied before-to-after consequences."
+}
+```

@@ -1,0 +1,59 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "c", "b", "b", "a", "b", "c"],
+    "keyDisagreements": [],
+    "tells": ["Correct choices often reuse the chapter's signature terms more exactly than distractors: evidence, visible offer, belief, behavior, hard details, second anchor.", "Several distractors are easy to reject by extremity or obvious bad reasoning, such as borrowing authority, using rank, or letting usefulness supply the signal."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 78,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 83,
+    "limits": 88,
+    "insight": 86,
+    "density": 82,
+    "beginner": 87
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A product is a receipt, not a reason.",
+      "why": "Strongest compact memory hook; it carries the whole chapter's move."
+    },
+    {
+      "quote": "If the belief is unclear, do not ask the product to explain it.",
+      "why": "Clear boundary that prevents the method from becoming a universal slogan."
+    },
+    {
+      "quote": "What to do: Vincent starts by telling you what to do: circle the first useful-looking product, then name the belief and conduct it must make visible.",
+      "why": "Worst template smell; the sentence is awkwardly self-referential and feels generated."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "The examples lean heavily on internal draft-review scenes with Vincent, Janet, and Sabrina rather than varied real-world transfer cases; several restate the lesson more than show a decision and consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The phrase 'Vincent starts by telling you what to do' is scaffold-visible and breaks the plain professional register.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are often more precise and chapter-vocabulary-heavy than distractors, creating a mild answer-key tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "Q8",
+      "problem": "Eleanor appears only in the quiz, which is fair but slightly distracting because the chapter otherwise uses recurring named roles.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against an 80 bar. The core move is memorable, bounded, and practical: name the promise, name the conduct, then let the visible offer serve as evidence only if it can be judged. The iPod/Dell DJ/Phaeton contrast gives the idea real structure, and the summaries stand alone cleanly. The main weakness is that the worked examples sometimes feel like draft-review machinery rather than lived transfer, and the quiz distractors are often visibly weaker than the keyed choices."
+}
+```

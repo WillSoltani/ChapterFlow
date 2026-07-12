@@ -1,0 +1,73 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several correct answers use the chapter's exact scaffold words while distractors use obviously bad authority-copying moves, especially Q2, Q6, and Q8.", "Q2's keyed answer is the only option that names all four jobs, making it guessable from phrasing even without close reading."]
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 83,
+    "transfer": 76,
+    "practical": 78,
+    "summaries": 84,
+    "tone": 74,
+    "limits": 82,
+    "insight": 80,
+    "density": 73,
+    "beginner": 78
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The signal is not what you send. The signal is what comes back.",
+      "why": "Strongest compressed expression of the chapter's core move."
+    },
+    {
+      "quote": "Words state what should be heard. Actions show whether the words have a carrier. Symbols are visible signs that outsiders read.",
+      "why": "Clear mechanism that makes the abstract listening claim teachable."
+    },
+    {
+      "quote": "This is a simple ledger: three promises out, one return mark set, no borrowed detail allowed.",
+      "why": "Worst template-smell moment: compressed jargon replaces plain explanation."
+    },
+    {
+      "quote": "One blue text bubble is the only sign she has so far.",
+      "why": "The example feels thin because it gives a prop without a concrete before-after consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "The keyed option repeats the chapter's exact four-part formula, while the distractors are transparently wrong order/copying moves, creating a phrasing tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "The keyed option is easy to guess because it simply says 'Name the words first,' while the other choices visibly violate the chapter's order.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The distractors lean on obviously weak authority/overgeneralization, so the correct transfer-limit answer is too exposed.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 6: Text Return Scheduled",
+      "problem": "This reads like a slot-filler: it names Presley and a friend but gives no concrete promise, no specific action, and no consequence after the scheduled return.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter repeats 'promise,' 'return,' 'signal,' and 'ledger' so often that some paragraphs feel like scaffold language rather than fresh explanation.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The action 'schedule the signal return' is useful but still abstract; it would be stronger with a concrete calendar/checkpoint/example of what gets scheduled.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a solid central mechanism: words set the promise, actions and symbols carry it, and listening means checking what the audience receives back. The quiz keys are sound and derivable, including the WHY question in Q4, but several items are too easy to guess from formula phrasing. The main blocker is transfer quality: most examples are concrete enough, but the text-message example is underbuilt and feels manufactured rather than demonstrating a real decision and consequence. I would revise before shipping."
+}
+```

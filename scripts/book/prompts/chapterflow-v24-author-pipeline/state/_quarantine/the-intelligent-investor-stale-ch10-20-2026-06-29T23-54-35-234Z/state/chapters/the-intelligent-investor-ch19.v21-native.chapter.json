@@ -1,0 +1,623 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "the-intelligent-investor-ch19",
+  "number": 19,
+  "title": "Shareholders and Managements: Dividend Policy",
+  "readingTimeMinutes": 8,
+  "hook": "Eli drags a proxy reminder into a calendar block, then stops treating the holding as just a price line.",
+  "counterintuition": "The easy move is to watch the quotation and leave management alone. Owner thinking asks what happens to retained profits, dividends, voting rights, and capital decisions because common stock carries economic and governance claims.",
+  "tryThisNow": "Open a calendar block and write one owner-audit note for a holding: what cash was distributed, what earnings were retained, and what management must justify.",
+  "keyTakeaway": "Think like an owner: require management to justify retained earnings, judge dividends as part of return, and use voting rights as evidence about capital discipline.",
+  "breakdown": {
+    "fastRead": "A shareholder is an owner, not just someone watching a market quote. Common stock carries residual claims and voting rights, so management's use of retained earnings is part of the investor's result. Retained profits belong to shareholders and should create at least comparable value; otherwise insiders may hoard or waste capital. Dividend policy is therefore not separate from valuation. Cash distributions affect income and reveal capital allocation discipline. Proxy voting is limited, but real, because shareholders elect directors and vote on selected matters through proxy materials. A low dividend can make sense when reinvestment is strong, but it needs evidence.",
+    "deepRead": "The central shift is from price-watching to ownership. A shareholder has residual economic claims and voting rights, so the relevant question is not only whether the quotation moved. The question is how corporate capital is being used on the shareholder's behalf. That makes management's treatment of retained earnings a direct investment issue. Retained profits belong to shareholders, and management should justify keeping them by showing that retention can create at least comparable value. Trusting insiders automatically is the error, because insiders can waste capital or hoard it without enough pressure.\n\nDividend policy belongs inside return analysis. A payout is not just an income feature, and a low payout is not automatically a sign of superior growth. Cash distributions affect owner income and also serve as evidence of how management allocates capital. When reinvestment opportunities are strong, retaining earnings can compound value inside a capable business. When reinvestment opportunities are weak, distributing cash may better protect owners from low-return expansion.\n\nGovernance is part of the same discipline. Proxy voting gives public shareholders a formal channel to elect directors and vote on selected corporate matters. The channel is limited, but it is not imaginary. Owner thinking treats voting rights, reports, directors, and dividends as connected evidence about whether management respects outside owners.",
+    "fullRead": "The practical starting point is simple: a shareholder owns a claim on the business, not merely a claim on a changing quotation. Common stock carries residual claims and voting rights, which means the owner has both an economic stake and a governance stake. That changes how market price should be interpreted. A rising or falling quote is only one signal. The deeper question is whether management is using corporate capital in a way that respects the owners who supplied it.\n\nRetained earnings are the first test of that owner mindset. When profits stay inside the business, they have not become management's private resource. They still belong economically to shareholders, so retention needs a reason. The standard is not whether management prefers to keep the money, or whether retention sounds like growth. The standard is whether the retained profits can create at least comparable value for the owners. Without that discipline, insiders can hoard capital, waste it, or use it for weak expansion while shareholders absorb the result through every share they hold.\n\nDividend policy therefore belongs inside investment return. Dividends are not a side topic detached from valuation. Cash distributions affect income, and payout policy changes owner outcomes. A dividend record can also give evidence about management's attitude toward outside owners, because cash returned to owners is a visible capital allocation choice. The right question is not whether every company should pay a high dividend. A low dividend can be sensible when retained earnings can compound value inside a capable business. Berkshire Hathaway is a modern source-local example of retention being rational when management can redeploy capital effectively. But that is a demanding justification, not a blanket excuse for every low payout.\n\nThe opposite case matters too. A high dividend can be sensible when reinvestment opportunities are poor, because distributing excess cash can prevent low-return empire building. Retaining earnings is not automatically a growth signal. Retention can fund waste when management lacks strong opportunities or accountability. The dividend-policy test is to compare earnings retained, return on reinvestment, cash distributed, and shareholder value created. The same policy can be wise or unwise depending on whether capital kept inside the business produces enough value for owners.\n\nProxy voting supplies the governance side of the same ownership frame. Public shareholders vote through proxy materials on directors and selected corporate matters. Small shareholders should not overstate their power, but they should not pretend they have no role. Voting is limited but real. Shareholder passivity can enable weak capital allocation because managers face less pressure to explain retained profits or acquisitions. Owner rights include voting, receiving reports, electing directors, and receiving dividends when declared. Used together, those rights push the investor away from passive quotation watching and toward an audit of capital policy, management justification, and owner treatment."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch19.example.1",
+      "sourceAnchorIds": [
+        "ch19.example.1"
+      ],
+      "title": "Calendar Block Proxy Miss",
+      "tags": [
+        "decision_point",
+        "calendar",
+        "mistakerecovery"
+      ],
+      "planSpec": {
+        "domain": "calendar block: mistake-recovery",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the default behavior quietly costs the reader",
+        "format": "decision_point",
+        "requiredBeat": "show the old default failing in a concrete moment"
+      },
+      "scenario": "Ulric drags a calendar block past the proxy materials reminder because the old default says a public shareholder is only watching quotes. Later, the skipped block matters: the materials covered director elections and selected corporate matters, so the owner role was not imaginary. The mistake is concrete because Viola did have a formal voting channel and treated it like background noise.",
+      "whatToDo": "Treat the governance review like a checkpoint a governance checkpoint: when proxy materials arrive, identify the vote, the directors or corporate matter involved, and the ownership claim behind the decision.",
+      "whyItMatters": "Common stock is not just a price on a screen; it carries residual claims and voting rights that can be ignored only by giving up part of the owner role. SEC proxy voting system gives the concrete check: SEC proxy materials; director elections."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch19.example.2",
+      "sourceAnchorIds": [
+        "ch19.example.2"
+      ],
+      "title": "Front Desk Retention Audit",
+      "tags": [
+        "before_after",
+        "front",
+        "beforeafter"
+      ],
+      "planSpec": {
+        "domain": "front desk: before-after audit",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "before_after_audit",
+        "requiredBeat": "show the reader-facing move changing a decision"
+      },
+      "scenario": "Ulric stands at the front desk with a note that says management should retain earnings because insiders know the business. Before leaving it there, she audits the sentence against dividend payout policy: retained earnings still belong to shareholders and need evidence of at least comparable value. The after note changes the decision from automatic trust to a request for justification before accepting lower shareholder distributions.",
+      "whatToDo": "Rewrite the front-desk note so retention is a claim to prove. Ask whether retained earnings are likely to create comparable value, and treat unexplained hoarding or waste as a reason to withhold trust.",
+      "whyItMatters": "Dividend payout policy is not a courtesy choice by management; it allocates shareholder profit between distributions and retained capital. Dividend payout policy keeps two details visible, dividend payout policy and retained earnings."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch19.example.3",
+      "sourceAnchorIds": [
+        "ch19.example.3"
+      ],
+      "title": "Budget App Payout Repair",
+      "tags": [
+        "mistake_recovery",
+        "budget",
+        "repair"
+      ],
+      "planSpec": {
+        "domain": "budget app: conversation repair",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "conversation_repair",
+        "requiredBeat": "show friction or recovery, not instant clean success"
+      },
+      "scenario": "Ulric marks a low-dividend holding in the budget app as disappointing and starts removing it from the income plan. Viola pushes back because the note treats dividends as separate from valuation. The repair is tense: Warren has to add retained earnings and capital redeployment to the same screen, including Berkshire Hathaway as a case where retention can make sense only when results justify trust. The decision changes, but only after the payout question is tied back to total owner return.",
+      "whatToDo": "Use the budget app to connect cash distributions with capital allocation. Before changing the holding, ask whether low dividends reflect productive retained earnings or merely an unsupported retention habit.",
+      "whyItMatters": "Dividend policy affects investment return because payout choices change income, valuation evidence, and the owner outcome of retained capital. Berkshire Hathaway retention policy also brings in retained earnings and capital redeployment."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch19.example.1",
+      "sourceAnchorIds": [
+        "ch19.example.1"
+      ],
+      "title": "Method card copies SEC proxy voting system",
+      "tags": [
+        "checklist_walkthrough",
+        "source_specific",
+        "file"
+      ],
+      "planSpec": {
+        "domain": "hall table: SEC proxy voting system",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "one missing source detail can stop the purchase",
+        "format": "checklist_walkthrough",
+        "requiredBeat": "use a source detail as a stop point"
+      },
+      "scenario": "Veda weighs a method card beside the field shelf; the intent methodtile shelves the page toward a bare column. The pinecolumn stays closed.",
+      "whatToDo": "Match SEC proxy materials beside director elections; settle public shareholder voting.",
+      "whyItMatters": "SEC proxy voting system: public shareholder voting."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch19.example.2",
+      "sourceAnchorIds": [
+        "ch19.example.2"
+      ],
+      "title": "Essay note updates Dividend payout policy",
+      "tags": [
+        "constraint_test",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "project bay: Dividend payout policy",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the written test has to survive a second reader",
+        "format": "constraint_test",
+        "requiredBeat": "turn a detail into a written constraint"
+      },
+      "scenario": "Weston grounds a essay note beside the harbor table; the light essaypage parks the page toward a civic cabinet. The nickelsample stays closed.",
+      "whatToDo": "Price dividend payout policy beside retained earnings; settle shareholder distributions.",
+      "whyItMatters": "Dividend payout policy: shareholder distributions."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch19.example.3",
+      "sourceAnchorIds": [
+        "ch19.example.3"
+      ],
+      "title": "Case folder binds Berkshire Hathaway retention policy",
+      "tags": [
+        "handoff_review",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "training room: Berkshire Hathaway retention policy",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the handoff keeps the exact condition visible",
+        "format": "handoff_review",
+        "requiredBeat": "carry the condition into the next review"
+      },
+      "scenario": "Xander limits a case folder beside the pine box; the modern ledger routes the page toward a deep tablet. The cottonchannel stays closed.",
+      "whatToDo": "Limit Berkshire Hathaway beside retained earnings; settle capital redeployment.",
+      "whyItMatters": "Berkshire Hathaway retention policy: capital redeployment."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch19.fact.1",
+        "prompt": "A shareholder checks only the moving quotation and ignores voting rights and residual claims. What correction best fits owner thinking?",
+        "choices": [
+          "The quotation is the whole role, because public shareholders have no economic or governance claim.",
+          "The shareholder is an owner, because common stock carries residual claims and voting rights.",
+          "The shareholder becomes an owner only after management invites direct participation."
+        ],
+        "correctIndex": 1,
+        "explanation": "Shareholders are not merely quotation watchers; common stock carries economic and governance claims through residual ownership and voting rights.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch19.fact.2",
+        "prompt": "Management wants to retain profits and gives no clear reason why owners will be better off. What should a shareholder ask for?",
+        "choices": [
+          "A promise that insiders know best whenever profits stay inside the business.",
+          "A larger retained balance, because retention itself proves better capital allocation.",
+          "A justification that retained profits can create at least comparable value for shareholders."
+        ],
+        "correctIndex": 2,
+        "explanation": "Retained profits belong to shareholders, so management should justify retention by showing that it can create at least comparable value.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch19.fact.3",
+        "prompt": "An investor treats dividend policy as separate from valuation work. Which response best corrects that split?",
+        "choices": [
+          "Dividend policy is only a preference for current income and does not affect owner outcomes.",
+          "Dividend policy matters only when a company has stopped reporting earnings.",
+          "Dividend policy belongs in return analysis because cash distributions affect income and reveal capital allocation."
+        ],
+        "correctIndex": 2,
+        "explanation": "Dividends are part of investment return because payout policy changes owner outcomes and shows how capital is being allocated.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch19.fact.4",
+        "prompt": "A small shareholder says voting is pointless because no practical governance channel exists. What answer best fits the source material?",
+        "choices": [
+          "Small shareholders can govern only by selling before proxy materials arrive.",
+          "Proxy voting is limited but real, because shareholders elect directors and vote on selected corporate matters.",
+          "Proxy voting is symbolic only, because directors are not part of shareholder decisions."
+        ],
+        "correctIndex": 1,
+        "explanation": "Proxy voting gives shareholders a practical governance mechanism through director elections and selected corporate matters, even when the power is limited.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch19.fact.5",
+        "prompt": "A capable business pays a low dividend because retained earnings can be reinvested well. Which judgment is most consistent with owner analysis?",
+        "choices": [
+          "Treat a low dividend as a warning when the company could pay more.",
+          "A low dividend can be sensible when reinvestment returns are high enough to benefit owners.",
+          "A low dividend is irrelevant because retained earnings do not affect shareholder value."
+        ],
+        "correctIndex": 1,
+        "explanation": "Low dividends can be rational when retained earnings compound value inside a capable business and benefit owners more than immediate payout.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch19.fact.6",
+        "prompt": "A company keeps cash despite poor reinvestment opportunities and calls retention a growth signal. What would owner-minded analysis prefer?",
+        "choices": [
+          "A higher dividend, because distributing excess cash can prevent low-return empire building.",
+          "Prefer retention here because keeping cash is presented as growth discipline.",
+          "No dividend discussion, because capital use cannot be evaluated by outside owners."
+        ],
+        "correctIndex": 0,
+        "explanation": "When reinvestment opportunities are poor, a high dividend can be sensible because retention may fund waste instead of growth.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch19.fact.7",
+        "prompt": "Shareholders rarely question retained profits or acquisitions, and managers face little pressure to explain capital use. What risk does that passivity create?",
+        "choices": [
+          "It can enable weak capital allocation because managers face less pressure to justify retained profits or acquisitions.",
+          "It improves capital allocation because managers are protected from all shareholder questions.",
+          "It has no owner relevance because governance cannot affect minority shareholders."
+        ],
+        "correctIndex": 0,
+        "explanation": "Shareholder passivity can enable weak capital allocation because capital policy affects every share and managers may face less pressure to explain decisions.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch19.fact.8",
+        "prompt": "An investor judges management only by earnings growth and ignores the record of cash returned to owners. What evidence is being missed?",
+        "choices": [
+          "Dividend record can help assess management attitude because consistent distributions can show respect for outside owners.",
+          "Only earnings growth can reveal management quality, so cash returned to owners adds no evidence.",
+          "Dividend record matters only when earnings growth is absent from reports."
+        ],
+        "correctIndex": 0,
+        "explanation": "Cash returned to owners is also evidence; a dividend record can show how management treats outside shareholders.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch19.fact.9",
+        "prompt": "A stockholder says the only concern is selling at a higher market price. How does owner thinking change that interpretation?",
+        "choices": [
+          "Treat market price as the main evidence because management handles business decisions.",
+          "It avoids judging capital use because ownership ends when a quote changes.",
+          "It judges capital use as well as quote movement because ownership carries business claims."
+        ],
+        "correctIndex": 2,
+        "explanation": "Owner thinking looks beyond quote movement to how corporate capital is used, because ownership includes a claim on business decisions.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "sourceAnchorId": "ch19.fact.1",
+      "sourceAnchorIds": [
+        "ch19.fact.1"
+      ],
+      "front": "Why should shareholders think of themselves as owners instead of mere quotation watchers?",
+      "back": "Common stock carries residual claims and voting rights, so shareholders possess both economic and governance claims instead of only watching price movement.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "sourceAnchorId": "ch19.fact.2",
+      "sourceAnchorIds": [
+        "ch19.fact.2"
+      ],
+      "front": "What must management justify when retaining earnings?",
+      "back": "Management should justify that retained profits can create at least comparable value for shareholders, because insiders can waste or hoard capital.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc03",
+      "sourceAnchorId": "ch19.fact.3",
+      "sourceAnchorIds": [
+        "ch19.fact.3"
+      ],
+      "front": "Why is dividend policy part of investment return?",
+      "back": "Cash distributions affect income and provide evidence of capital allocation, so payout policy changes owner outcomes instead of sitting apart from valuation.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "sourceAnchorId": "ch19.fact.4",
+      "sourceAnchorIds": [
+        "ch19.fact.4"
+      ],
+      "front": "How does proxy voting function as a governance mechanism?",
+      "back": "Shareholders use proxy materials to elect directors and vote on selected corporate matters. The voting power is limited, but it is still real.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc05",
+      "sourceAnchorId": "ch19.fact.5",
+      "sourceAnchorIds": [
+        "ch19.fact.5"
+      ],
+      "front": "When can a low dividend be sensible for shareholders?",
+      "back": "A low dividend can be sensible when reinvestment returns are high, because retained earnings may compound value inside a capable business.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc06",
+      "sourceAnchorId": "ch19.fact.6",
+      "sourceAnchorIds": [
+        "ch19.fact.6"
+      ],
+      "front": "When can a high dividend be the better owner-minded policy?",
+      "back": "A high dividend can be sensible when reinvestment opportunities are poor, because distributing excess cash can prevent low-return empire building.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc07",
+      "sourceAnchorId": "ch19.fact.7",
+      "sourceAnchorIds": [
+        "ch19.fact.7"
+      ],
+      "front": "Why can shareholder passivity damage capital allocation?",
+      "back": "Passivity gives managers less pressure to explain retained profits or acquisitions, and capital policy affects every share held by owners.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run a Dividend Owner Audit",
+    "titleSourceAnchorIds": [
+      "ch19.fact.1",
+      "ch19.fact.2",
+      "ch19.fact.3"
+    ],
+    "coreSkill": "Use a two-minute owner audit before accepting management's capital policy. Check whether you are acting like an owner, whether retained earnings have a clear justification, and whether dividend policy affects income and capital-allocation evidence.",
+    "coreSkillSourceAnchorIds": [
+      "ch19.fact.1",
+      "ch19.fact.2",
+      "ch19.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch19.fact.1",
+        "sourceAnchorIds": [
+          "ch19.fact.1"
+        ],
+        "context": "calendar block",
+        "plan": "If a price move is the only item in your calendar block, then add one owner-rights line covering residual claims, voting rights, proxy materials, and director elections."
+      },
+      {
+        "sourceAnchorId": "ch19.fact.2",
+        "sourceAnchorIds": [
+          "ch19.fact.2"
+        ],
+        "context": "front desk",
+        "plan": "If management retains earnings without a clear explanation at the front desk of your review, then mark the decision pending until the retained earnings case addresses shareholder distributions and comparable value."
+      },
+      {
+        "sourceAnchorId": "ch19.fact.3",
+        "sourceAnchorIds": [
+          "ch19.fact.3"
+        ],
+        "context": "budget app",
+        "plan": "If your budget app treats dividends as separate from valuation, then move payout policy into the return note and ask whether retained earnings and capital redeployment justify the trust."
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next day ends, choose one holding and complete a two-minute audit note with three lines: owner rights, retained earnings justification, and dividend policy as part of return.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch19.fact.1",
+      "ch19.fact.2",
+      "ch19.fact.3"
+    ],
+    "weeklyPractice": "During a weekly calendar review, repeat the same audit for one active holding. Leave any decision pending when management keeps profits without a clear owner-facing reason or when payout policy is ignored.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch19.fact.1",
+      "ch19.fact.2",
+      "ch19.fact.3"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "Small shareholders should not overstate their power, but they should not pretend they have no role.",
+      "location": "breakdown.fullRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "A dividend record can also give evidence about management's attitude toward outside owners, because cash returned to owners is a visible capital allocation choice.",
+      "location": "breakdown.fullRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "Retained profits belong to shareholders, and management should justify keeping them by showing that retention can create at least comparable value.",
+      "location": "breakdown.deepRead",
+      "why": "Repointed to an exact sentence already present in the chapter breakdown.",
+      "sourceAnchorIds": [
+        "ch19.fact.2"
+      ]
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:15a47730811502c4f82c08557f40346160b11101a9e3842dbc450a5a65410495",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v23-compiler-pipeline 2/.chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch19.source.json",
+      "observedAnchorIds": [
+        "ch19.concept",
+        "ch19.example.1",
+        "ch19.example.2",
+        "ch19.example.3",
+        "ch19.fact.1",
+        "ch19.fact.2",
+        "ch19.fact.3",
+        "ch19.fact.4",
+        "ch19.fact.5",
+        "ch19.fact.6",
+        "ch19.fact.7",
+        "ch19.fact.8",
+        "ch19.fact.9",
+        "ch19.framework.dividend.policy.test",
+        "ch19.framework.owner.rights"
+      ],
+      "effectiveAnchors": {
+        "examples[0]": [
+          "ch19.example.1"
+        ],
+        "examples[1]": [
+          "ch19.example.2"
+        ],
+        "examples[2]": [
+          "ch19.example.3"
+        ],
+        "quiz.questions[0]": [
+          "ch19.fact.1"
+        ],
+        "quiz.questions[0].keyEvidence": [
+          "ch19.fact.1"
+        ],
+        "quiz.questions[1]": [
+          "ch19.fact.2"
+        ],
+        "quiz.questions[1].keyEvidence": [
+          "ch19.fact.2"
+        ],
+        "quiz.questions[2]": [
+          "ch19.fact.3"
+        ],
+        "quiz.questions[2].keyEvidence": [
+          "ch19.fact.3"
+        ],
+        "quiz.questions[3]": [
+          "ch19.fact.4"
+        ],
+        "quiz.questions[3].keyEvidence": [
+          "ch19.fact.4"
+        ],
+        "quiz.questions[4]": [
+          "ch19.fact.5"
+        ],
+        "quiz.questions[4].keyEvidence": [
+          "ch19.fact.5"
+        ],
+        "quiz.questions[5]": [
+          "ch19.fact.6"
+        ],
+        "quiz.questions[5].keyEvidence": [
+          "ch19.fact.6"
+        ],
+        "quiz.questions[6]": [
+          "ch19.fact.7"
+        ],
+        "quiz.questions[6].keyEvidence": [
+          "ch19.fact.7"
+        ],
+        "quiz.questions[7]": [
+          "ch19.fact.8"
+        ],
+        "quiz.questions[7].keyEvidence": [
+          "ch19.fact.8"
+        ],
+        "quiz.questions[8]": [
+          "ch19.fact.9"
+        ],
+        "quiz.questions[8].keyEvidence": [
+          "ch19.fact.9"
+        ],
+        "reviewCards[0]": [
+          "ch19.fact.1"
+        ],
+        "reviewCards[1]": [
+          "ch19.fact.2"
+        ],
+        "reviewCards[2]": [
+          "ch19.fact.3"
+        ],
+        "reviewCards[3]": [
+          "ch19.fact.4"
+        ],
+        "reviewCards[4]": [
+          "ch19.fact.5"
+        ],
+        "reviewCards[5]": [
+          "ch19.fact.6"
+        ],
+        "reviewCards[6]": [
+          "ch19.fact.7"
+        ],
+        "implementationPlan.title": [
+          "ch19.fact.1",
+          "ch19.fact.2",
+          "ch19.fact.3"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch19.fact.1",
+          "ch19.fact.2",
+          "ch19.fact.3"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch19.fact.1"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch19.fact.2"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch19.fact.3"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch19.fact.1",
+          "ch19.fact.2",
+          "ch19.fact.3"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch19.fact.1",
+          "ch19.fact.2",
+          "ch19.fact.3"
+        ],
+        "hook": [
+          "ch19.fact.1"
+        ],
+        "counterintuition": [
+          "ch19.fact.1",
+          "ch19.fact.2",
+          "ch19.fact.3",
+          "ch19.fact.4",
+          "ch19.framework.owner.rights"
+        ],
+        "keyTakeaway": [
+          "ch19.fact.1",
+          "ch19.fact.2",
+          "ch19.fact.3",
+          "ch19.fact.4",
+          "ch19.fact.7"
+        ],
+        "tryThisNow": [
+          "ch19.fact.1",
+          "ch19.fact.2",
+          "ch19.fact.3"
+        ],
+        "breakdown.fastRead": [
+          "ch19.fact.1",
+          "ch19.fact.2",
+          "ch19.fact.3",
+          "ch19.fact.4",
+          "ch19.fact.5"
+        ],
+        "breakdown.deepRead": [
+          "ch19.fact.1",
+          "ch19.fact.2",
+          "ch19.fact.3",
+          "ch19.fact.4",
+          "ch19.fact.5",
+          "ch19.fact.6",
+          "ch19.fact.8",
+          "ch19.framework.owner.rights"
+        ],
+        "breakdown.fullRead": [
+          "ch19.fact.1",
+          "ch19.fact.2",
+          "ch19.fact.3",
+          "ch19.fact.4",
+          "ch19.fact.5",
+          "ch19.fact.6",
+          "ch19.fact.7",
+          "ch19.fact.8",
+          "ch19.fact.9",
+          "ch19.framework.dividend.policy.test",
+          "ch19.framework.owner.rights"
+        ]
+      }
+    }
+  }
+}

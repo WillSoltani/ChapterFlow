@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "b", "c", "a", "c", "b", "c"],
+    "mechanisms": [
+      "The prose says expert systems fail where ownership blurs between people, not because knowledge is absent.",
+      "The lesson repeatedly says to map transitions by named owner before pressure arrives.",
+      "The Ingrid example shows the administrator-like move: rebuild the path across prescriber, insurer, cold storage, and courier before blaming the last touch.",
+      "The chapter says danger often lives in the small transition where one expert assumes another covered the next move.",
+      "The pharmacy/transplant example shows departments completing pieces while the failure lives in the crossings.",
+      "The Hadiya example explicitly assigns one named owner across plow, salt, police, and ambulance before peak load.",
+      "The museum crate example says a fragile object can be surrounded by experts while danger lives where separate readiness claims meet.",
+      "The core reasoning is that excellence does not make ownership visible across roles; handoff checks do that.",
+      "The chapter rejects leader-held memory as sufficient and asks which transition must be made visible in the system."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Choice b uses the chapter's exact giveaway vocabulary: handoff, seam, ownership thinned out.",
+      "Choice c is the only option with named owner and handoff; the others are caricatures of work harder or centralize.",
+      "Choice a is the only path-based answer and mirrors the Ingrid example closely.",
+      "Choice b is the only answer with explicit handoffs; the other choices blame expertise or warnings.",
+      "Choice c repeats across-department reliability language; the distractors are plainly contradicted by the chapter.",
+      "Choice a uses named owner and cross-department timing, both recurring signals.",
+      "Choice c is the only choice that names dependency between experts; the others overstate single-specialist control or hard-task danger.",
+      "Choice b is the only balanced answer; a and c contain absolutes that the chapter rejects.",
+      "Choice c uses the chapter's system-versus-memory contrast; a and b are obvious blame/training distractors."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 78,
+    "transfer": 84,
+    "practical": 90,
+    "summaries": 76,
+    "tone": 82,
+    "limits": 86,
+    "insight": 88,
+    "density": 82,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Complexity changes the location of danger.",
+      "why": "This is the chapter's cleanest memorable mechanism."
+    },
+    {
+      "quote": "The mistake hides in the word moves. Movement creates seams, and seams create assumptions.",
+      "why": "Strong transfer line that turns the lesson into a portable diagnostic."
+    },
+    {
+      "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+      "why": "This is generic closing filler inside an otherwise concrete example."
+    },
+    {
+      "quote": "The reveal shows that duplication is not the same as ownership.",
+      "why": "The metacommentary phrase feels scaffolded and less natural than the surrounding prose."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read/deep read",
+      "problem": "The 'Austrian drowning rescue' is referenced without enough standalone setup in the file, so the summary layers briefly rely on an unexplained outside-feeling story.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are often telegraphed by repeated lesson terms like handoff, seam, ownership, named owner, and transition, while distractors lean on obvious blame, training, or central-command errors.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The final sentence turns generic and instructional instead of showing a specific consequence or before-after result.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The phrase 'The reveal shows' has a template/scaffold smell and weakens an otherwise usable transfer example.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 1-6",
+      "problem": "The examples transfer across domains well, but most stop at naming the seam and assigning an owner rather than showing what changed afterward.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong opening chapter with a clear core move: stop judging the people first and inspect the seam where ownership thins out. The chapter is memorable, practical, beginner-friendly, and honest about the limits of expertise. Its main weakness is not correctness but craft: the quiz is too easy to guess from repeated vocabulary, one summary reference feels underintroduced, and several examples share the same shape without showing consequences. I would ship it, with quiz and example polish as the best next improvements."
+}
+```

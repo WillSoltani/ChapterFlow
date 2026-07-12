@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 35,
+    "quizzes": 0,
+    "transfer": 15,
+    "practical": 15,
+    "summaries": 5,
+    "tone": 40,
+    "limits": 5,
+    "insight": 35,
+    "density": 20,
+    "beginner": 45
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Andy Grove's outsider question gives him a way through: what would a new leader do without the memory-chip attachment?",
+      "why": "This is the chapter's clearest and most memorable statement of the core decision-making move."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "The fast read is placeholder language and communicates none of the chapter's actual lesson."
+    },
+    {
+      "quote": "One added angle.",
+      "why": "The deep read is likewise a placeholder and fails to stand alone."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Six promised product sections are present only as empty headings."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook describes the document's review status instead of introducing the subject or creating a reason to read.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section contains only placeholder text and fails its stand-alone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section contains only placeholder text and fails its stand-alone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The sole example invents an unnamed Intel reviewer, a strategy review, and two pages in his folder without marking these details as fictional; this is a fabricated or misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The prose asserts that the outsider perspective is cooler but does not explain when the technique fails, what biases remain, or how to judge the imagined leader's answer.",
+      "mustFix": false
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, leaving a required structural component missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so readers receive no usable exercise for applying the core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is empty, preventing readers from seeing the technique transfer beyond Intel.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions, making it broken and impossible to answer or evaluate.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so the chapter supplies no retrieval-practice material.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty despite its explicit heading.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfinished scaffold rather than a shippable chapter. The outsider question is a useful, beginner-friendly core idea, and the full-read paragraph briefly identifies its mechanism: psychological distance from an inherited attachment. Almost every learning layer around that idea is absent, however. The fast and deep reads are placeholders; the takeaway, exercise, examples, quiz, review cards, and memorable-lines sections are empty; and the only scenario introduces invented Intel details without clearly labeling them fictional. A reader might grasp the basic question, but cannot reliably practice, test, retain, or transfer it from what is currently on the page."
+}
+```

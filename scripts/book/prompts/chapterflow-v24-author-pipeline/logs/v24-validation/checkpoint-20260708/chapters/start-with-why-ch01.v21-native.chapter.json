@@ -1,0 +1,640 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "start-with-why-ch01",
+  "number": 1,
+  "title": "Assume You Know",
+  "readingTimeMinutes": 7,
+  "hook": "Operations lead Gregoire stops mid-walk when the corrected door feels like the wrong win.",
+  "counterintuition": "A clean repair can hide a weak premise. You cut assumption risk by letting known data lead, then asking whether another setting shows the same late-fix habit.",
+  "tryThisNow": "Read aloud one live choice. Count the facts you can prove before the first guess appears; write that single number beside it.",
+  "keyTakeaway": "When a fix looks smart, walk backward: put known data before assumptions, spend a small decision, and use the named cases to see what changed.",
+  "breakdown": {
+    "fastRead": "Operations lead Gregoire stops mid-walk when the corrected door feels like the wrong win. The door fits now. Still, the late repair may be hiding the first bad guess.\n\nThe factory source makes that risk visible. Japanese car-door assembly names Japanese factories, Toyota Production System, andon, and jidoka. These terms are not trim. They show a process where fit is built in, not rescued at the end.\n\nRead the order before the fix gets credit: Known data, Assumptions, Decisions, Results. The known line has to be shown first. Assumptions are what you think it means. Decisions put that reading into action. Results show what changed.\n\nDetroit adds another car story. General Motors in Detroit puts the late-fix habit in United States car making. One factory source sharpens the eye; Detroit makes the repeat harder to wave away.\n\nAmerican Airlines adds airline work. It was founded in 1926 and is based near Fort Worth. Its boarding guesses show how a routine can feel clear until a new operating guess exposes hidden drag.",
+    "deepRead": "The order works because the first line frames the spend. If known data walks first, the guess has to answer to something visible. If the guess walks first, the visible fix gets asked to diagnose a problem it may have helped create.\n\nGregoire is not trying to slow every choice to a crawl. He is trying to stop a late repair from taking the whole prize. The repair is not the proof. A bad guess charges twice. It charges once when it guides the choice, and again when the correction looks like skill.\n\nThe Japanese car-door assembly contrast gives that problem a place to stand. In this source, the issue is not a vague love of quality. The Toyota Production System makes the behavior visible, and andon helps the reader see that process, not praise, is carrying the lesson.\n\nJidoka belongs with that factory contrast. Use the word when the Japanese car-door source is doing the work. In an airline routine or a desk choice, write the plain sequence instead: what is known, what is guessed, what gets done, what changes.\n\nDetroit does not prove the idea by fame. In Detroit, General Motors gives the second car source its own ground in the United States, so the repeated late-fix pattern can be compared rather than admired. The contrast is the value.\n\nThat is the move most people skip. One vivid source can feel like enough because it gives the mind a picture. A second source makes you count what repeated and what did not. Three promises out, one balance checked.\n\nWhen you use this at a desk, do not start with the tactic you like. Start with the line you can defend before the guess starts moving. Then let the decision be small enough that the result can tell you something.",
+    "fullRead": "Colleen reaches the airline check-in with a partial answer. The old boarding routine no longer gets trust just because it feels familiar, but the new operating guess still has to show what drag it removes.\n\nAmerican Airlines is not another factory source. It is an airline operations source. The company began in 1926. Its base near Fort Worth gives you a way to show familiar routines without turning every routine into the same problem.\n\nKnown data is what stands before the guess. It is not perfect truth. It is the part you can point to before a choice spends time, money, or attention. That modest line keeps the account honest, and it keeps a strong-looking fix from buying more credit than it earned.\n\nThe four jobs are plain. Known data names what can be shown. Assumptions name the meaning you place on it. Decisions spend that reading. Results say what changed. Blend them into one slogan and the tool goes soft.\n\nDetroit is the hinge. The Detroit material brings in General Motors and United States automobile manufacturing, giving the car material a different factual token from Japanese factories. That is enough to compare. The point is contrast, not brand force.\n\nThis also shows the limit. Fort Worth helps keep the airline material close to airline operations. A different operating guess can expose friction in boarding, but that does not make every routine in every field the same kind of problem.\n\nSuppose training coach Raymond almost borrows jidoka for the airline paragraph because it sounds exact. The fix is not a speech. He leaves the factory term with Japanese car-door assembly and carries only the order of thought into airline operations.\n\nHad he not done that, the page would sound grounded while the evidence drifted. That is the wrong kind of precision. A true detail can still mislead when it rides with the wrong source.\n\nYou can use the same walk without a title. Read a choice aloud. Ask what fact led, what guess followed, what decision spent the guess, and what result will tell you whether the account balanced. If the answer is only confidence, the account is still open for now.\n\nSometimes you should do the opposite. If the task is openly a short experiment, do not wait for a second source or a perfect ledger. Make the small choice, name the guess, and read the result. Assume You Know is not a brake on action. It is a way to keep action from drifting away from what is known."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch01.ex.japanese-car-door-assembly",
+      "sourceAnchorIds": [
+        "ch01.ex.japanese-car-door-assembly"
+      ],
+      "sourceFactIds": [
+        "ch01.fact.1",
+        "ch01.fact.6"
+      ],
+      "namedCaseIds": [
+        "ch01.ex.japanese-car-door-assembly"
+      ],
+      "title": "The Early Gap",
+      "tags": [
+        "auto assembly",
+        "walkthrough",
+        "early signal"
+      ],
+      "planSpec": {
+        "domain": "auto assembly",
+        "audience": "operations team",
+        "stakes": "late correction becomes normal",
+        "format": "walkthrough",
+        "requiredBeat": "early signal before late correction"
+      },
+      "scenario": "A narrow door gap appears before anyone calls it a problem. Imagine operations lead Gregoire using the Japanese car-door assembly contrast before the late repair gets credit. He names fit data first, then asks which assumption put correction at the end. The pass slows, but Toyota Production System and andon now point to behavior instead of a rescue story.",
+      "whatToDo": "Trace the first signal. Name the fit data, then the guess.",
+      "whyItMatters": "Count the cost. A slower pass can save a larger repair."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch01.ex.detroit-automakers",
+      "sourceAnchorIds": [
+        "ch01.ex.detroit-automakers"
+      ],
+      "sourceFactIds": [
+        "ch01.fact.2",
+        "ch01.fact.7"
+      ],
+      "namedCaseIds": [
+        "ch01.ex.detroit-automakers"
+      ],
+      "title": "The Late Standard",
+      "tags": [
+        "automobile manufacturing",
+        "postmortem",
+        "contrast"
+      ],
+      "planSpec": {
+        "domain": "automobile manufacturing",
+        "audience": "quality group",
+        "stakes": "visible defects get solved late",
+        "format": "postmortem",
+        "requiredBeat": "standard stated before premise is caught"
+      },
+      "scenario": "The standard has been stated: reduce visible defects. Suppose quality analyst Celine reviews why the choice nearly missed. Detroit automakers caught her late. General Motors in Detroit gave the second car source a United States token, so the result changed: late repair was no longer allowed to count as the whole answer.",
+      "whatToDo": "Compare before you conclude. Use Detroit to ask what repeated after the venue changed, then stop rewarding only the visible fix.",
+      "whyItMatters": "Refuse one-story proof. One vivid source can train your eye, but the second car source makes the repeated risk harder to dismiss."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch01.ex.american-airlines-boarding-assumptions",
+      "sourceAnchorIds": [
+        "ch01.ex.american-airlines-boarding-assumptions"
+      ],
+      "sourceFactIds": [
+        "ch01.fact.3",
+        "ch01.fact.8"
+      ],
+      "namedCaseIds": [
+        "ch01.ex.american-airlines-boarding-assumptions"
+      ],
+      "title": "The Open Boarding Count",
+      "tags": [
+        "airline operations",
+        "counterfactual",
+        "routine"
+      ],
+      "planSpec": {
+        "domain": "airline operations",
+        "audience": "gate staff",
+        "stakes": "routine defended as obvious",
+        "format": "counterfactual",
+        "requiredBeat": "return set before proof arrives"
+      },
+      "scenario": "Before boarding starts at an American Airlines gate, operations lead Gregoire is already changing the order; the demand for smoother movement came earlier. His phone hums once with the count still open. Founded in 1926 and based near Fort Worth, the airline keeps the example in airline operations. Had he not named the count first, familiar would have worn a new label and passed as smooth.",
+      "whatToDo": "Mark what skipping this costs: the old assumption can borrow the new order's shine. Name the count before the order changes.",
+      "whyItMatters": "Treat the result as unsettled. The changed order may expose hidden friction, but it has not earned full credit until something visible changes."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch01.ex.american-airlines-boarding-assumptions",
+      "sourceAnchorIds": [
+        "ch01.ex.american-airlines-boarding-assumptions"
+      ],
+      "sourceFactIds": [
+        "ch01.fact.8",
+        "ch01.fact.4"
+      ],
+      "namedCaseIds": [
+        "ch01.ex.american-airlines-boarding-assumptions"
+      ],
+      "title": "The Half Answer",
+      "tags": [
+        "airline operations",
+        "limits",
+        "order"
+      ],
+      "planSpec": {
+        "domain": "airline operations",
+        "audience": "operations group",
+        "stakes": "proof returns unclear",
+        "format": "source-fit-audit",
+        "requiredBeat": "return moment with proof still weak"
+      },
+      "scenario": "At the American Airlines check-in moment itself, operations lead Colleen has only half a win. Fort Worth has done its job: the airline operations source no longer stands for every organization. What stays broken is the new assumption. It has weakened the old routine, but its Results are still thin.",
+      "whatToDo": "Start with why it worked: the old routine had to answer to evidence. Then move back to Known data before the new choice hardens.",
+      "whyItMatters": "Name what stayed broken. A partial answer can retire one bad premise while leaving the replacement underproved."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch01.ex.japanese-car-door-assembly",
+      "sourceAnchorIds": [
+        "ch01.ex.japanese-car-door-assembly"
+      ],
+      "sourceFactIds": [
+        "ch01.fact.6",
+        "ch01.fact.9"
+      ],
+      "namedCaseIds": [
+        "ch01.ex.japanese-car-door-assembly"
+      ],
+      "title": "The Borrowed Word",
+      "tags": [
+        "factory terms",
+        "postmortem",
+        "source fit"
+      ],
+      "planSpec": {
+        "domain": "operations training",
+        "audience": "process coaches",
+        "stakes": "true detail used in the wrong place",
+        "format": "live-correction",
+        "requiredBeat": "stop the true detail before it travels"
+      },
+      "scenario": "Why did the training note nearly pass? A red circle around jidoka answers it. Suppose training coach Raymond had placed the term in airline operations because it sounded exact. He catches the miss late and moves the word back to Japanese car-door assembly and the Toyota Production System; the airline item keeps only the known-data order.",
+      "whatToDo": "Stop the false grounding. Use jidoka with the Japanese car-door source, then write the airline choice in plain sequence.",
+      "whyItMatters": "Keep the evidence clean. A precise word can make a weak application look stronger than it is."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch01.ex.detroit-automakers",
+      "sourceAnchorIds": [
+        "ch01.ex.detroit-automakers"
+      ],
+      "sourceFactIds": [
+        "ch01.fact.2",
+        "ch01.fact.7"
+      ],
+      "namedCaseIds": [
+        "ch01.ex.detroit-automakers"
+      ],
+      "title": "The Outside Effect",
+      "tags": [
+        "automobile manufacturing",
+        "Detroit",
+        "open account"
+      ],
+      "planSpec": {
+        "domain": "automobile manufacturing",
+        "audience": "supplier team",
+        "stakes": "late-fix habit travels",
+        "format": "comparison-ledger",
+        "requiredBeat": "second factual token before late correction is approved"
+      },
+      "scenario": "A supplier team first feels the effect when another late correction is requested. Suppose operations lead Gregoire brings Detroit automakers into the comparison before repair volume is treated as success. General Motors gives the United States side its own anchor. The decision changes: no one can approve the repeat until the habit is shown to shrink.",
+      "whatToDo": "Ask what shrank.",
+      "whyItMatters": "Keep the balance open."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch01.fact.5",
+        "prompt": "A volunteer group has sign-up facts, a guess about why people came, and a fix it likes. It reduces the method to one slogan before sorting those parts. Which principle does that break?",
+        "choices": [
+          "A slogan can lead if someone later adds a short note about facts, guesses, choices, and outcomes.",
+          "Keep the four jobs apart: what is shown, what is inferred, what is done, and what changes.",
+          "Start with the outcome the sponsor likes, then arrange the facts and guesses around that result."
+        ],
+        "correctIndex": 1,
+        "explanation": "The key keeps the four jobs separate. The slogan answer is tempting because it starts with the right topic, but it blends the parts before they can guide judgment.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch01.fact.4",
+        "prompt": "Your school club sees low turnout, picks a fix, and then hunts for facts to support it before the sign-up table opens. What went wrong first?",
+        "choices": [
+          "The club chose the right order but waited too long to say what result would count as useful.",
+          "The guess led the facts, so the visible fix had to diagnose what it could not carry alone.",
+          "The club should have waited until no uncertainty remained before choosing any small action."
+        ],
+        "correctIndex": 1,
+        "explanation": "Known data has to frame the assumption. Waiting for perfect certainty goes too far; the real break is letting the guess steer before facts lead.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch01.fact.9",
+        "prompt": "For a neighborhood cleanup, the team wants a lesson it can use without turning Assume You Know into vague purpose talk. What maps?",
+        "choices": [
+          "Tie the lesson to checkable examples with concrete details before drawing the broader purpose line.",
+          "Ask the most respected volunteer to approve the purpose line, then treat that rank as the grounding.",
+          "Use one vivid story and keep the advice broad so the group can apply it wherever it sounds useful."
+        ],
+        "correctIndex": 0,
+        "explanation": "The correct choice keeps the claim inspectable. The respected-volunteer option borrows authority, but a person's rank cannot replace details a reader can examine.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch01.fact.8",
+        "prompt": "A clinic cites the airline material because Fort Worth sounds concrete. What should that place detail do?",
+        "choices": [
+          "Let the clinic apply the airline idea to any patient routine that feels familiar, slow, or hard to explain.",
+          "Tell the clinic to keep its old routine unless a well-known organization changed first and can bless the move.",
+          "Limit what the airline source can claim, so the clinic does not stretch the proof past its setting."
+        ],
+        "correctIndex": 2,
+        "explanation": "Fort Worth marks reach. The every-routine answer over-corrects from a useful detail into a claim the airline source cannot support.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch01.fact.3",
+        "prompt": "A training note already has car material about late correction. It considers adding an airline routine for boarding assumptions instead of a third car story. Why add it?",
+        "choices": [
+          "It changes cast and setting, so the lesson can probe a nearby routine mistake instead of replaying the factory point.",
+          "It repeats the first factory lesson with a bigger brand, which makes the same sentence feel more certain to a skimming reader.",
+          "It lets the reader drop the car material once airline operations feel easier to picture and easier to explain."
+        ],
+        "correctIndex": 0,
+        "explanation": "American Airlines changes the setting and tests a neighboring misconception. Repeating the factory lesson would only restamp what the reader already saw.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch01.fact.7",
+        "prompt": "Detroit adds the United States marker to the car comparison. What should a writer do with that difference?",
+        "choices": [
+          "Use the same place-and-scale wording for both car sources, so the comparison sounds even.",
+          "Let the United States marker create contrast with Japanese factories instead of stamping both alike.",
+          "Treat General Motors as the deciding authority, since a known brand can settle doubt faster than contrast."
+        ],
+        "correctIndex": 1,
+        "explanation": "The United States token matters because it differs from Japanese factories. Same-stamp wording would blur the contrast Detroit is meant to add.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch01.fact.6",
+        "prompt": "During a library pickup redesign, someone wants to use jidoka because the word sounds exact, though the source is factory work. What fits?",
+        "choices": [
+          "Use jidoka in the library redesign, then add a short caveat that the term began in factory material.",
+          "Drop all precise terms from the library redesign, since specifics can make an idea seem too narrow.",
+          "Use jidoka only with Japanese car-door assembly, then carry the plain order into the library flow."
+        ],
+        "correctIndex": 2,
+        "explanation": "The key keeps the hard term with its source while still carrying the order into a new setting. Dropping every specific is an over-correction.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch01.fact.2",
+        "prompt": "A repair log already has one factory contrast. It adds Detroit to show late correction again. Why does the Detroit one matter?",
+        "choices": [
+          "Compare Detroit with the first factory contrast; repetition in another venue lowers one-story risk.",
+          "Treat the second story as proof of the whole model because the first story already showed the mechanism.",
+          "Use Detroit mainly because a familiar brand can settle doubt faster than comparison can."
+        ],
+        "correctIndex": 0,
+        "explanation": "Detroit matters through comparison, not brand force. The first story can illustrate the risk, but the repeat makes a one-off reading less likely.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch01.fact.1",
+        "prompt": "At the start of a process class, a workshop treats Japanese car-door assembly as a lively warm-up. Which correction follows?",
+        "choices": [
+          "Keep the opener but move quickly to purpose language, since the story has already set the tone.",
+          "Swap in any vivid business story that makes late repair easy to picture for the group.",
+          "Use Toyota Production System and andon to inspect behavior, not as scene-setting color."
+        ],
+        "correctIndex": 2,
+        "explanation": "The factory material carries evidence by making behavior visible. A warm-up use sounds harmless, but it removes the reason the source is there.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "c01",
+      "sourceAnchorId": "ch01.fact.5",
+      "sourceAnchorIds": [
+        "ch01.fact.5"
+      ],
+      "front": "What are the four jobs in the local sequence?",
+      "back": "Known data shows what can be proved now. Assumptions name the meaning placed on it. Decisions spend that reading. Results show what changed.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "c02",
+      "sourceAnchorId": "ch01.fact.4",
+      "sourceAnchorIds": [
+        "ch01.fact.4"
+      ],
+      "front": "Why must known data come before assumptions?",
+      "back": "The first line frames the guess. If the guess leads, the visible tactic has to do diagnosis it cannot do, even when the tactic looks skilled.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c03",
+      "sourceAnchorId": "ch01.fact.2",
+      "sourceAnchorIds": [
+        "ch01.fact.2"
+      ],
+      "front": "When does a second setting help?",
+      "back": "It helps when you compare what repeated after the scene changed. One story can sharpen your eye; a second one lowers the chance that you are admiring a fluke.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c04",
+      "sourceAnchorId": "ch01.fact.8",
+      "sourceAnchorIds": [
+        "ch01.fact.8"
+      ],
+      "front": "What should a place detail do when you apply this move?",
+      "back": "It should mark reach. A detail like Fort Worth keeps the airline material tied to airline operations instead of spreading into every familiar routine.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "c05",
+      "sourceAnchorId": "ch01.fact.6",
+      "sourceAnchorIds": [
+        "ch01.fact.6"
+      ],
+      "front": "How do you use a precise term from one source in another setting?",
+      "back": "Do not carry the term for style. Carry the order of thought. Use the precise term only where its source is doing the evidentiary job.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c06",
+      "sourceAnchorId": "ch01.fact.9",
+      "sourceAnchorIds": [
+        "ch01.fact.9"
+      ],
+      "front": "How do you keep this from becoming generic advice?",
+      "back": "Tie the claim to checkable anchors with their own specifics. Purpose language may sound clear, but it does not let the reader inspect the mechanism.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run the Fact-First Walk",
+    "titleSourceAnchorIds": [
+      "ch01.fact.4",
+      "ch01.fact.5"
+    ],
+    "coreSkill": "Use the Fact-First Walk before a fix gets credit. Say what is known, name the guess, choose the smallest action, and state what result would change your mind. The skill is not doubt for its own sake; it is order before spend.",
+    "coreSkillSourceAnchorIds": [
+      "ch01.fact.4",
+      "ch01.fact.5"
+    ],
+    "ifThenPlans": [
+      {
+        "context": "First read the choice aloud; then mark the first unsupported word.",
+        "plan": "If the unsupported word is carrying the choice, then write the known-data line above it.",
+        "sourceAnchorIds": [
+          "ch01.fact.4",
+          "ch01.fact.5"
+        ]
+      },
+      {
+        "context": "First name the source setting; then name the setting you are applying it to.",
+        "plan": "If the setting changes, then carry the sequence and leave hard terms with the source that earned them.",
+        "sourceAnchorIds": [
+          "ch01.fact.6",
+          "ch01.fact.8"
+        ]
+      },
+      {
+        "context": "First write the visible fix; then ask what earlier guess it may be hiding.",
+        "plan": "If the same fix appears again, then compare it with a second anchor before treating it as the answer.",
+        "sourceAnchorIds": [
+          "ch01.fact.2",
+          "ch01.fact.4"
+        ]
+      }
+    ],
+    "twentyFourHourChallenge": "Spend 20 minutes and read aloud one live decision. Write the known fact, the assumption, the decision, and the result you will look for.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch01.fact.4",
+      "ch01.fact.5"
+    ],
+    "weeklyPractice": "Each Friday, if the same fix showed up twice, then run the Fact-First Walk before you approve it again.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch01.fact.2",
+      "ch01.fact.4",
+      "ch01.fact.5"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "The repair is not the proof.",
+      "location": "breakdown.deepRead",
+      "why": "Reversal: it flips credit away from the late fix and back to the premise.",
+      "sourceAnchorIds": [
+        "ch01.fact.4"
+      ]
+    },
+    {
+      "text": "Known data is what stands before the guess.",
+      "location": "breakdown.fullRead",
+      "why": "Redefinition: it gives the framework term a plain working meaning.",
+      "sourceAnchorIds": [
+        "ch01.fact.5"
+      ]
+    },
+    {
+      "text": "A bad guess charges twice.",
+      "location": "breakdown.deepRead",
+      "why": "Cost statement: it names the price of acting from a weak premise.",
+      "sourceAnchorIds": [
+        "ch01.concept"
+      ]
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:04db5a753f907e4707b6e85d88e2e59caab4f9423093b0f00690fe5cfbdda92e",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch01.source.json",
+      "observedAnchorIds": [
+        "ch01.concept",
+        "ch01.ex.japanese-car-door-assembly",
+        "ch01.ex.detroit-automakers",
+        "ch01.ex.american-airlines-boarding-assumptions",
+        "ch01.fact.1",
+        "ch01.fact.2",
+        "ch01.fact.3",
+        "ch01.fact.4",
+        "ch01.fact.5",
+        "ch01.fact.6",
+        "ch01.fact.7",
+        "ch01.fact.8",
+        "ch01.fact.9",
+        "ch01.framework.assume.you.know.framework"
+      ],
+      "effectiveAnchors": {
+        "hook": [
+          "ch01.concept"
+        ],
+        "counterintuition": [
+          "ch01.fact.4",
+          "ch01.fact.5"
+        ],
+        "tryThisNow": [
+          "ch01.fact.4",
+          "ch01.fact.5"
+        ],
+        "keyTakeaway": [
+          "ch01.fact.2",
+          "ch01.fact.4",
+          "ch01.fact.5"
+        ],
+        "breakdown.fastRead": [
+          "ch01.fact.1",
+          "ch01.fact.2",
+          "ch01.fact.3",
+          "ch01.fact.4",
+          "ch01.fact.5",
+          "ch01.fact.6",
+          "ch01.fact.7",
+          "ch01.fact.8"
+        ],
+        "breakdown.deepRead": [
+          "ch01.concept",
+          "ch01.fact.1",
+          "ch01.fact.2",
+          "ch01.fact.4",
+          "ch01.fact.5",
+          "ch01.fact.6",
+          "ch01.fact.7"
+        ],
+        "breakdown.fullRead": [
+          "ch01.concept",
+          "ch01.fact.1",
+          "ch01.fact.2",
+          "ch01.fact.3",
+          "ch01.fact.4",
+          "ch01.fact.5",
+          "ch01.fact.6",
+          "ch01.fact.7",
+          "ch01.fact.8",
+          "ch01.fact.9"
+        ],
+        "examples[0]": [
+          "ch01.ex.japanese-car-door-assembly"
+        ],
+        "examples[1]": [
+          "ch01.ex.detroit-automakers"
+        ],
+        "examples[2]": [
+          "ch01.ex.american-airlines-boarding-assumptions"
+        ],
+        "examples[3]": [
+          "ch01.ex.american-airlines-boarding-assumptions"
+        ],
+        "examples[4]": [
+          "ch01.ex.japanese-car-door-assembly"
+        ],
+        "examples[5]": [
+          "ch01.ex.detroit-automakers"
+        ],
+        "quiz.questions[0]": [
+          "ch01.fact.5"
+        ],
+        "quiz.questions[1]": [
+          "ch01.fact.4"
+        ],
+        "quiz.questions[2]": [
+          "ch01.fact.9"
+        ],
+        "quiz.questions[3]": [
+          "ch01.fact.8"
+        ],
+        "quiz.questions[4]": [
+          "ch01.fact.3"
+        ],
+        "quiz.questions[5]": [
+          "ch01.fact.7"
+        ],
+        "quiz.questions[6]": [
+          "ch01.fact.6"
+        ],
+        "quiz.questions[7]": [
+          "ch01.fact.2"
+        ],
+        "quiz.questions[8]": [
+          "ch01.fact.1"
+        ],
+        "reviewCards[0]": [
+          "ch01.fact.5"
+        ],
+        "reviewCards[1]": [
+          "ch01.fact.4"
+        ],
+        "reviewCards[2]": [
+          "ch01.fact.2"
+        ],
+        "reviewCards[3]": [
+          "ch01.fact.8"
+        ],
+        "reviewCards[4]": [
+          "ch01.fact.6"
+        ],
+        "reviewCards[5]": [
+          "ch01.fact.9"
+        ],
+        "implementationPlan.title": [
+          "ch01.fact.4",
+          "ch01.fact.5"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch01.fact.4",
+          "ch01.fact.5"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch01.fact.4",
+          "ch01.fact.5"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch01.fact.6",
+          "ch01.fact.8"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch01.fact.2",
+          "ch01.fact.4"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch01.fact.4",
+          "ch01.fact.5"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch01.fact.2",
+          "ch01.fact.4",
+          "ch01.fact.5"
+        ],
+        "memorableLines[0]": [
+          "ch01.fact.4"
+        ],
+        "memorableLines[1]": [
+          "ch01.fact.5"
+        ],
+        "memorableLines[2]": [
+          "ch01.concept"
+        ]
+      }
+    }
+  }
+}

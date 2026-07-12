@@ -1,0 +1,101 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": ["No quiz questions or answer choices are present, so derivation and answer-tell analysis are impossible."]
+  },
+  "scores": {
+    "retention": 22,
+    "quizzes": 0,
+    "transfer": 18,
+    "practical": 25,
+    "summaries": 3,
+    "tone": 35,
+    "limits": 0,
+    "insight": 12,
+    "density": 20,
+    "beginner": 42
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "She gives the room a quiet minute before anyone signs the final form.",
+      "why": "This is the chapter's clearest concrete action, although its purpose and transferable mechanism remain unexplained."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "The hook is production metadata rather than a reader-facing opening."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Six required learning sections are present only as empty headings."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook contains review-process metadata and supplies no topic, tension, promise, or reason to continue reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section says only \"A concise idea.\" and therefore fails its stand-alone summary promise; it does not state the chapter's idea.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section says only \"One added angle.\" and therefore fails its stand-alone summary promise; it adds no actual explanation.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "A single Zappos scene is presented without establishing a general principle, explaining why the pause changes behavior, or defining when the move should be used.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The compressed \"Title:\" and \"What to do:\" labels read like unprocessed scaffold fields rather than finished chapter prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the chapter never states its core move explicitly.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, leaving the reader without an exercise or usable application path.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is empty, so there are no numbered examples through which to test transfer.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz is entirely missing: there are no questions, choices, or assessable learning checks.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so it provides no retrieval-practice material.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, eliminating the chapter's designated retention aid.",
+      "mustFix": true
+    },
+    {
+      "unit": "limits",
+      "problem": "The chapter gives no boundaries, failure modes, or guidance about when presenting a high-stakes fork or using silence would be inappropriate.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is an incomplete scaffold, not a shippable chapter. Its only substantive passage offers one concrete image—a trainer pausing before a consequential choice—but never extracts the mechanism, supports transfer, or explains limits. The fast and deep summaries are placeholders, while the takeaway, exercise, examples, quiz, review cards, and memorable lines are empty. A beginner could infer that deliberate pauses make choices feel real, but the page does not teach, test, reinforce, or reliably operationalize that idea."
+}
+```

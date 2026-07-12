@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Correct answers are often the most qualified and mechanically precise choice, especially Q1, Q2, Q3, Q4, Q8, and Q9.", "Several distractors announce themselves with overbroad wording such as \"any well-known chief executive story,\" \"everywhere,\" \"harmless,\" or \"the whole model.\""]
+  },
+  "scores": {
+    "retention": 87,
+    "quizzes": 82,
+    "transfer": 79,
+    "practical": 86,
+    "summaries": 84,
+    "tone": 80,
+    "limits": 90,
+    "insight": 86,
+    "density": 78,
+    "beginner": 85
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Trust is not the opening move; it is what arrives after belief survives a cost.",
+      "why": "Strongest compact statement of the chapter's causal mechanism."
+    },
+    {
+      "quote": "A promise is a receipt waiting to be checked.",
+      "why": "Memorable and practical image that makes the abstract trust argument usable."
+    },
+    {
+      "quote": "A paper cup cools beside him.",
+      "why": "This reads like decorative manufactured detail rather than evidence or transfer."
+    },
+    {
+      "quote": "The year tells you where the claim begins to stop.",
+      "why": "Good boundary-setting, but the phrasing is slightly cryptic for a beginner."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The keys are sound and derivable, but the correct answers often have the most careful, bounded phrasing while distractors use exaggerated claims, creating testwise tells.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 4",
+      "problem": "The paper-cup detail feels like a slot-filler: it names an object but does not affect the decision, consequence, or learning promise.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples demonstrate the lesson cleanly, but some feel engineered around the template rather than like real cases with concrete stakes or measurable consequences.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "Some boundary language is useful but abstract, especially around facts being borrowed from the wrong airline; a colder beginner may need one plainer sentence before the nuance.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "The repeated lesson architecture is clear but occasionally shows scaffold smell through recurring phrasing around belief, conduct, trust, loyalty, and bounded details.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a clear causal move: belief must lead, repeated conduct must prove it, and trust follows only after risk becomes sane. The summaries, review cards, and implementation plan line up well, and the quiz keys are sound. It falls just short of a higher professional ship bar because some transfer examples feel constructed, the quiz has answer-pattern tells, and a few sentences repeat the framework more than they deepen it."
+}
+```

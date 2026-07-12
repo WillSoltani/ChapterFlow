@@ -1,0 +1,11 @@
+Updated [start-with-why-ch04.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch04.v21-native.chapter.json).
+
+Validation:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors
+- `quiz-verify`: 9/9 matches
+- Evidence audit: clean
+- Rendered estimate: 17,210 chars
+- CHB1 reading-surface counts: `neocortex` 6, `limbic` 6
+
+Note: `npx tsx` itself failed in this sandbox with an IPC `EPERM`, so I ran the same CLI through `node --import tsx ...`; the commands completed successfully that way.

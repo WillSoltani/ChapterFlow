@@ -1,0 +1,240 @@
+{
+  "schemaVersion": "author-acceptance-v1",
+  "bookId": "start-with-why",
+  "roundLabel": "",
+  "at": "2026-07-05T21:38:37.583Z",
+  "bar": 80,
+  "beatShipped": 73.1,
+  "accepted": false,
+  "sampledChapters": [
+    1,
+    2,
+    6,
+    11
+  ],
+  "docSha256": "d8f81f10bb0cb503d502304bbace027838a378c3422d1fa4cda5e5500590e538",
+  "verdict": {
+    "id": "start-with-why",
+    "medianComposite": 74,
+    "factors": {
+      "retention": 82,
+      "quizzes": 74,
+      "transfer": 78,
+      "practical": 72,
+      "summaries": 76,
+      "tone": 63,
+      "limits": 81,
+      "insight": 73,
+      "density": 62,
+      "beginner": 74
+    },
+    "gate": "PASS",
+    "gateVotes": "3P/0F",
+    "churn": "HIGH",
+    "validCount": 3,
+    "readerCount": 3,
+    "chapters": [
+      1,
+      2,
+      6,
+      11
+    ],
+    "readers": [
+      {
+        "reviewerSessionId": "auto-author-book-reader-1-mr8b96v3-13",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 78,
+          "quizzes": 72,
+          "transfer": 76,
+          "practical": 70,
+          "summaries": 74,
+          "tone": 62,
+          "limits": 80,
+          "insight": 72,
+          "density": 58,
+          "beginner": 76
+        },
+        "composite": 72.1,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is quiz-sound and often clear, with several genuinely sticky lines and useful diagnostic questions. Its main weakness is not correctness but manufacture: the chapters repeatedly use the same architecture, the same named-setting logic, the same boundary-detail warning, the same return-proof move, and the same practice shells with nouns swapped. That makes the book feel coherent but not individually authored. It is a solid draft with strong moments, especially on limits and retention, but the density, tone, and churn would keep it below premium publish quality.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-2-mr8b96v8-14",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 82,
+          "quizzes": 74,
+          "transfer": 83,
+          "practical": 78,
+          "summaries": 80,
+          "tone": 67,
+          "limits": 81,
+          "insight": 73,
+          "density": 62,
+          "beginner": 74
+        },
+        "composite": 76,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 5,
+        "quotesTotal": 5,
+        "oneParagraphVerdict": "The sample is mechanically sound and the quiz key is supported by the chapters, so it passes the correctness gate. Its strongest asset is retention: several lines are genuinely sticky, and the core tools are reusable. The weakness is not accuracy but sameness. Across chapters, the same machinery repeats: named companies as anchors, a second setting for comparison, an edge detail to prevent overreach, a return proof, a no-title-power application, and a borrowed-detail warning. That makes the book useful but visibly templated. It would ship as a solid draft, not premium work, until the chapters gain more distinct scenes, less repeated scaffolding, and more natural examples.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-3-r2-mr8bavbm-16",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 82,
+          "quizzes": 74,
+          "transfer": 78,
+          "practical": 72,
+          "summaries": 76,
+          "tone": 63,
+          "limits": 83,
+          "insight": 75,
+          "density": 62,
+          "beginner": 74
+        },
+        "composite": 74.3,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is coherent and I found no keyed quiz contradiction, so it passes the correctness gate. Its strongest material has real learning value: several chapters produce compact, memorable reversals and usable lenses. The major weakness is churn. The chapters repeatedly use the same architecture: named company anchor, second setting, hard detail must stay home, order must not reverse, proof must return. That makes the book feel engineered rather than individually authored. It is publishable as a solid draft, but not premium: the ideas are often strong, while the prose, examples, and practice plans need more variety, more natural behavior, and less visible scaffolding.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      }
+    ]
+  },
+  "readers": [
+    {
+      "reviewerSessionId": "auto-author-book-reader-1-mr8b96v3-13",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 78,
+        "quizzes": 72,
+        "transfer": 76,
+        "practical": 70,
+        "summaries": 74,
+        "tone": 62,
+        "limits": 80,
+        "insight": 72,
+        "density": 58,
+        "beginner": 76
+      },
+      "composite": 72.1,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is quiz-sound and often clear, with several genuinely sticky lines and useful diagnostic questions. Its main weakness is not correctness but manufacture: the chapters repeatedly use the same architecture, the same named-setting logic, the same boundary-detail warning, the same return-proof move, and the same practice shells with nouns swapped. That makes the book feel coherent but not individually authored. It is a solid draft with strong moments, especially on limits and retention, but the density, tone, and churn would keep it below premium publish quality.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-2-mr8b96v8-14",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 82,
+        "quizzes": 74,
+        "transfer": 83,
+        "practical": 78,
+        "summaries": 80,
+        "tone": 67,
+        "limits": 81,
+        "insight": 73,
+        "density": 62,
+        "beginner": 74
+      },
+      "composite": 76,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 5,
+      "quotesTotal": 5,
+      "oneParagraphVerdict": "The sample is mechanically sound and the quiz key is supported by the chapters, so it passes the correctness gate. Its strongest asset is retention: several lines are genuinely sticky, and the core tools are reusable. The weakness is not accuracy but sameness. Across chapters, the same machinery repeats: named companies as anchors, a second setting for comparison, an edge detail to prevent overreach, a return proof, a no-title-power application, and a borrowed-detail warning. That makes the book useful but visibly templated. It would ship as a solid draft, not premium work, until the chapters gain more distinct scenes, less repeated scaffolding, and more natural examples.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-3-r2-mr8bavbm-16",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 82,
+        "quizzes": 74,
+        "transfer": 78,
+        "practical": 72,
+        "summaries": 76,
+        "tone": 63,
+        "limits": 83,
+        "insight": 75,
+        "density": 62,
+        "beginner": 74
+      },
+      "composite": 74.3,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is coherent and I found no keyed quiz contradiction, so it passes the correctness gate. Its strongest material has real learning value: several chapters produce compact, memorable reversals and usable lenses. The major weakness is churn. The chapters repeatedly use the same architecture: named company anchor, second setting, hard detail must stay home, order must not reverse, proof must return. That makes the book feel engineered rather than individually authored. It is publishable as a solid draft, but not premium: the ideas are often strong, while the prose, examples, and practice plans need more variety, more natural behavior, and less visible scaffolding.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    }
+  ],
+  "pooled": {
+    "reads": 1,
+    "composite": 74,
+    "gate": "PASS",
+    "noiseBand": 3.7,
+    "capped": false
+  }
+}

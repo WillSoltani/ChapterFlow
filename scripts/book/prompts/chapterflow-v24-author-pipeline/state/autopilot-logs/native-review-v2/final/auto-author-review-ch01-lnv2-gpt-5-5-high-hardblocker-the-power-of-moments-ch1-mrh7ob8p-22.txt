@@ -1,0 +1,80 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water study says a milder ending can make a longer painful episode remembered better.",
+      "The Magic Castle example shows a modest setting can create a vivid, tellable peak.",
+      "YES Prep makes a private achievement public so peers and adults witness effort.",
+      "The prose names elevation, insight, pride, and connection as the four ingredients.",
+      "The red phone shows a concrete visible object can signal that the usual script has changed.",
+      "The popsicle matters because the request and tray make the free snack into a small event.",
+      "The threshold logic says to mark the crossing before the next stage turns into private logistics.",
+      "The chapter says memory does not average each minute; peak and ending carry special weight.",
+      "The gift vanishes because it is only a quiet free item, not a tellable event."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Choice b repeats the chapter's key ending logic; a and c are plainly duration-only foils.",
+      "Choice b is the only vivid positive action and echoes 'tellable surprise' language.",
+      "Choice a gives away the YES Prep mechanism with 'public' and 'witness'.",
+      "Choice c directly enumerates the four named ingredients.",
+      "Choice a repeats the red-phone wording about a visible object changing the script.",
+      "Choice b is the only option that turns the gift into an event.",
+      "Choice c repeats the chapter's threshold wording almost verbatim.",
+      "The negative stem makes a the only false claim; it mirrors 'does not average each minute'.",
+      "Choice c uses the chapter's tellable-format distinction; a and b are obvious cost/upscale foils."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 66,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 90,
+    "insight": 86,
+    "density": 83,
+    "beginner": 91
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A small peak can become the story of the whole stay.",
+      "why": "Strong, compact core idea with a concrete memory hook."
+    },
+    {
+      "quote": "The ending can rewrite the remembered weight.",
+      "why": "Memorable phrasing that explains the mechanism without jargon."
+    },
+    {
+      "quote": "A red phone cannot make an unsafe pool feel fine.",
+      "why": "Good boundary-setting; it prevents the lesson from becoming cosmetic manipulation."
+    },
+    {
+      "quote": "The real takeaway is to make every episode as short as possible, because memory simply records total duration and the final moments carry no special weight.",
+      "why": "This directly contradicts the chapter's central lesson."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 3",
+      "problem": "The What to do section states the opposite of the chapter's cold-water lesson, claiming memory records total duration and final moments carry no special weight.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The answer is too exposed because the stem asks for the four ingredients and choice c simply lists them.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The negative stem is fair but slightly test-writerly; it checks whether the reader notices the one false assumption more than whether they can apply the idea.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong beginner chapter with a memorable central image, clear layered summaries, practical next steps, and unusually good limits around not using endings to excuse harm. The quiz is mostly fair and derivable, though several items are easy to guess from giveaway phrasing. The blocker is Example 3: its action advice directly reverses the chapter's own mechanism, which would teach a reader the wrong lesson at the point where transfer should be reinforced. Fix that contradiction and the chapter is likely above the professional bar."
+}
+```

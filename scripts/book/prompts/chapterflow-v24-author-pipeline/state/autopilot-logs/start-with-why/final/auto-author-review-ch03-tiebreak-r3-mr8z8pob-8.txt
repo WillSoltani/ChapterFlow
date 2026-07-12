@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "a", "b", "a", "a", "c", "c"],
+    "keyDisagreements": [],
+    "tells": ["Correct answers often reuse the chapter's exact mechanism language, while wrong answers lean on absolutes such as every, only, nothing, or broad sincerity.", "Several distractors are easy to reject without full reading because they overclaim that one famous example can settle every venue."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 76,
+    "practical": 86,
+    "summaries": 83,
+    "tone": 82,
+    "limits": 90,
+    "insight": 88,
+    "density": 84,
+    "beginner": 78
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The product does not create the reason; the reason gives the product a job.",
+      "why": "Strongest compact statement of the chapter's mechanism."
+    },
+    {
+      "quote": "Hard details are not spare parts. They belong where they can be verified.",
+      "why": "Memorable boundary that keeps the method from becoming generic example-stamping."
+    },
+    {
+      "quote": "1976 is the number in the Apple Inc account.",
+      "why": "The opening is cold and jargon-like before the reader knows what an account means here."
+    },
+    {
+      "quote": "Every unowned promise costs another week of pretending.",
+      "why": "A vivid practical consequence that makes the abstract ordering rule stick."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The first sentence uses 'the Apple Inc account' before the chapter has explained what an account is, so the cold entry is harder than it needs to be.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 1-4",
+      "problem": "The examples are mostly variations on the same Apple/Sylvia pitch repair rather than distinct transfer cases in different real-world contexts, which limits transfer practice.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The keyed answer is derivable, but 'test a nearby misconception' is less direct than the prose's clearer point that the King example marks a venue limit and prevents detail drift.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "Some phrasing is compressed into aphorism, such as 'price of the promise' and 'warm line,' which may slow beginners even though the core move remains learnable.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears the professional bar. The central move is memorable, repeated without becoming stale, and backed by a useful mechanism: WHY gives HOW and WHAT their job, while visible behavior tests whether the promise is real. The quizzes are mostly fair and keyed soundly, with minor tell patterns from overclaiming distractors. The main weakness is transfer: the examples are usable but cluster around the same invented Apple pitch scenario instead of showing the move travel across more distinct settings."
+}
+```

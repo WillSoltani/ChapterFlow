@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 68,
+    "transfer": 82,
+    "practical": 76,
+    "summaries": 80,
+    "tone": 63,
+    "limits": 80,
+    "insight": 72,
+    "density": 61,
+    "beginner": 70
+  },
+  "quotes": [
+    {
+      "quote": "A clean repair can be the wrong win.",
+      "why": "Compact and portable; it gives chapter 1 a real memory handle."
+    },
+    {
+      "quote": "Cut the perk before it writes the reason for you.",
+      "why": "Strong practical aphorism that carries the Carrots and Sticks lesson."
+    },
+    {
+      "quote": "Trust is belief made visible under pressure.",
+      "why": "The best retention line in the trust chapter: short, complete, and reusable."
+    },
+    {
+      "quote": "A metric is a receipt for spread, not a receipt for meaning.",
+      "why": "Sharp reversal that makes the success-fog idea memorable."
+    },
+    {
+      "quote": "One story can make you nod; two let you compare what actually repeats.",
+      "why": "Useful idea, but the same comparison move recurs so often that it becomes a template tell."
+    },
+    {
+      "quote": "The demand was already set: stop borrowing detail across companies.",
+      "why": "This sounds like scaffold logic leaking into the example rather than natural reader prose."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is factually coherent and the answer key is supported by the prose, so it passes the correctness gate. As a book sample, though, it feels heavily templated: nearly every chapter teaches by ordering terms, anchoring named examples, warning against borrowed details, adding a second setting, and ending with similar if-then practice shells. The best lines are genuinely sticky, and the core lenses transfer well, but quiz design is too often obvious, examples rely on thin proxy scenes, and the prose repeats its own diagnostic machinery until density and voice suffer."
+}
+```

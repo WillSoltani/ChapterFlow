@@ -1,0 +1,71 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "c", "a", "a", "b", "c", "b"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several keyed choices reuse rare chapter language almost verbatim: Q2 'separate token,' Q4 'stop mark,' Q7 'visible tactic...premise,' Q8 'grounding turned false.'",
+      "Q1's keyed choice is the only option with the full specific Apple/Cupertino framing, making it guessable by specificity."
+    ]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 76,
+    "transfer": 68,
+    "practical": 78,
+    "summaries": 84,
+    "tone": 78,
+    "limits": 86,
+    "insight": 82,
+    "density": 76,
+    "beginner": 80
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Keep the proof with its promise.",
+      "why": "Strongest compressed rule; memorable and operational."
+    },
+    {
+      "quote": "Start with WHY and the tactic has a job. Then the visible WHAT can come back with proof.",
+      "why": "Clear mechanism, not just a slogan."
+    },
+    {
+      "quote": "A birthday-card envelope lies between them.",
+      "why": "Arbitrary scenic detail that feels manufactured and does not teach the move."
+    },
+    {
+      "quote": "Purpose sounded clean, but it never returned through Southwest Airlines as a 1971 low-fare carrier, Herb Kelleher as cofounder, or Apple design consistency in Cupertino with the 1998 iMac.",
+      "why": "The example recites the lesson's anchors instead of showing a real decision and consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "examples overall",
+      "problem": "Several examples are meta-lessons about drafting or training the chapter rather than transferable workplace cases where a real decision changes an outcome.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "It mostly restates the chapter thesis with the same three anchors and does not show a concrete before-to-after consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2",
+      "problem": "The birthday-card envelope is vivid but unearned, and the scene admits the move only half-works without completing the teaching action.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The keyed answer is nearly a direct lift from the prose, so a reader can spot it by phrase matching rather than understanding.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The keyed answer uses the distinctive 'stop mark' language, making the correct choice easier to guess.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong core move: proof must return from visible WHAT to disciplined HOW to clear WHY. The summaries and limits are solid, and several lines will stick. It falls below a professional shipping bar because the example bank is too self-referential and sometimes manufactured; it teaches how to manage the chapter's own evidence more than how a reader would apply the move in varied real settings. The quiz is mostly sound, but too many answers are exposed by exact phrase reuse."
+}
+```

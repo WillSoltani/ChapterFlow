@@ -1,0 +1,74 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "b", "c", "a", "c", "b", "c"],
+    "mechanisms": [
+      "The prose says the risk is not lack of talent but handoffs and blurred ownership.",
+      "The lesson says to map transitions by named owner before the rush/window arrives.",
+      "Ingrid's postmortem traces the whole path before blaming the last visible person.",
+      "Failures at crossings require inspecting explicit handoffs between departments.",
+      "The pharmacy example shows assigned tasks can be completed while reliability fails at crossings.",
+      "Hadiya's hill-street example assigns one owner across plow, salt, police, and ambulance before peak load.",
+      "The chapter says expert systems expose the spaces between capable people, not just hard tasks.",
+      "The core reasoning is that excellent people still need visible ownership at role crossings.",
+      "The leader-held drill points to a transition carried by memory instead of designed into the system."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Correct answers repeatedly use the chapter's signature language: handoff, ownership, named owner, across departments, and system.",
+      "Distractors are often straw versions of blame, working harder, or one commander, making the right answer guessable from tone.",
+      "Several correct options are the most specific process answer, while wrong options are vague attitude or hierarchy fixes."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 76,
+    "transfer": 84,
+    "practical": 90,
+    "summaries": 82,
+    "tone": 88,
+    "limits": 86,
+    "insight": 89,
+    "density": 85,
+    "beginner": 91
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The risk is not that the room lacks talent. The risk is that the task has more handoffs than memory can safely carry.",
+      "why": "This is the chapter's cleanest core mechanism."
+    },
+    {
+      "quote": "Complexity changes the location of danger.",
+      "why": "Short, memorable, and useful as a retrieval cue."
+    },
+    {
+      "quote": "Movement creates seams, and seams create assumptions.",
+      "why": "A strong transferable line that compresses the practical lesson."
+    },
+    {
+      "quote": "The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.",
+      "why": "This is a weak spot because the Austrian rescue is invoked without enough setup."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "deep read",
+      "problem": "The Austrian drowning rescue is referenced as if already established, but the chapter gives too little concrete context for that specific allusion.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Many correct answers are telegraphed by exact chapter vocabulary while distractors cluster around obvious blame/work-harder/central-command misreads.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 1-3",
+      "problem": "The first three examples closely mirror the chapter's own trauma, rail, and pharmacy cases, so early transfer practice is narrower than it could be.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter with a strong, memorable core move: in dense expert work, inspect the handoff where ownership thins before blaming people. The prose is plain, concrete, and beginner-friendly, and the practical actions are realistic. The main weakness is quiz craft: the right answers are too often visible from vocabulary and tone rather than requiring real retrieval. Transfer is solid but could be stronger if the examples varied their structure sooner."
+}
+```

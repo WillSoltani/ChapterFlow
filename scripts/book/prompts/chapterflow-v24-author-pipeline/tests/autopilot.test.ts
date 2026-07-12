@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync, chmodSync, rmSync } from "node:fs";
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, existsSync, chmodSync, rmSync, statSync, utimesSync } from "node:fs";
 import { tmpdir, hostname } from "node:os";
 import { join, dirname } from "node:path";
 
 import { test } from "./harness.js";
+import { PIPELINE_DIR } from "./helpers.js";
 import { evidenceMatrixPath } from "../src/qc/orchestrator/artifacts.js";
 import {
   decidePhase,
@@ -33,6 +34,60 @@ import {
 import { spawnCodexAgent } from "../src/orchestrator/codexAgent.js";
 import { STRICT_ENV_VAR_NAMES } from "../src/lib/strictEnv.js";
 import type { BookStatus, ChapterStatus } from "../src/lifecycle/bookStatus.js";
+
+type FixtureFileSnapshot = {
+  path: string;
+  existed: boolean;
+  bytes: Buffer | null;
+  atime: Date | null;
+  mtime: Date | null;
+};
+
+function snapshotFixtureFile(path: string): FixtureFileSnapshot {
+  if (!existsSync(path)) return { path, existed: false, bytes: null, atime: null, mtime: null };
+  const stat = statSync(path);
+  return { path, existed: true, bytes: readFileSync(path), atime: stat.atime, mtime: stat.mtime };
+}
+
+function restoreFixtureFile(snapshot: FixtureFileSnapshot): void {
+  if (!snapshot.existed) {
+    rmSync(snapshot.path, { force: true });
+    return;
+  }
+  mkdirSync(dirname(snapshot.path), { recursive: true });
+  writeFileSync(snapshot.path, snapshot.bytes!);
+  utimesSync(snapshot.path, snapshot.atime!, snapshot.mtime!);
+}
+
+type FixtureDirSnapshot = { path: string; existed: boolean; entries: Set<string> };
+
+function snapshotFixtureDir(path: string): FixtureDirSnapshot {
+  if (!existsSync(path)) return { path, existed: false, entries: new Set() };
+  return { path, existed: true, entries: new Set(readdirSync(path)) };
+}
+
+function restoreFixtureDir(snapshot: FixtureDirSnapshot): void {
+  if (!existsSync(snapshot.path)) return;
+  for (const entry of readdirSync(snapshot.path)) {
+    if (!snapshot.entries.has(entry)) rmSync(join(snapshot.path, entry), { recursive: true, force: true });
+  }
+  if (!snapshot.existed && readdirSync(snapshot.path).length === 0) rmSync(snapshot.path, { recursive: true, force: true });
+}
+
+const MODULE_AUTOPILOT_TELEMETRY = [
+  join(PIPELINE_DIR, "state", "autopilot-logs", "zz", "cost-report.json"),
+  join(PIPELINE_DIR, "state", "autopilot-logs", "zz", "run-manifest.json"),
+  join(PIPELINE_DIR, "state", "autopilot-logs", "your-money-or-your-life", "cost-report.json"),
+  join(PIPELINE_DIR, "state", "autopilot-logs", "your-money-or-your-life", "run-manifest.json"),
+  join(PIPELINE_DIR, "state", "provenance", "zz-ch01.json"),
+  join(PIPELINE_DIR, "state", "provenance", "zz-ch02.json"),
+  join(PIPELINE_DIR, "state", "autopilot-locks", "zz.compiler-run.lock"),
+].map(snapshotFixtureFile);
+
+const MODULE_AUTOPILOT_DIRS = [
+  join(PIPELINE_DIR, "state", "qc-preflight", "zz"),
+  join(PIPELINE_DIR, "logs", "exec"),
+].map(snapshotFixtureDir);
 
 // ── fixtures ─────────────────────────────────────────────────────────────────
 function makeStatus(o: Partial<BookStatus>): BookStatus {
@@ -1534,4 +1589,9 @@ test("v24 handleReady wiring: the AUTHOR arch READY command is publish-final; co
   assert.equal(readyPublishCommand("zz", undefined, "legacy"), 'npx tsx src/cli.ts publish "zz"', "no round id → the plain publish verb (unchanged)");
   // the author command must NOT commit sandbox-nested paths (it names no round / no publish-after-qc).
   assert.ok(!readyPublishCommand("execution", "r1", "author").includes("publish-after-qc"), "author must not route through publish-after-qc (the sandbox-nested-commit source)");
+});
+
+test("autopilot fixtures restore production telemetry bytes and mtimes", () => {
+  for (const snapshot of MODULE_AUTOPILOT_TELEMETRY) restoreFixtureFile(snapshot);
+  for (const snapshot of MODULE_AUTOPILOT_DIRS) restoreFixtureDir(snapshot);
 });

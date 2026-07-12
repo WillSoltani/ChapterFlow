@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "7": {
+      "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 76,
+    "quizzes": 78,
+    "transfer": 78,
+    "practical": 74,
+    "summaries": 76,
+    "tone": 62,
+    "limits": 81,
+    "insight": 68,
+    "density": 60,
+    "beginner": 74
+  },
+  "quotes": [
+    {
+      "quote": "A discount can move the sale and still fail to win the buyer.",
+      "why": "Strong, compact, portable opening claim."
+    },
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "Memorable reversal with real retention value."
+    },
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "The best aphorism in the sample: short, complete, and reusable."
+    },
+    {
+      "quote": "Reverse that order and a tactic has to explain the premise. It cannot.",
+      "why": "Shows the repeated chapter machinery: order, reversal, tactic, premise."
+    },
+    {
+      "quote": "Hard facts need the same discipline. Diffusion of Innovations belongs with Everett Rogers. About 250,000 people belongs with the March on Washington. A digital video recorder belongs with TiVo.",
+      "why": "Useful evidence hygiene, but also a repeated source-detail template."
+    },
+    {
+      "quote": "Two stakeholders can disagree without making the move grand. Heath can ask Hazel for one behavior by Friday. Hazel can ask Nadine which metric changed and what act came back.",
+      "why": "The proxy-character texture feels artificial and interchangeable."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is mechanically sound and the quiz keys are supported by the prose, so it passes the correctness gate. The best lines are genuinely sticky, and the chapters often teach reusable lenses rather than mere tips. The main weakness is churn: every chapter leans on the same architecture of named anchors, second settings, hard details staying with their source, order reversals, return points, proxy names, and identical practice shells. That makes the book feel over-engineered and less individually authored than a premium reading experience should."
+}
+```

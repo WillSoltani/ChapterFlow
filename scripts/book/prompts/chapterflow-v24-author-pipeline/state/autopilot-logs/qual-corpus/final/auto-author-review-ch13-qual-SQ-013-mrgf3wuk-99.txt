@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 25,
+    "quizzes": 0,
+    "transfer": 35,
+    "practical": 45,
+    "summaries": 0,
+    "tone": 30,
+    "limits": 10,
+    "insight": 35,
+    "density": 20,
+    "beginner": 40
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A concise idea.",
+      "why": "Worst defect: this is placeholder text, not a usable fast read."
+    },
+    {
+      "quote": "One added angle.",
+      "why": "Worst defect: the deep read does not add a real explanation."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Worst defect: multiple promised sections are empty, including the quiz."
+    },
+    {
+      "quote": "The naming lead keeps the three routes visible and asks the team to mark what each route teaches before voting on any name.",
+      "why": "Strongest moment: it gives the chapter's clearest practical move."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The Quiz section contains no questions, so the chapter has a broken quiz and cannot test retention.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The Key takeaway section is empty, so the chapter fails a required stand-alone summary function.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The Try this now section is empty, leaving no concrete action for the reader to perform.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The Examples section is empty, so transfer beyond the single naming-wall scenario is not supported.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The Review cards section is empty, so the promised retention aid is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The Memorable lines section is empty, so the chapter lacks its promised memory hooks.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read says only 'A concise idea.' and does not state the chapter's actual idea.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read says only 'One added angle.' and does not provide a deeper explanation.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook reads like production scaffolding rather than reader-facing chapter content.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The scenario is usable but thin: it names a studio and decision pattern, but gives no consequence or before-after result.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The only usable teaching move is in the full read: keep multiple naming routes visible and evaluate what each route teaches before voting. Almost every product-facing support layer is empty or placeholder text, including the quiz, takeaway, practice prompt, examples, review cards, and memorable lines. This is structurally incomplete rather than merely rough."
+}
+```

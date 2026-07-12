@@ -1,0 +1,64 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q4 correct answer is much more precise and mechanically complete than the distractors.", "Q6 and Q9 have giveaway phrasing: the wrong choices endorse broad proof-free purpose language or 'any true fact,' which the chapter repeatedly warns against."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 76,
+    "practical": 82,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 88,
+    "insight": 87,
+    "density": 83,
+    "beginner": 84
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A rival is not the judge; it is the alarm.",
+      "why": "Strongest memorable line; it compresses the whole chapter into a usable distinction."
+    },
+    {
+      "quote": "Name what the rival changed. Name what your older promise required. Then name the proof due before the choice moves.",
+      "why": "Best practical instruction; it is concrete and repeatable."
+    },
+    {
+      "quote": "The reader sees a famous company, not a repeatable way to judge rivalry in a live choice.",
+      "why": "This exposes a weakness: some examples talk about how the chapter works rather than showing a real decision consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "Several examples are meta-examples about using Apple-Dell, Microsoft, or Southwest as proof, rather than concrete workplace decisions with a before, action, and consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2",
+      "problem": "Cyrus traces a miss, but the consequence stays abstract: the team chased category wins and lacked proof, without showing a concrete choice or outcome.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 5",
+      "problem": "Christophe sets a bar, but the example stops before showing what decision changed or what happened because the team waited.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The keyed answer is fair, but it is visibly more chapter-shaped than the distractors, making it somewhat guessable by precision alone.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "The wrong answers openly endorse vague purpose language, which the prose has already marked as the central failure mode.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a clear and memorable move: let rivals reveal pressure, then return the decision to the older promise and require proof. The summaries, limits, and review cards are strong, and the quiz keys are sound. The main weakness is transfer: too many examples are about handling the chapter's own named examples rather than showing lived decisions with consequences. I would revise that before shipping at a professional bar."
+}
+```

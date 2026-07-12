@@ -1,0 +1,91 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 5,
+    "quizzes": 0,
+    "transfer": 15,
+    "practical": 10,
+    "summaries": 0,
+    "tone": 20,
+    "limits": 0,
+    "insight": 0,
+    "density": 5,
+    "beginner": 25
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now",
+      "why": "Core layered reading sections are present only as empty headers, so the chapter fails its structure."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This reads as internal scaffold text rather than reader-facing teaching."
+    },
+    {
+      "quote": "You see the child's rain boots by the front door, the pickup calendar on the shelf, and a bedtime note that contradicts yesterday's plan.",
+      "why": "This is the strongest concrete image in the chapter."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section is empty, so it does not provide a standalone fast version of the chapter.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty, so it does not provide the promised explanation or mechanism.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, so the chapter has no actual full teaching body.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, leaving the core move unstated.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the chapter gives no usable immediate practice step.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions, making the quiz structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so it fails its retention-support function.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, so it does not provide the promised memory anchors.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook appears to be production scaffold text rather than a reader-facing opening.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example is thin-but-usable: it gives a situation and revised opener, but no result, consequence, or explanation of why the rewrite works.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not a shippable chapter. It is mostly a shell: the main reading layers, takeaway, practice, quiz, review cards, and memorable lines are empty. The only substantive teaching is one co-parenting opener example, which has a concrete setup but does not explain the mechanism or show a consequence. A reader could not learn or retain the chapter's core move from what is on the page."
+}
+```

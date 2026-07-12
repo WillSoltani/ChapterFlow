@@ -1,0 +1,746 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "start-with-why",
+  "chapterId": "start-with-why-ch07",
+  "chapterNumber": 7,
+  "chapterTitle": "How a Tipping Point Tips",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch07.source.json",
+  "sourceHash": "sha256:8b290735a6bdf9be751b34d0bbb14922b6997f61057d0a6c0e7c4bb94d97fda6",
+  "facts": [
+    {
+      "id": "ch07.fact.1",
+      "claim": "Everett Rogers diffusion model makes law of diffusion concrete through Everett Rogers and 1962.",
+      "mechanism": "Because Everett Rogers gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Everett Rogers diffusion model as colorful background.",
+      "whyWrong": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1962"
+      ],
+      "groundedEntities": [
+        "Everett Rogers",
+        "Because Everett Rogers"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch07.fact.2",
+      "claim": "March on Washington adds a second anchor for law of diffusion with August 28, 1963 and Washington, D.C..",
+      "mechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "whyWrong": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "28",
+        "1963"
+      ],
+      "groundedEntities": [
+        "March",
+        "Washington",
+        "August",
+        "D.C.. Since",
+        "One"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch07.fact.3",
+      "claim": "TiVo crossing-the-chasm problem supplies a third checkable scene using TiVo and 1999.",
+      "mechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "whyWrong": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1999"
+      ],
+      "groundedEntities": [
+        "TiVo"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch07.fact.4",
+      "claim": "law of diffusion depends on the sequence Innovators before Early adopters.",
+      "mechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "whyWrong": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Innovators",
+        "Early",
+        "Order"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.4"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch07.fact.5",
+      "claim": "Innovators, Early adopters, Early majority, Late majority, Laggards form the local framework for How a Tipping Point Tips.",
+      "mechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "whyWrong": "Shortening removes the distinctions the quiz and examples need to test.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Innovators",
+        "Early",
+        "Late",
+        "Laggards",
+        "How",
+        "Tipping Point Tips. Because",
+        "Shortening"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.5"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch07.fact.6",
+      "claim": "Diffusion of Innovations is a hard detail that should stay attached to Everett Rogers diffusion model.",
+      "mechanism": "Because hard specifics are portable only inside their case, moving Diffusion of Innovations to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "whyWrong": "A true detail becomes misleading when it is attached to the wrong case.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Diffusion",
+        "Innovations",
+        "Everett Rogers",
+        "Any"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.6"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch07.fact.7",
+      "claim": "250,000 people gives March on Washington a different factual token from Everett Rogers diffusion model.",
+      "mechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "whyWrong": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "250000"
+      ],
+      "groundedEntities": [
+        "March",
+        "Washington",
+        "Everett Rogers",
+        "Since",
+        "All",
+        "Generic"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.7"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch07.fact.8",
+      "claim": "digital video recorder helps mark the boundary of law of diffusion.",
+      "mechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "whyWrong": "The mechanism changes by venue; boundary details keep the application honest.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.8"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch07.fact.9",
+      "claim": "How a Tipping Point Tips should teach law of diffusion through Everett Rogers diffusion model, March on Washington, and TiVo crossing-the-chasm problem, not through generic leadership advice.",
+      "mechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "whyWrong": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "3"
+      ],
+      "groundedEntities": [
+        "How",
+        "Tipping Point Tips",
+        "Everett Rogers",
+        "March",
+        "Washington",
+        "TiVo",
+        "Purpose"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.9"
+      ],
+      "teachingPriority": 6
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch07.ex.everett-rogers-diffusion-model",
+      "label": "Everett Rogers diffusion model",
+      "summary": "Everett Rogers published Diffusion of Innovations in 1962 and organized adoption into five adopter categories.",
+      "realWorld": true,
+      "naturalSetting": "Everett Rogers",
+      "hardSpecifics": [
+        "Everett Rogers",
+        "1962",
+        "Diffusion of Innovations",
+        "five adopter categories"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "1962"
+      ]
+    },
+    {
+      "id": "ch07.ex.march-on-washington",
+      "label": "March on Washington",
+      "summary": "The March on Washington drew about 250,000 people to the Lincoln Memorial in Washington, D.C. on August 28, 1963.",
+      "realWorld": true,
+      "naturalSetting": "March",
+      "hardSpecifics": [
+        "August 28, 1963",
+        "Washington, D.C.",
+        "250,000 people",
+        "Lincoln Memorial"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "August 28, 1963"
+      ]
+    },
+    {
+      "id": "ch07.ex.tivo-crossing-the-chasm-problem",
+      "label": "TiVo crossing-the-chasm problem",
+      "summary": "TiVo's 1999 digital video recorder attracted early adopters but struggled to make time shifting feel like a shared cause for a majority.",
+      "realWorld": true,
+      "naturalSetting": "TiVo",
+      "hardSpecifics": [
+        "TiVo",
+        "1999",
+        "digital video recorder",
+        "early adopters"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "1999"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "How a Tipping Point Tips framework",
+      "members": [
+        "Innovators",
+        "Early adopters",
+        "Early majority",
+        "Late majority",
+        "Laggards"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch07.concept",
+      "kind": "concept",
+      "label": "law of diffusion",
+      "text": "New ideas spread through adoption groups; mass acceptance depends on believers before the practical majority moves. A reader learns to aim early communication at people who already share the belief rather than persuading everyone at once.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.ex.everett-rogers-diffusion-model",
+      "kind": "named_example",
+      "label": "Everett Rogers diffusion model",
+      "text": "Everett Rogers published Diffusion of Innovations in 1962 and organized adoption into five adopter categories. Everett Rogers diffusion model turns Everett Rogers into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Everett Rogers",
+        "1962",
+        "Diffusion of Innovations",
+        "five adopter categories"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.ex.march-on-washington",
+      "kind": "named_example",
+      "label": "March on Washington",
+      "text": "The March on Washington drew about 250,000 people to the Lincoln Memorial in Washington, D.C. on August 28, 1963. March on Washington turns March on Washington into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "August 28, 1963",
+        "Washington, D.C.",
+        "250,000 people",
+        "Lincoln Memorial"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.ex.tivo-crossing-the-chasm-problem",
+      "kind": "named_example",
+      "label": "TiVo crossing-the-chasm problem",
+      "text": "TiVo's 1999 digital video recorder attracted early adopters but struggled to make time shifting feel like a shared cause for a majority. TiVo crossing-the-chasm problem turns TiVo into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "TiVo",
+        "1999",
+        "digital video recorder",
+        "early adopters"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.1",
+      "kind": "testable_fact",
+      "label": "Everett Rogers diffusion model makes law of diffusion concrete through Everett Rogers and 1962.",
+      "text": "Everett Rogers diffusion model makes law of diffusion concrete through Everett Rogers and 1962. Because Everett Rogers gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan. The safe move is to treat Everett Rogers diffusion model as colorful background. The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.2",
+      "kind": "testable_fact",
+      "label": "March on Washington adds a second anchor for law of diffusion with August 28, 1963 and Washington, D.C..",
+      "text": "March on Washington adds a second anchor for law of diffusion with August 28, 1963 and Washington, D.C.. Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote. One example is enough to prove the whole model. One example can illustrate; comparison is what exposes the transferable pattern.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.3",
+      "kind": "testable_fact",
+      "label": "TiVo crossing-the-chasm problem supplies a third checkable scene using TiVo and 1999.",
+      "text": "TiVo crossing-the-chasm problem supplies a third checkable scene using TiVo and 1999. Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case. A third case should simply repeat the first case's lesson. The third case should test a neighboring misconception, not restamp the same sentence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.4",
+      "kind": "testable_fact",
+      "label": "law of diffusion depends on the sequence Innovators before Early adopters.",
+      "text": "law of diffusion depends on the sequence Innovators before Early adopters. Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone. Order is stylistic, so any sequence works if the message sounds polished. Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.5",
+      "kind": "testable_fact",
+      "label": "Innovators, Early adopters, Early majority, Late majority, Laggards form the local framework for How a Tipping Point Tips.",
+      "text": "Innovators, Early adopters, Early majority, Late majority, Laggards form the local framework for How a Tipping Point Tips. Because each member names a different job, the writer can assign claims to distinct functions rather than blending them. The framework is a slogan and can be shortened to one word. Shortening removes the distinctions the quiz and examples need to test.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.6",
+      "kind": "testable_fact",
+      "label": "Diffusion of Innovations is a hard detail that should stay attached to Everett Rogers diffusion model.",
+      "text": "Diffusion of Innovations is a hard detail that should stay attached to Everett Rogers diffusion model. Because hard specifics are portable only inside their case, moving Diffusion of Innovations to another example creates false grounding. Any true detail can be reused wherever it sounds useful. A true detail becomes misleading when it is attached to the wrong case.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.7",
+      "kind": "testable_fact",
+      "label": "250,000 people gives March on Washington a different factual token from Everett Rogers diffusion model.",
+      "text": "250,000 people gives March on Washington a different factual token from Everett Rogers diffusion model. Since the factual token is different, comparison can teach contrast rather than repeating a generic success story. All business examples can use the same date-place-scale language. Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.8",
+      "kind": "testable_fact",
+      "label": "digital video recorder helps mark the boundary of law of diffusion.",
+      "text": "digital video recorder helps mark the boundary of law of diffusion. Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case. A useful concept should apply the same way to every named organization. The mechanism changes by venue; boundary details keep the application honest.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.9",
+      "kind": "testable_fact",
+      "label": "How a Tipping Point Tips should teach law of diffusion through Everett Rogers diffusion model, March on Washington, and TiVo crossing-the-chasm problem, not through generic leadership advice.",
+      "text": "How a Tipping Point Tips should teach law of diffusion through Everett Rogers diffusion model, March on Washington, and TiVo crossing-the-chasm problem, not through generic leadership advice. Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes. Purpose language alone is enough to ground a leadership lesson. Purpose language without checkable anchors becomes motivational abstraction.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.framework.how.a.tipping.point.tips.framework",
+      "kind": "framework",
+      "label": "How a Tipping Point Tips framework",
+      "text": "Innovators, Early adopters, Early majority, Late majority, Laggards",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1962",
+    "1",
+    "28",
+    "1963",
+    "1999",
+    "250000",
+    "3",
+    "5"
+  ],
+  "allowedEntities": [
+    "How",
+    "Tipping Point Tips",
+    "New",
+    "Everett Rogers",
+    "March",
+    "Washington",
+    "TiVo",
+    "Innovators",
+    "Early",
+    "Late",
+    "Laggards",
+    "Diffusion",
+    "Innovations",
+    "The March",
+    "Lincoln Memorial",
+    "D.C",
+    "August",
+    "TiVo's",
+    "HOW-type",
+    "Keep Rogers",
+    "Because Everett Rogers",
+    "Since",
+    "One",
+    "Order",
+    "Shortening",
+    "Any",
+    "All",
+    "Generic",
+    "Purpose",
+    "Everett Rogers diffusion model",
+    "March on Washington",
+    "TiVo crossing-the-chasm problem"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch07.ex.everett-rogers-diffusion-model",
+      "warning": "Keep examples about Everett Rogers diffusion model source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch07.ex.march-on-washington",
+      "warning": "Keep examples about March on Washington source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch07.ex.tivo-crossing-the-chasm-problem",
+      "warning": "Keep examples about TiVo crossing-the-chasm problem source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch07.fact.1"
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "chapterflow-self-healing-repair-v1",
+  "createdAt": "2026-07-09T13:53:25.961Z",
+  "bookId": "the-culture-code",
+  "runId": "book-run",
+  "stage": "qc",
+  "severity": "blocker",
+  "summary": "author acceptance: targeted regen round failed:\n  ch01: quiz Q7: The keyed answer says Nick is a second setting and checks travel beyond the first scene, but the prose places Nick inside Felps's bad-apple group task. This makes the rationale source-contradictory even though c remains the best option by elimination. (must fix); quiz overall: Several keyed choices are identifiable by being the only source-anchored, concrete option, while distractors are ",
+  "findings": [],
+  "artifacts": [
+    "state/qc/the-culture-code.sweep.json"
+  ],
+  "recommendedFixes": [
+    "Use the QC repair brief/prompt for the latest round. Repair content only; never attest your own repair.",
+    "After edits, run qc-converge and then a fresh QC round."
+  ],
+  "validationCommands": [
+    "npx tsx src/cli.ts qc-converge the-culture-code",
+    "npx tsx src/cli.ts book-run the-culture-code --no-publish"
+  ],
+  "nextCommand": "npx tsx src/cli.ts book-run the-culture-code --no-publish",
+  "promptPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/the-culture-code/book-run/qc.20260709135325.bedb7af6.repair.md",
+  "reportPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/the-culture-code/book-run/qc.20260709135325.bedb7af6.repair.json"
+}

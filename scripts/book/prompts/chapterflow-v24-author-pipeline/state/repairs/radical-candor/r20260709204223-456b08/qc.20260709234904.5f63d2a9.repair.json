@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "chapterflow-self-healing-repair-v1",
+  "createdAt": "2026-07-09T23:49:04.701Z",
+  "bookId": "radical-candor",
+  "runId": "r20260709204223-456b08",
+  "stage": "qc",
+  "severity": "blocker",
+  "summary": "author review: 2 chapter(s) still fail independent review after the regen cap (2 write attempts each):\n  ch01 — quiz Q5: The keyed sequence prescribes making care visible immediately before counsel, while the prose warns that last-second care can be staged and gives a different path when the fact must be said now. No answer expresses that guardrail, making the quiz source-contradictory. (must fix); implementation plan, If-then 1: Telling the reader to produce one care signal when the count is zero and then \n  ch02 — fast read: SOURCE-CONTRADICTORY: If Sandberg withholds the observation, Sandberg receives the calm minute and Scott pays through lost information. The summary instead says Scott keeps the calm minute, reversing the chapter’s central cost mechanism. (must fix); fast read / deep read / examples 1-2 / review card 4: FACTUALLY WRONG: The chapter repeatedly places the Sandberg–Scott Google relationship",
+  "findings": [],
+  "artifacts": [
+    "state/qc/radical-candor.sweep.json",
+    "state/qc/radical-candor.sweep-history.jsonl",
+    "state/qc-orchestrator/radical-candor/r20260709204223-456b08/sweep-record.json",
+    "state/qc-orchestrator/radical-candor/r20260709204223-456b08/evidence-matrix.json",
+    "state/qc-orchestrator/radical-candor/r20260709204223-456b08/repair-prompt.md"
+  ],
+  "recommendedFixes": [
+    "Use the QC repair brief/prompt for the latest round. Repair content only; never attest your own repair.",
+    "After edits, run qc-converge and then a fresh QC round."
+  ],
+  "validationCommands": [
+    "npx tsx src/cli.ts qc-converge radical-candor",
+    "npx tsx src/cli.ts book-run radical-candor --no-publish"
+  ],
+  "nextCommand": "npx tsx src/cli.ts book-run radical-candor --no-publish",
+  "promptPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/radical-candor/r20260709204223-456b08/qc.20260709234904.5f63d2a9.repair.md",
+  "reportPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/radical-candor/r20260709204223-456b08/qc.20260709234904.5f63d2a9.repair.json"
+}

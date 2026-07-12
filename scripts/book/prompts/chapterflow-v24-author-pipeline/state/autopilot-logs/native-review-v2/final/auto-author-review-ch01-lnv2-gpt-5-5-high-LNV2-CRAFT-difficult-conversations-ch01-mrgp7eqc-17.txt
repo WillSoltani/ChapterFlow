@@ -1,0 +1,65 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "a", "b", "c", "c", "b", "a"],
+    "mechanisms": [
+      "The prose defines the identity layer as questions about being competent, good, loyal, or respected; her fear is about authority and competence.",
+      "The chapter says to sort what happened, feelings, and identity rather than treating a grief-soaked family fight as logistics only.",
+      "The diagnostic move is to separate documented facts from feelings and identity/reputation fears in the room.",
+      "The prose warns that the visible timeline can be real while feelings about trust steer the exchange.",
+      "The reaction grew because the question seemed to judge what kind of friend she was, which matches the identity layer.",
+      "Writing facts, feelings, and identity separately prevents the student from mistaking a belonging threat for only a factual authorship dispute.",
+      "The chapter says adding facts can fail when the record has begun carrying an identity question.",
+      "The prose explicitly warns that pasting the frame onto another person can sound like a new accusation or verdict.",
+      "The first diagnostic question is to separate the visible issue from the respect/identity layer driving the repeated fight."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "The correct answer is usually the longest, most nuanced option.",
+      "Many distractors are easy eliminations because they contain absolute or dismissive wording such as \"only,\" \"always,\" \"never,\" or obviously bad advice.",
+      "Correct choices often repeat the chapter vocabulary directly: facts, feelings, identity, diagnosis, private, verdict."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 68,
+    "transfer": 72,
+    "practical": 86,
+    "summaries": 89,
+    "tone": 82,
+    "limits": 90,
+    "insight": 88,
+    "density": 83,
+    "beginner": 91
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The log is evidence. It is not the whole map.",
+      "why": "This is the chapter's core move in a compact, memorable line."
+    },
+    {
+      "quote": "The three conversations are a diagnostic tool, not a script.",
+      "why": "It states the boundary of the method clearly and prevents overselling."
+    },
+    {
+      "quote": "In the end, it really just comes down to doing the sensible thing here instead of overcomplicating it.",
+      "why": "This undermines the chapter's own lesson by making the layered diagnosis sound like overcomplication."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 2",
+      "problem": "The final sentence contradicts the chapter's central claim that the text chain is not merely a scheduling puzzle and that grief and identity layers must be sorted; this is SOURCE-CONTRADICTORY.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are often the longest and most chapter-shaped option, while distractors are frequently caricatures, so a testwise reader could guess without fully deriving from the prose.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, approachable chapter with a memorable diagnostic frame, clear boundaries, and practical transfer prompts. The prose teaches the core move well: sort facts, feelings, and identity before scripting a hard conversation. It should not ship yet because Example 2 contains a sentence that directly undercuts the lesson, and the quiz is too guessable even though the keyed answers are derivable and fair."
+}
+```

@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 20,
+    "quizzes": 0,
+    "transfer": 15,
+    "practical": 10,
+    "summaries": 0,
+    "tone": 30,
+    "limits": 0,
+    "insight": 20,
+    "density": 25,
+    "beginner": 10
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "These sentences are not decoration. They are load-bearing beams.",
+      "why": "This is the chapter's strongest memorable line and gives the core move a concrete image."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "The hook is scaffold text rather than reader-facing teaching."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "The fast read fails to summarize the chapter in a usable standalone way."
+    },
+    {
+      "quote": "## Quiz\n## Review cards",
+      "why": "The quiz section is empty, so the required assessment is structurally missing."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder/scaffold text and does not introduce a reader-facing problem or promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read is only the placeholder sentence 'A concise idea.' and fails its standalone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read is only the placeholder sentence 'One added angle.' and contains no actual teaching.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section heading is present but the section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section heading is present but the section is empty, leaving no practical action for the reader.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section heading is present but the section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions, so the chapter has a broken assessment.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section heading is present but the section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section heading is present but the section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The only substantive prose names AND/BOTH self-statements but does not define the model or explain when and how to use it.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The chapter is mostly a scaffold with empty required sections and no quiz questions to derive or score. The full read contains one promising idea, that AND/BOTH self-talk can hold conflicting truths without collapsing identity, but it is too isolated to teach the move cold, support transfer, or give a reader anything practical to do."
+}
+```

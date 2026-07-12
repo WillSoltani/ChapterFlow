@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "summary-pack",
+  "chapterId": "the-intelligent-investor-ch20",
+  "hook": {
+    "hook": "A purchase can feel safe and still be dangerous if the price leaves no room for appraisal error, bad luck, or a business result that disappoints.",
+    "counterintuition": "The obvious comfort is to buy what seems strong, familiar, or promising. The safer discipline is to pay less than conservatively appraised value, then use diversification because even well-priced securities can fail.",
+    "sourceAnchorIds": [
+      "ch20.fact.1"
+    ],
+    "counterintuitionSourceAnchorIds": [
+      "ch20.fact.1",
+      "ch20.fact.2",
+      "ch20.fact.4",
+      "ch20.fact.5"
+    ]
+  },
+  "breakdown": {
+    "fastRead": "Margin of safety is the gap between price paid and conservatively appraised value. That gap matters because estimates can be wrong and business outcomes can turn adverse. In bonds, the cushion appears through excess earnings coverage: profits must exceed required payments by a large amount. In stocks, it appears through undervaluation and earning power: business value must sit above market price. Growth still needs a discount because optimistic forecasts can fail even for good businesses. Diversification supports the same idea because a large margin in one security does not remove appraisal error or bad luck.",
+    "deepRead": "Margin of safety turns investing from confidence into allowance. The question is not whether a company feels safe. The question is whether price sits below conservatively appraised value by enough to absorb valuation error and adverse business outcomes. Comfort, reputation, and a low quote are all weaker tests than price versus value.\n\nThe idea changes form across securities. For bonds, safety appears through excess earnings coverage because interest is safer when profits exceed required payments by a large amount. Face value by itself does not create repayment capacity. For stocks, safety appears through undervaluation and earning power because the buyer needs business value above market price. A low stock price is not enough unless it is low relative to value.\n\nGrowth estimates do not escape the rule. A good business can still be overpaid for when optimistic forecasts carry too much of the case. Diversification also remains necessary. Graham-Newman-style diversification supports margin of safety because even well-priced individual securities can suffer unexpected failure. The central habit is to assume analysis can reduce error but cannot remove it, then demand price discipline before committing capital.",
+    "fullRead": "Margin of safety is the difference between price and conservatively appraised value. Its job is simple and severe: create a gap that can absorb valuation error and adverse business outcomes. Safety does not come from buying companies that feel safe, owning a famous security, or choosing a story that sounds reasonable. It comes from paying a protected price relative to value.\n\nThat distinction matters because every estimate can be wrong. Accounting, business conditions, interest rates, and temperament all introduce uncertainty. Careful analysis can narrow the range of error, but it cannot eliminate error. A disciplined buyer therefore does not ask for perfect foresight. The buyer asks for evidence, a conservative appraisal, and a price low enough to leave room for being wrong.\n\nThe bond version of the idea is earnings coverage. Interest is safer when profits exceed required payments by a large amount. A bond's face value is not the source of safety; coverage determines repayment capacity. The stock version is undervaluation backed by earning power. The buyer needs business value above market price. A low stock price alone can be a trap if the business value is also low, impaired, or uncertain.\n\nGrowth requires the same discipline. Optimistic forecasts can fail even for good businesses, so the best growth story still needs a margin of safety. Paying any price for expected growth shifts protection out of the purchase and into the forecast. That is a weaker position because growth is uncertain and can be overpaid for.\n\nDiversification belongs inside the margin-of-safety system rather than outside it. Graham-Newman-style diversification supports the cushion because well-priced individual securities can still suffer unexpected failure. A large margin does not cancel appraisal error or bad luck. It reduces exposure to them, and diversification spreads the remaining risk across more than one commitment.\n\nSpeculation marks the boundary. When profit depends mainly on a higher resale price, no independent value cushion protects the buyer. A favorable outcome does not turn the original operation into investment. The more businesslike standard treats securities as ownership claims bought with a safety allowance. That standard ties satisfactory return to safety because paying a protected price can improve both downside protection and expected return.",
+    "sourceAnchorIds": {
+      "fastRead": [
+        "ch20.fact.1",
+        "ch20.fact.2",
+        "ch20.fact.3",
+        "ch20.fact.4",
+        "ch20.fact.5"
+      ],
+      "deepRead": [
+        "ch20.fact.1",
+        "ch20.fact.2",
+        "ch20.fact.3",
+        "ch20.fact.4",
+        "ch20.fact.5",
+        "ch20.fact.7"
+      ],
+      "fullRead": [
+        "ch20.fact.1",
+        "ch20.fact.2",
+        "ch20.fact.3",
+        "ch20.fact.4",
+        "ch20.fact.5",
+        "ch20.fact.6",
+        "ch20.fact.7",
+        "ch20.fact.8",
+        "ch20.fact.9"
+      ]
+    }
+  },
+  "keyTakeaway": "Safety comes from paying less than conservative value, then respecting the remaining uncertainty with coverage, earning-power evidence, growth skepticism, and diversification.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch20.fact.1",
+    "ch20.fact.2",
+    "ch20.fact.3",
+    "ch20.fact.4",
+    "ch20.fact.5"
+  ],
+  "tryThisNow": "Create one saved template for any purchase idea: conservative value, offered price, source of coverage or earning power, forecast risk, and diversification check.",
+  "tryThisNowSourceAnchorIds": [
+    "ch20.fact.1",
+    "ch20.fact.2",
+    "ch20.fact.3",
+    "ch20.fact.4",
+    "ch20.fact.5"
+  ],
+  "sourceFactIds": [
+    "ch20.fact.1",
+    "ch20.fact.2",
+    "ch20.fact.3",
+    "ch20.fact.4",
+    "ch20.fact.5",
+    "ch20.fact.6",
+    "ch20.fact.7",
+    "ch20.fact.8",
+    "ch20.fact.9"
+  ]
+}

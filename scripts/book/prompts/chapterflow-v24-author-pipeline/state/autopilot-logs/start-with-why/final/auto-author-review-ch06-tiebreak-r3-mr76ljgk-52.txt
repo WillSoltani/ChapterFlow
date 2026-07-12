@@ -1,0 +1,72 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Correct answers are often the only choices that preserve the chapter's exact vocabulary: belief, conduct, trust, loyalty, grounded, venue, Dallas, Houston.",
+      "Several distractors announce themselves with overreach such as prove, any, harmless, or set the year aside.",
+      "The keyed option is often the most specific and complete sentence, especially Q1, Q3, Q7, and Q9."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 82,
+    "transfer": 74,
+    "practical": 82,
+    "summaries": 89,
+    "tone": 84,
+    "limits": 92,
+    "insight": 83,
+    "density": 80,
+    "beginner": 87
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Trust is not the opening move; it is what arrives after belief survives a cost.",
+      "why": "Strongest line: compact, causal, and memorable."
+    },
+    {
+      "quote": "A promise is a receipt waiting to be checked.",
+      "why": "Turns the abstract trust mechanism into a useful mental image."
+    },
+    {
+      "quote": "A paper cup cools beside him.",
+      "why": "Worst smell: decorative detail that does not teach the trust mechanism."
+    },
+    {
+      "quote": "Chain grease smells sharp as he writes the promise that finally came due.",
+      "why": "Sensory filler tries to make a thin invented example feel concrete."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "Several examples use named but thin invented people and scenes instead of concrete before-to-after stakes with a clear decision and consequence; Daniel and Georges especially feel manufactured.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 4",
+      "problem": "The paper-cup detail is pure atmosphere and does not advance the lesson, making the example feel like a template filled with sensory garnish.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "The answer key is sound, but correct choices are often detectable by specificity and by reusing the chapter's exact causal vocabulary while distractors overclaim.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter repeatedly says to name the belief and visible conduct, but rarely gives an actual completed belief-and-conduct pair, which weakens practical transfer.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The Southwest material says employees make trust visible, but the prose does not show a concrete employee behavior with an observed consequence.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong core move: belief first, repeated conduct under pressure, then trust and loyalty. Its best lines are memorable and the quiz keys are mostly fair. I would not ship yet because the transfer layer is thinner than the prose claims: the examples often gesture at decisions without enough concrete consequence, and the chapter keeps asking readers to name belief and conduct without modeling that move fully on the page."
+}
+```

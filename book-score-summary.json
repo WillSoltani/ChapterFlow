@@ -1,0 +1,85 @@
+{
+  "id": "the-culture-code",
+  "title": "The Culture Code",
+  "source": "package",
+  "gate": "FAIL",
+  "gate_split": false,
+  "gate_votes": "0P/3F",
+  "churn": "HIGH",
+  "composite": 71.1,
+  "tier": "solid draft (70-80)",
+  "classification": "D",
+  "classification_label": "D \u2014 not publishable",
+  "classification_reasons": [
+    "gate FAIL"
+  ],
+  "high_quality": false,
+  "factors": {
+    "retention": 72,
+    "quizzes": 74,
+    "transfer": 71,
+    "practical": 74,
+    "summaries": 74,
+    "tone": 61,
+    "limits": 80,
+    "insight": 69,
+    "density": 67,
+    "beginner": 65
+  },
+  "texture": {
+    "scene_skeleton": "HIGH",
+    "repeated_unit": "HIGH",
+    "prop_stamp": "HIGH",
+    "proxy_cast": "HIGH"
+  },
+  "below_75": [
+    "Retention",
+    "Quizzes",
+    "Transfer (lens>tactic)",
+    "Practicalness",
+    "Quality of summaries",
+    "Tone",
+    "Insight & concreteness",
+    "Idea density",
+    "Beginner-friendliness"
+  ],
+  "weak": [],
+  "leakage": {
+    "verdict": "CLEAN",
+    "counts": {
+      "page_cite": 0,
+      "guide_structure": 0,
+      "spec_narration": 0,
+      "machinery_quiz": 0
+    },
+    "opener_saturated": [],
+    "tail_clones": 1,
+    "ngram_clones": 1
+  },
+  "placement": {
+    "rank": 97,
+    "of": 98,
+    "nearest": [
+      "The Year of Less 72.6",
+      "Essentialism 73.5",
+      "Zero to One 74.9"
+    ]
+  },
+  "deterministic": {
+    "flesch": 75.1,
+    "fk": 5.7,
+    "fog": 7.8,
+    "pct3syl": 7.8,
+    "sylword": 1.4,
+    "wps": 11.7,
+    "cov": 0.5,
+    "short_pct": 11.0,
+    "maxlen": 29,
+    "nominal": 1.95,
+    "house_tics_per_ch": 0.25,
+    "distractor_tell": 6.0,
+    "transfer": 94.0,
+    "memorable_clean": 11,
+    "memorable_total": 12
+  }
+}

@@ -1,0 +1,729 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "start-with-why",
+  "chapterId": "start-with-why-ch10",
+  "chapterNumber": 10,
+  "chapterTitle": "Communication Is Not About Speaking, It's About Listening",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch10.source.json",
+  "sourceHash": "sha256:43a32d250fa1b6ab325059d1abda3f72d491f67586d5019385898e69bec6d3c7",
+  "facts": [
+    {
+      "id": "ch10.fact.1",
+      "claim": "Celery test makes symbolic consistency concrete through celery and Oreos.",
+      "mechanism": "Because celery gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Celery test as colorful background.",
+      "whyWrong": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Celery",
+        "Oreos. Because"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.1"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch10.fact.2",
+      "claim": "Harley-Davidson identity adds a second anchor for symbolic consistency with Harley-Davidson and 1903.",
+      "mechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "whyWrong": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "1903"
+      ],
+      "groundedEntities": [
+        "Harley-Davidson",
+        "Since",
+        "One"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.2"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch10.fact.3",
+      "claim": "Apple retail and product signals supplies a third checkable scene using Apple Store and 2001.",
+      "mechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "whyWrong": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2001"
+      ],
+      "groundedEntities": [
+        "Apple",
+        "Apple Store"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.3"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch10.fact.4",
+      "claim": "symbolic consistency depends on the sequence Words before Actions.",
+      "mechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "whyWrong": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Words",
+        "Actions. Because",
+        "Order"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.4"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch10.fact.5",
+      "claim": "Words, Actions, Symbols, Audience listening form the local framework for Communication Is Not About Speaking, It's About Listening.",
+      "mechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "whyWrong": "Shortening removes the distinctions the quiz and examples need to test.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Words",
+        "Actions",
+        "Symbols",
+        "Audience",
+        "Communication Is Not About Speaking",
+        "It's About Listening. Because",
+        "Shortening"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.5"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch10.fact.6",
+      "claim": "rice milk is a hard detail that should stay attached to Celery test.",
+      "mechanism": "Because hard specifics are portable only inside their case, moving rice milk to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "whyWrong": "A true detail becomes misleading when it is attached to the wrong case.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Celery",
+        "Any"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.6"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch10.fact.7",
+      "claim": "Milwaukee gives Harley-Davidson identity a different factual token from Celery test.",
+      "mechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "whyWrong": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Milwaukee",
+        "Harley-Davidson",
+        "Celery",
+        "Since",
+        "All",
+        "Generic"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.7"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch10.fact.8",
+      "claim": "Cupertino helps mark the boundary of symbolic consistency.",
+      "mechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "whyWrong": "The mechanism changes by venue; boundary details keep the application honest.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Cupertino"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.8"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch10.fact.9",
+      "claim": "Communication Is Not About Speaking, It's About Listening should teach symbolic consistency through Celery test, Harley-Davidson identity, and Apple retail and product signals, not through generic leadership advice.",
+      "mechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "whyWrong": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "3"
+      ],
+      "groundedEntities": [
+        "Communication Is Not About Speaking",
+        "It's About Listening",
+        "Celery",
+        "Harley-Davidson",
+        "Apple",
+        "Purpose"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.9"
+      ],
+      "teachingPriority": 3
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch10.ex.celery-test",
+      "label": "Celery test",
+      "summary": "The celery test uses celery, Oreos, rice milk, and M&Ms as a decision filter: purchases communicate identity even before explanation.",
+      "realWorld": false,
+      "naturalSetting": "Celery",
+      "hardSpecifics": [
+        "celery",
+        "Oreos",
+        "rice milk",
+        "M&Ms"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch10.ex.harley-davidson-identity",
+      "label": "Harley-Davidson identity",
+      "summary": "Harley-Davidson began in 1903 in Milwaukee and became a motorcycle identity marker. The case shows customers using a brand as self-expression.",
+      "realWorld": true,
+      "naturalSetting": "Harley-Davidson",
+      "hardSpecifics": [
+        "Harley-Davidson",
+        "1903",
+        "Milwaukee",
+        "motorcycles"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "1903"
+      ]
+    },
+    {
+      "id": "ch10.ex.apple-retail-and-product-signals",
+      "label": "Apple retail and product signals",
+      "summary": "Apple opened Apple Store retail locations in 2001. Apple Store, 2001, Cupertino, and retail stores make communication visible through environment.",
+      "realWorld": true,
+      "naturalSetting": "Apple",
+      "hardSpecifics": [
+        "Apple Store",
+        "2001",
+        "Cupertino",
+        "retail stores"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "2001"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Communication Is Not About Speaking, It's About Listening framework",
+      "members": [
+        "Words",
+        "Actions",
+        "Symbols",
+        "Audience listening"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch10.concept",
+      "kind": "concept",
+      "label": "symbolic consistency",
+      "text": "People read actions, products, hiring, design, and rituals as communication; listening means noticing whether those signals match the belief. A reader learns to make every visible choice a truthful signal rather than treating communication as copywriting.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.ex.celery-test",
+      "kind": "named_example",
+      "label": "Celery test",
+      "text": "The celery test uses celery, Oreos, rice milk, and M&Ms as a decision filter: purchases communicate identity even before explanation. Celery test turns Celery test into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "celery",
+        "Oreos",
+        "rice milk",
+        "M&Ms"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.ex.harley-davidson-identity",
+      "kind": "named_example",
+      "label": "Harley-Davidson identity",
+      "text": "Harley-Davidson began in 1903 in Milwaukee and became a motorcycle identity marker. The case shows customers using a brand as self-expression. Harley-Davidson identity turns Harley-Davidson into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Harley-Davidson",
+        "1903",
+        "Milwaukee",
+        "motorcycles"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.ex.apple-retail-and-product-signals",
+      "kind": "named_example",
+      "label": "Apple retail and product signals",
+      "text": "Apple opened Apple Store retail locations in 2001. Apple Store, 2001, Cupertino, and retail stores make communication visible through environment. Apple retail and product signals turns Apple Inc. into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Apple Store",
+        "2001",
+        "Cupertino",
+        "retail stores"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.1",
+      "kind": "testable_fact",
+      "label": "Celery test makes symbolic consistency concrete through celery and Oreos.",
+      "text": "Celery test makes symbolic consistency concrete through celery and Oreos. Because celery gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan. The safe move is to treat Celery test as colorful background. The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.2",
+      "kind": "testable_fact",
+      "label": "Harley-Davidson identity adds a second anchor for symbolic consistency with Harley-Davidson and 1903.",
+      "text": "Harley-Davidson identity adds a second anchor for symbolic consistency with Harley-Davidson and 1903. Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote. One example is enough to prove the whole model. One example can illustrate; comparison is what exposes the transferable pattern.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.3",
+      "kind": "testable_fact",
+      "label": "Apple retail and product signals supplies a third checkable scene using Apple Store and 2001.",
+      "text": "Apple retail and product signals supplies a third checkable scene using Apple Store and 2001. Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case. A third case should simply repeat the first case's lesson. The third case should test a neighboring misconception, not restamp the same sentence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.4",
+      "kind": "testable_fact",
+      "label": "symbolic consistency depends on the sequence Words before Actions.",
+      "text": "symbolic consistency depends on the sequence Words before Actions. Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone. Order is stylistic, so any sequence works if the message sounds polished. Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.5",
+      "kind": "testable_fact",
+      "label": "Words, Actions, Symbols, Audience listening form the local framework for Communication Is Not About Speaking, It's About Listening.",
+      "text": "Words, Actions, Symbols, Audience listening form the local framework for Communication Is Not About Speaking, It's About Listening. Because each member names a different job, the writer can assign claims to distinct functions rather than blending them. The framework is a slogan and can be shortened to one word. Shortening removes the distinctions the quiz and examples need to test.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.6",
+      "kind": "testable_fact",
+      "label": "rice milk is a hard detail that should stay attached to Celery test.",
+      "text": "rice milk is a hard detail that should stay attached to Celery test. Because hard specifics are portable only inside their case, moving rice milk to another example creates false grounding. Any true detail can be reused wherever it sounds useful. A true detail becomes misleading when it is attached to the wrong case.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.7",
+      "kind": "testable_fact",
+      "label": "Milwaukee gives Harley-Davidson identity a different factual token from Celery test.",
+      "text": "Milwaukee gives Harley-Davidson identity a different factual token from Celery test. Since the factual token is different, comparison can teach contrast rather than repeating a generic success story. All business examples can use the same date-place-scale language. Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.8",
+      "kind": "testable_fact",
+      "label": "Cupertino helps mark the boundary of symbolic consistency.",
+      "text": "Cupertino helps mark the boundary of symbolic consistency. Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case. A useful concept should apply the same way to every named organization. The mechanism changes by venue; boundary details keep the application honest.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.9",
+      "kind": "testable_fact",
+      "label": "Communication Is Not About Speaking, It's About Listening should teach symbolic consistency through Celery test, Harley-Davidson identity, and Apple retail and product signals, not through generic leadership advice.",
+      "text": "Communication Is Not About Speaking, It's About Listening should teach symbolic consistency through Celery test, Harley-Davidson identity, and Apple retail and product signals, not through generic leadership advice. Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes. Purpose language alone is enough to ground a leadership lesson. Purpose language without checkable anchors becomes motivational abstraction.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.framework.communication.is.not.about.speaking.it.s.about.listening.framework",
+      "kind": "framework",
+      "label": "Communication Is Not About Speaking, It's About Listening framework",
+      "text": "Words, Actions, Symbols, Audience listening",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1",
+    "1903",
+    "2001",
+    "3"
+  ],
+  "allowedEntities": [
+    "Communication Is Not About Speaking",
+    "It's About Listening",
+    "People",
+    "Celery",
+    "Harley-Davidson",
+    "Apple",
+    "Words",
+    "Actions",
+    "Symbols",
+    "Audience",
+    "Oreos",
+    "M&Ms",
+    "Milwaukee",
+    "Apple Store",
+    "Cupertino",
+    "Apple Inc",
+    "Walmart",
+    "Keep",
+    "Since",
+    "One",
+    "Order",
+    "Shortening",
+    "Any",
+    "All",
+    "Generic",
+    "Purpose",
+    "Celery test",
+    "Harley-Davidson identity",
+    "Apple retail and product signals"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch10.ex.celery-test",
+      "warning": "Keep examples about Celery test source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch10.ex.harley-davidson-identity",
+      "warning": "Keep examples about Harley-Davidson identity source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch10.ex.apple-retail-and-product-signals",
+      "warning": "Keep examples about Apple retail and product signals source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch10.fact.2"
+}

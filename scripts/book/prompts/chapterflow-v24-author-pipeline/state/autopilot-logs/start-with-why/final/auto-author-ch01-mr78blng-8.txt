@@ -1,0 +1,10 @@
+Updated exactly one file: [start-with-why-ch01.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch01.v21-native.chapter.json).
+
+Validation:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers
+- `quiz-verify`: 9/9 matches, key pattern `1,1,0,2,0,1,2,0,1`
+- Rendered length: 17,230 chars, within target
+- Reader-facing `Detroit` count: 3, below the ceiling
+
+One correction to the line above: the stored quiz pattern is `1,1,0,2,0,1,2,0,2`; all 9 matched that stored key.

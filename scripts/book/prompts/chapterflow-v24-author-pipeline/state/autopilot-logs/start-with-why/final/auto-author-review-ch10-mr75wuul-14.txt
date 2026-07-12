@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["The correct option is often the longest and most chapter-colored choice, especially Q1, Q2, Q4, Q5, Q6, Q7, and Q9.", "Several correct choices echo exact lesson terms such as four jobs, wrong venue, Cupertino, second anchor, and visible environment while distractors lean on obviously weak authority/copying moves."]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 78,
+    "transfer": 72,
+    "practical": 80,
+    "summaries": 86,
+    "tone": 78,
+    "limits": 84,
+    "insight": 82,
+    "density": 76,
+    "beginner": 77
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "What do your actions make the audience hear?",
+      "why": "Strongest compact line: it makes the chapter's listening idea memorable and actionable."
+    },
+    {
+      "quote": "Words state what should be heard. Actions show whether the words have a carrier. Symbols are visible signs that outsiders read.",
+      "why": "Clean mechanism: the chapter separates the sequence in plain terms."
+    },
+    {
+      "quote": "One blue text bubble is the only sign she has so far.",
+      "why": "Weak transfer example: it is thinly grounded and has no concrete consequence yet."
+    },
+    {
+      "quote": "This is a simple ledger: three promises out, one return mark set, no borrowed detail allowed.",
+      "why": "This line shows the abstract vocabulary that may slow beginners."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are frequently the longest and most lesson-coded option, creating answer tells even for readers who skim keywords.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 6: Text Return Scheduled",
+      "problem": "Reads like a slot-filler: no specific relationship context, no place or number beyond a blue text bubble, no before-to-after consequence, and mostly restates the promise-return lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The prose sometimes overuses internal terms like signal, return, venue, ledger, and carrier before fully grounding them for a cold beginner.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples overall",
+      "problem": "Several examples use invented names and lesson-shaped scenarios that feel built to carry the framework rather than observed from realistic decisions with consequences.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong core move: say the promise, let action and symbol carry it, then listen for what comes back. The Celery, Harley-Davidson, and Apple Store sequence gives it memorable anchors, and the summaries are layered well. I would not ship it yet at a professional bar because the quiz has noticeable answer tells and at least one transfer example feels manufactured rather than genuinely transferable. Tighten the weaker example, reduce framework jargon, and make the correct quiz choices less visibly correct."
+}
+```

@@ -1,0 +1,66 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "c", "a", "a", "b", "c", "b"],
+    "keyDisagreements": [],
+    "tells": [
+      "No unique-longest-choice pattern detected.",
+      "Some distractors are easy to eliminate without close reading because they use giveaway phrasing such as 'any familiar product company' or treat source errors as style problems."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 78,
+    "practical": 84,
+    "summaries": 85,
+    "tone": 82,
+    "limits": 90,
+    "insight": 87,
+    "density": 80,
+    "beginner": 84
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Clarity of WHY names the reason people are meant to trust. Discipline of HOW names the standard that should guide conduct. Consistency of WHAT lets the outside world see the same reason again.",
+      "why": "Strongest mechanism statement: it cleanly separates the three jobs and makes the loop memorable."
+    },
+    {
+      "quote": "Use this with care. It does not save a false WHY, and it does not make thin facts strong. When the setting changes, ask for new proof.",
+      "why": "Strong boundary-setting that prevents the chapter from overselling the framework."
+    },
+    {
+      "quote": "Purpose sounded clean, but it never returned through Southwest Airlines as a 1971 low-fare carrier, Herb Kelleher as cofounder, or Apple design consistency in Cupertino with the 1998 iMac.",
+      "why": "Shows the main weakness: the examples keep circling the same source anchors instead of widening transfer."
+    },
+    {
+      "quote": "The return point is set. It has not been met.",
+      "why": "Weak example ending: it diagnoses the miss but does not show a concrete repair or consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "examples",
+      "problem": "The examples are concrete, but most remain inside workshop/draft/training scenes about the same Southwest, Kelleher, and Apple anchors, so transfer beyond the chapter's own teaching material is thinner than it should be.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The scene names a miss but stops before a clear before-to-after repair or consequence, making it feel more like a restatement of the lesson than a worked example.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Several wrong answers are too obviously wrong because they contradict the chapter's plain rule in broad language, reducing diagnostic value.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The proof/return/source-integrity idea is repeated many times with the same three anchors, which slightly lowers density even though the core idea is sound.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against an 80-plus professional bar: the core move is clear, memorable, bounded, and testable, and the quiz keys are sound. The chapter's main limitation is transfer: it teaches the loop well through Southwest, Kelleher, and Apple, but the examples lean heavily on those same anchors and sometimes feel like chapter-production scenarios rather than fresh application contexts. I would ship it, but I would strengthen one or two examples with a real outside setting that shows a decision, a visible consequence, and the proof returning."
+}
+```

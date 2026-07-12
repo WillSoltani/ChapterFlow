@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "radical-candor-ch08",
+  "chapterNumber": 8,
+  "contentHash": "c8bbeb46bd93be2c",
+  "reviewerSessionId": "auto-author-review-ch08-mrdz004b-11",
+  "scores": {
+    "retention": 92,
+    "quizzes": 90,
+    "transfer": 86,
+    "practical": 91,
+    "summaries": 90,
+    "tone": 93,
+    "limits": 88,
+    "insight": 90,
+    "density": 89,
+    "beginner": 91
+  },
+  "composite": 90,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "c",
+      "a",
+      "c",
+      "b",
+      "b",
+      "c",
+      "b",
+      "a"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Who pays when a calendar says yes to every invite? The person who needed the hour to do the task pays first.",
+      "why": "Strongest retention moment: concrete, portable, and tied directly to the core move.",
+      "verified": true
+    },
+    {
+      "quote": "Too few slots blur the job. Too many slots bury it.",
+      "why": "Clean mechanism: it explains the tension instead of only naming the rule.",
+      "verified": true
+    },
+    {
+      "quote": "The open problem remains: which current invite has no job?",
+      "why": "Weakest example moment: Example 1 stays abstract and does not show a specific before-to-after consequence.",
+      "verified": true
+    }
+  ],
+  "tells": [],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "Thin-but-usable example: it restates the Results prompt standard but does not give a concrete person, setting, decision, or before-to-after consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The protected-job list shifts slightly between listening, idea care, debate, choice, execution, and guidance, which makes the taxonomy a little less crisp than the strongest lines suggest.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable. The central move is memorable, practical, and transferable: write the job of a recurring slot, then price its cost against execution. The quiz is fair and derivable, including the why-stem questions, and the answer key names the actual causes shown in the prose. The main weakness is not soundness but richness: one early example is more of a concept recap than a lived scenario, and the job taxonomy wobbles slightly across sections. Neither blocks publication.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "27ecdfab310954d59d0ef3d9338b52336a418c1bcc4b4613c7834aef62b368bb",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T20:40:09.727Z"
+}

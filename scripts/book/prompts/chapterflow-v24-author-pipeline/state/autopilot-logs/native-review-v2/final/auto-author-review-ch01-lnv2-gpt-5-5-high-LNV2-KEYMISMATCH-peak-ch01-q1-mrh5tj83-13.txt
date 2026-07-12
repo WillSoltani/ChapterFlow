@@ -1,0 +1,89 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "c", "b", "b", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The prose says purposeful practice isolates the recurring miss, gets close feedback, and changes the next attempt.",
+      "The repeated redox error needs a narrow drill around the error pattern with each step checked before the next attempt.",
+      "The chapter repeatedly contrasts whole-performance rehearsal with isolating the surviving weak point.",
+      "The plateau/video/crossover case calls for a visible cue, a short rep, immediate video feedback, and repetition before widening.",
+      "Faloon improves because misses identify what the next attempt should change, not because he simply repeats recall.",
+      "The prose requires a visible, correctable target; plain repetition can make the weak spot fluent instead of fixed.",
+      "Feedback matters only when it is close enough to alter the next attempt while the miss is still traceable.",
+      "Plan B creates the chapter's short correction loop: small batch, compare, adjust, repeat.",
+      "A useful target must be seen, counted, compared, or corrected before the next attempt."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Choice a is also defensible because the prose says comfort can leave the weak spot hidden; b is stronger because it names a visible target and the next cut.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Q1: correct choice b is the most detailed and echoes 'change ... before the next attempt.'",
+      "Q2: correct choice a is the only option with a narrow set, checking, and rewriting the failing step.",
+      "Q3: correct choice c closely restates the chapter's whole-task-versus-weak-point contrast.",
+      "Q4: correct choice b is visibly longer and contains the full loop: cue, check, repeat.",
+      "Q5: correct choice b uses the chapter's giveaway phrasing around misses redesigning the next attempt.",
+      "Q7: correct choice c directly echoes 'changes the next attempt' and 'traceable' from the prose/cards.",
+      "Q8: correct choice a explains the feedback timing in chapter language.",
+      "Q9: correct choice c is the only concrete measurable target, making it easy to spot without reading deeply."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 84,
+    "transfer": 88,
+    "practical": 91,
+    "summaries": 90,
+    "tone": 89,
+    "limits": 86,
+    "insight": 90,
+    "density": 87,
+    "beginner": 92
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "A compact, memorable line that captures the chapter's central mechanism."
+    },
+    {
+      "quote": "A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.",
+      "why": "This gives beginners a practical test for whether a practice goal is usable."
+    },
+    {
+      "quote": "The limit is important. Purposeful practice is not the full gold standard of a mature field with expert coaches and proven training systems.",
+      "why": "The chapter honestly bounds the method instead of overselling it."
+    },
+    {
+      "quote": "Which tells Lin more: the whole suite or the one red line?",
+      "why": "This quiz-like phrasing in an example is clear but slightly leading and less natural than the strongest scenes."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "Two answers are defensible: a matches the chapter's comfort/hidden-weak-spot claim, while b adds the stronger visible-target mechanism.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct choices are identifiable by chapter-echo phrasing such as 'change the next attempt,' 'feedback arrives soon enough,' and concrete measurable targets, weakening distractor balance.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The rowing example is usable but thinner than the others because it names no place, role context, or consequence beyond the immediate drill.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, shippable chapter. The core move is memorable, concrete, and repeated across enough domains that a beginner can transfer it: isolate the miss, run a narrow stretch rep, use fast feedback, and change the next attempt. The examples mostly show real before-to-after decisions rather than just restating the lesson, and the chapter is honest about limits. The main weakness is quiz construction: the right answers are fair and derivable, but several are easy to guess because they carry the chapter's exact correction-loop language while distractors are plainly naive."
+}
+```

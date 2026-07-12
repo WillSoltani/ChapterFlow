@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q2 keyed choice is the only option that explicitly lists the chapter's four-job framework.", "Q4 keyed choice uses the chapter's repeated phrase 'wrong home,' making it easier to spot without reasoning through the prose.", "Q8 keyed choice uses the distinctive phrase 'stopping mark,' while the distractors are plainly bad copy/approval moves."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 79,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 86,
+    "limits": 83,
+    "insight": 84,
+    "density": 80,
+    "beginner": 87
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Words give the visible act its job.",
+      "why": "Strongest compression of the chapter's mechanism."
+    },
+    {
+      "quote": "Schedule the proof before the sign travels.",
+      "why": "Memorable, portable action line that a reader could use later."
+    },
+    {
+      "quote": "The hard part is cost. Lionel may have to put back the sweets after he used health words.",
+      "why": "Makes the lesson concrete by attaching it to a real sacrifice."
+    },
+    {
+      "quote": "She sends the time, but the friend has not judged it yet.",
+      "why": "Weakest example endpoint: it withholds the consequence that would prove transfer."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 6: Pickup Proof Pending",
+      "problem": "The example is named and concrete, but it stops before the audience response, so it does not fully show before-to-after consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The keyed answer is sound, but 'wrong home' is such a repeated chapter phrase that it becomes a mild answer tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The keyed answer is sound, but the two distractors are obviously weak authority/copying moves, making the question easier than the learning target.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples section",
+      "problem": "Several examples share the same explanation cadence, especially 'What to do' and 'Why it matters,' which creates some scaffold smell and repetition.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, mostly shippable chapter with a memorable core: words frame the claim, visible behavior carries it, and audience response tells you what was actually heard. The summaries layer well, the quiz keys are sound, and the practical move is low-friction. I would not ship at an 84+ professional bar yet because Example 6 leaves the consequence pending, which weakens the transfer promise in the very section meant to show use beyond the main examples. Tightening that example and making a few quiz distractors less obviously wrong would likely clear the bar."
+}
+```

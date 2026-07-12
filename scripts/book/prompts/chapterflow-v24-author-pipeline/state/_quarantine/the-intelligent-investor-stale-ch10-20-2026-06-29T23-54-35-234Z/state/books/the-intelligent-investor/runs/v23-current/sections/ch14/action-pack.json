@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "action-pack",
+  "chapterId": "the-intelligent-investor-ch14",
+  "tryThisNow": "Take one stock you were tempted to excuse and write one if-then line: If size, balance sheet, or earnings record is missing or weak, then leave it out until source records show the test is met.",
+  "tryThisNowSourceAnchorIds": [
+    "ch14.fact.1",
+    "ch14.fact.2",
+    "ch14.fact.3"
+  ],
+  "implementationPlan": {
+    "title": "Rehearse Defensive Exclusion Before Buying",
+    "titleSourceAnchorIds": [
+      "ch14.fact.1",
+      "ch14.fact.2",
+      "ch14.fact.3"
+    ],
+    "coreSkill": "Turn defensive selection into an exclusion habit. Before letting a growth hope, a good product, or one excellent year carry a decision, check adequate size, strong financial condition, and earnings stability against source records.",
+    "coreSkillSourceAnchorIds": [
+      "ch14.fact.1",
+      "ch14.fact.2",
+      "ch14.fact.3",
+      "ch14.example.1",
+      "ch14.example.2"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch14.fact.1",
+        "sourceAnchorIds": [
+          "ch14.fact.1",
+          "ch14.example.1"
+        ],
+        "context": "kitchen table",
+        "plan": "If small size is being treated as safer because growth might be faster, then check the source record for adequate company size before keeping the stock on the list."
+      },
+      {
+        "sourceAnchorId": "ch14.fact.2",
+        "sourceAnchorIds": [
+          "ch14.fact.2",
+          "ch14.example.2"
+        ],
+        "context": "manager one-on-one",
+        "plan": "If a good product is being used to excuse a weak balance sheet, then require published bond and stock records showing strong financial condition before treating the idea as defensive."
+      },
+      {
+        "sourceAnchorId": "ch14.fact.3",
+        "sourceAnchorIds": [
+          "ch14.fact.3",
+          "ch14.example.3"
+        ],
+        "context": "phone call",
+        "plan": "If one excellent year is carrying the case, then move the stock to a pending list until earnings stability across years is visible in the defensive tests."
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next stock decision, write the three if-then triggers on the same page as the source record: adequate size, strong financial condition, and earnings stability.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch14.fact.1",
+      "ch14.fact.2",
+      "ch14.fact.3",
+      "ch14.example.1",
+      "ch14.example.2",
+      "ch14.example.3"
+    ],
+    "weeklyPractice": "Each Friday, keep an evidence log for one candidate stock. Mark the first failed or missing item among size, financial condition, and earnings stability, then leave the stock out until the record supports that item.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch14.fact.1",
+      "ch14.fact.2",
+      "ch14.fact.3",
+      "ch14.example.1",
+      "ch14.example.2",
+      "ch14.example.3"
+    ]
+  }
+}

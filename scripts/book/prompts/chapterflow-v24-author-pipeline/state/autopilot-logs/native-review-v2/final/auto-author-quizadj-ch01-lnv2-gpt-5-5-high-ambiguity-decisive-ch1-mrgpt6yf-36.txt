@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "4f3ea92bcfd9df7900d89b435fa21185596b3a1605a3b6730ba8c66c61ec2656",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "decisive-ch01-q01",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "WRAP is structurally four matched moves for four decision stages, so b is uniquely supported."
+    },
+    {
+      "itemId": "decisive-ch01-q02",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The approve-or-cancel setup is narrow framing, and adding alternatives before more data is the supported repair."
+    },
+    {
+      "itemId": "decisive-ch01-q03",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Confirmation bias is best countered by seeking evidence that could challenge the favored plan."
+    },
+    {
+      "itemId": "decisive-ch01-q04",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 1,
+      "agreement": false,
+      "keyCorrect": "ambiguous",
+      "rationale": "Both b and c are defensible distance moves: b directly addresses old-service attachment with the new-leader question, while c fits long-term emotional perspective-taking."
+    },
+    {
+      "itemId": "decisive-ch01-q05",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "A wider range of plausible outcomes directly counters overconfidence in a single forecast."
+    },
+    {
+      "itemId": "decisive-ch01-q06",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Steve Cole's logic supports parallel first passes so comparison happens before commitment."
+    },
+    {
+      "itemId": "decisive-ch01-q07",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The outsider question is meant to create distance from legacy attachment, not to outsource technical judgment."
+    },
+    {
+      "itemId": "decisive-ch01-q08",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The four villains affect different decision stages and require distinct interventions, not one final review."
+    },
+    {
+      "itemId": "decisive-ch01-q09",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "WRAP improves decision odds under uncertainty but cannot guarantee a good outcome."
+    }
+  ]
+}
+```

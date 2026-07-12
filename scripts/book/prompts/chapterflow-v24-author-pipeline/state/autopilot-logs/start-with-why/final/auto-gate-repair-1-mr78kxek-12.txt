@@ -1,0 +1,7 @@
+Implemented the content-only repairs in `state/chapters/` for ch01, ch02, ch05, ch09, ch10, ch13, and ch14.
+
+Verification:
+- `gate-chapter` run on every changed chapter: all PASS with 0 blockers.
+- `npx tsx src/cli.ts qc-converge start-with-why`: `DETERMINISTIC-CLEAN — start-with-why (14 chapters)`
+
+No pipeline code/config was edited.

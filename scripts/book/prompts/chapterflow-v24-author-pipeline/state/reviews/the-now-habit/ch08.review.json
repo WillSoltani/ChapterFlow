@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "the-now-habit-ch08",
+  "chapterNumber": 8,
+  "contentHash": "5954684ce6b6c9f1",
+  "reviewerSessionId": "eval-proxy-the-now-habit-ch08-1783022620445",
+  "scores": {
+    "retention": 91,
+    "quizzes": 82,
+    "transfer": 88,
+    "practical": 83,
+    "summaries": 91,
+    "tone": 88,
+    "limits": 90,
+    "insight": 88,
+    "density": 86,
+    "beginner": 89
+  },
+  "composite": 87.5,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "a",
+      "a",
+      "c",
+      "c",
+      "b",
+      "a",
+      "c",
+      "b"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "A missed block is data, not a verdict.",
+      "why": "Strongest compact memory hook; it names the whole move in plain language.",
+      "verified": true
+    },
+    {
+      "quote": "Change the nearest variable before you judge the person.",
+      "why": "Excellent practical principle with transfer beyond the examples.",
+      "verified": true
+    },
+    {
+      "quote": "The next time you feel the pull to dodge a task, teach one person the Tune the Nearest Variable move.",
+      "why": "The immediate practice asks for a socially awkward action instead of the low-friction self-application the chapter teaches.",
+      "verified": true
+    },
+    {
+      "quote": "In one sentence, how do flow conditions (Ch 7) connect to progress tuning?",
+      "why": "The card depends on another chapter, so it is not fully standalone for a blinded reader.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several correct answers reuse chapter signature terms while distractors are visibly crude, especially Q1 'cue or constraint', Q6 'clear reward to a real completed action', and Q9 'task size, timing, reward, or distraction cue'.",
+    "Q5 and Q8 have correct answers that are noticeably fuller and more chapter-sounding than the distractors."
+  ],
+  "complaints": [
+    {
+      "unit": "Try this now",
+      "problem": "The exercise asks the reader to teach another person when they feel the pull to dodge a task. That is less practical than having the reader apply the cue tally to their own next missed start.",
+      "mustFix": true
+    },
+    {
+      "unit": "review card 5",
+      "problem": "It references Ch 7 and 'flow conditions' without enough local context, so the card is not standalone for a reader encountering this chapter cold.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Some correct options are telegraphed by chapter-specific phrasing while distractors are obviously punitive or avoidant, reducing diagnostic value.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples overall",
+      "problem": "The named characters and study callbacks are useful, but there are enough of them that the chapter can feel a little staged rather than lived-in.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a memorable central move: treat a missed block as evidence and tune one nearby variable. The summaries are layered well, the mechanism is clear, and the limits section prevents the advice from becoming either shame or a shrug. I would not ship it yet against an 84 professional bar because the quiz has visible answer tells and the immediate practice is oddly social and high-friction compared with the chapter’s own low-friction method. Fix those two items and it would likely clear the bar."
+}

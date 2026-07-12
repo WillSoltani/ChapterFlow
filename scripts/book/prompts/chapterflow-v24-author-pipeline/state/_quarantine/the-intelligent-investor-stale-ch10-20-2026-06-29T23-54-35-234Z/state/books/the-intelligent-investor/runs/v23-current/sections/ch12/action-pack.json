@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "action-pack",
+  "chapterId": "the-intelligent-investor-ch12",
+  "tryThisNow": "Save one EPS request template: Show the footnotes, adjustments, multi-year average, and any special charges that should stay in earnings.",
+  "tryThisNowSourceAnchorIds": [
+    "ch12.fact.1",
+    "ch12.fact.2",
+    "ch12.fact.3"
+  ],
+  "implementationPlan": {
+    "title": "Request Evidence Behind Headline EPS",
+    "titleSourceAnchorIds": [
+      "ch12.fact.1",
+      "ch12.fact.2",
+      "ch12.fact.3"
+    ],
+    "coreSkill": "Use one saved request before relying on headline EPS. The skill is to make the decision surface show footnotes and adjustments, compare earnings across years, and judge special charges instead of excluding them by default.",
+    "coreSkillSourceAnchorIds": [
+      "ch12.fact.1",
+      "ch12.fact.2",
+      "ch12.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch12.fact.1",
+        "sourceAnchorIds": [
+          "ch12.fact.1"
+        ],
+        "context": "banking dashboard",
+        "plan": "If headline EPS is the only number visible, then paste the saved request for footnotes and adjustments before treating EPS as usable evidence."
+      },
+      {
+        "sourceAnchorId": "ch12.fact.2",
+        "sourceAnchorIds": [
+          "ch12.fact.2"
+        ],
+        "context": "kitchen table",
+        "plan": "If the recent result is dominating the decision, then ask for earnings averaged across years before using recent EPS as earning power."
+      },
+      {
+        "sourceAnchorId": "ch12.fact.3",
+        "sourceAnchorIds": [
+          "ch12.fact.3"
+        ],
+        "context": "clinic handoff",
+        "plan": "If a special charge is being removed automatically, then ask whether similar charges recur and keep the charge in view until the reason is clear."
+      }
+    ],
+    "twentyFourHourChallenge": "Before relying on any headline EPS, save the request template where it can be pasted into the next earnings check.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch12.fact.1",
+      "ch12.fact.2",
+      "ch12.fact.3"
+    ],
+    "weeklyPractice": "Once a week, use the saved template on one EPS decision and leave the decision pending until footnotes, adjustments, averaged earnings, and special-charge judgment are present.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch12.fact.1",
+      "ch12.fact.2",
+      "ch12.fact.3"
+    ]
+  }
+}

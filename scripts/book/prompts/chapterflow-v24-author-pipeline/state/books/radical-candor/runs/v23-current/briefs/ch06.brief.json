@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "radical-candor-ch06",
+  "chapterNumber": 6,
+  "title": "Guidance",
+  "coreMove": "Because each member guards a different delivery risk, the checklist keeps directness from becoming careless.",
+  "thesis": "HHIPP contains six members: Humble, Helpful, Immediate, In Person, Private, and not Personalized.",
+  "readerPromise": "After this chapter, a reader can because each member guards a different delivery risk, the checklist keeps directness from becoming careless.",
+  "ownedCases": [
+    {
+      "id": "ch06.ex.hhipp-feedback",
+      "label": "HHIPP feedback checklist"
+    },
+    {
+      "id": "ch06.ex.sbi-ccl",
+      "label": "Center for Creative Leadership SBI"
+    },
+    {
+      "id": "ch06.ex.core-framework",
+      "label": "CORE feedback framework"
+    }
+  ],
+  "notYours": [
+    "1:1 meeting practice",
+    "Aristotle persuasion triad",
+    "Bob at Juice Software",
+    "Bonus performance review unit",
+    "CORE and SBI review evidence",
+    "Care Personally plus Challenge Directly compass",
+    "GSD Wheel",
+    "Growth Management",
+    "Kim Scott at Google and Apple",
+    "Life Story, Dreams, Eighteen-Month Plan",
+    "Meeting creep",
+    "Order of Operations feedback sequence",
+    "Order of Operations in Relationships",
+    "Radical Candor LLC training context",
+    "Relationships discussion prompts",
+    "Results discussion prompts",
+    "Rock Star Mode",
+    "Russ Laraway Career Conversations",
+    "Sheryl Sandberg at Google",
+    "Sheryl Sandberg direct feedback"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    1,
+    2,
+    2,
+    0,
+    1,
+    1,
+    0,
+    0,
+    2
+  ],
+  "avoid": [
+    "opener (ch01): \"Kim Scott's Google AdSense and Apple executive record\"",
+    "opener (ch02): \"What would you ask before copying Sandberg's directness?\"",
+    "opener (ch03): \"The phone reminder glowed after the transfer failed.\"",
+    "opener (ch05): \"After the Friday handoff on the support floor,\"",
+    "opener (ch07): \"Analyst Spencer had already left the staffing huddle\"",
+    "opener (ch08): \"The Results discussion prompts state the standard before\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a shared grocery list",
+    "venue: a walk around the block",
+    "venue: a morning routine",
+    "frame: two stakeholders disagree about ch pp before deciding",
+    "frame: a small ceremony that marks a transition so it feels earned"
+  ],
+  "architectureFamily": "direct-conceptual",
+  "openerType": "tension-thesis",
+  "challengeFrame": "script-one-sentence",
+  "practiceShape": "say-aloud-script",
+  "exampleLenses": [
+    "walkthrough",
+    "counterfactual",
+    "outsider-witness"
+  ],
+  "practiceVerb": "cross-out",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "since",
+    "team",
+    "guide",
+    "rather",
+    "official",
+    "assuming"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "at-the-demand",
+      "outcome": "failure",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "still-open",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "averted-late",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "say-aloud-script",
+    "measure-one-number",
+    "single-imperative",
+    "if-then-trigger"
+  ],
+  "quizStemShapes": [
+    "cold-diagnosis",
+    "choose-next-move",
+    "predict-consequence",
+    "spot-the-violation"
+  ],
+  "quizFailureModes": [
+    "wrong-timing",
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure"
+  ],
+  "questionFactOrder": [
+    2,
+    4,
+    1,
+    6,
+    8,
+    5,
+    9,
+    7,
+    3
+  ],
+  "memorableShapes": [
+    "imperative",
+    "reversal",
+    "redefinition"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "motion-speak",
+    "ledger-speak"
+  ],
+  "shellRegister": "artifact-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Center for Creative Leadership SBI"
+  },
+  "adjacentJobs": {
+    "prev": "Because the tools section begins with trust, later feedback methods are built on relationship capacity.",
+    "next": "Because the tool has a named designer and page span, it should be taught as a specific sequence."
+  }
+}

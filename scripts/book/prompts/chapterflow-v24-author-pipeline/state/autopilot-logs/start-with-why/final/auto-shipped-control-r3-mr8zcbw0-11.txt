@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "FAIL",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["a", "b", "c", "a", "b", "c", "a", "a", "c"],
+      "keyDisagreements": ["Q8: I derive 'a' from the prose; the key says 'b', but the chapter teaches that copied practices fail when the receiving system keeps a different starting belief."]
+    },
+    "2": {
+      "answers": ["b", "c", "a", "b", "c", "a", "b", "c", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["c", "b", "a", "c", "b", "a", "c", "b", "a"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "a", "c", "b", "a", "b", "c", "b", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 68,
+    "transfer": 82,
+    "practical": 70,
+    "summaries": 77,
+    "tone": 61,
+    "limits": 73,
+    "insight": 69,
+    "density": 58,
+    "beginner": 78
+  },
+  "quotes": [
+    {
+      "quote": "A bought response is not the same as a chosen return.",
+      "why": "Strong, compact retention line that carries the chapter's distinction."
+    },
+    {
+      "quote": "Reliability says the job was done; trust says the people are safe with you.",
+      "why": "Memorable and portable; it turns the abstract trust concept into a clear lens."
+    },
+    {
+      "quote": "A strong product can still be the wrong proof.",
+      "why": "Sharp summary of the fuzzy-WHY chapter's core transfer principle."
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Template/scaffold artifact leaks into every implementation plan."
+    },
+    {
+      "quote": "An American assembly lesson reframes a Friday release report shows the same defect escaping through final QA for the third sprint.",
+      "why": "Corrupted prose; the sentence is grammatically broken and reads like fused template output."
+    },
+    {
+      "quote": "CHAPTER 1 Q8: b",
+      "why": "The key marks an unsupported answer; the chapter's own logic supports option a."
+    }
+  ],
+  "oneParagraphVerdict": "The sample has a clear teaching architecture and several strong portable lines, but it fails the correctness gate because Chapter 1 Q8 is keyed to an answer the prose does not support and because visible scaffold/corruption artifacts leak into reader-facing material. Across chapters, the repeated structure, repeated rhetorical moves, repeated 'There is a limit' pattern, repeated scene skeletons, and repeated 'Title: undefined' implementation plans create high churn. The book is useful as a solid draft with real lenses, but it is not publishable in this form."
+}
+```

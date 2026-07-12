@@ -1,0 +1,171 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "radical-candor-ch01",
+  "chapterNumber": 1,
+  "title": "Build Radically Candid Relationships",
+  "coreMove": "Because whole-person concern lowers defensiveness, direct guidance is more likely to be heard as help.",
+  "thesis": "Care Personally is documented at Ch. 1 pp. 12-13 as the whole-person side of the trust model.",
+  "readerPromise": "After this chapter, a reader can because whole-person concern lowers defensiveness, direct guidance is more likely to be heard as help.",
+  "ownedCases": [
+    {
+      "id": "ch01.ex.kim-scott-google-apple",
+      "label": "Kim Scott at Google and Apple"
+    },
+    {
+      "id": "ch01.ex.sheryl-sandberg-google",
+      "label": "Sheryl Sandberg at Google"
+    },
+    {
+      "id": "ch01.ex.care-challenge-compass",
+      "label": "Care Personally plus Challenge Directly compass"
+    }
+  ],
+  "notYours": [
+    "1:1 meeting practice",
+    "Aristotle persuasion triad",
+    "Bob at Juice Software",
+    "Bonus performance review unit",
+    "CORE and SBI review evidence",
+    "CORE feedback framework",
+    "Center for Creative Leadership SBI",
+    "GSD Wheel",
+    "Growth Management",
+    "HHIPP feedback checklist",
+    "Life Story, Dreams, Eighteen-Month Plan",
+    "Meeting creep",
+    "Order of Operations feedback sequence",
+    "Order of Operations in Relationships",
+    "Radical Candor LLC training context",
+    "Relationships discussion prompts",
+    "Results discussion prompts",
+    "Rock Star Mode",
+    "Russ Laraway Career Conversations",
+    "Sheryl Sandberg direct feedback"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    1,
+    1,
+    0,
+    2,
+    0,
+    1,
+    2,
+    0,
+    2
+  ],
+  "avoid": [
+    "opener (ch02): \"What would you ask before copying Sandberg's directness?\"",
+    "opener (ch03): \"The phone reminder glowed after the transfer failed.\"",
+    "opener (ch05): \"After the Friday handoff on the support floor,\"",
+    "opener (ch06): \"In the draft, HHIPP states the standard first:\"",
+    "opener (ch07): \"Analyst Spencer had already left the staffing huddle\"",
+    "opener (ch08): \"The Results discussion prompts state the standard before\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a doorway conversation",
+    "venue: a shared photo album",
+    "venue: a bulletin board note",
+    "frame: a first attempt at build trust that gets corrected",
+    "frame: a first encounter with build trust that sets a benchmark"
+  ],
+  "architectureFamily": "research-lead",
+  "openerType": "tension-thesis",
+  "challengeFrame": "teach-it-to-someone",
+  "practiceShape": "measure-one-number",
+  "exampleLenses": [
+    "counterfactual",
+    "outsider-witness",
+    "numbers-detective"
+  ],
+  "practiceVerb": "count",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "since",
+    "team",
+    "guide",
+    "rather",
+    "official",
+    "assuming"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "averted-late",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "partial",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "measure-one-number",
+    "single-imperative",
+    "if-then-trigger",
+    "two-step-sequence"
+  ],
+  "quizStemShapes": [
+    "choose-next-move",
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why"
+  ],
+  "quizFailureModes": [
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger"
+  ],
+  "questionFactOrder": [
+    9,
+    2,
+    5,
+    8,
+    1,
+    6,
+    3,
+    4,
+    7
+  ],
+  "memorableShapes": [
+    "imperative",
+    "reversal",
+    "redefinition"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "mechanism-speak",
+    "people-speak"
+  ],
+  "shellRegister": "cost-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Kim Scott at Google and Apple"
+  },
+  "adjacentJobs": {
+    "next": "Because short-term comfort can hide needed information, the employee loses a chance to improve."
+  }
+}

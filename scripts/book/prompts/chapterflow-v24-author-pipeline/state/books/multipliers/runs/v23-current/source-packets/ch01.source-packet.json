@@ -1,0 +1,719 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "multipliers",
+  "chapterId": "multipliers-ch01",
+  "chapterNumber": 1,
+  "chapterTitle": "The Multiplier Effect",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/multipliers/20260709T020631645Z-b8e7894b-2287-4faf-9ef6-e4da421b5316/sidecars/source/ch01.source.json",
+  "sourceHash": "sha256:1d79ba4c183a0994dd52639b8549f5d95a5e97c67565dc3f17c85d85972b9306",
+  "facts": [
+    {
+      "id": "ch01.fact.1",
+      "claim": "HarperCollins lists the revised Multipliers edition with an on-sale date of May 16, 2017.",
+      "mechanism": "Because edition date controls which added material is included, the May 16, 2017 listing separates the revised source from the 2010 original.",
+      "commonError": "Treating every Multipliers edition as identical.",
+      "whyWrong": "The revised edition adds material that the original release did not include, so edition matters.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "16",
+        "2010",
+        "2017"
+      ],
+      "groundedEntities": [
+        "HarperCollins",
+        "Multipliers",
+        "May",
+        "Treating"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch01.fact.2",
+      "claim": "The revised edition describes data from more than 150 leaders.",
+      "mechanism": "Because the model is presented as a research-backed leadership pattern, the 150-plus-leader base matters more than a single anecdote.",
+      "commonError": "Assuming the framework comes from one memorable executive story.",
+      "whyWrong": "The publisher describes a broader research base, not one isolated biography.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "150"
+      ],
+      "groundedEntities": [
+        "Assuming"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch01.fact.3",
+      "claim": "The central contrast is between Diminishers who drain intelligence and Multipliers who amplify it.",
+      "mechanism": "Because leader behavior changes whether other people contribute ideas, the contrast is about usable group intelligence rather than politeness.",
+      "commonError": "Reducing the contrast to mean boss versus nice boss.",
+      "whyWrong": "A pleasant leader can still diminish if the team's thinking is not needed or used.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Diminishers",
+        "Multipliers",
+        "Reducing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.3"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch01.fact.4",
+      "claim": "The five Multiplier disciplines are presented as learnable skills and practices.",
+      "mechanism": "Because learnability makes the model actionable, a leader can improve by changing routines rather than waiting for personality change.",
+      "commonError": "Believing only naturally charismatic leaders can multiply others.",
+      "whyWrong": "The publisher explicitly frames the disciplines as practices people can learn.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "5"
+      ],
+      "groundedEntities": [
+        "Multiplier",
+        "Believing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.4"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch01.fact.5",
+      "claim": "The HBR article appeared in the May 2010 issue under both Liz Wiseman and Greg McKeown.",
+      "mechanism": "Because the public article predates the 2017 revision, it verifies the original leadership contrast behind the later edition.",
+      "commonError": "Assuming the revised edition invented the Diminisher and Multiplier distinction.",
+      "whyWrong": "The distinction was already public in the May 2010 HBR article.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2010",
+        "2017"
+      ],
+      "groundedEntities": [
+        "The HBR",
+        "May",
+        "Liz Wiseman",
+        "Greg McKeown. Because",
+        "Assuming",
+        "Diminisher",
+        "Multiplier",
+        "HBR"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.5"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch01.fact.6",
+      "claim": "The original release is cataloged as a June 15, 2010 HarperCollins title with ISBN 9780061964398.",
+      "mechanism": "Because original bibliographic data prevents mixing the revised edition with the first publication record.",
+      "commonError": "Using the 2010 ISBN as if it proves the 2017 revised contents.",
+      "whyWrong": "The 2010 ISBN identifies the original edition, not the added revised material.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "15",
+        "2010",
+        "2017",
+        "9780061964398"
+      ],
+      "groundedEntities": [
+        "June",
+        "HarperCollins",
+        "ISBN",
+        "Using"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.6"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch01.fact.7",
+      "claim": "The productivity claim is doing more with fewer resources by using the intelligence already around the leader.",
+      "mechanism": "Because unused capability is a resource already paid for, better leadership can raise output without adding headcount first.",
+      "commonError": "Thinking Multipliers are mainly about employee happiness.",
+      "whyWrong": "Engagement matters, but the model is also an operating claim about capability and results.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Thinking Multipliers",
+        "Engagement"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.7"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch01.fact.8",
+      "claim": "A Diminisher can be highly intelligent and still lower the team's total intelligence in use.",
+      "mechanism": "Because over-centering one person's answers can stop others from contributing judgment, individual brilliance can reduce collective contribution.",
+      "commonError": "Assuming the smartest person automatically makes the smartest team.",
+      "whyWrong": "Team intelligence depends on participation and ownership, not just the leader's IQ.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "A Diminisher",
+        "Assuming",
+        "Team"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.8"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch01.fact.9",
+      "claim": "A Multiplier effect is measured by behavior around the leader, not by the leader's self-image.",
+      "mechanism": "Because the relevant evidence is whether other people think harder and own more work after interaction with the leader.",
+      "commonError": "Calling oneself empowering while still making every key decision alone.",
+      "whyWrong": "Self-description does not prove amplification; observable team contribution does.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "A Multiplier",
+        "Calling",
+        "Self-description"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch01.ex.harper-revised-edition",
+      "label": "HarperCollins revised edition",
+      "summary": "HarperCollins lists May 16, 2017 for the revised edition and describes research data from more than 150 leaders. The same publisher record names five disciplines that distinguish Multipliers from Diminishers.",
+      "realWorld": true,
+      "naturalSetting": "HarperCollins",
+      "hardSpecifics": [
+        "May 16, 2017",
+        "more than 150 leaders",
+        "five disciplines"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "May 16, 2017"
+      ]
+    },
+    {
+      "id": "ch01.ex.hbr-article",
+      "label": "Harvard Business Review article",
+      "summary": "Harvard Business Review published a May 2010 article by Liz Wiseman and Greg McKeown about managers who shut down the intelligence of others and managers who draw it out. The article supplies the public management-journal version of the leadership contrast.",
+      "realWorld": true,
+      "naturalSetting": "Harvard Business Review",
+      "hardSpecifics": [
+        "May 2010",
+        "Liz Wiseman",
+        "Greg McKeown"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "May 2010"
+      ]
+    },
+    {
+      "id": "ch01.ex.wikipedia-bibliography",
+      "label": "Original HarperBusiness release",
+      "summary": "The original release is publicly cataloged as a June 15, 2010 HarperCollins leadership title with ISBN 9780061964398. That bibliographic record separates the original coauthored release from the later revised edition.",
+      "realWorld": true,
+      "naturalSetting": "Original HarperBusiness",
+      "hardSpecifics": [
+        "June 15, 2010",
+        "HarperCollins",
+        "ISBN 9780061964398"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "June 15, 2010"
+      ]
+    }
+  ],
+  "frameworks": [],
+  "allowedAnchors": [
+    {
+      "id": "ch01.concept",
+      "kind": "concept",
+      "label": "Multiplier effect",
+      "text": "A leader creates a multiplier effect when people around the leader contribute more judgment, initiative, and learning than they normally would under tighter control. The effect is behavioral: questions, challenge, debate, and ownership change how much talent becomes productive work. Internalizing the effect shifts a manager away from being the main source of answers. The practical goal becomes raising the intelligence available in the room, not proving individual superiority.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.ex.harper-revised-edition",
+      "kind": "named_example",
+      "label": "HarperCollins revised edition",
+      "text": "HarperCollins lists May 16, 2017 for the revised edition and describes research data from more than 150 leaders. The same publisher record names five disciplines that distinguish Multipliers from Diminishers. Publication metadata fixes the edition, research scale, and discipline count before any teaching starts.",
+      "hardSpecifics": [
+        "May 16, 2017",
+        "more than 150 leaders",
+        "five disciplines"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.ex.hbr-article",
+      "kind": "named_example",
+      "label": "Harvard Business Review article",
+      "text": "Harvard Business Review published a May 2010 article by Liz Wiseman and Greg McKeown about managers who shut down the intelligence of others and managers who draw it out. The article supplies the public management-journal version of the leadership contrast. A concise public article verifies the central Diminisher versus Multiplier contrast.",
+      "hardSpecifics": [
+        "May 2010",
+        "Liz Wiseman",
+        "Greg McKeown"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.ex.wikipedia-bibliography",
+      "kind": "named_example",
+      "label": "Original HarperBusiness release",
+      "text": "The original release is publicly cataloged as a June 15, 2010 HarperCollins leadership title with ISBN 9780061964398. That bibliographic record separates the original coauthored release from the later revised edition. Bibliographic dates prevent edition drift when the revised framework is taught.",
+      "hardSpecifics": [
+        "June 15, 2010",
+        "HarperCollins",
+        "ISBN 9780061964398"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.1",
+      "kind": "testable_fact",
+      "label": "HarperCollins lists the revised Multipliers edition with an on-sale date of May 16, 2017.",
+      "text": "HarperCollins lists the revised Multipliers edition with an on-sale date of May 16, 2017. Because edition date controls which added material is included, the May 16, 2017 listing separates the revised source from the 2010 original. Treating every Multipliers edition as identical. The revised edition adds material that the original release did not include, so edition matters.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.2",
+      "kind": "testable_fact",
+      "label": "The revised edition describes data from more than 150 leaders.",
+      "text": "The revised edition describes data from more than 150 leaders. Because the model is presented as a research-backed leadership pattern, the 150-plus-leader base matters more than a single anecdote. Assuming the framework comes from one memorable executive story. The publisher describes a broader research base, not one isolated biography.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.3",
+      "kind": "testable_fact",
+      "label": "The central contrast is between Diminishers who drain intelligence and Multipliers who amplify it.",
+      "text": "The central contrast is between Diminishers who drain intelligence and Multipliers who amplify it. Because leader behavior changes whether other people contribute ideas, the contrast is about usable group intelligence rather than politeness. Reducing the contrast to mean boss versus nice boss. A pleasant leader can still diminish if the team's thinking is not needed or used.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.4",
+      "kind": "testable_fact",
+      "label": "The five Multiplier disciplines are presented as learnable skills and practices.",
+      "text": "The five Multiplier disciplines are presented as learnable skills and practices. Because learnability makes the model actionable, a leader can improve by changing routines rather than waiting for personality change. Believing only naturally charismatic leaders can multiply others. The publisher explicitly frames the disciplines as practices people can learn.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.5",
+      "kind": "testable_fact",
+      "label": "The HBR article appeared in the May 2010 issue under both Liz Wiseman and Greg McKeown.",
+      "text": "The HBR article appeared in the May 2010 issue under both Liz Wiseman and Greg McKeown. Because the public article predates the 2017 revision, it verifies the original leadership contrast behind the later edition. Assuming the revised edition invented the Diminisher and Multiplier distinction. The distinction was already public in the May 2010 HBR article.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.6",
+      "kind": "testable_fact",
+      "label": "The original release is cataloged as a June 15, 2010 HarperCollins title with ISBN 9780061964398.",
+      "text": "The original release is cataloged as a June 15, 2010 HarperCollins title with ISBN 9780061964398. Because original bibliographic data prevents mixing the revised edition with the first publication record. Using the 2010 ISBN as if it proves the 2017 revised contents. The 2010 ISBN identifies the original edition, not the added revised material.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.7",
+      "kind": "testable_fact",
+      "label": "The productivity claim is doing more with fewer resources by using the intelligence already around the leader.",
+      "text": "The productivity claim is doing more with fewer resources by using the intelligence already around the leader. Because unused capability is a resource already paid for, better leadership can raise output without adding headcount first. Thinking Multipliers are mainly about employee happiness. Engagement matters, but the model is also an operating claim about capability and results.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.8",
+      "kind": "testable_fact",
+      "label": "A Diminisher can be highly intelligent and still lower the team's total intelligence in use.",
+      "text": "A Diminisher can be highly intelligent and still lower the team's total intelligence in use. Because over-centering one person's answers can stop others from contributing judgment, individual brilliance can reduce collective contribution. Assuming the smartest person automatically makes the smartest team. Team intelligence depends on participation and ownership, not just the leader's IQ.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.9",
+      "kind": "testable_fact",
+      "label": "A Multiplier effect is measured by behavior around the leader, not by the leader's self-image.",
+      "text": "A Multiplier effect is measured by behavior around the leader, not by the leader's self-image. Because the relevant evidence is whether other people think harder and own more work after interaction with the leader. Calling oneself empowering while still making every key decision alone. Self-description does not prove amplification; observable team contribution does.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "16",
+    "2010",
+    "2017",
+    "1",
+    "150",
+    "5",
+    "15",
+    "9780061964398"
+  ],
+  "allowedEntities": [
+    "The Multiplier Effect",
+    "Leadership",
+    "A Multiplier",
+    "Diminisher",
+    "Multiplier",
+    "Internalizing",
+    "Multipliers",
+    "Diminishers",
+    "HarperCollins",
+    "May",
+    "Publication",
+    "Harvard Business Review",
+    "Liz Wiseman",
+    "Greg McKeown",
+    "Original HarperBusiness",
+    "June",
+    "ISBN",
+    "Bibliographic",
+    "Talent Magnet",
+    "Debate Maker",
+    "One",
+    "The HarperCollins",
+    "The May",
+    "Keep",
+    "Treating",
+    "Assuming",
+    "Reducing",
+    "Believing",
+    "The HBR",
+    "HBR",
+    "Using",
+    "Thinking Multipliers",
+    "Engagement",
+    "A Diminisher",
+    "Team",
+    "Calling",
+    "Self-description",
+    "HarperCollins revised edition",
+    "Harvard Business Review article",
+    "Original HarperBusiness release"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch01.ex.harper-revised-edition",
+      "warning": "Keep examples about HarperCollins revised edition source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch01.ex.hbr-article",
+      "warning": "Keep examples about Harvard Business Review article source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch01.ex.wikipedia-bibliography",
+      "warning": "Keep examples about Original HarperBusiness release source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch01.fact.1"
+}

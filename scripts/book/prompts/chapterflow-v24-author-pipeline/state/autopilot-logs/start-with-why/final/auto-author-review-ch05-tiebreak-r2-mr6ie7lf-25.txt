@@ -1,0 +1,75 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "c", "a", "a", "b", "c", "b"],
+    "keyDisagreements": [
+      "Q2: I selected b, but the WHY/cause is under-supported. The prose shows Kelleher should create people-side contrast through cofounder/choices/hiring; it does not clearly establish 'same date-place-scale mold' as the cause.",
+      "Q6: I selected a by elimination, but the key's rationale is weak. The chapter's stronger transfer rule says a second example should work in another setting, while Kelleher remains inside the Southwest cluster."
+    ],
+    "tells": [
+      "Q4: the correct answer closely echoes the stem's 'same move fits every named organization,' making the overreach easy to spot.",
+      "Q8: the correct answer repeats the chapter's hard-detail rule almost verbatim, while the distractors are obviously permissive.",
+      "Several wrong answers are exaggerated straw options, such as letting one story carry the whole lesson or saying true details improve any example."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 78,
+    "transfer": 84,
+    "practical": 85,
+    "summaries": 88,
+    "tone": 82,
+    "limits": 90,
+    "insight": 86,
+    "density": 81,
+    "beginner": 84
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The slogan does not explain the behavior; the behavior earns the slogan.",
+      "why": "Strongest line: it makes the chapter's mechanism memorable and testable."
+    },
+    {
+      "quote": "Keep the hard detail with the source that earned it.",
+      "why": "Strong practical rule for avoiding false proof."
+    },
+    {
+      "quote": "It used the same date-place-scale mold for Kelleher instead of letting cofounder create contrast.",
+      "why": "Worst quiz defect: this cause is not clearly prepared in the prose."
+    },
+    {
+      "quote": "Dallas belongs with Southwest Airlines. Kelleher's cofounder role belongs with him. Cupertino belongs with Apple design consistency.",
+      "why": "Useful distinction, but the register briefly feels like source-fact bookkeeping."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "The keyed cause, 'same date-place-scale mold,' is not clearly shown in the chapter as the earlier choice that made Kelleher sound repetitive. The prose supports using cofounder/person-side contrast, but not that exact causal diagnosis.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "The key says bringing in Herb Kelleher makes the pattern less one-off, but Kelleher is still tied to Southwest. The chapter's own transfer logic points more cleanly to Apple or another setting.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "Some source-fact handling is so explicit that it starts to feel like scaffold management rather than finished teaching prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Several distractors are too obviously wrong, which lowers quiz diagnostic value even when the keyed answer is sound.",
+      "mustFix": false
+    },
+    {
+      "unit": "density",
+      "problem": "The WHY/HOW/WHAT loop is repeated in similar language across fast read, deep read, full read, takeaway, cards, and implementation plan; some repetition helps retention, but the chapter starts to pad the same move.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a memorable core move: belief becomes credible only when behavior repeatedly returns as proof. The best lines are concrete, the examples mostly do separate jobs, and the limits section is unusually honest. I would not ship yet because two quiz items have cause/key soundness issues, especially Q2, and the prose occasionally exposes its source-fact scaffolding. Fix the quiz causality and trim some repeated framework language, and it likely clears the professional bar."
+}
+```

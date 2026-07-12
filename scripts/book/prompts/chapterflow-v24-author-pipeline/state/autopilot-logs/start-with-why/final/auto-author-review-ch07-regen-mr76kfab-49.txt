@@ -1,0 +1,57 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several correct choices are the only ones that keep a named hard anchor with its source, while distractors visibly move facts to the wrong source.",
+      "Wrong choices often contain giveaway overclaims such as 'replace the need,' 'everyone is ready now,' or 'every product example,' making them rejectable without close reading."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 78,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 90,
+    "insight": 86,
+    "density": 82,
+    "beginner": 84
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Every broad push sent too soon spends proof the early believers have not earned yet.",
+      "why": "Strong, memorable statement of the chapter's core mechanism."
+    },
+    {
+      "quote": "Early love can be real and still not cross over.",
+      "why": "Clear limit that prevents the lesson from overselling early adoption."
+    },
+    {
+      "quote": "In Keith's launch, interest comes from people who move before safety is clear, not from the middle, and no one has named that early signal yet.",
+      "why": "One example leans abstract and internally generated, with a thinner concrete before-to-after than the best examples."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "Some transfer examples, especially Keith/Janelle/Noel variants, feel like invented workplace shells around the lesson rather than independently vivid situations with concrete stakes.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz tells",
+      "problem": "Distractors are often easy to eliminate because they obviously misplace facts or overclaim majority proof, so a reader can sometimes answer by test-taking logic.",
+      "mustFix": false
+    },
+    {
+      "unit": "transfer",
+      "problem": "The chapter gives useful if-then moves, but the examples mostly rehearse the same adoption ledger rather than showing a harder, messier real-world transfer case.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against a professional bar. The chapter has a clear durable move: count first believers before asking the cautious middle, and keep facts attached to their sources. The best lines are sticky, the summaries layer well, and the limits around TiVo and early fans are honest. The main weakness is not soundness but freshness: several examples feel constructed to demonstrate the concept rather than discovered from a concrete situation, and the quiz distractors sometimes telegraph themselves. Still, the chapter is coherent, practical, beginner-friendly, and above the bar."
+}
+```

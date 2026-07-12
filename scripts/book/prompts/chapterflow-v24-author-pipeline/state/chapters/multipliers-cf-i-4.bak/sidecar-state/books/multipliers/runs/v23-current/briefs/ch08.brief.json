@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "multipliers-ch08",
+  "chapterNumber": 8,
+  "title": "Dealing with Diminishers",
+  "coreMove": "Because the publisher page names dealing with Diminishers as added revised material, coping tactics belong in the 2017 sequence.",
+  "thesis": "The revised edition includes a new topic on how to deal with Diminishers.",
+  "readerPromise": "After this chapter, a reader can because the publisher page names dealing with Diminishers as added revised material, coping tactics belong in the 2017 sequence.",
+  "ownedCases": [
+    {
+      "id": "ch08.ex.harvard-negotiation",
+      "label": "Getting to Yes negotiation frame"
+    },
+    {
+      "id": "ch08.ex.chris-voss",
+      "label": "Chris Voss calibrated questions"
+    },
+    {
+      "id": "ch08.ex.edmondson-voice",
+      "label": "Amy Edmondson voice and silence"
+    }
+  ],
+  "notYours": [
+    "Amazon disagree and commit",
+    "Amy Edmondson hospital-team research",
+    "Anders Ericsson deliberate practice",
+    "Atlassian ShipIt",
+    "Carol Dweck growth mindset",
+    "Google Project Aristotle",
+    "Google Project Oxygen",
+    "HarperCollins revised edition",
+    "HarperCollins revised new chapters",
+    "Harvard Business Review article",
+    "Intel constructive confrontation",
+    "John F. Kennedy Moon goal",
+    "Kim Scott Radical Candor",
+    "Netflix freedom and responsibility",
+    "Original HarperBusiness release",
+    "Peter Gollwitzer implementation intentions",
+    "Pixar Braintrust",
+    "Pixar Braintrust candor",
+    "Satya Nadella / Microsoft culture shift",
+    "Space Shuttle Challenger decision record"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    0,
+    2,
+    0,
+    2,
+    1,
+    1,
+    2,
+    1,
+    0
+  ],
+  "avoid": [
+    "opener (ch01): \"A source analyst sees May 2010 as the\"",
+    "opener (ch02): \"At the return moment in Microsoft's 2014 CEO\"",
+    "opener (ch03): \"On a project call, delivery lead Holly hears\"",
+    "opener (ch05): \"Product lead Janelle asks the question no one\"",
+    "opener (ch06): \"Reed Hastings and Patty McCord reach the return\"",
+    "opener (ch07): \"Sabrina catches the early signal on the publisher\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on care personally and challenge directly",
+    "venue: a working note on decision commitment",
+    "venue: a kitchen table",
+    "frame: two stakeholders disagree about candid feedback practice before deciding",
+    "frame: a peak moment recalled vividly long after the day it happened"
+  ],
+  "architectureFamily": "two-way-contrast",
+  "openerType": "scene",
+  "challengeFrame": "audit-one-artifact",
+  "practiceShape": "two-step-sequence",
+  "exampleLenses": [
+    "before-after-ledger",
+    "postmortem",
+    "walkthrough"
+  ],
+  "practiceVerb": "mark",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "leader",
+    "rather",
+    "assuming",
+    "thinking",
+    "team",
+    "concrete"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "failure",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "averted-late",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "two-step-sequence",
+    "single-imperative",
+    "if-then-trigger",
+    "observe-then-note"
+  ],
+  "quizStemShapes": [
+    "transfer-new-domain",
+    "failure-postmortem",
+    "cold-diagnosis",
+    "choose-next-move"
+  ],
+  "quizFailureModes": [
+    "borrowed-authority",
+    "wrong-target",
+    "wrong-timing",
+    "wrong-proof"
+  ],
+  "questionFactOrder": [
+    2,
+    4,
+    7,
+    5,
+    9,
+    8,
+    3,
+    1,
+    6
+  ],
+  "memorableShapes": [
+    "cost-statement",
+    "pointed-question",
+    "imperative"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "question-speak",
+    "contrast-speak"
+  ],
+  "shellRegister": "question-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Getting to Yes negotiation frame"
+  },
+  "adjacentJobs": {
+    "prev": "Because the publisher metadata explains why accidental Diminisher material belongs to the revised edition.",
+    "next": "Because the 1993 article frames expertise development around structured practice conditions, leadership change should use specific feedback rather than vague admiration."
+  }
+}

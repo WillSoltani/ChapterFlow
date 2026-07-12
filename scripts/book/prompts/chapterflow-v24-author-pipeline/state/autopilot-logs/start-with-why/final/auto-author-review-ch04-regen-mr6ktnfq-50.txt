@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "c", "a", "b", "b", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several wrong answers are too openly bad, especially choices that praise borrowed authority or spreading the rule everywhere; a test-taker could often avoid them without fully reading.", "Correct answers often reuse the chapter's signature phrases like compare, visible side, felt side, stopping place, and separate jobs, making them easier to spot."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 82,
+    "practical": 78,
+    "summaries": 88,
+    "tone": 78,
+    "limits": 84,
+    "insight": 83,
+    "density": 76,
+    "beginner": 80
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Proof is not a label; it is a choice that comes back with a reason.",
+      "why": "Strongest core sentence: memorable, concrete, and it carries the chapter's whole standard."
+    },
+    {
+      "quote": "The price of starting with facts alone is agreement that cannot move.",
+      "why": "Strong retention line that turns the abstract biology distinction into a practical failure."
+    },
+    {
+      "quote": "Generic purpose advice skips that return. It can sound clean, but it has no neocortex detail, no limbic contrast, and no Damasio edge to keep it from spreading everywhere.",
+      "why": "Shows the chapter's weakness too: the critique is sound, but the phrasing leans on internal vocabulary."
+    },
+    {
+      "quote": "Which behavior came back?",
+      "why": "Excellent practical audit question, but it arrives after a lot of repeated setup."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "full read",
+      "problem": "The Rachel grocery example is useful but thinly staged; the reader gets the lesson more than a vivid situation, so the concrete image fades.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples repeat the same three-part audit with different names rather than adding distinct pressure cases; this lowers density.",
+      "mustFix": true
+    },
+    {
+      "unit": "tone",
+      "problem": "Phrases like visible side, felt side, anchor, return, and pay back become a private vocabulary that can feel scaffolded instead of plain.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Some distractors are too obviously wrong because they endorse authority, labels, or overreach in language the chapter already condemns.",
+      "mustFix": false
+    },
+    {
+      "unit": "practical section",
+      "problem": "The actions are directionally useful, but 'write the fact, feeling, and behavior' repeats often without enough examples of good and bad completed lines.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is a solid chapter with a memorable central move: do not let biology terms act as proof unless they connect a named fact, a felt reason, and a later behavior. The summaries are clear, the answer key is sound, and the Damasio boundary is handled honestly. I would not ship it at a professional 84 bar yet because the examples feel too same-shaped, the prose leans on internal vocabulary, and the practical exercise needs more completed before/after lines so a cold beginner can actually perform the move without imitating abstractions."
+}
+```

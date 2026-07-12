@@ -1,0 +1,73 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "c", "a", "b", "b", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several correct choices reuse exact chapter phrasing, especially Q5's 'edge marker' and Q7's 'visible side frames what the later limbic claim may carry.'", "Wrong choices often contain giveaway overreach words such as 'every choice,' 'stop at the first term,' or 'skip the parts.'"]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 82,
+    "transfer": 73,
+    "practical": 78,
+    "summaries": 86,
+    "tone": 80,
+    "limits": 88,
+    "insight": 84,
+    "density": 76,
+    "beginner": 74
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Proof is the return trip, not the starting gun.",
+      "why": "Strongest concise line: memorable, practical, and central to the chapter's mechanism."
+    },
+    {
+      "quote": "What would make this feeling come back in daylight?",
+      "why": "A sticky diagnostic question that turns the abstract biology frame into an action."
+    },
+    {
+      "quote": "A felt claim needed a second anchor. Everyone agreed; no one knew who would bring back proof.",
+      "why": "Weakest opening move: atmospheric and repeated verbatim in the fast read, but vague before the chapter earns it."
+    },
+    {
+      "quote": "A cold mug marks the miss.",
+      "why": "Reads like manufactured concreteness: vivid object, but it does not clarify the decision or consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook and fast read",
+      "problem": "The hook is repeated verbatim as the first fast-read paragraph, which makes the opening feel padded instead of layered.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples feel manufactured: they use generic roles and invented names, often without place, number, or a sharply observable before-to-after consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2",
+      "problem": "The cold mug detail appears to add texture without explanatory function; the example would fit many chapters about late repair or narrowed claims.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The core mechanism is useful but abstract. Phrases like first ledger, second anchor, return trip, and public edge accumulate before a beginner gets a fully grounded case.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The keys are sound, but some correct answers are easier to identify by exact phrase matching than by reasoning from the prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "practical guidance",
+      "problem": "The actions are directionally useful, but some remain writerly rather than lived: 'write the visible claim' and 'write the felt claim' need a more ordinary user-facing format.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a solid chapter with a clear central move: separate the word-ready WHAT, the felt WHY, and the proof that must return before trust is spent. The best lines are memorable, the limits around Damasio are responsible, and the quiz keys are sound. I would not ship it yet against a professional bar because the transfer layer is too synthetic in places; several examples feel built to demonstrate the lesson rather than discovered from a believable situation with concrete stakes."
+}
+```

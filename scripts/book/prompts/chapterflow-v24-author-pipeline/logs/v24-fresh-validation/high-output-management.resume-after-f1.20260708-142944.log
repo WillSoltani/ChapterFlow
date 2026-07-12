@@ -1,0 +1,34 @@
+
+📖 Book run — high-output-management
+   codex=/Applications/Codex.app/Contents/Resources/codex · notify=on · architecture=v24 author · --no-publish (halt for review)
+   --no-publish: will halt at ready-to-publish and print the manual ship command.
+
+14:29:45 🔒 START run started · strict invariants enforced · lock acquired
+14:29:48 📊 PHASE write written 15/16 · gated 15 · qc'd 0
+14:29:48   · author source-packets: compile-source-packets: PASS (16 packet(s))
+14:29:49   · author source-packet-gate: source-packet-gate: PASS (16 chapter(s), 0 blocker(s), 0 advisory)
+14:29:49   · author book-design: compile-book-design: PASS
+14:29:50   · author book-design-gate: book-design-gate: PASS (0 blocker(s), 0 advisory)
+14:29:50   · author chapter-briefs: compile-chapter-briefs: PASS (32 file(s))
+14:29:51   · author chapter-brief-gate: chapter-brief-gate: PASS (0 blocker(s), 0 advisory)
+14:29:51   · author write: 1 missing chapter(s) of 16 (parallel ≤6)
+14:29:51   · author ch14: card is 26626 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+14:29:51   · author ch14: whole-chapter writer working (attempt 1, card 26626 chars, gpt-5.5 @ xhigh, timeout 60min)
+14:50:49   · author ch14: ch14: STIER-2 write contract FAIL — lead thread: the dealt lead (Task-focused) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+14:50:49   · author ch14: whole-chapter writer working (attempt 2, card 26958 chars, gpt-5.5 @ xhigh, timeout 60min)
+15:04:13   · author ch14: ch14: STIER-2 write contract FAIL — lead thread: the dealt lead case "Task-focused interview questions" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). | lead thread: the dealt lead (Task-focused) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+15:04:13   · author ch14: lead degraded: "Task-focused interview questions" → "Corrective performance conversation" after 2 contract failures (bounded +1 attempt; the lead-thread contract enforces the NEW lead at full strength).
+15:04:13   · author ch14: whole-chapter writer working (attempt 3, card 26888 chars, gpt-5.5 @ xhigh, timeout 60min)
+15:16:32   · author ch14: ch14: STIER-2 write contract FAIL — lead thread: the dealt lead case "Corrective performance conversation" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). | lead thread: the dealt lead (Corrective) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+15:16:32   · author ch14: all write attempts failed — removed the unreviewed failed draft (no prior chapter existed; the next entry must re-write it, not review it).
+15:16:32   · ── cost report — high-output-management [halt:content] ──
+  grand total spawns: 3  (minted ids 3; verb ids 0)
+  by type: writer:3
+  by phase: write:3
+  retries by cause: retry1:1
+  carry: acceptance 0 hit / 1 miss · reviews 0 hit / 0 miss
+  wall (spawn ms) by phase: write:2794897  total:2794897
+
+AUTOPILOT HALT — high-output-management [phase write · content]: author write: 1 chapter(s) failed to author within the retry budget:
+ch14: lead degradation did not converge — dealt lead "Task-focused interview questions" failed 2 lead-only contract attempts and the degraded lead "Corrective performance conversation" also failed: ch14: STIER-2 write contract FAIL — lead thread: the dealt lead case "Corrective performance conversation" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). | lead thread: the dealt lead (Corrective) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.   (47 min)
+repair prompt written: /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/high-output-management/book-run/chapter-generation.20260708181632.c45e1d48.repair.md

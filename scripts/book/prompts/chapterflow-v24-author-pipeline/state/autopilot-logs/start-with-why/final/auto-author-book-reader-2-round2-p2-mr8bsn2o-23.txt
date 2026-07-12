@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "7": {
+      "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 76,
+    "quizzes": 80,
+    "transfer": 78,
+    "practical": 72,
+    "summaries": 77,
+    "tone": 64,
+    "limits": 74,
+    "insight": 69,
+    "density": 62,
+    "beginner": 73
+  },
+  "quotes": [
+    {
+      "quote": "A discount can move the sale and still fail to win the buyer.",
+      "why": "Strong compact opening: memorable, portable, and central to the chapter's lens."
+    },
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "One of the sample's best aphorisms: short, complete, and easy to retain."
+    },
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "Clear retention line that crisply reverses a common management mistake."
+    },
+    {
+      "quote": "Move a true detail to the wrong source and the claim looks grounded while the ground has shifted.",
+      "why": "Useful principle, but this exact rhetorical move repeats across chapters and drives churn."
+    },
+    {
+      "quote": "One scene can show an idea. A second scene shows whether the path travels.",
+      "why": "This scaffold recurs heavily: first anchor, second setting, third edge, with nouns swapped."
+    },
+    {
+      "quote": "People owe people proof by a time they both understand.",
+      "why": "The line gestures at practicality, but the action remains abstract compared with real workplace behavior."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is mechanically sound and the answer key is supported by the prose, so it passes the correctness gate. Its main strength is a set of memorable reversals: discounts do not prove loyalty, loyalty follows trust, early fans are not a majority, and metrics are not reasons. The weakness is strong cross-chapter template churn. Nearly every chapter uses the same sequence of named anchors, second settings, edge details, hard facts staying with sources, visible behavior returning, and broad advice floating without grounding. That makes the book feel engineered rather than individually authored. The quizzes are answerable and mostly scenario-based, but they often test recognition of the same meta-pattern. This is a solid draft with good instructional bones, but the voice, density, and example variety need substantial freshening before it feels premium."
+}
+```

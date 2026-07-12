@@ -1,0 +1,83 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "b", "b", "a", "a", "c", "c"],
+    "mechanisms": [
+      "The prose defines willpower as I will, I won't, and I want, so the response must include a start act, a stop act, and a remembered value.",
+      "The deep read says prefrontal control keeps goals active and tilts attention and action toward them while cues compete.",
+      "The Gage passage says he survived and could speak, but steadiness, planning, and social restraint did not return in the same way.",
+      "The self-awareness section says change begins by noticing the moment before action, not regret or motivation after the fact.",
+      "The social-cost passage says self-control helps people wait, keep promises, share resources, soften anger, and repair conflict.",
+      "Example 4 and the review card say a real value can lose when it is quiet and the cue is vivid at the choice point.",
+      "The full read says the short-term relief self and the long-term goal self can both be real; support and attention decide what guides action.",
+      "The practical method asks for concrete next moments and feedback, so a small behavior-trigger experiment follows the method.",
+      "The label example says control biases attention and response when a practiced routine conflicts with the current goal."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "b is also defensible: the prose directly says the long-term want has to become active at the choice point to compete.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Several correct options are the longest and most mechanism-rich, while distractors use giveaway absolutes such as 'only,' 'no value,' 'fake,' and 'avoid cooperation.'",
+      "Q6 option a is uniquely long and overlaps heavily with option b, making both guessing and scoring easier/harder in the wrong ways."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 72,
+    "transfer": 83,
+    "practical": 82,
+    "summaries": 90,
+    "tone": 87,
+    "limits": 82,
+    "insight": 86,
+    "density": 84,
+    "beginner": 89
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Refusal is only one third of willpower.",
+      "why": "This is the chapter's core correction in a compact, memorable line."
+    },
+    {
+      "quote": "A goal must be present to have power.",
+      "why": "Strong mechanism: it explains why values fail without becoming active at the choice point."
+    },
+    {
+      "quote": "a) Being important is not the same as being vivid; a value can matter and still lose to a cue that feels louder right now.",
+      "why": "This quiz option is overlong and substantially duplicates another defensible answer."
+    },
+    {
+      "quote": "For the first half of this week, use your usual all-or-nothing rule.",
+      "why": "The weekly practice asks the reader to spend half the week using the weaker method, which feels artificial."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "Two answers are supported by the prose: option a says the value can matter but lose to a vivid cue, while option b says the goal needs attention at the choice point to compete. That makes the quiz item broken rather than merely difficult.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are often longer and more qualified than distractors, while several distractors are extreme or cartoonish, weakening quiz fairness.",
+      "mustFix": false
+    },
+    {
+      "unit": "weekly practice",
+      "problem": "Asking readers to use their usual all-or-nothing rule for half the week is a clunky comparison exercise and less practical than simply applying the Three-Power Check immediately.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is clear, memorable, and unusually good at turning willpower from moral scolding into a concrete attention-and-goal-control move. The layered reads stand alone, the examples mostly transfer, and the practical frame is usable for beginners. I would not ship it yet because Q6 has two prose-supported answers, which breaks the quiz; after that fix, the remaining issues are craft polish around answer-choice tells and one awkward practice instruction."
+}
+```

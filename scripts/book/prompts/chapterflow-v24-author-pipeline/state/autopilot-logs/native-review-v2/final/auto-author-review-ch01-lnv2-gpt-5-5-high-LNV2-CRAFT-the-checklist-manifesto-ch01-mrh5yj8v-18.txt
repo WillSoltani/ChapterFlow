@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "b", "c", "a", "c", "b", "c"],
+    "mechanisms": [
+      "The prose says danger in complex work often lives in handoffs where ownership blurs, not in missing talent.",
+      "The lesson says to map transitions by named owner before pressure arrives.",
+      "The Ingrid example and postmortem guidance say to rebuild the path across every handoff before blaming the last visible person.",
+      "The theatre failure happens when cues cross departments, matching the chapter's focus on explicit seams.",
+      "The transplant-order example shows completed departmental tasks can still fail at crossings.",
+      "The storm-desk example says to give the cross-department overlap a named owner before peak load.",
+      "The museum-crate example shows danger in dependencies between experts, even when each expert does their own job.",
+      "The core reasoning is that excellent people still need visible ownership at role crossings.",
+      "The rescue drill failing without the leader suggests a transition was carried in memory rather than built into the system."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Correct choice uses the chapter's signature terms: handoff seam and ownership.",
+      "Correct choice is the most specific and repeats named owner/final handoff language.",
+      "Correct choice is much more chapter-specific than the two blame/reminder distractors.",
+      "Correct choice repeats explicit handoffs and departments, making it easy to spot.",
+      "Correct choice is the longest and directly mirrors the chapter's across-departments phrasing.",
+      "Correct choice is longest and contains named owner/cross-department timing point.",
+      "Correct choice is the most abstract and matches the chapter's repeated expert/dependency pattern.",
+      "Correct choice directly repeats ownership visible and crosses roles.",
+      "Correct choice repeats the chapter's memory-versus-system contrast."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 78,
+    "practical": 86,
+    "summaries": 82,
+    "tone": 80,
+    "limits": 84,
+    "insight": 87,
+    "density": 81,
+    "beginner": 88
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Movement creates seams, and seams create assumptions.",
+      "why": "This is the chapter's strongest compressed teaching line."
+    },
+    {
+      "quote": "When work becomes too dense for one mind to command, reliability starts by finding the seam where skill turns into assumption.",
+      "why": "The takeaway is clear, portable, and memorable."
+    },
+    {
+      "quote": "In the end, it really just comes down to being careful about this and not overthinking it.",
+      "why": "This undercuts the chapter's own argument that structure, not mere carefulness, is the fix."
+    },
+    {
+      "quote": "The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.",
+      "why": "The referenced rescue is not actually established as an Austrian drowning rescue in the chapter."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 2",
+      "problem": "The final sentence says the lesson is basically being careful and not overthinking it, which contradicts the chapter's central claim that responsible work requires explicit ownership at seams rather than relying on individual carefulness.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The Austrian drowning rescue is referenced as if the reader has been given that story, but the chapter has not clearly established an Austrian drowning rescue narrative.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Most correct answers are identifiable by repeated chapter keywords such as handoff, owner, ownership, crossing, and system, while distractors are often obviously blame- or command-based.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples prove the same move in nearly identical terms, so transfer is broad by domain but somewhat narrow by decision pattern.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a useful, memorable core move: in dense expert work, inspect the seam where ownership thins out before blaming people. It is beginner-friendly, concrete, and mostly practical, with strong review cards and a fair quiz. I would not ship it yet against an 84 professional bar because Example 2 directly weakens the lesson by reducing it to carefulness, and the unexplained Austrian drowning-rescue reference makes the chapter feel like it is leaning on missing context. Fix those and tighten the quiz tells, and the chapter would be close."
+}
+```

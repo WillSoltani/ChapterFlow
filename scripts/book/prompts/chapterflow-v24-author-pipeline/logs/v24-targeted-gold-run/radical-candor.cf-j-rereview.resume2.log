@@ -1,0 +1,71 @@
+2026-07-09T23:13:03.212Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-09T23:13:05.741Z [MAJOR] PHASE qc written 9/9 · gated 9 · qc'd 0
+2026-07-09T23:13:05.761Z [info]  author review budgets: 4 chapter(s) hold a durable PASS at bar 80 — protected from full re-author (ch03, ch05, ch07, ch09)
+2026-07-09T23:13:05.852Z [info]  author review budgets: reader budgets clean (3 advisory finding(s)) — advancing
+2026-07-09T23:13:05.852Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch03 reading surface mentions "growth" (distinctive token of case "Growth Management") 10 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T23:13:05.852Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch04 reading surface mentions "wheel" (distinctive token of case "GSD Wheel") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T23:13:05.852Z [info]  author review budgets: advisory [CHB2.length_budget] ch02 estimated rendered length 19913 chars is 24% over the 16000-char budget (allowed window 12800–19200; within the advisory band — polish, not a halt); readers rejected ~40% inflation.
+2026-07-09T23:13:05.857Z [info]  author review: 9 chapter(s), one blinded reader each (parallel ≤6, bar 80)
+2026-07-09T23:13:05.871Z [info]  author review ch03: CARRIED durable review (composite 89.3, reviewer auto-author-review-ch03-mre3ds1e-3) — no reader spawned
+2026-07-09T23:13:05.875Z [info]  author review ch05: CARRIED durable review (composite 85.4, reviewer auto-author-review-ch05-mre3ds1j-5) — no reader spawned
+2026-07-09T23:13:05.890Z [info]  author review ch07: CARRIED durable review (composite 86.1, reviewer auto-author-review-ch07-mre3f2iq-7) — no reader spawned
+2026-07-09T23:13:05.898Z [info]  author review ch09: CARRIED durable review (composite 85.6, reviewer auto-author-review-ch09-mre3fp04-9) — no reader spawned
+2026-07-09T23:14:16.416Z [info]  author review ch06: composite 82.3 ship=false keys 9/9 → FAIL
+2026-07-09T23:14:16.585Z [info]  author review ch04: composite 85.2 ship=false keys 9/9 → FAIL
+2026-07-09T23:14:20.195Z [info]  author review ch01: composite 82.2 ship=false keys 9/9 → FAIL
+2026-07-09T23:14:31.747Z [info]  author review ch08: composite 87.6 ship=true keys 9/9 → PASS
+2026-07-09T23:14:37.574Z [info]  author review ch02: composite 80.9 ship=false keys 9/9 → FAIL
+2026-07-09T23:14:37.574Z [info]  author review: carried 4/9 chapter review(s) unchanged — spawned 5 fresh reader(s)
+2026-07-09T23:14:37.575Z [info]  author review ch01: FAIL is near the bar (composite 82.2, bar 80, keys 9/9, ship=false) — spawning 2 tiebreak readers (median-of-3, no cap consumed)
+2026-07-09T23:14:37.577Z [info]  author review ch02: FAIL is near the bar (composite 80.9, bar 80, keys 9/9, ship=false) — spawning 2 tiebreak readers (median-of-3, no cap consumed)
+2026-07-09T23:14:37.580Z [info]  author review ch04: FAIL is near the bar (composite 85.2, bar 80, keys 9/9, ship=false) — spawning 2 tiebreak readers (median-of-3, no cap consumed)
+2026-07-09T23:14:37.583Z [info]  author review ch06: FAIL is near the bar (composite 82.3, bar 80, keys 9/9, ship=false) — spawning 2 tiebreak readers (median-of-3, no cap consumed)
+2026-07-09T23:15:47.864Z [info]  author review ch06-tiebreak-r2: composite 85.1 ship=true keys 9/9 → PASS
+2026-07-09T23:15:48.322Z [info]  author review ch01-tiebreak-r2: composite 77.3 ship=false keys 9/9 → FAIL
+2026-07-09T23:16:04.226Z [info]  author review ch04-tiebreak-r2: composite 85.3 ship=false keys 9/9 → FAIL
+2026-07-09T23:16:08.337Z [info]  author review ch02-tiebreak-r2: composite 83.5 ship=false keys 9/9 → FAIL
+2026-07-09T23:16:47.637Z [info]  author review ch01-tiebreak-r3: composite 84.8 ship=false keys 9/9 → FAIL
+2026-07-09T23:16:47.643Z [info]  author review ch01: tiebreak upheld the FAIL (median 82.2, reads 77.3, 84.8) — regen proceeds with merged complaints
+2026-07-09T23:17:09.485Z [info]  author review ch04-tiebreak-r3: composite 86.8 ship=true keys 9/9 → PASS
+2026-07-09T23:17:09.493Z [info]  author review ch04: tiebreak upheld the FAIL (median 85.3, reads 85.3, 86.8 ship) — regen proceeds with merged complaints
+2026-07-09T23:17:13.625Z [info]  author review ch06-tiebreak-r3: composite 82.8 ship=true keys 9/9 → PASS
+2026-07-09T23:17:13.629Z [info]  author review ch06: tiebreak median 82.8 ≥ bar 80 via ship-majority (ship 2/3, reads 82.3, 85.1, 82.8) — deciding PASS 85.1 persisted; original FAIL's complaints preserved in tiebreak notes
+2026-07-09T23:18:13.404Z [info]  author review ch02-tiebreak-r3: composite 89.5 ship=true keys 9/9 → PASS
+2026-07-09T23:18:13.416Z [info]  author review ch02: tiebreak upheld the FAIL (median 83.5, reads 83.5, 89.5 ship) — regen proceeds with merged complaints
+2026-07-09T23:18:13.428Z [info]  author review: 3 chapter(s) failed independent review — regenerating with complaints (1 regen each; 2 total attempts/chapter, durable ledger loaded)
+2026-07-09T23:18:13.437Z [info]  author review ch01: repair lane not eligible (veto: "fast read: It repeats the hook verbatim before beginning the summary, spending s") — regen proceeds
+2026-07-09T23:18:13.462Z [info]  author ch01: card is 33800 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T23:18:13.480Z [info]  author ch01: whole-chapter writer working (attempt 1, card 33800 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T23:18:13.483Z [info]  author review ch02: repair lane not eligible (veto: "deep read: The assurance that the named people are real and "rather than invente") — regen proceeds
+2026-07-09T23:18:13.489Z [info]  author ch02: card is 33570 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T23:18:13.496Z [info]  author ch02: whole-chapter writer working (attempt 1, card 33570 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T23:18:13.503Z [info]  author review ch04: repair lane not eligible (veto: "deep read: It is not standalone: it begins with “The loop,” never identifies tha") — regen proceeds
+2026-07-09T23:18:13.510Z [info]  author ch04: card is 31933 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T23:18:13.519Z [info]  author ch04: whole-chapter writer working (attempt 1, card 31933 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T23:32:07.356Z [info]  author ch01: done (gate-chapter clean)
+2026-07-09T23:32:32.545Z [info]  author ch02: ch02: STIER-2 write contract FAIL — lead thread: the dealt lead (Sheryl) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-09T23:32:32.548Z [info]  author ch02: whole-chapter writer working (attempt 2, card 34779 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T23:33:50.289Z [info]  author ch04: done (gate-chapter clean)
+2026-07-09T23:33:52.582Z [info]  author review ch01-regen: composite 78.9 ship=false keys 9/9 → FAIL
+2026-07-09T23:33:52.582Z [info]  author review ch01: FAIL is near the bar (composite 78.9, bar 80, keys 9/9, ship=false) — spawning 2 tiebreak readers (median-of-3, no cap consumed)
+2026-07-09T23:34:45.963Z [info]  author review ch04-regen: composite 89.3 ship=true keys 9/9 → PASS
+2026-07-09T23:36:09.921Z [info]  author review ch01-tiebreak-r2: composite 76.9 ship=false keys 9/9 → FAIL
+2026-07-09T23:37:53.154Z [info]  author review ch01-tiebreak-r3: composite 81 ship=false keys 9/9 → FAIL
+2026-07-09T23:37:53.162Z [info]  author review ch01: tiebreak upheld the FAIL (median 78.9, reads 76.9, 81) — regen proceeds with merged complaints
+2026-07-09T23:45:05.516Z [info]  author ch02: done (gate-chapter clean)
+2026-07-09T23:46:34.288Z [info]  author review ch02-regen: composite 83.8 ship=false keys 9/9 → FAIL
+2026-07-09T23:46:34.288Z [info]  author review ch02: FAIL is near the bar (composite 83.8, bar 80, keys 9/9, ship=false) — spawning 2 tiebreak readers (median-of-3, no cap consumed)
+2026-07-09T23:47:34.427Z [info]  author review ch02-tiebreak-r2: composite 85.3 ship=true keys 9/9 → PASS
+2026-07-09T23:49:04.688Z [info]  author review ch02-tiebreak-r3: composite 84.8 ship=false keys 9/9 → FAIL
+2026-07-09T23:49:04.697Z [info]  author review ch02: tiebreak upheld the FAIL (median 84.8, reads 85.3 ship, 84.8) — regen proceeds with merged complaints
+2026-07-09T23:49:04.699Z [info]  ── cost report — radical-candor [halt:content] ──
+  grand total spawns: 24  (minted ids 24; verb ids 0)
+  by type: author-review:20  writer:4
+  by phase: qc:24
+  retries by cause: respawn:6  retry1:1
+  carry: acceptance 0 hit / 1 miss · reviews 4 hit / 5 miss
+  wall (spawn ms) by phase: qc:5060354  total:5060354
+2026-07-09T23:49:04.702Z [FINAL] HALT AUTOPILOT HALT — radical-candor [phase qc · content]: author review: 2 chapter(s) still fail independent review after the regen cap (2 write attempts each):
+  ch01 — quiz Q5: The keyed sequence prescribes making care visible immediately before counsel, while the prose warns that last-second care can be staged and gives a different path when the fact must be said now. No answer expresses that guardrail, making the quiz source-contradictory. (must fix); implementation plan, If-then 1: Telling the reader to produce one care signal when the count is zero and then 
+  ch02 — fast read: SOURCE-CONTRADICTORY: If Sandberg withholds the observation, Sandberg receives the calm minute and Scott pays through lost information. The summary instead says Scott keeps the calm minute, reversing the chapter’s central cost mechanism. (must fix); fast read / deep read / examples 1-2 / review card 4: FACTUALLY WRONG: The chapter repeatedly places the Sandberg–Scott Google relationship
+2026-07-09T23:49:04.702Z [FINAL] repair prompt: /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/radical-candor/r20260709204223-456b08/qc.20260709234904.5f63d2a9.repair.md

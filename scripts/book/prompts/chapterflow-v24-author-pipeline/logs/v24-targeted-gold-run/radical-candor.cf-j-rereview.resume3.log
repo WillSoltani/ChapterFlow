@@ -1,0 +1,52 @@
+2026-07-10T00:24:00.628Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-10T00:24:04.743Z [MAJOR] PHASE qc written 9/9 · gated 9 · qc'd 0
+2026-07-10T00:24:04.808Z [info]  author review budgets: 7 chapter(s) hold a durable PASS at bar 80 — protected from full re-author (ch03, ch04, ch05, ch06, ch07, ch08, ch09)
+2026-07-10T00:24:04.983Z [info]  author review budgets: reader budgets clean (3 advisory finding(s)) — advancing
+2026-07-10T00:24:04.984Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch02 reading surface mentions "sandberg" (distinctive token of case "Sheryl Sandberg direct feedback") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-10T00:24:04.984Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch03 reading surface mentions "growth" (distinctive token of case "Growth Management") 10 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-10T00:24:04.984Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch04 reading surface mentions "wheel" (distinctive token of case "GSD Wheel") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-10T00:24:04.992Z [info]  author review: 9 chapter(s), one blinded reader each (parallel ≤6, bar 80)
+2026-07-10T00:24:05.015Z [info]  author review ch03: CARRIED durable review (composite 89.3, reviewer auto-author-review-ch03-mre3ds1e-3) — no reader spawned
+2026-07-10T00:24:05.024Z [info]  author review ch04: CARRIED durable review (composite 89.3, reviewer auto-author-review-ch04-regen-mre57zgz-19) — no reader spawned
+2026-07-10T00:24:05.033Z [info]  author review ch05: CARRIED durable review (composite 85.4, reviewer auto-author-review-ch05-mre3ds1j-5) — no reader spawned
+2026-07-10T00:24:05.035Z [info]  author review ch06: CARRIED durable review (composite 85.1, reviewer auto-author-review-ch06-tiebreak-r2-mre4ja1c-9) — no reader spawned
+2026-07-10T00:24:05.038Z [info]  author review ch07: CARRIED durable review (composite 86.1, reviewer auto-author-review-ch07-mre3f2iq-7) — no reader spawned
+2026-07-10T00:24:05.041Z [info]  author review ch08: CARRIED durable review (composite 87.6, reviewer auto-author-review-ch08-mre4hbae-5) — no reader spawned
+2026-07-10T00:24:05.045Z [info]  author review ch09: CARRIED durable review (composite 85.6, reviewer auto-author-review-ch09-mre3fp04-9) — no reader spawned
+2026-07-10T00:25:19.900Z [info]  author review ch01: composite 83.7 ship=false keys 9/9 → FAIL
+2026-07-10T00:25:38.890Z [info]  author review ch02: composite 87.7 ship=true keys 9/9 → PASS
+2026-07-10T00:25:38.890Z [info]  author review: carried 7/9 chapter review(s) unchanged — spawned 2 fresh reader(s)
+2026-07-10T00:25:38.891Z [info]  author review ch01: FAIL is near the bar (composite 83.7, bar 80, keys 9/9, ship=false) — spawning 2 tiebreak readers (median-of-3, no cap consumed)
+2026-07-10T00:26:52.051Z [info]  author review ch01-tiebreak-r2: composite 84.6 ship=true keys 9/9 → PASS
+2026-07-10T00:28:47.026Z [info]  author review ch01-tiebreak-r3: composite 84.8 ship=true keys 9/9 → PASS
+2026-07-10T00:28:47.037Z [info]  author review ch01: tiebreak median 84.6 ≥ bar 80 via ship-majority (ship 2/3, reads 83.7, 84.6, 84.8) — deciding PASS 84.8 persisted; original FAIL's complaints preserved in tiebreak notes
+2026-07-10T00:28:47.046Z [info]  author acceptance: sampled ch 1, 3, 5, 8 → 64641 chars; spawning 3 independent book readers
+2026-07-10T00:30:42.170Z [info]  author acceptance: durable read record → /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/radical-candor/acceptance.round1.83e853de.r1.json
+2026-07-10T00:30:42.170Z [info]  author acceptance: pooled composite 72.5 is within ±3.7 of the binding boundary 74 — spawning independent panel read 2/3
+2026-07-10T00:30:42.170Z [info]  author acceptance-p2: sampled ch 1, 3, 5, 8 → 64641 chars; spawning 3 independent book readers
+2026-07-10T00:32:33.591Z [info]  author acceptance: durable read record → /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/radical-candor/acceptance.round1.83e853de.r2.json
+2026-07-10T00:32:33.592Z [info]  author acceptance: pooled composite 73.4 is within ±3.7 of the binding boundary 74 — spawning independent panel read 3/3
+2026-07-10T00:32:33.592Z [info]  author acceptance-p3: sampled ch 1, 3, 5, 8 → 64641 chars; spawning 3 independent book readers
+2026-07-10T00:34:29.644Z [info]  author acceptance: durable read record → /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/radical-candor/acceptance.round1.83e853de.r3.json
+2026-07-10T00:34:29.645Z [info]  author acceptance: pooled composite 74.3 over 3 read(s) (band ±3.7) gate PASS churn HIGH valid 3/3 vs floor 74 (premium target 80) → ACCEPT
+2026-07-10T00:34:29.659Z [info]  author evidence: 9/9 chapter(s) need fresh keys (ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8, ch9) — deriving ONLY those (per-chapter production, E3)
+2026-07-10T00:36:55.933Z [info]  author evidence: keyA derivation written by session auto-author-key-keyA-mre7dzms-14 (9 stale chapter(s))
+2026-07-10T00:38:46.181Z [info]  author evidence: keyB derivation written by session auto-author-key-keyB-mre7h4hq-15 (9 stale chapter(s))
+2026-07-10T00:38:46.230Z [info]  author evidence: manual key-judge PASS for all 9 chapter(s) (round r20260710003429-dfd159)
+2026-07-10T00:41:22.856Z [info]  author evidence: sweep attestation written by session auto-author-sweep-mre7jhly-16 (round r20260710003429-dfd159)
+2026-07-10T00:41:22.857Z [info]  author evidence: 4 texture advisory finding(s) (scored, non-blocking):
+2026-07-10T00:41:22.858Z [info]  author evidence: advisory texture[scene_skeleton] ch 1, 2, 3, 4, 5, 6, 7, 8, 9: The example system saturates the book with one dramatic transaction: a miss has already happened or nearly happened, a character traces it to a skipped framewor (scored by the acceptance panel, not blocked)
+2026-07-10T00:41:22.858Z [info]  author evidence: advisory texture[repeated_unit] ch 1, 3, 9: These weekly practices reuse the same numerical self-audit shell: count one chapter-specific signal during the week and record or improve that number. The chapt (scored by the acceptance panel, not blocked)
+2026-07-10T00:41:22.858Z [info]  author evidence: advisory texture[location_stamping] ch 3, 5, 9: A cold or stale drink beside the work repeatedly anchors delayed-problem scenes: the cold mug in Chapter 3, another cold mug in Chapter 5, and a stale coffee cu (scored by the acceptance panel, not blocked)
+2026-07-10T00:41:22.858Z [info]  author evidence: advisory texture[location_stamping] ch 3, 4, 7, 8: Calendar blocks, scans, invites, or calendar-colored markers recur as the action container across four chapters. Scheduling is intrinsic to Chapters 4 and 8, bu (scored by the acceptance panel, not blocked)
+2026-07-10T00:41:22.866Z [info]  author acceptance PASSED — key-judge + sweep evidence complete; wrote 9 PUBLISHABLE attestation(s) + bar/confirm artifacts (round r20260710003429-dfd159)
+2026-07-10T00:41:24.882Z [MAJOR] PHASE ready written 9/9 · gated 9 · qc'd 9
+2026-07-10T00:41:24.886Z [info]  ── cost report — radical-candor [ready] ──
+  grand total spawns: 16  (minted ids 16; verb ids 0)
+  by type: author-book-reader:9  author-review:4  key:2  sweep:1
+  by phase: qc:16
+  retries by cause: respawn:1
+  carry: acceptance 0 hit / 1 miss · reviews 7 hit / 2 miss
+  wall (spawn ms) by phase: qc:1631447  total:1631447
+2026-07-10T00:41:24.887Z [FINAL] READY AUTOPILOT — radical-candor: READY TO PUBLISH — all 9 chapters gated + QC PUBLISHABLE. Review, then ship:
+  npx tsx src/cli.ts publish-final "radical-candor"

@@ -1,0 +1,12 @@
+Done. I wrote exactly one file:
+
+[state/chapters/start-with-why-ch04.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch04.v21-native.chapter.json)
+
+Validation run:
+
+- `author-check` clean
+- `quiz-verify` 9/9 match
+- `evidence-audit` found no evidence-integrity candidates
+- `gate-chapter` PASS with `0 blockers`
+
+The final gate reports `5 major(s), 9 minor(s)` as non-blocking counts, but the verdict is `PASS — 0 blockers`.

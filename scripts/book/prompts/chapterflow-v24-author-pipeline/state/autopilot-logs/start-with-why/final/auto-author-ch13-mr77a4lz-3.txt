@@ -1,0 +1,11 @@
+Created [start-with-why-ch13.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch13.v21-native.chapter.json).
+
+Validation run:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers
+- `quiz-verify`: 9/9 match
+- `evidence-audit`: no candidates
+- Rendered length: 17,073 chars, within budget
+- Distractor parity: key uniquely longest in 1 question, uniquely shortest in 2 questions
+
+Note: `gate-chapter` reports 6 non-blocking majors and 5 minors, but no blockers.

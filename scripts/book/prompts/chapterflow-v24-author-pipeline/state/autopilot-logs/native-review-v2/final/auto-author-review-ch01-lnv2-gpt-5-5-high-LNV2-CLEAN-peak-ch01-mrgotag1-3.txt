@@ -1,0 +1,80 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "c", "b", "b", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The prose defines purposeful practice as isolating the recurring weak spot, getting close feedback, and changing the next attempt.",
+      "A redox-only set with step checks turns vague study into a narrow correction loop around the repeated error.",
+      "The chapter says whole-task repetition lets the weak spot survive by hiding it inside the full performance.",
+      "The swim plan uses a visible cue, immediate video feedback, and repeated adjustment before returning to distance.",
+      "Faloon improves because each miss tells the next attempt where to work, making recall a feedback loop.",
+      "A visible size target is needed so the next knife cut can change instead of repetition becoming comfortable fluency.",
+      "The chapter says feedback matters when it is close enough to change the next attempt while the miss is still traceable.",
+      "Plan B creates short batches with immediate template comparison, so feedback can alter the next batch.",
+      "The useful target is visible, concrete, countable, and correctable before the next attempt."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Choice a is also defensible: the chapter repeatedly says comfort and broad repetition can leave the weak spot untouched. Choice b is more specific because it supplies the visible target.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Correct choice b is the most concrete and includes the chapter's exact loop elements: isolate, record, change before next attempt.",
+      "Correct choice a is the only option with a narrow error set and a rewritten failing step.",
+      "Correct choice c echoes the chapter's recurring wording about whole performance and one weak point surviving.",
+      "Correct choice b is the only option that uses the available feedback source named in the stem.",
+      "Correct choice b closely mirrors the memorable phrasing that each miss redesigns the next attempt.",
+      "Choices a and b are both chapter-shaped, so the tell is weak; b is slightly more measurable.",
+      "Correct choice c is the only option that says feedback changes the next attempt.",
+      "Correct choice a restates the obvious contrast embedded in the stem: short batch plus compare plus adjust.",
+      "Correct choice c is uniquely concrete, measurable, and longest."
+    ]
+  },
+  "scores": {
+    "retention": 93,
+    "quizzes": 80,
+    "transfer": 91,
+    "practical": 92,
+    "summaries": 94,
+    "tone": 90,
+    "limits": 88,
+    "insight": 91,
+    "density": 89,
+    "beginner": 92
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "Strongest retention line: short, concrete, and tied directly to the mechanism."
+    },
+    {
+      "quote": "Comfort is a poor coach because it lets the weak spot stay hidden.",
+      "why": "A memorable explanation of why ordinary repetition fails."
+    },
+    {
+      "quote": "Purposeful practice begins when effort stops being a count of repetitions and becomes a correction loop: one target, one stretch, one feedback signal, one changed next attempt.",
+      "why": "The key takeaway is complete and standalone."
+    },
+    {
+      "quote": "Nightly repetition will eventually fix uneven knife cuts.",
+      "why": "This quiz stem creates a mild ambiguity because two answer choices are supported by the chapter."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "Two choices are reasonably derivable from the prose: a says repetition can build comfort while leaving the weak spot untouched, while b says visible targets are needed to guide correction. The intended key is probably b, but a is also supported.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter. The core move is clear, memorable, and repeated through varied concrete domains without feeling padded: isolate the miss, stretch slightly, get close feedback, and change the next attempt. The summaries and implementation plan stand alone well, the examples mostly show before-to-after decisions, and the tone stays plain. The main defect is quiz Q6, where two answers are defensible from the prose; that should be tightened before release, but the chapter otherwise clears a professional bar."
+}
+```

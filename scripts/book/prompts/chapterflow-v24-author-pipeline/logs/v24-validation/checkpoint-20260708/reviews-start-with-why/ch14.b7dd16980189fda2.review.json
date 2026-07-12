@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch14",
+  "chapterNumber": 14,
+  "contentHash": "b7dd16980189fda2",
+  "reviewerSessionId": "auto-author-review-ch14-mr8way9v-10",
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 68,
+    "practical": 82,
+    "summaries": 84,
+    "tone": 76,
+    "limits": 88,
+    "insight": 84,
+    "density": 78,
+    "beginner": 80
+  },
+  "composite": 81.6,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "c",
+      "a",
+      "a",
+      "b",
+      "b",
+      "b",
+      "c",
+      "a"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Self-referenced competition means this: let the rival warn you, then let your old promise judge the move.",
+      "why": "Strong, memorable statement of the core move.",
+      "verified": true
+    },
+    {
+      "quote": "If the second line is blank, the decision is not ready.",
+      "why": "Concrete diagnostic a reader could remember and use.",
+      "verified": true
+    },
+    {
+      "quote": "At the return moment, product lead Edmund has one blue launch tag left on the 2003 player line.",
+      "why": "The named scene reads as invented specificity rather than a sourced or clearly hypothetical example.",
+      "verified": true
+    },
+    {
+      "quote": "the headquarters marker in the source packet",
+      "why": "Exposes scaffold/source-packet language that breaks the plain-reader illusion.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Some keyed answers are easier to spot because they preserve the chapter's exact vocabulary while distractors use obvious overclaims such as proving the whole model alone, copying fast, or applying one universal script."
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The scene introduces product lead Edmund and a blue launch tag as if they are concrete case facts, but the chapter gives no signal that this is hypothetical or sourced; this is a fabricated/misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "The scene introduces strategy analyst Cyrus and a postmortem as concrete narrative facts without grounding or hypothetical framing; this is a fabricated/misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 3",
+      "problem": "The scene introduces operations lead Christophe and a customer response as concrete narrative facts without grounding or hypothetical framing; this is a fabricated/misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 4",
+      "problem": "The scene introduces market analyst Pierre and a red status light as concrete narrative facts without grounding or hypothetical framing; this is a fabricated/misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The phrase 'source packet' exposes construction scaffolding to the reader and weakens the chapter's finished-book tone.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples restate the lesson more than they show a real before-to-after decision and consequence, so transfer is thinner than the main explanation.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a useful and memorable move: let the rival signal pressure, then make the internal benchmark judge the response. The summaries, quiz, limits, and practical prompts mostly work, and the key is sound. I would not ship it yet because the example section repeatedly presents named people and staged details as concrete cases without sourcing or hypothetical framing, which turns transfer practice into misleading invented evidence.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "6cde41aabe566d02d9f61c32761d55a1859b19660823241a44c1492a9b0aa4ce",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-06T07:26:16.526Z"
+}

@@ -1,0 +1,59 @@
+{
+  "chapterId": "start-with-why-ch02",
+  "number": 2,
+  "title": "Carrots and Sticks",
+  "coreMove": "When a spike comes from Price, Promotion, Fear, Aspiration, Peer pressure, or Novelty, treat it as borrowed until people act again without that push.",
+  "exampleCount": 5,
+  "exampleSpecs": [
+    {
+      "domain": "sales diagnosis",
+      "audience": "readers who confuse a lift with loyalty",
+      "stakes": "a price cut gets mistaken for preference",
+      "format": "numbers-detective",
+      "requiredBeat": "open at the return moment and catch the miss late"
+    },
+    {
+      "domain": "membership offer",
+      "audience": "readers testing their own asks",
+      "stakes": "a short-term response is misread as belief",
+      "format": "prop-tableau",
+      "requiredBeat": "start after the offer and leave the return point unmet"
+    },
+    {
+      "domain": "long-distance calling",
+      "audience": "readers sorting social pull from belief",
+      "stakes": "a useful nudge is mistaken for a deeper reason",
+      "format": "outsider-witness",
+      "requiredBeat": "open when someone downstream feels the effect"
+    },
+    {
+      "domain": "product launch",
+      "audience": "readers tempted by newness",
+      "stakes": "attention is counted as a buying reason",
+      "format": "novelty-signal",
+      "requiredBeat": "open on the early signal and let the miss land"
+    },
+    {
+      "domain": "small launch",
+      "audience": "readers with no title power",
+      "stakes": "a perk becomes a fake reason",
+      "format": "demand-stated",
+      "requiredBeat": "open at the demand and leave the return point open"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 4,
+      "analyze": 5
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 7,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-07-07T23:11:34.614Z"
+}

@@ -1,0 +1,53 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "c", "a", "c", "b", "b", "c", "b", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q7 is mildly signposted: the stem says the founder pair is used as a lead-in before unrelated advice, and the keyed option says the evidence has been removed."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 87,
+    "transfer": 85,
+    "practical": 86,
+    "summaries": 89,
+    "tone": 87,
+    "limits": 91,
+    "insight": 88,
+    "density": 84,
+    "beginner": 83
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The WHY does not make HOW smaller; HOW keeps WHY honest.",
+      "why": "Strongest compact line: memorable, reversible, and central to the chapter's mechanism."
+    },
+    {
+      "quote": "If no method is named, lower the promise. If no output can be seen, do not call the reason proved.",
+      "why": "Turns the idea into a practical diagnostic a reader can actually use."
+    },
+    {
+      "quote": "Better to lose a neat line than teach from borrowed proof.",
+      "why": "Good limit-setting: it protects against overclaiming from attractive examples."
+    },
+    {
+      "quote": "Skip the hard edge and Charles will make one pair bless too much; he asks where 1976 lets the reading stop before the claim gets wider.",
+      "why": "Weakest instructional phrasing: the action line is syntactically awkward and less direct than the surrounding examples."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q7",
+      "problem": "The stem's phrase 'before unrelated advice' makes the keyed diagnosis easier to guess without fully using the prose; this is a mild tell, not a broken quiz.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The 'What to do' line starts by describing the failure case instead of the action, making the instruction less clean than the other examples.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against a professional bar. The chapter has a clear core move, strong memory hooks, honest limits, and quizzes that are mostly fair and well keyed. Its main weakness is not correctness but polish: a couple of quiz and example moves are slightly over-signposted or awkward. The reader still leaves with a usable diagnostic: name WHY, require a HOW, and wait for proof to come back."
+}
+```

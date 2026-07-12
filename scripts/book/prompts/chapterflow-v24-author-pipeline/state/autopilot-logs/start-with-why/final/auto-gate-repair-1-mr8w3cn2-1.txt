@@ -1,0 +1,13 @@
+Done. Edited only chapter content under `state/chapters/`:
+
+- Rewrote the repeated counterintuition shell in chapters 3, 4, 5, 6, 9, 10, and 14.
+- Reduced repeated `Apple` mentions inside the flagged chapter 3 and 10 example scenarios.
+
+Validation run:
+
+```text
+gate-chapter: PASS — 0 blockers for ch03, ch04, ch05, ch06, ch09, ch10, ch14
+qc-converge start-with-why: DETERMINISTIC-CLEAN — all deterministic gates pass
+```
+
+No pipeline code or config was edited.

@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "b", "c", "b", "a", "a", "c", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several keyed choices are the most precise and chapter-specific while distractors use obvious bad language like 'famous', 'warm', 'broad', or 'cleaner opening sentence'.", "Q7 key a is much more abstractly well-phrased than b/c, making it guessable by tone."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 78,
+    "practical": 84,
+    "summaries": 86,
+    "tone": 80,
+    "limits": 83,
+    "insight": 84,
+    "density": 78,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Trace the root before you name the promise.",
+      "why": "Strong, memorable line that compresses the chapter's core move."
+    },
+    {
+      "quote": "The story does not serve the line; the line serves the story.",
+      "why": "The cleanest mechanism statement in the chapter."
+    },
+    {
+      "quote": "2 roots make small-service founder Xavier choose: launch the WHY now or prove it first.",
+      "why": "The hook is awkward and compressed in a way that feels scaffolded, not natural."
+    },
+    {
+      "quote": "The espresso hiss is the return point; no one has proved yet that the new line earns it.",
+      "why": "A sensory flourish substitutes for a clearer before-to-after decision consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The phrase '2 roots' is unnatural and makes the opening feel like generated scaffolding rather than a strong reader-facing hook.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples recycle the same lesson vocabulary instead of giving fresh operational situations with concrete stakes, places, numbers, or consequences.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 2",
+      "problem": "Tobias's scenario mostly restates the sequence rule and lacks a concrete before-to-after consequence beyond the order almost collapsing.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 3",
+      "problem": "The 'espresso hiss' detail reads decorative; the example needs a clearer decision and consequence for Melodie, not just a warm-return warning.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz tells",
+      "problem": "Some correct answers are easier to guess by specificity and sober phrasing, while distractors advertise themselves as wrong through overbroad or obviously bad claims.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a coherent, mostly shippable chapter with a strong central move: trace past pattern, contribution, and impact before writing the WHY line. The summaries, review cards, and practical challenge line up well, and the quiz keys are sound. I would not ship it at an 84+ professional bar because too many invented examples feel thin and lesson-shaped, with limited concrete consequence, and the quiz distractors sometimes make the right answer guessable by tone rather than reading."
+}
+```

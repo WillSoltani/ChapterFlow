@@ -1,0 +1,11 @@
+Wrote [start-with-why-ch06.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch06.v21-native.chapter.json).
+
+Validation:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 0 minors
+- `quiz-verify`: 9/9 match
+- `evidence-audit`: no evidence-integrity candidates
+- Rendered length: 15,470 chars
+- Breakdown readability: Flesch 76.69
+
+I also tried the sibling `chapterflow-v21-authored` gate against the edited v24 file path. That older gate blocks only because it enforces 6 examples, which conflicts with your explicit “EXACTLY 4 examples” brief.

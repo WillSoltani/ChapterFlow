@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "c", "a", "b", "b", "a", "c"],
+    "keyDisagreements": ["Q8: The keyed answer is directionally useful, but 'tests a nearby misconception' is not clearly taught in the prose; the prose supports changing venue/pattern travel more directly than misconception-testing."],
+    "tells": ["No strong longest-choice tell across the quiz. Some wrong options are easy because they use obviously disallowed phrases like 'rank decides,' 'any confident feeling,' and 'famous reference to cite.'"]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 74,
+    "practical": 86,
+    "summaries": 88,
+    "tone": 87,
+    "limits": 90,
+    "insight": 86,
+    "density": 82,
+    "beginner": 83
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Proof is the return trip, not the starting gun.",
+      "why": "Strongest memorable line; it compresses the chapter's core move into a usable phrase."
+    },
+    {
+      "quote": "What would make this feeling come back in daylight?",
+      "why": "Practical and memorable; it gives the reader a question they can actually use."
+    },
+    {
+      "quote": "The chore chart says: keep Damasio narrow.",
+      "why": "Worst transfer defect; the example collapses into a lesson label instead of showing a decision and consequence."
+    },
+    {
+      "quote": "Blue ink marks the split.",
+      "why": "Concrete detail without payoff; it reads decorative because the example never makes the before-after consequence vivid."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q8",
+      "problem": "The keyed rationale introduces 'nearby misconception' as the reason, but the prose mainly teaches pattern travel, second venue, and non-repetition; the exact misconception-testing standard is not sufficiently taught.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The chore-chart example mostly restates the lesson and shows no meaningful before-to-after consequence beyond 'biology pasted over taste.' It feels manufactured and too thin for transfer.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 6",
+      "problem": "The operations example has names and a prop, but the actual decision, consequence, and return result remain vague. It could fit many chapters about separating concepts.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2",
+      "problem": "The near miss is plausible but under-specified: Zane has notes and a mug, but the concrete decision and consequence are mostly absent.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter at the sentence and mechanism level: the return-line idea is memorable, the biology boundaries are handled carefully, and the practical move is low-friction. I would not ship it yet against an 84 bar because some transfer examples are too manufactured and Q8 asks for a rationale the prose has not quite earned. Fix the weak examples by showing concrete decisions and consequences, and either teach the misconception-testing standard before Q8 or re-key/rewrite that item."
+}
+```

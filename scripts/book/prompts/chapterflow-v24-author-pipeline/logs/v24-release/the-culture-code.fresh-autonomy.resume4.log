@@ -1,0 +1,58 @@
+2026-07-09T14:09:26.598Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-09T14:09:32.419Z [MAJOR] PHASE qc written 16/16 · gated 16 · qc'd 0
+2026-07-09T14:09:32.457Z [info]  author review budgets: 15 chapter(s) hold a durable PASS at bar 80 — protected from full re-author (ch02, ch03, ch04, ch05, ch06, ch07, ch08, ch09, ch10, ch11, ch12, ch13, ch14, ch15, ch16)
+2026-07-09T14:09:32.586Z [info]  author review budgets: reader budgets clean (4 advisory finding(s)) — advancing
+2026-07-09T14:09:32.586Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch02 reading surface mentions "zappos" (distinctive token of case "Tony Hsieh and Zappos") 11 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T14:09:32.586Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch11 reading surface mentions "johnson" (distinctive token of case "Johnson & Johnson Credo") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T14:09:32.586Z [info]  author review budgets: advisory [CHB2.length_budget] ch03 estimated rendered length 19376 chars is 21% over the 16000-char budget (allowed window 12800–19200; within the advisory band — polish, not a halt); readers rejected ~40% inflation.
+2026-07-09T14:09:32.586Z [info]  author review budgets: advisory [CHB8.case_stem_band] 49% of 144 stems name a chapter case/entity verbatim — over the 30% cap; case-name anchoring telegraphs the taught case. Rebuild some stems as novel-scenario transfer.
+2026-07-09T14:09:32.593Z [info]  author review: 16 chapter(s), one blinded reader each (parallel ≤6, bar 80)
+2026-07-09T14:09:32.598Z [info]  author review ch02: CARRIED durable review (composite 84.1, reviewer auto-author-review-ch02-mrdi4r6x-10) — no reader spawned
+2026-07-09T14:09:32.599Z [info]  author review ch03: CARRIED durable review (composite 87.1, reviewer auto-author-review-ch03-regen-mrdiw547-32) — no reader spawned
+2026-07-09T14:09:32.601Z [info]  author review ch04: CARRIED durable review (composite 85.9, reviewer auto-author-review-ch04-mrdi4r70-12) — no reader spawned
+2026-07-09T14:09:32.602Z [info]  author review ch05: CARRIED durable review (composite 86.7, reviewer auto-author-review-ch05-mrdi4r72-13) — no reader spawned
+2026-07-09T14:09:32.603Z [info]  author review ch06: CARRIED durable review (composite 84.8, reviewer auto-author-review-ch06-mrdi4r76-14) — no reader spawned
+2026-07-09T14:09:32.604Z [info]  author review ch07: CARRIED durable review (composite 85.6, reviewer auto-author-review-ch07-mrdi5igz-15) — no reader spawned
+2026-07-09T14:09:32.605Z [info]  author review ch08: CARRIED durable review (composite 87.2, reviewer auto-author-review-ch08-mrdi5mux-16) — no reader spawned
+2026-07-09T14:09:32.606Z [info]  author review ch09: CARRIED durable review (composite 84.7, reviewer auto-author-review-ch09-mrdi5o40-17) — no reader spawned
+2026-07-09T14:09:32.607Z [info]  author review ch10: CARRIED durable review (composite 86.8, reviewer auto-author-review-ch10-mrdi5uc5-18) — no reader spawned
+2026-07-09T14:09:32.608Z [info]  author review ch11: CARRIED durable review (composite 87.5, reviewer auto-author-review-ch11-mrdjax72-1) — no reader spawned
+2026-07-09T14:09:32.609Z [info]  author review ch12: CARRIED durable review (composite 87.4, reviewer auto-author-review-ch12-mrdi6dqx-20) — no reader spawned
+2026-07-09T14:09:32.610Z [info]  author review ch13: CARRIED durable review (composite 86.6, reviewer auto-author-review-ch13-regen-mrdinz7n-28) — no reader spawned
+2026-07-09T14:09:32.612Z [info]  author review ch14: CARRIED durable review (composite 86, reviewer auto-author-review-ch14-mrdi6k3t-22) — no reader spawned
+2026-07-09T14:09:32.613Z [info]  author review ch15: CARRIED durable review (composite 85.8, reviewer auto-author-review-ch15-mrdi6lv3-23) — no reader spawned
+2026-07-09T14:09:32.614Z [info]  author review ch16: CARRIED durable review (composite 84.2, reviewer auto-author-review-ch16-mrdi6nmg-24) — no reader spawned
+2026-07-09T14:10:57.147Z [info]  author review ch01: composite 84.5 ship=false keys 9/9 → FAIL
+2026-07-09T14:10:57.148Z [info]  author review: carried 15/16 chapter review(s) unchanged — spawned 1 fresh reader(s)
+2026-07-09T14:10:57.150Z [info]  author review ch01: FAIL is near the bar (composite 84.5, bar 80, keys 9/9, ship=false) — spawning 2 tiebreak readers (median-of-3, no cap consumed)
+2026-07-09T14:12:07.809Z [info]  author review ch01-tiebreak-r2: composite 86.1 ship=true keys 9/9 → PASS
+2026-07-09T14:12:39.736Z [info]  author review ch01-tiebreak-r3: composite 85.2 ship=true keys 9/9 → PASS
+2026-07-09T14:12:39.744Z [info]  author review ch01: tiebreak median 85.2 ≥ bar 80 via ship-majority (ship 2/3, reads 84.5, 86.1, 85.2) — deciding PASS 86.1 persisted; original FAIL's complaints preserved in tiebreak notes
+2026-07-09T14:12:39.753Z [info]  author acceptance: sampled ch 1, 2, 3, 4 → 64013 chars; spawning 3 independent book readers
+2026-07-09T14:14:06.556Z [info]  author acceptance: durable read record → /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/the-culture-code/acceptance.round1.39dd5290.r1.json
+2026-07-09T14:14:06.557Z [info]  author acceptance: pooled composite 72.1 over 1 read(s) (band ±3.7) gate FAIL churn HIGH valid 3/3 vs floor 74 (premium target 80) → REJECT
+2026-07-09T14:14:06.586Z [info]  [content-deal] the-culture-code: device ubiquity — named-anchor-lead 0%, proxy-cast 63%⚠, second-setting 50%, return-proof 31%, hard-detail-boundary 0%, three-part-split 0%, practice-shell 56%
+2026-07-09T14:14:06.600Z [info]  [content-deal] the-culture-code: repairing 1 chapter(s) (ch01[drop proxy-cast]); preserving ch02, ch03, ch04, ch05, ch06, ch07, ch08, ch09, ch10, ch11, ch12, ch13, ch14, ch15, ch16.
+2026-07-09T14:14:06.606Z [info]  [sameness] ch01: already consumed its content-deal-repair grant for this lineage — skipping (bounded).
+2026-07-09T14:14:06.607Z [info]  [content-deal] the-culture-code: repair summary — kept-and-clean 0, devices-persisted 0, reverted-quality 0, write-failed 0, skipped-cap 1.
+2026-07-09T14:14:06.615Z [info]  [content-deal] the-culture-code: AFTER — named-anchor-lead 0%, proxy-cast 63%⚠, second-setting 50%, return-proof 31%, hard-detail-boundary 0%, three-part-split 0%, practice-shell 56%
+2026-07-09T14:14:06.617Z [info]  author acceptance: content-device repair lane ran — kept+PASS none; unfixed→regen ch01.
+2026-07-09T14:14:06.629Z [info]  author acceptance: churn-driven repair routing — targets ch01 (named: 1; saturation-ranked fill), churn pack 1 measured line(s)
+2026-07-09T14:14:06.630Z [info]  author acceptance: 1 target chapter(s) already consumed their regen (2 total write attempts is a GLOBAL cap): ch01
+2026-07-09T14:14:06.631Z [info]  ── cost report — the-culture-code [halt:content] ──
+  grand total spawns: 6  (minted ids 6; verb ids 0)
+  by type: author-review:3  author-book-reader:3
+  by phase: qc:6
+  retries by cause: respawn:1
+  carry: acceptance 0 hit / 1 miss · reviews 15 hit / 1 miss
+  wall (spawn ms) by phase: qc:416763  total:416763
+2026-07-09T14:14:06.633Z [FINAL] HALT AUTOPILOT HALT — the-culture-code [phase qc · content]: author acceptance REJECTED (churn HIGH) and BOTH bounded repair lanes are spent for every content-repair target:
+  content-device lane: kept no chapter (reverted / devices-persisted / grant-consumed) on ch01
+  global regen lane: exhausted for those chapters (cap 2 write attempts/chapter)
+Manual escape hatch — reset a chapter's content-repair grant and force one fresh attempt, then re-run book acceptance:
+  content-repair-book the-culture-code --only <ch[,ch...]> [--force]
+Readers:
+  reader auto-author-book-reader-1-mrdl6b4a-4: comp=70 gate=FAIL churn=HIGH — The sample has a real instructional spine: it repeatedly pushes readers to ground culture claims in visible behavior, named settings, and testable cues. The quizzes are answerable and the keyed answers match my derivations, but the answer choices are often predictable, explanations are absent, and m
+  reader auto-author-book-reader-2-mrdl6b4c-5: comp=73.3 gate=FAIL churn=HIGH — The sample has real strengths: the chapters usually keep claims bounded, name failure modes, and offer several memorable lines. The quizzes are answerable from the prose and I found no key mismatches. But the gate fails because one source claim smells factually wrong, and the book-level experience i
+  reader auto-author-book-reader-3-mrdl6b4c-6: comp=72.6 gate=FAIL churn=HIGH — The sample is keyed sound on the quizzes, and many chapter-level lessons are useful, concrete, and bounded. The gate fails because at least one named factual anchor smells wrong, especially the Will Felps institutional attribution, which is severe in chapters that repeatedly demand exact source disc
+2026-07-09T14:14:06.633Z [FINAL] repair prompt: /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/the-culture-code/book-run/qc.20260709141406.21e31435.repair.md

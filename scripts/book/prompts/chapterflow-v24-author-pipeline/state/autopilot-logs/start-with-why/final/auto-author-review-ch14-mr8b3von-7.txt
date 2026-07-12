@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 88,
+    "transfer": 72,
+    "practical": 80,
+    "summaries": 82,
+    "tone": 68,
+    "limits": 84,
+    "insight": 79,
+    "density": 74,
+    "beginner": 70
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Self-referenced competition means this: let the rival warn you, then let your old promise judge the move.",
+      "why": "This is the chapter's strongest compressed teaching line."
+    },
+    {
+      "quote": "If the second line is blank, the decision is not ready.",
+      "why": "This turns the concept into a memorable practical test."
+    },
+    {
+      "quote": "Apple Inc. (the company in the Apple-Dell product contrast) and Dell (the other company in that contrast) make the tension plain.",
+      "why": "The parenthetical scaffolding makes the prose feel generated and less natural."
+    },
+    {
+      "quote": "When the standard is demanded, name the three anchors.",
+      "why": "This example action is thin: it names anchors but does not show a real decision standard being applied."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The explanatory parentheticals around Apple Inc., Dell, iPod, and Dell DJ read like source-card scaffolding rather than finished prose for a reader.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The mechanism is clear but abstract; phrases like 'benchmark closes it,' 'purpose fidelity,' and 'continuous improvement' stack concepts before giving the beginner much lived context.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The example mostly restates the anchors and pauses the copy request, but it does not show a concrete before-to-after decision consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Repeated language about markers, venues, anchors, and proof points gives several sections a template smell even though the core idea is usable.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a useful and memorable move: let the rival create the signal, then make the internal benchmark judge the decision. The quiz is fair and the keys are sound, with no obvious answer tells. I would not ship it at a professional 84 bar because the prose often exposes its scaffolding, the examples sometimes feel constructed to satisfy slots rather than dramatize real choices, and the beginner path is more abstract than it needs to be. It is close, but it needs more natural prose and at least one richer applied example before publication."
+}
+```

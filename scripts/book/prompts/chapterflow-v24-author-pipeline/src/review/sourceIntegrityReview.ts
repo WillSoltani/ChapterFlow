@@ -83,6 +83,10 @@ export const SOURCE_INTEGRITY_REVIEWER_ROLE = "source-verifier" as const;
  *  wrapped staleness/relabel signals mirror how sourceGrounding.ts casts SC11.0). */
 export const SOURCE_USE_PLAN_STALE_CHECK_ID: string = "SUP.source_use_plan_stale";
 export const EMBEDDED_PLAN_MUTATION_CHECK_ID: string = "SUP.embedded_plan_mutation";
+/** A deterministic critic threw instead of returning findings. The lane treats
+ *  this as missing required deterministic evidence and short-circuits to
+ *  INCONCLUSIVE; a semantic reviewer may never vote the infrastructure gap away. */
+export const SOURCE_CRITIC_INFRASTRUCTURE_FAILURE_CHECK_ID: string = "SUP.source_critic_infrastructure_failure";
 
 /** Refusal error — the lane REFUSES to run when a required source artifact or hash
  *  is missing (design §B "requires source-use-plan and source hashes"; test 4). */
@@ -116,12 +120,12 @@ export function runSourceDeterministicPrechecks(
   const checks: CriticFinding[] = [];
 
   // 1. C37 source-register family (pure; advisory-minor).
-  checks.push(...safeCritics(() => checkSourceRegister(chapter, plan)));
+  checks.push(...safeCritics("checkSourceRegister", () => checkSourceRegister(chapter, plan)));
   // 2. SC11 chapter provenance (v2-only; the passed sidecar is the override so no
   //    disk read — a non-v2 sidecar returns []).
-  checks.push(...safeCritics(() => checkChapterProvenance(chapter, sidecar)));
+  checks.push(...safeCritics("checkChapterProvenance", () => checkChapterProvenance(chapter, sidecar)));
   // 3. SC9 / SC11.0 example grounding (reads the source run read-only).
-  checks.push(...safeCritics(() => checkExampleSourceGrounding(chapter, plan)));
+  checks.push(...safeCritics("checkExampleSourceGrounding", () => checkExampleSourceGrounding(chapter, plan)));
   // 4. Source-use-plan staleness → INCONCLUSIVE trigger (major, NOT a blocker).
   const stale = sourceUsePlanStale(plan, packet);
   if (stale) {
@@ -158,13 +162,19 @@ export function computeRequiredSourceUnitIds(plan: SourceUsePlanV1): string[] {
     .map((u) => u.unitId);
 }
 
-function safeCritics(fn: () => CriticFinding[]): CriticFinding[] {
+function safeCritics(criticName: string, fn: () => CriticFinding[]): CriticFinding[] {
   try {
     return fn();
-  } catch {
-    // A source critic must never crash the lane; a disk hiccup degrades to no
-    // deterministic signal (the semantic verdict + freshness still gate).
-    return [];
+  } catch (error) {
+    const detail = error instanceof Error && error.message.trim().length > 0
+      ? error.message.trim().slice(0, 240)
+      : "unknown error";
+    return [critic(
+      SOURCE_CRITIC_INFRASTRUCTURE_FAILURE_CHECK_ID,
+      "major",
+      `source deterministic critic failed closed: ${criticName}: ${detail}`,
+      `critic=${criticName}`,
+    )];
   }
 }
 
@@ -277,7 +287,7 @@ export function buildSourceIntegrityTask(
     "",
     fenceUntrusted("allowed anchor catalog", JSON.stringify(packet.anchorCatalog, null, 2)),
     "",
-    `OUTPUT: emit exactly one fenced \`\`\`json block conforming to the bound output schema (${opts.outputSchemaRelPath}). Keys: schema ("source-integrity-review-v1"), units[] (per unit: unitId, expectedOrigin, expectedForm, claimStrengthExpected, visibleRegister, supportStatus, framingAdequate, claimStrengthFit, namedSpecificityAllowed, chapterEvidenceSpans, sourceEvidenceSpans, findings[]), result ("PASS"|"BLOCK"|"INCONCLUSIVE"), blockingFindingIds[], rationale. Emit a blocker finding ONLY when the source evidence itself proves the defect.`,
+    `OUTPUT: emit only the JSON object conforming to the bound output schema (${opts.outputSchemaRelPath}). Do not wrap it in markdown fences and do not add prose before or after it. Keys: schema ("source-integrity-review-v1"), units[] (per unit: unitId, expectedOrigin, expectedForm, claimStrengthExpected, visibleRegister, supportStatus, framingAdequate, claimStrengthFit, namedSpecificityAllowed, chapterEvidenceSpans, sourceEvidenceSpans, findings[]), result ("PASS"|"BLOCK"|"INCONCLUSIVE"), blockingFindingIds[], rationale. Emit a blocker finding ONLY when the source evidence itself proves the defect.`,
   ].join("\n");
 
   return {
@@ -288,7 +298,7 @@ export function buildSourceIntegrityTask(
   };
 }
 
-// ── model-output parse (fenced JSON; strict validation happens post-stamp) ─────
+// ── model-output parse (raw JSON, with fenced compatibility fallback) ─────────
 
 /** The model's raw output shape (matches the bound output schema: the five
  *  model-emitted keys, NOT the binding hashes the runtime stamps). */
@@ -297,27 +307,34 @@ export type SourceIntegrityModelOutputV1 = Pick<
   "schema" | "units" | "result" | "blockingFindingIds" | "rationale"
 >;
 
-/** Extract the model's final fenced JSON (last ```json fence, else last fence),
- *  mirroring parseReaderReview. Returns null on any parse/shape failure — the lane
- *  treats a null parse as missing evidence (fail-closed INCONCLUSIVE). */
+/** Parse the strict raw JSON emitted by schema-bound execution. If whole-output
+ *  parsing fails, accept the legacy/canned final fence (last ```json fence, else
+ *  last fence). Returns null on any parse/shape failure — the lane treats a null
+ *  parse as missing evidence (fail-closed INCONCLUSIVE). */
 export function parseSourceIntegrityReview(stdout: string): SourceIntegrityModelOutputV1 | null {
   if (typeof stdout !== "string" || stdout.length === 0) return null;
-  const fenceRe = /```(json)?[^\n]*\n([\s\S]*?)```/g;
-  let lastJsonLabeled: string | null = null;
-  let lastAny: string | null = null;
-  let m: RegExpExecArray | null;
-  while ((m = fenceRe.exec(stdout)) !== null) {
-    lastAny = m[2];
-    if (m[1] === "json") lastJsonLabeled = m[2];
-  }
-  const body = lastJsonLabeled ?? lastAny;
-  if (!body) return null;
+  const trimmed = stdout.trim();
+  let body: string | null = trimmed.length > 0 ? trimmed : null;
 
   let raw: unknown;
   try {
-    raw = JSON.parse(body);
+    raw = JSON.parse(body ?? "");
   } catch {
-    return null;
+    const fenceRe = /```(json)?[^\n]*\n([\s\S]*?)```/g;
+    let lastJsonLabeled: string | null = null;
+    let lastAny: string | null = null;
+    let m: RegExpExecArray | null;
+    while ((m = fenceRe.exec(stdout)) !== null) {
+      lastAny = m[2];
+      if (m[1] === "json") lastJsonLabeled = m[2];
+    }
+    body = lastJsonLabeled ?? lastAny;
+    if (!body) return null;
+    try {
+      raw = JSON.parse(body);
+    } catch {
+      return null;
+    }
   }
   if (raw === null || typeof raw !== "object" || Array.isArray(raw)) return null;
   const obj = raw as Record<string, unknown>;
@@ -472,21 +489,29 @@ export async function runSourceIntegrityReview(
   const bundle = runSourceDeterministicPrechecks(chapter, plan, packet, sidecar);
   const summary = summarizeDeterministicBundle(bundle);
 
-  // 4. Stale source-use plan → INCONCLUSIVE, no model call (integration 8).
+  // 4. Any deterministic critic infrastructure failure → INCONCLUSIVE, no model
+  //    call. Missing deterministic evidence cannot be voted away semantically.
+  const criticFailure = bundle.checks.find((c) => c.checkId === SOURCE_CRITIC_INFRASTRUCTURE_FAILURE_CHECK_ID);
+  if (criticFailure) {
+    const review = buildRecord(hashes, [], "INCONCLUSIVE", [], `source lane INCONCLUSIVE — ${criticFailure.message}`);
+    return { review, bundle, summary, result: "INCONCLUSIVE" };
+  }
+
+  // 5. Stale source-use plan → INCONCLUSIVE, no model call (integration 8).
   const staleFinding = bundle.checks.find((c) => c.checkId === SOURCE_USE_PLAN_STALE_CHECK_ID);
   if (staleFinding) {
     const review = buildRecord(hashes, [], "INCONCLUSIVE", [], `source lane INCONCLUSIVE — ${staleFinding.message}`);
     return { review, bundle, summary, result: "INCONCLUSIVE" };
   }
 
-  // 5. Deterministic blocker → BLOCK, no model call (the semantic reviewer adjudicates
+  // 6. Deterministic blocker → BLOCK, no model call (the semantic reviewer adjudicates
   //    only the residual; it never re-votes a deterministic finding).
   if (summary.hasBlocker) {
     const review = buildRecord(hashes, [], "BLOCK", summary.blockerCheckIds, `source lane BLOCK — deterministic critics: ${summary.blockerCheckIds.join(", ")}`);
     return { review, bundle, summary, result: "BLOCK" };
   }
 
-  // 6. Semantic residual verdict via the injected seam (no live model call here).
+  // 7. Semantic residual verdict via the injected seam (no live model call here).
   if (typeof deps.spawn !== "function") {
     throw new SourceIntegrityLaneError("source lane requires an injected reviewer seam (deps.spawn); this package makes no live model call");
   }
@@ -504,7 +529,7 @@ export async function runSourceIntegrityReview(
     return { review, bundle, summary, result: "INCONCLUSIVE" };
   }
 
-  // 7. Stamp binding hashes + role, then STRICT-validate the full record.
+  // 8. Stamp binding hashes + role, then STRICT-validate the full record.
   const stamped = buildRecord(hashes, parsed.units, parsed.result, parsed.blockingFindingIds, parsed.rationale);
   const errors = validateSourceIntegrityReview(stamped);
   if (errors.length > 0) {
@@ -512,7 +537,7 @@ export async function runSourceIntegrityReview(
     return { review, bundle, summary, result: "INCONCLUSIVE" };
   }
 
-  // 8. Compose the fail-closed lane result (deterministic bundle ∪ semantic verdict).
+  // 9. Compose the fail-closed lane result (deterministic bundle ∪ semantic verdict).
   const composed = composeSourceResult(summary, stamped);
   stamped.result = composed.result;
   stamped.blockingFindingIds = composed.blockingFindingIds;

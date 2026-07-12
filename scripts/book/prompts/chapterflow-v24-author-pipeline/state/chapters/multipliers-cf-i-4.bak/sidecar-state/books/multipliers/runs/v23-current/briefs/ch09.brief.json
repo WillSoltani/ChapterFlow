@@ -1,0 +1,171 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "multipliers-ch09",
+  "chapterNumber": 9,
+  "title": "Becoming a Multiplier",
+  "coreMove": "Because the 1993 article frames expertise development around structured practice conditions, leadership change should use specific feedback rather than vague admiration.",
+  "thesis": "Anders Ericsson's 1993 Psychological Review article connects deliberate practice with focused feedback.",
+  "readerPromise": "After this chapter, a reader can because the 1993 article frames expertise development around structured practice conditions, leadership change should use specific feedback rather than vague admiration.",
+  "ownedCases": [
+    {
+      "id": "ch09.ex.ericsson-practice",
+      "label": "Anders Ericsson deliberate practice"
+    },
+    {
+      "id": "ch09.ex.gollwitzer-intentions",
+      "label": "Peter Gollwitzer implementation intentions"
+    },
+    {
+      "id": "ch09.ex.dweck-growth",
+      "label": "Carol Dweck growth mindset"
+    }
+  ],
+  "notYours": [
+    "Amazon disagree and commit",
+    "Amy Edmondson hospital-team research",
+    "Amy Edmondson voice and silence",
+    "Atlassian ShipIt",
+    "Chris Voss calibrated questions",
+    "Getting to Yes negotiation frame",
+    "Google Project Aristotle",
+    "Google Project Oxygen",
+    "HarperCollins revised edition",
+    "HarperCollins revised new chapters",
+    "Harvard Business Review article",
+    "Intel constructive confrontation",
+    "John F. Kennedy Moon goal",
+    "Kim Scott Radical Candor",
+    "Netflix freedom and responsibility",
+    "Original HarperBusiness release",
+    "Pixar Braintrust",
+    "Pixar Braintrust candor",
+    "Satya Nadella / Microsoft culture shift",
+    "Space Shuttle Challenger decision record"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    0,
+    0,
+    2,
+    2,
+    1,
+    1,
+    0,
+    1,
+    2
+  ],
+  "avoid": [
+    "opener (ch01): \"A source analyst sees May 2010 as the\"",
+    "opener (ch02): \"At the return moment in Microsoft's 2014 CEO\"",
+    "opener (ch03): \"On a project call, delivery lead Holly hears\"",
+    "opener (ch05): \"Product lead Janelle asks the question no one\"",
+    "opener (ch06): \"Reed Hastings and Patty McCord reach the return\"",
+    "opener (ch07): \"Sabrina catches the early signal on the publisher\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a reminder on a phone",
+    "venue: a car ride conversation",
+    "venue: a coffee-shop table",
+    "frame: post-decision consequence that forces a correction",
+    "frame: a shared ritual observed in mid-action as it builds connection"
+  ],
+  "architectureFamily": "research-lead",
+  "openerType": "claim",
+  "challengeFrame": "teach-it-to-someone",
+  "practiceShape": "observe-then-note",
+  "exampleLenses": [
+    "counterfactual",
+    "outsider-witness",
+    "numbers-detective"
+  ],
+  "practiceVerb": "count",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "leader",
+    "rather",
+    "assuming",
+    "thinking",
+    "team",
+    "concrete"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "averted-late",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "observe-then-note",
+    "two-step-sequence",
+    "say-aloud-script",
+    "measure-one-number"
+  ],
+  "quizStemShapes": [
+    "choose-next-move",
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why"
+  ],
+  "quizFailureModes": [
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger"
+  ],
+  "questionFactOrder": [
+    1,
+    2,
+    5,
+    8,
+    3,
+    7,
+    9,
+    4,
+    6
+  ],
+  "memorableShapes": [
+    "imperative",
+    "reversal",
+    "redefinition"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "ledger-speak",
+    "sensory-speak"
+  ],
+  "shellRegister": "verb-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Anders Ericsson deliberate practice"
+  },
+  "adjacentJobs": {
+    "prev": "Because the publisher page names dealing with Diminishers as added revised material, coping tactics belong in the 2017 sequence."
+  }
+}

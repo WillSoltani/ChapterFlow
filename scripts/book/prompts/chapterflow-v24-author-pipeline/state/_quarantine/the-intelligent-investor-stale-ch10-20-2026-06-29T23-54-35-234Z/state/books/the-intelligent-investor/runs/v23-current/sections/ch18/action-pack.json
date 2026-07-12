@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "action-pack",
+  "chapterId": "the-intelligent-investor-ch18",
+  "tryThisNow": "Open the next investment note and add a pair line before deciding: name the alternative claim on capital, then mark whether risk, quality, or price changes the first impression.",
+  "tryThisNowSourceAnchorIds": [
+    "ch18.fact.1",
+    "ch18.fact.2",
+    "ch18.fact.3"
+  ],
+  "implementationPlan": {
+    "title": "Edit Your Pair Comparison Screen",
+    "titleSourceAnchorIds": [
+      "ch18.fact.1",
+      "ch18.fact.2",
+      "ch18.fact.3"
+    ],
+    "coreSkill": "Before a candidate stays active, change the place where the decision is made: put a peer beside it, separate the industry label from actual risk, and make the valuation premium prove that the better business is still the better stock.",
+    "coreSkillSourceAnchorIds": [
+      "ch18.fact.1",
+      "ch18.fact.2",
+      "ch18.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch18.fact.1",
+        "sourceAnchorIds": [
+          "ch18.fact.1"
+        ],
+        "context": "email draft",
+        "plan": "If an email draft recommends a company by itself, then add a pair line naming the alternative claim on capital before sending it."
+      },
+      {
+        "sourceAnchorId": "ch18.fact.2",
+        "sourceAnchorIds": [
+          "ch18.fact.2"
+        ],
+        "context": "calendar block",
+        "plan": "If a calendar block is set aside for two same-sector names, then start by marking leverage, assets, earnings stability, and management before treating the labels as comparable."
+      },
+      {
+        "sourceAnchorId": "ch18.fact.3",
+        "sourceAnchorIds": [
+          "ch18.fact.3"
+        ],
+        "context": "front desk",
+        "plan": "If the front desk note says the better business is the better stock, then add a price check asking whether the premium exceeds the quality difference."
+      }
+    ],
+    "twentyFourHourChallenge": "Before tomorrow ends, edit one active investment note so it cannot stand alone: add a peer, add a risk line, and add a premium line that tests whether quality is being overcapitalized.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch18.fact.1",
+      "ch18.fact.2",
+      "ch18.fact.3"
+    ],
+    "weeklyPractice": "Use a two-trigger checklist each week. Trigger one: any company judged alone gets a peer line. Trigger two: any superior business gets a premium line before it stays active.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch18.fact.1",
+      "ch18.fact.2",
+      "ch18.fact.3"
+    ]
+  }
+}

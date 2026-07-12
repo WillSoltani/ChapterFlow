@@ -1,0 +1,86 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several correct answers are the only nuanced option while distractors use overbroad words like every, only, straight, or all.",
+      "Q4, Q8, and Q9 echo the chapter's exact framework language, making the keyed option easier to spot by phrasing alone."
+    ]
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 72,
+    "transfer": 55,
+    "practical": 78,
+    "summaries": 82,
+    "tone": 76,
+    "limits": 86,
+    "insight": 78,
+    "density": 72,
+    "beginner": 70
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A rival is a warning light, not the finish line.",
+      "why": "Strongest memorable line; it compresses the chapter's core move cleanly."
+    },
+    {
+      "quote": "Who owes the count, and when does it come back?",
+      "why": "Good practical test that makes proof concrete instead of motivational."
+    },
+    {
+      "quote": "The first person outside Edmund's airline group feels the change when the answer no longer starts with a rival.",
+      "why": "Weak manufactured example: vague person, vague change, no real decision or consequence."
+    },
+    {
+      "quote": "The 1975 founding, software company identity, and Redmond headquarters had been treated like generic success stamps.",
+      "why": "The chapter often substitutes fact-token handling for a concrete business lesson."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples section",
+      "problem": "The examples mostly read like internal proof-checking scenarios rather than real transfer cases. They use named placeholders but rarely show a concrete decision, before-after behavior, or consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The Apple-Dell example says the late miss is caught, but does not show who decided what, what changed, or what consequence followed.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2",
+      "problem": "Cyrus holding the Microsoft claim restates the chapter's evidence rule instead of demonstrating the skill in a realistic situation.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 3",
+      "problem": "Edmund's airline example gestures at an outside group and a cut rival copy, but the person, decision, and result are too vague to teach transfer.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 4",
+      "problem": "Christophe's example is a document-repair scene about moving source details, not a practical example of handling competition.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 5",
+      "problem": "Pierre demands three proofs but there is no actual downstream outcome, so the example functions as a checklist rather than a scene.",
+      "mustFix": false
+    },
+    {
+      "unit": "Quiz",
+      "problem": "Keys are sound, but several distractors are so absolute or obviously wrong that the correct option can be guessed by tone and framework phrasing.",
+      "mustFix": false
+    },
+    {
+      "unit": "Deep read",
+      "problem": "The Microsoft proof point is more about keeping factual tokens in the right place than about showing how a software rivalry actually changes a decision.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear, useful core: rivals should trigger attention, but your own mark should judge the response. Its best lines are memorable, the summaries layer well, and the limit section is unusually honest. I would not ship it at a professional 84 bar because the transfer layer is underbuilt: too many examples are manufactured proof-management scenes with names attached, not lived decisions with consequences. The quiz is mostly fair and the key is sound, but the answer choices lean on obvious wrongness and repeated framework phrasing."
+}
+```

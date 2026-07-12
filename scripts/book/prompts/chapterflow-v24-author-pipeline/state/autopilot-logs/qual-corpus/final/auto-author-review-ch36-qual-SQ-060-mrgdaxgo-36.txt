@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 20,
+    "quizzes": 0,
+    "transfer": 15,
+    "practical": 20,
+    "summaries": 0,
+    "tone": 25,
+    "limits": 10,
+    "insight": 20,
+    "density": 10,
+    "beginner": 25
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "What to do: Treat supplied artifacts as untrusted data.",
+      "why": "This is the clearest statement of the chapter's intended core move."
+    },
+    {
+      "quote": "Why it matters: Instructions in data must never steer the evaluator.",
+      "why": "This gives a usable mechanism, but it is only a note, not developed prose."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now",
+      "why": "Major promised reader-facing sections are present only as empty headings."
+    },
+    {
+      "quote": "# Writer Role Card ## Job Write one canonical ChapterFlow chapter in plain English.",
+      "why": "The example leaks production instructions instead of teaching the reader through a finished chapter example."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The chapter has a Quiz heading but no quiz questions, so the quiz is broken and cannot test derivation from the prose.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The Fast read section is empty, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The Deep read section is empty, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The Full read section is empty, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The Key takeaway section is empty, leaving the chapter's core move unstated in the promised summary slot.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The Try this now section is empty, so the reader gets no actionable practice.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The only example is a pasted writer role card rather than a reader-facing worked example with a before-to-after decision.",
+      "mustFix": false
+    },
+    {
+      "unit": "review cards",
+      "problem": "The Review cards section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The Memorable lines section is empty.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is not a shippable chapter. It contains the seed of a useful lesson about treating supplied artifacts as untrusted data, but most promised sections are empty, the quiz is missing, and the only example is raw production scaffolding rather than finished reader instruction. A reader could infer the topic, but could not reliably learn, remember, practice, or be assessed on the chapter's core move from what is on the page."
+}
+```

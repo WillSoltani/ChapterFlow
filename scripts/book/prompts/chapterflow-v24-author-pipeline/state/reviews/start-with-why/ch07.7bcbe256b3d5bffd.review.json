@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch07",
+  "chapterNumber": 7,
+  "contentHash": "7bcbe256b3d5bffd",
+  "reviewerSessionId": "auto-author-review-ch07-mr8b37x8-5",
+  "scores": {
+    "retention": 91,
+    "quizzes": 84,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 92,
+    "tone": 90,
+    "limits": 94,
+    "insight": 89,
+    "density": 86,
+    "beginner": 88
+  },
+  "composite": 88.4,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "b",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The middle kills most tipping points by asking for proof early believers have not earned.",
+      "why": "Strong hook: memorable, causal, and central to the chapter's move.",
+      "verified": true
+    },
+    {
+      "quote": "No motion, no tip.",
+      "why": "The limit is crisp and prevents the method from sounding like a messaging trick.",
+      "verified": true
+    },
+    {
+      "quote": "Every broad push sent too soon spends proof the early believers have not earned yet.",
+      "why": "Best retention line: it turns the abstract adoption sequence into a concrete cost.",
+      "verified": true
+    },
+    {
+      "quote": "Keith cuts the broad ask, accepts the slower start, and waits for proof to return.",
+      "why": "Useful but repeated pattern; several examples circle this same narrow-ask move without much new consequence.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several correct choices reuse chapter phrasing very directly, especially Q3's \"checkable ground\" and Q9's \"Rogers-and-1962 grounding,\" making them guessable without full reading.",
+    "Some distractors are visibly self-defeating, such as moving markers between examples or treating usefulness as majority adoption, which makes the right answer easier to spot."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "The correct answer is made easier by distinctive phrasing that mirrors the chapter's own language about anchors and checkable ground; this is a quiz tell, not a broken key.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The correct choice contains the most complete source-marker bundle, \"Rogers-and-1962 grounding,\" while the distractors are artificially narrow; this weakens discrimination.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example is usable but thin on before-to-after consequence: Keith narrows the ask, but the result of that decision is mostly asserted as waiting for proof rather than shown.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 1, 4, and 5",
+      "problem": "These examples repeat the edge-proof versus middle-proof distinction with similar action beats, lowering transfer range even though each remains on-topic and usable.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Ship. The chapter has a clear, memorable core move: do not ask the cautious middle to create the proof that early believers must earn first. The Rogers, March, and TiVo anchors give the idea checkable ground, and the limits are unusually honest for this genre. The main weaknesses are quiz tells from overly diagnostic correct-answer phrasing and some repetition across examples, but these are craft issues rather than reader-harming defects.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "7f2b0bc0537058e72414b6447cf99e23bf3a702c9ecdc32d5a810a42b6cb208e",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T21:32:05.668Z"
+}

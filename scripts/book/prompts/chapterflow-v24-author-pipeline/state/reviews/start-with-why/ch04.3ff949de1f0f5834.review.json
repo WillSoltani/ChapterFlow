@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch04",
+  "chapterNumber": 4,
+  "contentHash": "3ff949de1f0f5834",
+  "reviewerSessionId": "auto-author-review-ch04-mr8w9czz-3",
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 82,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 82,
+    "limits": 90,
+    "insight": 87,
+    "density": 84,
+    "beginner": 80
+  },
+  "composite": 85.3,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "c",
+      "a",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Proof is the return trip, not the starting gun.",
+      "why": "Strongest line: compact, memorable, and it carries the core move.",
+      "verified": true
+    },
+    {
+      "quote": "It does not mock the signal. It also keeps a mood from wearing a lab coat.",
+      "why": "Strong mechanism statement: feeling is respected but made answerable.",
+      "verified": true
+    },
+    {
+      "quote": "Feeling needed biology, not a slogan.",
+      "why": "Weak opening: the phrasing is compressed enough to feel awkward before the idea is clear.",
+      "verified": true
+    },
+    {
+      "quote": "Why did the third example fail when it repeated the first brain-side lesson?",
+      "why": "Worst quiz friction: the stem says example, while the prose teaches this point as the third anchor.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "No clear mechanical answer tells. Several correct choices are the only options that preserve the chapter's repeated contrast language, but not by length or giveaway phrasing."
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening sentence is grammatically compressed and may slow a cold beginner before the chapter has established its terms.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The stem asks about the 'third example,' but the relevant prose discusses the 'third anchor'; the answer remains derivable, but the wording adds avoidable confusion.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The scenario is useful but thin: it names a margin-line correction without much before-to-after consequence beyond restating the chapter's rule.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The spend-hold scenario is on-topic but overlaps heavily with Example 2's Damasio-as-edge lesson, reducing transfer variety.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears the professional bar. Its core move is memorable: write the visible side, name the felt pull, then require proof to return before trust is spent. The biology is bounded carefully, the Damasio reference is used as an edge rather than a permission slip, and the practice instructions are concrete enough to try. The main weaknesses are craft-level: the hook is stiff, a few examples repeat the same Damasio-edge pattern, and Q8 has a wording mismatch between example and anchor. None of these block shipping.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "d4734add137a82b8b9f726bb056d137e1a51e1b0e59fa52232bf05b828a3d6c5",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-06T07:24:38.808Z"
+}

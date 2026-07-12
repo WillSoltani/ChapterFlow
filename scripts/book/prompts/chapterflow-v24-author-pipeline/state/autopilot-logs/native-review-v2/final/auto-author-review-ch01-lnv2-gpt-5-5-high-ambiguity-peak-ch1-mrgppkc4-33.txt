@@ -1,0 +1,84 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "b", "b", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The prose says to isolate the exact weak spot, make a short rep, get feedback, and change the next attempt; slowing and recording only the two-measure turn does that.",
+      "The chapter repeatedly contrasts whole-task review with a narrow drill around the recurring error plus immediate correction.",
+      "The diagnosis matches the chapter's warning that whole-performance repetition can let one weak point keep surviving.",
+      "The lane-line cue plus one-length video check creates a visible target, feedback, and repeated adjustment before adding volume.",
+      "The Faloon passage says the digit string grew because each miss told the next attempt where to work.",
+      "The chapter rejects repetition that hopes time will fix the weak part; a visible size target is needed to guide the next cut.",
+      "The prose says feedback matters when it lands soon enough to change the next repetition while the miss is still traceable.",
+      "Plan B creates a short feedback loop that can alter the next batch; Plan A delays the signal until after many repetitions.",
+      "The revised target is visible, countable, and correctable before the next attempt."
+    ],
+    "confidence": ["medium", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "b is also defensible: changing fingering before the next attempt is a concrete adjustment to the isolated passage, just like adjusting hand motion.",
+      "",
+      "",
+      "",
+      "",
+      "a is partly defensible because the prose says comfort can leave the weak spot hidden; b is stronger because it names the visible target.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Q1 has two near-duplicate answer choices, making the intended key underdetermined rather than derivable.",
+      "Several distractors telegraph wrongness with hope/eventually/more hours language that the chapter has already framed as naive practice.",
+      "Q5's correct option contains the chapter's core words, miss and feedback, while the distractors introduce unsupported side claims."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 76,
+    "transfer": 91,
+    "practical": 92,
+    "summaries": 90,
+    "tone": 91,
+    "limits": 88,
+    "insight": 92,
+    "density": 89,
+    "beginner": 92
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "This is the chapter's core move in a compact, memorable line."
+    },
+    {
+      "quote": "Comfort is a poor coach because it lets the weak spot stay hidden.",
+      "why": "Strong mechanism: it explains why familiar repetition fails."
+    },
+    {
+      "quote": "a) Slow the two-measure turn, record only that passage, and adjust the hand motion before the next attempt.",
+      "why": "This answer satisfies the purposeful-practice loop."
+    },
+    {
+      "quote": "b) Slow the two-measure turn, record only that passage, and change fingering before the next attempt.",
+      "why": "This competing answer also satisfies the same loop, making Q1 ambiguous."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "Options a and b both isolate the same two-measure fault, record only that passage, and change the next attempt; the prose does not force one over the other.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "Options a and b are both supported by the chapter's critique of comfortable repetition, though b is more target-specific.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Some distractors are easier to reject by phrasing alone because they use hope, eventually, or more-hours logic already marked as naive.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is strong: concrete, memorable, and practical, with a clear correction-loop model that transfers cleanly across study, work, sport, and craft examples. The summaries stand alone, the limits are honest, and the prose explains the mechanism rather than just naming a habit. I would not ship it as-is only because Q1 is a genuinely broken quiz item with two defensible answers; fixing that would likely put the chapter over the professional bar."
+}
+```

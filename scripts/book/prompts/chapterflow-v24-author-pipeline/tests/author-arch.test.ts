@@ -13,7 +13,7 @@
  * targeted regen then halting; and compiler/legacy defaults unchanged.
  */
 import assert from "node:assert/strict";
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, utimesSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -38,6 +38,7 @@ import {
   authorSelfVerify,
   authorWriteOneChapter,
   buildAuthorCard,
+  commitPreparedAuthorCandidate,
   doAuthorWrite,
   ROUND_TIMER_MINUTES,
 } from "../src/orchestrator/authorRun.js";
@@ -67,7 +68,7 @@ import {
   type ReopenNote,
 } from "../src/orchestrator/authorReviewLedger.js";
 import { authorChapterId } from "../src/orchestrator/authorRun.js";
-import { loadAuthorProvenance, provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
+import { loadAuthorProvenance, provenancePath, recordAuthorProvenance, type AuthorProvenance } from "../src/qc/sessionProvenance.js";
 import {
   contentRepairConsumedFor,
   loadAuthorRegenLedger,
@@ -96,6 +97,7 @@ import {
 import type { ValidatedBarReadSubmission, ValidatedConfirmReadSubmission } from "../src/qc/orchestrator/schemas.js";
 import type { ChapterV21 } from "../src/types.js";
 import type { BookStatus, ChapterStatus } from "../src/lifecycle/bookStatus.js";
+import type { ForwardAutopilotControlV1 } from "../src/orchestrator/forwardLocalAutopilot.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const GOLDEN_PACKET = JSON.parse(
@@ -293,6 +295,53 @@ function mkDeps(
 }
 
 const TMP = mkdtempSync(join(tmpdir(), "author-arch-"));
+const TEST_PIPELINE_DIR = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+
+type TestFileSnapshot = {
+  path: string;
+  existed: boolean;
+  bytes: Buffer | null;
+  atime: Date | null;
+  mtime: Date | null;
+};
+
+const AUTOPILOT_TEST_TELEMETRY = [
+  resolve(TEST_PIPELINE_DIR, "state", "autopilot-logs", "zz", "cost-report.json"),
+  resolve(TEST_PIPELINE_DIR, "state", "autopilot-logs", "zz", "run-manifest.json"),
+  resolve(TEST_PIPELINE_DIR, "state", "reviews", "zz", "tiebreak-notes.json"),
+];
+
+function snapshotTestFile(path: string): TestFileSnapshot {
+  if (!existsSync(path)) return { path, existed: false, bytes: null, atime: null, mtime: null };
+  const stat = statSync(path);
+  return { path, existed: true, bytes: readFileSync(path), atime: stat.atime, mtime: stat.mtime };
+}
+
+function restoreTestFile(snapshot: TestFileSnapshot): void {
+  if (!snapshot.existed) {
+    rmSync(snapshot.path, { force: true });
+    return;
+  }
+  writeFileSync(snapshot.path, snapshot.bytes!);
+  utimesSync(snapshot.path, snapshot.atime!, snapshot.mtime!);
+}
+
+async function runAutopilotWithoutProductionTelemetry(
+  options: Parameters<typeof runAutopilot>[0],
+): ReturnType<typeof runAutopilot> {
+  const snapshots = AUTOPILOT_TEST_TELEMETRY.map(snapshotTestFile);
+  try {
+    return await runAutopilot(options);
+  } finally {
+    for (const snapshot of snapshots) restoreTestFile(snapshot);
+  }
+}
+
+// Several legacy acceptance tests intentionally exercise tiebreak persistence,
+// whose production API predates injectable state roots. Preserve the exact
+// pre-file bytes and mtimes, then restore them in the final registered test so
+// this suite remains hermetic under CHAPTERFLOW_LEAK_GUARD=1.
+const MODULE_TELEMETRY_SNAPSHOTS = AUTOPILOT_TEST_TELEMETRY.map(snapshotTestFile);
 
 function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { attestations: QcAttestation[]; bars: ValidatedBarReadSubmission[]; confirms: ValidatedConfirmReadSubmission[]; acceptanceRecords: AuthorAcceptanceRecord[]; reopenNotes: ReopenNote[]; gateCandidateCalls: Array<{ attemptKey: string; chapterId: string }>; chapterBytes: Map<string, string> } {
   const attestations: QcAttestation[] = [];
@@ -304,6 +353,7 @@ function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { a
   // IMP-01: in-memory canonical chapter store + tmp attempts root — the
   // transaction's mint/commit path must never touch the real pipeline tree.
   const chapterBytes = new Map<string, string>();
+  const provenanceByChapter = new Map<string, AuthorProvenance>();
   const gateCandidateCalls: Array<{ attemptKey: string; chapterId: string }> = [];
   const acceptance: AcceptanceWriters = {
     openRound: () => ({ roundId: "r20260101000000-abcdef", tokens: {} }),
@@ -331,7 +381,23 @@ function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { a
     nameBankOk: () => true,
     voiceCard: () => "voice: warm, direct coaching register; second-person; medium cadence",
     authorSessionOf: () => undefined,
-    recordProvenance: () => {},
+    recordProvenance: (chapterId, sessionId, contentHash) => {
+      provenanceByChapter.set(chapterId, {
+        schemaVersion: "author-provenance-v2",
+        chapterId,
+        authorSessionId: sessionId,
+        stampedAt: "2026-01-01T00:00:00.000Z",
+        contentHash,
+      });
+    },
+    readProvenance: (chapterId) => provenanceByChapter.get(chapterId) ?? null,
+    restoreProvenance: (chapterId, previous) => {
+      if (previous) provenanceByChapter.set(chapterId, previous);
+      else provenanceByChapter.delete(chapterId);
+    },
+    readLeadOverride: () => null,
+    writeLeadOverride: () => {},
+    removeLeadOverride: () => {},
     writeReviewDoc: (bookId, fileName, text) => {
       const abs = join(TMP, `${bookId}-${fileName}`);
       writeFileSync(abs, text, "utf8");
@@ -382,6 +448,19 @@ function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { a
     contentDeviceRepair: async () => ({ fired: false, targets: [], preserved: [], outcomes: [], preservedViolations: [], overCapDevices: [], residualOverCap: [] }),
     ...over,
   };
+  // A custom record hook often asserts/captures the write. Mirror its successful
+  // result into the fixture's durable read-back store unless the test explicitly
+  // replaces the read seam too.
+  if (over.recordProvenance && !over.readProvenance) {
+    io.recordProvenance = (chapterId, sessionId, contentHash) => {
+      over.recordProvenance!(chapterId, sessionId, contentHash);
+      provenanceByChapter.set(chapterId, {
+        schemaVersion: "author-provenance-v2", chapterId, authorSessionId: sessionId,
+        stampedAt: "2026-01-01T00:00:00.000Z", contentHash,
+      });
+    };
+    io.readProvenance = (chapterId) => provenanceByChapter.get(chapterId) ?? null;
+  }
   return Object.assign(io, { attestations, bars, confirms, acceptanceRecords, reopenNotes, gateCandidateCalls, chapterBytes });
 }
 
@@ -645,6 +724,61 @@ test("authorWriteOneChapter: spawns one workspace-write writer, verifies file + 
   assert.equal(provenance[0].contentHash, chapterContentHash(CH1), "provenance bound to the authored content hash");
 });
 
+test("authorWriteOneChapter: deferred mode holds a validated candidate noncanonical until the conductor commits it", async () => {
+  const { deps } = mkDeps(() => ({}));
+  const provenance: Array<{ chapterId: string; sessionId: string; contentHash?: string }> = [];
+  const io = mkIo({ recordProvenance: (chapterId, sessionId, contentHash) => { provenance.push({ chapterId, sessionId, contentHash }); } });
+
+  const prepared = await authorWriteOneChapter("zz", 1, deps, { io, deferCommit: true });
+  assert.ok(prepared.ok && prepared.committed === false, "returns an explicit pending candidate");
+  if (!prepared.ok || prepared.committed !== false) return;
+  assert.equal(io.chapterBytes.get("zz:1"), undefined, "canonical chapter remains absent while semantic review is pending");
+  assert.equal(provenance.length, 0, "pending candidate cannot claim canonical provenance");
+
+  const committed = commitPreparedAuthorCandidate(prepared.pending, deps);
+  assert.ok(committed.ok && committed.committed === true, "conductor can atomically accept the exact prepared candidate");
+  assert.ok(io.chapterBytes.get("zz:1"), "accepted candidate becomes canonical exactly once");
+  assert.equal(provenance.length, 1, "provenance is recorded only after the accepted commit");
+});
+
+test("commitPreparedAuthorCandidate: required provenance failure rolls canonical bytes back and cannot report committed PASS", async () => {
+  const { deps } = mkDeps(() => ({}));
+  const io = mkIo({ recordProvenance: () => { throw new Error("provenance disk full"); } });
+  const prepared = await authorWriteOneChapter("zz", 1, deps, { io, deferCommit: true });
+  assert.ok(prepared.ok && prepared.committed === false);
+  if (!prepared.ok || prepared.committed !== false) return;
+
+  const result = commitPreparedAuthorCandidate(prepared.pending, deps);
+  assert.equal(result.ok, false, "a chapter swap without its required provenance is never acknowledged");
+  assert.equal(io.chapterBytes.get("zz:1"), undefined, "first-write rollback restores canonical absence");
+  const manifest = JSON.parse(readFileSync(join(prepared.pending.attempt.attemptDir, "commit-manifest.json"), "utf8"));
+  assert.equal(manifest.phase, "rolled_back_required_evidence_failure");
+  assert.equal(manifest.reconciliation.outcome, "rolled_back");
+  const outcome = JSON.parse(readFileSync(join(prepared.pending.attempt.attemptDir, "outcome.json"), "utf8"));
+  assert.equal(outcome.outcome, "infrastructure_failure");
+});
+
+test("commitPreparedAuthorCandidate: provenance rollback CAS never clobbers an intervening canonical write", async () => {
+  const { deps } = mkDeps(() => ({}));
+  let io!: ReturnType<typeof mkIo>;
+  io = mkIo({
+    recordProvenance: () => {
+      io.chapterBytes.set("zz:1", "intervening canonical bytes\n");
+      throw new Error("provenance write failed after another conductor advanced");
+    },
+  });
+  const prepared = await authorWriteOneChapter("zz", 1, deps, { io, deferCommit: true });
+  assert.ok(prepared.ok && prepared.committed === false);
+  if (!prepared.ok || prepared.committed !== false) return;
+
+  const result = commitPreparedAuthorCandidate(prepared.pending, deps);
+  assert.equal(result.ok, false);
+  assert.equal(io.chapterBytes.get("zz:1"), "intervening canonical bytes\n", "intervening writer wins; rollback is compare-and-swap, never restore-by-force");
+  const manifest = JSON.parse(readFileSync(join(prepared.pending.attempt.attemptDir, "commit-manifest.json"), "utf8"));
+  assert.equal(manifest.phase, "reconciliation_required");
+  assert.equal(manifest.reconciliation.outcome, "reconciliation_required");
+});
+
 test("authorWriteOneChapter: ONE retry appends the gate blockers to the card, then succeeds", async () => {
   let gateCalls = 0;
   const { deps, spawns } = mkDeps(() => ({}));
@@ -721,6 +855,24 @@ test("doAuthorWrite: spawns ONE whole-chapter writer per MISSING chapter only, t
   const writers = spawns.filter((s) => s.sessionId.startsWith("author-ch"));
   assert.equal(writers.length, 1, "only the missing chapter is authored");
   assert.ok(writers[0].sessionId.startsWith("author-ch02"), "ch02 was the missing one");
+});
+
+test("doAuthorWrite: the normal book-level author path consults its central chapter-writer hook", async () => {
+  const { deps, spawns } = mkDeps(() => ({}));
+  const calls: Array<{ bookId: string; chapterNumber: number; ioSame: boolean }> = [];
+  const io = mkIo({ chapterExists: () => false });
+  const halt = await doAuthorWrite("zz", deps, {
+    maxParallel: 2,
+    io,
+    writeOneChapter: async (bookId, chapterNumber, _authorDeps, opts) => {
+      calls.push({ bookId, chapterNumber, ioSame: opts.io === io });
+      return { ok: true, sessionId: `central-${chapterNumber}`, committed: true };
+    },
+  });
+  assert.equal(halt, null);
+  assert.deepEqual(calls.map((call) => call.chapterNumber).sort(), [1, 2]);
+  assert.ok(calls.every((call) => call.bookId === "zz" && call.ioSame), "book coordinate and experiment-local IO pass through unchanged");
+  assert.equal(spawns.length, 0, "the baseline writer is not also spawned when the central hook owns the chapter");
 });
 
 test("doAuthorWrite: a reader-budget BLOCKER halts content, naming the findings", async () => {
@@ -1312,7 +1464,17 @@ test("author arch ladder: write→gate→review→ready; sweepConfirmed is SUBST
     latestRoundId: () => null,
     log: (m: string) => logs.push(m),
   };
-  const outcome = await runAutopilot({ bookId: "zz", architecture: "author", deps: fullDeps, authorIo: io });
+  let centralWriterCalls = 0;
+  const outcome = await runAutopilotWithoutProductionTelemetry({
+    bookId: "zz",
+    architecture: "author",
+    deps: fullDeps,
+    authorIo: io,
+    authorWriteOneChapter: async (...args) => {
+      centralWriterCalls++;
+      return authorWriteOneChapter(...args);
+    },
+  });
 
   assert.equal(outcome.status, "ready", "the ladder converges to ready WITHOUT deps.sweepConfirmed ever corroborating");
   assert.equal(sweepConfirmedCalls, 0, "author arch substitutes book acceptance at the decidePhase call site — deps.sweepConfirmed is never consulted");
@@ -1322,10 +1484,143 @@ test("author arch ladder: write→gate→review→ready; sweepConfirmed is SUBST
   assert.ok(!verbs.some((v) => v[0] === "deal-section-tasks"), "compiler section dealing never runs in the author arch");
   assert.ok(logs.some((l) => l.includes("skipping legacy broad pre-QC scouts")), "gate ran with preQcScouts:false (the existing skip path)");
   assert.equal(spawns.filter((s) => s.sessionId.startsWith("author-ch")).length, 2, "one whole-chapter writer per chapter");
+  assert.equal(centralWriterCalls, 2, "runAutopilot threads the central chapter-writer hook into every missing author chapter");
   assert.equal(spawns.filter((s) => s.sessionId.includes("author-book-reader")).length, 3, "three book readers confirmed (Q5)");
   assert.equal(io.attestations.length, 2, "acceptance wrote the promote-gate attestations");
   const ids = spawns.map((s) => s.sessionId);
   assert.equal(new Set(ids).size, ids.length, "every spawn gets a DISTINCT session id");
+});
+
+test("ACTIVE forward author path uses one read-only gate and never calls legacy repair/doAuthorReview/ship84", async () => {
+  const status: BookStatus = {
+    bookId: "zz", stage: "qc", phase: "", expectedChapters: 2,
+    writtenChapters: 2, gatedChapters: 2, qcdChapters: 0, bookGatePass: true,
+    bookGateBlockers: 0, deterministicClean: true, packaged: false, publishable: false, guardrails: false,
+    variety: null, nextCommand: "", nextLabel: "", chapters: [],
+  };
+  const { deps, spawns, verbs } = mkDeps(() => ({}));
+  let legacyAcceptedReads = 0;
+  const fullDeps: Partial<AutopilotDeps> = {
+    ...deps,
+    statusOf: () => status,
+    authorAccepted: () => { legacyAcceptedReads++; return true; },
+    acquireLock: () => ({ ok: true, release: () => {}, refresh: () => true }),
+  };
+  const forwardControl = {
+    runtime: { schema: "forward-local-author-runtime-v1", mode: "FORWARD_ACTIVE" },
+    writeOneChapter: async () => ({ ok: false as const, reason: "not reached" }),
+    readBookAcceptance: () => ({ accepted: false, reason: "forward book sweep pending", artifactPath: "/forward/acceptance.json" }),
+    finalizeBookAcceptance: async () => ({ accepted: false, reason: "forward book sweep pending", artifactPath: "/forward/acceptance.json" }),
+    activationPolicyPath: "/forward/activation-policy.json",
+    runtimeBindingPath: "/forward/runtime-binding.json",
+  } as unknown as ForwardAutopilotControlV1;
+  const outcome = await runAutopilotWithoutProductionTelemetry({
+    bookId: "zz",
+    architecture: "author",
+    autoPublish: true,
+    deps: fullDeps,
+    forwardAutopilotControl: forwardControl,
+    authorWriteOneChapter: forwardControl.writeOneChapter,
+  });
+  assert.equal(outcome.status, "halt");
+  if (outcome.status === "halt") {
+    assert.equal(outcome.phase, "gate");
+    assert.match(outcome.reason, /forward book sweep pending/);
+  }
+  assert.equal(legacyAcceptedReads, 0, "legacy durable ship84/acceptance state is never consulted");
+  assert.equal(spawns.length, 0, "legacy chapter/book readers never spawn");
+  assert.equal(verbs.filter((verb) => verb[0] === "qc-converge").length, 1, "ACTIVE runs one deterministic read-only gate check");
+  assert.ok(!verbs.some((verb) => verb[0] === "qc-diagnose"), "legacy gate-repair diagnostics never run");
+  assert.ok(!verbs.some((verb) => verb[0] === "publish-final"), "autoPublish cannot escape the ACTIVE local-only policy");
+});
+
+test("ACTIVE forward acceptance reaches local READY while autoPublish remains forcibly disabled", async () => {
+  const status: BookStatus = {
+    bookId: "zz", stage: "qc", phase: "", expectedChapters: 2,
+    writtenChapters: 2, gatedChapters: 2, qcdChapters: 0, bookGatePass: true,
+    bookGateBlockers: 0, deterministicClean: true, packaged: false, publishable: false, guardrails: false,
+    variety: null, nextCommand: "", nextLabel: "", chapters: [],
+  };
+  const { deps, spawns, verbs } = mkDeps(() => ({}));
+  const forwardControl = {
+    runtime: { schema: "forward-local-author-runtime-v1", mode: "FORWARD_ACTIVE" },
+    writeOneChapter: async () => ({ ok: false as const, reason: "not reached" }),
+    readBookAcceptance: () => ({ accepted: true, reason: "fresh forward sweep PASS", artifactPath: "/forward/acceptance.json" }),
+    activationPolicyPath: "/forward/activation-policy.json",
+    runtimeBindingPath: "/forward/runtime-binding.json",
+  } as unknown as ForwardAutopilotControlV1;
+  const outcome = await runAutopilotWithoutProductionTelemetry({
+    bookId: "zz",
+    architecture: "author",
+    autoPublish: true,
+    deps: {
+      ...deps,
+      statusOf: () => status,
+      authorAccepted: () => { throw new Error("legacy acceptance must not run"); },
+      acquireLock: () => ({ ok: true, release: () => {}, refresh: () => true }),
+    },
+    forwardAutopilotControl: forwardControl,
+    authorWriteOneChapter: forwardControl.writeOneChapter,
+  });
+  assert.equal(outcome.status, "ready");
+  if (outcome.status === "ready") {
+    assert.match(outcome.message, /FORWARD LOCAL READY/);
+    assert.match(outcome.message, /push remain disabled/);
+  }
+  assert.equal(spawns.length, 0);
+  assert.ok(!verbs.some((verb) => verb[0] === "publish-final"), "ACTIVE readiness never publishes even when autoPublish=true");
+});
+
+test("ACTIVE dirty deterministic gate spends one durable deferred correction and then finalizes without legacy repair", async () => {
+  const status: BookStatus = {
+    bookId: "zz", stage: "gate", phase: "", expectedChapters: 2,
+    writtenChapters: 2, gatedChapters: 1, qcdChapters: 0, bookGatePass: false,
+    bookGateBlockers: 1, deterministicClean: false, packaged: false, publishable: false, guardrails: false,
+    variety: null, nextCommand: "", nextLabel: "", chapters: [],
+  };
+  let gateReads = 0;
+  const { deps, spawns, verbs } = mkDeps(
+    () => ({}),
+    (args) => args[0] === "qc-converge" && gateReads++ === 0
+      ? { code: 1, stdout: "ch01: SEC83 repeated unit must be regenerated", stderr: "" }
+      : { code: 0, stdout: "clean", stderr: "" },
+  );
+  let accepted = false;
+  let correctionCalls = 0;
+  let claimCalls = 0;
+  const forwardControl = {
+    runtime: { schema: "forward-local-author-runtime-v1", mode: "FORWARD_ACTIVE" },
+    writeOneChapter: async (_bookId: string, chapterNumber: number) => {
+      correctionCalls += 1;
+      assert.equal(chapterNumber, 1);
+      return { ok: true as const, sessionId: "forward-gate-correction", committed: true as const };
+    },
+    readBookAcceptance: () => ({ accepted, reason: accepted ? "fresh" : "pending", artifactPath: "/forward/acceptance.json" }),
+    finalizeBookAcceptance: async () => {
+      accepted = true;
+      return { accepted: true, reason: "fresh", artifactPath: "/forward/acceptance.json" };
+    },
+    claimGateCorrection: () => { claimCalls += 1; return { claimed: true, reason: "claimed" }; },
+    activationPolicyPath: "/forward/activation-policy.json",
+    runtimeBindingPath: "/forward/runtime-binding.json",
+  } as unknown as ForwardAutopilotControlV1;
+  const outcome = await runAutopilotWithoutProductionTelemetry({
+    bookId: "zz",
+    architecture: "author",
+    deps: {
+      ...deps,
+      statusOf: () => status,
+      acquireLock: () => ({ ok: true, release: () => {}, refresh: () => true }),
+      authorAccepted: () => { throw new Error("legacy acceptance must not run"); },
+    },
+    forwardAutopilotControl: forwardControl,
+    authorWriteOneChapter: forwardControl.writeOneChapter,
+  });
+  assert.equal(outcome.status, "ready");
+  assert.equal(claimCalls, 1);
+  assert.equal(correctionCalls, 1);
+  assert.equal(verbs.filter((verb) => verb[0] === "qc-converge").length, 2);
+  assert.equal(spawns.length, 0, "no legacy gate repair or book reader was spawned");
 });
 
 test("legacy arch still consults deps.sweepConfirmed (the substitution is author-only)", async () => {
@@ -1342,7 +1637,7 @@ test("legacy arch still consults deps.sweepConfirmed (the substitution is author
   });
   let sweepConfirmedCalls = 0;
   const { deps } = mkDeps(() => ({}));
-  const outcome = await runAutopilot({
+  const outcome = await runAutopilotWithoutProductionTelemetry({
     bookId: "zz",
     architecture: "legacy",
     deps: {
@@ -1930,4 +2225,8 @@ test("F-09 guard: a reserved-harm FAIL spawns NO second opinion — it goes stra
   assert.equal(spawns.filter((s) => s.sessionId.includes("-2nd")).length, 0, "a reserved-harm complaint blocks the second-opinion guard entirely");
   assert.equal(io.regenConsumedFor!("zz", 1), 1, "the reserved-harm FAIL spent its regen directly (no cheap read wasted)");
   assert.ok(result && result.status === "halt" && result.category === "content", "byte-identical regen halts content");
+});
+
+test("author-arch fixtures restore production telemetry bytes and mtimes", () => {
+  for (const snapshot of MODULE_TELEMETRY_SNAPSHOTS) restoreTestFile(snapshot);
 });

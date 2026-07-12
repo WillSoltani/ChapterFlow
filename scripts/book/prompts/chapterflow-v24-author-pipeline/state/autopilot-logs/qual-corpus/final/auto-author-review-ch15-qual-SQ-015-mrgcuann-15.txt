@@ -1,0 +1,91 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 35,
+    "quizzes": 0,
+    "transfer": 20,
+    "practical": 35,
+    "summaries": 5,
+    "tone": 45,
+    "limits": 0,
+    "insight": 20,
+    "density": 25,
+    "beginner": 55
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "take the money and leave, or stay after training by choice.",
+      "why": "The strongest moment: it gives the scene a concrete decision fork."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This reads like scaffold text, not reader-facing instruction."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now",
+      "why": "A promised teaching layer is empty."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The Quiz section contains no questions, so the quiz is broken and cannot test comprehension.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The Key takeaway section is empty, so a promised standalone learning layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The Try this now section is empty, so the chapter gives no actionable exercise despite promising one.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The Examples section is empty, so there are no transfer examples beyond the single Zappos scene.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The Review cards section is empty, so a promised retention layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The Memorable lines section is empty, so a promised retention layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read says only 'A concise idea.' and does not summarize the chapter's actual move.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read says only 'One added angle.' and does not add a real explanatory layer.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder-like and does not introduce the reader-facing problem or stakes.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The Zappos scene is vivid, but the chapter barely explains the mechanism beyond turning drift into an explicit choice.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is not shippable. It has one usable teaching seed: make a hidden default explicit by turning the ending into a real fork. The Zappos scene is concrete enough to remember, but nearly every product layer around it is missing or placeholder text: no quiz, no key takeaway, no exercise, no examples, no review cards, and no memorable lines. A reader could infer the intended lesson, but the chapter does not yet function as a complete learning unit."
+}
+```

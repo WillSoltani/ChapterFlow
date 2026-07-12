@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "c", "a", "c", "b", "b", "c", "b", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several correct choices are the only moderate, concrete option while distractors use giveaway extremes such as 'only,' 'enough,' 'every,' or 'all.' This is noticeable in Q4, Q5, Q7, Q8, and Q9."]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 82,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 89,
+    "limits": 86,
+    "insight": 87,
+    "density": 81,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Keep the year with the pair.",
+      "why": "Strongest retention line: short, concrete, and echoed across the chapter."
+    },
+    {
+      "quote": "The builder does not follow the belief; the builder proves it.",
+      "why": "Captures the chapter's mechanism in a memorable sentence."
+    },
+    {
+      "quote": "Jobs and Wozniak should change the cast and setting, not press the first lesson flat.",
+      "why": "Good limitation on example use, but also shows the chapter's repeated concern with not flattening anchors."
+    },
+    {
+      "quote": "Several correct choices are the only moderate, concrete option while distractors use giveaway extremes such as 'only,' 'enough,' 'every,' or 'all.'",
+      "why": "This quote is not from the chapter; exclude it from byte verification."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are often easier to guess because they are the only concrete, qualified option while distractors lean on obvious overclaims like 'only,' 'enough,' 'every,' or 'all.'",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The same anchor-preservation point repeats several times, which slightly lowers density even though the repetition helps retention.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Five examples mostly rehearse the same named-pair logic; fewer examples with one non-founder workplace transfer would make the skill travel farther.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against an 84 bar. The core move is clear and memorable: start with WHY, then demand the HOW and visible proof that make the belief real. The chapter uses hard anchors well, has practical low-friction actions, and includes honest limits. The main weakness is quiz predictability and some repetition around the same three founder pairs, but those are polish issues rather than blockers."
+}
+```

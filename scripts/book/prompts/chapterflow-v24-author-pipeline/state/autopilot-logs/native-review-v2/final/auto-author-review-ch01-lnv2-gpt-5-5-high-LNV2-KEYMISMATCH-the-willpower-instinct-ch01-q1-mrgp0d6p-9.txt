@@ -1,0 +1,74 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "b", "b", "b", "a", "c", "c"],
+    "mechanisms": [
+      "The prose defines willpower as I will, I won't, and I want, so the fitting response must include start, stop, and remembered value.",
+      "The Miller/Cohen passage says prefrontal control keeps goals active and biases attention and action when cues compete.",
+      "The Gage passage says he survived and could speak, while steadiness, planning, and social restraint changed.",
+      "The self-awareness passage says change starts by noticing the moment before the action, not regret after it.",
+      "The social-cost passage says self-control supports promises, shared resources, repaired conflict, and trust.",
+      "The chapter says a value can be real but lose if it is not present at the choice point.",
+      "The chapter rejects hero/villain splitting and says both short-term relief and long-term goals can be real.",
+      "The practical method is to use concrete next moments, observe failures, and use feedback about cues, barriers, and values.",
+      "The Amelia example says prefrontal control biases attention and response when an automatic routine conflicts with the current goal."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Correct answers are often the most mechanism-rich option, while distractors use extreme giveaway words such as 'only,' 'fake,' 'proof,' and 'avoid cooperation.'",
+      "Q1, Q2, and Q7 especially signal the right answer by making it the broad, balanced, chapter-language choice."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 78,
+    "transfer": 84,
+    "practical": 90,
+    "summaries": 88,
+    "tone": 87,
+    "limits": 84,
+    "insight": 89,
+    "density": 86,
+    "beginner": 91
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Refusal is only one third of willpower.",
+      "why": "This is the chapter's cleanest memorable compression of the core move."
+    },
+    {
+      "quote": "A goal must be present to have power.",
+      "why": "Strong mechanism in plain language; it explains why the method works."
+    },
+    {
+      "quote": "Earl K. Miller's 2001 control account helps explain why the want needs attention.",
+      "why": "The citation phrasing becomes repetitive across examples and starts to feel like a template slot."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Several distractors are too easy because they use extreme claims the prose clearly rejects, reducing diagnostic value for readers who did not fully read.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The correct option is the only one that mirrors the chapter's three-part formula, making it guessable.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The example is usable but thin: it restates that the long-term goal needs attention without much before-to-after consequence beyond naming the want.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 4-6",
+      "problem": "The repeated Miller/Cohen attribution in the why-it-matters lines feels mechanical and adds little new transfer value each time.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter: the core distinction is clear, memorable, practical, and well layered across fast, deep, and full reads. The best line, 'Refusal is only one third of willpower,' gives beginners a durable handle, and the examples usually show the mechanism in action. The main weakness is quiz craft: the correct answers often sound like the chapter's balanced thesis while distractors sound obviously extreme, so the quiz checks recognition more than understanding. A few examples also lean on repeated explanatory citation instead of fresh consequence, but these are polish issues rather than blocking defects."
+}
+```

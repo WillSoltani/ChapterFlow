@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "multipliers-ch02",
+  "chapterNumber": 2,
+  "contentHash": "b18e62b5577d5744",
+  "reviewerSessionId": "auto-author-review-ch02-repair-mrcznn8j-18",
+  "scores": {
+    "retention": 88,
+    "quizzes": 90,
+    "transfer": 76,
+    "practical": 86,
+    "summaries": 91,
+    "tone": 82,
+    "limits": 84,
+    "insight": 84,
+    "density": 79,
+    "beginner": 88
+  },
+  "composite": 85,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "c",
+      "b",
+      "b",
+      "a",
+      "c",
+      "b",
+      "a",
+      "a"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "A Talent Magnet sees that pull and does the opposite: name the strength, fit it to real work, and release it when the role is too small.",
+      "why": "This cleanly states the core move in memorable, usable form.",
+      "verified": true
+    },
+    {
+      "quote": "A cage is a weak magnet.",
+      "why": "Strong retention line that compresses the lesson without jargon.",
+      "verified": true
+    },
+    {
+      "quote": "What had almost been missed after the draft? Not only the date.",
+      "why": "This example feels like process residue and is unclear to a blinded reader.",
+      "verified": true
+    },
+    {
+      "quote": "The standard is stated wrong: make one top creative voice solve the unfinished Pixar film.",
+      "why": "The example is useful, but the setup is abstract and names no concrete before-to-after event.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "No decisive answer-length tell or giveaway phrasing. Correct choices are usually the most precise transfer of the prose, but not mechanically guessable without reading."
+  ],
+  "complaints": [
+    {
+      "unit": "example 2",
+      "problem": "Thin-but-usable example: it appears to discuss a draft revision rather than a real-world event, so it feels like scaffold residue and weakens transfer even though the underlying lesson is still understandable.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "Thin-but-usable example: it states the Pixar contrast but gives no named film, decision, or consequence, so it functions more like a restated lesson than a concrete transfer case.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The set overuses the Nadella/Microsoft frame across examples 1, 2, and 4, which narrows transfer beyond the chapter's own cases.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against a professional bar. The chapter has a clear and memorable core move: name the strength, match it to meaningful work, and release it when the role is too small. The quiz is fair and the key is sound. The main weakness is transfer: several examples recycle the same Microsoft case or feel like lesson restatements rather than vivid independent situations. That lowers richness, but it does not block comprehension or application.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "f008b5a8d14cd885e7eb1adedd85635e70463d541702a9cb717cdf64f5fac16c",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T04:10:51.294Z"
+}

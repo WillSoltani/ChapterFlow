@@ -1,0 +1,737 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "radical-candor",
+  "chapterId": "radical-candor-ch09",
+  "chapterNumber": 9,
+  "chapterTitle": "A Radically Candid Performance Review",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch09.source.json",
+  "sourceHash": "sha256:16d75bd08afc5ea59bfec5d05a28addb5d0275ac77eb39ddf3fedd2b45d7005f",
+  "facts": [
+    {
+      "id": "ch09.fact.1",
+      "claim": "The official guide lists A Radically Candid Performance Review as a Bonus Chapter after Ch. 8.",
+      "mechanism": "Because it is separated from the eight numbered units, the material extends the tools into formal review systems.",
+      "commonError": "Dropping the bonus unit as optional fluff.",
+      "whyWrong": "The guide gives it distinct discussion prompts.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "8"
+      ],
+      "groundedEntities": [
+        "A Radically Candid Performance Review",
+        "Bonus Chapter",
+        "Dropping"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch09.fact.2",
+      "claim": "The bonus prompts ask about formal performance review elements.",
+      "mechanism": "Since review systems vary, managers must inspect the actual process before applying candor.",
+      "commonError": "Assuming one review template fits every organization.",
+      "whyWrong": "The process itself shapes behavior.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Since",
+        "Assuming"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch09.fact.3",
+      "claim": "The bonus prompts ask whether current review elements are working.",
+      "mechanism": "Because broken review mechanics can distort feedback, candid managers evaluate the system as well as the employee.",
+      "commonError": "Blaming only individuals for poor reviews.",
+      "whyWrong": "System design can block useful guidance.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Blaming",
+        "System"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.3"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch09.fact.4",
+      "claim": "The bonus prompts ask whether regular development conversations happen with everyone.",
+      "mechanism": "Since development should be ongoing, reviews should summarize rather than surprise.",
+      "commonError": "Saving development talk for review season.",
+      "whyWrong": "Late conversations cannot guide earlier work.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Since",
+        "Saving",
+        "Late"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.4"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch09.fact.5",
+      "claim": "The Measurement Problem contrasts Development Versus Management.",
+      "mechanism": "Because measurement can narrow attention to ratings, managers must protect developmental learning.",
+      "commonError": "Equating a score with development.",
+      "whyWrong": "A score alone does not teach next behavior.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "The Measurement Problem",
+        "Development Versus Management. Because",
+        "Equating"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.5"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch09.fact.6",
+      "claim": "SBI provides Situation, Behavior, and Impact for review evidence.",
+      "mechanism": "Because observable evidence reduces character judgment, reviews become more actionable.",
+      "commonError": "Writing reviews as personality summaries.",
+      "whyWrong": "Personality labels are hard to verify or change.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "SBI",
+        "Situation",
+        "Behavior",
+        "Impact",
+        "Writing",
+        "Personality"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.6"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch09.fact.7",
+      "claim": "CORE provides Context, Observation, Result, and Explore for review dialogue.",
+      "mechanism": "Since Explore invites the employee into next steps, the review can become collaborative.",
+      "commonError": "Treating the review as a one-way verdict.",
+      "whyWrong": "One-way reviews miss context and ownership.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "CORE",
+        "Context",
+        "Observation",
+        "Result",
+        "Explore",
+        "Since Explore",
+        "Treating",
+        "One-way"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.7"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch09.fact.8",
+      "claim": "A radically candid review should not be the first place major guidance appears.",
+      "mechanism": "Because delayed feedback removes the chance to improve before evaluation, surprise undermines trust.",
+      "commonError": "Holding hard feedback until the formal meeting.",
+      "whyWrong": "That turns a development opportunity into a verdict.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Holding"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.8"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch09.fact.9",
+      "claim": "Development conversations and management decisions need different handling.",
+      "mechanism": "Since coaching and compensation decisions carry different stakes, mixing them carelessly can reduce honesty.",
+      "commonError": "Pretending every review conversation has the same purpose.",
+      "whyWrong": "People respond differently to learning and evaluation stakes.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Development",
+        "Since",
+        "Pretending",
+        "People"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch09.ex.bonus-performance-review",
+      "label": "Bonus performance review unit",
+      "summary": "The official guide lists Bonus Chapter: A Radically Candid Performance Review after Ch. 8. The guide asks about formal performance review elements, whether they work, and regular development conversations.",
+      "realWorld": true,
+      "naturalSetting": "Bonus",
+      "hardSpecifics": [
+        "Bonus Chapter",
+        "A Radically Candid Performance Review",
+        "formal performance review",
+        "development conversations"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch09.ex.measurement-problem",
+      "label": "The Measurement Problem",
+      "summary": "The official guide links the bonus unit to The Measurement Problem: Development Versus Management. Development, management, measurement, and review process make the review risk concrete.",
+      "realWorld": true,
+      "naturalSetting": "The Measurement Problem The",
+      "hardSpecifics": [
+        "The Measurement Problem",
+        "Development Versus Management",
+        "measurement",
+        "management"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch09.ex.core-sbi-review-evidence",
+      "label": "CORE and SBI review evidence",
+      "summary": "The official glossary defines SBI as Situation, Behavior, Impact and CORE as Context, Observation, Result, Explore. These frameworks provide behavior-specific evidence that can feed a review without turning it into character judgment.",
+      "realWorld": true,
+      "naturalSetting": "CORE",
+      "hardSpecifics": [
+        "SBI",
+        "CORE",
+        "Situation Behavior Impact",
+        "Context Observation Result Explore"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Radically candid review system",
+      "members": [
+        "ongoing guidance",
+        "development conversations",
+        "behavior evidence",
+        "measurement caution",
+        "no surprises"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch09.concept",
+      "kind": "concept",
+      "label": "development-centered review",
+      "text": "A performance review becomes radically candid when it preserves development conversations, uses specific behavior evidence, and avoids letting ratings replace guidance. The formal process should summarize and support ongoing feedback, not substitute for it. Formal reviews often become backward-looking scorekeeping. A candid review system keeps growth, evidence, and next steps visible so people are not surprised or reduced to a number.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.ex.bonus-performance-review",
+      "kind": "named_example",
+      "label": "Bonus performance review unit",
+      "text": "The official guide lists Bonus Chapter: A Radically Candid Performance Review after Ch. 8. The guide asks about formal performance review elements, whether they work, and regular development conversations. Formal review should be connected to the ongoing candor system.",
+      "hardSpecifics": [
+        "Bonus Chapter",
+        "A Radically Candid Performance Review",
+        "formal performance review",
+        "development conversations"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.ex.measurement-problem",
+      "kind": "named_example",
+      "label": "The Measurement Problem",
+      "text": "The official guide links the bonus unit to The Measurement Problem: Development Versus Management. Development, management, measurement, and review process make the review risk concrete. The act of measuring performance can crowd out the developmental conversation if managers are not careful.",
+      "hardSpecifics": [
+        "The Measurement Problem",
+        "Development Versus Management",
+        "measurement",
+        "management"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.ex.core-sbi-review-evidence",
+      "kind": "named_example",
+      "label": "CORE and SBI review evidence",
+      "text": "The official glossary defines SBI as Situation, Behavior, Impact and CORE as Context, Observation, Result, Explore. These frameworks provide behavior-specific evidence that can feed a review without turning it into character judgment. Review evidence should be observable, impact-linked, and open to dialogue.",
+      "hardSpecifics": [
+        "SBI",
+        "CORE",
+        "Situation Behavior Impact",
+        "Context Observation Result Explore"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.1",
+      "kind": "testable_fact",
+      "label": "The official guide lists A Radically Candid Performance Review as a Bonus Chapter after Ch. 8.",
+      "text": "The official guide lists A Radically Candid Performance Review as a Bonus Chapter after Ch. 8. Because it is separated from the eight numbered units, the material extends the tools into formal review systems. Dropping the bonus unit as optional fluff. The guide gives it distinct discussion prompts.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.2",
+      "kind": "testable_fact",
+      "label": "The bonus prompts ask about formal performance review elements.",
+      "text": "The bonus prompts ask about formal performance review elements. Since review systems vary, managers must inspect the actual process before applying candor. Assuming one review template fits every organization. The process itself shapes behavior.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.3",
+      "kind": "testable_fact",
+      "label": "The bonus prompts ask whether current review elements are working.",
+      "text": "The bonus prompts ask whether current review elements are working. Because broken review mechanics can distort feedback, candid managers evaluate the system as well as the employee. Blaming only individuals for poor reviews. System design can block useful guidance.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.4",
+      "kind": "testable_fact",
+      "label": "The bonus prompts ask whether regular development conversations happen with everyone.",
+      "text": "The bonus prompts ask whether regular development conversations happen with everyone. Since development should be ongoing, reviews should summarize rather than surprise. Saving development talk for review season. Late conversations cannot guide earlier work.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.5",
+      "kind": "testable_fact",
+      "label": "The Measurement Problem contrasts Development Versus Management.",
+      "text": "The Measurement Problem contrasts Development Versus Management. Because measurement can narrow attention to ratings, managers must protect developmental learning. Equating a score with development. A score alone does not teach next behavior.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.6",
+      "kind": "testable_fact",
+      "label": "SBI provides Situation, Behavior, and Impact for review evidence.",
+      "text": "SBI provides Situation, Behavior, and Impact for review evidence. Because observable evidence reduces character judgment, reviews become more actionable. Writing reviews as personality summaries. Personality labels are hard to verify or change.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.7",
+      "kind": "testable_fact",
+      "label": "CORE provides Context, Observation, Result, and Explore for review dialogue.",
+      "text": "CORE provides Context, Observation, Result, and Explore for review dialogue. Since Explore invites the employee into next steps, the review can become collaborative. Treating the review as a one-way verdict. One-way reviews miss context and ownership.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.8",
+      "kind": "testable_fact",
+      "label": "A radically candid review should not be the first place major guidance appears.",
+      "text": "A radically candid review should not be the first place major guidance appears. Because delayed feedback removes the chance to improve before evaluation, surprise undermines trust. Holding hard feedback until the formal meeting. That turns a development opportunity into a verdict.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.9",
+      "kind": "testable_fact",
+      "label": "Development conversations and management decisions need different handling.",
+      "text": "Development conversations and management decisions need different handling. Since coaching and compensation decisions carry different stakes, mixing them carelessly can reduce honesty. Pretending every review conversation has the same purpose. People respond differently to learning and evaluation stakes.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.framework.radically.candid.review.system",
+      "kind": "framework",
+      "label": "Radically candid review system",
+      "text": "ongoing guidance, development conversations, behavior evidence, measurement caution, no surprises",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "8",
+    "1"
+  ],
+  "allowedEntities": [
+    "A Radically Candid Performance Review",
+    "Radical Candor",
+    "Formal",
+    "Results",
+    "Development",
+    "CORE",
+    "SBI",
+    "Bonus",
+    "Bonus Chapter",
+    "The Measurement Problem",
+    "Development Versus Management. Development",
+    "Development Versus Management",
+    "Situation",
+    "Behavior",
+    "Impact",
+    "Context",
+    "Observation",
+    "Result",
+    "Explore. These",
+    "Review",
+    "Situation Behavior Impact",
+    "Context Observation Result Explore",
+    "Use CORE",
+    "Explore. Those",
+    "Keep",
+    "Dropping",
+    "Since",
+    "Assuming",
+    "Blaming",
+    "System",
+    "Saving",
+    "Late",
+    "Equating",
+    "Writing",
+    "Personality",
+    "Explore",
+    "Since Explore",
+    "Treating",
+    "One-way",
+    "Holding",
+    "Pretending",
+    "People",
+    "Radically",
+    "Bonus performance review unit",
+    "CORE and SBI review evidence"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch09.ex.bonus-performance-review",
+      "warning": "Keep examples about Bonus performance review unit source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch09.ex.measurement-problem",
+      "warning": "Keep examples about The Measurement Problem source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch09.ex.core-sbi-review-evidence",
+      "warning": "Keep examples about CORE and SBI review evidence source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch09.fact.1"
+}

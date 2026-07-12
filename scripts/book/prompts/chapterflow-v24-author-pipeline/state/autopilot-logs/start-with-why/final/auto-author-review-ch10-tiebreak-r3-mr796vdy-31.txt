@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several keyed answers are the only choices using the chapter's recurring vocabulary and concrete anchors, especially Q1, Q4, Q7, and Q8.", "Some distractors are easy to reject without the prose because they lean on approval, status, or copying a respected model."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 86,
+    "practical": 82,
+    "summaries": 89,
+    "tone": 86,
+    "limits": 88,
+    "insight": 87,
+    "density": 83,
+    "beginner": 88
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Words give the visible act its job.",
+      "why": "This is the cleanest mechanism line in the chapter and makes the core move memorable."
+    },
+    {
+      "quote": "Schedule the proof before the sign travels.",
+      "why": "Strong practical phrasing that turns the concept into an action."
+    },
+    {
+      "quote": "If all they can see is an empty line of intent, wait because drafting is not the same as being heard.",
+      "why": "Good boundary and failure-mode statement; it prevents the lesson from becoming pure messaging advice."
+    },
+    {
+      "quote": "Schedule 10 minutes for one live claim, then schedule the visible act that lets the person watching judge whether it came back true.",
+      "why": "The action is useful, but 'one live claim' is slightly abstract and may slow a beginner."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct choices are more obviously keyed because they repeat the chapter's exact vocabulary and concrete anchors while distractors use generic authority or copying moves.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The prompt is directionally useful but 'one live claim' is abstract; a colder reader may need a plainer example of what counts as a claim.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples overall",
+      "problem": "The repeated What to do/Why it matters structure is clear but gives a mild template feel across six examples.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 6: Pickup Proof Pending",
+      "problem": "It is the weakest transfer example because the consequence is intentionally incomplete; the friend has not judged the act yet, so the before-to-after proof is thinner than in the other examples.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears the professional bar. The core mechanism is simple and memorable: words frame the claim, visible action carries it, and the audience answers by what it counts. The named anchors do real work, the limits around Apple Store/Cupertino keep transfer honest, and the quiz keys are sound. The main weaknesses are minor: some keyed quiz options are visibly more chapter-shaped than their siblings, and the practice prompt could be more concrete for a beginner."
+}
+```

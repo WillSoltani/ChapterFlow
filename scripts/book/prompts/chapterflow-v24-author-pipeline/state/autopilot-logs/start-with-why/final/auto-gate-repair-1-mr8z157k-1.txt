@@ -1,0 +1,9 @@
+Done. Edited only `state/chapters/` content:
+
+- [chapter 3](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch03.v21-native.chapter.json:35), [chapter 8](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch08.v21-native.chapter.json:130), and [chapter 11](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch11.v21-native.chapter.json:47): rewrote the repeated `early signal no one has...` scenarios.
+- [chapter 14](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch14.v21-native.chapter.json:56): rewrote the Apple/Dell scenario so `Dell` no longer repeats as a protagonist-like name in that scenario.
+
+Validation passed:
+
+- `gate-chapter` PASS / 0 blockers for chapters 3, 8, 11, and 14.
+- `npx tsx src/cli.ts qc-converge start-with-why` reports `DETERMINISTIC-CLEAN — start-with-why (14 chapters)`.

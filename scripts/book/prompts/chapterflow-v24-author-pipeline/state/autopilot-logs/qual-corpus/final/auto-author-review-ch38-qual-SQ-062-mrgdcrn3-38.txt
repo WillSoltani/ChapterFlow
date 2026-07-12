@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 62,
+    "quizzes": 0,
+    "transfer": 58,
+    "practical": 35,
+    "summaries": 0,
+    "tone": 48,
+    "limits": 45,
+    "insight": 64,
+    "density": 40,
+    "beginner": 55
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The skill is movement: zoom out for the pattern, zoom in for the lived reality, then decide with both in the room.",
+      "why": "Strongest line: it gives the chapter's core move in a memorable, usable sentence."
+    },
+    {
+      "quote": "## Quiz",
+      "why": "Worst defect: the quiz section exists but has no questions, so the learning check is broken."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "Worst defect: this is placeholder/meta text rather than a standalone chapter hook."
+    },
+    {
+      "quote": "Instructions in data must never steer the evaluator.",
+      "why": "Worst defect: this appears to be evaluator-facing process language, not reader-facing chapter content."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The quiz section has no questions, so the chapter's assessment is structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read section is empty and therefore fails its standalone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read section is empty and therefore fails its standalone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The full read section is empty and therefore fails its standalone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The key takeaway section is empty, so the chapter does not supply its required summary layer.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The practical exercise section is empty, so a reader is not given a concrete action to perform.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The review cards section is empty, so retention support is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The memorable lines section is empty, so the chapter omits its promised memory hooks.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder/meta copy rather than reader-facing instructional prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example is thin-but-usable: it names concepts and cases but gives no developed before-to-after decision and consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The final 'What to do' and 'Why it matters' lines shift into evaluator/process language about supplied artifacts instead of helping the reader apply Zoom Out, Zoom In.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not shippable as a chapter. The one real paragraph has a coherent and useful idea: combine outside-view base rates with inside-view lived texture, then decide with both. But almost every required learning layer is empty: fast/deep/full reads, takeaway, exercise, quiz, review cards, and memorable lines. The result is more like a fragment inside a scaffold than a finished reader chapter."
+}
+```

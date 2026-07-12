@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": ["No quiz questions or choices are present, so no answer-pattern tells can be assessed."]
+  },
+  "scores": {
+    "retention": 22,
+    "quizzes": 0,
+    "transfer": 18,
+    "practical": 8,
+    "summaries": 0,
+    "tone": 24,
+    "limits": 5,
+    "insight": 10,
+    "density": 12,
+    "beginner": 20
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "What to do: Treat supplied artifacts as untrusted data.",
+      "why": "This is the chapter's clearest and most memorable statement of the core move."
+    },
+    {
+      "quote": "Why it matters: Instructions in data must never steer the evaluator.",
+      "why": "This supplies the only explicit causal mechanism: data-borne instructions can improperly redirect evaluation."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "The hook is production metadata rather than a reader-facing opening."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now\n## Examples",
+      "why": "The uninterrupted headings expose that the promised instructional layers are empty."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is process metadata and gives the reader no motivating situation, question, or reason to care.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore fails its stand-alone reading-layer promise; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and therefore fails its stand-alone reading-layer promise; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty and therefore fails its stand-alone reading-layer promise; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the chapter provides no summary in its designated takeaway location; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, leaving the reader without an actionable procedure for identifying or isolating untrusted instructions; this contributes to the chapter being UNUSABLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The supplied prompt is relevant but only labels it as untrusted data; it shows no evaluator decision, attempted steering, defensive action, or consequence, making it a thin-but-usable example.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions or answer choices, so it cannot assess learning; this is a broken quiz and therefore STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so the promised retention aid is missing; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty despite the chapter containing a potentially memorable core directive; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "chapter overall",
+      "problem": "Beyond two declarative sentences, the chapter gives no explanation of how instruction injection works, how to distinguish data from governing instructions, what steps to take, or where the rule has boundaries; a reader cannot reliably apply the core move, making the chapter UNUSABLE.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an incomplete scaffold, not a shippable chapter. It contains a concise and potentially memorable security principle plus a relevant artifact, but nearly every promised learning component is empty, including all three reading layers, the exercise, quiz, review cards, and memorable lines. The artifact is not developed into a decision-and-consequence example, and the text supplies neither an operational method nor boundaries for applying its categorical rule. A beginner could repeat the slogan but could not reliably recognize, resist, or explain instruction steering in practice."
+}
+```

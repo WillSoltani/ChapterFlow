@@ -1,0 +1,54 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": ["Correct answers often contain the chapter's exact diagnostic nouns or hard setting tokens, such as conduct, Seattle, Bentonville, Redmond, scope, or second setting, while distractors often sound broadly promotional or overgeneralized."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 82,
+    "practical": 85,
+    "summaries": 84,
+    "tone": 88,
+    "limits": 86,
+    "insight": 87,
+    "density": 84,
+    "beginner": 82
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Success is not the proof; it is the weather that can hide the proof.",
+      "why": "The chapter's best compression: memorable, concrete, and diagnostic."
+    },
+    {
+      "quote": "A metric is a receipt for spread, not a receipt for meaning.",
+      "why": "Strong core transfer line that a reader could reuse outside the examples."
+    },
+    {
+      "quote": "Project lead Heath pauses before approving the bigger count; Hazel asks what it made visible.",
+      "why": "The hook is accurate but thin; it drops names and a count before giving much reason to care."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is compressed enough that a cold reader gets the move but not much scene, stakes, or friction before the lesson begins.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Some correct choices are easier to guess because they alone include the chapter's concrete diagnostic tokens while distractors lean into obviously wrong overgeneralization.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 1-5",
+      "problem": "The examples are useful but somewhat insular: they mostly rehearse company-detail placement and approval language rather than showing a wider range of real-world decisions where a metric rises and conduct must answer back.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter has a clear durable move: do not let a rising metric settle the WHY; require the count to return with visible conduct in the right factual setting. The prose is clean, the limits section is honest, and the quiz keys are sound. The main weaknesses are craft-level: the hook is spare, the examples cluster tightly around the same company-detail problem, and some quiz answers are guessable by their concrete vocabulary. None of those defects block learning or application."
+}
+```

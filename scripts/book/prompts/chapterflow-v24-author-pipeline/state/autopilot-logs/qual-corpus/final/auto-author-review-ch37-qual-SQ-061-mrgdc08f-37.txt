@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 35,
+    "quizzes": 0,
+    "transfer": 25,
+    "practical": 15,
+    "summaries": 0,
+    "tone": 35,
+    "limits": 20,
+    "insight": 35,
+    "density": 45,
+    "beginner": 30
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This is placeholder/meta text, not reader-facing instructional content."
+    },
+    {
+      "quote": "A choice begins with a spotlight: whatever sits inside it feels like the whole problem.",
+      "why": "Strongest instructional image; it gives the reader a concrete way to remember narrow framing."
+    },
+    {
+      "quote": "The writer should keep the setup crisp: four villains, four counters, and a repeated spotlight image.",
+      "why": "The prose turns into production guidance instead of teaching the reader."
+    },
+    {
+      "quote": "Instructions in data must never steer the evaluator.",
+      "why": "This is evaluator-safety text, not chapter content for a learner."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "Section is present but empty, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "Section is present but empty, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "Section is present but empty, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "Section is present but empty, leaving no standalone takeaway.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "Section is present but empty, so the chapter gives no usable practice step.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Quiz section is present but contains no questions, making the quiz structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "Section is present but empty, so the review-card layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "Section is present but empty, so the memory-support layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The only example is meta/instructional evaluator text rather than a worked learner-facing example.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The file has a few usable ideas about decision process, especially the spotlight image and the WRAP mapping, but most required sections are empty and the only populated body reads like production/evaluator notes rather than a finished learner chapter. With no quiz questions, no layered reads, no takeaway, no practice, and no review cards, the product experience is structurally invalid."
+}
+```

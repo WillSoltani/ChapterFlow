@@ -1,0 +1,75 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "b", "c", "a", "c", "b", "c"],
+    "mechanisms": [
+      "The prose says danger lives in the seam where capable roles assume another role owns the next move.",
+      "The lesson is to map transitions by named owner before pressure arrives.",
+      "The Ingrid example says to rebuild the path across every handoff before blaming the last visible person.",
+      "The chapter says failures in dense work often occur where cues or tasks cross roles.",
+      "The prose distinguishes completion inside roles from reliability across roles.",
+      "The storm example says to assign the overlap itself to one owner before peak load.",
+      "The museum example shows the exposed point is the dependency between experts.",
+      "The core reasoning is that excellence does not make ownership visible across role crossings.",
+      "The prose says reliability should not live only in one person's memory or command."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Across the quiz, correct answers repeatedly use chapter-signature words such as handoff, ownership, crossing, and departments.",
+      "Several distractors are exaggerated blame/work-harder/central-command answers, making them easy to reject without much reading.",
+      "Q3, Q5, and Q9 make the correct choice the fullest causal explanation, which is a mild length/completeness tell."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 82,
+    "transfer": 76,
+    "practical": 88,
+    "summaries": 84,
+    "tone": 86,
+    "limits": 86,
+    "insight": 89,
+    "density": 82,
+    "beginner": 91
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Movement creates seams, and seams create assumptions.",
+      "why": "This is the chapter's core move in a compact, memorable line."
+    },
+    {
+      "quote": "The first move is simple and uncomfortable: find the seam.",
+      "why": "It turns the idea into a clear action a reader can remember."
+    },
+    {
+      "quote": "On second thought, leave the warm-fluid setup unassigned and just trust the team's competence, since a skilled room handles every handoff on its own and naming an owner is needless friction.",
+      "why": "This directly contradicts the lesson inside a What to do block."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The What to do block gives the correct action, then tells the reader to do the opposite by leaving warm-fluid setup unassigned and trusting competence; this is SOURCE-CONTRADICTORY and unsafe in the clinical scenario.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The Austrian drowning rescue is invoked as evidence but not identified or narrated enough for a cold reader to know what happened; it is thin rather than reader-harming.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "The correct answers often telegraph themselves by echoing the chapter's repeated vocabulary while distractors are obvious blame, work-harder, or single-commander misreads.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples overall",
+      "problem": "The examples mostly repeat the same pattern of experts present plus missing owner, which supports retention but limits transfer variety.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a strong, beginner-friendly core move: in dense expert work, look for the unowned seam before blaming the people. It is memorable, practical, and well supported by repeated scenarios, though the quiz is somewhat guessable because the right answers keep using the same signal words. I would not ship this version because Example 1's What to do block contains a direct contradiction that tells readers to leave the warm-fluid handoff unassigned, which breaks the chapter's own lesson in a potentially unsafe scenario."
+}
+```

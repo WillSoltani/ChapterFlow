@@ -1,0 +1,71 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "c", "b", "b", "a", "b", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several correct choices are the only ones using the chapter's exact durable terms, especially Q2 'promise, conduct, and visible offer' and Q4 'hard detail must stay with the product that earned it.'",
+      "Q1, Q3, Q4, Q5, Q6, Q8, and Q9 have correct choices that are also the most specific and often the longest, making some answers guessable by test-taking pattern."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 81,
+    "transfer": 80,
+    "practical": 85,
+    "summaries": 88,
+    "tone": 78,
+    "limits": 91,
+    "insight": 86,
+    "density": 83,
+    "beginner": 89
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A product is a receipt, not a reason.",
+      "why": "This is the chapter's strongest compressed memory hook."
+    },
+    {
+      "quote": "Every unowned promise costs a week of pretending.",
+      "why": "It makes the abstract order problem concrete and memorable."
+    },
+    {
+      "quote": "No one has met it yet.",
+      "why": "This line makes Example 1 feel like staged template drama rather than a concrete lived case."
+    },
+    {
+      "quote": "Each hard detail is in place, yet no one has named who will bring the proof back.",
+      "why": "This usefully turns factual accuracy into an application test rather than trivia."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "Several keyed answers are easier to identify by specificity and chapter-phrase matching than by reasoning from the prose; this weakens measurement but does not break the quiz.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "Thin-but-usable example: Vincent is named, but the scene gives no concrete product-page decision, place, metric, or before-to-after consequence beyond restating the lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "Thin-but-usable example: Sabrina's red-cursor moment is on-topic but contrived, with no real document context or consequence after the catch.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The repeated What to do / Why it matters pattern sometimes reads like scaffolded instruction rather than natural applied cases.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The factual-detail warning is useful, but the chapter revisits hard details several times, creating mild repetition around the same point.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable. Its core move is clear, memorable, and bounded: WHY names the promise, HOW names the conduct, and WHAT serves as receipt rather than reason. The iPod / Dell DJ / Phaeton contrast gives readers a usable test without overselling product proof. The main weaknesses are craft-level: quiz answers sometimes telegraph themselves through exact language and the examples can feel staged rather than lived. Those lower polish and transfer scores, but they do not create a concrete reader-harming defect."
+}
+```

@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch01",
+  "chapterNumber": 1,
+  "contentHash": "60e8ebb5a842cd27",
+  "reviewerSessionId": "auto-author-review-ch01-mr78xwci-14",
+  "scores": {
+    "retention": 82,
+    "quizzes": 76,
+    "transfer": 74,
+    "practical": 86,
+    "summaries": 79,
+    "tone": 78,
+    "limits": 86,
+    "insight": 82,
+    "density": 74,
+    "beginner": 80
+  },
+  "composite": 79.7,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "a",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The fix is not proof.",
+      "why": "Strongest compressed line; it carries the chapter's core warning cleanly.",
+      "verified": true
+    },
+    {
+      "quote": "Known data is a receipt. It is not perfect truth.",
+      "why": "Memorable and useful distinction for beginners.",
+      "verified": true
+    },
+    {
+      "quote": "American Airlines adds the edge. It is an airline founded in 1926 and based near Fort Worth, and its boarding assumptions show how a routine can feel obvious until friction shows.",
+      "why": "The factual stamp feels inserted and does not show the actual before-after boarding consequence.",
+      "verified": true
+    },
+    {
+      "quote": "Colleen reaches the return point with only half the proof.",
+      "why": "A new person appears without setup, weakening standalone comprehension in the full read.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several correct answers echo the chapter's exact house language while wrong answers advertise themselves with overreach words like rank, famous, universal, skip, and borrowed proof.",
+    "Q3, Q4, Q5, and Q9 make the correct option the most careful and text-specific choice, which can be guessed by tone even without full reading."
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The American Airlines summary ends with a vague question rather than stating what proof returned or what changed.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "Colleen appears at the opening without prior grounding, so the reader has to infer her case from later material.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples feel manufactured around the lesson language; Example 6 in particular does not show a concrete before-to-after consequence, only the instruction to keep proof open.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Wrong answers are often telegraphed by obviously bad reasoning such as rank, famous-company proof, universal copying, or skipping local facts.",
+      "mustFix": true
+    },
+    {
+      "unit": "tone",
+      "problem": "Repeated named-anchor phrasing and source-boundary reminders create a scaffold smell, especially around American Airlines, General Motors, and jidoka.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a useful and memorable move: separate known facts, assumptions, decisions, and returning proof before trusting a fix. Its best lines are clear enough to stick, and the practical action is low-friction. It falls short of a professional ship bar because some examples feel engineered to satisfy the template rather than prove transfer, the American Airlines material never quite becomes a concrete operational story, and the quiz can often be gamed by spotting overreaching distractors.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "201553df9755c159ed884b4adab428a4b058a10677ba47dac18e8d00bf630a9b",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T03:44:34.018Z"
+}

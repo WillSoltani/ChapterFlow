@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Q3 c uses the chapter's premise/proof language so directly that it stands out from the weaker distractors.", "Q8 c is much longer and overclaims in a way that makes it easy to reject without close reading."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 86,
+    "transfer": 72,
+    "practical": 74,
+    "summaries": 85,
+    "tone": 80,
+    "limits": 88,
+    "insight": 83,
+    "density": 77,
+    "beginner": 75
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Belief does not follow trust; trust follows returned proof.",
+      "why": "Strongest compact statement of the chapter's causal move."
+    },
+    {
+      "quote": "Trust should not be bought on credit.",
+      "why": "Memorable, plain-language boundary on overpromising."
+    },
+    {
+      "quote": "After the Continental Airlines turnaround had already played out, Daniel traces the Houston file under one gray binder clip.",
+      "why": "The invented scene detail feels decorative and does not show a decision with a consequence."
+    },
+    {
+      "quote": "At the return point in Dallas, a Southwest Airlines employee has no proof yet.",
+      "why": "The central image is repeated, but remains vague about the actual event on the page."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening image is memorable but underexplained; 'marks the return point' sounds important before the reader can picture a concrete act.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The Dallas example restates the lesson but does not show a specific employee decision, before-state, action, and consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2",
+      "problem": "Daniel and the gray binder clip read like manufactured slot-filler; the example names no specific turnaround action or concrete result.",
+      "mustFix": true
+    },
+    {
+      "unit": "practical sections",
+      "problem": "The action 'mark one promise' is low-friction, but it stays abstract; a reader may not know what a valid return point looks like in real work.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "Several paragraphs circle the same order: belief, conduct, proof, trust. The repetition aids memory but lowers density.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong core: trust is not a vibe or a word choice, but proof returned after belief has been made visible in behavior. The Southwest/Continental contrast gives the lesson useful boundaries, and the quiz is mostly fair and keyed soundly. I would not ship it yet because the examples, especially Daniel's binder-clip scene and the Dallas employee scene, do not fully deliver the promised transfer; they often restate the principle instead of showing a concrete decision and consequence."
+}
+```

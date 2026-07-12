@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "a", "c", "c", "b", "b", "b", "c"],
+    "keyDisagreements": [],
+    "tells": ["Q3's correct option repeats the exact four-term sequence from the prose, making it guessable by term matching.", "Across several questions, the correct answer is the most specific option using chapter vocabulary, while distractors are more obviously overbroad."]
+  },
+  "scores": {
+    "retention": 89,
+    "quizzes": 84,
+    "transfer": 80,
+    "practical": 83,
+    "summaries": 88,
+    "tone": 84,
+    "limits": 91,
+    "insight": 87,
+    "density": 82,
+    "beginner": 81
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A founder's return proves nothing until behavior can be traced.",
+      "why": "Strong opening compression of the chapter's core move."
+    },
+    {
+      "quote": "Every unowned promise costs trust before output can prove anything.",
+      "why": "Memorable mechanism: it explains why naming WHY before WHAT matters."
+    },
+    {
+      "quote": "At her desk during a hypothetical source pass, writer Sloane looks back after the Apple line finally works.",
+      "why": "The example turns inward to writing-process theater instead of a richer transfer setting."
+    },
+    {
+      "quote": "The phone buzz cuts through the line.",
+      "why": "Decorative detail that does not add decision, consequence, or learning value."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 2",
+      "problem": "Thin-but-usable example: it uses a hypothetical writer revising the same Apple line, so it mainly repeats the chapter's own construction rather than showing transfer to a distinct real-world decision.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "Thin-but-usable example: the phone-call frame and buzz detail do not create a clear before-to-after consequence; the lesson mostly restates that Bentonville must stay attached to Walmart.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q3",
+      "problem": "The keyed choice is somewhat guessable because it mirrors the chapter's exact term sequence: WHY holder, HOW operators, WHAT scale, and Succession.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "Cold beginners may need one earlier non-company application before the chapter spends many paragraphs on Apple/Walmart/Ford source handling.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable: the chapter has a clear central move, strong limits, sound quiz keys, and enough practical transfer through the cross-out tactic and if-then plan. Its main weakness is that a couple of examples feel like internal source-editing demonstrations rather than lived application, and a few quiz answers are easier to spot because they echo chapter vocabulary. Those are craft issues, not blockers."
+}
+```

@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 20,
+    "quizzes": 0,
+    "transfer": 35,
+    "practical": 10,
+    "summaries": 0,
+    "tone": 30,
+    "limits": 0,
+    "insight": 25,
+    "density": 20,
+    "beginner": 20
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "After the door closed, Fenna saw the older feeling under it: fear that another rejected claim would wreck payroll.",
+      "why": "This is the clearest mechanism: a surface reaction is traced to the older feeling underneath it."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now",
+      "why": "The promised layered reads and action section are empty, so the chapter cannot function as a learning unit."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "The practical instruction is circular because the chapter never names or teaches the move."
+    },
+    {
+      "quote": "Jae Jae must decide whether to defend the chart or ask what the morning felt like from his side.",
+      "why": "The duplicated name is a visible copy defect in one of the only substantive passages."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section is present as a heading but has no content, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is present as a heading but has no content, leaving the mechanism untaught.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is present as a heading but has no content, so the chapter lacks its main instructional body.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is present as a heading but has no takeaway, leaving the core move unnamed.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is present as a heading but gives no usable exercise or action.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section has no questions, so the quiz is structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is present as a heading but contains no review cards.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is present as a heading but contains no memorable lines.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Both examples end with generic scaffold text instead of concrete instructions tied to the chapter's move.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The sentence 'Fenna she writes' is ungrammatical.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The phrase 'Jae Jae' duplicates the character name.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not shippable as a chapter. The only real content is two scenes that imply a useful move: notice the fear or felt experience underneath a defensive reaction before responding. But the actual teaching sections, practice section, summaries, review cards, memorable lines, and quiz are empty, so a reader cannot reliably learn, practice, review, or be assessed on the move. The examples have some concrete texture, but the instructional scaffolding is missing."
+}
+```

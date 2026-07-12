@@ -41,9 +41,10 @@ import { join, resolve } from "path";
 import type { ChapterV21 } from "../types.js";
 import { REPO_ROOT, chapterFileName } from "../lib/chapterPaths.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
-import { sha256Hex } from "../contracts/contractUtil.js";
+import { hashCanonical, sha256Hex } from "../contracts/contractUtil.js";
 import type { AttemptIdentityV1, AttemptKindV1, CandidateOutcomeV1, CommitManifestV1 } from "../contracts/candidateTransaction.js";
-import { runChapterGateComposite } from "../critics/chapterGateComposite.js";
+import { runChapterGateComposite, type ChapterGateCompositeOptions } from "../critics/chapterGateComposite.js";
+import type { RubricThresholds } from "../metrics/rubricThresholds.js";
 import { recordAttemptMint, recordAttemptState, recordAttemptObject, recordAttemptFinal, resolveEvidenceRoot } from "../evidence/attemptRecorder.js";
 
 /** Attempt evidence root — pipeline-local, gitignored, EXCLUDED from chapter
@@ -59,6 +60,14 @@ export const CANDIDATE_MAX_BYTES = 2 * 1024 * 1024;
 export type ChapterCanonicalIo = {
   readChapterFile: (bookId: string, chapterNumber: number) => string | null;
   writeChapterFile: (bookId: string, chapterNumber: number, bytes: string) => void;
+};
+
+/** Canonical IO needed to undo a just-landed commit when a required companion
+ * record (author provenance / lead override) cannot be made durable.  Removal
+ * is explicit because a first-write rollback must restore "absent", not an
+ * empty or sentinel chapter. */
+export type ChapterReconciliationIo = ChapterCanonicalIo & {
+  removeChapterFile: (bookId: string, chapterNumber: number) => void;
 };
 
 export type ChapterAttempt = {
@@ -234,8 +243,9 @@ export async function gateCandidate(
   candidate: ChapterV21,
   canonicalAbsPath: string,
   attemptKey: string,
+  options: ChapterGateCompositeOptions = {},
 ): Promise<{ code: number; stdout: string; stderr: string }> {
-  const r = await runChapterGateComposite(candidate, canonicalAbsPath, attemptKey);
+  const r = await runChapterGateComposite(candidate, canonicalAbsPath, attemptKey, options);
   return r.crashed ? { code: 1, stdout: "", stderr: r.report } : { code: r.exitCode, stdout: r.report, stderr: "" };
 }
 
@@ -247,12 +257,13 @@ export async function rubricMetricsWithCandidate(
   chapterNumber: number,
   candidate: ChapterV21,
   loadChapters: (bookId: string) => ChapterV21[],
+  thresholds?: RubricThresholds,
 ): Promise<{ code: number; stdout: string; stderr: string }> {
   try {
     const { computeBookRubricMetrics, formatRubricMetrics } = await import("../metrics/bookRubricMetrics.js");
     let siblings: ChapterV21[] = [];
     try { siblings = loadChapters(bookId).filter((c) => c.number !== chapterNumber); } catch { siblings = []; }
-    const report = computeBookRubricMetrics(bookId, { chapters: [...siblings, candidate] });
+    const report = computeBookRubricMetrics(bookId, { chapters: [...siblings, candidate], ...(thresholds ? { thresholds } : {}) });
     return { code: 0, stdout: formatRubricMetrics(report), stderr: "" };
   } catch (err) {
     return { code: 1, stdout: "", stderr: `rubric-metrics (candidate): ${(err as Error).message}` };
@@ -260,8 +271,31 @@ export async function rubricMetricsWithCandidate(
 }
 
 export type CommitResult =
-  | { ok: true; committedSha256: string; commitManifestPath: string }
-  | { ok: false; outcome: "stale_base"; reason: string };
+  | {
+      ok: true;
+      committedSha256: string;
+      previousBytes: string | null;
+      commitManifestPath: string;
+      requiredEvidencePending: boolean;
+    }
+  | { ok: false; outcome: "stale_base"; reason: string }
+  | {
+      ok: false;
+      outcome: "infrastructure_failure";
+      reason: string;
+      canonicalLanded: boolean;
+      committedSha256: string;
+      previousBytes: string | null;
+      commitManifestPath: string;
+    };
+
+export type RequiredCommitEvidenceV1 = {
+  authorProvenanceBindingSha256: string;
+  leadOverrideSha256: string | null;
+  /** ACTIVE forward path: hash of the complete conductor COMMITTED/PASS result
+   * persisted and read back inside this same required-evidence bracket. */
+  forwardReviewResultSha256?: string;
+};
 
 /** Compare-and-swap commit: canonical must still hash to the attempt's expected
  *  base; the replacement is one atomic write through the caller's IO seam. A
@@ -273,6 +307,10 @@ export function commitChapterCandidate(args: {
   /** Evidence identifiers this commit invalidates (reviews/acceptance) — recorded
    *  in the manifest; actual invalidation stays with the existing callers. */
   invalidated?: string[];
+  /** When present, canonical bytes remain in a recoverable pending-evidence
+   * phase until the caller persists/read-backs these companion records and
+   * explicitly closes the bracket with finalizeChapterCommitEvidence(). */
+  requiredEvidence?: RequiredCommitEvidenceV1;
 }): CommitResult {
   const { attempt, bytes, io } = args;
   const { bookId, chapterNumber, expectedBaseSha256 } = attempt.identity;
@@ -291,7 +329,10 @@ export function commitChapterCandidate(args: {
     };
   }
   const committedSha256 = sha256Hex(bytes);
-  const manifest = buildCommitManifest(attempt, currentSha, committedSha256, args.invalidated ?? [], "pending");
+  const manifest: PhasedCommitManifest = {
+    ...buildCommitManifest(attempt, currentSha, committedSha256, args.invalidated ?? [], "pending"),
+    ...(args.requiredEvidence ? { requiredEvidence: args.requiredEvidence } : {}),
+  };
   const manifestPath = join(attempt.attemptDir, "commit-manifest.json");
   writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
   // IMP-10: the candidate bytes + commit manifest are content-addressed evidence,
@@ -303,12 +344,247 @@ export function commitChapterCandidate(args: {
     recordAttemptObject(attempt.evidenceRoot, attempt.identity.attemptId, "commit-manifest", JSON.stringify(manifest, null, 2) + "\n");
     recordAttemptState(attempt.evidenceRoot, attempt.identity.attemptId, "commit-pending", atIso);
   }
-  io.writeChapterFile(bookId, chapterNumber, bytes);
-  writeFileSync(manifestPath, JSON.stringify({ ...manifest, phase: "committed" }, null, 2) + "\n");
-  return { ok: true, committedSha256, commitManifestPath: manifestPath };
+  try {
+    io.writeChapterFile(bookId, chapterNumber, bytes);
+  } catch (error) {
+    const observed = io.readChapterFile(bookId, chapterNumber);
+    const observedSha256 = observed === null ? null : sha256Hex(observed);
+    const landed = observedSha256 === committedSha256;
+    const phase: PhasedCommitManifest["phase"] = landed ? "reconciliation_required" : "aborted_write_failure";
+    const reconciliation: CommitReconciliationV1 = {
+      cause: `canonical write threw: ${(error as Error).message}`,
+      attemptedAtIso: new Date().toISOString(),
+      outcome: "reconciliation_required",
+      observedCanonicalSha256: observedSha256,
+      restoredSha256: currentSha,
+      detail: landed
+        ? "canonical candidate bytes landed but the write threw before the commit bracket could be closed"
+        : "canonical candidate bytes did not read back after the write failure",
+    };
+    try { writeFileSync(manifestPath, JSON.stringify({ ...manifest, phase, reconciliation }, null, 2) + "\n"); } catch { /* original pending bracket remains recovery evidence */ }
+    return {
+      ok: false,
+      outcome: "infrastructure_failure",
+      reason: `${reconciliation.cause}; ${reconciliation.detail}`,
+      canonicalLanded: landed, committedSha256, previousBytes: currentBytes, commitManifestPath: manifestPath,
+    };
+  }
+  const landedBytes = io.readChapterFile(bookId, chapterNumber);
+  const landedSha256 = landedBytes === null ? null : sha256Hex(landedBytes);
+  if (landedSha256 !== committedSha256) {
+    const reconciliation: CommitReconciliationV1 = {
+      cause: "canonical write returned without persisting the candidate bytes",
+      attemptedAtIso: new Date().toISOString(),
+      outcome: "reconciliation_required",
+      observedCanonicalSha256: landedSha256,
+      restoredSha256: currentSha,
+      detail: `canonical commit read-back mismatch (expected ${committedSha256.slice(0, 12)}, found ${landedSha256?.slice(0, 12) ?? "<absent>"})`,
+    };
+    writeFileSync(manifestPath, JSON.stringify({ ...manifest, phase: "reconciliation_required", reconciliation }, null, 2) + "\n");
+    return {
+      ok: false, outcome: "infrastructure_failure", reason: reconciliation.detail,
+      canonicalLanded: false, committedSha256, previousBytes: currentBytes, commitManifestPath: manifestPath,
+    };
+  }
+  const closingPhase: PhasedCommitManifest["phase"] = args.requiredEvidence ? "pending_required_evidence" : "committed";
+  try {
+    writeFileSync(manifestPath, JSON.stringify({ ...manifest, phase: closingPhase }, null, 2) + "\n");
+  } catch (error) {
+    // Canonical landed but the durable bracket did not close. Return enough
+    // state for commitPreparedAuthorCandidate to CAS-rollback; never surface a
+    // successful commit whose required evidence transition is only in memory.
+    return {
+      ok: false,
+      outcome: "infrastructure_failure",
+      reason: `canonical bytes landed but the ${closingPhase} manifest could not be persisted: ${(error as Error).message}`,
+      canonicalLanded: true,
+      committedSha256,
+      previousBytes: currentBytes,
+      commitManifestPath: manifestPath,
+    };
+  }
+  return {
+    ok: true,
+    committedSha256,
+    previousBytes: currentBytes,
+    commitManifestPath: manifestPath,
+    requiredEvidencePending: args.requiredEvidence !== undefined,
+  };
 }
 
-type PhasedCommitManifest = CommitManifestV1 & { phase: "pending" | "committed" | "aborted_stale_base" | "aborted_recovered" };
+type CommitReconciliationV1 = {
+  cause: string;
+  attemptedAtIso: string;
+  outcome: "rolled_back" | "reconciliation_required";
+  observedCanonicalSha256: string | null;
+  restoredSha256: string | null;
+  detail: string;
+};
+
+type PhasedCommitManifest = CommitManifestV1 & {
+  phase:
+    | "pending"
+    | "pending_required_evidence"
+    | "committed"
+    | "aborted_stale_base"
+    | "aborted_write_failure"
+    | "aborted_recovered"
+    | "rolled_back_required_evidence_failure"
+    | "reconciliation_required";
+  reconciliation?: CommitReconciliationV1;
+  requiredEvidence?: RequiredCommitEvidenceV1;
+};
+
+export type CommitReconciliationResult =
+  | { ok: true; outcome: "rolled_back"; restoredSha256: string | null; detail: string }
+  | { ok: false; outcome: "reconciliation_required"; observedCanonicalSha256: string | null; detail: string };
+
+/**
+ * Fail-closed companion-record reconciliation.
+ *
+ * A chapter commit and its required provenance cannot be one filesystem
+ * transaction through the legacy IO seam.  If companion persistence fails, we
+ * therefore perform a second CAS: rollback is allowed only while canonical
+ * bytes still equal THIS attempt's committed hash.  Any intervening write wins
+ * and is never clobbered; the commit manifest remains durable and is marked for
+ * operator reconciliation instead of claiming PASS.
+ */
+export function reconcileCommittedChapterCandidate(args: {
+  attempt: ChapterAttempt;
+  committedSha256: string;
+  previousBytes: string | null;
+  io: ChapterReconciliationIo;
+  cause: string;
+  /** A required companion surface could not itself be restored. Canonical CAS
+   * rollback is still attempted, but the overall manifest must remain in an
+   * operator-reconciliation state rather than claiming a clean rollback. */
+  companionStateUnreconciled?: boolean;
+}): CommitReconciliationResult {
+  const { attempt, committedSha256, previousBytes, io, cause } = args;
+  const { bookId, chapterNumber } = attempt.identity;
+  const manifestPath = join(attempt.attemptDir, "commit-manifest.json");
+  const expectedRestoreSha256 = previousBytes === null ? null : sha256Hex(previousBytes);
+  const attemptedAtIso = new Date().toISOString();
+
+  const persist = (phase: PhasedCommitManifest["phase"], reconciliation: CommitReconciliationV1): void => {
+    let current: PhasedCommitManifest;
+    try {
+      current = JSON.parse(readFileSync(manifestPath, "utf8")) as PhasedCommitManifest;
+    } catch {
+      current = buildCommitManifest(attempt, expectedRestoreSha256, committedSha256, [], phase);
+    }
+    writeFileSync(manifestPath, JSON.stringify({ ...current, phase, reconciliation }, null, 2) + "\n");
+    if (attempt.evidenceRoot) {
+      recordAttemptObject(
+        attempt.evidenceRoot,
+        attempt.identity.attemptId,
+        "commit-reconciliation",
+        JSON.stringify({ schema: "commit-reconciliation-v1", ...reconciliation }, null, 2) + "\n",
+      );
+    }
+  };
+
+  const beforeBytes = io.readChapterFile(bookId, chapterNumber);
+  const beforeSha256 = beforeBytes === null ? null : sha256Hex(beforeBytes);
+  if (beforeSha256 !== committedSha256) {
+    const detail =
+      `required evidence failed after commit, but canonical changed before rollback ` +
+      `(expected this commit ${committedSha256.slice(0, 12)}, found ${beforeSha256?.slice(0, 12) ?? "<absent>"}); ` +
+      `intervening bytes preserved`;
+    const reconciliation: CommitReconciliationV1 = {
+      cause, attemptedAtIso, outcome: "reconciliation_required", observedCanonicalSha256: beforeSha256,
+      restoredSha256: expectedRestoreSha256, detail,
+    };
+    persist("reconciliation_required", reconciliation);
+    return { ok: false, outcome: "reconciliation_required", observedCanonicalSha256: beforeSha256, detail };
+  }
+
+  try {
+    if (previousBytes === null) io.removeChapterFile(bookId, chapterNumber);
+    else io.writeChapterFile(bookId, chapterNumber, previousBytes);
+  } catch (error) {
+    const observed = io.readChapterFile(bookId, chapterNumber);
+    const observedSha256 = observed === null ? null : sha256Hex(observed);
+    const detail = `CAS rollback write failed: ${(error as Error).message}`;
+    const reconciliation: CommitReconciliationV1 = {
+      cause, attemptedAtIso, outcome: "reconciliation_required", observedCanonicalSha256: observedSha256,
+      restoredSha256: expectedRestoreSha256, detail,
+    };
+    persist("reconciliation_required", reconciliation);
+    return { ok: false, outcome: "reconciliation_required", observedCanonicalSha256: observedSha256, detail };
+  }
+
+  const restored = io.readChapterFile(bookId, chapterNumber);
+  const restoredSha256 = restored === null ? null : sha256Hex(restored);
+  if (restoredSha256 !== expectedRestoreSha256) {
+    const detail =
+      `CAS rollback did not read back the prior bytes ` +
+      `(expected ${expectedRestoreSha256?.slice(0, 12) ?? "<absent>"}, found ${restoredSha256?.slice(0, 12) ?? "<absent>"})`;
+    const reconciliation: CommitReconciliationV1 = {
+      cause, attemptedAtIso, outcome: "reconciliation_required", observedCanonicalSha256: restoredSha256,
+      restoredSha256: expectedRestoreSha256, detail,
+    };
+    persist("reconciliation_required", reconciliation);
+    return { ok: false, outcome: "reconciliation_required", observedCanonicalSha256: restoredSha256, detail };
+  }
+
+  const canonicalRollbackDetail = `required evidence failed; canonical CAS rollback restored ${expectedRestoreSha256?.slice(0, 12) ?? "<absent>"}`;
+  if (args.companionStateUnreconciled) {
+    const detail = `${canonicalRollbackDetail}, but a required companion record could not be restored`;
+    const reconciliation: CommitReconciliationV1 = {
+      cause, attemptedAtIso, outcome: "reconciliation_required", observedCanonicalSha256: restoredSha256,
+      restoredSha256: expectedRestoreSha256, detail,
+    };
+    persist("reconciliation_required", reconciliation);
+    return { ok: false, outcome: "reconciliation_required", observedCanonicalSha256: restoredSha256, detail };
+  }
+  const detail = canonicalRollbackDetail;
+  const reconciliation: CommitReconciliationV1 = {
+    cause, attemptedAtIso, outcome: "rolled_back", observedCanonicalSha256: committedSha256,
+    restoredSha256: expectedRestoreSha256, detail,
+  };
+  persist("rolled_back_required_evidence_failure", reconciliation);
+  return { ok: true, outcome: "rolled_back", restoredSha256: expectedRestoreSha256, detail };
+}
+
+/** Close a pending-required-evidence bracket only after the caller has
+ * durably persisted and read-back-verified every companion record. The
+ * canonical hash and frozen evidence expectation are rechecked here so a stale
+ * caller cannot close somebody else's commit. */
+export function finalizeChapterCommitEvidence(args: {
+  attempt: ChapterAttempt;
+  committedSha256: string;
+  requiredEvidence: RequiredCommitEvidenceV1;
+  io: ChapterCanonicalIo;
+}): { ok: true } | { ok: false; reason: string } {
+  const { attempt, committedSha256, requiredEvidence, io } = args;
+  const { bookId, chapterNumber } = attempt.identity;
+  const current = io.readChapterFile(bookId, chapterNumber);
+  const currentSha256 = current === null ? null : sha256Hex(current);
+  if (currentSha256 !== committedSha256) {
+    return { ok: false, reason: `canonical changed before required-evidence finalization (expected ${committedSha256.slice(0, 12)}, found ${currentSha256?.slice(0, 12) ?? "<absent>"})` };
+  }
+  const manifestPath = join(attempt.attemptDir, "commit-manifest.json");
+  let manifest: PhasedCommitManifest;
+  try { manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as PhasedCommitManifest; }
+  catch (error) { return { ok: false, reason: `required-evidence manifest is unreadable: ${(error as Error).message}` }; }
+  if (manifest.phase !== "pending_required_evidence") {
+    return { ok: false, reason: `required-evidence manifest is ${manifest.phase}, not pending_required_evidence` };
+  }
+  if (!manifest.requiredEvidence || hashCanonical(manifest.requiredEvidence) !== hashCanonical(requiredEvidence)) {
+    return { ok: false, reason: "required-evidence expectation differs from the pending commit manifest" };
+  }
+  try {
+    writeFileSync(manifestPath, JSON.stringify({ ...manifest, phase: "committed" }, null, 2) + "\n");
+    const readBack = JSON.parse(readFileSync(manifestPath, "utf8")) as PhasedCommitManifest;
+    if (readBack.phase !== "committed" || readBack.committedSha256 !== committedSha256) {
+      return { ok: false, reason: "committed required-evidence manifest did not read back" };
+    }
+  } catch (error) {
+    return { ok: false, reason: `required-evidence manifest could not be finalized: ${(error as Error).message}` };
+  }
+  return { ok: true };
+}
 
 function buildCommitManifest(
   attempt: ChapterAttempt,
@@ -340,18 +616,22 @@ export function recoverIncompleteCommits(
   io: ChapterCanonicalIo,
   bookId: string,
   chapterNumber: number,
-): Array<{ attemptId: string; resolution: "committed" | "aborted_recovered" }> {
-  const resolutions: Array<{ attemptId: string; resolution: "committed" | "aborted_recovered" }> = [];
+): Array<{ attemptId: string; resolution: "committed" | "aborted_recovered" | "reconciliation_required" }> {
+  const resolutions: Array<{ attemptId: string; resolution: "committed" | "aborted_recovered" | "reconciliation_required" }> = [];
   let entries: string[] = [];
   try { entries = readdirSync(chapterRoot); } catch { return resolutions; }
   for (const attemptId of entries) {
     const manifestPath = join(chapterRoot, attemptId, "commit-manifest.json");
     let manifest: PhasedCommitManifest;
     try { manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as PhasedCommitManifest; } catch { continue; }
-    if (manifest.phase !== "pending") continue;
+    if (manifest.phase !== "pending" && manifest.phase !== "pending_required_evidence") continue;
     const currentBytes = io.readChapterFile(bookId, chapterNumber);
     const currentSha = currentBytes === null ? null : sha256Hex(currentBytes);
-    const resolution = currentSha === manifest.committedSha256 ? "committed" : "aborted_recovered";
+    const resolution = currentSha !== manifest.committedSha256
+      ? "aborted_recovered"
+      : manifest.phase === "pending_required_evidence"
+        ? "reconciliation_required"
+        : "committed";
     try { writeFileSync(manifestPath, JSON.stringify({ ...manifest, phase: resolution }, null, 2) + "\n"); } catch { continue; }
     resolutions.push({ attemptId: manifest.attemptId, resolution });
   }
@@ -412,7 +692,7 @@ export function sweepStaleAttempts(opts: { attemptsRoot?: string; olderThanMs?: 
           if (now - statSync(dir).mtimeMs < threshold) continue;
           try {
             const m = JSON.parse(readFileSync(join(dir, "commit-manifest.json"), "utf8")) as PhasedCommitManifest;
-            if (m.phase === "pending") continue; // recovery owns pending brackets
+            if (m.phase === "pending" || m.phase === "pending_required_evidence") continue; // recovery owns pending brackets
           } catch { /* no manifest — plain debris */ }
           rmSync(dir, { recursive: true, force: true });
           removed.push(dir);

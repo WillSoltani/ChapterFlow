@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch04",
+  "chapterNumber": 4,
+  "contentHash": "cb4bc627d1610a53",
+  "reviewerSessionId": "auto-author-review-ch04-mrbpptzx-2",
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 78,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 92,
+    "insight": 87,
+    "density": 82,
+    "beginner": 83
+  },
+  "composite": 85.5,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "c",
+      "a",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Biology means sorting jobs, not crowning feeling.",
+      "why": "This is the chapter's strongest compression of the core guardrail.",
+      "verified": true
+    },
+    {
+      "quote": "The answer is not to add more brain words. The answer is to pause the spend until the emotion and the reason can both be named.",
+      "why": "This turns the idea into a concrete decision rule with a useful limit.",
+      "verified": true
+    },
+    {
+      "quote": "A second one shows whether the idea survives a change in venue.",
+      "why": "This explains transfer cleanly and gives the reader a test beyond memorizing terms.",
+      "verified": true
+    },
+    {
+      "quote": "Mid-action, the demand is already past: explain why the weekend support route felt safer, not only why it sounded faster.",
+      "why": "This example opens with a hard-to-parse setup, making the practical scene weaker than the lesson around it.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q8's correct choice is much more specific than the distractors, so it is easier to guess after skimming the chapter vocabulary.",
+    "Several wrong answers use visibly disapproved phrasing such as 'drop the visible side,' 'outside authority,' and 'already preferred,' which makes them easier to eliminate."
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The scene is thin-but-usable: Rachel, the service lead, and the buyer are placeholders, and the example shows rejection without much concrete before-to-after detail.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The setup is confusing and abstract, especially 'Mid-action, the demand is already past,' so the example takes extra effort before the lesson becomes clear.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The correct answer is more detailed and chapter-specific than the distractors, creating a mild guessing tell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is publishable against an 84 bar. The chapter has a clear core move: separate the sayable WHAT from the felt WHY, then use biology as a constraint rather than a badge. Its best lines are memorable, the summaries stand alone, and the practical advice is usable. The main weakness is that some examples feel staged or thin, and a few quiz distractors are easier to eliminate by tone than by reasoning. Those are craft issues, not reader-harming defects.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "ef7e2fd0a6c5107952b223d397bae1e4ca688a4ffdcb18dcc9deb13b7aa6725a",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-08T06:44:54.678Z"
+}

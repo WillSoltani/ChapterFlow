@@ -156,15 +156,17 @@ test("F-2 (b) guard: a failed call whose writer landed identical bytes still per
   assert.equal(rig.files.get(1), PRIOR);
 });
 
-test("F-2 (d): a COMMIT-write failure throws (infra) and the prior canonical bytes survive — never a silent divergence", async () => {
+test("F-2 (d): a COMMIT-write failure returns a typed state/provenance failure and the prior canonical bytes survive", async () => {
   // gatePasses → the flow reaches the compare-and-swap commit, whose canonical
-  // write THROWS. That must escape as an infrastructure error (the conductor's
-  // halt taxonomy owns it) — and the canonical store must be exactly as before.
+  // write THROWS. The commit bracket must convert that into the typed
+  // state/provenance failure consumed by the forward conductor — and the
+  // canonical store must be exactly as before.
   const rig = mkRig({ n: 1, priorBytes: PRIOR, draftBytes: DRAFT, gatePasses: true, writeThrows: true });
-  await assert.rejects(
-    authorWriteOneChapter("zz-write-restore", 1, rig.deps, { io: rig.io, totalChapters: 2 }),
-    /EACCES/,
-    "a commit-write failure is an infrastructure error, never a swallowed content failure",
-  );
+  const result = await authorWriteOneChapter("zz-write-restore", 1, rig.deps, { io: rig.io, totalChapters: 2 });
+  assert.equal(result.ok, false, "a commit-write failure fails closed");
+  if (!result.ok) {
+    assert.equal(result.failureKind, "STATE_OR_PROVENANCE", "the conductor receives the typed infrastructure/state taxonomy");
+    assert.match(result.reason, /EACCES/, "the underlying commit failure remains visible");
+  }
   assert.equal(rig.files.get(1), PRIOR, "the prior reviewed bytes survive a failed commit write");
 });

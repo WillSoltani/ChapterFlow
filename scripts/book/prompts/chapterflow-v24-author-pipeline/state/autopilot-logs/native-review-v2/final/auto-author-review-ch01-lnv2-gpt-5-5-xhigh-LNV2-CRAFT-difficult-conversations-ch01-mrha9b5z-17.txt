@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "a", "b", "c", "c", "b", "a"],
+    "mechanisms": [
+      "The prose defines identity as questions about competence, authority, respect, or worth; her fear of seeming too junior is that layer.",
+      "The prose says to sort what happened, feelings, and identity; the promise, resentment, and responsible-child fear map exactly to those layers.",
+      "The chapter says facts, feelings, and identity truths coexist; repair facts must be separated from dismissal feelings and competence fears.",
+      "The chapter warns that the visible argument is not the whole argument; trust feelings can steer tone beneath a deadline dispute.",
+      "Hearing the question as 'You are a bad friend' makes the issue about what kind of person she is, which the prose names as identity.",
+      "Private sorting prevents treating an identity threat as only a facts problem; the prose also says the frame is not a script.",
+      "The prose says more facts can fail when evidence has entered an identity conversation; the attendance record now touches parenting identity.",
+      "The prose says the frame works best as private diagnosis because labeling someone else's layer can sound like an accusation.",
+      "The diagnostic move is to separate the visible issue from the respect layer that keeps driving the fight."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "Competing choice b has a surface hook because she feels anxiety, but the prose makes competence/authority an identity question.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "No defensible competing answer, but the stem under-specifies whether 'respect' is mainly a feeling layer or an identity/respect threat."
+    ],
+    "tells": [
+      "Q1: a is the longest option and uses the chapter's exact 'identity conversation' framing.",
+      "Q2: b is much fuller than the distractors and lists the three-layer structure.",
+      "Q3: c is the only non-caricatured response and mirrors the chapter's diagnostic vocabulary.",
+      "Q4: a is the only option that names the hidden feeling driving the visible timeline.",
+      "Q5: b gives away the key with 'what kind of friend she is.'",
+      "Q6: c is the only option that matches the chapter's 'not only a facts problem' move.",
+      "Q7: c is uniquely long and imports the chapter phrase 'more facts alone.'",
+      "Q8: b closely paraphrases the prose about private diagnosis and labels sounding like verdicts.",
+      "Q9: a is the only option using the layer language."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 82,
+    "transfer": 86,
+    "practical": 91,
+    "summaries": 89,
+    "tone": 87,
+    "limits": 94,
+    "insight": 91,
+    "density": 86,
+    "beginner": 88
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The log is evidence. It is not the whole map.",
+      "why": "Strong, memorable compression of the core move."
+    },
+    {
+      "quote": "Here is the uncomfortable part: the layer you can document is often the layer with the least power.",
+      "why": "Gives the chapter real insight beyond a naming framework."
+    },
+    {
+      "quote": "The three conversations are a diagnostic tool, not a script.",
+      "why": "Clear boundary that prevents overselling the technique."
+    },
+    {
+      "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+      "why": "Generic filler line in an otherwise concrete example."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "Several correct choices are uniquely long and reuse the chapter's exact vocabulary, while distractors are often obviously unhelpful.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The final sentence is generic and does not add a concrete consequence beyond restating that the move should be practiced.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The example names the identity layer but stops before showing the changed next sentence or consequence, making transfer thinner than the stronger examples.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears the ship bar. The core distinction is memorable, practical, and bounded: sort facts, feelings, and identity before choosing words, but do not mistake diagnosis for repair. The prose is especially strong on mechanism and limits. The main weakness is quiz craft: the answers are fair, but many can be guessed from length and chapter vocabulary, so the quiz is less diagnostic than the prose."
+}
+```

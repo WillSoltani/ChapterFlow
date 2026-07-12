@@ -1,0 +1,11 @@
+Wrote the chapter file: [start-with-why-ch08.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch08.v21-native.chapter.json).
+
+Verification passed:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 0 minors
+- `quiz-verify`: 9/9 matches with required index pattern
+- Evidence audit: no invented witnesses, testimonials, or attribution candidates
+- Rendered length: 15,243 chars, within target range
+- Quiz parity: key uniquely longest 1/9, uniquely shortest 4/9
+
+Git shows the chapter path as untracked in this worktree, consistent with the surrounding `state/` files being untracked.

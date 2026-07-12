@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch11",
+  "chapterNumber": 11,
+  "contentHash": "6fc95baea8efd222",
+  "reviewerSessionId": "auto-author-review-ch11-mr75x0b9-15",
+  "scores": {
+    "retention": 84,
+    "quizzes": 74,
+    "transfer": 62,
+    "practical": 78,
+    "summaries": 86,
+    "tone": 79,
+    "limits": 88,
+    "insight": 80,
+    "density": 73,
+    "beginner": 82
+  },
+  "composite": 78.5,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "c",
+      "c",
+      "b",
+      "b",
+      "a",
+      "b",
+      "a",
+      "a"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "Best compact line: memorable, accurate, and central to the chapter's mechanism.",
+      "verified": true
+    },
+    {
+      "quote": "Fog burns trust. It lets good people defend the latest count while the public reason gets faint.",
+      "why": "Strong consequence statement that gives the abstract idea emotional and practical stakes.",
+      "verified": true
+    },
+    {
+      "quote": "he used them like labels. The return point is clear now: the next pass has to show behavior, not purpose words alone.",
+      "why": "Names the chapter's own weakness: several examples still operate as labels about proof rather than observed behavior.",
+      "verified": true
+    },
+    {
+      "quote": "The return point is set, not met.",
+      "why": "This example admits it establishes a standard without demonstrating the promised before-to-after proof.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several wrong answers use giveaway absolutes or obviously bad shortcuts: 'every big organization', 'only', 'word for word', 'framework words can replace', and 'readers can infer'.",
+    "Correct answers often contain the chapter's exact anchor words, such as Seattle, Bentonville, Redmond, conduct, and setting, making some keys guessable by vocabulary matching."
+  ],
+  "complaints": [
+    {
+      "unit": "Examples section",
+      "problem": "The examples mostly teach how to repair a written argument about companies, not how a real team diagnoses success fog in live metrics. They use invented reviewers and manuscript fixes instead of showing business conduct before and after a decision.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2",
+      "problem": "It says the return point is 'set, not met,' so the example does not actually complete the learning move it is supposed to demonstrate.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The example diagnoses the lack of visible conduct but does not show a concrete replacement pass, decision, or consequence. It remains a postmortem about labels.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The keyed answer is conceptually intended, but the answer choice is worded as if the distinction is preserved rather than lost, making the item unsound or at least confusing.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read/full read",
+      "problem": "The company details are accurate anchors, but the chapter repeatedly returns to founding years and headquarters more than to actual visible conduct, weakening its own conduct-over-labels promise.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Distractors often telegraph themselves through extreme phrasing or obviously bad reasoning, so a reader can sometimes guess without fully reading the prose.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is clear, memorable, and mostly fair, with strong core language around metrics needing to return to visible behavior. The main blocker is transfer: too many examples are about editing a proof draft with company labels, not about real people using metrics to test whether a WHY still lives in conduct. The chapter knows this risk and even states it, but it does not fully repair it on the page. I would revise before shipping.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "9b443e3ef8020d19f55951432b8d99c1998be383585d796a6ea54e28a1f5883b",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T02:19:40.668Z"
+}

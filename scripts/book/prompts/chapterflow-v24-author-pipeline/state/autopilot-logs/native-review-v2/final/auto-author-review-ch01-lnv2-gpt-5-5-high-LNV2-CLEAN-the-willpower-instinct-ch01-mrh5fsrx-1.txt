@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "b", "b", "b", "a", "c", "c"],
+    "mechanisms": [
+      "The prose defines willpower as I will, I won't, and I want, not refusal alone.",
+      "Miller and Cohen are described as showing prefrontal control keeps goals active and tilts attention/action toward them.",
+      "The Gage passage says speech survived while steadiness, planning, and social restraint changed after frontal damage.",
+      "The self-awareness section says change requires noticing the moment before the action hardens, not regret afterward.",
+      "The social-cost passages say self-control supports promises, shared resources, repair, and group life.",
+      "The chapter repeatedly says the larger want must be mentally present at the cue to compete with the vivid urge.",
+      "The prose says the short-term want and long-term want can both be real; support and attention decide which guides action.",
+      "The method is to make the challenge concrete, test cue/barrier/value failures, and use feedback.",
+      "The Amelia example says control biases response when an automatic routine conflicts with the current goal."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Correct choice c uniquely echoes the chapter's exact triad; distractors reduce the issue to refusal or sincerity.",
+      "Correct choice a is much more technical and chapter-like; b and c use obvious false extremes.",
+      "Correct choice a is the only one matching the nuanced Gage passage; b and c are absolute overclaims.",
+      "Correct choice b is the only option focused before the act; a and c are after-the-fact or intensity traps.",
+      "Correct choice b is the only socially constructive answer; a and c use giveaway absolutes.",
+      "Correct choice b repeats the core phrase 'choice point'; a and c are too absolute.",
+      "Correct choice a is the only balanced answer; b and c are caricatures of the conflict.",
+      "Correct choice c is the only experimental/feedback answer; a and b reject learning from the trigger.",
+      "Correct choice c repeats the chapter's prefrontal-control wording; a and b are implausible absolutes."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 86,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 87,
+    "limits": 84,
+    "insight": 89,
+    "density": 86,
+    "beginner": 92
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Refusal is only one third of willpower.",
+      "why": "This is the chapter's cleanest memorable correction to the common misunderstanding."
+    },
+    {
+      "quote": "A goal must be present to have power.",
+      "why": "This line gives the mechanism in a compact, portable form."
+    },
+    {
+      "quote": "Self-control costs the comfort of staying vague.",
+      "why": "Strong practical insight: the method makes the next action visible and removes easy excuses."
+    },
+    {
+      "quote": "Jonathan D. Cohen's 2001 control model helps show why the wanted commitment must guide the next response.",
+      "why": "This attribution feels slightly formulaic in the example and adds less than the surrounding scene."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "The correct answer is heavily signposted by the technical wording from the prose, while both distractors are obvious false extremes.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q3",
+      "problem": "The distractors are too easy because they overstate with 'no value' and 'only part of control,' so the question tests elimination as much as recall.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The Cohen attribution at the end feels pasted on; the scene already teaches the point, and the source mention does not add much mechanism.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The weekly practice asks the reader to spend half a week using an all-or-nothing rule, which is a somewhat theatrical comparison rather than the lowest-friction application.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable opening chapter. The core move is clear, memorable, and repeatedly reinforced: willpower is not just refusal but the coordination of starting, stopping, and remembering the larger want at the choice point. The quiz is fair and derivable, though some distractors are too obviously wrong. The examples are mostly concrete and transferable, with only a few source tags feeling bolted on. No reader-harming defects stood out from the page."
+}
+```

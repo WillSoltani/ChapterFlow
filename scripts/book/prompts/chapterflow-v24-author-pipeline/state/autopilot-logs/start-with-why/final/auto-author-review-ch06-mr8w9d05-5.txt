@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Some distractors self-disqualify with broad absolutes or visibly backward logic, especially Q9 b's 'all airlines' and Q4/Q7 c's loyalty-after framing."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 84,
+    "transfer": 78,
+    "practical": 82,
+    "summaries": 88,
+    "tone": 84,
+    "limits": 85,
+    "insight": 87,
+    "density": 82,
+    "beginner": 76
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Trust is a belief you can watch under pressure.",
+      "why": "Strongest compression of the chapter's core move; memorable and portable."
+    },
+    {
+      "quote": "The fare does not create trust; trust lets the fare mean more than price.",
+      "why": "Clear mechanism that prevents the Southwest example from becoming mere low-price advice."
+    },
+    {
+      "quote": "The move works, but only because the old distrust stays visible.",
+      "why": "Good limit on transfer: the Continental example depends on a cost being shown, not just named."
+    },
+    {
+      "quote": "The return is set, not met.",
+      "why": "This line is cryptic in Example 1 and weakens an otherwise concrete scenario."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The final sentence 'The return is set, not met' is opaque; a reader may not know what 'return' means in this local scenario.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples use invented named roles but stay close to the same diagnostic move, so transfer beyond airline/source-handling situations is thinner than the implementation plan promises.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "Distractor c is too easy to eliminate because it says employees matter after loyalty appears, which directly contradicts the repeated order of the chapter.",
+      "mustFix": false
+    },
+    {
+      "unit": "beginner path",
+      "problem": "The chapter assumes the reader can track source-grounding, trust order, and example scope at once; cold beginners may need one more plain-language bridge before the airline comparison gets abstract.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter has a clear central move: belief must precede visible behavior, and loyalty cannot be requested before trust has been made observable under pressure. The strongest lines are memorable, the quiz is derivable and sound, and the practical exercise is low-friction. The main weaknesses are transfer breadth and beginner clarity: several examples orbit the same airline/source-grounding problem, and a few polished lines are less clear than the surrounding lesson. None of that rises to a must-fix defect."
+}
+```

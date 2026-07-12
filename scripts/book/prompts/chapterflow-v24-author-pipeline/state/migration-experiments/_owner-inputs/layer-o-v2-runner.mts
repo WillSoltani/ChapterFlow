@@ -14,10 +14,18 @@ import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { spawnCodexAgent } from "../../../src/orchestrator/codexAgent.js";
 import {
+  LEGACY_STAGE_Q_OWNER_DRIVER_IDS,
+  assertLegacyStageQOwnerDriverClosed,
+} from "../../../src/bakeoff/migration/guards.js";
+import {
   blindnessProblems, qualifyJudgeV2, scoreJudgeV2,
   validateCandidateContent, validateReviewFinding, validateSecurityBoundary,
   type StageQv2Gold, type StageQv2Read, type StageQv2Thresholds,
 } from "../../../src/bakeoff/migration/stageQv2.js";
+
+// FORWARD-ONLY CLOSURE: retain the historical instrument below as readable
+// evidence, but halt before env checks, corpus reads, writes, or any spawn.
+assertLegacyStageQOwnerDriverClosed(LEGACY_STAGE_Q_OWNER_DRIVER_IDS.layerOV2);
 
 // ── frozen-policy env assertion (route invariant) ─────────────────────────────
 for (const k of ["OPENAI_API_KEY", "CODEX_API_KEY", "OPENAI_BASE_URL", "OPENAI_API_BASE", "ANTHROPIC_API_KEY"]) {

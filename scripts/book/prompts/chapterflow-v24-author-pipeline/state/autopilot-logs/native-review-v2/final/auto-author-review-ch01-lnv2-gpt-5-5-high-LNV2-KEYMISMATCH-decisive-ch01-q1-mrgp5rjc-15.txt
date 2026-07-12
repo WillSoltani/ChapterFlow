@@ -1,0 +1,80 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "c", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as four named moves matched to four distinct decision dangers, not a generic slowdown.",
+      "The prose says narrow framing makes rich problems look yes-or-no, so the first repair is widening live options.",
+      "Reality-testing is described as looking for evidence that can surprise or weaken the favorite answer.",
+      "The Intel/Grove section says emotion can matter, but short-term attachment needs distance and a longer view.",
+      "Overconfidence is countered by naming better, worse, or different futures rather than trusting one neat forecast.",
+      "Cole's logic is parallel first passes that buy comparison before commitment.",
+      "The outsider question is explicitly framed as imagining what a fresh outsider would do without attachment.",
+      "The chapter says each villain bends a different part of the choice and each needs a different WRAP move.",
+      "The full read states that good process raises the odds without promising the outcome."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q1: correct choice uniquely names all four WRAP moves, while the distractors are generic or obviously wrong.",
+      "Q2: correct choice repeats the chapter's yes-or-no/narrow-frame language.",
+      "Q3: correct choice uses the giveaway phrase 'disconfirming evidence'.",
+      "Q4: distractors are extreme absolutes, making c guessable.",
+      "Q5: correct choice closely echoes 'wider range of futures'.",
+      "Q6: correct choice repeats 'parallel first passes' and 'comparison before commitment'.",
+      "Q7: correct choice is almost a restatement of the Grove paragraph.",
+      "Q8: correct choice lists the four stages, while other choices flatten the model.",
+      "Q9: correct choice repeats the memorable line about improving odds while uncertainty remains."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 80,
+    "transfer": 83,
+    "practical": 78,
+    "summaries": 90,
+    "tone": 87,
+    "limits": 91,
+    "insight": 86,
+    "density": 84,
+    "beginner": 89
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "Strongest retention line: short, concrete, and it captures the chapter's central move."
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "Strong mechanism line: it makes confirmation bias memorable without jargon."
+    },
+    {
+      "quote": "Good process raises the odds without promising the outcome.",
+      "why": "Strong limits line: it prevents the method from being oversold."
+    },
+    {
+      "quote": "The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.",
+      "why": "Weakest practical moment: concrete, but the laptop-lid cue feels arbitrary and the 'shortcut' wording is under-explained here."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct answers are easy to identify from giveaway phrasing because they echo the chapter's exact language while distractors are broad, delayed, or extreme.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The action is low-friction, but 'touch your laptop lid' feels like a ritual cue rather than a naturally motivated decision practice, and 'shortcut' is not yet named clearly in that section.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The example is usable but thin: it mostly restates the four villains and matching moves without a concrete decision consequence or before-to-after outcome.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter: clear, memorable, beginner-friendly, and honest about the limits of process. Its strongest move is turning WRAP from a slogan into a sequence tied to four specific failure modes. The main weakness is that the quiz is fair but too transparent, with many correct choices carrying the chapter's exact language while distractors are plainly wrong. A few practice moments could feel less staged, but there are no reader-harming defects or structural breaks."
+}
+```

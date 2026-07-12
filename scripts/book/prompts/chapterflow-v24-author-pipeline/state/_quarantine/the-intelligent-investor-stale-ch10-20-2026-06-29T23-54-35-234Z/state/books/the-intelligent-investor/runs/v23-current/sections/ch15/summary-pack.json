@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "summary-pack",
+  "chapterId": "the-intelligent-investor-ch15",
+  "hook": {
+    "hook": "A stock can look irresistible at a low multiple, until the same screen reveals why the market may be right to distrust it.",
+    "counterintuition": "Cheap is not enough. Low expectations can create favorable odds only when financial condition, dividend evidence, asset coverage, diversification, and follow-up review keep cheapness from becoming a trap.",
+    "sourceAnchorIds": [
+      "ch15.fact.1"
+    ],
+    "counterintuitionSourceAnchorIds": [
+      "ch15.fact.1",
+      "ch15.fact.2",
+      "ch15.fact.3",
+      "ch15.fact.4",
+      "ch15.fact.5"
+    ]
+  },
+  "breakdown": {
+    "fastRead": "Enterprising stock selection starts with bargain screens, not instant buy decisions. Low P/E groups can be useful because low expectations may create favorable odds when financial condition is acceptable, but the lowest multiple is not automatically best. Net-net selection is stricter: it compares market price with current assets minus all liabilities. Bargain stocks also need a group approach, ideally 20 holdings, because any 1 cheap company can hide problems or take years to be recognized. Dividend record and financial strength help separate low-quality cheapness from a genuine opportunity.",
+    "deepRead": "The central discipline is to treat cheapness as an invitation to investigate, not as proof of value. Enterprising stock selection can begin with low P/E groups because low expectations may create favorable odds when financial condition is acceptable. The danger is assuming the lowest P/E stock is automatically best. Some low multiples are warnings, not gifts, because real deterioration can make a business deserve its low price.\n\nNet-net selection applies an even harsher bargain test. It compares market price with current assets minus all liabilities, which is stricter than using total assets or total book value. The test demands an asset cushion before assigning value to operations. Even then, a single apparent bargain is not enough. A 20-stock group approach matters because any 1 cheap company may have hidden problems or slow realization. Diversification absorbs appraisal mistakes.\n\nQuality filters keep the search from becoming blind contrarianism. Dividend record can help filter low-multiple stocks because cash distributions provide evidence that earnings are not purely accounting artifacts. Financial strength also remains necessary because leverage can destroy the asset cushion during business stress. A bargain price does not offset every weak balance sheet; debt can claim the value first.",
+    "fullRead": "Enterprising selection is a disciplined statistical search, not a hunt for the most dramatic bargain. Low P/E groups can be a starting screen because low expectations may create favorable odds when financial condition is acceptable. That condition is essential. A low multiple can mean neglect, but it can also signal real deterioration. The obvious shortcut is to rank the list and buy the cheapest name. The better habit is to ask why the security is cheap and whether the evidence supports the market's pessimism or challenges it.\n\nThe old screening idea behind Standard & Poor's Stock Guide shows the practical nature of the work: compact company data could be sorted for low P/E, dividends, and balance-sheet measures. The useful point is not the romance of finding one overlooked issue. It is the discipline of records, comparable data, and repeatable filters. A screen creates candidates. It does not create conclusions.\n\nNet-net selection is one of the stricter bargain methods. It compares market price with current assets minus all liabilities, demanding a harsh asset cushion before assigning value to operations. That is very different from saying a stock is cheap relative to total assets. Total assets may include items that are harder to realize, while the net-net test subtracts all liabilities first. Even a severe asset test still needs caution because individual liquidation value can disappoint.\n\nThat is why group diversification matters. A 20-stock group approach is important for bargain stocks because any 1 cheap company may have hidden problems or slow realization. Concentrating in the single best-looking bargain can feel decisive, but it makes one appraisal error too important. The group approach accepts that some cheap stocks will disappoint and tries to let the broader bargain category carry the result rather than demanding perfection from one selection.\n\nDividend record and financial strength add quality checks to the bargain screen. Dividend record can help filter low-multiple stocks because cash distributions provide evidence that earnings are not purely accounting artifacts. Low P/E alone does not make dividend history unnecessary, since cheap earnings can still be low quality. Financial strength remains necessary for enterprising bargains because leverage can destroy the asset cushion during business stress. A bargain price cannot protect the common stockholder if debt claims the value first.\n\nThe final lesson is restraint. Cheapness, low popularity, and screen output all need evidence. A neglected security may be cheap for valid reasons, and a numerical bargain can be caused by fraud, obsolescence, or cyclical collapse. Enterprising selection therefore demands records, screens, follow-up decisions, and patience. Recognition of value can take 3 to 5 years rather than weeks. The method is active, but it is not suitable for any busy investor who cannot maintain the work.",
+    "sourceAnchorIds": {
+      "fastRead": [
+        "ch15.fact.1",
+        "ch15.fact.2",
+        "ch15.fact.3",
+        "ch15.fact.4",
+        "ch15.fact.5"
+      ],
+      "deepRead": [
+        "ch15.fact.1",
+        "ch15.fact.2",
+        "ch15.fact.3",
+        "ch15.fact.4",
+        "ch15.fact.5"
+      ],
+      "fullRead": [
+        "ch15.fact.1",
+        "ch15.fact.2",
+        "ch15.fact.3",
+        "ch15.fact.4",
+        "ch15.fact.5",
+        "ch15.fact.6",
+        "ch15.fact.7",
+        "ch15.fact.8",
+        "ch15.fact.9",
+        "ch15.example.1",
+        "ch15.example.2",
+        "ch15.example.3"
+      ]
+    }
+  },
+  "keyTakeaway": "Use bargain screens to find candidates, then require asset discipline, dividend evidence, financial strength, diversification, and follow-up review before treating cheapness as value.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch15.fact.1",
+    "ch15.fact.2",
+    "ch15.fact.3",
+    "ch15.fact.4",
+    "ch15.fact.5",
+    "ch15.fact.6"
+  ],
+  "tryThisNow": "In one recurring conversation, review each bargain candidate with the same five checks: low P/E group, net-net test where relevant, dividend record, financial strength, and fit within a 20-stock group.",
+  "tryThisNowSourceAnchorIds": [
+    "ch15.fact.1",
+    "ch15.fact.2",
+    "ch15.fact.3",
+    "ch15.fact.4",
+    "ch15.fact.5"
+  ],
+  "sourceFactIds": [
+    "ch15.fact.1",
+    "ch15.fact.2",
+    "ch15.fact.3",
+    "ch15.fact.4",
+    "ch15.fact.5",
+    "ch15.fact.6",
+    "ch15.fact.7",
+    "ch15.fact.8",
+    "ch15.fact.9"
+  ]
+}

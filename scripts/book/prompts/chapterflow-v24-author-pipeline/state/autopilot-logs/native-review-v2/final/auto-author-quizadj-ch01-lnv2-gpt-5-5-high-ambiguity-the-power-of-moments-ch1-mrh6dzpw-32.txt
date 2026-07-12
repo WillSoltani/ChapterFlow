@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "3d01bb03137f0bdc98ce78bbdba0d577583854235068932535db7267e91303e3",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "q01",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b is supported because the calmer ending can improve remembered experience despite longer duration."
+    },
+    {
+      "itemId": "q02",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b best captures the vivid, tellable surprise that changes an otherwise ordinary arrival."
+    },
+    {
+      "itemId": "q03",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 1,
+      "agreement": false,
+      "keyCorrect": "ambiguous",
+      "rationale": "Choices a and b are both defensible because the ceremony publicly witnesses effort while also marking the move into the next unit before it becomes private logistics."
+    },
+    {
+      "itemId": "q04",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c directly names elevation, insight, pride, and connection."
+    },
+    {
+      "itemId": "q05",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a matches the red-phone lesson that one visible object can signal a changed script."
+    },
+    {
+      "itemId": "q06",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b makes the gift memorable by turning delivery into a small request-and-reveal event."
+    },
+    {
+      "itemId": "q07",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c best reflects marking the shared threshold before people scatter into private next steps."
+    },
+    {
+      "itemId": "q08",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a is the false assumption because recall is not an equal average of every minute."
+    },
+    {
+      "itemId": "q09",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c best explains that the mint lacks a tellable format, not cost or better fixtures."
+    }
+  ]
+}
+```

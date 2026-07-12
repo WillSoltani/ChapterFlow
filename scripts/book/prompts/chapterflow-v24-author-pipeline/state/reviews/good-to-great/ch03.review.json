@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "good-to-great-ch03",
+  "chapterNumber": 3,
+  "contentHash": "8d26c2eb62b49dde",
+  "reviewerSessionId": "eval-proxy-good-to-great-ch03-1783022584092",
+  "scores": {
+    "retention": 91,
+    "quizzes": 72,
+    "transfer": 90,
+    "practical": 88,
+    "summaries": 92,
+    "tone": 82,
+    "limits": 88,
+    "insight": 89,
+    "density": 86,
+    "beginner": 91
+  },
+  "composite": 86.7,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "c",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Talent can be the wrong seat wearing a medal.",
+      "why": "Strong memorable compression of the chapter's main distinction.",
+      "verified": true
+    },
+    {
+      "quote": "Rigorous does not mean ruthless. Rigorous means acting early, clearly, and fairly when fit is wrong.",
+      "why": "Best mechanism line: it defines the boundary without overselling harshness.",
+      "verified": true
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Visible template artifact that breaks professional polish.",
+      "verified": true
+    },
+    {
+      "quote": "How can you stop the market from changing long enough to execute?",
+      "why": "A quiz distractor is too absurd, making the correct answer easier to guess.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Correct answers are usually the longest and most specific option, while many distractors are cartoonishly bad.",
+    "Several wrong choices can be rejected without reading the prose because they use giveaway absolutes or obviously foolish framing."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "The correct answer is repeatedly the longest, most specific, and most prose-aligned choice, creating an answer-pattern tell.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Several distractors are too obviously wrong, such as stopping the market from changing or making an expansion flyer look ready, so they test common sense more than chapter comprehension.",
+      "mustFix": true
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "It contains the unresolved scaffold artifact \"Title: undefined\".",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches the core move clearly and memorably: settle the right people and seats before locking strategy, especially under uncertainty. The prose is concrete, transferable, and unusually good at distinguishing rigor from cruelty. I would not ship it yet against a professional bar because the quiz has strong structural tells and weak distractors, and the implementation plan includes an obvious template artifact."
+}

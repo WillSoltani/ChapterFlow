@@ -1,0 +1,73 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["No consistent uniquely-longest-choice tell, but several keyed options use the chapter's exact vocabulary while distractors are extreme or implausible, especially Q4 and Q8."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 72,
+    "practical": 83,
+    "summaries": 84,
+    "tone": 72,
+    "limits": 88,
+    "insight": 82,
+    "density": 76,
+    "beginner": 80
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Self-referenced competition means this: let the rival warn you, then let your old promise judge the move.",
+      "why": "Strongest compact statement of the chapter's core move."
+    },
+    {
+      "quote": "If the second line is blank, the decision is not ready.",
+      "why": "Memorable and practical; turns the idea into an immediate diagnostic."
+    },
+    {
+      "quote": "Apple Inc. (the company in the Apple-Dell product contrast) and Dell (the other company in that contrast) make the tension plain.",
+      "why": "This has visible scaffold smell and weakens the otherwise plain register."
+    },
+    {
+      "quote": "When the standard is demanded, name the three anchors.",
+      "why": "The action is mostly recall of chapter anchors, not a transferable workplace behavior."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The company and product parentheticals read like source-packet metadata rather than natural prose, which creates template/scaffold smell.",
+      "mustFix": false
+    },
+    {
+      "unit": "hook and fast read",
+      "problem": "The opening three sentences are repeated verbatim, so the layered read feels padded instead of progressively deeper.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples section",
+      "problem": "The examples mostly recycle Apple-Dell, Microsoft, and Southwest instead of showing the move in a genuinely new reader situation, limiting transfer beyond the book's own anchors.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The manufactured scenario is thin: the practical action is to name the three anchors, and the consequence is only that a copy request is paused while the benchmark return remains due. It mostly restates the lesson instead of showing a complete before-to-after decision.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "Distractor b is too obviously wrong because 'too clear' is not a plausible first problem with collapsing four jobs into one catchphrase.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "Distractor b gives away itself with 'copy fast,' which is visibly contrary to the chapter's repeated warning that the rival must not become the standard.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong teachable core: rival as signal, internal benchmark as judge, purpose fit, then improvement. The practical two-line move is memorable, the quiz keys are sound, and the limits section is unusually honest. I would not ship it yet because the prose still exposes too much scaffolding and the transfer layer leans on the same Apple-Dell/Microsoft/Southwest anchors instead of proving the move in fresh situations. Example 5 in particular needs a real before-to-after decision with a consequence, not just anchor recall."
+}
+```

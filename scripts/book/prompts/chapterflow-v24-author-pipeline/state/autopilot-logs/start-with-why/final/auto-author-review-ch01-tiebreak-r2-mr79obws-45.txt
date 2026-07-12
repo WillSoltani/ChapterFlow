@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": ["Q5 key is broadly derivable, but the keyed wording 'without inventing a new source' is muddy because American Airlines is introduced as its own source/venue; the prose's clearer cause is that the third view leaves factories so the idea stays bounded and tests a boarding assumption."],
+    "tells": ["Several wrong answers are easy to eliminate by overreach phrasing without reading closely: Q4 'every named organization', Q5 'final authority', Q7 'all hard specifics', Q9 'copied into Detroit and boarding'."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 78,
+    "practical": 86,
+    "summaries": 87,
+    "tone": 84,
+    "limits": 88,
+    "insight": 86,
+    "density": 80,
+    "beginner": 83
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A clean fix can be the place a bad guess hides.",
+      "why": "Strong memorable line that carries the chapter's central reversal."
+    },
+    {
+      "quote": "Known data is the receipt you can bring back when confidence gets loud.",
+      "why": "Concrete image that makes the abstract sequence easier to retain."
+    },
+    {
+      "quote": "The move can retire a bad premise before it can prove the new one.",
+      "why": "Good boundary statement that prevents the method from being oversold."
+    },
+    {
+      "quote": "Gregoire is already changing the boarding order; the demand for smoother movement came earlier.",
+      "why": "Example 3 feels manufactured because it shifts Gregoire into airline boarding without a grounded before-to-after scene."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q5",
+      "problem": "The keyed answer is mostly right, but 'without inventing a new source' is not cleanly supported; the chapter presents American Airlines as its own venue/source rather than as no new source.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several distractors advertise themselves through overreach or absolutes, letting a test-wise reader guess without fully deriving from the prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 3",
+      "problem": "Gregoire suddenly appears in a boarding-order example with no concrete role, place, number, decision consequence, or grounded before-to-after; it reads like a slot-filler transfer scene.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 6",
+      "problem": "The supplier team is unnamed and placeless, and the consequence is abstract: correction stops being approved as normal until proof returns. It teaches the concept but does not fully deliver a lived before-to-after.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter repeats the same known-data/assumption/decision/results sequence many times; retention benefits, but density drops because some paragraphs restate rather than advance.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong near-ship chapter with a memorable core move: put known data before the guess and make proof travel back. The mechanism is clear, the limits are unusually honest, and the review cards and implementation plan are practical. I would not ship it yet against a professional 84 bar because Q5 has a support/wording flaw and at least one transfer example feels manufactured rather than observed. Tighten those and reduce a little repetition, and it is likely above the bar."
+}
+```

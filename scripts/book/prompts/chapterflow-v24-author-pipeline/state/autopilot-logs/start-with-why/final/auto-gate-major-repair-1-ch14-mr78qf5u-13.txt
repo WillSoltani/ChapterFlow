@@ -1,0 +1,13 @@
+Fixed the blocking major in [start-with-why chapter 14](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch14.v21-native.chapter.json:236) by replacing the banned quiz choice phrase `the better move is` with isolated wording for `quiz.q04`. No pipeline code/config was edited.
+
+Verification passed:
+
+```text
+npx tsx src/cli.ts qc-converge start-with-why
+DETERMINISTIC-CLEAN — start-with-why (14 chapters)
+
+npx tsx src/cli.ts major-status start-with-why
+major-status: PASS (8 current major(s), 0 unresolved)
+```
+
+The remaining 8 lines are advisory only, as expected.

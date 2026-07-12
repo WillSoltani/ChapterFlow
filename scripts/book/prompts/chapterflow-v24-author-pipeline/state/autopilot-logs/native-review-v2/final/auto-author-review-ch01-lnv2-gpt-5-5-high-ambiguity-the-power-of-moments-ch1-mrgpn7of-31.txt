@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water study says recall is shaped by the sharpest part and the ending, not by duration alone.",
+      "The Magic Castle phone shows a modest place can create one vivid, tellable peak through object, request, and delivery.",
+      "YES Prep turns a private achievement into a public milestone where peers and adults witness effort.",
+      "The prose names elevation, insight, pride, and connection as the four common ingredients.",
+      "The red phone is a concrete object that signals the ordinary script has changed.",
+      "The Popsicle Hotline is memorable because the request and tray make the free item into a small event.",
+      "The chapter says beginnings, endings, milestones, and rough spots are doorways to mark before logistics take over.",
+      "The prose explicitly says memory does not average each minute and is shaped by peak and ending.",
+      "The chapter distinguishes a tellable designed moment from a quiet free item whose value alone does not carry the story."
+    ],
+    "confidence": ["high", "high", "medium", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "b is also defensible: naming the next unit before team claps marks the threshold before the change becomes private logistics.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "The stem repeats 'last few minutes are calm' and the keyed option repeats 'calmer finish.'",
+      "The wrong answers are broad negatives; b is the only constructive design action.",
+      "c is an extreme false choice, and a/b both sound chapter-aligned.",
+      "c is the only option listing four positive ingredients; a and b are implausible without reading.",
+      "a closely echoes the red-phone wording; b and c are absolute non-actions.",
+      "b contains the chapter's 'small event' language; a and c reduce the moment to cost or quiet availability.",
+      "c repeats the chapter phrase 'before ... private logistics.'",
+      "The 'not assume' framing makes the false averaging claim stand out.",
+      "c uses the chapter's tellable-story vocabulary; a and b are cost/fixture distractors."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 72,
+    "transfer": 84,
+    "practical": 90,
+    "summaries": 91,
+    "tone": 90,
+    "limits": 93,
+    "insight": 88,
+    "density": 84,
+    "beginner": 94
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A small peak can become the story of the whole stay.",
+      "why": "This is the chapter's core move in a compact, memorable line."
+    },
+    {
+      "quote": "The move is not to excuse a bad process with a pretty finish.",
+      "why": "This cleanly states the ethical limit and prevents misuse."
+    },
+    {
+      "quote": "A concrete object can tell people the script has changed.",
+      "why": "This makes the abstract design principle practical and portable."
+    },
+    {
+      "quote": "   a) Make the achievement public so the group can witness the effort.\n   b) Mark the crossing into their next unit now, before the change turns into private logistics.",
+      "why": "These two Q3 choices are both supported by the chapter, making the item ambiguous."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "Two answers are defensible from the prose: a matches public witnessed pride, while b matches marking the threshold before private logistics. The item does not have a single forced key.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The distractors are so implausible that the answer can be guessed by choosing the only option with four positive lesson words.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The keyed option repeats the chapter's threshold phrasing almost verbatim, creating a giveaway.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong, memorable core: design one peak, mark thresholds, and give endings care without using polish to hide real harm. The red phone, cold-water study, and YES Prep examples make the mechanism clear and transferable, and the layered reads work well for beginners. I would not ship yet because Q3 is structurally ambiguous, but once that quiz item is fixed this is close to professional quality."
+}
+```

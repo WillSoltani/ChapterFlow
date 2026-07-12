@@ -1,0 +1,115 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 5,
+    "quizzes": 0,
+    "transfer": 8,
+    "practical": 0,
+    "summaries": 0,
+    "tone": 15,
+    "limits": 0,
+    "insight": 0,
+    "density": 8,
+    "beginner": 5
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Yara has three replies typed, each sharper than the last.",
+      "why": "This is the strongest concrete moment: it gives a readable pressure point and a plausible decision."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway",
+      "why": "Core learning sections are present only as empty headings, so the chapter fails its layered-read promise."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "The practical instruction names no action, so a reader cannot actually perform the skill."
+    },
+    {
+      "quote": "Osias he has to say whether they are arguing about paperwork, fear, or being the good child.",
+      "why": "The sentence is grammatically broken and also points to an unstated skill the chapter never teaches."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "Section is empty, so it fails the promised standalone quick layer.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "Section is empty, so there is no explanation of the chapter's mechanism.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "Section is empty, leaving the chapter without its main teaching body.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "Section is empty, so the reader has no stated core move to retain.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "Section is empty, so there is no actionable practice step.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Quiz section contains no questions, making the quiz structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "Section is empty, so it cannot function as review material.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "Section is empty, so it cannot support retention as labeled.",
+      "mustFix": true
+    },
+    {
+      "unit": "chapter overall",
+      "problem": "The chapter never defines the skill or core move, so a reader could not learn or apply it from the page.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is internal production metadata rather than reader-facing chapter content.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example has concrete props but no explained before-to-after or consequence, and the instruction only says to follow an unnamed move.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "Sentence is grammatically broken: 'Osias he has to say...'",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The example has concrete props but no explained before-to-after or consequence, and the instruction only says to follow an unnamed move.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "Sentence is grammatically broken: 'Yara she has to decide...'",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not a shippable chapter; it is mostly an outline with two partially drafted examples. The concrete scenes show a possible direction, especially around conflict interpretation, but the teaching layers, takeaway, practice, quiz, review cards, and memorable lines are empty. Because the core move is never stated, the reader cannot learn, remember, practice, or be tested on the intended skill."
+}
+```

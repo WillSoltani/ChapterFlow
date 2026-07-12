@@ -1,0 +1,20 @@
+Fixed the deterministic findings by editing chapter content only in:
+
+- [ch03](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch03.v21-native.chapter.json)
+- [ch05](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch05.v21-native.chapter.json)
+- [ch06](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch06.v21-native.chapter.json)
+- [ch13](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch13.v21-native.chapter.json)
+
+I cleared the repeated Apple/Wright/Southwest scenario-name collisions and reduced the repeated `proxy-cast` / `second-setting` machinery below the book-level cap.
+
+Verification run:
+
+```text
+gate-chapter ch03: PASS, 0 blockers
+gate-chapter ch05: PASS, 0 blockers
+gate-chapter ch06: PASS, 0 blockers
+gate-chapter ch13: PASS, 0 blockers
+qc-converge start-with-why: DETERMINISTIC-CLEAN
+```
+
+I did not edit pipeline code/config. Note: `state/briefs/start-with-why.manual-brief.json` was already modified in the worktree and was left untouched.

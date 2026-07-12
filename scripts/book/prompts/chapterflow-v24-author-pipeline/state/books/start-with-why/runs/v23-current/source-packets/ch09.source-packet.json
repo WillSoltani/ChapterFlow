@@ -1,0 +1,724 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "start-with-why",
+  "chapterId": "start-with-why-ch09",
+  "chapterNumber": 9,
+  "chapterTitle": "Know WHY. Know HOW. Then WHAT?",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch09.source.json",
+  "sourceHash": "sha256:b9079efce853f0a89efc00ee655195e7b57945e875aa84e9ac55ede2372b8f32",
+  "facts": [
+    {
+      "id": "ch09.fact.1",
+      "claim": "Apple iPod makes product as proof concrete through iPod and 2001.",
+      "mechanism": "Because iPod gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Apple iPod as colorful background.",
+      "whyWrong": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2001"
+      ],
+      "groundedEntities": [
+        "Apple"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch09.fact.2",
+      "claim": "Dell DJ adds a second anchor for product as proof with Dell DJ and 2003.",
+      "mechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "whyWrong": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "2003"
+      ],
+      "groundedEntities": [
+        "Dell DJ",
+        "Since",
+        "One"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch09.fact.3",
+      "claim": "Volkswagen Phaeton supplies a third checkable scene using Volkswagen Phaeton and 2002.",
+      "mechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "whyWrong": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2002"
+      ],
+      "groundedEntities": [
+        "Volkswagen Phaeton"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch09.fact.4",
+      "claim": "product as proof depends on the sequence WHY first before HOW proof.",
+      "mechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "whyWrong": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "WHY",
+        "HOW",
+        "Order"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.4"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch09.fact.5",
+      "claim": "WHY first, HOW proof, WHAT evidence form the local framework for Know WHY. Know HOW. Then WHAT?.",
+      "mechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "whyWrong": "Shortening removes the distinctions the quiz and examples need to test.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "WHY",
+        "HOW",
+        "WHAT",
+        "Know WHY. Know HOW. Then",
+        "Shortening"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.5"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch09.fact.6",
+      "claim": "Apple Inc. is a hard detail that should stay attached to Apple iPod.",
+      "mechanism": "Because hard specifics are portable only inside their case, moving Apple Inc. to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "whyWrong": "A true detail becomes misleading when it is attached to the wrong case.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Apple Inc",
+        "Apple",
+        "Any"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.6"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch09.fact.7",
+      "claim": "digital audio player gives Dell DJ a different factual token from Apple iPod.",
+      "mechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "whyWrong": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Dell DJ",
+        "Apple",
+        "Since",
+        "All",
+        "Generic"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.7"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch09.fact.8",
+      "claim": "luxury car helps mark the boundary of product as proof.",
+      "mechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "whyWrong": "The mechanism changes by venue; boundary details keep the application honest.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.8"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch09.fact.9",
+      "claim": "Know WHY. Know HOW. Then WHAT? should teach product as proof through Apple iPod, Dell DJ, and Volkswagen Phaeton, not through generic leadership advice.",
+      "mechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "whyWrong": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "3"
+      ],
+      "groundedEntities": [
+        "Know WHY. Know HOW. Then",
+        "WHAT",
+        "Apple",
+        "Dell DJ",
+        "Volkswagen Phaeton",
+        "Purpose"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.9"
+      ],
+      "teachingPriority": 4
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch09.ex.apple-ipod",
+      "label": "Apple iPod",
+      "summary": "Apple Inc. introduced the iPod in 2001 as a digital music player. The iPod worked as WHAT because it fit the challenger-design WHY and HOW.",
+      "realWorld": true,
+      "naturalSetting": "Apple",
+      "hardSpecifics": [
+        "iPod",
+        "2001",
+        "Apple Inc.",
+        "digital music player"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "2001"
+      ]
+    },
+    {
+      "id": "ch09.ex.dell-dj",
+      "label": "Dell DJ",
+      "summary": "Dell released the Dell DJ digital audio player in 2003. The Dell DJ case shows a technically plausible WHAT that did not carry the same belief signal.",
+      "realWorld": true,
+      "naturalSetting": "Dell DJ Dell",
+      "hardSpecifics": [
+        "Dell DJ",
+        "2003",
+        "digital audio player",
+        "Dell"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "2003"
+      ]
+    },
+    {
+      "id": "ch09.ex.volkswagen-phaeton",
+      "label": "Volkswagen Phaeton",
+      "summary": "Volkswagen introduced the Phaeton luxury car in 2002 and built it in Dresden. The case warns that an impressive WHAT can confuse existing meaning.",
+      "realWorld": true,
+      "naturalSetting": "Volkswagen Phaeton Volkswagen",
+      "hardSpecifics": [
+        "Volkswagen Phaeton",
+        "2002",
+        "luxury car",
+        "Dresden"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "2002"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Know WHY. Know HOW. Then WHAT? framework",
+      "members": [
+        "WHY first",
+        "HOW proof",
+        "WHAT evidence"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch09.concept",
+      "kind": "concept",
+      "label": "product as proof",
+      "text": "Products and services become evidence after WHY and HOW are clear; WHAT should prove the belief, not substitute for it. A reader learns to judge offers by alignment instead of assuming any expansion is strategic.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.ex.apple-ipod",
+      "kind": "named_example",
+      "label": "Apple iPod",
+      "text": "Apple Inc. introduced the iPod in 2001 as a digital music player. The iPod worked as WHAT because it fit the challenger-design WHY and HOW. Apple iPod turns Apple Inc. into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "iPod",
+        "2001",
+        "Apple Inc.",
+        "digital music player"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.ex.dell-dj",
+      "kind": "named_example",
+      "label": "Dell DJ",
+      "text": "Dell released the Dell DJ digital audio player in 2003. The Dell DJ case shows a technically plausible WHAT that did not carry the same belief signal. Dell DJ turns Dell DJ into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Dell DJ",
+        "2003",
+        "digital audio player",
+        "Dell"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.ex.volkswagen-phaeton",
+      "kind": "named_example",
+      "label": "Volkswagen Phaeton",
+      "text": "Volkswagen introduced the Phaeton luxury car in 2002 and built it in Dresden. The case warns that an impressive WHAT can confuse existing meaning. Volkswagen Phaeton turns Volkswagen Phaeton into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Volkswagen Phaeton",
+        "2002",
+        "luxury car",
+        "Dresden"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.1",
+      "kind": "testable_fact",
+      "label": "Apple iPod makes product as proof concrete through iPod and 2001.",
+      "text": "Apple iPod makes product as proof concrete through iPod and 2001. Because iPod gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan. The safe move is to treat Apple iPod as colorful background. The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.2",
+      "kind": "testable_fact",
+      "label": "Dell DJ adds a second anchor for product as proof with Dell DJ and 2003.",
+      "text": "Dell DJ adds a second anchor for product as proof with Dell DJ and 2003. Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote. One example is enough to prove the whole model. One example can illustrate; comparison is what exposes the transferable pattern.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.3",
+      "kind": "testable_fact",
+      "label": "Volkswagen Phaeton supplies a third checkable scene using Volkswagen Phaeton and 2002.",
+      "text": "Volkswagen Phaeton supplies a third checkable scene using Volkswagen Phaeton and 2002. Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case. A third case should simply repeat the first case's lesson. The third case should test a neighboring misconception, not restamp the same sentence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.4",
+      "kind": "testable_fact",
+      "label": "product as proof depends on the sequence WHY first before HOW proof.",
+      "text": "product as proof depends on the sequence WHY first before HOW proof. Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone. Order is stylistic, so any sequence works if the message sounds polished. Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.5",
+      "kind": "testable_fact",
+      "label": "WHY first, HOW proof, WHAT evidence form the local framework for Know WHY. Know HOW. Then WHAT?.",
+      "text": "WHY first, HOW proof, WHAT evidence form the local framework for Know WHY. Know HOW. Then WHAT?. Because each member names a different job, the writer can assign claims to distinct functions rather than blending them. The framework is a slogan and can be shortened to one word. Shortening removes the distinctions the quiz and examples need to test.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.6",
+      "kind": "testable_fact",
+      "label": "Apple Inc. is a hard detail that should stay attached to Apple iPod.",
+      "text": "Apple Inc. is a hard detail that should stay attached to Apple iPod. Because hard specifics are portable only inside their case, moving Apple Inc. to another example creates false grounding. Any true detail can be reused wherever it sounds useful. A true detail becomes misleading when it is attached to the wrong case.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.7",
+      "kind": "testable_fact",
+      "label": "digital audio player gives Dell DJ a different factual token from Apple iPod.",
+      "text": "digital audio player gives Dell DJ a different factual token from Apple iPod. Since the factual token is different, comparison can teach contrast rather than repeating a generic success story. All business examples can use the same date-place-scale language. Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.8",
+      "kind": "testable_fact",
+      "label": "luxury car helps mark the boundary of product as proof.",
+      "text": "luxury car helps mark the boundary of product as proof. Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case. A useful concept should apply the same way to every named organization. The mechanism changes by venue; boundary details keep the application honest.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.9",
+      "kind": "testable_fact",
+      "label": "Know WHY. Know HOW. Then WHAT? should teach product as proof through Apple iPod, Dell DJ, and Volkswagen Phaeton, not through generic leadership advice.",
+      "text": "Know WHY. Know HOW. Then WHAT? should teach product as proof through Apple iPod, Dell DJ, and Volkswagen Phaeton, not through generic leadership advice. Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes. Purpose language alone is enough to ground a leadership lesson. Purpose language without checkable anchors becomes motivational abstraction.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.framework.know.why.know.how.then.what.framework",
+      "kind": "framework",
+      "label": "Know WHY. Know HOW. Then WHAT? framework",
+      "text": "WHY first, HOW proof, WHAT evidence",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "2001",
+    "1",
+    "2003",
+    "2002",
+    "3"
+  ],
+  "allowedEntities": [
+    "Know WHY. Know HOW. Then",
+    "WHAT",
+    "Products",
+    "WHY",
+    "HOW",
+    "Apple",
+    "Dell DJ",
+    "Volkswagen Phaeton",
+    "Apple Inc",
+    "Dell",
+    "The Dell DJ",
+    "Volkswagen",
+    "Phaeton",
+    "Dresden. The",
+    "Dresden",
+    "HOW. Dell",
+    "Keep",
+    "Since",
+    "One",
+    "Order",
+    "Shortening",
+    "Any",
+    "All",
+    "Generic",
+    "Purpose",
+    "Apple iPod"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch09.ex.apple-ipod",
+      "warning": "Keep examples about Apple iPod source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch09.ex.dell-dj",
+      "warning": "Keep examples about Dell DJ source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch09.ex.volkswagen-phaeton",
+      "warning": "Keep examples about Volkswagen Phaeton source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch09.fact.1"
+}

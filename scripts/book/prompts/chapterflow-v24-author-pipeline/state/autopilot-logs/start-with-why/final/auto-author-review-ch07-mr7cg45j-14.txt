@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Q3 option c is partly guessable from the stem because it repeats the removed anchors as the cause: Rogers, the March, and TiVo.", "Several distractors are exaggeratedly wrong, which makes the keyed cautious/source-disciplined option stand out."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 84,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 92,
+    "insight": 88,
+    "density": 84,
+    "beginner": 87
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Every broad push sent too soon spends proof the early believers have not earned yet.",
+      "why": "Strongest memorable line: it makes the core mechanism concrete and repeatable."
+    },
+    {
+      "quote": "Early love can be real and still not cross over.",
+      "why": "Strong boundary statement that prevents the lesson from becoming adoption hype."
+    },
+    {
+      "quote": "If he aims at the middle before proof comes back, he has only a wish with nicer words.",
+      "why": "Good practical compression of the action rule and failure mode."
+    },
+    {
+      "quote": "In Keith's launch, interest comes from people who move before safety is clear, not from the middle, and no one has named that early signal yet.",
+      "why": "Weakest area: the example setup is useful but thinly specified, with no concrete product, venue, number, or consequence yet."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "The keyed answer is sound, but it is partly guessable from the stem because the stem names the three removed anchors and the correct option restates their loss.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz set",
+      "problem": "Some distractors are too obviously careless about source discipline or adoption order, so the quiz sometimes tests caution more than close reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 1",
+      "problem": "Keith's launch is directionally useful but under-specified; it names no product, market, place, number, or observable result beyond the decision to narrow the ask.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against a professional bar. The chapter has a clear, memorable move: count first believers, keep adopter jobs separate, and wait for proof before widening the ask. The prose is grounded by Rogers, the March, and TiVo, and it is unusually honest about limits. The main weakness is that a few quiz answers are too easy to spot and some invented examples, especially Keith's launch, could use more concrete before-and-after detail. Those are polish issues, not blockers."
+}
+```

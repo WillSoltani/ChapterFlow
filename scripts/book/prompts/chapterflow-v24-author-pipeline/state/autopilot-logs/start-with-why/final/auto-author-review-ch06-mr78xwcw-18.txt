@@ -1,0 +1,73 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several correct choices are the only ones that preserve the named hard details while distractors make obviously extreme moves such as 'every airline,' 'any strong executive,' or replacing Dallas with Houston.", "Correct answers often carry the chapter's exact mechanism words such as 'test,' 'setting,' 'anchors,' and 'scope,' making them easier to identify by register."]
+  },
+  "scores": {
+    "retention": 76,
+    "quizzes": 83,
+    "transfer": 58,
+    "practical": 70,
+    "summaries": 74,
+    "tone": 67,
+    "limits": 82,
+    "insight": 75,
+    "density": 68,
+    "beginner": 69
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Trust is the price you no longer charge for each new promise, but only after conduct has paid enough of the bill.",
+      "why": "Strongest line: memorable, causal, and tied to the chapter's core order."
+    },
+    {
+      "quote": "The local order is small enough to use: Belief, Predictable behavior, Trust, Loyalty.",
+      "why": "Clear core move; the chapter is strongest when it names the sequence plainly."
+    },
+    {
+      "quote": "The result is set, not met.",
+      "why": "Worst defect: opaque pseudo-result that does not show a real consequence or transfer."
+    },
+    {
+      "quote": "The blue folder stays closed until Hailey names the cost: action had to rebuild what a claim could not.",
+      "why": "Template-smelling invented detail; the folder adds theater without practical meaning."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 1",
+      "problem": "Denise is a manufactured role with no real setting beyond the case labels, and the before-to-after consequence is not intelligible: 'The result is set, not met' does not show what changed for anyone.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2",
+      "problem": "Hailey and the blue folder feel like slot-filler staging. The example restates the lesson about action rebuilding trust but does not show a concrete decision and consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 3",
+      "problem": "This is about fixing a drafted paragraph's evidence drift, not applying trust in a real-world promise. It transfers to editing, but not well to the book-learning promise about trust behavior.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter spends too much energy policing which airline detail belongs where, which can obscure the larger trust mechanism for a beginner.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Several lines sound scaffolded or abstract rather than plain: 'proof return,' 'third anchor,' 'costs more than a slogan,' and similar phrasing recur without always becoming concrete.",
+      "mustFix": false
+    },
+    {
+      "unit": "practical sections",
+      "problem": "The action advice is usable but thin. 'Mark one promise' and 'proof that must return' are good, but the chapter gives little help distinguishing adequate proof from performative proof.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a sound central sequence: belief first, predictable behavior second, trust third, loyalty last. The quiz is mostly fair and derivable, and the best lines make the mechanism memorable. I would not ship it yet because the transfer layer is too manufactured: several named examples feel like internal editorial exercises rather than real situations with decisions and consequences. Tighten the examples into concrete before-to-after cases and reduce the repeated airline-detail policing, and the chapter would be much closer to professional quality."
+}
+```

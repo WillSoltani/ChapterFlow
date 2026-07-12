@@ -1,0 +1,10 @@
+Completed [start-with-why-ch01.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch01.v21-native.chapter.json).
+
+Validation:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 8 non-blocking minors
+- `quiz-verify`: 9/9 match
+- `evidence-audit`: no evidence-integrity candidates
+- Self-check: 17,135 rendered chars, breakdown Flesch 74.5, required key pattern preserved, key length parity within constraint, no reader-facing scaffold hits
+
+Note: after earlier successful `npx tsx` runs, the `tsx` wrapper began failing in this sandbox with `listen EPERM` on its local pipe. I reran the same `src/cli.ts` commands through Node’s `--import tsx` loader, which avoids that IPC wrapper and reached the same ChapterFlow CLI.

@@ -1,0 +1,62 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": [
+      "Q4: The keyed answer closely echoes the prose phrase pattern about a true detail in the wrong home, while the other choices are generic timing/authority distractors.",
+      "Q8: The keyed answer repeats the named guardrail Cupertino, and the distractors use obviously disallowed copy/approval moves."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 81,
+    "transfer": 76,
+    "practical": 83,
+    "summaries": 89,
+    "tone": 84,
+    "limits": 86,
+    "insight": 88,
+    "density": 82,
+    "beginner": 80
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Words give the visible act its job. That is the core of symbolic consistency: the things people can see should match the belief your words ask them to hear.",
+      "why": "Strong mechanism: it explains why words precede the visible act."
+    },
+    {
+      "quote": "If the visible mark pays back a different claim, more words only add noise. Schedule the proof before the sign travels.",
+      "why": "Strong memorable rule with a practical timing implication."
+    },
+    {
+      "quote": "She sends the time, but the friend has not judged it yet.",
+      "why": "Weakest transfer moment: the example stops before showing whether the visible proof worked."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 6: Pickup Proof Pending",
+      "problem": "The example promises scheduled proof, but it ends before the friend judges the purchase, so it lacks the before-to-after consequence the chapter says listening requires.",
+      "mustFix": true
+    },
+    {
+      "unit": "Examples 2 and 5",
+      "problem": "Both lean into draft/source-fit repair rather than lived communication, so the transfer range narrows toward editing examples instead of showing more real-world use cases.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q4 and Q8",
+      "problem": "The keyed options echo chapter language more specifically than the distractors, creating mild answer tells for a skimmer.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The phrase symbolic consistency is introduced as a concept, but a cold beginner gets only a quick definition before the chapter moves on.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a clear core move: words frame the claim, but visible behavior is where the audience decides what was heard. The cart/bike/store progression is memorable, the summaries layer well, and the limits around Cupertino keep the idea from becoming universal-purpose advice. I would not ship it yet at an 84 bar because one manufactured transfer example stops before the promised audience judgment, and a couple of quiz items are too easy to spot from echoed phrasing rather than full comprehension."
+}
+```

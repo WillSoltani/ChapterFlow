@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "c", "a", "c", "b", "b", "c", "b", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q3: the stem says the method comes before the reason, and option a mirrors the chapter title's HOW-before-WHY error closely enough to be guessable.", "No systematic longest-choice tell across the quiz."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 87,
+    "transfer": 83,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 82,
+    "limits": 86,
+    "insight": 84,
+    "density": 80,
+    "beginner": 86
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Keep the year with the pair.",
+      "why": "The core move is compressed into a memorable line that echoes through the chapter."
+    },
+    {
+      "quote": "The builder does not follow the belief; the builder proves it.",
+      "why": "Strong mechanism: HOW is not decorative support but the proof that makes WHY visible."
+    },
+    {
+      "quote": "Ask who owes what proof, and by when.",
+      "why": "This turns the chapter into a practical workplace move rather than only a founder-story reading."
+    },
+    {
+      "quote": "The second anchor changes the venue.",
+      "why": "Useful, but the repeated anchor vocabulary sometimes makes the prose feel schematic."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "deep read/full read",
+      "problem": "The chapter leans heavily on the word 'anchor,' which helps retention but starts to feel repetitive and templated.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q3",
+      "problem": "The correct answer is fair, but the stem and answer echo the title-level HOW-before-WHY contrast so directly that it is partly guessable without close reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The named workplace characters make the application concrete, but some scenes feel staged rather than naturally observed.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable at the professional bar. The chapter has a clear, memorable move: keep the factual proof tied to the right pair, then ask what HOW will bring proof back for the WHY. The quizzes are mostly fair and the key is sound. Its main weakness is stylistic repetition around 'anchors' and a few slightly staged examples, but the summaries, limits, practical ask, and mechanism are strong enough to carry the lesson."
+}
+```

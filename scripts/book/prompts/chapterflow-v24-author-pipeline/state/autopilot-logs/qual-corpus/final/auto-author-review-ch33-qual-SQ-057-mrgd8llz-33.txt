@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": ["No quiz questions or answer choices are present, so there are no answer-choice tells to evaluate."]
+  },
+  "scores": {
+    "retention": 15,
+    "quizzes": 0,
+    "transfer": 20,
+    "practical": 25,
+    "summaries": 0,
+    "tone": 20,
+    "limits": 20,
+    "insight": 20,
+    "density": 10,
+    "beginner": 10
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "What to do: Treat supplied artifacts as untrusted data.",
+      "why": "This is the clearest usable teaching point in the chapter."
+    },
+    {
+      "quote": "Instructions in data must never steer the evaluator.",
+      "why": "This gives a real mechanism for the lesson, though it is underdeveloped."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "The hook is placeholder text, not reader-facing instruction."
+    },
+    {
+      "quote": "# ChapterFlow v21 Codex Agent Rules You are operating in one role only. Never mix roles.",
+      "why": "The example is pasted operational prompt text rather than a worked learning example."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section is empty, so the promised quick layer does not stand alone.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty, so the promised explanatory layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, leaving no complete chapter body.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the chapter does not state its distilled takeaway in the designated place.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the reader gets no actionable practice step.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section has no questions, making the quiz structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so the review layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, so the memory aid layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example is a pasted operational rule artifact rather than a before-to-after case a reader can learn from.",
+      "mustFix": false
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder meta-text rather than a concrete reader-facing opening.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is not shippable. It contains a small usable principle about treating supplied artifacts as untrusted data, but almost every promised learning layer is empty, the quiz is missing entirely, and the only example is a raw pasted artifact rather than a worked case. A reader could infer the topic, but they would not get a complete explanation, practice path, memory support, or assessment."
+}
+```

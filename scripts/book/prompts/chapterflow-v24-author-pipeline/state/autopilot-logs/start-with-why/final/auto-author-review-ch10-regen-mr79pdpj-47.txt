@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 90,
+    "transfer": 86,
+    "practical": 82,
+    "summaries": 89,
+    "tone": 84,
+    "limits": 87,
+    "insight": 86,
+    "density": 83,
+    "beginner": 78
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Words give actions a job.",
+      "why": "Strongest compression of the chapter's core mechanism."
+    },
+    {
+      "quote": "The speaker sends words; the listener audits the life around them.",
+      "why": "Memorable line that makes the listening idea concrete."
+    },
+    {
+      "quote": "If celery is absent and Oreos win after health, what did the audience hear?",
+      "why": "Sticky image, though abrupt for a cold beginner."
+    },
+    {
+      "quote": "You can use this with no title.",
+      "why": "Awkward phrasing that feels like scaffold residue and briefly interrupts the register."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening question is memorable but cryptic for a cold reader because the Celery test has not yet been explained.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The sentence 'You can use this with no title' is unclear and has a template/scaffold smell.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples are useful but feel built to service the framework rather than drawn from recognizable real-world stakes; this slightly weakens transfer confidence.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against a professional bar. The chapter has a clear mechanism, memorable images, fair quizzes, and a useful boundary lesson about symbols only carrying claims they have earned. Its best move is keeping words, actions, symbols, and audience response as separate diagnostic jobs. The main weaknesses are beginner friction in the hook and occasional scaffold-like phrasing, but the examples generally show before-to-after decisions and the quiz keys are sound."
+}
+```

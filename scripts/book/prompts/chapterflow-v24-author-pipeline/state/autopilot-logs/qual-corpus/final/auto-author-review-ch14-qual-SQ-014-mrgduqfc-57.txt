@@ -1,0 +1,115 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 38,
+    "quizzes": 0,
+    "transfer": 34,
+    "practical": 52,
+    "summaries": 8,
+    "tone": 24,
+    "limits": 10,
+    "insight": 36,
+    "density": 25,
+    "beginner": 48
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "\"Careful about which future?\"",
+      "why": "A concise, memorable prompt captures the chapter's useful core move."
+    },
+    {
+      "quote": "The analyst reads the downside risk aloud, then the upside potential.",
+      "why": "This is the clearest concrete action a reader could transfer to a forecast discussion."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "The fast read is placeholder text and does not communicate the chapter's idea."
+    },
+    {
+      "quote": "One added angle.",
+      "why": "The deep read is also placeholder text and cannot stand alone."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "chapter title",
+      "problem": "\"Reader Chapter 14\" is a production label rather than a substantive chapter title.",
+      "mustFix": false
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook describes the document's review status instead of introducing the forecast problem or engaging the reader.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section contains only placeholder wording and fails its stand-alone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section contains only placeholder wording and fails its stand-alone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "\"analyst the analyst\" is a duplicated phrase that makes the opening sentence visibly defective.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The unexplained attribution to \"Byron Penstock's logic\" gives beginners no basis for understanding who this is or what the logic entails.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The forecast-call scenario is thin but usable: Coinstar and the named participants add specificity without explaining why they matter, and the consequence is only the vague statement that the call changes.",
+      "mustFix": false
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, leaving the chapter without its promised explicit takeaway.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the chapter supplies no guided exercise for applying its core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is empty, preventing readers from seeing the move applied across distinct situations.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions or answer choices, making it structurally broken and impossible to assess.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so the promised retrieval-practice material is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty despite the full read containing a potentially reusable line.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter recommends low, middle, and high cases but does not explain how to choose credible bounds, avoid arbitrary scenarios, or recognize when three cases are insufficient.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The only substantive passage contains a useful and reasonably memorable move—test a forecast's low and high cases before deciding—but almost every surrounding learning component is absent or placeholder text. There is no functioning quiz to derive or score, the fast and deep reads do not summarize anything, and the empty takeaway, exercise, examples, review cards, and memorable-lines sections leave the product structurally incomplete. The scenario remains understandable enough to hint at practical value, but it lacks mechanism, boundary-setting, transfer guidance, and editorial polish, so it is far below a professional shipping bar."
+}
+```

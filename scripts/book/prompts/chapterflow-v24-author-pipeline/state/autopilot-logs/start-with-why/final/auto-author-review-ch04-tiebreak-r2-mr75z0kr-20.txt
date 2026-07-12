@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "c", "a", "b", "b", "a", "c"],
+    "keyDisagreements": ["Q8 is only partly sound: the prose supports 'repetition adds no new check' as the cause, but the keyed choice mostly states a repair and imports 'nearby misconception' more explicitly than the chapter teaches."],
+    "tells": ["Several correct choices contain the chapter's exact anchor words while distractors use giveaway extremes such as rank, strongest preference, famous-reference cover, or 'only part that moves choice'.", "Q6 and Q9 are especially guessable because the correct answer is the only one that preserves all named map components instead of collapsing them."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 76,
+    "transfer": 74,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 82,
+    "limits": 88,
+    "insight": 84,
+    "density": 80,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Proof is the return trip, not the starting gun.",
+      "why": "This is the strongest memorable line and carries the chapter's core move cleanly."
+    },
+    {
+      "quote": "What would make this feeling come back in daylight?",
+      "why": "This turns the abstract biology claim into a usable test."
+    },
+    {
+      "quote": "What to do: The chore chart says: keep Damasio narrow.",
+      "why": "This example collapses into a slogan-like restatement rather than showing a decision and consequence."
+    },
+    {
+      "quote": "A cold mug sits beside his notes.",
+      "why": "The detail feels decorative because it does not materially sharpen the before-after learning transfer."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q8",
+      "problem": "The WHY stem asks for the cause of weakness, but the keyed choice mainly gives a repair and adds 'nearby misconception' beyond what the prose clearly establishes.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several distractors are too easily eliminated because they are obviously extreme, status-driven, or authority-cover answers rather than plausible misunderstandings.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 2 and 5",
+      "problem": "Both use names and small props but do not fully show a concrete before-to-after decision with a consequence; they mostly restate the Damasio-narrowing lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 6",
+      "problem": "The scene sets up a split between word-ready and felt claims, but stops at 'return set, not met' instead of showing what happened because the return failed or succeeded.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The neocortex/limbic WHAT-WHY map is useful but simplified; the chapter warns against slogans, yet could more plainly mark the map as a learning shorthand rather than a full neuroscience account.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a memorable core question, layered summaries, and a practical return-line habit a reader could use immediately. It falls short of a professional ship bar because the transfer examples are uneven: several scenes feel manufactured and stop before a real consequence, which weakens the promise that the idea travels beyond the book's own phrasing. The quiz is mostly derivable, but Q8 has a key-soundness issue and the distractors often telegraph the answer."
+}
+```

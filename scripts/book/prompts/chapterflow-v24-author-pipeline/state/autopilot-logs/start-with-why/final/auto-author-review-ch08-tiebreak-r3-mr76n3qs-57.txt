@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "c", "a", "c", "b", "b", "c", "b", "a"],
+    "keyDisagreements": [],
+    "tells": ["Correct choices often echo the chapter's exact control words such as proof, hard detail, anchors, and where the story stops, while distractors are often overbroad caricatures."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 86,
+    "transfer": 82,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 82,
+    "limits": 89,
+    "insight": 84,
+    "density": 80,
+    "beginner": 85
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The WHY does not shrink the HOW; the HOW keeps the WHY honest.",
+      "why": "Strongest line: memorable, reversible, and captures the chapter's core mechanism."
+    },
+    {
+      "quote": "If a client, peer, or friend makes a bold promise, ask who owes what by when.",
+      "why": "Strong transfer moment: turns the founder material into a low-friction real-world test."
+    },
+    {
+      "quote": "A team can say the reason is clear while no one can name the method. Another team can name a method while the reason stays vague.",
+      "why": "Clear diagnostic contrast that explains failure modes without overselling the tool."
+    },
+    {
+      "quote": "1975 puts Microsoft on the hook: belief needs someone who can make proof come back.",
+      "why": "Weakest phrasing: punchy but slightly opaque for a cold beginner at the chapter opening."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening line is memorable but compressed; 'puts Microsoft on the hook' and 'proof come back' ask a cold reader to decode the metaphor before the lesson is established.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Several correct answers are detectable by their closer match to the chapter's repeated vocabulary, especially 'proof,' 'hard detail,' 'anchors,' and 'where the story stops.' The keys are sound, but some distractors are too obviously foolish.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The repeated bicycle-shop setting makes transfer concrete, but the names and situations sometimes feel staged around the lesson rather than observed from a real before-to-after business consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter repeats the WHY/HOW/WHAT distinction several times in similar language. The repetition helps beginners, but it slightly lowers density for a professional product.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against an 80-plus professional bar. The central move is clear and memorable: start with WHY, make HOW carry it, and require WHAT to come back as proof. The Microsoft, Disney, and Apple examples are used for comparison rather than decoration, and the practical prompts are usable. The main weaknesses are not factual or structural; they are polish issues: the opening is a little cryptic, the prose repeats its core triad often, and some quiz distractors telegraph themselves by sounding obviously overbroad. No key-soundness problems found."
+}
+```

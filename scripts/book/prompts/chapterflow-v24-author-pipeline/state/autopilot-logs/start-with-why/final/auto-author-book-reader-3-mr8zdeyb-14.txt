@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 72,
+    "transfer": 77,
+    "practical": 70,
+    "summaries": 74,
+    "tone": 62,
+    "limits": 72,
+    "insight": 64,
+    "density": 58,
+    "beginner": 68
+  },
+  "quotes": [
+    {
+      "quote": "A clean fix can be the place a bad guess hides.",
+      "why": "A strong, portable retention line with a complete claim."
+    },
+    {
+      "quote": "What would still move if the offer were gone?",
+      "why": "This is a useful transferable diagnostic question."
+    },
+    {
+      "quote": "Trust is a belief you can watch under pressure.",
+      "why": "Compact and memorable; it turns an abstract term into an observable test."
+    },
+    {
+      "quote": "A metric is a receipt for spread, not a receipt for meaning.",
+      "why": "One of the clearest aphorisms in the sample."
+    },
+    {
+      "quote": "This is why hard details must stay home.",
+      "why": "Shows the repeated house move: source-bound detail becomes the lesson in chapter after chapter."
+    },
+    {
+      "quote": "The return is set, not met.",
+      "why": "Vague recurring scaffold language that sounds procedural but does not add much reader value."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is keyed correctly and generally coherent, so it passes the correctness gate, but it reads heavily templated. Nearly every chapter follows the same machinery: named proxy person, source detail, second setting, warning not to move hard details, return proof, then scenario quizzes that reward recognizing the same pattern. The best lines are genuinely sticky, and the core lenses are useful, but the prose often substitutes abstract scaffolding for lived scenes. This is a solid draft with real instructional value, not premium book-learning material yet; the main editorial need is to vary chapter architecture, cut repeated proof-boundary rhetoric, and make examples feel less like nouns swapped into one operating template."
+}
+```

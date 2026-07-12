@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch05",
+  "chapterNumber": 5,
+  "contentHash": "55d6a88ad6cb2f49",
+  "reviewerSessionId": "auto-author-review-ch05-bookregen-mrbqgn6k-17",
+  "scores": {
+    "retention": 88,
+    "quizzes": 80,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 83,
+    "limits": 90,
+    "insight": 87,
+    "density": 84,
+    "beginner": 81
+  },
+  "composite": 85.4,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "c",
+      "a",
+      "a",
+      "b",
+      "c",
+      "b"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "What would a stranger see before the promise spoke?",
+      "why": "Strong memorable line that turns the abstract loop into a usable inspection test.",
+      "verified": true
+    },
+    {
+      "quote": "Make the act owe the reason.",
+      "why": "Compact core move; easy to remember and apply later.",
+      "verified": true
+    },
+    {
+      "quote": "True facts can lie when they travel to the wrong place.",
+      "why": "Strong boundary condition that deepens the chapter beyond generic alignment advice.",
+      "verified": true
+    },
+    {
+      "quote": "A blue badge sits between her and Neil.",
+      "why": "Arbitrary scenic detail that adds fiction noise without helping the lesson.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q4 a and Q6 b are weakened by overbroad phrasing such as 'each added organization' and 'enough for transfer across the whole chapter,' which makes them easier to eliminate without full reading."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "The keyed choice says the talk lacked separate hard specifics, but the prose more precisely says it lacked behavior tied to those specifics; the item remains derivable but slightly imprecise.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The blue badge detail is unexplained and does not affect the before-to-after learning move.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The repeated source tokens sometimes feel engineered rather than natural, especially when Southwest, Kelleher, Cupertino, and iMac details are packed together.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable: the chapter has a clear, memorable core move, strong summaries, honest limits, and practical checks a reader can use. The main weakness is quiz and prose polish: one quiz item blurs 'hard specifics' with 'behavior tied to specifics,' and a few examples carry artificial props or heavily stacked source tokens. None of that blocks learning, but it keeps the chapter from feeling fully natural.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "27174fc0cca41262557a51f02755fca899ba913135f7fcdc1fcd1f376f1968f6",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-08T07:06:02.366Z"
+}

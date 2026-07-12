@@ -1,0 +1,12 @@
+Updated [start-with-why-ch05.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch05.v21-native.chapter.json).
+
+The repair was narrow: I reduced the repeated `Southwest` wording in the reader surface from 7 hits to 6 by changing one redundant takeaway mention to “the airline,” while leaving the quiz keys and dealt structure intact.
+
+Validation passed:
+
+- `author-check`: clean
+- `quiz-verify`: 9/9 match
+- choice-length parity: 1 uniquely longest key, 4 uniquely shortest keys
+- rendered length: 18,108 chars, inside budget
+- reader-facing scaffold scan: 0 hits
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 0 minors

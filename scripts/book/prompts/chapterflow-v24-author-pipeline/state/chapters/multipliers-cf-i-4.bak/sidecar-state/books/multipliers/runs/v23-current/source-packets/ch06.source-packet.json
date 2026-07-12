@@ -1,0 +1,723 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "multipliers",
+  "chapterId": "multipliers-ch06",
+  "chapterNumber": 6,
+  "chapterTitle": "The Investor",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/multipliers/20260709T020631645Z-b8e7894b-2287-4faf-9ef6-e4da421b5316/sidecars/source/ch06.source.json",
+  "sourceHash": "sha256:81cc1c6a5eb994a73b9201b65610319495cddd1cb56adf6794211db935ee071f",
+  "facts": [
+    {
+      "id": "ch06.fact.1",
+      "claim": "Reed Hastings and Patty McCord are associated with the Netflix culture deck and its freedom and responsibility frame.",
+      "mechanism": "Because the phrase pairs autonomy with accountability, it fits Investor leadership better than freedom alone.",
+      "commonError": "Reading freedom as permission to ignore consequences.",
+      "whyWrong": "The public culture frame includes responsibility, not just autonomy.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Reed Hastings",
+        "Patty McCord",
+        "Netflix",
+        "Investor",
+        "Reading"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.1"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch06.fact.2",
+      "claim": "The Netflix culture deck is a concrete artifact for the autonomy case.",
+      "mechanism": "Because a 2009 written artifact makes the case checkable rather than relying on vague reputation.",
+      "commonError": "Citing Netflix as a generic innovative company with no dated source anchor.",
+      "whyWrong": "The 2009 culture deck provides visible culture evidence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2009"
+      ],
+      "groundedEntities": [
+        "The Netflix",
+        "Citing Netflix"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.2"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch06.fact.3",
+      "claim": "Bill Gore and W. L. Gore are associated with a Gore lattice organization rather than a purely conventional hierarchy.",
+      "mechanism": "Because the lattice case shows ownership and coordination can be built through commitments and sponsors.",
+      "commonError": "Assuming accountability requires only top-down command.",
+      "whyWrong": "Gore's structure illustrates alternative accountability pathways.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Bill Gore",
+        "W. L. Gore",
+        "Gore",
+        "Assuming",
+        "Gore's"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch06.fact.4",
+      "claim": "Sponsor commitments are part of the W. L. Gore ownership vocabulary.",
+      "mechanism": "Because sponsors support people while leaving them responsible for commitments and contribution.",
+      "commonError": "Confusing sponsorship with a boss taking over the work.",
+      "whyWrong": "Sponsorship supports ownership; it does not erase it.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Sponsor",
+        "W. L. Gore",
+        "Confusing",
+        "Sponsorship"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.4"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch06.fact.5",
+      "claim": "Mike Rother's Toyota Kata and Toyota A3 problem solving are used as coaching-oriented management anchors.",
+      "mechanism": "Because A3 work asks people to structure the problem and reasoning, the learning stays with the person doing the work.",
+      "commonError": "Thinking coaching means the manager supplies the answer faster.",
+      "whyWrong": "The coaching value is in developing the person's thinking process.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Mike Rother's Toyota Kata",
+        "Toyota A3",
+        "Because A3",
+        "Thinking"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.5"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch06.fact.6",
+      "claim": "Investor leadership pairs support with accountability.",
+      "mechanism": "Because support without accountability becomes rescue, while accountability without support becomes abandonment.",
+      "commonError": "Choosing between doing it for people and leaving them alone.",
+      "whyWrong": "The discipline requires both help and ownership.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Investor",
+        "Choosing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.6"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch06.fact.7",
+      "claim": "Rescue can diminish capability even when it feels helpful.",
+      "mechanism": "Because taking the problem back teaches people that the leader owns hard moments.",
+      "commonError": "Assuming every quick fix is good leadership.",
+      "whyWrong": "A quick fix may finish the task while shrinking future ownership.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Rescue",
+        "Assuming"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.7"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch06.fact.8",
+      "claim": "The handoff is incomplete until the person owns the decision consequences.",
+      "mechanism": "Because real ownership includes judgment, tradeoffs, and follow-through, not just activity.",
+      "commonError": "Assigning tasks while keeping all meaningful decisions with the leader.",
+      "whyWrong": "That arrangement creates labor without full ownership.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Assigning"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.8"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch06.fact.9",
+      "claim": "Coaching questions can keep ownership with the learner.",
+      "mechanism": "Because questions make the person reason through the problem instead of outsourcing judgment upward.",
+      "commonError": "Using questions only as a polite way to steer someone to the leader's answer.",
+      "whyWrong": "Leading questions can still take ownership back if the answer is predetermined.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Coaching",
+        "Using",
+        "Leading"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.9"
+      ],
+      "teachingPriority": 8
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch06.ex.netflix-culture",
+      "label": "Netflix freedom and responsibility",
+      "summary": "Reed Hastings and Patty McCord are associated with the Netflix culture deck, including freedom and responsibility. The case gives Investor leadership a concrete autonomy-plus-accountability setting.",
+      "realWorld": true,
+      "naturalSetting": "Netflix",
+      "hardSpecifics": [
+        "Reed Hastings",
+        "Patty McCord",
+        "Netflix culture deck"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch06.ex.wlgore-lattice",
+      "label": "W. L. Gore lattice organization",
+      "summary": "Bill Gore and W. L. Gore are associated with a Gore lattice organization and sponsor commitments. The case illustrates ownership without relying only on conventional command hierarchy.",
+      "realWorld": true,
+      "naturalSetting": "W. L. Gore",
+      "hardSpecifics": [
+        "Bill Gore",
+        "Gore lattice organization",
+        "sponsor commitments"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch06.ex.toyota-coaching",
+      "label": "Toyota coaching problem solving",
+      "summary": "Mike Rother is associated with Toyota Kata, while Toyota A3 problem solving gives a structured coaching practice. The case shows a leader investing in how people think through problems rather than simply providing answers.",
+      "realWorld": true,
+      "naturalSetting": "Toyota",
+      "hardSpecifics": [
+        "Mike Rother",
+        "Toyota Kata",
+        "Toyota A3 problem solving"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Investor handoff",
+      "members": [
+        "give ownership",
+        "provide resources",
+        "coach without taking over",
+        "hold accountability"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch06.concept",
+      "kind": "concept",
+      "label": "ownership investment",
+      "text": "Ownership investment means giving people the problem, resources, coaching, and accountability needed to complete the work without the leader becoming the hero. The leader helps capacity grow by resisting the urge to reclaim control. Readers learn to see rescue as a hidden form of diminishment. The goal is to leave people bigger after the assignment, not merely to finish the task quickly.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.ex.netflix-culture",
+      "kind": "named_example",
+      "label": "Netflix freedom and responsibility",
+      "text": "Reed Hastings and Patty McCord are associated with the Netflix culture deck, including freedom and responsibility. The case gives Investor leadership a concrete autonomy-plus-accountability setting. Autonomy multiplies only when people also carry judgment and consequences.",
+      "hardSpecifics": [
+        "Reed Hastings",
+        "Patty McCord",
+        "Netflix culture deck"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.ex.wlgore-lattice",
+      "kind": "named_example",
+      "label": "W. L. Gore lattice organization",
+      "text": "Bill Gore and W. L. Gore are associated with a Gore lattice organization and sponsor commitments. The case illustrates ownership without relying only on conventional command hierarchy. People can own work through commitments and peer support rather than constant boss control.",
+      "hardSpecifics": [
+        "Bill Gore",
+        "Gore lattice organization",
+        "sponsor commitments"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.ex.toyota-coaching",
+      "kind": "named_example",
+      "label": "Toyota coaching problem solving",
+      "text": "Mike Rother is associated with Toyota Kata, while Toyota A3 problem solving gives a structured coaching practice. The case shows a leader investing in how people think through problems rather than simply providing answers. Capability grows when the manager coaches the thinking process and leaves ownership with the learner.",
+      "hardSpecifics": [
+        "Mike Rother",
+        "Toyota Kata",
+        "Toyota A3 problem solving"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.1",
+      "kind": "testable_fact",
+      "label": "Reed Hastings and Patty McCord are associated with the Netflix culture deck and its freedom and responsibility frame.",
+      "text": "Reed Hastings and Patty McCord are associated with the Netflix culture deck and its freedom and responsibility frame. Because the phrase pairs autonomy with accountability, it fits Investor leadership better than freedom alone. Reading freedom as permission to ignore consequences. The public culture frame includes responsibility, not just autonomy.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.2",
+      "kind": "testable_fact",
+      "label": "The Netflix culture deck is a concrete artifact for the autonomy case.",
+      "text": "The Netflix culture deck is a concrete artifact for the autonomy case. Because a 2009 written artifact makes the case checkable rather than relying on vague reputation. Citing Netflix as a generic innovative company with no dated source anchor. The 2009 culture deck provides visible culture evidence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.3",
+      "kind": "testable_fact",
+      "label": "Bill Gore and W. L. Gore are associated with a Gore lattice organization rather than a purely conventional hierarchy.",
+      "text": "Bill Gore and W. L. Gore are associated with a Gore lattice organization rather than a purely conventional hierarchy. Because the lattice case shows ownership and coordination can be built through commitments and sponsors. Assuming accountability requires only top-down command. Gore's structure illustrates alternative accountability pathways.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.4",
+      "kind": "testable_fact",
+      "label": "Sponsor commitments are part of the W. L. Gore ownership vocabulary.",
+      "text": "Sponsor commitments are part of the W. L. Gore ownership vocabulary. Because sponsors support people while leaving them responsible for commitments and contribution. Confusing sponsorship with a boss taking over the work. Sponsorship supports ownership; it does not erase it.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.5",
+      "kind": "testable_fact",
+      "label": "Mike Rother's Toyota Kata and Toyota A3 problem solving are used as coaching-oriented management anchors.",
+      "text": "Mike Rother's Toyota Kata and Toyota A3 problem solving are used as coaching-oriented management anchors. Because A3 work asks people to structure the problem and reasoning, the learning stays with the person doing the work. Thinking coaching means the manager supplies the answer faster. The coaching value is in developing the person's thinking process.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.6",
+      "kind": "testable_fact",
+      "label": "Investor leadership pairs support with accountability.",
+      "text": "Investor leadership pairs support with accountability. Because support without accountability becomes rescue, while accountability without support becomes abandonment. Choosing between doing it for people and leaving them alone. The discipline requires both help and ownership.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.7",
+      "kind": "testable_fact",
+      "label": "Rescue can diminish capability even when it feels helpful.",
+      "text": "Rescue can diminish capability even when it feels helpful. Because taking the problem back teaches people that the leader owns hard moments. Assuming every quick fix is good leadership. A quick fix may finish the task while shrinking future ownership.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.8",
+      "kind": "testable_fact",
+      "label": "The handoff is incomplete until the person owns the decision consequences.",
+      "text": "The handoff is incomplete until the person owns the decision consequences. Because real ownership includes judgment, tradeoffs, and follow-through, not just activity. Assigning tasks while keeping all meaningful decisions with the leader. That arrangement creates labor without full ownership.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.9",
+      "kind": "testable_fact",
+      "label": "Coaching questions can keep ownership with the learner.",
+      "text": "Coaching questions can keep ownership with the learner. Because questions make the person reason through the problem instead of outsourcing judgment upward. Using questions only as a polite way to steer someone to the leader's answer. Leading questions can still take ownership back if the answer is predetermined.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.framework.investor.handoff",
+      "kind": "framework",
+      "label": "Investor handoff",
+      "text": "give ownership, provide resources, coach without taking over, hold accountability",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "2009"
+  ],
+  "allowedEntities": [
+    "The Investor",
+    "Investors",
+    "People",
+    "Ownership",
+    "Readers",
+    "Investor",
+    "Netflix's",
+    "W. L. Gore's",
+    "Toyota's",
+    "Netflix",
+    "Reed Hastings",
+    "Patty McCord",
+    "Autonomy",
+    "W. L. Gore",
+    "Bill Gore",
+    "Gore",
+    "Toyota",
+    "Mike Rother",
+    "Toyota Kata",
+    "Toyota A3",
+    "Capability",
+    "Accidental Diminisher",
+    "Diminishers",
+    "Multiplier",
+    "Keep",
+    "For",
+    "Mike Rother Toyota Kata. Additional",
+    "Reading",
+    "The Netflix",
+    "Citing Netflix",
+    "Assuming",
+    "Gore's",
+    "Sponsor",
+    "Confusing",
+    "Sponsorship",
+    "Mike Rother's Toyota Kata",
+    "Because A3",
+    "Thinking",
+    "Choosing",
+    "Rescue",
+    "Assigning",
+    "Coaching",
+    "Using",
+    "Leading",
+    "Netflix freedom and responsibility",
+    "W. L. Gore lattice organization",
+    "Toyota coaching problem solving"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch06.ex.netflix-culture",
+      "warning": "Keep examples about Netflix freedom and responsibility source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch06.ex.wlgore-lattice",
+      "warning": "Keep examples about W. L. Gore lattice organization source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch06.ex.toyota-coaching",
+      "warning": "Keep examples about Toyota coaching problem solving source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch06.fact.2"
+}

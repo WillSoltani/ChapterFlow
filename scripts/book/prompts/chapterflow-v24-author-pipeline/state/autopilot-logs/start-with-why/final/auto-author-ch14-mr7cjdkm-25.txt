@@ -1,0 +1,12 @@
+Done: [start-with-why-ch14.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch14.v21-native.chapter.json:1)
+
+Verification:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 0 minors
+- `quiz-verify`: 9/9 match
+- Rendered length: 16,819 chars
+- Quiz key pattern: `2,2,0,0,1,1,1,2,0`
+- Distractor parity: key uniquely longest 0 times, uniquely shortest 4 times
+- Scaffold scan: clear
+
+Note: the gate CLI also updates its existing untracked `state/gate-attempts.json` bookkeeping file as a command side effect; the authored output is the requested chapter JSON.

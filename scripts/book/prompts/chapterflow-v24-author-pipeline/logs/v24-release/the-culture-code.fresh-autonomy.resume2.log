@@ -1,0 +1,86 @@
+2026-07-09T11:42:56.591Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-09T11:42:58.750Z [MAJOR] PHASE write written 14/16 · gated 14 · qc'd 0
+2026-07-09T11:42:59.238Z [info]  author source-packets: compile-source-packets: PASS (16 packet(s))
+2026-07-09T11:42:59.677Z [info]  author source-packet-gate: source-packet-gate: PASS (16 chapter(s), 0 blocker(s), 0 advisory)
+2026-07-09T11:43:00.101Z [info]  author book-design: compile-book-design: PASS
+2026-07-09T11:43:00.517Z [info]  author book-design-gate: book-design-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-09T11:43:01.079Z [info]  author chapter-briefs: compile-chapter-briefs: PASS (32 file(s))
+2026-07-09T11:43:01.549Z [info]  author chapter-brief-gate:   [ADVISORY LJ1.adjacent_learning_job] chapters 15 and 16 declare near-duplicate learning jobs (coreMove content-lemma Jaccard 1.00 ≥ 0.6) — adjacent chapters should teach DISTINCT capabilities. Ch15: "Because the second case changes the venue, it tests whether the mechanism travel"; Ch16: "Because the second case changes the venue, it tests whether the mechanism travel". Give one chapter a different facet/emphasis of the shared material, or reassign a case so their jobs diverge.
+2026-07-09T11:43:01.550Z [info]  author write: 2 missing chapter(s) of 16 (parallel ≤6)
+2026-07-09T11:43:01.552Z [info]  author ch02: card is 29324 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T11:43:01.553Z [info]  author ch02: whole-chapter writer working (attempt 1, card 29324 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T11:43:01.555Z [info]  author ch06: card is 29876 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T11:43:01.556Z [info]  author ch06: whole-chapter writer working (attempt 1, card 29876 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T11:58:59.875Z [info]  author ch06: ch06: rubric preflight FAIL — ch06: FAIL ease=72.747 fk=6.425~ tell=0 transfer=1 memClean=1✗ tic=1 nom=1.957 echo=1~ lenTell=3 practice=2 — FAIL: memorableClean
+ch06 fix: echo-tell: quiz q07 key lifts a ≥5-content-token verbatim phrase from the chapter (paraphrase the key)
+2026-07-09T11:58:59.881Z [info]  author ch06: whole-chapter writer working (attempt 2, card 31086 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T11:59:28.204Z [info]  author ch02: ch02: rubric preflight FAIL — ch02: FAIL ease=63.915✗ fk=7.339 tell=0.111 transfer=0.889 memClean=3 tic=0 nom=3.821 echo=0 lenTell=1 practice=2 — FAIL: fleschEase
+2026-07-09T11:59:28.207Z [info]  author ch02: whole-chapter writer working (attempt 2, card 30423 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T12:05:51.288Z [info]  author ch06: done (gate-chapter clean)
+2026-07-09T12:17:04.877Z [info]  author ch02: done (gate-chapter clean)
+2026-07-09T12:17:05.020Z [info]  author write: reader budgets BLOCK (1 finding(s)) — ONE bounded budget-repair round over 1 chapter(s): ch16
+2026-07-09T12:17:05.023Z [info]  author ch16: card is 30136 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T12:17:05.027Z [info]  author ch16: whole-chapter writer working (attempt 1, card 30728 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T12:33:33.678Z [info]  author ch16: done (gate-chapter clean)
+2026-07-09T12:33:33.797Z [info]  author write: budget-repair round converged — blockers clear
+2026-07-09T12:33:33.797Z [info]  author write: reader budgets clean (3 advisory finding(s)) — advancing
+2026-07-09T12:33:33.797Z [info]  author write: advisory [CHB1.anchor_repetition] ch02 reading surface mentions "zappos" (distinctive token of case "Tony Hsieh and Zappos") 10 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T12:33:33.797Z [info]  author write: advisory [CHB1.anchor_repetition] ch11 reading surface mentions "johnson" (distinctive token of case "Johnson & Johnson Credo") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T12:33:33.797Z [info]  author write: advisory [CHB8.case_stem_band] 48% of 144 stems name a chapter case/entity verbatim — over the 30% cap; case-name anchoring telegraphs the taught case. Rebuild some stems as novel-scenario transfer.
+2026-07-09T12:33:39.444Z [MAJOR] PHASE gate written 16/16 · gated 16 · qc'd 0
+2026-07-09T12:33:43.385Z [MAJOR] GATE REPAIR attempt 1/4 (deterministic gates)
+2026-07-09T12:38:35.473Z [MAJOR] GATE MAJOR REPAIR attempt 1/4 (blocking majors)
+2026-07-09T12:38:35.476Z [info] GATE MAJOR ch10 working · 1 major(s)
+2026-07-09T12:38:35.480Z [info] GATE MAJOR book working · 1 major(s)
+2026-07-09T12:46:06.693Z [info] GATE MAJOR ch10 exited 0
+2026-07-09T12:47:16.473Z [info] GATE MAJOR book exited 0
+2026-07-09T12:47:22.672Z [info]  compiler gate: deterministic blockers + blocking majors clean; skipping legacy broad pre-QC scouts → advancing to formal QC
+2026-07-09T12:47:28.272Z [MAJOR] PHASE qc written 16/16 · gated 16 · qc'd 0
+2026-07-09T12:47:28.415Z [info]  author review budgets: reader budgets clean (3 advisory finding(s)) — advancing
+2026-07-09T12:47:28.415Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch02 reading surface mentions "zappos" (distinctive token of case "Tony Hsieh and Zappos") 11 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T12:47:28.415Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch11 reading surface mentions "johnson" (distinctive token of case "Johnson & Johnson Credo") 10 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T12:47:28.415Z [info]  author review budgets: advisory [CHB8.case_stem_band] 48% of 144 stems name a chapter case/entity verbatim — over the 30% cap; case-name anchoring telegraphs the taught case. Rebuild some stems as novel-scenario transfer.
+2026-07-09T12:47:28.421Z [info]  author review: 16 chapter(s), one blinded reader each (parallel ≤6, bar 80)
+2026-07-09T12:48:03.776Z [info]  author review ch03: composite 82 ship=false keys 8/9 → FAIL
+2026-07-09T12:48:09.463Z [info]  author review ch06: composite 84.8 ship=true keys 9/9 → PASS
+2026-07-09T12:48:11.085Z [info]  author review ch04: composite 85.9 ship=true keys 9/9 → PASS
+2026-07-09T12:48:19.156Z [info]  author review ch02: composite 84.1 ship=true keys 9/9 → PASS
+2026-07-09T12:48:31.855Z [info]  author review ch01: composite 85.1 ship=true keys 9/9 → PASS
+2026-07-09T12:48:44.309Z [info]  author review ch09: composite 84.7 ship=true keys 9/9 → PASS
+2026-07-09T12:48:51.275Z [info]  author review ch07: composite 85.6 ship=true keys 9/9 → PASS
+2026-07-09T12:48:52.551Z [info]  author review ch08: composite 87.2 ship=true keys 9/9 → PASS
+2026-07-09T12:48:54.827Z [info]  author review ch10: composite 86.8 ship=true keys 9/9 → PASS
+2026-07-09T12:48:57.109Z [info]  author review ch05: composite 86.7 ship=true keys 9/9 → PASS
+2026-07-09T12:49:14.513Z [info]  author review ch12: composite 87.4 ship=true keys 9/9 → PASS
+2026-07-09T12:49:15.083Z [info]  author review ch11: composite 85.2 ship=false keys 8/9 → FAIL
+2026-07-09T12:49:20.196Z [info]  author review ch14: composite 86 ship=true keys 9/9 → PASS
+2026-07-09T12:49:22.431Z [info]  author review ch13: composite 82.8 ship=false keys 8/9 → FAIL
+2026-07-09T12:49:35.025Z [info]  author review ch16: composite 84.2 ship=true keys 9/9 → PASS
+2026-07-09T12:49:57.551Z [info]  author review ch15: composite 85.8 ship=true keys 9/9 → PASS
+2026-07-09T12:49:57.560Z [info]  author review: 3 chapter(s) failed independent review — regenerating with complaints (1 regen each; 2 total attempts/chapter, durable ledger loaded)
+2026-07-09T12:49:57.576Z [info]  author ch03: card is 31030 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T12:49:57.589Z [info]  author ch03: whole-chapter writer working (attempt 1, card 31908 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T12:49:57.596Z [info]  author ch11: card is 30234 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T12:49:57.602Z [info]  author ch11: whole-chapter writer working (attempt 1, card 30234 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T12:49:57.607Z [info]  author ch13: card is 30902 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T12:49:57.611Z [info]  author ch13: whole-chapter writer working (attempt 1, card 31489 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T13:02:25.280Z [info]  author ch13: done (gate-chapter clean)
+2026-07-09T13:03:04.672Z [info]  author review ch13-regen: composite 86.6 ship=true keys 9/9 → PASS
+2026-07-09T13:03:59.706Z [info]  author ch11: done (gate-chapter clean)
+2026-07-09T13:04:53.712Z [info]  author review ch11-regen: composite 85.5 ship=false keys 9/9 → FAIL
+2026-07-09T13:04:53.713Z [info]  author review ch11: FAIL is near the bar (composite 85.5, bar 80, keys 9/9, ship=false) — spawning 2 tiebreak readers (median-of-3, no cap consumed)
+2026-07-09T13:06:13.703Z [info]  author review ch11-tiebreak-r2: composite 84.4 ship=false keys 9/9 → FAIL
+2026-07-09T13:06:59.626Z [info]  author review ch11-tiebreak-r3: composite 88 ship=true keys 9/9 → PASS
+2026-07-09T13:06:59.643Z [info]  author review ch11: tiebreak upheld the FAIL (median 85.5, reads 84.4, 88 ship) — regen proceeds with merged complaints
+2026-07-09T13:08:46.180Z [info]  author ch03: done (gate-chapter clean)
+2026-07-09T13:09:57.906Z [info]  author review ch03-regen: composite 87.1 ship=true keys 9/9 → PASS
+2026-07-09T13:09:57.909Z [info]  ── cost report — the-culture-code [halt:content] ──
+  grand total spawns: 32  (minted ids 32; verb ids 0)
+  by type: author-review:21  writer:8  major-repair:2  gate-repair:1
+  by phase: qc:24  write:5  gate:3
+  retries by cause: retry1:2  gate-major-repair-1:2  gate-repair-1:1  respawn:1
+  carry: acceptance 0 hit / 1 miss · reviews 0 hit / 16 miss
+  wall (spawn ms) by phase: write:4391252  qc:3717206  gate:1257945  total:9366403
+2026-07-09T13:09:57.914Z [FINAL] HALT AUTOPILOT HALT — the-culture-code [phase qc · content]: author review: 1 chapter(s) still fail independent review after the regen cap (2 write attempts each):
+  ch11 — quiz Q5: The keyed answer says the advice needs the three named anchors and their separate specifics, but the prose's actual rule is broader: pin a grounded token, write plainly, or find the fact. This makes the quiz teach an over-specific requirement the chapter does not support. (must fix); quiz tells: Some correct answers are easier to guess because they use the chapter's exact preferred vocabu
+2026-07-09T13:09:57.914Z [FINAL] repair prompt: /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/the-culture-code/book-run/qc.20260709130957.9a064268.repair.md

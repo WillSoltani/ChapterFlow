@@ -36,6 +36,7 @@ import {
   resolveAuthorIo,
   type AuthorIo,
 } from "../orchestrator/authorRun.js";
+import type { AuthorProvenance } from "../qc/sessionProvenance.js";
 import type {
   CandidateChapterAttemptV1,
   CandidateChapterResultV1,
@@ -78,6 +79,26 @@ export function candidateAuthorIo(roots: BakeoffRoots, slot: string): Partial<Au
   const provenanceDir = resolve(slotDir(roots, slot), "provenance");
   const leadDir = resolve(slotDir(roots, slot), "lead-overrides");
   const chapterAbs = (bookId: string, n: number): string => slotChapterAbsPath(roots, slot, bookId, n);
+  const provenanceAbs = (chapterId: string): string => resolve(provenanceDir, `${chapterId}.json`);
+  const readProvenance = (chapterId: string): AuthorProvenance | null => {
+    const p = provenanceAbs(chapterId);
+    if (!existsSync(p)) return null;
+    try {
+      const rec = JSON.parse(readFileSync(p, "utf8")) as Partial<AuthorProvenance>;
+      return rec.schemaVersion === "author-provenance-v2"
+        && rec.chapterId === chapterId
+        && typeof rec.authorSessionId === "string"
+        && rec.authorSessionId.length > 0
+        && typeof rec.stampedAt === "string"
+        && rec.stampedAt.length > 0
+        && typeof rec.contentHash === "string"
+        && rec.contentHash.length > 0
+        ? rec as AuthorProvenance
+        : null;
+    } catch {
+      return null;
+    }
+  };
   return {
     chapterExists: (bookId, n) => existsSync(chapterAbs(bookId, n)),
     readChapterFile: (bookId, n) => {
@@ -91,18 +112,31 @@ export function candidateAuthorIo(roots: BakeoffRoots, slot: string): Partial<Au
     },
     removeChapterFile: (bookId, n) => rmSync(chapterAbs(bookId, n), { force: true }),
     loadChapters: () => loadSlotChapters(roots, slot),
-    authorSessionOf: (chapterId) => {
-      const p = resolve(provenanceDir, `${chapterId}.json`);
-      try {
-        return existsSync(p) ? (JSON.parse(readFileSync(p, "utf8")).authorSessionId as string | undefined) : undefined;
-      } catch { return undefined; }
-    },
+    authorSessionOf: (chapterId) => readProvenance(chapterId)?.authorSessionId,
     recordProvenance: (chapterId, sessionId, contentHash) => {
+      if (!contentHash) throw new Error(`candidate ${slot}: cannot stamp author provenance for ${chapterId} without a content hash`);
       mkdirSync(provenanceDir, { recursive: true });
+      const record: AuthorProvenance = {
+        schemaVersion: "author-provenance-v2",
+        chapterId,
+        authorSessionId: sessionId,
+        contentHash,
+        stampedAt: new Date().toISOString(),
+        producer: "whole-chapter-writer",
+      };
       writeFileAtomic(
-        resolve(provenanceDir, `${chapterId}.json`),
-        JSON.stringify({ schemaVersion: "model-bakeoff-slot-provenance-v1", chapterId, authorSessionId: sessionId, contentHash: contentHash ?? null, stampedAt: new Date().toISOString() }, null, 2) + "\n",
+        provenanceAbs(chapterId),
+        JSON.stringify(record, null, 2) + "\n",
       );
+    },
+    readProvenance,
+    restoreProvenance: (chapterId, previous) => {
+      const p = provenanceAbs(chapterId);
+      if (previous === null) rmSync(p, { force: true });
+      else {
+        mkdirSync(provenanceDir, { recursive: true });
+        writeFileAtomic(p, JSON.stringify(previous, null, 2) + "\n");
+      }
     },
     readLeadOverride: (bookId, n) => {
       const p = resolve(leadDir, `ch${String(n).padStart(2, "0")}.lead-override.json`);

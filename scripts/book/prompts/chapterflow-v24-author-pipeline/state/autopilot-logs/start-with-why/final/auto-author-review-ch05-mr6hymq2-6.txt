@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "c", "a", "a", "b", "c", "b"],
+    "keyDisagreements": ["Q2 key says b, but the stem asks what caused the failure. Choice b is the remedy/good earlier choice; choice a names the concrete cause the prose warns against: moving Dallas/low-fare source details onto Herb Kelleher so examples blur into the same kind of proof."],
+    "tells": ["Several wrong choices are padded with obviously self-discrediting phrasing, especially Q4a and Q6b.", "Correct choices often carry the chapter's exact signature vocabulary, so phrase-matching can help without full comprehension."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 73,
+    "transfer": 84,
+    "practical": 82,
+    "summaries": 88,
+    "tone": 86,
+    "limits": 87,
+    "insight": 85,
+    "density": 82,
+    "beginner": 80
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The slogan does not explain the behavior; the behavior earns the slogan.",
+      "why": "Strongest memorable line; it compresses the chapter's mechanism into a durable test."
+    },
+    {
+      "quote": "Keep the hard detail with the source that earned it.",
+      "why": "Clear transferable rule for evidence discipline."
+    },
+    {
+      "quote": "The comparison section failed because every example sounded stamped from the same mold. What earlier choice caused it?",
+      "why": "Worst defect: the keyed answer does not name the cause requested by the stem."
+    },
+    {
+      "quote": "Use cofounder as the separate Herb Kelleher token, so contrast does more than repeat a success story.",
+      "why": "This is a remedy or correct practice, not the cause of the stated failure."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "The stem asks for the earlier cause of a failure, but the keyed answer names the correct contrasting move. Choice a better fits the actual cause shown by the prose.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Some distractors are too obviously wrong because they overstate the bad logic in loaded language, which weakens diagnostic value.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter is sometimes over-engineered around source-token discipline; beginners may feel they are learning bookkeeping of anchors as much as the WHY-HOW-WHAT mechanism.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a clear core move: belief becomes credible only when behavior repeatedly returns proof. The summaries layer well, the examples are concrete, and the limits section is unusually useful. I would not ship it yet because Q2 has a real key-soundness error on a causal stem, and the quiz has a few answer-choice tells. Fixing that likely brings it over the professional bar."
+}
+```

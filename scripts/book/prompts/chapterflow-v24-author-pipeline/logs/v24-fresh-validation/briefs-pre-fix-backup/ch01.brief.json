@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "high-output-management-ch01",
+  "chapterNumber": 1,
+  "title": "The Basics of Production: Delivering a Breakfast (or a College Graduate, or a Compiler, or a Convicted Criminal...)",
+  "coreMove": "because separate streams must be synchronized so that one late or cold item can spoil the whole output",
+  "thesis": "A breakfast order is useful because eggs, toast, and coffee must converge at one delivery time.",
+  "readerPromise": "After this chapter, a reader can because separate streams must be synchronized so that one late or cold item can spoil the whole output",
+  "ownedCases": [
+    {
+      "id": "ch01.ex.breakfast",
+      "label": "Breakfast factory"
+    },
+    {
+      "id": "ch01.ex.college",
+      "label": "College graduate as output"
+    },
+    {
+      "id": "ch01.ex.compiler",
+      "label": "Compiler development"
+    }
+  ],
+  "notYours": [
+    "Assigned implementation",
+    "Bonus signal",
+    "Breakfast factory control system",
+    "Breakfast factory goes national",
+    "Contractual obligation",
+    "Corrective performance conversation",
+    "Cultural values",
+    "Difficult feedback conversation",
+    "Environmental demand assessment",
+    "Escalated matrix conflict",
+    "Experienced employee on a new task",
+    "Expert delegated task",
+    "Free-market control",
+    "Functional organization",
+    "Geographic sales overlay",
+    "In-process quality inspection",
+    "Intel decision culture",
+    "Intel hybrid structure",
+    "Intel manager output formula",
+    "Intel planning cycle"
+  ],
+  "cast": [
+    "Willow",
+    "Hudson",
+    "Wendy",
+    "Helene"
+  ],
+  "answerIndexPattern": [
+    1,
+    1,
+    0,
+    2,
+    0,
+    1,
+    2,
+    0,
+    2
+  ],
+  "avoid": [
+    "flavor (ch02): venue: a living-room couch",
+    "flavor (ch02): venue: a kitchen counter",
+    "flavor (ch02): venue: a bedroom closet",
+    "flavor (ch02): frame: two stakeholders disagree about admitted students as inputs before deciding",
+    "flavor (ch02): frame: a first encounter with agreed expectations that sets a benchmark",
+    "flavor (ch03): venue: a working note on business unit coordination"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a doorway conversation",
+    "venue: a spare-room desk",
+    "venue: an unsent email draft",
+    "frame: a first attempt at admitted students as inputs that gets corrected",
+    "frame: a first encounter with admitted students as inputs that sets a benchmark"
+  ],
+  "architectureFamily": "historical-narrative",
+  "openerType": "tension-thesis",
+  "challengeFrame": "replace-one-Y",
+  "practiceShape": "if-then-trigger",
+  "exampleLenses": [
+    "dialogue-beat",
+    "before-after-ledger",
+    "postmortem"
+  ],
+  "practiceVerb": "circle",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "output",
+    "automatically",
+    "creates",
+    "enough",
+    "manager",
+    "value"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "mid-behavior",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "averted-late",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "partial",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "if-then-trigger",
+    "two-step-sequence",
+    "observe-then-note",
+    "say-aloud-script"
+  ],
+  "quizStemShapes": [
+    "ordering-priority",
+    "transfer-new-domain",
+    "failure-postmortem",
+    "cold-diagnosis"
+  ],
+  "quizFailureModes": [
+    "over-correction",
+    "borrowed-authority",
+    "wrong-target",
+    "wrong-timing"
+  ],
+  "questionFactOrder": [
+    1,
+    7,
+    3,
+    6,
+    5,
+    4,
+    2,
+    9,
+    8
+  ],
+  "memorableShapes": [
+    "pointed-question",
+    "imperative",
+    "reversal"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "artifact-speak",
+    "cost-speak"
+  ],
+  "shellRegister": "cost-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Willow"
+  }
+}

@@ -1,0 +1,24 @@
+Research handoff is complete for `start-with-why`.
+
+- `bookId`: `start-with-why`
+- `runId`: `20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21`
+- Chapters: `14`, confidence `high`
+- Index: [state/indexes/start-with-why.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/indexes/start-with-why.json)
+- Source run: [.chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21)
+- Verification record: [.chapterflow/source-verify-start-with-why.md](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/source-verify-start-with-why.md)
+
+Final checks passed:
+
+```text
+check-source: PASS
+source-v2-gate --prewrite: PASS
+source-verify-check: PASS — 167 items VERIFIED
+compile-source-packets: PASS — 14 packets
+source-packet-gate: PASS — 0 blocker, 0 advisory
+source-fit: OK
+book-status: phase write-chapter
+```
+
+I used `node --import tsx src/cli.ts ...` for the final CLI checks because direct `npx tsx` started failing on sandboxed IPC pipe creation.
+
+Key public sources consulted included Wikipedia’s pages for [Start with Why](https://en.wikipedia.org/wiki/Start_with_Why), [Simon Sinek](https://en.wikipedia.org/wiki/Simon_Sinek), [Apple](https://en.wikipedia.org/wiki/Apple_Inc.), and case/source pages such as [TED](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action), [Toyota Production System](https://global.toyota/en/company/vision-and-philosophy/production-system/), [Wright Brothers National Memorial](https://www.nps.gov/wrbr/index.htm), and [National Archives March on Washington](https://www.archives.gov/exhibits/featured-documents/march-on-washington).

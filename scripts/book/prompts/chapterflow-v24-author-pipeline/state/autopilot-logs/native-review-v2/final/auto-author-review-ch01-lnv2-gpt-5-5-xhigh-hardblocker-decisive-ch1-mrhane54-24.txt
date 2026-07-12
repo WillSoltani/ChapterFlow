@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "c", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as four ordered repairs: widen options, reality-test assumptions, attain distance, and prepare to be wrong.",
+      "The chapter says narrow framing makes a rich problem look like yes or no, so the first repair is widening live options.",
+      "Reality-testing asks for evidence that can surprise or weaken the favorite answer, not evidence that flatters it.",
+      "The Intel section says emotion can contain information, but distance quiets short-term attachment so long-term stakes can be judged.",
+      "Overconfidence is countered by naming futures that could go better, worse, or different instead of trusting one neat forecast.",
+      "Cole's logic was to fund parallel first passes so comparison data teaches the team before commitment becomes expensive.",
+      "Grove's outsider question works by asking what a fresh outsider would do without Intel's memory-chip attachment.",
+      "The four villains affect different parts of the choice, so each needs a different interrupting move rather than one final review.",
+      "The full read states good process raises the odds without promising that uncertainty or bad outcomes disappear."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Choice b uniquely names all four WRAP moves and is the most model-specific option.",
+      "Choice b uses the giveaway phrase 'yes-or-no frame hides better paths'; a and c visibly delay or preserve the bad frame.",
+      "Choice c is the only option containing 'disconfirming evidence'; a and b are openly pro-favorite-plan.",
+      "Choice c is the only balanced answer; a and b use absolute wording that makes them easy to reject.",
+      "Choice a is the only answer that actually changes the forecast structure; b and c treat confidence as evidence.",
+      "Choice c nearly repeats the chapter's phrase 'comparison teaches before commitment.'",
+      "The stem says 'outsider question,' and choice a almost directly states the outsider-question formula.",
+      "Choice a is the only answer that preserves four separate villains; b and c collapse them into generic caution.",
+      "Choice b has the moderate test-taking shape; a overpromises and c throws the process away."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 68,
+    "practical": 82,
+    "summaries": 90,
+    "tone": 85,
+    "limits": 92,
+    "insight": 87,
+    "density": 82,
+    "beginner": 90
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "Strongest retention line: short, concrete, and it carries the chapter's first move."
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "Strong mechanism: it explains confirmation bias in a memorable image."
+    },
+    {
+      "quote": "On reflection, gather only the evidence that supports the plan you already favor, because disconfirming views just add noise and slow the decision down.",
+      "why": "Worst defect: this directly reverses the chapter's advice inside a What to do block."
+    },
+    {
+      "quote": "Good process raises the odds without promising the outcome.",
+      "why": "Clear limit: it prevents the process from being oversold."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 4",
+      "problem": "The What to do section first asks for disconfirming evidence, then tells the reader to gather only supporting evidence and dismiss disconfirming views as noise. This is SOURCE-CONTRADICTORY and reader-harming.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The stem says 'outsider question' and the correct answer almost restates that phrase, so the item is guessable without understanding the Intel mechanism.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several distractors are obvious strawmen or extremes, especially Q4 and Q9, which weakens quiz discrimination even though the keys are derivable.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "This mostly replays Example 1's HopeLab parallel-vendor lesson with budget wording, so it is thin-but-usable rather than a distinct transfer case.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches WRAP clearly, with memorable lines, honest limits, and a usable sequence a beginner could apply. The summaries and review cards are strong, and the quiz keys are sound, but the quiz often telegraphs the right answer. The blocker is Example 4: its What to do advice directly contradicts the confirmation-bias lesson by telling readers to gather only supporting evidence. That source-contradictory instruction makes this not shippable until fixed."
+}
+```

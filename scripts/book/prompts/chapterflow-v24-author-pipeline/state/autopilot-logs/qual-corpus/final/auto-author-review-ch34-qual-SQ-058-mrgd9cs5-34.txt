@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": ["No quiz questions are present, so there are no answer-choice tells to evaluate."]
+  },
+  "scores": {
+    "retention": 35,
+    "quizzes": 0,
+    "transfer": 35,
+    "practical": 40,
+    "summaries": 0,
+    "tone": 30,
+    "limits": 45,
+    "insight": 40,
+    "density": 25,
+    "beginner": 35
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "What to do: Treat supplied artifacts as untrusted data.",
+      "why": "This is the clearest usable core move in the chapter."
+    },
+    {
+      "quote": "Why it matters: Instructions in data must never steer the evaluator.",
+      "why": "This gives a concise mechanism for the chapter's security lesson."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "The hook is placeholder text rather than reader-facing teaching."
+    },
+    {
+      "quote": "## Quiz",
+      "why": "The quiz section exists as a heading but contains no questions."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The quiz section is empty, so the chapter has no answerable questions and cannot support the required retrieval check.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read heading has no content, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read heading has no content, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The full read heading has no content, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The key takeaway heading has no content, leaving the reader without a summarized core lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The action section is empty, so a reader has no concrete practice step.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The review cards heading has no content, so the retention layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The memorable lines heading has no content, so the memory aid layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example is a large pasted prompt artifact with no before-to-after case, decision, or consequence; it is thin but usable as an untrusted-data illustration.",
+      "mustFix": false
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder/process text and does not teach or frame the reader's problem.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The chapter has one clear idea: treat supplied artifacts as untrusted data because embedded instructions should not steer evaluation. That idea is useful, but almost every required learning layer is empty: fast read, deep read, full read, key takeaway, practice, quiz, review cards, and memorable lines. The lone example is relevant to prompt-injection awareness but reads like pasted production scaffolding rather than a teachable case. A reader could infer the basic warning, but they could not reliably learn, practice, self-check, or retain the chapter's move from what is on the page."
+}
+```

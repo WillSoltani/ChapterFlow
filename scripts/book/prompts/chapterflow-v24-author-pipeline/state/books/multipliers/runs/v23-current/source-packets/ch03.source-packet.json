@@ -1,0 +1,716 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "multipliers",
+  "chapterId": "multipliers-ch03",
+  "chapterNumber": 3,
+  "chapterTitle": "The Liberator",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/multipliers/20260709T020631645Z-b8e7894b-2287-4faf-9ef6-e4da421b5316/sidecars/source/ch03.source.json",
+  "sourceHash": "sha256:ccf48a5abfb1515cd99ee1ee1aa46eb2df6a72d132810f4dfc0b415074cdfec3",
+  "facts": [
+    {
+      "id": "ch03.fact.1",
+      "claim": "Amy Edmondson's research made psychological safety a team-level learning condition.",
+      "mechanism": "Because teams learn from errors only when people can raise concerns without disproportionate interpersonal penalty.",
+      "commonError": "Treating psychological safety as comfort or niceness.",
+      "whyWrong": "The construct is about candor and learning behavior, not avoiding standards.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Amy Edmondson's",
+        "Treating"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.1"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch03.fact.2",
+      "claim": "Hospital teams are a concrete setting for psychological safety because error reporting affects learning.",
+      "mechanism": "Because unspoken mistakes keep the system from detecting and correcting weak processes.",
+      "commonError": "Assuming silence means few errors occurred.",
+      "whyWrong": "Silence can mean people are afraid to report or discuss what went wrong.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Hospital",
+        "Assuming",
+        "Silence"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.2"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch03.fact.3",
+      "claim": "Google Project Aristotle studied 180 teams while looking for drivers of team effectiveness.",
+      "mechanism": "Because a multi-team analysis shows that contribution patterns are shaped by group conditions.",
+      "commonError": "Explaining team performance only by individual resumes.",
+      "whyWrong": "Team norms can change whether capable individuals speak and learn.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "180"
+      ],
+      "groundedEntities": [
+        "Google Project Aristotle",
+        "Explaining",
+        "Team"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.3"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch03.fact.4",
+      "claim": "Psychological safety supports candor but does not remove performance standards.",
+      "mechanism": "Because people need enough safety to speak and enough challenge to improve the work.",
+      "commonError": "Believing safety means lowering the bar.",
+      "whyWrong": "Safety without standards becomes comfort; standards without safety become fear.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Psychological",
+        "Believing",
+        "Safety"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.4"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch03.fact.5",
+      "claim": "Pixar's Braintrust centers candid feedback on improving unfinished creative work.",
+      "mechanism": "Because feedback is safer and more useful when it is framed around the work product rather than personal status.",
+      "commonError": "Using candor as a license for harsh personal judgment.",
+      "whyWrong": "The useful target is the problem in the work, not the dignity of the maker.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Pixar's Braintrust",
+        "Using"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.5"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch03.fact.6",
+      "claim": "A liberating room reduces leader-centered threat.",
+      "mechanism": "Because people contribute more when attention is on the problem instead of protecting themselves from the leader.",
+      "commonError": "Thinking the leader must dominate the room to create seriousness.",
+      "whyWrong": "Domination can produce compliance while reducing usable intelligence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Thinking",
+        "Domination"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.6"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch03.fact.7",
+      "claim": "Fear can imitate discipline while hiding the information a team most needs.",
+      "mechanism": "Because intimidated people avoid sharing weak signals, mistakes, and dissent, the leader receives a cleaner but less accurate picture.",
+      "commonError": "Equating quiet meetings with alignment.",
+      "whyWrong": "Quiet can indicate suppression rather than agreement.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Fear",
+        "Equating",
+        "Quiet"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.7"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch03.fact.8",
+      "claim": "Liberation requires explicit permission for dissent and unfinished thinking.",
+      "mechanism": "Because many employees will not risk partial ideas unless the leader makes exploration legitimate.",
+      "commonError": "Waiting for people to volunteer risky thoughts without changing the climate.",
+      "whyWrong": "The environment tells people whether contribution is worth the risk.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Liberation",
+        "Waiting"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.8"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch03.fact.9",
+      "claim": "High standards are more credible when people can question the path to meeting them.",
+      "mechanism": "Because challenge improves when contributors can test assumptions and surface obstacles before failure becomes expensive.",
+      "commonError": "Protecting standards by shutting down questions.",
+      "whyWrong": "Questions can strengthen execution by exposing weak assumptions early.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "High",
+        "Protecting",
+        "Questions"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch03.ex.edmondson-hospitals",
+      "label": "Amy Edmondson hospital-team research",
+      "summary": "Amy Edmondson's hospital-team research connected psychological safety with whether teams speak up and learn from errors. The hospital teams case makes liberation concrete because silence around mistakes can block learning.",
+      "realWorld": true,
+      "naturalSetting": "Amy Edmondson",
+      "hardSpecifics": [
+        "Amy Edmondson",
+        "hospital teams",
+        "psychological safety"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "hospital teams"
+      ]
+    },
+    {
+      "id": "ch03.ex.google-aristotle",
+      "label": "Google Project Aristotle",
+      "summary": "Google's Project Aristotle studied 180 teams and elevated psychological safety as a core condition for team effectiveness. The case shows that liberation is a team condition, not merely an individual trait.",
+      "realWorld": true,
+      "naturalSetting": "Google Project Aristotle Google's Project",
+      "hardSpecifics": [
+        "Project Aristotle",
+        "180 teams",
+        "psychological safety"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch03.ex.pixar-braintrust",
+      "label": "Pixar Braintrust candor",
+      "summary": "Pixar's Pixar Braintrust uses candid feedback around unfinished films. The practice works as a liberating case because critique is aimed at improving the work rather than humiliating the creator.",
+      "realWorld": true,
+      "naturalSetting": "Pixar Braintrust",
+      "hardSpecifics": [
+        "Pixar Braintrust",
+        "unfinished films",
+        "candid feedback"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Liberator climate",
+      "members": [
+        "create space",
+        "demand best work",
+        "remove fear",
+        "keep standards visible"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch03.concept",
+      "kind": "concept",
+      "label": "liberating climate",
+      "text": "A liberating climate gives people room to contribute honestly while making clear that the standard remains high. Safety and stretch work together: people are not protected from effort, but they are protected from needless intimidation. A reader who gets the distinction stops choosing between comfort and accountability. The better target is a room where candor is safe and weak thinking is still challenged.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.ex.edmondson-hospitals",
+      "kind": "named_example",
+      "label": "Amy Edmondson hospital-team research",
+      "text": "Amy Edmondson's hospital-team research connected psychological safety with whether teams speak up and learn from errors. The hospital teams case makes liberation concrete because silence around mistakes can block learning. Safety matters because people need to surface information before a team can improve.",
+      "hardSpecifics": [
+        "Amy Edmondson",
+        "hospital teams",
+        "psychological safety"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.ex.google-aristotle",
+      "kind": "named_example",
+      "label": "Google Project Aristotle",
+      "text": "Google's Project Aristotle studied 180 teams and elevated psychological safety as a core condition for team effectiveness. The case shows that liberation is a team condition, not merely an individual trait. A team climate can release or suppress intelligence already present.",
+      "hardSpecifics": [
+        "Project Aristotle",
+        "180 teams",
+        "psychological safety"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.ex.pixar-braintrust",
+      "kind": "named_example",
+      "label": "Pixar Braintrust candor",
+      "text": "Pixar's Pixar Braintrust uses candid feedback around unfinished films. The practice works as a liberating case because critique is aimed at improving the work rather than humiliating the creator. Candor becomes productive when the work is central and status threat is lowered.",
+      "hardSpecifics": [
+        "Pixar Braintrust",
+        "unfinished films",
+        "candid feedback"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.1",
+      "kind": "testable_fact",
+      "label": "Amy Edmondson's research made psychological safety a team-level learning condition.",
+      "text": "Amy Edmondson's research made psychological safety a team-level learning condition. Because teams learn from errors only when people can raise concerns without disproportionate interpersonal penalty. Treating psychological safety as comfort or niceness. The construct is about candor and learning behavior, not avoiding standards.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.2",
+      "kind": "testable_fact",
+      "label": "Hospital teams are a concrete setting for psychological safety because error reporting affects learning.",
+      "text": "Hospital teams are a concrete setting for psychological safety because error reporting affects learning. Because unspoken mistakes keep the system from detecting and correcting weak processes. Assuming silence means few errors occurred. Silence can mean people are afraid to report or discuss what went wrong.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.3",
+      "kind": "testable_fact",
+      "label": "Google Project Aristotle studied 180 teams while looking for drivers of team effectiveness.",
+      "text": "Google Project Aristotle studied 180 teams while looking for drivers of team effectiveness. Because a multi-team analysis shows that contribution patterns are shaped by group conditions. Explaining team performance only by individual resumes. Team norms can change whether capable individuals speak and learn.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.4",
+      "kind": "testable_fact",
+      "label": "Psychological safety supports candor but does not remove performance standards.",
+      "text": "Psychological safety supports candor but does not remove performance standards. Because people need enough safety to speak and enough challenge to improve the work. Believing safety means lowering the bar. Safety without standards becomes comfort; standards without safety become fear.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.5",
+      "kind": "testable_fact",
+      "label": "Pixar's Braintrust centers candid feedback on improving unfinished creative work.",
+      "text": "Pixar's Braintrust centers candid feedback on improving unfinished creative work. Because feedback is safer and more useful when it is framed around the work product rather than personal status. Using candor as a license for harsh personal judgment. The useful target is the problem in the work, not the dignity of the maker.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.6",
+      "kind": "testable_fact",
+      "label": "A liberating room reduces leader-centered threat.",
+      "text": "A liberating room reduces leader-centered threat. Because people contribute more when attention is on the problem instead of protecting themselves from the leader. Thinking the leader must dominate the room to create seriousness. Domination can produce compliance while reducing usable intelligence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.7",
+      "kind": "testable_fact",
+      "label": "Fear can imitate discipline while hiding the information a team most needs.",
+      "text": "Fear can imitate discipline while hiding the information a team most needs. Because intimidated people avoid sharing weak signals, mistakes, and dissent, the leader receives a cleaner but less accurate picture. Equating quiet meetings with alignment. Quiet can indicate suppression rather than agreement.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.8",
+      "kind": "testable_fact",
+      "label": "Liberation requires explicit permission for dissent and unfinished thinking.",
+      "text": "Liberation requires explicit permission for dissent and unfinished thinking. Because many employees will not risk partial ideas unless the leader makes exploration legitimate. Waiting for people to volunteer risky thoughts without changing the climate. The environment tells people whether contribution is worth the risk.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.9",
+      "kind": "testable_fact",
+      "label": "High standards are more credible when people can question the path to meeting them.",
+      "text": "High standards are more credible when people can question the path to meeting them. Because challenge improves when contributors can test assumptions and surface obstacles before failure becomes expensive. Protecting standards by shutting down questions. Questions can strengthen execution by exposing weak assumptions early.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.framework.liberator.climate",
+      "kind": "framework",
+      "label": "Liberator climate",
+      "text": "create space, demand best work, remove fear, keep standards visible",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "180"
+  ],
+  "allowedEntities": [
+    "The Liberator",
+    "Liberators",
+    "Safety",
+    "Liberation",
+    "Amy Edmondson's",
+    "Google Project Aristotle",
+    "Pixar's Braintrust",
+    "Amy Edmondson",
+    "Google's Project Aristotle",
+    "Project Aristotle",
+    "Pixar Braintrust",
+    "Pixar's Pixar Braintrust",
+    "Candor",
+    "Liberator",
+    "Challenger",
+    "Debate Maker",
+    "Diminisher",
+    "A Liberator",
+    "Keep",
+    "Avoid",
+    "For",
+    "Pixar",
+    "Braintrust",
+    "Treating",
+    "Hospital",
+    "Assuming",
+    "Silence",
+    "Explaining",
+    "Team",
+    "Psychological",
+    "Believing",
+    "Using",
+    "Thinking",
+    "Domination",
+    "Fear",
+    "Equating",
+    "Quiet",
+    "Waiting",
+    "High",
+    "Protecting",
+    "Questions",
+    "Amy Edmondson hospital-team research",
+    "Pixar Braintrust candor"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch03.ex.edmondson-hospitals",
+      "warning": "Keep examples about Amy Edmondson hospital-team research source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch03.ex.google-aristotle",
+      "warning": "Keep examples about Google Project Aristotle source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch03.ex.pixar-braintrust",
+      "warning": "Keep examples about Pixar Braintrust candor source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch03.fact.3"
+}

@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "multipliers-ch02",
+  "chapterNumber": 2,
+  "contentHash": "b8065e42a9433d20",
+  "reviewerSessionId": "auto-author-review-ch02-mrczedyh-7",
+  "scores": {
+    "retention": 88,
+    "quizzes": 74,
+    "transfer": 79,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 86,
+    "insight": 83,
+    "density": 81,
+    "beginner": 85
+  },
+  "composite": 83.6,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "c",
+      "b",
+      "b",
+      "a",
+      "c",
+      "b",
+      "a",
+      "a"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Talent is fit, not inventory.",
+      "why": "Strongest compact line; it reframes the whole chapter in memorable language.",
+      "verified": true
+    },
+    {
+      "quote": "A cage is a weak magnet.",
+      "why": "Memorable image that makes the release/hoarding distinction stick.",
+      "verified": true
+    },
+    {
+      "quote": "Q3. A podcast retells Microsoft's renewal without saying when Nadella became CEO. What earlier step caused the weak lesson?",
+      "why": "Worst quiz defect: the stem asks for a cause, but the keyed option is worded as the corrective action.",
+      "verified": true
+    },
+    {
+      "quote": "What to do: Which question comes first? Ask when the case happened before you pull a talent rule from it.",
+      "why": "Example 2 drifts toward date-anchoring technique rather than the chapter's core talent-deployment move.",
+      "verified": true
+    }
+  ],
+  "tells": [],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "The stem asks what caused the weak lesson, but the keyed option says to keep the 2014 CEO transition attached. That is a remedy, not the one cause shown by the prose: dropping the 2014 anchor.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "The example is thin transfer for the core lesson because it mostly teaches preserving a historical date in a case rather than naming strength, matching it to work, or releasing talent.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The correct answer is plausible, but it leans on an inference about broader-study strength more than on an explicitly developed rule in the prose.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, readable chapter with a sticky core move: talent has to be named, routed to meaningful work, and released when the old role is too small. The summaries, limits, review cards, and practical challenge are clean enough to teach cold. The main blocker is quiz Q3, where a cause question keys a remedy-shaped answer; that is a broken quiz item under the stated rules. Transfer is also slightly weakened by Example 2, which feels more like a note about preserving the Microsoft date than a fresh application of the talent move.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "015dca733846c0e0f8ed6287f7dfeee9fd3e1390d097fd9066f30c8d0bbecf1f",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T04:04:01.843Z"
+}

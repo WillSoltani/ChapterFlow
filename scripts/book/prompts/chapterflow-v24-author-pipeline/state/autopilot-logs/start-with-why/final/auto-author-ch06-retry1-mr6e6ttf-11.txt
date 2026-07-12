@@ -1,0 +1,11 @@
+Done: [start-with-why-ch06.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch06.v21-native.chapter.json).
+
+I rewrote the transfer-weak quiz items while preserving the required key pattern `1,2,2,0,1,1,0,0,2`, then fixed one review-card sentence that evidence-audit could misread.
+
+Validation:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors
+- `quiz-verify`: 9/9 match
+- `evidence-audit`: no candidates
+- `rubric-metrics --gate`: exits 0; ch06 now `transfer=1`, `tell=0`, `lenTell=4`, `practice=2`
+- Length/self-scan: 15,566 rendered chars; scaffold scan clean; only numeric claims are sourced `1934` and `1994`

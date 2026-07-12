@@ -1,0 +1,189 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "radical-candor-ch05",
+  "chapterNumber": 5,
+  "title": "Relationships",
+  "coreMove": "Because the tools section begins with trust, later feedback methods are built on relationship capacity.",
+  "thesis": "The official guide identifies Relationships as Ch. 5 in Part 2 Tools and Techniques.",
+  "readerPromise": "After this chapter, a reader can because the tools section begins with trust, later feedback methods are built on relationship capacity.",
+  "ownedCases": [
+    {
+      "id": "ch05.ex.order-of-operations-relationships",
+      "label": "Order of Operations in Relationships"
+    },
+    {
+      "id": "ch05.ex.book-club-relationships",
+      "label": "Relationships discussion prompts"
+    },
+    {
+      "id": "ch05.ex.radical-candor-llc-training",
+      "label": "Radical Candor LLC training context"
+    }
+  ],
+  "notYours": [
+    "1:1 meeting practice",
+    "Aristotle persuasion triad",
+    "Bob at Juice Software",
+    "Bonus performance review unit",
+    "CORE and SBI review evidence",
+    "CORE feedback framework",
+    "Care Personally plus Challenge Directly compass",
+    "Center for Creative Leadership SBI",
+    "GSD Wheel",
+    "Growth Management",
+    "HHIPP feedback checklist",
+    "Kim Scott at Google and Apple",
+    "Life Story, Dreams, Eighteen-Month Plan",
+    "Meeting creep",
+    "Order of Operations feedback sequence",
+    "Results discussion prompts",
+    "Rock Star Mode",
+    "Russ Laraway Career Conversations",
+    "Sheryl Sandberg at Google",
+    "Sheryl Sandberg direct feedback"
+  ],
+  "cast": [
+    "Theodore",
+    "Aurelie",
+    "Lucy",
+    "Lisa"
+  ],
+  "answerIndexPattern": [
+    0,
+    1,
+    2,
+    2,
+    0,
+    0,
+    1,
+    2,
+    1
+  ],
+  "avoid": [
+    "opener (ch01): \"Kim Scott's Google AdSense and Apple executive record\"",
+    "opener (ch02): \"What would you ask before copying Sandberg's directness?\"",
+    "opener (ch03): \"The phone reminder glowed after the transfer failed.\"",
+    "opener (ch06): \"In the draft, HHIPP states the standard first:\"",
+    "opener (ch07): \"Analyst Spencer had already left the staffing huddle\"",
+    "opener (ch08): \"The Results discussion prompts state the standard before\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on development conversations",
+    "venue: a working note on emotion credibility logic",
+    "venue: a dinner table",
+    "frame: a first attempt at ch pp that gets corrected",
+    "frame: an unexpected kindness that lands and gets retold afterward"
+  ],
+  "architectureFamily": "historical-narrative",
+  "openerType": "statistic",
+  "challengeFrame": "replace-one-Y",
+  "practiceShape": "observe-then-note",
+  "exampleLenses": [
+    "dialogue-beat",
+    "before-after-ledger",
+    "postmortem"
+  ],
+  "practiceVerb": "read-aloud",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "since",
+    "team",
+    "guide",
+    "rather",
+    "official",
+    "assuming"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "averted-late",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "observe-then-note",
+    "two-step-sequence",
+    "say-aloud-script",
+    "measure-one-number"
+  ],
+  "quizStemShapes": [
+    "ordering-priority",
+    "transfer-new-domain",
+    "failure-postmortem",
+    "cold-diagnosis"
+  ],
+  "quizFailureModes": [
+    "over-correction",
+    "borrowed-authority",
+    "wrong-target",
+    "wrong-timing"
+  ],
+  "questionFactOrder": [
+    1,
+    7,
+    9,
+    5,
+    6,
+    4,
+    2,
+    8,
+    3
+  ],
+  "memorableShapes": [
+    "cost-statement",
+    "pointed-question",
+    "imperative"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "cost-speak",
+    "question-speak"
+  ],
+  "shellRegister": "actor-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Theodore"
+  },
+  "adjacentJobs": {
+    "prev": "Because each step does a different job, skipping one creates a specific collaboration failure.",
+    "next": "Because each member guards a different delivery risk, the checklist keeps directness from becoming careless."
+  }
+}

@@ -1,0 +1,86 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "c", "b", "b", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The prose says purposeful practice isolates the fault, uses close feedback, and changes the next rep.",
+      "The repeated redox error needs the 'last error pattern' turned into a narrow drill with step-by-step feedback.",
+      "The chapter repeatedly contrasts whole-performance repetition with isolating the one surviving weak point.",
+      "The plateau/right-arm crossover needs a visible cue, immediate video feedback, and repetition before widening.",
+      "Faloon improves because misses direct the next attempt, making recall a correction loop.",
+      "The claim trusts repetition, while the prose says a visible, comparable target must guide the next attempt.",
+      "Feedback matters when it is close enough to change the next attempt while the miss is still traceable.",
+      "Plan B creates short feedback loops that can alter the next small batch.",
+      "A useful target must be seen, counted, compared, or corrected before the next attempt."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "a is also defensible because the prose says comfort can leave the weak spot hidden; b is stronger because it names the visible size target needed to change the next cut.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Q1: b is the only option with isolate-record-change mechanics.",
+      "Q2: a is the only option that names a narrow set and first failing step.",
+      "Q3: c repeats the chapter's core contrast almost verbatim.",
+      "Q4: b is the only option with cue-feedback-repeat before volume.",
+      "Q5: b contains the giveaway phrase 'feedback'.",
+      "Q6: b is plausible from the concrete target language, but a is close enough to create ambiguity.",
+      "Q7: c gives away the chapter's repeated 'next attempt' mechanism.",
+      "Q8: a states the feedback-loop rationale directly.",
+      "Q9: c is the only measurable target, making it guessable without much reading."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 82,
+    "transfer": 76,
+    "practical": 91,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 91,
+    "insight": 92,
+    "density": 86,
+    "beginner": 93
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "Strong, memorable compression of the core mechanism."
+    },
+    {
+      "quote": "A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.",
+      "why": "Turns the concept into a practical test a beginner can use."
+    },
+    {
+      "quote": "Actually, skip the taped strip and just shoot more full rounds, because a higher repetition count is what builds the skill and isolating one miss only slows you down.",
+      "why": "This contradicts the chapter's instruction inside a 'What to do' field."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The 'What to do' answer first gives the correct purposeful-practice action, then says to skip it and shoot more full rounds, directly contradicting the chapter's core lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "Options a and b are both supported by the prose: comfort can leave size differences untouched, and a visible size target is needed to guide the next cut.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz set",
+      "problem": "Several correct answers are guessable because they are the only options with concrete target-feedback-next-attempt mechanics.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a memorable core move, concrete examples, practical transfer prompts, and unusually clear limits. The quiz is mostly fair, though some answers are telegraphed by specificity and Q6 has a real competing answer. The blocking issue is Example 1's contradictory 'What to do' text, which tells the reader to do the exact naive-practice behavior the chapter warns against. Fix that before shipping."
+}
+```

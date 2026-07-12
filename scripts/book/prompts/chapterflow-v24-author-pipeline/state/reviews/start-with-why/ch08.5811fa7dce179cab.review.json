@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch08",
+  "chapterNumber": 8,
+  "contentHash": "5811fa7dce179cab",
+  "reviewerSessionId": "auto-author-review-ch08-tiebreak-r2-mr76mffi-55",
+  "scores": {
+    "retention": 90,
+    "quizzes": 86,
+    "transfer": 83,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 89,
+    "limits": 90,
+    "insight": 88,
+    "density": 84,
+    "beginner": 87
+  },
+  "composite": 87.7,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "c",
+      "a",
+      "c",
+      "b",
+      "b",
+      "c",
+      "b",
+      "a"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The WHY does not shrink the HOW; the HOW keeps the WHY honest.",
+      "why": "Strongest line: memorable, compact, and captures the chapter's main reversal.",
+      "verified": true
+    },
+    {
+      "quote": "If no method is named, lower the promise. If no output can be seen, do not call the reason proved.",
+      "why": "Clear practical test a reader can apply outside the founder examples.",
+      "verified": true
+    },
+    {
+      "quote": "Move one year to the wrong pair and the sentence still sounds firm, but its proof has slipped.",
+      "why": "Strong mechanism for why hard details matter, though the chapter sometimes leans heavily on date policing.",
+      "verified": true
+    },
+    {
+      "quote": "The stories are not badges. They are checks on your claim.",
+      "why": "Good boundary-setting that prevents the examples from becoming decorative name-dropping.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q4's correct answer is the most abstract and specific option, which may make it slightly guessable by test-wise readers.",
+    "Several keys are the only choices that preserve the chapter's recurring hard-detail language, especially 1975/1923/1976."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "The quiz is fair and key-sound, but it overweights founder/date anchoring relative to the broader WHY-HOW-WHAT transfer skill.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The bicycle-shop examples are concrete enough to pass, but several feel engineered around the lesson rather than naturally observed; this slightly weakens transfer.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The Apple I boundary point is useful, but the chapter repeats the 'third story marks where the reading stops' idea several times without adding much new operational detail.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter has a clear core move, strong memorable language, fair quiz keys, practical low-friction actions, and honest limits. Its best idea is that WHY only becomes trustworthy when HOW carries it and WHAT returns as inspectable proof. The main weakness is that the chapter sometimes lets historical anchors and founder-pair date checks dominate the broader decision skill, so the transfer feels a little narrower than it needs to be. No defect blocks publication.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "616c63294fb96d173ac62c5c5d1c3145b8e3eabfd847aa7ebbcd3da2c4247601",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T02:39:12.050Z"
+}

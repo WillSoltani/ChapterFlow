@@ -1,0 +1,140 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "b", "b", "b", "a", "c", "c"],
+    "mechanisms": [
+      "The prose defines willpower as starting a useful act, stopping a tempting act, and keeping the larger value visible.",
+      "Miller and Cohen are described as showing how prefrontal control keeps goals active and biases attention and action.",
+      "Gage retained speech and survival while frontal injury disrupted planning, steadiness, and social restraint.",
+      "The self-awareness section says change begins by noticing the cue or urge before the action hardens.",
+      "The prose connects self-control to promises, shared resources, conflict repair, and other requirements of group life.",
+      "The chapter says a real value can lose when it is not mentally active at the moment of choice.",
+      "It explicitly treats the short-term and long-term wants as simultaneously real, with attention and support determining action.",
+      "The concrete behavior revealed a trigger and produced feedback, matching the chapter's small-experiment approach.",
+      "Prefrontal control is presented as biasing attention and response when an automatic routine conflicts with the current goal."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "Choice a adds \"over time,\" which the prose does not establish precisely, though no competing choice is defensible.",
+      "",
+      "The prose supports choice b as willpower's social function, but the stem's word \"roots\" implies an evolutionary or historical claim the chapter does not actually demonstrate.",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Across the quiz, incorrect choices repeatedly use giveaway absolutes such as \"fixed,\" \"only,\" \"fully,\" \"must be fake,\" and \"whenever,\" while correct choices use the chapter's measured mechanism language.",
+      "Q2, Q3, and Q7 make the correct answer the most nuanced and substantially longest choice.",
+      "Q1 and Q8 nearly repeat the chapter's named method and vocabulary, making recognition possible without understanding the examples.",
+      "The answer letters are evenly distributed, so there is no useful position-pattern tell."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 77,
+    "transfer": 65,
+    "practical": 79,
+    "summaries": 76,
+    "tone": 78,
+    "limits": 83,
+    "insight": 88,
+    "density": 73,
+    "beginner": 91
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Willpower is the skill of making the longer want visible while the shorter want is still talking. The loudest want is not always the deepest want.",
+      "why": "This is the chapter's clearest and most memorable statement of the underlying mechanism."
+    },
+    {
+      "quote": "A goal must be present to have power.",
+      "why": "A compact line that makes the attention mechanism easy to retain and reuse."
+    },
+    {
+      "quote": "The clinic training room has a safe bet written on the whiteboard: a man who can talk after a rail accident can still steer himself.",
+      "why": "It mislabels Gage's blasting accident as a rail accident and embeds the historical case inside an unlabeled invented scene."
+    },
+    {
+      "quote": "Weekly practice: For the first half of this week, use your usual all-or-nothing rule. For the second half, swap in the Three-Power Check and compare which half made the next action clearer.",
+      "why": "The practice needlessly asks readers to continue a known-unhelpful rule for half a week."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The compressed phrase \"your first habit is to call every lapse weak refusal\" is syntactically awkward and does not orient a cold reader as clearly as the fast read does.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "As a promised stand-alone layer, it repeatedly invokes the three powers without clearly defining the distinct jobs of I will, I won't, and I want.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "It calls the Phineas Gage event a \"rail accident,\" although the chapter itself describes a tamping-iron accident; railroad work was the setting, not the accident mechanism. This is FACTUALLY WRONG.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "Vivian, the training-room event, and the volunteers' expectations are presented as a concrete occurrence without being labeled hypothetical. This is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "Warren's named domestic scene and quoted dialogue are presented without any indication that they are hypothetical. This is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 3",
+      "problem": "Amelia's named clinic incident and dialogue are presented as an occurrence without being labeled hypothetical. This is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 4",
+      "problem": "Brooklyn's detailed locker-room scene is presented as an occurrence without being labeled hypothetical. This is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 5",
+      "problem": "Jeanne's named family call and quoted dialogue are presented without being labeled hypothetical. This is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 6",
+      "problem": "Gemma's named pharmacy incident and quoted text are presented without being labeled hypothetical. This is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples 2-6",
+      "problem": "The repeated pharmacy, clinic, family-message, and impulse vignettes demonstrate essentially the same attention move, limiting transfer to genuinely different constraints or failure modes.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "Most distractors are implausible absolutes or direct denials of the chapter, so the quiz rewards test-wise tone recognition more than discrimination among credible mechanisms.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q5",
+      "problem": "The stem asks about willpower's \"roots,\" but the prose establishes a present social function rather than an evolutionary or historical origin.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The core-skill instructions say to add a barrier after identifying any missing power, although the chapter separately says failures may require a start cue, a barrier, or a made-present value. This is SOURCE-CONTRADICTORY guidance.",
+      "mustFix": true
+    },
+    {
+      "unit": "weekly practice",
+      "problem": "The comparison exercise requires readers to preserve their usual all-or-nothing rule for half the week, adding friction and avoidable failed repetitions when they could compare prospectively or against an existing baseline.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong, teachable core: divide willpower into starting, stopping, and remembering the larger value, then make that value active before an automatic response finishes. Its best lines are memorable, the brain mechanism is explained plainly, and the immediate check is accessible to beginners. It falls below the professional shipping bar because the full-read layer is not fully stand-alone, the quiz relies heavily on cartoonishly absolute distractors, the implementation plan collapses several distinct remedies into a barrier, and the example section presents numerous named, detailed incidents and quotations without marking them as hypothetical. Example 1 also contains the concrete factual error \"rail accident.\" Labeling constructed scenarios, correcting that error, aligning the plan with the chapter's cue/barrier/value distinctions, and making the quiz alternatives more plausible would materially improve it."
+}
+```

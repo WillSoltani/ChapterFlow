@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 20,
+    "quizzes": 0,
+    "transfer": 5,
+    "practical": 35,
+    "summaries": 5,
+    "tone": 45,
+    "limits": 55,
+    "insight": 25,
+    "density": 20,
+    "beginner": 20
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Analysis should make action smarter, not slower when danger is still unfolding.",
+      "why": "This is the chapter's strongest line: concrete, memorable, and mechanism-based."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "The fast read is placeholder text, not a standalone summary."
+    },
+    {
+      "quote": "One added angle.",
+      "why": "The deep read is also placeholder text and does not deepen the concept."
+    },
+    {
+      "quote": "## Quiz",
+      "why": "The quiz section exists as a heading but contains no questions."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section contains only placeholder text and does not provide a standalone fast read.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section contains only placeholder text and does not provide a standalone deeper explanation.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "It references an 'opposite move' and 'clock map' without explaining the base move, so the reader cannot learn the chapter's core concept from the page.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, leaving no practical exercise.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is empty, so there are no transfer examples.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The section is empty, so the quiz is structurally missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This should not ship. The only usable material is a short safety exception in the full read, and even that depends on unexplained terms from a missing surrounding lesson. Most required sections are empty or placeholder text, the quiz has no questions, and the chapter fails its standalone learning promise."
+}
+```

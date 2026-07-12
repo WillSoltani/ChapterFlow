@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "example-pack",
+  "chapterId": "the-intelligent-investor-ch13",
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "The Dashboard Memo That Catches Recognition",
+      "scenario": "Theo watches a banking dashboard reorder a watchlist while Amara drafts a tradeoff memo beside it. The old default is ready to fire: the best-known company should go first because recognition feels like safety. Then ELTRA Corporation lands in the memo as one of the four listed comparison companies, and the default fails in a concrete place. The dashboard can show a familiar name, but the memo still has to weigh price and financial characteristics against the record.",
+      "whatToDo": "Before ranking the company, replace the recognition shortcut with a price-with-record check. Put price, earnings, assets, and the company record in the same memo line, then decide whether the name still deserves the same place.",
+      "whyItMatters": "Recognition is not valuation. A company can be admired or dismissed too quickly when the buyer has not yet checked what is being paid for earnings and assets.",
+      "sourceAnchorIds": [
+        "ch13.fact.1",
+        "ch13.example.1"
+      ],
+      "sourceFactIds": [
+        "ch13.fact.1"
+      ],
+      "namedCaseIds": [
+        "ch13.example.1"
+      ]
+    },
+    {
+      "exampleId": "ex02",
+      "title": "The Kitchen Table Deadline Pause",
+      "scenario": "At the kitchen table, Amara has a decision deadline and a neat reason to move fast: Emerson Electric is the higher-quality industrial company, so buy it first. Miles pushes the paper back across the table and changes the triage rule. Before: strongest company wins the slot. After: premium valuation has to be checked because a high-quality business can still require valuation caution.",
+      "whatToDo": "Make the deadline triage compare quality with price before placing the order. Write one line for business quality and one line for valuation caution, then hold the buy decision if the premium price already assumes high expectations.",
+      "whyItMatters": "The move changes the decision from admiration to appraisal. Investment result depends on price as well as quality, so business excellence can be too expensive.",
+      "sourceAnchorIds": [
+        "ch13.fact.2",
+        "ch13.example.2"
+      ],
+      "sourceFactIds": [
+        "ch13.fact.2"
+      ],
+      "namedCaseIds": [
+        "ch13.example.2"
+      ]
+    },
+    {
+      "exampleId": "ex03",
+      "title": "The One-on-One Growth Test",
+      "scenario": "In a manager one-on-one, Miles brings a small experiment to Rina: treat Emery Air Freight's growth reputation as proof that the air freight business is cheap. Rina does not reject the idea cleanly at first; the note still reads like speed equals value. Caleb adds the recovery step: ask how much growth is already capitalized before letting the reputation carry the decision.",
+      "whatToDo": "Run the experiment as a two-pass note. First, write the growth case exactly as it appears. Second, add the question the first pass skipped: does the market price already capitalize the expected growth? Keep the decision open until that question is answered.",
+      "whyItMatters": "Growth can be overpaid for. High multiples can leave little room for disappointment, so a fast-growing company is not automatically cheap.",
+      "sourceAnchorIds": [
+        "ch13.fact.3",
+        "ch13.example.3"
+      ],
+      "sourceFactIds": [
+        "ch13.fact.3"
+      ],
+      "namedCaseIds": [
+        "ch13.example.3"
+      ]
+    },
+    {
+      "exampleId": "ex04",
+      "title": "The Dashboard Loop That Adds Debt",
+      "scenario": "Rina watches a banking dashboard highlight income statement growth, and Caleb starts to move Emhart Corporation higher in the feedback loop. Naomi stops on the balance-sheet line. The first pass is not useless, but it is incomplete: Emhart is an established industrial name, and valuation evidence still has to include debt because leverage changes downside risk and the value of earnings.",
+      "whatToDo": "Add a balance-sheet checkpoint to the dashboard loop before changing the rank. Compare growth with debt and assets, then revise the memo only after the leverage question sits beside the earnings evidence.",
+      "whyItMatters": "Income statement growth is not enough to rank companies. Debt can make growth fragile, so balance-sheet strength changes the comparison.",
+      "sourceAnchorIds": [
+        "ch13.fact.4",
+        "ch13.example.4"
+      ],
+      "sourceFactIds": [
+        "ch13.fact.4"
+      ],
+      "namedCaseIds": [
+        "ch13.example.4"
+      ]
+    }
+  ]
+}

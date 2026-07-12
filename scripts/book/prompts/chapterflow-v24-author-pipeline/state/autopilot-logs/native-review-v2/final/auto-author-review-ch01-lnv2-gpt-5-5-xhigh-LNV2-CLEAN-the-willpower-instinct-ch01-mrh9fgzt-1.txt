@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "b", "b", "b", "a", "c", "c"],
+    "mechanisms": [
+      "The prose says willpower has I will, I won't, and I want, so refusal alone is only one third.",
+      "The Miller/Cohen passage says prefrontal control keeps goals active and tilts attention and action toward them.",
+      "The Gage passage says survival and speech remained while steadiness, planning, and social restraint changed.",
+      "The self-awareness section says change starts by noticing the moment before the action hardens.",
+      "The social-cost section says self-control helps people keep promises, share resources, and repair conflict.",
+      "The Brooklyn example says the snack is vivid and the quieter want needs to become present at the cue.",
+      "The prose says the short want and long want can both be real; the issue is which gets attention and support.",
+      "The concrete-challenge passage says specific actions expose cues, barriers, values, and feedback.",
+      "The Amelia/routine passages say prefrontal control biases attention and response when a routine conflicts with the goal."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "c is the only option that contains all three powers; a covers only refusal and b is moralized.",
+      "b and c contradict explicit prose in giveaway ways: outside the brain, and only after behavior.",
+      "a closely mirrors the prose; b and c use over-absolute no-value/only-part framing.",
+      "b is the only before-action option; a and c are after-the-fact intensity/regret choices.",
+      "b is the only cooperation answer; a and c are explicit opposites of the chapter.",
+      "a and c use over-absolute wording: must be false and only after removal.",
+      "a is the only answer allowing both motives to be sincere; b and c caricature the conflict.",
+      "c is the only option with experiment and feedback; a and b reject observation.",
+      "c repeats the chapter phrase biases attention and response and is much more technically plausible than the distractors."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 80,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 85,
+    "tone": 82,
+    "limits": 88,
+    "insight": 87,
+    "density": 83,
+    "beginner": 89
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Refusal is only one third of willpower.",
+      "why": "The core correction is memorable, short, and repeated."
+    },
+    {
+      "quote": "A goal must be present to have power.",
+      "why": "This is the chapter's mechanism in one clean line."
+    },
+    {
+      "quote": "If lunch is still not packed, the failure may be in the start cue. If the app still opens, the failure may be in the barrier.",
+      "why": "Strong practical diagnostic language turns the concept into action."
+    },
+    {
+      "quote": "If-then 1: [If your hand moves before your reason catches up] If your hand moves before your reason catches up,",
+      "why": "The visible duplication gives the implementation plan a scaffold smell."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The compressed wording assumes the reader already understands the lapse/refusal contrast, so the standalone hook reads like a riddle.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The correct answer is the only option that names all three powers, so the item is easier to guess by structure than by understanding.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q3",
+      "problem": "The distractors use obvious absolute framing, which weakens the test of the Gage takeaway.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The correct answer repeats the chapter's technical phrasing while the distractors are plainly implausible.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 2, 5, 6",
+      "problem": "Several examples reuse the pharmacy/family pickup/text cluster, narrowing the range of transfer practice.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The if-then entries repeat the bracketed cue and full cue sentence, creating visible template texture.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The core skill says to add a small barrier after naming the missing power, which is narrower than the chapter's own start-cue, barrier, and value-visibility diagnoses.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Ship, with quiz and polish cleanup. The chapter has a clear, memorable core move, teaches the mechanism behind it, and gives readers concrete ways to apply it without moralizing lapses. Its weakest areas are not blocking defects: some quiz distractors are too easy to eliminate, the transfer examples cluster around similar family/pharmacy situations, and the implementation plan shows a little template residue."
+}
+```

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "chapterflow-self-healing-repair-v1",
+  "createdAt": "2026-07-05T04:19:04.941Z",
+  "bookId": "start-with-why",
+  "runId": "book-run",
+  "stage": "qc",
+  "severity": "blocker",
+  "summary": "author review: 3 chapter(s) still fail independent review after the regen cap (2 write attempts each):\n  ch01 — Example 3: Gregoire, established through the car-door material, is suddenly changing a boarding order. The cross-venue role shift feels manufactured and may confuse the learner about who is doing what. (must fix); Example 5: The cause of Raymond's mistake is attributed to a stapled handout, but that cause is not prepared by the chapter. It reads like an invented prop rather than a shown reason. (m\n  ch06 — quiz Q1: The keyed answer is much more complete and structurally aligned with the chapter than the distractors, creating a mild length/completeness tell.; quiz Q9: The keyed answer bundles all the chapter's hard-ground terms, while the distractors are visibly weaker caricatures; this makes the answer partly guessable.; Example 1: The example has a decision and consequence, but the consequence is m\n  ch14 — fast read: The company and product parentheticals read like source-packet metadata rather than natural prose, which creates template/scaffold smell.; hook and fast read: The opening three sentences are repeated verbatim, so the layered read feels padded instead of progressively deeper.; examples section: The examples mostly recycle Apple-Dell, Microsoft, and Southwest instead of showing the move i",
+  "findings": [],
+  "artifacts": [
+    "state/qc/start-with-why.sweep.json"
+  ],
+  "recommendedFixes": [
+    "Use the QC repair brief/prompt for the latest round. Repair content only; never attest your own repair.",
+    "After edits, run qc-converge and then a fresh QC round."
+  ],
+  "validationCommands": [
+    "npx tsx src/cli.ts qc-converge start-with-why",
+    "npx tsx src/cli.ts book-run start-with-why --no-publish"
+  ],
+  "nextCommand": "npx tsx src/cli.ts book-run start-with-why --no-publish",
+  "promptPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/start-with-why/book-run/qc.20260705041904.eed2e09a.repair.md",
+  "reportPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/start-with-why/book-run/qc.20260705041904.eed2e09a.repair.json"
+}

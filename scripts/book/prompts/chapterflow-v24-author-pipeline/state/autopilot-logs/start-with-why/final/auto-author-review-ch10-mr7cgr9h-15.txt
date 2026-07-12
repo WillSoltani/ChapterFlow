@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several correct choices are the only ones that use the chapter's named anchors or framework vocabulary, making some answers guessable by specificity rather than full reading."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 83,
+    "transfer": 86,
+    "practical": 82,
+    "summaries": 87,
+    "tone": 88,
+    "limits": 86,
+    "insight": 85,
+    "density": 80,
+    "beginner": 84
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Words give actions a job.",
+      "why": "Strong compression of the chapter's core mechanism."
+    },
+    {
+      "quote": "Communication begins with words, but the listener audits what life around the words shows.",
+      "why": "Memorable and precise statement of the listening/audience mechanism."
+    },
+    {
+      "quote": "If you move a hard detail because it sounds useful, you make a false ledger entry.",
+      "why": "Clear transfer warning that explains why true details can mislead."
+    },
+    {
+      "quote": "Health is the word. Celery is the act that can carry it.",
+      "why": "Useful beginner-friendly distinction, though the surrounding fast read repeats the hook too closely."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The opening repeats the hook's celery/Oreos setup almost verbatim, so the fast read starts with echo rather than adding a new layer.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Correct options often carry the chapter's named anchors or exact framework terms while distractors are generic approvals, slogans, or broad advice, creating a specificity tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The ledger/accounting metaphor repeats heavily across multiple paragraphs; it is memorable, but starts to lower density by restating the same diagnostic move.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against an 80+ professional bar. The chapter has a clean core move: words frame a claim, visible actions/symbols supply evidence, and the audience audits what comes back. The three anchors do real separate work, the quizzes are derivable and key-sound, and the practical exercises are low-friction. The main weaknesses are not structural: some repetition in the fast/full reads and a mild quiz-answer tell where the most concrete, chapter-specific option is often right."
+}
+```

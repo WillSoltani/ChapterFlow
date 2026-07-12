@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": ["No quiz questions are present, so no answer-pattern tells can be assessed."]
+  },
+  "scores": {
+    "retention": 20,
+    "quizzes": 0,
+    "transfer": 25,
+    "practical": 25,
+    "summaries": 5,
+    "tone": 20,
+    "limits": 10,
+    "insight": 35,
+    "density": 20,
+    "beginner": 45
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This is scaffold text, not a reader-facing hook."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "The fast read promises concision but does not state an actual idea."
+    },
+    {
+      "quote": "What are the growth paths this money could fund?",
+      "why": "This is the chapter's strongest usable move: reframing a binary decision into alternatives."
+    },
+    {
+      "quote": "## Quiz",
+      "why": "The quiz section exists as a heading but contains no quiz."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook contains review/scaffold language instead of chapter content, so it does not function as a reader-facing opening.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read is placeholder text and fails its standalone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read is placeholder text and adds no actual angle or explanation.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is present but empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is present but empty, so the reader gets no practical action.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is present but empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section has no questions, so the product cannot test or reinforce learning.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is present but empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is present but empty.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The only real instructional substance is the Snapple reframing example, which gives a useful opportunity-cost move, but nearly every product section is either placeholder text or empty. There is no quiz to answer, no key takeaway, no practice step, no examples section, no review cards, and no memorable lines, so the chapter fails the professional bar structurally rather than merely needing polish."
+}
+```

@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 45,
+    "quizzes": 0,
+    "transfer": 50,
+    "practical": 55,
+    "summaries": 5,
+    "tone": 45,
+    "limits": 70,
+    "insight": 75,
+    "density": 40,
+    "beginner": 70
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The skill is not picking numbers over stories. The skill is making each lens do its own job.",
+      "why": "Strongest moment: it states the chapter's core move plainly and memorably."
+    },
+    {
+      "quote": "Either lens alone can mislead.",
+      "why": "Strong concise mechanism: the reader sees why outside view and close-up detail must be paired."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "Worst defect: the fast read is placeholder text, not a usable standalone layer."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz",
+      "why": "Worst defect: multiple required sections are empty, including the quiz."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section is placeholder text and does not provide a standalone fast version of the chapter.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is placeholder text and does not provide a standalone deeper layer.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is present but empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is present but empty, so the reader gets no concrete action to practice.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is present but empty; the full read includes brief examples, but the dedicated examples layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section is present but empty, so the quiz is structurally broken and cannot be answered.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is present but empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is present but empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook reads like production metadata rather than reader-facing chapter content.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The full read contains a useful and teachable idea: improve forecasts by separating outside-view reference classes from close-up lived detail. That core is clear, beginner-friendly, and has some mechanism. But the chapter is not shippable because most required product layers are empty or placeholders, including the quiz, key takeaway, try-it-now exercise, examples, review cards, and memorable lines. As a prose seed it has promise; as a professional chapter it is structurally incomplete."
+}
+```

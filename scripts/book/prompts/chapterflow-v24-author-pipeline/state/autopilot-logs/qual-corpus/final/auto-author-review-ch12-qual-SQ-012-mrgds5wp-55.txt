@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 35,
+    "quizzes": 0,
+    "transfer": 38,
+    "practical": 25,
+    "summaries": 2,
+    "tone": 42,
+    "limits": 0,
+    "insight": 30,
+    "density": 18,
+    "beginner": 45
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "\"If growth is the job, what else buys growth with this much money?\"",
+      "why": "This memorable question captures the chapter's useful core move: compare a proposed deal with alternative ways to achieve the underlying goal."
+    },
+    {
+      "quote": "The deal becomes one path.",
+      "why": "A compact line clearly expresses the shift from binary approval to comparing options."
+    },
+    {
+      "quote": "## Fast read\nA concise idea.\n\n## Deep read\nOne added angle.",
+      "why": "These are scaffold placeholders rather than standalone summaries of the lesson."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Six required learning components are present only as empty headings."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Hook",
+      "problem": "The hook is production-status metadata rather than reader-facing chapter content, so the section fails its purpose.",
+      "mustFix": true
+    },
+    {
+      "unit": "Fast read",
+      "problem": "The section contains only the placeholder \"A concise idea.\" and does not state the chapter's idea, so it fails its standalone-summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "Deep read",
+      "problem": "The section contains only the placeholder \"One added angle.\" and supplies neither an angle nor a usable explanation, so it fails its standalone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "Full read",
+      "problem": "The scenario demonstrates reframing a binary acquisition question, but it never explains the mechanism, boundaries, or conditions under which the move helps.",
+      "mustFix": false
+    },
+    {
+      "unit": "Key takeaway",
+      "problem": "The section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The section is empty, leaving the reader without the promised exercise or practical application.",
+      "mustFix": true
+    },
+    {
+      "unit": "Examples",
+      "problem": "The section is empty, so the chapter offers no additional example for transfer beyond the single full-read scenario.",
+      "mustFix": true
+    },
+    {
+      "unit": "Quiz",
+      "problem": "The quiz contains no questions or choices, making the quiz structurally broken and impossible to answer.",
+      "mustFix": true
+    },
+    {
+      "unit": "Review cards",
+      "problem": "The section is empty and provides no retrieval-practice material.",
+      "mustFix": true
+    },
+    {
+      "unit": "Memorable lines",
+      "problem": "The section is empty despite the full read containing lines that could have been selected for retention.",
+      "mustFix": true
+    },
+    {
+      "unit": "chapter-wide limits",
+      "problem": "The chapter gives no failure modes or boundaries, such as when broadening the option set may delay a time-sensitive decision.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The full-read scenario contains a clear and potentially useful move: replace a binary proposal question with a comparison of alternative paths to the underlying goal. Its concrete deal figure and closing line give the idea some memorability. However, nearly the entire learning product remains empty or placeholder scaffold: the layered reads do not summarize the lesson, the quiz is absent, and there is no takeaway, exercise, example set, review practice, or limits discussion. The core move can be inferred from one paragraph, but this is structurally incomplete and far below a professional shipping bar."
+}
+```

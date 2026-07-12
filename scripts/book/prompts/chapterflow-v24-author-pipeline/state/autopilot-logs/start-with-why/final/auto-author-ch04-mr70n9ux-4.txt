@@ -1,0 +1,9 @@
+Created [start-with-why-ch04.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch04.v21-native.chapter.json).
+
+Validation:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers
+- Detailed ship gate: 0 blockers, 0 minors, 1 major only: `SC11.0.no_source_run` because `.chapterflow/runs/start-with-why/...` source sidecar is missing on disk
+- Quiz key pattern: `1,2,0,2,0,1,1,0,2`
+- Rendered chars: `18,430`, inside budget
+- Breakdown Flesch self-check stayed in band.

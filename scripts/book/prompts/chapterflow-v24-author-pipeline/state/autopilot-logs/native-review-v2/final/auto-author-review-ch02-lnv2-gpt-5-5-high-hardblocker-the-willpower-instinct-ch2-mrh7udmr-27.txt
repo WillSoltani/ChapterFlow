@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "mechanisms": [
+      "The prose defines heart rate variability as beat-to-beat rhythm shifting and links higher variability with stronger self-regulation.",
+      "The stress-lab prose says public speaking, arithmetic, and evaluators create social judgment without physical danger.",
+      "The chapter says stress narrows attention toward fast relief, making candy, purchases, or sharp replies feel like shelter.",
+      "Tang's training is presented as brief practice that steadies attention and softens stress reactivity before urges peak.",
+      "Slow breathing is framed as changing the body state so the choosing system stays online, not as proof the message is unimportant.",
+      "Pause-and-plan asks whether arousal crowds out the calm runway needed for goals and future consequences to enter.",
+      "The sleep section says tired attention loses its grip and loud cues can displace the goal the person meant to remember.",
+      "The movement section says activity can improve mood, stress regulation, and executive function, reducing load on the next choice.",
+      "The chapter repeatedly says waiting until the craving peaks is unfair because the body needs runway before the hardest moment."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Mild tell: the correct answer repeats the stem's beat-to-beat phrasing and is slightly longer than the distractors.",
+      "Mild tell: the correct answer contains the exact chapter phrase social judgment and low control and is the longest option.",
+      "No strong length tell; the correct option is mainly signaled by chapter vocabulary around stress and quick relief.",
+      "Mild tell: the correct answer is the longest and mirrors brief practice plus attention stability.",
+      "No strong tell; the distractors are visibly wrong because they downplay seriousness or reduce breathing to distraction.",
+      "Mild tell: the correct answer uses the chapter's room/goal language and is the longest option.",
+      "Mild tell: the correct answer is the longest and directly echoes tired attention competing with cues.",
+      "Mild tell: the correct answer is the longest and copies the chapter's mood, stress regulation, and executive function triad.",
+      "Mild tell: the correct answer is the longest and repeats runway before the craving peaked."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 72,
+    "practical": 86,
+    "summaries": 88,
+    "tone": 84,
+    "limits": 91,
+    "insight": 88,
+    "density": 83,
+    "beginner": 87
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Panic is a poor coach. Calm gives the future a vote.",
+      "why": "This is the chapter's strongest memorable compression of the core mechanism."
+    },
+    {
+      "quote": "A slow exhale is not a moral medal; it is a way to keep the choosing part of you online before the urge peaks.",
+      "why": "It cleanly explains why the tactic works without making it sound virtuous or magical."
+    },
+    {
+      "quote": "Pause-and-plan is not a way to avoid the hard act; it is a way to arrive at it with more of yourself present.",
+      "why": "This is a strong limit statement that prevents the method from becoming avoidance."
+    },
+    {
+      "quote": "Actually, the stronger move is to pump himself up and chase that panic before speaking, because a spike of adrenaline right at the peak is what proves the body is ready.",
+      "why": "This sentence directly contradicts the example's lesson and the chapter's body-first thesis."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 2",
+      "problem": "The What to do section contains a sentence telling Adam to pump himself up and chase panic because adrenaline proves readiness, which directly contradicts the surrounding example and the chapter's pause-and-plan mechanism. Reserved category: SOURCE-CONTRADICTORY.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Several correct answers are the longest option and reuse the chapter's exact phrasing, creating mild answer-pattern tells even though the questions are otherwise derivable.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The Tang connection is stretched: the example moves a pill bottle into view, but the cited training evidence in the prose is about attention and stress reactivity, not environmental cue placement.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The Core skill line repeats the title phrase almost verbatim, giving this otherwise useful section a slight scaffold/template smell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a clear, memorable body-first model of willpower, good beginner access, practical moves, and unusually honest limits around avoidance and urgent action. The quiz is fair and fully derivable, though several correct options are made easier by length and exact phrasing. I would not ship it yet because Example 2 contains a direct contradiction that teaches the opposite of the chapter's mechanism; after that is removed, the chapter is close to a professional bar."
+}
+```

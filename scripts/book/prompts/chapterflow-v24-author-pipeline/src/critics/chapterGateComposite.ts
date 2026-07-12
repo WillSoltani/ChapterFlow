@@ -27,7 +27,7 @@ import { dirname, resolve } from "path";
 
 import type { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE, checkChapterIdentity } from "../lib/chapterPaths.js";
-import { runShipGate, formatGateReport } from "./finalGate.js";
+import { runShipGate, formatGateReport, type ShipGateOptions } from "./finalGate.js";
 import { loadSiblingChapters, runIntraBookChecks } from "./intraBook.js";
 
 export type ChapterGateCompositeResult = {
@@ -40,6 +40,23 @@ export type ChapterGateCompositeResult = {
   combinedBlockers: number;
 };
 
+/** Optional isolation controls for callers that gate an experiment-local
+ * candidate.  Normal CLI/pipeline callers omit this object and retain the
+ * canonical advisory/history behaviour. */
+export type ChapterGateCompositeOptions = {
+  /** Persist circuit-breaker history here instead of canonical
+   * state/gate-attempts.json. */
+  gateAttemptStatePath?: string;
+  /** Frozen source sidecar supplied by an isolated caller.  When present the
+   * authoring-contract advisory never searches ambient .chapterflow runs. */
+  sourceSidecar?: unknown;
+  /** The key-judge record is canonical QC state and is not an input to a fresh
+   * forward experiment.  Isolated callers disable this advisory; their
+   * separately ledgered quiz lane remains authoritative. */
+  disableCanonicalKeyJudgeAdvisory?: boolean;
+  shipGate?: ShipGateOptions;
+};
+
 export async function runChapterGateComposite(
   chapter: ChapterV21,
   /** Path used for sibling discovery + identity check — the chapter's CANONICAL
@@ -50,13 +67,14 @@ export async function runChapterGateComposite(
    *  argument (usually the relative "state/chapters/…" spelling) — keep passing
    *  the same spelling from the conductor so per-chapter history stays one row. */
   attemptKey: string,
+  options: ChapterGateCompositeOptions = {},
 ): Promise<ChapterGateCompositeResult> {
   const lines: string[] = [];
 
   // ── 1. Chapter-only ship gate (crash-guarded) ─────────────────────────────
   let report;
   try {
-    report = runShipGate(chapter);
+    report = runShipGate(chapter, options.shipGate);
   } catch (err) {
     return {
       exitCode: 1,
@@ -100,7 +118,10 @@ export async function runChapterGateComposite(
   try {
     const { checkAuthoringContract } = await import("./authoringContract.js");
     const { loadChapterSidecar } = await import("./sourceGrounding.js");
-    const acFindings = checkAuthoringContract(chapter, { sidecar: loadChapterSidecar(chapter.chapterId), filePath: resolve(siblingContextPath) });
+    const sidecar = Object.prototype.hasOwnProperty.call(options, "sourceSidecar")
+      ? options.sourceSidecar
+      : loadChapterSidecar(chapter.chapterId);
+    const acFindings = checkAuthoringContract(chapter, { sidecar, filePath: resolve(siblingContextPath) });
     if (acFindings.length > 0) {
       lines.push("");
       lines.push(`Authoring-contract findings (advisory/shadow — ${acFindings.length}; run \`author-check\` for the full JOB report):`);
@@ -111,16 +132,18 @@ export async function runChapterGateComposite(
   }
 
   // ── 4b. Quiz answer-key judge (advisory — blocks at promote) ─────────────
-  try {
-    const { checkKeyJudge } = await import("./quizKeyGate.js");
-    const kjFindings = checkKeyJudge(chapter, false);
-    if (kjFindings.length > 0) {
-      lines.push("");
-      lines.push("Quiz answer-key judge findings (advisory — blocks at promote):");
-      for (const f of kjFindings) lines.push(`  [${f.checkId} ${f.severity}] ${f.message}`);
+  if (!options.disableCanonicalKeyJudgeAdvisory) {
+    try {
+      const { checkKeyJudge } = await import("./quizKeyGate.js");
+      const kjFindings = checkKeyJudge(chapter, false);
+      if (kjFindings.length > 0) {
+        lines.push("");
+        lines.push("Quiz answer-key judge findings (advisory — blocks at promote):");
+        for (const f of kjFindings) lines.push(`  [${f.checkId} ${f.severity}] ${f.message}`);
+      }
+    } catch {
+      /* non-fatal — advisory layer */
     }
-  } catch {
-    /* non-fatal — advisory layer */
   }
 
   // ── 5. Authoritative combined verdict ─────────────────────────────────────
@@ -142,7 +165,7 @@ export async function runChapterGateComposite(
     blockers: [...report.blockers, ...intraBlockerSig],
     passed: report.blockers.length === 0 && extraBlockers === 0,
   };
-  const attempts = recordGateAttempt(attemptKey, combinedReport);
+  const attempts = recordGateAttempt(attemptKey, combinedReport, options.gateAttemptStatePath);
   let breakerTripped = false;
   if (attempts.sameBlockerStreak >= 3) {
     breakerTripped = true;
@@ -192,8 +215,9 @@ type GateAttemptEntry = {
 export function recordGateAttempt(
   chapterFile: string,
   report: { blockers: Array<{ catalogId: string }>; passed: boolean },
+  stateFile = resolve(CANONICAL_STATE, "gate-attempts.json"),
 ): { total: number; sameBlockerStreak: number; lastSignature: string; distinctSigStreak: number; nonPassTotal: number; recentSigs: string[] } {
-  const STATE_FILE = resolve(CANONICAL_STATE, "gate-attempts.json");
+  const STATE_FILE = resolve(stateFile);
   let state: Record<string, GateAttemptEntry> = {};
   try {
     if (existsSync(STATE_FILE)) state = JSON.parse(readFileSync(STATE_FILE, "utf8"));

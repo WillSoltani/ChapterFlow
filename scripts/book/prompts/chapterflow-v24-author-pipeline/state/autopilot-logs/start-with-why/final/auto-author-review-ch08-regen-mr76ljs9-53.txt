@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "c", "a", "c", "b", "b", "c", "b", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several distractors are easy to eliminate without the prose because they use extreme or giveaway phrasing: 'all founder stories', 'all other uses unsafe', 'only matters in founding stories', 'Only a shorter wording', and 'already been settled by Microsoft alone'."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 78,
+    "transfer": 76,
+    "practical": 83,
+    "summaries": 88,
+    "tone": 84,
+    "limits": 90,
+    "insight": 86,
+    "density": 80,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The WHY does not shrink the HOW; the HOW keeps the WHY honest.",
+      "why": "This is the chapter's strongest compressed insight and is likely to stick."
+    },
+    {
+      "quote": "If a client, peer, or friend makes a bold promise, ask who owes what by when.",
+      "why": "This turns the abstract WHY/HOW/WHAT frame into a usable workplace move."
+    },
+    {
+      "quote": "Move one year to the wrong pair and the sentence still sounds firm, but its proof has slipped.",
+      "why": "Strong mechanism: it explains how true details become false support."
+    },
+    {
+      "quote": "1975 belongs with the Microsoft founders. 1923 belongs with the Disney brothers. 1976 belongs with Jobs and Wozniak.",
+      "why": "The chapter leans hard into date-pair policing, which can crowd out the broader transfer lesson."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "The keys are derivable and sound, but many distractors telegraph themselves through absolutes or obviously bad overreach, making several items answerable by test-taking instincts rather than chapter learning.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "The quiz overweights founder-pair/date correctness compared with practical transfer. A reader can ace much of it by tracking 1975/1923/1976 rather than demonstrating they can test a live promise.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples overall",
+      "problem": "The examples are concrete enough to avoid pure slot-filler, but several stay close to artificial founder-story correction instead of showing ordinary before-to-after decisions where the WHY/HOW/WHAT check changes an outcome.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 1: The Borrowed Year",
+      "problem": "The situation has names and a venue, but the consequence is mostly conceptual: 'uses the right story or loses the proof.' It would be stronger with a specific changed supplier decision or failed consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter sometimes makes historical anchors feel like the lesson itself. The practical move is strong, but the date distinctions occasionally become more salient than the promise-checking behavior.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a solid, shippable-adjacent chapter with a memorable core move: reason frames method, method returns proof, and hard details keep stories honest. The summaries layer well, the tone is mostly plain, and the limits section is unusually good. I would not ship it at an 84/professional bar yet because the quiz has too many eliminable distractors and the chapter leans too much on founder-date policing instead of testing the transferable skill in ordinary decisions. Tighten the quiz tells and add one or two more consequential before-to-after examples, and it would likely clear the bar."
+}
+```

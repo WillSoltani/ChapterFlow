@@ -1,0 +1,84 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "c", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as four named moves matched to four different decision dangers, not a general pause.",
+      "The vendor frame is a narrow yes-or-no frame, and the chapter says widening live options must happen before evidence decorates a cramped choice.",
+      "Confirmation bias is countered by Reality-testing: looking for evidence that can surprise or weaken the favorite plan.",
+      "The Intel passage says emotion can carry information, but distance should quiet short-term attachment so the long term can be judged.",
+      "Overconfidence is countered by naming a wider range of possible futures instead of trusting one neat forecast.",
+      "Steve Cole's HopeLab logic was to fund parallel first passes so comparison teaches before commitment.",
+      "Grove's outsider question asks what a fresh outsider would do without Intel's memory-chip attachment.",
+      "The four-villain idea says different dangers occur at framing, evidence, emotion, and forecasting, so each needs a different move.",
+      "The chapter says good process improves odds without promising the outcome because uncertainty remains."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q1's correct option is the only one that names all four WRAP moves, making it guessable from acronym recognition.",
+      "Several distractors are plainly self-defeating, such as treating an upbeat forecast as proof or saving WRAP until after choosing.",
+      "Q9's correct option closely echoes the memorable line about improving odds while uncertainty remains."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 84,
+    "transfer": 82,
+    "practical": 81,
+    "summaries": 91,
+    "tone": 88,
+    "limits": 92,
+    "insight": 91,
+    "density": 87,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "Strongest retention line: concrete, compact, and central to the chapter's first move."
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "Best mechanism sentence: it explains confirmation bias without jargon."
+    },
+    {
+      "quote": "Good process raises the odds without promising the outcome.",
+      "why": "Strong boundary: it prevents the reader from mistaking WRAP for certainty."
+    },
+    {
+      "quote": "The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.",
+      "why": "Weakest practical moment: the action is concrete, but 'shortcut' is underdefined at this point."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "try this now",
+      "problem": "The exercise asks for a cue, shortcut, and likely villain, but 'shortcut' has not been clearly defined yet, so the immediate action is less self-contained.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "The correct choices often reuse the chapter's exact lesson language while distractors are extreme or obviously bad, which reduces diagnostic value.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The Yvonne forecast scenario is usable but thin: it shows the range move, yet gives no concrete consequence after the decision changes.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The team-lead texting example mostly restates the process and does not show a before-to-after decision result.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The title and Core skill repeat almost the same sentence, creating a slight scaffold smell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This ships against an 80-point professional bar. The chapter is clear, memorable, and unusually honest about process limits: WRAP improves the decision before the outcome is known, but cannot make uncertainty disappear. The main weaknesses are craft-level rather than blocking defects: quiz distractors are too easy to eliminate, a few transfer examples are thin, and the immediate practice prompt uses one underexplained term."
+}
+```

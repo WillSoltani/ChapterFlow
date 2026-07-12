@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "radical-candor-ch06",
+  "chapterNumber": 6,
+  "contentHash": "47e9e35f5151d829",
+  "reviewerSessionId": "auto-author-review-ch06-mrdyz9kk-9",
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 78,
+    "practical": 90,
+    "summaries": 89,
+    "tone": 88,
+    "limits": 86,
+    "insight": 87,
+    "density": 84,
+    "beginner": 90
+  },
+  "composite": 86.3,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "c",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The audience changes the lesson into a display, and the recipient must now manage both the content and the social hit.",
+      "why": "Strong mechanism: it explains why public criticism blocks learning rather than just naming the rule.",
+      "verified": true
+    },
+    {
+      "quote": "Use the list before the sentence leaves your mouth.",
+      "why": "Memorable and portable; it compresses the chapter's core move into an action cue.",
+      "verified": true
+    },
+    {
+      "quote": "In the draft, HHIPP states the standard first: use all six members, including not Personalized, not directness alone.",
+      "why": "Weakest example texture: it refers to a draft and a mark rather than a concrete person, setting, decision, and consequence.",
+      "verified": true
+    },
+    {
+      "quote": "The proof comes after you are criticized, not before.",
+      "why": "Strong insight line that makes upward feedback behaviorally testable.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q3: choice c is the only option that simply lists the full HHIPP acronym, making it easier to pick without close reading.",
+    "Q1: choice b mirrors the chapter's exact framing of HHIPP as a delivery checklist, while the other choices feel more obviously off-topic."
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "Thin-but-usable example: it uses abstract props like a draft and red mark instead of a concrete workplace scene with a named action and consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "Thin-but-usable example: it restates the SBI lesson through a folded page metaphor but gives no specific feedback situation, before-after decision, or consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q3",
+      "problem": "The correct answer is somewhat telegraphed because it is the only option that fully enumerates the HHIPP list.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter gives a clear, memorable feedback move: use SBI to keep criticism observable, then use HHIPP to control timing, privacy, tone, and identity risk. The practical advice is concrete and beginner-friendly, and the limits section usefully says when dialogue is not the right move. The main weakness is transfer: several examples are more like stylized teaching cards than lived scenes, so they reinforce the lesson but do not add much situational range. The quiz is fair overall, with a couple of mild tells but no key-soundness failures.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "b4743b03513aba3b6c269474a18b5fd264ee2ed3708bbde0ed1358db5c2ab167",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T20:39:41.028Z"
+}

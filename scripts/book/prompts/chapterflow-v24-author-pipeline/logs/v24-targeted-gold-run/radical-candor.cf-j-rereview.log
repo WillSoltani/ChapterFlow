@@ -1,0 +1,25 @@
+2026-07-09T22:42:18.985Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-09T22:42:21.248Z [MAJOR] PHASE qc written 9/9 · gated 9 · qc'd 0
+2026-07-09T22:42:21.348Z [info]  author review budgets: reader budgets clean (3 advisory finding(s)) — advancing
+2026-07-09T22:42:21.349Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch03 reading surface mentions "growth" (distinctive token of case "Growth Management") 10 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T22:42:21.349Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch04 reading surface mentions "wheel" (distinctive token of case "GSD Wheel") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T22:42:21.349Z [info]  author review budgets: advisory [CHB2.length_budget] ch02 estimated rendered length 19913 chars is 24% over the 16000-char budget (allowed window 12800–19200; within the advisory band — polish, not a halt); readers rejected ~40% inflation.
+2026-07-09T22:42:21.352Z [info]  author review: 9 chapter(s), one blinded reader each (parallel ≤6, bar 80)
+2026-07-09T22:43:21.598Z [info]  author review ch03: composite 89.3 ship=true keys 9/9 → PASS
+2026-07-09T22:43:41.326Z [info]  author review ch01: composite 81.4 ship=false keys 9/9 → FAIL
+2026-07-09T22:43:50.737Z [info]  author review ch05: composite 85.4 ship=true keys 9/9 → PASS
+2026-07-09T22:44:03.116Z [info]  author review ch02: composite 86 ship=false keys 9/9 → FAIL
+2026-07-09T22:44:14.901Z [info]  author review ch06: composite 84.5 ship=false keys 9/9 → FAIL
+2026-07-09T22:44:50.835Z [info]  author review ch07: composite 86.1 ship=true keys 9/9 → PASS
+2026-07-09T22:45:16.187Z [info]  author review ch09: composite 85.6 ship=true keys 9/9 → PASS
+2026-07-09T22:45:18.742Z [info]  author review ch08: composite 85.1 ship=false keys 9/9 → FAIL
+2026-07-09T23:12:23.570Z [info]  ── cost report — radical-candor [halt:infra] ──
+  grand total spawns: 9  (minted ids 9; verb ids 0)
+  by type: author-review:9
+  by phase: qc:9
+  carry: acceptance 0 hit / 1 miss · reviews 0 hit / 9 miss
+  wall (spawn ms) by phase: qc:716905  total:716905
+  ERROR honest-accounting invariant TRIPPED: 1 spawn id(s) minted but never logged — a hidden/unlogged spawn exists: auto-author-review-ch04-mre3ds1h-4
+2026-07-09T23:12:23.571Z [info]  ERROR cost-report honest-accounting invariant TRIPPED for radical-candor: 1 spawn id(s) minted but never logged (auto-author-review-ch04-mre3ds1h-4) — a spawn site is not routing through logSession.
+2026-07-09T23:12:23.573Z [FINAL] HALT AUTOPILOT HALT — radical-candor [phase qc · infra]: unexpected failure: codex exec timed out after 1800000ms — re-run `book-autopilot radical-candor` to resume from the current phase (logs: state/autopilot-logs/radical-candor).
+2026-07-09T23:12:23.574Z [FINAL] repair prompt: /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/radical-candor/r20260709204223-456b08/qc.20260709231223.857b8cfc.repair.md

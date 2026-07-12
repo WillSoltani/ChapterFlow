@@ -1,0 +1,80 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water study says a milder ending can make a longer hard episode remembered as preferable.",
+      "The red phone lesson is that a modest setting can create one vivid story through a visible, tellable surprise.",
+      "YES Prep turns a private achievement into a witnessed public milestone, making pride and connection visible.",
+      "The prose names the four ingredients as elevation, insight, pride, and connection.",
+      "The red pool phone shows a concrete visible object can signal that the ordinary script has changed.",
+      "The chapter says the delivery matters: request, phone, and tray turn a free snack into a small event.",
+      "Thresholds should be marked before the next stage turns into private logistics.",
+      "The chapter explicitly says memory does not average each minute and is shaped by peaks and endings.",
+      "The mint is like a quiet free item, while the red phone worked because it had a tellable format."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "",
+      "",
+      "",
+      "Correct choice is the only option that lists four positive abstract ingredients, making it guessable from the stem.",
+      "",
+      "",
+      "",
+      "Negative stem plus option a's 'average each minute' mirrors the chapter's central warning, making it easy to spot.",
+      ""
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 72,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 90,
+    "insight": 84,
+    "density": 82,
+    "beginner": 91
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A small peak can become the story of the whole stay.",
+      "why": "Strongest compression of the chapter's core move into a memorable line."
+    },
+    {
+      "quote": "The ending can rewrite the remembered weight.",
+      "why": "A clear, sticky mechanism for why endings deserve design."
+    },
+    {
+      "quote": "The real takeaway is to make every episode as short as possible, because memory simply records total duration and the final moments carry no special weight.",
+      "why": "Worst defect: it directly contradicts the chapter's cold-water lesson."
+    },
+    {
+      "quote": "A red phone cannot make an unsafe pool feel fine.",
+      "why": "Good limits language: it prevents the moment-design idea from becoming cover for broken basics."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 3",
+      "problem": "The 'What to do' sentence says memory records total duration and final moments carry no special weight, which directly contradicts the chapter's cold-water study and the quiz/review cards.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct option is much more obviously aligned with the named framework than the distractors, so the item tests recognition more than application.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The negative stem is fair but easier to answer by spotting the chapter's repeated 'not average each minute' phrasing than by reasoning through the scenario.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a clear, teachable chapter with a memorable core image, good layered summaries, practical if-then guidance, and unusually honest limits. The quiz is mostly fair and derivable, though a couple of items are a bit too transparent. The blocking issue is Example 3, which inserts a sentence that reverses the chapter's own lesson about duration and endings; that is concrete reader-harming contradiction, not polish. Fix that example and the chapter would be close to ship quality."
+}
+```

@@ -1,0 +1,91 @@
+2026-07-09T10:13:36.989Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-09T10:13:36.993Z [MAJOR] PHASE research written 0/? · gated 0 · qc'd 0
+2026-07-09T10:13:38.016Z [MAJOR] RESEARCH spawning research session
+2026-07-09T10:25:43.073Z [MAJOR] PHASE write written 0/16 · gated 0 · qc'd 0
+2026-07-09T10:25:44.185Z [info]  author source-packets: compile-source-packets: PASS (16 packet(s))
+2026-07-09T10:25:45.298Z [info]  author source-packet-gate: source-packet-gate: PASS (16 chapter(s), 0 blocker(s), 0 advisory)
+2026-07-09T10:25:46.500Z [info]  author book-design: compile-book-design: PASS
+2026-07-09T10:25:47.656Z [info]  author book-design-gate: book-design-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-09T10:25:48.955Z [info]  author chapter-briefs: compile-chapter-briefs: PASS (32 file(s))
+2026-07-09T10:25:50.385Z [info]  author chapter-brief-gate:   [ADVISORY LJ1.adjacent_learning_job] chapters 15 and 16 declare near-duplicate learning jobs (coreMove content-lemma Jaccard 1.00 ≥ 0.6) — adjacent chapters should teach DISTINCT capabilities. Ch15: "Because the second case changes the venue, it tests whether the mechanism travel"; Ch16: "Because the second case changes the venue, it tests whether the mechanism travel". Give one chapter a different facet/emphasis of the shared material, or reassign a case so their jobs diverge.
+2026-07-09T10:25:50.386Z [info]  author write: 16 missing chapter(s) of 16 (parallel ≤6)
+2026-07-09T10:25:50.395Z [info]  author ch01: card is 29507 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T10:25:50.395Z [info]  author ch01: whole-chapter writer working (attempt 1, card 29507 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:25:50.403Z [info]  author ch02: card is 29290 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T10:25:50.404Z [info]  author ch02: whole-chapter writer working (attempt 1, card 29290 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:25:50.430Z [info]  author ch03: card is 29594 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T10:25:50.432Z [info]  author ch03: whole-chapter writer working (attempt 1, card 29594 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:25:50.442Z [info]  author ch04: card is 29811 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T10:25:50.442Z [info]  author ch04: whole-chapter writer working (attempt 1, card 29811 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:25:50.456Z [info]  author ch05: card is 28567 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T10:25:50.456Z [info]  author ch05: whole-chapter writer working (attempt 1, card 28567 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:25:50.474Z [info]  author ch06: card is 29838 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T10:25:50.477Z [info]  author ch06: whole-chapter writer working (attempt 1, card 29838 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:34:34.279Z [info]  author ch02: ch02: STIER-2 write contract FAIL — lead thread: the dealt lead (Tony) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-09T10:34:34.284Z [info]  author ch02: whole-chapter writer working (attempt 2, card 29614 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:37:54.492Z [info]  author ch04: done (gate-chapter clean)
+2026-07-09T10:37:54.495Z [info]  author ch07: card is 29645 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T10:37:54.495Z [info]  author ch07: whole-chapter writer working (attempt 1, card 29645 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:40:59.499Z [info]  author ch01: done (gate-chapter clean)
+2026-07-09T10:40:59.503Z [info]  author ch08: card is 28858 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T10:40:59.503Z [info]  author ch08: whole-chapter writer working (attempt 1, card 28858 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:41:30.789Z [info]  author ch05: done (gate-chapter clean)
+2026-07-09T10:41:30.792Z [info]  author ch09: card is 29986 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T10:41:30.792Z [info]  author ch09: whole-chapter writer working (attempt 1, card 29986 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:42:25.505Z [info]  author ch03: ch03: rubric preflight FAIL — ch03: FAIL ease=76.315 fk=5.361~ tell=0.333✗ transfer=1 memClean=3 tic=0 nom=1.735 echo=0 lenTell=3 practice=2 — FAIL: tellRate
+2026-07-09T10:42:25.511Z [info]  author ch03: whole-chapter writer working (attempt 2, card 32128 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:46:09.483Z [info]  author ch02: ch02: rubric preflight FAIL — ch02: FAIL ease=65.074✗ fk=7.105 tell=0.111 transfer=0.889 memClean=3 tic=0 nom=3.719 echo=0 lenTell=4 practice=2 — FAIL: fleschEase
+2026-07-09T10:46:09.489Z [info]  author ch02: all write attempts failed — removed the unreviewed failed draft (no prior chapter existed; the next entry must re-write it, not review it).
+2026-07-09T10:46:09.500Z [info]  author ch10: card is 29620 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T10:46:09.501Z [info]  author ch10: whole-chapter writer working (attempt 1, card 29620 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:48:56.381Z [info]  author ch06: ch06: rubric preflight FAIL — ch06: FAIL ease=71.89~ fk=6.32~ tell=0 transfer=0.889 memClean=1✗ tic=0 nom=2.529 echo=1~ lenTell=4 practice=2 — FAIL: memorableClean
+ch06 fix: echo-tell: quiz q07 key lifts a ≥5-content-token verbatim phrase from the chapter (paraphrase the key)
+2026-07-09T10:48:56.384Z [info]  author ch06: whole-chapter writer working (attempt 2, card 31051 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:53:44.031Z [info]  author ch06: ch06: STIER-2 write contract FAIL — lead thread: the dealt lead (United) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-09T10:53:44.033Z [info]  author ch06: all write attempts failed — removed the unreviewed failed draft (no prior chapter existed; the next entry must re-write it, not review it).
+2026-07-09T10:53:44.036Z [info]  author ch11: card is 28893 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T10:53:44.036Z [info]  author ch11: whole-chapter writer working (attempt 1, card 28893 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:57:03.781Z [info]  author ch08: done (gate-chapter clean)
+2026-07-09T10:57:03.784Z [info]  author ch12: card is 30063 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T10:57:03.784Z [info]  author ch12: whole-chapter writer working (attempt 1, card 30063 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:57:11.351Z [info]  author ch09: done (gate-chapter clean)
+2026-07-09T10:57:11.353Z [info]  author ch13: card is 29432 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T10:57:11.353Z [info]  author ch13: whole-chapter writer working (attempt 1, card 29432 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:57:53.971Z [info]  author ch03: done (gate-chapter clean)
+2026-07-09T10:57:53.973Z [info]  author ch14: card is 29083 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T10:57:53.973Z [info]  author ch14: whole-chapter writer working (attempt 1, card 29083 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T10:59:38.567Z [info]  author ch07: done (gate-chapter clean)
+2026-07-09T10:59:38.569Z [info]  author ch15: card is 29536 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T10:59:38.569Z [info]  author ch15: whole-chapter writer working (attempt 1, card 29536 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T11:03:27.399Z [info]  author ch10: done (gate-chapter clean)
+2026-07-09T11:03:27.402Z [info]  author ch16: card is 29377 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T11:03:27.402Z [info]  author ch16: whole-chapter writer working (attempt 1, card 29377 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T11:09:07.017Z [info]  author ch11: done (gate-chapter clean)
+2026-07-09T11:09:59.226Z [info]  author ch13: done (gate-chapter clean)
+2026-07-09T11:11:43.185Z [info]  author ch12: ch12: STIER-2 write contract FAIL — lead thread: the dealt lead case "Portuguese police and soccer hooligans" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). | lead thread: the dealt lead (Portuguese) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-09T11:11:43.188Z [info]  author ch12: whole-chapter writer working (attempt 2, card 31184 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T11:11:54.435Z [info]  author ch14: ch14: rubric preflight FAIL — ch14: FAIL ease=71.925~ fk=5.884~ tell=0.111 transfer=1 memClean=1✗ tic=0 nom=2.623 echo=0 lenTell=4 practice=2 — FAIL: memorableClean
+2026-07-09T11:11:54.437Z [info]  author ch14: whole-chapter writer working (attempt 2, card 30184 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T11:13:22.751Z [info]  author ch15: ch15: rubric preflight FAIL — ch15: FAIL ease=75.273 fk=5.882~ tell=0 transfer=0.889 memClean=1✗ tic=0 nom=1.54 echo=1~ lenTell=4 practice=2 — FAIL: memorableClean
+ch15 fix: echo-tell: quiz q09 key lifts a ≥5-content-token verbatim phrase from the chapter (paraphrase the key)
+2026-07-09T11:13:22.754Z [info]  author ch15: whole-chapter writer working (attempt 2, card 30749 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T11:19:37.125Z [info]  author ch16: done (gate-chapter clean)
+2026-07-09T11:21:04.189Z [info]  author ch15: done (gate-chapter clean)
+2026-07-09T11:22:53.610Z [info]  author ch12: ch12: STIER-2 write contract FAIL — lead thread: the dealt lead case "Portuguese police and soccer hooligans" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). | lead thread: the dealt lead (Portuguese) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-09T11:22:53.612Z [info]  author ch12: lead degraded: "Portuguese police and soccer hooligans" → "Harvard surgical-team learning study" after 2 contract failures (bounded +1 attempt; the lead-thread contract enforces the NEW lead at full strength).
+2026-07-09T11:22:53.613Z [info]  author ch12: whole-chapter writer working (attempt 3, card 30327 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T11:23:07.807Z [info]  author ch14: done (gate-chapter clean)
+2026-07-09T11:42:22.345Z [info]  author ch12: lead override persisted (chNN.lead-override.json) — future regens/repairs enforce the contract against "Harvard surgical-team learning study".
+2026-07-09T11:42:22.345Z [info]  author ch12: done (gate-chapter clean)
+2026-07-09T11:42:22.347Z [info]  ── cost report — the-culture-code [halt:content] ──
+  grand total spawns: 24  (minted ids 24; verb ids 0)
+  by type: writer:23  research:1
+  by phase: write:23  research:1
+  retries by cause: retry1:6
+  carry: acceptance 0 hit / 1 miss · reviews 0 hit / 0 miss
+  wall (spawn ms) by phase: write:19770431  research:725038  total:20495469
+2026-07-09T11:42:22.348Z [FINAL] HALT AUTOPILOT HALT — the-culture-code [phase write · content]: author write: 2 chapter(s) failed to author within the retry budget:
+ch02: rubric preflight FAIL — ch02: FAIL ease=65.074✗ fk=7.105 tell=0.111 transfer=0.889 memClean=3 tic=0 nom=3.719 echo=0 lenTell=4 practice=2 — FAIL: fleschEase
+
+ch06: STIER-2 write contract FAIL — lead thread: the dealt lead (United) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-09T11:42:22.348Z [FINAL] repair prompt: /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/the-culture-code/book-run/chapter-generation.20260709114222.9087bed9.repair.md

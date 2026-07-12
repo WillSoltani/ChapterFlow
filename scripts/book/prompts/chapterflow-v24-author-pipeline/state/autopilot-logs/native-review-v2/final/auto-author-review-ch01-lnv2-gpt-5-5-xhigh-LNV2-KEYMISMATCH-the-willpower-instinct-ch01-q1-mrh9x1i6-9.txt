@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "b", "b", "b", "a", "c", "c"],
+    "mechanisms": [
+      "The prose defines willpower as I will, I won't, and I want: start the useful act, stop the tempting act, and keep the larger value awake.",
+      "Miller and Cohen are used to say prefrontal control keeps goals active and tilts attention/action when cues compete.",
+      "The Gage passage says speech survived while steadiness, planning, and social restraint changed after frontal damage.",
+      "The self-awareness section says change starts by noticing the moment before the hand moves toward the snack, checkout button, or reply.",
+      "The chapter says self-control supports waiting, promises, sharing, softened anger, and repaired conflict in group life.",
+      "Brooklyn's example says a real value can lose if it is absent at the cue, so the run goal must become present at the choice point.",
+      "The chapter explicitly says both the short relief motive and the long-term solvency/health/trust motive can be real.",
+      "The lunch example fits the chapter's emphasis on concrete next moments, triggers, feedback, and small practice rather than vague discipline.",
+      "The Amelia example says routines work until they conflict with the current goal; prefrontal control then biases attention and response."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "The stem says 'three powers' and c is the only three-part option.",
+      "a is the only plausible brain-based answer; b and c are cartoonishly false.",
+      "a closely restates the stem plus the lesson; b and c are over-absolute.",
+      "b is the only option focused on the before-action moment emphasized by the chapter.",
+      "a and c are extreme claims, leaving b as the obvious social answer.",
+      "b mirrors the chapter's repeated 'choice point' mechanism; a and c use giveaway absolutes.",
+      "a is the only answer allowing mixed motives; b and c contradict the chapter's central line.",
+      "c is the only constructive experiment; a and b are plainly counterproductive.",
+      "c repeats the prefrontal-control wording from Q2; a and b are implausible extremes."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 74,
+    "transfer": 79,
+    "practical": 86,
+    "summaries": 84,
+    "tone": 83,
+    "limits": 82,
+    "insight": 90,
+    "density": 82,
+    "beginner": 87
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Refusal is only one third of willpower.",
+      "why": "The chapter's core correction is compact and memorable."
+    },
+    {
+      "quote": "A goal must be present to have power.",
+      "why": "This gives the mechanism behind the three-power method in one sentence."
+    },
+    {
+      "quote": "Self-control costs the comfort of staying vague.",
+      "why": "Strong practical line: it makes the exercise feel like a real tradeoff."
+    },
+    {
+      "quote": "Self-control sits outside the brain and reflects fixed personal character.",
+      "why": "This distractor is so implausible that it makes Q2 guessable without reading closely."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The correct answer is guessable because the stem names the three powers and only option c has a matching three-part structure.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q2/Q3/Q5/Q7/Q8/Q9",
+      "problem": "Several distractors are extreme or absurd rather than tempting misconceptions, so the quiz checks recognition more than understanding.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The pharmacy/family pickup thread recurs across the fast read, full read, and multiple examples, narrowing transfer breadth.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The phrase 'ride-list uncle' is unclear on first pass and briefly obscures who needs help.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The core skill says to add a small barrier, but the if-then steps mostly say to name or check the powers rather than specifying a barrier.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a clear, useful move: stop treating willpower as pure refusal and diagnose whether I will, I won't, or I want has gone quiet. Its mechanism is strong, beginner-friendly, and memorable, with good concrete lines and mostly usable practice steps. I would hold it just below ship because the quiz is too easy to game and the examples cluster around similar family/pharmacy/social-care scenes, which weakens transfer even though nothing is structurally broken."
+}
+```

@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "3": {
+      "answers": ["b", "b", "c", "a", "b", "a", "a", "c", "c"],
+      "keyDisagreements": []
+    },
+    "5": {
+      "answers": ["a", "b", "c", "c", "a", "a", "b", "c", "b"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 82,
+    "transfer": 76,
+    "practical": 72,
+    "summaries": 79,
+    "tone": 66,
+    "limits": 74,
+    "insight": 68,
+    "density": 64,
+    "beginner": 73
+  },
+  "quotes": [
+    {
+      "quote": "What would still move if the offer were gone?",
+      "why": "Portable and memorable; it compresses the chapter's diagnostic lens into one usable question."
+    },
+    {
+      "quote": "A hard detail is a promise tied to one source.",
+      "why": "Strong compact line that teaches the recurring source-discipline principle clearly."
+    },
+    {
+      "quote": "A low fare does not create trust; trust lets a low fare mean more than price.",
+      "why": "One of the sample's best aphorisms: complete, specific, and easy to remember."
+    },
+    {
+      "quote": "Every unmarked belief costs someone a round of rechecking.",
+      "why": "Memorable but also shows the house style's repeated cost/debt language."
+    },
+    {
+      "quote": "A true detail in the wrong paragraph is not extra support; it is false ground.",
+      "why": "Useful idea, but this exact move recurs across chapters until it feels templated."
+    },
+    {
+      "quote": "The reason gives each action a bill to pay.",
+      "why": "Clear enough, yet the debt/bill metaphor repeats so often that the voice starts to flatten."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is sound on quiz support: I found no keyed answer contradicted by the chapter prose, and most questions are scenario-based rather than pure recall. The strongest learning value comes from a few sticky diagnostic lines and a useful source-discipline lens: do not let visible tactics, borrowed facts, or named examples carry claims they have not earned. The major weakness is churn. Across chapters, the same machinery repeats: named source as checkable ground, second setting as contrast, hard detail must stay home, visible conduct must pay the reason, and true detail in wrong setting becomes false footing. That repetition makes the book feel less individually authored than it should. It is publishable as a solid instructional draft, but not premium: practical exercises are doable yet somewhat artificial, examples often feel like constructed teaching scenes, and the prose leans on a narrow house vocabulary of cost, debt, bill, edge, ground, and visible proof."
+}
+```

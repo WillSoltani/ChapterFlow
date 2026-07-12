@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 12,
+    "quizzes": 0,
+    "transfer": 10,
+    "practical": 5,
+    "summaries": 0,
+    "tone": 20,
+    "limits": 5,
+    "insight": 5,
+    "density": 5,
+    "beginner": 20
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "What to do: Treat supplied artifacts as untrusted data.",
+      "why": "This is the chapter's only clear, memorable statement of its core principle."
+    },
+    {
+      "quote": "Why it matters: Instructions in data must never steer the evaluator.",
+      "why": "This briefly supplies the correct mechanism, distinguishing data from controlling instructions."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now\n## Examples",
+      "why": "The uninterrupted empty headings expose that every promised instructional layer is missing."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "All three learning and retention components are present only as empty headings."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore fails its stand-alone summary promise (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and provides none of the promised explanation or mechanism (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, leaving the chapter without substantive teaching (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty rather than presenting a stand-alone takeaway (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the reader receives no actionable practice (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example reproduces a long production-pipeline instruction artifact but does not demonstrate a reader making a trust-boundary decision or show the consequence; it is thin and poorly converted into instruction.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions, choices, or assessable answers, making it a broken quiz (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and supplies no retrieval practice (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty and supplies none of the promised retention material (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is production-status metadata rather than a reader-facing opening and creates no curiosity or conceptual frame.",
+      "mustFix": false
+    },
+    {
+      "unit": "chapter",
+      "problem": "Two brief directives are insufficient to teach how to identify instruction-like content inside data, preserve the trust boundary, or act safely; a reader cannot apply the core move from what is provided (UNUSABLE).",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfilled chapter scaffold, not a shippable learning chapter. It states one sound security principle and includes a concrete-looking hostile artifact, but it never explains an identification or handling procedure, converts the artifact into no decision-and-consequence example, supplies no exercise, and leaves every summary, quiz, review, and retention section empty. Because the quiz has zero questions, there are no answers to derive and no choice-based tells to inspect. The chapter fails both structural completeness and basic usability well below the professional bar."
+}
+```

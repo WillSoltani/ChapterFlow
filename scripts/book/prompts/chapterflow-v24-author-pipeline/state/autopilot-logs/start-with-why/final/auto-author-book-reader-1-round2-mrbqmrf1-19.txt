@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "3": {
+      "answers": ["b", "b", "c", "a", "b", "a", "a", "c", "c"],
+      "keyDisagreements": []
+    },
+    "5": {
+      "answers": ["a", "b", "c", "c", "a", "a", "b", "c", "b"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 80,
+    "quizzes": 74,
+    "transfer": 80,
+    "practical": 72,
+    "summaries": 78,
+    "tone": 68,
+    "limits": 82,
+    "insight": 70,
+    "density": 66,
+    "beginner": 75
+  },
+  "quotes": [
+    {
+      "quote": "A discount can move the sale and still fail to win the buyer.",
+      "why": "Strong compact opener; it is portable and gives the chapter a memorable test."
+    },
+    {
+      "quote": "The fare did not prove the belief; the belief made the fare readable.",
+      "why": "One of the best retention lines because it reverses the usual visible-proof assumption."
+    },
+    {
+      "quote": "A hard detail is a promise tied to one source.",
+      "why": "Clear reusable lens that explains the repeated source-detail discipline."
+    },
+    {
+      "quote": "Core skill: The core skill is to name the push before you trust the response.",
+      "why": "The repeated label-on-label phrasing exposes the underlying template."
+    },
+    {
+      "quote": "A birthday-card envelope sits beside him.",
+      "why": "A random prop feels pasted into a scene shell rather than necessary to the idea."
+    },
+    {
+      "quote": "Keep the details with the source that earned them. Employees stays with Southwest. The Houston base stays with Continental. 1994 stays with Bethune and Continental.",
+      "why": "The motif repeats across chapters and the grammar is awkward enough to distract."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is sound enough on correctness: I found no keyed answer contradicted by the prose, and the major factual anchors appear supportable from the chapter text. As a book sample, though, it reads heavily engineered. The strongest material is the repeated insistence on inspecting behavior, keeping details with their source, and not letting visible tactics prove deeper belief. Those are useful lenses. The weakness is sameness: every chapter leans on the same named-example scaffold, the same hard-detail-drift warning, the same compare-a-second-setting move, and similar quizzes where the correct answer is often the longest careful option. This is a solid draft with several strong teaching lines, but the churn, hollow proxy scenes, and density problems keep it below premium."
+}
+```

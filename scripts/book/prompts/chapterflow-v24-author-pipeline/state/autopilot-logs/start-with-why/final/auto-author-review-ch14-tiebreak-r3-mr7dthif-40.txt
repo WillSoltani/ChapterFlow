@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Correct answers often echo the chapter's exact terms while distractors use absolutes or obvious overreach such as 'every rivalry,' 'only after,' 'dropped,' and 'replace.'"]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 89,
+    "tone": 82,
+    "limits": 90,
+    "insight": 86,
+    "density": 82,
+    "beginner": 84
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A rival is a warning light, not a finish line. No proof, no progress.",
+      "why": "This is the strongest memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "Start outside, then come back inside.",
+      "why": "A simple, usable sequence that a reader can retain and apply."
+    },
+    {
+      "quote": "The Microsoft anchor changes the decision because it is not Apple-Dell in new clothes.",
+      "why": "Strong mechanism: the second setting is there to prove transfer, not decorate the lesson."
+    },
+    {
+      "quote": "At the check-in itself, product lead Edmund has the Apple-Dell answer due back.",
+      "why": "The scene feels slightly staged and opaque; it needs less prop-like phrasing."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Several distractors are easier to reject by tone because they overstate or reverse the lesson with words like 'every,' 'only,' 'dropped,' and 'replace.'",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The 'wet blue stamp' detail is vivid but not explained enough to feel necessary; it reads more like a prop than a decision constraint.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "Cyrus's software decision is described after the fact, but the original choice remains abstract, which slightly weakens the before-to-after learning.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Some repeated anchor language gives the chapter a scaffold smell, especially when Apple-Dell, Microsoft, and Southwest facts are restated in close succession.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is publishable. The core idea is memorable, bounded, and practical: rivals can start the question, but the owed internal mark and proof must finish it. The quizzes are mostly fair and derivable, with sound keys, though some distractors telegraph themselves through obvious overreach. Transfer is strong across product, software, and operating examples, but a few scenes feel staged or under-specified. The chapter clears the professional bar, with polish needed more than repair."
+}
+```

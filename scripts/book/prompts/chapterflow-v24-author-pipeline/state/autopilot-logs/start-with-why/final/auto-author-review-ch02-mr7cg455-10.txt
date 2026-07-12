@@ -1,0 +1,54 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": ["Correct choices often contain the chapter's exact named anchors while wrong choices are exaggerated or obviously reckless, which makes several answers guessable without close reading."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 76,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 86,
+    "insight": 87,
+    "density": 84,
+    "beginner": 89
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A discount can move the sale and still fail to win the buyer.",
+      "why": "Strong compact frame; the chapter's distinction is memorable immediately."
+    },
+    {
+      "quote": "The concrete price of a borrowed spike is a stale reason and another push next week.",
+      "why": "Best retention line because it ties mechanism to cost."
+    },
+    {
+      "quote": "What to do: At the first newness spike, split notice from need.",
+      "why": "Thin example advice; it restates the lesson without enough real before-to-after action."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "Several transfer examples feel lightly manufactured: William, Noah, Dawson, and the TiVo product lead mainly restate the diagnostic move rather than showing a concrete decision with a visible consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Many distractors are too implausible, so the keyed answer is often the only professional-sounding option with the named concrete detail.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 4",
+      "problem": "The TiVo example promises an early adoption miss but gives only a compressed abstraction; the reader does not see what the product lead did, what changed, or what consequence followed.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a memorable core distinction: pushes can move behavior without proving preference. The summaries layer well, the mechanism is clear, and the practical loop is usable. I would not ship at a professional 84 bar yet because the transfer section is weaker than the teaching: some examples read like dressed-up restatements rather than specific cases with decisions and consequences, and the quiz distractors are too easy to eliminate."
+}
+```

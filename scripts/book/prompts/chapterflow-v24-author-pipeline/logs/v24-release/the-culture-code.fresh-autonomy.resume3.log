@@ -1,0 +1,63 @@
+2026-07-09T13:20:09.713Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-09T13:20:15.574Z [MAJOR] PHASE qc written 16/16 · gated 16 · qc'd 0
+2026-07-09T13:20:15.610Z [info]  author review budgets: 15 chapter(s) hold a durable PASS at bar 80 — protected from full re-author (ch01, ch02, ch03, ch04, ch05, ch06, ch07, ch08, ch09, ch10, ch12, ch13, ch14, ch15, ch16)
+2026-07-09T13:20:15.740Z [info]  author review budgets: reader budgets clean (4 advisory finding(s)) — advancing
+2026-07-09T13:20:15.740Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch02 reading surface mentions "zappos" (distinctive token of case "Tony Hsieh and Zappos") 11 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T13:20:15.740Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch11 reading surface mentions "johnson" (distinctive token of case "Johnson & Johnson Credo") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T13:20:15.740Z [info]  author review budgets: advisory [CHB2.length_budget] ch03 estimated rendered length 19376 chars is 21% over the 16000-char budget (allowed window 12800–19200; within the advisory band — polish, not a halt); readers rejected ~40% inflation.
+2026-07-09T13:20:15.740Z [info]  author review budgets: advisory [CHB8.case_stem_band] 48% of 144 stems name a chapter case/entity verbatim — over the 30% cap; case-name anchoring telegraphs the taught case. Rebuild some stems as novel-scenario transfer.
+2026-07-09T13:20:15.746Z [info]  author review: 16 chapter(s), one blinded reader each (parallel ≤6, bar 80)
+2026-07-09T13:20:15.748Z [info]  author review ch01: CARRIED durable review (composite 85.1, reviewer auto-author-review-ch01-mrdi4r6u-9) — no reader spawned
+2026-07-09T13:20:15.749Z [info]  author review ch02: CARRIED durable review (composite 84.1, reviewer auto-author-review-ch02-mrdi4r6x-10) — no reader spawned
+2026-07-09T13:20:15.750Z [info]  author review ch03: CARRIED durable review (composite 87.1, reviewer auto-author-review-ch03-regen-mrdiw547-32) — no reader spawned
+2026-07-09T13:20:15.751Z [info]  author review ch04: CARRIED durable review (composite 85.9, reviewer auto-author-review-ch04-mrdi4r70-12) — no reader spawned
+2026-07-09T13:20:15.751Z [info]  author review ch05: CARRIED durable review (composite 86.7, reviewer auto-author-review-ch05-mrdi4r72-13) — no reader spawned
+2026-07-09T13:20:15.753Z [info]  author review ch06: CARRIED durable review (composite 84.8, reviewer auto-author-review-ch06-mrdi4r76-14) — no reader spawned
+2026-07-09T13:20:15.753Z [info]  author review ch07: CARRIED durable review (composite 85.6, reviewer auto-author-review-ch07-mrdi5igz-15) — no reader spawned
+2026-07-09T13:20:15.754Z [info]  author review ch08: CARRIED durable review (composite 87.2, reviewer auto-author-review-ch08-mrdi5mux-16) — no reader spawned
+2026-07-09T13:20:15.755Z [info]  author review ch09: CARRIED durable review (composite 84.7, reviewer auto-author-review-ch09-mrdi5o40-17) — no reader spawned
+2026-07-09T13:20:15.756Z [info]  author review ch10: CARRIED durable review (composite 86.8, reviewer auto-author-review-ch10-mrdi5uc5-18) — no reader spawned
+2026-07-09T13:20:15.761Z [info]  author review ch12: CARRIED durable review (composite 87.4, reviewer auto-author-review-ch12-mrdi6dqx-20) — no reader spawned
+2026-07-09T13:20:15.762Z [info]  author review ch13: CARRIED durable review (composite 86.6, reviewer auto-author-review-ch13-regen-mrdinz7n-28) — no reader spawned
+2026-07-09T13:20:15.763Z [info]  author review ch14: CARRIED durable review (composite 86, reviewer auto-author-review-ch14-mrdi6k3t-22) — no reader spawned
+2026-07-09T13:20:15.764Z [info]  author review ch15: CARRIED durable review (composite 85.8, reviewer auto-author-review-ch15-mrdi6lv3-23) — no reader spawned
+2026-07-09T13:20:15.765Z [info]  author review ch16: CARRIED durable review (composite 84.2, reviewer auto-author-review-ch16-mrdi6nmg-24) — no reader spawned
+2026-07-09T13:21:04.493Z [info]  author review ch11: composite 87.5 ship=true keys 9/9 → PASS
+2026-07-09T13:21:04.494Z [info]  author review: carried 15/16 chapter review(s) unchanged — spawned 1 fresh reader(s)
+2026-07-09T13:21:04.514Z [info]  author acceptance: sampled ch 1, 2, 3, 4 → 63814 chars; spawning 3 independent book readers
+2026-07-09T13:24:17.806Z [info]  author acceptance: durable read record → /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/the-culture-code/acceptance.round1.1406d2da.r1.json
+2026-07-09T13:24:17.806Z [info]  author acceptance: pooled composite 74.2 over 1 read(s) (band ±3.7) gate FAIL churn HIGH valid 3/3 vs floor 74 (premium target 80) → REJECT
+2026-07-09T13:24:17.829Z [info]  [content-deal] the-culture-code: device ubiquity — named-anchor-lead 0%, proxy-cast 63%⚠, second-setting 44%, return-proof 31%, hard-detail-boundary 0%, three-part-split 0%, practice-shell 56%
+2026-07-09T13:24:17.842Z [info]  [content-deal] the-culture-code: repairing 1 chapter(s) (ch01[drop proxy-cast]); preserving ch02, ch03, ch04, ch05, ch06, ch07, ch08, ch09, ch10, ch11, ch12, ch13, ch14, ch15, ch16.
+2026-07-09T13:24:17.857Z [info]  author ch01: card is 32586 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T13:24:17.863Z [info]  author ch01: whole-chapter writer working (attempt 1, card 32586 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T13:33:09.251Z [info]  author ch01: done (gate-chapter clean)
+2026-07-09T13:34:46.689Z [info]  author review ch01-sameness-check: composite 85 ship=true keys 9/9 → PASS
+2026-07-09T13:34:46.692Z [info]  [provenance] restore ch=the-culture-code-ch01: restored bytes e32e5959e634e024 do not match the recorded previousContentHash dd58ec0ba6950c0b — cannot safely roll back; leaving the record untouched.
+2026-07-09T13:34:46.693Z [info]  [sameness] ch01: repaired draft cleared review (composite 85) but STILL uses banned device(s) proxy-cast — reverted (devices-persisted). Evidence: proxy-cast: "invented name(s): Will, Alex, Pentland"
+2026-07-09T13:34:46.702Z [info]  [content-deal] the-culture-code: repair summary — kept-and-clean 0, devices-persisted 1, reverted-quality 0, write-failed 0, skipped-cap 0.
+2026-07-09T13:34:46.702Z [info]  [content-deal] the-culture-code: DEVICES PERSISTED on ch01[proxy-cast] — the writer did not shed the banned device(s); grants spent, prior bytes restored.
+2026-07-09T13:34:46.713Z [info]  [content-deal] the-culture-code: AFTER — named-anchor-lead 0%, proxy-cast 63%⚠, second-setting 44%, return-proof 31%, hard-detail-boundary 0%, three-part-split 0%, practice-shell 56%
+2026-07-09T13:34:46.716Z [info]  author acceptance: content-device repair lane ran — kept+PASS none; unfixed→regen ch01.
+2026-07-09T13:34:46.740Z [info]  author acceptance: churn-driven repair routing — targets ch01 (named: 1; saturation-ranked fill), churn pack 1 measured line(s)
+2026-07-09T13:34:46.742Z [info]  author acceptance REJECTED — one targeted regen round over 1 chapter(s): ch01
+2026-07-09T13:34:46.746Z [info]  author ch01: card is 32180 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T13:34:46.752Z [info]  author ch01: whole-chapter writer working (attempt 1, card 32180 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T13:49:45.909Z [info]  author ch01: done (gate-chapter clean)
+2026-07-09T13:51:02.169Z [info]  author review ch01-bookregen: composite 83.1 ship=false keys 9/9 → FAIL
+2026-07-09T13:51:02.169Z [info]  author review ch01: FAIL is near the bar (composite 83.1, bar 80, keys 9/9, ship=false) — spawning 2 tiebreak readers (median-of-3, no cap consumed)
+2026-07-09T13:52:14.224Z [info]  author review ch01-tiebreak-r2: composite 84.9 ship=false keys 9/9 → FAIL
+2026-07-09T13:53:25.933Z [info]  author review ch01-tiebreak-r3: composite 83.7 ship=false keys 9/9 → FAIL
+2026-07-09T13:53:25.951Z [info]  author review ch01: tiebreak upheld the FAIL (median 83.7, reads 84.9, 83.7) — regen proceeds with merged complaints
+2026-07-09T13:53:25.953Z [info]  [provenance] restore ch=the-culture-code-ch01: restored bytes e32e5959e634e024 do not match the recorded previousContentHash c905f5e81993dc3b — cannot safely roll back; leaving the record untouched.
+2026-07-09T13:53:25.956Z [info]  author acceptance ch01: regen review FAILed (composite 83.1) — restored prior passing bytes.
+2026-07-09T13:53:25.959Z [info]  ── cost report — the-culture-code [halt:content] ──
+  grand total spawns: 10  (minted ids 10; verb ids 0)
+  by type: author-review:5  author-book-reader:3  writer:2
+  by phase: qc:10
+  retries by cause: respawn:1
+  carry: acceptance 0 hit / 1 miss · reviews 15 hit / 1 miss
+  wall (spawn ms) by phase: qc:2178596  total:2178596
+2026-07-09T13:53:25.962Z [FINAL] HALT AUTOPILOT HALT — the-culture-code [phase qc · content]: author acceptance: targeted regen round failed:
+  ch01: quiz Q7: The keyed answer says Nick is a second setting and checks travel beyond the first scene, but the prose places Nick inside Felps's bad-apple group task. This makes the rationale source-contradictory even though c remains the best option by elimination. (must fix); quiz overall: Several keyed choices are identifiable by being the only source-anchored, concrete option, while distractors are 
+2026-07-09T13:53:25.962Z [FINAL] repair prompt: /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/the-culture-code/book-run/qc.20260709135325.bedb7af6.repair.md

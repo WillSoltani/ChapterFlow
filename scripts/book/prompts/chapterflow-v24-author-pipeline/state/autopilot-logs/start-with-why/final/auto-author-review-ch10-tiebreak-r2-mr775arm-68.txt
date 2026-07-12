@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several correct answers reuse the chapter's signature language: visible, carry, proof, own home, while distractors lean on obviously weak approval/copy/status moves.", "Q2 and Q8 make the keyed choice feel test-wise because the correct option is the only one that preserves the chapter's four-part or boundary logic instead of copying or seeking approval."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 83,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 83,
+    "limits": 87,
+    "insight": 86,
+    "density": 82,
+    "beginner": 87
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Words give the visible act its job.",
+      "why": "Strongest compact statement of the chapter's mechanism."
+    },
+    {
+      "quote": "If the visible mark pays back a different claim, more words only add noise.",
+      "why": "Memorable and causally clear; it explains why wording cannot fix mismatched behavior."
+    },
+    {
+      "quote": "The hard part is cost. Lionel may have to put back the sweets after he used health words.",
+      "why": "Good practical pressure: the lesson requires an actual sacrifice, not just a reframing."
+    },
+    {
+      "quote": "What to do: The Apple Store cue tells you what to do: start with the words, choose the act, and keep Cupertino in view before you let the idea travel.",
+      "why": "Weakest instruction because it partly restates the lesson and leaves the concrete action fuzzy."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "The correct choices often carry the chapter's own vocabulary while distractors are built from easy-to-reject authority, copying, or status moves, creating mild answer tells.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The action is useful but abstract: 'one live claim' and 'schedule the visible act' may leave a beginner unsure which artifact, person, or proof point to pick first.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 4: Apple Store Narrows",
+      "problem": "The what-to-do line says to keep Cupertino in view, but it does not translate that boundary into a concrete check beyond preserving the named detail.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples overall",
+      "problem": "Several examples are draft/source-fit repairs rather than lived communication moments, so the transfer range is narrower than the chapter's broader listening claim.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "The repeated 'claim / carry / proof / visible' phrasing is clear but sometimes starts to feel scaffolded instead of natural.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against an 80-point professional bar. The chapter has a memorable core image, sound quiz keys, good limits around false transfer, and a practical enough move: make the visible act answer the words. Its main weaknesses are polish-level: answer-choice tells, some repetitive phrasing, and a few examples that teach source-fit more than real-world communication. None of those break the learning promise, but tightening the practical prompts and varying the examples would make it stronger."
+}
+```

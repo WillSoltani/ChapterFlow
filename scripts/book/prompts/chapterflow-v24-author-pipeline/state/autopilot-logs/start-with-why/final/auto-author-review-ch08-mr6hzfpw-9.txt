@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "c", "a", "c", "b", "b", "c", "b", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several wrong answers are easy to reject without the prose because they use extreme or self-discrediting phrasing such as 'every pair,' 'only,' 'all stories,' or 'enough.'", "Q2 and Q4 test very similar 1976/Jobs-Wozniak boundary logic, which makes the later answer easier by pattern rather than fresh derivation."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 81,
+    "transfer": 86,
+    "practical": 87,
+    "summaries": 84,
+    "tone": 76,
+    "limits": 90,
+    "insight": 86,
+    "density": 80,
+    "beginner": 78
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Keep the year with the pair.",
+      "why": "This is the chapter's clearest memorable rule and it compresses the core factual-discipline move well."
+    },
+    {
+      "quote": "The builder does not follow the belief; the builder proves it.",
+      "why": "Strong mechanism: it explains why HOW matters instead of merely repeating that HOW matters."
+    },
+    {
+      "quote": "The bike chain smells of oil.",
+      "why": "This detail is distracting and unearned; it feels like inserted texture rather than useful instruction."
+    },
+    {
+      "quote": "When creative pull outruns money, command the pair into one sentence",
+      "why": "The verb choice is awkward and makes the practical advice sound artificial."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Some distractors are too obviously wrong because they lean on absolutes or absurd transfer claims, reducing the quiz's ability to test real understanding.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q2 and Q4",
+      "problem": "Both questions test nearly the same Jobs-Wozniak boundary/restamp distinction, creating repetition and making Q4 easier by recognizing the prior pattern.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The sentence 'The bike chain smells of oil' adds sensory color that is not connected to the concept, scene, or action.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 3",
+      "problem": "'Command the pair into one sentence' is awkward phrasing and weakens the otherwise practical instruction.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep/full read",
+      "problem": "The chapter relies heavily on terms like WHY-type, HOW-type, WHAT output, return point, and founding token; a cold beginner can follow it, but the abstraction load is higher than necessary.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong central move: belief becomes useful only when a HOW person and visible output return proof. Its best lines are memorable, the examples create real contrast, and the practical ask is usable. I would not ship yet at a professional 84 bar because the quiz has some visible answer-shape tells, the Jobs-Wozniak boundary is over-tested, and a few prose moments feel artificially textured or awkward rather than plain and confident."
+}
+```

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "chapterflow-self-healing-repair-v1",
+  "createdAt": "2026-07-09T11:42:22.347Z",
+  "bookId": "the-culture-code",
+  "runId": "book-run",
+  "stage": "chapter-generation",
+  "severity": "blocker",
+  "summary": "author write: 2 chapter(s) failed to author within the retry budget:\nch02: rubric preflight FAIL — ch02: FAIL ease=65.074✗ fk=7.105 tell=0.111 transfer=0.889 memClean=3 tic=0 nom=3.719 echo=0 lenTell=4 practice=2 — FAIL: fleschEase\n\nch06: STIER-2 write contract FAIL — lead thread: the dealt lead (United) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.",
+  "findings": [],
+  "artifacts": [],
+  "recommendedFixes": [
+    "Edit only the failing chapter content unless the report names missing source/plans as the root cause.",
+    "Fix blocker-level findings first. Preserve chapterId, number, title, sourceAnchorIds, and quiz keys unless the finding explicitly targets them.",
+    "Run author-check and gate-chapter for the edited chapter, then rerun book-gate to catch cross-chapter regressions."
+  ],
+  "validationCommands": [
+    "npx tsx src/cli.ts qc-converge the-culture-code",
+    "npx tsx src/cli.ts book-run the-culture-code --no-publish"
+  ],
+  "nextCommand": "npx tsx src/cli.ts book-run the-culture-code --no-publish",
+  "promptPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/the-culture-code/book-run/chapter-generation.20260709114222.9087bed9.repair.md",
+  "reportPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/the-culture-code/book-run/chapter-generation.20260709114222.9087bed9.repair.json"
+}

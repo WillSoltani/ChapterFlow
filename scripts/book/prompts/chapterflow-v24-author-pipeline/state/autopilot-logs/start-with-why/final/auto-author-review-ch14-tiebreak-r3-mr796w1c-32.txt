@@ -1,0 +1,71 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several correct answers are the only choices that preserve the chapter's exact technical nouns: marker, anchor, benchmark, Dallas, true fact, purpose talk.",
+      "Some distractors are too obviously wrong or theatrical, such as removing Dallas so the idea can spread everywhere or putting the same detail in all three anchors."
+    ]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 78,
+    "transfer": 66,
+    "practical": 82,
+    "summaries": 88,
+    "tone": 84,
+    "limits": 86,
+    "insight": 82,
+    "density": 76,
+    "beginner": 80
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Let the rival warn you, not define you.",
+      "why": "This is the cleanest memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "The order is small but strict: External rival before Internal benchmark, then Purpose fidelity and Continuous improvement.",
+      "why": "The chapter gives a concrete sequence a reader can actually apply."
+    },
+    {
+      "quote": "Final proof is still due.",
+      "why": "This undercuts the example's teaching payoff by ending on an unresolved abstraction."
+    },
+    {
+      "quote": "A product lead, writer, or analyst may win the category sentence and still lose the reason for acting.",
+      "why": "This phrasing sounds internally generated and blurs the practical business situation."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "Most examples are about editing drafts, anchors, and details rather than real competitive decisions with consequences. They teach the chapter's evidence discipline, but transfer to actual business or personal choices is thinner than promised.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The example names anchors and specifics but ends with 'Final proof is still due,' so the before-to-after consequence is incomplete.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The correct choices often sound like the chapter's exact vocabulary while distractors are inflated or implausible, creating answer tells even when the keys are sound.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "Several abstractions recur heavily: proof, mark, anchor, return, fit. The repetition supports retention but also creates a scaffold smell and lowers density.",
+      "mustFix": false
+    },
+    {
+      "unit": "transfer",
+      "problem": "The chapter says the move applies to a product lead, writer, or analyst, but does not show a non-writing/non-draft case where a competitor pressure changes a real decision and later result.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong core: rivals are alarms, not rulers, and the four-step order is memorable and usable. The summaries, limits, and answer key are mostly sound. I would not ship it at a professional >=80 bar because the transfer layer is too self-referential: too many examples are about arranging chapter evidence rather than making real competitive choices with visible consequences. Add at least one concrete outside-the-draft case with a before decision, changed action, and after result, and tighten the quiz distractors so the right answers are not mostly signaled by chapter vocabulary."
+}
+```

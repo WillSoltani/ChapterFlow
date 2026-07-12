@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "high-output-management-ch14",
+  "chapterNumber": 14,
+  "title": "Two Difficult Tasks",
+  "coreMove": "because the employee must understand what behavior or output created the concern",
+  "thesis": "Corrective performance conversations in Grove's two-difficult-tasks frame need evidence.",
+  "readerPromise": "After this chapter, a reader can because the employee must understand what behavior or output created the concern",
+  "ownedCases": [
+    {
+      "id": "ch14.ex.jobInterview",
+      "label": "Job interview"
+    },
+    {
+      "id": "ch14.ex.interviewQuestions",
+      "label": "Task-focused interview questions"
+    },
+    {
+      "id": "ch14.ex.correctiveConversation",
+      "label": "Corrective performance conversation"
+    }
+  ],
+  "notYours": [
+    "Assigned implementation",
+    "Bonus signal",
+    "Breakfast factory",
+    "Breakfast factory control system",
+    "Breakfast factory goes national",
+    "College graduate as output",
+    "Compiler development",
+    "Contractual obligation",
+    "Cultural values",
+    "Difficult feedback conversation",
+    "Environmental demand assessment",
+    "Escalated matrix conflict",
+    "Experienced employee on a new task",
+    "Expert delegated task",
+    "Free-market control",
+    "Functional organization",
+    "Geographic sales overlay",
+    "In-process quality inspection",
+    "Intel decision culture",
+    "Intel hybrid structure"
+  ],
+  "cast": [
+    "Daniel",
+    "Lacey",
+    "Nash",
+    "Grace"
+  ],
+  "answerIndexPattern": [
+    2,
+    2,
+    0,
+    0,
+    1,
+    1,
+    1,
+    2,
+    0
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a doorway conversation",
+    "flavor (ch01): venue: a spare-room desk",
+    "flavor (ch01): venue: an unsent email draft",
+    "flavor (ch01): frame: a first attempt at admitted students as inputs that gets corrected",
+    "flavor (ch01): frame: a first encounter with admitted students as inputs that sets a benchmark",
+    "flavor (ch02): venue: a living-room couch"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a late-night text exchange",
+    "venue: a missed-call screen",
+    "venue: a letter left on the table",
+    "frame: owner handoff that changes who must act next",
+    "frame: a milestone reached and the small marker that seals it"
+  ],
+  "architectureFamily": "failure-autopsy",
+  "openerType": "claim",
+  "challengeFrame": "pre-write-the-exact-line",
+  "practiceShape": "two-step-sequence",
+  "exampleLenses": [
+    "prop-tableau",
+    "dialogue-beat",
+    "before-after-ledger"
+  ],
+  "practiceVerb": "cross-out",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "output",
+    "automatically",
+    "creates",
+    "enough",
+    "manager",
+    "value"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "outsider-arrives",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "averted-late",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "failure",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "two-step-sequence",
+    "say-aloud-script",
+    "measure-one-number",
+    "single-imperative"
+  ],
+  "quizStemShapes": [
+    "best-explanation-why",
+    "ordering-priority",
+    "transfer-new-domain",
+    "failure-postmortem"
+  ],
+  "quizFailureModes": [
+    "right-move-wrong-trigger",
+    "over-correction",
+    "borrowed-authority",
+    "wrong-target"
+  ],
+  "questionFactOrder": [
+    5,
+    4,
+    9,
+    7,
+    1,
+    8,
+    2,
+    6,
+    3
+  ],
+  "memorableShapes": [
+    "imperative",
+    "reversal",
+    "redefinition"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "contrast-speak",
+    "motion-speak"
+  ],
+  "shellRegister": "question-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Task-focused interview questions"
+  }
+}

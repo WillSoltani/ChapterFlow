@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch13",
+  "chapterNumber": 13,
+  "contentHash": "87e24aeaabc8cbcf",
+  "reviewerSessionId": "auto-author-review-ch13-mr8b37xh-6",
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 83,
+    "practical": 84,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 90,
+    "insight": 86,
+    "density": 84,
+    "beginner": 86
+  },
+  "composite": 86.6,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "a",
+      "b",
+      "c",
+      "b",
+      "a",
+      "a",
+      "c",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The past does not trap the WHY; it earns it.",
+      "why": "Strong memorable line that compresses the chapter's core mechanism.",
+      "verified": true
+    },
+    {
+      "quote": "Send the detail home.",
+      "why": "Concrete, portable phrase for the source-discipline move.",
+      "verified": true
+    },
+    {
+      "quote": "If the evidence stops at a mood, stop the claim there too.",
+      "why": "Best boundary sentence; it prevents overclaiming from warm examples.",
+      "verified": true
+    },
+    {
+      "quote": "The blue share icon is still lit when he adds Wilbur Wright, Orville Wright, and the bicycle shop as the second anchor.",
+      "why": "This image is vivid but slightly ornamental; it adds scene texture more than decision consequence.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several correct answers reuse the chapter's exact framework nouns while distractors use exaggerated absolutes such as every, any, only, or trusted first, making some items guessable without full reading.",
+    "Q6 and Q7 have distractors that are implausibly broad compared with the chapter's repeated boundary language."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "Some distractors are weakened by obviously overbroad phrasing, especially choices that say the idea should apply to every organization or prove any purpose statement.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The blue share icon detail gives a visual cue but does not clarify the before-to-after decision or consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "Gerald's group chat example is usable but a bit unresolved: it says the thread restarts while no answer has returned yet, so the consequence is thinner than the setup.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears the professional bar. The core move is memorable, bounded, and repeatedly grounded: put past patterns before Contribution and Impact, add anchors, and keep details tied to the source that earned them. The quiz is sound and derivable, with no key disagreements, though a few distractors are easier to eliminate by tone and absolutist wording. The examples transfer the concept beyond the source material, but a couple could show sharper decision consequences. Overall it is clear, useful, and shippable.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "5e0e9cbd0fe6b7c9d881df387cd63b2c7af2a2c3ab929ec6e56d3e6670251422",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T21:32:02.401Z"
+}

@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 91,
+    "transfer": 87,
+    "practical": 86,
+    "summaries": 84,
+    "tone": 88,
+    "limits": 90,
+    "insight": 89,
+    "density": 86,
+    "beginner": 83
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "What did the basket make them hear before the words arrived?",
+      "why": "Strongest retention device: it turns the abstract listening idea into a concrete diagnostic question."
+    },
+    {
+      "quote": "If the fit is thin, do the opposite of more talk: make the claim smaller or wait until action can carry it.",
+      "why": "Strong practical boundary: it gives a usable response when symbolic consistency fails."
+    },
+    {
+      "quote": "A second account matters because one good picture can fool you.",
+      "why": "Clear mechanism for transfer: the chapter explains why multiple examples are needed."
+    },
+    {
+      "quote": "Apple Store retail sites began in 2001. Cupertino marks where that account should stop.",
+      "why": "Weakest beginner moment: the facts are accurate within the chapter but compressed enough to feel like source bookkeeping."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The Apple Store/Cupertino sentence is too compressed for a cold beginner; it says Cupertino marks the limit before explaining what limit is being drawn.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The phrase 'third account should not restamp the first one' is understandable from context but has a slight scaffold smell compared with the chapter's plainer strongest lines.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The repeated 'schedule the proof' action is concrete enough, but it risks becoming formulaic because several if-then items land on nearly the same move.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is publishable against the 84 bar. The core move is memorable, concrete, and transferable: listen to what the visible act says before adding more words. The quizzes are fair and derivable, with no key disagreements. The main weakness is beginner clarity around the Apple Store/Cupertino boundary, where the prose briefly sounds like it is preserving source constraints instead of teaching the reader. That defect is real but not blocking because the full read, examples, review cards, and implementation plan recover the point clearly."
+}
+```

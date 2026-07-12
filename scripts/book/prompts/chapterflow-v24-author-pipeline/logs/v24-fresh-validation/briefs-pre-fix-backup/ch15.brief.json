@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "high-output-management-ch15",
+  "chapterNumber": 15,
+  "title": "Compensation as Task-Relevant Feedback",
+  "coreMove": "because employees interpret pay decisions as signals about value, status, and expected contribution",
+  "thesis": "Compensation sends feedback beyond the money itself.",
+  "readerPromise": "After this chapter, a reader can because employees interpret pay decisions as signals about value, status, and expected contribution",
+  "ownedCases": [
+    {
+      "id": "ch15.ex.salaryReview",
+      "label": "Salary review"
+    },
+    {
+      "id": "ch15.ex.bonusSignal",
+      "label": "Bonus signal"
+    },
+    {
+      "id": "ch15.ex.marketEquity",
+      "label": "Market and internal equity"
+    }
+  ],
+  "notYours": [
+    "Assigned implementation",
+    "Breakfast factory",
+    "Breakfast factory control system",
+    "Breakfast factory goes national",
+    "College graduate as output",
+    "Compiler development",
+    "Contractual obligation",
+    "Corrective performance conversation",
+    "Cultural values",
+    "Difficult feedback conversation",
+    "Environmental demand assessment",
+    "Escalated matrix conflict",
+    "Experienced employee on a new task",
+    "Expert delegated task",
+    "Free-market control",
+    "Functional organization",
+    "Geographic sales overlay",
+    "In-process quality inspection",
+    "Intel decision culture",
+    "Intel hybrid structure"
+  ],
+  "cast": [
+    "Noel",
+    "Julia",
+    "Aline",
+    "Justine"
+  ],
+  "answerIndexPattern": [
+    2,
+    1,
+    2,
+    0,
+    2,
+    0,
+    1,
+    0,
+    1
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a doorway conversation",
+    "flavor (ch01): venue: a spare-room desk",
+    "flavor (ch01): venue: an unsent email draft",
+    "flavor (ch01): frame: a first attempt at admitted students as inputs that gets corrected",
+    "flavor (ch01): frame: a first encounter with admitted students as inputs that sets a benchmark",
+    "flavor (ch02): venue: a living-room couch"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a laundry room",
+    "venue: a working note on ambiguous interdependent tasks",
+    "venue: a working note on bonus category",
+    "frame: before-after comparison with one visible behavior shift",
+    "frame: a break in the routine script that leaves a lasting after-image"
+  ],
+  "architectureFamily": "everyday-first-person",
+  "openerType": "statistic",
+  "challengeFrame": "attach-to-existing-routine",
+  "practiceShape": "observe-then-note",
+  "exampleLenses": [
+    "postmortem",
+    "walkthrough",
+    "counterfactual"
+  ],
+  "practiceVerb": "move",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "output",
+    "automatically",
+    "creates",
+    "enough",
+    "manager",
+    "value"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "partial",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "observe-then-note",
+    "single-imperative",
+    "if-then-trigger",
+    "two-step-sequence"
+  ],
+  "quizStemShapes": [
+    "failure-postmortem",
+    "cold-diagnosis",
+    "choose-next-move",
+    "predict-consequence"
+  ],
+  "quizFailureModes": [
+    "wrong-target",
+    "wrong-timing",
+    "wrong-proof",
+    "wrong-scope"
+  ],
+  "questionFactOrder": [
+    2,
+    7,
+    5,
+    8,
+    4,
+    1,
+    6,
+    9,
+    3
+  ],
+  "memorableShapes": [
+    "redefinition",
+    "cost-statement",
+    "pointed-question"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "sensory-speak",
+    "mechanism-speak"
+  ],
+  "shellRegister": "verb-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Noel"
+  }
+}

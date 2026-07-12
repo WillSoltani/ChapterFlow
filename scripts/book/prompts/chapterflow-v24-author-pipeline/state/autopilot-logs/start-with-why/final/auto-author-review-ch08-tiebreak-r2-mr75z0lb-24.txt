@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "c", "a", "c", "b", "b", "c", "b", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q2 gives away the error with 'every organization he can name,' making the scope-mark answer easy to spot.", "Q5 and Q9 use absolute distractor language like 'one example proves,' which is visibly wrong without much reading."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 76,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 86,
+    "limits": 89,
+    "insight": 85,
+    "density": 80,
+    "beginner": 83
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The WHY does not make the HOW small; the HOW keeps the WHY honest.",
+      "why": "Strongest compact line; it makes the chapter's core mechanism memorable."
+    },
+    {
+      "quote": "Ask where proof comes back.",
+      "why": "Useful portable command that a reader could remember and apply later."
+    },
+    {
+      "quote": "The phone buzzes once.",
+      "why": "A decorative detail that does not add consequence, setting, or transfer value."
+    },
+    {
+      "quote": "A second story lowers the odds of a one-off; a third one keeps you from calling the pattern universal.",
+      "why": "Strong limit-setting sentence that explains why the examples are sequenced."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "Several examples are really chapter-drafting or review-table scenarios, not lived business or personal decisions, so transfer beyond the book's own evidence pattern is thinner than promised.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The scenario has named characters but little concrete venue, stakes, decision, or consequence; it mostly restates the lesson that HOW and WHAT must be asked.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q2",
+      "problem": "The phrase 'every organization he can name' makes the keyed scope answer too visible.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q5/Q9",
+      "problem": "Distractors using 'one example proves' are too obviously unsound, creating a test-taking tell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a clear, professional chapter with a memorable central move: WHY needs HOW and WHAT so proof can return. The summaries, limits, and quiz keys are mostly sound, and the founder-pair sequence does real conceptual work. I would not ship yet because the transfer examples lean too heavily on meta chapter-review situations and invented character exchanges rather than concrete decisions with visible consequences, which weakens the chapter's promise that the reader can use the move beyond the book's own examples."
+}
+```

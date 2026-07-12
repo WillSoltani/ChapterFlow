@@ -1,0 +1,59 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Q1 and Q9 have keyed answers that are noticeably fuller and more chapter-shaped than the distractors, making them partly guessable without reading."]
+  },
+  "scores": {
+    "retention": 89,
+    "quizzes": 85,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 91,
+    "tone": 84,
+    "limits": 88,
+    "insight": 87,
+    "density": 84,
+    "beginner": 88
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "Strong, memorable compression of the chapter's core sequence."
+    },
+    {
+      "quote": "Real proof changes what another person can count on.",
+      "why": "Clear mechanism that explains the difference between trust-building proof and performance."
+    },
+    {
+      "quote": "The return is set and not yet met.",
+      "why": "This exposes the weakest example pattern: some examples name the setup more than the actual consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The keyed answer is much more complete and structurally aligned with the chapter than the distractors, creating a mild length/completeness tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The keyed answer bundles all the chapter's hard-ground terms, while the distractors are visibly weaker caricatures; this makes the answer partly guessable.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The example has a decision and consequence, but the consequence is mostly conceptual: the return point is set rather than shown actually returning under pressure.",
+      "mustFix": false
+    },
+    {
+      "unit": "Examples",
+      "problem": "Several examples rehearse the airline/source-bound distinctions more than they extend the skill into varied everyday contexts, slightly limiting transfer.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is publishable. The chapter has a clear core move, strong memorable lines, fair quiz keys, and a useful mechanism: trust grows when belief becomes repeatable behavior someone else can rely on. Its main weakness is that transfer stays close to the source material, and one or two examples set up proof more than they show a lived before-to-after consequence. Still, the limits are honest, the summaries layer well, and a beginner could use the promise-marking exercise immediately."
+}
+```

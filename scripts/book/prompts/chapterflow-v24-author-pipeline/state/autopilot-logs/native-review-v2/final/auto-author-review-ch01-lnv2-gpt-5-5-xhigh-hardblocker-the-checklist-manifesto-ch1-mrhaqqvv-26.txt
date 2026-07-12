@@ -1,0 +1,70 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "b", "c", "a", "c", "b", "c"],
+    "mechanisms": [
+      "The prose says danger in expert rooms often lives in handoffs where ownership blurs, not in lack of talent.",
+      "The lesson says to find the transition everyone trusts and nobody owns before the rush/window begins.",
+      "Ingrid's example shows the right first move is rebuilding the path across every handoff before blaming the last visible person.",
+      "The chapter says movement creates seams, so a failure when cues cross departments points first to explicit handoffs.",
+      "The transplant/cold-chain example says separate completed tasks can still fail at the crossings between departments.",
+      "Hadiya's storm example says to mark the overlap before peak load and give it a named owner.",
+      "The museum example and core thesis say the exposed point can be the dependency between experts.",
+      "The prose says expertise cannot make every handoff visible by memory; ownership must be made visible where roles cross.",
+      "The chapter warns against relying on one mind to hold crowded work; the diagnostic question is which transition lived only in the leader's head."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Several correct options reuse chapter vocabulary such as handoff seam, ownership, crossing, and named owner.",
+      "Many distractors are caricatures of blame or command, with words like always, only, replace, punish, or work harder.",
+      "Q1 and Q7 are especially guessable because the correct choices carry the chapter's abstract phrasing while the alternatives sound extreme."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 83,
+    "transfer": 74,
+    "practical": 78,
+    "summaries": 84,
+    "tone": 86,
+    "limits": 88,
+    "insight": 90,
+    "density": 84,
+    "beginner": 88
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Movement creates seams, and seams create assumptions.",
+      "why": "This is the chapter's core mechanism in a compact, memorable line."
+    },
+    {
+      "quote": "The last person on the screen had touched the order, but the failure had lived in the crossings.",
+      "why": "Strongly explains why blame can misdiagnose complex work."
+    },
+    {
+      "quote": "On second thought, leave the warm-fluid setup unassigned and just trust the team's competence, since a skilled room handles every handoff on its own and naming an owner is needless friction.",
+      "why": "This appears inside a What to do section but directly contradicts the lesson."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The What to do section gives a second instruction that says to leave the warm-fluid setup unassigned and trust competence; this is SOURCE-CONTRADICTORY because it teaches the opposite of the chapter's core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Correct answers often use the chapter's signature vocabulary while distractors lean on obvious blame, hero-command, or inexperience framings, making some answers guessable without reading closely.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The Austrian drowning rescue is invoked as support but is not concretely identified or shown with a before-to-after decision path, so it is thinner than the surrounding medical, rail, and pharmacy examples.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear, memorable core move: in dense expert work, inspect the seam where ownership thins before blaming the people. The prose is approachable, the mechanism is repeated without becoming too padded, and the quiz is mostly fair and derivable. I would not ship this version because Example 1's What to do section contains a direct contradictory instruction that could teach the wrong behavior; after fixing that, the remaining issues are craft-level improvements around quiz tells and one under-specified supporting example."
+}
+```

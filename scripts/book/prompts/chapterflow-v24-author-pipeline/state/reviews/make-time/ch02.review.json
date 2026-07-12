@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "make-time-ch02",
+  "chapterNumber": 2,
+  "contentHash": "1f52de1ac8b255e0",
+  "reviewerSessionId": "eval-proxy-make-time-ch02-1783022537961",
+  "scores": {
+    "retention": 90,
+    "quizzes": 72,
+    "transfer": 88,
+    "practical": 89,
+    "summaries": 87,
+    "tone": 84,
+    "limits": 90,
+    "insight": 88,
+    "density": 86,
+    "beginner": 91
+  },
+  "composite": 86.2,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "a"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q9: reader=a key=c"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "A Highlight gives the day a center you can defend, so attention is guided by a chosen meaningful moment instead of by whatever arrives loudest.",
+      "why": "Strongest encapsulation of the core move; memorable, portable, and concrete.",
+      "verified": true
+    },
+    {
+      "quote": "The smaller target does not shrink the ambition. It makes the ambition reachable.",
+      "why": "Strong mechanism line that explains why narrowing the Highlight helps rather than weakens the goal.",
+      "verified": true
+    },
+    {
+      "quote": "Q9: c",
+      "why": "Worst defect: the answer key contradicts the prose and the quiz explanation.",
+      "verified": true
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Visible scaffold residue that breaks the professional finish.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "The correct answer is often the longest and most concrete option, especially Q1, Q2, Q3, Q4, Q5, Q7, Q8, and the actually-correct Q9 option a."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q9",
+      "problem": "Answer key marks c, but option a is the derivable answer from the chapter and from Q9's own explanation.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz answer choices",
+      "problem": "Correct answers are frequently the longest, most specific, and most instructionally polished options, creating a test-taking tell.",
+      "mustFix": true
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The line 'Title: undefined' is unresolved template/scaffold text.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a clear, memorable core: choose one meaningful, protectable center for the day. The examples are varied, concrete, and useful beyond the book's own setup, and the limits section prevents the idea from becoming productivity scolding. I would not ship it yet because the Q9 answer key is plainly wrong and the implementation plan contains visible scaffold residue. Fix those and reduce the quiz tell pattern, and the chapter would likely clear a professional bar."
+}

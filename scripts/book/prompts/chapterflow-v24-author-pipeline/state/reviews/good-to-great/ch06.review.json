@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "good-to-great-ch06",
+  "chapterNumber": 6,
+  "contentHash": "7954524069178714",
+  "reviewerSessionId": "eval-proxy-good-to-great-ch06-1783022584096",
+  "scores": {
+    "retention": 91,
+    "quizzes": 76,
+    "transfer": 90,
+    "practical": 88,
+    "summaries": 92,
+    "tone": 89,
+    "limits": 87,
+    "insight": 88,
+    "density": 86,
+    "beginner": 91
+  },
+  "composite": 87.7,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "c",
+      "b",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Bureaucracy often arrives wearing a safety vest.",
+      "why": "Strong memorable line that gives the chapter a sticky image.",
+      "verified": true
+    },
+    {
+      "quote": "Freedom without a frame becomes drift. Discipline without freedom becomes permission seeking.",
+      "why": "Clean mechanism and boundary; it explains the core tension in portable language.",
+      "verified": true
+    },
+    {
+      "quote": "Explanation: The third option sets a boundary, gives authority, and creates learning.",
+      "why": "Worst concrete defect: Q8 explanation points to the wrong option number.",
+      "verified": true
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Visible scaffold residue in the implementation plan lowers polish.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Correct answers are usually the longest, most specific, and most balanced choice.",
+    "Many distractors are cartoonishly wrong: no rules, add approvals forever, try harder, work nights, or ignore hard constraints.",
+    "Q8 explanation says the third option is correct even though the key and derivable answer are a."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q8",
+      "problem": "Explanation says the third option sets the boundary, but the correct answer is option a, the first option.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are consistently the longest and most nuanced choices, creating a test-taking tell independent of reading comprehension.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Several wrong answers are too obviously bad, such as removing all procedures, making forms longer, working nights, or ignoring the tide window.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The line 'Title: undefined' is visible scaffold residue.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a clear core move, memorable phrasing, good examples, and practical transfer beyond the original book. The prose teaches the freedom-within-a-framework idea well and handles limits honestly. I would not ship it yet because the quiz has a concrete explanation error, strong answer-length tells, and visible scaffold residue in the implementation plan. Those are fixable polish and assessment defects rather than conceptual failures."
+}

@@ -1,0 +1,7 @@
+Fixed the deterministic findings by editing chapter content only under `state/chapters/`.
+
+Validation:
+- Ran `gate-chapter` on all 14 changed chapters: all PASS with 0 blockers.
+- Ran `npx tsx src/cli.ts qc-converge start-with-why`: `DETERMINISTIC-CLEAN`.
+
+No pipeline code or config was edited.

@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several keyed answers use the chapter's exact conceptual nouns in the same order, making them easier to spot without reading: Q1 'belief sets the aim, behavior shows it, trust lowers risk, and loyalty is the return'; Q3 'behavior explain an unnamed belief'; Q8 'checkable ground'.", "Some distractors are visibly implausible because they endorse delaying scope or belief until someone asks, especially Q3a, Q6a, and Q8c."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 74,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 82,
+    "limits": 86,
+    "insight": 87,
+    "density": 80,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "Strongest memorable line; it reverses the common mistake in a compact way."
+    },
+    {
+      "quote": "Adequate proof changes someone else's risk. It lets them rely on the promise with less rechecking.",
+      "why": "Best mechanism sentence; it explains why visible behavior creates trust."
+    },
+    {
+      "quote": "Denise stops at the counter while a low fare waits for employees to make it mean trust.",
+      "why": "The hook is compressed to the point of being awkward for a cold beginner."
+    },
+    {
+      "quote": "Before, price carried the trust claim alone; after, the return is set and not yet met.",
+      "why": "The first example stops before showing a real consequence, weakening transfer."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening image is syntactically strained and underexplained; a beginner may not know why a fare can 'wait' or how employees 'make it mean trust'.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The examples lean heavily on the book's own airline material. Only the bicycle shop clearly tests the idea outside the source frame, so transfer is thinner than the chapter's promise.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 1",
+      "problem": "It names a decision but does not show the promised behavior later returning or producing a consequence; 'not yet met' leaves the before-to-after proof incomplete.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The correct answers often sound like the chapter's preferred phrasing while distractors argue for obviously bad sequencing or generic overreach, creating answer-shape tells.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "Some name use feels scaffolded rather than necessary. Georges and Daniel function more like placeholders for moves than people whose situations matter.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a clear mechanism: belief frames behavior, repeated visible behavior lowers risk, and loyalty arrives only after trust has already started. The best lines are memorable and the limits are unusually honest. I would not ship it at an 84+ professional bar yet because the transfer section is underpowered: the first example does not complete its own proof loop, and too much of the application stays inside the Southwest/Continental/Bethune material instead of showing the move working in a genuinely new situation."
+}
+```

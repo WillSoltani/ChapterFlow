@@ -1,0 +1,13 @@
+Done. I edited chapter content only under `state/chapters/` for the reported deterministic findings.
+
+Validation:
+- Ran `gate-chapter` on every changed chapter: ch01, ch02, ch03, ch04, ch05, ch08, ch09, ch10, ch11, ch12, ch13, ch14. All passed with `0 blockers`.
+- Ran `npx tsx src/cli.ts qc-converge start-with-why`.
+
+Result:
+
+```text
+DETERMINISTIC-CLEAN — start-with-why (14 chapters)
+```
+
+No pipeline code or config was edited.

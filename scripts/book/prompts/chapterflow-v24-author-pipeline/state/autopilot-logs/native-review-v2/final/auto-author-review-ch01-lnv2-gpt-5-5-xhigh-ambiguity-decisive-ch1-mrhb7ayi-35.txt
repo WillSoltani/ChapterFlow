@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "b", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as a four-part repair sequence, with each move meeting a different danger rather than serving as a generic pause.",
+      "Narrow framing is the first villain; the chapter says a live option set prevents a bad yes-or-no frame from hiding richer paths.",
+      "Reality-testing asks for evidence that can surprise or hurt the favorite answer, because confirmation bias makes research flatter the first plan.",
+      "The Intel passage says attachment should be made quieter by Grove's fresh-outsider question, not treated as pure noise.",
+      "Overconfidence comes from one neat future feeling firm; Prepare to be wrong asks for better, worse, or different plausible futures.",
+      "HopeLab used parallel first passes so the team could learn through comparison before committing to one design partner.",
+      "Grove's question asks what a fresh outsider or new leader would do without Intel's memory-chip attachment; the prose rejects outsider superiority.",
+      "The four villains enter at framing, evidence, emotion, and forecasting, and the chapter says each danger needs a matching move.",
+      "The full read explicitly says good process raises odds without promising the outcome and uncertainty can still produce a rough result."
+    ],
+    "confidence": ["high", "high", "high", "medium", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "c is partly defensible because the implementation plan says to ask what will still matter after the mood cools, but b is the one tied to the old-line/outsider setup.",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Correct option is the only one that spells out all four WRAP moves and is visibly the most model-specific.",
+      "Correct option echoes the stem's yes-or-no frame and the chapter's better-paths idea; mild giveaway.",
+      "Correct option is the only one with the technical cue 'disconfirming evidence' against confirmation bias.",
+      "Correct option is the longest and contains the full outsider-question pattern.",
+      "Correct option is the only one that directly names a wider range of outcomes; other options are plainly credulous.",
+      "Correct option repeats the chapter's comparison-before-commitment phrasing.",
+      "Correct option directly restates the outsider question while b and c are obviously wrong from wording.",
+      "Correct option lists the four stages and 'different moves,' making it more model-shaped than the distractors.",
+      "Correct option nearly quotes the memorable line about improving odds while uncertainty remains."
+    ]
+  },
+  "scores": {
+    "retention": 89,
+    "quizzes": 80,
+    "transfer": 82,
+    "practical": 82,
+    "summaries": 85,
+    "tone": 88,
+    "limits": 91,
+    "insight": 88,
+    "density": 83,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "This is the strongest retention line: concrete, short, and central to the chapter's first move."
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "This memorably explains the mechanism of confirmation bias rather than just naming it."
+    },
+    {
+      "quote": "Good process raises the odds without promising the outcome.",
+      "why": "This is the chapter's best limit: it prevents the process from being oversold."
+    },
+    {
+      "quote": "c) You should let the attachment speak, then ask what will still matter later.",
+      "why": "This is the clearest quiz defect because it creates a partly defensible competitor for Q4."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q4",
+      "problem": "Option c is a defensible second answer because the implementation plan says to ask what will still matter after the mood cools; b is stronger because the stem mirrors Intel's old-line attachment.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Correct answers often contain direct model vocabulary or chapter phrasing while distractors are generic or plainly wrong, so several items can be guessed without full reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "Thin-but-usable: Yvonne's forecast reveal names no real context, numbers, decision consequence, or before-after outcome, so it mostly restates the overconfidence lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "Thin-but-usable: the train-platform text thread has no concrete decision or consequence, so it functions more as a mnemonic than a transfer example.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The action asks readers to record a 'shortcut' before that term is made concrete, and touching the laptop lid feels like ritual rather than a necessary low-friction behavior.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is shippable: it has a crisp model, memorable lines, honest limits, and examples and quizzes that mostly force the WRAP sequence from the prose. Its main weaknesses are quiz option tells, one partial ambiguity around the emotion question, and a couple of thin transfer examples that rehearse the lesson without showing much consequence. None of those are reader-harming must-fix defects, but they hold the quiz and transfer scores below the strongest categories."
+}
+```

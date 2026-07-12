@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several wrong answers repeat easy-to-reject authority/status cues: senior precedent, best-known company, senior sponsor, rank. This creates a pattern a test-wise reader could exploit.", "Correct choices often preserve the chapter's exact vocabulary: known/infer/do/comes back, Fort Worth/local, United States auto cue/Japanese factories, true detail/wrong venue."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 78,
+    "practical": 84,
+    "summaries": 87,
+    "tone": 76,
+    "limits": 88,
+    "insight": 84,
+    "density": 75,
+    "beginner": 81
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The fastest fix can be the slowest way to learn.",
+      "why": "Strong memorable line that compresses the mechanism into a phrase readers can carry."
+    },
+    {
+      "quote": "A result is not a trophy; it is the trip back from a guess.",
+      "why": "Best conceptual explanation of why the ledger matters."
+    },
+    {
+      "quote": "American Airlines was founded in 1926 and is based near Fort Worth.",
+      "why": "This fact feels inserted as a source token rather than earned by the lesson."
+    },
+    {
+      "quote": "Jidoka stays with that story too. It is a hard detail from Japanese car-door assembly, not a word to lend wherever extra weight would help.",
+      "why": "Useful limit, but the wording exposes the source-management machinery behind the chapter."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The American Airlines founding date and Fort Worth location read like required factual tokens, not details that affect the reader's decision-making.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The prose repeatedly discusses where details belong in a source case, which makes the chapter feel like a QC artifact rather than a natural business-learning chapter.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples are more about preserving venue/source boundaries than showing a concrete before-to-after workplace consequence with measurable stakes.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Distractors lean too often on obviously weak authority/status logic, reducing difficulty and creating a recurring tell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a real and useful move: separate known facts, assumptions, decisions, and returning results before a fix hardens into proof. Its best lines are memorable, the quiz is mostly fair, and the limits section is unusually honest. I would not ship it yet because the chapter too often shows its scaffolding: venue facts, source-detail boundaries, and comparison machinery are foregrounded in a way that feels produced rather than lived. Tighten the examples around concrete decisions and consequences, and make the source precision feel like natural judgment instead of a visible checklist."
+}
+```

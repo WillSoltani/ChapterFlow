@@ -1,0 +1,66 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "b", "c", "b", "a", "a", "c", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Correct choices often reuse the chapter's distinctive vocabulary and named details, while distractors use obviously overbroad claims like 'same way,' 'single strong word,' or details traveling anywhere.",
+      "Several correct answers are the most qualified, precise, and longest-looking option, especially Q2, Q5, Q6, Q7, and Q9."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 82,
+    "transfer": 85,
+    "practical": 78,
+    "summaries": 88,
+    "tone": 82,
+    "limits": 89,
+    "insight": 88,
+    "density": 83,
+    "beginner": 76
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Trace the pattern before the phrase.",
+      "why": "Strongest compression of the chapter's core move."
+    },
+    {
+      "quote": "The second anchor does not decorate the first; it audits it.",
+      "why": "Memorable mechanism: comparison tests whether the origin travels."
+    },
+    {
+      "quote": "During your morning inbox scan, move one live promise into a two-line note: 1 repeated past moment, 1 impact it served. Stop after 10 minutes.",
+      "why": "The practical exercise skips contribution, even though contribution is one of the chapter's required ledger steps."
+    },
+    {
+      "quote": "The early signal is a 1 beside \"helped people explain what they already lived,\" and small-service founder Xavier is the first to mark it.",
+      "why": "This sentence feels artificial and harder for a beginner to picture than the main lesson requires."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "implementation plan / 24-hour challenge",
+      "problem": "The challenge asks for one repeated past moment and one impact, but the chapter's central sequence requires past patterns, contribution, impact, then statement. Omitting contribution weakens the practice and contradicts the emphasized order.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples add stage-prop details and named-character choreography that feel manufactured rather than clarifying the skill.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The keys are sound, but correct answers often advertise themselves through precise chapter jargon and safer, more qualified phrasing while distractors make obviously broad or absurd moves.",
+      "mustFix": true
+    },
+    {
+      "unit": "beginner path",
+      "problem": "The chapter relies heavily on 'anchor,' 'ledger,' 'token,' 'account,' and 'venue' language before a cold reader has a fully concrete non-book example of doing the move themselves.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong, memorable core: do not write a WHY until past patterns, contribution, and impact have earned it, and use additional anchors to test whether the pattern travels. The key is sound and the best lines are sticky. I would not ship yet at a professional 84 bar because the practical challenge drops a required step, the quiz has visible answer-pattern tells, and parts of the examples read more like scaffolded teaching machinery than plain prose for a beginner."
+}
+```

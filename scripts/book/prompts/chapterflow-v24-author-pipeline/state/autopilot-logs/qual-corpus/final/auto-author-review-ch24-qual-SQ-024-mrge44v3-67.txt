@@ -1,0 +1,96 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": ["The Quiz section contains no questions or answer choices, so there are no answer-pattern tells to assess."]
+  },
+  "scores": {
+    "retention": 5,
+    "quizzes": 0,
+    "transfer": 12,
+    "practical": 5,
+    "summaries": 0,
+    "tone": 20,
+    "limits": 0,
+    "insight": 2,
+    "density": 5,
+    "beginner": 8
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This placeholder is the entire hook and provides no reader-facing idea or motivation."
+    },
+    {
+      "quote": "She changes \"you are undermining me\" into \"I think we may have different ideas about what tantrums need from us.\"",
+      "why": "This concrete before-and-after rewrite is the chapter's only substantive teaching moment."
+    },
+    {
+      "quote": "What to do: Apply the move to the situation.",
+      "why": "The instruction is unusable because the chapter never defines or explains the move."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is production-status placeholder copy rather than an opening that introduces or motivates the lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty, so it fails its stand-alone reading-layer promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty, so it supplies no explanation, mechanism, or deeper teaching.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, leaving the chapter without substantive instructional prose.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty and does not state the chapter's core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the reader receives no concrete exercise or usable action.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The scenario contains a useful rewrite but never identifies the governing move, explains why the rewrite works, or shows its consequence; as an example defect, it is thin rather than independently instructive.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The labels \"Apply the move\" and \"It transfers the idea\" refer to a move and idea that the chapter never defines, making the chapter's core lesson genuinely impossible to learn or apply reliably.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The Quiz section contains no questions, choices, or assessable content, so the quiz is broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and provides no retrieval-practice material.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty and provides no stated memory anchor.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfilled chapter scaffold, not a shippable lesson. Its sole substantive moment—a co-parenting accusation rewritten as a statement of differing interpretations—suggests a potentially useful communication move, but no prose names the move, explains its mechanism, establishes limits, or helps a beginner generalize it. All three reading layers, the takeaway, exercise, quiz, review cards, and memorable lines are empty. The example is too isolated to rescue the chapter, and the absence of quiz questions makes derivation impossible."
+}
+```

@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "high-output-management-ch11",
+  "chapterNumber": 11,
+  "title": "The Sports Analogy",
+  "coreMove": "because the coach's leverage comes from improving players' performance and coordination",
+  "thesis": "A coach improves output without personally playing every role.",
+  "readerPromise": "After this chapter, a reader can because the coach's leverage comes from improving players' performance and coordination",
+  "ownedCases": [
+    {
+      "id": "ch11.ex.sportsCoach",
+      "label": "Sports coach"
+    },
+    {
+      "id": "ch11.ex.teamCoordination",
+      "label": "Team coordination"
+    },
+    {
+      "id": "ch11.ex.performanceFeedback",
+      "label": "Observed performance feedback"
+    }
+  ],
+  "notYours": [
+    "Assigned implementation",
+    "Bonus signal",
+    "Breakfast factory",
+    "Breakfast factory control system",
+    "Breakfast factory goes national",
+    "College graduate as output",
+    "Compiler development",
+    "Contractual obligation",
+    "Corrective performance conversation",
+    "Cultural values",
+    "Difficult feedback conversation",
+    "Environmental demand assessment",
+    "Escalated matrix conflict",
+    "Experienced employee on a new task",
+    "Expert delegated task",
+    "Free-market control",
+    "Functional organization",
+    "Geographic sales overlay",
+    "In-process quality inspection",
+    "Intel decision culture"
+  ],
+  "cast": [
+    "Brock",
+    "Marlowe",
+    "Pauline",
+    "Spencer"
+  ],
+  "answerIndexPattern": [
+    2,
+    2,
+    2,
+    1,
+    1,
+    0,
+    1,
+    0,
+    0
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a doorway conversation",
+    "flavor (ch01): venue: a spare-room desk",
+    "flavor (ch01): venue: an unsent email draft",
+    "flavor (ch01): frame: a first attempt at admitted students as inputs that gets corrected",
+    "flavor (ch01): frame: a first encounter with admitted students as inputs that sets a benchmark",
+    "flavor (ch02): venue: a living-room couch"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a direct-message thread",
+    "venue: a long text thread",
+    "venue: a living-room couch",
+    "frame: two stakeholders disagree before the protagonist chooses",
+    "frame: one sensory detail that turns an ordinary moment into a kept memory"
+  ],
+  "architectureFamily": "single-deep-case",
+  "openerType": "tension-thesis",
+  "challengeFrame": "timebox-N-minutes",
+  "practiceShape": "measure-one-number",
+  "exampleLenses": [
+    "numbers-detective",
+    "prop-tableau",
+    "dialogue-beat"
+  ],
+  "practiceVerb": "circle",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "output",
+    "automatically",
+    "creates",
+    "enough",
+    "manager",
+    "value"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "averted-late",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "partial",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "measure-one-number",
+    "say-aloud-script",
+    "single-imperative",
+    "if-then-trigger"
+  ],
+  "quizStemShapes": [
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority",
+    "transfer-new-domain"
+  ],
+  "quizFailureModes": [
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction",
+    "borrowed-authority"
+  ],
+  "questionFactOrder": [
+    4,
+    9,
+    6,
+    3,
+    2,
+    5,
+    1,
+    7,
+    8
+  ],
+  "memorableShapes": [
+    "pointed-question",
+    "imperative",
+    "reversal"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "contrast-speak",
+    "motion-speak"
+  ],
+  "shellRegister": "actor-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Brock"
+  }
+}

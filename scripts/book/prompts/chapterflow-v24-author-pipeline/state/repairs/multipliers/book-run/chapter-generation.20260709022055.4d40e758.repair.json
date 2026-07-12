@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "chapterflow-self-healing-repair-v1",
+  "createdAt": "2026-07-09T02:20:55.010Z",
+  "bookId": "multipliers",
+  "runId": "book-run",
+  "stage": "chapter-generation",
+  "severity": "blocker",
+  "summary": "author chapter-brief-gate failed (exit 1).\nchapter-brief-gate: BLOCK (1 blocker(s), 0 advisory)\n  [BLOCKER BR1.case_collision] case label \"Google Project Aristotle\" is owned by both chapter 2 and chapter 3 — ownedCases must partition the book's cases",
+  "findings": [],
+  "artifacts": [],
+  "recommendedFixes": [
+    "Edit only the failing chapter content unless the report names missing source/plans as the root cause.",
+    "Fix blocker-level findings first. Preserve chapterId, number, title, sourceAnchorIds, and quiz keys unless the finding explicitly targets them.",
+    "Run author-check and gate-chapter for the edited chapter, then rerun book-gate to catch cross-chapter regressions."
+  ],
+  "validationCommands": [
+    "npx tsx src/cli.ts qc-converge multipliers",
+    "npx tsx src/cli.ts book-run multipliers --no-publish"
+  ],
+  "nextCommand": "npx tsx src/cli.ts book-run multipliers --no-publish",
+  "promptPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/multipliers/book-run/chapter-generation.20260709022055.4d40e758.repair.md",
+  "reportPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/multipliers/book-run/chapter-generation.20260709022055.4d40e758.repair.json"
+}

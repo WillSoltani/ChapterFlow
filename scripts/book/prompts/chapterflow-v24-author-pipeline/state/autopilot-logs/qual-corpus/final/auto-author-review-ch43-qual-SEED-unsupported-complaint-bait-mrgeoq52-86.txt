@@ -1,0 +1,87 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 0,
+    "quizzes": 0,
+    "transfer": 0,
+    "practical": 0,
+    "summaries": 0,
+    "tone": 15,
+    "limits": 0,
+    "insight": 0,
+    "density": 0,
+    "beginner": 0
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review. A sturdy, fully supported passage that merely LOOKS suspicious.",
+      "why": "The hook promises a substantive, supported passage, but no passage follows."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Every required learning component is present only as an empty heading."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "chapter body",
+      "problem": "The hook claims there is a sturdy, fully supported passage, but the file contains no instructional passage at all; this contradicts the chapter's own description.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore cannot provide its promised standalone fast read.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and therefore cannot provide its promised standalone explanation.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty and contains none of the chapter's supposed teaching material.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the chapter states no core move or conclusion.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, leaving the reader with no practical action.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is empty, so there is no example from which to understand or transfer the lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions or answer choices, making the quiz structurally broken and impossible to answer.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and supplies no review material.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty and supplies no retention aid.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an empty chapter scaffold, not a learning chapter. Apart from a meta-level hook, it contains only section headings: there is no concept, mechanism, example, action, summary, review material, or answerable quiz. The absence of every substantive section is structurally invalid and makes the chapter unusable, so it cannot ship."
+}
+```

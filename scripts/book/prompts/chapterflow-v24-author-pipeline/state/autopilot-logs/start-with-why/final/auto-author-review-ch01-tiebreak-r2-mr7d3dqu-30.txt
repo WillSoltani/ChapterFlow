@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["No uniquely longest-choice tell across the quiz. Some correct answers echo exact chapter phrasing, especially Q1 and Q6, but the echoes are not enough to answer reliably without reading."]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 88,
+    "transfer": 82,
+    "practical": 78,
+    "summaries": 90,
+    "tone": 83,
+    "limits": 86,
+    "insight": 85,
+    "density": 80,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A result is not a trophy; it is the trip back from a guess.",
+      "why": "Strongest memorable line; it turns the abstract model into a portable image."
+    },
+    {
+      "quote": "The order is plain but not soft: known data names what has arrived, assumptions name the guess, decisions move on it, and results return to show whether the promise held.",
+      "why": "Best compact statement of the chapter's core mechanism."
+    },
+    {
+      "quote": "Rayu00a0unit = full read",
+      "why": "Invalid quote placeholder avoided; see complaints for the actual defect around Raymond's cold introduction."
+    },
+    {
+      "quote": "Read aloud one live choice for 10 minutes: what you know, what you are guessing, and the one number that must return.",
+      "why": "The practical action is concrete but feels somewhat artificial and heavier than a real reader may actually do."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "full read",
+      "problem": "Rayu00a0unit issue: Raymond appears suddenly as if already established, while the hook and fast read center Gregoire. This blurs the continuity of the airline thread.",
+      "mustFix": false
+    },
+    {
+      "unit": "hook / fast read / examples",
+      "problem": "The chapter rotates through Gregoire, Raymond, Colleen, and Celine in ways that sometimes feel like generated scenario labels rather than a clean learning through-line.",
+      "mustFix": false
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The 10-minute read-aloud exercise is concrete, but it may feel performative for an individual learner; a lower-friction written version would be more practical.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The examples mostly name venues and show decisions, but several are very close to the chapter's own training-copy problem rather than genuinely fresh domains, so transfer is good but not fully stress-tested.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, shippable-near chapter with a clear core move: separate known data, assumptions, decisions, and returning results before letting confidence travel. The summaries layer well, the quiz is fair and key-sound, and the chapter has memorable language. I would not ship at an 84+ professional bar yet because the cast continuity is muddy and the practical exercise has a slight workshop-theater feel, but the defects are repairable rather than structural."
+}
+```

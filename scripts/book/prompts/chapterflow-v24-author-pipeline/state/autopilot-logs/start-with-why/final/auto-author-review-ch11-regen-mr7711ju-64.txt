@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 90,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 87,
+    "tone": 84,
+    "limits": 88,
+    "insight": 86,
+    "density": 82,
+    "beginner": 83
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "This is the chapter's strongest portable line: short, memorable, and mechanically tied to the lesson."
+    },
+    {
+      "quote": "If the count cannot point to conduct, the loop has not closed.",
+      "why": "It turns the concept into a usable diagnostic rule."
+    },
+    {
+      "quote": "Rain dots the windshield as growth lead Heath traces the week:",
+      "why": "This detail feels decorative and artificial compared with the otherwise practical teaching."
+    },
+    {
+      "quote": "Seattle gives the coffee story its own fact, so the comparison can show a repeated pressure without stamping every company with the same place.",
+      "why": "This clearly explains why the second setting matters instead of merely adding another example."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "Several examples are visibly constructed around the lesson rather than drawn from concrete lived situations; the named roles help, but details like the windshield and cursor feel like scene dressing.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The chapter repeats the settings-and-scope point across Walmart, Starbucks, and Microsoft several times, which slightly softens density.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The line about Danielle stopping a broad claim at Redmond is useful but abstract; a beginner may need one clearer sentence showing what the bad broad claim actually sounds like.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against a professional bar. The core move is memorable, the quiz is fair and derivable, the answer key is sound, and the chapter gives a practical diagnostic: make a rising metric return visible conduct before calling the WHY clear. The main weakness is that some fictional examples feel staged and a bit template-like, but they still carry names, settings, decisions, and consequences well enough not to block publication."
+}
+```

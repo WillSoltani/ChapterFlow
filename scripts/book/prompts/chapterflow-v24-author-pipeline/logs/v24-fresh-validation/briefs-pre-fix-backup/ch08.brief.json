@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "high-output-management-ch08",
+  "chapterNumber": 8,
+  "title": "Hybrid Organizations",
+  "coreMove": "because a product, market, or business goal needs coordinated action across specialties",
+  "thesis": "Mission-oriented structure groups resources around an output objective.",
+  "readerPromise": "After this chapter, a reader can because a product, market, or business goal needs coordinated action across specialties",
+  "ownedCases": [
+    {
+      "id": "ch08.ex.functionalOrg",
+      "label": "Functional organization"
+    },
+    {
+      "id": "ch08.ex.missionOrg",
+      "label": "Mission-oriented organization"
+    },
+    {
+      "id": "ch08.ex.hybridIntel",
+      "label": "Intel hybrid structure"
+    }
+  ],
+  "notYours": [
+    "Assigned implementation",
+    "Bonus signal",
+    "Breakfast factory",
+    "Breakfast factory control system",
+    "Breakfast factory goes national",
+    "College graduate as output",
+    "Compiler development",
+    "Contractual obligation",
+    "Corrective performance conversation",
+    "Cultural values",
+    "Difficult feedback conversation",
+    "Environmental demand assessment",
+    "Escalated matrix conflict",
+    "Experienced employee on a new task",
+    "Expert delegated task",
+    "Free-market control",
+    "Geographic sales overlay",
+    "In-process quality inspection",
+    "Intel decision culture",
+    "Intel manager output formula"
+  ],
+  "cast": [
+    "Jude",
+    "Estelle",
+    "Caroline",
+    "Nathan"
+  ],
+  "answerIndexPattern": [
+    0,
+    2,
+    0,
+    2,
+    1,
+    1,
+    2,
+    1,
+    0
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a doorway conversation",
+    "flavor (ch01): venue: a spare-room desk",
+    "flavor (ch01): venue: an unsent email draft",
+    "flavor (ch01): frame: a first attempt at admitted students as inputs that gets corrected",
+    "flavor (ch01): frame: a first encounter with admitted students as inputs that sets a benchmark",
+    "flavor (ch02): venue: a living-room couch"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a birthday-card envelope",
+    "venue: a returned phone call",
+    "venue: a front stoop",
+    "frame: two stakeholders disagree about assigned owners before deciding",
+    "frame: a peak moment recalled vividly long after the day it happened"
+  ],
+  "architectureFamily": "misconception-reversal",
+  "openerType": "scene",
+  "challengeFrame": "before-your-next-X",
+  "practiceShape": "two-step-sequence",
+  "exampleLenses": [
+    "outsider-witness",
+    "numbers-detective",
+    "prop-tableau"
+  ],
+  "practiceVerb": "mark",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "output",
+    "automatically",
+    "creates",
+    "enough",
+    "manager",
+    "value"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "outsider-arrives",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "averted-late",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "two-step-sequence",
+    "say-aloud-script",
+    "measure-one-number",
+    "single-imperative"
+  ],
+  "quizStemShapes": [
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority"
+  ],
+  "quizFailureModes": [
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction"
+  ],
+  "questionFactOrder": [
+    8,
+    6,
+    4,
+    9,
+    2,
+    3,
+    1,
+    5,
+    7
+  ],
+  "memorableShapes": [
+    "cost-statement",
+    "pointed-question",
+    "imperative"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "contrast-speak",
+    "motion-speak"
+  ],
+  "shellRegister": "question-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Functional organization"
+  }
+}

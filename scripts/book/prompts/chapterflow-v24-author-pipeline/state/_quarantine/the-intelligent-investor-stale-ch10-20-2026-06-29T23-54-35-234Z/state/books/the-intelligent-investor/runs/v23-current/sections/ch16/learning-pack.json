@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "learning-pack",
+  "chapterId": "the-intelligent-investor-ch16",
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorIds": [
+          "ch16.fact.1"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch16.fact.1"
+        ],
+        "prompt": "A convertible bond looks appealing because it can turn into common stock. What must be checked before treating it as attractive?",
+        "choices": [
+          "Only the conversion feature, because the bond side stops mattering once common stock upside exists.",
+          "Both bond protection and option value, because interest safety and conversion value are separate return sources.",
+          "Only the issuer's label, because a convertible structure is automatically a balanced bargain."
+        ],
+        "correctIndex": 1,
+        "explanation": "A convertible bond is both a bond and an equity option. A weak bond with a poor option can still be bad.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorIds": [
+          "ch16.fact.2"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch16.fact.2"
+        ],
+        "prompt": "Two convertibles both include conversion privileges. What term most directly changes how valuable that privilege is?",
+        "choices": [
+          "The presence of any conversion privilege, because every conversion right has the same payoff.",
+          "The bond label, because stated terms do not affect the embedded option.",
+          "The conversion price, because common stock must rise enough above it to create value."
+        ],
+        "correctIndex": 2,
+        "explanation": "Terms define the payoff. Conversion price determines how far the common stock must rise before the option has value.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorIds": [
+          "ch16.fact.3"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch16.fact.3"
+        ],
+        "prompt": "A warrant has a low dollar price, so it feels safer than buying shares. What risk does that reasoning miss?",
+        "choices": [
+          "Warrants usually pay no income and can expire without value, so low price can hide total loss risk.",
+          "Warrants are senior securities, so they mainly need an interest-safety test.",
+          "A warrant's cost is low enough that expiration risk becomes irrelevant."
+        ],
+        "correctIndex": 0,
+        "explanation": "Warrants are more speculative than senior securities because they usually pay no income and can expire worthless.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorIds": [
+          "ch16.fact.4"
+        ],
+          "keyEvidenceAnchorIds": [
+          "ch16.fact.4"
+        ],
+        "prompt": "A convertible's conversion value has become favorable to holders. Which term can still limit the upside?",
+        "choices": [
+          "The income payment, because interest automatically lets holders keep all upside.",
+          "The common stock feature, because option value removes issuer control.",
+          "A call provision, because the issuer may redeem and force a decision."
+        ],
+        "correctIndex": 2,
+        "explanation": "Callable terms can limit upside. Issuers may redeem securities when conversion becomes favorable to holders.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorIds": [
+          "ch16.fact.5"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch16.fact.5"
+        ],
+        "prompt": "A convertible offers lower income than a comparable straight bond. What comparison shows whether the tradeoff is sensible?",
+        "choices": [
+          "Compare convertible yield with straight bond yield, then judge whether the conversion privilege is fairly priced.",
+          "Ignore the income gap because any upside feature makes lower yield irrelevant.",
+          "Compare only the stock story, because foregone income is not part of option cost."
+        ],
+        "correctIndex": 0,
+        "explanation": "Foregone income is part of the option cost. Lower yield only makes sense if the conversion privilege is fairly priced.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorIds": [
+          "ch16.fact.6"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch16.fact.6"
+        ],
+        "prompt": "A company sells a complex convertible package and presents it as flexible financing. What should the buyer ask about issuer incentives?",
+        "choices": [
+          "Whether complexity proves the package was designed mainly for investor benefit.",
+          "Whether the package is cheaper for the company than straight financing and may favor the issuer.",
+          "Whether issuer incentives can be ignored once a security includes both debt and equity features."
+        ],
+        "correctIndex": 1,
+        "explanation": "Issuer incentives matter because companies often sell convertibles when the package is cheaper for them than straight financing.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorIds": [
+          "ch16.fact.7"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch16.fact.7"
+        ],
+        "prompt": "Common shareholders dismiss a convertible issue as only a bondholder concern. What effect should they still analyze?",
+        "choices": [
+          "Dilution, because conversion can create new shares and spread earnings over a larger base.",
+          "Interest safety only, because common owners do not share any eventual claim.",
+          "The coupon alone, because conversion cannot affect common shareholders."
+        ],
+        "correctIndex": 0,
+        "explanation": "Convertibles can affect common owners. When conversion occurs, new shares can spread earnings over a larger base.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorIds": [
+          "ch16.fact.8"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch16.fact.8"
+        ],
+        "prompt": "Reported EPS looks clean even though convertibles and warrants are outstanding. What should be checked before relying on it?",
+        "choices": [
+          "Whether reported EPS alone fully captures every hybrid security effect.",
+          "Diluted analysis, because interest, dilution, and option value may appear in different report areas.",
+          "Only the interest line, because option value and dilution are never part of the cost."
+        ],
+        "correctIndex": 1,
+        "explanation": "Accounting treatment can obscure hybrid security costs. Diluted analysis is needed because effects can appear in different places.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorIds": [
+          "ch16.fact.9"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch16.fact.9"
+        ],
+        "prompt": "A hybrid security is marketed as a simple middle ground between defensive holdings and equity upside. What is the disciplined response?",
+        "choices": [
+          "Accept the middle label because hybrid securities are ordinary defensive holdings.",
+          "Treat small term differences as unimportant because the basic structure is balanced.",
+          "Require more expertise, because small term differences can materially change downside and upside."
+        ],
+        "correctIndex": 2,
+        "explanation": "Hybrid securities are not automatically simple. Small term differences can materially change both downside and upside.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cards": {
+    "cards": [
+      {
+        "cardId": "rc01",
+        "sourceAnchorIds": [
+          "ch16.fact.1"
+        ],
+        "front": "Why must a convertible bond be analyzed as both a bond and an equity option?",
+        "back": "Interest safety and conversion value are separate return sources. A conversion feature alone does not make a weak bond with a poor option attractive.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc02",
+        "sourceAnchorIds": [
+          "ch16.fact.2"
+        ],
+        "front": "Why does conversion price matter to the value of a conversion privilege?",
+        "back": "The common stock must rise enough above the conversion price to create value. The stated terms define the payoff.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc03",
+        "sourceAnchorIds": [
+          "ch16.fact.3"
+        ],
+        "front": "Why are warrants more speculative than senior securities?",
+        "back": "Warrants usually pay no income and can expire without value. A low dollar price can hide the risk of total loss.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc04",
+        "sourceAnchorIds": [
+          "ch16.fact.4"
+        ],
+        "front": "How can callable terms limit upside in convertibles?",
+        "back": "The issuer may redeem securities when conversion becomes favorable to holders. A call provision can force a decision instead of letting holders keep all upside.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc05",
+        "sourceAnchorIds": [
+          "ch16.fact.5"
+        ],
+        "front": "Why compare convertible yield with straight bond yield?",
+        "back": "Accepting lower income only makes sense if the conversion privilege is fairly priced. Foregone income is part of the option cost.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc06",
+        "sourceAnchorIds": [
+          "ch16.fact.6"
+        ],
+        "front": "Why do issuer incentives matter in hybrid securities?",
+        "back": "Companies often sell convertibles when the package is cheaper for them than straight financing. Complex terms can favor the issuer rather than the buyer.",
+        "difficulty": "hard"
+      },
+      {
+        "cardId": "rc07",
+        "sourceAnchorIds": [
+          "ch16.fact.7"
+        ],
+        "front": "How can conversion affect common shareholders?",
+        "back": "Conversion can create new shares and spread earnings over a larger base. Common owners share the eventual claim through dilution.",
+        "difficulty": "hard"
+      }
+    ]
+  }
+}

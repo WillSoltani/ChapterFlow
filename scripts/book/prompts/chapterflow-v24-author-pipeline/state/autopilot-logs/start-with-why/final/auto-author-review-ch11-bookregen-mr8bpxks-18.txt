@@ -1,0 +1,66 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": [
+      "Correct choices often reuse the chapter's exact lesson vocabulary, such as setting, conduct, visible behavior, Redmond edge, and named anchors.",
+      "Several distractors are visibly self-defeating or exaggerated, such as using famous names as proof points or removing all place facts."
+    ]
+  },
+  "scores": {
+    "retention": 89,
+    "quizzes": 84,
+    "transfer": 78,
+    "practical": 86,
+    "summaries": 88,
+    "tone": 84,
+    "limits": 90,
+    "insight": 86,
+    "density": 82,
+    "beginner": 84
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "This is the chapter's strongest compact line and makes the core distinction memorable."
+    },
+    {
+      "quote": "Fog spends trust before anyone calls it failure.",
+      "why": "Strong mechanism: it explains the cost of letting growth substitute for visible conduct."
+    },
+    {
+      "quote": "Heath stands on the back porch step while Hazel says the larger count proves the WHY.",
+      "why": "The hook is vivid but cryptic cold because the named people and porch setting have no clear relevance yet."
+    },
+    {
+      "quote": "It half-works. The launch no longer borrows Bentonville, but it still treats every large software effort as if growth blurs intent the same way.",
+      "why": "This is a useful transfer limit, showing how a correction can still overgeneralize."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening image introduces Heath, Hazel, the porch, and the count before the reader has any usable context, so the first sentence is more puzzling than orienting.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The campaign example is thin-but-usable: it names the hollow approval and the Friday return, but does not show what the campaign was, what decision changed, or what consequence followed.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz is fair and derivable, but some correct options are easier to spot because they carry the chapter's preferred vocabulary while distractors sound obviously wrong.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples stay inside review-room or writing-decision situations, so transfer beyond the book's own case set is narrower than the implementation plan promises.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable: it teaches a clear, memorable move, repeats it through layered reads, and gives a practical test for rising metrics without overselling the method. The best material is crisp and durable, especially the receipt-not-reason distinction and the limit about not protecting an old story that no longer deserves trust. Its main weakness is transfer: the examples often feel like internal lesson-management scenarios rather than fully lived workplace cases, and the quiz sometimes telegraphs answers through lesson vocabulary. No must-fix reader-harming defect appears."
+}
+```

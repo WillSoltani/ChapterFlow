@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "high-output-management-ch16",
+  "chapterNumber": 16,
+  "title": "Why Training Is the Boss's Job",
+  "coreMove": "because one teaching investment improves many future executions",
+  "thesis": "Training has high leverage when the task repeats.",
+  "readerPromise": "After this chapter, a reader can because one teaching investment improves many future executions",
+  "ownedCases": [
+    {
+      "id": "ch16.ex.managerTraining",
+      "label": "Manager-led training"
+    },
+    {
+      "id": "ch16.ex.trainingPayback",
+      "label": "Training payback"
+    },
+    {
+      "id": "ch16.ex.practiceCheck",
+      "label": "Practice and check"
+    }
+  ],
+  "notYours": [
+    "Assigned implementation",
+    "Bonus signal",
+    "Breakfast factory",
+    "Breakfast factory control system",
+    "Breakfast factory goes national",
+    "College graduate as output",
+    "Compiler development",
+    "Contractual obligation",
+    "Corrective performance conversation",
+    "Cultural values",
+    "Difficult feedback conversation",
+    "Environmental demand assessment",
+    "Escalated matrix conflict",
+    "Experienced employee on a new task",
+    "Expert delegated task",
+    "Free-market control",
+    "Functional organization",
+    "Geographic sales overlay",
+    "In-process quality inspection",
+    "Intel decision culture"
+  ],
+  "cast": [
+    "Charles",
+    "Forrest",
+    "Emilia",
+    "Cyrielle"
+  ],
+  "answerIndexPattern": [
+    2,
+    1,
+    0,
+    2,
+    1,
+    0,
+    2,
+    0,
+    1
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a doorway conversation",
+    "flavor (ch01): venue: a spare-room desk",
+    "flavor (ch01): venue: an unsent email draft",
+    "flavor (ch01): frame: a first attempt at admitted students as inputs that gets corrected",
+    "flavor (ch01): frame: a first encounter with admitted students as inputs that sets a benchmark",
+    "flavor (ch02): venue: a living-room couch"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a shared grocery list",
+    "venue: a coffee-shop table",
+    "venue: a household chore chart",
+    "frame: rejection of an attractive but mismatched tactic",
+    "frame: a moment of genuine connection during an otherwise routine handoff"
+  ],
+  "architectureFamily": "misconception-reversal",
+  "openerType": "tension-thesis",
+  "challengeFrame": "before-your-next-X",
+  "practiceShape": "say-aloud-script",
+  "exampleLenses": [
+    "outsider-witness",
+    "numbers-detective",
+    "prop-tableau"
+  ],
+  "practiceVerb": "write",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "output",
+    "automatically",
+    "creates",
+    "enough",
+    "manager",
+    "value"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "outsider-arrives",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "averted-late",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "failure",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "say-aloud-script",
+    "two-step-sequence",
+    "observe-then-note",
+    "measure-one-number"
+  ],
+  "quizStemShapes": [
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority"
+  ],
+  "quizFailureModes": [
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction"
+  ],
+  "questionFactOrder": [
+    1,
+    3,
+    6,
+    9,
+    7,
+    2,
+    5,
+    4,
+    8
+  ],
+  "memorableShapes": [
+    "pointed-question",
+    "imperative",
+    "reversal"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "artifact-speak",
+    "cost-speak"
+  ],
+  "shellRegister": "condition-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Manager-led training"
+  }
+}

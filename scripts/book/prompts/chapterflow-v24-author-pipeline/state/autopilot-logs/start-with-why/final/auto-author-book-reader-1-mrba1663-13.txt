@@ -1,0 +1,59 @@
+```json
+{
+  "gate_verdict": "FAIL",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 74,
+    "transfer": 82,
+    "practical": 77,
+    "summaries": 74,
+    "tone": 66,
+    "limits": 78,
+    "insight": 69,
+    "density": 61,
+    "beginner": 75
+  },
+  "quotes": [
+    {
+      "quote": "The repair is not the proof.",
+      "why": "Strong, portable retention line: compact, complete, and central to the chapter."
+    },
+    {
+      "quote": "A metric is a receipt for spread, not a receipt for meaning.",
+      "why": "A memorable reversal that cleanly transfers beyond the company examples."
+    },
+    {
+      "quote": "Three promises out, one balance checked.",
+      "why": "This reads corrupted or incoherent in context, creating the hard gate failure."
+    },
+    {
+      "quote": "A true detail in the wrong paragraph is not extra support; it is false ground.",
+      "why": "Good principle, but the same source-detail warning recurs across chapters and feeds churn."
+    },
+    {
+      "quote": "One story can make you nod; two let you compare what actually repeats.",
+      "why": "Useful idea, but it also exposes the repeated chapter skeleton used throughout the sample."
+    }
+  ],
+  "oneParagraphVerdict": "The sample has a strong learning architecture: compact takeaways, mostly sound keys, scenario-based quizzes, useful review cards, and several memorable reversals. The main problem is not comprehension but production texture. The chapters repeatedly use the same moves: named company anchors, a four-part sequence, source-detail boundary warnings, second-setting comparison, if-then drills, and similar quiz distractor logic. That makes the book feel templated rather than individually authored. I would also gate it as FAIL because at least one sentence appears corrupted or incoherent. With that repaired, the material could become a solid draft, but it needs more varied examples, less repeated scaffolding, and more natural human scenes before it feels premium."
+}
+```

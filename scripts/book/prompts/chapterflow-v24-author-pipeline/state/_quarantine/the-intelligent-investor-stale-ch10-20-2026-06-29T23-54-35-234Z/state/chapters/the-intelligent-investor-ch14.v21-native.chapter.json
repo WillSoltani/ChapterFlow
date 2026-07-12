@@ -1,0 +1,629 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "the-intelligent-investor-ch14",
+  "number": 14,
+  "title": "Stock Selection for the Defensive Investor",
+  "readingTimeMinutes": 8,
+  "hook": "A fast-growing small stock can look safer than it is when size, records, liquidity, and resilience are left unchecked.",
+  "counterintuition": "Defensive stock selection starts by excluding doubtful issues. Adequate size, strong financial condition, stable earnings, dividend record, demonstrated growth, and moderate valuation work together as a procedure, not as isolated proofs.",
+  "tryThisNow": "Take one stock you were tempted to excuse and write one if-then line: If size, balance sheet, or earnings record is missing or weak, then leave it out until source records show the test is met.",
+  "keyTakeaway": "Use the defensive stock checklist as an exclusion screen: require adequate size, financial strength, stable and growing earnings, dividend evidence, and moderate valuation before trusting the story.",
+  "breakdown": {
+    "fastRead": "Defensive stock selection is an exclusion procedure. Adequate company size matters because very small companies can carry limited records, liquidity, and resilience. Strong financial condition matters because weak balance sheets can turn ordinary business setbacks into shareholder losses. Earnings stability across years matters because erratic profits make conservative appraisal unreliable, and a long dividend record can show durability and financial consistency. Some earnings growth is required, but the aim is moderate demonstrated growth instead of a glamour forecast. The valuation checks also matter: moderate price to earnings and moderate price to assets guard against paying too much. The tests work as a group, so one attractive feature cannot repair several failures.",
+    "deepRead": "The defensive filter begins with a refusal to treat a promising story as enough. Adequate company size is required because very small companies can carry limited records, liquidity, and resilience. The common mistake is to assume small size is safer because growth can be faster. That reverses the risk: size risk can overwhelm growth hopes before the hoped-for growth matters.\n\nFinancial strength is the next guard. A good product does not cancel a weak balance sheet. Strong financial condition is required because weak balance sheets can turn ordinary business setbacks into shareholder losses. Debt and liquidity still matter when conditions become less forgiving.\n\nThe earnings record needs both stability and some growth. Earnings stability across years is required because erratic profits make conservative appraisal unreliable. One excellent year may not represent earning power. A long dividend record also belongs in the test set because sustained payments indicate durability and shareholder orientation. Earnings growth matters too, but not as a glamour forecast. Stagnant long-term earnings can erode real value, while moderate demonstrated growth is the conservative aim.\n\nValuation supplies the final restraints. Moderate price to earnings prevents overpaying for quality, and moderate price to assets supplies a second valuation guard because earnings can be temporarily inflated while asset value gives another check. The checklist is cumulative: passing one famous metric is not enough.",
+    "fullRead": "Defensive stock selection converts caution into a set of exclusions. The goal is not to find every possible winner. The goal is to keep doubtful issues out before a hopeful story becomes a purchase. That begins with adequate company size. Very small companies can carry limited records, liquidity, and resilience, so the apparent appeal of faster growth does not automatically make them safer. The defensive investor needs enough record and resilience to make conservative judgment possible.\n\nFinancial condition is the second screen. Strong financial condition is required because weak balance sheets can turn ordinary business setbacks into shareholder losses. A business may have a good product and still be fragile if debt and liquidity are poor. The checklist therefore refuses to let product appeal replace balance-sheet evidence. Defensive selection asks whether the company can absorb ordinary pressure without transferring the damage to shareholders.\n\nThe earnings record then has to prove more than a single bright moment. A defensive review needs a record of steady profits over time, because one unusually strong year can mislead if it does not represent earning power. A long dividend record adds another kind of evidence: sustained payments indicate durability and shareholder orientation, and they also show financial consistency instead of serving only income investors. Some earnings growth is required as well, but the aim is moderate demonstrated growth, not explosive growth. Stagnant long-term earnings can erode real value, while glamour forecasts can pull the investor away from evidence.\n\nValuation keeps quality from becoming an excuse to overpay. Moderate price to earnings matters because even stable companies can deliver poor returns from excessive multiples. A quality company does not deserve any price. Moderate price to assets gives a second guard because earnings can be temporarily inflated while asset value gives another check. Asset value is not irrelevant to common stocks; assets affect downside and appraisal.\n\nThe tests work as a group. The size, balance-sheet, earnings, dividend, growth, and valuation screens work as a combined filter, not as isolated badges. One strong feature cannot offset several failures. Published records such as Standard & Poor's stock data and Moody's manuals represent the kind of source evidence needed for applying the screen: historical earnings, dividends, balance-sheet figures, and bond and stock records. Defensive selection depends on records, not impressions. A low multiplier is only a starting clue; Standard & Poor materials, Moody style balance-sheet review, and peak-year earnings checks all keep cheapness from becoming the whole case."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch14.example.1",
+      "sourceAnchorIds": [
+        "ch14.example.1"
+      ],
+      "title": "The library carrel Size Shortcut",
+      "tags": [
+        "decision_point",
+        "kitchen",
+        "deadline"
+      ],
+      "planSpec": {
+        "domain": "library carrel: deadline triage",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the default behavior quietly costs the reader",
+        "format": "decision_point",
+        "requiredBeat": "show the old default failing in a concrete moment"
+      },
+      "scenario": "Faye sits at the library carrel with Grahamson while a decision deadline gets close. Her old default is to favor the smallest company on the page because fast growth sounds easier from a small base. Grahamson points to the blank spots in the record she has not checked: size, available history, liquidity, and resilience. The the size shortcut shows its flaw moment when Faye realizes that a promising story cannot replace the records that Standard & Poor's stock data is meant to supply.",
+      "whatToDo": "Pause the deadline triage before approving the idea. Check whether the company has adequate size and whether the available record includes historical earnings, dividends, and balance-sheet figures. If the appeal depends mainly on being small, move it out of the defensive pile.",
+      "whyItMatters": "Adequate size is part of the defensive checklist because very small companies can carry limited records, liquidity, and resilience. Standard & Poor's stock data matters here because a screen depends on checked records instead of impressions. Standard & Poor's stock data gives the concrete check: Standard & Poor's stock data; historical earnings and dividends."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch14.example.2",
+      "sourceAnchorIds": [
+        "ch14.example.2"
+      ],
+      "title": "The One-on-One Balance Sheet Test",
+      "tags": [
+        "before_after",
+        "manager",
+        "small"
+      ],
+      "planSpec": {
+        "domain": "manager one-on-one: small experiment",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "before_after_audit",
+        "requiredBeat": "show the reader-facing move changing a decision"
+      },
+      "scenario": "Grahamson brings a candidate into a manager one-on-one with Helena and starts with the product story. Helena asks for the published investment reference data before they decide. Grahamson opens the bond and stock records from Moody's manuals and sees the weak financial condition he had treated as secondary. The small experiment changes the decision: the candidate stops being an approval item and becomes a reminder that a good product does not cancel debt and liquidity risk.",
+      "whatToDo": "Run the one-on-one as a source-record check. Before discussing the product appeal, require the balance-sheet evidence and decide whether financial condition is strong enough for a defensive screen. If debt and liquidity look weak, reject the candidate instead of saving it with a story.",
+      "whyItMatters": "Strong financial condition is a defensive requirement because weak balance sheets can turn ordinary business setbacks into shareholder losses. Moody's manuals stand for the published records that keep the decision tied to evidence. Moody's manuals keeps two details visible, Moody's manuals and published investment reference data."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch14.example.3",
+      "sourceAnchorIds": [
+        "ch14.example.3"
+      ],
+      "title": "The Phone Call After the Peak Year",
+      "tags": [
+        "mistake_recovery",
+        "phone",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "phone call: feedback loop",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "conversation_repair",
+        "requiredBeat": "show friction or recovery, not instant clean success"
+      },
+      "scenario": "Helena calls Ivan after Jolie flags a candidate that looks impressive because of one excellent year. The first pass is awkward: Ivan wants to keep it because the peak year feels like proof, while Helena asks for earnings stability across years. They do not get an instant clean answer. Jolie reads back the seven defensive tests, and the group repairs the call by moving the candidate to pending until the earnings record supports conservative appraisal.",
+      "whatToDo": "Use the phone call as a feedback loop. Separate a single excellent year from stable earning power, then compare the candidate against the seven defensive tests instead of letting one strong line carry the decision. If the earnings record is erratic, keep it out of the defensive list.",
+      "whyItMatters": "Earnings stability across years is required because erratic profits make conservative appraisal unreliable. The seven defensive tests work as a procedure, so a peak year should not override the need for a steadier record. Seven defensive tests also brings in moderate price to earnings and moderate price to assets."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch14.example.1",
+      "sourceAnchorIds": [
+        "ch14.example.1"
+      ],
+      "title": "Record sleeve proofs Standard & Poor's stock data",
+      "tags": [
+        "checklist_walkthrough",
+        "source_specific",
+        "file"
+      ],
+      "planSpec": {
+        "domain": "office doorway: Standard & Poor's stock data",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "one missing source detail can stop the purchase",
+        "format": "checklist_walkthrough",
+        "requiredBeat": "use a source detail as a stop point"
+      },
+      "scenario": "Faye matches a record sleeve beside the cedar booth; the orderly ledgerline frames the page toward a exact claimnote. The granitepanel stays closed.",
+      "whatToDo": "Record Standard & Poor's stock data beside historical earnings and dividends; settle balance-sheet figures.",
+      "whyItMatters": "Standard & Poor's stock data: balance-sheet figures."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch14.example.2",
+      "sourceAnchorIds": [
+        "ch14.example.2"
+      ],
+      "title": "Allocation page measures Moody's manuals",
+      "tags": [
+        "constraint_test",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "library aisle: Moody's manuals",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the written test has to survive a second reader",
+        "format": "constraint_test",
+        "requiredBeat": "turn a detail into a written constraint"
+      },
+      "scenario": "Grahamson prices a allocation page beside the granite cart; the patient worksheet catches the page toward a fresh reservecard. The coppermetric stays closed.",
+      "whatToDo": "Compare Moody's manuals beside published investment reference data; settle bond and stock records.",
+      "whyItMatters": "Moody's manuals: bond and stock records."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch14.example.3",
+      "sourceAnchorIds": [
+        "ch14.example.3"
+      ],
+      "title": "Watchlist tile filters Seven defensive tests",
+      "tags": [
+        "handoff_review",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "review room: Seven defensive tests",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the handoff keeps the exact condition visible",
+        "format": "handoff_review",
+        "requiredBeat": "carry the condition into the next review"
+      },
+      "scenario": "Helena tilts a watchlist tile beside the copper table; the quick memoqueue separates the page toward a guarded methodtile. The linenharbor stays closed.",
+      "whatToDo": "Set seven defensive tests beside moderate price to earnings; settle moderate price to assets.",
+      "whyItMatters": "Seven defensive tests: moderate price to assets."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch14.fact.1",
+        "prompt": "A stock looks exciting because the company is very small and could grow fast. What defensive test is being skipped?",
+        "choices": [
+          "Require adequate company size because very small companies can carry limited records, liquidity, and resilience.",
+          "Treat small size as safer because growth can be faster. after reviewing the same defensive-company record",
+          "Ignore company size if the story sounds promising. after reviewing the same defensive-company record"
+        ],
+        "correctIndex": 0,
+        "explanation": "Adequate size is part of the defensive checklist. Very small companies can carry size risk that overwhelms growth hopes.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch14.fact.2",
+        "prompt": "A company has a popular product but a weak balance sheet. What should a defensive screen do?",
+        "choices": [
+          "Accept the stock because a good product offsets a weak balance sheet.",
+          "Focus only on the product and ignore ordinary business setbacks.",
+          "Require strong financial condition because debt and liquidity still matter."
+        ],
+        "correctIndex": 2,
+        "explanation": "Strong financial condition is a defensive requirement. Weak balance sheets can turn ordinary business setbacks into shareholder losses.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch14.fact.3",
+        "prompt": "A stock shows one excellent year of profits after an uneven record. What is the better defensive response?",
+        "choices": [
+          "Require earnings stability across years because a single peak may not represent earning power.",
+          "Accept the latest peak because one excellent year qualifies the stock.",
+          "Ignore earnings records because conservative appraisal does not use profits."
+        ],
+        "correctIndex": 0,
+        "explanation": "Earnings stability across years is required. Erratic profits make conservative appraisal unreliable, and a single peak may misstate earning power.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch14.fact.4",
+        "prompt": "A stock is dismissed because dividends are seen as relevant only to income investors. What does the defensive checklist say?",
+        "choices": [
+          "Dividends should be ignored because they do not evidence financial consistency.",
+          "Dividend records matter only when no earnings record exists.",
+          "A long dividend record belongs in the test set as durability evidence."
+        ],
+        "correctIndex": 2,
+        "explanation": "A long dividend record is part of the defensive test set. Sustained payments can evidence durability, shareholder orientation, and financial consistency.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch14.fact.5",
+        "prompt": "A screen rejects any company without explosive growth. What adjustment fits a defensive approach?",
+        "choices": [
+          "Demand explosive growth because defensive stocks need glamour forecasts.",
+          "Look for some demonstrated earnings growth, since stagnant long-term earnings can erode real value.",
+          "Discount growth in this screen because moderate growth seems too ordinary."
+        ],
+        "correctIndex": 1,
+        "explanation": "Some earnings growth is required, but not as a glamour forecast. Moderate demonstrated growth is the conservative aim.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch14.fact.6",
+        "prompt": "A stable company looks high quality, but the price to earnings multiple is excessive. What risk remains?",
+        "choices": [
+          "Quality makes any P/E acceptable.",
+          "A stable company cannot deliver poor returns.",
+          "Overpaying can still make quality produce poor returns."
+        ],
+        "correctIndex": 2,
+        "explanation": "Moderate price to earnings prevents overpaying for quality. Even stable companies can disappoint shareholders when the multiple is excessive.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch14.fact.7",
+        "prompt": "A stock passes an earnings-based valuation test, but price to assets is ignored as irrelevant. What is missing?",
+        "choices": [
+          "Moderate price to assets supplies a second guard because earnings can be temporarily inflated.",
+          "Asset value is irrelevant to common stocks when earnings look good.",
+          "Use price to earnings alone because assets feel less relevant to downside."
+        ],
+        "correctIndex": 0,
+        "explanation": "Moderate price to assets supplies another valuation check. Assets affect downside and appraisal when earnings may be temporarily inflated.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch14.fact.8",
+        "prompt": "A stock passes one famous metric but fails several other defensive tests. How should the result be read?",
+        "choices": [
+          "Passing one famous metric is enough for a defensive investor.",
+          "The tests work as a group, so one strong feature cannot offset several failures.",
+          "The strongest feature offsets several failures."
+        ],
+        "correctIndex": 1,
+        "explanation": "The checklist is cumulative. All tests work as a group instead of isolated proofs.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch14.fact.9",
+        "prompt": "A screen is criticized because it may reject some future winners. What is the defensive purpose of the checklist?",
+        "choices": [
+          "Maximize upside by accepting every possible winner.",
+          "Keep doubtful issues out, since a defensive screen first limits error.",
+          "Replace exclusion with story buying whenever upside appears large."
+        ],
+        "correctIndex": 1,
+        "explanation": "The checklist is designed for exclusion. Its purpose is to keep doubtful issues out, not to find every possible winner.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "sourceAnchorId": "ch14.fact.1",
+      "sourceAnchorIds": [
+        "ch14.fact.1"
+      ],
+      "front": "Why does adequate company size belong in a defensive stock checklist?",
+      "back": "Very small companies can carry limited records, liquidity, and resilience. Size risk can overwhelm growth hopes.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "sourceAnchorId": "ch14.fact.2",
+      "sourceAnchorIds": [
+        "ch14.fact.2"
+      ],
+      "front": "Why is strong financial condition a defensive requirement?",
+      "back": "Weak balance sheets can turn ordinary business setbacks into shareholder losses. Debt and liquidity still matter even when the product looks good.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc03",
+      "sourceAnchorId": "ch14.fact.3",
+      "sourceAnchorIds": [
+        "ch14.fact.3"
+      ],
+      "front": "Why is one excellent earnings year not enough?",
+      "back": "A single peak may not represent earning power. Earnings stability across years is needed because erratic profits make conservative appraisal unreliable.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "sourceAnchorId": "ch14.fact.4",
+      "sourceAnchorIds": [
+        "ch14.fact.4"
+      ],
+      "front": "What does a long dividend record add to a defensive test?",
+      "back": "Sustained payments can indicate durability and shareholder orientation. They also evidence financial consistency.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc05",
+      "sourceAnchorId": "ch14.fact.5",
+      "sourceAnchorIds": [
+        "ch14.fact.5"
+      ],
+      "front": "What kind of earnings growth fits a defensive screen?",
+      "back": "Some demonstrated earnings growth is required because stagnant long-term earnings can erode real value. The aim is moderate growth, not a glamour forecast.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc06",
+      "sourceAnchorId": "ch14.fact.6",
+      "sourceAnchorIds": [
+        "ch14.fact.6"
+      ],
+      "front": "Why does moderate price to earnings matter for a quality company?",
+      "back": "Even stable companies can deliver poor returns from excessive multiples. Valuation still controls return.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc07",
+      "sourceAnchorId": "ch14.fact.7",
+      "sourceAnchorIds": [
+        "ch14.fact.7"
+      ],
+      "front": "Why use moderate price to assets as a second valuation guard?",
+      "back": "Earnings can be temporarily inflated, while asset value gives another check. Assets affect downside and appraisal.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Rehearse Defensive Exclusion Before Buying",
+    "titleSourceAnchorIds": [
+      "ch14.fact.1",
+      "ch14.fact.2",
+      "ch14.fact.3"
+    ],
+    "coreSkill": "Turn defensive selection into an exclusion habit. Before letting a growth hope, a good product, or one excellent year carry a decision, check adequate size, strong financial condition, and earnings stability against source records.",
+    "coreSkillSourceAnchorIds": [
+      "ch14.fact.1",
+      "ch14.fact.2",
+      "ch14.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch14.fact.1",
+        "sourceAnchorIds": [
+          "ch14.fact.1"
+        ],
+        "context": "kitchen table",
+        "plan": "If small size is being treated as safer because growth might be faster, then check the source record for adequate company size before keeping the stock on the list."
+      },
+      {
+        "sourceAnchorId": "ch14.fact.2",
+        "sourceAnchorIds": [
+          "ch14.fact.2"
+        ],
+        "context": "manager one-on-one",
+        "plan": "If a good product is being used to excuse a weak balance sheet, then require published bond and stock records showing strong financial condition before treating the idea as defensive."
+      },
+      {
+        "sourceAnchorId": "ch14.fact.3",
+        "sourceAnchorIds": [
+          "ch14.fact.3"
+        ],
+        "context": "phone call",
+        "plan": "If one excellent year is carrying the case, then move the stock to a pending list until earnings stability across years is visible in the defensive tests."
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next stock decision, write the three if-then triggers on the same page as the source record: adequate size, strong financial condition, and earnings stability.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch14.fact.1",
+      "ch14.fact.2",
+      "ch14.fact.3"
+    ],
+    "weeklyPractice": "Each Friday, keep an evidence log for one candidate stock. Mark the first failed or missing item among size, financial condition, and earnings stability, then leave the stock out until the record supports that item.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch14.fact.1",
+      "ch14.fact.2",
+      "ch14.fact.3"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "That reverses the risk: size risk can overwhelm growth hopes before the hoped-for growth matters.",
+      "location": "breakdown.deepRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "Debt and liquidity still matter when conditions become less forgiving.",
+      "location": "breakdown.deepRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "The goal is to keep doubtful issues out before a hopeful story becomes a purchase.",
+      "location": "breakdown.fullRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:bafc23e453eb70777e508308c8b9e4ef447117b2bfb8ca009ca98c2117be53fe",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v23-compiler-pipeline 2/.chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch14.source.json",
+      "observedAnchorIds": [
+        "ch14.concept",
+        "ch14.example.1",
+        "ch14.example.2",
+        "ch14.example.3",
+        "ch14.fact.1",
+        "ch14.fact.2",
+        "ch14.fact.3",
+        "ch14.fact.4",
+        "ch14.fact.5",
+        "ch14.fact.6",
+        "ch14.fact.7",
+        "ch14.fact.8",
+        "ch14.fact.9",
+        "ch14.framework.seven.defensive.stock.tests"
+      ],
+      "effectiveAnchors": {
+        "examples[0]": [
+          "ch14.example.1"
+        ],
+        "examples[1]": [
+          "ch14.example.2"
+        ],
+        "examples[2]": [
+          "ch14.example.3"
+        ],
+        "quiz.questions[0]": [
+          "ch14.fact.1"
+        ],
+        "quiz.questions[0].keyEvidence": [
+          "ch14.fact.1"
+        ],
+        "quiz.questions[1]": [
+          "ch14.fact.2"
+        ],
+        "quiz.questions[1].keyEvidence": [
+          "ch14.fact.2"
+        ],
+        "quiz.questions[2]": [
+          "ch14.fact.3"
+        ],
+        "quiz.questions[2].keyEvidence": [
+          "ch14.fact.3"
+        ],
+        "quiz.questions[3]": [
+          "ch14.fact.4"
+        ],
+        "quiz.questions[3].keyEvidence": [
+          "ch14.fact.4"
+        ],
+        "quiz.questions[4]": [
+          "ch14.fact.5"
+        ],
+        "quiz.questions[4].keyEvidence": [
+          "ch14.fact.5"
+        ],
+        "quiz.questions[5]": [
+          "ch14.fact.6"
+        ],
+        "quiz.questions[5].keyEvidence": [
+          "ch14.fact.6"
+        ],
+        "quiz.questions[6]": [
+          "ch14.fact.7"
+        ],
+        "quiz.questions[6].keyEvidence": [
+          "ch14.fact.7"
+        ],
+        "quiz.questions[7]": [
+          "ch14.fact.8"
+        ],
+        "quiz.questions[7].keyEvidence": [
+          "ch14.fact.8"
+        ],
+        "quiz.questions[8]": [
+          "ch14.fact.9"
+        ],
+        "quiz.questions[8].keyEvidence": [
+          "ch14.fact.9"
+        ],
+        "reviewCards[0]": [
+          "ch14.fact.1"
+        ],
+        "reviewCards[1]": [
+          "ch14.fact.2"
+        ],
+        "reviewCards[2]": [
+          "ch14.fact.3"
+        ],
+        "reviewCards[3]": [
+          "ch14.fact.4"
+        ],
+        "reviewCards[4]": [
+          "ch14.fact.5"
+        ],
+        "reviewCards[5]": [
+          "ch14.fact.6"
+        ],
+        "reviewCards[6]": [
+          "ch14.fact.7"
+        ],
+        "implementationPlan.title": [
+          "ch14.fact.1",
+          "ch14.fact.2",
+          "ch14.fact.3"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch14.fact.1",
+          "ch14.fact.2",
+          "ch14.fact.3"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch14.fact.1"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch14.fact.2"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch14.fact.3"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch14.fact.1",
+          "ch14.fact.2",
+          "ch14.fact.3"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch14.fact.1",
+          "ch14.fact.2",
+          "ch14.fact.3"
+        ],
+        "hook": [
+          "ch14.fact.1"
+        ],
+        "counterintuition": [
+          "ch14.fact.1",
+          "ch14.fact.2",
+          "ch14.fact.3",
+          "ch14.fact.4",
+          "ch14.fact.5",
+          "ch14.fact.8",
+          "ch14.fact.9",
+          "ch14.framework.seven.defensive.stock.tests"
+        ],
+        "keyTakeaway": [
+          "ch14.fact.1",
+          "ch14.fact.2",
+          "ch14.fact.3",
+          "ch14.fact.4",
+          "ch14.fact.5",
+          "ch14.fact.6",
+          "ch14.fact.7",
+          "ch14.fact.8",
+          "ch14.fact.9",
+          "ch14.framework.seven.defensive.stock.tests"
+        ],
+        "tryThisNow": [
+          "ch14.fact.1",
+          "ch14.fact.2",
+          "ch14.fact.3"
+        ],
+        "breakdown.fastRead": [
+          "ch14.fact.1",
+          "ch14.fact.2",
+          "ch14.fact.3",
+          "ch14.fact.4",
+          "ch14.fact.5",
+          "ch14.fact.6",
+          "ch14.fact.7",
+          "ch14.fact.8"
+        ],
+        "breakdown.deepRead": [
+          "ch14.fact.1",
+          "ch14.fact.2",
+          "ch14.fact.3",
+          "ch14.fact.4",
+          "ch14.fact.5",
+          "ch14.fact.6",
+          "ch14.fact.7",
+          "ch14.fact.8"
+        ],
+        "breakdown.fullRead": [
+          "ch14.fact.1",
+          "ch14.fact.2",
+          "ch14.fact.3",
+          "ch14.fact.4",
+          "ch14.fact.5",
+          "ch14.fact.6",
+          "ch14.fact.7",
+          "ch14.fact.8",
+          "ch14.fact.9",
+          "ch14.framework.seven.defensive.stock.tests"
+        ]
+      }
+    }
+  }
+}

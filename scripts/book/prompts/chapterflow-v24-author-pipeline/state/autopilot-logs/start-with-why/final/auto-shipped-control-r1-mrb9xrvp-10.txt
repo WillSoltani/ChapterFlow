@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "FAIL",
+  "book3_churn": "MEDIUM",
+  "quizDerivation": {
+    "1": {
+      "answers": ["a", "b", "c", "a", "b", "c", "a", "a", "c"],
+      "keyDisagreements": ["Q8: I derived a. The prose says copied tools fail when the receiving system misses the upstream belief; the keyed answer b claims the old factory hid a better checklist, which the chapter does not support."]
+    },
+    "2": {
+      "answers": ["b", "c", "a", "b", "c", "a", "b", "c", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["c", "b", "a", "c", "b", "a", "c", "b", "a"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "a", "c", "b", "a", "b", "c", "b", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 61,
+    "transfer": 82,
+    "practical": 70,
+    "summaries": 78,
+    "tone": 74,
+    "limits": 77,
+    "insight": 75,
+    "density": 71,
+    "beginner": 80
+  },
+  "quotes": [
+    {
+      "quote": "A clean finish can still hide a broken start.",
+      "why": "Strong, portable retention line that captures the chapter lens cleanly."
+    },
+    {
+      "quote": "A bought response is not the same as a chosen return.",
+      "why": "Memorable distinction that carries across marketing, leadership, and habits."
+    },
+    {
+      "quote": "Reliability says the job was done; trust says the people are safe with you.",
+      "why": "One of the sample's best compact claims; clear and reusable."
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Template/scaffold artifact appears in reader-facing implementation plans."
+    },
+    {
+      "quote": "An American assembly lesson reframes a Friday release report shows the same defect escaping through final QA for the third sprint.",
+      "why": "Corrupted sentence structure that reads like stitched template material."
+    },
+    {
+      "quote": "CHAPTER 1 Q8: b",
+      "why": "Keyed answer conflicts with the prose and the quiz options; the supported answer is a."
+    }
+  ],
+  "oneParagraphVerdict": "The sample has real editorial strengths: the core lenses are useful, many summaries are clear, and several memorable lines would stick for a reader. But it fails the correctness gate because Chapter 1 Q8 is miskeyed, and the implementation sections leak scaffold text while several examples contain stitched, incoherent phrasing. Across chapters, the structure is also noticeably repetitive: hook, three-tier summary, six similarly shaped examples, quiz, cards, implementation plan, memorable lines. This is a solid draft with strong concept transfer, but it is not publishable without key repair, artifact cleanup, and a pass to make the chapters feel less templated."
+}
+```

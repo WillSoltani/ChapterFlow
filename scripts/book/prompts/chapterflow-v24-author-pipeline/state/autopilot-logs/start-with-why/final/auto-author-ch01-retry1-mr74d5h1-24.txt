@@ -1,0 +1,9 @@
+Done: [start-with-why-ch01.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch01.v21-native.chapter.json).
+
+Validation passed:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers
+- quiz verify: 9/9 match, required key pattern `1,1,0,2,0,1,2,0,2`
+- reader metrics: ease `76.419`, transfer `0.778`, tell `0.111`, memClean `2`, length tell `3`, practice `2`
+- rendered length: `15,615` chars
+- reader-facing scaffold scan: no hits

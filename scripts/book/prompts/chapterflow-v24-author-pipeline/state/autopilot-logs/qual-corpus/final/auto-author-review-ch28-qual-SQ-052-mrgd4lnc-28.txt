@@ -1,0 +1,110 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 8,
+    "quizzes": 0,
+    "transfer": 8,
+    "practical": 0,
+    "summaries": 0,
+    "tone": 15,
+    "limits": 0,
+    "insight": 10,
+    "density": 12,
+    "beginner": 5
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This reads as placeholder scaffolding, not learner-facing chapter prose."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now",
+      "why": "Core standalone learning layers are present as headings but contain no content."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "The practical instruction is circular because the chapter never defines the move."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "The quiz and reinforcement sections are empty, so the product cannot test or reinforce learning."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is a production placeholder rather than reader-facing content.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and fails its standalone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and fails its standalone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty and fails its standalone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the chapter never states the core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the reader receives no actionable practice.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section has no questions, so the quiz is structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The review cards section is empty, so spaced review cannot function.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The memorable lines section is empty, so the chapter lacks the promised recall aid.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The action instruction says only to follow the scene's move, but no move has been taught or named.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "The action instruction says only to follow the scene's move, but no move has been taught or named.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The sentence 'Ludo he has to choose' is ungrammatical and disrupts comprehension.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The sentence 'Odette she must decide' is ungrammatical and disrupts comprehension.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not a shippable chapter. It contains two concrete scene sketches, but the teaching content is almost entirely absent: fast/deep/full reads, takeaway, practice, quiz, review cards, and memorable lines are empty. Because the chapter never defines its core move, the examples cannot transfer into usable reader action, and there is no quiz to derive or score."
+}
+```

@@ -1,0 +1,365 @@
+{
+  "schema": "split-lane-corpus-spec-v2",
+  "role": "quiz",
+  "corpusId": "imp22-forward-sol-quiz-corpus-v2",
+  "builderMode": "quiz-quad-per-base-single-question-v2",
+  "_note": "IMP-22 additive development corpus. The IMP-20 quiz spec and evidence remain untouched. Ten qualification-holdout and two calibration-only clean question coordinates each produce four isolated single-question cases: clean, key mismatch, mechanically indisputable ambiguity, and explicit mechanism/causal-key. Labels are curator-authored development fixtures, never independent-human or literal owner-authored judgments.",
+  "governance": {
+    "definitionsFrozenBeforeLiveOutput": true,
+    "calibrationVsHoldoutSeparated": true,
+    "holdoutImmutableOnceLiveQualificationBegins": true,
+    "noInCampaignInstrumentTreadmill": "If a material instrument defect is found after qualification starts, terminate that role experiment ID and repair offline once; never relabel or replace a live holdout item.",
+    "ownerApprovedForDevelopmentBakeoff": true,
+    "curatorAuthoredDevelopmentGold": true,
+    "independentHumanRater": false,
+    "labelProvenance": "curator-authored-development-fixture",
+    "everyAmbiguityGoldSurvivesAdversarialSingleBestAnswer": true,
+    "noBorderlineAmbiguityAsHoldout": true
+  },
+  "cleanBaseScoreLedger": "clean-base-score-ledger.v1.json",
+  "minRenderBytes": 8000,
+  "excludedCandidateBookIds": [
+    "start-with-why",
+    "radical-candor",
+    "the-gifts-of-imperfection"
+  ],
+  "singleQuestionProjection": true,
+  "keyMismatchPolicy": "rotate-key-to-next-choice-v1",
+  "ambiguityProofPolicy": "duplicate-keyed-choice-adversarial-proof-v1",
+  "knownDefectExclusions": [
+    { "bookId": "the-power-of-moments", "chapter": 1, "questionIndex1": 3, "reason": "known ambiguous item" },
+    { "bookId": "peak", "chapter": 1, "questionIndex1": 1, "reason": "known ambiguous item" },
+    { "bookId": "peak", "chapter": 1, "questionIndex1": 6, "reason": "known ambiguous item" },
+    { "bookId": "decisive", "chapter": 1, "questionIndex1": 4, "reason": "known wrong-key item" }
+  ],
+  "expectedCompositionByPartition": {
+    "calibration": {
+      "uniquely-correct-clean": 2,
+      "key-mismatch": 2,
+      "genuine-ambiguity": 2,
+      "mechanism-causal-key": 2,
+      "total": 8
+    },
+    "holdout": {
+      "uniquely-correct-clean": 10,
+      "key-mismatch": 10,
+      "genuine-ambiguity": 10,
+      "mechanism-causal-key": 10,
+      "total": 40
+    }
+  },
+  "baseItems": [
+    {
+      "fixtureKey": "willpower-ch01-q01",
+      "partition": "holdout",
+      "baseBookId": "the-willpower-instinct",
+      "baseChapter": 1,
+      "targetQuestionIndex1": 1,
+      "cleanProof": {
+        "status": "CURATOR_VERIFIED_UNIQUE_DEVELOPMENT_GOLD",
+        "keyedAnswerIndex": 2,
+        "defensibleAnswerIndices": [2],
+        "evidencePath": "/quiz/questions/0/explanation",
+        "sourceDesignation": "curator inspection of the stored prompt, all choices, keyed choice, and explanation; the preserved review trail contains no known defect for this item",
+        "curatorRationale": "Only the keyed choice names all three powers requested by the prompt; the distractors reduce the method to refusal or deny the stated goal. Not independent-human gold."
+      },
+      "mechanismFixture": {
+        "fixtureId": "comparison-pause-supported-01",
+        "mode": "supported",
+        "supportText": "IMP-22 fixture evidence: A short pause can improve comparison by creating time to inspect alternatives. It does not guarantee a correct decision.",
+        "prompt": "Which mechanism is supported by the IMP-22 fixture evidence?",
+        "supportedChoice": "The pause creates time to inspect alternatives without guaranteeing the outcome.",
+        "causalOverreachChoice": "The pause itself guarantees that the correct decision will be made.",
+        "unrelatedChoice": "The pause retroactively changes the historical source record.",
+        "explanation": "The fixture names extra comparison time and explicitly rejects a guaranteed outcome.",
+        "curatorRationale": "The keyed mechanism repeats the bounded causal support in the appended evidence and remains unique against a guarantee and an unrelated claim."
+      }
+    },
+    {
+      "fixtureKey": "checklist-ch01-q01",
+      "partition": "holdout",
+      "baseBookId": "the-checklist-manifesto",
+      "baseChapter": 1,
+      "targetQuestionIndex1": 1,
+      "cleanProof": {
+        "status": "CURATOR_VERIFIED_UNIQUE_DEVELOPMENT_GOLD",
+        "keyedAnswerIndex": 1,
+        "defensibleAnswerIndices": [1],
+        "evidencePath": "/quiz/questions/0/explanation",
+        "sourceDesignation": "curator inspection of the stored prompt, all choices, keyed choice, and explanation; the preserved review trail contains no known defect for this item",
+        "curatorRationale": "The stem locates a cross-role ownership miss, which only the keyed seam diagnosis addresses; lack of knowledge and universal command do not fit the facts. Not independent-human gold."
+      },
+      "mechanismFixture": {
+        "fixtureId": "handoff-ownership-overreach-01",
+        "mode": "causal-overreach",
+        "supportText": "IMP-22 fixture evidence: Naming one owner at a handoff can reduce omission risk by making responsibility visible. It cannot guarantee that no failure will occur.",
+        "prompt": "Which mechanism is supported by the IMP-22 fixture evidence?",
+        "supportedChoice": "Named ownership can reduce omission risk by making responsibility visible.",
+        "causalOverreachChoice": "Naming an owner guarantees that no handoff failure can occur.",
+        "unrelatedChoice": "Named ownership changes which source archive is authoritative.",
+        "explanation": "The keyed guarantee claims zero failures even though the fixture supports only reduced omission risk.",
+        "curatorRationale": "The intentional key selects an absolute causal guarantee that the appended evidence expressly rejects; the bounded alternative is uniquely defensible."
+      }
+    },
+    {
+      "fixtureKey": "behave-ch01-q01",
+      "partition": "holdout",
+      "baseBookId": "behave",
+      "baseChapter": 1,
+      "targetQuestionIndex1": 1,
+      "cleanProof": {
+        "status": "CURATOR_VERIFIED_UNIQUE_DEVELOPMENT_GOLD",
+        "keyedAnswerIndex": 1,
+        "defensibleAnswerIndices": [1],
+        "evidencePath": "/quiz/questions/0/explanation",
+        "sourceDesignation": "curator inspection of the stored prompt, all choices, keyed choice, and explanation; no known defect is recorded for this item",
+        "curatorRationale": "The keyed answer alone preserves training history while allowing other time layers; the other choices improperly replace or defer those layers. Not independent-human gold."
+      },
+      "mechanismFixture": {
+        "fixtureId": "feedback-loop-supported-01",
+        "mode": "supported",
+        "supportText": "IMP-22 fixture evidence: Immediate comparison with a visible standard can improve the next attempt because the error is still traceable. A score without feedback does not guarantee improvement.",
+        "prompt": "Which mechanism is supported by the IMP-22 fixture evidence?",
+        "supportedChoice": "Comparison while the error is traceable lets feedback change the next attempt.",
+        "causalOverreachChoice": "Any score automatically guarantees improvement on the next attempt.",
+        "unrelatedChoice": "Feedback rewrites the evidence packet used for source review.",
+        "explanation": "The fixture supports a short comparison-and-correction loop, not improvement from a score alone.",
+        "curatorRationale": "The keyed choice names the explicit traceability mechanism and stays bounded by the evidence."
+      }
+    },
+    {
+      "fixtureKey": "make-it-stick-ch01-q01",
+      "partition": "holdout",
+      "baseBookId": "make-it-stick",
+      "baseChapter": 1,
+      "targetQuestionIndex1": 1,
+      "cleanProof": {
+        "status": "CURATOR_VERIFIED_UNIQUE_DEVELOPMENT_GOLD",
+        "keyedAnswerIndex": 0,
+        "defensibleAnswerIndices": [0],
+        "evidencePath": "/quiz/questions/0/explanation",
+        "sourceDesignation": "curator inspection of the stored prompt, all choices, keyed choice, and explanation; no known defect is recorded for this item",
+        "curatorRationale": "Only the keyed closed-binder explanation produces observable recall; rereading and confidence remain visible-support or self-report substitutes. Not independent-human gold."
+      },
+      "mechanismFixture": {
+        "fixtureId": "arousal-pause-overreach-01",
+        "mode": "causal-overreach",
+        "supportText": "IMP-22 fixture evidence: A brief pause with slower breathing may create attentional room by reducing arousal. It does not guarantee self-control or a correct response.",
+        "prompt": "Which mechanism is supported by the IMP-22 fixture evidence?",
+        "supportedChoice": "Reduced arousal may create more attentional room for a response.",
+        "causalOverreachChoice": "Slower breathing guarantees self-control and a correct response.",
+        "unrelatedChoice": "Slower breathing changes the chapter's source-origin classification.",
+        "explanation": "The keyed guarantee exceeds the fixture's bounded may-help claim and its explicit limitation.",
+        "curatorRationale": "The intentionally keyed guarantee is contradicted by the support text; the bounded attentional mechanism is the sole defensible answer."
+      }
+    },
+    {
+      "fixtureKey": "willpower-ch02-q01",
+      "partition": "holdout",
+      "baseBookId": "the-willpower-instinct",
+      "baseChapter": 2,
+      "targetQuestionIndex1": 1,
+      "cleanProof": {
+        "status": "CURATOR_VERIFIED_UNIQUE_DEVELOPMENT_GOLD",
+        "keyedAnswerIndex": 1,
+        "defensibleAnswerIndices": [1],
+        "evidencePath": "/quiz/questions/0/explanation",
+        "sourceDesignation": "curator inspection of the stored prompt, all choices, keyed choice, and explanation on the separate chapter 2 coordinate",
+        "curatorRationale": "The prompt contrasts heart-rate variability with rate; only the keyed choice identifies beat-to-beat adaptive flexibility. Not independent-human gold."
+      },
+      "mechanismFixture": {
+        "fixtureId": "comparison-pause-supported-02",
+        "mode": "supported",
+        "supportText": "IMP-22 fixture evidence: A short pause can improve comparison by creating time to inspect alternatives. It does not guarantee a correct decision.",
+        "prompt": "Which mechanism is supported by the IMP-22 fixture evidence?",
+        "supportedChoice": "The pause creates time to inspect alternatives without guaranteeing the outcome.",
+        "causalOverreachChoice": "The pause itself guarantees that the correct decision will be made.",
+        "unrelatedChoice": "The pause retroactively changes the historical source record.",
+        "explanation": "The fixture names extra comparison time and explicitly rejects a guaranteed outcome.",
+        "curatorRationale": "The supported mechanism is explicit and bounded; the guarantee and source-record distractor are unsupported."
+      }
+    },
+    {
+      "fixtureKey": "checklist-ch02-q01",
+      "partition": "holdout",
+      "baseBookId": "the-checklist-manifesto",
+      "baseChapter": 2,
+      "targetQuestionIndex1": 1,
+      "cleanProof": {
+        "status": "CURATOR_VERIFIED_UNIQUE_DEVELOPMENT_GOLD",
+        "keyedAnswerIndex": 1,
+        "defensibleAnswerIndices": [1],
+        "evidencePath": "/quiz/questions/0/explanation",
+        "sourceDesignation": "curator inspection of the stored prompt, all choices, keyed choice, and explanation on the separate chapter 2 coordinate",
+        "curatorRationale": "The question asks why a known-practice checklist helps; only the keyed visible-basics answer matches, while teaching facts and replacing judgment contradict the setup. Not independent-human gold."
+      },
+      "mechanismFixture": {
+        "fixtureId": "handoff-ownership-overreach-02",
+        "mode": "causal-overreach",
+        "supportText": "IMP-22 fixture evidence: Naming one owner at a handoff can reduce omission risk by making responsibility visible. It cannot guarantee that no failure will occur.",
+        "prompt": "Which mechanism is supported by the IMP-22 fixture evidence?",
+        "supportedChoice": "Named ownership can reduce omission risk by making responsibility visible.",
+        "causalOverreachChoice": "Naming an owner guarantees that no handoff failure can occur.",
+        "unrelatedChoice": "Named ownership changes which source archive is authoritative.",
+        "explanation": "The keyed guarantee claims zero failures even though the fixture supports only reduced omission risk.",
+        "curatorRationale": "The support explicitly separates risk reduction from certainty, making the intentional causal overreach unambiguous."
+      }
+    },
+    {
+      "fixtureKey": "behave-ch02-q01",
+      "partition": "holdout",
+      "baseBookId": "behave",
+      "baseChapter": 2,
+      "targetQuestionIndex1": 1,
+      "cleanProof": {
+        "status": "CURATOR_VERIFIED_UNIQUE_DEVELOPMENT_GOLD",
+        "keyedAnswerIndex": 0,
+        "defensibleAnswerIndices": [0],
+        "evidencePath": "/quiz/questions/0/explanation",
+        "sourceDesignation": "curator inspection of the stored prompt, all choices, keyed choice, and explanation on the separate chapter 2 coordinate",
+        "curatorRationale": "Only the keyed choice gives the bounded salience-and-learning correction; conscious naming and pleasure-recording claims are incompatible with the stored explanation. Not independent-human gold."
+      },
+      "mechanismFixture": {
+        "fixtureId": "feedback-loop-supported-02",
+        "mode": "supported",
+        "supportText": "IMP-22 fixture evidence: Immediate comparison with a visible standard can improve the next attempt because the error is still traceable. A score without feedback does not guarantee improvement.",
+        "prompt": "Which mechanism is supported by the IMP-22 fixture evidence?",
+        "supportedChoice": "Comparison while the error is traceable lets feedback change the next attempt.",
+        "causalOverreachChoice": "Any score automatically guarantees improvement on the next attempt.",
+        "unrelatedChoice": "Feedback rewrites the evidence packet used for source review.",
+        "explanation": "The fixture supports a short comparison-and-correction loop, not improvement from a score alone.",
+        "curatorRationale": "The answer follows the evidence's stated feedback mechanism and limitation."
+      }
+    },
+    {
+      "fixtureKey": "make-it-stick-ch02-q01",
+      "partition": "holdout",
+      "baseBookId": "make-it-stick",
+      "baseChapter": 2,
+      "targetQuestionIndex1": 1,
+      "cleanProof": {
+        "status": "CURATOR_VERIFIED_UNIQUE_DEVELOPMENT_GOLD",
+        "keyedAnswerIndex": 0,
+        "defensibleAnswerIndices": [0],
+        "evidencePath": "/quiz/questions/0/explanation",
+        "sourceDesignation": "curator inspection of the stored prompt, all choices, keyed choice, and explanation on the separate chapter 2 coordinate",
+        "curatorRationale": "Only the keyed choice combines forced recall, exposed gaps, feedback, and retry; fear and feedback-free scoring contradict the prompt's learning-tool standard. Not independent-human gold."
+      },
+      "mechanismFixture": {
+        "fixtureId": "arousal-pause-overreach-02",
+        "mode": "causal-overreach",
+        "supportText": "IMP-22 fixture evidence: A brief pause with slower breathing may create attentional room by reducing arousal. It does not guarantee self-control or a correct response.",
+        "prompt": "Which mechanism is supported by the IMP-22 fixture evidence?",
+        "supportedChoice": "Reduced arousal may create more attentional room for a response.",
+        "causalOverreachChoice": "Slower breathing guarantees self-control and a correct response.",
+        "unrelatedChoice": "Slower breathing changes the chapter's source-origin classification.",
+        "explanation": "The keyed guarantee exceeds the fixture's bounded may-help claim and its explicit limitation.",
+        "curatorRationale": "The overreach is deterministic because the evidence directly rejects the keyed guarantee."
+      }
+    },
+    {
+      "fixtureKey": "difficult-conversations-ch02-q01",
+      "partition": "holdout",
+      "baseBookId": "difficult-conversations",
+      "baseChapter": 2,
+      "targetQuestionIndex1": 1,
+      "cleanProof": {
+        "status": "CURATOR_VERIFIED_UNIQUE_DEVELOPMENT_GOLD",
+        "keyedAnswerIndex": 0,
+        "defensibleAnswerIndices": [0],
+        "evidencePath": "/quiz/questions/0/explanation",
+        "sourceDesignation": "curator inspection of chapter 2 question 1; chapter 1 is not used because question 9 had a prior borderline ambiguity note",
+        "curatorRationale": "Only the keyed learning stance treats both evidence sets as coherent stories to investigate; firmer delivery and arithmetic compromise do not answer the prompt. Not independent-human gold."
+      },
+      "mechanismFixture": {
+        "fixtureId": "comparison-pause-supported-03",
+        "mode": "supported",
+        "supportText": "IMP-22 fixture evidence: A short pause can improve comparison by creating time to inspect alternatives. It does not guarantee a correct decision.",
+        "prompt": "Which mechanism is supported by the IMP-22 fixture evidence?",
+        "supportedChoice": "The pause creates time to inspect alternatives without guaranteeing the outcome.",
+        "causalOverreachChoice": "The pause itself guarantees that the correct decision will be made.",
+        "unrelatedChoice": "The pause retroactively changes the historical source record.",
+        "explanation": "The fixture names extra comparison time and explicitly rejects a guaranteed outcome.",
+        "curatorRationale": "The bounded comparison mechanism is stated verbatim in the evidence and is uniquely supported."
+      }
+    },
+    {
+      "fixtureKey": "peak-ch02-q01",
+      "partition": "holdout",
+      "baseBookId": "peak",
+      "baseChapter": 2,
+      "targetQuestionIndex1": 1,
+      "cleanProof": {
+        "status": "CURATOR_VERIFIED_UNIQUE_DEVELOPMENT_GOLD",
+        "keyedAnswerIndex": 1,
+        "defensibleAnswerIndices": [1],
+        "evidencePath": "/quiz/questions/0/explanation",
+        "sourceDesignation": "curator inspection of chapter 2 question 1; chapter 1 is excluded because questions 1 and 6 have known ambiguity findings",
+        "curatorRationale": "The video evidence uniquely supports the keyed risk of installing a shortened stroke; soreness alone proves neither useful adaptation nor a natural ceiling. Not independent-human gold."
+      },
+      "mechanismFixture": {
+        "fixtureId": "handoff-ownership-overreach-03",
+        "mode": "causal-overreach",
+        "supportText": "IMP-22 fixture evidence: Naming one owner at a handoff can reduce omission risk by making responsibility visible. It cannot guarantee that no failure will occur.",
+        "prompt": "Which mechanism is supported by the IMP-22 fixture evidence?",
+        "supportedChoice": "Named ownership can reduce omission risk by making responsibility visible.",
+        "causalOverreachChoice": "Naming an owner guarantees that no handoff failure can occur.",
+        "unrelatedChoice": "Named ownership changes which source archive is authoritative.",
+        "explanation": "The keyed guarantee claims zero failures even though the fixture supports only reduced omission risk.",
+        "curatorRationale": "The intentional key is an absolute guarantee directly ruled out by the evidence."
+      }
+    },
+    {
+      "fixtureKey": "power-of-moments-ch02-q01",
+      "partition": "calibration",
+      "baseBookId": "the-power-of-moments",
+      "baseChapter": 2,
+      "targetQuestionIndex1": 1,
+      "cleanProof": {
+        "status": "CURATOR_VERIFIED_UNIQUE_DEVELOPMENT_GOLD",
+        "keyedAnswerIndex": 2,
+        "defensibleAnswerIndices": [2],
+        "evidencePath": "/quiz/questions/0/explanation",
+        "sourceDesignation": "curator-inspected calibration item from chapter 2; chapter 1 question 3 is explicitly excluded as a known ambiguity",
+        "curatorRationale": "The stem asks where to start, and only the keyed welcome-award-complaint choice selects charged transitions, milestones, and pits. Calibration only; not independent-human gold."
+      },
+      "mechanismFixture": {
+        "fixtureId": "feedback-loop-supported-cal-01",
+        "mode": "supported",
+        "supportText": "IMP-22 fixture evidence: Immediate comparison with a visible standard can improve the next attempt because the error is still traceable. A score without feedback does not guarantee improvement.",
+        "prompt": "Which mechanism is supported by the IMP-22 fixture evidence?",
+        "supportedChoice": "Comparison while the error is traceable lets feedback change the next attempt.",
+        "causalOverreachChoice": "Any score automatically guarantees improvement on the next attempt.",
+        "unrelatedChoice": "Feedback rewrites the evidence packet used for source review.",
+        "explanation": "The fixture supports a short comparison-and-correction loop, not improvement from a score alone.",
+        "curatorRationale": "This calibration fixture has one bounded supported mechanism and two unsupported distractors."
+      }
+    },
+    {
+      "fixtureKey": "decisive-ch02-q01",
+      "partition": "calibration",
+      "baseBookId": "decisive",
+      "baseChapter": 2,
+      "targetQuestionIndex1": 1,
+      "cleanProof": {
+        "status": "CURATOR_VERIFIED_UNIQUE_DEVELOPMENT_GOLD",
+        "keyedAnswerIndex": 1,
+        "defensibleAnswerIndices": [1],
+        "evidencePath": "/quiz/questions/0/explanation",
+        "sourceDesignation": "curator-inspected calibration item from chapter 2; chapter 1 question 4 is explicitly excluded as a known wrong-key item",
+        "curatorRationale": "Only the keyed response widens the whether-or-not frame by asking about the problem and alternatives; more data and a quick vote preserve the narrow frame. Calibration only; not independent-human gold."
+      },
+      "mechanismFixture": {
+        "fixtureId": "arousal-pause-overreach-cal-01",
+        "mode": "causal-overreach",
+        "supportText": "IMP-22 fixture evidence: A brief pause with slower breathing may create attentional room by reducing arousal. It does not guarantee self-control or a correct response.",
+        "prompt": "Which mechanism is supported by the IMP-22 fixture evidence?",
+        "supportedChoice": "Reduced arousal may create more attentional room for a response.",
+        "causalOverreachChoice": "Slower breathing guarantees self-control and a correct response.",
+        "unrelatedChoice": "Slower breathing changes the chapter's source-origin classification.",
+        "explanation": "The keyed guarantee exceeds the fixture's bounded may-help claim and its explicit limitation.",
+        "curatorRationale": "This calibration fixture intentionally keys the guarantee that the support text expressly rejects."
+      }
+    }
+  ]
+}

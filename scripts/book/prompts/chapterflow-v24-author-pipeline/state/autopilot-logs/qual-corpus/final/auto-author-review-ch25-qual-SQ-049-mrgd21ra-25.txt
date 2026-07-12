@@ -1,0 +1,105 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 5,
+    "quizzes": 0,
+    "transfer": 12,
+    "practical": 5,
+    "summaries": 0,
+    "tone": 20,
+    "limits": 0,
+    "insight": 5,
+    "density": 15,
+    "beginner": 10
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now",
+      "why": "Core instructional sections are present only as empty headings."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "The quiz and reinforcement layers are missing, so the product cannot assess or support retention."
+    },
+    {
+      "quote": "Ruxandra holds a chipped blue mug at Tuesday 6:42 p.m. in the Midtown design studio review room, creative director, with the first page of a performance memo.",
+      "why": "The strongest material is concrete and scene-based, even though it never connects to a taught move."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "This gestures at instruction without naming an action a reader could perform."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section is empty, so it fails its standalone promise as a quick version of the lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty, so there is no explanatory middle layer for the concept.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, so the chapter has no actual instructional body.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the chapter never states the core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so there is no usable practice step.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz heading has no questions, making the quiz structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so the promised review support is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, so the chapter provides no retention hooks despite promising them.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Both examples say to follow the scene's move, but the chapter never defines that move, making the examples unusable as instruction.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder scaffolding rather than reader-facing chapter prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The sentence 'Ruxandra she must decide' is ungrammatical and distracts from the scene.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The sentence 'Zanele she must decide' is ungrammatical and distracts from the scene.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not a shippable chapter. It has two concrete scenes, but almost every instructional layer is empty: no fast read, deep read, full read, takeaway, practice, quiz, review cards, or memorable lines. Because the core move is never taught, the examples cannot transfer and the missing quiz cannot be derived or scored. Against a professional bar, this is a skeleton with a few scene fragments, not a usable learning chapter."
+}
+```

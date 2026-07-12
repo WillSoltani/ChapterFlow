@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several correct answers are the most precise middle path while distractors use giveaway extremes such as only, everywhere, every, refuse, cancels, or just.", "The right choices often echo the chapter's exact vocabulary: belief, repeated act, returned proof, boundary, hard specifics."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 83,
+    "transfer": 86,
+    "practical": 78,
+    "summaries": 82,
+    "tone": 82,
+    "limits": 88,
+    "insight": 87,
+    "density": 80,
+    "beginner": 84
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Trust does not come after behavior explains itself; behavior earns trust when belief goes first.",
+      "why": "Strongest sentence: it gives the chapter a memorable causal mechanism."
+    },
+    {
+      "quote": "A true detail in the wrong place can make the reader believe the wrong thing.",
+      "why": "Strong transfer line: it turns source fidelity into a usable editing rule."
+    },
+    {
+      "quote": "Every unmarked promise costs someone another round of guessing.",
+      "why": "Practical and sticky: it makes the cost of vague promises concrete."
+    },
+    {
+      "quote": "The return is marked. It is not met.",
+      "why": "Weakest pattern: some examples feel like diagram labels rather than lived scenes."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "The named characters often function as placeholders for the rule instead of fully concrete situations; phrases like 'The return is marked. It is not met.' assert the state without showing enough event.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The keys are sound, but the distractors often announce themselves through extremes or obviously bad moves, which lets a test-wise reader answer some items without reading closely.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The belief-act-proof-trust chain is repeated many times with only small variations, lowering density and creating a slight scaffold smell.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The line 'Say this once' risks feeling like a ritual phrase; the practical move is useful, but the scripted opening is less natural than the marking action itself.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 2: Houston Cost Paid",
+      "problem": "It refers to 'the cost paid' and 'visible action' without naming a concrete action or cost, so the example teaches the principle more than it proves it.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is a coherent, useful chapter with a strong core move: trust gets cheaper when belief produces visible behavior and proof returns. The best lines are memorable, the boundaries are honest, and the quiz keys are derivable. I would not ship it yet at a professional 84 bar because the examples sometimes feel generated around the lesson rather than observed from a concrete scene, and the quiz distractors lean too visibly wrong. Tighten the examples into more specific actions and make the wrong answers more plausible, and this likely clears the bar."
+}
+```

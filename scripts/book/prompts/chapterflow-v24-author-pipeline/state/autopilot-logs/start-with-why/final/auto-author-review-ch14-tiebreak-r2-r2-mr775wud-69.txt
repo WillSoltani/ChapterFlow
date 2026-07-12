@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q3's correct answer is the only option with the precise '1975 founding' anchor, which may cue the key without requiring the causal logic."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 84,
+    "transfer": 72,
+    "practical": 80,
+    "summaries": 87,
+    "tone": 78,
+    "limits": 88,
+    "insight": 84,
+    "density": 77,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A rival is not the judge; it is the alarm.",
+      "why": "Strongest line: short, memorable, and it cleanly carries the chapter's core distinction."
+    },
+    {
+      "quote": "Name what the rival changed. Name what your older promise required. Then name the proof due before the choice moves.",
+      "why": "Strong practical move: the reader gets a concrete three-step test."
+    },
+    {
+      "quote": "His software team had used Microsoft only as a famous rival story, not as a different kind of proof: a 1975-founded software company with Redmond headquarters.",
+      "why": "Weak transfer moment: the example stays meta and never becomes a concrete software decision with consequences."
+    },
+    {
+      "quote": "The team writes the return point: rival pressure, old promise, proof owed. The answer is not back yet.",
+      "why": "Worst defect: it restates the framework instead of showing a real service choice, rival offer, or outcome."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 2",
+      "problem": "Cyrus's software-team example is mostly about using Microsoft as an example correctly; it lacks a concrete product decision, before-after consequence, or named real-world pressure.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 3",
+      "problem": "Pierre's operations example names an operations lead but never identifies the rival move, the actual operational choice, or the consequence of slowing the copy.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "Christophe's service example becomes a checklist of chapter examples rather than a lived service scenario; the rival offer and business consequence are absent.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q3",
+      "problem": "The keyed answer is sound, but it is also the only choice carrying the precise 1975 Microsoft fact, creating a mild giveaway.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read and examples",
+      "problem": "The chapter repeats 'rival pressure, old promise, proof owed' so often that some paragraphs feel scaffolded rather than newly instructive.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear, memorable core: rivals should wake up pressure, not define the win. The summaries, review cards, and quiz mostly support that idea, and the answer key is sound. I would not ship at an 84-level professional bar because the transfer section leans too heavily on abstract, manufactured examples that restate the lesson without showing specific decisions and consequences. Fixing the examples would likely move this from solid draft to publishable."
+}
+```

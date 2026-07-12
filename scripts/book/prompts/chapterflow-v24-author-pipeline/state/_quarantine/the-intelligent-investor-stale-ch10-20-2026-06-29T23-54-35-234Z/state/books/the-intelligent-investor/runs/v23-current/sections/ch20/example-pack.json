@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "example-pack",
+  "chapterId": "the-intelligent-investor-ch20",
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "The Safe-Feeling Choice Fails at the Front Desk",
+      "scenario": "At the front desk, Iris checks a purchase request that Marcus has marked safe because the name feels familiar and the line item looks ordinary. Lena asks for the before-and-after audit: before approval, the old default is comfort; after review, the decision must compare price with conservatively appraised value. The familiar item still has no clear gap between price and value, so the old default fails in the concrete moment it was supposed to protect.",
+      "whatToDo": "Replace the comfort test with a margin-of-safety test: write the appraised value beside the price, then approve only when the price sits below that value with room for error.",
+      "whyItMatters": "Safety comes from the difference between price and conservatively appraised value, not from whether the choice feels safe. That gap is the allowance for valuation error and adverse outcomes, like a bridge built with capacity beyond the expected load.",
+      "sourceAnchorIds": [
+        "ch20.fact.1",
+        "ch20.example.1"
+      ],
+      "sourceFactIds": [
+        "ch20.fact.1"
+      ],
+      "namedCaseIds": [
+        "ch20.example.1"
+      ]
+    },
+    {
+      "exampleId": "ex02",
+      "title": "The Budget App Stops a One-Bet Plan",
+      "scenario": "In a budget app, Marcus tells Theo that one well-priced security should be enough because the margin looks large. Lena changes the conversation inside the decision note: the question is not only whether the price is protected, but whether a single unexpected failure could still hurt the plan. Marcus changes the entry from one concentrated purchase to a diversified value-method allocation with room for special situations.",
+      "whatToDo": "Add a diversification check to the saved decision note: even when a security appears well priced, ask how appraisal error or bad luck would affect the whole portfolio.",
+      "whyItMatters": "Graham-Newman-style diversification supports margin of safety because individual securities can still fail unexpectedly. A large margin does not remove the need to spread exposure across disciplined value methods and special situations.",
+      "sourceAnchorIds": [
+        "ch20.fact.2",
+        "ch20.example.2"
+      ],
+      "sourceFactIds": [
+        "ch20.fact.2"
+      ],
+      "namedCaseIds": [
+        "ch20.example.2"
+      ]
+    },
+    {
+      "exampleId": "ex03",
+      "title": "The Notebook Margin Keeps the Bond From Getting a Free Pass",
+      "scenario": "A notebook margin holds Amara's tradeoff memo for Lena and Theo: the bond looks safe because the face value feels definite. The first note is crossed out. The recovery is slower: they add a coverage line, compare required payments with profits, and leave the bond pending because the coverage cushion is not yet clear. The decision improves, but only after the memo exposes the weak reason they started with.",
+      "whatToDo": "Use the notebook margin to separate face value from repayment capacity: keep the bond under review until excess earnings coverage shows that profits exceed required payments by a large amount.",
+      "whyItMatters": "Bond margin of safety comes from excess earnings coverage. Face value alone does not create safety; coverage is what shows whether repayment capacity has room for stress and error.",
+      "sourceAnchorIds": [
+        "ch20.fact.3",
+        "ch20.example.3"
+      ],
+      "sourceFactIds": [
+        "ch20.fact.3"
+      ],
+      "namedCaseIds": [
+        "ch20.example.3"
+      ]
+    }
+  ]
+}

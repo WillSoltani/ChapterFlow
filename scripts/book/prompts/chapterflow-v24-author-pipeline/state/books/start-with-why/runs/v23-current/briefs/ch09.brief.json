@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "start-with-why-ch09",
+  "chapterNumber": 9,
+  "title": "Know WHY. Know HOW. Then WHAT?",
+  "coreMove": "Because iPod gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+  "thesis": "Apple iPod makes product as proof concrete through iPod and 2001.",
+  "readerPromise": "After this chapter, a reader can because iPod gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+  "ownedCases": [
+    {
+      "id": "ch09.ex.apple-ipod",
+      "label": "Apple iPod"
+    },
+    {
+      "id": "ch09.ex.dell-dj",
+      "label": "Dell DJ"
+    },
+    {
+      "id": "ch09.ex.volkswagen-phaeton",
+      "label": "Volkswagen Phaeton"
+    }
+  ],
+  "notYours": [
+    "American Airlines boarding assumptions",
+    "Antonio Damasio / Descartes' Error",
+    "Apple Inc.",
+    "Apple after Steve Jobs's 1985 exit",
+    "Apple and Dell contrast",
+    "Apple design consistency",
+    "Apple retail and product signals",
+    "Bill Gates and Paul Allen",
+    "Celery test",
+    "Continental Airlines turnaround",
+    "Detroit automakers",
+    "Everett Rogers diffusion model",
+    "Ford Motor Company founder legacy",
+    "General Motors employee-discount promotions",
+    "Gordon Bethune",
+    "Harley-Davidson identity",
+    "Herb Kelleher",
+    "Howard Schultz and Starbucks experience",
+    "Japanese car-door assembly",
+    "Limbic system"
+  ],
+  "cast": [
+    "Vincent",
+    "Janet",
+    "Sabrina",
+    "Eleanor"
+  ],
+  "answerIndexPattern": [
+    0,
+    0,
+    2,
+    2,
+    1,
+    1,
+    0,
+    1,
+    2
+  ],
+  "avoid": [
+    "opener (ch02): \"At the return moment, a sales analyst at\"",
+    "opener (ch03): \"Why does Sylvia's pitch still feel thin? Founder\"",
+    "opener (ch04): \"At the return point, service lead Rachel brings\"",
+    "opener (ch05): \"1971 is the fact nobody has flagged in\"",
+    "opener (ch06): \"Trainer Denise marks the fare line at a\"",
+    "opener (ch07): \"In Keith's launch, interest comes from people who\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on digital video recorder",
+    "venue: a shared calendar invite",
+    "venue: a handwritten note on the counter",
+    "frame: post-decision consequence that forces a correction",
+    "frame: a shared ritual observed in mid-action as it builds connection"
+  ],
+  "openerType": "tension-thesis",
+  "challengeFrame": "timebox-N-minutes",
+  "practiceShape": "if-then-trigger",
+  "exampleLenses": [
+    "postmortem",
+    "walkthrough",
+    "counterfactual"
+  ],
+  "practiceVerb": "circle",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "case",
+    "different",
+    "third",
+    "language",
+    "test",
+    "boundary"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v4",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "partial",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "if-then-trigger",
+    "say-aloud-script",
+    "measure-one-number",
+    "single-imperative"
+  ],
+  "quizStemShapes": [
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority",
+    "transfer-new-domain"
+  ],
+  "quizFailureModes": [
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction",
+    "borrowed-authority"
+  ],
+  "questionFactOrder": [
+    1,
+    5,
+    3,
+    6,
+    7,
+    8,
+    4,
+    9,
+    2
+  ],
+  "memorableShapes": [
+    "redefinition",
+    "cost-statement",
+    "pointed-question"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "cost-speak",
+    "question-speak"
+  ],
+  "shellRegister": "actor-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Vincent"
+  }
+}

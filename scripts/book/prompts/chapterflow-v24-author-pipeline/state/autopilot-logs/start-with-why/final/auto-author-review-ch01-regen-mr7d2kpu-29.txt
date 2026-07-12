@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several wrong choices are easy to reject without reading because they lean on rank, status, or copying precedent, which the chapter’s framing plainly opposes.", "Many keyed choices reuse the chapter’s exact vocabulary: known/guess/result, venue, comparison, jidoka, and visible behavior."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 78,
+    "practical": 86,
+    "summaries": 88,
+    "tone": 80,
+    "limits": 87,
+    "insight": 84,
+    "density": 79,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The fastest fix can be the slowest way to learn.",
+      "why": "Strong, memorable line that carries the mechanism in plain language."
+    },
+    {
+      "quote": "A result is not a trophy; it is the trip back from a guess.",
+      "why": "Best compression of the chapter’s core move."
+    },
+    {
+      "quote": "Jidoka stays with that story too. It is a hard detail from Japanese car-door assembly, not a word to lend wherever extra weight would help.",
+      "why": "Clear boundary-setting about evidence and misplaced precision."
+    },
+    {
+      "quote": "Operations lead Gregoire hears a faint click at final fit before anyone calls it a defect.",
+      "why": "The example feels invented and oddly relocates Gregoire from the airline gate into factory work."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 1",
+      "problem": "Gregoire is introduced as an airline gate lead, then appears as an operations lead in Japanese car-door assembly without explanation; this blurs venue discipline in a chapter teaching venue discipline.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples section",
+      "problem": "Several examples feel constructed to rehearse the lesson rather than show lived before-to-after stakes; they name roles and venues but often lack concrete numbers, real constraints, or consequences beyond 'the result changes.'",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Distractors are sometimes too weak because authority/status/copying-precedent answers are repeatedly implausible, letting a test-wise reader guess the key pattern.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Some prose has a scaffold smell from repeated abstract phrases such as venue, return, ledger, guess, and hard detail; the repetition aids memory but can feel manufactured.",
+      "mustFix": false
+    },
+    {
+      "unit": "transfer",
+      "problem": "The library transfer quiz is useful, but the prose itself gives fewer grounded non-factory/non-airline transfer demonstrations than the learning promise implies.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a strong, memorable move: separate known data, assumptions, decisions, and returning results before letting a fix become proof. Its best lines are sticky, the summaries layer well, and the limits are unusually honest. I would not ship at a professional 84 bar yet because the example set is too visibly assembled, especially Gregoire shifting from airline gate lead to factory operations lead, which undercuts the chapter’s own warning about keeping evidence attached to its setting."
+}
+```

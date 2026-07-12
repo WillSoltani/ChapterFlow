@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "radical-candor-ch09",
+  "chapterNumber": 9,
+  "contentHash": "66959781ab733808",
+  "reviewerSessionId": "auto-author-review-ch09-mrdz00o9-12",
+  "scores": {
+    "retention": 88,
+    "quizzes": 94,
+    "transfer": 80,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 91,
+    "insight": 89,
+    "density": 85,
+    "beginner": 86
+  },
+  "composite": 87.6,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "a",
+      "c",
+      "c",
+      "b",
+      "b",
+      "a",
+      "b",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "A fair review can still fail when the person hears the hard truth too late.",
+      "why": "Strong hook: it states the chapter's core move in a memorable, plain sentence.",
+      "verified": true
+    },
+    {
+      "quote": "The person who could have changed earlier pays first.",
+      "why": "Strong mechanism: it explains why late feedback is not just awkward but unfair.",
+      "verified": true
+    },
+    {
+      "quote": "The form can be complete while guidance is thin.",
+      "why": "Strong compression of the chapter's warning about formal review systems.",
+      "verified": true
+    },
+    {
+      "quote": "One stale coffee cup waits beside the support log.",
+      "why": "Weakest moment: the prop feels decorative and does not add usable transfer detail.",
+      "verified": true
+    }
+  ],
+  "tells": [],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "Thin-but-usable example: it names the score problem but uses a generic scene with no named person, decision, or concrete before-to-after consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "Thin-but-usable example: the downstream customer miss is on-topic, but the stale coffee cup is decorative and the example does not anchor the transfer in a concrete workplace decision.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "Some abstractions, such as 'motion and ledger at once,' are less beginner-friendly than the surrounding plain guidance.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter has a clear core move: a formal review should summarize guidance already given, not ambush someone with growth feedback after the chance to change has passed. The quiz is fair and derivable, with sound keys and no obvious tells. The limits section is unusually strong because it does not pretend coaching can replace hard management decisions. The main craft weakness is transfer: several examples are usable but generic, with props or abstractions standing in for named decisions and consequences.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "2fac22bdc34ff09eb0817741d64fb6da61fe81dfed09d18a53b214be3bde8ea6",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T20:40:44.321Z"
+}

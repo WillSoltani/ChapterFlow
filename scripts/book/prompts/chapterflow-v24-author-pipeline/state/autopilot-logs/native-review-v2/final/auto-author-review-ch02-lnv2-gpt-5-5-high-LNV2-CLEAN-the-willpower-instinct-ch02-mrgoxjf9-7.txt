@@ -1,0 +1,76 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "mechanisms": [
+      "The prose defines heart rate variability as beat-to-beat rhythm shifting and links higher variability to stronger self-regulation.",
+      "The prose says public speaking and arithmetic under evaluators create social judgment, and Example 2 adds low control as the stress driver.",
+      "The prose says stress makes fast relief feel like shelter and pushes the long goal into noise.",
+      "The prose says brief meditation can train attention and soften stress reactivity before an urge peaks.",
+      "The review card and deep read say slow breathing changes body state, keeping arousal and attention control online.",
+      "The chapter warns that extra arousal makes the choice room louder and can crowd out long-goal comparison.",
+      "The full read says poor sleep makes goal attention fade behind louder cues in the room.",
+      "The full read says physical activity can improve mood, stress regulation, and executive function, lowering the next choice load.",
+      "The prose says waiting until the craving peaks is unfair because the body needs runway before the hardest second."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Choice b is the only option using the chapter's technical mechanism, adaptive beat-to-beat control.",
+      "Choice c is the only option naming the chapter's actual stress mechanism; the other choices invent physical-danger or fatigue logic.",
+      "Choice c is the only option with the chapter's hedge and phrase pattern: stress may push quick relief before goals return.",
+      "Choice a is much more mechanism-rich than the distractors and repeats the chapter's training language.",
+      "Choice b is the only technical body-feedback answer; a and c are dismissive simplifications.",
+      "Choice b is the only answer with the chapter's room/goal-weighing metaphor.",
+      "Choice a is the only answer combining tired attention, remembered goals, and competing cues.",
+      "Choice a is the only answer listing the chapter's three supported benefits of movement.",
+      "Choice c gives away the key by reusing the chapter's distinctive phrase: runway before the craving peaked."
+    ]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 84,
+    "transfer": 86,
+    "practical": 90,
+    "summaries": 88,
+    "tone": 89,
+    "limits": 92,
+    "insight": 88,
+    "density": 83,
+    "beginner": 88
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Panic is a poor coach. Calm gives the future a vote.",
+      "why": "This is the chapter's strongest compressed memory hook."
+    },
+    {
+      "quote": "Use the opposite move when speed protects life, health, or trust.",
+      "why": "The limits section is unusually concrete and prevents overselling the technique."
+    },
+    {
+      "quote": "How would three powers of willpower (Ch 1) change the way you handle a body-first craving?",
+      "why": "This is the weakest standalone review-card moment because it depends on prior-chapter vocabulary."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz set",
+      "problem": "Correct answers are often the most mechanism-rich and chapter-phrased option, while distractors lean on absolute words like only, mainly, proved, or separate; this creates testwise tells.",
+      "mustFix": false
+    },
+    {
+      "unit": "review card 6",
+      "problem": "The card depends on 'three powers of willpower (Ch 1)' without reintroducing that framework in this chapter, so it is less standalone for a cold beginner.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The line connecting the pill-bottle placement to Yi-Yuan Tang's training feels like a forced research bridge; the example works better as an environmental-cue tactic than as meditation transfer.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter has a clear core move, memorable language, practical if-then actions, and a strong limits section that tells readers when not to pause. The quiz is fair and fully derivable, though the answer style is too easy to spot because the right choices repeatedly carry the chapter's exact mechanism language while distractors sound artificially wrong. The main craft weakness is not correctness but polish: one review card relies on prior-chapter vocabulary, and a few research-to-scenario bridges feel slightly stretched."
+}
+```

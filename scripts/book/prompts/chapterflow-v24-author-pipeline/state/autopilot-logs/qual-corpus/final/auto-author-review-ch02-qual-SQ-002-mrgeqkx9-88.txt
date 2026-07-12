@@ -1,0 +1,86 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 42,
+    "quizzes": 0,
+    "transfer": 18,
+    "practical": 35,
+    "summaries": 5,
+    "tone": 50,
+    "limits": 55,
+    "insight": 60,
+    "density": 28,
+    "beginner": 58
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Letting go means processing it somewhere real. Suppression means leaving it underground.",
+      "why": "This is the strongest teachable contrast and gives the chapter a clear core move."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz",
+      "why": "Multiple promised product sections are empty, including the quiz."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This reads like production scaffolding rather than reader-facing instruction."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions, so the quiz is broken and cannot be answered or keyed.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is present but empty, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is present but empty, leaving the reader with no concrete practice step.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is present but empty, so there is no transfer example or before-to-after application.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is present but empty, so the review layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is present but empty, so the retention layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is a scaffold note rather than reader-facing content.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read is too generic to stand alone or teach the chapter's idea.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read is a placeholder and adds no real angle beyond the label.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The full read contains a useful and beginner-friendly distinction between letting go, processing, confrontation, and suppression, but the chapter is mostly an unfinished shell. The quiz is absent, several promised learning layers are empty, and the opening reads like internal scaffolding. This cannot ship against a professional bar until the missing product sections are actually written."
+}
+```

@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+    "keyDisagreements": ["Q8: Key a points at the right distinction, but the option is worded as what is preserved rather than what is lost, so the stem/choice fit is muddy.", "Q5: Key b is the best available answer, but the chapter never actually shows concrete Walmart conduct, so the item leans on the rule rather than prose evidence."],
+    "tells": ["No uniquely-longest-choice tell found.", "Several wrong choices use extreme phrasing such as only, every, replace, or remove, while correct choices tend to be scoped and moderate."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 76,
+    "transfer": 72,
+    "practical": 81,
+    "summaries": 87,
+    "tone": 88,
+    "limits": 86,
+    "insight": 77,
+    "density": 82,
+    "beginner": 86
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Growth can hide the WHY.",
+      "why": "Strong, compact line that carries the chapter's central reversal."
+    },
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "Memorable mechanism: it separates evidence of activity from evidence of purpose."
+    },
+    {
+      "quote": "He named Walmart and 1962, Starbucks and 1971, Microsoft and the 1975 founding, but he used them like labels.",
+      "why": "This names the chapter's own weakness: hard facts sometimes substitute for visible conduct."
+    },
+    {
+      "quote": "What changed after the count got bigger? That is the job this setting does.",
+      "why": "The prose assigns the example a job but does not actually show the before-to-after conduct."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "full read",
+      "problem": "The chapter repeatedly says metrics must return through visible conduct, but the Walmart, Starbucks, and Microsoft passages mostly give founding facts and locations rather than concrete behavior a reader can inspect.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q5",
+      "problem": "The keyed answer asks for conduct in the Walmart story linked to 1962, but the chapter never names that conduct, so the item is only partly derivable from the prose.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The stem asks what gets lost, while the keyed option describes the four jobs splitting apart, which reads like what should be preserved rather than the loss itself.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples are about editing a strategy note or chapter draft rather than a real team using the move after a metric rises, which weakens transfer beyond the book's own constructed scenario.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear core move, strong memorable lines, and usable low-friction actions, especially the idea that a metric must return with visible behavior. It is not yet ship-ready because its central promise is stronger than its evidence: the prose tells readers to inspect conduct, but the named company examples often stop at labels, dates, headquarters, and editorial repairs. The quiz is mostly fair, but Q5 and Q8 expose that gap."
+}
+```

@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "7": {
+      "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 72,
+    "transfer": 83,
+    "practical": 76,
+    "summaries": 81,
+    "tone": 64,
+    "limits": 78,
+    "insight": 72,
+    "density": 62,
+    "beginner": 75
+  },
+  "quotes": [
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "Strong portable line: compact, complete, and memorable."
+    },
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "A clean reversal that should stick a week later."
+    },
+    {
+      "quote": "Early fans are not a majority in disguise.",
+      "why": "Good transfer lens that names a common misread in plain language."
+    },
+    {
+      "quote": "These are not one word with six costumes.",
+      "why": "A vivid sentence that clarifies the mechanism instead of restating it."
+    },
+    {
+      "quote": "A true detail becomes false grounding when it is moved to the wrong setting.",
+      "why": "Useful, but this same hard-detail warning recurs so often that it becomes a template tell."
+    },
+    {
+      "quote": "One setting can illustrate. A second lets you compare pressure across venues, so the lesson is less likely to rest on one attractive anecdote.",
+      "why": "Clear idea, but the exact second-setting move is repeated across chapters with swapped nouns."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is sound and useful, with no quiz-key contradictions I could find, but it reads heavily engineered. The best material gives readers real lenses: separate push from preference, put belief before behavior, count first believers, and make metrics answer back with visible conduct. The weak spot is churn. Across chapters, the same machinery repeats: named anchors, second setting, edge case, misplaced hard detail, return proof, Friday practice. That makes the book feel less individually authored than templated. It is publishable as instructional draft material, but not yet premium; the next revision should cut repeated scaffolding, make examples less hollow, and vary the chapter rhetoric while preserving the strong compact lines."
+}
+```

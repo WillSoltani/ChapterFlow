@@ -9,8 +9,9 @@ import { join, resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { codexExecArgv } from "../src/orchestrator/codexAgent.js";
-import { authorWriteOneChapter, buildAuthorCard, resolveAuthorIo } from "../src/orchestrator/authorRun.js";
+import { authorWriteOneChapter, buildAuthorCard, resolveAuthorIo, type AuthorIo } from "../src/orchestrator/authorRun.js";
 import type { AutopilotDeps } from "../src/orchestrator/autopilot.js";
+import type { AuthorProvenance } from "../src/qc/sessionProvenance.js";
 import { bakeoffRoots, combineHashes, sha256Hex, PIPELINE_DIR, pipelineRel, modelSlug } from "../src/bakeoff/paths.js";
 import { intakeDraft, inferDraftIdentity, titleToBookId, DraftIntakeError } from "../src/bakeoff/intake.js";
 import { assertNoIdentityLeak, assignBlindLabels, forbiddenReviewTokens, BlindingLeakError } from "../src/bakeoff/review.js";
@@ -43,6 +44,25 @@ test("authorWriteOneChapter passes the candidate model/effort/output overrides t
   const verbs: string[][] = [];
   const chapter = fixtureChapter(bookId, 1);
   let bytes: string | null = null;
+  const provenance = new Map<string, AuthorProvenance>();
+  const provenanceIo: Pick<AuthorIo, "authorSessionOf" | "recordProvenance" | "readProvenance" | "restoreProvenance"> = {
+    authorSessionOf: (chapterId) => provenance.get(chapterId)?.authorSessionId,
+    recordProvenance: (chapterId, sessionId, contentHash) => {
+      assert.ok(contentHash, "a successful author commit must bind provenance to content");
+      provenance.set(chapterId, {
+        schemaVersion: "author-provenance-v2",
+        chapterId,
+        authorSessionId: sessionId,
+        stampedAt: "2026-07-12T00:00:00.000Z",
+        contentHash,
+      });
+    },
+    readProvenance: (chapterId) => provenance.get(chapterId) ?? null,
+    restoreProvenance: (chapterId, previous) => {
+      if (previous) provenance.set(chapterId, previous);
+      else provenance.delete(chapterId);
+    },
+  };
 
   const gateKeys: string[] = [];
   const deps = fakeAutopilotDeps({
@@ -75,8 +95,7 @@ test("authorWriteOneChapter passes the candidate model/effort/output overrides t
       writeChapterFile: (_b, _n, b) => { bytes = b; },
       removeChapterFile: () => { bytes = null; },
       loadChapters: () => (bytes ? [chapter] : []),
-      authorSessionOf: () => undefined,
-      recordProvenance: () => {},
+      ...provenanceIo,
       readLeadOverride: () => null,
       writeLeadOverride: () => {},
       attemptsRoot: () => join(root, "attempts"),

@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 90,
+    "transfer": 76,
+    "practical": 84,
+    "summaries": 82,
+    "tone": 78,
+    "limits": 88,
+    "insight": 86,
+    "density": 77,
+    "beginner": 83
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A clean repair can be the wrong win.",
+      "why": "Strong, memorable compression of the chapter's core warning."
+    },
+    {
+      "quote": "Known data is the part you can point to before the guess starts spending.",
+      "why": "Clear mechanism that makes the abstract sequence practical."
+    },
+    {
+      "quote": "Fort Worth has done its job: the example no longer stands for every organization.",
+      "why": "The place detail is doing too much argumentative work and starts to feel like scaffold logic."
+    },
+    {
+      "quote": "Had he not named the count first, familiar would have passed as new.",
+      "why": "The example gestures at a before-after but leaves the actual operational change under-specified."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 3",
+      "problem": "Thin-but-usable example: it names American Airlines and Fort Worth, but the boarding 'count' and changed order are too vague to show a concrete decision and consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "Thin-but-usable example: it says the replacement guess is partial, but does not give enough concrete before-after detail for a reader to see what was tried or what evidence stayed missing.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "Some paragraphs repeat the same boundary lesson about hard terms staying in their earned setting, lowering density.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Several lines sound like internal scaffold language rather than natural teaching prose, especially when place details are treated as if they perform reasoning by themselves.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a useful and memorable move: put known data before assumptions, let decisions stay small, and do not overextend examples past their evidence. The quiz is fair and the answer key is sound. The main weakness is transfer quality: several examples are usable but abstract, with named settings doing more work than visible decisions and consequences. I would not ship at a professional 84+ bar yet, but it is close; the fix is mostly richer concrete examples, not structural repair."
+}
+```

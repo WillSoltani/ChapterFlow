@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch13",
+  "chapterNumber": 13,
+  "contentHash": "44a395e4644f1e78",
+  "reviewerSessionId": "auto-author-review-ch13-mrb9wzmq-9",
+  "scores": {
+    "retention": 90,
+    "quizzes": 84,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 88,
+    "tone": 89,
+    "limits": 87,
+    "insight": 86,
+    "density": 84,
+    "beginner": 85
+  },
+  "composite": 86.2,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "a",
+      "b",
+      "c",
+      "b",
+      "a",
+      "a",
+      "c",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The past does not trap the WHY; it earns it.",
+      "why": "Strong memorable line that captures the chapter's core move in a compact, repeatable form.",
+      "verified": true
+    },
+    {
+      "quote": "Send the detail home.",
+      "why": "The most useful retention hook; it turns source discipline into a concrete action.",
+      "verified": true
+    },
+    {
+      "quote": "A team can raid the past for any detail that supports a line it already wants. That is not discovery.",
+      "why": "Strong mechanism and limit: the chapter explains how a legitimate origin search can become self-justification.",
+      "verified": true
+    },
+    {
+      "quote": "The blue share icon is still lit when he adds Wilbur Wright, the bicycle shop, and Kitty Hawk as the second anchor.",
+      "why": "A slightly artificial detail that adds scene texture but not much learning value.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several wrong answers are giveaway reversals of the chapter's method, such as trusting first and checking later, approving blur, or removing hard specifics.",
+    "Correct options often preserve the chapter's exact vocabulary and causal sequence, while some distractors sound intentionally implausible."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Several distractors are easy to reject because they directly oppose the chapter's stated method rather than representing plausible misunderstandings.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The blue share icon detail feels decorative and does not clarify the decision, consequence, or transfer move.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The group-chat scenario is usable but thin: the after-state says the thread restarts while also saying no answer has returned, so the consequence is less concrete than the other examples.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter with a clear core move: trace past patterns before Contribution and Impact, then keep each origin detail attached to the source that earned it. The ledger metaphor, second-anchor rule, and 'Send the detail home' line make the lesson memorable and usable. The main weakness is not correctness but calibration: some quiz distractors are too easy, and a couple examples add scene texture without much additional transfer value. No must-fix defects surfaced from the page.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "a33addfa29f4faa686b35a1e27912423a99b1b8c7ff3a87cfc3e066ab3fcc3b4",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-07T23:22:33.398Z"
+}

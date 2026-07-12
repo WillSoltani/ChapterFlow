@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "high-output-management-ch07",
+  "chapterNumber": 7,
+  "title": "The Breakfast Factory Goes National",
+  "coreMove": "because people, inventory, customers, and constraints are visible in one place",
+  "thesis": "A one-location operation can coordinate through direct observation more easily than a national network.",
+  "readerPromise": "After this chapter, a reader can because people, inventory, customers, and constraints are visible in one place",
+  "ownedCases": [
+    {
+      "id": "ch07.ex.nationalBreakfast",
+      "label": "Breakfast factory goes national"
+    },
+    {
+      "id": "ch07.ex.sharedPurchasing",
+      "label": "Shared purchasing"
+    },
+    {
+      "id": "ch07.ex.localManager",
+      "label": "Local branch manager"
+    }
+  ],
+  "notYours": [
+    "Assigned implementation",
+    "Bonus signal",
+    "Breakfast factory",
+    "Breakfast factory control system",
+    "College graduate as output",
+    "Compiler development",
+    "Contractual obligation",
+    "Corrective performance conversation",
+    "Cultural values",
+    "Difficult feedback conversation",
+    "Environmental demand assessment",
+    "Escalated matrix conflict",
+    "Experienced employee on a new task",
+    "Expert delegated task",
+    "Free-market control",
+    "Functional organization",
+    "Geographic sales overlay",
+    "In-process quality inspection",
+    "Intel decision culture",
+    "Intel hybrid structure"
+  ],
+  "cast": [
+    "Olivia",
+    "Aubrey",
+    "Joel",
+    "Gloria"
+  ],
+  "answerIndexPattern": [
+    2,
+    1,
+    2,
+    0,
+    1,
+    1,
+    0,
+    0,
+    2
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a doorway conversation",
+    "flavor (ch01): venue: a spare-room desk",
+    "flavor (ch01): venue: an unsent email draft",
+    "flavor (ch01): frame: a first attempt at admitted students as inputs that gets corrected",
+    "flavor (ch01): frame: a first encounter with admitted students as inputs that sets a benchmark",
+    "flavor (ch02): venue: a living-room couch"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a household chore chart",
+    "venue: a bedside notebook",
+    "venue: a shared photo album",
+    "frame: a first attempt at assigned owners that gets corrected",
+    "frame: a first-time experience that sets a lasting benchmark"
+  ],
+  "architectureFamily": "everyday-first-person",
+  "openerType": "question",
+  "challengeFrame": "attach-to-existing-routine",
+  "practiceShape": "if-then-trigger",
+  "exampleLenses": [
+    "postmortem",
+    "walkthrough",
+    "counterfactual"
+  ],
+  "practiceVerb": "say",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "output",
+    "automatically",
+    "creates",
+    "enough",
+    "manager",
+    "value"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "mid-behavior",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "partial",
+      "fieldStyle": "cost-first",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "if-then-trigger",
+    "two-step-sequence",
+    "observe-then-note",
+    "say-aloud-script"
+  ],
+  "quizStemShapes": [
+    "failure-postmortem",
+    "cold-diagnosis",
+    "choose-next-move",
+    "predict-consequence"
+  ],
+  "quizFailureModes": [
+    "wrong-target",
+    "wrong-timing",
+    "wrong-proof",
+    "wrong-scope"
+  ],
+  "questionFactOrder": [
+    5,
+    8,
+    1,
+    2,
+    9,
+    7,
+    4,
+    6,
+    3
+  ],
+  "memorableShapes": [
+    "reversal",
+    "redefinition",
+    "cost-statement"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "artifact-speak",
+    "cost-speak"
+  ],
+  "shellRegister": "cost-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Olivia"
+  }
+}

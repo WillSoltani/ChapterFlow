@@ -359,7 +359,11 @@ function planLicensedUnanchoredUnits(chapter: ChapterV21, planOverride?: SourceU
   return plan.units.filter((u) => u.origin === "generic" || u.origin === "constructed").length;
 }
 
-export function checkExampleSourceGrounding(chapter: ChapterV21, planOverride?: SourceUsePlanV1 | null): CriticFinding[] {
+export function checkExampleSourceGrounding(
+  chapter: ChapterV21,
+  planOverride?: SourceUsePlanV1 | null,
+  sidecarOverride?: unknown,
+): CriticFinding[] {
   const findings: CriticFinding[] = [];
   const id = chapter.chapterId;
   if (typeof id !== "string" || !id) return findings;
@@ -371,7 +375,7 @@ export function checkExampleSourceGrounding(chapter: ChapterV21, planOverride?: 
   const bookId = parsed.bookId;
   const chNum = String(parsed.num).padStart(2, "0");
 
-  const latestRun = findLatestRunDir(RUNS_DIR, bookId);
+  const latestRun = sidecarOverride !== undefined ? "explicit-sidecar" : findLatestRunDir(RUNS_DIR, bookId);
   if (!latestRun) {
     // SC11.0 (Phase 0, SHADOW = major) — no source run on disk. Missing source
     // reliably predicts word-salad; surface it loudly instead of the old silent
@@ -387,7 +391,9 @@ export function checkExampleSourceGrounding(chapter: ChapterV21, planOverride?: 
   }
   // Artifact-aware: take the sidecar from the NEWEST run that actually has it
   // (a rework run dir without ch01-08 sidecars must not hide the originals).
-  const sidecarPath = findRunArtifact(RUNS_DIR, bookId, `sidecars/source/ch${chNum}.source.json`);
+  const sidecarPath = sidecarOverride !== undefined
+    ? "explicit-sidecar"
+    : findRunArtifact(RUNS_DIR, bookId, `sidecars/source/ch${chNum}.source.json`);
   if (!sidecarPath) {
     return [
       finding(
@@ -399,10 +405,13 @@ export function checkExampleSourceGrounding(chapter: ChapterV21, planOverride?: 
   }
 
   let sidecar: any;
-  try {
-    sidecar = JSON.parse(readFileSync(sidecarPath, "utf8"));
-  } catch {
-    return findings;
+  if (sidecarOverride !== undefined) sidecar = sidecarOverride;
+  else {
+    try {
+      sidecar = JSON.parse(readFileSync(sidecarPath, "utf8"));
+    } catch {
+      return findings;
+    }
   }
 
   const namedExamples = sidecar?.namedExamples ?? [];

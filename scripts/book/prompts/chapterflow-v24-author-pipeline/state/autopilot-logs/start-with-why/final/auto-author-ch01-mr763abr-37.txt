@@ -1,0 +1,12 @@
+Wrote the requested ChapterV21 file:
+
+[state/chapters/start-with-why-ch01.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch01.v21-native.chapter.json)
+
+Validation passed:
+
+- `author-check`: clean
+- `quiz-verify`: 9/9 match, required key pattern `1,1,0,2,0,1,2,0,2`
+- `gate-chapter`: `PASS — 0 blockers`, `0 majors`, `0 minors`
+- rendered reader-facing length: `16,880` chars
+- answer parity: key uniquely longest in `1/9`, uniquely shortest in `0/9`
+- scaffold/not-yours scan: no hits

@@ -1,0 +1,54 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several distractors are eliminable by extreme or flattening language such as 'every club', 'already crossed the main barrier', 'replace the need', 'master pattern', and 'one shortcut label'.", "Correct choices repeatedly use the chapter's signature guarded phrasing: compare settings, keep details in their setting, and separate pull from proof."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 79,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 87,
+    "limits": 88,
+    "insight": 86,
+    "density": 82,
+    "beginner": 83
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "What still moves when the carrot is gone? If nothing does, the carrot bought motion, not loyalty.",
+      "why": "Strongest retention line: concrete, short, and it carries the whole diagnostic move."
+    },
+    {
+      "quote": "Cross out the carrot before it writes the reason for you.",
+      "why": "Strong practical phrasing that turns the idea into an action a reader can remember."
+    },
+    {
+      "quote": "Partner Noah feels the offer through people tied to the choice.",
+      "why": "Weakest example moment: the named person is invented-feeling and the situation lacks a concrete before state or consequence beyond the lesson."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 3",
+      "problem": "The example reads partly manufactured: 'Partner Noah' has no specific organization, place, number, or concrete decision context, and the before-to-after consequence mostly restates the lesson about peer pressure versus belief.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Distractors often announce themselves through overbroad or absolute wording, making some answers guessable by test-taking heuristics rather than chapter comprehension.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The six-pull taxonomy is clear, but Fear and Aspiration are defined more than demonstrated; the chapter's named evidence mostly covers Price, Peer pressure, and Novelty.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against a professional bar: the core move is memorable, repeated cleanly, and grounded in three named settings that prevent the lesson from floating into generic advice. The best lines turn the concept into a usable diagnostic: name the push, then ask what returns without it. The main weakness is transfer evidence: Example 3 feels like a slot-filler and should be replaced or concretized because it does not fully deliver the chapter's own promise of grounded before-to-after learning. The quiz keys are sound, but some distractors are too easy to eliminate because they overreach so visibly."
+}
+```

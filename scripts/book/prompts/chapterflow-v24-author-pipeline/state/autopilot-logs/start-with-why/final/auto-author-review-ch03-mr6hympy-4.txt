@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "a", "b", "a", "a", "c", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several wrong choices are exaggerated absolutes: Q1a 'any famous speech can settle the model for every venue and audience', Q7b 'prove the whole model', Q8a 'should not shape any business choice'.", "Many correct answers use the chapter's exact governing nouns while distractors sound intentionally foolish: 'visible setting', 'blending jobs', 'second setting', 'changes by venue'.", "Q2's correct answer is uniquely fuller and more precise than the others, making it guessable without reading."]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 78,
+    "transfer": 82,
+    "practical": 76,
+    "summaries": 85,
+    "tone": 79,
+    "limits": 88,
+    "insight": 83,
+    "density": 77,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Start with WHY, then price the claim against HOW and WHAT; if behavior cannot carry the words, you have a slogan, not a reason to act.",
+      "why": "Strongest compression of the chapter's usable move."
+    },
+    {
+      "quote": "Do not use a reason to excuse poor proof. If the product is weak, fix the product. If the process is sloppy, repair the process.",
+      "why": "Clear limit that prevents the concept from becoming purpose-washing."
+    },
+    {
+      "quote": "If a proof point floats without an owner, then move it under HOW and name the behavior that carries the claim.",
+      "why": "This blurs the chapter's own distinction between HOW as behavior and WHAT as visible proof."
+    },
+    {
+      "quote": "The cold coffee tells him how late he noticed.",
+      "why": "A small but noticeable fiction-detail flourish that contributes to scaffold smell."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "implementation plan",
+      "problem": "If-then 2 says to move a floating proof point under HOW, but the chapter repeatedly teaches that HOW carries the reason and WHAT supplies visible proof. This muddies the central schema.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Distractors often telegraph themselves through extreme wording, especially choices claiming a famous example can settle every venue or prove the whole model.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Some scene details feel decorative rather than evidentiary, such as toner and cold coffee, giving parts of the chapter a template-fiction smell.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter repeats the Apple/Wright/King anchor logic many times, which reinforces the lesson but lowers density by the end.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong near-ship chapter with a memorable core move: WHY must be priced against HOW and WHAT, and proof has to return in behavior. The summaries layer well, the limits section is unusually good, and most quiz keys are derivable. I would not ship it yet at an 84 professional bar because the quiz distractors are too easy to eliminate and the implementation plan contains a real schema error by putting a floating proof point under HOW instead of preserving the HOW/WHAT distinction."
+}
+```

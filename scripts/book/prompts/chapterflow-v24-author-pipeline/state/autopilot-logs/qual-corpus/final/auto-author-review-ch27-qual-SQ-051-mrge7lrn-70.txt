@@ -1,0 +1,115 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 12,
+    "quizzes": 0,
+    "transfer": 18,
+    "practical": 8,
+    "summaries": 0,
+    "tone": 25,
+    "limits": 0,
+    "insight": 15,
+    "density": 14,
+    "beginner": 10
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Ferne replays it and sees that she spent twenty minutes proving the math while Mrs. Abel was asking whether anyone respected her years in the building.",
+      "why": "The chapter's strongest moment concretely contrasts the surface dispute with the unmet human concern."
+    },
+    {
+      "quote": "She also knows the drawer sticks, the morning shift is short, and she delayed the repair request.",
+      "why": "This usefully broadens a blame-focused explanation into several contributing conditions."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "The instruction never identifies the move, so a beginner cannot convert the scene into an action."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This is production scaffolding rather than a reader-facing hook or statement of the chapter's subject."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is production-status scaffolding and does not introduce the topic, stakes, or core move.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty, so it fails its stand-alone reading-layer promise; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty, so it fails its stand-alone reading-layer promise; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, leaving no instructional prose from which the chapter's core move can be learned; reserved categories: STRUCTURALLY INVALID and UNUSABLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty and never states the core move; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the chapter provides no usable exercise; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The scene implies noticing the human concern beneath a factual dispute, but the generic instruction never names that move or explains how Ferne's three margin notes change her next decision.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The opening sentence is grammatically fragmented and awkwardly piles together time, place, role, and prop; later, \"Ferne she writes\" contains a duplicated subject.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The scene implies mapping system conditions before assigning blame, but it ends before showing Imani's decision or its consequence, and the generic instruction never states the transferable method.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The opening sentence is grammatically fragmented and awkwardly piles together time, place, role, and props; later, \"Imani she must decide\" contains a duplicated subject.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The two scenes suggest different core moves—recognizing an emotional concern and identifying systemic contributors—without prose that unifies or distinguishes them, making the lesson under-determined; reserved category: UNUSABLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions or choices, so no answer can be derived or assessed; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and supplies no retrieval practice; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty and supplies none of the promised retention material; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an incomplete scaffold, not a shippable chapter. Two vivid scenes gesture toward potentially useful ideas—looking beneath a surface argument and mapping conditions before blaming a person—but the chapter never states, explains, bounds, or operationalizes either idea. Every reading layer and reinforcement section is empty, the quiz has no questions, the application directions are generic, and the examples contain conspicuous sentence-level errors. Because a reader cannot identify one coherent core move or practice it from what is on the page, the chapter falls far below the professional bar."
+}
+```

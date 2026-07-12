@@ -1,0 +1,66 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "a", "b", "a", "a", "c", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several distractors are easy to reject by absolutist wording such as every, only, nothing important, and any verified location.",
+      "Correct choices often reuse the chapter's exact vocabulary around proof, visible facts, limits, and separate jobs."
+    ]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 82,
+    "transfer": 76,
+    "practical": 84,
+    "summaries": 87,
+    "tone": 78,
+    "limits": 88,
+    "insight": 84,
+    "density": 80,
+    "beginner": 77
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Move WHY before proof.",
+      "why": "Strongest compact memory line; it cleanly names the chapter's core move."
+    },
+    {
+      "quote": "The product does not create the reason; the reason gives the product a job.",
+      "why": "Strong mechanism sentence that explains why the order matters."
+    },
+    {
+      "quote": "Two other source markers keep the Apple Inc line honest without turning the lesson into a tour.",
+      "why": "This is accurate but abstract; phrases like source markers make the beginner path harder."
+    },
+    {
+      "quote": "Mid-action during a late product pass at the office, producer Jerome sees founder Sylvia put Macintosh first and call it enough.",
+      "why": "The example feels staged and stays inside the same pitch-rewrite world instead of broadening transfer."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "examples 1-4",
+      "problem": "The examples mostly replay the same invented Sylvia/Apple pitch-rewrite situation, so transfer beyond the chapter's own setup is thin though still usable.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "Terms such as account, source markers, token, return question, and warm line add abstraction before a cold beginner has fully grounded the move.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several wrong answers telegraph themselves through broad or absolute phrasing, making some items partly guessable without careful reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The keyed idea is sound, but the stem's added scene and the option's nearby misconception phrasing are less directly named in the prose than the other quiz targets.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear core move, memorable lines, and mostly fair quiz keys: WHY sets the job, HOW serves it, and WHAT returns as proof. I would not ship it at the higher professional bar yet because the transfer layer is narrow, the examples mostly circle one fictional pitch repair, and the prose sometimes leans on internal-feeling terms that make a beginner work harder than necessary. No reserved-category must-fix defect is present from the page alone, but the chapter needs stronger cross-context application and cleaner quiz distractors before it feels fully publishable."
+}
+```

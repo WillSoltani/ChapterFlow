@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "good-to-great-ch07",
+  "chapterNumber": 7,
+  "contentHash": "2f257bcf0a8d9475",
+  "reviewerSessionId": "eval-proxy-good-to-great-ch07-1783022584095",
+  "scores": {
+    "retention": 91,
+    "quizzes": 84,
+    "transfer": 91,
+    "practical": 92,
+    "summaries": 89,
+    "tone": 82,
+    "limits": 88,
+    "insight": 89,
+    "density": 87,
+    "beginner": 91
+  },
+  "composite": 88.4,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "a",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "c",
+      "a"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "A tool cannot clarify a concept it was hired to avoid.",
+      "why": "Strongest memorable line; it compresses the whole chapter into a usable diagnostic.",
+      "verified": true
+    },
+    {
+      "quote": "What existing discipline would this tool make faster, cleaner, or more repeatable?",
+      "why": "Practical, portable test that readers can apply outside the book example.",
+      "verified": true
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Worst defect; this is visible template residue and breaks professional polish.",
+      "verified": true
+    },
+    {
+      "quote": "If neither is clear, wait.",
+      "why": "Strong low-friction action step with an honest boundary.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Correct choices often reuse the chapter's repeated keywords: accelerate, concept, measure, discipline.",
+    "Several distractors are easy caricatures about status, looking modern, or using every feature.",
+    "Q9's correct answer is uniquely comprehensive and clearly mirrors the Try this now wording."
+  ],
+  "complaints": [
+    {
+      "unit": "implementation plan",
+      "problem": "The line \"Title: undefined\" is unresolved scaffold/template residue.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Correct options often telegraph themselves by using the chapter's repeated vocabulary while distractors are exaggerated status-or-theater choices.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The correct answer is much more complete and directly echoes the Try this now sentence, making it guessable without full reading.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is conceptually strong, memorable, and practical: it gives readers a clean accelerator test, concrete cross-domain examples, and useful limits against both technology worship and anti-technology reflex. The quiz is fair and the keys are sound, though some answers are too easy to spot because they carry the chapter's signature wording while distractors are theatrical. I would not ship this exact file because \"Title: undefined\" is a clear production defect, but after that fix it is close to professional bar."
+}

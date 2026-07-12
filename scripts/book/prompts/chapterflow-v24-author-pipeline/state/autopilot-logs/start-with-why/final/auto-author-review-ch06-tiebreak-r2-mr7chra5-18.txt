@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Correct choices are often the longest or most concrete option, while distractors often announce themselves with overbroad or backward logic.", "Several correct choices preserve the chapter's named ground terms, especially Dallas/Southwest/Houston/Continental/Bethune, making key-spotting easier without full reading."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 80,
+    "transfer": 78,
+    "practical": 82,
+    "summaries": 87,
+    "tone": 76,
+    "limits": 88,
+    "insight": 84,
+    "density": 75,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Trust is the risk you can take because the promise has come back true.",
+      "why": "Strong, compact mechanism for the chapter's core idea."
+    },
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "Memorable reversal that a reader is likely to retain."
+    },
+    {
+      "quote": "Denise stops at the counter while a low fare waits for employees to make it mean trust.",
+      "why": "The hook is syntactically cute but opaque before the reader has the frame."
+    },
+    {
+      "quote": "Before, price carried the trust claim alone; after, the return is set and not yet met.",
+      "why": "This example marks the concept but does not show a real consequence yet."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening image is hard to parse cold; 'a low fare waits for employees to make it mean trust' sounds manufactured instead of immediately concrete.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read/full read",
+      "problem": "The chapter spends a lot of its energy policing where source details belong, which sometimes crowds out the human mechanism of how trust actually forms.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples Example 1",
+      "problem": "The example names a before and after, but the after is only 'the return is set and not yet met,' so it does not fully show decision to consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct answers are visibly more grounded and careful than the distractors, creating a mild key-guessing tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Repeated terms like belief, behavior, return, setting, and mark make some passages feel scaffolded even when the ideas are sound.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a solid chapter with a memorable core: belief comes before behavior, and trust grows when a promise returns visibly enough to lower another person's risk. The quiz is derivable and the answer key is sound. The main weakness is not accuracy but polish: the prose sometimes sounds like a training scaffold, several passages over-index on source-boundary policing, and one example marks the intended lesson without showing a full consequence. I would revise before shipping at an 84+ professional bar, but the chapter is close."
+}
+```

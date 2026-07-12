@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "mechanisms": [
+      "The prose says to look first at transitions, milestones, and pits, which map to welcome, award, and complaint moments.",
+      "The John Deere lesson says purpose must arrive before routine procedure on a first day.",
+      "The Mary Kay example says the milestone works because it becomes visible and public.",
+      "The Joshie recovery says the repair must add proof of care and change the ending people carry away.",
+      "The first-day ritual correction is to put purpose before forms and tie work to real users.",
+      "The chapter says a milestone needs a marker people can picture, not just a private or abstract count.",
+      "The pit lesson says a polished apology is not enough; recovery needs concrete care that changes the story.",
+      "Eric's lesson says the busiest step is not always the point people retell, so first ask where meaning is assigned.",
+      "The pit warning is that a low point can define the story unless the ending is repaired."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Choice a is partly defensible if the dashboard is shared and visible; the stem does not fully say whether it already functions as public recognition.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Choice c uniquely names the three charged moment types while a and b sound broadly procedural.",
+      "Choice c repeats the chapter's exact John Deere language; a and b openly contradict the prose.",
+      "Choice b repeats the exact milestone-visibility mechanism.",
+      "Choice b repeats the exact proof-of-care/change-the-story mechanism.",
+      "Choice a is the only option using the chapter's purpose-before-packet phrasing.",
+      "Choice c repeats the chapter's marker/picture language; b is obviously wrong.",
+      "Choice b repeats the concrete-care recovery language.",
+      "Choice a repeats the 'sum up the relationship' idea while b and c are obvious foils.",
+      "Choice a repeats 'low point hardens'; b and c are direct contradictions."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 76,
+    "transfer": 83,
+    "practical": 89,
+    "summaries": 91,
+    "tone": 86,
+    "limits": 88,
+    "insight": 90,
+    "density": 82,
+    "beginner": 92
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Do not smooth every minute with equal care. Look first at transitions, milestones, and pits, since those points already have feeling in them.",
+      "why": "This is the chapter's core move in a memorable, usable sentence."
+    },
+    {
+      "quote": "A pit is not done just because the item is found. The repair has to change the ending people carry away.",
+      "why": "Strong mechanism: it explains why practical repair and remembered repair are different."
+    },
+    {
+      "quote": "   a) Trust the dashboard because the team can see data there.\n   b) Keep the level private until the result feels certain.\n   c) Give the achievement a marker people can picture.",
+      "why": "The correct answer is heavily cued by chapter phrasing, and the shared-dashboard option is somewhat underdetermined."
+    },
+    {
+      "quote": "What to do: Eric moves the circle from the crowded handoff to the first encounter. He designs the start before he touches routine steps.",
+      "why": "This transfer example mostly replays the same correction instead of adding a substantially new application."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz set",
+      "problem": "Many correct choices repeat the chapter's exact phrasing while distractors plainly contradict the lesson, so a reader can often guess without reading closely.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "The dashboard stem is slightly underdetermined because a shared dashboard could already be a visible marker, making choice a partly defensible.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The Eric example is usable but repetitive: it restates the busiest-handoff correction from the full read rather than showing a fresh domain transfer.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The Manon thank-you-note example narrows the pit lesson into describing care after recovery rather than designing the recovery itself.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read and full read",
+      "problem": "The same three cases are cycled several times, which reinforces the point but lowers density after the mechanism is already clear.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a strong, memorable core move: scan for transitions, milestones, and pits instead of polishing the busy middle. The prose is clear, beginner-friendly, and unusually good at explaining why these moments carry memory. I would not ship it yet against a professional 80+ bar because the quiz is too answer-cued and Q6 has a real ambiguity, while a couple of transfer examples mostly replay the same source cases. These are craft defects, not reserved-category must-fixes, but they keep the chapter below ship quality."
+}
+```

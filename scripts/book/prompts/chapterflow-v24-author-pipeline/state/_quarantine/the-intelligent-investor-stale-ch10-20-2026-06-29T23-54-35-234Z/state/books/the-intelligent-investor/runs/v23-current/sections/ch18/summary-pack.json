@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "summary-pack",
+  "chapterId": "the-intelligent-investor-ch18",
+  "hook": {
+    "hook": "A company can look obvious in isolation, then look very different beside another claim on the same capital.",
+    "counterintuition": "Comparison is not a shortcut to buying the lower ratio or the better business. It is a way to expose opportunity cost, test whether quality deserves its premium, and ask whether apparent cheapness has a valid explanation.",
+    "sourceAnchorIds": [
+      "ch18.fact.1"
+    ],
+    "counterintuitionSourceAnchorIds": [
+      "ch18.fact.1",
+      "ch18.fact.3",
+      "ch18.fact.4",
+      "ch18.fact.9"
+    ]
+  },
+  "breakdown": {
+    "fastRead": "Paired comparison reduces one-company tunnel vision because each valuation looks different beside an alternative claim on capital. Similar labels do not create equal risk: leverage, assets, earnings stability, and management can diverge sharply within a sector. A superior business may still be overpriced if the premium exceeds the value of the quality difference, while a lower-priced peer may be cheap for valid reasons such as a weaker balance sheet or cyclical exposure. Name similarity also means little. McGraw Edison and McGraw-Hill require separate business appraisal despite overlapping words.",
+    "deepRead": "The central move is to stop judging a company as if no alternative exists. Paired comparison makes opportunity cost visible. A valuation that seems reasonable alone may look stretched beside another claim on capital, and a rejected company may reveal what the preferred one must justify. The point is not mechanical relative cheapness; it is sharper judgment.\n\nIndustry labels are a useful starting point, but they can mislead. Similar industry labels do not create equal risk because leverage, assets, earnings stability, and management can differ within a sector. The Real Estate Investment Trust vs. Realty Equities comparison shows why two real-estate names should not be treated as having the same investment character. Structure and finances can diverge sharply even when the label sounds similar.\n\nQuality also needs a price test. A superior business may still be overpriced relative to a weaker peer because the premium can exceed the value of the quality difference. The Air Products vs. Air Reduction pair asks whether the higher-priced name earns its premium. The International Flavors & Fragrances vs. International Harvester contrast adds the same discipline for a high-quality specialty business against a large cyclical manufacturer: stability, margins, and growth matter, but the multiple paid still matters.\n\nThe reverse error is just as dangerous. A low-priced peer may be cheap for valid reasons because weaker balance sheets or cyclical exposure may justify a discount. Cheapness must be explained. McGraw Edison and McGraw-Hill add a final warning: similar names are irrelevant to valuation when business economics differ.",
+    "fullRead": "Paired comparison is a defense against one-company tunnel vision. A single valuation can feel complete when it has a story, a ratio, and a surface reason to like or dislike it. Set beside another claim on capital, the same valuation has to compete. Opportunity cost becomes visible. The question changes from whether a company is attractive in isolation to whether its price, quality, risk, and prospects are attractive relative to another available claim.\n\nThat discipline immediately weakens a common shortcut: treating similar labels as equal risk. Similar industry labels do not create equal investment character because leverage, assets, earnings stability, and management can differ within a sector. Real Estate Investment Trust vs. Realty Equities highlights the problem. The shared real-estate label is not enough. A more straightforward trust format and a more speculative real-estate company can carry sharply different financial risk. Structure and finances matter more than the category name.\n\nThe same comparison habit also checks enthusiasm for superior businesses. A better company is not automatically a better stock. A superior business may still be overpriced relative to a weaker peer when the premium exceeds the value of the quality difference. Air Products vs. Air Reduction asks whether the higher-priced name earns its premium inside a related industrial-gas pair. International Flavors & Fragrances vs. International Harvester makes the question even clearer: a high-quality specialty business can deserve respect for stability, margins, and growth, yet the appraisal still has to weigh those strengths against price.\n\nCheapness needs its own skepticism. A low-priced peer may be cheap for valid reasons because weaker balance sheets or cyclical exposure may justify a discount. The lower multiple member of a pair is not automatically better. A discount is a claim that must be explained. If the explanation is financial weakness, unstable earnings, or cyclicality, the apparent bargain may simply reflect real risk.\n\nName familiarity is another false comfort. McGraw Edison and McGraw-Hill have overlapping words, but name similarity is irrelevant to valuation because they represent different businesses. Superficial resemblance cannot replace business economics. The appraisal has to return to business quality, financial strength, earnings stability, growth, valuation premium, and cyclicality.\n\nThe broader habit is skeptical but not formulaic. Growth stability earns a premium only up to a point because paying too high a multiple can consume the benefit of stability. Pair analysis trains skepticism toward market favorites by asking what concrete advantage justifies the premium. Cyclical companies need normalized earnings because peak or trough results can distort relative cheapness. A table of pairs is therefore a tool for judgment, not a formula. Ratios require context, and final appraisal depends on the quality of the inputs and the interpretation of the business.",
+    "sourceAnchorIds": {
+      "fastRead": [
+        "ch18.fact.1",
+        "ch18.fact.2",
+        "ch18.fact.3",
+        "ch18.fact.4",
+        "ch18.fact.5"
+      ],
+      "deepRead": [
+        "ch18.fact.1",
+        "ch18.fact.2",
+        "ch18.fact.3",
+        "ch18.fact.4",
+        "ch18.fact.5",
+        "ch18.example.1",
+        "ch18.example.2",
+        "ch18.example.3"
+      ],
+      "fullRead": [
+        "ch18.fact.1",
+        "ch18.fact.2",
+        "ch18.fact.3",
+        "ch18.fact.4",
+        "ch18.fact.5",
+        "ch18.fact.6",
+        "ch18.fact.7",
+        "ch18.fact.8",
+        "ch18.fact.9",
+        "ch18.framework.pair.comparison.factors",
+        "ch18.example.1",
+        "ch18.example.2",
+        "ch18.example.3",
+        "ch18.example.4"
+      ]
+    }
+  },
+  "keyTakeaway": "Compare each company with a plausible alternative before judging value: test the premium for quality, explain any discount, and ignore superficial similarities such as sector labels or names.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch18.fact.1",
+    "ch18.fact.2",
+    "ch18.fact.3",
+    "ch18.fact.4",
+    "ch18.fact.5"
+  ],
+  "tryThisNow": "Add a 2-trigger checklist before any appraisal: first, name the alternative claim on capital; second, write why the premium or discount is justified by business quality, financial strength, earnings stability, growth, valuation premium, or cyclicality.",
+  "tryThisNowSourceAnchorIds": [
+    "ch18.fact.1",
+    "ch18.fact.2",
+    "ch18.fact.3",
+    "ch18.fact.4",
+    "ch18.framework.pair.comparison.factors"
+  ],
+  "sourceFactIds": [
+    "ch18.fact.1",
+    "ch18.fact.2",
+    "ch18.fact.3",
+    "ch18.fact.4",
+    "ch18.fact.5",
+    "ch18.fact.6",
+    "ch18.fact.7",
+    "ch18.fact.8",
+    "ch18.fact.9"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "sweep-attest-v1",
+  "bookId": "zz-fixture-grounded-numbers",
+  "roundId": "r-sweep-drop",
+  "verdict": "REVISE",
+  "reviewer": "codex-qc:sweep",
+  "attestedAt": "2026-06-25T20:13:39.629Z",
+  "rawEvidenceSourceId": "qcs-0c6e0746a84ffcdd",
+  "rawEvidenceSourceKind": "derived_artifact",
+  "contentHashes": {
+    "1": "211328968e8d2aa7",
+    "2": "4d3b6831772b635b"
+  },
+  "checkedFamilies": [
+    "scene_skeleton",
+    "persona_drift",
+    "repeated_unit",
+    "location_stamping"
+  ],
+  "findings": [
+    {
+      "family": "repeated_unit",
+      "severity": "blocker",
+      "chapters": [
+        2
+      ],
+      "unitId": "reviewCards",
+      "quote": "shared card shell",
+      "problem": "templating",
+      "expectedFix": "vary it",
+      "defectKey": "sweep-defect-v1:986e13eb5e760531a898ddca",
+      "defectFingerprints": [
+        {
+          "chapter": 2,
+          "fingerprint": "sweep-defect-v2:d0020f333dbf176c7ddfc607"
+        }
+      ]
+    }
+  ],
+  "fingerprintVersion": "sweep-defect-v2"
+}

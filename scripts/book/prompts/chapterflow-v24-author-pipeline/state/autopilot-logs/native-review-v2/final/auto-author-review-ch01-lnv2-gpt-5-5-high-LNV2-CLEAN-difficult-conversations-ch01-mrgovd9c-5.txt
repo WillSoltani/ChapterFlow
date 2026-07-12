@@ -1,0 +1,73 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "a", "b", "c", "c", "b", "a"],
+    "mechanisms": [
+      "The prose defines identity as questions about being competent, good, loyal, or worthy; her fear is about competence and authority.",
+      "The prose says to sort the what-happened promise, the feelings layer, and the identity question about family duty rather than treating it as logistics only.",
+      "The repair facts, residents' dismissed feeling, and board competence/reputation fear map directly to facts, feelings, and identity.",
+      "The chapter warns that accepting the visible label can trap the exchange in facts while feelings such as trust steer the room.",
+      "The reaction got larger because the missed dinner question seemed to judge what kind of friend she was, matching the identity layer.",
+      "The preparation separates facts, feelings, and identity so the student does not confuse belonging threat with only the authorship issue.",
+      "The prose says more facts can fail when the documented record has entered an identity question such as competence, goodness, or respect.",
+      "The chapter explicitly says to diagnose privately first because labeling someone else's identity layer can sound like an accusation or verdict.",
+      "The repeated move from dishes to respect shows two layers: visible chore facts and a respect/identity or feeling stake underneath."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "medium"],
+    "ambiguities": ["", "", "", "", "", "", "", "", "The respect issue could be read as a feelings layer or an identity layer; option a is still best because it asks the diagnostic split rather than forcing one label."],
+    "tells": [
+      "Correct answers are almost always the most nuanced and often the longest choice.",
+      "Many distractors are easy to reject without reading because they use absolute or obviously poor moves: 'only,' 'always,' 'never,' 'quickly,' or 'save feelings for the comment period.'"
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 76,
+    "transfer": 86,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 91,
+    "limits": 92,
+    "insight": 90,
+    "density": 87,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The log is evidence. It is not the whole map.",
+      "why": "A crisp, memorable statement of the chapter's core move."
+    },
+    {
+      "quote": "The three conversations are a diagnostic tool, not a script. They do not solve the exchange. They keep you from walking into the wrong one.",
+      "why": "Strong boundary-setting that prevents the framework from being oversold."
+    },
+    {
+      "quote": "A person who already feels exposed will rarely thank you for diagnosing their identity layer.",
+      "why": "Concrete practical warning that turns the idea into usable behavior."
+    },
+    {
+      "quote": "b) The frame works best first as private diagnosis; naming another person's layer can sound like a verdict.",
+      "why": "Representative quiz defect: the correct option is the most qualified and easy to spot."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz set",
+      "problem": "Correct choices are consistently the most nuanced and often the longest, while distractors are frequently implausible or absolute, making the key guessable without reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The distractors are straw choices: 'never be considered in workplace settings' and 'only through written documentation' are too obviously wrong to teach much.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several names recur across unrelated settings, which can slightly blur whether the scenarios are connected or just recycled.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong opening chapter: clear core model, memorable compression, practical boundaries, and examples that mostly show the before-and-after of diagnostic sorting. The main weakness is the quiz design; the questions are fair and derivable, but the answer pattern is too visible because the right option is usually the most careful, longest, least extreme choice. I would ship it, but I would revise the quiz distractors before calling the assessment layer professional-grade."
+}
+```

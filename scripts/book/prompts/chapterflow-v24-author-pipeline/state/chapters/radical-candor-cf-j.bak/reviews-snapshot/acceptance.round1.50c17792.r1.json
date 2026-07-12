@@ -1,0 +1,247 @@
+{
+  "schemaVersion": "author-acceptance-v1",
+  "bookId": "radical-candor",
+  "roundLabel": "",
+  "at": "2026-07-09T20:42:23.323Z",
+  "bar": 80,
+  "beatShipped": null,
+  "accepted": true,
+  "sampledChapters": [
+    1,
+    3,
+    5,
+    8
+  ],
+  "docSha256": "50c17792944ab89c00172ce6c8e434a585c954804fac7a662304d5449511c52a",
+  "verdict": {
+    "id": "radical-candor",
+    "medianComposite": 78.9,
+    "factors": {
+      "retention": 82,
+      "quizzes": 74,
+      "transfer": 86,
+      "practical": 80,
+      "summaries": 80,
+      "tone": 75,
+      "limits": 82,
+      "insight": 77,
+      "density": 73,
+      "beginner": 77
+    },
+    "gate": "PASS",
+    "gateVotes": "3P/0F",
+    "churn": "MEDIUM",
+    "validCount": 3,
+    "readerCount": 3,
+    "chapters": [
+      1,
+      3,
+      5,
+      8
+    ],
+    "readers": [
+      {
+        "reviewerSessionId": "auto-author-book-reader-1-mrdz1dme-13",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "MEDIUM",
+        "scores": {
+          "retention": 82,
+          "quizzes": 73,
+          "transfer": 86,
+          "practical": 80,
+          "summaries": 80,
+          "tone": 75,
+          "limits": 83,
+          "insight": 78,
+          "density": 74,
+          "beginner": 77
+        },
+        "composite": 79,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "This is a publishable-leaning sample with a clear practical spine: each chapter gives a reusable lens, a compact tool name, scenario-heavy quizzes, review cards, and realistic limits. The correctness gate passes; I found no keyed answer contradicted by the chapter prose. The main editorial weakness is medium churn: the chapters repeatedly use the same scaffold, cost/signal/price rhetoric, named proxy characters, and What to do/Why it matters example shells. Quiz quality is solid on answerability and scenario transfer, but weakened by the lack of answer explanations. Overall, the sample feels like a strong draft that teaches well, but not yet premium because the house voice sometimes overwhelms the individual chapter voice.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-2-mrdz1dmi-14",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "MEDIUM",
+        "scores": {
+          "retention": 84,
+          "quizzes": 74,
+          "transfer": 86,
+          "practical": 80,
+          "summaries": 80,
+          "tone": 73,
+          "limits": 82,
+          "insight": 77,
+          "density": 69,
+          "beginner": 77
+        },
+        "composite": 78.6,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "This is a solid, shippable sample with no key-soundness failures: the quizzes are answerable from the prose, the concepts transfer well, and several memorable lines carry real teaching value. The main weakness is not correctness but sameness. Across chapters, the same compressed house voice, example architecture, prop-led scenes, and practice-shell rhythm become visible, so the book feels more engineered than individually authored. The best material gives readers reusable lenses: count visible care, circle the current signal, price the trust signal, and write the calendar job. The weakest material pads those lenses with staged characters and recurring rhetorical machinery.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-3-mrdz1dmj-15",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "MEDIUM",
+        "scores": {
+          "retention": 82,
+          "quizzes": 76,
+          "transfer": 82,
+          "practical": 75,
+          "summaries": 81,
+          "tone": 77,
+          "limits": 80,
+          "insight": 72,
+          "density": 73,
+          "beginner": 80
+        },
+        "composite": 78.1,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "This is a strong draft with clean quiz support, useful lenses, and several sticky lines that make the ideas portable. The best chapters turn management advice into compact diagnostics: count visible care, circle the current signal, price the trust signal, and write the calendar job. The main weakness is visible scaffolding churn: the repeated tier structure, example shells, cost/pricing language, and practice formats sometimes make the sample feel systematized rather than freshly authored. Practical exercises are usually concrete, but a few feel performative. Overall, it is publishable-quality learning material with enough repetition and tonal sameness to keep it out of the premium band.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      }
+    ]
+  },
+  "readers": [
+    {
+      "reviewerSessionId": "auto-author-book-reader-1-mrdz1dme-13",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "MEDIUM",
+      "scores": {
+        "retention": 82,
+        "quizzes": 73,
+        "transfer": 86,
+        "practical": 80,
+        "summaries": 80,
+        "tone": 75,
+        "limits": 83,
+        "insight": 78,
+        "density": 74,
+        "beginner": 77
+      },
+      "composite": 79,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "This is a publishable-leaning sample with a clear practical spine: each chapter gives a reusable lens, a compact tool name, scenario-heavy quizzes, review cards, and realistic limits. The correctness gate passes; I found no keyed answer contradicted by the chapter prose. The main editorial weakness is medium churn: the chapters repeatedly use the same scaffold, cost/signal/price rhetoric, named proxy characters, and What to do/Why it matters example shells. Quiz quality is solid on answerability and scenario transfer, but weakened by the lack of answer explanations. Overall, the sample feels like a strong draft that teaches well, but not yet premium because the house voice sometimes overwhelms the individual chapter voice.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-2-mrdz1dmi-14",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "MEDIUM",
+      "scores": {
+        "retention": 84,
+        "quizzes": 74,
+        "transfer": 86,
+        "practical": 80,
+        "summaries": 80,
+        "tone": 73,
+        "limits": 82,
+        "insight": 77,
+        "density": 69,
+        "beginner": 77
+      },
+      "composite": 78.6,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "This is a solid, shippable sample with no key-soundness failures: the quizzes are answerable from the prose, the concepts transfer well, and several memorable lines carry real teaching value. The main weakness is not correctness but sameness. Across chapters, the same compressed house voice, example architecture, prop-led scenes, and practice-shell rhythm become visible, so the book feels more engineered than individually authored. The best material gives readers reusable lenses: count visible care, circle the current signal, price the trust signal, and write the calendar job. The weakest material pads those lenses with staged characters and recurring rhetorical machinery.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-3-mrdz1dmj-15",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "MEDIUM",
+      "scores": {
+        "retention": 82,
+        "quizzes": 76,
+        "transfer": 82,
+        "practical": 75,
+        "summaries": 81,
+        "tone": 77,
+        "limits": 80,
+        "insight": 72,
+        "density": 73,
+        "beginner": 80
+      },
+      "composite": 78.1,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "This is a strong draft with clean quiz support, useful lenses, and several sticky lines that make the ideas portable. The best chapters turn management advice into compact diagnostics: count visible care, circle the current signal, price the trust signal, and write the calendar job. The main weakness is visible scaffolding churn: the repeated tier structure, example shells, cost/pricing language, and practice formats sometimes make the sample feel systematized rather than freshly authored. Practical exercises are usually concrete, but a few feel performative. Overall, it is publishable-quality learning material with enough repetition and tonal sameness to keep it out of the premium band.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    }
+  ],
+  "pooled": {
+    "reads": 1,
+    "composite": 78.9,
+    "gate": "PASS",
+    "noiseBand": 3.7,
+    "capped": false
+  },
+  "structuralSameness": {
+    "mode": "advisory",
+    "archAxes": [],
+    "archSevere": false,
+    "contentOverCap": [],
+    "contentSevere": false
+  }
+}

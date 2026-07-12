@@ -1,0 +1,73 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several keyed answers are the most specific and fullest option, especially Q2, Q4, Q8, and Q9.", "Q9c stacks the chapter's exact ground words: Southwest, Dallas, employees, low fare, visible behavior."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 83,
+    "transfer": 76,
+    "practical": 82,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 89,
+    "insight": 88,
+    "density": 81,
+    "beginner": 83
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "Strongest retention line; it reverses the usual sequence in a way a reader can remember."
+    },
+    {
+      "quote": "Real proof changes what another person can count on.",
+      "why": "Best mechanism sentence; it explains why proof matters instead of just naming it."
+    },
+    {
+      "quote": "Before, price carried the trust claim alone; after, the return is set and not yet met.",
+      "why": "Weak example consequence; the after-state is still preparatory, not a demonstrated result."
+    },
+    {
+      "quote": "She can treat the fare as the reason people return, or mark employees as the place where belief must appear under pressure.",
+      "why": "This example mainly re-sorts the same chapter material instead of transferring the move to a new context."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "Three of four examples stay inside the same Southwest/Continental/Bethune material rather than showing the move in a fresh domain. That limits transfer beyond the book's own examples.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The before-after does not show a clear consequence; after the decision, 'the return is set and not yet met,' so the reader does not see whether the marked behavior changed trust.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The keyed option is highly telegraphed because it packs the exact nouns the chapter repeatedly foregrounds: Southwest, Dallas, employees, low fare, and visible behavior.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q2",
+      "problem": "The keyed answer is the most specific and pedagogically polished option, while the distractors are visibly generic.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "Some phrasing is abstract or idiosyncratic for beginners, especially lines like 'Southwest Airlines employee trust is not color' and 'the same order a second place to stand.'",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The core order is repeated many times with only modest new payoff, which slightly lowers density.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a memorable trust sequence, sound answer key, useful limits, and several crisp mechanism lines. I would not ship it at a professional 84+ bar yet because the transfer section leans too heavily on the same airline/Bethune material and Example 1 does not show a completed consequence after the decision. One or two fresh, concrete examples outside the source stories would likely move it over the bar."
+}
+```

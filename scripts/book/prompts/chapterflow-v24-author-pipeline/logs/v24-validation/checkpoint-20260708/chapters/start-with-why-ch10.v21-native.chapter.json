@@ -1,0 +1,642 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "start-with-why-ch10",
+  "number": 10,
+  "title": "Communication Is Not About Speaking, It's About Listening",
+  "readingTimeMinutes": 7,
+  "hook": "If celery is absent and Oreos win after health, what did the audience hear?",
+  "hookSourceAnchorIds": [
+    "ch10.ex.celery-test"
+  ],
+  "counterintuition": "The audience audits the balance sheet of visible choices. Celery, Harley-Davidson's 1903 Milwaukee identity, and the 2001 Apple Store setting each ask whether words, actions, symbols, and listening point to the same belief.",
+  "counterintuitionSourceAnchorIds": [
+    "ch10.fact.2",
+    "ch10.fact.4",
+    "ch10.fact.5"
+  ],
+  "tryThisNow": "Schedule 10 minutes to name one claim on your desk; then schedule the visible act that will let the audience judge whether the claim came back true.",
+  "tryThisNowSourceAnchorIds": [
+    "ch10.fact.4",
+    "ch10.fact.5"
+  ],
+  "keyTakeaway": "Say the claim first, then choose the visible action that can pay it back; if the audience reads a different ledger, more speech only adds noise.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch10.fact.4",
+    "ch10.fact.5"
+  ],
+  "breakdown": {
+    "fastRead": "If celery is absent and Oreos win after health, what did the audience hear? In the Celery test, the cart gives the answer before anyone explains. Health is the word. Celery is the act that can carry it. Oreos, rice milk, and M&Ms show why the act cannot be random. The cart answers. Words go first because they name the claim. Actions follow because people listen to what the action pays back. A symbol is the visible sign people count. Audience listening is the return ledger: what did they count, and did it balance?",
+    "deepRead": "Words give actions a job. Symbolic consistency is the simple demand that the visible thing match the belief your words ask people to hear. If action comes first, it has to carry a claim it did not frame. That is too much cargo. A cart cannot explain itself.\n\nHarley-Davidson is the motorcycle company that began in 1903 in Milwaukee. Here, it matters because the brand became a motorcycle identity marker: customers could use it to show something about themselves. That is a second anchor. The cart was private and small. The bike is public. The rider is already listening with the visible mark, not waiting for a speech.\n\nNow comparison can pay its way. One vivid story can teach; it cannot prove portability. Harley-Davidson repeats the pattern in a different venue, so the celery story is less likely to be a one-off. Milwaukee belongs there. Rice milk stays with the Celery test. If you move a hard detail because it sounds useful, you make a false ledger entry.\n\nWhat did the audience count before your words arrived? Ask that before rewriting. Words, Actions, Symbols, Audience listening are four jobs, not one slogan. Name the promise, choose the act, notice the sign, then trace the response. Schedule the proof before the sign travels. Communication begins with words, but the listener audits what life around the words shows.",
+    "fullRead": "Apple Store makes the claim harder, which is why it belongs here. Apple Store means the retail stores Apple opened in 2001. In that setting, the environment becomes part of what customers hear. The store is neither a grocery cart nor a motorcycle mark. It asks a nearby question: can a place carry the words?\n\nCupertino marks the Apple side of this claim. It is a boundary detail, not a badge to paste on every group that likes clean design. The claim is not that any admired organization can copy the store signal. The claim is that this retail setting gives people something visible to read. Without that setting, the words drift.\n\nCupertino does one more job. It reminds you that a place token is not decoration. Once the venue changes, the same sign may stop meaning the same thing. A retail store can make words visible because customers enter the setting and read it as part of the product signal. A group with no public setting has a different problem. It may need a smaller action, not a copied store lesson.\n\nKeep the order plain. Words before Actions. Then Symbols. Then Audience listening. If you blend the jobs, you lose the diagnosis. A smooth visible move will not fix a claim that began false. A store cannot carry every promise. Neither can a cart or a motorcycle mark.\n\nYou can use this with no title. Before a status update or handoff, ask what claim you just made. Then ask what a person downstream can actually see. If the proof has no path, wait. Drafting words is not the same as being heard.\n\nThe cost is restraint. You may need to say less, make the claim smaller, or keep the sign private until it can bear weight. If the audience cannot yet see the act, do not ask the symbol to travel. False proof spends trust fast. This is where the method breaks: it cannot turn a wish into evidence.\n\nThe three anchors do separate work. Celery and Oreos show behavior instead of slogan. Harley-Davidson and Milwaukee show public self-expression. Apple Store and Cupertino show environment and edge. When each anchor has one job, the lesson teaches symbolic consistency instead of generic leadership advice.\n\nThat separation also protects the reader. Rice milk stays with the Celery test because it earned its meaning there. Milwaukee stays with Harley-Davidson because it gives the motorcycle identity a separate factual token. Apple Store stays with 2001 and Cupertino because the retail setting is what makes the signal visible. If you keep those accounts balanced, the examples travel without blending into one cloudy point.\n\nListening, then, is active. You trace what came back from the world, not just what left your mouth. People may answer by what they buy, wear, enter, ignore, or share. The speaker sends words; the listener audits the life around them."
+  },
+  "breakdownSourceAnchorIds": [
+    "ch10.fact.1",
+    "ch10.fact.2",
+    "ch10.fact.3",
+    "ch10.fact.4",
+    "ch10.fact.5",
+    "ch10.fact.6",
+    "ch10.fact.7",
+    "ch10.fact.8",
+    "ch10.fact.9"
+  ],
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch10.ex.celery-test",
+      "sourceAnchorIds": [
+        "ch10.ex.celery-test"
+      ],
+      "sourceFactIds": [
+        "ch10.fact.1",
+        "ch10.fact.4"
+      ],
+      "title": "Cart Claim Fails",
+      "tags": [
+        "Celery test",
+        "visible action"
+      ],
+      "planSpec": {
+        "domain": "shopping-cart filter",
+        "audience": "people checking a promise",
+        "stakes": "a health claim read through the cart",
+        "format": "mistake_recovery",
+        "requiredBeat": "the return moment exposes the skipped move",
+        "exemplar": "Celery test"
+      },
+      "scenario": "At the lunch-break check-in in the shared kitchen, lead Lionel sees the Celery test fail at the return moment. The group had said health. The buy comes back with Oreos and M&Ms, while celery is missing. The miss lands fast: the claim no longer sounds like a guide. Lionel has to admit the words went out before an action could carry them.",
+      "whatToDo": "The cart works because everyone can read it. Lionel names the health claim again, then changes the buy so celery carries what Oreos and M&Ms would break.",
+      "whyItMatters": "The buy is the listener's proof. If the visible choice fights the words, the group hears the choice and treats the claim as empty."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch10.ex.celery-test",
+      "sourceAnchorIds": [
+        "ch10.ex.celery-test",
+        "ch10.ex.harley-davidson-identity"
+      ],
+      "sourceFactIds": [
+        "ch10.fact.6",
+        "ch10.fact.7"
+      ],
+      "title": "Rice Milk Drift",
+      "tags": [
+        "source fit",
+        "late catch"
+      ],
+      "planSpec": {
+        "domain": "source-fit audit",
+        "audience": "people tracing proof after a draft",
+        "stakes": "a true detail moved to the wrong place",
+        "format": "postmortem",
+        "requiredBeat": "the miss is caught late by tracing one loose detail",
+        "exemplar": "Celery test"
+      },
+      "scenario": "Why did Presley's late source pass almost fail after the main draft was done? She traces it to rice milk beside Harley-Davidson and 1903. The answer is narrow: the detail is true, but it belongs to the Celery test. She moves it back before the motorcycle identity point ships with grocery proof.",
+      "whatToDo": "The stray detail asks which claim earned it. Presley keeps Harley-Davidson tied to 1903 and sends rice milk back to the Celery test.",
+      "whyItMatters": "The late catch keeps the ledger honest. A true detail in the wrong setting lets readers trust proof the motorcycle identity never earned."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch10.ex.harley-davidson-identity",
+      "sourceAnchorIds": [
+        "ch10.ex.harley-davidson-identity"
+      ],
+      "sourceFactIds": [
+        "ch10.fact.2",
+        "ch10.fact.7"
+      ],
+      "title": "Milwaukee Flattened",
+      "tags": [
+        "Harley-Davidson",
+        "outsider"
+      ],
+      "planSpec": {
+        "domain": "motorcycle identity",
+        "audience": "customers downstream of a brand claim",
+        "stakes": "a real identity mark flattened into generic proof",
+        "format": "vignette",
+        "requiredBeat": "an outsider feels the generic stamp before proof returns",
+        "exemplar": "Harley-Davidson identity"
+      },
+      "scenario": "On the shop floor during a showroom visit, customer Derek first feels the flattening downstream. Harley-Davidson began in 1903 in Milwaukee and became a motorcycle identity marker, yet the claim he receives treats motorcycles as generic brand proof. His view changes from recognition to doubt: unless customers using the mark for self-expression return, the second anchor is not met.",
+      "whatToDo": "The motorcycle mark needs one narrow job: show self-expression, not generic success. Derek waits for that proof before the claim travels.",
+      "whyItMatters": "The Milwaukee fact keeps contrast alive. Without it, the second anchor stops testing transfer and becomes one more broad success story."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch10.ex.apple-retail-and-product-signals",
+      "sourceAnchorIds": [
+        "ch10.ex.apple-retail-and-product-signals"
+      ],
+      "sourceFactIds": [
+        "ch10.fact.3",
+        "ch10.fact.8"
+      ],
+      "title": "Apple Store Narrows",
+      "tags": [
+        "Apple Store",
+        "scope"
+      ],
+      "planSpec": {
+        "domain": "retail signal",
+        "audience": "people testing a visible setting",
+        "stakes": "a third scene that must do new work",
+        "format": "planning_choice",
+        "requiredBeat": "an early signal is protected even though the claim gets smaller",
+        "exemplar": "Apple retail and product signals"
+      },
+      "scenario": "During a retail planning pass, designer Melanie catches the early signal while the Apple Store claim is still too wide. The 2001 retail stores and Cupertino boundary help customers read the claim, so she cuts the broader line and keeps the store, its retail role, and the place together. The cost is reach. The gain is a third scene that does new work.",
+      "whatToDo": "The retail setting gives you the command: keep the claim inside the Apple Store signal until 2001, retail stores, and Cupertino can carry it.",
+      "whyItMatters": "The Cupertino mark tells you to stop overreach. Make the claim smaller when the setting is the only reason the signal can be read."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch10.ex.celery-test",
+      "sourceAnchorIds": [
+        "ch10.ex.celery-test"
+      ],
+      "sourceFactIds": [
+        "ch10.fact.1",
+        "ch10.fact.4",
+        "ch10.fact.5"
+      ],
+      "title": "Pantry Signal Caught",
+      "tags": [
+        "transfer",
+        "health claim"
+      ],
+      "planSpec": {
+        "domain": "application scope",
+        "audience": "people moving a signal across organizations",
+        "stakes": "a useful idea applied too widely",
+        "format": "audit",
+        "requiredBeat": "the standard is stated, then the overreach is barely caught",
+        "exemplar": "Celery test"
+      },
+      "scenario": "The standard is stated before the pantry lunch order goes in: if the invitation says health, the visible choice cannot teach sweets first. The organizer is headed for Oreos and M&Ms because guests will like them. A partner catches it late. Celery moves to the first line, and the invitation stops asking people to trust words alone.",
+      "whatToDo": "The order costs trust when it lets the easy sweet carry the first signal. Put celery where the health words need proof before the invitation leaves.",
+      "whyItMatters": "The invitation costs clarity if it says one thing and buys another. The pantry gets a before-and-after people can read without a speech."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch10.ex.celery-test",
+      "sourceAnchorIds": [
+        "ch10.ex.celery-test"
+      ],
+      "sourceFactIds": [
+        "ch10.fact.1",
+        "ch10.fact.5"
+      ],
+      "title": "Pickup Proof Pending",
+      "tags": [
+        "text thread",
+        "audience"
+      ],
+      "planSpec": {
+        "domain": "friend text thread",
+        "audience": "people making a small promise visible",
+        "stakes": "a demand already made before proof exists",
+        "format": "text_thread",
+        "requiredBeat": "the return is set while the proof remains open",
+        "exemplar": "Words Actions Symbols Audience listening"
+      },
+      "scenario": "At her kitchen table, dinner host Presley is already scheduling pickup when the friend's demand is behind her: stop texting health and make dinner show it. She puts celery in the order and leaves Oreos out. The thread changes from debate to a waiting pickup time. The friend has responded, but the final judgment still rides on the buy.",
+      "whatToDo": "The scheduled buy works because proof now has a road back. Presley schedules the action that can make the health words visible to her friend.",
+      "whyItMatters": "The thread no longer carries the whole claim. It points to a purchase the friend can judge, which is stronger than asking for belief by text."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch10.fact.1",
+        "prompt": "A school fundraiser says it stands for healthy snacks, but the checkout list keeps favoring candy. What maps from the Celery test?",
+        "choices": [
+          "Let the wellness pledge carry the meaning, and treat the checkout mix as harmless color around the fundraiser.",
+          "Ask a respected teacher to bless the fundraiser claim, then use that approval to explain why the snacks fit.",
+          "Use the snack buy as the evidence: celery and Oreos show whether the health claim became visible."
+        ],
+        "correctIndex": 2,
+        "explanation": "The buy is evidence, not decor; celery and Oreos test the claim where it becomes visible. A teacher blessing sounds safe, but rank cannot make candy carry health.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch10.fact.5",
+        "prompt": "After a volunteer event feels cold, newcomers doubt the welcome pledge. Which diagnosis uses the local framework?",
+        "choices": [
+          "Fold the four parts into a single welcome slogan, since one clear phrase is easier for newcomers to repeat.",
+          "Separate the pledge, conduct, visible cues, and newcomer response before deciding what failed.",
+          "Start with the visible cue people disliked, then rebuild the pledge and conduct around that reaction."
+        ],
+        "correctIndex": 1,
+        "explanation": "The framework works because each part has a separate job. The one-slogan option is tempting because it feels clear, yet it removes the distinctions that diagnose the cold event.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch10.fact.7",
+        "prompt": "During a museum profile edit, every brand story gets the same place-and-year sentence. What should change for Harley-Davidson?",
+        "choices": [
+          "Keep Milwaukee with Harley-Davidson so the motorcycle identity has its own ground for comparison.",
+          "Give every organization the same year-place-scale sentence so readers can compare them evenly.",
+          "Move celery into the motorcycle paragraph because both examples use choices other people can read."
+        ],
+        "correctIndex": 0,
+        "explanation": "Milwaukee gives the Harley example its own factual token. The evenly stamped sentence seems fair, but it turns real anchors into generic format and erases contrast.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch10.fact.6",
+        "prompt": "A campaign postmortem finds rice milk in a motorcycle identity section because the detail sounded useful. What caused the failure?",
+        "choices": [
+          "Rice milk appeared after readers had judged the motorcycle claim, so the true detail arrived too late.",
+          "Rice milk was borrowed from the Celery test, giving the motorcycle section proof it had not earned.",
+          "Rice milk needed a stronger brand example beside it, so readers could trust the transferred detail."
+        ],
+        "correctIndex": 1,
+        "explanation": "The failure came from source fit: rice milk was true but attached to the wrong section. A late-arrival diagnosis misses it; the problem was placement, not timing.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch10.fact.3",
+        "prompt": "One onboarding guide adds Apple Store after celery and Harley-Davidson, but the paragraph repeats the first lesson. What should it do?",
+        "choices": [
+          "Use Apple Store as extra weight behind the celery lesson, since repetition can make the first scene feel settled without adding a new job.",
+          "Let Apple Store and 2001 test a nearby mistake: a visible environment can carry words in its own setting.",
+          "Drop the Apple details and keep a broad lesson, since fewer anchors can make the guide feel cleaner."
+        ],
+        "correctIndex": 1,
+        "explanation": "Apple Store should add a new setting and test a neighboring mistake. Using it as extra weight for celery feels efficient, but it restamps instead of adding a new job.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch10.fact.4",
+        "prompt": "Before a charity changes its volunteer badge, nobody has named what the badge should mean. What is the single best move?",
+        "choices": [
+          "Name the claim first, then choose the action that can carry it where people can see it.",
+          "Change the badge first, then let volunteer reactions tell you what the words should have meant.",
+          "Treat the sequence as style, then pick whichever order makes the message read smoothly."
+        ],
+        "correctIndex": 0,
+        "explanation": "Words frame the action, so the claim must come first. Reaction-first is tempting, but it makes the audience response do framing work it cannot do alone.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch10.fact.9",
+        "prompt": "A handbook removes the three named anchors and keeps broad purpose advice. What is actually wrong with the handbook?",
+        "choices": [
+          "Keep the purpose paragraph and add a famous precedent, so the broad advice feels better grounded.",
+          "Use the easiest anchor as the whole lesson, because one vivid example can make the advice memorable.",
+          "Restore the three named anchors, so the purpose claim has separate visible details to answer to."
+        ],
+        "correctIndex": 2,
+        "explanation": "The lesson needs the three named anchors because broad purpose claims need visible checks. One vivid anchor can help memory, but it cannot carry the separate specifics.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch10.fact.8",
+        "prompt": "Your startup likes the Apple Store idea, but it has no retail store for customers to read. What should transfer from Cupertino?",
+        "choices": [
+          "Apply the store signal to every organization with a clean customer surface, then refine it after people react.",
+          "Let a design lead confirm the Apple Store analogy, then use that judgment as the boundary for transfer.",
+          "Use Cupertino as a stopping mark: if the new venue lacks a readable environment, narrow the claim."
+        ],
+        "correctIndex": 2,
+        "explanation": "Cupertino marks the edge of the Apple retail signal. A design lead can approve an analogy, but approval does not prove the new venue gives people the same thing to read.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch10.fact.2",
+        "prompt": "During a product class, one vivid celery example has everyone nodding. What should the teacher add before calling the pattern portable?",
+        "choices": [
+          "Add Harley-Davidson and 1903 so the pattern is tested outside the cart before anyone calls it portable.",
+          "Stay with the celery example until the class agrees, since strong agreement can settle whether it travels.",
+          "Skip to Apple Store because a third scene can replace the slower second comparison step."
+        ],
+        "correctIndex": 0,
+        "explanation": "The second anchor reduces the one-off risk before transfer is claimed. Class agreement feels strong, but it is still only agreement around the first example.",
+        "bloomsLevel": "create",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "c01",
+      "sourceAnchorId": "ch10.fact.4",
+      "sourceAnchorIds": [
+        "ch10.fact.4"
+      ],
+      "front": "What order keeps a visible act from carrying too much?",
+      "back": "Words come first because they frame the action. If the action leads, it has to explain a claim it did not create, and the diagnosis gets muddy.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c02",
+      "sourceAnchorId": "ch10.fact.5",
+      "sourceAnchorIds": [
+        "ch10.fact.5"
+      ],
+      "front": "What are the four jobs in the communication framework?",
+      "back": "Words state the claim. Actions carry it. Symbols make it visible. Audience listening asks what people counted when the visible sign came back.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "c03",
+      "sourceAnchorId": "ch10.fact.2",
+      "sourceAnchorIds": [
+        "ch10.fact.2"
+      ],
+      "front": "Why is a second anchor useful after one vivid story?",
+      "back": "It forces comparison. One story can show the idea, but another venue shows whether the same pattern travels or was only a neat anecdote.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c04",
+      "sourceAnchorId": "ch10.fact.6",
+      "sourceAnchorIds": [
+        "ch10.fact.6"
+      ],
+      "front": "Why can a true detail still mislead?",
+      "back": "A detail proves only what it belongs to. Rice milk can ground the Celery test, but moved elsewhere it gives the new claim a false sense of proof.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c05",
+      "sourceAnchorId": "ch10.fact.8",
+      "sourceAnchorIds": [
+        "ch10.fact.8"
+      ],
+      "front": "How does a boundary detail keep a visible signal honest?",
+      "back": "It marks where the idea stops. Cupertino keeps the Apple retail signal from becoming a rule for every organization with an attractive setting.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "c06",
+      "sourceAnchorId": "ch10.fact.9",
+      "sourceAnchorIds": [
+        "ch10.fact.9"
+      ],
+      "front": "What keeps purpose talk from becoming generic advice?",
+      "back": "Tie the claim to named anchors with hard specifics. The words have to answer to visible behavior, not to intent that sounds good by itself.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Make the Signal Pay Back",
+    "titleSourceAnchorIds": [
+      "ch10.concept",
+      "ch10.fact.4"
+    ],
+    "coreSkill": "Use Make the Signal Pay Back when a claim is about to leave as words. Put the words on the ledger first. Then schedule the action or visible sign that lets another person decide whether the balance came back true.",
+    "coreSkillSourceAnchorIds": [
+      "ch10.fact.4",
+      "ch10.fact.5"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch10.fact.4",
+        "sourceAnchorIds": [
+          "ch10.fact.4"
+        ],
+        "context": "Observe a claim leaving in a message, then note the first action another person can count.",
+        "plan": "If the claim has no action behind it, then schedule the action before the words travel farther."
+      },
+      {
+        "sourceAnchorId": "ch10.fact.6",
+        "sourceAnchorIds": [
+          "ch10.fact.6"
+        ],
+        "context": "Observe a true detail moving into a new example, then note where it first belonged.",
+        "plan": "If rice milk is being used outside the Celery test, then schedule a source-fit pass before the detail becomes proof."
+      },
+      {
+        "sourceAnchorId": "ch10.fact.8",
+        "sourceAnchorIds": [
+          "ch10.fact.8"
+        ],
+        "context": "Observe an Apple Store analogy moving into a new setting, then note whether that setting gives people a sign to read.",
+        "plan": "If the new setting has no visible environment like retail stores, then schedule a smaller proof before you treat Cupertino as transferable."
+      }
+    ],
+    "twentyFourHourChallenge": "Audit one existing artifact for 15 minutes. Schedule the proof point it owes, then write the word, action, and symbol an audience can judge.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch10.fact.4",
+      "ch10.fact.5"
+    ],
+    "weeklyPractice": "Each Friday, if one claim left your desk with no proof scheduled, then schedule the visible action before another broad claim travels.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch10.fact.4",
+      "ch10.fact.5"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "What did the audience count before your words arrived?",
+      "location": "breakdown.deepRead",
+      "why": "It turns listening into a sharp diagnostic question.",
+      "sourceAnchorIds": [
+        "ch10.fact.5"
+      ]
+    },
+    {
+      "text": "Schedule the proof before the sign travels.",
+      "location": "breakdown.deepRead",
+      "why": "It is short enough to use when a claim is about to leave.",
+      "sourceAnchorIds": [
+        "ch10.fact.4",
+        "ch10.fact.5"
+      ]
+    },
+    {
+      "text": "The speaker sends words; the listener audits the life around them.",
+      "location": "breakdown.fullRead",
+      "why": "It reverses the focus from the act of speaking to the evidence people receive.",
+      "sourceAnchorIds": [
+        "ch10.fact.5",
+        "ch10.concept"
+      ]
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:43a32d250fa1b6ab325059d1abda3f72d491f67586d5019385898e69bec6d3c7",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch10.source.json",
+      "observedAnchorIds": [
+        "ch10.concept",
+        "ch10.ex.celery-test",
+        "ch10.ex.harley-davidson-identity",
+        "ch10.ex.apple-retail-and-product-signals",
+        "ch10.fact.1",
+        "ch10.fact.2",
+        "ch10.fact.3",
+        "ch10.fact.4",
+        "ch10.fact.5",
+        "ch10.fact.6",
+        "ch10.fact.7",
+        "ch10.fact.8",
+        "ch10.fact.9",
+        "ch10.framework.communication.is.not.about.speaking.it.s.about.listening.framework"
+      ],
+      "effectiveAnchors": {
+        "hook": [
+          "ch10.ex.celery-test"
+        ],
+        "counterintuition": [
+          "ch10.fact.2",
+          "ch10.fact.4",
+          "ch10.fact.5"
+        ],
+        "tryThisNow": [
+          "ch10.fact.4",
+          "ch10.fact.5"
+        ],
+        "keyTakeaway": [
+          "ch10.fact.4",
+          "ch10.fact.5"
+        ],
+        "breakdown.fastRead": [
+          "ch10.ex.celery-test",
+          "ch10.fact.1",
+          "ch10.fact.4",
+          "ch10.fact.5"
+        ],
+        "breakdown.deepRead": [
+          "ch10.ex.harley-davidson-identity",
+          "ch10.fact.2",
+          "ch10.fact.4",
+          "ch10.fact.5",
+          "ch10.fact.6",
+          "ch10.fact.7"
+        ],
+        "breakdown.fullRead": [
+          "ch10.ex.apple-retail-and-product-signals",
+          "ch10.fact.3",
+          "ch10.fact.4",
+          "ch10.fact.5",
+          "ch10.fact.8",
+          "ch10.fact.9"
+        ],
+        "examples[0]": [
+          "ch10.ex.celery-test"
+        ],
+        "examples[1]": [
+          "ch10.ex.celery-test",
+          "ch10.ex.harley-davidson-identity"
+        ],
+        "examples[2]": [
+          "ch10.ex.harley-davidson-identity"
+        ],
+        "examples[3]": [
+          "ch10.ex.apple-retail-and-product-signals"
+        ],
+        "examples[4]": [
+          "ch10.ex.celery-test"
+        ],
+        "examples[5]": [
+          "ch10.ex.celery-test"
+        ],
+        "quiz.questions[0]": [
+          "ch10.fact.1"
+        ],
+        "quiz.questions[1]": [
+          "ch10.fact.5"
+        ],
+        "quiz.questions[2]": [
+          "ch10.fact.7"
+        ],
+        "quiz.questions[3]": [
+          "ch10.fact.6"
+        ],
+        "quiz.questions[4]": [
+          "ch10.fact.3"
+        ],
+        "quiz.questions[5]": [
+          "ch10.fact.4"
+        ],
+        "quiz.questions[6]": [
+          "ch10.fact.9"
+        ],
+        "quiz.questions[7]": [
+          "ch10.fact.8"
+        ],
+        "quiz.questions[8]": [
+          "ch10.fact.2"
+        ],
+        "reviewCards[0]": [
+          "ch10.fact.4"
+        ],
+        "reviewCards[1]": [
+          "ch10.fact.5"
+        ],
+        "reviewCards[2]": [
+          "ch10.fact.2"
+        ],
+        "reviewCards[3]": [
+          "ch10.fact.6"
+        ],
+        "reviewCards[4]": [
+          "ch10.fact.8"
+        ],
+        "reviewCards[5]": [
+          "ch10.fact.9"
+        ],
+        "implementationPlan.title": [
+          "ch10.concept",
+          "ch10.fact.4"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch10.fact.4",
+          "ch10.fact.5"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch10.fact.4"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch10.fact.6"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch10.fact.8"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch10.fact.4",
+          "ch10.fact.5"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch10.fact.4",
+          "ch10.fact.5"
+        ],
+        "memorableLines[0]": [
+          "ch10.fact.5"
+        ],
+        "memorableLines[1]": [
+          "ch10.fact.4",
+          "ch10.fact.5"
+        ],
+        "memorableLines[2]": [
+          "ch10.fact.5",
+          "ch10.concept"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+Done: wrote [start-with-why-ch14.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch14.v21-native.chapter.json).
+
+Validation passed:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 6 non-blocking minors
+- `quiz-verify`: 9/9 match
+- Rendered chars: 15,649, within target range
+- Scaffold scan: none found
+
+Distractor parity check, choice lengths A/B/C:
+- Q1 `99/103/91`, key C `91`
+- Q2 `94/97/94`, key C `94`
+- Q3 `95/107/92`, key A `95`
+- Q4 `102/88/93`, key A `102`
+- Q5 `119/106/99`, key B `106`
+- Q6 `92/90/94`, key B `90`
+- Q7 `116/98/86`, key B `98`
+- Q8 `94/132/100`, key C `100`
+- Q9 `90/94/90`, key A `90`
+
+Final parity: uniquely longest key `1/9`; uniquely shortest key `2/9`.

@@ -1,0 +1,728 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "multipliers",
+  "chapterId": "multipliers-ch08",
+  "chapterNumber": 8,
+  "chapterTitle": "Dealing with Diminishers",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/multipliers/20260709T020631645Z-b8e7894b-2287-4faf-9ef6-e4da421b5316/sidecars/source/ch08.source.json",
+  "sourceHash": "sha256:cf8d85a722b0359a1fe2e4fed5faefb5a6ec4712feb2ab66e56544bdd89e7244",
+  "facts": [
+    {
+      "id": "ch08.fact.1",
+      "claim": "The revised edition includes a new topic on how to deal with Diminishers.",
+      "mechanism": "Because the publisher page names dealing with Diminishers as added revised material, coping tactics belong in the 2017 sequence.",
+      "commonError": "Assuming the whole model only addresses people who already manage others.",
+      "whyWrong": "The revised edition also serves people working under diminishing leaders.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2017"
+      ],
+      "groundedEntities": [
+        "Diminishers. Because",
+        "Diminishers",
+        "Assuming"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch08.fact.2",
+      "claim": "Getting to Yes is associated with Roger Fisher and William Ury.",
+      "mechanism": "Because named negotiation authors anchor the coping frame in a real source tradition.",
+      "commonError": "Using negotiation ideas without a concrete source.",
+      "whyWrong": "The named authors and title make the frame verifiable.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Getting",
+        "Yes",
+        "Roger Fisher",
+        "William Ury. Because",
+        "Using"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch08.fact.3",
+      "claim": "The Getting to Yes frame emphasizes interests rather than positions.",
+      "mechanism": "Because interests reveal the problem to solve, while positions can trap both sides in status defense.",
+      "commonError": "Arguing harder for a position as the only way to deal with control.",
+      "whyWrong": "Interest-based framing can open options without immediate escalation.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "The Getting",
+        "Yes",
+        "Arguing",
+        "Interest-based"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch08.fact.4",
+      "claim": "Separating people from the problem helps keep a difficult exchange from becoming only personal conflict.",
+      "mechanism": "Because focusing on the work problem preserves room for contribution under authority pressure.",
+      "commonError": "Making the leader's personality the whole problem in every conversation.",
+      "whyWrong": "Personal diagnosis may be emotionally satisfying but often gives fewer usable moves.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Separating",
+        "Making",
+        "Personal"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.4"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch08.fact.5",
+      "claim": "Chris Voss is publicly identified with FBI negotiation experience.",
+      "mechanism": "Because the source of the calibrated-question tactic matters when using negotiation behavior under pressure.",
+      "commonError": "Treating calibrated questions as generic corporate jargon.",
+      "whyWrong": "The tactic has a specific negotiation lineage.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Chris Voss",
+        "FBI",
+        "Treating"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.5"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch08.fact.6",
+      "claim": "Calibrated questions can create problem-solving space without direct defiance.",
+      "mechanism": "Because how-oriented questions ask the leader to engage constraints and ownership instead of simply asserting control.",
+      "commonError": "Responding to every diminishing move with open confrontation.",
+      "whyWrong": "Direct confrontation may increase control when the power gap is high.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Calibrated",
+        "Responding",
+        "Direct"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.6"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch08.fact.7",
+      "claim": "Amy Edmondson's psychological safety work warns that silence can hide risk.",
+      "mechanism": "Because people under authority may withhold information when speaking up feels costly.",
+      "commonError": "Assuming quiet compliance means the problem is solved.",
+      "whyWrong": "Silence can indicate risk is hidden, not absent.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Amy Edmondson's",
+        "Assuming",
+        "Silence"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.7"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch08.fact.8",
+      "claim": "Dealing with a Diminisher starts by distinguishing control from influence.",
+      "mechanism": "Because a person wastes energy trying to control the leader's personality but can still influence framing, evidence, and requests.",
+      "commonError": "Believing the only options are total submission or total exit.",
+      "whyWrong": "There are often intermediate moves before either extreme.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Dealing",
+        "Diminisher",
+        "Believing",
+        "There"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.8"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch08.fact.9",
+      "claim": "Coping tactics should preserve contribution rather than reward passivity.",
+      "mechanism": "Because the goal is to keep useful intelligence visible while managing risk.",
+      "commonError": "Interpreting safety as never raising a concern.",
+      "whyWrong": "Permanent quiet compliance can make the work and the person smaller.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Coping",
+        "Interpreting",
+        "Permanent"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.9"
+      ],
+      "teachingPriority": 8
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch08.ex.harvard-negotiation",
+      "label": "Getting to Yes negotiation frame",
+      "summary": "Roger Fisher and William Ury's Getting to Yes negotiation frame emphasizes interests rather than positions and separating people from the problem. The frame helps someone respond to a Diminisher without making every exchange personal.",
+      "realWorld": true,
+      "naturalSetting": "Getting",
+      "hardSpecifics": [
+        "Roger Fisher",
+        "William Ury",
+        "interests not positions"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch08.ex.chris-voss",
+      "label": "Chris Voss calibrated questions",
+      "summary": "Chris Voss, a former FBI negotiator, popularized calibrated questions such as how-oriented prompts. The tactic gives people a way to invite problem-solving space when direct opposition may trigger control.",
+      "realWorld": true,
+      "naturalSetting": "Chris Voss",
+      "hardSpecifics": [
+        "Chris Voss",
+        "FBI negotiator",
+        "calibrated questions"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch08.ex.edmondson-voice",
+      "label": "Amy Edmondson voice and silence",
+      "summary": "Amy Edmondson's work on psychological safety and speaking up warns that silence can hide risk. The case prevents coping advice from becoming passive compliance.",
+      "realWorld": true,
+      "naturalSetting": "Amy Edmondson",
+      "hardSpecifics": [
+        "Amy Edmondson",
+        "psychological safety",
+        "speaking up"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Diminisher response loop",
+      "members": [
+        "separate control from influence",
+        "prepare evidence",
+        "ask ownership questions",
+        "surface risk safely"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch08.concept",
+      "kind": "concept",
+      "label": "upward multiplying",
+      "text": "Upward multiplying is the practice of contributing intelligently under a leader who may diminish others. It uses preparation, boundaries, questions, and evidence to keep work moving without escalating every interaction into a fight. Readers gain agency without magical thinking. They cannot force a Diminisher to transform, but they can change how they present work, request space, and protect their own thinking.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.ex.harvard-negotiation",
+      "kind": "named_example",
+      "label": "Getting to Yes negotiation frame",
+      "text": "Roger Fisher and William Ury's Getting to Yes negotiation frame emphasizes interests rather than positions and separating people from the problem. The frame helps someone respond to a Diminisher without making every exchange personal. Coping improves when the person works the problem and interests instead of only reacting to status.",
+      "hardSpecifics": [
+        "Roger Fisher",
+        "William Ury",
+        "interests not positions"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.ex.chris-voss",
+      "kind": "named_example",
+      "label": "Chris Voss calibrated questions",
+      "text": "Chris Voss, a former FBI negotiator, popularized calibrated questions such as how-oriented prompts. The tactic gives people a way to invite problem-solving space when direct opposition may trigger control. Questions can create room for ownership under a difficult authority figure.",
+      "hardSpecifics": [
+        "Chris Voss",
+        "FBI negotiator",
+        "calibrated questions"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.ex.edmondson-voice",
+      "kind": "named_example",
+      "label": "Amy Edmondson voice and silence",
+      "text": "Amy Edmondson's work on psychological safety and speaking up warns that silence can hide risk. The case prevents coping advice from becoming passive compliance. Agency under pressure includes finding safer ways to surface information.",
+      "hardSpecifics": [
+        "Amy Edmondson",
+        "psychological safety",
+        "speaking up"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.1",
+      "kind": "testable_fact",
+      "label": "The revised edition includes a new topic on how to deal with Diminishers.",
+      "text": "The revised edition includes a new topic on how to deal with Diminishers. Because the publisher page names dealing with Diminishers as added revised material, coping tactics belong in the 2017 sequence. Assuming the whole model only addresses people who already manage others. The revised edition also serves people working under diminishing leaders.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.2",
+      "kind": "testable_fact",
+      "label": "Getting to Yes is associated with Roger Fisher and William Ury.",
+      "text": "Getting to Yes is associated with Roger Fisher and William Ury. Because named negotiation authors anchor the coping frame in a real source tradition. Using negotiation ideas without a concrete source. The named authors and title make the frame verifiable.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.3",
+      "kind": "testable_fact",
+      "label": "The Getting to Yes frame emphasizes interests rather than positions.",
+      "text": "The Getting to Yes frame emphasizes interests rather than positions. Because interests reveal the problem to solve, while positions can trap both sides in status defense. Arguing harder for a position as the only way to deal with control. Interest-based framing can open options without immediate escalation.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.4",
+      "kind": "testable_fact",
+      "label": "Separating people from the problem helps keep a difficult exchange from becoming only personal conflict.",
+      "text": "Separating people from the problem helps keep a difficult exchange from becoming only personal conflict. Because focusing on the work problem preserves room for contribution under authority pressure. Making the leader's personality the whole problem in every conversation. Personal diagnosis may be emotionally satisfying but often gives fewer usable moves.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.5",
+      "kind": "testable_fact",
+      "label": "Chris Voss is publicly identified with FBI negotiation experience.",
+      "text": "Chris Voss is publicly identified with FBI negotiation experience. Because the source of the calibrated-question tactic matters when using negotiation behavior under pressure. Treating calibrated questions as generic corporate jargon. The tactic has a specific negotiation lineage.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.6",
+      "kind": "testable_fact",
+      "label": "Calibrated questions can create problem-solving space without direct defiance.",
+      "text": "Calibrated questions can create problem-solving space without direct defiance. Because how-oriented questions ask the leader to engage constraints and ownership instead of simply asserting control. Responding to every diminishing move with open confrontation. Direct confrontation may increase control when the power gap is high.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.7",
+      "kind": "testable_fact",
+      "label": "Amy Edmondson's psychological safety work warns that silence can hide risk.",
+      "text": "Amy Edmondson's psychological safety work warns that silence can hide risk. Because people under authority may withhold information when speaking up feels costly. Assuming quiet compliance means the problem is solved. Silence can indicate risk is hidden, not absent.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.8",
+      "kind": "testable_fact",
+      "label": "Dealing with a Diminisher starts by distinguishing control from influence.",
+      "text": "Dealing with a Diminisher starts by distinguishing control from influence. Because a person wastes energy trying to control the leader's personality but can still influence framing, evidence, and requests. Believing the only options are total submission or total exit. There are often intermediate moves before either extreme.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.9",
+      "kind": "testable_fact",
+      "label": "Coping tactics should preserve contribution rather than reward passivity.",
+      "text": "Coping tactics should preserve contribution rather than reward passivity. Because the goal is to keep useful intelligence visible while managing risk. Interpreting safety as never raising a concern. Permanent quiet compliance can make the work and the person smaller.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.framework.diminisher.response.loop",
+      "kind": "framework",
+      "label": "Diminisher response loop",
+      "text": "separate control from influence, prepare evidence, ask ownership questions, surface risk safely",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "2017"
+  ],
+  "allowedEntities": [
+    "Dealing",
+    "Diminishers",
+    "People",
+    "Upward",
+    "Readers",
+    "They",
+    "Diminisher",
+    "Working",
+    "Negotiation",
+    "Fisher",
+    "Ury",
+    "Patton",
+    "Chris Voss's",
+    "Psychological",
+    "Getting",
+    "Yes",
+    "Roger Fisher",
+    "William Ury's Getting",
+    "Coping",
+    "William Ury",
+    "Chris Voss",
+    "FBI",
+    "Questions",
+    "Amy Edmondson",
+    "Amy Edmondson's",
+    "Agency",
+    "HarperCollins",
+    "Keep",
+    "Multiplier. The",
+    "Assuming",
+    "Using",
+    "The Getting",
+    "Arguing",
+    "Interest-based",
+    "Separating",
+    "Making",
+    "Personal",
+    "Treating",
+    "Calibrated",
+    "Responding",
+    "Direct",
+    "Silence",
+    "Believing",
+    "There",
+    "Interpreting",
+    "Permanent",
+    "Getting to Yes negotiation frame",
+    "Chris Voss calibrated questions",
+    "Amy Edmondson voice and silence"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch08.ex.harvard-negotiation",
+      "warning": "Keep examples about Getting to Yes negotiation frame source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch08.ex.chris-voss",
+      "warning": "Keep examples about Chris Voss calibrated questions source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch08.ex.edmondson-voice",
+      "warning": "Keep examples about Amy Edmondson voice and silence source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch08.fact.1"
+}

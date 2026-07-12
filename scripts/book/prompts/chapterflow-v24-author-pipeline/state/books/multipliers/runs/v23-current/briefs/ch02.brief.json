@@ -1,0 +1,174 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "multipliers-ch02",
+  "chapterNumber": 2,
+  "title": "The Talent Magnet",
+  "coreMove": "Because the 2014 CEO transition marks the leadership context for Microsoft's culture shift, it gives the talent example a fixed date.",
+  "thesis": "Satya Nadella became Microsoft CEO in 2014.",
+  "readerPromise": "After this chapter, a reader can because the 2014 CEO transition marks the leadership context for Microsoft's culture shift, it gives the talent example a fixed date.",
+  "ownedCases": [
+    {
+      "id": "ch02.ex.microsoft-nadella",
+      "label": "Satya Nadella / Microsoft culture shift"
+    },
+    {
+      "id": "ch02.ex.pixar-braintrust",
+      "label": "Pixar Braintrust"
+    }
+  ],
+  "notYours": [
+    "Amazon disagree and commit",
+    "Amy Edmondson hospital-team research",
+    "Amy Edmondson voice and silence",
+    "Anders Ericsson deliberate practice",
+    "Atlassian ShipIt",
+    "Carol Dweck growth mindset",
+    "Chris Voss calibrated questions",
+    "Getting to Yes negotiation frame",
+    "Google Project Aristotle",
+    "Google Project Oxygen",
+    "HarperCollins revised edition",
+    "HarperCollins revised new chapters",
+    "Harvard Business Review article",
+    "Intel constructive confrontation",
+    "John F. Kennedy Moon goal",
+    "Kim Scott Radical Candor",
+    "Netflix freedom and responsibility",
+    "Original HarperBusiness release",
+    "Peter Gollwitzer implementation intentions",
+    "Pixar Braintrust candor"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    2,
+    2,
+    1,
+    1,
+    0,
+    2,
+    1,
+    0,
+    0
+  ],
+  "avoid": [
+    "opener (ch01): \"A source analyst sees May 2010 as the\"",
+    "opener (ch03): \"On a project call, delivery lead Holly hears\"",
+    "opener (ch05): \"Product lead Janelle asks the question no one\"",
+    "opener (ch06): \"Reed Hastings and Patty McCord reach the return\"",
+    "opener (ch07): \"Sabrina catches the early signal on the publisher\"",
+    "opener (ch09): \"Years on the job are the early signal\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on candid feedback",
+    "venue: a working note on care personally and challenge directly",
+    "venue: a working note on decision commitment",
+    "frame: two stakeholders disagree about andon cord before deciding",
+    "frame: a first encounter with calibrated questions that sets a benchmark"
+  ],
+  "architectureFamily": "failure-autopsy",
+  "openerType": "question",
+  "challengeFrame": "pre-write-the-exact-line",
+  "practiceShape": "two-step-sequence",
+  "exampleLenses": [
+    "prop-tableau",
+    "dialogue-beat",
+    "before-after-ledger"
+  ],
+  "practiceVerb": "schedule",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "leader",
+    "rather",
+    "assuming",
+    "thinking",
+    "team",
+    "concrete"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "failure",
+      "fieldStyle": "cost-first",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "two-step-sequence",
+    "single-imperative",
+    "if-then-trigger",
+    "observe-then-note"
+  ],
+  "quizStemShapes": [
+    "best-explanation-why",
+    "ordering-priority",
+    "transfer-new-domain",
+    "failure-postmortem"
+  ],
+  "quizFailureModes": [
+    "right-move-wrong-trigger",
+    "over-correction",
+    "borrowed-authority",
+    "wrong-target"
+  ],
+  "questionFactOrder": [
+    7,
+    4,
+    1,
+    6,
+    9,
+    8,
+    2,
+    3,
+    5
+  ],
+  "memorableShapes": [
+    "reversal",
+    "redefinition",
+    "cost-statement"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "question-speak",
+    "contrast-speak"
+  ],
+  "shellRegister": "question-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Satya Nadella / Microsoft culture shift"
+  },
+  "adjacentJobs": {
+    "prev": "Because edition date controls which added material is included, the May 16, 2017 listing separates the revised source from the 2010 original.",
+    "next": "Because a multi-team analysis shows that contribution patterns are shaped by group conditions."
+  }
+}

@@ -1,0 +1,88 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "mechanisms": [
+      "The prose says to look first at transitions, milestones, and pits; welcome, awards, and complaint calls map to those charged moments.",
+      "The John Deere lesson says the first-day ritual should connect the factory role to real users before routine work takes over.",
+      "The Mary Kay lesson is that a milestone becomes memorable when it has a visible public marker.",
+      "The Joshie recovery shows the item return is not enough; proof of care must change the story carried forward.",
+      "The chapter states that more forms do not make a better first day and that purpose has to arrive before procedure.",
+      "The milestone test asks whether achievement has a marker people can picture, notice, and name.",
+      "The pit lesson says a polished apology is not enough if the recovery lacks concrete evidence of care.",
+      "The full read says the busiest step is not always what people retell, so the first test is where meaning gets assigned.",
+      "The pit warning is that a low point can harden into the whole memory unless the ending is changed."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "medium", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Choice a is weakly defensible if the dashboard is genuinely public and memorable, but the prose stresses a picturable marker rather than data visibility alone.",
+      "",
+      "Choice b becomes defensible because Example 4 says Eric should move back to the crowded handoff since the busiest step is exactly what people use to sum up the relationship.",
+      ""
+    ],
+    "tells": [
+      "Several correct answers reuse chapter language almost verbatim: customer purpose, visible marker, proof of care, and low point hardens.",
+      "Several distractors are easy to reject without reading because they use bluntly wrong absolutes such as giving every step the same polish, closing the case once the item is found, or assuming the practical fix handled memory."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 76,
+    "transfer": 64,
+    "practical": 80,
+    "summaries": 86,
+    "tone": 87,
+    "limits": 80,
+    "insight": 84,
+    "density": 78,
+    "beginner": 90
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The busy middle is not the whole story.",
+      "why": "This is the cleanest memory handle for the chapter's core move."
+    },
+    {
+      "quote": "A hidden milestone makes a thin memory.",
+      "why": "It turns the milestone mechanism into a memorable, portable line."
+    },
+    {
+      "quote": "The repair has to change the ending people carry away.",
+      "why": "This clearly explains why practical recovery alone is not enough."
+    },
+    {
+      "quote": "Then again, he should move the circle back to the crowded handoff, since the busiest, highest-traffic step is exactly the moment people use to sum up the whole relationship.",
+      "why": "This directly contradicts the chapter's stated warning about the busiest step."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 4",
+      "problem": "SOURCE-CONTRADICTORY: the What to do paragraph first tells Eric to move from the crowded handoff to the first encounter, then tells him to move back because the busiest step is exactly the summary moment.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "STRUCTURALLY INVALID: the intended answer is derivable from the main prose, but Example 4 also supports the busiest-step answer, making the quiz key ambiguous.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Several distractors are straw choices and several correct options echo chapter phrasing closely, so some answers are guessable without full comprehension.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The examples mostly recycle the same three cases rather than pushing the method into meaningfully new settings, which weakens transfer practice.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong, beginner-friendly core: find transitions, milestones, and pits before polishing the busy middle. The images and summary layers work, and the practical advice is mostly usable. I would not ship it yet because Example 4 contains a direct contradiction that damages the transfer lesson and makes Q8 ambiguous. Fix that blocking issue, then tighten the quiz distractors and add more varied transfer examples."
+}
+```

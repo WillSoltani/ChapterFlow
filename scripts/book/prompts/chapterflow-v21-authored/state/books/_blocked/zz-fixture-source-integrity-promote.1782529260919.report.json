@@ -1,0 +1,1040 @@
+{
+  "bookId": "zz-fixture-source-integrity-promote",
+  "title": "Source Integrity Promotion",
+  "author": "Fixture Author",
+  "promotedAt": "2026-06-27T03:01:00.919Z",
+  "chapterCount": 1,
+  "shipGate": {
+    "perChapter": [
+      {
+        "chapter": 1,
+        "passed": false,
+        "blockers": [
+          {
+            "catalogId": "A11",
+            "severity": "blocker",
+            "unit": "memorableLines[0]",
+            "message": "pinned memorable line \"Nobody checks the lantern until the compass is already gone.\" does not appear verbatim in any breakdown tier — either restore the original sentence to the prose or repoint memorableLines[0].text to a sentence that does appear",
+            "evidence": "Nobody checks the lantern until the compass is already gone."
+          },
+          {
+            "catalogId": "A11",
+            "severity": "blocker",
+            "unit": "memorableLines[1]",
+            "message": "pinned memorable line \"The early check is the only cheap one you will ever get.\" does not appear verbatim in any breakdown tier — either restore the original sentence to the prose or repoint memorableLines[1].text to a sentence that does appear",
+            "evidence": "The early check is the only cheap one you will ever get."
+          },
+          {
+            "catalogId": "A11",
+            "severity": "blocker",
+            "unit": "memorableLines[2]",
+            "message": "pinned memorable line \"Small anchor drift becomes expensive rework later.\" does not appear verbatim in any breakdown tier — either restore the original sentence to the prose or repoint memorableLines[2].text to a sentence that does appear",
+            "evidence": "Small anchor drift becomes expensive rework later."
+          },
+          {
+            "catalogId": "C8",
+            "severity": "blocker",
+            "unit": "examples",
+            "message": "examples 1, 2, 3, 4, 5, 6 share the verbatim 5-word phrase \"step matters more than the\" — this is a Cartesian-product / template-locked output, not distinct scenes",
+            "evidence": "step matters more than the"
+          },
+          {
+            "catalogId": "C8",
+            "severity": "blocker",
+            "unit": "examples",
+            "message": "example titles 1, 2, 3, 4, 5, 6 share the 3-word phrase \"decision under pressure\" — titles must be specific to each scene, not \"<Name> decision under pressure...\" across the slate",
+            "evidence": "decision under pressure"
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "hook",
+            "message": "hook has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "counterintuition",
+            "message": "counterintuition has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "breakdown.fastRead",
+            "message": "breakdown.fastRead has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "breakdown.deepRead",
+            "message": "breakdown.deepRead has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "breakdown.fullRead",
+            "message": "breakdown.fullRead has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "keyTakeaway",
+            "message": "keyTakeaway has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "tryThisNow",
+            "message": "tryThisNow has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "example[0]",
+            "message": "example[0] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "example[1]",
+            "message": "example[1] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "example[2]",
+            "message": "example[2] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "example[3]",
+            "message": "example[3] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "example[4]",
+            "message": "example[4] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "example[5]",
+            "message": "example[5] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[0].prompt",
+            "message": "quiz.questions[0].prompt has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[0].explanation",
+            "message": "quiz.questions[0].explanation has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[0].keyEvidence",
+            "message": "quiz.questions[0].keyEvidence has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[1].prompt",
+            "message": "quiz.questions[1].prompt has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[1].explanation",
+            "message": "quiz.questions[1].explanation has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[1].keyEvidence",
+            "message": "quiz.questions[1].keyEvidence has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[2].prompt",
+            "message": "quiz.questions[2].prompt has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[2].explanation",
+            "message": "quiz.questions[2].explanation has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[2].keyEvidence",
+            "message": "quiz.questions[2].keyEvidence has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[3].prompt",
+            "message": "quiz.questions[3].prompt has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[3].explanation",
+            "message": "quiz.questions[3].explanation has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[3].keyEvidence",
+            "message": "quiz.questions[3].keyEvidence has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[4].prompt",
+            "message": "quiz.questions[4].prompt has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[4].explanation",
+            "message": "quiz.questions[4].explanation has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[4].keyEvidence",
+            "message": "quiz.questions[4].keyEvidence has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[5].prompt",
+            "message": "quiz.questions[5].prompt has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[5].explanation",
+            "message": "quiz.questions[5].explanation has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[5].keyEvidence",
+            "message": "quiz.questions[5].keyEvidence has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[6].prompt",
+            "message": "quiz.questions[6].prompt has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[6].explanation",
+            "message": "quiz.questions[6].explanation has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[6].keyEvidence",
+            "message": "quiz.questions[6].keyEvidence has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[7].prompt",
+            "message": "quiz.questions[7].prompt has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[7].explanation",
+            "message": "quiz.questions[7].explanation has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[7].keyEvidence",
+            "message": "quiz.questions[7].keyEvidence has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[8].prompt",
+            "message": "quiz.questions[8].prompt has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[8].explanation",
+            "message": "quiz.questions[8].explanation has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "quiz.questions[8].keyEvidence",
+            "message": "quiz.questions[8].keyEvidence has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "reviewCards[0]",
+            "message": "reviewCards[0] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "reviewCards[1]",
+            "message": "reviewCards[1] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "reviewCards[2]",
+            "message": "reviewCards[2] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "reviewCards[3]",
+            "message": "reviewCards[3] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "reviewCards[4]",
+            "message": "reviewCards[4] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "reviewCards[5]",
+            "message": "reviewCards[5] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "implementationPlan.title",
+            "message": "implementationPlan.title has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "implementationPlan.coreSkill",
+            "message": "implementationPlan.coreSkill has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "implementationPlan.ifThenPlans[0]",
+            "message": "implementationPlan.ifThenPlans[0] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "implementationPlan.ifThenPlans[1]",
+            "message": "implementationPlan.ifThenPlans[1] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "implementationPlan.twentyFourHourChallenge",
+            "message": "implementationPlan.twentyFourHourChallenge has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "implementationPlan.weeklyPractice",
+            "message": "implementationPlan.weeklyPractice has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "memorableLines[0]",
+            "message": "memorableLines[0] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "memorableLines[1]",
+            "message": "memorableLines[1] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "SC11.1.missing_provenance",
+            "severity": "blocker",
+            "unit": "memorableLines[2]",
+            "message": "memorableLines[2] has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from."
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q02",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "sagree with the compass notes — which response best protects"
+          },
+          {
+            "catalogId": "B1",
+            "severity": "blocker",
+            "unit": "quiz.q04",
+            "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+            "evidence": "A colleague insists the tide step is optional because the anchor rarely fails. What does the chapter's view of mast maintenance imply for the ledger routine? Treat the rare quay failure as exactly wh…"
+          },
+          {
+            "catalogId": "B1",
+            "severity": "blocker",
+            "unit": "quiz.q06",
+            "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+            "evidence": "If the mast budget only covers one inspection, where in the ledger-to-quay chain does the chapter argue the cargo attention belongs? Put the inspection where the beacon is cheapest to fix and hardest…"
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "quiz.q07",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "the harbor measurement itself — a perfect report over a fail"
+          },
+          {
+            "catalogId": "AS13.within_chapter_quiz_template",
+            "severity": "blocker",
+            "unit": "quiz",
+            "message": "8-word phrase repeats 9× within this chapter's quiz — the questions share one templated skeleton with a noun swapped per question. Rewrite each question's prompt and distractors with scenario-specific language; no 8-word span should recur across a chapter's own questions.",
+            "evidence": "entry first isolates the drift while it is"
+          },
+          {
+            "catalogId": "AS13.within_chapter_quiz_template",
+            "severity": "blocker",
+            "unit": "quiz",
+            "message": "8-word phrase repeats 9× within this chapter's quiz — the questions share one templated skeleton with a noun swapped per question. Rewrite each question's prompt and distractors with scenario-specific language; no 8-word span should recur across a chapter's own questions.",
+            "evidence": "while it is still one record wide which"
+          },
+          {
+            "catalogId": "AS13.within_chapter_quiz_template",
+            "severity": "blocker",
+            "unit": "quiz",
+            "message": "8-word phrase repeats 9× within this chapter's quiz — the questions share one templated skeleton with a noun swapped per question. Rewrite each question's prompt and distractors with scenario-specific language; no 8-word span should recur across a chapter's own questions.",
+            "evidence": "record wide which is the cheapest moment to"
+          },
+          {
+            "catalogId": "AS13.within_chapter_quiz_template",
+            "severity": "blocker",
+            "unit": "quiz",
+            "message": "8-word phrase repeats 9× within this chapter's quiz — the questions share one templated skeleton with a noun swapped per question. Rewrite each question's prompt and distractors with scenario-specific language; no 8-word span should recur across a chapter's own questions.",
+            "evidence": "cheapest moment to fix it and the only"
+          },
+          {
+            "catalogId": "AS13.within_chapter_quiz_template",
+            "severity": "blocker",
+            "unit": "quiz",
+            "message": "8-word phrase repeats 9× within this chapter's quiz — the questions share one templated skeleton with a noun swapped per question. Rewrite each question's prompt and distractors with scenario-specific language; no 8-word span should recur across a chapter's own questions.",
+            "evidence": "and the only moment the cause is still"
+          },
+          {
+            "catalogId": "B1",
+            "severity": "blocker",
+            "unit": "card[2]",
+            "message": "meta-reference \"the chapter\" (pattern the_chapter) — teach the idea, don't narrate the chapter",
+            "evidence": "Why does a slow compass audit beat a fast tide correction, in the chapter's terms? A slow anchor audit finds the cause; a fast mast correction only hides the symptom and guarantees a repeat."
+          },
+          {
+            "catalogId": "B5",
+            "severity": "blocker",
+            "unit": "card[5]",
+            "message": "em dash present (use commas, periods, parens, or colons instead)",
+            "evidence": "the boundary between sessions — close the quay log against t"
+          }
+        ],
+        "majors": [
+          {
+            "catalogId": "E1",
+            "severity": "major",
+            "unit": "breakdown.fastRead",
+            "message": "fastRead: Flesch-Kincaid grade 8.9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words."
+          },
+          {
+            "catalogId": "C23",
+            "severity": "major",
+            "unit": "examples",
+            "message": "\"Watching\" is the recurring protagonist of multiple examples (1, 2, 3, 4, 5, 6) — each scene needs its own named protagonist (the name plan allocates one per scene). A reused name across scenes reads as a templated cast.",
+            "evidence": "Watching"
+          },
+          {
+            "catalogId": "SEAM2.verbatim_repetition",
+            "severity": "major",
+            "unit": "mechanical-seam",
+            "message": "breakdown.fastRead: verbatim repetition — a run repeats 3x identically (\"watching the ledger closely keeps the quay hone……\"; a templated-loop artifact, reads as prose_coherence corruption at QC). Collapse the verbatim triple-repeat into one statement (or rewrite each instance to carry NEW ground). A clause stamped out three times identically is a templated-loop artifact.",
+            "evidence": "watching the ledger closely keeps the quay honest and makes"
+          },
+          {
+            "catalogId": "SEAM2.verbatim_repetition",
+            "severity": "major",
+            "unit": "mechanical-seam",
+            "message": "breakdown.deepRead: verbatim repetition — a run repeats 13x identically (\"watching the quay closely keeps the cargo hones……\"; a templated-loop artifact, reads as prose_coherence corruption at QC). Collapse the verbatim triple-repeat into one statement (or rewrite each instance to carry NEW ground). A clause stamped out three times identically is a templated-loop artifact.",
+            "evidence": "watching the quay closely keeps the cargo honest and makes"
+          },
+          {
+            "catalogId": "SEAM2.verbatim_repetition",
+            "severity": "major",
+            "unit": "mechanical-seam",
+            "message": "breakdown.fullRead: verbatim repetition — a run repeats 26x identically (\"watching the beacon closely keeps the harbor ho……\"; a templated-loop artifact, reads as prose_coherence corruption at QC). Collapse the verbatim triple-repeat into one statement (or rewrite each instance to carry NEW ground). A clause stamped out three times identically is a templated-loop artifact.",
+            "evidence": "watching the beacon closely keeps the harbor honest and makes"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[0]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The harbor review showed that the lantern step matters more than the compass count, because a rushed tide check hides what the anchor actually needs before the next mast pass. Watching the ledger clo…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[1]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The lantern review showed that the compass step matters more than the tide count, because a rushed anchor check hides what the mast actually needs before the next ledger pass. Watching the quay close…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[2]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The compass review showed that the tide step matters more than the anchor count, because a rushed mast check hides what the ledger actually needs before the next quay pass. Watching the cargo closely…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[3]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The tide review showed that the anchor step matters more than the mast count, because a rushed ledger check hides what the quay actually needs before the next cargo pass. Watching the beacon closely …"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[4]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The anchor review showed that the mast step matters more than the ledger count, because a rushed quay check hides what the cargo actually needs before the next beacon pass. Watching the harbor closel…"
+          },
+          {
+            "catalogId": "C2",
+            "severity": "major",
+            "unit": "example[5]",
+            "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+            "evidence": "The mast review showed that the ledger step matters more than the quay count, because a rushed cargo check hides what the beacon actually needs before the next harbor pass. Watching the lantern close…"
+          },
+          {
+            "catalogId": "BP16.quiz_answer_length_major",
+            "severity": "major",
+            "unit": "quiz.q07",
+            "message": "q07 correct answer is 1.65× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+            "evidence": "Suspect the harbor measurement itself — a perfect report over a failing tide usually means the gauge is broken."
+          }
+        ],
+        "minors": [
+          {
+            "catalogId": "B8",
+            "severity": "minor",
+            "unit": "breakdown",
+            "message": "breakdown: \"review showed that the\" appears in both fastRead and deepRead — vary one of them"
+          },
+          {
+            "catalogId": "B15.cross_tier_paraphrase",
+            "severity": "minor",
+            "unit": "breakdown.cross-tier",
+            "message": "breakdown.fastRead and breakdown.deepRead share 92% of their content vocabulary (paraphrase-restate threshold 42%) with no verbatim block to flag — the two tiers are rerunning the same ideas in reworded sentences, not layering new ones. Give deepRead a NEW concept, scene, or nuance the reader has not met yet (deepRead = the mechanism + a second domain; fullRead = edge cases, the failure mode, the reversal). prose_coherence is the precise judgment.",
+            "evidence": "fastRead↔deepRead content-lemma Jaccard 0.923"
+          },
+          {
+            "catalogId": "B15.cross_tier_paraphrase",
+            "severity": "minor",
+            "unit": "breakdown.cross-tier",
+            "message": "breakdown.deepRead and breakdown.fullRead share 92% of their content vocabulary (paraphrase-restate threshold 42%) with no verbatim block to flag — the two tiers are rerunning the same ideas in reworded sentences, not layering new ones. Give fullRead a NEW concept, scene, or nuance the reader has not met yet (deepRead = the mechanism + a second domain; fullRead = edge cases, the failure mode, the reversal). prose_coherence is the precise judgment.",
+            "evidence": "deepRead↔fullRead content-lemma Jaccard 0.923"
+          }
+        ]
+      }
+    ],
+    "totalBlockers": 71,
+    "totalMajors": 12
+  },
+  "bookGate": {
+    "bookId": "zz-fixture-source-integrity-promote",
+    "chapterCount": 1,
+    "passed": false,
+    "findings": [
+      {
+        "catalogId": "BP7",
+        "severity": "blocker",
+        "message": "Missing book brief artifact for zz-fixture-source-integrity-promote. Expected zz-fixture-source-integrity-promote.manual-brief.json or zz-fixture-source-integrity-promote.brief.json under state/briefs/. Whole-book Codex runs without a durable brief are not promotable."
+      },
+      {
+        "catalogId": "BP7",
+        "severity": "blocker",
+        "message": "Missing per-chapter plan artifacts for chapters 1. Expected <chapterId>.manual-plan.json or <chapterId>.plan.json under state/plans/.",
+        "chapters": [
+          1
+        ]
+      },
+      {
+        "catalogId": "BP20.quiz_ngram_template_repeat",
+        "severity": "blocker",
+        "message": "8-word phrase appears 9 times across quiz choices book-wide — template substitution. Rewrite distractors with scenario-specific language; no 5+ word phrase should repeat across chapters",
+        "evidence": "entry first isolates the drift while it is"
+      },
+      {
+        "catalogId": "BP20.quiz_ngram_template_repeat",
+        "severity": "blocker",
+        "message": "8-word phrase appears 9 times across quiz choices book-wide — template substitution. Rewrite distractors with scenario-specific language; no 5+ word phrase should repeat across chapters",
+        "evidence": "while it is still one record wide which"
+      },
+      {
+        "catalogId": "BP20.quiz_ngram_template_repeat",
+        "severity": "blocker",
+        "message": "8-word phrase appears 9 times across quiz choices book-wide — template substitution. Rewrite distractors with scenario-specific language; no 5+ word phrase should repeat across chapters",
+        "evidence": "record wide which is the cheapest moment to"
+      },
+      {
+        "catalogId": "BP20.quiz_ngram_template_repeat",
+        "severity": "blocker",
+        "message": "8-word phrase appears 9 times across quiz choices book-wide — template substitution. Rewrite distractors with scenario-specific language; no 5+ word phrase should repeat across chapters",
+        "evidence": "cheapest moment to fix it and the only"
+      },
+      {
+        "catalogId": "BP20.quiz_ngram_template_repeat",
+        "severity": "blocker",
+        "message": "8-word phrase appears 9 times across quiz choices book-wide — template substitution. Rewrite distractors with scenario-specific language; no 5+ word phrase should repeat across chapters",
+        "evidence": "and the only moment the cause is still"
+      }
+    ],
+    "stats": {
+      "answerPositionCounts": [
+        3,
+        3,
+        3
+      ],
+      "answerPositionPctMax": 0.3333333333333333,
+      "totalQuizQuestions": 9,
+      "duplicatedNames": [],
+      "duplicatedHookOpeners": [],
+      "schemaInconsistencies": [],
+      "patternAudit": {
+        "bookId": "zz-fixture-source-integrity-promote",
+        "chapterCount": 1,
+        "passed": false,
+        "findings": [
+          {
+            "code": "BP7",
+            "severity": "blocker",
+            "message": "Missing book brief artifact for zz-fixture-source-integrity-promote. Expected zz-fixture-source-integrity-promote.manual-brief.json or zz-fixture-source-integrity-promote.brief.json under state/briefs/. Whole-book Codex runs without a durable brief are not promotable.",
+            "maxScoreCap": 85
+          },
+          {
+            "code": "BP7",
+            "severity": "blocker",
+            "chapters": [
+              1
+            ],
+            "count": 1,
+            "message": "Missing per-chapter plan artifacts for chapters 1. Expected <chapterId>.manual-plan.json or <chapterId>.plan.json under state/plans/.",
+            "maxScoreCap": 85
+          }
+        ],
+        "stats": {
+          "repeatedQuizExplanationGroups": 0,
+          "repeatedSurfaceFrameGroups": 0,
+          "repeatedExampleFrameGroups": 0,
+          "repeatedConcreteAnchors": 0,
+          "templatedBreakdownShellGroups": 0,
+          "shortParagraphDuplicateGroups": 0,
+          "literalSubstringGroups": 0,
+          "quizPositionTemplateDuplicates": 0,
+          "missingPlanChapters": [
+            1
+          ],
+          "missingBrief": true,
+          "sourceAlignmentWarnings": 0
+        }
+      }
+    }
+  },
+  "intraBook": {
+    "totalBlockers": 0,
+    "findings": []
+  },
+  "qcAttestation": {
+    "totalBlockers": 1,
+    "findings": [
+      {
+        "chapter": 1,
+        "checkId": "QC0.missing_attestation",
+        "severity": "blocker",
+        "message": "No QC attestation at /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/qc/zz-fixture-source-integrity-promote-ch01.qc.json. A Claude reviewer must read this chapter and run `qc-attest` before it can ship."
+      }
+    ]
+  },
+  "quizKeyJudge": {
+    "totalBlockers": 0,
+    "findings": []
+  },
+  "sourceIntegrity": {
+    "totalBlockers": 1,
+    "findings": [
+      {
+        "chapter": 1,
+        "checkId": "SV2.anchor_reference_unknown",
+        "severity": "blocker",
+        "message": "testableFacts[0].derivedFrom cites unknown source anchor \"ch01.ex.northstar-lab\"."
+      }
+    ]
+  },
+  "sourceReality": {
+    "schemaVersion": "source-reality-policy-v1",
+    "decision": "not-applicable",
+    "classification": "new-source-v2",
+    "applies": false,
+    "itemCount": 10,
+    "totalBlockers": 0,
+    "findings": [],
+    "summary": "source-reality: not-applicable — zz-fixture-source-integrity-promote (no source-v2 content to reality-check).",
+    "exemption": null
+  },
+  "generationDebt": {
+    "schemaVersion": "generation-debt-report-v1",
+    "totalBlockers": 0,
+    "totalAdvisories": 0,
+    "findings": [],
+    "waived": []
+  },
+  "noApiCodexQc": {
+    "enabled": false,
+    "totalBlockers": 0,
+    "findings": []
+  },
+  "majorPolicy": {
+    "schemaVersion": "major-production-policy-v1",
+    "totalCurrent": 12,
+    "totalBlockers": 0,
+    "current": [
+      {
+        "id": "5bc1c2a58860",
+        "scope": "chapter:1:breakdown.fastRead",
+        "checkId": "E1",
+        "message": "fastRead: Flesch-Kincaid grade 8.9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words.",
+        "contentHash": "3f082b89a2780a3b",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "903aa18ecba2"
+      },
+      {
+        "id": "2e65fedfccb5",
+        "scope": "chapter:1:examples",
+        "checkId": "C23",
+        "message": "\"Watching\" is the recurring protagonist of multiple examples (1, 2, 3, 4, 5, 6) — each scene needs its own named protagonist (the name plan allocates one per scene). A reused name across scenes reads as a templated cast.",
+        "evidence": "Watching",
+        "contentHash": "3f082b89a2780a3b",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "d7f028af8153"
+      },
+      {
+        "id": "c740fda1315e",
+        "scope": "chapter:1:mechanical-seam",
+        "checkId": "SEAM2.verbatim_repetition",
+        "message": "breakdown.fastRead: verbatim repetition — a run repeats 3x identically (\"watching the ledger closely keeps the quay hone……\"; a templated-loop artifact, reads as prose_coherence corruption at QC). Collapse the verbatim triple-repeat into one statement (or rewrite each instance to carry NEW ground). A clause stamped out three times identically is a templated-loop artifact.",
+        "evidence": "watching the ledger closely keeps the quay honest and makes",
+        "contentHash": "3f082b89a2780a3b",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "4edc9ce1c2e3"
+      },
+      {
+        "id": "f253c956c65c",
+        "scope": "chapter:1:mechanical-seam",
+        "checkId": "SEAM2.verbatim_repetition",
+        "message": "breakdown.deepRead: verbatim repetition — a run repeats 13x identically (\"watching the quay closely keeps the cargo hones……\"; a templated-loop artifact, reads as prose_coherence corruption at QC). Collapse the verbatim triple-repeat into one statement (or rewrite each instance to carry NEW ground). A clause stamped out three times identically is a templated-loop artifact.",
+        "evidence": "watching the quay closely keeps the cargo honest and makes",
+        "contentHash": "3f082b89a2780a3b",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "8b0370f6c2cd"
+      },
+      {
+        "id": "276fb944b882",
+        "scope": "chapter:1:mechanical-seam",
+        "checkId": "SEAM2.verbatim_repetition",
+        "message": "breakdown.fullRead: verbatim repetition — a run repeats 26x identically (\"watching the beacon closely keeps the harbor ho……\"; a templated-loop artifact, reads as prose_coherence corruption at QC). Collapse the verbatim triple-repeat into one statement (or rewrite each instance to carry NEW ground). A clause stamped out three times identically is a templated-loop artifact.",
+        "evidence": "watching the beacon closely keeps the harbor honest and makes",
+        "contentHash": "3f082b89a2780a3b",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "fdc2722d07d5"
+      },
+      {
+        "id": "de5e9cdd3164",
+        "scope": "chapter:1:example[0]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "The harbor review showed that the lantern step matters more than the compass count, because a rushed tide check hides what the anchor actually needs before the next mast pass. Watching the ledger clo…",
+        "contentHash": "3f082b89a2780a3b",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "0004c4f08bed"
+      },
+      {
+        "id": "1ea1c7224cd9",
+        "scope": "chapter:1:example[1]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "The lantern review showed that the compass step matters more than the tide count, because a rushed anchor check hides what the mast actually needs before the next ledger pass. Watching the quay close…",
+        "contentHash": "3f082b89a2780a3b",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "33d7065301e6"
+      },
+      {
+        "id": "3610b17ce3ad",
+        "scope": "chapter:1:example[2]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "The compass review showed that the tide step matters more than the anchor count, because a rushed mast check hides what the ledger actually needs before the next quay pass. Watching the cargo closely…",
+        "contentHash": "3f082b89a2780a3b",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "dc51b5c553a6"
+      },
+      {
+        "id": "536353a2a654",
+        "scope": "chapter:1:example[3]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "The tide review showed that the anchor step matters more than the mast count, because a rushed ledger check hides what the quay actually needs before the next cargo pass. Watching the beacon closely …",
+        "contentHash": "3f082b89a2780a3b",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "75e583024478"
+      },
+      {
+        "id": "9682a408bf83",
+        "scope": "chapter:1:example[4]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "The anchor review showed that the mast step matters more than the ledger count, because a rushed quay check hides what the cargo actually needs before the next beacon pass. Watching the harbor closel…",
+        "contentHash": "3f082b89a2780a3b",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "47704270819c"
+      },
+      {
+        "id": "c89406aa4f3f",
+        "scope": "chapter:1:example[5]",
+        "checkId": "C2",
+        "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+        "evidence": "The mast review showed that the ledger step matters more than the quay count, because a rushed cargo check hides what the beacon actually needs before the next harbor pass. Watching the lantern close…",
+        "contentHash": "3f082b89a2780a3b",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "bdaf628f83a4"
+      },
+      {
+        "id": "4450f8864736",
+        "scope": "chapter:1:quiz.q07",
+        "checkId": "BP16.quiz_answer_length_major",
+        "message": "q07 correct answer is 1.65× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+        "evidence": "Suspect the harbor measurement itself — a perfect report over a failing tide usually means the gauge is broken.",
+        "contentHash": "3f082b89a2780a3b",
+        "contentHashVersion": "chapter-content-hash-v2",
+        "findingHash": "1862dbe7b3ff"
+      }
+    ],
+    "decisions": [
+      {
+        "finding": {
+          "id": "5bc1c2a58860",
+          "scope": "chapter:1:breakdown.fastRead",
+          "checkId": "E1",
+          "message": "fastRead: Flesch-Kincaid grade 8.9 exceeds ceiling 8.5 (target grade 7–8). Shorten sentences or use plainer words.",
+          "contentHash": "3f082b89a2780a3b",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "903aa18ecba2"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "2e65fedfccb5",
+          "scope": "chapter:1:examples",
+          "checkId": "C23",
+          "message": "\"Watching\" is the recurring protagonist of multiple examples (1, 2, 3, 4, 5, 6) — each scene needs its own named protagonist (the name plan allocates one per scene). A reused name across scenes reads as a templated cast.",
+          "evidence": "Watching",
+          "contentHash": "3f082b89a2780a3b",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "d7f028af8153"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "c740fda1315e",
+          "scope": "chapter:1:mechanical-seam",
+          "checkId": "SEAM2.verbatim_repetition",
+          "message": "breakdown.fastRead: verbatim repetition — a run repeats 3x identically (\"watching the ledger closely keeps the quay hone……\"; a templated-loop artifact, reads as prose_coherence corruption at QC). Collapse the verbatim triple-repeat into one statement (or rewrite each instance to carry NEW ground). A clause stamped out three times identically is a templated-loop artifact.",
+          "evidence": "watching the ledger closely keeps the quay honest and makes",
+          "contentHash": "3f082b89a2780a3b",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "4edc9ce1c2e3"
+        },
+        "decision": "open",
+        "blocking": true,
+        "reason": "No closing waiver is recorded for this current major."
+      },
+      {
+        "finding": {
+          "id": "f253c956c65c",
+          "scope": "chapter:1:mechanical-seam",
+          "checkId": "SEAM2.verbatim_repetition",
+          "message": "breakdown.deepRead: verbatim repetition — a run repeats 13x identically (\"watching the quay closely keeps the cargo hones……\"; a templated-loop artifact, reads as prose_coherence corruption at QC). Collapse the verbatim triple-repeat into one statement (or rewrite each instance to carry NEW ground). A clause stamped out three times identically is a templated-loop artifact.",
+          "evidence": "watching the quay closely keeps the cargo honest and makes",
+          "contentHash": "3f082b89a2780a3b",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "8b0370f6c2cd"
+        },
+        "decision": "open",
+        "blocking": true,
+        "reason": "No closing waiver is recorded for this current major."
+      },
+      {
+        "finding": {
+          "id": "276fb944b882",
+          "scope": "chapter:1:mechanical-seam",
+          "checkId": "SEAM2.verbatim_repetition",
+          "message": "breakdown.fullRead: verbatim repetition — a run repeats 26x identically (\"watching the beacon closely keeps the harbor ho……\"; a templated-loop artifact, reads as prose_coherence corruption at QC). Collapse the verbatim triple-repeat into one statement (or rewrite each instance to carry NEW ground). A clause stamped out three times identically is a templated-loop artifact.",
+          "evidence": "watching the beacon closely keeps the harbor honest and makes",
+          "contentHash": "3f082b89a2780a3b",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "fdc2722d07d5"
+        },
+        "decision": "open",
+        "blocking": true,
+        "reason": "No closing waiver is recorded for this current major."
+      },
+      {
+        "finding": {
+          "id": "de5e9cdd3164",
+          "scope": "chapter:1:example[0]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "The harbor review showed that the lantern step matters more than the compass count, because a rushed tide check hides what the anchor actually needs before the next mast pass. Watching the ledger clo…",
+          "contentHash": "3f082b89a2780a3b",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "0004c4f08bed"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "1ea1c7224cd9",
+          "scope": "chapter:1:example[1]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "The lantern review showed that the compass step matters more than the tide count, because a rushed anchor check hides what the mast actually needs before the next ledger pass. Watching the quay close…",
+          "contentHash": "3f082b89a2780a3b",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "33d7065301e6"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "3610b17ce3ad",
+          "scope": "chapter:1:example[2]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "The compass review showed that the tide step matters more than the anchor count, because a rushed mast check hides what the ledger actually needs before the next quay pass. Watching the cargo closely…",
+          "contentHash": "3f082b89a2780a3b",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "dc51b5c553a6"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "536353a2a654",
+          "scope": "chapter:1:example[3]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "The tide review showed that the anchor step matters more than the mast count, because a rushed ledger check hides what the quay actually needs before the next cargo pass. Watching the beacon closely …",
+          "contentHash": "3f082b89a2780a3b",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "75e583024478"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "9682a408bf83",
+          "scope": "chapter:1:example[4]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "The anchor review showed that the mast step matters more than the ledger count, because a rushed quay check hides what the cargo actually needs before the next beacon pass. Watching the harbor closel…",
+          "contentHash": "3f082b89a2780a3b",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "47704270819c"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "c89406aa4f3f",
+          "scope": "chapter:1:example[5]",
+          "checkId": "C2",
+          "message": "scenario lacks specific setting (time/place/role) — feels abstract",
+          "evidence": "The mast review showed that the ledger step matters more than the quay count, because a rushed cargo check hides what the beacon actually needs before the next harbor pass. Watching the lantern close…",
+          "contentHash": "3f082b89a2780a3b",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "bdaf628f83a4"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      },
+      {
+        "finding": {
+          "id": "4450f8864736",
+          "scope": "chapter:1:quiz.q07",
+          "checkId": "BP16.quiz_answer_length_major",
+          "message": "q07 correct answer is 1.65× the average distractor length (target <1.4) — readers can identify the correct answer by length alone",
+          "evidence": "Suspect the harbor measurement itself — a perfect report over a failing tide usually means the gauge is broken.",
+          "contentHash": "3f082b89a2780a3b",
+          "contentHashVersion": "chapter-content-hash-v2",
+          "findingHash": "1862dbe7b3ff"
+        },
+        "decision": "advisory",
+        "blocking": false,
+        "reason": "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker."
+      }
+    ]
+  },
+  "canonicalChapterSet": {
+    "indexPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v21-authored/state/indexes/zz-fixture-source-integrity-promote.json",
+    "chapterCount": 1,
+    "totalBlockers": 0,
+    "findings": []
+  },
+  "productionManifest": {
+    "contentId": null,
+    "skipped": true,
+    "totalBlockers": 0,
+    "findings": []
+  }
+}

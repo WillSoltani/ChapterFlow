@@ -1,0 +1,60 @@
+{
+  "chapterId": "start-with-why-ch14",
+  "number": 14,
+  "title": "The New Competition",
+  "coreMove": "Let rivals signal pressure, not define success; then require your own benchmark, purpose fit, and later improvement before you call a move progress.",
+  "exampleCount": 5,
+  "exampleSpecs": [
+    {
+      "domain": "product contrast",
+      "audience": "a product lead",
+      "stakes": "rival copy mistaken for progress",
+      "format": "before_after",
+      "requiredBeat": "external rival before internal benchmark"
+    },
+    {
+      "domain": "category rivalry",
+      "audience": "a strategy analyst",
+      "stakes": "winning becomes the only measure",
+      "format": "postmortem",
+      "requiredBeat": "second anchor exposes transfer"
+    },
+    {
+      "domain": "operating standard",
+      "audience": "an operations lead",
+      "stakes": "copying rivals weakens the standard",
+      "format": "walkthrough",
+      "requiredBeat": "operating benchmark before copy"
+    },
+    {
+      "domain": "case grounding",
+      "audience": "a market analyst",
+      "stakes": "true detail attached to the wrong anchor",
+      "format": "mistake_recovery",
+      "requiredBeat": "hard detail stays with its anchor"
+    },
+    {
+      "domain": "competitive decision",
+      "audience": "a product group",
+      "stakes": "purpose words without checkable anchors",
+      "format": "decision_memo",
+      "requiredBeat": "named anchors before generic advice"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 2,
+      "analyze": 4,
+      "evaluate": 3
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 7,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-07-07T23:11:34.617Z"
+}

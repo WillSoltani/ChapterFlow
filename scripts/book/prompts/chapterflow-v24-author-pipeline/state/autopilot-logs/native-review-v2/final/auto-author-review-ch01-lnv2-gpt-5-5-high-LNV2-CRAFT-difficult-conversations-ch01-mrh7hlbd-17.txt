@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "a", "b", "c", "c", "b", "a"],
+    "mechanisms": [
+      "Her fear of seeming too junior is a competence/authority self-question, which the prose defines as the identity layer.",
+      "The prose says to sort what happened, feelings, and identity; the promise, resentment, and responsible-child fear map directly onto those three layers.",
+      "Residents' ignored feeling and the board's negligent-image fear show that repair facts alone are not the whole conversation.",
+      "The chapter warns that the visible deadline or timeline can be real while feelings about trust steer the exchange.",
+      "Hearing the question as 'you are a bad friend' turns the missed dinner into a judgment about what kind of person she is.",
+      "The preparation separates facts, feelings, and identity, preventing the belonging question from being treated as only an authorship dispute.",
+      "The attendance fact has become a parenting-identity threat, so simply repeating facts may increase defensiveness.",
+      "The prose says the frame works best as private diagnosis and can sound accusatory when pasted onto someone else.",
+      "The dishes are the visible issue, while respect is the deeper feelings/identity layer that keeps driving the argument."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "medium"],
+    "ambiguities": [
+      "b is superficially defensible because anxiety is a feeling, but the phrase 'too junior to challenge him' makes competence and authority the controlling issue.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "b is also part of good diagnosis because dishes facts still matter; however, the best first diagnostic question must sort layers, not only audit chores."
+    ],
+    "tells": [
+      "a is the longest and contains the prose keywords 'competence and authority.'",
+      "b is much longer and lists all three layers, while a and c are narrow single-layer moves.",
+      "c is the only option that names facts, feelings, and identity/reputation together.",
+      "a is the only option that mentions the hidden trust feeling; c is a comic weak distractor.",
+      "b repeats the stem's 'bad friend' identity cue; c overreaches with 'always.'",
+      "c is the only option that preserves the diagnostic purpose; a incorrectly says script and b overclaims proof.",
+      "c is much longer and uses the chapter's exact warning that more facts alone may fail.",
+      "b closely paraphrases the chapter's warning about private diagnosis and labels sounding like verdicts.",
+      "a is the only option using the chapter's layer vocabulary."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 74,
+    "transfer": 84,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 82,
+    "limits": 91,
+    "insight": 88,
+    "density": 84,
+    "beginner": 90
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The log is evidence. It is not the whole map.",
+      "why": "A compact, memorable statement of the chapter's core move."
+    },
+    {
+      "quote": "Diagnosis is not a cure.",
+      "why": "Keeps the skill bounded and prevents overselling."
+    },
+    {
+      "quote": "The three-conversation frame loses much of its usefulness when it becomes a label you paste onto someone else.",
+      "why": "Strong practical limit that protects readers from misusing the concept."
+    },
+    {
+      "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+      "why": "This sentence has generic courseware smell and weakens an otherwise concrete example."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are often the longest and most layered option, while distractors frequently use giveaway absolutes or obviously bad behavior, making several answers guessable without reading closely.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The stem asks what layer she has found, but the word 'terrified' gives a plausible feelings-layer distractor even though the competence/authority content points to identity.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The best answer is derivable, but the question could also warrant checking the chore facts because the chapter says facts still matter; the distractor makes that legitimate step too narrow.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The final sentence turns generic and instructional instead of staying inside the concrete before-to-after moment.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a clear, usable chapter with a strong central distinction, memorable boundary lines, and practical transfer across work, family, community, and creative settings. The prose does a good job showing that facts, feelings, and identity can all be true at once, and it is especially strong on warning readers not to weaponize the frame. I would not ship it yet against a professional 80+ bar because the quiz design is too guessable: correct choices repeatedly announce themselves by being the longest, most complete, and closest to the chapter language, while distractors often caricature bad practice."
+}
+```

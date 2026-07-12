@@ -1,0 +1,240 @@
+{
+  "schemaVersion": "author-acceptance-v1",
+  "bookId": "start-with-why",
+  "roundLabel": "",
+  "at": "2026-07-06T08:52:47.191Z",
+  "bar": 80,
+  "beatShipped": 71.8,
+  "accepted": false,
+  "sampledChapters": [
+    1,
+    2,
+    6,
+    11
+  ],
+  "docSha256": "ae4696ebc335527a8e347b3a80779e03b23be400e16b104a0e5ec88a51fd5d37",
+  "verdict": {
+    "id": "start-with-why",
+    "medianComposite": 73.2,
+    "factors": {
+      "retention": 82,
+      "quizzes": 76,
+      "transfer": 77,
+      "practical": 76,
+      "summaries": 77,
+      "tone": 62,
+      "limits": 76,
+      "insight": 68,
+      "density": 59,
+      "beginner": 70
+    },
+    "gate": "PASS",
+    "gateVotes": "3P/0F",
+    "churn": "HIGH",
+    "validCount": 3,
+    "readerCount": 3,
+    "chapters": [
+      1,
+      2,
+      6,
+      11
+    ],
+    "readers": [
+      {
+        "reviewerSessionId": "auto-author-book-reader-1-mr8zdey8-12",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 83,
+          "quizzes": 78,
+          "transfer": 80,
+          "practical": 76,
+          "summaries": 80,
+          "tone": 67,
+          "limits": 81,
+          "insight": 74,
+          "density": 66,
+          "beginner": 70
+        },
+        "composite": 76.2,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is sound and publishable on correctness: I found no keyed answer contradicted by the prose, no incoherent chapter, and no obvious fabricated fact from the material itself. Its best pages teach durable lenses: separate fact from guess, push from reason, belief from loyalty, and growth from meaning. The weakness is not soundness but sameness. Across chapters, the same machinery repeats: named company anchors, hard details must stay home, second setting prevents overreach, return proof is due, and a proxy character catches a late error. That makes the book useful but less alive than premium work; it teaches clearly, but often sounds like one instructional template wearing different nouns.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-2-mr8zdeya-13",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 82,
+          "quizzes": 76,
+          "transfer": 73,
+          "practical": 76,
+          "summaries": 77,
+          "tone": 61,
+          "limits": 76,
+          "insight": 68,
+          "density": 59,
+          "beginner": 74
+        },
+        "composite": 72.9,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is keyed sound and often useful, with several strong portable lines and scenario-based quizzes that are answerable from the prose. Its main weakness is not correctness but manufacture: nearly every chapter follows the same architecture of named character, source-boundary warning, second-setting comparison, return proof, and hard-detail caution. That repetition drags down tone, density, and insight, making the book feel less like individually authored chapters and more like one production template filled with different nouns. It is a solid draft with publishable parts, but not yet premium.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-3-mr8zdeyb-14",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 78,
+          "quizzes": 72,
+          "transfer": 77,
+          "practical": 70,
+          "summaries": 74,
+          "tone": 62,
+          "limits": 72,
+          "insight": 64,
+          "density": 58,
+          "beginner": 68
+        },
+        "composite": 70.3,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is keyed correctly and generally coherent, so it passes the correctness gate, but it reads heavily templated. Nearly every chapter follows the same machinery: named proxy person, source detail, second setting, warning not to move hard details, return proof, then scenario quizzes that reward recognizing the same pattern. The best lines are genuinely sticky, and the core lenses are useful, but the prose often substitutes abstract scaffolding for lived scenes. This is a solid draft with real instructional value, not premium book-learning material yet; the main editorial need is to vary chapter architecture, cut repeated proof-boundary rhetoric, and make examples feel less like nouns swapped into one operating template.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      }
+    ]
+  },
+  "readers": [
+    {
+      "reviewerSessionId": "auto-author-book-reader-1-mr8zdey8-12",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 83,
+        "quizzes": 78,
+        "transfer": 80,
+        "practical": 76,
+        "summaries": 80,
+        "tone": 67,
+        "limits": 81,
+        "insight": 74,
+        "density": 66,
+        "beginner": 70
+      },
+      "composite": 76.2,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is sound and publishable on correctness: I found no keyed answer contradicted by the prose, no incoherent chapter, and no obvious fabricated fact from the material itself. Its best pages teach durable lenses: separate fact from guess, push from reason, belief from loyalty, and growth from meaning. The weakness is not soundness but sameness. Across chapters, the same machinery repeats: named company anchors, hard details must stay home, second setting prevents overreach, return proof is due, and a proxy character catches a late error. That makes the book useful but less alive than premium work; it teaches clearly, but often sounds like one instructional template wearing different nouns.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-2-mr8zdeya-13",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 82,
+        "quizzes": 76,
+        "transfer": 73,
+        "practical": 76,
+        "summaries": 77,
+        "tone": 61,
+        "limits": 76,
+        "insight": 68,
+        "density": 59,
+        "beginner": 74
+      },
+      "composite": 72.9,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is keyed sound and often useful, with several strong portable lines and scenario-based quizzes that are answerable from the prose. Its main weakness is not correctness but manufacture: nearly every chapter follows the same architecture of named character, source-boundary warning, second-setting comparison, return proof, and hard-detail caution. That repetition drags down tone, density, and insight, making the book feel less like individually authored chapters and more like one production template filled with different nouns. It is a solid draft with publishable parts, but not yet premium.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-3-mr8zdeyb-14",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 78,
+        "quizzes": 72,
+        "transfer": 77,
+        "practical": 70,
+        "summaries": 74,
+        "tone": 62,
+        "limits": 72,
+        "insight": 64,
+        "density": 58,
+        "beginner": 68
+      },
+      "composite": 70.3,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is keyed correctly and generally coherent, so it passes the correctness gate, but it reads heavily templated. Nearly every chapter follows the same machinery: named proxy person, source detail, second setting, warning not to move hard details, return proof, then scenario quizzes that reward recognizing the same pattern. The best lines are genuinely sticky, and the core lenses are useful, but the prose often substitutes abstract scaffolding for lived scenes. This is a solid draft with real instructional value, not premium book-learning material yet; the main editorial need is to vary chapter architecture, cut repeated proof-boundary rhetoric, and make examples feel less like nouns swapped into one operating template.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    }
+  ],
+  "pooled": {
+    "reads": 1,
+    "composite": 73.2,
+    "gate": "PASS",
+    "noiseBand": 3.7,
+    "capped": false
+  }
+}

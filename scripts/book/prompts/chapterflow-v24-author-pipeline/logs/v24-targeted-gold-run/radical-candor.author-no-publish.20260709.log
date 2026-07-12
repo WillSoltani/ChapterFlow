@@ -1,0 +1,64 @@
+2026-07-09T19:11:07.291Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-09T19:11:07.296Z [MAJOR] PHASE research written 0/? · gated 0 · qc'd 0
+2026-07-09T19:11:08.258Z [MAJOR] RESEARCH spawning research session
+2026-07-09T19:24:15.398Z [MAJOR] PHASE write written 0/9 · gated 0 · qc'd 0
+2026-07-09T19:24:15.989Z [info]  author source-packets: compile-source-packets: PASS (9 packet(s))
+2026-07-09T19:24:16.418Z [info]  author source-packet-gate:   [ADVISORY SP16.atomic_specifics] ch04: hardSpecific "Listen Clarify Debate Decide Persuade Execute Learn…" is a long label-phrase; prefer short atomic specifics ("red phone", "90-second trial") — long phrases force recitation into prose (/namedCases/0/hardSpecifics)
+2026-07-09T19:24:16.852Z [info]  author book-design: compile-book-design: PASS
+2026-07-09T19:24:17.284Z [info]  author book-design-gate: book-design-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-09T19:24:17.766Z [info]  author chapter-briefs: compile-chapter-briefs: PASS (18 file(s))
+2026-07-09T19:24:18.228Z [info]  author chapter-brief-gate: chapter-brief-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-09T19:24:18.228Z [info]  author write: 9 missing chapter(s) of 9 (parallel ≤6)
+2026-07-09T19:24:18.231Z [info]  author ch01: card is 28961 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T19:24:18.231Z [info]  author ch01: whole-chapter writer working (attempt 1, card 28961 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T19:24:18.235Z [info]  author ch02: card is 28826 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T19:24:18.236Z [info]  author ch02: whole-chapter writer working (attempt 1, card 28826 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T19:24:18.238Z [info]  author ch03: card is 28192 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T19:24:18.238Z [info]  author ch03: whole-chapter writer working (attempt 1, card 28192 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T19:24:18.241Z [info]  author ch04: card is 28215 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T19:24:18.241Z [info]  author ch04: whole-chapter writer working (attempt 1, card 28215 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T19:24:18.244Z [info]  author ch05: card is 28640 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T19:24:18.245Z [info]  author ch05: whole-chapter writer working (attempt 1, card 28640 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T19:24:18.247Z [info]  author ch06: card is 28330 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T19:24:18.247Z [info]  author ch06: whole-chapter writer working (attempt 1, card 28330 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T19:38:22.144Z [info]  author ch02: ch02: STIER-2 write contract FAIL — lead thread: the dealt lead (Sheryl) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-09T19:38:22.149Z [info]  author ch02: whole-chapter writer working (attempt 2, card 30035 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T19:38:25.333Z [info]  author ch03: done (gate-chapter clean)
+2026-07-09T19:38:25.336Z [info]  author ch07: card is 28099 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T19:38:25.336Z [info]  author ch07: whole-chapter writer working (attempt 1, card 28099 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T19:38:53.846Z [info]  author ch06: done (gate-chapter clean)
+2026-07-09T19:38:53.848Z [info]  author ch08: card is 28247 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T19:38:53.849Z [info]  author ch08: whole-chapter writer working (attempt 1, card 28247 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T19:40:01.775Z [info]  author ch01: done (gate-chapter clean)
+2026-07-09T19:40:01.777Z [info]  author ch09: card is 28534 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T19:40:01.778Z [info]  author ch09: whole-chapter writer working (attempt 1, card 28534 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T19:43:26.876Z [info]  author ch04: ch04: rubric preflight FAIL — ch04: FAIL ease=80.676 fk=4.225~ tell=0 transfer=0.889 memClean=1✗ tic=0 nom=2.688 echo=0 lenTell=4 practice=2 — FAIL: memorableClean
+2026-07-09T19:43:26.879Z [info]  author ch04: whole-chapter writer working (attempt 2, card 29315 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T19:44:04.760Z [info]  author ch05: done (gate-chapter clean)
+2026-07-09T19:50:37.122Z [info]  author ch02: done (gate-chapter clean)
+2026-07-09T19:52:40.689Z [info]  author ch08: ch08: STIER-2 write contract FAIL — lead thread: the dealt lead (Results) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-09T19:52:40.691Z [info]  author ch08: whole-chapter writer working (attempt 2, card 29166 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T19:54:37.422Z [info]  author ch07: done (gate-chapter clean)
+2026-07-09T19:55:13.926Z [info]  author ch04: ch04: STIER-2 write contract FAIL — practice timers: tryThisNow (10 min) and twentyFourHourChallenge (15 min) restate the same action with DIFFERENT minutes — make the numbers agree wherever the action repeats. | practice timers: twentyFourHourChallenge (15 min) and weeklyPractice (10 min) restate the same action with DIFFERENT minutes — make the numbers agree wherever the action repeats.
+2026-07-09T19:55:13.929Z [info]  author ch04: all write attempts failed — removed the unreviewed failed draft (no prior chapter existed; the next entry must re-write it, not review it).
+2026-07-09T19:56:49.291Z [info]  author ch09: ch09: STIER-2 write contract FAIL — lead thread: the dealt lead case "The Measurement Problem" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). | lead thread: the dealt lead (Measurement) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-09T19:56:49.293Z [info]  author ch09: whole-chapter writer working (attempt 2, card 29054 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T20:08:07.500Z [info]  author ch09: ch09: STIER-2 write contract FAIL — lead thread: the dealt lead (Measurement) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-09T20:08:07.502Z [info]  author ch09: lead degraded: "The Measurement Problem" → "Bonus performance review unit" after 2 contract failures (bounded +1 attempt; the lead-thread contract enforces the NEW lead at full strength).
+2026-07-09T20:08:07.503Z [info]  author ch09: whole-chapter writer working (attempt 3, card 28784 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T20:08:32.655Z [info]  author ch08: done (gate-chapter clean)
+2026-07-09T20:22:09.846Z [info]  author ch09: ch09: rubric preflight FAIL — ch09: FAIL ease=67.779✗ fk=6.922~ tell=0 transfer=0.889 memClean=2 tic=0 nom=4.234 echo=0 lenTell=3 practice=2 — FAIL: fleschEase
+2026-07-09T20:22:09.849Z [info]  author ch09: all write attempts failed — removed the unreviewed failed draft (no prior chapter existed; the next entry must re-write it, not review it).
+2026-07-09T20:22:09.849Z [info]  author ch09: lead-failure memory persisted ("The Measurement Problem") — the next entry degrades PAST these instead of replaying them.
+2026-07-09T20:22:09.850Z [info]  ── cost report — radical-candor [halt:content] ──
+  grand total spawns: 15  (minted ids 15; verb ids 0)
+  by type: writer:14  research:1
+  by phase: write:14  research:1
+  retries by cause: retry1:4
+  carry: acceptance 0 hit / 1 miss · reviews 0 hit / 0 miss
+  wall (spawn ms) by phase: write:12544058  research:787128  total:13331186
+2026-07-09T20:22:09.852Z [FINAL] HALT AUTOPILOT HALT — radical-candor [phase write · content]: author write: 2 chapter(s) failed to author within the retry budget:
+ch04: STIER-2 write contract FAIL — practice timers: tryThisNow (10 min) and twentyFourHourChallenge (15 min) restate the same action with DIFFERENT minutes — make the numbers agree wherever the action repeats. | practice timers: twentyFourHourChallenge (15 min) and weeklyPractice (10 min) restate the same action with DIFFERENT minutes — make the numbers agree wherever the action repeats.
+
+ch09: lead degradation did not converge — dealt lead "The Measurement Problem" failed 2 lead-only contract attempts and the degraded lead "Bonus performance review unit" also failed: ch09: rubric preflight FAIL — ch09: FAIL ease=67.779✗ fk=6.922~ tell=0 transfer=0.889 memClean=2 tic=0 nom=4.234 echo=0 lenTell=3 practice=2 — FAIL: fleschEase
+2026-07-09T20:22:09.852Z [FINAL] repair prompt: /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/radical-candor/book-run/chapter-generation.20260709202209.c0a8dea3.repair.md

@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 45,
+    "quizzes": 0,
+    "transfer": 30,
+    "practical": 15,
+    "summaries": 5,
+    "tone": 45,
+    "limits": 85,
+    "insight": 70,
+    "density": 40,
+    "beginner": 55
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Your ten percent does not erase their ninety.",
+      "why": "A compact, memorable distinction between owning a contribution and accepting equal blame."
+    },
+    {
+      "quote": "It gives you a place to stop feeding the pattern while still naming the ninety clearly.",
+      "why": "This is the chapter's strongest mechanism: personal agency can coexist with accurate attribution of harm."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "The fast read is placeholder language and communicates none of the chapter's actual idea."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Six promised product sections are present only as empty headings."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook describes the document's review status instead of engaging or orienting the reader.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read is generic placeholder text and fails its stand-alone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read is generic placeholder text and fails its stand-alone explanatory promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "It opens with “This is why” despite no preceding argument and uses the undefined term “contribution language,” weakening cold-reader orientation.",
+      "mustFix": false
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the chapter supplies no concrete practice.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is empty, so readers see no worked decision-and-consequence example and receive little support for transfer.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions, making it broken and preventing any assessment or answer derivation.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and therefore cannot support review or retention.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty despite the full read containing lines suitable for it.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "The sole substantive paragraph contains a useful, nuanced insight: naming one's contribution creates an actionable lever without equalizing blame or excusing another person's greater harm. Its ten-percent/ninety-percent formulation is memorable, its boundary-setting is unusually responsible, and it explains the mechanism rather than merely stating a principle. However, almost the entire learning-product structure is unfilled: the fast and deep reads are placeholders, the practical exercise and examples are absent, the review aids are empty, and there is no quiz to answer. The chapter therefore does not approach a professional shipping bar despite the promise of its central paragraph."
+}
+```

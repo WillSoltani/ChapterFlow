@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 88,
+    "transfer": 87,
+    "practical": 84,
+    "summaries": 89,
+    "tone": 88,
+    "limits": 86,
+    "insight": 88,
+    "density": 85,
+    "beginner": 87
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Discounts can move the buyer without winning the buyer, and that is the problem.",
+      "why": "Strong opening: plain, memorable, and immediately frames the distinction."
+    },
+    {
+      "quote": "The cost of a borrowed lift is paying for it again.",
+      "why": "Best retention line; it compresses the mechanism into a sentence readers can reuse."
+    },
+    {
+      "quote": "Then ask who owes whom what by when, in plain behavior, not in a better slogan.",
+      "why": "Strong transfer move from concept to observable behavior."
+    },
+    {
+      "quote": "Why would a long-distance customer act on a program built somewhere else?",
+      "why": "This example opening is a little awkward and under-specified compared with the stronger GM and TiVo setups."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 3",
+      "problem": "The setup phrase \"built somewhere else\" is unclear on first read; it briefly distracts from the MCI peer-pressure lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The action is useful but slightly narrow: crossing out a reward line works for Price/Promotion but less naturally for Fear, Peer pressure, or Novelty.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q2",
+      "problem": "The keyed answer is sound, but it is phrased partly as a remedy rather than a clean cause; the cause is still recoverable from \"instead of repeating the first lesson.\"",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against the 84 bar. The chapter has a clear core move, strong memory hooks, fair quizzes, and useful transfer beyond the GM/MCI/TiVo cases. Its best contribution is making incentives inspectable: name the lever, then wait for behavior without the push. The main weaknesses are small clarity issues in one example and a practical exercise that fits price rewards better than all six levers, but neither blocks publication."
+}
+```

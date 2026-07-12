@@ -1,0 +1,91 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 38,
+    "quizzes": 0,
+    "transfer": 25,
+    "practical": 35,
+    "summaries": 5,
+    "tone": 35,
+    "limits": 60,
+    "insight": 42,
+    "density": 20,
+    "beginner": 55
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Analysis should make action smarter, not slower when danger is still unfolding.",
+      "why": "This is the chapter's clearest and most memorable statement of the mechanism and boundary."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "The fast read describes the kind of content that belongs there instead of supplying the idea."
+    },
+    {
+      "quote": "One added angle.",
+      "why": "The deep read is placeholder language and provides neither an angle nor a stand-alone explanation."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is production-status metadata rather than reader-facing content and does not introduce the chapter's subject.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section contains only a placeholder and fails its stand-alone summary promise (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section contains only a placeholder and fails its stand-alone explanatory promise (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "It opens with “Still” and calls its advice “the opposite move,” but the chapter never states the original move, leaving the central contrast under-determined.",
+      "mustFix": false
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The required section is empty (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The required practice section is empty, so the reader receives no exercise for applying the lesson (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The required section is empty, leaving the principle without any worked case or before-to-after consequence (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions, making it broken and impossible to answer or assess (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The required review-card section is empty (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The required memorable-lines section is empty (STRUCTURALLY INVALID).",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an incomplete chapter scaffold, not a shippable learning unit. Its sole substantive paragraph offers a useful, plainspoken boundary—when harm is imminent, secure safety before conducting layered analysis—and supports it with concrete actions and a memorable closing line. However, the preceding move is never defined, both summary layers are placeholders, and every learning-support section is empty, including the quiz. Readers can infer one emergency principle, but they cannot reconstruct the intended larger framework, practice transfer, review the lesson, or demonstrate comprehension."
+}
+```

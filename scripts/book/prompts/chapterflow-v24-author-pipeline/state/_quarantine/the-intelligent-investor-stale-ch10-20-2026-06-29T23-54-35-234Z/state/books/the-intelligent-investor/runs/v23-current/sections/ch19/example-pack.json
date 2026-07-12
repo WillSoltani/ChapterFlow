@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "example-pack",
+  "chapterId": "the-intelligent-investor-ch19",
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Calendar Block Proxy Miss",
+      "scenario": "Eli drags a calendar block past the proxy materials reminder because the old default says a public shareholder is only watching quotes. Later, the skipped block matters: the materials covered director elections and selected corporate matters, so the owner role was not imaginary. The mistake is concrete because Eli did have a formal voting channel and treated it like background noise.",
+      "whatToDo": "Use the calendar block as a governance checkpoint: when proxy materials arrive, identify the vote, the directors or corporate matter involved, and the ownership claim behind the decision.",
+      "whyItMatters": "Common stock is not just a price on a screen; it carries residual claims and voting rights that can be ignored only by giving up part of the owner role.",
+      "sourceAnchorIds": [
+        "ch19.fact.1",
+        "ch19.example.1"
+      ],
+      "sourceFactIds": [
+        "ch19.fact.1"
+      ],
+      "namedCaseIds": [
+        "ch19.example.1"
+      ]
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Front Desk Retention Audit",
+      "scenario": "Sofia stands at the front desk with a note that says management should retain earnings because insiders know the business. Before leaving it there, she audits the sentence against dividend payout policy: retained earnings still belong to shareholders and need evidence of at least comparable value. The after note changes the decision from automatic trust to a request for justification before accepting lower shareholder distributions.",
+      "whatToDo": "Rewrite the front-desk note so retention is a claim to prove. Ask whether retained earnings are likely to create comparable value, and treat unexplained hoarding or waste as a reason to withhold trust.",
+      "whyItMatters": "Dividend payout policy is not a courtesy choice by management; it allocates shareholder profit between distributions and retained capital.",
+      "sourceAnchorIds": [
+        "ch19.fact.2",
+        "ch19.example.2"
+      ],
+      "sourceFactIds": [
+        "ch19.fact.2"
+      ],
+      "namedCaseIds": [
+        "ch19.example.2"
+      ]
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Budget App Payout Repair",
+      "scenario": "Jonah marks a low-dividend holding in the budget app as disappointing and starts removing it from the income plan. Iris pushes back because the note treats dividends as separate from valuation. The repair is tense: Jonah has to add retained earnings and capital redeployment to the same screen, including Berkshire Hathaway as a case where retention can make sense only when results justify trust. The decision changes, but only after the payout question is tied back to total owner return.",
+      "whatToDo": "Use the budget app to connect cash distributions with capital allocation. Before changing the holding, ask whether low dividends reflect productive retained earnings or merely an unsupported retention habit.",
+      "whyItMatters": "Dividend policy affects investment return because payout choices change income, valuation evidence, and the owner outcome of retained capital.",
+      "sourceAnchorIds": [
+        "ch19.fact.3",
+        "ch19.example.3"
+      ],
+      "sourceFactIds": [
+        "ch19.fact.3"
+      ],
+      "namedCaseIds": [
+        "ch19.example.3"
+      ]
+    }
+  ]
+}

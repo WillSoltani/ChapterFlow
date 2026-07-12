@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 10,
+    "quizzes": 0,
+    "transfer": 5,
+    "practical": 15,
+    "summaries": 5,
+    "tone": 25,
+    "limits": 45,
+    "insight": 20,
+    "density": 10,
+    "beginner": 35
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "When someone is about to be hurt, do not pause to draw the whole clock map.",
+      "why": "The one concrete, reader-useful sentence: it gives a clear exception and priority."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This reads like scaffold text, not a finished hook."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "The fast read fails its standalone promise because it contains no actual idea."
+    },
+    {
+      "quote": "## Quiz",
+      "why": "The quiz section is present but contains no questions, so the quiz cannot function."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "Placeholder text does not introduce a real chapter idea or reader problem.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "Section fails its standalone promise because it says only that there is a concise idea without stating one.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "Section fails its standalone promise because it gives only a placeholder phrase, not a developed angle.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "Section is missing content.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "Section is missing content, so the reader has no actionable practice.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Section is missing content, so there are no examples to support transfer.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Section is broken because it contains no quiz questions to answer.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "Section is missing content.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "Section is missing content.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The only usable material is one short safety exception in the full read; nearly every promised learning layer is absent or placeholder text. Because the quiz has no questions and several required sections are empty, this is structurally invalid rather than merely rough."
+}
+```

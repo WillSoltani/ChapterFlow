@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 2,
+    "quizzes": 0,
+    "transfer": 5,
+    "practical": 3,
+    "summaries": 0,
+    "tone": 25,
+    "limits": 0,
+    "insight": 2,
+    "density": 4,
+    "beginner": 3
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "The hook is production metadata rather than reader-facing subject matter."
+    },
+    {
+      "quote": "She must decide whether to request a business-rationale meeting or the meeting she actually needs, so she writes three words first: grief, fear, anger.",
+      "why": "This is the only concrete and potentially memorable situation, but the chapter never explains its underlying move or outcome."
+    },
+    {
+      "quote": "What to do: Apply the move to the situation.",
+      "why": "The instruction is unusable because no move has been defined anywhere in the chapter."
+    },
+    {
+      "quote": "Why it matters: It transfers the idea to practice.",
+      "why": "This merely asserts transfer without naming the idea, mechanism, decision, or consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Hook",
+      "problem": "The hook contains only phase-review metadata and introduces no topic, problem, promise, or core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "Fast read",
+      "problem": "The section is empty and therefore fails its stand-alone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "Deep read",
+      "problem": "The section is empty and provides no explanation or mechanism.",
+      "mustFix": true
+    },
+    {
+      "unit": "Full read",
+      "problem": "The section is empty, leaving the chapter without instructional prose.",
+      "mustFix": true
+    },
+    {
+      "unit": "Key takeaway",
+      "problem": "The section is empty, so the core move is never stated.",
+      "mustFix": true
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The section is empty and supplies no actionable exercise.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The scenario contains concrete details but never defines the move, explains why naming emotions changes the meeting choice, or shows the decision and its consequence; its instruction to apply an undefined move is unusable.",
+      "mustFix": true
+    },
+    {
+      "unit": "Quiz",
+      "problem": "The quiz section contains no questions, so the quiz is broken and no answers can be derived.",
+      "mustFix": true
+    },
+    {
+      "unit": "Review cards",
+      "problem": "The section is empty and provides no review material.",
+      "mustFix": true
+    },
+    {
+      "unit": "Memorable lines",
+      "problem": "The section is empty and supplies none of the promised retention aids.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfilled chapter scaffold rather than a shippable learning chapter. Nearly every required section is empty, there is no stated topic or core move, and the quiz has no questions. The Rachel scenario offers one specific image and hints at an emotionally honest meeting-preparation technique, but without explanatory prose, a mechanism, or an outcome, readers cannot know what to learn or do. The chapter fails the professional bar on structural validity, learnability, assessment, summaries, and practical application."
+}
+```

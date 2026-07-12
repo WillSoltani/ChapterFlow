@@ -1,0 +1,53 @@
+{
+  "chapterId": "start-with-why-ch09",
+  "number": 9,
+  "title": "Know WHY. Know HOW. Then WHAT?",
+  "coreMove": "A product is proof only after WHY names the promise and HOW names the conduct; otherwise WHAT can look useful while bringing nothing clear back.",
+  "exampleCount": 4,
+  "exampleSpecs": [
+    {
+      "domain": "product choice",
+      "audience": "a product lead",
+      "stakes": "a useful offer with no proof",
+      "format": "postmortem",
+      "requiredBeat": "spot the early signal before proof returns"
+    },
+    {
+      "domain": "launch choice",
+      "audience": "a launch lead",
+      "stakes": "a broad claim that costs proof",
+      "format": "planning_choice",
+      "requiredBeat": "state the standard and pay the cost"
+    },
+    {
+      "domain": "market read",
+      "audience": "a market analyst",
+      "stakes": "an impressive WHAT that bends meaning",
+      "format": "predict_reveal",
+      "requiredBeat": "catch the miss after the demand is already set"
+    },
+    {
+      "domain": "product proof",
+      "audience": "a product lead",
+      "stakes": "true facts doing false work",
+      "format": "audit",
+      "requiredBeat": "ask what stayed broken at the return"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 3,
+      "evaluate": 3
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 7,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-07-07T23:11:34.616Z"
+}

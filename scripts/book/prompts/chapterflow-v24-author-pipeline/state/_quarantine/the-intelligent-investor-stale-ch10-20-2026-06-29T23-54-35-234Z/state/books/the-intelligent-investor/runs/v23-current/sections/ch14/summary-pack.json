@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "summary-pack",
+  "chapterId": "the-intelligent-investor-ch14",
+  "hook": {
+    "hook": "A fast-growing small stock can look safer than it is when size, records, liquidity, and resilience are left unchecked.",
+    "counterintuition": "Defensive stock selection starts by excluding doubtful issues. Adequate size, strong financial condition, stable earnings, dividend record, demonstrated growth, and moderate valuation work together as a procedure, not as isolated proofs.",
+    "sourceAnchorIds": [
+      "ch14.fact.1"
+    ],
+    "counterintuitionSourceAnchorIds": [
+      "ch14.fact.1",
+      "ch14.fact.2",
+      "ch14.fact.3",
+      "ch14.fact.4",
+      "ch14.fact.5",
+      "ch14.fact.8",
+      "ch14.fact.9",
+      "ch14.framework.seven.defensive.stock.tests"
+    ]
+  },
+  "breakdown": {
+    "fastRead": "Defensive stock selection is an exclusion procedure. Adequate company size matters because very small companies can carry limited records, liquidity, and resilience. Strong financial condition matters because weak balance sheets can turn ordinary business setbacks into shareholder losses. Earnings stability across years matters because erratic profits make conservative appraisal unreliable, and a long dividend record can show durability and financial consistency. Some earnings growth is required, but the aim is moderate demonstrated growth rather than a glamour forecast. The valuation checks also matter: moderate price to earnings and moderate price to assets guard against paying too much. The tests work as a group, so one attractive feature cannot repair several failures.",
+    "deepRead": "The defensive filter begins with a refusal to treat a promising story as enough. Adequate company size is required because very small companies can carry limited records, liquidity, and resilience. The common mistake is to assume small size is safer because growth can be faster. That reverses the risk: size risk can overwhelm growth hopes before the hoped-for growth matters.\n\nFinancial strength is the next guard. A good product does not cancel a weak balance sheet. Strong financial condition is required because weak balance sheets can turn ordinary business setbacks into shareholder losses. Debt and liquidity still matter when conditions become less forgiving.\n\nThe earnings record needs both stability and some growth. Earnings stability across years is required because erratic profits make conservative appraisal unreliable. One excellent year may not represent earning power. A long dividend record also belongs in the test set because sustained payments indicate durability and shareholder orientation. Earnings growth matters too, but not as a glamour forecast. Stagnant long-term earnings can erode real value, while moderate demonstrated growth is the conservative aim.\n\nValuation supplies the final restraints. Moderate price to earnings prevents overpaying for quality, and moderate price to assets supplies a second valuation guard because earnings can be temporarily inflated while asset value gives another check. The checklist is cumulative: passing one famous metric is not enough.",
+    "fullRead": "Defensive stock selection converts caution into a set of exclusions. The goal is not to find every possible winner. The goal is to keep doubtful issues out before a hopeful story becomes a purchase. That begins with adequate company size. Very small companies can carry limited records, liquidity, and resilience, so the apparent appeal of faster growth does not automatically make them safer. The defensive investor needs enough record and resilience to make conservative judgment possible.\n\nFinancial condition is the second screen. Strong financial condition is required because weak balance sheets can turn ordinary business setbacks into shareholder losses. A business may have a good product and still be fragile if debt and liquidity are poor. The checklist therefore refuses to let product appeal replace balance-sheet evidence. Defensive selection asks whether the company can absorb ordinary pressure without transferring the damage to shareholders.\n\nThe earnings record then has to prove more than a single bright moment. Earnings stability across years is required because erratic profits make conservative appraisal unreliable. One excellent year can mislead if it does not represent earning power. A long dividend record adds another kind of evidence: sustained payments indicate durability and shareholder orientation, and they also show financial consistency rather than serving only income investors. Some earnings growth is required as well, but the aim is moderate demonstrated growth, not explosive growth. Stagnant long-term earnings can erode real value, while glamour forecasts can pull the investor away from evidence.\n\nValuation keeps quality from becoming an excuse to overpay. Moderate price to earnings matters because even stable companies can deliver poor returns from excessive multiples. A quality company does not deserve any price. Moderate price to assets gives a second guard because earnings can be temporarily inflated while asset value gives another check. Asset value is not irrelevant to common stocks; assets affect downside and appraisal.\n\nThe tests work as a group. Adequate size, strong financial condition, earnings stability, dividend record, earnings growth, moderate price to earnings, and moderate price to assets are cumulative safeguards. One strong feature cannot offset several failures. Published records such as Standard & Poor's stock data and Moody's manuals represent the kind of source evidence needed for applying the screen: historical earnings, dividends, balance-sheet figures, and bond and stock records. Defensive selection depends on records, not impressions.",
+    "sourceAnchorIds": {
+      "fastRead": [
+        "ch14.fact.1",
+        "ch14.fact.2",
+        "ch14.fact.3",
+        "ch14.fact.4",
+        "ch14.fact.5",
+        "ch14.fact.6",
+        "ch14.fact.7",
+        "ch14.fact.8"
+      ],
+      "deepRead": [
+        "ch14.fact.1",
+        "ch14.fact.2",
+        "ch14.fact.3",
+        "ch14.fact.4",
+        "ch14.fact.5",
+        "ch14.fact.6",
+        "ch14.fact.7",
+        "ch14.fact.8"
+      ],
+      "fullRead": [
+        "ch14.fact.1",
+        "ch14.fact.2",
+        "ch14.fact.3",
+        "ch14.fact.4",
+        "ch14.fact.5",
+        "ch14.fact.6",
+        "ch14.fact.7",
+        "ch14.fact.8",
+        "ch14.fact.9",
+        "ch14.example.1",
+        "ch14.example.2",
+        "ch14.framework.seven.defensive.stock.tests"
+      ]
+    }
+  },
+  "keyTakeaway": "Use the defensive stock checklist as an exclusion screen: require adequate size, financial strength, stable and growing earnings, dividend evidence, and moderate valuation before trusting the story.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch14.fact.1",
+    "ch14.fact.2",
+    "ch14.fact.3",
+    "ch14.fact.4",
+    "ch14.fact.5",
+    "ch14.fact.6",
+    "ch14.fact.7",
+    "ch14.fact.8",
+    "ch14.fact.9",
+    "ch14.framework.seven.defensive.stock.tests"
+  ],
+  "tryThisNow": "Before considering a stock, write an if-then line: if it fails adequate size, financial condition, earnings stability, dividend record, earnings growth, moderate price to earnings, or moderate price to assets, then it stays out.",
+  "tryThisNowSourceAnchorIds": [
+    "ch14.fact.1",
+    "ch14.fact.2",
+    "ch14.fact.3",
+    "ch14.fact.4",
+    "ch14.fact.5",
+    "ch14.fact.6",
+    "ch14.fact.7",
+    "ch14.fact.8",
+    "ch14.fact.9",
+    "ch14.framework.seven.defensive.stock.tests"
+  ],
+  "sourceFactIds": [
+    "ch14.fact.1",
+    "ch14.fact.2",
+    "ch14.fact.3",
+    "ch14.fact.4",
+    "ch14.fact.5",
+    "ch14.fact.6",
+    "ch14.fact.7",
+    "ch14.fact.8",
+    "ch14.fact.9"
+  ]
+}

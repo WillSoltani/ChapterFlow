@@ -1,0 +1,240 @@
+{
+  "schemaVersion": "author-acceptance-v1",
+  "bookId": "start-with-why",
+  "roundLabel": "-round2",
+  "at": "2026-07-05T21:53:32.651Z",
+  "bar": 80,
+  "beatShipped": 73.1,
+  "accepted": false,
+  "sampledChapters": [
+    2,
+    6,
+    7,
+    11
+  ],
+  "docSha256": "729d1f192ab483db76f5574d9ff555c7f1b5770cd099cbd7abb5852096fd6b7e",
+  "verdict": {
+    "id": "start-with-why",
+    "medianComposite": 74.1,
+    "factors": {
+      "retention": 78,
+      "quizzes": 74,
+      "transfer": 80,
+      "practical": 74,
+      "summaries": 77,
+      "tone": 64,
+      "limits": 81,
+      "insight": 72,
+      "density": 60,
+      "beginner": 78
+    },
+    "gate": "PASS",
+    "gateVotes": "3P/0F",
+    "churn": "HIGH",
+    "validCount": 3,
+    "readerCount": 3,
+    "chapters": [
+      2,
+      6,
+      7,
+      11
+    ],
+    "readers": [
+      {
+        "reviewerSessionId": "auto-author-book-reader-1-round2-p3-mr8buf3a-25",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 76,
+          "quizzes": 78,
+          "transfer": 78,
+          "practical": 74,
+          "summaries": 76,
+          "tone": 62,
+          "limits": 81,
+          "insight": 68,
+          "density": 60,
+          "beginner": 74
+        },
+        "composite": 73.2,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is mechanically sound and the quiz keys are supported by the prose, so it passes the correctness gate. The best lines are genuinely sticky, and the chapters often teach reusable lenses rather than mere tips. The main weakness is churn: every chapter leans on the same architecture of named anchors, second settings, hard details staying with their source, order reversals, return points, proxy names, and identical practice shells. That makes the book feel over-engineered and less individually authored than a premium reading experience should.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-2-round2-p3-mr8buf3f-26",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 82,
+          "quizzes": 66,
+          "transfer": 83,
+          "practical": 75,
+          "summaries": 78,
+          "tone": 64,
+          "limits": 82,
+          "insight": 73,
+          "density": 60,
+          "beginner": 78
+        },
+        "composite": 74.4,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is correct and mostly answerable, with several strong portable lines and clear mechanisms. Its largest weakness is churn: the chapters repeatedly use the same machinery of named anchors, second settings, edge details, proxy characters, return points, and hard facts staying with sources. That makes the book useful but noticeably manufactured. The quizzes are sound against the prose, yet many answers are too easy because the same preferred move keeps recurring while distractors are visibly wrong. Overall this is a solid draft with real teaching value, but it needs more chapter-specific voice, fresher examples, denser prose, and less visible template scaffolding before it feels premium.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-3-round2-p3-mr8buf3g-27",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 78,
+          "quizzes": 74,
+          "transfer": 80,
+          "practical": 73,
+          "summaries": 77,
+          "tone": 66,
+          "limits": 76,
+          "insight": 72,
+          "density": 63,
+          "beginner": 79
+        },
+        "composite": 74.1,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 5,
+        "quotesTotal": 5,
+        "oneParagraphVerdict": "The sample is sound enough to pass the correctness gate: I found no contradicted keyed answers, no unsupported quiz keys, and no fatal factual or coherence break from the chapters themselves. As a book sample, it is a solid but visibly templated draft. The best lines are sticky and the core lenses are transferable, especially around separating visible tactics from underlying reasons. The main weakness is churn: nearly every chapter uses the same architecture of named anchors, second setting, edge detail, order reversal, hard facts staying with their source, and a short Friday-style practice. That repetition makes the prose feel engineered rather than individually authored, lowers density, and weakens the book voice despite generally clear beginner-friendly writing.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      }
+    ]
+  },
+  "readers": [
+    {
+      "reviewerSessionId": "auto-author-book-reader-1-round2-p3-mr8buf3a-25",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 76,
+        "quizzes": 78,
+        "transfer": 78,
+        "practical": 74,
+        "summaries": 76,
+        "tone": 62,
+        "limits": 81,
+        "insight": 68,
+        "density": 60,
+        "beginner": 74
+      },
+      "composite": 73.2,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is mechanically sound and the quiz keys are supported by the prose, so it passes the correctness gate. The best lines are genuinely sticky, and the chapters often teach reusable lenses rather than mere tips. The main weakness is churn: every chapter leans on the same architecture of named anchors, second settings, hard details staying with their source, order reversals, return points, proxy names, and identical practice shells. That makes the book feel over-engineered and less individually authored than a premium reading experience should.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-2-round2-p3-mr8buf3f-26",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 82,
+        "quizzes": 66,
+        "transfer": 83,
+        "practical": 75,
+        "summaries": 78,
+        "tone": 64,
+        "limits": 82,
+        "insight": 73,
+        "density": 60,
+        "beginner": 78
+      },
+      "composite": 74.4,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is correct and mostly answerable, with several strong portable lines and clear mechanisms. Its largest weakness is churn: the chapters repeatedly use the same machinery of named anchors, second settings, edge details, proxy characters, return points, and hard facts staying with sources. That makes the book useful but noticeably manufactured. The quizzes are sound against the prose, yet many answers are too easy because the same preferred move keeps recurring while distractors are visibly wrong. Overall this is a solid draft with real teaching value, but it needs more chapter-specific voice, fresher examples, denser prose, and less visible template scaffolding before it feels premium.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-3-round2-p3-mr8buf3g-27",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 78,
+        "quizzes": 74,
+        "transfer": 80,
+        "practical": 73,
+        "summaries": 77,
+        "tone": 66,
+        "limits": 76,
+        "insight": 72,
+        "density": 63,
+        "beginner": 79
+      },
+      "composite": 74.1,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 5,
+      "quotesTotal": 5,
+      "oneParagraphVerdict": "The sample is sound enough to pass the correctness gate: I found no contradicted keyed answers, no unsupported quiz keys, and no fatal factual or coherence break from the chapters themselves. As a book sample, it is a solid but visibly templated draft. The best lines are sticky and the core lenses are transferable, especially around separating visible tactics from underlying reasons. The main weakness is churn: nearly every chapter uses the same architecture of named anchors, second setting, edge detail, order reversal, hard facts staying with their source, and a short Friday-style practice. That repetition makes the prose feel engineered rather than individually authored, lowers density, and weakens the book voice despite generally clear beginner-friendly writing.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    }
+  ],
+  "pooled": {
+    "reads": 3,
+    "composite": 74.2,
+    "gate": "PASS",
+    "noiseBand": 3.7,
+    "capped": true
+  }
+}

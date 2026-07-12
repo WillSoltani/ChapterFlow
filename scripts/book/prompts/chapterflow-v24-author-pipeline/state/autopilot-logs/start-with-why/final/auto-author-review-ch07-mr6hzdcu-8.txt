@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "b", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": ["Q3 key says c, but the prose's shown cause is that the speaker aimed at cautious/late people before early carriers had proof. Choice c names a remedy/source-grounding issue, not the one cause the question asks for."],
+    "tells": ["Q4's correct choice is the only one that lists all five Rogers categories, making it guessable by term-matching.", "Q1, Q2, and Q9 lean on rare numbers/proper nouns from the prose, which makes some answers guessable by anchor-matching more than reasoning."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 72,
+    "transfer": 86,
+    "practical": 84,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 86,
+    "insight": 88,
+    "density": 82,
+    "beginner": 84
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The majority is not lazy. It is waiting for the risk to look paid.",
+      "why": "Strongest line: memorable, plain, and explains the mechanism without jargon."
+    },
+    {
+      "quote": "The price of aiming at everyone first is a promise with no early carriers.",
+      "why": "Strong summary of the chapter's core move."
+    },
+    {
+      "quote": "riders praise a useful device, then ask who else has tried it. The product was a 1999 tool for shifting television time.",
+      "why": "Worst defect: the bicycle-shop/riders scene blurs awkwardly into TiVo, making the example feel stitched together."
+    },
+    {
+      "quote": "Q3: c — The move stays grounded in Rogers, the March, and TiVo.",
+      "why": "The answer key misses the causal question; this is grounding advice, not the earlier error that caused the failed talk."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "The stem asks what earlier error explains the miss, but the keyed answer names lack of grounding in three anchors. The prose's actual causal mechanism is asking cautious/late people to move before early carriers have proof.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The scene mixes a shop with riders and a 1999 television DVR product, which makes the concrete example confusing instead of clarifying transfer.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct option is highly telegraphed because it uniquely lists all five category names from the prose while the distractors are obviously bad shortcuts.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter repeats the same core command to count first carriers several times; memorable, but a few paragraphs trade density for echo.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a clear mechanism: do not ask the cautious middle to create proof that only earlier carriers can create. The summaries, takeaway, review cards, and memorable lines mostly reinforce that move well, and the March/TiVo anchors add useful limits. I would not ship yet because Q3 has an unsound key on a causal stem, and Example 1's bicycle-shop/TiVo blend damages trust in the page's concrete examples. Fix those and reduce the most repetitive echoes, and it is close to publishable."
+}
+```

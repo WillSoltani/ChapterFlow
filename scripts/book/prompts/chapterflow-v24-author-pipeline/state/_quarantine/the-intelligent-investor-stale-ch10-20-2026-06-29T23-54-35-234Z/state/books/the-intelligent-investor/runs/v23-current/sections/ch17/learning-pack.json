@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "learning-pack",
+  "chapterId": "the-intelligent-investor-ch17",
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorIds": [
+          "ch17.fact.1"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch17.fact.1"
+        ],
+        "prompt": "A famous issuer carries a major corporate name, so its securities are treated as automatically safe. Which warning applies?",
+        "choices": [
+          "Fame proves credit safety when the issuer is large.",
+          "A major name removes the need to inspect merger problems.",
+          "Penn Central's 1970 bankruptcy showed that prominence can still hide weak finances and unsafe securities."
+        ],
+        "correctIndex": 2,
+        "explanation": "Penn Central's 1970 bankruptcy exposed weak finances behind a major railroad name. Prominence did not overcome weak finances and merger problems.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorIds": [
+          "ch17.fact.2"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch17.fact.2"
+        ],
+        "prompt": "A company reports rapid acquisition growth and the market treats the expansion as proof of managerial skill. What should be checked first?",
+        "choices": [
+          "Whether conglomerate accounting and leverage make expansion look better than economic reality.",
+          "Whether acquisition growth alone proves durable value.",
+          "Whether debt-financed growth should be accepted because it creates a larger company."
+        ],
+        "correctIndex": 0,
+        "explanation": "Ling-Temco-Vought's acquisition growth required skepticism because conglomerate accounting and leverage can flatter apparent expansion.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorIds": [
+          "ch17.fact.3"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch17.fact.3"
+        ],
+        "prompt": "A transaction has layered securities and accounting treatment that make owner economics hard to see. What is the safer interpretation?",
+        "choices": [
+          "Complex capital structures create automatic bargains.",
+          "Financing complexity can hide risk and conceal value transfer.",
+          "Hard-to-appraise securities should be trusted because complexity signals sophistication."
+        ],
+        "correctIndex": 1,
+        "explanation": "NVF's Sharon Steel transaction shows how layered securities and accounting treatment can obscure risk rather than create an automatic bargain.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorIds": [
+          "ch17.fact.4"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch17.fact.4"
+        ],
+        "prompt": "A small company story has strong market appeal but only thin operating evidence. What conclusion follows?",
+        "choices": [
+          "Thin evidence cannot support a high price just because the story is appealing.",
+          "A small company story deserves a growth multiple by default.",
+          "Promotion can substitute for verified business substance."
+        ],
+        "correctIndex": 0,
+        "explanation": "AAA Enterprises illustrates the danger of promotional small issues. Market appeal can run ahead of verified business substance.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorIds": [
+          "ch17.fact.5"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch17.fact.5"
+        ],
+        "prompt": "An investor dismisses Penn Central and LTV because old failures seem irrelevant. What reading habit is being missed?",
+        "choices": [
+          "Treat old company names as the only useful information.",
+          "Use the cases for pattern recognition because leverage, promotion, and accounting issues recur under new labels.",
+          "Ignore old failures unless the same company name appears again."
+        ],
+        "correctIndex": 1,
+        "explanation": "Penn Central and LTV matter as pattern recognition. Company names change, while leverage, promotion, and accounting problems can repeat.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorIds": [
+          "ch17.fact.6"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch17.fact.6"
+        ],
+        "prompt": "A bond from a large company is accepted without credit analysis because the claim is senior. What risk remains?",
+        "choices": [
+          "Large-company bonds are automatically safe.",
+          "Senior claims remove issuer weakness from consideration.",
+          "Weak issuers can impair senior claims too, so bond investors need skepticism."
+        ],
+        "correctIndex": 2,
+        "explanation": "Bond investors need as much skepticism as stock investors. Credit analysis remains necessary because weak issuers can impair senior claims too.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorIds": [
+          "ch17.fact.7"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch17.fact.7"
+        ],
+        "prompt": "Reported growth follows a merger, and the increase is presented as organic progress. What should a careful reader question?",
+        "choices": [
+          "Whether every post-merger increase proves organic progress.",
+          "Whether purchase terms and consolidation have repackaged acquired figures.",
+          "Whether accounting becomes irrelevant after a merger closes."
+        ],
+        "correctIndex": 1,
+        "explanation": "Acquisition accounting can distort earnings impressions because purchase terms and consolidation can shift how performance appears.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorIds": [
+          "ch17.fact.8"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch17.fact.8"
+        ],
+        "prompt": "A failure analysis focuses only on ratios and ignores who benefits from the structure. What important factor is missing?",
+        "choices": [
+          "Only financial ratios matter in failures.",
+          "Management incentives are irrelevant once the numbers are available.",
+          "Governance and incentives matter because capital allocation can transfer risk to outside investors."
+        ],
+        "correctIndex": 2,
+        "explanation": "Governance and management incentives affect security value. Human incentives can drive structures that transfer risk to outside investors.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorIds": [
+          "ch17.fact.9"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch17.fact.9"
+        ],
+        "prompt": "A case is opaque, and the pitch implies professionals must have found hidden value. What demand protects the investor?",
+        "choices": [
+          "Demand simple, understandable evidence because opacity leaves room for promotional interpretation.",
+          "Assume opacity benefits outside investors.",
+          "Accept hard-to-understand cases when sellers present them confidently."
+        ],
+        "correctIndex": 0,
+        "explanation": "The investor should demand simple, understandable evidence. Opaque cases leave too much room for promotional interpretation and can benefit sellers and insiders.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cards": {
+    "cards": [
+      {
+        "cardId": "rc01",
+        "sourceAnchorIds": [
+          "ch17.fact.1"
+        ],
+        "front": "What did Penn Central's 1970 bankruptcy show about famous issuers?",
+        "back": "A famous name can still carry unsafe securities. Prominence did not overcome weak finances and merger problems.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc02",
+        "sourceAnchorIds": [
+          "ch17.fact.2"
+        ],
+        "front": "Why did Ling-Temco-Vought's acquisition growth require skepticism?",
+        "back": "Conglomerate accounting and leverage can make expansion look better than economic reality. Debt-financed growth can collapse.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc03",
+        "sourceAnchorIds": [
+          "ch17.fact.3"
+        ],
+        "front": "What risk can financing complexity hide?",
+        "back": "Layered securities and accounting treatment can make owner economics harder to see. Complexity can conceal value transfer.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc04",
+        "sourceAnchorIds": [
+          "ch17.fact.4"
+        ],
+        "front": "What does AAA Enterprises illustrate about small issues?",
+        "back": "Promotion can push market appeal ahead of verified business substance. Thin evidence cannot support a high price.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc05",
+        "sourceAnchorIds": [
+          "ch17.fact.5"
+        ],
+        "front": "How should Penn Central and LTV be used as case histories?",
+        "back": "Use them for pattern recognition. Company names change, but leverage, promotion, and accounting issues recur.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc06",
+        "sourceAnchorIds": [
+          "ch17.fact.6"
+        ],
+        "front": "Why do bond investors need as much skepticism as stock investors?",
+        "back": "Weak issuers can impair senior claims too. Bonds of large companies are not automatically safe, so credit analysis remains necessary.",
+        "difficulty": "hard"
+      },
+      {
+        "cardId": "rc07",
+        "sourceAnchorIds": [
+          "ch17.fact.7"
+        ],
+        "front": "How can acquisition accounting distort earnings impressions?",
+        "back": "Purchase terms and consolidation can shift how performance appears. Reported growth after a merger may repackage acquired figures rather than show organic progress.",
+        "difficulty": "hard"
+      }
+    ]
+  }
+}

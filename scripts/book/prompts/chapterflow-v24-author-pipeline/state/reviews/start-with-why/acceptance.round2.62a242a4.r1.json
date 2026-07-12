@@ -1,0 +1,284 @@
+{
+  "schemaVersion": "author-acceptance-v1",
+  "bookId": "start-with-why",
+  "roundLabel": "-round2",
+  "at": "2026-07-08T07:11:02.798Z",
+  "bar": 80,
+  "beatShipped": 72.1,
+  "accepted": false,
+  "sampledChapters": [
+    2,
+    3,
+    5,
+    6
+  ],
+  "docSha256": "62a242a43a34327d6325b2b5084633358d8a4c9472425af9e9d205b031b16f53",
+  "verdict": {
+    "id": "start-with-why",
+    "medianComposite": 73.1,
+    "factors": {
+      "retention": 78,
+      "quizzes": 74,
+      "transfer": 78,
+      "practical": 72,
+      "summaries": 78,
+      "tone": 66,
+      "limits": 75,
+      "insight": 68,
+      "density": 64,
+      "beginner": 73
+    },
+    "gate": "PASS",
+    "gateVotes": "3P/0F",
+    "churn": "HIGH",
+    "validCount": 3,
+    "readerCount": 3,
+    "chapters": [
+      2,
+      3,
+      5,
+      6
+    ],
+    "readers": [
+      {
+        "reviewerSessionId": "auto-author-book-reader-1-round2-mrbqmrf1-19",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 80,
+          "quizzes": 74,
+          "transfer": 80,
+          "practical": 72,
+          "summaries": 78,
+          "tone": 68,
+          "limits": 82,
+          "insight": 70,
+          "density": 66,
+          "beginner": 75
+        },
+        "composite": 74.9,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is sound enough on correctness: I found no keyed answer contradicted by the prose, and the major factual anchors appear supportable from the chapter text. As a book sample, though, it reads heavily engineered. The strongest material is the repeated insistence on inspecting behavior, keeping details with their source, and not letting visible tactics prove deeper belief. Those are useful lenses. The weakness is sameness: every chapter leans on the same named-example scaffold, the same hard-detail-drift warning, the same compare-a-second-setting move, and similar quizzes where the correct answer is often the longest careful option. This is a solid draft with several strong teaching lines, but the churn, hollow proxy scenes, and density problems keep it below premium.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-2-round2-mrbqmrf5-20",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 78,
+          "quizzes": 82,
+          "transfer": 76,
+          "practical": 72,
+          "summaries": 79,
+          "tone": 66,
+          "limits": 74,
+          "insight": 68,
+          "density": 64,
+          "beginner": 73
+        },
+        "composite": 73.9,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is sound on quiz support: I found no keyed answer contradicted by the chapter prose, and most questions are scenario-based rather than pure recall. The strongest learning value comes from a few sticky diagnostic lines and a useful source-discipline lens: do not let visible tactics, borrowed facts, or named examples carry claims they have not earned. The major weakness is churn. Across chapters, the same machinery repeats: named source as checkable ground, second setting as contrast, hard detail must stay home, visible conduct must pay the reason, and true detail in wrong setting becomes false footing. That repetition makes the book feel less individually authored than it should. It is publishable as a solid instructional draft, but not premium: practical exercises are doable yet somewhat artificial, examples often feel like constructed teaching scenes, and the prose leans on a narrow house vocabulary of cost, debt, bill, edge, ground, and visible proof.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-3-round2-mrbqmrf8-21",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 74,
+          "quizzes": 70,
+          "transfer": 78,
+          "practical": 69,
+          "summaries": 77,
+          "tone": 61,
+          "limits": 75,
+          "insight": 63,
+          "density": 58,
+          "beginner": 73
+        },
+        "composite": 70.3,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is coherent and mostly quiz-sound, with no hard contradiction between prose and key. Its best teaching move is a reusable lens: separate the stated reason, the visible conduct, and the concrete setting before trusting a result. But across the sample, the chapters feel heavily templated: named source, second anchor, edge detail, borrowed-detail warning, if-then practice, and scenario quizzes repeat with nouns swapped. The prose is plain and often useful, yet it overuses house abstractions like bill, cost, debt, stamp, token, and false ground. This is publishable as structured draft material, but not yet premium book-learning: it needs less scaffold visibility, more genuinely distinct scenes, sharper examples from the source book, and more natural practice design.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      }
+    ]
+  },
+  "readers": [
+    {
+      "reviewerSessionId": "auto-author-book-reader-1-round2-mrbqmrf1-19",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 80,
+        "quizzes": 74,
+        "transfer": 80,
+        "practical": 72,
+        "summaries": 78,
+        "tone": 68,
+        "limits": 82,
+        "insight": 70,
+        "density": 66,
+        "beginner": 75
+      },
+      "composite": 74.9,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is sound enough on correctness: I found no keyed answer contradicted by the prose, and the major factual anchors appear supportable from the chapter text. As a book sample, though, it reads heavily engineered. The strongest material is the repeated insistence on inspecting behavior, keeping details with their source, and not letting visible tactics prove deeper belief. Those are useful lenses. The weakness is sameness: every chapter leans on the same named-example scaffold, the same hard-detail-drift warning, the same compare-a-second-setting move, and similar quizzes where the correct answer is often the longest careful option. This is a solid draft with several strong teaching lines, but the churn, hollow proxy scenes, and density problems keep it below premium.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-2-round2-mrbqmrf5-20",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 78,
+        "quizzes": 82,
+        "transfer": 76,
+        "practical": 72,
+        "summaries": 79,
+        "tone": 66,
+        "limits": 74,
+        "insight": 68,
+        "density": 64,
+        "beginner": 73
+      },
+      "composite": 73.9,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is sound on quiz support: I found no keyed answer contradicted by the chapter prose, and most questions are scenario-based rather than pure recall. The strongest learning value comes from a few sticky diagnostic lines and a useful source-discipline lens: do not let visible tactics, borrowed facts, or named examples carry claims they have not earned. The major weakness is churn. Across chapters, the same machinery repeats: named source as checkable ground, second setting as contrast, hard detail must stay home, visible conduct must pay the reason, and true detail in wrong setting becomes false footing. That repetition makes the book feel less individually authored than it should. It is publishable as a solid instructional draft, but not premium: practical exercises are doable yet somewhat artificial, examples often feel like constructed teaching scenes, and the prose leans on a narrow house vocabulary of cost, debt, bill, edge, ground, and visible proof.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-3-round2-mrbqmrf8-21",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 74,
+        "quizzes": 70,
+        "transfer": 78,
+        "practical": 69,
+        "summaries": 77,
+        "tone": 61,
+        "limits": 75,
+        "insight": 63,
+        "density": 58,
+        "beginner": 73
+      },
+      "composite": 70.3,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is coherent and mostly quiz-sound, with no hard contradiction between prose and key. Its best teaching move is a reusable lens: separate the stated reason, the visible conduct, and the concrete setting before trusting a result. But across the sample, the chapters feel heavily templated: named source, second anchor, edge detail, borrowed-detail warning, if-then practice, and scenario quizzes repeat with nouns swapped. The prose is plain and often useful, yet it overuses house abstractions like bill, cost, debt, stamp, token, and false ground. This is publishable as structured draft material, but not yet premium book-learning: it needs less scaffold visibility, more genuinely distinct scenes, sharper examples from the source book, and more natural practice design.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    }
+  ],
+  "pooled": {
+    "reads": 1,
+    "composite": 73.1,
+    "gate": "PASS",
+    "noiseBand": 3.7,
+    "capped": false
+  },
+  "structuralSameness": {
+    "mode": "advisory",
+    "archAxes": [
+      {
+        "id": "ARCH1.practice_shell_monoculture",
+        "chapters": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      }
+    ],
+    "archSevere": false,
+    "contentOverCap": [
+      {
+        "id": "practice-shell",
+        "frac": 0.86,
+        "chapters": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      }
+    ],
+    "contentSevere": false
+  }
+}

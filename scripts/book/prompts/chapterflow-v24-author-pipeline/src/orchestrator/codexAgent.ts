@@ -136,6 +136,10 @@ export type SpawnCodexAgentOptions = {
    *  Default logs/exec under the pipeline root. `null` suppresses persistence —
    *  allowed ONLY with an injected runner (an unprovable REAL run must not run). */
   manifestSink?: string | null;
+  /** IMP-22 isolation seam: directory for the installed-CLI qualification
+   *  cache. Defaults to the canonical manifest sink for all existing callers;
+   *  experiment drivers may bind it to an experiment-local evidence root. */
+  qualificationCacheDir?: string;
   /** IMP-00 test seam: base dir for the per-spawn isolated session (CODEX_HOME
    *  + last-message capture). Default: os tmpdir. */
   execBaseDir?: string;
@@ -277,7 +281,10 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
     throw new ExecPreflightError("spawnCodexAgent: manifest persistence cannot be suppressed for a REAL spawn (unprovable envelope)");
   }
   const qualification = opts.qualification
-    ?? (runnerInjected ? syntheticQualification() : await qualifyCodexCli({ bin, cacheDir: defaultManifestSink() }));
+    ?? (runnerInjected ? syntheticQualification() : await qualifyCodexCli({
+      bin,
+      cacheDir: opts.qualificationCacheDir ?? defaultManifestSink(),
+    }));
 
   if (!sweptStaleThisProcess) {
     sweptStaleThisProcess = true;

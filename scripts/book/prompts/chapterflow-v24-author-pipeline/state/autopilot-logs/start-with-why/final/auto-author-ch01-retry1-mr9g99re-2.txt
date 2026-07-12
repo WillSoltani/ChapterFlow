@@ -1,0 +1,12 @@
+Wrote the replacement chapter file here:
+
+[state/chapters/start-with-why-ch01.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch01.v21-native.chapter.json)
+
+Validation passed:
+
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 0 minors
+- `quiz-verify`: 9/9 match
+- `evidence-audit`: no candidates
+- Rendered length: 16,785 chars, inside budget
+- Rubric metrics for ch01: `ease=73.235`, `tell=0`, `transfer=0.778`, `memClean=3`, `lenTell=4`, `practice=2`.

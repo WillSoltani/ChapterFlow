@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "a", "b", "a", "a", "c", "c"],
+    "keyDisagreements": [],
+    "tells": ["Q2's correct answer is the only choice that repeats the chapter's exact reason/way/visible-thing framework.", "Q8's correct answer echoes the prose's phrase that the Lincoln Memorial 'marks the edge,' making it easier to spot without full derivation."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 84,
+    "practical": 82,
+    "summaries": 90,
+    "tone": 82,
+    "limits": 88,
+    "insight": 86,
+    "density": 84,
+    "beginner": 83
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A product is a receipt: visible proof that the reason had a body.",
+      "why": "Strongest concrete image; it makes WHAT memorable without jargon."
+    },
+    {
+      "quote": "Use the Golden Circle as a sequence, not a costume.",
+      "why": "Cleanly captures the chapter's core warning in a line readers can reuse."
+    },
+    {
+      "quote": "1976 marks Apple Inc. at the start; the stake is whether behavior answers WHY.",
+      "why": "The hook is compressed and unnatural; it signals template machinery before the idea has warmed up."
+    },
+    {
+      "quote": "She sets a new return point, but the revised line has not yet met it.",
+      "why": "The example leaves the repair unresolved in a way that can confuse a beginner trying to imitate the move."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening sentence is stiff and abstract; '1976 marks Apple Inc. at the start' is grammatically awkward and does not give a beginner a clean entry point.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The example says Sylvia 'leaves it unmet' and 'waits for proof,' which is conceptually honest but less actionable than showing one concrete acceptable return point.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 4",
+      "problem": "The scenario says 'The miss is not fixed' and later says she moves Cupertino back, then says the return point remains open. That sequencing is harder to follow than the rest of the chapter.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q2",
+      "problem": "The correct option telegraphs itself by using the chapter's exact three-part vocabulary more directly than the distractors.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The correct option closely mirrors the prose's 'Lincoln Memorial marks the edge' language, creating a mild answer-key tell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable at the professional bar. Its central move is memorable, transferable, and well bounded: WHY leads only when people must decide whether to care, HOW must carry behavior, and WHAT must return as visible proof. The best lines are strong enough to stick for a week. The main weaknesses are a stiff hook, slightly over-engineered example names/scenes, and a few quiz choices that echo the prose too visibly, but none of those defects breaks the learning path or the answer key."
+}
+```

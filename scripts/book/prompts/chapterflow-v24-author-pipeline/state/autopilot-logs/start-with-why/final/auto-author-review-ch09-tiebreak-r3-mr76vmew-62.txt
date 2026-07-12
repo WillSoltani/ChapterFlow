@@ -1,0 +1,66 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "c", "b", "b", "a", "b", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Correct answers often reuse the chapter's exact teaching nouns while distractors are visibly reckless or authority-seeking.",
+      "Several wrong choices announce themselves with giveaway phrasing such as rank deciding the answer, borrowed confidence, or any useful device supplying signal."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 87,
+    "transfer": 82,
+    "practical": 84,
+    "summaries": 90,
+    "tone": 82,
+    "limits": 91,
+    "insight": 88,
+    "density": 84,
+    "beginner": 86
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A product is a receipt, not a reason.",
+      "why": "Strongest memorable line; it compresses the chapter's central move cleanly."
+    },
+    {
+      "quote": "If any part is missing, do the honest thing: narrow the claim, delay the verdict, or stop calling the offer proof.",
+      "why": "Strong limit statement that keeps the method from becoming a blanket slogan."
+    },
+    {
+      "quote": "Product lead Vincent catches the first unmarked clue: the blue circle around plausible.",
+      "why": "Weakest passage; it imports a visual cue the reader has not been given and feels like internal scaffold."
+    },
+    {
+      "quote": "What to do: Vincent starts by telling you what to do: circle the first useful-looking product, then name the belief and conduct it must make visible.",
+      "why": "The wording is meta and repetitive, weakening an otherwise concrete action."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook / fast read",
+      "problem": "The phrase 'bring the belief back as proof' is memorable but compressed; a cold beginner may need a second pass to know what action is being described.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples Example 1",
+      "problem": "The 'blue circle around plausible' appears without enough setup, so the scene feels like a leftover markup artifact rather than a real situation.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples What to do lines",
+      "problem": "Several examples slide into template language instead of showing a concrete decision and consequence in a lived setting.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Some distractors are too obviously bad because they recommend borrowed authority, rank, or generic usefulness, while correct choices mirror the chapter vocabulary.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter has a clear, memorable core move: name WHY, name HOW, then judge WHAT as a receipt. The iPod, Dell DJ, and Phaeton contrast gives the idea real shape, and the limits are unusually honest. The main weakness is not soundness but polish: a few examples smell like production scaffolding, and the quiz occasionally telegraphs the right answer through exact chapter nouns and cartoonish distractors."
+}
+```

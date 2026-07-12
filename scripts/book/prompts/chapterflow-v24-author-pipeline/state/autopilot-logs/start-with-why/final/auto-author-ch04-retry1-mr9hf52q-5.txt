@@ -1,0 +1,14 @@
+Updated [start-with-why-ch04.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch04.v21-native.chapter.json).
+
+The repair was narrow: q09’s keyed answer is now paraphrased and no longer has a 5+ content-token echo.
+
+Verification run from `chapterflow-v21-authored`:
+
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers
+- `quiz-verify`: 9/9 match
+- Rendered reader text: 16,586 chars
+- Quiz key pattern: `1,2,0,2,0,1,1,0,2`
+- Length tells: 1 uniquely-longest key, 4 uniquely-shortest keys
+- Evidence audit: no candidates
+- Scaffold scan: clean

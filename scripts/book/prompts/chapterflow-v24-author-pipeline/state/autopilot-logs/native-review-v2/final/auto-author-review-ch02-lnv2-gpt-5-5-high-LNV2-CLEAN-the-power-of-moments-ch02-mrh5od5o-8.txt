@@ -1,0 +1,83 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "mechanisms": [
+      "The prose says to look first at transitions, milestones, and pits; welcome, awards, and complaints map to those.",
+      "The John Deere lesson says purpose should arrive before routine and forms define the day.",
+      "The Mary Kay lesson says progress becomes memorable when the milestone has a visible public marker.",
+      "The Joshie recovery repaired the meaning of the loss with concrete proof of care, not just the found item.",
+      "The chapter directly says more forms do not make a better first day and purpose should come before the packet.",
+      "The dashboard is only data unless the achievement has a marker others can picture and notice.",
+      "The pit lesson says a polished apology can miss the hurt; recovery needs a concrete care story.",
+      "Eric's correction is that the busiest process step is not always the one people retell.",
+      "The pit warning is that a practical fix is incomplete if the low point still defines the memory."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "Choice c names three possible starts rather than one first choice, but it is still the only answer matching the scan.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Most correct options reuse the chapter's exact signal words: purpose, visible marker, proof of care, low point, relationship.",
+      "Several distractors are visibly anti-lesson choices, such as keeping progress private, assuming the practical fix is enough, or polishing everything equally."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 86,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 89,
+    "limits": 86,
+    "insight": 88,
+    "density": 87,
+    "beginner": 91
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The busy middle is not the whole story.",
+      "why": "Strongest memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "A transition may need purpose, a milestone may need a public sign, and a pit may need proof of care.",
+      "why": "Clean mechanism that turns the concept into a usable diagnostic."
+    },
+    {
+      "quote": "This method can go wrong when the signal is fake or too loud.",
+      "why": "Good limits section that prevents overuse and false ceremony."
+    },
+    {
+      "quote": "Start with the welcome, award, or complaint moment.",
+      "why": "Slight quiz imprecision: the stem asks for a first choice, but the answer names three possible targets."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The stem asks for one first choice, but the keyed option gives a category bundle: welcome, award, or complaint. It is still derivable, but less clean than the other items.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers often contain the chapter's exact vocabulary while distractors are openly opposite to the lesson, making some questions guessable without close reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The chore-chart example is usable but thinner than the main cases because the concrete before-after consequence is modest and the family milestone remains generic.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter ships. It has a clear core move, strong repetition without much padding, and practical transfer: scan for transitions, milestones, and pits, then choose purpose, visibility, or repair. The quiz is fair and strongly derivable, though a little too easy because the correct choices often carry the chapter's exact language. No must-fix reader-harming defect appears on the page."
+}
+```

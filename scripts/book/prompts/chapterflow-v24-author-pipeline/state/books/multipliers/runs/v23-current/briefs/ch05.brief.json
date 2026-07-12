@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "multipliers-ch05",
+  "chapterNumber": 5,
+  "title": "The Debate Maker",
+  "coreMove": "Because the 1986 date fixes the cautionary decision case in a specific public event.",
+  "thesis": "The Space Shuttle Challenger disaster occurred in 1986.",
+  "readerPromise": "After this chapter, a reader can because the 1986 date fixes the cautionary decision case in a specific public event.",
+  "ownedCases": [
+    {
+      "id": "ch05.ex.intel-constructive-confrontation",
+      "label": "Intel constructive confrontation"
+    },
+    {
+      "id": "ch05.ex.amazon-disagree-commit",
+      "label": "Amazon disagree and commit"
+    },
+    {
+      "id": "ch05.ex.challenger-commission",
+      "label": "Space Shuttle Challenger decision record"
+    }
+  ],
+  "notYours": [
+    "Amy Edmondson hospital-team research",
+    "Amy Edmondson voice and silence",
+    "Anders Ericsson deliberate practice",
+    "Atlassian ShipIt",
+    "Carol Dweck growth mindset",
+    "Chris Voss calibrated questions",
+    "Getting to Yes negotiation frame",
+    "Google Project Aristotle",
+    "Google Project Oxygen",
+    "HarperCollins revised edition",
+    "HarperCollins revised new chapters",
+    "Harvard Business Review article",
+    "John F. Kennedy Moon goal",
+    "Kim Scott Radical Candor",
+    "Netflix freedom and responsibility",
+    "Original HarperBusiness release",
+    "Peter Gollwitzer implementation intentions",
+    "Pixar Braintrust",
+    "Pixar Braintrust candor",
+    "Satya Nadella / Microsoft culture shift"
+  ],
+  "cast": [
+    "Janelle",
+    "Noel",
+    "Julia",
+    "Aline"
+  ],
+  "answerIndexPattern": [
+    0,
+    1,
+    2,
+    2,
+    0,
+    0,
+    1,
+    2,
+    1
+  ],
+  "avoid": [
+    "opener (ch01): \"A source analyst sees May 2010 as the\"",
+    "opener (ch02): \"At the return moment in Microsoft's 2014 CEO\"",
+    "opener (ch03): \"On a project call, delivery lead Holly hears\"",
+    "opener (ch06): \"Reed Hastings and Patty McCord reach the return\"",
+    "opener (ch07): \"Sabrina catches the early signal on the publisher\"",
+    "opener (ch09): \"Years on the job are the early signal\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on candid feedback practice",
+    "venue: a working note on constructive confrontation",
+    "venue: a working note on developable ability",
+    "frame: a first attempt at candid feedback that gets corrected",
+    "frame: an unexpected kindness that lands and gets retold afterward"
+  ],
+  "architectureFamily": "historical-narrative",
+  "openerType": "statistic",
+  "challengeFrame": "replace-one-Y",
+  "practiceShape": "measure-one-number",
+  "exampleLenses": [
+    "dialogue-beat",
+    "before-after-ledger",
+    "postmortem"
+  ],
+  "practiceVerb": "move",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "leader",
+    "rather",
+    "assuming",
+    "thinking",
+    "team",
+    "concrete"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "partial",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "averted-late",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "measure-one-number",
+    "single-imperative",
+    "if-then-trigger",
+    "two-step-sequence"
+  ],
+  "quizStemShapes": [
+    "ordering-priority",
+    "transfer-new-domain",
+    "failure-postmortem",
+    "cold-diagnosis"
+  ],
+  "quizFailureModes": [
+    "over-correction",
+    "borrowed-authority",
+    "wrong-target",
+    "wrong-timing"
+  ],
+  "questionFactOrder": [
+    9,
+    6,
+    3,
+    4,
+    5,
+    2,
+    7,
+    8,
+    1
+  ],
+  "memorableShapes": [
+    "redefinition",
+    "cost-statement",
+    "pointed-question"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "question-speak",
+    "contrast-speak"
+  ],
+  "shellRegister": "actor-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Janelle"
+  },
+  "adjacentJobs": {
+    "prev": "Because the public date and venue make the Moon goal a verifiable stretch-target case.",
+    "next": "Because a 2009 written artifact makes the case checkable rather than relying on vague reputation."
+  }
+}

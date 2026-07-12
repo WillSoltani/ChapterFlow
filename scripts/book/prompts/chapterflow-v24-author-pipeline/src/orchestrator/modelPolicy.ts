@@ -129,6 +129,97 @@ const PROFILE_MATRICES: Record<RouteProfileName, Record<TaskClassV1, RouteCell> 
  *  as TEMPORARY emergency routing. Data only — selection is an IMP-13 decision. */
 export const ROLLBACK_ORDER: readonly RouteProfileName[] = ["last-qualified-sol", "baseline-55"];
 
+/**
+ * IMP-22's pre-authoring risk decision is deliberately separate from the
+ * baseline route matrix above.  It is consulted only after a qualified local
+ * forward policy has been validated, and it chooses between that policy's two
+ * explicit SOL writer pins.  Keeping the classifier here makes risk routing a
+ * central deterministic decision instead of an author-card or environment
+ * convention.
+ */
+export const FORWARD_AUTHOR_RISK_POLICY_VERSION = "forward-author-risk-policy-v1" as const;
+
+export type ForwardAuthoringRiskSignalsV1 = {
+  sparseSourceDetail: boolean;
+  sourceBoundNamedClaimCount: number;
+  disputedOrConflictingEvidence: boolean;
+  causalTeachingClaims: boolean;
+  difficultAttribution: boolean;
+  difficultQuizDesign: boolean;
+  crossChapterDependency: boolean;
+  priorConsecutiveFailures: number;
+  sourceIntegrityAdjudication: boolean;
+  repeatedFailureDiagnosis: boolean;
+  finalReleaseVerification: boolean;
+};
+
+export type ForwardAuthoringRiskDecisionV1 = {
+  policyVersion: typeof FORWARD_AUTHOR_RISK_POLICY_VERSION;
+  riskClass: "ordinary" | "high-risk";
+  reasons: string[];
+  signalsSha256: string;
+};
+
+const FORWARD_RISK_SIGNAL_KEYS = [
+  "sparseSourceDetail",
+  "sourceBoundNamedClaimCount",
+  "disputedOrConflictingEvidence",
+  "causalTeachingClaims",
+  "difficultAttribution",
+  "difficultQuizDesign",
+  "crossChapterDependency",
+  "priorConsecutiveFailures",
+  "sourceIntegrityAdjudication",
+  "repeatedFailureDiagnosis",
+  "finalReleaseVerification",
+] as const satisfies readonly (keyof ForwardAuthoringRiskSignalsV1)[];
+
+/**
+ * Classify before the writer is spawned.  Unknown fields and malformed counts
+ * are refused so a caller cannot smuggle an output-informed exception into the
+ * policy.  Three or more source-bound named claims, or two consecutive prior
+ * failures, are the only numeric thresholds; every other frozen signal is
+ * independently sufficient for xhigh.
+ */
+export function classifyForwardAuthoringRisk(value: ForwardAuthoringRiskSignalsV1): ForwardAuthoringRiskDecisionV1 {
+  if (value === null || typeof value !== "object" || Array.isArray(value)) {
+    throw new RoutePreflightError("forward author risk signals must be an object");
+  }
+  const keys = Object.keys(value).sort();
+  const expected = [...FORWARD_RISK_SIGNAL_KEYS].sort();
+  if (keys.length !== expected.length || keys.some((key, index) => key !== expected[index])) {
+    throw new RoutePreflightError("forward author risk signals must contain exactly the frozen policy fields");
+  }
+  for (const key of FORWARD_RISK_SIGNAL_KEYS) {
+    if (key === "sourceBoundNamedClaimCount" || key === "priorConsecutiveFailures") continue;
+    if (typeof value[key] !== "boolean") throw new RoutePreflightError(`forward author risk signal ${key} must be boolean`);
+  }
+  for (const key of ["sourceBoundNamedClaimCount", "priorConsecutiveFailures"] as const) {
+    if (!Number.isSafeInteger(value[key]) || value[key] < 0) {
+      throw new RoutePreflightError(`forward author risk signal ${key} must be a non-negative safe integer`);
+    }
+  }
+
+  const reasons: string[] = [];
+  if (value.sparseSourceDetail) reasons.push("sparse_source_detail");
+  if (value.sourceBoundNamedClaimCount >= 3) reasons.push("several_source_bound_named_claims");
+  if (value.disputedOrConflictingEvidence) reasons.push("disputed_or_conflicting_evidence");
+  if (value.causalTeachingClaims) reasons.push("causal_teaching_claims");
+  if (value.difficultAttribution) reasons.push("difficult_attribution");
+  if (value.difficultQuizDesign) reasons.push("difficult_quiz_design");
+  if (value.crossChapterDependency) reasons.push("cross_chapter_dependency");
+  if (value.priorConsecutiveFailures >= 2) reasons.push("prior_repeated_failure");
+  if (value.sourceIntegrityAdjudication) reasons.push("source_integrity_adjudication");
+  if (value.repeatedFailureDiagnosis) reasons.push("repeated_failure_diagnosis");
+  if (value.finalReleaseVerification) reasons.push("final_release_verification");
+  return {
+    policyVersion: FORWARD_AUTHOR_RISK_POLICY_VERSION,
+    riskClass: reasons.length > 0 ? "high-risk" : "ordinary",
+    reasons,
+    signalsSha256: hashCanonical(value),
+  };
+}
+
 /** Baseline-exactness overrides (plan item 3: encode existing behavior EXACTLY).
  *  Three roles share a task class with a different pre-IMP-02 default effort —
  *  the matrix would silently change their cost/behavior, so the role-level

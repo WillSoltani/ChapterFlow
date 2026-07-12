@@ -1,0 +1,19 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "6bdebe48a98b76dc12cefe109b6a6bd38c0e885161266db2b1263181ca872c0c",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {"itemId": "decisive-ch01-q01", "keyedAnswerIndex": 1, "derivedAnswerIndex": 1, "agreement": true, "keyCorrect": "correct", "rationale": "WRAP is structurally four matched moves for frame, evidence, emotion, and forecast, so b is best supported."},
+    {"itemId": "decisive-ch01-q02", "keyedAnswerIndex": 1, "derivedAnswerIndex": 1, "agreement": true, "keyCorrect": "correct", "rationale": "The yes-or-no vendor frame is narrow framing, so adding real alternatives before more data review is the supported answer."},
+    {"itemId": "decisive-ch01-q03", "keyedAnswerIndex": 2, "derivedAnswerIndex": 2, "agreement": true, "keyCorrect": "correct", "rationale": "Confirmation bias is best countered by seeking disconfirming evidence while the favorite plan is still contestable."},
+    {"itemId": "decisive-ch01-q04", "keyedAnswerIndex": 2, "derivedAnswerIndex": 1, "agreement": false, "keyCorrect": "ambiguous", "rationale": "Both b and c defensibly use distance from attachment in a long-term budget call: b fits the old-service-line outsider test, while c fits the key's short-term-emotion framing."},
+    {"itemId": "decisive-ch01-q05", "keyedAnswerIndex": 0, "derivedAnswerIndex": 0, "agreement": true, "keyCorrect": "correct", "rationale": "Mapping a range of plausible outcomes directly counters overconfidence in a single neat forecast."},
+    {"itemId": "decisive-ch01-q06", "keyedAnswerIndex": 2, "derivedAnswerIndex": 2, "agreement": true, "keyCorrect": "correct", "rationale": "Steve Cole's logic supports parallel first passes so comparison and learning happen before commitment."},
+    {"itemId": "decisive-ch01-q07", "keyedAnswerIndex": 0, "derivedAnswerIndex": 0, "agreement": true, "keyCorrect": "correct", "rationale": "The outsider question is specifically about removing legacy attachment from the imagined decision."},
+    {"itemId": "decisive-ch01-q08", "keyedAnswerIndex": 0, "derivedAnswerIndex": 0, "agreement": true, "keyCorrect": "correct", "rationale": "The four-villain model calls for distinct interventions at different choice stages, not one final catch-all review."},
+    {"itemId": "decisive-ch01-q09", "keyedAnswerIndex": 1, "derivedAnswerIndex": 1, "agreement": true, "keyCorrect": "correct", "rationale": "WRAP improves decision odds under uncertainty without guaranteeing a good outcome."}
+  ]
+}
+```

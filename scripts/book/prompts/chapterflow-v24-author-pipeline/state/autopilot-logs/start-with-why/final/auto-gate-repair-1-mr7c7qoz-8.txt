@@ -1,0 +1,12 @@
+Implemented the deterministic repair in chapter content only:
+
+- [ch01](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch01.v21-native.chapter.json): made all example `planSpec.format` values unique and rewrote matching example prose/tags.
+- [ch02](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch02.v21-native.chapter.json) and [ch07](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch07.v21-native.chapter.json): removed the repeated `has not come back yet` phrasing.
+- [ch10](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch10.v21-native.chapter.json) and [ch14](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch14.v21-native.chapter.json): rewrote Apple-source examples to preserve source facts without tripping F1.
+
+Verification:
+- Ran `gate-chapter` on all changed chapters: ch01, ch02, ch07, ch10, ch14 all PASS with 0 blockers.
+- Ran exact final command: `npx tsx src/cli.ts qc-converge start-with-why`
+- Result: `DETERMINISTIC-CLEAN — start-with-why (14 chapters)`
+
+No pipeline code or config was edited.

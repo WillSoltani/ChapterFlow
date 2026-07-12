@@ -1,0 +1,19 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "2a3819045b3af96aaaa465558d0dd699836c79e1f0a49ea2ec87ff4eb90d7ce8",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {"itemId": "q01", "keyedAnswerIndex": 1, "derivedAnswerIndex": 0, "agreement": false, "keyCorrect": "ambiguous", "rationale": "Both a and b isolate the same two-measure fault, record it, and make a concrete correction before the next attempt; the wording does not justify fingering over hand motion."},
+    {"itemId": "q02", "keyedAnswerIndex": 0, "derivedAnswerIndex": 0, "agreement": true, "keyCorrect": "correct", "rationale": "The redox-only set with step checking and correction directly converts vague study into targeted feedback-driven practice."},
+    {"itemId": "q03", "keyedAnswerIndex": 2, "derivedAnswerIndex": 2, "agreement": true, "keyCorrect": "correct", "rationale": "The problem is whole-demo repetition preserving a known weak slide instead of isolating and correcting it."},
+    {"itemId": "q04", "keyedAnswerIndex": 1, "derivedAnswerIndex": 1, "agreement": true, "keyCorrect": "correct", "rationale": "The lane-line cue plus short attempt and video review targets the visible crossover fault before adding distance."},
+    {"itemId": "q05", "keyedAnswerIndex": 1, "derivedAnswerIndex": 1, "agreement": true, "keyCorrect": "correct", "rationale": "The improvement comes from using each failure to redesign the next grouping strategy, not from mere scoring or reduced context."},
+    {"itemId": "q06", "keyedAnswerIndex": 1, "derivedAnswerIndex": 1, "agreement": true, "keyCorrect": "correct", "rationale": "The visible size target and next-cut correction best identify why repetition alone can make uneven cuts fluent rather than fixed."},
+    {"itemId": "q07", "keyedAnswerIndex": 2, "derivedAnswerIndex": 2, "agreement": true, "keyCorrect": "correct", "rationale": "Feedback matters in purposeful practice only when it changes the next attempt while the error remains traceable."},
+    {"itemId": "q08", "keyedAnswerIndex": 0, "derivedAnswerIndex": 0, "agreement": true, "keyCorrect": "correct", "rationale": "Plan B is stronger because its short feedback loop lets the trainee compare and adjust before repeating the error many times."},
+    {"itemId": "q09", "keyedAnswerIndex": 2, "derivedAnswerIndex": 2, "agreement": true, "keyCorrect": "correct", "rationale": "The outside-pedal and chalk-line target is visible, repeatable, and correctable, unlike vague feeling or added risk."}
+  ]
+}
+```

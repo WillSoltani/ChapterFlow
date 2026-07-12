@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "c", "b", "b", "a", "b", "c"],
+    "keyDisagreements": [],
+    "tells": ["Correct answers are often the most concrete and specific option, while distractors use broad shortcut language like purpose words, useful product, bold output, or familiar detail.", "Several correct choices are also the longest or most developed choice, especially Q2, Q3, Q6, and Q8."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 72,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 82,
+    "limits": 86,
+    "insight": 85,
+    "density": 80,
+    "beginner": 86
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A product is not the promise; it is the receipt.",
+      "why": "Strong memorable compression of the chapter's core distinction."
+    },
+    {
+      "quote": "Every unowned promise costs trust before the product ever appears.",
+      "why": "Gives the method a concrete risk and emotional cost."
+    },
+    {
+      "quote": "Project contributor Sabrina applies the same order to a small promise at her own desk.",
+      "why": "This is the weakest transfer example because the promise, setting, decision, and consequence are all generic."
+    },
+    {
+      "quote": "She names the WHY, writes the HOW that must make it real, and waits for a visible WHAT to return before she asks anyone to believe her.",
+      "why": "This restates the lesson without showing a real before-to-after action."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "full read Sabrina desk example",
+      "problem": "Slot-filler transfer example: it names a person but no concrete promise, place, number, decision, or consequence, and mostly repeats the chapter's rule.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Answer tells are present: correct choices tend to be more concrete and fully reasoned, while distractors are visibly generic shortcuts.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q5",
+      "problem": "The stem phrase 'same broad product label' is slightly muddy; the intended issue is preserving Dell DJ's specific digital audio player detail, but the wording could make readers wonder which label is being flattened.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples section",
+      "problem": "The repeated What to do / Why it matters structure is useful but starts to smell templated, especially because several examples recycle 'proof,' 'return,' and 'claim' phrasing instead of adding fresh scene detail.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is clear, memorable, and mostly teachable: the WHY-HOW-WHAT sequence is explained with useful contrast, and the iPod/Dell DJ/Phaeton trio gives the concept real diagnostic power. I would not ship it yet at a professional 84+ bar because one transfer passage is manufactured rather than demonstrated, and the quiz has mild pattern tells. Fix the generic Sabrina-at-desk example with a concrete before-to-after scenario and tighten the quiz option balance; the core lesson is otherwise strong."
+}
+```

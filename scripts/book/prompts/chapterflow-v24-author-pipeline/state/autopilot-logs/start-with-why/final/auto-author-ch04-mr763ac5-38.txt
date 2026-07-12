@@ -1,0 +1,9 @@
+Updated [start-with-why-ch04.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch04.v21-native.chapter.json).
+
+Validation run:
+- `npx tsx src/cli.ts author-check ...` → clean
+- `npx tsx src/cli.ts gate-chapter ...` → PASS, 0 blockers, 0 majors
+- `npx tsx src/cli.ts evidence-audit ...` → clean
+- Self-checks: 6 examples, 9 quiz questions, key pattern `1,2,0,2,0,1,1,0,2`, rendered length ~16.5k chars, scaffold scan clean
+
+One optional `major-status` run failed before repo code due `tsx` IPC `EPERM`, but the required direct `gate-chapter` reports 0 majors.

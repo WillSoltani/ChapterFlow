@@ -1,0 +1,712 @@
+diff --git a/scripts/book/prompts/chapterflow-v24-author-pipeline/src/cli.ts b/scripts/book/prompts/chapterflow-v24-author-pipeline/src/cli.ts
+index 16ff2323b..7db85819b 100644
+--- a/scripts/book/prompts/chapterflow-v24-author-pipeline/src/cli.ts
++++ b/scripts/book/prompts/chapterflow-v24-author-pipeline/src/cli.ts
+@@ -385,6 +385,9 @@ Commands:
+                                      every book whose QC is complete. Re-run as books progress.
+ 
+   Phase-0 maintenance (see MASTER-PLAN.md):
++  calibration-scan <bookId> [--json] Run the cast/name calibration detectors (C23/C24/C25/C27) against a book's
++                                     on-disk chapters and PRINT findings. Advisory, NON-gating, always exits 0 —
++                                     the opt-in live-book twin of the shipped-reference-only zero-FP suite pins.
+   state-status                       Per-book: chapters on disk, untracked-in-git, chapterId mismatches, promoted.
+   migrate-state [--apply]            Reconcile the repo-root shadow state/chapters into the canonical dir.
+                                      [--prefer-canonical|--prefer-shadow] to resolve divergent files.
+@@ -2006,6 +2009,78 @@ async function runAuthorCheck(args: string[]): Promise<number> {
+   return findings.length === 0 ? 0 : 1;
+ }
+ 
++/** `calibration-scan <bookId>` — R4. Runs the reference-quality CAST/NAME
++ *  calibration detectors (C23 example-protagonist reuse, C24 cast-overflow,
++ *  C25 example↔quiz name shuffle, C27 off-standard name density) against a book's
++ *  on-disk chapters and PRINTS the findings. This is the opt-in, NON-GATING twin
++ *  of the zero-FP calibration pins in cast-discipline.test.ts / name-commonality.
++ *  test.ts: those pins now precondition on a SHIPPED reference package (P11), so
++ *  they no longer run — and never failed — on the ACTIVE campaign book. This verb
++ *  restores that live FP signal on demand for ANY on-disk book without
++ *  reintroducing always-fails-on-active-book suite noise: it opens no QC round,
++ *  touches no ledger, and ALWAYS exits 0 (advisory). */
++async function runCalibrationScan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
++  const g = shadowGuard();
++  if (g) return g;
++  const bookId = args[0];
++  if (!bookId) {
++    console.error("Usage: calibration-scan <bookId> [--json]");
++    return 2;
++  }
++  const chaptersDir = resolve(__dirname, "../state/chapters");
++  const files = existsSyncFs(chaptersDir)
++    ? readdirSync(chaptersDir)
++        .filter((f) => f.startsWith(`${bookId}-ch`) && f.endsWith(".v21-native.chapter.json"))
++        .sort()
++    : [];
++  const {
++    checkCastSize,
++    checkExampleQuizNameConsistency,
++    checkExampleProtagonistReuse,
++    checkNameCommonality,
++  } = await import("./critics/narrative.js");
++
++  type ScanHit = { chapterId: string; checkId: string; severity: string; message: string };
++  const hits: ScanHit[] = [];
++  for (const f of files) {
++    let ch: ChapterV21;
++    try {
++      ch = JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21;
++    } catch (err) {
++      console.error(`  (skipped ${f}: ${(err as Error).message})`);
++      continue;
++    }
++    const chId = ch.chapterId ?? f.replace(/\.v21-native\.chapter\.json$/, "");
++    const findings = [
++      ...checkCastSize(ch),
++      ...checkExampleQuizNameConsistency(ch),
++      ...checkExampleProtagonistReuse(ch.examples ?? []),
++      ...checkNameCommonality(ch),
++    ];
++    for (const hit of findings) hits.push({ chapterId: chId, checkId: hit.checkId, severity: hit.severity, message: hit.message });
++  }
++
++  if (flags["json"] === true) {
++    console.log(JSON.stringify({ bookId, chaptersScanned: files.length, findings: hits }, null, 2));
++    return 0;
++  }
++
++  console.log(`calibration-scan ${bookId}: cast/name detectors (C23/C24/C25/C27) — ADVISORY, non-gating.`);
++  if (files.length === 0) {
++    console.log(`  No on-disk chapters at state/chapters/${bookId}-ch*.v21-native.chapter.json — nothing to scan.`);
++    return 0;
++  }
++  console.log(`  Scanned ${files.length} chapter(s).`);
++  if (hits.length === 0) {
++    console.log("  ✓ Clean — 0 cast/name calibration findings.");
++    return 0;
++  }
++  console.log(`  ${hits.length} finding(s):`);
++  for (const h of hits) console.log(`    [${h.severity}] ${h.checkId} — ${h.chapterId}: ${h.message}`);
++  console.log("  (Advisory only — this scan never blocks and never fails the suite.)");
++  return 0;
++}
++
+ /** `quarantine-book <bookId> [--reason "..."]` — Phase 0. Moves a shipped-but-bad
+  *  package out of `book-packages/` into `book-packages/_quarantined/` (reversible)
+  *  and writes a quarantine record, so a known-corrupt book (e.g. range: 108/108
+@@ -5821,6 +5896,8 @@ async function main() {
+       return runBatch(args, flags);
+     case "author-check":
+       return runAuthorCheck(args);
++    case "calibration-scan":
++      return runCalibrationScan(args, flags);
+     case "fix-chapter-ids":
+       return runFixChapterIds(args, flags);
+     case "migrate-chapter-identity":
+diff --git a/scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRepair.ts b/scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRepair.ts
+index 4409dc62e..1479f6ebb 100644
+--- a/scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRepair.ts
++++ b/scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRepair.ts
+@@ -24,6 +24,8 @@ import type { ChapterBriefV1, SourcePacketV1 } from "../artifacts/artifactTypes.
+ import type { AutopilotDeps } from "./autopilot.js";
+ import type { AuthorIo } from "./authorRun.js";
+ import { AUTHOR_WRITER_EFFORT, AUTHOR_WRITER_MODEL, authorWriteContractFindings } from "./authorRun.js";
++import { chapterContentHash } from "../critics/qcAttestation.js";
++import { restoreAuthorProvenance } from "../qc/sessionProvenance.js";
+ 
+ const PIPELINE_DIR = resolve(__dirname, "../..");
+ 
+@@ -281,6 +283,11 @@ export async function doRepairOneChapter(
+   const restore = () => {
+     try {
+       writeFileSync(absPath, originalBytes);
++      // A repair session that changed the chapter moved author provenance to the
++      // repair session; putting the ORIGINAL bytes back must move it back to the
++      // original author, or the independence gate reads the wrong author. Best-effort.
++      try { restoreAuthorProvenance(chapterId, chapterContentHash(original), deps.log); }
++      catch { /* provenance rollback is non-fatal; the byte restore is what matters */ }
+     } catch (err) {
+       // F6: a failed restore leaves unreviewed repair bytes on disk while the
+       // persisted review still points at the pre-repair hash — surfaced to the
+diff --git a/scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorReview.ts b/scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorReview.ts
+index 41b3e4a13..81e321a19 100644
+--- a/scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorReview.ts
++++ b/scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorReview.ts
+@@ -92,6 +92,7 @@ import {
+ import { buildChurnEvidenceReport, rankSaturationContributors } from "../critics/readerBudgets.js";
+ import { structuralSamenessSnapshot, type StructuralSamenessSnapshot } from "../critics/structuralSamenessSnapshot.js";
+ import { chapterContentHash, writeAttestation, type QcAttestation } from "../critics/qcAttestation.js";
++import { restoreAuthorProvenance } from "../qc/sessionProvenance.js";
+ import { AXIS_WEIGHTS, computeVerdict, type AxisId, type AxisScore } from "../critics/semantic/publishableBar.js";
+ import { writeBarReadArtifact, writeConfirmReadArtifact } from "../qc/orchestrator/artifacts.js";
+ import type { ValidatedBarReadSubmission, ValidatedConfirmReadSubmission } from "../qc/orchestrator/schemas.js";
+@@ -1964,7 +1965,16 @@ async function doAuthorReviewInner(
+       // on the next entry — no re-review spawn for bytes we put back. The grant is
+       // NOT refunded (consumed at spawn, below): a restore spends the attempt.
+       const restore = (logWhy: string, failLine: string): void => {
+-        if (priorBytes !== null) writeFileSync(path, priorBytes);
++        if (priorBytes !== null) {
++          writeFileSync(path, priorBytes);
++          // The discarded regen re-stamped author provenance with its OWN session/hash;
++          // roll it back to the restored bytes' true author so the independence gate
++          // does not flag the wrong reviewer. Best-effort — never fail a restore on it.
++          try {
++            const priorChapter = JSON.parse(priorBytes) as ChapterV21;
++            restoreAuthorProvenance(authorChapterId(bookId, chapterNumber), chapterContentHash(priorChapter), deps.log);
++          } catch { /* unparseable prior bytes / provenance write — non-fatal */ }
++        }
+         if (priorReview) {
+           io.persistReview(bookId, priorReview);
+           reviews.set(chapterNumber, priorReview);
+diff --git a/scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/bookSamenessRun.ts b/scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/bookSamenessRun.ts
+index 55ead95de..a4008260b 100644
+--- a/scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/bookSamenessRun.ts
++++ b/scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/bookSamenessRun.ts
+@@ -29,6 +29,7 @@ import type { ChapterReviewV1 } from "../artifacts/artifactTypes.js";
+ import type { AutopilotDeps, AutopilotOutcome } from "./autopilot.js";
+ import { CANONICAL_STATE, CHAPTERS_DIR, chapterFileName } from "../lib/chapterPaths.js";
+ import { chapterContentHash } from "../critics/qcAttestation.js";
++import { restoreAuthorProvenance } from "../qc/sessionProvenance.js";
+ import { checkArchitectureMonoculture } from "../critics/architectureMonoculture.js";
+ import { planBookSamenessRepair } from "../critics/bookSamenessRepair.js";
+ import { planContentDeviceRepair } from "../critics/contentDeviceRepair.js";
+@@ -277,6 +278,17 @@ export async function diversifyOne(
+   const priorChapter = io.loadChapters(bookId).find((c) => c.number === n) ?? null;
+   const devicesBefore = priorChapter ? detectChapterDevices(priorChapter) : new Set<ContentDeviceId>();
+   const beforeField = [...devicesBefore];
++  // Put the prior passing bytes back AND roll author provenance back to them: the
++  // re-author stamped the DISCARDED draft's session/hash, so a bare byte-restore
++  // would leave provenance attributing content A to the throwaway draft's author.
++  const revertPriorBytes = (): void => {
++    if (priorBytes === null) return;
++    writeFileSync(path, priorBytes);
++    if (priorChapter) {
++      try { restoreAuthorProvenance(authorChapterId(bookId, n), chapterContentHash(priorChapter), deps.log); }
++      catch { /* provenance rollback is best-effort; never fail a revert on it */ }
++    }
++  };
+   const consumedFor = lane === "content" ? contentRepairConsumedFor : samenessRepairConsumedFor;
+   const recordConsumed = lane === "content" ? recordContentRepairConsumed : recordSamenessRepairConsumed;
+   const laneLabel = lane === "content" ? "content-deal-repair" : "book-sameness-repair";
+@@ -299,7 +311,7 @@ export async function diversifyOne(
+   // Re-author with the diversification directive injected as a writer complaint.
+   const r = await writeChapter(bookId, n, deps, { complaints: [target.directive], io });
+   if (!r.ok) {
+-    if (priorBytes !== null) writeFileSync(path, priorBytes);
++    revertPriorBytes();
+     deps.log(`[sameness] ch${nn}: re-author FAILED (${r.reason.slice(0, 160)}) — restored prior passing bytes.`);
+     return { ...base, status: "write-failed", devicesBefore: beforeField, detail: `re-author failed; restored prior bytes: ${r.reason.slice(0, 200)}` };
+   }
+@@ -309,7 +321,7 @@ export async function diversifyOne(
+   // afterward). A FAIL/invalid → roll back to the prior passing bytes.
+   const fresh = io.loadChapters(bookId).find((c) => c.number === n);
+   if (!fresh) {
+-    if (priorBytes !== null) writeFileSync(path, priorBytes);
++    revertPriorBytes();
+     return { ...base, status: "write-failed", devicesBefore: beforeField, detail: "re-authored chapter did not load; restored prior bytes" };
+   }
+   // Device diff on the fresh bytes — surfaced on EVERY fresh-loaded outcome for
+@@ -336,7 +348,7 @@ export async function diversifyOne(
+   const noReservedHarm = !review.complaints.some((c) => c.mustFix && complaintNamesReservedHarm(c));
+   const keep = review.valid && keysClean && noReservedHarm && review.composite >= bar - band;
+   if (!keep) {
+-    if (priorBytes !== null) writeFileSync(path, priorBytes);
++    revertPriorBytes();
+     deps.log(`[sameness] ch${nn}: diversified draft did not clear the near-bar band (composite ${review.composite}, ship=${review.ship84}, keys ${review.keyCheck.matches}/${review.keyCheck.of}, valid=${review.valid}) — restored prior passing bytes.`);
+     return { ...base, status: "reverted", newComposite: review.composite, ...deviceFields, detail: `diversified draft below bar-band / invalid / key-defect / true-blocker; restored prior passing version` };
+   }
+@@ -345,7 +357,7 @@ export async function diversifyOne(
+   // means the re-author did not comply. Revert to the prior passing bytes and report a
+   // DISTINCT, loud status — never a fake "diversified" success. The grant stays spent.
+   if (diff.persisted.length > 0) {
+-    if (priorBytes !== null) writeFileSync(path, priorBytes);
++    revertPriorBytes();
+     const evidence = detectChapterDeviceMatches(fresh)
+       .filter((m) => diff.persisted.includes(m.id))
+       .map((m) => `${m.id}: "${m.snippet}"`)
+diff --git a/scripts/book/prompts/chapterflow-v24-author-pipeline/src/promoteBook.ts b/scripts/book/prompts/chapterflow-v24-author-pipeline/src/promoteBook.ts
+index afdabf328..c7754b7e6 100644
+--- a/scripts/book/prompts/chapterflow-v24-author-pipeline/src/promoteBook.ts
++++ b/scripts/book/prompts/chapterflow-v24-author-pipeline/src/promoteBook.ts
+@@ -179,6 +179,14 @@ export type PromotionOptions = {
+   /** Test seam: invoked once, after verification, immediately before the final
+    *  atomic rename. */
+   onBeforeFinalRename?: () => void;
++  /** R5(a): read-root for state-backed lookups that promote resolves through
++   *  defaults today (the quiz-key EVIDENCE resolver reads the review ledger).
++   *  Promote does NOT currently inject a state root anywhere else (P11 left
++   *  chapter loading on the canonical dir), so this is forward-looking plumbing:
++   *  undefined preserves the exact default behavior, and if a promote-wide
++   *  state-root injection is ever added it can flow through here so key evidence
++   *  reads the SAME root as the rest of promote. */
++  stateRoot?: string;
+ };
+ 
+ export type PromotionResult = {
+@@ -211,6 +219,17 @@ export type PromotionResult = {
+   canonicalBlockers?: ChapterSetBlocker[];
+   shipGateMajorCount: number;
+   bookGateMajorCount: number;
++  /** R5(b): the F-10 quiz answer-key EVIDENCE, surfaced on the result so the
++   *  operator-facing CLI can print the PER-CHAPTER lines — not just the summary
++   *  folded into `reason`. Advisory only (mirrors the report sidecar; never
++   *  affects `promoted`). Absent on pre-gate fail-closed returns that never
++   *  resolved key evidence (e.g. a quarantine tombstone / unreadable chapter). */
++  quizKeyEvidence?: {
++    summary: string;
++    counts: { judgeVerified: number; readerVerified: number; unverified: number };
++    unverifiedChapters: number[];
++    lines: string[];
++  };
+   reason: string;                // human-readable explanation
+ };
+ 
+@@ -663,7 +682,7 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
+   // evidence is reported prominently (never silently promoted with unverified
+   // keys), but this is ADVISORY — it does not block. Escalating UNVERIFIED to a
+   // hard gate is an owner decision (see F-10), deliberately NOT taken here.
+-  const keyEvidence = resolveBookKeyEvidence(loadedChapters);
++  const keyEvidence = resolveBookKeyEvidence(loadedChapters, options.stateRoot);
+ 
+   // Step 3.7: v21.1 no-API Codex QC mode. Default promotion remains backward
+   // compatible; this stricter stack is active only when explicitly enabled.
+@@ -950,6 +969,12 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
+       canonicalBlockerCount: 0,
+       shipGateMajorCount: shipMajorCount,
+       bookGateMajorCount: bookMajorCount,
++      quizKeyEvidence: {
++        summary: keyEvidence.summary,
++        counts: keyEvidence.counts,
++        unverifiedChapters: keyEvidence.unverifiedChapters,
++        lines: keyEvidence.perChapter.map((c) => c.line),
++      },
+       reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${sourceIntegritySummary}${sourceRealitySummary}${generationDebtSummary}${noApiSummary}${majorSummary}${manifestSummary}. Quarantined at ${quarantinePath}.${keyEvidence.unverifiedChapters.length > 0 ? ` ${keyEvidence.summary}` : ""}`,
+     };
+   }
+@@ -991,6 +1016,12 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
+     canonicalBlockerCount: 0,
+     shipGateMajorCount: shipMajorCount,
+     bookGateMajorCount: bookMajorCount,
++    quizKeyEvidence: {
++      summary: keyEvidence.summary,
++      counts: keyEvidence.counts,
++      unverifiedChapters: keyEvidence.unverifiedChapters,
++      lines: keyEvidence.perChapter.map((c) => c.line),
++    },
+     reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Source-reality: ${sourceReality.decision}. Major policy clean with ${majorPolicy.current.length} current major(s) waived or absent.${keyEvidence.unverifiedChapters.length > 0 ? ` ${keyEvidence.summary}` : ""}`,
+   };
+ }
+@@ -1039,5 +1070,16 @@ export function formatPromotionResult(r: PromotionResult): string {
+   lines.push(`  Major policy: ${r.majorBlockerCount} blockers`);
+   lines.push(`  Production manifest: ${r.productionManifestBlockerCount} blockers`);
+   lines.push(`  Book gate: ${r.bookGateBlockerCount} blockers, ${r.bookGateMajorCount} majors`);
++  // R5(b): the F-10 quiz answer-key EVIDENCE, per chapter. The `reason` only
++  // folds in the one-line summary (and only when a chapter is UNVERIFIED), so the
++  // operator never saw WHICH chapters carry which evidence. Print every
++  // per-chapter line under a header. Advisory — this never reflects a block.
++  if (r.quizKeyEvidence) {
++    const ev = r.quizKeyEvidence;
++    lines.push(
++      `  Quiz key evidence: ${ev.counts.judgeVerified} judge, ${ev.counts.readerVerified} reader, ${ev.counts.unverified} unverified`,
++    );
++    for (const line of ev.lines) lines.push(`    ${line}`);
++  }
+   return lines.join("\n");
+ }
+diff --git a/scripts/book/prompts/chapterflow-v24-author-pipeline/src/qc/sessionProvenance.ts b/scripts/book/prompts/chapterflow-v24-author-pipeline/src/qc/sessionProvenance.ts
+index 3b046ac5d..7bf976b57 100644
+--- a/scripts/book/prompts/chapterflow-v24-author-pipeline/src/qc/sessionProvenance.ts
++++ b/scripts/book/prompts/chapterflow-v24-author-pipeline/src/qc/sessionProvenance.ts
+@@ -272,6 +272,86 @@ export function recordAuthorProvenance(
+ }
+ 
+ 
++/**
++ * Roll an author-provenance record back to the attribution it held BEFORE a
++ * re-authoring, after that re-authored draft was DISCARDED and the prior bytes
++ * were put back on disk (the sameness/acceptance/repair revert lanes).
++ *
++ * The failure this repairs: a re-author stamps `contentHash=B` / `author=S2` and,
++ * because the content changed, records `previousContentHash=A` /
++ * `previousAuthorSessionId=S1`. When the caller then reverts content A back onto
++ * disk, the record still attributes the on-disk bytes (content A, authored by S1)
++ * to the discarded draft (B, session S2). Session-independence gates then flag the
++ * wrong reviewer and clear the true author. This rewrites the record back to A/S1
++ * so `loadAuthorProvenance` again attributes the on-disk bytes to their true author.
++ *
++ * Pass the RESTORED bytes' `chapterContentHash` as `expectedCurrentContentHash`.
++ * Guarded and absence-safe — a no-op (never a fabrication or delete) unless it is
++ * provably the right rollback:
++ *   - record missing / corrupt (unreadable)                     → no-op + log
++ *   - record already attributes `expectedCurrentContentHash`    → no-op (out-of-order
++ *     safe: a later successful write already re-stamped — do NOT clobber it)
++ *   - previous fields absent (v1/legacy)                        → leave + log (never
++ *     fabricate a session id)
++ *   - `previousContentHash` present but ≠ the restored bytes    → leave + log
++ * Bypasses the create-once/conflict check ONLY for this explicitly-guarded rollback;
++ * normal `recordAuthorProvenance` writes are untouched.
++ */
++export function restoreAuthorProvenance(
++  chapterId: string,
++  expectedCurrentContentHash: string,
++  log: (msg: string) => void = (m) => console.error(m),
++): string | null {
++  const existing = loadAuthorProvenance(chapterId);
++  if (!existing) {
++    // No record, or an unreadable/corrupt one (loadAuthorProvenance swallows parse
++    // errors to null). Nothing to roll back — never create a record here.
++    log(`[provenance] restore ch=${chapterId}: no readable author-provenance record — leaving as-is (no fabrication).`);
++    return null;
++  }
++  if (existing.contentHash === expectedCurrentContentHash) {
++    // Already attributes the on-disk bytes: either it was never re-authored, or a
++    // later successful write re-stamped it correctly. Do not clobber that record.
++    return provenancePath(chapterId);
++  }
++  if (existing.previousContentHash == null || existing.previousAuthorSessionId == null) {
++    // v1/legacy or a create-once record with no prior attribution recorded — we
++    // cannot know the true prior author, so we refuse to invent one.
++    log(
++      `[provenance] restore ch=${chapterId}: record attributes ${existing.contentHash ?? "(v1/no-hash)"} but the restored ` +
++        `bytes are ${expectedCurrentContentHash}, and no previous author/content is recorded to roll back to. ` +
++        `Leaving the record untouched — will not fabricate an author.`,
++    );
++    return null;
++  }
++  if (existing.previousContentHash !== expectedCurrentContentHash) {
++    // The recorded rollback target is not the bytes we restored — refuse to guess.
++    log(
++      `[provenance] restore ch=${chapterId}: restored bytes ${expectedCurrentContentHash} do not match the recorded ` +
++        `previousContentHash ${existing.previousContentHash} — cannot safely roll back; leaving the record untouched.`,
++    );
++    return null;
++  }
++  // Proven rollback: the on-disk bytes are the PRIOR content, authored by the PRIOR
++  // session. Rewrite directly (bypassing the create-once/conflict guard, which exists
++  // to stop a NON-author overwrite — this is the author being restored).
++  mkdirSync(PROVENANCE_DIR, { recursive: true });
++  const rec: AuthorProvenance = {
++    schemaVersion: "author-provenance-v2",
++    chapterId,
++    authorSessionId: existing.previousAuthorSessionId,
++    stampedAt: new Date().toISOString(),
++    contentHash: existing.previousContentHash,
++  };
++  const p = provenancePath(chapterId);
++  writeFileAtomic(p, JSON.stringify(rec, null, 2) + "\n");
++  log(
++    `[provenance] restore ch=${chapterId}: rolled author back to session "${existing.previousAuthorSessionId}" / content ` +
++      `${existing.previousContentHash} after a discarded re-author (was "${existing.authorSessionId}" / ${existing.contentHash ?? "?"}).`,
++  );
++  return p;
++}
++
+ /** Record the deterministic v23 compiler assembler as the content producer for the
+  *  final ChapterV21 file while retaining the contributing section-writer session ids
+  *  for audit. This is intentionally a chapter-level author provenance record because
+diff --git a/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-arch.test.ts b/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-arch.test.ts
+index 92607b1da..d612a1ed9 100644
+--- a/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-arch.test.ts
++++ b/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-arch.test.ts
+@@ -60,6 +60,7 @@ import {
+   type ReopenNote,
+ } from "../src/orchestrator/authorReviewLedger.js";
+ import { authorChapterId } from "../src/orchestrator/authorRun.js";
++import { loadAuthorProvenance, provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
+ import {
+   contentRepairConsumedFor,
+   loadAuthorRegenLedger,
+@@ -840,21 +841,35 @@ async function driveRealFileAcceptanceRegen(opts: {
+   return { result, io, ch1Bytes: readFileSync(p1, "utf8"), originalBytes };
+ }
+ 
+-test("doAuthorReview (real files): an acceptance regen whose review FAILs restores the prior bytes BYTE-FOR-BYTE", async () => {
++test("doAuthorReview (real files): an acceptance regen whose review FAILs restores the prior bytes BYTE-FOR-BYTE + rolls provenance back (R2)", async () => {
+   const bookId = "zz-fixture-regen-fail";
+   const p1 = realChapterPath(bookId, 1), p2 = realChapterPath(bookId, 2);
++  const chapterId = authorChapterId(bookId, 1);
+   try {
++    // Seed the STALE record the acceptance regen leaves behind: content bound to the
++    // discarded regen draft (regen-B), with the true prior author (author-A) recorded.
++    const regressedCh1 = { ...CH1, hook: `${CH1.hook} (regressed regen draft that fails review)` };
++    const hashPrior = chapterContentHash(CH1);
++    const hashDiscarded = chapterContentHash(regressedCh1);
++    recordAuthorProvenance(chapterId, "author-A", hashPrior);
++    recordAuthorProvenance(chapterId, "regen-B", hashDiscarded);
++    assert.equal(loadAuthorProvenance(chapterId)?.authorSessionId, "regen-B", "precondition: record points at the discarded regen draft");
++
+     const { result, io, ch1Bytes, originalBytes } = await driveRealFileAcceptanceRegen({
+       bookId,
+       initialCh1Score: 90,
+       regenScore: 55, // < bar 80 → the regen review FAILs
+-      regressedCh1: { ...CH1, hook: `${CH1.hook} (regressed regen draft that fails review)` },
++      regressedCh1,
+     });
+     assert.ok(result && result.status === "halt" && result.category === "content", "a still-failing regen halts content");
+     assert.equal(ch1Bytes, originalBytes, "the failing regen was restored to the prior passing bytes, byte-for-byte");
+     assert.ok(io.reopenNotes.some((n) => n.chapterNumber === 1 && n.trigger === "acceptance-regen"), "the reopen was attributed");
++    const rec = loadAuthorProvenance(chapterId);
++    assert.equal(rec?.contentHash, hashPrior, "provenance content hash rolled back to the restored bytes");
++    assert.equal(rec?.authorSessionId, "author-A", "provenance author rolled back to the true prior author");
+   } finally {
+     rmSync(p1, { force: true }); rmSync(p2, { force: true }); rmSync(reviewDir(bookId), { recursive: true, force: true });
++    rmSync(provenancePath(chapterId), { force: true });
+   }
+ });
+ 
+diff --git a/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-provenance.test.ts b/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-provenance.test.ts
+index 0e956a05a..165194cb1 100644
+--- a/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-provenance.test.ts
++++ b/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-provenance.test.ts
+@@ -16,6 +16,7 @@ import {
+   recordAuthorProvenance,
+   recordCacheAcceptance,
+   recordCompilerAssemblyProvenance,
++  restoreAuthorProvenance,
+   violatesSessionIndependence,
+ } from "../src/qc/sessionProvenance.js";
+ 
+@@ -262,6 +263,124 @@ test("a hash-less re-stamp from a different session cannot clobber a content-bou
+   }
+ });
+ 
++// ── restoreAuthorProvenance: roll a discarded re-author's record back to the true
++//    on-disk author (R2). The four record states the helper must handle, plus the
++//    out-of-order and conflict-bypass red-team cases. Logs are swallowed so a no-op
++//    branch never spams the test output.
++const SILENT = (): void => {};
++
++test("restore (v2-with-previous): rolls the record back to the prior author + content", () => {
++  try {
++    cleanLifecycle();
++    const hashA = chapterContentHash(makeChapter(LC_BOOK, 1)); // the restored (prior) bytes
++    const hashB = reauthoredHash();                            // the discarded re-author
++    recordAuthorProvenance(LC_CH, "session-A", hashA);
++    recordAuthorProvenance(LC_CH, "session-B", hashB); // content-changed transition (records previous A/session-A)
++    assert.equal(loadAuthorProvenance(LC_CH)?.authorSessionId, "session-B", "precondition: record points at the discarded draft");
++
++    restoreAuthorProvenance(LC_CH, hashA, SILENT);
++
++    const rec = loadAuthorProvenance(LC_CH);
++    assert.equal(rec?.authorSessionId, "session-A", "author rolled back to the true prior author");
++    assert.equal(rec?.contentHash, hashA, "content hash rolled back to the restored bytes");
++    assert.equal(rec?.schemaVersion, "author-provenance-v2");
++    assert.equal(rec?.previousContentHash, undefined, "the rolled-back record carries no stale transition");
++  } finally {
++    cleanLifecycle();
++  }
++});
++
++test("restore (v2-without-previous): a create-once record with no prior attribution is left untouched", () => {
++  try {
++    cleanLifecycle();
++    const hashB = reauthoredHash();
++    recordAuthorProvenance(LC_CH, "session-B", hashB); // create-once: no previous* fields
++    const before = loadAuthorProvenance(LC_CH);
++
++    // Restoring to some OTHER (prior) hash cannot roll back — there is no recorded
++    // prior author, and the helper must never fabricate one.
++    const hashA = chapterContentHash(makeChapter(LC_BOOK, 1));
++    restoreAuthorProvenance(LC_CH, hashA, SILENT);
++
++    assert.deepEqual(loadAuthorProvenance(LC_CH), before, "record unchanged; no author fabricated");
++  } finally {
++    cleanLifecycle();
++  }
++});
++
++test("restore (v1/legacy no content hash): left untouched, never fabricated", () => {
++  try {
++    cleanLifecycle();
++    mkdirSync(dirname(provenancePath(LC_CH)), { recursive: true });
++    writeFileSync(
++      provenancePath(LC_CH),
++      JSON.stringify({ schemaVersion: "author-provenance-v1", chapterId: LC_CH, authorSessionId: "legacy-A", stampedAt: "2020-01-01T00:00:00.000Z" }, null, 2) + "\n",
++    );
++    const before = loadAuthorProvenance(LC_CH);
++
++    restoreAuthorProvenance(LC_CH, "any-hash", SILENT);
++
++    assert.deepEqual(loadAuthorProvenance(LC_CH), before, "v1 legacy record is left exactly as-is");
++  } finally {
++    cleanLifecycle();
++  }
++});
++
++test("restore (missing/corrupt): a no-op that never creates a record", () => {
++  try {
++    cleanLifecycle();
++    // Missing.
++    assert.equal(restoreAuthorProvenance(LC_CH, "any-hash", SILENT), null, "missing record → no-op returns null");
++    assert.equal(loadAuthorProvenance(LC_CH), null, "no record fabricated for a missing file");
++
++    // Corrupt (unreadable JSON).
++    mkdirSync(dirname(provenancePath(LC_CH)), { recursive: true });
++    writeFileSync(provenancePath(LC_CH), "{ this is not json");
++    assert.equal(restoreAuthorProvenance(LC_CH, "any-hash", SILENT), null, "corrupt record → no-op returns null");
++    assert.equal(loadAuthorProvenance(LC_CH), null, "a corrupt file is left as-is (loads as null), not overwritten");
++  } finally {
++    cleanLifecycle();
++  }
++});
++
++test("restore is a no-op when the record already attributes the on-disk bytes (out-of-order safe)", () => {
++  // Red-team: a restore fired AFTER a subsequent successful re-stamp must NOT clobber
++  // the newer record. The expectedCurrentContentHash guard makes it a no-op.
++  try {
++    cleanLifecycle();
++    const hashA = chapterContentHash(makeChapter(LC_BOOK, 1));
++    const hashB = reauthoredHash();
++    recordAuthorProvenance(LC_CH, "session-A", hashA);
++    recordAuthorProvenance(LC_CH, "session-B", hashB);
++    const current = loadAuthorProvenance(LC_CH); // points at B/session-B, the correct on-disk bytes
++
++    // Restore called with the CURRENT (B) hash — the record already matches; leave it.
++    restoreAuthorProvenance(LC_CH, hashB, SILENT);
++
++    assert.deepEqual(loadAuthorProvenance(LC_CH), current, "record for the current bytes is not clobbered");
++  } finally {
++    cleanLifecycle();
++  }
++});
++
++test("restore does NOT roll back when previousContentHash names different bytes than were restored", () => {
++  try {
++    cleanLifecycle();
++    const hashA = chapterContentHash(makeChapter(LC_BOOK, 1));
++    const hashB = reauthoredHash();
++    recordAuthorProvenance(LC_CH, "session-A", hashA);
++    recordAuthorProvenance(LC_CH, "session-B", hashB); // previousContentHash === hashA
++    const before = loadAuthorProvenance(LC_CH);
++
++    // Ask to restore to some THIRD hash the record never transitioned from.
++    restoreAuthorProvenance(LC_CH, "deadbeefdeadbeef", SILENT);
++
++    assert.deepEqual(loadAuthorProvenance(LC_CH), before, "unrecognized rollback target → no change, no guess");
++  } finally {
++    cleanLifecycle();
++  }
++});
++
+ test("a legacy v1 record (no content hash) is upgraded by a genuine re-author, keeping the prior author in the transition", () => {
+   // legacy provenance handling: backward-compatible overwrite for hash-less records.
+   try {
+diff --git a/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/content-device-verify.test.ts b/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/content-device-verify.test.ts
+index c75758eda..edd2f5160 100644
+--- a/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/content-device-verify.test.ts
++++ b/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/content-device-verify.test.ts
+@@ -33,6 +33,8 @@ import { authorChapterId, resolveAuthorIo, type AuthorWriteOneResult } from "../
+ import { resolveAuthorReviewIo } from "../src/orchestrator/authorReview.js";
+ import { chapterFileName } from "../src/lib/chapterPaths.js";
+ import { chapterBriefPath, sourcePacketPath } from "../src/artifacts/artifactStore.js";
++import { chapterContentHash } from "../src/critics/qcAttestation.js";
++import { loadAuthorProvenance, provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
+ import {
+   loadAuthorRegenLedger,
+   contentRepairConsumedFor,
+@@ -129,6 +131,41 @@ test("diversifyOne: a draft that clears review but KEEPS a banned device → dev
+   } finally { h.cleanup(); }
+ });
+ 
++test("diversifyOne (R2): a devices-persisted revert rolls author provenance back to the restored bytes' true author", async () => {
++  const h = makeHarness([3]);
++  const chapterId = authorChapterId(BOOK, 3);
++  try {
++    const priorObj = chJson(3);                       // the restored (prior passing) bytes
++    const discardedObj = chJson(3, RETURN_PROOF);     // the discarded re-author (keeps the banned device)
++    const hashPrior = chapterContentHash(priorObj as unknown as ChapterV21);
++    const hashDiscarded = chapterContentHash(discardedObj as unknown as ChapterV21);
++    assert.notEqual(hashPrior, hashDiscarded, "fixture sanity: the two drafts hash differently");
++
++    h.writeChapterFile(3, JSON.stringify(priorObj));
++    // Seed the STALE record the re-author would leave behind: content bound to the
++    // DISCARDED draft (session-B), with the prior author (session-A) recorded in the
++    // transition. This is exactly what recordAuthorProvenance stamps on a re-author.
++    recordAuthorProvenance(chapterId, "author-session-A", hashPrior);
++    recordAuthorProvenance(chapterId, "reauthor-session-B", hashDiscarded);
++    assert.equal(loadAuthorProvenance(chapterId)?.authorSessionId, "reauthor-session-B", "precondition: record points at the discarded draft");
++
++    const outcome = await diversifyOne(
++      BOOK,
++      { chapterNumber: 3, directive: "drop the return-proof device", label: "content-deal", bannedDevices: ["return-proof"] },
++      DEPS,
++      h.ctx({ writeChapter: stubWriter(h.pathFor, () => discardedObj) }), // writer does NOT comply → devices-persisted revert
++    );
++
++    assert.equal(outcome.status, "devices-persisted", "the persisted banned device reverts");
++    const rec = loadAuthorProvenance(chapterId);
++    assert.equal(rec?.contentHash, hashPrior, "provenance content hash rolled back to the restored bytes");
++    assert.equal(rec?.authorSessionId, "author-session-A", "provenance author rolled back to the true prior author");
++  } finally {
++    rmSync(provenancePath(chapterId), { force: true });
++    h.cleanup();
++  }
++});
++
+ test("diversifyOne: a draft that sheds the banned device but adds a NEW non-banned device → kept, substitution recorded (no revert)", async () => {
+   const h = makeHarness([3]);
+   try {
+diff --git a/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/source-anchored-planning.test.ts b/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/source-anchored-planning.test.ts
+index 6aee28488..fd295fb27 100644
+--- a/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/source-anchored-planning.test.ts
++++ b/scripts/book/prompts/chapterflow-v24-author-pipeline/tests/source-anchored-planning.test.ts
+@@ -294,10 +294,17 @@ test("source-v2 provenance rejects nonexistent, wrong-chapter, placeholder, and
+       mutate: (chapter) => { chapter.authoring!.sourceAnchors!.effectiveAnchors.hook = ["anchor-99"]; },
+     },
+     {
++      // SC11.6 fires for an anchor that EXISTS and is chapter-correct but whose KIND cannot
++      // back the unit's claim type. ch01.concept.harbor is a `concept` anchor, and
++      // defaultClaimTypesFor("concept") omits quiz_prompt/quiz_explanation — so citing it on a
++      // quiz unit is genuinely unsupportive and must surface the precise SC11.6.
++      // NOTE: an earlier revision planted ch01.ex.lantern here, but a named_example anchor DOES
++      // support quiz claims — that under-uses its hardSpecifics, which is the distinct, coarser
++      // SC11.2 failure (exercised as the boundary's other side below), not SC11.6.
+       name: "unsupported",
+       checkId: "SC11.6.unsupported_anchor",
+-      evidence: "ch01.ex.lantern",
+-      mutate: (chapter) => { chapter.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.ex.lantern"]; },
++      evidence: "ch01.concept.harbor",
++      mutate: (chapter) => { chapter.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.concept.harbor"]; },
+     },
+   ];
+   for (const c of cases) {
+@@ -311,6 +318,42 @@ test("source-v2 provenance rejects nonexistent, wrong-chapter, placeholder, and
+   }
+ });
+ 
++test("SC11 boundary: supported-but-missing-specific → SC11.2; present-but-unsupportive → SC11.6", () => {
++  // These two failure modes are DISTINCT and must not collapse. SC11.2 is the coarser "you
++  // cited a supporting anchor but did not build the unit from its hardSpecifics"; SC11.6 is the
++  // precise "this anchor's kind cannot back this claim type at all". The validator checks SC11.6
++  // before SC11.2 (with `continue`), so each failure mode reports its own most-actionable code.
++  // Both are v2 blockers (finalGate catalog). This test pins each side so the precedence cannot
++  // silently invert.
++
++  // Side A — anchor SUPPORTS the claim type but the unit omits its verbatim specifics → SC11.2.
++  // ch01.ex.lantern is a named_example (supportsClaimTypes includes quiz_prompt), so it is a
++  // legal anchor for a quiz unit; the quiz prose simply never names lantern/ledger/beacon.
++  const missingSpecific = fullyAnchoredChapter();
++  missingSpecific.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.ex.lantern"];
++  const specificFindings = checkChapterProvenance(missingSpecific, sidecar());
++  const sc112 = specificFindings.filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && f.evidence === "ch01.ex.lantern");
++  assert.ok(sc112.length > 0, "supported anchor missing its hardSpecifics must raise SC11.2");
++  assert.ok(sc112.every((f) => f.severity === "blocker"), "SC11.2 must stay a blocker");
++  assert.ok(
++    !specificFindings.some((f) => String(f.checkId) === "SC11.6.unsupported_anchor" && f.evidence === "ch01.ex.lantern"),
++    "a genuinely supporting anchor must NOT be mislabeled unsupported (SC11.6)",
++  );
++
++  // Side B — anchor EXISTS and is chapter-correct but its kind cannot back the claim type → SC11.6.
++  // ch01.concept.harbor is a `concept` anchor; concept.supportsClaimTypes omits quiz_prompt.
++  const unsupportive = fullyAnchoredChapter();
++  unsupportive.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.concept.harbor"];
++  const unsupportiveFindings = checkChapterProvenance(unsupportive, sidecar());
++  const sc116 = unsupportiveFindings.filter((f) => String(f.checkId) === "SC11.6.unsupported_anchor" && f.evidence === "ch01.concept.harbor");
++  assert.ok(sc116.length > 0, "present-but-unsupportive anchor must raise SC11.6");
++  assert.ok(sc116.every((f) => f.severity === "blocker"), "SC11.6 must stay a blocker");
++  assert.ok(
++    !unsupportiveFindings.some((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && f.evidence === "ch01.concept.harbor"),
++    "an unsupportive anchor must report the precise SC11.6, not the coarser SC11.2",
++  );
++});
++
+ test("SC11.2 quota rebalance (P15 ship-layer): non-narrative units need 1 verbatim specific, narration keeps 2", () => {
+   // Quiz units citing a hardSpecifics-bearing named-example anchor: ONE verbatim
+   // specific now clears the ship gate (matches SEC56/SEC58/SEC74 write-time quota).

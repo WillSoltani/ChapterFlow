@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 83,
+    "quizzes": 78,
+    "transfer": 80,
+    "practical": 76,
+    "summaries": 80,
+    "tone": 67,
+    "limits": 81,
+    "insight": 74,
+    "density": 66,
+    "beginner": 70
+  },
+  "quotes": [
+    {
+      "quote": "A clean fix can be the place a bad guess hides.",
+      "why": "Strong portable line: compact, memorable, and tied to the chapter mechanism."
+    },
+    {
+      "quote": "What would still move if the offer were gone?",
+      "why": "Excellent transfer question that can be reused across sales, work, and personal decisions."
+    },
+    {
+      "quote": "Trust is a belief you can watch under pressure.",
+      "why": "The strongest aphorism in the sample: short, complete, and behaviorally testable."
+    },
+    {
+      "quote": "A metric is a receipt for spread, not a receipt for meaning.",
+      "why": "Sharp reversal that separates growth from purpose without overexplaining."
+    },
+    {
+      "quote": "The return is set, not met.",
+      "why": "This repeated shell becomes a visible house style and contributes to high cross-chapter churn."
+    },
+    {
+      "quote": "Move a true detail to the wrong story and it stops grounding the claim; it starts making fiction sound factual.",
+      "why": "Useful limit, but the same hard-detail warning recurs so often it starts to feel templated."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is sound and publishable on correctness: I found no keyed answer contradicted by the prose, no incoherent chapter, and no obvious fabricated fact from the material itself. Its best pages teach durable lenses: separate fact from guess, push from reason, belief from loyalty, and growth from meaning. The weakness is not soundness but sameness. Across chapters, the same machinery repeats: named company anchors, hard details must stay home, second setting prevents overreach, return proof is due, and a proxy character catches a late error. That makes the book useful but less alive than premium work; it teaches clearly, but often sounds like one instructional template wearing different nouns."
+}
+```

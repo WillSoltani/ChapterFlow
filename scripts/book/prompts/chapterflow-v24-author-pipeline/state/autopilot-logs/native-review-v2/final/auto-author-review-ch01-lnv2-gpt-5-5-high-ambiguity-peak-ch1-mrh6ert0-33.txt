@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "b", "b", "b", "c", "a", "c"],
+    "mechanisms": [
+      "Purposeful practice isolates the recurring two-measure miss, gets close feedback, and changes the next attempt instead of replaying the whole piece.",
+      "The prose says vague whole-task effort becomes purposeful when the learner finds the exact error pattern, drills only it, checks each step, and changes the next attempt.",
+      "The chapter repeatedly contrasts whole-performance repetition with isolating the weak point that keeps surviving.",
+      "The plateau needs a method change with a visible cue, short attempt, feedback, and repeat before returning to volume.",
+      "Faloon's improvement is described as misses telling the next attempt where to work, making recall a feedback loop.",
+      "The knife-cut claim fails because repetition without a visible size target can make the same error fluent.",
+      "The chapter says feedback matters only when it can shape the next attempt while the error is still traceable.",
+      "Plan B creates short batches with immediate template comparison and adjustment before the next batch.",
+      "A useful target must be visible, countable, comparable, or correctable; the chalk-line pedal target meets that standard."
+    ],
+    "confidence": ["medium", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "b is also defensible because changing fingering before the next attempt is a concrete correction after isolating and recording the same passage; the prose does not force hand motion over fingering.",
+      "",
+      "",
+      "",
+      "",
+      "a is also defensible because the prose says comfort and repeated enjoyable effort can leave the weak spot hidden; b is stronger only because it names the visible target.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "c is obviously non-purposeful; a and b are near twins, so the item is not guessable to a unique answer.",
+      "The stem says repeated redox error, and only a says redox-only; b and c are broad-work foils.",
+      "c repeats the stem's 'same' weak-point logic while a and b are generic more-practice foils.",
+      "a uses 'hope' and c uses an unsupported fatigue escape; b is the only feedback-loop option.",
+      "The stem already says reviewing breaks and changing strategy; b restates that mechanism.",
+      "",
+      "c is the only option that says the next attempt changes.",
+      "The stem describes Plan B's feedback loop, and a simply names it.",
+      "c is uniquely concrete, measurable, and bounded."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 75,
+    "transfer": 88,
+    "practical": 91,
+    "summaries": 93,
+    "tone": 88,
+    "limits": 90,
+    "insight": 88,
+    "density": 86,
+    "beginner": 91
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "Strongest retention line: concrete, short, and it compresses the chapter's whole mechanism."
+    },
+    {
+      "quote": "Comfort is a poor coach because it lets the weak spot stay hidden.",
+      "why": "Strong mechanism line that explains why naive repetition fails."
+    },
+    {
+      "quote": "A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.",
+      "why": "Best practical test: it gives beginners a usable standard for designing reps."
+    },
+    {
+      "quote": "b) Slow the two-measure turn, record only that passage, and change fingering before the next attempt.",
+      "why": "Worst quiz defect: this is also purposeful practice, so Q1 does not have a uniquely derivable answer."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "Options a and b both isolate the same passage, use recording as feedback, and change the next attempt; the prose does not establish why hand motion is correct while fingering is wrong. Category: STRUCTURALLY INVALID broken quiz.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "Options a and b are both supported by the chapter's comfort-versus-visible-target logic, though b is somewhat more specific to the knife-cut stem.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several items are answerable by test-taking pattern alone: choose the narrow, immediate-feedback, next-attempt option and reject whole-task, hope, confidence, or volume foils.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a clear correction-loop model, memorable lines, honest limits, concrete examples, and practical transfer across study, work, sport, and craft. The main blocker is quiz quality: Q1 is genuinely underdetermined because two choices satisfy the chapter's own mechanism, and several other items have obvious foil patterns. I would not ship until the broken quiz item is fixed, but the prose itself is above the professional bar."
+}
+```

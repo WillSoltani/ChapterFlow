@@ -1,0 +1,119 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "c", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as four distinct moves matched to narrow framing, confirmation bias, short-term emotion, and overconfidence.",
+      "The chapter says a yes-or-no frame excludes better paths before evidence is considered, so the option set must be widened first.",
+      "Reality-testing asks what could make the favored plan fail and actively seeks evidence capable of weakening it.",
+      "The prose treats emotion as information but recommends distance from its short-term surge and attention to what matters later.",
+      "Prepare to be wrong requires naming multiple plausible futures instead of treating one detailed forecast as certain.",
+      "HopeLab used parallel first passes to generate comparison data and learn before making an expensive commitment.",
+      "Grove's question creates distance by asking what a fresh leader would do without Intel's attachment to memory chips.",
+      "Each villain affects a different part of the decision and therefore requires its corresponding WRAP move.",
+      "The chapter explicitly says good process improves the odds without guaranteeing a good outcome."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "Choice b calls the four targets \"choice stages,\" while the prose describes them as dangers or repair jobs rather than formally defined stages; no competing choice is equally supported.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Correct choices repeatedly echo signature prose terms such as \"disconfirming evidence,\" \"plausible outcomes,\" \"outsider question,\" and \"improving odds while uncertainty remains.\"",
+      "Many distractors are giveaway reversals or absolutes: gather only friendly evidence, let an outsider decide, trust confidence as proof, promise the next outcome will be right, or abandon the process.",
+      "Several correct choices are the most qualified and mechanism-rich option, while distractors use conspicuously simplistic reasoning."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 81,
+    "transfer": 58,
+    "practical": 82,
+    "summaries": 90,
+    "tone": 87,
+    "limits": 95,
+    "insight": 91,
+    "density": 82,
+    "beginner": 94
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "A compact, memorable image explains the mechanism of confirmation bias."
+    },
+    {
+      "quote": "Good process raises the odds without promising the outcome.",
+      "why": "This states the chapter's most important boundary plainly and memorably."
+    },
+    {
+      "quote": "On reflection, gather only the evidence that supports the plan you already favor, because disconfirming views just add noise and slow the decision down.",
+      "why": "This directly reverses the chapter's reality-testing instruction inside the action step."
+    },
+    {
+      "quote": "The team lead texts from the train platform before the decision meeting: \"WRAP check. Which of the four villains is loudest?\"",
+      "why": "The chapter presents a specific event and quotation without marking the scene as hypothetical or supplying any basis for it."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The example invents a specific after-lunch HopeLab project-room scene around a real organization without marking it as hypothetical, making the reconstruction misleading. Category: FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "The example invents a Monday-morning HopeLab planning-room event and attributes internal budget reasoning to unnamed staff without identifying it as fiction. Category: FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 3",
+      "problem": "The example invents an Intel reviewer, a strategy review, and two pages of deliberation around a real historical decision without a hypothetical marker. Category: FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 4",
+      "problem": "Its action step first recommends disconfirming research and then explicitly instructs the reader to gather only supporting evidence, contradicting the chapter's central mechanism. Category: SOURCE-CONTRADICTORY.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 5",
+      "problem": "The named person, forecast-board reveal, and three-range event are presented as facts without being marked as a hypothetical scenario. Category: FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 6",
+      "problem": "The train-platform exchange and quoted text messages are invented but presented as an occurring event rather than a hypothetical illustration. Category: FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples 1-2",
+      "problem": "Both examples reuse the HopeLab vendor-comparison case with minimal additional transfer; the second mostly restates the first through budget language.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The keyed choice calls the four WRAP targets \"choice stages,\" terminology the prose never establishes and that slightly misstates its danger-to-repair mapping.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Many distractors are transparent reversals, absolutes, or obviously reckless positions, so readers can often identify the answer through test-taking cues rather than understanding.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The instruction to touch a laptop lid is theatrical, while \"record the cue, shortcut, and likely villain\" introduces an unexplained shortcut field and does not directly require the matching WRAP action.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches WRAP clearly through a strong causal structure, memorable lines, approachable prose, useful if-then practices, and unusually honest limits on what good process can guarantee. The quiz is fully derivable, though its distractors are often too easy and Q1 uses imprecise terminology. The chapter cannot ship as written because Example 4 reverses the central advice inside its own action step, and several examples present invented scenes involving real organizations as if they occurred. Once those examples are explicitly framed as hypothetical or replaced with supported cases—and the contradictory sentence is removed—the underlying chapter is close to a professional standard."
+}
+```

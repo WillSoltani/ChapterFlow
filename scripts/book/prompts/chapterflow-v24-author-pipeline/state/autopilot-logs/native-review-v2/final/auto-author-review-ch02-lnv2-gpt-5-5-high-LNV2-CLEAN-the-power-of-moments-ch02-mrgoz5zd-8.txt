@@ -1,0 +1,66 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "mechanisms": [
+      "The prose says to look first at transitions, milestones, and pits, which map to welcome, award, and complaint moments.",
+      "The John Deere section says purpose has to arrive before procedure, linking factory work to real farm-equipment users at the start.",
+      "The Mary Kay lesson is that a milestone becomes memorable when it has a visible public marker.",
+      "The Joshie recovery shows that returning the object is not enough; proof of care must change the story carried away.",
+      "The chapter explicitly says more forms do not improve the first day; purpose should come before the packet.",
+      "The prose says progress needs a marker people can notice and picture, not just private or dashboard data.",
+      "The pit lesson says a polished apology is insufficient if the emotional meaning has not been repaired with concrete care.",
+      "Eric's coffee-shop example says the busiest step may not be the remembered step, so first ask where meaning is assigned.",
+      "The warning is that a low point gets sticky if the feeling under it is left alone, so the ending must be changed."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "Choice a is mildly defensible if the dashboard is public and visually marks achievement, but the wording frames it as mere data, not recognition.", "", "", ""],
+    "tells": ["", "", "", "", "", "", "", "", ""]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 87,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 89,
+    "limits": 87,
+    "insight": 90,
+    "density": 82,
+    "beginner": 92
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The busy middle is not the whole story.",
+      "why": "This is the chapter's cleanest memory hook and it compresses the core move well."
+    },
+    {
+      "quote": "If you add a ritual to every step, people stop trusting the cue.",
+      "why": "This is a useful limit that prevents the method from turning into indiscriminate ceremony."
+    },
+    {
+      "quote": "Manon opens a bedside notebook after her family lost stuffed giraffe Joshie and the recovery changed the day.",
+      "why": "This example drifts from designing a recovery moment to writing thanks after someone else has already done it."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "The dashboard distractor is slightly underdetermined because a dashboard could be visible recognition if designed as a public marker, though the intended answer is still derivable.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The action shifts to Manon writing a concrete thank-you note, which is adjacent to the lesson but weaker as practice for designing a pit recovery.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The six examples mostly recombine the same three source cases, which lowers transfer variety even though each example is usable.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable against a professional bar. Its core distinction is memorable, the layered reads stand alone, the quiz is mostly fair and well keyed, and the limits section usefully prevents over-application. The main weakness is transfer breadth: the examples lean heavily on the same John Deere, Mary Kay, and Joshie material instead of showing more unrelated domains. That is a craft weakness, not a blocking defect."
+}
+```

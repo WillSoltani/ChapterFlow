@@ -1,0 +1,59 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "a", "c", "c", "b", "b", "b", "c"],
+    "keyDisagreements": ["Q2's keyed answer is the best available choice, but it assigns Ford the job of changing the setting; the prose says Walmart changes venue while Ford presses scope/stopping edge."],
+    "tells": ["Several distractors telegraph themselves with implausible authority shortcuts such as senior sponsor/rank replacing evidence.", "Correct choices often contain the chapter's exact named anchors and sober mechanism language, while distractors use exaggerated absolutes like any well-known founder or every club choice."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 72,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 88,
+    "insight": 84,
+    "density": 82,
+    "beginner": 80
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Every unowned promise costs trust before proof returns.",
+      "why": "Strong, memorable compression of the chapter's core mechanism."
+    },
+    {
+      "quote": "If WHAT goes first, output becomes the judge. If HOW goes first, the action is forced to explain why it exists.",
+      "why": "Clear causal explanation that makes the ordering rule usable."
+    },
+    {
+      "quote": "Ford presses on scope, so the idea does not swell into a slogan.",
+      "why": "This is the prose role Q2 should preserve; the quiz answer muddies it."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "The keyed answer says Ford should change the setting, but the prose assigns venue/change-setting work to Walmart and says Ford's job is scope/stopping edge. This teaches the source roles incorrectly.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Several distractors are weak because they rely on obviously wrong authority shortcuts, making some answers guessable without close reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "Thin-but-usable example: it mostly restates the Apple return lesson and shows little concrete before-to-after decision consequence beyond keeping the return as an ask.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "Thin-but-usable example: Model T works as a scope marker, but the scenario has no real actor making a decision and seeing a consequence.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong core move: do not let visible output prove purpose until WHY holder, HOW operators, and returning proof are named. Its summaries, memorable lines, and practical prompts are mostly clear and usable, and the limits section keeps the idea from becoming founder worship. The blocker is Q2: the quiz partly contradicts the chapter's own assignment of roles by making Ford change the setting instead of press on scope. Fix that quiz item and tighten the weaker distractors/examples, and this is close to shippable."
+}
+```

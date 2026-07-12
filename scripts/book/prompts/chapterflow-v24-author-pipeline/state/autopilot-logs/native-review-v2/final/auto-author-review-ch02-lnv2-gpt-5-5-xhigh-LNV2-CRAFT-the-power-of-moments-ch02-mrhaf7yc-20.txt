@@ -1,0 +1,78 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "mechanisms": [
+      "The prose says to look first at transitions, milestones, and pits; welcome, awards, and complaint calls map to those charged points.",
+      "The John Deere lesson says purpose should arrive before forms and routine tasks define the first day.",
+      "Mary Kay's Cadillac works because it makes a milestone public and visible.",
+      "Joshie shows that a found item is not enough; the recovery needs proof of care that changes the story.",
+      "The chapter directly contrasts thicker packets with tying the role to real users before procedure takes over.",
+      "The milestone lesson says progress needs a marker people can picture, not just a private or data-only count.",
+      "The pit lesson says a polished apology is insufficient if it does not create a concrete recovery story.",
+      "Eric's mistake shows that the busiest step is not necessarily where people assign meaning or retell the relationship.",
+      "The pit warning is that a practical fix may leave the painful memory intact unless the ending is changed."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "Choice a is partly defensible if the dashboard is public and memorable, but the prose distinguishes visible data from a marker people can picture.", "", "", ""],
+    "tells": [
+      "Correct answers often echo the chapter's exact positive vocabulary: purpose, visible marker, proof of care, changes the story.",
+      "Several distractors are exaggerated or inert, such as giving every step the same polish, keeping progress private, or moving on once the item is back."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 78,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 89,
+    "tone": 84,
+    "limits": 87,
+    "insight": 88,
+    "density": 80,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Do not smooth every minute with equal care. Look first at transitions, milestones, and pits, since those points already have feeling in them.",
+      "why": "This is the chapter's core move in a memorable, actionable form."
+    },
+    {
+      "quote": "A hidden milestone makes a thin memory.",
+      "why": "Strong compression of the milestone mechanism."
+    },
+    {
+      "quote": "This method can go wrong when the signal is fake or too loud.",
+      "why": "The chapter gives a real boundary instead of overselling the technique."
+    },
+    {
+      "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+      "why": "This is generic filler in an otherwise concrete example."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "The correct choices are often signposted by chapter vocabulary while distractors are visibly worse, so the quiz is fair but easy to game.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "The dashboard distractor is slightly under-specified because a dashboard could be a public marker if designed that way.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The final sentence turns generic and does not add to the Mary Kay milestone example.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The action shifts toward writing thanks after a recovery rather than designing the recovery moment itself, so the transfer is less direct.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable: the central scan for transitions, milestones, and pits is clear, memorable, and practical, with enough limits to keep it honest. The main weakness is quiz rigor: most answers can be guessed from the positive wording and echoed vocabulary. A few examples also repeat the anchor cases or drift into generic phrasing, but none of that blocks comprehension or use."
+}
+```

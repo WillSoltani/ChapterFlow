@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "b", "c", "b", "a", "a", "c", "c"],
+    "keyDisagreements": [],
+    "tells": ["Correct answers are often the most specific and source-rich option, while distractors frequently sound visibly wrong by endorsing broad purpose words, moving details across sources, or using one famous example everywhere.", "Several correct choices are the longest or near-longest choice, especially Q2, Q5, Q6, Q7, and Q9."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 76,
+    "transfer": 84,
+    "practical": 82,
+    "summaries": 90,
+    "tone": 82,
+    "limits": 88,
+    "insight": 86,
+    "density": 80,
+    "beginner": 83
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Trace the pattern before the phrase.",
+      "why": "Strongest memorable line; it compresses the chapter's method into a phrase a reader can reuse."
+    },
+    {
+      "quote": "The second anchor does not decorate the first; it audits it.",
+      "why": "Strong mechanism line; it explains why the added example matters instead of just naming another case."
+    },
+    {
+      "quote": "A warm origin can become a trick if it asks people to feel depth that the past has not earned.",
+      "why": "Good boundary statement; it gives the lesson an honest failure mode."
+    },
+    {
+      "quote": "The early signal is a 1 beside \"helped people explain what they already lived,\" and small-service founder Xavier is the first to mark it.",
+      "why": "Weakest passage; the staged example feels artificial and harder to picture than the main explanation."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Distractors are often too obviously anti-lesson, so a test-wise reader can pick the source-rich answer without fully deriving it from the prose.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are frequently the most concrete and loaded with named anchors, creating a giveaway pattern.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Several fictional transfer scenes feel staged around the framework rather than like real decisions a reader recognizes.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The ledger metaphor is useful but repeated heavily, making some paragraphs feel like rephrasing rather than adding new insight.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear and useful core move: do not write a WHY line until past patterns, contribution, and impact have earned it, and use second and third anchors to test whether the origin travels without overreach. The prose is mostly sound, memorable, and honest about limits, with several strong lines. I would not ship it yet at a professional 84 bar because the quiz design has visible tells and weak distractors, and some examples feel manufactured rather than lived. Tightening the quiz options and making the practice examples less scaffolded would likely move it over the line."
+}
+```

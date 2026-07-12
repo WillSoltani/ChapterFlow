@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "c", "a", "a", "b", "c", "b"],
+    "keyDisagreements": [],
+    "tells": ["Several correct choices are the most specific and mechanism-rich option, while distractors often use giveaway overreach such as 'every organization,' 'broad technology label,' or 'warm opening.' No uniquely longest-choice pattern is strong enough to break the quiz by itself."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 79,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 84,
+    "limits": 86,
+    "insight": 88,
+    "density": 82,
+    "beginner": 80
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The fare did not make the belief; the belief made the fare readable.",
+      "why": "Strongest line: it makes the chapter's sequence rule memorable and concrete."
+    },
+    {
+      "quote": "What would a stranger see before the promise spoke?",
+      "why": "A useful diagnostic question that readers can carry into other contexts."
+    },
+    {
+      "quote": "No title is required here.",
+      "why": "Worst tonal defect: it exposes production scaffolding and briefly breaks the reading experience."
+    },
+    {
+      "quote": "A blue badge lies between her and Neil.",
+      "why": "Thin detail: it adds scene texture without helping the causal lesson."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "full read",
+      "problem": "The sentence 'No title is required here' reads like retained scaffold or production instruction rather than chapter prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The blue badge detail is decorative and does not clarify the before-to-after decision or its consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The example is usable but thin: the staff update fails, then Preston pauses the claim, but the concrete revised behavior remains underspecified.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Some distractors are easier to reject by their broad or absolute phrasing than by close derivation from the prose.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable: it teaches a clear sequence rule, repeats it through Southwest, Kelleher, Apple, and practical promise-writing moves, and gives readers memorable diagnostics for making belief visible through conduct. Its main weaknesses are craft-level rather than blocking: a stray scaffold-like sentence, a few thin scene details, and quiz distractors that sometimes telegraph themselves by overreach. The core learning survives well."
+}
+```

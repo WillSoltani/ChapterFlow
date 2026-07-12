@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "mechanisms": [
+      "The prose defines heart rate variability as beat-to-beat rhythm flexibility and links higher variability with stronger self-regulation.",
+      "The Trier setup works because public speaking and arithmetic under evaluators create social judgment without physical threat.",
+      "The chapter says stress makes fast comfort feel like shelter and pushes attention toward immediate relief.",
+      "Tang's brief meditation evidence is presented as training attention and softening stress reactivity before urges peak.",
+      "The prose treats slow breathing as a body-state change that keeps choice, attention, and control online.",
+      "Pause-and-plan questions extra arousal because the chapter says a braced body leaves less room for future-minded choice.",
+      "The sleep section says tired attention loses its grip, letting louder cues beat the intended goal.",
+      "The movement paragraph says physical activity can improve mood, stress regulation, and executive function.",
+      "The chapter says waiting until the craving peaks is unfair because the body needs calmer runway before the hardest moment."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Choice b is the only option using the chapter's adaptive-control framing; a and c are reductive.",
+      "Choice c repeats the chapter's social-judgment language; a and b are implausibly narrow.",
+      "Choice c is the only hedged diagnostic read; a and b overstate blame or separation.",
+      "Choice a uses the lesson phrase 'train attention'; b and c use giveaway extremes.",
+      "Choice b is the only mechanism-level answer; a and c sound dismissive.",
+      "Choice b is the only answer that directly names arousal crowding out goal weighing.",
+      "Choice a repeats 'tired attention'; b and c minimize sleep too obviously.",
+      "Choice a repeats the exact trio from the prose; b and c use 'only'/'mostly' tells.",
+      "Choice c repeats the chapter's 'before the craving peaked' language."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 82,
+    "transfer": 84,
+    "practical": 90,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 92,
+    "insight": 90,
+    "density": 87,
+    "beginner": 89
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Panic is a poor coach. Calm gives the future a vote.",
+      "why": "The core move is memorable, concrete, and easy to retrieve later."
+    },
+    {
+      "quote": "The body is the room where the choice happens.",
+      "why": "This gives the chapter a strong mechanism image rather than a slogan about discipline."
+    },
+    {
+      "quote": "Pause-and-plan is not a way to avoid the hard act; it is a way to arrive at it with more of yourself present.",
+      "why": "The limits section prevents the advice from becoming avoidance."
+    },
+    {
+      "quote": "Sierra frowns at the word training. Then she tries one quiet breath and sees the lesson is not bliss; it is staying present long enough to choose.",
+      "why": "This example is usable but thin; it mostly restates the lesson without a real before-to-after consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz distractors",
+      "problem": "Several distractors are easy to eliminate because they use giveaway extremes such as 'only,' 'mainly,' or obviously dismiss the chapter's mechanism.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "The meditation example is thin-but-usable: it names a learner and setting, but the action has little consequence beyond recognizing the lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The Kelsey example repeats the full-read scenario closely, so it adds less transfer range than the other examples.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The core skill line repeats the title idea in nearly the same wording before introducing the named move, creating a small scaffold smell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears the professional bar. Its central move is memorable, bodily, and practical: calm the state before asking willpower to decide. The strongest material explains mechanism without jargon and includes an unusually useful limits section. The main weakness is quiz construction: the right answers are sound and derivable, but several distractors are too plainly wrong, so a test-wise reader could often guess the key. A couple of examples are repetitive or thin, but none are reader-harming or structurally invalid."
+}
+```

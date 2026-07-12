@@ -1,0 +1,738 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "multipliers",
+  "chapterId": "multipliers-ch09",
+  "chapterNumber": 9,
+  "chapterTitle": "Becoming a Multiplier",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/multipliers/20260709T020631645Z-b8e7894b-2287-4faf-9ef6-e4da421b5316/sidecars/source/ch09.source.json",
+  "sourceHash": "sha256:b8175aaafe5fb4fae9b23b346eefae34921a62a88b02a4d8944347725ba1ab23",
+  "facts": [
+    {
+      "id": "ch09.fact.1",
+      "claim": "Anders Ericsson's 1993 Psychological Review article connects deliberate practice with focused feedback.",
+      "mechanism": "Because the 1993 article frames expertise development around structured practice conditions, leadership change should use specific feedback rather than vague admiration.",
+      "commonError": "Assuming insight alone changes management habits.",
+      "whyWrong": "Old habits usually persist unless a specific replacement behavior is practiced with feedback.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1993"
+      ],
+      "groundedEntities": [
+        "Anders Ericsson's",
+        "Psychological Review",
+        "Assuming",
+        "Old"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.1"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch09.fact.2",
+      "claim": "Deliberate practice is narrower than simply gaining years of experience.",
+      "mechanism": "Because focused feedback and targeted improvement distinguish practice from repetition.",
+      "commonError": "Believing tenure automatically makes someone a better Multiplier.",
+      "whyWrong": "Experience can repeat the same diminishing pattern unless feedback changes it.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Deliberate",
+        "Believing",
+        "Multiplier. Experience"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.2"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch09.fact.3",
+      "claim": "Peter Gollwitzer's 1999 American Psychologist article is associated with implementation intentions.",
+      "mechanism": "Because if-then planning gives behavior change a concrete mechanism and named research source.",
+      "commonError": "Treating if-then plans as generic productivity advice.",
+      "whyWrong": "The implementation-intention research tradition is a specific psychology source.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1999"
+      ],
+      "groundedEntities": [
+        "Peter Gollwitzer's",
+        "American Psychologist",
+        "Treating"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.3"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch09.fact.4",
+      "claim": "Implementation intentions connect a situational cue with a planned action.",
+      "mechanism": "Because pre-deciding the response makes the behavior easier to execute under meeting pressure.",
+      "commonError": "Waiting to remember the new behavior in the heat of the moment.",
+      "whyWrong": "Predictable cues need preplanned responses because pressure revives old habits.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Implementation",
+        "Waiting",
+        "Predictable"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.4"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch09.fact.5",
+      "claim": "Carol Dweck's 2006 Mindset work treats ability as developable.",
+      "mechanism": "Because becoming a Multiplier assumes leadership behavior can improve through learning and effort.",
+      "commonError": "Using growth mindset to mean empty optimism.",
+      "whyWrong": "Developable ability still requires practice, feedback, and effort.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2006"
+      ],
+      "groundedEntities": [
+        "Carol Dweck's",
+        "Mindset",
+        "Multiplier",
+        "Using",
+        "Developable"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.5"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch09.fact.6",
+      "claim": "A Multiplier practice plan should start with one or two visible behaviors.",
+      "mechanism": "Because small visible changes create feedback and reduce the overload of trying to change everything at once.",
+      "commonError": "Attempting a total leadership makeover immediately.",
+      "whyWrong": "Overbroad change plans often fail before the team sees any difference.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "2"
+      ],
+      "groundedEntities": [
+        "A Multiplier",
+        "Attempting",
+        "Overbroad"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.6"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch09.fact.7",
+      "claim": "Impact feedback is necessary because the test is other people's contribution.",
+      "mechanism": "Because the leader's intention does not prove that the team experienced more space, ownership, or challenge.",
+      "commonError": "Scoring progress only by private self-perception.",
+      "whyWrong": "Multiplier leadership is measured in changed contribution around the leader.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Impact",
+        "Scoring",
+        "Multiplier"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.7"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch09.fact.8",
+      "claim": "A meeting cue can be used to practice speaking later.",
+      "mechanism": "Because delaying the leader's opinion gives others room to contribute before rank shapes the answer.",
+      "commonError": "Trying to be more empowering without changing any meeting behavior.",
+      "whyWrong": "A concrete cue changes the interaction people actually experience.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Trying"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.8"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch09.fact.9",
+      "claim": "Growth-oriented leadership change should avoid slogans without evidence.",
+      "mechanism": "Because a slogan does not show whether people are thinking harder or owning more after the leader changes behavior.",
+      "commonError": "Announcing a growth mindset and assuming the team is multiplied.",
+      "whyWrong": "The evidence is observable contribution, not the slogan itself.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Growth-oriented",
+        "Announcing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.9"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch09.ex.ericsson-practice",
+      "label": "Anders Ericsson deliberate practice",
+      "summary": "Anders Ericsson's 1993 Psychological Review article on deliberate practice emphasizes focused feedback and effortful improvement. The case supports becoming a Multiplier through specific practice rather than vague intent.",
+      "realWorld": true,
+      "naturalSetting": "Anders Ericsson",
+      "hardSpecifics": [
+        "Anders Ericsson",
+        "1993 Psychological Review article",
+        "focused feedback"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "1993 Psychological Review article"
+      ]
+    },
+    {
+      "id": "ch09.ex.gollwitzer-intentions",
+      "label": "Peter Gollwitzer implementation intentions",
+      "summary": "Peter Gollwitzer's 1999 American Psychologist article on implementation intentions uses if-then plans to connect situations with intended actions. The case helps convert a Multiplier aspiration into a meeting-room behavior.",
+      "realWorld": true,
+      "naturalSetting": "Peter Gollwitzer",
+      "hardSpecifics": [
+        "Peter Gollwitzer",
+        "1999 American Psychologist article",
+        "if-then plans"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "1999 American Psychologist article"
+      ]
+    },
+    {
+      "id": "ch09.ex.dweck-growth",
+      "label": "Carol Dweck growth mindset",
+      "summary": "Carol Dweck's 2006 Mindset work treats ability as developable ability through learning and effort. The case supports the closing premise that leaders can improve, while avoiding empty slogans.",
+      "realWorld": true,
+      "naturalSetting": "Carol Dweck",
+      "hardSpecifics": [
+        "Carol Dweck",
+        "2006 Mindset",
+        "developable ability"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "2006 Mindset"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Multiplier practice path",
+      "members": [
+        "choose one behavior",
+        "plan the cue",
+        "practice in live work",
+        "get impact feedback",
+        "repeat"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch09.concept",
+      "kind": "concept",
+      "label": "practice-based change",
+      "text": "Practice-based change treats Multiplier leadership as a set of behaviors that can be rehearsed, measured, and improved. The leader starts with a small number of high-leverage moves rather than trying to embody the whole model at once. Readers leave with a practical improvement route. The focus becomes visible behavior change that others can experience, not private admiration for the concept.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.ex.ericsson-practice",
+      "kind": "named_example",
+      "label": "Anders Ericsson deliberate practice",
+      "text": "Anders Ericsson's 1993 Psychological Review article on deliberate practice emphasizes focused feedback and effortful improvement. The case supports becoming a Multiplier through specific practice rather than vague intent. Leadership behavior improves when practice is specific and feedback-rich.",
+      "hardSpecifics": [
+        "Anders Ericsson",
+        "1993 Psychological Review article",
+        "focused feedback"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.ex.gollwitzer-intentions",
+      "kind": "named_example",
+      "label": "Peter Gollwitzer implementation intentions",
+      "text": "Peter Gollwitzer's 1999 American Psychologist article on implementation intentions uses if-then plans to connect situations with intended actions. The case helps convert a Multiplier aspiration into a meeting-room behavior. A planned cue makes a new leadership behavior more likely under pressure.",
+      "hardSpecifics": [
+        "Peter Gollwitzer",
+        "1999 American Psychologist article",
+        "if-then plans"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.ex.dweck-growth",
+      "kind": "named_example",
+      "label": "Carol Dweck growth mindset",
+      "text": "Carol Dweck's 2006 Mindset work treats ability as developable ability through learning and effort. The case supports the closing premise that leaders can improve, while avoiding empty slogans. A leader can practice multiplying behavior without pretending change is instant.",
+      "hardSpecifics": [
+        "Carol Dweck",
+        "2006 Mindset",
+        "developable ability"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.1",
+      "kind": "testable_fact",
+      "label": "Anders Ericsson's 1993 Psychological Review article connects deliberate practice with focused feedback.",
+      "text": "Anders Ericsson's 1993 Psychological Review article connects deliberate practice with focused feedback. Because the 1993 article frames expertise development around structured practice conditions, leadership change should use specific feedback rather than vague admiration. Assuming insight alone changes management habits. Old habits usually persist unless a specific replacement behavior is practiced with feedback.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.2",
+      "kind": "testable_fact",
+      "label": "Deliberate practice is narrower than simply gaining years of experience.",
+      "text": "Deliberate practice is narrower than simply gaining years of experience. Because focused feedback and targeted improvement distinguish practice from repetition. Believing tenure automatically makes someone a better Multiplier. Experience can repeat the same diminishing pattern unless feedback changes it.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.3",
+      "kind": "testable_fact",
+      "label": "Peter Gollwitzer's 1999 American Psychologist article is associated with implementation intentions.",
+      "text": "Peter Gollwitzer's 1999 American Psychologist article is associated with implementation intentions. Because if-then planning gives behavior change a concrete mechanism and named research source. Treating if-then plans as generic productivity advice. The implementation-intention research tradition is a specific psychology source.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.4",
+      "kind": "testable_fact",
+      "label": "Implementation intentions connect a situational cue with a planned action.",
+      "text": "Implementation intentions connect a situational cue with a planned action. Because pre-deciding the response makes the behavior easier to execute under meeting pressure. Waiting to remember the new behavior in the heat of the moment. Predictable cues need preplanned responses because pressure revives old habits.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.5",
+      "kind": "testable_fact",
+      "label": "Carol Dweck's 2006 Mindset work treats ability as developable.",
+      "text": "Carol Dweck's 2006 Mindset work treats ability as developable. Because becoming a Multiplier assumes leadership behavior can improve through learning and effort. Using growth mindset to mean empty optimism. Developable ability still requires practice, feedback, and effort.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.6",
+      "kind": "testable_fact",
+      "label": "A Multiplier practice plan should start with one or two visible behaviors.",
+      "text": "A Multiplier practice plan should start with one or two visible behaviors. Because small visible changes create feedback and reduce the overload of trying to change everything at once. Attempting a total leadership makeover immediately. Overbroad change plans often fail before the team sees any difference.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.7",
+      "kind": "testable_fact",
+      "label": "Impact feedback is necessary because the test is other people's contribution.",
+      "text": "Impact feedback is necessary because the test is other people's contribution. Because the leader's intention does not prove that the team experienced more space, ownership, or challenge. Scoring progress only by private self-perception. Multiplier leadership is measured in changed contribution around the leader.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.8",
+      "kind": "testable_fact",
+      "label": "A meeting cue can be used to practice speaking later.",
+      "text": "A meeting cue can be used to practice speaking later. Because delaying the leader's opinion gives others room to contribute before rank shapes the answer. Trying to be more empowering without changing any meeting behavior. A concrete cue changes the interaction people actually experience.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.9",
+      "kind": "testable_fact",
+      "label": "Growth-oriented leadership change should avoid slogans without evidence.",
+      "text": "Growth-oriented leadership change should avoid slogans without evidence. Because a slogan does not show whether people are thinking harder or owning more after the leader changes behavior. Announcing a growth mindset and assuming the team is multiplied. The evidence is observable contribution, not the slogan itself.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.framework.multiplier.practice.path",
+      "kind": "framework",
+      "label": "Multiplier practice path",
+      "text": "choose one behavior, plan the cue, practice in live work, get impact feedback, repeat",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1993",
+    "1999",
+    "2006",
+    "1",
+    "2"
+  ],
+  "allowedEntities": [
+    "Becoming",
+    "Multiplier",
+    "Practice-based",
+    "Readers",
+    "Anders Ericsson's",
+    "Peter Gollwitzer's",
+    "Carol Dweck's",
+    "Feedback",
+    "Anders Ericsson",
+    "Psychological Review",
+    "Leadership",
+    "Peter Gollwitzer",
+    "American Psychologist",
+    "Carol Dweck",
+    "Mindset",
+    "Multipliers",
+    "Diminishers",
+    "Keep",
+    "For",
+    "Assuming",
+    "Old",
+    "Deliberate",
+    "Believing",
+    "Experience",
+    "Treating",
+    "Implementation",
+    "Waiting",
+    "Predictable",
+    "Using",
+    "Developable",
+    "A Multiplier",
+    "Attempting",
+    "Overbroad",
+    "Impact",
+    "Scoring",
+    "Trying",
+    "Growth-oriented",
+    "Announcing",
+    "Anders Ericsson deliberate practice",
+    "Peter Gollwitzer implementation intentions",
+    "Carol Dweck growth mindset"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch09.ex.ericsson-practice",
+      "warning": "Keep examples about Anders Ericsson deliberate practice source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch09.ex.gollwitzer-intentions",
+      "warning": "Keep examples about Peter Gollwitzer implementation intentions source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch09.ex.dweck-growth",
+      "warning": "Keep examples about Carol Dweck growth mindset source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch09.fact.1"
+}

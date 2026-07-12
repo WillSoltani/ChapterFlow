@@ -1,0 +1,67 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 0,
+    "quizzes": 0,
+    "transfer": 0,
+    "practical": 0,
+    "summaries": 0,
+    "tone": 20,
+    "limits": 0,
+    "insight": 0,
+    "density": 0,
+    "beginner": 5
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review. A sturdy, fully supported passage that merely LOOKS suspicious.",
+      "why": "This is the only prose, and it claims support the chapter never supplies."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "The chapter is essentially empty section scaffolding."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "chapter body",
+      "problem": "The chapter has headings but no instructional content, so a reader cannot learn or apply any core move. Category: UNUSABLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read section is empty and fails its stand-alone summary promise. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read section is empty and provides no explanation or mechanism. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The full read section is empty and provides no chapter substance. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions, so the quiz cannot function. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The examples section is empty, so there is no transfer material. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. This is not a weak chapter; it is an empty scaffold with one unsupported hook sentence and no lesson, summaries, examples, practical move, quiz, review cards, or memorable lines. It fails the product promise structurally and gives readers nothing to retain, test, or apply."
+}
+```

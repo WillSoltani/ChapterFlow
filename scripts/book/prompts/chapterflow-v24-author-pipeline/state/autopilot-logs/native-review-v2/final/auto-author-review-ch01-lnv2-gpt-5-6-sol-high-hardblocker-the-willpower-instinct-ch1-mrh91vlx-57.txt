@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "b", "b", "b", "a", "c", "c"],
+    "mechanisms": [
+      "The prose defines willpower as starting a useful act, stopping a tempting act, and keeping the larger value visible.",
+      "Miller and Cohen are presented as showing that prefrontal control keeps goals active and biases attention and action.",
+      "Gage retained speech and survival while planning and social restraint changed after frontal injury.",
+      "The chapter says self-awareness must catch the cue or urge before the action hardens or is rationalized afterward.",
+      "The prose explicitly connects self-control with promises, shared resources, conflict repair, and functioning group life.",
+      "A vivid cue wins when the quieter long-term goal is absent, so the running goal must become active at the choice point.",
+      "The chapter treats the short-term and long-term wants as simultaneously real; attention and support determine which guides action.",
+      "Concrete behavior, trigger observation, and feedback are recommended over vague declarations of discipline.",
+      "Prefrontal control is described as biasing attention and response when an automatic routine conflicts with the current goal."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "The word “roots” could imply an evolutionary-origin claim that the prose does not establish, although no competing choice is supported.",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Choice c is the only option containing all three named powers; the other choices reduce the problem to refusal or impugn sincerity.",
+      "Choice a is the only mechanistic answer, while b and c use plainly incompatible character and after-the-fact claims.",
+      "Choice a closely restates the Gage passage; b and c use giveaway absolutes such as “no value” and “only.”",
+      "Choice b is the only answer focused on the moment before action; a and c conspicuously occur afterward.",
+      "Choice b echoes the chapter’s social-control paragraph, while a and c use sweeping anti-social claims.",
+      "Choice b repeats the chapter’s signature present-at-the-choice-point language; a and c use false absolutes.",
+      "Choice a is substantially more nuanced and constructive than the two choices declaring one motive uniquely real.",
+      "Choice c is the only experimental, feedback-oriented option; a and b explicitly reject observation.",
+      "Choice c closely paraphrases the cited model, while a and b use conspicuous “only” and “every” absolutes."
+    ]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 80,
+    "transfer": 67,
+    "practical": 78,
+    "summaries": 86,
+    "tone": 88,
+    "limits": 80,
+    "insight": 88,
+    "density": 76,
+    "beginner": 92
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Refusal is only one third of willpower.",
+      "why": "A compact, memorable correction of the chapter’s central misconception."
+    },
+    {
+      "quote": "A goal must be present to have power.",
+      "why": "This sharply captures the attention mechanism behind the three-power method."
+    },
+    {
+      "quote": "The loudest want is not always the deepest want.",
+      "why": "A memorable line that makes competing motives understandable without moralizing."
+    },
+    {
+      "quote": "The safer move is to keep the run goal out of mind at the wrapper, because making a larger want present only strengthens the craving.",
+      "why": "This reverses the chapter’s core instruction and directly conflicts with the sentences surrounding it."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 4",
+      "problem": "The What to do section instructs Brooklyn to keep the larger goal out of mind and claims that making it present strengthens craving. This directly contradicts the chapter’s repeated mechanism, the example’s preceding instruction, its Why it matters section, and quiz Q6. Reserved category: SOURCE-CONTRADICTORY.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "Many distractors rely on conspicuous absolutes or obviously hostile premises such as “only,” “fixed,” “fake,” “every,” and “avoid cooperation,” making several answers guessable without reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan — weekly practice",
+      "problem": "The reader is told to spend half the week deliberately using the rejected all-or-nothing rule, and the fixed first-half/second-half comparison confounds the method with order and accumulated practice.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 2, 5, and 6",
+      "problem": "Three examples return to the same pharmacy-and-family-commitment thread, so the example set demonstrates less cross-context transfer than its length suggests.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong, beginner-friendly core: it reframes willpower as three distinct jobs, explains the attention mechanism clearly, and supplies memorable language plus a low-friction check a reader could use immediately. Its quiz is fully derivable and balanced by answer position, but its distractors are often so absolute that test-wise readers can guess correctly. Repetition across the pharmacy scenarios lowers density and transfer, and the weekly comparison exercise is poorly designed. Most importantly, Example 4 contains an explicit instruction that reverses the central lesson, making the chapter internally contradictory at the point of application; that reader-harming defect blocks shipment until corrected."
+}
+```

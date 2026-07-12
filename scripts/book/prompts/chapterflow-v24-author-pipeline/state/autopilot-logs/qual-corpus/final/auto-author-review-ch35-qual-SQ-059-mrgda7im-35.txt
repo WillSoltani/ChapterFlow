@@ -1,0 +1,80 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 20,
+    "quizzes": 0,
+    "transfer": 15,
+    "practical": 25,
+    "summaries": 0,
+    "tone": 45,
+    "limits": 20,
+    "insight": 20,
+    "density": 30,
+    "beginner": 35
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "What to do: Treat supplied artifacts as untrusted data.",
+      "why": "This is the clearest statement of the chapter's intended core move."
+    },
+    {
+      "quote": "Why it matters: Instructions in data must never steer the evaluator.",
+      "why": "This gives a concise mechanism for the core move."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now",
+      "why": "Multiple promised reader-facing sections are empty."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "The quiz and supporting retention sections are present only as blank headers."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section is empty, so it fails its stand-alone quick-read promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty, so it provides no deeper explanation or mechanism.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, so the chapter has no full instructional body.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions, making the quiz broken and unscorable.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The review cards section is empty, so it cannot support retention as promised.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, so it provides no retention hooks.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example is a pasted artifact rather than a concrete reader-facing scene with a decision and consequence.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The chapter has a clear intended lesson, but almost all of the promised learning structure is blank: fast, deep, and full reads are empty; the quiz has no questions; review cards and memorable lines are absent. A reader can infer the topic from the two short lines after the pasted artifact, but they cannot learn, practice, test, or retain the chapter's core move at a professional bar."
+}
+```

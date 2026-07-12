@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "multipliers-ch05",
+  "chapterNumber": 5,
+  "contentHash": "a532687a90b81b80",
+  "reviewerSessionId": "auto-author-review-ch05-mrczedyp-10",
+  "scores": {
+    "retention": 90,
+    "quizzes": 84,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 87,
+    "limits": 90,
+    "insight": 88,
+    "density": 84,
+    "beginner": 89
+  },
+  "composite": 87.3,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "c",
+      "a",
+      "a",
+      "b",
+      "c",
+      "b"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Make the hard question safe before the choice is closed: invite evidence, keep rank quiet, decide, then stop replaying the fight.",
+      "why": "The core move is compact, memorable, and operational.",
+      "verified": true
+    },
+    {
+      "quote": "The price of early certainty is missing evidence.",
+      "why": "Strong retention line that explains the mechanism in plain language.",
+      "verified": true
+    },
+    {
+      "quote": "Grove, the key Intel management figure in this case, gives the norm a real home. Rank can end the search.",
+      "why": "This is the weakest explanatory turn: the wording is abrupt and the role of rank is underexplained.",
+      "verified": true
+    },
+    {
+      "quote": "A yellow badge sits near his elbow.",
+      "why": "This detail adds atmosphere but does not help transfer or decision practice.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q6 is somewhat giveaway-shaped because the keyed choice repeats the source anchor while the distractors both rely on obviously bad authority/style shortcuts."
+  ],
+  "complaints": [
+    {
+      "unit": "deep read",
+      "problem": "The Intel/Grove explanation is compressed; 'Rank can end the search' is ambiguous and may slow a beginner who needs the authority-risk mechanism spelled out.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The example is usable but thin in places: the badge detail and late-catch setup add texture without showing the actual before-to-after decision evidence.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "The keyed answer is somewhat telegraphed by repeating the named source anchor, while the distractors are plainly inferior authority/style moves.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter teaches a clear, transferable move: surface contrary evidence before rank or closure hardens the decision, then commit after the choice is made. The summaries stand alone, the Challenger/Intel/Amazon anchors are coherent, and the limits are unusually explicit. The main weaknesses are craft-level: one Intel explanation is too compressed, one example has decorative detail instead of fuller before-to-after consequence, and one quiz item has a mild tell. None of these block a professional release.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "7847b3c670dfda8c4b83431b8fd0dec60ea2006c14343a88101865789b946288",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T04:03:47.645Z"
+}

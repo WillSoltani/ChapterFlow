@@ -1,0 +1,174 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 6,
+  "chapterTitle": "Guidance",
+  "focus": "The feedback tools make guidance concrete: ask for criticism, reward it, use humble and specific language, and separate behavior from identity.",
+  "coreClaim": "Good guidance is specific enough to act on and humble enough to invite dialogue.",
+  "centralConcept": {
+    "id": "ch06.concept",
+    "name": "precise feedback delivery",
+    "plainDefinition": "Guidance becomes teachable when it is humble, specific, timely, and dialogic. Frameworks such as HHIPP, SBI, and CORE keep feedback focused on behavior and impact rather than character judgments.",
+    "whyItMatters": "Clear delivery reduces the chance that praise becomes vague or criticism becomes personal attack. The recipient can understand the behavior, the result, and the next conversation."
+  },
+  "keyClaims": [
+    "HHIPP gives a six-part checklist for delivering guidance.",
+    "SBI identifies situation, behavior, and impact.",
+    "CORE adds Explore so feedback becomes a conversation.",
+    "The go-to question helps solicit criticism.",
+    "Emotional reactions require staying present rather than retreating."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch06.ex.hhipp-feedback",
+      "label": "HHIPP feedback checklist",
+      "summary": "The official glossary places HHIPP at Ch. 6 pp. 137-141 and 152, with members Humble, Helpful, Immediate, In Person, Private, and not Personalized. The 2-3 minute immediacy detail anchors timing.",
+      "teachesWhat": "A checklist keeps feedback direct without making it personal.",
+      "hardSpecifics": [
+        "HHIPP",
+        "Ch. 6 pp. 137-141",
+        "2-3 minutes",
+        "not Personalized"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch06.ex.sbi-ccl",
+      "label": "Center for Creative Leadership SBI",
+      "summary": "The official glossary names SBI as a Center for Creative Leadership technique referenced at Ch. 6 p. 138. Situation, Behavior, and Impact keep feedback tied to what was observed.",
+      "teachesWhat": "Behavioral specificity reduces character attack and vague praise.",
+      "hardSpecifics": [
+        "Center for Creative Leadership",
+        "SBI",
+        "Ch. 6 p. 138",
+        "Situation Behavior Impact"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch06.ex.core-framework",
+      "label": "CORE feedback framework",
+      "summary": "The official glossary defines CORE as Context, Observation, Result, Explore, developed by Kim Scott and the Radical Candor team. Explore adds a two-way step beyond SBI.",
+      "teachesWhat": "Adding Explore turns feedback from evaluation into joint problem-solving.",
+      "hardSpecifics": [
+        "CORE",
+        "Context Observation Result Explore",
+        "Radical Candor team",
+        "SBI"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The common mistake is to memorize a feedback acronym and lose the human conversation. The tools matter because they protect humility, specificity, and dialogue, not because acronyms solve discomfort.",
+  "voiceCues": [
+    "turns advice into acronyms",
+    "keeps feedback examples behavioral",
+    "uses questions as manager practice"
+  ],
+  "forbiddenLeakage": [
+    "Do not shift into Career Conversations from Team.",
+    "Do not make formal review calibration the main venue."
+  ],
+  "paraphraseNotes": "Guidance turns the philosophy into feedback delivery. HHIPP is the local checklist: Humble, Helpful, Immediate, In Person, Private, and not Personalized. The official glossary gives Ch. 6 pp. 137-141 and 152, plus the 2-3 minute timing anchor for immediacy. SBI, from the Center for Creative Leadership and referenced at Ch. 6 p. 138, keeps the speaker with situation, behavior, and impact so praise and criticism do not drift into character judgment. CORE extends that structure through Context, Observation, Result, and Explore; the Explore step matters because guidance should open a conversation. The official guide also names soliciting feedback, a go-to question, rewarding criticism, and navigating emotional reactions. Keep the unit practical and concrete: a manager asks, waits, rewards candor, names observable behavior, and stays present when feelings rise. Avoid making the acronyms feel like compliance language. Their job is to preserve humility and clarity under pressure.",
+  "testableFacts": [
+    {
+      "id": "ch06.fact.1",
+      "claim": "HHIPP contains six members: Humble, Helpful, Immediate, In Person, Private, and not Personalized.",
+      "becauseMechanism": "Because each member guards a different delivery risk, the checklist keeps directness from becoming careless.",
+      "commonError": "Using any direct feedback as long as the message is true.",
+      "errorIsWhy": "Truth still needs delivery conditions.",
+      "derivedFrom": "ch06.ex.hhipp-feedback"
+    },
+    {
+      "id": "ch06.fact.2",
+      "claim": "HHIPP is documented at Ch. 6 pp. 137-141 and 152.",
+      "becauseMechanism": "Since the page span centers on guidance delivery, the acronym belongs with feedback mechanics rather than team growth.",
+      "commonError": "Using HHIPP as a general culture slogan.",
+      "errorIsWhy": "It is a delivery checklist.",
+      "derivedFrom": "ch06.ex.sbi-ccl"
+    },
+    {
+      "id": "ch06.fact.3",
+      "claim": "Immediate in HHIPP means giving guidance in 2-3 minutes rather than waiting for a later meeting.",
+      "becauseMechanism": "Because quick feedback arrives while context is fresh, the recipient can connect it to behavior.",
+      "commonError": "Saving every criticism for scheduled reviews.",
+      "errorIsWhy": "Delayed feedback loses context and urgency.",
+      "derivedFrom": "ch06.ex.core-framework"
+    },
+    {
+      "id": "ch06.fact.4",
+      "claim": "Private in HHIPP means criticize privately while praise can be public.",
+      "becauseMechanism": "Since public criticism adds status threat, privacy helps the person focus on learning.",
+      "commonError": "Correcting someone publicly to show standards.",
+      "errorIsWhy": "The audience can turn feedback into humiliation.",
+      "derivedFrom": "ch06.concept"
+    },
+    {
+      "id": "ch06.fact.5",
+      "claim": "not Personalized in HHIPP means address behavior and impact rather than character.",
+      "becauseMechanism": "Because identity attacks trigger defensiveness, behavior language keeps change possible.",
+      "commonError": "Calling someone careless or lazy.",
+      "errorIsWhy": "That judges the person instead of the act.",
+      "derivedFrom": "ch06.concept"
+    },
+    {
+      "id": "ch06.fact.6",
+      "claim": "SBI is tied to the Center for Creative Leadership and Ch. 6 p. 138.",
+      "becauseMechanism": "Because SBI separates Situation, Behavior, and Impact, it forces observable specificity.",
+      "commonError": "Giving feedback as a general impression.",
+      "errorIsWhy": "Impressions are hard to act on or verify.",
+      "derivedFrom": "ch06.concept"
+    },
+    {
+      "id": "ch06.fact.7",
+      "claim": "CORE adds Explore to Context, Observation, and Result.",
+      "becauseMechanism": "Since Explore invites dialogue, the recipient can add facts and shape next steps.",
+      "commonError": "Treating feedback as a one-way verdict.",
+      "errorIsWhy": "One-way verdicts miss context and reduce ownership.",
+      "derivedFrom": "ch06.ex.hhipp-feedback"
+    },
+    {
+      "id": "ch06.fact.8",
+      "claim": "The go-to question is used for soliciting feedback from direct reports.",
+      "becauseMechanism": "Because a repeated prompt lowers ambiguity, people know exactly how to criticize upward.",
+      "commonError": "Asking vaguely for any feedback.",
+      "errorIsWhy": "Vague requests are easy to dodge.",
+      "derivedFrom": "ch06.ex.sbi-ccl"
+    },
+    {
+      "id": "ch06.fact.9",
+      "claim": "Rewarding criticism is part of the guidance practice.",
+      "becauseMechanism": "Because employees watch the manager's reaction, visible reward makes future honesty safer.",
+      "commonError": "Thanking feedback privately but changing nothing.",
+      "errorIsWhy": "People need evidence that candor mattered.",
+      "derivedFrom": "ch06.ex.core-framework"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Guidance delivery tools",
+      "members": [
+        "HHIPP",
+        "SBI",
+        "CORE",
+        "go-to question"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "HHIPP feedback checklist",
+    "HHIPP",
+    "Ch. 6 pp. 137-141",
+    "2-3 minutes",
+    "not Personalized",
+    "Center for Creative Leadership SBI",
+    "Center for Creative Leadership",
+    "SBI",
+    "Ch. 6 p. 138",
+    "Situation Behavior Impact",
+    "CORE feedback framework",
+    "CORE",
+    "Context Observation Result Explore",
+    "Radical Candor team"
+  ]
+}

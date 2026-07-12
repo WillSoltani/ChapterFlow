@@ -1,0 +1,84 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "mechanisms": [
+      "The prose defines heart rate variability as beat-to-beat rhythm shifting with demand and links higher variability to self-regulation.",
+      "The Trier description says public speaking/arithmetic under social judgment can make the body react without being chased or injured.",
+      "The prose says stress narrows attention and makes fast comfort feel like shelter after tense moments.",
+      "Tang's training is presented as brief practice that steadies attention and softens stress reactivity before the urge peaks.",
+      "Slow breathing is framed as changing the body state that feeds arousal, attention, and choice, not as mere delay.",
+      "Pause-and-plan questions treating arousal as readiness because panic narrows the room for weighing goals.",
+      "The sleep passage says tired attention loses its grip and lets loud cues displace the intended care task.",
+      "The movement passage says activity can improve mood, stress regulation, and executive function, lowering the next choice load.",
+      "The chapter repeatedly says waiting until the craving peaks is unfair because the body needs runway before the hardest moment."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q2's correct option uniquely repeats the chapter's source phrase about social judgment and low control.",
+      "Q4's wrong options use giveaway absolutes like mainly and only.",
+      "Q9's correct option repeats the chapter's key wording about runway before the craving peaked."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 86,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 87,
+    "limits": 94,
+    "insight": 91,
+    "density": 84,
+    "beginner": 89
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Panic is a poor coach. Calm gives the future a vote.",
+      "why": "This is the chapter's strongest compressed statement of the mechanism."
+    },
+    {
+      "quote": "A slower body can also become a hiding place. You may breathe before a reply and then never send the apology.",
+      "why": "This gives the advice an honest boundary and prevents misuse."
+    },
+    {
+      "quote": "c) The state change came too late; the body needed runway before the craving peaked.",
+      "why": "This quiz option is fair but gives itself away by echoing the chapter's exact phrasing."
+    },
+    {
+      "quote": "The object carries the attention Yi-Yuan Tang trained through return practice.",
+      "why": "This stretches the source tie; the object cue is useful, but the research linkage feels overclaimed."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "The keyed answer is made easy by uniquely reusing the chapter's social-judgment/low-control phrasing while the distractors are obviously narrower.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The keyed answer repeats the chapter's runway-before-peak language, creating a phrasing tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "The example is thin-but-usable: it shows a learner's realization but little concrete before-to-after consequence beyond restating the lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The final source connection overreaches slightly by tying a visible pill-bottle cue directly to Tang's attention training.",
+      "mustFix": false
+    },
+    {
+      "unit": "review card 6",
+      "problem": "It depends on Ch 1 terminology, so it is less approachable cold than the other cards.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter. The core move is memorable, bodily, and practical: calm the state before asking willpower to decide. The best sections explain mechanism rather than moralizing, and the limits section is unusually good. The main weaknesses are craft-level quiz tells and a few examples that lean harder on named research than on observed consequence, but there is no concrete reader-harming defect."
+}
+```

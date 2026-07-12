@@ -1,0 +1,105 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 25,
+    "quizzes": 0,
+    "transfer": 20,
+    "practical": 25,
+    "summaries": 5,
+    "tone": 35,
+    "limits": 0,
+    "insight": 25,
+    "density": 20,
+    "beginner": 40
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The tiny cursor after the question is doing the narrowing work.",
+      "why": "This is the chapter's clearest and most memorable expression of how binary framing constrains thought."
+    },
+    {
+      "quote": "Claire underlines the break-up-or-not wording, then writes two missing questions in the margin: what needs repair with the partner, and what boundary belongs with family.",
+      "why": "This supplies the only concrete, usable action: expose the binary and replace it with questions about repair and boundaries."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "The fast read is placeholder text rather than a standalone summary."
+    },
+    {
+      "quote": "One added angle.",
+      "why": "The deep read contains no angle, explanation, or usable content."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Hook",
+      "problem": "The hook describes the document's review status instead of introducing the chapter's idea or giving the reader a reason to care.",
+      "mustFix": false
+    },
+    {
+      "unit": "Fast read",
+      "problem": "The section is placeholder text and fails its standalone-summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "Deep read",
+      "problem": "The section is placeholder text and fails its standalone explanatory promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "Full read",
+      "problem": "The chapter identifies binary framing as narrowing but does not explain the mechanism by which the two replacement questions improve judgment.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The Claire scenario is usable but thin: it ends after reframing the question and shows no resulting decision or consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "Key takeaway",
+      "problem": "The section is empty, so the chapter lacks its promised takeaway.",
+      "mustFix": true
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The section is empty, so readers receive no explicit exercise for applying the core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "Examples",
+      "problem": "The section is empty, preventing readers from seeing the move transfer to other situations.",
+      "mustFix": true
+    },
+    {
+      "unit": "Quiz",
+      "problem": "The quiz contains no questions and therefore cannot function.",
+      "mustFix": true
+    },
+    {
+      "unit": "Review cards",
+      "problem": "The section is empty, so the promised retrieval-practice material is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "Memorable lines",
+      "problem": "The section is empty despite the full read containing a potentially memorable line.",
+      "mustFix": true
+    },
+    {
+      "unit": "Full read",
+      "problem": "No limits or failure modes are discussed, such as cases where a binary decision really is urgent or appropriate.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is an incomplete chapter scaffold with one promising core move: notice when a binary question narrows the decision space, then surface questions about repair and boundaries. The phone-screen image and cursor line are memorable, and the action is approachable, but nearly every product component is empty or placeholder text. Most critically, there is no quiz to derive or assess, and the fast read, deep read, takeaway, exercise, examples, review cards, and memorable-lines sections fail their stated functions. The lone scenario also stops before showing what decision or consequence follows from the reframing. It is far below a professional shipping bar."
+}
+```

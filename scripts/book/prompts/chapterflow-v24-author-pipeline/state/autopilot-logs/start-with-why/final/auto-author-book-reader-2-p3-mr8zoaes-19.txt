@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 76,
+    "transfer": 74,
+    "practical": 68,
+    "summaries": 79,
+    "tone": 61,
+    "limits": 71,
+    "insight": 66,
+    "density": 60,
+    "beginner": 73
+  },
+  "quotes": [
+    {
+      "quote": "A clean fix can be the place a bad guess hides.",
+      "why": "Strong, portable retention line that compresses the chapter's mechanism."
+    },
+    {
+      "quote": "What would still move if the offer were gone?",
+      "why": "The best practical diagnostic in the sample: short, usable, and transferable."
+    },
+    {
+      "quote": "Trust is a belief you can watch under pressure.",
+      "why": "A crisp aphorism with real explanatory force."
+    },
+    {
+      "quote": "A metric is a receipt for spread, not a receipt for meaning.",
+      "why": "Memorable and accurate; it cleanly reverses the default reading of growth."
+    },
+    {
+      "quote": "This is why hard details must stay home.",
+      "why": "Shows the repeated house scaffold: details-as-boundaries appears in nearly every chapter."
+    },
+    {
+      "quote": "The return is set, not met.",
+      "why": "Template-like shorthand that recurs and can feel more like internal machinery than reader prose."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is quiz-sound and mostly clear, with no hard contradiction between prose and answer key. Its best moments are compact diagnostic lines that readers could actually reuse. The main weakness is severe cross-chapter sameness: each chapter leans on the same machinery of named anchors, second settings, hard details staying home, return proof, and example shells with nouns swapped. That repetition hurts tone, density, and insight even when the individual lessons are coherent. It reads like a solid draft from a reliable system, not like a premium individually authored book sample."
+}
+```

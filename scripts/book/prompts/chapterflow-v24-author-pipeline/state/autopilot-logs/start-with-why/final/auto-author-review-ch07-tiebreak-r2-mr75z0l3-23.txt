@@ -1,0 +1,72 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Q1: correct choice c is the most concrete and echoes the chapter's scale/contrast language.",
+      "Q4: correct choice a copies the full adopter-category list, making it easy to spot against vaguer alternatives.",
+      "Q8: correct choice a closely repeats the prose phrase that Innovators frame what Early adopters can carry."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 82,
+    "transfer": 76,
+    "practical": 84,
+    "summaries": 91,
+    "tone": 86,
+    "limits": 88,
+    "insight": 87,
+    "density": 83,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Every broad push sent too soon spends proof the early believers have not earned yet.",
+      "why": "Strongest memorable line; it compresses the mechanism into a durable test."
+    },
+    {
+      "quote": "Move a true detail to the wrong source and the claim looks grounded while the proof has gone missing.",
+      "why": "Strong practical warning about evidence drift."
+    },
+    {
+      "quote": "At Friday return in the repair bay, shop lead Keith sees half a win.",
+      "why": "This example gestures at a scene but gives no real decision consequence."
+    },
+    {
+      "quote": "The projector fan hums.",
+      "why": "Sensory detail reads decorative because it does not change the transfer problem."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 4",
+      "problem": "The repair-bay example names a thin setting but gives no concrete before-to-after decision consequence; it mostly restates 'name the stall.'",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The huddle/projector details add atmosphere, but the example does not show a measurable consequence after Bryce narrows the ask.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The keyed answer is fair, but it is also the most specific and uses the chapter's own 'scale' and contrast framing, creating a mild answer tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The keyed answer copies the complete adopter-category list, while the distractors are abstract; that makes the answer too visible.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The keyed answer closely repeats the exact mechanism from the prose, so it tests recognition more than transfer.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is clear, memorable, and mostly fair: the core move, 'count first believers before asking the middle,' lands well and is reinforced through Rogers, the March, and TiVo. The main weakness is transfer quality in the later examples, where some scenes feel manufactured and stop before showing a real consequence. I would not ship yet against a professional bar until the thinnest example is replaced or made concrete."
+}
+```

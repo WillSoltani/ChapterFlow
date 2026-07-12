@@ -1,0 +1,61 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "b", "c", "a", "c", "b", "c"],
+    "mechanisms": [
+      "The prose says danger in expert systems often lives between people, where ownership blurs at handoffs.",
+      "The lesson says to map the transition by named owner before the rush or window arrives.",
+      "The Ingrid example explicitly rejects blaming the last visible person and rebuilds the path across handoffs.",
+      "The chapter names crossings between roles as the exposed point, so cross-department cues are the first place to inspect.",
+      "The transplant example shows each department can complete its part while the failure lives in the crossings.",
+      "The storm example says to mark overlap before peak load and give the cross-department point a named owner.",
+      "The museum crate example shows experts can each be ready while the dependency between them exposes the object.",
+      "The core reasoning is that excellence does not make ownership visible across role crossings.",
+      "The chapter says memory and command cannot reliably hold crowded work, so the transition must be moved into the system."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": ["The correct answer appears to be the uniquely longest option in every quiz item, which creates a strong guessing tell without reading."]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 72,
+    "transfer": 86,
+    "practical": 78,
+    "summaries": 86,
+    "tone": 84,
+    "limits": 88,
+    "insight": 91,
+    "density": 86,
+    "beginner": 89
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Complexity changes the location of danger.",
+      "why": "This is the chapter's clearest, most memorable compression of the mechanism."
+    },
+    {
+      "quote": "Movement creates seams, and seams create assumptions.",
+      "why": "A strong transfer line that turns the lesson into a reusable diagnostic."
+    },
+    {
+      "quote": "On second thought, leave the warm-fluid setup unassigned and just trust the team's competence, since a skilled room handles every handoff on its own and naming an owner is needless friction.",
+      "why": "This appears inside 'What to do' and directly contradicts the chapter's instruction."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The 'What to do' section gives the correct action, then adds opposite advice to leave the warm-fluid setup unassigned and trust competence. This is SOURCE-CONTRADICTORY and could teach the wrong move.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The keyed option is consistently the uniquely longest answer, creating a visible test-taking tell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong central move: in complex expert work, stop blaming the nearest person and inspect the seam where ownership thinned out. It is memorable, concrete, and transfers well across medicine, rail, pharmacy, weather, logistics, and museum work. The main blocker is Example 1, where the action guidance contradicts itself inside the 'What to do' field. The quiz is derivable and fair from the prose, but the repeated longest-correct-option pattern weakens it. Fix the contradictory example before shipping."
+}
+```

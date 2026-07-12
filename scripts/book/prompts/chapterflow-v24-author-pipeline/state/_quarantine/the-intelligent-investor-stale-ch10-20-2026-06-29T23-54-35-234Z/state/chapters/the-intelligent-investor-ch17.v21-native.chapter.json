@@ -1,0 +1,626 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "the-intelligent-investor-ch17",
+  "number": 17,
+  "title": "Four Extremely Instructive Case Histories",
+  "readingTimeMinutes": 8,
+  "hook": "Maya sees Penn Central in a shared spreadsheet and pauses at the 1970 bankruptcy note: the famous name did not make the securities safe.",
+  "counterintuition": "The obvious shortcut is to trust prominence, rapid growth, complexity, or a persuasive small-company story. The harder move is to treat each one as a warning sign until weak finances, leverage, accounting opacity, promotion, and governance incentives have been checked.",
+  "tryThisNow": "Start from the acquisition notes and add one decision log row before considering any security: famous name, acquisition growth, financing complexity, and pending evidence.",
+  "keyTakeaway": "Treat fame, acquisition growth, complex securities, and promotional appeal as claims to verify, not evidence by themselves; demand simple proof before trusting the price.",
+  "breakdown": {
+    "fastRead": "Famous names, fast acquisition growth, complex financing, and promotional appeal can all hide unsafe securities. Penn Central's 1970 bankruptcy showed that a major name could still carry weak finances and merger problems. Ling-Temco-Vought showed that acquisition growth can look better than economic reality when leverage and conglomerate accounting are involved. NVF's Sharon Steel transaction showed how layered securities can make owner economics hard to see. AAA Enterprises showed that market appeal cannot replace verified business substance. The practical lesson is pattern recognition: company names change, but leverage, promotion, and accounting issues recur.",
+    "deepRead": "The central reversal is that respectable packaging can be the danger, not the protection. Penn Central had a major railroad name, yet its 1970 bankruptcy showed that prominence could not overcome weak finances and merger problems. That warning applies to bonds as well as stocks: a large issuer can still impair senior claims, so credit analysis remains necessary.\n\nLing-Temco-Vought adds a second pattern. Rapid acquisition growth can appear to prove managerial skill, but conglomerate accounting and leverage can make expansion look better than economic reality. Reported growth after a merger is not automatically organic progress, because purchase terms and consolidation can shift how performance appears.\n\nNVF's Sharon Steel transaction adds the complexity warning. Layered securities and accounting treatment can make owner economics harder to see, and complexity can conceal value transfer instead of create an automatic bargain. AAA Enterprises adds the promotional warning: a small-company story can attract market appeal before verified business substance exists. Together, these cases work as a failure pattern map: leverage, acquisition accounting, promotion, complex securities, and weak governance. The names are historical; the behavior is repeatable.",
+    "fullRead": "The case histories are not a gallery of old mistakes to memorize and dismiss. They are a pattern-recognition exercise for securities that look safer or more attractive than their economics justify. The first pattern is prominence without safety. Penn Central's 1970 bankruptcy exposed weak finances behind a major railroad corporate name after the Pennsylvania Railroad and New York Central merger failed to create a sound enterprise. The lesson is not limited to common stocks. Bond investors need as much skepticism as stock investors because weak issuers can impair senior claims too.\n\nThe second pattern is acquisition growth that outruns economic reality. Ling-Temco-Vought grew through conglomerate acquisitions and later unraveled under debt and complexity. The error is to treat rapid acquisition growth as proof of managerial skill. Conglomerate accounting and leverage can make expansion look stronger than the underlying economics, and acquisition accounting can distort earnings impressions because purchase terms and consolidation shift how performance appears. Reported growth after a merger may be repackaged acquired figures, not organic progress.\n\nThe third pattern is complexity that hides who bears risk. NVF's Sharon Steel transaction used complicated financing, layered securities, and accounting treatment that made owner economics harder to see. Complex capital structures do not create automatic bargains. They can conceal value transfer, especially when outside investors cannot understand the simple source of value and the real location of risk.\n\nThe fourth pattern is promotion without enough substance. AAA Enterprises illustrates how a promotional small company can have stock-market appeal that runs ahead of verified business substance. A small company story does not deserve a growth multiple by default. Thin operating evidence cannot support a high price, and market appeal can become a substitute for proof.\n\nThe shared map is leverage, acquisition accounting, promotion, complex securities, and weak governance. Governance and management incentives matter because capital allocation decisions can transfer risk to outside investors. Financial ratios are not enough when human incentives drive bad structures. The investor's practical defense is simple, understandable evidence. If the case is opaque, do not assume professionals found hidden value. Opacity often benefits sellers and insiders, while the buyer is left with promotional interpretation instead of evidence."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch17.example.1",
+      "sourceAnchorIds": [
+        "ch17.example.1"
+      ],
+      "title": "The Famous-Name Row",
+      "tags": [
+        "decision_point",
+        "shared",
+        "checklist"
+      ],
+      "planSpec": {
+        "domain": "shared spreadsheet: checklist walkthrough",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the default behavior quietly costs the reader",
+        "format": "decision_point",
+        "requiredBeat": "show the old default failing in a concrete moment"
+      },
+      "scenario": "Remy, Tori, and Thane are reviewing a shared spreadsheet before approving a security for the decision log. The old checklist has a comfort row that says, \"major name,\" and Remy marks it green because Penn Central was a major railroad corporate name. Tori adds the actual case note in the next column: Penn Central filed for bankruptcy in 1970 after the Pennsylvania Railroad and New York Central merger failed to create a sound enterprise. The green mark no longer supports the decision.",
+      "whatToDo": "Replace the comfort row with a failure check: does the prominent name still have sound finances after merger problems are considered? If that answer is unclear, mark the decision as unresolved instead of treating size as safety.",
+      "whyItMatters": "A famous issuer can still carry unsafe securities. The concrete failure is not obscurity; it is trusting prominence while weak finances and merger problems are doing the real work. Penn Central gives the concrete check: Penn Central bankruptcy 1970; Pennsylvania Railroad and New York Central merger."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch17.example.2",
+      "sourceAnchorIds": [
+        "ch17.example.2"
+      ],
+      "title": "The Acquisition-Growth Email",
+      "tags": [
+        "before_after",
+        "email",
+        "decisionunderpressure"
+      ],
+      "planSpec": {
+        "domain": "email draft: decision-under-pressure",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "before_after_audit",
+        "requiredBeat": "show the reader-facing move changing a decision"
+      },
+      "scenario": "Tori is drafting an email that recommends moving ahead because Stefan-Temco-Vought-style acquisition growth looks impressive. Thane asks him to revise the draft before it goes out. The first version treats rapid acquisition growth as proof of managerial skill. The revised version adds the harder question: are conglomerate accounting and leverage making expansion look better than economic reality?",
+      "whatToDo": "In the email draft, separate growth from evidence. State that acquisition growth needs skepticism when debt and complexity may be driving the appearance of success, then ask for the decision log to show whether the growth is economically sound.",
+      "whyItMatters": "That shift turns endorsing expansion to testing it. Debt-financed growth can collapse, so the useful action is to challenge the accounting impression before treating the story as skill. Ling-Temco-Vought keeps two details visible, Ling-Temco-Vought and 1960s conglomerate acquisitions."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch17.example.3",
+      "sourceAnchorIds": [
+        "ch17.example.3"
+      ],
+      "title": "The Complexity Recovery Block",
+      "tags": [
+        "mistake_recovery",
+        "calendar",
+        "mistakerecovery"
+      ],
+      "planSpec": {
+        "domain": "calendar block: mistake-recovery",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "conversation_repair",
+        "requiredBeat": "show friction or recovery, not instant clean success"
+      },
+      "scenario": "Thane blocks time on the calendar after realizing her first NVF / Sharon Steel note treated complicated financing as a possible bargain. Stefan joins the block and finds that the layered securities and accounting treatment are making owner economics harder to see. The recovery is slow: Taryn has to split the calendar block into a second pass because the decision log still cannot show who bears the risk.",
+      "whatToDo": "Use the calendar block to unwind the structure, not to admire it. List what the financing makes harder to appraise, then pause the decision until the owner economics are understandable without promotional interpretation.",
+      "whyItMatters": "Complex capital structures do not create automatic bargains. The friction is the point: if the structure hides value transfer, speed would turn confusion into a decision. NVF / Sharon Steel also brings in Sharon Steel acquisition and complicated financing."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch17.example.1",
+      "sourceAnchorIds": [
+        "ch17.example.1"
+      ],
+      "title": "Board note closes Penn Central",
+      "tags": [
+        "checklist_walkthrough",
+        "source_specific",
+        "file"
+      ],
+      "planSpec": {
+        "domain": "print station: Penn Central",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "one missing source detail can stop the purchase",
+        "format": "checklist_walkthrough",
+        "requiredBeat": "use a source detail as a stop point"
+      },
+      "scenario": "Odessa separates a board note beside the birch ledge; the crisp quotegrid grounds the page toward a rapid signal. The cobaltengine stays closed.",
+      "whatToDo": "Use Penn Central bankruptcy 1970 beside Pennsylvania Railroad and New York Central merger; settle major railroad corporate name.",
+      "whyItMatters": "Penn Central: major railroad corporate name."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch17.example.2",
+      "sourceAnchorIds": [
+        "ch17.example.2"
+      ],
+      "title": "Timeline card signs Ling-Temco-Vought",
+      "tags": [
+        "constraint_test",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "binder shelf: Ling-Temco-Vought",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the written test has to survive a second reader",
+        "format": "constraint_test",
+        "requiredBeat": "turn a detail into a written constraint"
+      },
+      "scenario": "Piers tests a timeline card beside the cobalt bay; the dense trustmark limits the page toward a sound harbor. The paperbridge stays closed.",
+      "whatToDo": "Weigh Ling-Temco-Vought beside 1960s conglomerate acquisitions; settle debt and complexity.",
+      "whyItMatters": "Ling-Temco-Vought: debt and complexity."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch17.example.3",
+      "sourceAnchorIds": [
+        "ch17.example.3"
+      ],
+      "title": "Return grid names NVF",
+      "tags": [
+        "handoff_review",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "rating desk: NVF",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the handoff keeps the exact condition visible",
+        "format": "handoff_review",
+        "requiredBeat": "carry the condition into the next review"
+      },
+      "scenario": "Remy holds a return grid beside the paper tray; the exact valuepad records the page toward a tidy marker. The olivearchive stays closed.",
+      "whatToDo": "Screen NVF beside Sharon Steel acquisition; settle complicated financing.",
+      "whyItMatters": "NVF / Sharon Steel: complicated financing."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch17.fact.1",
+        "prompt": "A famous issuer carries a major corporate name, so its securities are treated as automatically safe. Which warning applies?",
+        "choices": [
+          "Fame proves credit safety when the issuer is large.",
+          "A major name removes the need to inspect merger problems.",
+          "Penn Central's 1970 bankruptcy showed prominence can hide weak finances."
+        ],
+        "correctIndex": 2,
+        "explanation": "Penn Central's 1970 bankruptcy exposed weak finances behind a major railroad name. Prominence did not overcome weak finances and merger problems.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch17.fact.2",
+        "prompt": "A company reports rapid acquisition growth and the market treats the expansion as proof of managerial skill. What should be checked first?",
+        "choices": [
+          "Whether conglomerate accounting and leverage make expansion look better than economic reality.",
+          "Whether acquisition growth alone proves durable value.",
+          "Whether debt-financed growth should be accepted because it creates a larger company."
+        ],
+        "correctIndex": 0,
+        "explanation": "Ling-Temco-Vought's acquisition growth required skepticism because conglomerate accounting and leverage can flatter apparent expansion.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch17.fact.3",
+        "prompt": "A transaction has layered securities and accounting treatment that make owner economics hard to see. What is the safer interpretation?",
+        "choices": [
+          "Complex capital structures create automatic bargains.",
+          "Hard-to-appraise securities should be trusted because complexity signals sophistication.",
+          "Financing complexity can hide risk and conceal value transfer."
+        ],
+        "correctIndex": 2,
+        "explanation": "NVF's Sharon Steel transaction shows how layered securities and accounting treatment can obscure risk instead of create an automatic bargain.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch17.fact.4",
+        "prompt": "A small company story has strong market appeal but only thin operating evidence. What conclusion follows?",
+        "choices": [
+          "Thin evidence cannot support a high price just because the story is appealing.",
+          "A small company story deserves a growth multiple by default.",
+          "Promotion can substitute for verified business substance."
+        ],
+        "correctIndex": 0,
+        "explanation": "AAA Enterprises illustrates the danger of promotional small issues. Market appeal can run ahead of verified business substance.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch17.fact.5",
+        "prompt": "An investor dismisses Penn Central and LTV because old failures seem irrelevant. What reading habit is being missed?",
+        "choices": [
+          "Use Penn Central and LTV for recurring patterns in leverage, promotion, and accounting.",
+          "Treat old company names as the only useful information.",
+          "Ignore old failures unless the same company name appears again."
+        ],
+        "correctIndex": 0,
+        "explanation": "Penn Central and LTV matter as pattern recognition. Company names change, while leverage, promotion, and accounting problems can repeat.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch17.fact.6",
+        "prompt": "A bond from a large company is accepted without credit analysis because the claim is senior. What risk remains?",
+        "choices": [
+          "Treat the large-company bond as safe under the stated evidence test.",
+          "Weak issuers can impair senior claims too, so bond investors need skepticism.",
+          "Senior claims remove issuer weakness from consideration. after checking the concrete source condition"
+        ],
+        "correctIndex": 1,
+        "explanation": "Bond investors need as much skepticism as stock investors. Credit analysis remains necessary because weak issuers can impair senior claims too.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch17.fact.7",
+        "prompt": "Reported growth follows a merger, and the increase is presented as organic progress. What should a careful reader question?",
+        "choices": [
+          "Whether every post-merger increase proves organic progress.",
+          "Whether accounting becomes irrelevant after a merger closes.",
+          "Whether purchase terms and consolidation have repackaged acquired figures."
+        ],
+        "correctIndex": 2,
+        "explanation": "Acquisition accounting can distort earnings impressions because purchase terms and consolidation can shift how performance appears.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch17.fact.8",
+        "prompt": "A failure analysis focuses only on ratios and ignores who benefits from the structure. What important factor is missing?",
+        "choices": [
+          "Only financial ratios matter in failures.",
+          "Governance and incentives can shift capital-allocation risk outward.",
+          "Management incentives are irrelevant once the numbers are available."
+        ],
+        "correctIndex": 1,
+        "explanation": "Governance and management incentives affect security value. Human incentives can drive structures that transfer risk to outside investors.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch17.fact.9",
+        "prompt": "A case is opaque, and the pitch implies professionals must have found hidden value. What demand protects the investor?",
+        "choices": [
+          "Assume opacity benefits outside investors.",
+          "Demand understandable evidence; opacity leaves room for promotional interpretation.",
+          "Accept hard-to-understand cases when sellers present them confidently."
+        ],
+        "correctIndex": 1,
+        "explanation": "The investor should demand simple, understandable evidence. Opaque cases leave too much room for promotional interpretation and can benefit sellers and insiders.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "sourceAnchorId": "ch17.fact.1",
+      "sourceAnchorIds": [
+        "ch17.fact.1"
+      ],
+      "front": "What did Penn Central's 1970 bankruptcy show about famous issuers?",
+      "back": "A famous name can still carry unsafe securities. Prominence did not overcome weak finances and merger problems.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "sourceAnchorId": "ch17.fact.2",
+      "sourceAnchorIds": [
+        "ch17.fact.2"
+      ],
+      "front": "Why did Ling-Temco-Vought's acquisition growth require skepticism?",
+      "back": "Conglomerate accounting and leverage can make expansion look better than economic reality. Debt-financed growth can collapse.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc03",
+      "sourceAnchorId": "ch17.fact.3",
+      "sourceAnchorIds": [
+        "ch17.fact.3"
+      ],
+      "front": "What risk can financing complexity hide?",
+      "back": "Layered securities and accounting treatment can make owner economics harder to see. Complexity can conceal value transfer.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "sourceAnchorId": "ch17.fact.4",
+      "sourceAnchorIds": [
+        "ch17.fact.4"
+      ],
+      "front": "What does AAA Enterprises illustrate about small issues?",
+      "back": "Promotion can push market appeal ahead of verified business substance. Thin evidence cannot support a high price.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc05",
+      "sourceAnchorId": "ch17.fact.5",
+      "sourceAnchorIds": [
+        "ch17.fact.5"
+      ],
+      "front": "How should Penn Central and LTV be used as case histories?",
+      "back": "Use them for pattern recognition. Company names change, but leverage, promotion, and accounting issues recur.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc06",
+      "sourceAnchorId": "ch17.fact.6",
+      "sourceAnchorIds": [
+        "ch17.fact.6"
+      ],
+      "front": "Why do bond investors need as much skepticism as stock investors?",
+      "back": "Weak issuers can impair senior claims too. Bonds of large companies are not automatically safe, so credit analysis remains necessary.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc07",
+      "sourceAnchorId": "ch17.fact.7",
+      "sourceAnchorIds": [
+        "ch17.fact.7"
+      ],
+      "front": "How can acquisition accounting distort earnings impressions?",
+      "back": "Purchase terms and consolidation can shift how performance appears. Reported growth after a merger may repackage acquired figures instead of show organic progress.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Keep a Case-History Decision Log",
+    "titleSourceAnchorIds": [
+      "ch17.fact.1",
+      "ch17.fact.2",
+      "ch17.fact.3"
+    ],
+    "coreSkill": "Use a decision log to slow attractive cases under pressure. Mark whether a famous name hides weak finances or merger problems, whether acquisition growth depends on conglomerate accounting and leverage, and whether layered securities make owner economics hard to see.",
+    "coreSkillSourceAnchorIds": [
+      "ch17.fact.1",
+      "ch17.fact.2",
+      "ch17.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch17.fact.1",
+        "sourceAnchorIds": [
+          "ch17.fact.1"
+        ],
+        "context": "shared spreadsheet",
+        "plan": "If a familiar corporate name makes a security feel safe, then add a shared spreadsheet row that checks for weak finances and merger problems before treating prominence as protection."
+      },
+      {
+        "sourceAnchorId": "ch17.fact.2",
+        "sourceAnchorIds": [
+          "ch17.fact.2"
+        ],
+        "context": "email draft",
+        "plan": "If rapid acquisition growth is the main reason for approval in an email draft, then pause the send and add a line asking whether conglomerate accounting and leverage make expansion look better than economic reality."
+      },
+      {
+        "sourceAnchorId": "ch17.fact.3",
+        "sourceAnchorIds": [
+          "ch17.fact.3"
+        ],
+        "context": "calendar block",
+        "plan": "If layered securities make a deal hard to appraise during a calendar block, then leave the decision pending until the log shows who bears the risk and how owner economics can be seen."
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next day ends, create one decision log row for a security that looks attractive. Leave it pending unless the row addresses name prominence, acquisition growth, and financing complexity.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch17.fact.1",
+      "ch17.fact.2",
+      "ch17.fact.3"
+    ],
+    "weeklyPractice": "Once a week, repeat the same audit on one active idea. Keep the decision pending when a famous name substitutes for credit analysis, acquisition growth hides leverage, or financing complexity makes owner economics unclear.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch17.fact.1",
+      "ch17.fact.2",
+      "ch17.fact.3"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "The central reversal is that respectable packaging can be the danger, not the protection.",
+      "location": "breakdown.deepRead",
+      "why": "Repointed to an exact sentence already present in the chapter breakdown.",
+      "sourceAnchorIds": [
+        "ch17.fact.4"
+      ]
+    },
+    {
+      "text": "That warning applies to bonds as well as stocks: a large issuer can still impair senior claims, so credit analysis remains necessary.",
+      "location": "breakdown.deepRead",
+      "why": "Repointed to an exact sentence already present in the chapter breakdown."
+    },
+    {
+      "text": "Reported growth after a merger is not automatically organic progress, because purchase terms and consolidation can shift how performance appears.",
+      "location": "breakdown.deepRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:09d0849dcb600d7a136fdc2433b5acf616fb5a387bac45db888aa327a1155650",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v23-compiler-pipeline 2/.chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch17.source.json",
+      "observedAnchorIds": [
+        "ch17.concept",
+        "ch17.example.1",
+        "ch17.example.2",
+        "ch17.example.3",
+        "ch17.example.4",
+        "ch17.fact.1",
+        "ch17.fact.2",
+        "ch17.fact.3",
+        "ch17.fact.4",
+        "ch17.fact.5",
+        "ch17.fact.6",
+        "ch17.fact.7",
+        "ch17.fact.8",
+        "ch17.fact.9",
+        "ch17.framework.failure.pattern.map"
+      ],
+      "effectiveAnchors": {
+        "examples[0]": [
+          "ch17.example.1"
+        ],
+        "examples[1]": [
+          "ch17.example.2"
+        ],
+        "examples[2]": [
+          "ch17.example.3"
+        ],
+        "examples[3]": [
+          "ch17.example.1"
+        ],
+        "quiz.questions[0]": [
+          "ch17.fact.1"
+        ],
+        "quiz.questions[0].keyEvidence": [
+          "ch17.fact.1"
+        ],
+        "quiz.questions[1]": [
+          "ch17.fact.2"
+        ],
+        "quiz.questions[1].keyEvidence": [
+          "ch17.fact.2"
+        ],
+        "quiz.questions[2]": [
+          "ch17.fact.3"
+        ],
+        "quiz.questions[2].keyEvidence": [
+          "ch17.fact.3"
+        ],
+        "quiz.questions[3]": [
+          "ch17.fact.4"
+        ],
+        "quiz.questions[3].keyEvidence": [
+          "ch17.fact.4"
+        ],
+        "quiz.questions[4]": [
+          "ch17.fact.5"
+        ],
+        "quiz.questions[4].keyEvidence": [
+          "ch17.fact.5"
+        ],
+        "quiz.questions[5]": [
+          "ch17.fact.6"
+        ],
+        "quiz.questions[5].keyEvidence": [
+          "ch17.fact.6"
+        ],
+        "quiz.questions[6]": [
+          "ch17.fact.7"
+        ],
+        "quiz.questions[6].keyEvidence": [
+          "ch17.fact.7"
+        ],
+        "quiz.questions[7]": [
+          "ch17.fact.8"
+        ],
+        "quiz.questions[7].keyEvidence": [
+          "ch17.fact.8"
+        ],
+        "quiz.questions[8]": [
+          "ch17.fact.9"
+        ],
+        "quiz.questions[8].keyEvidence": [
+          "ch17.fact.9"
+        ],
+        "reviewCards[0]": [
+          "ch17.fact.1"
+        ],
+        "reviewCards[1]": [
+          "ch17.fact.2"
+        ],
+        "reviewCards[2]": [
+          "ch17.fact.3"
+        ],
+        "reviewCards[3]": [
+          "ch17.fact.4"
+        ],
+        "reviewCards[4]": [
+          "ch17.fact.5"
+        ],
+        "reviewCards[5]": [
+          "ch17.fact.6"
+        ],
+        "reviewCards[6]": [
+          "ch17.fact.7"
+        ],
+        "implementationPlan.title": [
+          "ch17.fact.1",
+          "ch17.fact.2",
+          "ch17.fact.3"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch17.fact.1",
+          "ch17.fact.2",
+          "ch17.fact.3"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch17.fact.1"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch17.fact.2"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch17.fact.3"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch17.fact.1",
+          "ch17.fact.2",
+          "ch17.fact.3"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch17.fact.1",
+          "ch17.fact.2",
+          "ch17.fact.3"
+        ],
+        "hook": [
+          "ch17.fact.1"
+        ],
+        "counterintuition": [
+          "ch17.fact.1",
+          "ch17.fact.2",
+          "ch17.fact.3",
+          "ch17.fact.4",
+          "ch17.fact.5",
+          "ch17.framework.failure.pattern.map"
+        ],
+        "keyTakeaway": [
+          "ch17.fact.1",
+          "ch17.fact.2",
+          "ch17.fact.3",
+          "ch17.fact.4",
+          "ch17.fact.9"
+        ],
+        "tryThisNow": [
+          "ch17.fact.1",
+          "ch17.fact.2",
+          "ch17.fact.3"
+        ],
+        "breakdown.fastRead": [
+          "ch17.fact.1",
+          "ch17.fact.2",
+          "ch17.fact.3",
+          "ch17.fact.4",
+          "ch17.fact.5"
+        ],
+        "breakdown.deepRead": [
+          "ch17.fact.1",
+          "ch17.fact.2",
+          "ch17.fact.3",
+          "ch17.fact.4",
+          "ch17.fact.5",
+          "ch17.fact.6",
+          "ch17.fact.7",
+          "ch17.framework.failure.pattern.map"
+        ],
+        "breakdown.fullRead": [
+          "ch17.fact.1",
+          "ch17.fact.2",
+          "ch17.fact.3",
+          "ch17.fact.4",
+          "ch17.fact.5",
+          "ch17.fact.6",
+          "ch17.fact.7",
+          "ch17.fact.8",
+          "ch17.fact.9",
+          "ch17.framework.failure.pattern.map"
+        ]
+      }
+    }
+  }
+}

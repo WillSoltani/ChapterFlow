@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "atomic-habits-ch20",
+  "chapterNumber": 20,
+  "contentHash": "edf93ed05beb353d",
+  "reviewerSessionId": "eval-proxy-atomic-habits-ch20-1783022480973",
+  "scores": {
+    "retention": 92,
+    "quizzes": 62,
+    "transfer": 91,
+    "practical": 85,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 68,
+    "insight": 90,
+    "density": 84,
+    "beginner": 88
+  },
+  "composite": 83.5,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The practice is happening. The practicing has stopped.",
+      "why": "Strongest memorable line: it compresses the chapter's core warning into a line a reader will retain.",
+      "verified": true
+    },
+    {
+      "quote": "Automaticity is the prize. Automaticity is also the disguise.",
+      "why": "Strong mechanism statement: it explains why a successful habit can become dangerous.",
+      "verified": true
+    },
+    {
+      "quote": "Soreness is the receipt that the stimulus is new, and a flat soreness curve explains a flat results curve.",
+      "why": "Worst practical overreach: it treats soreness as clean evidence of learning without safety limits.",
+      "verified": true
+    },
+    {
+      "quote": "Explanation: Smooth automaticity replaces attention. That is the warning sign, not a graduation.",
+      "why": "Quiz defect: the explanation immediately reveals the intended reasoning before the answer key.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "The explanations appear directly under each quiz item, so the intended answer can often be inferred without reading the chapter or answer key.",
+    "Correct options are often the longest and use the chapter's signature language, while distractors are plainly wrong or reductive."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "Each question includes an explanation directly under the choices, which lets a reader infer the intended answer without relying on the chapter prose or the answer key.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q1, Q3, Q4, Q6, Q8, Q9",
+      "problem": "The correct options are often the most detailed and use the chapter's signature language, while many distractors are obviously naive, punitive, or evasive.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 6 and Implementation plan health if-then",
+      "problem": "The running advice frames soreness and discomfort as evidence of learning without enough boundary language about injury risk, recovery, or safe progression.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read opening",
+      "problem": "The sentence starts with a grammar error: 'At 9 p.m. and the jazz pianist sits down...' which creates a visible copyedit blemish near the top.",
+      "mustFix": false
+    },
+    {
+      "unit": "limits across chapter",
+      "problem": "The chapter does not clearly distinguish useful attention-restoring friction from unnecessary drag, especially in safety-critical or fatigue-sensitive contexts.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is strong on retention, transfer, and mechanism: the nurse, pianist, bakery, resident, and couple examples all point to the same useful move, and the best lines are genuinely sticky. It falls short of a professional ship bar because the quiz is too guessable and structurally spoiled by visible explanations, and because the health/training material needs safer limits around soreness and discomfort. Fixing the quiz presentation and adding sharper boundary language would likely make this shippable."
+}

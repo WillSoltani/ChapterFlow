@@ -1,0 +1,10 @@
+Done: [start-with-why-ch04.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch04.v21-native.chapter.json).
+
+Validation:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers
+- Quiz verify: 9/9 matches, key pattern `1,2,0,2,0,1,1,0,2`
+- Rendered length: `16,375` chars
+- Reading-surface anchor counts: `neocortex=1`, `limbic=1`
+
+One non-blocking shadow major remains from running the v21 CLI against the v24 file path: the v21 command directory cannot see the v24 `.chapterflow/runs` source tree. Content gate findings are otherwise clear, with `0` minors.

@@ -1,0 +1,62 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "c", "a", "b", "b", "a", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Q6: the correct answer repeats the chapter's exact anchor trio, while the distractors are broad purpose/story errors.",
+      "Q8: 'famous name' and 'authority without comparison' are giveaway phrasing against the lesson."
+    ]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 85,
+    "transfer": 78,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 82,
+    "limits": 90,
+    "insight": 85,
+    "density": 79,
+    "beginner": 82
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Biology means sorting jobs, not crowning feeling.",
+      "why": "Strong, memorable compression of the chapter's main limit."
+    },
+    {
+      "quote": "What would you trust here if the words were still missing?",
+      "why": "A useful transfer question that keeps feeling from becoming either ignored or sovereign."
+    },
+    {
+      "quote": "Mid-action, the demand is already past: explain why the weekend support route felt safer, not only why it sounded faster.",
+      "why": "One of the thinner, more staged examples; the scene is hard to picture."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "Thin-but-usable example: the check-in miss has a named role but little concrete before-to-after consequence beyond 'sent back for rework.'",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "Thin-but-usable example: the dispatch setup is vague and staged, with 'the demand is already past' and 'blue divider' adding texture without clarifying the decision.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "The correct option is telegraphed by repeating the chapter's named supports, while the distractors are obviously broad and wrong.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The visible/felt/second-anchor move is repeated several times in similar language, which lowers density even though the lesson remains clear.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable: the core move is clear, bounded, and memorable, especially the distinction between biology as a sorting tool and biology as borrowed authority. The quiz keys are sound and derivable, with no serious key disagreement, though a few distractors give away the answer. The main weakness is transfer: several examples are usable but staged and thin, so the chapter teaches the pattern more by repetition than by rich before-to-after cases."
+}
+```

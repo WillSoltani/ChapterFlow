@@ -1,0 +1,75 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water discussion says memory does not average duration and a milder ending can improve remembered weight.",
+      "The Magic Castle example shows a modest place can create a tellable peak through a vivid object and delivery ritual.",
+      "YES Prep turns a private achievement into a public milestone where peers and adults witness effort.",
+      "The prose names elevation, insight, pride, and connection as the four ingredients.",
+      "The red phone lesson is that a concrete object can signal the ordinary script has changed.",
+      "The chapter says the snack is nice, but the phone request and silver-tray delivery make it a small event.",
+      "The threshold idea says to mark doorways before the next stage turns into private logistics.",
+      "The chapter explicitly says memory does not average each minute, so the team should not assume equal weighting.",
+      "The mint resembles a quiet free item; the red-phone lesson says gifts become memorable when they have a tellable format."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q4 is easy to answer by test-taking: only choice c lists four positive ingredients, while a and b are visibly weak.",
+      "Q7 choice c repeats the chapter's distinctive phrase 'private logistics,' making it a giveaway for anyone skimming.",
+      "Q8 is a negative stem where two options are true chapter claims and one is plainly the opposite, so the structure gives away the key."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 87,
+    "limits": 88,
+    "insight": 86,
+    "density": 84,
+    "beginner": 91
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Memory keeps score in odd ways. It does not average each minute. It holds what rose above the line and how the episode ended.",
+      "why": "This is the chapter's clearest mechanism in plain language."
+    },
+    {
+      "quote": "A red phone cannot make an unsafe pool feel fine. A ceremony cannot replace real college support. A soft ending cannot make honest harm harmless.",
+      "why": "The limits section is concrete and prevents overselling the technique."
+    },
+    {
+      "quote": "Parent Margaret expects a plain pool afternoon at the Magic Castle Hotel in Los Angeles.",
+      "why": "The named example character feels invented without signaling that it is a scenario, which slightly weakens trust."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct answer is too exposed because it is the only option that names four constructive ingredients, while the other two are implausible.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The negative stem makes the key easy to infer because two choices are endorsed chapter claims and one is their obvious opposite.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The named parent appears only as a device for the lesson and has no consequence beyond noticing the peak, so the example is usable but thin.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "Lorne is named but not developed; the example shows the principle but gives little before-to-after consequence.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears the professional bar. It has a memorable central move, concrete anchors, honest limits, and practical next actions. The quiz is fair and fully derivable, though a few items are too easy by option design. The main weakness is that some scenario examples use named stand-ins without much lived consequence, which lowers transfer slightly but does not block shipping."
+}
+```

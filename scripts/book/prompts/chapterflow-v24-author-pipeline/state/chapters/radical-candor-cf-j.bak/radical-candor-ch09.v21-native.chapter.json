@@ -1,0 +1,640 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "radical-candor-ch09",
+  "number": 9,
+  "title": "A Radically Candid Performance Review",
+  "readingTimeMinutes": 7,
+  "hook": "A fair review can still fail when the person hears the hard truth too late.",
+  "hookSourceAnchorIds": [
+    "ch09.fact.8",
+    "ch09.fact.5"
+  ],
+  "counterintuition": "The formal cycle is not where candor gets stronger by saving it up. It gets stronger when the cycle counts what already traveled, with no score allowed to replace guidance.",
+  "counterintuitionSourceAnchorIds": [
+    "ch09.concept",
+    "ch09.fact.4",
+    "ch09.fact.5",
+    "ch09.fact.8"
+  ],
+  "tryThisNow": "When you draft a rating sentence, say the prior guidance it should summarize in 10 words before you keep it.",
+  "tryThisNowSourceAnchorIds": [
+    "ch09.fact.4",
+    "ch09.fact.8"
+  ],
+  "keyTakeaway": "Treat the formal cycle as a ledger: it counts guidance already given, keeps scores from crowding out growth, and turns evidence into shared next steps.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch09.concept",
+    "ch09.fact.5",
+    "ch09.fact.6",
+    "ch09.fact.7",
+    "ch09.fact.8"
+  ],
+  "breakdown": {
+    "fastRead": "A fair review can fail when the score lands after the chance to change. The person sees a verdict, not a path. That is the Measurement Problem: measurement can pull attention toward a score and away from learning.\n\nThe official guide marks Bonus Chapter: A Radically Candid Performance Review after Results. That placement matters. It asks whether formal performance review elements work, and whether development conversations happen with everyone before the rating cycle.\n\nUse the cycle as a ledger. Each promise out needs a return path. Evidence comes from what was seen and what changed. The hard truth should have traveled earlier. If it first arrives here, the process has a debt.",
+    "deepRead": "The score pulls because it feels final. Once a number is in play, the person being rated may stop hearing the lesson and start reading the odds. The Measurement Problem names that split as Development Versus Management: learning needs a path, while management decisions carry power.\n\nA formal performance review is the set process an organization uses to rate and record performance. The bonus prompts do not tell you to copy one form. They ask what your elements are and whether they work. That is motion and ledger at once: trace where the promise traveled, then count what the process made visible.\n\nEvidence keeps the line from becoming a label. SBI means Situation, Behavior, Impact: where it happened, what was seen, and what changed because of it. CORE means Context, Observation, Result, Explore: the setting, the seen act, the result, and a prompt that brings the employee into the path ahead.\n\nWho pays for surprise? The person who could have changed earlier pays first. The person writing the cycle pays too, because trust drops when a score carries news that should have traveled sooner. A candid cycle does not hide the hard part. It just refuses to store it until the last mile.\n\nA score may still be needed. Pay, role scope, and record keeping do not vanish. But the score should not pose as growth. Development talks need room to ask what behavior returns on what path. Management calls need care because money and status change how honest people can be.",
+    "fullRead": "The Bonus Chapter placement matters because it changes the job. The eight numbered units teach the everyday tools; A Radically Candid Performance Review asks how those tools behave when a formal system starts counting. A rating cycle can help a person see a pattern. It can also make one number look like the whole truth.\n\nStart with the process, not the person. What elements does it use? Do they help? Do development conversations happen with everyone before the cycle closes? These prompts move your eyes from blame to design. If the form rewards vague praise and late criticism, a careful writer still has a bad rail to travel.\n\nThat does not excuse weak guidance. It locates the debt. Had the hard detail not traveled earlier, the formal cycle would ask the reader to accept a verdict without a chance to improve. Had the score been treated as development, the person would know where they ranked but not what to do on Monday.\n\nBehavior evidence repairs part of that harm. SBI keeps the line tied to a situation, a behavior, and its impact. CORE adds the Explore step, so the employee can add context and help shape the return path. The promise gets a named path, or it drifts.\n\nThe half-fix is common. A person may gather clean evidence and still run the hour as a one-way verdict. That is why Explore matters. The facts can be sound while the process stays closed. What did the employee see that the form missed? What return path can both sides name?\n\nThe hardest split is development versus management. Coaching asks for honesty about habits and growth. Pay and role calls change the stakes. Mix them without naming the purpose, and people guard themselves. Split the purpose, and the ledger gets cleaner: learning in one line, decision in another.\n\nYou can use this without a title. Before you accept a score about your own task, ask what prior guidance it should summarize. Before you write a peer note, state the seen act and the effect, not a trait. When a formal cycle asks for a verdict, carry the earlier promise back into it. The process can name the debt without pretending the debt is harmless.\n\nLimits: do not use this move to dodge real decisions. A score can be required. A role call can be due. A serious pattern may need a firm record even if past guidance was weak. When harm is active, act now; do not wait for a cleaner cycle. The move fails when it turns judgment into endless coaching, or when it uses dialogue to soften a decision that must be made."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch09.ex.measurement-problem",
+      "sourceAnchorIds": [
+        "ch09.ex.measurement-problem"
+      ],
+      "sourceFactIds": [
+        "ch09.fact.5",
+        "ch09.fact.8"
+      ],
+      "namedCaseIds": [
+        "ch09.ex.measurement-problem"
+      ],
+      "title": "Score After the Chance",
+      "tags": [
+        "measurement",
+        "development",
+        "late guidance"
+      ],
+      "planSpec": {
+        "domain": "The Measurement Problem",
+        "audience": "readers who turn ratings into guidance",
+        "stakes": "a score can arrive after the chance to change",
+        "format": "postmortem",
+        "requiredBeat": "open after the cycle closes, trace the score back to delayed guidance, and show the cost paid",
+        "exemplar": "ch09.ex.measurement-problem"
+      },
+      "scenario": "The rating cycle has closed, and the trace runs backward to The Measurement Problem. A blue score box sits where the learning path should have been. The number was not false, but it narrowed the hour: Development Versus Management became one line. The move works only after a cost is paid. The person leaves with a rank first, then gets the behavior path that should have traveled earlier.",
+      "whatToDo": "Trace why the score narrowed attention before you rewrite the line. Keep the rating separate from the behavior path it must summarize.",
+      "whyItMatters": "Protect learning from the number, because a rank can settle the file while leaving the person unsure what behavior returns."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch09.ex.measurement-problem",
+      "sourceAnchorIds": [
+        "ch09.ex.measurement-problem"
+      ],
+      "sourceFactIds": [
+        "ch09.fact.5",
+        "ch09.fact.8"
+      ],
+      "namedCaseIds": [
+        "ch09.ex.measurement-problem"
+      ],
+      "title": "Downstream Miss",
+      "tags": [
+        "outsider effect",
+        "surprise",
+        "rating risk"
+      ],
+      "planSpec": {
+        "domain": "delayed guidance under measurement pressure",
+        "audience": "readers whose formal cycles affect people downstream",
+        "stakes": "the miss reaches a customer before the guidance reaches the task",
+        "format": "predict_reveal",
+        "requiredBeat": "open when an outsider first feels the delayed guidance, then pull the cycle back barely in time",
+        "exemplar": "ch09.ex.measurement-problem"
+      },
+      "scenario": "The downstream customer first feels the effect when the promised fix slips again. One stale coffee cup waits beside the support log. The Measurement Problem is visible: measurement counted the issue before Development Versus Management was separated. The miss is barely pulled back when guidance leaves the score sheet and returns to the task before the following handoff.",
+      "whatToDo": "Ask what the downstream miss proves. It proves the score traveled late, so move the behavior guidance back to the live task.",
+      "whyItMatters": "Answer the reader's question: the customer paid for delay because the process counted the issue before it guided the behavior."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch09.ex.measurement-problem",
+      "sourceAnchorIds": [
+        "ch09.ex.measurement-problem"
+      ],
+      "sourceFactIds": [
+        "ch09.fact.5",
+        "ch09.fact.9"
+      ],
+      "namedCaseIds": [
+        "ch09.ex.measurement-problem"
+      ],
+      "title": "Complete Form, Thin Learning",
+      "tags": [
+        "numbers detective",
+        "management",
+        "unresolved"
+      ],
+      "planSpec": {
+        "domain": "Development Versus Management",
+        "audience": "readers whose forms count more than they teach",
+        "stakes": "a complete rating can hide the missing learning path",
+        "format": "audit",
+        "requiredBeat": "open on the quiet miss before anyone flags it, then cut away unresolved",
+        "exemplar": "ch09.ex.measurement-problem"
+      },
+      "scenario": "Measurement is quietly going wrong when every line in the cycle points to a rating and none points to learning. The form can be complete while guidance is thin. The Measurement Problem has not produced a blowup yet; it has narrowed attention. No one knows whether the following cycle will restore development or keep counting.",
+      "whatToDo": "Separate the score from the learning path. Write the rating in one place and the behavior that should return in another, then stop.",
+      "whyItMatters": "Count what the form hides. A clean rating can still leave no path, and the miss stays hidden until the same pattern comes back."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch09.ex.core-sbi-review-evidence",
+      "sourceAnchorIds": [
+        "ch09.ex.core-sbi-review-evidence"
+      ],
+      "sourceFactIds": [
+        "ch09.fact.6",
+        "ch09.fact.7"
+      ],
+      "namedCaseIds": [
+        "ch09.ex.core-sbi-review-evidence"
+      ],
+      "title": "Trait Line Crossed Out",
+      "tags": [
+        "SBI",
+        "CORE",
+        "evidence"
+      ],
+      "planSpec": {
+        "domain": "CORE and SBI review evidence",
+        "audience": "readers writing evidence inside a formal cycle",
+        "stakes": "a personality label can replace behavior someone can change",
+        "format": "mistake_recovery",
+        "requiredBeat": "open when the evidence demand is stated, show the partial repair, and name what stays broken",
+        "exemplar": "ch09.ex.core-sbi-review-evidence"
+      },
+      "scenario": "The demand is stated on the first line: no personality summary. A black pen stops after the word careless. SBI pulls the sentence back to Situation, Behavior, and Impact; CORE adds Context, Observation, Result, and Explore. The move half-works. The evidence gets cleaner, but the first draft still treats Explore as a courtesy, not as shared ownership.",
+      "whatToDo": "Cut the trait. Replace it with the setting, the seen act, and the effect, then ask the employee what context changes the return path.",
+      "whyItMatters": "Keep the door open. Evidence without Explore can still become a verdict, even when every sentence sounds fair."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch09.ex.bonus-performance-review",
+      "sourceAnchorIds": [
+        "ch09.ex.bonus-performance-review"
+      ],
+      "sourceFactIds": [
+        "ch09.fact.1",
+        "ch09.fact.2",
+        "ch09.fact.3",
+        "ch09.fact.4"
+      ],
+      "namedCaseIds": [
+        "ch09.ex.bonus-performance-review"
+      ],
+      "title": "The Process Enters Evidence",
+      "tags": [
+        "bonus unit",
+        "formal elements",
+        "process"
+      ],
+      "planSpec": {
+        "domain": "Bonus performance review unit",
+        "audience": "readers who treat the process as fixed",
+        "stakes": "the process may distort the guidance it claims to record",
+        "format": "planning_choice",
+        "requiredBeat": "open mid-action after the demand is already past, then recover by naming the process itself",
+        "exemplar": "ch09.ex.bonus-performance-review"
+      },
+      "scenario": "Halfway through the rating write-up, the demand has already been made: inspect the formal performance review elements, not just the person. Bonus Chapter: A Radically Candid Performance Review asks whether those elements work and whether development conversations happen with everyone. The write-up starts blaming too narrowly until the process itself gets named as part of the evidence.",
+      "whatToDo": "Name what skipping this costs: the cycle blames a person for noise the process may have made. Inspect the element before you score the behavior.",
+      "whyItMatters": "Show the process in the ledger. A flawed form can block useful guidance, and fixing only the sentence leaves the same trap in place."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch09.fact.7",
+        "prompt": "A rating draft has a clear result but no employee voice. Which move best fits the evidence guidance?",
+        "choices": [
+          "Use Context, Observation, and Result to ground the claim, then ask the employee to help shape the path forward.",
+          "Use the same evidence chain to make the verdict cleaner, then close the cycle before the employee adds context.",
+          "Hold the evidence until pay is settled, then use Explore only if the employee disputes the rating."
+        ],
+        "correctIndex": 0,
+        "explanation": "CORE does not stop at a clean claim; Explore brings the employee into the return path. The tempting verdict-only choice keeps the process one-way.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch09.fact.5",
+        "prompt": "A score is accurate, yet the person leaves unsure what behavior should change. What best explains the miss?",
+        "choices": [
+          "Measurement pulled attention toward the rating, so the learning path had to be protected from the number.",
+          "The score proved the lesson was complete, so adding behavior guidance would only reopen a settled management call after the fact.",
+          "The formal elements were too local, so the same rating template should replace the current process."
+        ],
+        "correctIndex": 0,
+        "explanation": "The Measurement Problem is the split between counting and teaching. Treating the score as complete repeats the error the prose warns against.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch09.fact.3",
+        "prompt": "One proposed fix blames each weak write-up on the writer alone. Which principle does that break?",
+        "choices": [
+          "It treats regular development talks as useful only after the formal cycle has closed and the person can no longer change.",
+          "It asks for behavior evidence before checking whether any score has been assigned.",
+          "It ignores that broken mechanics can distort guidance, so the process itself must be inspected."
+        ],
+        "correctIndex": 2,
+        "explanation": "The bonus prompts ask whether current elements work. The writer-only answer is tempting, but it misses how design can block useful guidance.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch09.fact.9",
+        "prompt": "A company blends coaching notes and pay decisions into one undifferentiated hour. What happens downstream?",
+        "choices": [
+          "People become more frank because the learning stakes and money stakes now share one path.",
+          "People treat every score as a development prompt, so the formal process needs fewer distinctions.",
+          "People guard themselves because coaching and management choices carry different stakes."
+        ],
+        "correctIndex": 2,
+        "explanation": "Development talk and management calls need separate handling when pay or role force is present. The all-in-one answer sounds efficient, but it reduces honesty.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch09.fact.6",
+        "prompt": "Your sentence says someone is careless. Which replacement best follows the evidence rule?",
+        "choices": [
+          "Keep the label but add that the pattern was visible in several moments across the cycle, so the trait sounds better supported.",
+          "Name the situation, the observed behavior, and the impact so the line points to something changeable.",
+          "Move the label into the score note, since personality language is clearer outside coaching."
+        ],
+        "correctIndex": 1,
+        "explanation": "SBI turns a trait into observed evidence. The longer label choice still leaves the person with a hard-to-change summary.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch09.fact.2",
+        "prompt": "Before applying candor to a formal cycle at a new organization, what should you do first?",
+        "choices": [
+          "Start from a universal template so the same standard travels cleanly across every process.",
+          "Inspect the actual elements in use, because the local process shapes how people behave.",
+          "Delay inspection until after the score is final, because candor belongs in the conversation."
+        ],
+        "correctIndex": 1,
+        "explanation": "The prompts begin with the actual elements. A universal template is the near miss, because it assumes away the process that shapes behavior.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch09.fact.1",
+        "prompt": "Someone calls the bonus unit optional fluff and wants to skip it. What is the best reply?",
+        "choices": [
+          "Keep it, because the guide separates it to extend the tools into formal systems.",
+          "Skip it, because the eight numbered units already contain every formal evaluation issue.",
+          "Merge it into Results, because formal cycles are just another kind of calendar routine."
+        ],
+        "correctIndex": 0,
+        "explanation": "The placement after the numbered units gives the material its own job. Merging it into Results loses the formal-system focus.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch09.fact.4",
+        "prompt": "An employee hears a major growth point for the first time during the rating hour. What should have happened earlier?",
+        "choices": [
+          "The rating hour should have held the hard point until the score made it serious enough to act on with full attention.",
+          "Development talk should have happened regularly, so the formal cycle summarized instead of surprised.",
+          "The process should have waited for a second score before any behavior guidance traveled."
+        ],
+        "correctIndex": 1,
+        "explanation": "Regular development talk is the guard against surprise. Waiting for the score is exactly the late move that removes the chance to change.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch09.fact.8",
+        "prompt": "Hard feedback was saved for the formal cycle, and trust drops after the conversation. Why?",
+        "choices": [
+          "The evidence was too specific, so the person could not treat the rating as a broad enough verdict about the whole cycle.",
+          "The cycle included development language, so the person mistook a fair score for coaching.",
+          "The delayed guidance removed the chance to improve before evaluation, turning growth into a verdict."
+        ],
+        "correctIndex": 2,
+        "explanation": "Surprise breaks trust because guidance arrived after it could help. The specific-evidence answer fails; specificity is useful when it arrives in time.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "c01",
+      "sourceAnchorIds": [
+        "ch09.fact.4",
+        "ch09.fact.8"
+      ],
+      "front": "What should a formal cycle summarize?",
+      "back": "Guidance that already traveled. If the hard point first appears there, the process has removed the chance to improve before evaluation.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c02",
+      "sourceAnchorIds": [
+        "ch09.fact.5"
+      ],
+      "front": "Why can an accurate score still fail the person?",
+      "back": "A score can pull attention toward rank and away from learning. Protect the behavior path so the number does not pose as development.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c03",
+      "sourceAnchorIds": [
+        "ch09.fact.6"
+      ],
+      "front": "What does SBI add to evidence?",
+      "back": "It ties the line to a situation, an observed behavior, and an impact. That makes the guidance easier to verify and change.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "c04",
+      "sourceAnchorIds": [
+        "ch09.fact.7"
+      ],
+      "front": "What does CORE add after the result?",
+      "back": "Explore. The employee gets a say in context and the path ahead, so the cycle does not become a one-way verdict.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c05",
+      "sourceAnchorIds": [
+        "ch09.fact.2",
+        "ch09.fact.3"
+      ],
+      "front": "When should you inspect the process, not only the person?",
+      "back": "When the formal elements may be shaping the behavior. A flawed process can distort guidance even when the writer tries to be candid.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "c06",
+      "sourceAnchorIds": [
+        "ch09.fact.1"
+      ],
+      "front": "Why is the bonus unit not fluff?",
+      "back": "Its separate prompts extend the tools into formal systems. Dropping it skips the place where candor meets ratings and records.",
+      "difficulty": "easy"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Trace the Prior Guidance",
+    "titleSourceAnchorIds": [
+      "ch09.concept",
+      "ch09.fact.4",
+      "ch09.fact.8"
+    ],
+    "coreSkill": "Trace the Prior Guidance. Before a rating line stands, say what earlier guidance it records. If no earlier guidance exists, name that debt and move the behavior guidance back to the live task.",
+    "coreSkillSourceAnchorIds": [
+      "ch09.concept",
+      "ch09.fact.4",
+      "ch09.fact.5",
+      "ch09.fact.8"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorIds": [
+          "ch09.fact.8"
+        ],
+        "context": "If a rating sentence surprises you",
+        "plan": "If a rating sentence surprises you, then say the guidance that should have arrived earlier."
+      },
+      {
+        "sourceAnchorIds": [
+          "ch09.fact.5",
+          "ch09.fact.9"
+        ],
+        "context": "If the score starts replacing the lesson",
+        "plan": "If the score starts replacing the lesson, then say the behavior path in a separate sentence."
+      },
+      {
+        "sourceAnchorIds": [
+          "ch09.fact.6",
+          "ch09.fact.7"
+        ],
+        "context": "If the line describes a trait",
+        "plan": "If the line describes a trait, then say the seen behavior, the impact, and the employee's role in the path ahead."
+      }
+    ],
+    "twentyFourHourChallenge": "Teach the move to one person in 10 minutes: say why a formal cycle should summarize prior guidance, then have them restate it.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch09.fact.4",
+      "ch09.fact.8"
+    ],
+    "weeklyPractice": "Each week, measure one number: how many rating lines can point to prior guidance. If one cannot, say the missing guidance before the cycle closes.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch09.concept",
+      "ch09.fact.4",
+      "ch09.fact.5",
+      "ch09.fact.8"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "A fair review can fail when the score lands after the chance to change.",
+      "location": "breakdown.fastRead",
+      "why": "It reverses the instinct that fairness is enough once the formal line is accurate."
+    },
+    {
+      "text": "A formal performance review is the set process an organization uses to rate and record performance.",
+      "location": "breakdown.deepRead",
+      "why": "It defines the familiar term in plain words before the chapter critiques it."
+    },
+    {
+      "text": "The person who could have changed earlier pays first.",
+      "location": "breakdown.deepRead",
+      "why": "It names the concrete cost of saving guidance for the rating cycle."
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:16d75bd08afc5ea59bfec5d05a28addb5d0275ac77eb39ddf3fedd2b45d7005f",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch09.source.json",
+      "observedAnchorIds": [
+        "ch09.concept",
+        "ch09.ex.bonus-performance-review",
+        "ch09.ex.measurement-problem",
+        "ch09.ex.core-sbi-review-evidence",
+        "ch09.fact.1",
+        "ch09.fact.2",
+        "ch09.fact.3",
+        "ch09.fact.4",
+        "ch09.fact.5",
+        "ch09.fact.6",
+        "ch09.fact.7",
+        "ch09.fact.8",
+        "ch09.fact.9",
+        "ch09.framework.radically.candid.review.system"
+      ],
+      "effectiveAnchors": {
+        "hook": [
+          "ch09.fact.8",
+          "ch09.fact.5"
+        ],
+        "counterintuition": [
+          "ch09.concept",
+          "ch09.fact.4",
+          "ch09.fact.5",
+          "ch09.fact.8"
+        ],
+        "tryThisNow": [
+          "ch09.fact.4",
+          "ch09.fact.8"
+        ],
+        "keyTakeaway": [
+          "ch09.concept",
+          "ch09.fact.5",
+          "ch09.fact.6",
+          "ch09.fact.7",
+          "ch09.fact.8"
+        ],
+        "breakdown.fastRead": [
+          "ch09.concept",
+          "ch09.ex.bonus-performance-review",
+          "ch09.ex.measurement-problem",
+          "ch09.fact.1",
+          "ch09.fact.3",
+          "ch09.fact.4",
+          "ch09.fact.5",
+          "ch09.fact.8"
+        ],
+        "breakdown.deepRead": [
+          "ch09.concept",
+          "ch09.ex.measurement-problem",
+          "ch09.ex.core-sbi-review-evidence",
+          "ch09.fact.5",
+          "ch09.fact.6",
+          "ch09.fact.7",
+          "ch09.fact.8",
+          "ch09.fact.9"
+        ],
+        "breakdown.fullRead": [
+          "ch09.concept",
+          "ch09.ex.bonus-performance-review",
+          "ch09.ex.measurement-problem",
+          "ch09.ex.core-sbi-review-evidence",
+          "ch09.fact.1",
+          "ch09.fact.2",
+          "ch09.fact.3",
+          "ch09.fact.4",
+          "ch09.fact.5",
+          "ch09.fact.6",
+          "ch09.fact.7",
+          "ch09.fact.8",
+          "ch09.fact.9"
+        ],
+        "examples[0]": [
+          "ch09.ex.measurement-problem"
+        ],
+        "examples[1]": [
+          "ch09.ex.measurement-problem"
+        ],
+        "examples[2]": [
+          "ch09.ex.measurement-problem"
+        ],
+        "examples[3]": [
+          "ch09.ex.core-sbi-review-evidence"
+        ],
+        "examples[4]": [
+          "ch09.ex.bonus-performance-review"
+        ],
+        "quiz.questions[0]": [
+          "ch09.fact.7"
+        ],
+        "quiz.questions[1]": [
+          "ch09.fact.5"
+        ],
+        "quiz.questions[2]": [
+          "ch09.fact.3"
+        ],
+        "quiz.questions[3]": [
+          "ch09.fact.9"
+        ],
+        "quiz.questions[4]": [
+          "ch09.fact.6"
+        ],
+        "quiz.questions[5]": [
+          "ch09.fact.2"
+        ],
+        "quiz.questions[6]": [
+          "ch09.fact.1"
+        ],
+        "quiz.questions[7]": [
+          "ch09.fact.4"
+        ],
+        "quiz.questions[8]": [
+          "ch09.fact.8"
+        ],
+        "reviewCards[0]": [
+          "ch09.fact.4",
+          "ch09.fact.8"
+        ],
+        "reviewCards[1]": [
+          "ch09.fact.5"
+        ],
+        "reviewCards[2]": [
+          "ch09.fact.6"
+        ],
+        "reviewCards[3]": [
+          "ch09.fact.7"
+        ],
+        "reviewCards[4]": [
+          "ch09.fact.2",
+          "ch09.fact.3"
+        ],
+        "reviewCards[5]": [
+          "ch09.fact.1"
+        ],
+        "implementationPlan.title": [
+          "ch09.concept",
+          "ch09.fact.4",
+          "ch09.fact.8"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch09.concept",
+          "ch09.fact.4",
+          "ch09.fact.5",
+          "ch09.fact.8"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch09.fact.8"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch09.fact.5",
+          "ch09.fact.9"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch09.fact.6",
+          "ch09.fact.7"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch09.fact.4",
+          "ch09.fact.8"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch09.concept",
+          "ch09.fact.4",
+          "ch09.fact.5",
+          "ch09.fact.8"
+        ],
+        "memorableLines[0]": [
+          "ch09.fact.5",
+          "ch09.fact.8"
+        ],
+        "memorableLines[1]": [
+          "ch09.fact.2"
+        ],
+        "memorableLines[2]": [
+          "ch09.fact.8"
+        ]
+      }
+    }
+  }
+}

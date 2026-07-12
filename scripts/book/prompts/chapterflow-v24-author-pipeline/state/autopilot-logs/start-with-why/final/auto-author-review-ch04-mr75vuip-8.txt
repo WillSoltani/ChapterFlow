@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "c", "a", "b", "b", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several distractors are visibly extreme or corrupt the method with rank, famous-reference cover, strongest-preference logic, or 'replace' language, so a test-wise reader can often eliminate them without full reading.", "Q6's correct answer is the only option that names all three chapter anchors directly, making it easier to guess from surface vocabulary."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 78,
+    "transfer": 72,
+    "practical": 84,
+    "summaries": 87,
+    "tone": 82,
+    "limits": 86,
+    "insight": 84,
+    "density": 80,
+    "beginner": 77
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Proof is the return trip, not the starting gun.",
+      "why": "Strong, memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "What would make this feeling come back in daylight?",
+      "why": "Practical diagnostic question that transfers beyond the examples."
+    },
+    {
+      "quote": "What to do: The chore chart says: keep Damasio narrow.",
+      "why": "This is too thin to function as a teaching example or actionable transfer."
+    },
+    {
+      "quote": "The return has been set, not met.",
+      "why": "Evocative, but in the example it substitutes for a shown consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples / Example 5",
+      "problem": "Reads like a slot-filler: it names a chore chart but shows no real before-to-after decision, consequence, or concrete repair beyond restating 'keep Damasio narrow.'",
+      "mustFix": true
+    },
+    {
+      "unit": "Examples / Example 6",
+      "problem": "The scene gestures at an operations choice and an open return, but it does not show what decision changed or what consequence followed, so the example underdelivers on transfer.",
+      "mustFix": true
+    },
+    {
+      "unit": "Quiz",
+      "problem": "Distractors often advertise themselves as wrong through obvious overreach, such as rank deciding trust, confident feeling outranking reason, or using science as cover.",
+      "mustFix": false
+    },
+    {
+      "unit": "Beginner accessibility",
+      "problem": "The chapter introduces neocortex, cerebral cortex, limbic system, Damasio, sensory processing, memory processing, and motivation circuits quickly; a cold beginner may track the labels without fully grounding them.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong central move: feeling can start a signal, but it earns decision weight only when it returns with proof. The summaries, memorable lines, and practical prompt are solid, and the answer key is sound. I would not ship yet because a couple of later examples feel manufactured rather than demonstrated, and the quiz is weakened by distractors that are too easy to reject. Fix the slot-filler examples by showing actual decisions and consequences, then tighten a few quiz distractors so they test understanding instead of obvious bad methods."
+}
+```

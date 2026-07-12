@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "start-with-why-ch06",
+  "chapterNumber": 6,
+  "title": "The Emergence of Trust",
+  "coreMove": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+  "thesis": "Continental Airlines turnaround adds a second anchor for trust from shared belief with Continental Airlines and 1934.",
+  "readerPromise": "After this chapter, a reader can since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+  "ownedCases": [
+    {
+      "id": "ch06.ex.southwest-airlines-employee-trust",
+      "label": "Southwest Airlines employee trust"
+    },
+    {
+      "id": "ch06.ex.continental-airlines-turnaround",
+      "label": "Continental Airlines turnaround"
+    },
+    {
+      "id": "ch06.ex.gordon-bethune",
+      "label": "Gordon Bethune"
+    }
+  ],
+  "notYours": [
+    "American Airlines boarding assumptions",
+    "Antonio Damasio / Descartes' Error",
+    "Apple Inc.",
+    "Apple after Steve Jobs's 1985 exit",
+    "Apple and Dell contrast",
+    "Apple design consistency",
+    "Apple iPod",
+    "Apple retail and product signals",
+    "Bill Gates and Paul Allen",
+    "Celery test",
+    "Dell DJ",
+    "Detroit automakers",
+    "Everett Rogers diffusion model",
+    "Ford Motor Company founder legacy",
+    "General Motors employee-discount promotions",
+    "Harley-Davidson identity",
+    "Herb Kelleher",
+    "Howard Schultz and Starbucks experience",
+    "Japanese car-door assembly",
+    "Limbic system"
+  ],
+  "cast": [
+    "Denise",
+    "Hailey",
+    "Georges",
+    "Daniel"
+  ],
+  "answerIndexPattern": [
+    1,
+    2,
+    2,
+    0,
+    1,
+    1,
+    0,
+    0,
+    2
+  ],
+  "avoid": [
+    "opener (ch02): \"At the return moment, a sales analyst at\"",
+    "opener (ch03): \"Why does Sylvia's pitch still feel thin? Founder\"",
+    "opener (ch04): \"At the return point, service lead Rachel brings\"",
+    "opener (ch05): \"1971 is the fact nobody has flagged in\"",
+    "opener (ch07): \"In Keith's launch, interest comes from people who\"",
+    "opener (ch08): \"\"Why can't Brandon keep 1975 in the supplier\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on bicycle shop",
+    "venue: a working note on digital music player",
+    "venue: a dinner table",
+    "frame: two stakeholders disagree about automobile manufacturing before deciding",
+    "frame: a small ceremony that marks a transition so it feels earned"
+  ],
+  "openerType": "scene",
+  "challengeFrame": "before-your-next-X",
+  "practiceShape": "say-aloud-script",
+  "exampleLenses": [
+    "before-after-ledger",
+    "postmortem",
+    "walkthrough"
+  ],
+  "practiceVerb": "mark",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "case",
+    "different",
+    "third",
+    "language",
+    "test",
+    "boundary"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v4",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "averted-late",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "say-aloud-script",
+    "measure-one-number",
+    "single-imperative",
+    "if-then-trigger"
+  ],
+  "quizStemShapes": [
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority"
+  ],
+  "quizFailureModes": [
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction"
+  ],
+  "questionFactOrder": [
+    5,
+    3,
+    4,
+    6,
+    2,
+    8,
+    7,
+    9,
+    1
+  ],
+  "memorableShapes": [
+    "reversal",
+    "redefinition",
+    "cost-statement"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "cost-speak",
+    "question-speak"
+  ],
+  "shellRegister": "question-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Southwest Airlines employee trust"
+  }
+}

@@ -1,0 +1,621 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "the-intelligent-investor-ch18",
+  "number": 18,
+  "title": "A Comparison of Eight Pairs of Companies",
+  "readingTimeMinutes": 8,
+  "hook": "A company can look obvious in isolation, then look very different beside another claim on the same capital.",
+  "counterintuition": "Comparison is not a shortcut to buying the lower ratio or the better business. It is a way to expose opportunity cost, test whether quality deserves its premium, and ask whether apparent cheapness has a valid explanation.",
+  "tryThisNow": "Open the next investment note and add a pair line before deciding: name the alternative claim on capital, then mark whether risk, quality, or price changes the first impression.",
+  "keyTakeaway": "Compare each company with a plausible alternative before judging value: test the premium for quality, explain any discount, and ignore superficial similarities such as sector labels or names.",
+  "breakdown": {
+    "fastRead": "Paired comparison reduces one-company tunnel vision because each valuation looks different beside an alternative claim on capital. Similar labels do not create equal risk: leverage, assets, earnings stability, and management can diverge sharply within a sector. A superior business may still be overpriced if the premium exceeds the value of the quality difference, while a lower-priced peer may be cheap for valid reasons such as a weaker balance sheet or cyclical exposure. Name similarity also means little. McGraw Edison and McGraw-Hill require separate business appraisal despite overlapping words.",
+    "deepRead": "The central move is to stop judging a company as if no alternative exists. Paired comparison makes opportunity cost visible. A valuation that seems reasonable alone may look stretched beside another claim on capital, and a rejected company may reveal what the preferred one must justify. The point is not mechanical relative cheapness; it is sharper judgment.\n\nIndustry labels are a useful starting point, but they can mislead. Similar industry labels do not create equal risk because leverage, assets, earnings stability, and management can differ within a sector. The Real Estate Investment Trust vs. Realty Equities comparison shows why two real-estate names should not be treated as having the same investment character. Structure and finances can diverge sharply even when the label sounds similar.\n\nQuality also needs a price test. A superior business may still be overpriced relative to a weaker peer because the premium can exceed the value of the quality difference. The Air Products vs. Air Reduction pair asks whether the higher-priced name earns its premium. The International Flavors & Fragrances vs. International Harvester contrast adds the same discipline for a high-quality specialty business against a large cyclical manufacturer: stability, margins, and growth matter, but the multiple paid still matters.\n\nThe reverse error is just as dangerous. A low-priced peer may be cheap for valid reasons because weaker balance sheets or cyclical exposure may justify a discount. Cheapness must be explained. McGraw Edison and McGraw-Hill add a final warning: similar names are irrelevant to valuation when business economics differ.",
+    "fullRead": "Paired comparison is a defense against one-company tunnel vision. A single valuation can feel complete when it has a story, a ratio, and a surface reason to like or dislike it. Set beside another claim on capital, the same valuation has to compete. Opportunity cost becomes visible. The question changes from whether a company is attractive in isolation to whether its price, quality, risk, and prospects are attractive relative to another available claim.\n\nThat discipline immediately weakens a common shortcut: treating similar labels as equal risk. Similar industry labels do not create equal investment character because leverage, assets, earnings stability, and management can differ within a sector. Real Estate Investment Trust vs. Realty Equities highlights the problem. The shared real-estate label is not enough. A more straightforward trust format and a more speculative real-estate company can carry sharply different financial risk. Structure and finances matter more than the category name.\n\nThe same comparison habit also checks enthusiasm for superior businesses. A better company is not automatically a better stock. A superior business may still be overpriced relative to a weaker peer when the premium exceeds the value of the quality difference. Air Products vs. Air Reduction asks whether the higher-priced name earns its premium inside a related industrial-gas pair. International Flavors & Fragrances vs. International Harvester makes the question even clearer: a high-quality specialty business can deserve respect for stability, margins, and growth, yet the appraisal still has to weigh those strengths against price.\n\nCheapness needs its own skepticism. A low-priced peer may be cheap for valid reasons because weaker balance sheets or cyclical exposure may justify a discount. The lower multiple member of a pair is not automatically better. A discount is a claim that must be explained. If the explanation is financial weakness, unstable earnings, or cyclicality, the apparent bargain may simply reflect real risk.\n\nName familiarity is another false comfort. McGraw Edison and McGraw-Hill have overlapping words, but name similarity is irrelevant to valuation because they represent different businesses. Superficial resemblance cannot replace business economics. The appraisal has to return to business quality, financial strength, earnings stability, growth, valuation premium, and cyclicality.\n\nThe broader habit is skeptical but not formulaic. Growth stability earns a premium only up to a point because paying too high a multiple can consume the benefit of stability. Pair analysis trains skepticism toward market favorites by asking what concrete advantage justifies the premium. Cyclical companies need normalized earnings because peak or trough results can distort relative cheapness. A table of pairs is therefore a tool for judgment, not a formula. Ratios require context, and final appraisal depends on the quality of the inputs and the interpretation of the business."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch18.example.1",
+      "sourceAnchorIds": [
+        "ch18.example.1"
+      ],
+      "title": "Email Draft Under Pressure",
+      "tags": [
+        "decision_point",
+        "email",
+        "decisionunderpressure"
+      ],
+      "planSpec": {
+        "domain": "email draft: decision-under-pressure",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the default behavior quietly costs the reader",
+        "format": "decision_point",
+        "requiredBeat": "show the old default failing in a concrete moment"
+      },
+      "scenario": "Taryn has an email draft open recommending Real Estate Investment Trust after reading only its plain trust description. The deadline is close, so the old default takes over: judge the name by itself and send. Then Ulric asks where Realty Equities appears in the comparison. Viola realizes the draft never tested the alternative claim on capital, so the apparent clarity was tunnel vision instead of analysis.",
+      "whatToDo": "Add a comparison line before sending: set Real Estate Investment Trust beside Realty Equities and ask what the second choice reveals about opportunity cost, structure, and risk.",
+      "whyItMatters": "A single company can look complete until a paired alternative exposes what the isolated view hides. Real Estate Investment Trust vs. Realty Equities gives the concrete check: Real Estate Investment Trust; Realty Equities."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch18.example.2",
+      "sourceAnchorIds": [
+        "ch18.example.2"
+      ],
+      "title": "Calendar Block Recovery",
+      "tags": [
+        "before_after",
+        "calendar",
+        "mistakerecovery"
+      ],
+      "planSpec": {
+        "domain": "calendar block: mistake-recovery",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "before_after_audit",
+        "requiredBeat": "show the reader-facing move changing a decision"
+      },
+      "scenario": "Taryn blocks time to compare Air Products with Air Reduction, but the first note treats the industrial-gas label as enough. Ulric catches the mistake in the calendar block title and changes it from \"same field\" to \"same field, different standing and valuation.\" That small edit changes the decision: Viola no longer treats industry similarity as equal risk and instead checks whether leverage, assets, earnings stability, and management make the premium defensible.",
+      "whatToDo": "Make the comparison appointment do one job an environment edit: name the comparison question directly, then list the risk differences that can make similar industry labels misleading.",
+      "whyItMatters": "Sector resemblance can make two choices feel interchangeable even when structure and finances diverge sharply. Air Products vs. Air Reduction keeps two details visible, Air Products and Air Reduction."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch18.example.3",
+      "sourceAnchorIds": [
+        "ch18.example.3"
+      ],
+      "title": "Front Desk Before-After Audit",
+      "tags": [
+        "mistake_recovery",
+        "front",
+        "beforeafter"
+      ],
+      "planSpec": {
+        "domain": "front desk: before-after audit",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "conversation_repair",
+        "requiredBeat": "show friction or recovery, not instant clean success"
+      },
+      "scenario": "At the front desk, Taryn reviews a note that favors International Flavors & Fragrances because it looks like the superior business against International Harvester. Ulric pushes back: the note praises stability, margins, and growth but never asks whether the premium is too high. The recovery is awkward because Viola has to rewrite the conclusion, not just add a sentence. The after version keeps the quality judgment but makes the price test explicit.",
+      "whatToDo": "Audit the before note for the hidden leap from better business to better stock. In the after note, separate business quality from the valuation premium paid for that quality.",
+      "whyItMatters": "A superior business can still be overpriced when the premium exceeds the value of the quality difference. International Flavors & Fragrances vs. International Harvester also brings in International Harvester and specialty business versus cyclical manufacturer."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch18.example.1",
+      "sourceAnchorIds": [
+        "ch18.example.1"
+      ],
+      "title": "Safety card tracks Real Estate Investment Trust vs. Realty Equities",
+      "tags": [
+        "checklist_walkthrough",
+        "source_specific",
+        "file"
+      ],
+      "planSpec": {
+        "domain": "records alcove: Real Estate Investment Trust vs. Realty Equities",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "one missing source detail can stop the purchase",
+        "format": "checklist_walkthrough",
+        "requiredBeat": "use a source detail as a stop point"
+      },
+      "scenario": "Celine checks a safety card beside the olive plinth; the fresh safetyline fixes the page toward a valid invoice. The riverstencil stays closed.",
+      "whatToDo": "Review Real Estate Investment Trust beside Realty Equities; settle real-estate company comparison.",
+      "whyItMatters": "Real Estate Investment Trust vs. Realty Equities: real-estate company comparison."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch18.example.2",
+      "sourceAnchorIds": [
+        "ch18.example.2"
+      ],
+      "title": "Reserve note limits Air Products vs. Air Reduction",
+      "tags": [
+        "constraint_test",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "office doorway: Air Products vs. Air Reduction",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the written test has to survive a second reader",
+        "format": "constraint_test",
+        "requiredBeat": "turn a detail into a written constraint"
+      },
+      "scenario": "Thane slows a reserve note beside the river desk; the guarded claimnote braces the page toward a wise anchor. The amberinvoice stays closed.",
+      "whatToDo": "Audit Air Products beside Air Reduction; settle industrial-gas pair.",
+      "whyItMatters": "Air Products vs. Air Reduction: industrial-gas pair."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch18.example.3",
+      "sourceAnchorIds": [
+        "ch18.example.3"
+      ],
+      "title": "Capacity sheet anchors International Flavors & Fragrances vs. International Harvester",
+      "tags": [
+        "handoff_review",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "library aisle: International Flavors & Fragrances vs. International Harvester",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the handoff keeps the exact condition visible",
+        "format": "handoff_review",
+        "requiredBeat": "carry the condition into the next review"
+      },
+      "scenario": "Ulric filters a capacity sheet beside the amber rack; the humble reservecard marks the page toward a active window. The fieldribbon stays closed.",
+      "whatToDo": "Trace International Flavors & Fragrances beside International Harvester; settle specialty business versus cyclical manufacturer.",
+      "whyItMatters": "International Flavors & Fragrances vs. International Harvester: specialty business versus cyclical manufacturer."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch18.fact.1",
+        "prompt": "A single company looks attractive on its own. What first move best reduces one-company tunnel vision?",
+        "choices": [
+          "Set it beside an alternative claim on capital so opportunity cost becomes visible.",
+          "Judge it fully in isolation because comparison adds unnecessary distraction.",
+          "Accept the initial valuation as complete once the company appears attractive."
+        ],
+        "correctIndex": 0,
+        "explanation": "Paired comparison reduces one-company tunnel vision because valuation changes when it is set beside an alternative claim on capital. Opportunity cost becomes visible through comparison.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch18.fact.2",
+        "prompt": "Two real-estate names share a sector label. What question should come before treating their risk as equal?",
+        "choices": [
+          "Whether the labels are similar enough to make the investment character the same.",
+          "Whether leverage, assets, earnings stability, and management differ inside the sector.",
+          "Whether the sector label alone makes structure and finances irrelevant."
+        ],
+        "correctIndex": 1,
+        "explanation": "Similar industry labels do not create equal risk. Structure and finances can diverge sharply because leverage, assets, earnings stability, and management differ within a sector.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch18.fact.3",
+        "prompt": "A superior business trades at a large premium over a weaker peer. Which test protects against overpaying for quality?",
+        "choices": [
+          "Assume the better company is the better stock because quality settles this comparison.",
+          "Ignore the premium because business superiority cannot be overcapitalized by price.",
+          "Ask whether the premium exceeds the value of the quality difference."
+        ],
+        "correctIndex": 2,
+        "explanation": "A superior business may still be overpriced relative to a weaker peer when the premium exceeds the value of the quality difference. Price can overcapitalize quality.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch18.fact.4",
+        "prompt": "A peer has the lower multiple in a pair. What should be checked before calling it the better value?",
+        "choices": [
+          "Whether the lower multiple alone identifies the better purchase.",
+          "Whether cheapness can replace any need to explain the business condition.",
+          "Whether weaker balance sheets or cyclical exposure justify the discount."
+        ],
+        "correctIndex": 2,
+        "explanation": "A low-priced peer may be cheap for valid reasons. Weaker balance sheets or cyclical exposure may justify a discount, so cheapness must be explained.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch18.fact.5",
+        "prompt": "McGraw Edison and McGraw-Hill share overlapping words. What should control appraisal instead of name similarity?",
+        "choices": [
+          "The overlapping words, because similar names imply similar investment merits.",
+          "Business economics, because the companies represent different businesses despite similar names.",
+          "Name familiarity, because business differences matter less when names resemble each other."
+        ],
+        "correctIndex": 1,
+        "explanation": "Similar names do not create similar economics. The comparison has to inspect each company’s business, balance sheet, and valuation separately before deciding whether a discount is justified.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch18.fact.6",
+        "prompt": "A stable-growth company earns a premium valuation. Which limit should keep the premium from becoming automatic?",
+        "choices": [
+          "Paying too high a multiple can consume the benefit of stability and lower expected return.",
+          "Stable growth deserves unlimited valuation because stability removes price risk.",
+          "Expected return rises as price rises whenever growth appears stable."
+        ],
+        "correctIndex": 0,
+        "explanation": "Growth stability earns a premium only up to a point. Paying too high a multiple can consume the benefit of stability because expected return falls as price rises.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch18.fact.7",
+        "prompt": "A market favorite commands a premium over its pair. What skeptical question should guide the comparison?",
+        "choices": [
+          "How popular is the favorite, since popularity itself proves the premium is deserved?",
+          "What concrete advantage justifies the premium, if any?",
+          "How quickly can the favorite be accepted without testing the advantage behind the premium?"
+        ],
+        "correctIndex": 1,
+        "explanation": "Pair analysis trains skepticism toward market favorites by asking what concrete advantage justifies the premium. Popularity is evidence to test, not accept.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch18.fact.8",
+        "prompt": "A cyclical company looks cheap using current earnings. What adjustment best protects the pair comparison?",
+        "choices": [
+          "Use normalized earnings because peak or trough results can distort relative cheapness.",
+          "Use current earnings only because cycle position does not affect the denominator.",
+          "Treat trough results as permanent because cyclicality removes the need for interpretation."
+        ],
+        "correctIndex": 0,
+        "explanation": "Cyclical companies need normalized earnings in pair comparisons because peak or trough results can distort relative cheapness. Cycle position changes the denominator.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch18.fact.9",
+        "prompt": "A table of pairs shows one company with the lower ratio. What is the right way to use that signal?",
+        "choices": [
+          "Treat the lower ratio as a formula that identifies the buy in this pair.",
+          "Ignore business context because ratios require no interpretation once a pair is listed.",
+          "Use the ratio as a judgment tool whose value depends on inputs and business interpretation."
+        ],
+        "correctIndex": 2,
+        "explanation": "A table of pairs is a tool for judgment, not a formula. Final appraisal depends on the quality of the inputs and business interpretation because ratios require context.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "sourceAnchorId": "ch18.fact.1",
+      "sourceAnchorIds": [
+        "ch18.fact.1"
+      ],
+      "front": "How does paired comparison reduce one-company tunnel vision?",
+      "back": "It sets a valuation beside an alternative claim on capital. That comparison makes opportunity cost visible and prevents judging a company as though isolation were enough.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "sourceAnchorId": "ch18.fact.2",
+      "sourceAnchorIds": [
+        "ch18.fact.2"
+      ],
+      "front": "Why do similar industry labels fail to create equal risk?",
+      "back": "Companies inside a sector can differ in leverage, assets, earnings stability, and management. Structure and finances can diverge sharply even when the industry label looks similar.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc03",
+      "sourceAnchorId": "ch18.fact.3",
+      "sourceAnchorIds": [
+        "ch18.fact.3"
+      ],
+      "front": "Why can a superior business still be overpriced relative to a weaker peer?",
+      "back": "The premium can exceed the value of the quality difference. A better company is not automatically a better stock because price can overcapitalize quality.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "sourceAnchorId": "ch18.fact.4",
+      "sourceAnchorIds": [
+        "ch18.fact.4"
+      ],
+      "front": "Why might a low-priced peer be cheap for valid reasons?",
+      "back": "A discount may be justified by weaker balance sheets or cyclical exposure. The lower multiple member of a pair is not automatically better because cheapness must be explained.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc05",
+      "sourceAnchorId": "ch18.fact.5",
+      "sourceAnchorIds": [
+        "ch18.fact.5"
+      ],
+      "front": "Why is McGraw Edison and McGraw-Hill name similarity irrelevant to valuation?",
+      "back": "McGraw Edison and McGraw-Hill represent different businesses despite overlapping words. Similar names do not imply similar investment merits because business economics control appraisal.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc06",
+      "sourceAnchorId": "ch18.fact.6",
+      "sourceAnchorIds": [
+        "ch18.fact.6"
+      ],
+      "front": "Why does growth stability earn a premium only up to a point?",
+      "back": "Paying too high a multiple can consume the benefit of stability. Stable growth does not deserve unlimited valuation because expected return falls as price rises.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc07",
+      "sourceAnchorId": "ch18.fact.7",
+      "sourceAnchorIds": [
+        "ch18.fact.7"
+      ],
+      "front": "How does pair analysis train skepticism toward market favorites?",
+      "back": "It asks what concrete advantage justifies the premium. A market favorite does not deserve its premium by definition because popularity is evidence to test, not accept.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Edit Your Pair Comparison Screen",
+    "titleSourceAnchorIds": [
+      "ch18.fact.1",
+      "ch18.fact.2",
+      "ch18.fact.3"
+    ],
+    "coreSkill": "Before a candidate stays active, change the place where the decision is made: put a peer beside it, separate the industry label from actual risk, and make the valuation premium prove that the better business is still the better stock.",
+    "coreSkillSourceAnchorIds": [
+      "ch18.fact.1",
+      "ch18.fact.2",
+      "ch18.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch18.fact.1",
+        "sourceAnchorIds": [
+          "ch18.fact.1"
+        ],
+        "context": "email draft",
+        "plan": "If an email draft recommends a company by itself, then add a pair line naming the alternative claim on capital before sending it."
+      },
+      {
+        "sourceAnchorId": "ch18.fact.2",
+        "sourceAnchorIds": [
+          "ch18.fact.2"
+        ],
+        "context": "calendar block",
+        "plan": "If a calendar block is set aside for two same-sector names, then start by marking leverage, assets, earnings stability, and management before treating the labels as comparable."
+      },
+      {
+        "sourceAnchorId": "ch18.fact.3",
+        "sourceAnchorIds": [
+          "ch18.fact.3"
+        ],
+        "context": "front desk",
+        "plan": "If the front desk note says the better business is the better stock, then add a price check asking whether the premium exceeds the quality difference."
+      }
+    ],
+    "twentyFourHourChallenge": "Before tomorrow ends, edit one active investment note so it cannot stand alone: add a peer, add a risk line, and add a premium line that tests whether quality is being overcapitalized.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch18.fact.1",
+      "ch18.fact.2",
+      "ch18.fact.3"
+    ],
+    "weeklyPractice": "Use a two-trigger checklist each week. Trigger one: any company judged alone gets a peer line. Trigger two: any superior business gets a premium line before it stays active.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch18.fact.1",
+      "ch18.fact.2",
+      "ch18.fact.3"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "McGraw Edison and McGraw-Hill add a final warning: similar names are irrelevant to valuation when business economics differ.",
+      "location": "breakdown.deepRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "A single valuation can feel complete when it has a story, a ratio, and a surface reason to like or dislike it.",
+      "location": "breakdown.fullRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "Industry labels are a useful starting point, but they can mislead.",
+      "location": "breakdown.deepRead",
+      "why": "Repointed to an exact sentence already present in the chapter breakdown.",
+      "sourceAnchorIds": [
+        "ch18.fact.4"
+      ]
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:01eb4a0f69084ce7ecf6b703637f7d5ddcd6bd8477c6d231a753cb57422eb118",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v23-compiler-pipeline 2/.chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch18.source.json",
+      "observedAnchorIds": [
+        "ch18.concept",
+        "ch18.example.1",
+        "ch18.example.2",
+        "ch18.example.3",
+        "ch18.example.4",
+        "ch18.fact.1",
+        "ch18.fact.2",
+        "ch18.fact.3",
+        "ch18.fact.4",
+        "ch18.fact.5",
+        "ch18.fact.6",
+        "ch18.fact.7",
+        "ch18.fact.8",
+        "ch18.fact.9",
+        "ch18.framework.pair.comparison.factors"
+      ],
+      "effectiveAnchors": {
+        "examples[0]": [
+          "ch18.example.1"
+        ],
+        "examples[1]": [
+          "ch18.example.2"
+        ],
+        "examples[2]": [
+          "ch18.example.3"
+        ],
+        "examples[3]": [
+          "ch18.example.1"
+        ],
+        "quiz.questions[0]": [
+          "ch18.fact.1"
+        ],
+        "quiz.questions[0].keyEvidence": [
+          "ch18.fact.1"
+        ],
+        "quiz.questions[1]": [
+          "ch18.fact.2"
+        ],
+        "quiz.questions[1].keyEvidence": [
+          "ch18.fact.2"
+        ],
+        "quiz.questions[2]": [
+          "ch18.fact.3"
+        ],
+        "quiz.questions[2].keyEvidence": [
+          "ch18.fact.3"
+        ],
+        "quiz.questions[3]": [
+          "ch18.fact.4"
+        ],
+        "quiz.questions[3].keyEvidence": [
+          "ch18.fact.4"
+        ],
+        "quiz.questions[4]": [
+          "ch18.fact.5"
+        ],
+        "quiz.questions[4].keyEvidence": [
+          "ch18.fact.5"
+        ],
+        "quiz.questions[5]": [
+          "ch18.fact.6"
+        ],
+        "quiz.questions[5].keyEvidence": [
+          "ch18.fact.6"
+        ],
+        "quiz.questions[6]": [
+          "ch18.fact.7"
+        ],
+        "quiz.questions[6].keyEvidence": [
+          "ch18.fact.7"
+        ],
+        "quiz.questions[7]": [
+          "ch18.fact.8"
+        ],
+        "quiz.questions[7].keyEvidence": [
+          "ch18.fact.8"
+        ],
+        "quiz.questions[8]": [
+          "ch18.fact.9"
+        ],
+        "quiz.questions[8].keyEvidence": [
+          "ch18.fact.9"
+        ],
+        "reviewCards[0]": [
+          "ch18.fact.1"
+        ],
+        "reviewCards[1]": [
+          "ch18.fact.2"
+        ],
+        "reviewCards[2]": [
+          "ch18.fact.3"
+        ],
+        "reviewCards[3]": [
+          "ch18.fact.4"
+        ],
+        "reviewCards[4]": [
+          "ch18.fact.5"
+        ],
+        "reviewCards[5]": [
+          "ch18.fact.6"
+        ],
+        "reviewCards[6]": [
+          "ch18.fact.7"
+        ],
+        "implementationPlan.title": [
+          "ch18.fact.1",
+          "ch18.fact.2",
+          "ch18.fact.3"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch18.fact.1",
+          "ch18.fact.2",
+          "ch18.fact.3"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch18.fact.1"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch18.fact.2"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch18.fact.3"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch18.fact.1",
+          "ch18.fact.2",
+          "ch18.fact.3"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch18.fact.1",
+          "ch18.fact.2",
+          "ch18.fact.3"
+        ],
+        "hook": [
+          "ch18.fact.1"
+        ],
+        "counterintuition": [
+          "ch18.fact.1",
+          "ch18.fact.3",
+          "ch18.fact.4",
+          "ch18.fact.9"
+        ],
+        "keyTakeaway": [
+          "ch18.fact.1",
+          "ch18.fact.2",
+          "ch18.fact.3",
+          "ch18.fact.4",
+          "ch18.fact.5"
+        ],
+        "tryThisNow": [
+          "ch18.fact.1",
+          "ch18.fact.2",
+          "ch18.fact.3"
+        ],
+        "breakdown.fastRead": [
+          "ch18.fact.1",
+          "ch18.fact.2",
+          "ch18.fact.3",
+          "ch18.fact.4",
+          "ch18.fact.5"
+        ],
+        "breakdown.deepRead": [
+          "ch18.fact.1",
+          "ch18.fact.2",
+          "ch18.fact.3",
+          "ch18.fact.4",
+          "ch18.fact.5"
+        ],
+        "breakdown.fullRead": [
+          "ch18.fact.1",
+          "ch18.fact.2",
+          "ch18.fact.3",
+          "ch18.fact.4",
+          "ch18.fact.5",
+          "ch18.fact.6",
+          "ch18.fact.7",
+          "ch18.fact.8",
+          "ch18.fact.9",
+          "ch18.framework.pair.comparison.factors"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch04",
+  "chapterNumber": 4,
+  "contentHash": "ab9404fa97bebdc4",
+  "reviewerSessionId": "auto-author-review-ch04-regen-mr76ihab-44",
+  "scores": {
+    "retention": 88,
+    "quizzes": 90,
+    "transfer": 82,
+    "practical": 84,
+    "summaries": 89,
+    "tone": 83,
+    "limits": 91,
+    "insight": 86,
+    "density": 80,
+    "beginner": 82
+  },
+  "composite": 85.8,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "c",
+      "a",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Proof is the return trip, not the starting gun.",
+      "why": "Strongest memory hook: it compresses the chapter's whole move into one durable line.",
+      "verified": true
+    },
+    {
+      "quote": "This map is a learning shorthand, not a full account of the brain. Keep it modest.",
+      "why": "Best limit-setting: it prevents the biology frame from becoming overclaim.",
+      "verified": true
+    },
+    {
+      "quote": "The price of the default is a clean reason that never comes back.",
+      "why": "Strong mechanism line: it explains why the visible reason alone can hide the real debt.",
+      "verified": true
+    },
+    {
+      "quote": "The service rule asks her to trust a change, but it gives only the word-ready side.",
+      "why": "Weakest example texture: the change and consequence stay vague, so the scene feels partially manufactured.",
+      "verified": true
+    }
+  ],
+  "tells": [],
+  "complaints": [
+    {
+      "unit": "Example 3",
+      "problem": "Ivy's service-rule scene has a named person but little real-world texture: no specific policy, place, number, or concrete consequence beyond an unmet return point. It teaches the lesson, but it reads closer to a slot-filler than the stronger rollout and budget examples.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read/full read",
+      "problem": "The proof-return/ledger language is memorable but repeated heavily. A few paragraphs restate the same debt-and-return move instead of adding new mechanism.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against a professional 80+ bar. The core move is clear and memorable: separate the word-ready side, the felt side, and the public proof that must return before trust is spent. The quiz keys are derivable and sound, including the WHY stems. The chapter is strongest on limits and retention, because it keeps Damasio narrow and gives readers sticky language. The main weakness is that a few examples and paragraphs reuse the same abstract return vocabulary instead of adding fresh, situated consequence.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "bdd0b93d268c46dbc51bff0f4f6581f087bebf2902a73c9e249dbad1ed6fd92e",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T02:36:39.620Z"
+}

@@ -1,0 +1,98 @@
+2026-07-09T03:17:57.736Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-09T03:17:58.373Z [MAJOR] PHASE write written 7/9 · gated 7 · qc'd 0
+2026-07-09T03:17:58.873Z [info]  author source-packets: compile-source-packets: PASS (9 packet(s))
+2026-07-09T03:17:59.349Z [info]  author source-packet-gate: source-packet-gate: PASS (9 chapter(s), 0 blocker(s), 0 advisory)
+2026-07-09T03:17:59.806Z [info]  author book-design: compile-book-design: PASS
+2026-07-09T03:18:00.273Z [info]  author book-design-gate: book-design-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-09T03:18:00.777Z [info]  author chapter-briefs: compile-chapter-briefs: PASS (18 file(s))
+2026-07-09T03:18:01.271Z [info]  author chapter-brief-gate: chapter-brief-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-09T03:18:01.272Z [info]  author write: 2 missing chapter(s) of 9 (parallel ≤6)
+2026-07-09T03:18:01.275Z [info]  author ch04: card is 28210 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T03:18:01.275Z [info]  author ch04: whole-chapter writer working (attempt 1, card 28210 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T03:18:01.279Z [info]  author ch08: card is 28052 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T03:18:01.279Z [info]  author ch08: whole-chapter writer working (attempt 1, card 28052 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T03:31:16.849Z [info]  author ch08: done (gate-chapter clean)
+2026-07-09T03:39:49.012Z [info]  author ch04: ch04: STIER-2 write contract FAIL — lead thread: the dealt lead (John) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-09T03:39:49.013Z [info]  author ch04: whole-chapter writer working (attempt 2, card 28534 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T03:53:00.121Z [info]  author ch04: done (gate-chapter clean)
+2026-07-09T03:53:00.433Z [info]  author write: reader budgets clean (0 advisory finding(s)) — advancing
+2026-07-09T03:53:03.709Z [MAJOR] PHASE gate written 9/9 · gated 9 · qc'd 0
+2026-07-09T03:53:08.110Z [MAJOR] GATE REPAIR attempt 1/4 (deterministic gates)
+2026-07-09T03:57:50.945Z [MAJOR] GATE MAJOR REPAIR attempt 1/4 (blocking majors)
+2026-07-09T03:57:50.978Z [info] GATE MAJOR ch01 working · 2 major(s)
+2026-07-09T04:03:00.661Z [info] GATE MAJOR ch01 exited 0
+2026-07-09T04:03:03.258Z [info]  compiler gate: deterministic blockers + blocking majors clean; skipping legacy broad pre-QC scouts → advancing to formal QC
+2026-07-09T04:03:05.032Z [MAJOR] PHASE qc written 9/9 · gated 9 · qc'd 0
+2026-07-09T04:03:05.117Z [info]  author review budgets: reader budgets clean (0 advisory finding(s)) — advancing
+2026-07-09T04:03:05.122Z [info]  author review: 9 chapter(s), one blinded reader each (parallel ≤6, bar 80)
+2026-07-09T04:03:36.312Z [info]  author review ch06: composite 88.6 ship=true keys 9/9 → PASS
+2026-07-09T04:03:47.646Z [info]  author review ch05: composite 87.3 ship=true keys 9/9 → PASS
+2026-07-09T04:04:01.844Z [info]  author review ch02: composite 83.6 ship=false keys 9/9 → FAIL
+2026-07-09T04:04:02.553Z [info]  author review ch01: composite 86.1 ship=true keys 9/9 → PASS
+2026-07-09T04:04:04.825Z [info]  author review ch04: composite 87.9 ship=true keys 9/9 → PASS
+2026-07-09T04:04:08.020Z [info]  author review ch03: composite 86.4 ship=false keys 8/9 → FAIL
+2026-07-09T04:04:19.659Z [info]  author review ch08: composite 88 ship=true keys 9/9 → PASS
+2026-07-09T04:04:30.737Z [info]  author review ch09: composite 87.8 ship=true keys 9/9 → PASS
+2026-07-09T04:04:54.068Z [info]  author review ch07: composite 87 ship=true keys 9/9 → PASS
+2026-07-09T04:04:54.069Z [info]  author review ch02: FAIL is near the bar (composite 83.6, bar 80, keys 9/9, ship=false) — spawning 2 tiebreak readers (median-of-3, no cap consumed)
+2026-07-09T04:05:38.374Z [info]  author review ch02-tiebreak-r2: composite 86.5 ship=true keys 9/9 → PASS
+2026-07-09T04:06:13.498Z [info]  author review ch02-tiebreak-r3: composite 85.2 ship=false keys 8/9 → FAIL
+2026-07-09T04:06:13.507Z [info]  author review ch02: tiebreak upheld the FAIL (median 85.2 KEY-DEFECT sticks, reads 86.5 ship, 85.2) — regen proceeds with merged complaints
+2026-07-09T04:06:13.512Z [info]  author review: 2 chapter(s) failed independent review — regenerating with complaints (1 regen each; 2 total attempts/chapter, durable ledger loaded)
+2026-07-09T04:06:13.514Z [info]  author review ch02: repair lane ENGAGED (convergent on quiz, examples[1]) — one surgical repair before any regen
+2026-07-09T04:06:13.518Z [info]  author repair ch02: surgical editor working (scopes quiz,examples[1], card 3545 chars, gpt-5.5 @ xhigh, timeout 30min)
+2026-07-09T04:06:13.533Z [info]  author ch03: card is 28949 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T04:06:13.537Z [info]  author ch03: whole-chapter writer working (attempt 1, card 28949 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T04:10:51.298Z [info]  author review ch02-repair: composite 85 ship=true keys 9/9 → PASS
+2026-07-09T04:10:51.298Z [info]  author review ch02: repair CONFIRMED by a fresh read (85) — no regen spent
+2026-07-09T04:21:02.023Z [info]  author ch03: done (gate-chapter clean)
+2026-07-09T04:21:31.738Z [info]  author review ch03-regen: composite 88 ship=true keys 9/9 → PASS
+2026-07-09T04:21:31.754Z [info]  author acceptance: sampled ch 2, 5, 7, 9 → 63027 chars; spawning 3 independent book readers
+2026-07-09T04:22:30.827Z [info]  author acceptance: durable read record → /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/multipliers/acceptance.round1.23614303.r1.json
+2026-07-09T04:22:30.828Z [info]  author acceptance: pooled composite 79.4 over 1 read(s) (band ±3.7) gate PASS churn MEDIUM valid 3/3 vs floor 74 (premium target 80) → ACCEPT
+2026-07-09T04:22:30.832Z [info]  author evidence: 9/9 chapter(s) need fresh keys (ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8, ch9) — deriving ONLY those (per-chapter production, E3)
+2026-07-09T04:24:19.876Z [info]  author evidence: keyA derivation written by session auto-author-key-keyA-mrd03dfi-23 (9 stale chapter(s))
+2026-07-09T04:25:54.413Z [info]  author evidence: keyB derivation written by session auto-author-key-keyB-mrd05pk5-24 (9 stale chapter(s))
+2026-07-09T04:25:54.441Z [info]  author evidence: manual key-judge PASS for all 9 chapter(s) (round r20260709042230-199f23)
+2026-07-09T04:27:22.183Z [info]  author evidence: sweep attestation written by session auto-author-sweep-mrd07qj5-25 (round r20260709042230-199f23)
+2026-07-09T04:27:22.185Z [info]  author evidence: 2 texture advisory finding(s) (scored, non-blocking):
+2026-07-09T04:27:22.185Z [info]  author evidence: advisory texture[scene_skeleton] ch 1, 2, 3, 4, 5, 6, 7, 8, 9: The example scenes across the whole book reuse the same dramatic shell: an early signal or return point appears, the miss is nearly allowed through, a late catc (scored by the acceptance panel, not blocked)
+2026-07-09T04:27:22.185Z [info]  author evidence: advisory texture[repeated_unit] ch 1, 3, 5, 7, 9: Several weekly practice units reuse a count-one-metric shell. The content differs enough that this is advisory rather than gating, but the repeated practice fra (scored by the acceptance panel, not blocked)
+2026-07-09T04:27:22.195Z [info]  author acceptance PASSED — key-judge + sweep evidence complete; wrote 9 PUBLISHABLE attestation(s) + bar/confirm artifacts (round r20260709042230-199f23)
+2026-07-09T04:27:24.131Z [MAJOR] PHASE gate written 9/9 · gated 9 · qc'd 9
+2026-07-09T04:27:26.580Z [MAJOR] GATE REPAIR attempt 1/4 (deterministic gates)
+2026-07-09T04:30:09.681Z [info]  compiler gate: deterministic blockers + blocking majors clean; skipping legacy broad pre-QC scouts → advancing to formal QC
+2026-07-09T04:30:11.522Z [MAJOR] PHASE qc written 9/9 · gated 9 · qc'd 8
+2026-07-09T04:30:11.546Z [info]  author review budgets: 8 chapter(s) hold a durable PASS at bar 80 — protected from full re-author (ch01, ch02, ch04, ch05, ch06, ch07, ch08, ch09)
+2026-07-09T04:30:11.621Z [info]  author review budgets: reader budgets clean (0 advisory finding(s)) — advancing
+2026-07-09T04:30:11.625Z [info]  author review: 9 chapter(s), one blinded reader each (parallel ≤6, bar 80)
+2026-07-09T04:30:11.626Z [info]  author review ch01: CARRIED durable review (composite 86.1, reviewer auto-author-review-ch01-mrczedyc-6) — no reader spawned
+2026-07-09T04:30:11.627Z [info]  author review ch02: CARRIED durable review (composite 85, reviewer auto-author-review-ch02-repair-mrcznn8j-18) — no reader spawned
+2026-07-09T04:30:11.632Z [info]  author review ch04: CARRIED durable review (composite 87.9, reviewer auto-author-review-ch04-mrczedym-9) — no reader spawned
+2026-07-09T04:30:11.634Z [info]  author review ch05: CARRIED durable review (composite 87.3, reviewer auto-author-review-ch05-mrczedyp-10) — no reader spawned
+2026-07-09T04:30:11.635Z [info]  author review ch06: CARRIED durable review (composite 88.6, reviewer auto-author-review-ch06-mrczedyv-11) — no reader spawned
+2026-07-09T04:30:11.636Z [info]  author review ch07: CARRIED durable review (composite 87, reviewer auto-author-review-ch07-mrczf20p-12) — no reader spawned
+2026-07-09T04:30:11.637Z [info]  author review ch08: CARRIED durable review (composite 88, reviewer auto-author-review-ch08-mrczfarj-13) — no reader spawned
+2026-07-09T04:30:11.638Z [info]  author review ch09: CARRIED durable review (composite 87.8, reviewer auto-author-review-ch09-mrczflpx-14) — no reader spawned
+2026-07-09T04:30:55.882Z [info]  author review ch03: composite 88.1 ship=true keys 9/9 → PASS
+2026-07-09T04:30:55.882Z [info]  author review: carried 8/9 chapter review(s) unchanged — spawned 1 fresh reader(s)
+2026-07-09T04:30:55.891Z [info]  author acceptance: REUSING 1 durable same-doc read(s) (pooled decision clear of the noise band) — no panel spawned
+2026-07-09T04:30:55.892Z [info]  author acceptance: pooled composite 79.4 over 1 read(s) (band ±3.7) gate PASS churn MEDIUM valid 3/3 vs floor 74 (premium target 80) → ACCEPT
+2026-07-09T04:30:55.913Z [info]  author evidence: 1/9 chapter(s) need fresh keys (ch3) — deriving ONLY those (per-chapter production, E3)
+2026-07-09T04:31:12.140Z [info]  author evidence: keyA derivation written by session auto-author-key-keyA-mrd0e757-28 (1 stale chapter(s))
+2026-07-09T04:31:28.393Z [info]  author evidence: keyB derivation written by session auto-author-key-keyB-mrd0ejnw-29 (1 stale chapter(s))
+2026-07-09T04:31:28.415Z [info]  author evidence: manual key-judge PASS for all 9 chapter(s) (round r20260709043055-b43d60)
+2026-07-09T04:33:34.277Z [info]  author evidence: sweep attestation written by session auto-author-sweep-mrd0ew8f-30 (round r20260709043055-b43d60)
+2026-07-09T04:33:34.280Z [info]  author evidence: 1 texture advisory finding(s) (scored, non-blocking):
+2026-07-09T04:33:34.280Z [info]  author evidence: advisory texture[scene_skeleton] ch 1, 2, 3, 4, 5, 6, 7, 8, 9: The book repeatedly uses the same example-scene transaction across all chapters: an early signal or standard appears, the miss is nearly allowed through, a retu (scored by the acceptance panel, not blocked)
+2026-07-09T04:33:34.291Z [info]  author acceptance PASSED — key-judge + sweep evidence complete; wrote 9 PUBLISHABLE attestation(s) + bar/confirm artifacts (round r20260709043055-b43d60)
+2026-07-09T04:33:36.611Z [MAJOR] PHASE ready written 9/9 · gated 9 · qc'd 9
+2026-07-09T04:33:36.615Z [info]  ── cost report — multipliers [ready] ──
+  grand total spawns: 31  (minted ids 30; verb ids 0)
+  by type: author-review:14  writer:4  key:4  author-book-reader:3  gate-repair:2  sweep:2  major-repair:1  other:1
+  by phase: qc:25  write:3  gate:3
+  retries by cause: gate-repair-1:2  retry1:1  gate-major-repair-1:1  respawn:1
+  carry: acceptance 0 hit / 1 miss · reviews 8 hit / 10 miss
+  wall (spawn ms) by phase: write:2884900  qc:2389664  gate:748031  total:6022595
+2026-07-09T04:33:36.616Z [FINAL] READY AUTOPILOT — multipliers: READY TO PUBLISH — all 9 chapters gated + QC PUBLISHABLE. Review, then ship:
+  npx tsx src/cli.ts publish-final "multipliers"

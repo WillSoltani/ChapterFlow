@@ -1,0 +1,53 @@
+2026-07-09T14:24:59.293Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-09T14:25:05.154Z [MAJOR] PHASE qc written 16/16 · gated 16 · qc'd 0
+2026-07-09T14:25:05.191Z [info]  author review budgets: 15 chapter(s) hold a durable PASS at bar 80 — protected from full re-author (ch02, ch03, ch04, ch05, ch06, ch07, ch08, ch09, ch10, ch11, ch12, ch13, ch14, ch15, ch16)
+2026-07-09T14:25:05.322Z [info]  author review budgets: reader budgets clean (4 advisory finding(s)) — advancing
+2026-07-09T14:25:05.322Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch02 reading surface mentions "zappos" (distinctive token of case "Tony Hsieh and Zappos") 11 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T14:25:05.322Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch11 reading surface mentions "johnson" (distinctive token of case "Johnson & Johnson Credo") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T14:25:05.322Z [info]  author review budgets: advisory [CHB2.length_budget] ch03 estimated rendered length 19376 chars is 21% over the 16000-char budget (allowed window 12800–19200; within the advisory band — polish, not a halt); readers rejected ~40% inflation.
+2026-07-09T14:25:05.322Z [info]  author review budgets: advisory [CHB8.case_stem_band] 49% of 144 stems name a chapter case/entity verbatim — over the 30% cap; case-name anchoring telegraphs the taught case. Rebuild some stems as novel-scenario transfer.
+2026-07-09T14:25:05.329Z [info]  author review: 16 chapter(s), one blinded reader each (parallel ≤6, bar 80)
+2026-07-09T14:25:05.334Z [info]  author review ch02: CARRIED durable review (composite 84.1, reviewer auto-author-review-ch02-mrdi4r6x-10) — no reader spawned
+2026-07-09T14:25:05.336Z [info]  author review ch03: CARRIED durable review (composite 87.1, reviewer auto-author-review-ch03-regen-mrdiw547-32) — no reader spawned
+2026-07-09T14:25:05.337Z [info]  author review ch04: CARRIED durable review (composite 85.9, reviewer auto-author-review-ch04-mrdi4r70-12) — no reader spawned
+2026-07-09T14:25:05.338Z [info]  author review ch05: CARRIED durable review (composite 86.7, reviewer auto-author-review-ch05-mrdi4r72-13) — no reader spawned
+2026-07-09T14:25:05.339Z [info]  author review ch06: CARRIED durable review (composite 84.8, reviewer auto-author-review-ch06-mrdi4r76-14) — no reader spawned
+2026-07-09T14:25:05.341Z [info]  author review ch07: CARRIED durable review (composite 85.6, reviewer auto-author-review-ch07-mrdi5igz-15) — no reader spawned
+2026-07-09T14:25:05.342Z [info]  author review ch08: CARRIED durable review (composite 87.2, reviewer auto-author-review-ch08-mrdi5mux-16) — no reader spawned
+2026-07-09T14:25:05.343Z [info]  author review ch09: CARRIED durable review (composite 84.7, reviewer auto-author-review-ch09-mrdi5o40-17) — no reader spawned
+2026-07-09T14:25:05.345Z [info]  author review ch10: CARRIED durable review (composite 86.8, reviewer auto-author-review-ch10-mrdi5uc5-18) — no reader spawned
+2026-07-09T14:25:05.346Z [info]  author review ch11: CARRIED durable review (composite 87.5, reviewer auto-author-review-ch11-mrdjax72-1) — no reader spawned
+2026-07-09T14:25:05.347Z [info]  author review ch12: CARRIED durable review (composite 87.4, reviewer auto-author-review-ch12-mrdi6dqx-20) — no reader spawned
+2026-07-09T14:25:05.348Z [info]  author review ch13: CARRIED durable review (composite 86.6, reviewer auto-author-review-ch13-regen-mrdinz7n-28) — no reader spawned
+2026-07-09T14:25:05.350Z [info]  author review ch14: CARRIED durable review (composite 86, reviewer auto-author-review-ch14-mrdi6k3t-22) — no reader spawned
+2026-07-09T14:25:05.352Z [info]  author review ch15: CARRIED durable review (composite 85.8, reviewer auto-author-review-ch15-mrdi6lv3-23) — no reader spawned
+2026-07-09T14:25:05.353Z [info]  author review ch16: CARRIED durable review (composite 84.2, reviewer auto-author-review-ch16-mrdi6nmg-24) — no reader spawned
+2026-07-09T14:25:36.351Z [info]  author review ch01: composite 87.6 ship=true keys 9/9 → PASS
+2026-07-09T14:25:36.352Z [info]  author review: carried 15/16 chapter review(s) unchanged — spawned 1 fresh reader(s)
+2026-07-09T14:25:36.370Z [info]  author acceptance: sampled ch 1, 2, 3, 4 → 64025 chars; spawning 3 independent book readers
+2026-07-09T14:27:06.080Z [info]  author acceptance: durable read record → /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/the-culture-code/acceptance.round1.2a62479c.r1.json
+2026-07-09T14:27:06.080Z [info]  author acceptance: pooled composite 75.3 is within ±3.7 of the binding boundary 74 — spawning independent panel read 2/3
+2026-07-09T14:27:06.081Z [info]  author acceptance-p2: sampled ch 1, 2, 3, 4 → 64025 chars; spawning 3 independent book readers
+2026-07-09T14:29:10.243Z [info]  author acceptance: durable read record → /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/the-culture-code/acceptance.round1.2a62479c.r2.json
+2026-07-09T14:29:10.244Z [info]  author acceptance: pooled composite 75.35 is within ±3.7 of the binding boundary 74 — spawning independent panel read 3/3
+2026-07-09T14:29:10.244Z [info]  author acceptance-p3: sampled ch 1, 2, 3, 4 → 64025 chars; spawning 3 independent book readers
+2026-07-09T14:30:44.536Z [info]  author acceptance: durable read record → /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/the-culture-code/acceptance.round1.2a62479c.r3.json
+2026-07-09T14:30:44.536Z [info]  author acceptance: pooled composite 75.4 over 3 read(s) (band ±3.7) gate PASS churn HIGH valid 3/3 vs floor 74 (premium target 80) → ACCEPT
+2026-07-09T14:30:44.545Z [info]  author evidence: 16/16 chapter(s) need fresh keys (ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8, ch9, ch10, ch11, ch12, ch13, ch14, ch15, ch16) — deriving ONLY those (per-chapter production, E3)
+2026-07-09T14:33:49.380Z [info]  author evidence: keyA derivation written by session auto-author-key-keyA-mrdltk6c-11 (16 stale chapter(s))
+2026-07-09T14:36:48.429Z [info]  author evidence: keyB derivation written by session auto-author-key-keyB-mrdlxirp-12 (16 stale chapter(s))
+2026-07-09T14:36:48.473Z [info]  author evidence: manual key-judge PASS for all 16 chapter(s) (round r20260709143044-31585a)
+2026-07-09T14:38:21.817Z [info]  author evidence: sweep attestation written by session auto-author-sweep-mrdm1cyq-13 (round r20260709143044-31585a)
+2026-07-09T14:38:21.818Z [info]  author evidence: 2 texture advisory finding(s) (scored, non-blocking):
+2026-07-09T14:38:21.818Z [info]  author evidence: advisory texture[scene_skeleton] ch 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16: A repeated example-scene shell saturates the book: a source scene is staged at a decision or demand point, then the narration cuts away before the outcome is kn (scored by the acceptance panel, not blocked)
+2026-07-09T14:38:21.818Z [info]  author evidence: advisory texture[repeated_unit] ch 2, 4, 5, 8, 10, 11, 14, 16: Several implementation units reuse the same measurement shell: a timed or weekly practice asks the reader to measure one number, count a narrow behavior, and ra (scored by the acceptance panel, not blocked)
+2026-07-09T14:38:21.831Z [info]  author acceptance PASSED — key-judge + sweep evidence complete; wrote 16 PUBLISHABLE attestation(s) + bar/confirm artifacts (round r20260709143044-31585a)
+2026-07-09T14:38:27.563Z [MAJOR] PHASE ready written 16/16 · gated 16 · qc'd 16
+2026-07-09T14:38:27.566Z [info]  ── cost report — the-culture-code [ready] ──
+  grand total spawns: 13  (minted ids 13; verb ids 0)
+  by type: author-book-reader:9  key:2  author-review:1  sweep:1
+  by phase: qc:13
+  carry: acceptance 0 hit / 1 miss · reviews 15 hit / 1 miss
+  wall (spawn ms) by phase: qc:1201517  total:1201517
+2026-07-09T14:38:27.568Z [FINAL] READY AUTOPILOT — the-culture-code: READY TO PUBLISH — all 16 chapters gated + QC PUBLISHABLE. Review, then ship:
+  npx tsx src/cli.ts publish-final "the-culture-code"

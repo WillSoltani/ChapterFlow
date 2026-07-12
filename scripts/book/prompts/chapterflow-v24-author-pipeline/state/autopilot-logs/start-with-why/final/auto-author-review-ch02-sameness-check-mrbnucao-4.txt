@@ -1,0 +1,73 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q2: the correct choice is the only one that names TiVo and states the chapter's warning directly, while the other two are broadly implausible.", "Q4: the correct choice is the only one with the concrete General Motors/2005 evidence logic; the distractors are easy to reject without much prose recall.", "Q9: the correct choice restates a review-card line about true details misleading, while the distractors use obviously weak trust-by-familiarity logic."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 78,
+    "transfer": 76,
+    "practical": 86,
+    "summaries": 91,
+    "tone": 84,
+    "limits": 87,
+    "insight": 89,
+    "density": 82,
+    "beginner": 88
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "When a spike comes from Price, Promotion, Fear, Aspiration, Peer pressure, or Novelty, treat it as borrowed until people act again without that push.",
+      "why": "This is the chapter's clearest durable rule and is easy to remember."
+    },
+    {
+      "quote": "What would still move if the offer were gone?",
+      "why": "This compresses the core diagnostic move into a practical question."
+    },
+    {
+      "quote": "Demand proof from the offer before you trust the response.",
+      "why": "This sentence conflicts with the chapter's main claim that the offer cannot prove the reason by itself."
+    },
+    {
+      "quote": "After the offer is over, imagine analyst William tracing a referral drive against MCI's 1991 Friends & Family pattern in long-distance calling.",
+      "why": "This example leans on a named imaginary analyst rather than a concrete before-and-after decision."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 5",
+      "problem": "The line 'Demand proof from the offer before you trust the response' reverses the chapter's own rule: proof should come from behavior returning without the push, not from the offer itself. Category: SOURCE-CONTRADICTORY.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "Thin-but-usable example: the imagined analyst William gives a slot-filler scenario with little concrete before-to-after consequence beyond restating the MCI lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "Thin-but-usable example: it repeats the MCI/Friends & Family peer-pressure point from example 2 rather than adding a distinct transfer setting.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q2",
+      "problem": "Distractors are too easy to reject because they endorse attention as settled evidence or repetition over diagnosis, making the TiVo answer stand out.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct answer is the only option anchored in the concrete General Motors evidence; the other options are visibly anti-lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The correct answer is telegraphed by the chapter's review-card phrasing about true details misleading when attached to the wrong offer.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Strong chapter with a memorable diagnostic question, clean summaries, and a useful mechanism: name the push before trusting the response. It is mostly practical and beginner-friendly, and the limits section keeps the claim honest. The main blocker is a source-contradictory sentence in example 5 that tells the reader to demand proof from the offer, when the chapter repeatedly says proof has to come from behavior returning without the push. A few examples are thin and some quiz distractors are giveaway-obvious, but those are craft weaknesses rather than blocking defects."
+}
+```

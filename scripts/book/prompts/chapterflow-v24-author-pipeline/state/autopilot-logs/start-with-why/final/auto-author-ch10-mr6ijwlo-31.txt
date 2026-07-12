@@ -1,0 +1,9 @@
+Done. Updated [start-with-why-ch10.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch10.v21-native.chapter.json).
+
+Validation passed:
+- `author-check` clean
+- `gate-chapter` PASS with `0 blockers`, `0 majors`, `0 minors`
+- `quiz-verify`: `9/9` matches with required key pattern `2,1,0,1,1,0,2,2,0`
+- Evidence audit: no integrity candidates
+- Rendered length: `16,586` chars, inside target range
+- Distractor parity: `0` uniquely-longest keys, `4` uniquely-shortest keys

@@ -131,6 +131,21 @@ test("commit: CAS success writes through the io seam and brackets a committed ma
   assert.equal(at2.identity.expectedBaseSha256, sha256Hex(CAND));
 });
 
+test("commit: a no-op canonical write cannot close the commit bracket or claim success", () => {
+  const { io, root } = rig(PRIOR);
+  const at = mint(io, root);
+  const noOpIo: ChapterCanonicalIo = {
+    readChapterFile: io.readChapterFile,
+    writeChapterFile: () => { /* deliberately lies by returning without persistence */ },
+  };
+  const result = commitChapterCandidate({ attempt: at, bytes: CAND, io: noOpIo });
+  assert.ok(!result.ok && result.outcome === "infrastructure_failure");
+  assert.equal(io.bytes.get("zz-tx:1"), PRIOR);
+  const manifest = JSON.parse(readFileSync(join(at.attemptDir, "commit-manifest.json"), "utf8"));
+  assert.equal(manifest.phase, "reconciliation_required");
+  assert.match(manifest.reconciliation.detail, /read-back mismatch/);
+});
+
 test("commit: a canonical change after mint is stale_base — no overwrite, aborted manifest retained", () => {
   const { io, root } = rig(PRIOR);
   const at = mint(io, root);

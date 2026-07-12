@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 35,
+    "quizzes": 0,
+    "transfer": 15,
+    "practical": 25,
+    "summaries": 5,
+    "tone": 45,
+    "limits": 55,
+    "insight": 50,
+    "density": 25,
+    "beginner": 45
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Your ten percent does not erase their ninety.",
+      "why": "Strongest line: memorable, concrete, and preserves the boundary between self-contribution and blame."
+    },
+    {
+      "quote": "Naming your part does not forgive theirs.",
+      "why": "Strong mechanism: it explains why the core move is not capitulation."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Worst defect: multiple promised learning-product sections are empty."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples",
+      "why": "Worst defect: the chapter leaves the summary, practice, and transfer supports blank."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The Quiz section contains no questions or options, so the quiz cannot be answered, keyed, or reviewed.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section contains only placeholder text and does not stand alone as a usable fast read.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section contains only placeholder text and does not add a real second layer of understanding.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The Key takeaway section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The Try this now section is empty, so the chapter gives no concrete practice step.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The Examples section is empty, so the reader gets no transfer model beyond the abstract conflict framing.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The Review cards section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The Memorable lines section is empty despite the chapter having at least one line that could serve that purpose.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is meta-scaffold language rather than a reader-facing opening.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The one real paragraph has a useful and humane core: naming your contribution in a conflict gives you a movable lever without pretending the other person’s harm disappears. But the chapter is mostly an unfinished scaffold. The quiz is absent, the examples and practice are absent, the summary layers do not stand alone, and several product sections are blank. This should not ship against a professional bar until the missing learning surfaces are actually written."
+}
+```

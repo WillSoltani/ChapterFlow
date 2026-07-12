@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch06",
+  "chapterNumber": 6,
+  "contentHash": "f8dc3df27716c19d",
+  "reviewerSessionId": "auto-author-review-ch06-mrb9w9hf-6",
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 78,
+    "practical": 84,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 88,
+    "insight": 87,
+    "density": 83,
+    "beginner": 81
+  },
+  "composite": 84.8,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "c",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The order is plain: Belief, Predictable behavior, Trust, Loyalty.",
+      "why": "Strongest compression of the chapter's core move.",
+      "verified": true
+    },
+    {
+      "quote": "Trust is belief made visible under pressure.",
+      "why": "Memorable and portable line that makes the mechanism stick.",
+      "verified": true
+    },
+    {
+      "quote": "A true detail in the wrong paragraph is not extra support; it is false ground.",
+      "why": "Sharp guardrail against source drift and misleading examples.",
+      "verified": true
+    },
+    {
+      "quote": "The 1994 mark says, stop here and judge the Continental frame before you carry the lesson into every group with a strong belief.",
+      "why": "Useful limit, though the chapter sometimes leans heavily on source-detail policing.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Correct choices often reuse the chapter's distinctive vocabulary: visible conduct, false ground, checkable ground, stop mark, and comparison.",
+    "Several distractors are easy to discard because they make obviously backwards claims about loyalty leading or details mattering only after loyalty."
+  ],
+  "complaints": [
+    {
+      "unit": "examples",
+      "problem": "The examples are usable but somewhat narrow and meta: several focus on writers, facilitators, or workshop framing rather than showing a broader range of real-world trust failures and consequences.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Some wrong answers are too easy because they reverse the chapter's order in cartoonish ways, especially loyalty-leading distractors.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The source-detail guardrail sometimes competes with the trust mechanism, so the chapter can feel partly like a lesson on attribution hygiene rather than only trust formation.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is publishable against an 84 bar. The core sequence is clear, memorable, and repeatedly tested: belief frames visible behavior, trust follows, loyalty comes last. The chapter is strongest when it gives crisp diagnostic language and limits overreach with source-specific details. Its main weakness is not a blocking defect: the examples and several quiz distractors are somewhat narrow and self-referential, so transfer beyond writing, facilitation, and source framing could be stronger.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "e2cfc58f82dda48950dff0bb8610acc10a5a98aee06577662a6fd5be7aa50b28",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-07T23:21:56.808Z"
+}

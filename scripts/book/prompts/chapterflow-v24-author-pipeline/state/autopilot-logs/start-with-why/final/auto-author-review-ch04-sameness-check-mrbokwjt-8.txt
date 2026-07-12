@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "c", "a", "b", "b", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several correct answers are the most precise or longest option, especially Q1, Q2, Q3, Q4, Q6, and Q8.", "Some wrong answers use giveaway phrasing such as dropping the visible side, using biology for an already preferred option, or letting authority outrank comparison."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 78,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 87,
+    "limits": 91,
+    "insight": 88,
+    "density": 84,
+    "beginner": 83
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Biology means sorting jobs, not crowning feeling.",
+      "why": "This is the chapter's strongest compact line: memorable, limiting, and operational."
+    },
+    {
+      "quote": "Use the biology as a workbench, not as a brain tour.",
+      "why": "It keeps the neuroscience from becoming decorative and tells the reader how to use it."
+    },
+    {
+      "quote": "A feeling that cannot face fair counter-evidence should not decide by itself.",
+      "why": "This is a clear boundary condition that prevents overselling feeling."
+    },
+    {
+      "quote": "Suppose Zane keeps neocortex, cerebral cortex, and sensory processing on the word-ready side, then stops.",
+      "why": "The example is usable but artificial; it sounds built to carry terms rather than like a real decision scene."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "Correct choices are often the longest and most carefully qualified option, which creates a mild answer-pattern tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Several distractors are easy to eliminate without reading because they endorse obviously bad moves such as dropping the visible side, approving a preferred option, or accepting authority without comparison.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The dispatch-board scene is thin-but-usable: it names a situation but gives little before-to-after consequence beyond restating that the felt side is blank.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is publishable. Its core move is clear and memorable: separate the visible, sayable claim from the felt motive, then use Damasio and the biology terms as boundaries rather than authority theater. The summaries layer well, the practical steps are low-friction, and the limits are unusually strong. The main weakness is quiz craft: the right answers are often the most precise and some distractors are too cartoonishly wrong. A few examples also feel constructed around vocabulary, but they remain usable and do not block shipping."
+}
+```
