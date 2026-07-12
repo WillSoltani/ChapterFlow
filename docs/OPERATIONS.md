@@ -69,7 +69,7 @@ ARN**, so alarms from both stacks page the same inbox.
 **Frontend stack** (`infra/lib/chapterflow-frontend-stack.ts`):
 
 - **Server Lambda** — `Errors` (≥5 / 5 min), `Throttles` (≥1), `Duration` p99
-  ≥20s (approaching the 30s timeout).
+  ≥20s (early warning below the 45s timeout).
 - **ISR revalidation** — revalidation-fn `Errors`, **DLQ depth ≥1** (revalidation
   is failing; messages redrive after 5 receives), and oldest-message age >5 min.
 - **CloudFront `5xxErrorRate` >1%** sustained ~15 min.

@@ -11,6 +11,8 @@ import {
 // clause being put in the wrong place or AND-joined incorrectly.
 const PROSOURCE_GUARD =
   "(attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource)";
+const ACTIVATION_PROSOURCE_GUARD =
+  "(attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource OR (proSource = :appleSource AND ((attribute_exists(activePaidIntentAtMs) AND activePaidIntentAtMs <= :paidIntentAtMs) OR (attribute_not_exists(activePaidIntentAtMs) AND (attribute_not_exists(lastAppleSignedDate) OR lastAppleSignedDate <= :paidIntentAtMs)))))";
 const ORDERING_GUARD =
   "(attribute_not_exists(lastStripeEventAt) OR lastStripeEventAt <= :eventCreated)";
 const DISPUTE_GUARD = "attribute_not_exists(disputeOpen)";
@@ -19,13 +21,32 @@ const STAMP_SET = "lastStripeEventAt = :eventCreated";
 
 const UPDATED_AT = "2026-06-24T00:00:00.000Z";
 
+function assertExactExpressionValues(input: {
+  updateExpression: string;
+  conditionExpression: string;
+  expressionAttributeValues: Record<string, unknown>;
+}): void {
+  const references = new Set(
+    `${input.updateExpression} ${input.conditionExpression}`.match(
+      /:[A-Za-z][A-Za-z0-9]*/g,
+    ) ?? [],
+  );
+  assert.deepEqual(
+    Object.keys(input.expressionAttributeValues).sort(),
+    [...references].sort(),
+    "DynamoDB rejects both missing and unused expression values",
+  );
+}
+
 type StoredItem = {
   // Whether the entitlement row exists at all (for attribute_exists(PK)).
   // Defaults to true — an existing item is the common case.
   pkExists?: boolean;
-  proSource?: "stripe" | "license" | "flow_points" | "gift_code" | "admin" | null;
+  proSource?: "stripe" | "apple" | "license" | "flow_points" | "gift_code" | "admin" | null;
   lastStripeEventAt?: number;
   disputeOpen?: boolean;
+  activePaidIntentAtMs?: number;
+  lastAppleSignedDate?: number;
 };
 
 /**
@@ -41,11 +62,19 @@ function conditionApplies(
   stored: StoredItem,
 ): boolean {
   return conditionParts.every((clause) => {
-    if (clause === PROSOURCE_GUARD) {
-      // attribute_not_exists(proSource) OR == "stripe" OR == null
+    if (clause === PROSOURCE_GUARD || clause === ACTIVATION_PROSOURCE_GUARD) {
+      // Activation additionally permits Apple as the prior paid source.
       return (
         stored.proSource === undefined ||
         stored.proSource === eav[":stripeSource"] ||
+        (clause === ACTIVATION_PROSOURCE_GUARD &&
+          stored.proSource === eav[":appleSource"] &&
+          (stored.activePaidIntentAtMs !== undefined
+            ? stored.activePaidIntentAtMs <=
+              (eav[":paidIntentAtMs"] as number)
+            : stored.lastAppleSignedDate === undefined ||
+              stored.lastAppleSignedDate <=
+                (eav[":paidIntentAtMs"] as number))) ||
         stored.proSource === eav[":nullSource"]
       );
     }
@@ -89,10 +118,12 @@ const downgrade = (
 
 test("PRO-activation: proSource + ordering + disputeOpen guards present, stamps lastStripeEventAt", () => {
   const built = buildEntitlementUpdateFromStripe(proActivation(1000), UPDATED_AT);
-  assert.ok(built.conditionParts.includes(PROSOURCE_GUARD));
+  assert.ok(built.conditionParts.includes(ACTIVATION_PROSOURCE_GUARD));
   assert.ok(built.conditionParts.includes(ORDERING_GUARD));
   assert.ok(built.conditionParts.includes(DISPUTE_GUARD));
   assert.ok(built.setParts.includes(STAMP_SET));
+  assert.ok(built.setParts.includes("activePaidIntentAtMs = :paidIntentAtMs"));
+  assert.equal(built.expressionAttributeValues[":paidIntentAtMs"], 1_000_000);
   assert.equal(built.expressionAttributeValues[":eventCreated"], 1000);
   // The ordering clause must live in the ConditionExpression, not the SET.
   assert.match(built.conditionExpression, /lastStripeEventAt <= :eventCreated/);
@@ -152,6 +183,7 @@ test("missing stripeEventCreatedAt: no ordering clause, no stamp (back-compat / 
   assert.equal(built.expressionAttributeValues[":eventCreated"], undefined);
   // The proSource guard is unconditional and must still be present.
   assert.ok(built.conditionParts.includes(PROSOURCE_GUARD));
+  assert.ok(!built.setParts.includes("activePaidIntentAtMs = :paidIntentAtMs"));
 });
 
 test("non-finite stripeEventCreatedAt (NaN) is treated as absent — never marshals a NULL into the compare", () => {
@@ -159,6 +191,22 @@ test("non-finite stripeEventCreatedAt (NaN) is treated as absent — never marsh
   assert.ok(!built.conditionParts.includes(ORDERING_GUARD));
   assert.ok(!built.setParts.includes(STAMP_SET));
   assert.equal(built.expressionAttributeValues[":eventCreated"], undefined);
+});
+
+test("every Stripe write emits exactly the DynamoDB values it references", () => {
+  for (const params of [
+    proActivation(1_000),
+    proActivation(undefined),
+    downgrade(2_000),
+    {
+      ...downgrade(3_000),
+      setDisputeOpen: true,
+    },
+  ]) {
+    assertExactExpressionValues(
+      buildEntitlementUpdateFromStripe(params, UPDATED_AT),
+    );
+  }
 });
 
 // ── Semantic sequence assertions (the actual leak) ───────────────────────────
@@ -193,6 +241,67 @@ test("in-order activation: a newer event applies", () => {
   assert.equal(
     conditionApplies(built.conditionParts, built.expressionAttributeValues, stored),
     true,
+  );
+});
+
+test("completed Stripe payment takes over Apple, but terminal Stripe writes do not", () => {
+  const stored: StoredItem = { proSource: "apple" };
+  const activation = buildEntitlementUpdateFromStripe(
+    proActivation(2000),
+    UPDATED_AT,
+  );
+  const terminal = buildEntitlementUpdateFromStripe(downgrade(3000), UPDATED_AT);
+
+  assert.equal(
+    conditionApplies(
+      activation.conditionParts,
+      activation.expressionAttributeValues,
+      stored,
+    ),
+    true,
+    "a paid Checkout completion must not become paid-without-access",
+  );
+  assert.equal(
+    conditionApplies(
+      terminal.conditionParts,
+      terminal.expressionAttributeValues,
+      stored,
+    ),
+    false,
+    "a later Stripe terminal event cannot revoke Apple access",
+  );
+});
+
+test("Stripe activation cannot displace a newer Apple paid intent", () => {
+  const activation = buildEntitlementUpdateFromStripe(
+    proActivation(3),
+    UPDATED_AT,
+  );
+
+  assert.equal(
+    conditionApplies(
+      activation.conditionParts,
+      activation.expressionAttributeValues,
+      { proSource: "apple", activePaidIntentAtMs: 4_000 },
+    ),
+    false,
+  );
+  assert.equal(
+    conditionApplies(
+      activation.conditionParts,
+      activation.expressionAttributeValues,
+      { proSource: "apple", activePaidIntentAtMs: 2_000 },
+    ),
+    true,
+  );
+  assert.equal(
+    conditionApplies(
+      activation.conditionParts,
+      activation.expressionAttributeValues,
+      { proSource: "apple", lastAppleSignedDate: 4_000 },
+    ),
+    false,
+    "legacy rows fall back to Apple's millisecond high-water mark",
   );
 });
 

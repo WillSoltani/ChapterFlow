@@ -20,9 +20,13 @@ import type {
 export const HANDLED_NOTIFICATION_TYPES = [
   "SUBSCRIBED",
   "DID_RENEW",
+  "DID_FAIL_TO_RENEW",
+  "RENEWAL_EXTENDED",
+  "GRACE_PERIOD_EXPIRED",
   "EXPIRED",
   "DID_CHANGE_RENEWAL_STATUS",
   "REFUND",
+  "REFUND_REVERSED",
 ] as const;
 
 export type HandledAppleNotificationType =
@@ -35,6 +39,14 @@ export type AppleEntitlementDecision =
 function isoFromMs(ms: number | undefined): string | undefined {
   if (ms === undefined || !Number.isFinite(ms)) return undefined;
   return new Date(ms).toISOString();
+}
+
+function cancelAtPeriodEndFromRenewal(
+  renewalInfo: AppleRenewalInfo | undefined,
+): boolean | undefined {
+  if (renewalInfo?.autoRenewStatus === 0) return true;
+  if (renewalInfo?.autoRenewStatus === 1) return false;
+  return undefined;
 }
 
 /**
@@ -55,8 +67,9 @@ export function buildAppleActivation(
     originalTransactionId: tx.originalTransactionId,
     productId: tx.productId,
     currentPeriodEnd: isoFromMs(tx.expiresDateMs),
-    // A fresh purchase/renewal is, by definition, auto-renewing.
-    cancelAtPeriodEnd: false,
+    // A transaction JWS does not contain renewal status. Preserve the existing
+    // pending-cancel value until signed renewal info says otherwise.
+    cancelAtPeriodEnd: undefined,
     appleSignedDateMs: signedDateMs ?? tx.signedDateMs,
     guard: "activate",
   };
@@ -73,9 +86,17 @@ export function mapAppleNotificationToEntitlement(input: {
   renewalInfo?: AppleRenewalInfo;
   /** The notification's signedDate (epoch ms) — the ordering high-water mark. */
   signedDateMs?: number;
+  /** Injected clock for grace-period decisions. */
+  nowMs?: number;
 }): AppleEntitlementDecision {
-  const { notificationType, subtype, transaction, renewalInfo, signedDateMs } =
-    input;
+  const {
+    notificationType,
+    subtype,
+    transaction,
+    renewalInfo,
+    signedDateMs,
+    nowMs = Date.now(),
+  } = input;
 
   if (
     !notificationType ||
@@ -113,9 +134,28 @@ export function mapAppleNotificationToEntitlement(input: {
           originalTransactionId,
           productId,
           currentPeriodEnd,
-          cancelAtPeriodEnd: false,
+          cancelAtPeriodEnd: cancelAtPeriodEndFromRenewal(renewalInfo),
           appleSignedDateMs: signedDateMs,
           guard: "activate",
+        },
+      };
+    }
+
+    case "RENEWAL_EXTENDED": {
+      return {
+        apply: true,
+        reason: "RENEWAL_EXTENDED",
+        params: {
+          plan: "PRO",
+          proStatus: "active",
+          originalTransactionId,
+          productId,
+          currentPeriodEnd,
+          cancelAtPeriodEnd: cancelAtPeriodEndFromRenewal(renewalInfo),
+          appleSignedDateMs: signedDateMs,
+          // An extension updates only its currently-owned Apple lineage. It
+          // cannot resurrect a refunded purchase or displace another source.
+          guard: "apple_only",
         },
       };
     }
@@ -139,6 +179,48 @@ export function mapAppleNotificationToEntitlement(input: {
           appleSignedDateMs: signedDateMs,
           // Only mutate a currently-apple entitlement — never resurrect a lapsed
           // one or touch a source the user switched to.
+          guard: "apple_only",
+        },
+      };
+    }
+
+    case "DID_FAIL_TO_RENEW": {
+      const gracePeriodExpiresDateMs = renewalInfo?.gracePeriodExpiresDateMs;
+      const graceIsActive =
+        subtype === "GRACE_PERIOD" &&
+        gracePeriodExpiresDateMs !== undefined &&
+        gracePeriodExpiresDateMs > nowMs;
+      return {
+        apply: true,
+        reason: graceIsActive
+          ? "DID_FAIL_TO_RENEW (GRACE_PERIOD)"
+          : `DID_FAIL_TO_RENEW (${subtype ?? "no grace"})`,
+        params: {
+          plan: graceIsActive ? "PRO" : "FREE",
+          proStatus: "past_due",
+          originalTransactionId,
+          productId,
+          currentPeriodEnd: graceIsActive
+            ? isoFromMs(gracePeriodExpiresDateMs)
+            : currentPeriodEnd,
+          appleSignedDateMs: signedDateMs,
+          guard: "apple_only",
+        },
+      };
+    }
+
+    case "GRACE_PERIOD_EXPIRED": {
+      return {
+        apply: true,
+        reason: "GRACE_PERIOD_EXPIRED",
+        params: {
+          plan: "FREE",
+          proStatus: "past_due",
+          originalTransactionId,
+          productId,
+          currentPeriodEnd:
+            isoFromMs(renewalInfo?.gracePeriodExpiresDateMs) ?? currentPeriodEnd,
+          appleSignedDateMs: signedDateMs,
           guard: "apple_only",
         },
       };
@@ -177,6 +259,33 @@ export function mapAppleNotificationToEntitlement(input: {
           cancelAtPeriodEnd: true,
           appleSignedDateMs: signedDateMs,
           guard: "apple_only",
+        },
+      };
+    }
+
+    case "REFUND_REVERSED": {
+      const unrevokedAndActive =
+        transaction?.revocationDateMs === undefined &&
+        transaction?.expiresDateMs !== undefined &&
+        transaction.expiresDateMs > nowMs;
+      if (!unrevokedAndActive) {
+        return {
+          apply: false,
+          reason: "REFUND_REVERSED: transaction is revoked or expired",
+        };
+      }
+      return {
+        apply: true,
+        reason: "REFUND_REVERSED",
+        params: {
+          plan: "PRO",
+          proStatus: "active",
+          originalTransactionId,
+          productId,
+          currentPeriodEnd,
+          cancelAtPeriodEnd: cancelAtPeriodEndFromRenewal(renewalInfo),
+          appleSignedDateMs: signedDateMs,
+          guard: "same_lineage_activate",
         },
       };
     }

@@ -26,21 +26,32 @@
  *   - `"activate"` (a PRO purchase / renewal): may take over an absent / null /
  *     `apple` / `stripe` source — a fresh App Store purchase is the most-recent
  *     billing intent and supersedes a Stripe subscription ("prefer the most
- *     recent"). It never overrides a promotional grant (license / flow_points /
- *     gift_code / admin), matching how the Stripe builder protects those.
+ *     recent"). It may supersede an expired timed promo, or an active timed
+ *     promo when Apple's signed period ends later (so access is never
+ *     shortened). It never supersedes an administrative grant.
+ *   - `"same_lineage_activate"` (refund reversal): may restore only the same
+ *     Apple lineage and never displace a different active source.
  *   - `"apple_only"` (a downgrade or renewal-status change): applies ONLY when
  *     the user is CURRENTLY `apple`-sourced, so an Apple EXPIRED/REFUND can never
  *     clobber a subscription the user has since switched to another source.
  *
- * The reverse takeover (Stripe superseding an active Apple subscription) is
- * prevented at the product layer: the web billing UI never offers Stripe
- * checkout while an Apple subscription is active, and the Stripe builder's own
- * proSource guard refuses to write over a non-stripe source. Unlike Stripe's
+ * Stripe activation is symmetric: a completed Stripe Checkout is the newest
+ * paid intent and may supersede Apple, while every terminal mutation remains
+ * same-lineage/same-source only. The product layer still blocks creating a new
+ * checkout for an effective Apple subscriber, but this arbitration closes the
+ * race for a checkout session created before a later Apple activation. Unlike Stripe's
  * dispute path, an Apple activation is NOT gated on the `disputeOpen` chargeback
  * marker: an App Store purchase is independently paid to Apple, so a lingering
  * Stripe chargeback does not block it (and the marker still blocks Stripe
  * re-activation until resolved).
  */
+import {
+  accountStatusSk,
+  bookUserPk,
+  entitlementSk,
+  type AppleStorageLane,
+} from "./keys";
+
 export type AppleEntitlementWriteParams = {
   plan: "FREE" | "PRO";
   proStatus: "inactive" | "active" | "past_due" | "canceled";
@@ -59,7 +70,7 @@ export type AppleEntitlementWriteParams = {
   /** Apple `signedDate` (epoch ms) — stamped as the ordering high-water mark. */
   appleSignedDateMs?: number;
   /** Which existing proSource values this write may apply over (see module header). */
-  guard: "activate" | "apple_only";
+  guard: "activate" | "same_lineage_activate" | "apple_only";
 };
 
 export type AppleEntitlementUpdate = {
@@ -72,6 +83,30 @@ export type AppleEntitlementUpdate = {
   conditionParts: string[];
 };
 
+export type AppleEntitlementTransactWrite = {
+  TransactItems: [
+    {
+      Update: {
+        TableName: string;
+        Key: Record<string, unknown>;
+        UpdateExpression: string;
+        ConditionExpression: string;
+        ExpressionAttributeNames: Record<string, string>;
+        ExpressionAttributeValues: Record<string, unknown>;
+      };
+    },
+    {
+      ConditionCheck: {
+        TableName: string;
+        Key: Record<string, unknown>;
+        ConditionExpression: string;
+        ExpressionAttributeNames: Record<string, string>;
+        ExpressionAttributeValues: Record<string, unknown>;
+      };
+    },
+  ];
+};
+
 export function buildEntitlementUpdateFromApple(
   params: AppleEntitlementWriteParams,
   updatedAtIso: string,
@@ -80,6 +115,8 @@ export function buildEntitlementUpdateFromApple(
   // entitlement reads back as a plain FREE user (mirrors the Stripe builder).
   const proSourceValue = params.plan === "PRO" ? "apple" : null;
   const hasSignedDate = Number.isFinite(params.appleSignedDateMs);
+  const hasPaidIntentTimestamp =
+    params.plan === "PRO" && params.guard === "activate" && hasSignedDate;
 
   const setParts: string[] = [
     "#plan = :plan",
@@ -93,9 +130,6 @@ export function buildEntitlementUpdateFromApple(
     ":plan": params.plan,
     ":proStatus": params.proStatus,
     ":proSource": proSourceValue,
-    ":appleSource": "apple",
-    ":stripeSource": "stripe",
-    ":nullSource": null,
     ":appleOtx": params.originalTransactionId,
     ":updatedAt": updatedAtIso,
     ":defaultSlots": 2,
@@ -124,17 +158,54 @@ export function buildEntitlementUpdateFromApple(
     setParts.push("lastAppleSignedDate = :appleSignedDate");
     eav[":appleSignedDate"] = params.appleSignedDateMs;
   }
+  if (hasPaidIntentTimestamp) {
+    setParts.push("activePaidIntentAtMs = :paidIntentAtMs");
+    eav[":paidIntentAtMs"] = params.appleSignedDateMs;
+    eav[":paidIntentAtSeconds"] = Math.floor(
+      (params.appleSignedDateMs as number) / 1000,
+    );
+  }
 
   const conditionParts: string[] = [];
   if (params.guard === "activate") {
-    // A purchase/renewal may take over absent / null / apple / stripe (most-recent
-    // purchase wins) but never a promotional grant.
+    eav[":appleSource"] = "apple";
+    eav[":nullSource"] = null;
+    eav[":licenseSource"] = "license";
+    eav[":flowPointsSource"] = "flow_points";
+    eav[":giftCodeSource"] = "gift_code";
+    if (hasPaidIntentTimestamp) eav[":stripeSource"] = "stripe";
+    // A purchase/renewal may take over absent / null / apple / stripe. It may
+    // also take over a timed promo after expiry or when Apple's signed period
+    // extends beyond it; this prevents a paid-without-access gap without ever
+    // shortening the user's access. Admin grants remain protected.
+    const licenseExpiryGuard =
+      params.currentPeriodEnd === undefined
+        ? "licenseExpiresAt < :updatedAt"
+        : "(licenseExpiresAt < :updatedAt OR licenseExpiresAt < :periodEnd)";
+    const timedPassExpiryGuard =
+      params.currentPeriodEnd === undefined
+        ? "currentPeriodEnd < :updatedAt"
+        : "(currentPeriodEnd < :updatedAt OR currentPeriodEnd < :periodEnd)";
+    const stripeTakeoverGuard = hasPaidIntentTimestamp
+      ? " OR (proSource = :stripeSource AND ((attribute_exists(activePaidIntentAtMs) AND activePaidIntentAtMs <= :paidIntentAtMs) OR (attribute_not_exists(activePaidIntentAtMs) AND (attribute_not_exists(lastStripeEventAt) OR lastStripeEventAt <= :paidIntentAtSeconds))))"
+      : "";
     conditionParts.push(
-      "(attribute_not_exists(proSource) OR proSource = :appleSource OR proSource = :stripeSource OR proSource = :nullSource)",
+      `(attribute_not_exists(proSource) OR proSource = :appleSource OR proSource = :nullSource${stripeTakeoverGuard} OR (proSource = :licenseSource AND attribute_exists(licenseExpiresAt) AND ${licenseExpiryGuard}) OR ((proSource = :flowPointsSource OR proSource = :giftCodeSource) AND attribute_exists(currentPeriodEnd) AND ${timedPassExpiryGuard}))`,
+    );
+  } else if (params.guard === "same_lineage_activate") {
+    eav[":appleSource"] = "apple";
+    eav[":nullSource"] = null;
+    conditionParts.push("appleOriginalTransactionId = :appleOtx");
+    conditionParts.push(
+      "(attribute_not_exists(proSource) OR proSource = :appleSource OR proSource = :nullSource)",
     );
   } else {
-    // A downgrade / renewal-status change only touches a currently-apple source.
+    eav[":appleSource"] = "apple";
+    // A downgrade / renewal-status change only touches the SAME currently-Apple
+    // subscription lineage. A late terminal event from lineage A must never
+    // revoke a newer active lineage B owned by the same ChapterFlow account.
     conditionParts.push("proSource = :appleSource");
+    conditionParts.push("appleOriginalTransactionId = :appleOtx");
   }
   // Event-ordering guard: refuse a stale (out-of-order) Apple event.
   if (hasSignedDate) {
@@ -150,5 +221,65 @@ export function buildEntitlementUpdateFromApple(
     expressionAttributeValues: eav,
     setParts,
     conditionParts,
+  };
+}
+
+/**
+ * Couple an entitlement mutation to the account lifecycle atomically. A
+ * notification that resolved its claim immediately before hard erasure cannot
+ * recreate personal data after the partition sweep.
+ */
+export function buildAppleEntitlementTransactWrite(input: {
+  tableName: string;
+  userId: string;
+  params: AppleEntitlementWriteParams;
+  updatedAtIso: string;
+  storageLane?: AppleStorageLane;
+}): AppleEntitlementTransactWrite {
+  const storageLane = input.storageLane ?? "Primary";
+  const built = buildEntitlementUpdateFromApple(
+    input.params,
+    input.updatedAtIso,
+  );
+  const updateExpression = `${built.updateExpression}, entity = :entity, userId = :userId`;
+  const expressionAttributeValues = {
+    ...built.expressionAttributeValues,
+    ":entity":
+      storageLane === "Primary"
+        ? "BOOK_USER_ENTITLEMENT"
+        : "BOOK_USER_ENTITLEMENT_APPLE_SANDBOX",
+    ":userId": input.userId,
+  };
+  return {
+    TransactItems: [
+      {
+        Update: {
+          TableName: input.tableName,
+          Key: {
+            PK: bookUserPk(input.userId),
+            SK: entitlementSk(storageLane),
+          },
+          ConditionExpression: built.conditionExpression,
+          UpdateExpression: updateExpression,
+          ExpressionAttributeNames: built.expressionAttributeNames,
+          ExpressionAttributeValues: expressionAttributeValues,
+        },
+      },
+      {
+        ConditionCheck: {
+          TableName: input.tableName,
+          Key: {
+            PK: bookUserPk(input.userId),
+            SK: accountStatusSk(),
+          },
+          ConditionExpression:
+            "attribute_not_exists(#accountStatus) OR #accountStatus <> :deletedAccountStatus",
+          ExpressionAttributeNames: { "#accountStatus": "status" },
+          ExpressionAttributeValues: {
+            ":deletedAccountStatus": "deleted",
+          },
+        },
+      },
+    ],
   };
 }

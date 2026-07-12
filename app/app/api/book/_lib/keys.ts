@@ -44,8 +44,20 @@ export function bookUserPk(userId: string): string {
   return `BOOKUSER#${userId}`;
 }
 
-export function entitlementSk(): string {
-  return "ENTITLEMENT";
+/**
+ * DynamoDB storage lane, deliberately separate from Apple's signed
+ * Production/Sandbox environment. Dev/staging Sandbox is authoritative and
+ * therefore uses Primary; only the opt-in Production TestFlight exception uses
+ * TestFlightSandbox.
+ */
+export type AppleStorageLane = "Primary" | "TestFlightSandbox";
+
+export function entitlementSk(
+  appleStorageLane: AppleStorageLane = "Primary",
+): string {
+  return appleStorageLane === "TestFlightSandbox"
+    ? "ENTITLEMENT#APPLE_SANDBOX"
+    : "ENTITLEMENT";
 }
 
 export function progressSk(bookId: string): string {
@@ -268,12 +280,27 @@ export function stripeCustomerSk(): string {
  * the account. The Apple analogue of stripeCustomerPk. Written by the
  * /apple/verify route when a user first proves ownership of the transaction.
  */
-export function appleOriginalTransactionPk(originalTransactionId: string): string {
-  return `BOOKBILLING#APPLETXN#${originalTransactionId}`;
+export function appleOriginalTransactionPk(
+  originalTransactionId: string,
+  storageLane: AppleStorageLane = "Primary",
+): string {
+  return storageLane === "TestFlightSandbox"
+    ? `BOOKBILLING#APPLETXN#SANDBOX#${originalTransactionId}`
+    : `BOOKBILLING#APPLETXN#${originalTransactionId}`;
 }
 
 export function appleOriginalTransactionSk(): string {
   return "USER";
+}
+
+/** User-partition erasure pointer to an Apple transaction reverse-map row. */
+export function appleOriginalTransactionPointerSk(
+  originalTransactionId: string,
+  storageLane: AppleStorageLane = "Primary",
+): string {
+  return storageLane === "TestFlightSandbox"
+    ? `APPLETXNPTR#SANDBOX#${originalTransactionId}`
+    : `APPLETXNPTR#${originalTransactionId}`;
 }
 
 /** PK for a license key record. Code is stored uppercase for case-insensitive lookups. */

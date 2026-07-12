@@ -229,23 +229,31 @@ Consumed by the Apple IAP entitlement path — the verify endpoint
 [`app/app/api/book/me/billing/apple/verify/route.ts`](../app/app/api/book/me/billing/apple/verify/route.ts)
 and the App Store Server Notifications V2 webhook
 [`app/app/api/book/me/billing/apple/notifications/route.ts`](../app/app/api/book/me/billing/apple/notifications/route.ts),
-via the pure cores `apple-jws-verify-core.ts` (chain verification against the
-**pinned Apple Root CA - G3**), `apple-notification-core.ts` (the notification
+via `apple-jws-verify-core.ts` (Apple's official App Store Server Library,
+**pinned Apple Root CA - G3**, and Production OCSP),
+`apple-notification-core.ts` (the notification
 state machine), and `apple-entitlement-write-core.ts` (the DynamoDB write with
 the `lastAppleSignedDate` ordering guard). Config is read via
 [`apple-env.ts`](../app/app/api/book/_lib/apple-env.ts).
 
-Verifying StoreKit transaction JWSs and App Store Server Notifications requires
-**no network call to Apple** — authenticity comes entirely from the pinned root.
-So the only variable this path strictly needs is `APPLE_BUNDLE_ID` (to confirm a
-payload is for our app). `APPLE_ISSUER_ID` / `APPLE_KEY_ID` / `APPLE_PRIVATE_KEY`
-are the App Store Connect **API key** credentials, reserved for signing outbound
-App Store Server API calls (used by the Sign-in-with-Apple revoke flow, and
-available for future transaction/status lookups).
+Production verification uses Apple's official online certificate-revocation
+checks; OCSP transport failures return retryable
+`503 apple_verification_unavailable` so the client/Apple retries. Sandbox uses
+the official offline `signedDate` mode. Granting additionally requires exact
+native bundle, numeric App Apple ID, product allowlist, subscription group,
+environment, direct ownership, and account binding. `APPLE_BUNDLE_ID` remains
+the Sign-in-with-Apple Services ID and is never an IAP fallback.
 
 | Variable | Req | Source | Purpose |
 |---|---|---|---|
-| `APPLE_BUNDLE_ID` | **R (for IAP)** | secret (env → `serverEnv`) | The app bundle id (e.g. `com.chapterflow.app`). Every verified StoreKit transaction / notification `bundleId` must match this, or it's rejected as not-for-this-app. **Shared with Sign-in-with-Apple (B8) — defined there; reused here, not redefined.** |
+| `APPLE_IAP_BUNDLE_ID` | **R (prod)** | GitHub environment variable → `serverEnv` | Exact native app bundle identifier. Distinct from the SIWA Services ID. |
+| `APPLE_IAP_APP_APPLE_ID` | **R (every frontend deploy)** | GitHub environment variable → `serverEnv` | Numeric App Store app ID. Production notification `data.appAppleId` and the final `/id<number>` in `IOS_APP_STORE_URL` must both equal it. |
+| `APPLE_IAP_SUBSCRIPTION_GROUP_ID` | **R (prod)** | GitHub environment variable → `serverEnv` | Exact App Store Connect subscription-group identifier required in every signed transaction. |
+| `IOS_STOREKIT_PRODUCT_IDS` | **R (prod)** | GitHub environment variable → `serverEnv` | Comma-separated exact allowlist shared by `/config/ios`, direct verification, and notifications. Duplicate/malformed IDs and `annual_upfront` are rejected. |
+| `IOS_APP_STORE_URL` | **R (prod)** | GitHub environment variable → `serverEnv` | Exact product-specific HTTPS `apps.apple.com/.../id<number>` URL returned to native clients. Search/publisher URLs, query strings, and foreign hosts are rejected. |
+| `APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED` | O (prod only) | GitHub environment variable → `serverEnv` | Exact `1` opt-in for the isolated Production TestFlight Sandbox lane; unset/`0` is off. Any other value fails deployment/runtime validation. Never enable outside `prod`. |
+| `APPLE_IAP_TESTFLIGHT_QA_USER_IDS` | R only when the TestFlight lane is enabled | **protected GitHub Environment secret → CI hash boundary only** | Comma-separated, lowercase canonical Cognito `sub` UUID allowlist. The workflow validates and hashes it in-memory; raw IDs never enter CDK, CloudFormation, Lambda configuration, build artifacts, or logs. Never store it as a GitHub variable or include it in release evidence. |
+| `APPLE_IAP_TESTFLIGHT_QA_USER_HASHES` | generated; do not configure manually | CI-derived GitHub job env → `serverEnv` | Comma-separated lowercase SHA-256 digests used for runtime membership. Only this one-way representation crosses CDK. Missing/malformed/duplicate hashes fail closed when the lane is enabled; the workflow omits them when disabled. |
 | `APPLE_ISSUER_ID` | O (R for App Store Server API) | secret (env → `serverEnv`) | App Store Connect API **Issuer ID** (a UUID, from *Users and Access → Integrations → App Store Connect API*). Signs outbound App Store Server API requests. Not needed for local JWS verification, so the verify/notifications endpoints work without it. |
 | `APPLE_KEY_ID` | O (R for App Store Server API) | secret (env → `serverEnv`) | App Store Connect API **Key ID**. **Shared with Sign-in-with-Apple (B8) — defined there; reused here.** |
 | `APPLE_PRIVATE_KEY` | O (R for App Store Server API) | secret (env → `serverEnv`) | App Store Connect API private key (PKCS#8 `.p8`). **Shared with Sign-in-with-Apple (B8) — defined there; reused here.** |
@@ -257,24 +265,173 @@ available for future transaction/status lookups).
    **Product ID** (e.g. `chapterflow.pro.monthly`) — the native app buys these,
    and the `productId` is persisted on the entitlement (`appleProductId`).
 2. **App Store Server Notifications V2.** In *App Information → App Store Server
-   Notifications*, set the **Production** (and **Sandbox**) **V2** URL to
-   `https://<prod-apex>/app/api/book/me/billing/apple/notifications`. Apple posts
-   `{ signedPayload }`; the webhook verifies the JWS chain against the pinned root
-   (no shared secret needed) and applies `SUBSCRIBED` / `DID_RENEW` / `EXPIRED` /
-   `DID_CHANGE_RENEWAL_STATUS` / `REFUND`. Out-of-order/redelivered events are
-   rejected by the `signedDate` high-water mark.
+   Notifications*, set the **Production V2** URL to
+   `https://<prod-apex>/app/api/book/me/billing/apple/notifications` and the
+   **Sandbox V2** URL to
+   `https://<staging-host>/app/api/book/me/billing/apple/notifications`. Never
+   point Sandbox notifications at Production: the Production webhook remains
+   strictly Production-only even when the TestFlight direct-verification lane
+   is enabled, so Sandbox envelopes receive `transaction_environment_mismatch`.
+   Staging uses its own table and Primary map namespace; it cannot mutate the
+   isolated Production QA/TestFlight rows. Production TestFlight QA state is
+   therefore refreshed by authenticated StoreKit transaction verification and
+   fails closed at signed expiry, not by Sandbox notifications. Apple posts
+   `{ signedPayload }`; each deployment's webhook uses Apple's official verifier
+   and applies subscription, renewal, billing retry/grace, extension,
+   expiration, refund, and refund-reversal transitions. Out-of-order deliveries
+   are rejected by the `signedDate` high-water mark.
 3. **App Store Connect API key (optional here).** *Users and Access →
    Integrations → App Store Connect API* → generate an **In-App Purchase** key.
    Download the `.p8` once → `APPLE_PRIVATE_KEY`; record the **Key ID** →
    `APPLE_KEY_ID` and the **Issuer ID** → `APPLE_ISSUER_ID`.
-4. **Set `APPLE_BUNDLE_ID`** to the app's bundle identifier so payload
-   `bundleId`s validate.
+4. **Set the environment-bound IAP policy.** Configure
+   `APPLE_IAP_BUNDLE_ID`, `APPLE_IAP_APP_APPLE_ID`,
+   `APPLE_IAP_SUBSCRIPTION_GROUP_ID`,
+   `IOS_STOREKIT_PRODUCT_IDS`, and `IOS_APP_STORE_URL` in each GitHub
+   Environment. `prod` accepts signed `Production` transactions by default;
+   `dev`/`staging` accept signed `Sandbox` transactions on their ordinary
+   Primary storage keys. The narrow Production TestFlight exception below is
+   direct-verification-only and uses separately namespaced rows.
+5. **Bind purchases to the initiating account.** The authenticated Cognito
+   `sub` must be an RFC UUID and the native app must pass it through StoreKit's
+   `.appAccountToken` purchase option. First claims without an exact signed
+   match fail closed. Tokenless transactions (including offer-code events) are
+   accepted only for a reverse map already owned by that same account.
 
 The native app calls `POST /app/api/book/me/billing/apple/verify` with
 `{ transactionJWS }` (the StoreKit 2 signed transaction) after purchase to grant
 the shared Pro entitlement (`proSource: "apple"`); the web billing surfaces then
 show "Managed via the App Store on your iPhone" instead of the Stripe portal, and
 never offer Stripe checkout while the Apple subscription is active.
+
+An authenticated, policy-valid transaction receives an additive acknowledgement:
+`{ ok: true, processed: true, transactionState, entitlement }`. `processed`
+means StoreKit may finish the transaction. Access always follows the returned
+authoritative `entitlement`; an active promotional/admin entitlement is not
+overwritten merely because an Apple transaction was processed. Expired/revoked
+transactions use a same-lineage `apple_only` mutation, so they cannot revoke a
+different Apple lineage or Stripe, gift, promotional, or admin access.
+
+**Fail-closed Production TestFlight Sandbox lane.** Leave
+`APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED=0` and the allowlist absent for normal
+operation. Only after the App Store catalog and backend are release-ready:
+
+1. Save the exact lowercase Cognito UUIDs as the protected prod Environment
+   secret `APPLE_IAP_TESTFLIGHT_QA_USER_IDS`; do not echo or copy them into
+   workflow output, docs, issues, or release evidence. The deploy workflow
+   validates the secret in one process, emits only SHA-256 digests, and passes
+   `APPLE_IAP_TESTFLIGHT_QA_USER_HASHES` into CDK/Lambda.
+2. Set the prod Environment variable
+   `APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED=1` and run an approved app-only prod
+   deploy. Synth fails before mutation for a missing/malformed/duplicate
+   allowlist, a non-exact flag, or enablement outside prod.
+3. A direct Sandbox JWS still must pass Apple's official verifier, exact bundle,
+   product, subscription group, purchased ownership, and signed
+   `appAccountToken == authenticated Cognito sub`. Fallback occurs only after
+   the Production verifier returns authenticated `invalid_environment`; bad
+   signatures, profiles, identifiers, and OCSP failures never fall back.
+4. Only the exact allowlisted account can claim
+   `TestFlightSandbox` map/entitlement rows. Normal Production keys remain
+   byte-for-byte unchanged. Default `/me/entitlements` and every server-side Pro
+   gate overlay an active TestFlight row only for an enabled, allowlisted user;
+   an effective Production Pro row always wins.
+
+The hash boundary addresses CloudFormation/artifact disclosure without adding a
+new runtime secret dependency. Cognito-generated UUIDs carry roughly 122 bits of
+randomness, so SHA-256 preimage search is infeasible. A digest is still linkable
+and can be tested by someone who already knows a subject UUID, so hashes remain
+operational configuration and must not be logged or published. They are not an
+authentication factor: official JWS verification and exact signed
+`appAccountToken` binding remain mandatory before the membership lookup.
+
+One operator command disables the flag and starts the app-only rollback deploy
+(replace `<release-ref>` with the approved backend release ref). The workflow
+then omits hashes even if the protected raw secret remains stored for a later QA
+window:
+
+```bash
+gh variable set APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED --env prod --body 0 && gh workflow run deploy.yml --ref <release-ref> -f environment=prod -f deploy_infra=false -f deploy_app=true -f seed=false
+```
+
+As soon as that deploy is live, all default reads ignore the isolated Sandbox
+row, so QA access disappears without deleting or rewriting Production state.
+The namespaced rows remain inert for audit/re-enable and are removed by the
+normal account-erasure partition/pointer sweep. Never populate this prod secret
+or enable the flag while the catalog blockers recorded below remain open.
+
+**Paid-source arbitration and duplicate-billing limitation.** The checkout
+guard prevents a new Stripe session for effective Apple Pro, but a session
+created earlier can complete after a StoreKit purchase (and the reverse can be
+delivered late). Apple and Stripe activations stamp a shared
+`activePaidIntentAtMs` and compare it, with legacy source-specific high-water
+marks as fallback, so a delayed older event cannot displace the newer paid
+intent. Terminal events remain source/lineage-only. This protects access but
+cannot cancel an external subscription automatically: both Apple and Stripe may
+briefly remain billable. Run the admin billing reconciliation after QA and
+release billing tests; `prosource_mismatch` identifies a live Stripe
+subscription while Apple is authoritative. For the reverse direction, inspect
+the retained Apple lineage in App Store Connect/customer support. Confirm the
+customer's intended channel, cancel the duplicate, and refund/compensate under
+the published billing policy.
+
+**Ownership-map rollout and rollback.** New transaction claims persist
+`accountBindingVersion: "cognito_sub_v1"` and atomically add a user-partition
+erasure pointer. Existing maps remain readable: a tokenless JWS is accepted only
+when that map already belongs to the authenticated user;
+re-verification also backfills its erasure pointer. There is no table migration.
+Pre-existing maps that are never re-verified remain an account-erasure residual
+and require operator reconciliation. Rolling back application code is data-safe:
+older readers ignore the additive version/pointer fields, while the reverse map
+and entitlement shapes remain unchanged.
+
+Stable verification failures use the standard Book API error envelope. Policy
+codes are `bundle_mismatch`, `app_apple_id_mismatch`,
+`transaction_environment_mismatch`,
+`product_not_allowed`, `subscription_group_mismatch`,
+`unsupported_transaction_type`, `unsupported_ownership_type`, and
+`family_shared_not_supported` (HTTP 400). Account binding uses
+`account_token_required` / `account_token_malformed` (400) and
+`account_token_mismatch` / `account_identifier_unsupported` /
+`transaction_already_claimed` (409). A transient strongly-consistent read miss
+returns `entitlement_confirmation_unavailable` (503) and must not finish the
+StoreKit transaction. Invalid deployment policy returns
+`apple_iap_configuration_unavailable` (503). OCSP/revocation transport failures
+return `apple_verification_unavailable` (503) and must remain unfinished/unacked.
+
+**Confirmed nonsecret release identity (read-only evidence, 2026-07-11).** App
+Store Connect currently reports Team ID `ZG3C9QBA8Z`, bundle
+`com.chapterflow.ios`, App Apple ID `6787864558`, subscription group `22211821`,
+with `com.chapterflow.pro.annual` (ASC product id `6787866553`, one year) and
+`com.chapterflow.pro.monthly` (ASC product id `6789951571`, one month). Both are
+**Missing Metadata** and Family Sharing is off. Annual currently has 175 saved
+price rows (US `$44.99`, Canada `$59.99`) plus English (Canada) localization;
+monthly has a saved US base price of `$7.99` with Apple's automatic territory
+equivalents, but its localization/review metadata remain unset. Availability is
+unset for both products. App Store Connect assigns both subscriptions to level
+`1`, matching their equivalent ChapterFlow Pro access with different billing
+durations. Production/Sandbox notification URLs are unset. These facts are
+evidence, **not authorization to populate the prod allowlist or deploy**.
+
+**Frontend deployment checklist (record in release evidence).** Before CDK
+mutation, record `CHAPTERFLOW_COMMIT_SHA`, `CHAPTERFLOW_ENV`, Team ID, exact
+bundle, numeric App Apple ID, subscription group, exact recurring product IDs,
+and the product-specific listing URL. Confirm the URL's final id equals
+`APPLE_IAP_APP_APPLE_ID`; every allowlisted product is complete, priced,
+available, localized, review-ready, recurring, and in the recorded group;
+subscription levels reflect the intended upgrade order; and both notification
+URLs are set. Then run synth validation and the uncached `/config/ios` health
+gate.
+
+**Compatibility, sequencing, and rollback.** Deploy the additive backend
+`processed`/`transactionState` response and official verifier first, validate it
+in dev/staging Sandbox, then ship the iOS verify-then-finish client. Do not ship
+the client against an older backend that lacks the acknowledgement. On backend
+failure, roll the frontend stack back to the previous known-good commit; the iOS
+client must keep the StoreKit transaction unfinished and retry on every 503.
+After the new client ships, retain this additive response contract through any
+server rollback. Roll back configuration and code together; never weaken bundle,
+appAppleId, group, ownership, product, or account-binding checks to restore
+availability.
 
 ---
 

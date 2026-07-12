@@ -7,6 +7,7 @@
  *    `minSupportedVersion` / `latestVersion`),
  *  - remote kill-switch feature flags,
  *  - the StoreKit product list to offer, and
+ *  - the exact App Store listing used by a hard update gate, and
  *  - a full-app maintenance mode + an optional message-of-the-day banner.
  *
  * A force-update gate CANNOT be retrofitted into binaries already in the field,
@@ -20,6 +21,7 @@
  * `tsx --test` runner. The route handler does the process.env read and adds the
  * cache headers.
  */
+import { parseAppleProductAllowlist } from "../../_lib/apple-purchase-policy-core";
 
 export interface IosAppConfig {
   /**
@@ -36,6 +38,8 @@ export interface IosAppConfig {
   featureFlags: Record<string, boolean>;
   /** StoreKit 2 product identifiers the app should offer, in display order. */
   storeKitProductIds: string[];
+  /** Exact product-specific listing; never a search or publisher page. */
+  appStoreURL: string;
   /** When true the app shows a full-screen "we'll be right back" state. */
   maintenanceMode: boolean;
   /** Optional short banner shown on launch. Omitted entirely when unset. */
@@ -46,18 +50,6 @@ export interface IosAppConfig {
 const DEFAULT_VERSION = "1.0.0";
 
 /**
- * Default StoreKit product ids (reverse-DNS, StoreKit 2 convention) covering the
- * three subscription plans the web billing already sells: monthly, annual
- * (monthly-billed), and annual-upfront. Overridable via `IOS_STOREKIT_PRODUCT_IDS`
- * so the list can be rotated (new plan, price experiment) without an app release.
- */
-const DEFAULT_STOREKIT_PRODUCT_IDS: readonly string[] = [
-  "com.chapterflow.pro.monthly",
-  "com.chapterflow.pro.annual",
-  "com.chapterflow.pro.annual_upfront",
-];
-
-/**
  * Env keys read by the config, all optional. The index signature lets `process.env`
  * (`ProcessEnv`) be passed directly; the named keys document the contract.
  */
@@ -66,6 +58,8 @@ export interface IosConfigEnv {
   IOS_LATEST_VERSION?: string;
   IOS_FEATURE_FLAGS?: string;
   IOS_STOREKIT_PRODUCT_IDS?: string;
+  IOS_APP_STORE_URL?: string;
+  APPLE_IAP_APP_APPLE_ID?: string;
   IOS_MAINTENANCE_MODE?: string;
   IOS_MESSAGE_OF_THE_DAY?: string;
   [key: string]: string | undefined;
@@ -109,27 +103,66 @@ function parseFeatureFlags(raw: string | undefined): Record<string, boolean> {
   return out;
 }
 
-/**
- * Parse `IOS_STOREKIT_PRODUCT_IDS` — a comma-separated list. Blank/absent falls
- * back to the default plan set; an explicitly-empty override (e.g. `""` with a
- * present key but no ids) also falls back rather than shipping an empty store.
- */
-function parseProductIds(raw: string | undefined): string[] {
-  const v = raw?.trim();
-  if (!v) return [...DEFAULT_STOREKIT_PRODUCT_IDS];
-  const ids = v
-    .split(",")
-    .map((s) => s.trim())
-    .filter((s) => s.length > 0);
-  return ids.length > 0 ? ids : [...DEFAULT_STOREKIT_PRODUCT_IDS];
+export type IosConfigIssue =
+  | "missing_product_allowlist"
+  | "malformed_product_allowlist"
+  | "unsupported_annual_upfront"
+  | "invalid_app_apple_id"
+  | "invalid_app_store_url";
+
+export class IosConfigValidationError extends Error {
+  constructor(public readonly issues: IosConfigIssue[]) {
+    super("The native iOS deployment configuration is invalid.");
+    this.name = "IosConfigValidationError";
+  }
+}
+
+function exactAppStoreUrl(raw: string | undefined): string | null {
+  const value = raw?.trim();
+  if (!value) return null;
+  try {
+    const parsed = new URL(value);
+    if (
+      parsed.protocol !== "https:" ||
+      parsed.hostname !== "apps.apple.com" ||
+      parsed.port !== "" ||
+      parsed.username ||
+      parsed.password ||
+      parsed.search ||
+      parsed.hash ||
+      !/\/id[1-9][0-9]{5,19}\/?$/.test(parsed.pathname)
+    ) {
+      return null;
+    }
+    return parsed.toString();
+  } catch {
+    return null;
+  }
 }
 
 /**
  * Build the launch-config response body from an env-like record. Total and
- * never-throwing: every field has a safe default so the endpoint always serves
- * a well-formed config even with no env configured.
+ * Fail-closed for StoreKit and hard-update identity. Versions and feature flags
+ * retain safe defaults, but the route must not fabricate purchase/listing data.
  */
 export function buildIosAppConfig(env: IosConfigEnv): IosAppConfig {
+  const productAllowlist = parseAppleProductAllowlist(
+    env.IOS_STOREKIT_PRODUCT_IDS,
+  );
+  const appStoreURL = exactAppStoreUrl(env.IOS_APP_STORE_URL);
+  const appAppleId = env.APPLE_IAP_APP_APPLE_ID?.trim() ?? "";
+  const appAppleIdIsValid = /^\d{6,15}$/.test(appAppleId);
+  const listingId = appStoreURL?.match(/\/id([1-9][0-9]{5,14})\/?$/)?.[1];
+  const issues: IosConfigIssue[] = [];
+  if (!productAllowlist.valid) issues.push(productAllowlist.reason);
+  if (!appAppleIdIsValid) issues.push("invalid_app_apple_id");
+  if (!appStoreURL || (appAppleIdIsValid && listingId !== appAppleId)) {
+    issues.push("invalid_app_store_url");
+  }
+  if (issues.length > 0 || !productAllowlist.valid || !appStoreURL) {
+    throw new IosConfigValidationError(issues);
+  }
+
   const config: IosAppConfig = {
     minSupportedVersion: cleanVersion(
       env.IOS_MIN_SUPPORTED_VERSION,
@@ -137,7 +170,8 @@ export function buildIosAppConfig(env: IosConfigEnv): IosAppConfig {
     ),
     latestVersion: cleanVersion(env.IOS_LATEST_VERSION, DEFAULT_VERSION),
     featureFlags: parseFeatureFlags(env.IOS_FEATURE_FLAGS),
-    storeKitProductIds: parseProductIds(env.IOS_STOREKIT_PRODUCT_IDS),
+    storeKitProductIds: productAllowlist.productIds,
+    appStoreURL,
     maintenanceMode: parseBooleanFlag(env.IOS_MAINTENANCE_MODE),
   };
 

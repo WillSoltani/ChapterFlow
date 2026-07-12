@@ -2,7 +2,7 @@
  * Erasure reverse-pointers (#4a) — pure key construction/reconstruction.
  *
  * Externally-keyed records (risk events keyed by device/network fingerprint,
- * referral codes and pair invites keyed by code) are unreachable from a sweep of
+ * referral/pair codes, and Apple transaction maps) are unreachable from a sweep of
  * the user's own partition and there is no userId GSI to find them. To make them
  * erasable WITHOUT a GSI we write a small pointer item into the user's partition
  * at write time; this module owns BOTH directions so the target key the writer
@@ -23,6 +23,11 @@ import {
   pairInvitePk,
   pairInviteSk,
   pairInvitePointerSk,
+  appleOriginalTransactionPk,
+  appleOriginalTransactionSk,
+  appleOriginalTransactionPointerSk,
+  accountStatusSk,
+  type AppleStorageLane,
 } from "./keys";
 
 type DdbKey = { PK: string; SK: string };
@@ -103,6 +108,28 @@ export function buildPairInvitePointer(userId: string, inviteCode: string): Eras
   };
 }
 
+// ─── Apple transaction reverse maps ──────────────────────────────────────────
+
+/**
+ * Build the user-owned pointer for an externally-keyed Apple transaction map.
+ * The pointer is written atomically with the claim, allowing account erasure to
+ * remove both the stored userId and the purchase reservation.
+ */
+export function buildAppleTransactionPointer(
+  userId: string,
+  originalTransactionId: string,
+  storageLane: AppleStorageLane = "Primary",
+): ErasurePointerItem {
+  return {
+    PK: bookUserPk(userId),
+    SK: appleOriginalTransactionPointerSk(originalTransactionId, storageLane),
+    entity: "BOOK_APPLE_TXN_POINTER",
+    targetPK: appleOriginalTransactionPk(originalTransactionId, storageLane),
+    targetSK: appleOriginalTransactionSk(),
+    appleStorageLane: storageLane,
+  };
+}
+
 // ─── Reconstruction (erase side) ──────────────────────────────────────────────
 
 /** Entity discriminators for the #4a erasure reverse-pointer items (the SoT). */
@@ -110,6 +137,7 @@ const POINTER_ENTITIES = new Set([
   "BOOK_RISK_EVENT_POINTER",
   "BOOK_REFERRAL_CODE_POINTER",
   "BOOK_PAIR_INVITE_POINTER",
+  "BOOK_APPLE_TXN_POINTER",
 ]);
 
 /**
@@ -148,4 +176,25 @@ export function targetKeysFromUserItems(items: Record<string, unknown>[]): DdbKe
     keys.push(target);
   }
   return keys;
+}
+
+/**
+ * Main-partition deletion gate. If any pointer target is unresolved, retain the
+ * entire partition so its reverse pointers survive for an operator retry. Once
+ * targets are gone, delete every well-formed row except the short-lived deleted
+ * account tombstone that blocks stale tokens and racing claims.
+ */
+export function mainPartitionKeysAfterPointerCleanup(
+  items: Record<string, unknown>[],
+  pointerTargetsComplete: boolean,
+): DdbKey[] {
+  if (!pointerTargetsComplete) return [];
+  return items
+    .filter(
+      (item) =>
+        typeof item.PK === "string" &&
+        typeof item.SK === "string" &&
+        item.SK !== accountStatusSk(),
+    )
+    .map((item) => ({ PK: item.PK as string, SK: item.SK as string }));
 }
